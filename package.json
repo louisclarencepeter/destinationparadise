@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "postcss-preset-env": "^9.3.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -19,10 +20,12 @@
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react-swc": "^3.0.0",
+    "autoprefixer": "^10.4.16",
     "eslint": "^8.38.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.3.4",
+    "postcss": "^8.4.31",
     "vite": "^4.3.9"
   }
 }

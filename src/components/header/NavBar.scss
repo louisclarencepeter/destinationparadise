@@ -1,0 +1,118 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    height: 5rem;
+  }
+  
+  img {
+    height: 3rem;
+  }
+  
+  .hamburger-menu {
+    position: relative;
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  #menu__toggle {
+    opacity: 0;
+    position: absolute;
+    z-index: 2; /* Ensure the checkbox is above the span elements */
+  }
+  
+  .menu__btn {
+    position: relative;
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    z-index: 1;
+  }
+  
+  .menu__btn > span,
+  .menu__btn > span::before,
+  .menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #616161;
+    transition-duration: 0.25s;
+  }
+  
+  .menu__btn > span::before {
+    content: "";
+    top: -8px;
+  }
+  
+  .menu__btn > span::after {
+    content: "";
+    top: 8px;
+  }
+  
+  /* Transformations when checked */
+  #menu__toggle:checked + .menu__btn > span {
+    transform: rotate(45deg); /* Rotates the middle span */
+  }
+  
+  #menu__toggle:checked + .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0); /* Aligns with the middle span */
+  }
+  
+  #menu__toggle:checked + .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg); /* Perpendicular to the middle span */
+  }
+  
+  /* Ensure the menu box appears as expected */
+  #menu__toggle:checked ~ .menu__box {
+    right: 0;
+  }
+  
+  
+  $menu-color: #616161;
+  $menu-hover-color: #cfd8dc;
+  $menu-background: #eceff1;
+  
+  .menu__btn {
+    cursor: pointer;
+    z-index: 1;
+    & > span, & > span::before, & > span::after {
+      background-color: $menu-color;
+      transition-duration: 0.25s;
+    }
+    & > span::before, & > span::after {
+      content: "";
+    }
+  }
+  
+  .menu__box {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    background-color: $menu-background;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+    transition-duration: 0.25s;
+  }
+  
+  .menu__item {
+    padding: 12px 24px;
+    color: #333;
+    font-family: "Roboto", sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition-duration: 0.25s;
+    &:hover {
+      background-color: $menu-hover-color;
+    }
+  }
+  
