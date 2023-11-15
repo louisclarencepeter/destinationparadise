@@ -1,0 +1,13 @@
+@font-face {
+    font-family: 'Space Mono';
+    src: url("./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
+    src: url("./assets/fonts/Pacifico/Pacifico-Regular.ttf") format("truetype");
+    src: url("./assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf") format("truetype");
+}
+
+:root {
+    font-size: calc(1rem + 0.5vw, 1.5rem);
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Pacifico', cursive;
+    font-family: 'Playfair Display', serif;
+}
