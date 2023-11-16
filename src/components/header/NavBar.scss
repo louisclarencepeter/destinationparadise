@@ -2,7 +2,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    //padding: 0 2rem; no padding for now
+    padding: 0 2rem;
     height: 5rem;
   }
   
@@ -14,6 +14,7 @@ nav {
     position: relative;
     width: 2rem;
     height: 2rem;
+    //top: -10px;
   }
   
   #menu__toggle {
@@ -25,12 +26,12 @@ nav {
   .menu__btn {
     position: relative;
     display: block;
-    width: 3rem;
+    width: 2rem;
     height: 3rem;
     cursor: pointer;
     z-index: 1;
-    right: 50px;
-    top: -20px;
+    //right: 50px;
+    //background-color: #00b4d8;
   }
   
   .menu__btn > span,
@@ -40,9 +41,17 @@ nav {
     position: absolute;
     width: 100%;
     height: 2px;
-    background-color: #616161;
+    background-color: #00b4d8;
     transition-duration: 0.25s;
-    //right: 10px;
+    color: #005f73;
+
+    &:hover {
+      background-color: #48cae4;
+    }
+
+    &:active {
+      background-color:#00b4d8;
+    }
   }
   
   .menu__btn > span::before {
