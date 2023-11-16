@@ -1,0 +1,51 @@
+.hero-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  //margin: 3rem 0;
+  background-image: url("../src/assets/images/DJI_0026.jpeg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+    height: 70vh;
+
+  .name-motto {
+    padding: 3rem 0;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      margin: 0;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #003366;
+    }
+
+    h3 {
+      font-size: 1.7rem;
+      font-weight: 300;
+      margin: 0;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #003366;
+    }
+  }
+
+  p {
+    font-size: 1.3rem;
+    font-weight: 300;
+    margin: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #607d8b;
+    background-color: #f0faff;
+    height: 12rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    width: 16rem;
+    border-radius: 1rem;
+  }
+}
