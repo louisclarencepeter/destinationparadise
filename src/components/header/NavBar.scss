@@ -1,134 +1,152 @@
 nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-    height: 4rem;
-    background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem;
+  height: 4rem;
+  background-color: #ffffff;
+}
+
+img {
+  height: 3rem;
+}
+
+.hamburger-menu {
+  position: relative;
+  width: 2rem;
+  height: 2rem;
+  top: -3px;
+}
+
+#menu__toggle {
+  opacity: 0;
+  position: relative;
+  z-index: 2; /* Ensure the checkbox is above the span elements */
+}
+
+.menu__btn {
+  position: relative;
+  display: block;
+  width: 2rem;
+  height: 3rem;
+  cursor: pointer;
+  z-index: 1;
+  //right: 50px;
+  //background-color: #00b4d8;
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #00b4d8;
+  transition-duration: 0.25s;
+  color: #005f73;
+
+  &:hover {
+    background-color: #48cae4;
   }
-  
-  img {
-    height: 3rem;
-  }
-  
-  .hamburger-menu {
-    position: relative;
-    width: 2rem;
-    height: 2rem;
-    //top: -10px;
-  }
-  
-  #menu__toggle {
-    opacity: 0;
-    position: relative;
-    z-index: 2; /* Ensure the checkbox is above the span elements */
-  }
-  
-  .menu__btn {
-    position: relative;
-    display: block;
-    width: 2rem;
-    height: 3rem;
-    cursor: pointer;
-    z-index: 1;
-    //right: 50px;
-    //background-color: #00b4d8;
-  }
-  
-  .menu__btn > span,
-  .menu__btn > span::before,
-  .menu__btn > span::after {
-    display: block;
-    position: absolute;
-    width: 100%;
-    height: 2px;
+
+  &:active {
     background-color: #00b4d8;
-    transition-duration: 0.25s;
-    color: #005f73;
+  }
+}
 
-    &:hover {
-      background-color: #48cae4;
-    }
+.menu__btn > span::before {
+  content: "";
+  top: -8px;
+}
 
-    &:active {
-      background-color:#00b4d8;
-    }
+.menu__btn > span::after {
+  content: "";
+  top: 8px;
+}
+
+/* Transformations when checked */
+#menu__toggle:checked + .menu__btn > span {
+  transform: rotate(45deg); /* Rotates the middle span */
+}
+
+#menu__toggle:checked + .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0); /* Aligns with the middle span */
+}
+
+#menu__toggle:checked + .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg); /* Perpendicular to the middle span */
+}
+
+/* Ensure the menu box appears as expected */
+#menu__toggle:checked ~ .menu__box {
+  right: 0;
+}
+
+$menu-color: #616161;
+$menu-hover-color: #cfd8dc;
+$menu-background: #ffffff;
+
+.menu__btn {
+  cursor: pointer;
+  z-index: 1;
+  & > span,
+  & > span::before,
+  & > span::after {
+    background-color: $menu-color;
+    transition-duration: 0.5s;
   }
-  
-  .menu__btn > span::before {
+  & > span::before,
+  & > span::after {
     content: "";
-    top: -8px;
   }
-  
-  .menu__btn > span::after {
-    content: "";
-    top: 8px;
+}
+
+.menu__box {
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  right: -100%;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 80px 0;
+  list-style: none;
+  background-color: $menu-background;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  transition-duration: 0.4s;
+}
+
+.menu__item {
+  padding: 12px 48px;
+  color: #333;
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  text-decoration: none;
+  transition-duration: 0.3s;
+  &:hover {
+    background-color: $menu-hover-color;
   }
-  
-  /* Transformations when checked */
-  #menu__toggle:checked + .menu__btn > span {
-    transform: rotate(45deg); /* Rotates the middle span */
-  }
-  
-  #menu__toggle:checked + .menu__btn > span::before {
-    top: 0;
-    transform: rotate(0); /* Aligns with the middle span */
-  }
-  
-  #menu__toggle:checked + .menu__btn > span::after {
-    top: 0;
-    transform: rotate(90deg); /* Perpendicular to the middle span */
-  }
-  
-  /* Ensure the menu box appears as expected */
-  #menu__toggle:checked ~ .menu__box {
-    right: 0;
-  }
-  
-  
-  $menu-color: #616161;
-  $menu-hover-color: #cfd8dc;
-  $menu-background: #ffffff;
-  
-  .menu__btn {
-    cursor: pointer;
-    z-index: 1;
-    & > span, & > span::before, & > span::after {
-      background-color: $menu-color;
-      transition-duration: 0.5s;
-    }
-    & > span::before, & > span::after {
-      content: "";
-    }
-  }
-  
-  .menu__box {
-    position: fixed;
-    top: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    right: -100%;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    padding: 80px 0;
-    list-style: none;
-    background-color: $menu-background;
-    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
-    transition-duration: 0.4s;
-  }
-  
-  .menu__item {
-    padding: 12px 48px;
-    color: #333;
-    font-family: "Roboto", sans-serif;
-    font-size: 20px;
-    font-weight: 600;
-    text-decoration: none;
-    transition-duration: 0.3s;
-    &:hover {
-      background-color: $menu-hover-color;
+}
+
+.store {
+  button {
+    background-color: #ffffff;
+    border: 1px solid #00b4d8;
+    border-radius: 0.9rem;
+    padding: 0.5rem 0.5rem;
+    i {
+      margin-right: 0.5rem;
+      text-decoration: none;
+      transition-duration: 0.3s;
+      &:hover {
+        background-color: $menu-hover-color;
+      }
     }
   }
-  
+}
