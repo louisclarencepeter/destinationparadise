@@ -7,8 +7,7 @@
   h3 {
     font-size: 2rem;
     font-weight: 300;
-    margin: 0;
-    margin: 1rem;
+    margin: 1.5rem;
     text-align: center;
     color: #003366;
   }
@@ -21,14 +20,24 @@
     margin: 1rem;
     width: 100%;
     flex-wrap: wrap;
+    gap: 1.5rem;
 
     h4 {
-        font-size: 1.5rem;
-        font-weight: 300;
-        margin: 0;
-        margin: 1rem;
-        text-align: center;
-        color: #003366;
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin: 0;
+      margin: 1rem;
+      text-align: center;
+      color: #003366;
+    }
+
+    .trips {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      border: 0.1rem solid #003366;
+      border-radius: 1rem;
+      width: 20rem;
     }
   }
 }
