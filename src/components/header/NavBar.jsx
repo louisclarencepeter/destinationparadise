@@ -11,6 +11,9 @@ const HamburgerMenu = () => {
 
     return (
         <nav >
+            <div className='store'>
+                <a href="">Store</a>
+            </div>
             <div>
                 <a href="#" className="menu__logo"><img src={logo} alt="" /></a>
             </div>
