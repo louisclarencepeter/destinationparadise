@@ -1,5 +1,6 @@
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import { useState, useEffect } from "react";
+import "./Gallery.scss";
 
 const Gallery = () => {
   const [imagesLoaded, setImagesLoaded] = useState(false);
@@ -10,7 +11,7 @@ const Gallery = () => {
       const importedImages = [];
 
       try {
-        for (let i = 1; i <= 18; i++) {
+        for (let i = 1; i <= 6; i++) {
           // This code imports the image file.
           const imagePath = `../assets/images/gallery/${i}.jpg`;
           
