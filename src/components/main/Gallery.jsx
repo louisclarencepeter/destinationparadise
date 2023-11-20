@@ -13,7 +13,7 @@ const Gallery = () => {
       try {
         for (let i = 1; i <= 6; i++) {
           // This code imports the image file.
-          const imagePath = `../assets/images/gallery/${i}.jpg`;
+          const imagePath = `../../assets/images/gallery/${i}.jpg`;
           
           // Using the @vite-ignore comment to suppress the warning
           const importedImage = await import(/* @vite-ignore */ imagePath);
@@ -39,7 +39,7 @@ const Gallery = () => {
 
   return (
     <div className="gallery-container">
-      <h2>My Gallery</h2>
+      <h3>Gallery</h3>
       {imagesLoaded && (
         <ResponsiveMasonry
           className="gallery-masonry"

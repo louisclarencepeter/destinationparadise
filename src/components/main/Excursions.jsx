@@ -21,10 +21,12 @@ function Excursions() {
                 <div className='trips'>
                     <h4 className='spicetour'>Zanzibar Spice & Culture Tour</h4>
                     <p>Embark on a half-day journey through Central Zanzibar, exploring the rich history shaped by cloves, nutmeg, cinnamon, and pepper. These spices, which once attracted the Sultans of Oman, also played a pivotal role in the beginnings of the infamous slave trade, adding layers of history to Zanzibar&apos;s story.</p>
-                
-                </div>
 
+                </div>
             </div>
+            
+            <h4>More Retreats</h4>
+
         </div>
     )
 }
