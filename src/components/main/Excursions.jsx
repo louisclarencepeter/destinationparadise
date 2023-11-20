@@ -24,8 +24,8 @@ function Excursions() {
 
                 </div>
             </div>
-            
-            <h4>More Retreats</h4>
+
+            <button>More Retreats</button>
 
         </div>
     )

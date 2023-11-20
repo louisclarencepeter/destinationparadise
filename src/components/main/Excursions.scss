@@ -40,7 +40,7 @@
       border-radius: 1rem;
       width: 20rem;
 
-      .stonetown{
+      .stonetown {
         background-image: url("../../assets/images/stonetown/DSC_0431.jpeg");
         background-size: cover;
         background-position: center;
@@ -49,7 +49,7 @@
         border-radius: 1rem;
       }
 
-      .safariblue{
+      .safariblue {
         background-image: url("../../assets/images/safariblue/NIJLuDust3Y\ \(2\).jpg");
         background-size: cover;
         background-position: center;
@@ -58,7 +58,7 @@
         border-radius: 1rem;
       }
 
-      .spicetour{
+      .spicetour {
         background-image: url("../../assets/images/spicetour/DSC_0296.jpg");
         background-size: cover;
         background-position: center;
@@ -66,6 +66,26 @@
         height: 15rem;
         border-radius: 1rem;
       }
+    }
+  }
+
+  button {
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 1rem;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: #003366;
+      color: white;
+      transform: scale(1.05);
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
     }
   }
 }
