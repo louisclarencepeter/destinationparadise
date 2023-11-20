@@ -29,6 +29,7 @@
       margin: 1rem;
       text-align: center;
       color: #003366;
+      padding: 1rem;
     }
 
     .trips {
@@ -45,6 +46,25 @@
         background-position: center;
         background-repeat: no-repeat;
         height: 15rem;
+        border-radius: 1rem;
+      }
+
+      .safariblue{
+        background-image: url("../../assets/images/safariblue/NIJLuDust3Y\ \(2\).jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 15rem;
+        border-radius: 1rem;
+      }
+
+      .spicetour{
+        background-image: url("../../assets/images/spicetour/DSC_0296.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        height: 15rem;
+        border-radius: 1rem;
       }
     }
   }

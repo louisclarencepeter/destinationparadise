@@ -1,0 +1,14 @@
+.gallery-container {
+  .gallery-image {
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+    position: relative;
+    padding: 1rem;
+  }
+
+  .gallery-image:hover {
+    transform: scale(1.05);
+    z-index: 1;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  }
+}
