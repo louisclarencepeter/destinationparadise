@@ -12,7 +12,7 @@ const HamburgerMenu = () => {
     return (
         <nav >
             <div className='store'>
-                <button href=""><i className="fa-solid fa-store"></i>Store</button>
+                <button href=""><i className="fa-solid fa-store"></i>Book Now</button>
             </div>
             <div>
                 <a href="#" className="menu__logo"><img src={logo} alt="" /></a>
