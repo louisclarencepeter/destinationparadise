@@ -4,7 +4,7 @@ import './Excursions.scss'
 function Excursions() {
     return (
         <div className="excursions-container">
-            <h3>Roaming Retreats</h3>
+            <h2>Roaming Retreats</h2>
 
             <div className="excursions">
 

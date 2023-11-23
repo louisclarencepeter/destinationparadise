@@ -39,7 +39,7 @@ const Gallery = () => {
 
   return (
     <div className="gallery-container">
-      <h3>Gallery</h3>
+      <h2>Gallery</h2>
       {imagesLoaded && (
         <ResponsiveMasonry
           className="gallery-masonry"
