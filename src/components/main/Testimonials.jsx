@@ -1,5 +1,6 @@
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
+import PropTypes from 'prop-types';
 import './Testimonials.scss';
 import img1 from '../../assets/images/testimonials/DSC_0311.jpg';
 import img2 from '../../assets/images/testimonials/DSC_0311.jpg';
@@ -8,6 +9,7 @@ import img3 from '../../assets/images/testimonials/DSC_0311.jpg';
 // Star component
 const Star = () => <i className="fa-solid fa-star"></i>;
 
+
 // Stars component
 const Stars = ({ count }) => {
   const stars = [];
@@ -15,6 +17,10 @@ const Stars = ({ count }) => {
     stars.push(<Star key={i} />);
   }
   return <>{stars}</>;
+};
+
+Stars.propTypes = {
+  count: PropTypes.number.isRequired,
 };
 
 
