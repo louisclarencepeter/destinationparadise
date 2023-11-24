@@ -67,6 +67,7 @@ const Testimonials = () => {
           starCount={5} 
         />
       </Slide>
+      <button>Book Now</button>
     </div>
   );
 };
