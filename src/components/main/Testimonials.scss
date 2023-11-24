@@ -1,60 +1,62 @@
 .testimonials {
-  padding: 2rem;
-  text-align: center;
-  margin: 0 auto;
-  width: 80%;
-  margin-bottom: 2rem;
-  margin-top: 2rem;
-
-  h2 {
-    font-size: 1.4rem;
-    font-weight: 300;
     text-align: center;
-    color: #003366;
-  }
-  .carousel {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .slide {
+  
+    h2 {
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: #003366;
+    }
+  
+    .review {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      background-size: cover;
-      height: 350px;
+      margin: 1rem;
+      width: 100%;
+      gap: 1.5rem;
+  
+      img {
+        width: 100px;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+  
+      .namestars {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+  
       span {
         padding: 20px;
-        font-size: 20px;
+        font-size: 1rem;
         text-align: center;
       }
     }
   }
-
-  .review {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 1rem;
-    width: 100%;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-
-    img {
-      width: 20%;
-      height: 15%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-
-    .namestars {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
+  
+  /* Responsive Design Adjustments */
+  @media (max-width: 768px) {
+    .testimonials {
+      h2 {
+        font-size: 1.2rem;
+      }
+  
+      .review {
+        img {
+          width: 80px;
+          height: 80px;
+        }
+  
+        span {
+          font-size: 0.9rem;
+          padding: 15px;
+        }
+      }
     }
   }
-}
+  
