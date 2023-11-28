@@ -5,6 +5,10 @@ nav {
   padding: 0 1rem;
   height: 4rem;
   background-color: #ffffff;
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 img {
