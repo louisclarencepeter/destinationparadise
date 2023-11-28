@@ -5,6 +5,7 @@ import Hero from './components/main/Hero.jsx';
 import Excursions from './components/main/Excursions.jsx';
 import Gallery from './components/main/Gallery.jsx';
 import Testimonials from './components/main/Testimonials.jsx';
+import MyMap from './components/main/MyMap.jsx';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Excursions />
         <Gallery />
         <Testimonials />
+        <MyMap />
       </div>
     </>
   )
