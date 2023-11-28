@@ -8,13 +8,15 @@ nav {
 
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 100; 
 
   &.transparent {
-    background-color: transparent;
-
+    background-color: transparent; // Makes the background fully transparent
+    background-image: linear-gradient(to top, rgba(230, 233, 240, 0.5) 0%, rgba(238, 241, 245, 0.5) 100%); // Semi-transparent gradient
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); // Subtle shadow for depth
   }
 }
+
 
 img {
   height: 3rem;
