@@ -1,16 +1,37 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './NavBar.scss';
 import logo from '../../assets/logo/dlp1.png';
 
 const HamburgerMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
+    // Handle scroll event
+    const handleScroll = () => {
+        const offset = window.scrollY;
+        if (offset > 10) {  // Adjust '10' to the scroll position you desire
+            setIsScrolled(true);
+        } else {
+            setIsScrolled(false);
+        }
+    };
+
+    // Add event listener
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        // Clean up
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
-        <nav >
+        <nav className={isScrolled ? 'transparent' : ''}>
             <div className='store'>
                 <button href=""><i className="fa-solid fa-store"></i>Book Now</button>
             </div>
