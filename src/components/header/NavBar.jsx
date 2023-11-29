@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import './NavBar.scss';
-import logo from '../../assets/logo/dlp1.png';
+import logo from '../../assets/logo/dlp.png';
 
 const HamburgerMenu = () => {
     const [isOpen, setIsOpen] = useState(false);
