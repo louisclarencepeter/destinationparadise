@@ -43,6 +43,11 @@ Testimonial.propTypes = {
 };
 
 // Main Testimonials component
+/**
+ * Renders a component that displays testimonials.
+ *
+ * @returns {JSX.Element} The Testimonials component.
+ */
 const Testimonials = () => {
   return (
     <div className='testimonials'>

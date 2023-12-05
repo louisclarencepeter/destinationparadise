@@ -1,8 +1,14 @@
+/**
+ * Styles for the testimonials component.
+ */
 .testimonials {
     text-align: center;
     margin: 2rem 0;
     width: 100%;
   
+    /**
+     * Styles for the heading within the testimonials component.
+     */
     h2 {
       font-size: 1.4rem;
       font-weight: 300;
@@ -10,6 +16,9 @@
       color: #003366;
     }
   
+    /**
+     * Styles for each review within the testimonials component.
+     */
     .review {
       display: flex;
       flex-direction: column;
@@ -21,6 +30,9 @@
       margin: 0 auto;
       gap: 1.5rem;
   
+      /**
+       * Styles for the image within each review.
+       */
       img {
         width: 100px;
         height: 100px;
@@ -28,6 +40,9 @@
         border-radius: 50%;
       }
   
+      /**
+       * Styles for the name and stars section within each review.
+       */
       .namestars {
         display: flex;
         flex-direction: row;
@@ -36,6 +51,9 @@
         gap: 0.5rem;
       }
   
+      /**
+       * Styles for the review text within each review.
+       */
       span {
         padding: 20px;
         font-size: 1rem;
@@ -43,10 +61,12 @@
         height: max-content;
         width: max-content;
         color: #003366;
-
       }
     }
 
+    /**
+     * Styles for the button within the testimonials component.
+     */
     button {
       background-color: #ffffff;
       border: 1px solid #00b4d8;
@@ -54,4 +74,3 @@
       padding: 0.5rem;
     }
   }
-  
