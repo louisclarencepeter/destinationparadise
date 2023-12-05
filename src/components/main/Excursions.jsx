@@ -1,34 +1,128 @@
 import './Excursions.scss'
-//import stonetown from  '../../assets/images/stonetown/DSC_0431.jpeg'
+import img from '../../assets/images/stone-town.jpeg';
+import img2 from '../../assets/images/safari-blue.jpg';
+import img3 from '../../assets/images/spice-tour.jpg';
 
 function Excursions() {
     return (
-        <div className="excursions-container">
-            <h2>Roaming Retreats</h2>
-
-            <div className="excursions">
-
-                <div className='trips'>
-                    <h4 className='stonetown'>Stone Town Heritage Walk</h4>
-                    <p>Embark on a journey through the timeless Stone Town, a place where history resonates in every alley. This half-day tour in Western Zanzibar will lead you through landmarks like the enchanting House of Wonders, the Palace Museum (also known as People’s Palace), Dr. Livingston’s House, and the historic Arab Fort, offering a captivating glimpse into the heart of Zanzibar&apos;s heritage.</p>
-                </div>
-
-                <div className='trips'>
-                    <h4 className='safariblue'>Dhow & Snorkeling Safari Blue</h4>
-                    <p>Experience the authentic and unrivaled Safari Blue - a full-day excursion aboard traditional, locally-crafted sailing dhows. This adventure in South Zanzibar is the perfect way to spend your day, offering opportunities to swim, sunbathe, and stroll along serene sandbanks, all while soaking in the breathtaking views</p>
-                </div>
-
-                <div className='trips'>
-                    <h4 className='spicetour'>Zanzibar Spice & Culture Tour</h4>
-                    <p>Embark on a half-day journey through Central Zanzibar, exploring the rich history shaped by cloves, nutmeg, cinnamon, and pepper. These spices, which once attracted the Sultans of Oman, also played a pivotal role in the beginnings of the infamous slave trade, adding layers of history to Zanzibar&apos;s story.</p>
-
+        <div className='card'>
+            <h3>Roaming Retreats</h3>
+            <div className='trips'>
+                <div className="card-hover">
+                    <div className="card-hover__content">
+                        <h3 className="card-hover__title">
+                            Stone Town <span>Heritage</span> Walk
+                        </h3>
+                        <p className="card-hover__text">
+                            Embark on a journey through the timeless Stone Town, a place where history resonates in every alley.
+                        </p>
+                        <a href="/learn-more" className="card-hover__link" aria-label="Learn more about Stone Town Heritage Walk">
+                            <span>Learn More</span>
+                            <svg
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                aria-label="External Link"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                    <div className="card-hover__extra">
+                        <h4>
+                            Book <span>now</span> and get <span>10%</span> discount!
+                        </h4>
+                    </div>
+                    <img
+                        src={img}
+                        alt="Stone Town"
+                    />
                 </div>
             </div>
 
-            <button>More Retreats</button>
+            <div className='trips'>
+                <div className="card-hover">
+                    <div className="card-hover__content">
+                        <h3 className="card-hover__title">
+                            Dhow & Snorkeling  <span>Safari</span> Blue
+                        </h3>
+                        <p className="card-hover__text">
+                            Experience the authentic and unrivaled Safari Blue - a full-day excursion aboard traditional, locally-crafted sailing dhows.
+                        </p>
+                        <a href="/learn-more" className="card-hover__link" aria-label="Learn more about Stone Town Heritage Walk">
+                            <span>Learn More</span>
+                            <svg
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                aria-label="External Link"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                    <div className="card-hover__extra">
+                        <h4>
+                            Book <span>now</span> and get <span>10%</span> discount!
+                        </h4>
+                    </div>
+                    <img
+                        src={img2}
+                        alt="Stone Town"
+                    />
+                </div>
+            </div>
+
+            <div className='trips'>
+                <div className="card-hover">
+                    <div className="card-hover__content">
+                        <h3 className="card-hover__title">
+                            Zanzibar Spice & <span>Culture</span> Tour
+                        </h3>
+                        <p className="card-hover__text">
+                            Embark on a half-day journey through Central Zanzibar, exploring the rich history shaped by cloves, nutmeg, cinnamon, and pepper.
+                        </p>
+                        <a href="/learn-more" className="card-hover__link" aria-label="Learn more about Stone Town Heritage Walk">
+                            <span>Learn More</span>
+                            <svg
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                strokeWidth="1.5"
+                                stroke="currentColor"
+                                aria-label="External Link"
+                            >
+                                <path
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                    d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                    <div className="card-hover__extra">
+                        <h4>
+                            Book <span>now</span> and get <span>10%</span> discount!
+                        </h4>
+                    </div>
+                    <img
+                        src={img3}
+                        alt="Stone Town"
+                    />
+                </div>
+            </div>
 
         </div>
-    )
+    );
 }
 
 export default Excursions
