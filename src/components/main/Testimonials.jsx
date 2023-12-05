@@ -3,8 +3,8 @@ import 'react-slideshow-image/dist/styles.css';
 import PropTypes from 'prop-types';
 import './Testimonials.scss';
 import img1 from '../../assets/images/testimonials/DSC_0311.jpg';
-import img2 from '../../assets/images/testimonials/DSC_0311.jpg'; // Assuming different image
-import img3 from '../../assets/images/testimonials/DSC_0311.jpg'; // Assuming different image
+import img2 from '../../assets/images/testimonials/DSC_0311.jpg';
+import img3 from '../../assets/images/testimonials/DSC_0311.jpg'; 
 
 // Star component
 const Star = () => <i className="fa-solid fa-star"></i>;
@@ -58,13 +58,13 @@ const Testimonials = () => {
           imgSrc={img2} 
           name="Isa Jua" 
           review="&ldquo;This trip was amazing our tour guide was knowledgeable, upbeat and friendly .. the dowe experience was amazing and the lagoon was a site to see. I was afraid to snorkel but my tour guide got in with me and made me feel safe. The food they provided was very delicious I did not expect a buffet style meal on the beach ! This is what added to the experience! Will definitely recommend.&quot;"
-          starCount={5} 
+          starCount={4} 
         />
         <Testimonial 
           imgSrc={img3} 
           name="Isa Jua" 
           review="&ldquo;We had a great time and really enjoyed smelling all the spices and learning about their uses, beyond cooking. Louis was very easy to communicate with and actually went above and beyond to help us book and brainstorm to resolve a couple of challenges that we had.&quot;"
-          starCount={5} 
+          starCount={3} 
         />
       </Slide>
       <button>Book Now</button>
