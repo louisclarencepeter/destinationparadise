@@ -4,7 +4,9 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 93vh;
+  height: 100vh; // Full viewport height
+  margin-top: -4rem; // Overlap the navbar
+  padding-top: 4rem; // Add padding to compensate for the overlapped navbar
   overflow: hidden;
 
   .video-background {
@@ -15,7 +17,7 @@
     height: 100%;
     object-fit: cover;
     transform: translate(-50%, -50%);
-    z-index: 0;
+    z-index: 0; // Ensuring the video is behind the content
   }
 
   .name-motto {
