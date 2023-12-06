@@ -8,28 +8,10 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-    height: 93dvh;
+  height: 93dvh;
 
   .name-motto {
     padding: 1rem 0;
-
-    h1 {
-      font-size: 2.3rem;
-      font-weight: 300;
-      margin: 0;
-      margin-bottom: 1rem;
-      text-align: center;
-      color: #003366;
-    }
-
-    h3 {
-      font-size: 1.4rem;
-      font-weight: 300;
-      margin: 0;
-      margin-bottom: 1rem;
-      text-align: center;
-      color: #003366;
-    }
   }
 
   p {
@@ -38,14 +20,15 @@
     margin: 0;
     margin-bottom: 1rem;
     text-align: center;
-    color: #607d8b;
-    background-color: #f0faff;
-    height: 12rem;
+    color: #5f6c7b;
+    background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    border-radius: 30px;
+    box-shadow: 1px 1px 7px #bebebe, -1px -1px 7px #ffffff;
+    height: 9rem;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 1rem;
-    width: 13rem;
-    border-radius: 1rem;
+    width: 15rem;
   }
 }

@@ -7,7 +7,7 @@
 .card {
   height: 100%;
   box-sizing: border-box;
-  color: #212529;
+  color: #5f6c7b;
   gap: 2rem;
   display: flex;
   flex-direction: column;
@@ -58,7 +58,7 @@
 .card-hover__content {
   width: 100%;
   text-align: center;
-  background-color: #88bedc;
+  background-color: #fffffe;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -88,7 +88,6 @@
   clip-path: ellipse(60% 80px at top center);
 }
 .card-hover__title {
-  font-size: 1rem;
   width: 220px;
   margin: 0 auto;
   padding: 0.5rem 0;
@@ -111,7 +110,7 @@
   flex-wrap: wrap;
   align-items: center;
   text-decoration: none;
-  color: #005f73;
+  color: #ef4565;
   opacity: 0;
   padding: 10px;
   top: 100%;
@@ -133,9 +132,9 @@
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  font-size: 1.5rem;
   text-align: center;
-  background-color: #88bedc;
+  background-color: #90b4ce;
+  background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
   bottom: 0;
   z-index: 0;
   color: #212529;

@@ -4,7 +4,7 @@ nav {
   align-items: center;
   padding: 0 1rem;
   height: 4rem;
-  background-color: #ffffff;
+  background-color: #fffffe;
 
   position: sticky;
   top: 0;
@@ -97,9 +97,9 @@ img {
   right: 0;
 }
 
-$menu-color: #616161;
-$menu-hover-color: #cfd8dc;
-$menu-background: #ffffff;
+$menu-color: #001B48;
+$menu-hover-color: #97CADB;
+$menu-background: #D6EBEE;
 
 .menu__btn {
   cursor: pointer;
@@ -135,7 +135,6 @@ $menu-background: #ffffff;
 
 .menu__item {
   padding: 12px 48px;
-  color: #333;
   font-family: "Roboto", sans-serif;
   font-size: 20px;
   font-weight: 600;
@@ -148,8 +147,6 @@ $menu-background: #ffffff;
 
 .store {
   button {
-    background-color: #ffffff;
-    border: 1px solid #00b4d8;
     border-radius: 0.9rem;
     padding: 0.4rem;
     font-size: 0.7rem;

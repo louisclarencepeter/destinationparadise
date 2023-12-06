@@ -14,7 +14,7 @@ const Gallery = () => {
         for (let i = 1; i <= 6; i++) {
           // This code imports the image file.
           const imagePath = `../../assets/images/gallery/${i}.jpg`;
-          
+
           // Using the @vite-ignore comment to suppress the warning
           const importedImage = await import(/* @vite-ignore */ imagePath);
 

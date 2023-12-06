@@ -6,13 +6,13 @@ import img3 from '../../assets/images/spice-tour.jpg';
 function Excursions() {
     return (
         <div className='card'>
-            <h3>Roaming Retreats</h3>
+            <h2>Roaming Retreats</h2>
             <div className='trips'>
                 <div className="card-hover">
                     <div className="card-hover__content">
-                        <h3 className="card-hover__title">
+                        <h4 className="card-hover__title">
                             Stone Town <span>Heritage</span> Walk
-                        </h3>
+                        </h4>
                         <p className="card-hover__text">
                             Embark on a journey through the timeless Stone Town, a place where history resonates in every alley.
                         </p>
@@ -34,9 +34,9 @@ function Excursions() {
                         </a>
                     </div>
                     <div className="card-hover__extra">
-                        <h4>
+                        <h5>
                             Book <span>now</span> and get <span>10%</span> discount!
-                        </h4>
+                        </h5>
                     </div>
                     <img
                         src={img}
@@ -48,9 +48,9 @@ function Excursions() {
             <div className='trips'>
                 <div className="card-hover">
                     <div className="card-hover__content">
-                        <h3 className="card-hover__title">
+                        <h4 className="card-hover__title">
                             Dhow & Snorkeling  <span>Safari</span> Blue
-                        </h3>
+                        </h4>
                         <p className="card-hover__text">
                             Experience the authentic and unrivaled Safari Blue - a full-day excursion aboard traditional, locally-crafted sailing dhows.
                         </p>
@@ -72,9 +72,9 @@ function Excursions() {
                         </a>
                     </div>
                     <div className="card-hover__extra">
-                        <h4>
+                        <h5>
                             Book <span>now</span> and get <span>10%</span> discount!
-                        </h4>
+                        </h5>
                     </div>
                     <img
                         src={img2}
@@ -86,9 +86,9 @@ function Excursions() {
             <div className='trips'>
                 <div className="card-hover">
                     <div className="card-hover__content">
-                        <h3 className="card-hover__title">
+                        <h4 className="card-hover__title">
                             Zanzibar Spice & <span>Culture</span> Tour
-                        </h3>
+                        </h4>
                         <p className="card-hover__text">
                             Embark on a half-day journey through Central Zanzibar, exploring the rich history shaped by cloves, nutmeg, cinnamon, and pepper.
                         </p>
@@ -110,9 +110,9 @@ function Excursions() {
                         </a>
                     </div>
                     <div className="card-hover__extra">
-                        <h4>
+                        <h5>
                             Book <span>now</span> and get <span>10%</span> discount!
-                        </h4>
+                        </h5>
                     </div>
                     <img
                         src={img3}

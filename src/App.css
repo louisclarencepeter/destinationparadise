@@ -10,14 +10,66 @@
     font-family: 'Montserrat', sans-serif;
     font-family: 'Pacifico', cursive;
     font-family: 'Playfair Display', serif;
-    color: rgb(0, 0, 0);
+    color: #153464;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: #fffffe;
 }
 
 .main-container {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #094067;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    text-align: center;
+    color: #094067;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #094067;
+}
+
+h4 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #094067;
+}
+
+h5 {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin: 0;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: #094067;
+}
+
+button {
+    font-weight: 300;
+    text-align: center;
+    color: #fffffe;
+    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+    border: none;
+    border-radius: 0.9rem;
 }

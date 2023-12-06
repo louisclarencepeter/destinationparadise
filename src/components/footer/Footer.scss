@@ -1,10 +1,13 @@
 .footer-container {
-  background-color: #ffffff;
-  color: #003366;
+  background-color: #fffffe;
   padding: 20px;
   //text-align: center;
   font-size: 14px;
   font-weight: 600;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   h5 {
     font-size: 16px;
@@ -47,7 +50,7 @@
       align-items: center;
       gap: 10px;
 
-      i{
+      i {
         font-size: 20px;
       }
     }
