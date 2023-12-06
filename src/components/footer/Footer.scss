@@ -1,36 +1,31 @@
 .footer-container {
   background-color: #fffffe;
-  padding: 20px;
-  //text-align: center;
-  font-size: 14px;
+  padding: 1.25rem;
+  font-size: 0.875rem;
   font-weight: 600;
-  height: 50vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 
   h5 {
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: 700;
-    margin-bottom: 10px;
+    margin-bottom: 0.625rem;
     text-align: center;
   }
 
   input {
     width: 90%;
-    height: 40px;
+    height: 2.5rem;
     margin: 0 auto;
-    border-radius: 5px;
-    border: 1px solid #003366;
-    padding: 0 10px;
-    margin-bottom: 10px;
+    border-radius: 0.3125rem;
+    border: 0.0625rem solid #003366;
+    padding: 0 0.625rem;
+    margin-bottom: 0.625rem;
   }
 
   a {
     color: #003366;
     text-decoration: none;
     &:hover {
-      color: #ffffff;
+      color: #ef4565;
       text-decoration: underline;
     }
   }
@@ -40,23 +35,23 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 0.625rem;
+    margin-bottom: 0.625rem;
 
     div {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      gap: 10px;
+      gap: 0.625rem;
 
       i {
-        font-size: 20px;
+        font-size: 1.25rem;
       }
     }
   }
   .copyright {
     text-align: center;
-    margin-top: 10px;
+    margin-top: 0.625rem;
   }
 }

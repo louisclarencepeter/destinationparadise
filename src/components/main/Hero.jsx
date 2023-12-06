@@ -1,11 +1,11 @@
 import './Hero.scss';
-import backgroundVideo from '../../assets/videos/background.mp4'; // Import your video file here
+import backgroundVideo from '../../assets/videos/background.webm'; // Import your video file here
 
 function Hero() {
     return (
         <div className='hero-container'>
             <video autoPlay loop muted className='video-background'>
-                <source src={backgroundVideo} type="video/mp4" />
+                <source src={backgroundVideo} type="video/webm" />
             </video>
 
             <div className='name-motto'>
