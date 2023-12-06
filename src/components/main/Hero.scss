@@ -3,15 +3,24 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  //margin: 3rem 0;
-  background-image: url("../src/assets/images/DJI_0026.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: 93dvh;
+  position: relative;
+  height: 93vh;
+  overflow: hidden;
+
+  .video-background {
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: 0;
+  }
 
   .name-motto {
     padding: 1rem 0;
+    z-index: 1;
   }
 
   p {
@@ -30,5 +39,7 @@
     justify-content: center;
     padding: 0 1rem;
     width: 15rem;
+    z-index: 1;
+    opacity: 0.85;
   }
 }
