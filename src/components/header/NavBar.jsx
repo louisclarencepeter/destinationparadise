@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import './NavBar.scss';
 import logo from '../../assets/logo/dlp.png';
 
-const HamburgerMenu = () => {
+const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
 
@@ -10,21 +10,14 @@ const HamburgerMenu = () => {
         setIsOpen(!isOpen);
     };
 
-    // Handle scroll event
     const handleScroll = () => {
         const offset = window.scrollY;
-        if (offset > 10) {  // Adjust '10' to the scroll position you desire
-            setIsScrolled(true);
-        } else {
-            setIsScrolled(false);
-        }
+        setIsScrolled(offset > 10);
     };
 
-    // Add event listener
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
 
-        // Clean up
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -62,4 +55,4 @@ const HamburgerMenu = () => {
     );
 };
 
-export default HamburgerMenu;
+export default NavBar;
