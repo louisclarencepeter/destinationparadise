@@ -5,8 +5,6 @@ function MyMap() {
   const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
 
   const initializeMap = useCallback(() => {
-    if (!window.google?.maps) return;
-
     const mapOptions = {
       center: { lat: -6.163657188415527, lng: 39.18870162963867 },
       zoom: 14,
@@ -17,31 +15,32 @@ function MyMap() {
 
     new window.google.maps.Marker({
       position: mapOptions.center,
-      map: map,  // Use the map instance here
+      map: map,
       title: 'My location',
     });
   }, []);
 
   const loadGoogleMapsScript = useCallback(() => {
     const scriptId = 'google-maps-script';
+    const existingScript = document.getElementById(scriptId);
 
     if (window.google?.maps) {
       initializeMap();
       return;
     }
 
-    if (document.getElementById(scriptId)) {
-      // Script is already loading
+    if (existingScript) {
+      existingScript.addEventListener('load', initializeMap);
       return;
     }
 
     const script = document.createElement('script');
     script.id = scriptId;
     script.type = 'text/javascript';
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
     script.async = true;
     script.defer = true;
-    script.onload = initializeMap;
+    window.initMap = initializeMap; // Set a global function for callback
     document.head.appendChild(script);
   }, [apiKey, initializeMap]);
 
