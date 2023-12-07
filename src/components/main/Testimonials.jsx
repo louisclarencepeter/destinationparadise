@@ -6,15 +6,10 @@ import img1 from '../../assets/images/testimonials/DSC_0311.jpg';
 import img2 from '../../assets/images/testimonials/DSC_0311.jpg';
 import img3 from '../../assets/images/testimonials/DSC_0311.jpg'; 
 
-// Star component
 const Star = () => <i className="fa-solid fa-star"></i>;
 
-// Stars component
 const Stars = ({ count }) => {
-  const stars = [];
-  for (let i = 0; i < count; i++) {
-    stars.push(<Star key={i} />);
-  }
+  const stars = Array.from({ length: count }, (_, i) => <Star key={i} />);
   return <>{stars}</>;
 };
 
@@ -22,7 +17,6 @@ Stars.propTypes = {
   count: PropTypes.number.isRequired,
 };
 
-// Testimonial component
 const Testimonial = ({ imgSrc, name, review, starCount }) => (
   <div className="review">
     <div className='namestars'> 
@@ -42,12 +36,6 @@ Testimonial.propTypes = {
   starCount: PropTypes.number.isRequired,
 };
 
-// Main Testimonials component
-/**
- * Renders a component that displays testimonials.
- *
- * @returns {JSX.Element} The Testimonials component.
- */
 const Testimonials = () => {
   return (
     <div className='testimonials'>

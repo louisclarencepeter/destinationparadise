@@ -2,70 +2,71 @@
  * Styles for the testimonials component.
  */
 .testimonials {
-    text-align: center;
-    margin: 2rem 0;
-    width:100%;
+  text-align: center;
+  margin: 2rem 0;
+  width: 100%;
+
+  /**
+   * Styles for each review within the testimonials component.
+   */
+  .review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
+    width: 90vw;
+    height: 100%;
+    margin: 0 auto;
+    gap: 1.5rem;
+
     /**
-     * Styles for each review within the testimonials component.
+     * Styles for the image within each review.
      */
-    .review {
+    img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /**
+     * Styles for the name and stars section within each review.
+     */
+    .namestars {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
-      margin: 1rem;
-      width: 90vw;
-      height: 100%;
-      margin: 0 auto;
-      gap: 1.5rem;
-  
-      /**
-       * Styles for the image within each review.
-       */
-      img {
-        width: 100px;
-        height: 100px;
-        object-fit: cover;
-        border-radius: 50%;
-      }
-  
-      /**
-       * Styles for the name and stars section within each review.
-       */
-      .namestars {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
+      gap: 0.5rem;
 
-        div{
-          color: #ef4565;
-        }
-
-        p {
-          color: #395886;
-        }
+      div {
+        color: #ef4565;
       }
-  
-      /**
-       * Styles for the review text within each review.
-       */
-      span {
-        padding: 20px;
-        font-size: 1rem;
-        text-align: center;
-        height: max-content;
-        width: max-content;
-        color: #5f6c7b;
+
+      p {
+        color: #395886;
       }
     }
 
     /**
-     * Styles for the button within the testimonials component.
+     * Styles for the review text within each review.
      */
-    button {
-      padding: 0.5rem;
-      margin: 1rem;
+    span {
+      padding: 20px;
+      font-size: 1rem;
+      text-align: center;
+      height: max-content;
+      width: max-content;
+      color: #5f6c7b;
     }
   }
+
+  /**
+   * Styles for the button within the testimonials component.
+   */
+  button {
+    padding: 0.5rem;
+    margin: 1rem;
+  }
+}
