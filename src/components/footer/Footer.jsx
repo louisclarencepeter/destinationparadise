@@ -4,7 +4,10 @@ function Footer() {
     return (
         <div className='footer-container'>
             <h5>Subscribe to our newsletter! 🚀💬💌</h5>
-            <input type="text" placeholder='E-Mail' />
+            <form action="/submit-email" method="post" className="emailContainer">
+                <input type="email" className="emailInput" placeholder="E-Mail" name="email" required />
+                <button type="submit" className="sendButton">&gt;</button>
+            </form>
             <p>Destination Paradise</p>
             <p>Phone: +255 777 777 777</p>
             <p>Zanzibar, Tanzania</p>

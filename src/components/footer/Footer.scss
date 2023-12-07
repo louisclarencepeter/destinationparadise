@@ -11,19 +11,38 @@
     text-align: center;
   }
 
-  input {
-    width: 90%;
-    height: 2.5rem;
-    margin: 0 auto;
-    border-radius: 0.3125rem;
-    border: 0.0625rem solid #003366;
-    padding: 0 0.625rem;
-    margin-bottom: 0.625rem;
+  .emailContainer {
+    display: flex;
+    border: 1px solid #000;
+    border-radius: 5px;
+    overflow: hidden;
+
+    .emailInput {
+      border: none;
+      padding: 10px;
+      flex-grow: 1;
+      outline: none;
+    }
+
+    .sendButton {
+      border-left: 1px solid #000;
+      border-radius: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:active {
+        background-color: #333;
+      }
+    }
   }
 
   a {
     color: #003366;
     text-decoration: none;
+
     &:hover {
       color: #ef4565;
       text-decoration: underline;
@@ -50,6 +69,7 @@
       }
     }
   }
+
   .copyright {
     text-align: center;
     margin-top: 0.625rem;
