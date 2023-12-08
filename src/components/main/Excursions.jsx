@@ -30,9 +30,9 @@ const Excursions = () => {
 
     return (
         <div className='card'>
-            <h2>Roaming Retreats</h2>
+            <h2 className='reveal'>Roaming Retreats</h2>
             {trips.map((trip, index) => (
-                <div className='trips' key={index}>
+                <div className='trips reveal' key={index}>
                     <div className='card-hover'>
                         <div className='card-hover__content'>
                             <h4 className='card-hover__title'>

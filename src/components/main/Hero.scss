@@ -43,5 +43,16 @@
     width: 15rem;
     z-index: 1;
     opacity: 0.85;
+    transition: 1s;
   }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  .fade-in {
+    animation: fadeIn 3s ease-out;
+  }  
+  
 }

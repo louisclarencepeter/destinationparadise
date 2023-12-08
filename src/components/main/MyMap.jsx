@@ -53,7 +53,7 @@ function MyMap() {
     loadGoogleMapsScript();
   }, [apiKey, loadGoogleMapsScript]);
 
-  return <div style={{ height: '50vh', width: '100%' }} ref={mapRef}></div>;
+  return <div style={{ height: '50vh', width: '100%' }} ref={mapRef} className="reveal"></div>;
 }
 
 export default MyMap;

@@ -2,7 +2,7 @@ import './Footer.scss'
 
 function Footer() {
     return (
-        <div className='footer-container'>
+        <div className='footer-container reveal'>
             <h5>Subscribe to our newsletter! 🚀💬💌</h5>
             <form action="/submit-email" method="post" className="emailContainer">
                 <input type="email" className="emailInput" placeholder="E-Mail" name="email" required />

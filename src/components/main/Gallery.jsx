@@ -39,7 +39,7 @@ const Gallery = () => {
 
   return (
     <div className="gallery-container">
-      <h2>Gallery</h2>
+      <h2 className="reveal">Gallery</h2>
       {imagesLoaded && (
         <ResponsiveMasonry
           className="gallery-masonry"
@@ -52,7 +52,7 @@ const Gallery = () => {
           <Masonry className="gallery-images-container">
             {galleryImages.map((image) => (
               <img
-                className="gallery-image"
+                className="gallery-image reveal"
                 key={image.id}
                 src={image.src}
                 alt={image.alt}
