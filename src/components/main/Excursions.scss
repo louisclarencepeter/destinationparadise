@@ -106,16 +106,18 @@
 }
 
 .card-hover__text {
+  font-family: "Montserrat", sans-serif;
   font-size: 1rem;
   width: 220px;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: 0.89rem 0;
 }
 
 .card-hover__link {
   position: absolute;
   bottom: 1rem;
   left: 50%;
+  font-family: 'Playfair Display', serif;
   transform: translate(-50%, 10%);
   display: flex;
   flex-wrap: wrap;
@@ -140,7 +142,6 @@
 
 .card-hover__extra {
   height: 50%;
-  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -155,7 +156,7 @@
   transform: translateY(100%);
   will-change: transform;
   transition: transform 0.35s;
-
+  
   span {
     color: #005f73;
   }

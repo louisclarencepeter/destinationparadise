@@ -5,6 +5,8 @@
   text-align: center;
   margin: 2rem 0;
   width: 100%;
+  color: #153464;
+  font-family: 'Montserrat', sans-serif;
 
   /**
    * Styles for each review within the testimonials component.
@@ -44,8 +46,8 @@
         color: #ef4565;
       }
 
-      p {
-        color: #395886;
+      p{
+        color: #153464;
       }
     }
 

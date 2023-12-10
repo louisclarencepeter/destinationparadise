@@ -1,5 +1,7 @@
 @font-face {
-    font-family: 'Space Mono';
+    font-family: 'Montserrat', sans-serif;
+    font-family: 'Pacifico', cursive;
+    font-family: 'Playfair Display', serif;
     src: url("./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
     src: url("./assets/fonts/Pacifico/Pacifico-Regular.ttf") format("truetype");
     src: url("./assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf") format("truetype");
@@ -24,14 +26,16 @@
 }
 
 h1 {
+    font-family: 'Pacifico', cursive;
     font-size: 2.5rem;
     font-weight: 300;
     margin-bottom: 1rem;
     text-align: center;
-    color: #094067;
+    color: #fffffe;
 }
 
 h2 {
+    font-family: 'Playfair Display', serif;
     font-size: 2rem;
     font-weight: 300;
     text-align: center;
@@ -39,15 +43,17 @@ h2 {
 }
 
 h3 {
+    font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     font-weight: 300;
     margin: 0;
     margin-bottom: 1rem;
     text-align: center;
-    color: #094067;
+    color: #fffffe;
 }
 
 h4 {
+    font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     font-weight: 300;
     margin: 0;
@@ -57,6 +63,7 @@ h4 {
 }
 
 h5 {
+    font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     font-weight: 300;
     margin: 0;
@@ -81,10 +88,9 @@ button:hover {
     opacity: 0;
     transform: translateY(20px);
     transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-  
-  .reveal.active {
+}
+
+.reveal.active {
     opacity: 1;
     transform: translateY(0);
-  }
-  
+}
