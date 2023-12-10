@@ -1,7 +1,7 @@
 # Destination Paradise
 
 ## Description
-Destination Paradise is a web application for a local travel company based in Zanzibar, Tanzania. Designed to showcase the beauty and unique travel experiences Zanzibar offers, this project is built with React and SASS, providing an interactive and user-friendly interface.
+Destination Paradise is a website for a local travel company based in Zanzibar, Tanzania. Designed to showcase the beauty and unique travel experiences Zanzibar offers, this project is built with React and SASS, providing an interactive and user-friendly interface.
 
 ## Installation
 To set up the project locally:
