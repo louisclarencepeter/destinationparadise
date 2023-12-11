@@ -77,3 +77,19 @@
     margin-top: 0.625rem;
   }
 }
+
+@media (min-width: 768px) {
+  .footer-container {
+    padding: 1.875rem;
+    font-size: 1rem;
+
+    .emailContainer {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .contact {
+      flex-direction: row;
+    }
+  }
+}

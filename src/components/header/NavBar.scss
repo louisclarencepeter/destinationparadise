@@ -22,6 +22,10 @@ nav {
     background-color: $primary-color; // Solid background color when scrolled
     box-shadow: 0 0 0.625rem $box-shadow-color; // Subtle shadow for depth
   }
+
+  .classic-menu {
+    display: none;
+  }
 }
 
 img {
@@ -161,6 +165,64 @@ img {
       margin-right: 0.5rem;
       text-decoration: none;
       transition-duration: 0.3s;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .hamburger-menu {
+    display: none;
+  }
+
+  nav {
+    padding: 0 2rem;
+    height: 5rem;
+    background-color: transparent;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    transition: background-color 0.5s ease, box-shadow 0.5s ease; // Smooth transition for background and shadow
+
+    &.transparent {
+      background-color: $primary-color; // Solid background color when scrolled
+      box-shadow: 0 0 0.625rem $box-shadow-color; // Subtle shadow for depth
+    }
+
+    img{
+      height: 4rem;
+      width: auto;
+      margin: 0;
+    }
+
+    .classic-menu {
+
+      display: flex;
+
+      ul {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      li {
+        list-style: none;
+        font-family: "Roboto", sans-serif;
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: $secondary-color;
+        text-decoration: none;
+        transition-duration: 0.3s;
+
+        &:hover {
+          color: $hover-color;
+          border-bottom: 1px solid#ef4565;
+          transition: 0.3s ease-in-out;
+
+        }
+      }
+ 
     }
   }
 }

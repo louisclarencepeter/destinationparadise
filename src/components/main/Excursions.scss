@@ -20,17 +20,17 @@
     height: auto;
   }
 
-  h2 {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
   .trips-container {
     display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
   }
+
+  .trips {
+    flex-basis: calc(50% - 1rem);
+  }
+
 }
 
 .card-hover {
@@ -184,11 +184,11 @@
   transition: 0.35s 0.35s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
 }
 
-@media screen and (min-width: 779px) {
-  .trips-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: space-around;
+@media screen and (min-width: 768px) {
+
+  .trips-container .trips {
+    flex: 1; 
+    max-width: 270px; 
   }
 }
+

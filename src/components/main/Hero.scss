@@ -74,11 +74,7 @@
 
     p {
       width: 20rem;
-      font-size: 1.5rem;
-    }
-
-    h1 {
-      font-size: 3rem;
+      font-size: 1.3rem;
     }
   }
 }
@@ -87,5 +83,17 @@
   .hero-container {
     justify-content: space-around;
     height: 150vh;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .hero-container {
+    justify-content: space-around;
+    height: 100vh;
+
+    p {
+      width: 30rem;
+      font-size: 1.5rem;
+    }
   }
 }

@@ -28,6 +28,15 @@ const NavBar = () => {
             <div className='store'>
                 <button href=""><i className="fa-solid fa-store"></i>Book Now</button>
             </div>
+            <div className='classic-menu'>
+                <ul>
+                    <li><a className="menu__item" href="#">Home</a></li>
+                    <li><a className="menu__item" href="#">Excursions</a></li>
+                    <li><a className="menu__item" href="#">About Us</a></li>
+                    <li><a className="menu__item" href="#">Gallery</a></li>
+                    <li><a className="menu__item" href="#">Booking Request</a></li>
+                </ul>
+            </div>
             <div>
                 <a href="#" className="menu__logo"><img src={logo} alt="" /></a>
             </div>
