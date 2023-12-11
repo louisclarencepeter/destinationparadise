@@ -60,3 +60,9 @@
     animation: fadeIn 3s ease-out;
   }
 }
+
+@media screen and (min-width: 359px) {
+  .hero-container {
+    justify-content: space-around;
+  }
+}
