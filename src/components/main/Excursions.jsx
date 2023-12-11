@@ -31,42 +31,45 @@ const Excursions = () => {
     return (
         <div className='card'>
             <h2 className='reveal'>Roaming Retreats</h2>
-            {trips.map((trip, index) => (
-                <div className='trips reveal' key={index}>
-                    <div className='card-hover'>
-                        <div className='card-hover__content'>
-                            <h4 className='card-hover__title'>
-                                {trip.title}
-                            </h4>
-                            <p className='card-hover__text'>
-                                {trip.text}
-                            </p>
-                            <a href={trip.link} className='card-hover__link' aria-label={`Learn more about ${trip.title}`}>
-                                <span>Learn More</span>
-                                <svg
-                                    fill='none'
-                                    viewBox='0 0 24 24'
-                                    strokeWidth='1.5'
-                                    stroke='currentColor'
-                                    aria-label='External Link'
-                                >
-                                    <path
-                                        strokeLinecap='round'
-                                        strokeLinejoin='round'
-                                        d='M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3'
-                                    />
-                                </svg>
-                            </a>
+            <div className='trips-container'>
+                {trips.map((trip, index) => (
+                    <div className='trips reveal' key={index}>
+                        <div className='card-hover'>
+                            <div className='card-hover__content'>
+                                <h4 className='card-hover__title'>
+                                    {trip.title}
+                                </h4>
+                                <p className='card-hover__text'>
+                                    {trip.text}
+                                </p>
+                                <a href={trip.link} className='card-hover__link' aria-label={`Learn more about ${trip.title}`}>
+                                    <span>Learn More</span>
+                                    <svg
+                                        fill='none'
+                                        viewBox='0 0 24 24'
+                                        strokeWidth='1.5'
+                                        stroke='currentColor'
+                                        aria-label='External Link'
+                                    >
+                                        <path
+                                            strokeLinecap='round'
+                                            strokeLinejoin='round'
+                                            d='M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3'
+                                        />
+                                    </svg>
+                                </a>
+                            </div>
+                            <div className='card-hover__extra'>
+                                <h5>
+                                    Book <span>now</span> and get <span>{trip.discount}</span> discount!
+                                </h5>
+                            </div>
+                            <img src={trip.image} alt={trip.title} />
                         </div>
-                        <div className='card-hover__extra'>
-                            <h5>
-                                Book <span>now</span> and get <span>{trip.discount}</span> discount!
-                            </h5>
-                        </div>
-                        <img src={trip.image} alt={trip.title} />
                     </div>
-                </div>
-            ))}
+
+                ))}
+            </div>
         </div>
     );
 };

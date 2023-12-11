@@ -66,3 +66,26 @@
     justify-content: space-around;
   }
 }
+
+@media screen and (min-width: 420px) {
+  .hero-container {
+    justify-content: space-around;
+    height: 100vh;
+
+    p {
+      width: 20rem;
+      font-size: 1.5rem;
+    }
+
+    h1 {
+      font-size: 3rem;
+    }
+  }
+}
+
+@media screen and (min-width: 567px) {
+  .hero-container {
+    justify-content: space-around;
+    height: 150vh;
+  }
+}
