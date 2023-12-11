@@ -5,8 +5,8 @@
   justify-content: center;
   position: relative;
   height: 100vh; // Full viewport height
-  margin-top: -4rem; // Overlap the navbar
-  padding-top: 4rem; // Add padding to compensate for the overlapped navbar
+  margin-top: -6rem; // Overlap the navbar
+  padding-top: 6rem; // Add padding to compensate for the overlapped navbar
   overflow: hidden;
 
   .video-background {
@@ -89,7 +89,7 @@
 @media screen and (min-width: 768px) {
   .hero-container {
     justify-content: space-around;
-    height: 100vh;
+    height: 110vh;
 
     p {
       width: 30rem;
