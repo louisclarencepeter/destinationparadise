@@ -177,6 +177,14 @@ button:hover {
     .reveal.active {
         opacity: 1;
         transform: translateY(0);
-    }
-    
+    }  
+}
+
+@media screen and (min-width: 1200px) {
+
+.main-container {
+    width: 80vw;
+    margin: 0 auto;
+}
+
 }

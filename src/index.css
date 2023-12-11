@@ -1,12 +1,11 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
   font-family: "Montserrat", sans-serif;
   font-family: "Pacifico", cursive;
   font-family: "Playfair Display", serif;
   font-size: calc(1rem + 0.5vw, 1.5rem);
-  color: #212529;
+  color: #153464;
   height: 100vh;
 }
 
