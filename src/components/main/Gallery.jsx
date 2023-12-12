@@ -7,36 +7,28 @@ const Gallery = () => {
   const [galleryImages, setGalleryImages] = useState([]);
 
   useEffect(() => {
-    const loadImages = async () => {
+    const loadImages = () => {
       const importedImages = [];
-
-      try {
-        for (let i = 1; i <= 6; i++) {
-          // This code imports the image file.
-          const imagePath = `/gallery/${i}.jpg`;
-
-          // Using the @vite-ignore comment to suppress the warning
-          const importedImage = await import(/* @vite-ignore */ imagePath);
-
-          // This code creates an object that represents the image.
-          importedImages.push({
-            id: i,
-            src: importedImage.default,
-            alt: `Image ${i}`,
-          });
-        }
-
-        // This code sets the state of the component.
-        setImagesLoaded(true);
-        setGalleryImages(importedImages);
-      } catch (error) {
-        console.error("Error importing images:", error);
+  
+      for (let i = 1; i <= 6; i++) {
+        // Direct URL path from the public folder
+        const imagePath = `/gallery/${i}.jpg`;
+  
+        importedImages.push({
+          id: i,
+          src: imagePath,
+          alt: `Image ${i}`,
+        });
       }
+  
+      // Set the state of the component
+      setImagesLoaded(true);
+      setGalleryImages(importedImages);
     };
-
+  
     loadImages();
   }, []);
-
+  
   return (
     <div className="gallery-container">
       <h2 className="reveal">Gallery</h2>
