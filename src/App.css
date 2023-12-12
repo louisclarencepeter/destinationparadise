@@ -2,9 +2,10 @@
     font-family: 'Montserrat', sans-serif;
     font-family: 'Pacifico', cursive;
     font-family: 'Playfair Display', serif;
-    src: url("./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
+    font-family: 'Kaushan Script', cursive;
     src: url("./assets/fonts/Pacifico/Pacifico-Regular.ttf") format("truetype");
     src: url("./assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf") format("truetype");
+    src: url("./assets/fonts/Kaushan_Script/KaushanScript-Regular.ttf") format("truetype");
 }
 
 :root {
@@ -26,7 +27,7 @@
 }
 
 h1 {
-    font-family: 'Pacifico', cursive;
+    font-family: 'Kaushan Script', cursive;
     font-size: 2.5rem;
     font-weight: 500;
     margin-bottom: 1rem;
