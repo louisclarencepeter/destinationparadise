@@ -64,13 +64,13 @@
 @media screen and (min-width: 359px) {
   .hero-container {
     justify-content: space-around;
+    height: 110vh;
   }
 }
 
 @media screen and (min-width: 420px) {
   .hero-container {
     justify-content: space-around;
-    height: 100vh;
 
     p {
       width: 20rem;
