@@ -28,7 +28,7 @@
 
 h1 {
     font-family: 'Kaushan Script', cursive;
-    font-size: 2.5rem;
+    font-size: 3rem;
     font-weight: 500;
     margin-bottom: 1rem;
     text-align: center;
@@ -55,7 +55,7 @@ h3 {
 
 h4 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 300;
     margin: 0;
     margin-bottom: 1rem;
@@ -65,7 +65,7 @@ h4 {
 
 h5 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 300;
     margin: 0;
     margin-bottom: 1rem;
@@ -99,7 +99,7 @@ button:hover {
 @media screen and (min-width: 420px) {
 
     h1 {
-        font-size: 4rem;
+        font-size: 5rem;
     }
 
     h2 {
