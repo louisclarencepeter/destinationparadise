@@ -1,10 +1,12 @@
 import { useState, useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import './NavBar.scss';
 import logo from '../../assets/logo/dlp.png';
 
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
+    const currentPath = window.location.pathname;
 
     const toggleMenu = useCallback(() => {
         setIsOpen(prevIsOpen => !prevIsOpen);
@@ -23,22 +25,31 @@ const NavBar = () => {
     const navClass = isScrolled ? 'nav transparent' : 'nav';
 
     const menuItems = [
-        { label: "Home", href: "#" },
-        { label: "Excursions", href: "#" },
-        { label: "About Us", href: "#" },
-        { label: "Gallery", href: "#" },
-        { label: "Booking Request", href: "#" }
+        { label: "Home", href: "#", path: "/" },
+        { label: "Excursions", href: "#", path: "/excursions" },
+        { label: "About Us", href: "#", path: "/about" },
+        { label: "Gallery", href: "#", path: "/gallery" },
+        { label: "Booking Request", href: "#", path: "/booking"}
     ];
 
-    const MenuList = () => (
+    const MenuList = ({ currentPath }) => (
         <ul>
-            {menuItems.map(item => (
-                <li key={item.label}>
-                    <a className="menu__item" href={item.href}>{item.label}</a>
-                </li>
-            ))}
+          {menuItems.map(item => (
+            <li key={item.label}>
+              <a
+                className={`menu__item ${currentPath === item.path ? 'active' : ''}`}
+                href={item.href}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
         </ul>
-    );
+      );
+
+      MenuList.propTypes = {
+        currentPath: PropTypes.string.isRequired,
+      };
 
     return (
         <nav className={navClass}>
@@ -46,7 +57,7 @@ const NavBar = () => {
                 <button><i className="fa-solid fa-store"></i>Book Now</button>
             </div>
             <div className='classic-menu'>
-                <MenuList />
+                <MenuList currentPath={currentPath} />
             </div>
             <div>
                 <a href="#" className="menu__logo"><img src={logo} alt="Logo" /></a>
@@ -62,7 +73,7 @@ const NavBar = () => {
                     <span></span>
                 </label>
                 <div className={`menu__box ${isOpen ? 'open' : ''}`}>
-                    <MenuList />
+                    <MenuList currentPath={currentPath} />
                 </div>
             </div>
         </nav>

@@ -156,6 +156,12 @@ img {
     border-bottom: 1px solid#ef4565;
     transition: 0.3s ease-in-out;
   }
+
+  &.active {
+    color: $hover-color;
+    border-bottom: 1px solid #ef4565;
+    transition: 0.3s ease-in-out;
+  }
 }
 
 .store {
