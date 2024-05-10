@@ -29,27 +29,27 @@ const NavBar = () => {
         { label: "Excursions", href: "#", path: "/excursions" },
         { label: "About Us", href: "#", path: "/about" },
         { label: "Gallery", href: "#", path: "/gallery" },
-        { label: "Booking Request", href: "#", path: "/booking"}
+        { label: "Booking Request", href: "#", path: "/booking" }
     ];
 
     const MenuList = ({ currentPath }) => (
         <ul>
-          {menuItems.map(item => (
-            <li key={item.label}>
-              <a
-                className={`menu__item ${currentPath === item.path ? 'active' : ''}`}
-                href={item.href}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
+            {menuItems.map(item => (
+                <li key={item.label}>
+                    <a
+                        className={`menu__item ${currentPath === item.path ? 'active' : ''}`}
+                        href={item.href}
+                    >
+                        {item.label}
+                    </a>
+                </li>
+            ))}
         </ul>
-      );
+    );
 
-      MenuList.propTypes = {
+    MenuList.propTypes = {
         currentPath: PropTypes.string.isRequired,
-      };
+    };
 
     return (
         <nav className={navClass}>
@@ -74,6 +74,15 @@ const NavBar = () => {
                 </label>
                 <div className={`menu__box ${isOpen ? 'open' : ''}`}>
                     <MenuList currentPath={currentPath} />
+                    <div className="menu__header">
+                        <img src={logo} alt="Logo" className="menu__logo" />
+                        <div className="menu__contact">
+                            <p>Destination Paradise</p>
+                            <p>Phone: +255 777 777 777</p>
+                            <p>Zanzibar, Tanzania</p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </nav>
