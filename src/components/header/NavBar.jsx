@@ -13,6 +13,10 @@ const NavBar = () => {
     setIsOpen(prevIsOpen => !prevIsOpen);
   }, []);
 
+  const closeMenu = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
   const handleScroll = useCallback(() => {
     const offset = window.scrollY;
     setIsScrolled(offset > 10);
@@ -33,13 +37,17 @@ const NavBar = () => {
     { label: "Booking Request", path: "/booking" }
   ];
 
-  const MenuList = ({ className }) => (
+  const MenuList = ({ className, onClick }) => (
     <ul className={className}>
       {menuItems.map(item => (
         <li key={item.label}>
           <Link
             className={`menu__item ${location.pathname === item.path ? 'active' : ''}`}
             to={item.path}
+            onClick={() => {
+              onClick();
+              closeMenu();
+            }}
           >
             {item.label}
           </Link>
@@ -50,20 +58,21 @@ const NavBar = () => {
 
   MenuList.propTypes = {
     className: PropTypes.string,
+    onClick: PropTypes.func,
   };
 
   return (
     <nav className={navClass}>
       <div className='store'>
-        <Link to="/booking">
+        <Link to="/booking" onClick={closeMenu}>
           <button><i className="fa-solid fa-store"></i>Book Now</button>
         </Link>
       </div>
       <div className='classic-menu'>
-        <MenuList className="classic-menu__list" />
+        <MenuList className="classic-menu__list" onClick={closeMenu} />
       </div>
       <div>
-        <Link to="/" className="menu__logo">
+        <Link to="/" className="menu__logo" onClick={closeMenu}>
           <img src={logo} alt="Logo" />
         </Link>
       </div>
@@ -78,7 +87,7 @@ const NavBar = () => {
           <span></span>
         </label>
         <div className={`menu__box ${isOpen ? 'open' : ''}`}>
-          <MenuList className="hamburger-menu__list" />
+          <MenuList className="hamburger-menu__list" onClick={closeMenu} />
           <div className="menu__header">
             <img src={logo} alt="Logo" className="menu__logo" />
             <div className="menu__contact">

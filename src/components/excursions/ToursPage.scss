@@ -38,7 +38,7 @@
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
       font-weight: 300;
-      
+
       margin-bottom: 1rem;
       color: #094067;
     }
@@ -69,6 +69,17 @@
       font-size: 1.2rem;
       color: #5f6c7b;
     }
+
+    .reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+      }
+      
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
   }
   
   @media screen and (min-width: 768px) {
