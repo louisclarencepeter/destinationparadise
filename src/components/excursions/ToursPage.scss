@@ -1,0 +1,89 @@
+.tours-page {
+    padding: 2rem;
+    background-color: #fffffe;
+    color: #094067;
+  
+    h1 {
+      font-family: 'Kaushan Script', cursive;
+      font-size: 3rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      text-align: center;
+      color: #094067;
+    }
+  }
+  
+  .tour-card {
+    background-color: #fffffe;
+    border-radius: 1rem;
+    box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transition: all 0.35s;
+
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 1rem;
+        margin-bottom: 1rem;
+      }
+  
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+  
+    h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      color: #094067;
+    }
+  
+    p {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      color: #5f6c7b;
+    }
+  
+    h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 300;
+      margin-bottom: 1rem;
+      color: #094067;
+    }
+  
+    ul {
+      list-style-type: disc;
+      margin-left: 2rem;
+      margin-bottom: 1rem;
+    }
+  
+    li {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      color: #5f6c7b;
+    }
+  }
+  
+  @media screen and (min-width: 768px) {
+    .tours-page {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+  
+      h1 {
+        grid-column: 1 / -1;
+      }
+    }
+  }
+  
+  @media screen and (min-width: 1024px) {
+    .tours-page {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }

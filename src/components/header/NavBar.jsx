@@ -27,7 +27,7 @@ const NavBar = () => {
 
   const menuItems = [
     { label: "Home", path: "/" },
-    { label: "Excursions", path: "/tours" },
+    { label: "Excursions", path: "/excursions" },
     { label: "About Us", path: "/about" },
     { label: "Gallery", path: "/gallery" },
     { label: "Booking Request", path: "/booking" }

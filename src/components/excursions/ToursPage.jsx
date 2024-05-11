@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
+import "./ToursPage.scss";
 
-const TourCard = ({ title, description, activities, duration, inclusions }) => (
+const TourCard = ({ title, description, activities, duration, inclusions, image }) => (
   <div className="tour-card">
+    <img src={image} alt={title} />
     <h3>{title}</h3>
     <p>{description}</p>
     <h4>Activities:</h4>
@@ -26,18 +28,20 @@ TourCard.propTypes = {
   activities: PropTypes.arrayOf(PropTypes.string).isRequired,
   duration: PropTypes.string.isRequired,
   inclusions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  image: PropTypes.string.isRequired,
 };
 
 const ToursPage = () => (
   <div className="tours-page">
     <h1>Trips and Tours Zanzibar</h1>
-    
+
     <TourCard
       title="Spice Tour"
       description="Explore the history and plantations of Zanzibar's spice trade. Dazzle your senses with fresh spices and learn about their uses in medicine, cosmetics, and cooking."
       activities={['Visit spice plantations', 'Learn about traditional herbal medicine', 'Taste spices and fruits', 'Opulent lunch (on request)']}
       duration="Half-day"
       inclusions={['Transport', 'Guide', 'Entrance fees', 'Lunch (on request)']}
+      image="src\assets\images\spicetour\DSC_0296.jpg"
     />
 
     <TourCard
@@ -46,6 +50,7 @@ const ToursPage = () => (
       activities={['Guided walk through Stone Town', 'Visit historical sites', 'Explore markets and shops']}
       duration="Half-day"
       inclusions={['Guide', 'Entrance fees']}
+      image="src/assets/images/stonetown/DSC_0431.jpeg"
     />
 
     <TourCard
@@ -54,6 +59,7 @@ const ToursPage = () => (
       activities={['Visit Prison Island', 'See giant tortoises', 'Snorkeling', 'Sunbathing']}
       duration="Half-day or Full-day"
       inclusions={['Boat ride', 'Entrance fees', 'Snorkeling equipment']}
+      image="src/assets/images/prisonisland/IMG_8946.JPG"
     />
 
     <TourCard
@@ -159,7 +165,25 @@ const ToursPage = () => (
       duration="Half-day"
       inclusions={['Transport', 'Water']}
     />
-    
+
+    <TourCard
+      title="Sailing into the Sunset"
+      description="Enjoy the sunset on a locally made dhow that sails with the wind. Start in the evening, head to Michamvi, and enjoy beautiful views of the Indian Ocean. Stop at a small private sandbank and sail back as the sun sets."
+      activities={['Dhow sailing', 'Sandbank visit', 'Sunset viewing']}
+      duration="3 hours"
+      inclusions={['Dhow ride', 'Snacks', 'Music']}
+      image="/path/to/sailing-sunset-image.jpg"
+    />
+
+    <TourCard
+      title="Quad Tour"
+      description="Ride an ATV quad bike and discover remote trails, unspoiled landscapes, and local villages. Guided by a professional, this recreational and scenic tour is suitable for beginners. Quads are automatic and easy to operate."
+      activities={['ATV quad biking', 'Guided tour', 'Scenic trails']}
+      duration="Half-day"
+      inclusions={['Quad bike', 'Guide', 'Safety instructions']}
+      image="/path/to/quad-tour-image.jpg"
+    />
+
   </div>
 );
 
