@@ -68,6 +68,7 @@ const ToursPage = () => (
       activities={['Guided nature trail', 'See red colobus monkeys', 'Spot other wildlife']}
       duration="Half-day"
       inclusions={['Transport', 'Entrance fee', 'Guide']}
+      image="src\assets\images\jozaniforest\IMG_8579.JPG"
     />
 
     <TourCard
@@ -76,6 +77,7 @@ const ToursPage = () => (
       activities={['Boat trip to see dolphins', 'Swim with dolphins', 'Visit 12th-century mosque']}
       duration="Half-day"
       inclusions={['Transport', 'Guide', 'Boat', 'Snorkeling equipment']}
+      image="src\assets\images\dolphintour\dolphins.jpg"
     />
 
     <TourCard
@@ -84,6 +86,7 @@ const ToursPage = () => (
       activities={['Watch the sunset', 'Swim', 'Visit The Rock Restaurant']}
       duration="Evening"
       inclusions={['Transport']}
+      image="src/assets/images/sunsetrock/DSC_0178.jpg"
     />
 
     <TourCard
@@ -92,6 +95,7 @@ const ToursPage = () => (
       activities={['Snorkeling', 'Explore coral reefs', 'Spot various fish species']}
       duration="Half-day"
       inclusions={['Snorkeling equipment', 'Bicycles or car ride', 'Guide', 'Dhow boat trip']}
+      image="src/assets/images/snorkeling/snorkel.jpg"
     />
 
     <TourCard
@@ -100,6 +104,7 @@ const ToursPage = () => (
       activities={['Walking tour of Bwejuu village', 'Visit local shops and houses', 'Visit charity school']}
       duration="Half-day"
       inclusions={['Local guide', 'Optional bicycle rental']}
+      image="src\assets\images\villagetour\DSC_0495.jpg"
     />
 
     <TourCard
@@ -108,6 +113,7 @@ const ToursPage = () => (
       activities={['Rent a motorbike', 'Explore the island independently']}
       duration="Full-day"
       inclusions={['Motorbike', 'Driving permit', 'Helmets']}
+      image="src\assets\images\motorbike\motorbike.jpg"
     />
 
     <TourCard
@@ -116,6 +122,7 @@ const ToursPage = () => (
       activities={['Snorkeling at Mnemba Island', 'Relax on Nungwi beach']}
       duration="Full-day"
       inclusions={['Transport', 'Guide', 'Boat ride', 'Entrance fees', 'Snorkeling equipment']}
+      image="src\assets\images\mnemba\DSC_0415.JPG"
     />
 
     <TourCard
@@ -124,15 +131,17 @@ const ToursPage = () => (
       activities={['Dhow sailing', 'Swimming', 'Sunbathing', 'Sandbank exploration']}
       duration="Full-day"
       inclusions={['Food', 'Soft drinks', 'Boat trip', 'Transport']}
+      image="src\assets\images\safariblue\safariblue.jpg"
     />
 
-    <TourCard
+ {/*    <TourCard
       title="Fishing in Kizimkazi"
       description="Experience deep-sea fishing in Kizimkazi, known for its abundant sea life. Catch various types of fish such as kingfish, tuna, or even dolphins."
       activities={['Deep-sea fishing']}
       duration="Half-day"
       inclusions={['Fishing equipment', 'Boat ride', 'Fishing permit', 'Transport', 'Water']}
-    />
+      image="src\assets\images\fishing\DSC_0178.jpg"
+    /> */}
 
     <TourCard
       title="Local Game Fishing"
@@ -140,23 +149,24 @@ const ToursPage = () => (
       activities={['Fishing with local fishermen', 'Traditional dhow sailing']}
       duration="Half-day or Full-day"
       inclusions={['Boat ride', 'Fishing guide', 'Local fishing gear', 'Fruits', 'Soft drinks']}
+      image="src\assets\images\fishing\fishing.jpg"
     />
 
-    <TourCard
+  {/*   <TourCard
       title="Mangrove Tour"
       description="Explore the mangrove forest of Chwaka Bay National Reserve. Snorkel on the reef, enjoy a local lunch, and take a boat trip through the mangroves to spot sea turtles."
       activities={['Snorkeling', 'Local lunch', 'Mangrove boat trip']}
       duration="Full-day"
       inclusions={['Transport', 'Guide', 'Snorkeling equipment', 'Lunch', 'Boat ride']}
-    />
+    /> */}
 
-    <TourCard
+  {/*   <TourCard
       title="Sandbank Picnic"
       description="Visit Prison Island, tour the historic prison, meet Aldabra Tortoises, and enjoy the view of Stone Town. Relax on the white sands of Pange Sandbank and soak up the sun."
       activities={['Prison Island visit', 'Sandbank picnic', 'Snorkeling']}
       duration="Full-day"
       inclusions={['Transport', 'Boat trip', 'Prison Island entrance fee', 'Snorkeling equipment', 'Food and drinks']}
-    />
+    /> */}
 
     <TourCard
       title="Swimming in the Cave"
@@ -164,6 +174,7 @@ const ToursPage = () => (
       activities={['Swimming in the cave', 'Relaxation']}
       duration="Half-day"
       inclusions={['Transport', 'Water']}
+      image="src/assets/images/cave/maalum.jpg"
     />
 
     <TourCard
@@ -172,7 +183,7 @@ const ToursPage = () => (
       activities={['Dhow sailing', 'Sandbank visit', 'Sunset viewing']}
       duration="3 hours"
       inclusions={['Dhow ride', 'Snacks', 'Music']}
-      image="/path/to/sailing-sunset-image.jpg"
+      image="src\assets\images\sunsetsailing\sunsetsail.JPEG"
     />
 
     <TourCard
@@ -181,7 +192,7 @@ const ToursPage = () => (
       activities={['ATV quad biking', 'Guided tour', 'Scenic trails']}
       duration="Half-day"
       inclusions={['Quad bike', 'Guide', 'Safety instructions']}
-      image="/path/to/quad-tour-image.jpg"
+      image="src\assets\images\quad\quadtour.jpg"
     />
 
   </div>
