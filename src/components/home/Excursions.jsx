@@ -1,5 +1,5 @@
 import './Excursions.scss';
-import img from '../../assets/images/stone-town.jpeg';
+import img from '../../assets/images/stone-town.jpg';
 import img2 from '../../assets/images/safari-blue.jpg';
 import img3 from '../../assets/images/spice-tour.jpg';
 

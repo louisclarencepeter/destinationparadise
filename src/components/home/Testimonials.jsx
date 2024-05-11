@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './Testimonials.scss';
 import img1 from '../../assets/images/testimonials/isa.png';
 import img2 from '../../assets/images/testimonials/arturo.png';
-import img3 from '../../assets/images/testimonials/DSC_0311.jpg'; 
+import img3 from '../../assets/images/testimonials/coleman.jpg'; 
 
 const Star = () => <i className="fa-solid fa-star"></i>;
 

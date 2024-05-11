@@ -1,5 +1,20 @@
 import PropTypes from 'prop-types';
 import "./ToursPage.scss";
+import spiceTourImage from '../../assets/images/spicetour/spice.jpg';
+import historicalCityTourImage from '../../assets/images/stonetown/stonetown.jpg';
+import prisonIslandImage from '../../assets/images/prisonisland/prison.jpg';
+import jozaniForestImage from '../../assets/images/jozaniforest/jozani.jpg';
+import dolphinTourImage from '../../assets/images/dolphintour/dolphins.jpg';
+import sunsetRockImage from '../../assets/images/sunsetrock/sunsetrock.jpg';
+import snorkelingImage from '../../assets/images/snorkeling/snorkel.jpg';
+import villageTourImage from '../../assets/images/villagetour/village.jpg';
+import motorbikeImage from '../../assets/images/motorbike/motorbike.jpg';
+import mnembaImage from '../../assets/images/mnemba/mnemba.jpg';
+import safariBlueImage from '../../assets/images/safariblue/safariblue.jpg';
+import localFishingImage from '../../assets/images/fishing/fishing.jpg';
+import swimmingCaveImage from '../../assets/images/cave/maalum.jpg';
+import sailingSunsetImage from '../../assets/images/sunsetsailing/sunsetsail.jpg';
+import quadTourImage from '../../assets/images/quad/quadtour.jpg';
 
 const TourCard = ({ title, description, activities, duration, inclusions, image }) => (
   <div className="tour-card">
@@ -41,16 +56,17 @@ const ToursPage = () => (
       activities={['Visit spice plantations', 'Learn about traditional herbal medicine', 'Taste spices and fruits', 'Opulent lunch (on request)']}
       duration="Half-day"
       inclusions={['Transport', 'Guide', 'Entrance fees', 'Lunch (on request)']}
-      image="src\assets\images\spicetour\DSC_0296.jpg"
+      image={spiceTourImage}
     />
 
     <TourCard
+
       title="Historical City Tour"
       description="Take a fascinating walk through Stone Town and visit historical sites like the House of Wonders, Palace Museum, Dr. Livingston's House, and Arab Fort."
       activities={['Guided walk through Stone Town', 'Visit historical sites', 'Explore markets and shops']}
       duration="Half-day"
       inclusions={['Guide', 'Entrance fees']}
-      image="src/assets/images/stonetown/DSC_0431.jpeg"
+      image={historicalCityTourImage}
     />
 
     <TourCard
@@ -59,7 +75,7 @@ const ToursPage = () => (
       activities={['Visit Prison Island', 'See giant tortoises', 'Snorkeling', 'Sunbathing']}
       duration="Half-day or Full-day"
       inclusions={['Boat ride', 'Entrance fees', 'Snorkeling equipment']}
-      image="src/assets/images/prisonisland/IMG_8946.JPG"
+      image={prisonIslandImage}
     />
 
     <TourCard
@@ -68,7 +84,7 @@ const ToursPage = () => (
       activities={['Guided nature trail', 'See red colobus monkeys', 'Spot other wildlife']}
       duration="Half-day"
       inclusions={['Transport', 'Entrance fee', 'Guide']}
-      image="src\assets\images\jozaniforest\IMG_8579.JPG"
+      image={jozaniForestImage}
     />
 
     <TourCard
@@ -77,7 +93,7 @@ const ToursPage = () => (
       activities={['Boat trip to see dolphins', 'Swim with dolphins', 'Visit 12th-century mosque']}
       duration="Half-day"
       inclusions={['Transport', 'Guide', 'Boat', 'Snorkeling equipment']}
-      image="src\assets\images\dolphintour\dolphins.jpg"
+      image={dolphinTourImage}
     />
 
     <TourCard
@@ -86,7 +102,7 @@ const ToursPage = () => (
       activities={['Watch the sunset', 'Swim', 'Visit The Rock Restaurant']}
       duration="Evening"
       inclusions={['Transport']}
-      image="src/assets/images/sunsetrock/DSC_0178.jpg"
+      image={sunsetRockImage}
     />
 
     <TourCard
@@ -95,7 +111,7 @@ const ToursPage = () => (
       activities={['Snorkeling', 'Explore coral reefs', 'Spot various fish species']}
       duration="Half-day"
       inclusions={['Snorkeling equipment', 'Bicycles or car ride', 'Guide', 'Dhow boat trip']}
-      image="src/assets/images/snorkeling/snorkel.jpg"
+      image={snorkelingImage}
     />
 
     <TourCard
@@ -104,7 +120,7 @@ const ToursPage = () => (
       activities={['Walking tour of Bwejuu village', 'Visit local shops and houses', 'Visit charity school']}
       duration="Half-day"
       inclusions={['Local guide', 'Optional bicycle rental']}
-      image="src\assets\images\villagetour\DSC_0495.jpg"
+      image={villageTourImage}
     />
 
     <TourCard
@@ -113,7 +129,7 @@ const ToursPage = () => (
       activities={['Rent a motorbike', 'Explore the island independently']}
       duration="Full-day"
       inclusions={['Motorbike', 'Driving permit', 'Helmets']}
-      image="src\assets\images\motorbike\motorbike.jpg"
+      image={motorbikeImage}
     />
 
     <TourCard
@@ -122,7 +138,7 @@ const ToursPage = () => (
       activities={['Snorkeling at Mnemba Island', 'Relax on Nungwi beach']}
       duration="Full-day"
       inclusions={['Transport', 'Guide', 'Boat ride', 'Entrance fees', 'Snorkeling equipment']}
-      image="src\assets\images\mnemba\DSC_0415.JPG"
+      image={mnembaImage}
     />
 
     <TourCard
@@ -131,17 +147,8 @@ const ToursPage = () => (
       activities={['Dhow sailing', 'Swimming', 'Sunbathing', 'Sandbank exploration']}
       duration="Full-day"
       inclusions={['Food', 'Soft drinks', 'Boat trip', 'Transport']}
-      image="src\assets\images\safariblue\safariblue.jpg"
+      image={safariBlueImage}
     />
-
- {/*    <TourCard
-      title="Fishing in Kizimkazi"
-      description="Experience deep-sea fishing in Kizimkazi, known for its abundant sea life. Catch various types of fish such as kingfish, tuna, or even dolphins."
-      activities={['Deep-sea fishing']}
-      duration="Half-day"
-      inclusions={['Fishing equipment', 'Boat ride', 'Fishing permit', 'Transport', 'Water']}
-      image="src\assets\images\fishing\DSC_0178.jpg"
-    /> */}
 
     <TourCard
       title="Local Game Fishing"
@@ -149,24 +156,8 @@ const ToursPage = () => (
       activities={['Fishing with local fishermen', 'Traditional dhow sailing']}
       duration="Half-day or Full-day"
       inclusions={['Boat ride', 'Fishing guide', 'Local fishing gear', 'Fruits', 'Soft drinks']}
-      image="src\assets\images\fishing\fishing.jpg"
+      image={localFishingImage}
     />
-
-  {/*   <TourCard
-      title="Mangrove Tour"
-      description="Explore the mangrove forest of Chwaka Bay National Reserve. Snorkel on the reef, enjoy a local lunch, and take a boat trip through the mangroves to spot sea turtles."
-      activities={['Snorkeling', 'Local lunch', 'Mangrove boat trip']}
-      duration="Full-day"
-      inclusions={['Transport', 'Guide', 'Snorkeling equipment', 'Lunch', 'Boat ride']}
-    /> */}
-
-  {/*   <TourCard
-      title="Sandbank Picnic"
-      description="Visit Prison Island, tour the historic prison, meet Aldabra Tortoises, and enjoy the view of Stone Town. Relax on the white sands of Pange Sandbank and soak up the sun."
-      activities={['Prison Island visit', 'Sandbank picnic', 'Snorkeling']}
-      duration="Full-day"
-      inclusions={['Transport', 'Boat trip', 'Prison Island entrance fee', 'Snorkeling equipment', 'Food and drinks']}
-    /> */}
 
     <TourCard
       title="Swimming in the Cave"
@@ -174,7 +165,7 @@ const ToursPage = () => (
       activities={['Swimming in the cave', 'Relaxation']}
       duration="Half-day"
       inclusions={['Transport', 'Water']}
-      image="src/assets/images/cave/maalum.jpg"
+      image={swimmingCaveImage}
     />
 
     <TourCard
@@ -183,7 +174,7 @@ const ToursPage = () => (
       activities={['Dhow sailing', 'Sandbank visit', 'Sunset viewing']}
       duration="3 hours"
       inclusions={['Dhow ride', 'Snacks', 'Music']}
-      image="src\assets\images\sunsetsailing\sunsetsail.JPEG"
+      image={sailingSunsetImage}
     />
 
     <TourCard
@@ -192,7 +183,7 @@ const ToursPage = () => (
       activities={['ATV quad biking', 'Guided tour', 'Scenic trails']}
       duration="Half-day"
       inclusions={['Quad bike', 'Guide', 'Safety instructions']}
-      image="src\assets\images\quad\quadtour.jpg"
+      image={quadTourImage}
     />
 
   </div>
