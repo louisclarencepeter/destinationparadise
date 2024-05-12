@@ -11,6 +11,20 @@
     text-align: center;
     color: #094067;
   }
+
+  .tour-card-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+
+    @media screen and (min-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 }
 
 .tour-card {
@@ -86,7 +100,6 @@
     transition: opacity 0.3s ease, color 0.3s ease, background-color 0.3s ease;
     margin-top: 1rem;
     font-size: 0.7rem;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,32 +135,9 @@
   }
 }
 
-@media screen and (min-width: 768px) {
-  .tours-page {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
-
-    h1 {
-      grid-column: 1 / -1;
-    }
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .tours-page {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
 @media screen and (max-width: 767px) {
   .tour-card {
     .learn-more-btn {
-      opacity: 0;
-      transition: opacity 0.3s ease 20s;
-    }
-
-    &.mobile-hover .learn-more-btn {
       opacity: 1;
     }
   }
