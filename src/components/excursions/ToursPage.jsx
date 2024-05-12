@@ -35,7 +35,10 @@ const TourCard = ({ title, description, activities, duration, inclusions, image 
         <li key={index}>{inclusion}</li>
       ))}
     </ul>
-    <div className="learn-more-btn">Learn More</div>
+    <button className="learn-more-btn">
+      Learn More
+      <i className="fas fa-arrow-right"></i>
+    </button>
   </div>
 );
 

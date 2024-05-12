@@ -14,7 +14,6 @@
 }
 
 .tour-card {
-  position: relative;
   background-color: #fffffe;
   border-radius: 1rem;
   box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
@@ -76,19 +75,34 @@
 
   .learn-more-btn {
     opacity: 0;
-    background-color: #094067;
-    color: #fffffe;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
+    background-color: #fffffe;
+    color: #094067;
+    padding: 0.4rem;
+    border-radius: 0.9rem;
     cursor: pointer;
     width: 50%;
     margin: 0 auto;
     text-align: center;
-    transition: opacity 0.3s ease, color 0.3s ease;
+    transition: opacity 0.3s ease, color 0.3s ease, background-color 0.3s ease;
     margin-top: 1rem;
+    font-size: 0.7rem;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     &:hover {
       color: #ef4565;
+      background-color: #094067;
+
+      i {
+        transform: translateX(4px);
+      }
+    }
+
+    i {
+      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
     }
   }
 
