@@ -1,109 +1,135 @@
 .tours-page {
-    padding: 2rem;
-    background-color: #fffffe;
-    color: #094067;
-  
-    h1 {
-      font-family: 'Kaushan Script', cursive;
-      font-size: 3rem;
-      font-weight: 500;
-      margin-bottom: 2rem;
-      text-align: center;
-      color: #094067;
-    }
-  }
-  
-  .tour-card {
-    background-color: #fffffe;
-    border-radius: 1rem;
-    box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
-    padding: 2rem;
+  padding: 2rem;
+  background-color: #fffffe;
+  color: #094067;
+
+  h1 {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 3rem;
+    font-weight: 500;
     margin-bottom: 2rem;
-    transition: all 0.35s;
-
-    h4, ul {
-      text-align: left;
-    }
-  
-    ul {
-      padding-left: 1.5rem;
-    }
-
-    img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-        border-radius: 1rem;
-        margin-bottom: 1rem;
-      }
-  
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    }
-  
-    h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      font-weight: 300;
-
-      margin-bottom: 1rem;
-      color: #094067;
-    }
-  
-    p {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      color: #5f6c7b;
-    }
-  
-    h4 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.5rem;
-      font-weight: 300;
-      margin-bottom: 1rem;
-      color: #094067;
-    }
-  
-    ul {
-      list-style-type: disc;
-      //margin-left: 2rem;
-      margin-bottom: 1rem;
-    }
-  
-    li {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.2rem;
-      color: #5f6c7b;
-    }
-
-    .reveal {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-      }
-      
-      .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    text-align: center;
+    color: #094067;
   }
-  
-  @media screen and (min-width: 768px) {
-    .tours-page {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 2rem;
-  
-      h1 {
-        grid-column: 1 / -1;
-      }
+}
+
+.tour-card {
+  position: relative;
+  background-color: #fffffe;
+  border-radius: 1rem;
+  box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: all 0.35s;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+
+  h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    color: #094067;
+    text-align: left;
+  }
+
+  p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #5f6c7b;
+    text-align: left;
+  }
+
+  h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    color: #094067;
+    text-align: left;
+  }
+
+  ul {
+    list-style-type: disc;
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    text-align: left;
+  }
+
+  li {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem;
+    color: #5f6c7b;
+  }
+
+  .learn-more-btn {
+    opacity: 0;
+    background-color: #094067;
+    color: #fffffe;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    width: 50%;
+    margin: 0 auto;
+    transition: opacity 0.3s ease;
+    margin-top: 1rem; // Add margin-top to create space above the button
+  }
+
+  &:hover .learn-more-btn {
+    opacity: 1;
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  &.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .tours-page {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+
+    h1 {
+      grid-column: 1 / -1;
     }
   }
-  
-  @media screen and (min-width: 1024px) {
-    .tours-page {
-      grid-template-columns: repeat(3, 1fr);
+}
+
+@media screen and (min-width: 1024px) {
+  .tours-page {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .tour-card {
+    .learn-more-btn {
+      opacity: 0;
+      transition: opacity 0.3s ease 20s;
+    }
+
+    &.mobile-hover .learn-more-btn {
+      opacity: 1;
     }
   }
+}

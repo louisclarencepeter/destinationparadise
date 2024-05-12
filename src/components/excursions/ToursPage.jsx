@@ -35,6 +35,7 @@ const TourCard = ({ title, description, activities, duration, inclusions, image 
         <li key={index}>{inclusion}</li>
       ))}
     </ul>
+    <div className="learn-more-btn">Learn More</div>
   </div>
 );
 
@@ -63,13 +64,35 @@ const ToursPage = () => {
       }
     }
 
+    let mobileHoverTimeout;
+
+    function handleMobileHover() {
+      const tourCards = document.querySelectorAll(".tour-card");
+      tourCards.forEach((card) => {
+        const isCardVisible = card.getBoundingClientRect().top < window.innerHeight;
+        if (isCardVisible) {
+          mobileHoverTimeout = setTimeout(() => {
+            card.classList.add("mobile-hover");
+          }, 7000);
+        } else {
+          card.classList.remove("mobile-hover");
+          clearTimeout(mobileHoverTimeout);
+        }
+      });
+    }
+
     window.addEventListener("scroll", reveal);
+    window.addEventListener("scroll", handleMobileHover);
     reveal();
+    handleMobileHover();
 
     return () => {
       window.removeEventListener("scroll", reveal);
+      window.removeEventListener("scroll", handleMobileHover);
+      clearTimeout(mobileHoverTimeout);
     };
   }, []);
+
 
   return (
     <div className="tours-page">
