@@ -83,12 +83,14 @@
     cursor: pointer;
     width: 50%;
     margin: 0 auto;
+    text-align: center;
     transition: opacity 0.3s ease;
     margin-top: 1rem; // Add margin-top to create space above the button
   }
 
   &:hover .learn-more-btn {
     opacity: 1;
+    color: #ef4565;
   }
 }
 
