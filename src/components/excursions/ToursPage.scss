@@ -84,13 +84,16 @@
     width: 50%;
     margin: 0 auto;
     text-align: center;
-    transition: opacity 0.3s ease;
-    margin-top: 1rem; // Add margin-top to create space above the button
+    transition: opacity 0.3s ease, color 0.3s ease;
+    margin-top: 1rem;
+
+    &:hover {
+      color: #ef4565;
+    }
   }
 
   &:hover .learn-more-btn {
     opacity: 1;
-    color: #ef4565;
   }
 }
 
