@@ -73,7 +73,7 @@ const ToursPage = () => {
         if (isCardVisible) {
           mobileHoverTimeout = setTimeout(() => {
             card.classList.add("mobile-hover");
-          }, 7000);
+          }, 5000);
         } else {
           card.classList.remove("mobile-hover");
           clearTimeout(mobileHoverTimeout);
