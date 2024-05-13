@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import ImageFadeIn from 'react-image-fade-in';
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import './PhotoSlide.scss';
 import caveImage from '../../assets/images/cave/maalum.jpg';
 import dolphinTourImage from '../../assets/images/dolphintour/dolphins.jpg';
@@ -17,44 +18,45 @@ import sunsetRockImage from '../../assets/images/sunsetrock/sunsetrock.jpg';
 import sunsetSailingImage from '../../assets/images/sunsetsailing/sunsetsail.jpg';
 
 const PhotoSlide = () => {
-    const images = [
-        caveImage,
-        dolphinTourImage,
-        fishingImage,
-        jozaniForestImage,
-        mnembaImage,
-        motorbikeImage,
-        prisonIslandImage,
-        quadTourImage,
-        safariBlueImage,
-        snorkelingImage,
-        spiceTourImage,
-        stoneTownImage,
-        sunsetRockImage,
-        sunsetSailingImage,
-    ];
+  const images = [
+    caveImage,
+    dolphinTourImage,
+    fishingImage,
+    jozaniForestImage,
+    mnembaImage,
+    motorbikeImage,
+    prisonIslandImage,
+    quadTourImage,
+    safariBlueImage,
+    snorkelingImage,
+    spiceTourImage,
+    stoneTownImage,
+    sunsetRockImage,
+    sunsetSailingImage,
+  ];
 
-    const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    cssEase: 'ease-in-out',
+  };
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-        }, 7000);
-
-        return () => {
-            clearInterval(interval);
-        };
-    }, [images.length]);
-
-    return (
-        <div className="photo-slide">
-            <ImageFadeIn
-                src={images[currentImageIndex]}
-                opacityTransition="1s"
-                className="image-fade-in"
-            />
-        </div>
-    );
+  return (
+    <div className="photo-slide">
+      <Slider {...settings}>
+        {images.map((image, index) => (
+          <div key={index}>
+            <img src={image} alt={`Slide ${index + 1}`} />
+          </div>
+        ))}
+      </Slider>
+    </div>
+  );
 };
 
 export default PhotoSlide;
