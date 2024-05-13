@@ -4,14 +4,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 600px; // Adjust the height as needed
+  height: 400px;
   overflow: hidden;
 
   .image-fade-in {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: center;
     object-position: center;
+    border-radius: 1rem;
   }
 
   .slick-slider {
@@ -24,7 +25,6 @@
       top: 50%;
       transform: translateY(-50%);
       z-index: 1;
-      // Add any additional styles for the arrow buttons
     }
 
     .slick-prev {
@@ -40,17 +40,6 @@
       bottom: 10px;
       left: 50%;
       transform: translateX(-50%);
-      // Add any additional styles for the dots
-    }
-
-    .slick-list {
-      height: 100%;
-    }
-
-    .slick-track {
-      display: flex;
-      align-items: center;
-      height: 100%;
     }
 
     .slick-slide {
@@ -58,14 +47,6 @@
       justify-content: center;
       align-items: center;
       height: 100%;
-
-      > div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 100%;
-      }
 
       img {
         width: 100%;
