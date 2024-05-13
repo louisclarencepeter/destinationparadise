@@ -36,7 +36,7 @@ const TourCard = ({ title, description, activities, duration, inclusions, image 
       ))}
     </ul>
     <button className="learn-more-btn">
-      Learn More
+      Book Now
       <i className="fas fa-arrow-right"></i>
     </button>
   </div>

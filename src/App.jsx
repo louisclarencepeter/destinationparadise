@@ -4,6 +4,7 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import './App.css';
 import Header from './components/header/NavBar.jsx';
 import Home from './components/Home.jsx';
+import AboutPage from './components/aboutus/AboutPage.jsx';
 import ToursPage from './components/excursions/ToursPage.jsx';
 import Footer from './components/footer/Footer.jsx';
 
@@ -15,6 +16,7 @@ function App() {
         <Routes>
           <Route exact path="/" element={<Home />} />
           <Route path="/excursions" element={<ToursPage />} />
+          <Route path="/aboutus" element={<AboutPage />} />
         </Routes>
         <Footer />
       </div>
