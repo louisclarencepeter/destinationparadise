@@ -17,6 +17,7 @@ function App() {
           <Route exact path="/" element={<Home />} />
           <Route path="/excursions" element={<ToursPage />} />
           <Route path="/aboutus" element={<AboutPage />} />
+  
         </Routes>
         <Footer />
       </div>
