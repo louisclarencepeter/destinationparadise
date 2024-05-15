@@ -1,17 +1,20 @@
-.gallery-container {
-  .gallery-image {
-    transition: all 0.3s ease-in-out;
-    box-sizing: border-box;
-    position: relative;
-    padding: 1rem;
-    width: 90%;
-    height: 100%;
-    margin: 0 auto;
+// Images.scss
+.gallery {
+  &__title {
+    margin-bottom: 1rem;
   }
 
-  .gallery-image:hover {
-    transform: scale(1.05);
-    z-index: 1;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  &__image {
+    width: 100%;
+    height: auto;
+    padding: 1rem;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+      z-index: 1;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
   }
 }
