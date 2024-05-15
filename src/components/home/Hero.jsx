@@ -6,7 +6,7 @@ function Hero() {
   return (
     <div className="hero">
       <div className="hero__background">
-        <video autoPlay loop muted className="hero__video">
+        <video autoPlay loop muted playsInline className="hero__video">
           <source src={backgroundVideo} type="video/mp4" />
         </video>
       </div>
