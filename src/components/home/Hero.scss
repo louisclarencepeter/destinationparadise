@@ -1,97 +1,88 @@
-.hero-container {
+// Hero.scss
+.hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 100vh; // Full viewport height
-  margin-top: -6rem; // Overlap the navbar
-  padding-top: 6rem; // Add padding to compensate for the overlapped navbar
+  height: 100vh;
+  margin-top: -6rem;
+  padding-top: 6rem;
   overflow: hidden;
 
-  .video-background {
+  &__background {
     position: absolute;
     width: 100%;
-    left: 50%;
-    top: 50%;
     height: 100%;
-    object-fit: cover;
-    transform: translate(-50%, -50%);
-    z-index: 0; // Ensuring the video is behind the content
+    top: 0;
+    left: 0;
+    z-index: -1;
   }
 
-  .name-motto {
-    padding: 1rem 0;
+  &__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
     z-index: 1;
   }
 
-  p {
+  &__heading {
+    padding: 1rem 0;
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h3 {
+      font-size: 1.5rem;
+    }
+  }
+
+  &__description {
     font-family: "Montserrat", sans-serif;
     font-size: 1rem;
     font-weight: 300;
-    margin: 0;
-    margin-bottom: 1rem;
-    text-align: center;
+    margin: 0 1rem 1rem;
     color: #153464;
     background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-    //border-radius: 1rem;
     box-shadow: 0.1rem 0.1rem 0.7rem #bebebe, -0.1rem -0.1rem 0.7rem #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 1rem;
-    width: 17rem;
     padding: 0.5rem 1rem;
-    z-index: 1;
     opacity: 0.85;
-    transition: 1s;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  .fade-in {
     animation: fadeIn 3s ease-out;
   }
 }
 
-@media screen and (min-width: 359px) {
-  .hero-container {
-    justify-content: space-around;
-    height: 110vh;
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
 @media screen and (min-width: 420px) {
-  .hero-container {
-    justify-content: space-around;
-
-    p {
+  .hero {
+    &__description {
       width: 20rem;
       font-size: 1.3rem;
     }
   }
 }
 
-@media screen and (min-width: 567px) {
-  .hero-container {
-    justify-content: space-around;
-    height: 150vh;
-  }
-}
-
 @media screen and (min-width: 768px) {
-  .hero-container {
-    justify-content: space-around;
+  .hero {
     height: 110vh;
 
-    p {
+    &__description {
       width: 30rem;
       font-size: 1.5rem;
     }
