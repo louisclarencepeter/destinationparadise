@@ -9,6 +9,8 @@ import AboutPage from './components/aboutus/AboutPage.jsx';
 import ToursPage from './components/excursions/ToursPage.jsx';
 import MyImageGallery from './components/gallery/MyImageGallery.jsx';
 import Footer from './components/footer/Footer.jsx';
+import Store from './components/store/Store.jsx'; // Ensure this path is correct
+import ErrorBoundary from './components/error/ErrorBoundary.jsx';
 
 function App() {
   useEffect(() => {
@@ -37,16 +39,19 @@ function App() {
 
   return (
     <Router>
-      <div className='main-container'>
-        <Header />
-        <Routes>
-          <Route exact path="/" element={<Home />} />
-          <Route path="/excursions" element={<ToursPage />} />
-          <Route path="/aboutus" element={<AboutPage />} />
-          <Route path="/gallery" element={<MyImageGallery />} />  
-        </Routes>
-        <Footer />
-      </div>
+      <ErrorBoundary>
+        <div className='main-container'>
+          <Header />
+          <Routes>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/excursions" element={<ToursPage />} />
+            <Route path="/aboutus" element={<AboutPage />} />
+            <Route path="/gallery" element={<MyImageGallery />} />  
+            <Route path="/booking" element={<Store />} /> {/* Add the new route */}
+          </Routes>
+          <Footer />
+        </div>
+      </ErrorBoundary>
     </Router>
   );
 }

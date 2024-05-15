@@ -1,6 +1,7 @@
+// NavBar.jsx
+import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { Link, useLocation } from 'react-router-dom';
 import './NavBar.scss';
 import logo from '../../assets/logo/dlp.png';
 
@@ -34,7 +35,7 @@ const NavBar = () => {
     { label: "Excursions", path: "/excursions" },
     { label: "About Us", path: "/aboutus" },
     { label: "Gallery", path: "/gallery" },
-    { label: "Booking Request", path: "/booking" }
+    { label: "Booking Request", path: "/booking" } // Add the new link
   ];
 
   const MenuList = ({ className, onClick }) => (
