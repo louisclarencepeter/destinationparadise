@@ -1,4 +1,5 @@
-.footer-container {
+// Footer.scss
+.footer {
   background-color: #fffffe;
   padding: 1.25rem;
   font-size: 0.875rem;
@@ -6,106 +7,135 @@
   color: #153464;
   font-family: 'Montserrat', sans-serif;
 
-  h5 {
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  &__title {
     font-size: 1rem;
     font-weight: 700;
     margin-bottom: 0.625rem;
     text-align: center;
   }
 
-  .emailContainer {
+  &__form {
     display: flex;
     border: 1px solid #000;
     border-radius: 5px;
     overflow: hidden;
+    margin-bottom: 1rem;
+  }
 
-    .emailInput {
-      border: none;
-      padding: 10px;
-      flex-grow: 1;
-      outline: none;
-    }
+  &__input {
+    border: none;
+    padding: 10px;
+    flex-grow: 1;
+    outline: none;
+  }
 
-    .sendButton {
-      border-left: 1px solid #000;
-      border-radius: none;
-      padding: 10px 20px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+  &__button {
+    border-left: 1px solid #000;
+    border-radius: 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-      &:active {
-        background-color: #333;
-      }
+    &:active {
+      background-color: #333;
     }
   }
 
-  a {
-    color: #003366;
-    text-decoration: none;
-
-    &:hover {
-      color: #ef4565;
-      text-decoration: underline;
-    }
+  &__info {
+    margin-bottom: 1rem;
+    text-align: center;
   }
 
-  .contact {
+  &__contact {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     gap: 0.625rem;
-    margin-bottom: 0.625rem;
+    margin-bottom: 1rem;
+  }
 
-    div {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      gap: 0.625rem;
+  &__social {
+    display: flex;
+    gap: 0.625rem;
 
-      i {
-        font-size: 1.25rem;
+    a {
+      color: #003366;
+      text-decoration: none;
+
+      &:hover {
+        color: #ef4565;
+        text-decoration: underline;
       }
+    }
+
+    i {
+      font-size: 1.25rem;
     }
   }
 
-  .copyright {
+  &__copyright {
     text-align: center;
     margin-top: 0.625rem;
   }
 }
 
 @media (min-width: 768px) {
-  .footer-container {
+  .footer {
     padding: 1.875rem;
     font-size: 1rem;
 
-    .emailContainer {
+    &__form {
       max-width: 500px;
-      margin: 0 auto;
+      margin: 0 auto 1rem;
     }
 
-    .contact {
+    &__contact {
       flex-direction: row;
+      justify-content: center;
     }
   }
 }
 
 @media (min-width: 1024px) {
-  .footer-container {
-    padding: 1.875rem 3.75rem;
+  .footer {
+    padding: 1.875rem 0;
     font-size: 1.125rem;
 
-    .emailContainer {
-      max-width: 500px;
-      margin: 0 auto;
+    &__container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .contact {
-      flex-direction: row;
+    &__title {
+      text-align: left;
+      margin-bottom: 0;
+    }
+
+    &__form {
+      margin: 0;
+    }
+
+    &__info {
+      text-align: left;
+    }
+
+    &__contact {
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 0;
+    }
+
+    &__copyright {
+      margin-top: 0;
     }
   }
 }
