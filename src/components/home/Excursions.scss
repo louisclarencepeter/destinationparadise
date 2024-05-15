@@ -1,201 +1,62 @@
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-.card {
-  height: 100%;
-  box-sizing: border-box;
-  color: #5f6c7b;
-  gap: 2rem;
+// Excursions.scss
+.excursions {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
+  gap: 2rem;
   width: 100%;
 
-  img {
-    max-width: 100%;
-    height: auto;
+  &__title {
+    color: #5f6c7b;
   }
 
-  .trips-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
     gap: 2rem;
+    justify-items: center;
+    width: 100%;
   }
-
 }
 
-.card-hover {
-  width: 270px;
-  height: 340px;
+.excursion-card {
+  width: 100%;
+  max-width: 320px;
+  height: 400px;
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
   transition: all 0.35s;
   border-radius: 1rem;
 
-  &:has(.card-hover__link:hover) .card-hover__extra {
-    transform: translateY(0);
-    transition: transform 0.35s;
+  &:hover {
+    .excursion-card__content {
+      background-color: #f8f9fa;
+      bottom: 100%;
+      transform: translateY(100%);
+      transition: all 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
+    }
+
+    .excursion-card__link {
+      opacity: 1;
+      transform: translate(-50%, 0);
+      transition: all 0.3s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
+    }
+
+    .excursion-card__image {
+      transform: scale(1);
+      transition: 0.35s 0.1s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
+    }
   }
 
-  &:hover .card-hover__content {
-    background-color: #f8f9fa;
-    bottom: 100%;
-    transform: translateY(100%);
-    transition: all 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
-  }
-
-  &:hover .card-hover__link {
-    opacity: 1;
-    transform: translate(-50%, 0);
-    transition: all 0.3s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
-  }
-
-  &:hover img {
-    transform: scale(1);
-    transition: 0.35s 0.1s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
-  }
-}
-
-.card-hover__content {
-  width: 100%;
-  text-align: center;
-  background-color: #fffffe;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  transform: translateY(0);
-  transition: all 0.35s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
-  will-change: bottom, background-color, transform, padding;
-  z-index: 1;
-
-  &::before,
-  &::after {
-    content: "";
-    width: 100%;
-    height: 120px;
-    background-color: inherit;
-    position: absolute;
-    left: 0;
-    z-index: -1;
-  }
-
-  &::before {
-    top: -80px;
-    -webkit-clip-path: ellipse(60% 80px at bottom center);
-    clip-path: ellipse(60% 80px at bottom center);
-  }
-
-  &::after {
-    bottom: -80px;
-    -webkit-clip-path: ellipse(60% 80px at top center);
-    clip-path: ellipse(60% 80px at top center);
-  }
-}
-
-.card-hover__title {
-  width: 220px;
-  margin: 0 auto;
-  padding: 0.5rem 0;
-
-  span {
-    color: #005f73;
-  }
-}
-
-.card-hover__text {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1rem;
-  width: 220px;
-  margin: 0 auto;
-  padding: 0.89rem 0;
-}
-
-.card-hover__link {
-  position: absolute;
-  bottom: 1rem;
-  left: 50%;
-  font-family: "Playfair Display", serif;
-  transform: translate(-50%, 10%);
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  text-decoration: none;
-  color: #ef4565;
-  opacity: 0;
-  padding: 10px;
-  top: 100%;
-  transition: all 0.35s;
-
-  &:hover svg {
-    transform: translateX(4px);
-  }
-
-  svg {
-    width: 18px;
-    margin-left: 4px;
-    transition: transform 0.3s;
-  }
-}
-
-.card-hover__extra {
-  height: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  text-align: center;
-  background-color: #90b4ce;
-  background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
-  bottom: 0;
-  z-index: 0;
-  color: #212529;
-  transform: translateY(100%);
-  will-change: transform;
-  transition: transform 0.35s;
-
-  span {
-    color: #005f73;
-  }
-}
-
-.card-hover img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-  object-fit: cover;
-  -o-object-position: center;
-  object-position: center;
-  z-index: -1;
-  transform: scale(1.2);
-  transition: 0.35s 0.35s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
-}
-
-
-@media screen and (min-width: 1024px) {
-
-
-  .card-hover {
-    width: 320px;
-    height: 400px;
-  }
-
-  .card-hover__content {
-    width: 100%;
-    text-align: center;
-    background-color: #fffffe;
+  &__content {
     position: absolute;
     bottom: 0;
     left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #fffffe;
+    padding: 1rem;
     transform: translateY(0);
     transition: all 0.35s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
     will-change: bottom, background-color, transform, padding;
@@ -203,64 +64,49 @@
 
     &::before,
     &::after {
-      content: "";
+      content: '';
+      position: absolute;
+      left: 0;
       width: 100%;
       height: 120px;
       background-color: inherit;
-      position: absolute;
-      left: 0;
       z-index: -1;
     }
 
     &::before {
       top: -80px;
-      -webkit-clip-path: ellipse(60% 80px at bottom center);
       clip-path: ellipse(60% 80px at bottom center);
     }
 
     &::after {
       bottom: -80px;
-      -webkit-clip-path: ellipse(60% 80px at top center);
       clip-path: ellipse(60% 80px at top center);
     }
   }
 
-  .card-hover__title {
-    width: 220px;
-    margin: 0 auto;
+  &__title {
+    margin: 0;
     padding: 0.5rem 0;
-
-    span {
-      color: #005f73;
-    }
+    color: #005f73;
   }
 
-  .card-hover__text {
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.2rem;
-    width: 220px;
-    margin: 0 auto;
+  &__text {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
     padding: 0.89rem 0;
   }
 
-  .card-hover__extra {
-    height: 53%;
-  }
-
-  .card-hover__link {
+  &__link {
     position: absolute;
     bottom: 1rem;
     left: 50%;
-    font-family: "Playfair Display", serif;
     transform: translate(-50%, 10%);
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
     text-decoration: none;
     color: #ef4565;
     opacity: 0;
     padding: 10px;
-    top: 100%;
     transition: all 0.35s;
 
     &:hover svg {
@@ -271,6 +117,60 @@
       width: 18px;
       margin-left: 4px;
       transition: transform 0.3s;
+    }
+  }
+
+  &__extra {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #90b4ce;
+    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+    color: #212529;
+    transform: translateY(100%);
+    will-change: transform;
+    transition: transform 0.35s;
+
+    span {
+      color: #005f73;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+    transform: scale(1.2);
+    transition: 0.35s 0.35s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .excursion-card {
+    height: 400px;
+
+    &__content {
+      padding: 1.5rem;
+    }
+
+    &__text {
+      font-size: 1.2rem;
+    }
+
+    &__extra {
+      height: 53%;
     }
   }
 }
