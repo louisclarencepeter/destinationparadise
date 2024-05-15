@@ -1,70 +1,75 @@
 // components/store/Store.scss
 .store-container {
     padding: 20px;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
-    text-align: center;
     background-color: #f9f9f9;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #153464;
-    }
+    .booking-request {
+      padding: 20px;
+      text-align: center;
   
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: #5f6c7b;
-    }
-  
-    .booking-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-  
-      .form-group {
-        margin-bottom: 1.5rem;
-        width: 100%;
-  
-        label {
-          display: block;
-          margin-bottom: 0.5rem;
-          font-size: 1rem;
-          color: #094067;
-        }
-  
-        input,
-        textarea {
-          width: 100%;
-          padding: 0.75rem;
-          border: 1px solid #ccc;
-          border-radius: 5px;
-          font-size: 1rem;
-          color: #094067;
-          box-sizing: border-box;
-        }
-  
-        textarea {
-          height: 100px;
-          resize: vertical;
-        }
+      h1 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #153464;
       }
   
-      .submit-button {
-        padding: 0.75rem 2rem;
-        font-size: 1rem;
-        color: #ffffff;
-        background-color: #153464;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
+      p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        color: #5f6c7b;
+      }
   
-        &:hover {
-          background-color: #094067;
+      .booking-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+  
+        .form-group {
+          margin-bottom: 1.5rem;
+          width: 100%;
+  
+          label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+            color: #094067;
+          }
+  
+          input,
+          select,
+          textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: #094067;
+            box-sizing: border-box;
+          }
+  
+          textarea {
+            height: 100px;
+            resize: vertical;
+          }
+        }
+  
+        .submit-button {
+          padding: 0.75rem 2rem;
+          font-size: 1rem;
+          color: #ffffff;
+          background-color: #153464;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: background-color 0.3s ease;
+  
+          &:hover {
+            background-color: #094067;
+          }
         }
       }
     }
