@@ -35,6 +35,7 @@ const Excursions = () => {
       <div className="excursions__grid">
         {trips.map((trip, index) => (
           <div className="excursion-card" key={index}>
+            <img src={trip.image} alt={trip.title} className="excursion-card__image" />
             <div className="excursion-card__content">
               <h4 className="excursion-card__title">{trip.title}</h4>
               <p className="excursion-card__text">{trip.text}</p>
@@ -45,12 +46,6 @@ const Excursions = () => {
                 </svg>
               </a>
             </div>
-            <div className="excursion-card__extra">
-              <h5>
-                Book <span>now</span> and get <span>{trip.discount}</span> discount!
-              </h5>
-            </div>
-            <img src={trip.image} alt={trip.title} className="excursion-card__image" />
           </div>
         ))}
       </div>
