@@ -35,7 +35,7 @@ const MyImageGallery = () => {
 
   return (
     <div className="gallery">
-      <h1 className='reveal'>Gallery</h1>
+      <h2 className='reveal'>Gallery</h2>
       {imagesLoaded && (
         <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
           <Masonry>

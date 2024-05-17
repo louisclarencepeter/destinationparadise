@@ -77,7 +77,7 @@ const Store = () => {
     <div className="store-container">
       <ImageSlideshow images={images} />
       <div className="booking-request">
-        <h1>Booking Request</h1>
+        <h2>Booking Request</h2>
         <p>Welcome to the booking request page. Please fill out the form below to make a new booking.</p>
         <form onSubmit={handleSubmit} className="booking-form">
           <div className="form-group">

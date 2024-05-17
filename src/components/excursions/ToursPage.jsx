@@ -77,7 +77,7 @@ const ToursPage = () => {
 
   return (
     <div className="tours-page">
-      <h1 className="reveal">Trips and Tours Zanzibar</h1>
+      <h2 className="reveal">Trips and Tours Zanzibar</h2>
       <div className="tour-card-container">
         <TourCard
           title="Spice Tour"

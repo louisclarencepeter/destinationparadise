@@ -1,4 +1,3 @@
-// Excursions.jsx
 import './Excursions.scss';
 import img from '../../assets/images/stone-town.jpg';
 import img2 from '../../assets/images/safari-blue.jpg';
@@ -30,26 +29,26 @@ const Excursions = () => {
   ];
 
   return (
-    <div className="excursions">
-      <h2 className="excursions__title">Roaming Retreats</h2>
+    <section className="excursions">
+      <h2>Roaming Retreats</h2>
       <div className="excursions__grid">
         {trips.map((trip, index) => (
-          <div className="excursion-card" key={index}>
+          <article className="excursion-card" key={index}>
             <img src={trip.image} alt={trip.title} className="excursion-card__image" />
             <div className="excursion-card__content">
-              <h4 className="excursion-card__title">{trip.title}</h4>
+              <h3 className="excursion-card__title">{trip.title}</h3>
               <p className="excursion-card__text">{trip.text}</p>
               <a href={trip.link} className="excursion-card__link" aria-label={`Learn more about ${trip.title}`}>
-                <span>Learn More</span>
+                Learn more
                 <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-label="External Link">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </a>
             </div>
-          </div>
+          </article>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

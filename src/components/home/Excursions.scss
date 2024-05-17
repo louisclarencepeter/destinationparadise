@@ -1,39 +1,36 @@
-// Excursions.scss
 .excursions {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
-  width: 100%;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 90%;
+  margin: 0 auto;
+  padding: 1rem;
 
-  &__title {
-    color: #5f6c7b;
-  }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-    gap: 2rem;
-    justify-items: center;
+    grid-template-columns: 1fr;
+    gap: 1rem;
     width: 100%;
+    justify-items: center;
   }
 }
 
 .excursion-card {
-  width: 100%;
-  max-width: 270px;
-  height: 400px;
+  width: 90%;
+  height: 55vh;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 0 16px -5px rgba(0, 0, 0, 0.08);
   transition: all 0.35s;
   border-radius: 1rem;
 
   &:hover {
     .excursion-card__content {
       background-color: #f8f9fa;
-      bottom: 100%;
-      transform: translateY(100%);
+      transform: translateY(-10%);
       transition: all 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
     }
 
@@ -44,7 +41,7 @@
     }
 
     .excursion-card__image {
-      transform: scale(1);
+      transform: scale(1.05);
       transition: 0.35s 0.1s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
     }
   }
@@ -56,61 +53,36 @@
     width: 100%;
     text-align: center;
     background-color: #fffffe;
-    //padding: 1rem;
+    padding: 0.5rem;
     transform: translateY(0);
     transition: all 0.35s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
-    will-change: bottom, background-color, transform, padding;
     z-index: 1;
-
-    &::before,
-    &::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      width: 100%;
-      height: 120px;
-      background-color: inherit;
-      z-index: -1;
-    }
-
-    &::before {
-      top: -80px;
-      clip-path: ellipse(60% 80px at bottom center);
-    }
-
-    &::after {
-      bottom: -80px;
-      clip-path: ellipse(60% 80px at top center);
-    }
   }
 
   &__title {
-    display: flex;
+  /*   display: flex;
     justify-content: center;
-    align-items: center;
-    font-family: 'Montserrat', sans-serif;
+    align-items: center; */
+    font-family: "Montserrat", sans-serif;
     margin: 0;
-    //padding: 0.5rem 0;
     color: #005f73;
+    font-size: 1.2rem;
   }
 
   &__text {
-    font-family: 'Montserrat', sans-serif;
+    font-family: "Montserrat", sans-serif;
     font-size: 1rem;
-    padding: 1rem 0;
+    padding: 0.5rem 0;
+    margin: 0 1rem;
   }
 
   &__link {
-    position: absolute;
-    bottom: 1rem;
-    left: 50%;
-    transform: translate(-50%, 10%);
-    display: flex;
+    display: inline-flex;
     align-items: center;
     text-decoration: none;
+    margin-left: 1rem;
     color: #ef4565;
     opacity: 0;
-    //padding: 30px;
     transition: all 0.35s;
 
     &:hover svg {
@@ -124,57 +96,73 @@
     }
   }
 
-  &__extra {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background-color: #90b4ce;
-    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
-    color: #212529;
-    transform: translateY(100%);
-    will-change: transform;
-    transition: transform 0.35s;
-
-    span {
-      color: #005f73;
-    }
-  }
-
   &__image {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 100%;
+    height: auto;
     object-fit: cover;
     object-position: center;
-    z-index: -1;
     transform: scale(1.2);
     transition: 0.35s 0.35s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
   }
 }
 
-@media screen and (min-width: 1024px) {
-  .excursion-card {
-    height: 400px;
+@media screen and (min-width: 768px) {
+  .excursions__grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+  }
 
-    &__content {
-      padding: 1.5rem;
+  .excursion-card {
+    height: 40vh;
+    width: 230px;
+
+    &__title {
+      font-size: 1.3rem;
+    }
+
+    &__text {
+      font-size: 1.1rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .excursions__grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+
+  .excursion-card {
+    max-width: 320px;
+    height: 50vh;
+
+    &__title {
+      font-size: 1.4rem;
     }
 
     &__text {
       font-size: 1.2rem;
     }
-
-    &__extra {
-      height: 53%;
-    }
   }
+}
+
+@media screen and (min-width: 1079px) {
+  .excursion-card {
+    height: 25vh;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .excursion-card {
+    height: 50vh;
+    width: 400px;
+  }
+}
+
+
+@media screen and (min-width: 1440px){
+  .excursion-card {
+    height: 40vh;
+    width: 400px;
+  }
+  
 }
