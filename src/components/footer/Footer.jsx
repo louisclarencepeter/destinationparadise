@@ -24,7 +24,7 @@ function Footer() {
             <a href=""><i className="fab fa-youtube"></i></a>
           </div>
         </div>
-        <p className="footer__copyright">© 2023 Destination Paradise. All rights reserved.</p>
+        <p className="footer__copyright">© 2024 Destination Paradise. All rights reserved.</p>
       </div>
     </footer>
   );
