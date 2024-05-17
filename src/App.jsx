@@ -1,4 +1,3 @@
-// App.jsx
 import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.css';
@@ -9,7 +8,7 @@ import AboutPage from './components/aboutus/AboutPage.jsx';
 import ToursPage from './components/excursions/ToursPage.jsx';
 import MyImageGallery from './components/gallery/MyImageGallery.jsx';
 import Footer from './components/footer/Footer.jsx';
-import Store from './components/store/Store.jsx'; // Ensure this path is correct
+import Store from './components/store/Store.jsx';
 import ErrorBoundary from './components/error/ErrorBoundary.jsx';
 
 function App() {
@@ -47,7 +46,7 @@ function App() {
             <Route path="/excursions" element={<ToursPage />} />
             <Route path="/aboutus" element={<AboutPage />} />
             <Route path="/gallery" element={<MyImageGallery />} />  
-            <Route path="/booking" element={<Store />} /> {/* Add the new route */}
+            <Route path="/booking" element={<Store />} />
           </Routes>
           <Footer />
         </div>

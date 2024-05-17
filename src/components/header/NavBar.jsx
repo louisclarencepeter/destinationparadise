@@ -1,4 +1,3 @@
-// NavBar.jsx
 import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
@@ -35,7 +34,7 @@ const NavBar = () => {
     { label: "Excursions", path: "/excursions" },
     { label: "About Us", path: "/aboutus" },
     { label: "Gallery", path: "/gallery" },
-    { label: "Booking Request", path: "/booking" } // Add the new link
+    { label: "Booking Request", path: "/booking" }
   ];
 
   const MenuList = ({ className, onClick }) => (

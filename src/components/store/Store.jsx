@@ -1,4 +1,3 @@
-// components/store/Store.jsx
 import { useState } from 'react';
 import './Store.scss';
 import ImageSlideshow from './ImageSlideshow';
@@ -53,7 +52,6 @@ const Store = () => {
     '/gallery/4.jpg',
     '/gallery/5.jpg',
     '/gallery/6.jpg',
-    // Add more image paths here if needed
   ];
 
   const handleChange = (e) => {
@@ -63,9 +61,7 @@ const Store = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic
     console.log('Form submitted:', formData);
-    // Reset form
     setFormData({
       name: '',
       email: '',
