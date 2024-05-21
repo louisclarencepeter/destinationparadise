@@ -28,7 +28,7 @@ const AboutPage = () => {
 
   return (
     <div className="about-page">
-      <h1 className="reveal">About Us</h1>
+      <h2 className="reveal">About Us</h2>
       <div className="about-content">
         <div>
           <PhotoSlide />
