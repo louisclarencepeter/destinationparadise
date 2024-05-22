@@ -2,6 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import './NavBar.scss';
+import scrollToTop from '../../utils/scrollToTop';
 import logo from '../../assets/logo/dlp.png';
 
 const NavBar = () => {
@@ -47,6 +48,7 @@ const NavBar = () => {
             onClick={() => {
               onClick();
               closeMenu();
+              scrollToTop();
             }}
           >
             {item.label}
@@ -72,7 +74,10 @@ const NavBar = () => {
         <MenuList className="classic-menu__list" onClick={closeMenu} />
       </div>
       <div>
-        <Link to="/" className="menu__logo" onClick={closeMenu}>
+        <Link to="/" className="menu__logo" onClick={() => {
+          closeMenu();
+          scrollToTop();
+        }}>
           <img src={logo} alt="Logo" />
         </Link>
       </div>
