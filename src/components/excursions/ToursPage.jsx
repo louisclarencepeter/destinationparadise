@@ -17,8 +17,8 @@ import swimmingCaveImage from '../../assets/images/cave/maalum.jpg';
 import sailingSunsetImage from '../../assets/images/sunsetsailing/sunsetsail.jpg';
 import quadTourImage from '../../assets/images/quad/quadtour.jpg';
 
-const TourCard = ({ title, description, activities, duration, inclusions, image }) => (
-  <div className="tour-card reveal">
+const TourCard = ({ id, title, description, activities, duration, inclusions, image }) => (
+  <div id={id} className="tour-card reveal">
     <img src={image} alt={title} />
     <h3>{title}</h3>
     <p>{description}</p>
@@ -43,6 +43,7 @@ const TourCard = ({ title, description, activities, duration, inclusions, image 
 );
 
 TourCard.propTypes = {
+  id: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   activities: PropTypes.arrayOf(PropTypes.string).isRequired,
@@ -80,6 +81,7 @@ const ToursPage = () => {
       <h2 className="reveal">Trips and Tours Zanzibar</h2>
       <div className="tour-card-container">
         <TourCard
+          id="zanzibar-spice-culture-tour"
           title="Spice Tour"
           description="Explore the history and plantations of Zanzibar's spice trade. Dazzle your senses with fresh spices and learn about their uses in medicine, cosmetics, and cooking."
           activities={['Visit spice plantations', 'Learn about traditional herbal medicine', 'Taste spices and fruits', 'Opulent lunch (on request)']}
@@ -89,6 +91,7 @@ const ToursPage = () => {
         />
 
         <TourCard
+          id="stone-town-heritage-walk"
           title="Historical City Tour"
           description="Take a fascinating walk through Stone Town and visit historical sites like the House of Wonders, Palace Museum, Dr. Livingston's House, and Arab Fort."
           activities={['Guided walk through Stone Town', 'Visit historical sites', 'Explore markets and shops']}
@@ -170,6 +173,7 @@ const ToursPage = () => {
         />
 
         <TourCard
+          id="dhow-snorkeling-safari-blue"
           title="Safari Blue"
           description="Embark on a full-day excursion on traditional sailing dhows. Swim, sunbathe, and explore the sandbank in Menai Bay. Enjoy traditional seafood lunch and refreshments."
           activities={['Dhow sailing', 'Swimming', 'Sunbathing', 'Sandbank exploration']}

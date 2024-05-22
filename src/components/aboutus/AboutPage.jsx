@@ -33,7 +33,7 @@ const AboutPage = () => {
         <div>
           <PhotoSlide />
         </div>
-        <div className="about-content">
+        <div className="about-content reveal">
           <div className="ptext reveal">
             <h3>Destination Paradise Zanzibar: Dive Into the Heartbeat of Tanzania&apos;s Mystical Isles</h3>
             <p>

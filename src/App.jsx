@@ -10,6 +10,7 @@ import MyImageGallery from './components/gallery/MyImageGallery.jsx';
 import Footer from './components/footer/Footer.jsx';
 import Store from './components/store/Store.jsx';
 import ErrorBoundary from './components/error/ErrorBoundary.jsx';
+import ScrollToTop from './utils/ScrollToTop.jsx';
 
 function App() {
   useEffect(() => {
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <Router>
+      <ScrollToTop />
       <ErrorBoundary>
         <div className='main-container'>
           <Header />

@@ -47,7 +47,7 @@ const PhotoSlide = () => {
   };
 
   return (
-    <div className="photo-slide">
+    <div className="photo-slide reveal">
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index}>
