@@ -56,7 +56,7 @@ Testimonial.propTypes = {
 
 const Testimonials = () => {
   return (
-    <div className="testimonials">
+    <div className="testimonials reveal">
       <h2 className="testimonials__title">Testimonials</h2>
       <Slide>
         <Testimonial

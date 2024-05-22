@@ -31,7 +31,7 @@ const Excursions = () => {
   return (
     <section className="excursions">
       <h2>Roaming Retreats</h2>
-      <div className="excursions__grid">
+      <div className="excursions__grid reveal">
         {trips.map((trip, index) => (
           <article className="excursion-card" key={index}>
             <img src={trip.image} alt={trip.title} className="excursion-card__image" />

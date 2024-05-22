@@ -41,7 +41,7 @@ const Images = () => {
               key={image.id}
               src={image.src}
               alt={image.alt}
-              className="gallery__image"
+              className="gallery__image reveal"
             />
           ))}
         </Masonry>

@@ -3,7 +3,7 @@ import './Footer.scss';
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer reveal">
       <div className="footer__container">
         <h5 className="footer__title">Subscribe to our newsletter! 🚀💬💌</h5>
         <form action="/submit-email" method="post" className="footer__form">
