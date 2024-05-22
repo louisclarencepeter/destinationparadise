@@ -40,6 +40,11 @@ const Store = () => {
     'Kiwengwa',
     'Uroa',
     'Chwaka',
+    'Michamvi',
+    'Bwejuu',
+    'Pingwe',
+    'Kizimkazi',
+    'Fumba',
     'Paje',
     'Jambiani',
     'Makunduchi'

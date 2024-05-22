@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import './ToursPage.scss';
 import spiceTourImage from '../../assets/images/spicetour/spice.jpg';
 import historicalCityTourImage from '../../assets/images/stonetown/stonetown.jpg';
@@ -35,10 +36,12 @@ const TourCard = ({ id, title, description, activities, duration, inclusions, im
         <li key={index}>{inclusion}</li>
       ))}
     </ul>
-    <button className="learn-more-btn">
-      Book Now
-      <i className="fas fa-arrow-right"></i>
-    </button>
+    <Link to="/booking" className="learn-more-link">
+      <button className="learn-more-btn">
+        Book Now
+        <i className="fas fa-arrow-right"></i>
+      </button>
+    </Link>
   </div>
 );
 
