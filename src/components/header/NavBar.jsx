@@ -88,6 +88,7 @@ const NavBar = () => {
           checked={isOpen}
           onChange={toggleMenu}
         />
+        <label htmlFor="menu__toggle" className="sr-only">Toggle Menu</label>
         <label className="menu__btn" htmlFor="menu__toggle">
           <span></span>
         </label>
