@@ -1,5 +1,6 @@
 // Testimonials.jsx
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
 import PropTypes from 'prop-types';
@@ -78,7 +79,9 @@ const Testimonials = () => {
           starCount={5}
         />
       </Slide>
-      <button className="testimonials__button">Book Now</button>
+      <Link to="/booking">
+        <button className="testimonials__button">Book Now</button>
+      </Link>
     </div>
   );
 };
