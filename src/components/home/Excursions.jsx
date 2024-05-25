@@ -1,8 +1,8 @@
 import './Excursions.scss';
 import { Link } from 'react-router-dom';
-import img from '../../assets/images/stone-town.jpg';
-import img2 from '../../assets/images/safari-blue.jpg';
-import img3 from '../../assets/images/spice-tour.jpg';
+import img from '../../assets/images/stonetown/stonetown.jpg';
+import img2 from '../../assets/images/safariblue/safariblue.jpg';
+import img3 from '../../assets/images/spicetour/spice.jpg';
 
 const Excursions = () => {
   const trips = [
