@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite } from '@fortawesome/free-solid-svg-icons';
 import './CookieConsent.scss';
-import CookieModal from './CookieModal'; // Import the CookieModal component
+import CookieModal from './CookieModal';
 
 const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
