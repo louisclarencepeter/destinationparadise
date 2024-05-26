@@ -46,9 +46,18 @@ const CookieConsent = () => {
             <p>
               We use cookies to improve your experience on our site and to show you
               personalized content. By using our site, you accept our use of cookies.
-              <a href="/cookies-policy" target="_blank" rel="noopener noreferrer">
-                Learn more
+              <a
+                href="/cookies-policy"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Read our policy on how we use cookies"
+              >
+                Read our Cookies Policy
               </a>
+              |
+              <a href="/privacy-policy">Privacy Policy</a>
+              |
+              <a href="/terms-of-service">Terms of Service</a>
             </p>
             <div className="cookie-consent-buttons">
               <button onClick={handleAccept}>Accept</button>
