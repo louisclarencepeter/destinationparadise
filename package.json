@@ -12,6 +12,8 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.5.2",
+    "@fortawesome/react-fontawesome": "^0.2.2",
     "@googlemaps/react-wrapper": "^1.1.35",
     "postcss-preset-env": "^9.3.0",
     "prop-types": "^15.8.1",
