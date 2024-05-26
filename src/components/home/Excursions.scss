@@ -108,21 +108,47 @@
 
 @media screen and (min-width: 768px) {
   .excursions__grid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
     gap: 1.5rem;
   }
 
   .excursion-card {
-    height: 40vh;
-    width: 230px;
+    height: 600px;
+    width: 100%;
+    max-width: 450px;
+
+    &__content {
+      padding: 1rem;
+    }
 
     &__title {
-      font-size: 1.3rem;
+      font-size: 1.5rem;
     }
 
     &__text {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      padding: 1rem 0;
+      margin: 0 2rem;
     }
+
+    &__link {
+      margin-left: 2rem;
+      font-size: 1.2rem;
+
+      svg {
+        width: 24px;
+        margin-left: 6px;
+      }
+    }
+
+    &__image {
+      height: 60%;
+    }
+  }
+
+  .excursion-card:last-child:nth-child(odd) {
+    grid-column: 1 / span 2;
   }
 }
 

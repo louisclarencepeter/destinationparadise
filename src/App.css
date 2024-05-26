@@ -1,18 +1,21 @@
 @font-face {
-    font-family: 'Montserrat', sans-serif;
-    font-family: 'Pacifico', cursive;
-    font-family: 'Playfair Display', serif;
-    font-family: 'Kaushan Script', cursive;
+    font-family: 'Pacifico';
     src: url("./assets/fonts/Pacifico/Pacifico-Regular.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Playfair Display';
     src: url("./assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Kaushan Script';
     src: url("./assets/fonts/Kaushan_Script/KaushanScript-Regular.ttf") format("truetype");
 }
 
 :root {
-    font-size: calc(1rem + 0.5vw, 1.5rem);
+    font-size: calc(1rem + 0.5vw);
     font-family: 'Montserrat', sans-serif;
-    font-family: 'Pacifico', cursive;
-    font-family: 'Playfair Display', serif;
     color: #153464;
     margin: 0;
     padding: 0;
@@ -74,11 +77,14 @@ h5 {
 }
 
 button {
+    font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     text-align: center;
     color: #fffffe;
     background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
     border: none;
+    padding: 10px 20px;
+    cursor: pointer;
 }
 
 button:hover {
@@ -108,17 +114,6 @@ button:hover {
     h3 {
         font-size: 1.5rem;
     }
-
-    .reveal {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 @media screen and (min-width: 768px) {
@@ -132,17 +127,6 @@ button:hover {
 
     h3 {
         font-size: 2rem;
-    }
-
-    .reveal {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
 
@@ -161,17 +145,6 @@ button:hover {
 
     h4 {
         font-size: 1.5rem;
-    }
-
-    .reveal {
-        opacity: 0;
-        transform: translateY(20px);
-        transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-
-    .reveal.active {
-        opacity: 1;
-        transform: translateY(0);
     }
 }
 

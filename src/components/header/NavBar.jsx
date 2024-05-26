@@ -32,7 +32,7 @@ const NavBar = () => {
 
   const menuItems = [
     { label: "Home", path: "/" },
-    { label: "Explore our Excursions", path: "/excursions" },
+    { label: "Excursions", path: "/excursions" },
     { label: "About Us", path: "/aboutus" },
     { label: "Gallery", path: "/gallery" },
     { label: "Booking Request", path: "/booking" }
@@ -67,7 +67,7 @@ const NavBar = () => {
     <nav className={navClass}>
       <div className='store'>
         <Link to="/booking" onClick={closeMenu}>
-          <button className="book-now-button"><i className="fa-solid fa-store"></i> Book Now</button>
+          <button><i className="fa-solid fa-store"></i>Book Now</button>
         </Link>
       </div>
       <div className='classic-menu'>
