@@ -40,7 +40,9 @@ const Excursions = () => {
               <h3 className="excursion-card__title">{trip.title}</h3>
               <p className="excursion-card__text">{trip.text}</p>
               <Link to={trip.link} className="excursion-card__link" aria-label={`Learn more about ${trip.title}`}>
-                Learn more
+                {trip.title === 'Stone Town Heritage Walk' ? 'Explore Stone Town Heritage Walk' :
+                 trip.title === 'Dhow & Snorkeling Safari Blue' ? 'Discover Dhow & Snorkeling Safari Blue' :
+                 'Experience Zanzibar Spice & Culture Tour'}
                 <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-label="External Link">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
