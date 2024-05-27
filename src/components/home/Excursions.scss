@@ -2,19 +2,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap;
   gap: 1rem;
   width: 90%;
   margin: 0 auto;
   padding: 1rem;
+}
 
-  &__grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    width: 100%;
-    justify-items: center;
-  }
+.excursions__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  width: 100%;
+  justify-items: center;
 }
 
 .excursion-card {
@@ -111,7 +110,6 @@
 @media screen and (min-width: 768px) {
   .excursions__grid {
     grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
     gap: 1.5rem;
   }
 
@@ -148,20 +146,17 @@
       height: 60%;
     }
   }
-
-  .excursion-card:last-child:nth-child(odd) {
-    grid-column: 1 / span 2;
-  }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1280px) {
   .excursions__grid {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
   }
 
   .excursion-card {
-    max-width: 320px;
-    height: 50vh;
+    height: 97vh;
+    width: 100%;
+    max-width: 400px;
 
     &__title {
       font-size: 1.4rem;
@@ -170,31 +165,5 @@
     &__text {
       font-size: 1.2rem;
     }
-  }
-}
-
-@media screen and (max-width: 1279px) {
-  .excursions__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .excursion-card {
-    height: 55vh;
-    width: 100%;
-    max-width: none;
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .excursion-card {
-    height: 50vh;
-    width: 400px;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .excursion-card {
-    height: 40vh;
-    width: 400px;
   }
 }
