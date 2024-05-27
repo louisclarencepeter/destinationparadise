@@ -16,11 +16,11 @@ nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  transition: background-color 0.5s ease, box-shadow 0.5s ease; // Smooth transition for background and shadow
+  transition: background-color 0.5s ease, box-shadow 0.5s ease;
 
   &.transparent {
-    background-color: $primary-color; // Solid background color when scrolled
-    box-shadow: 0 0 0.625rem $box-shadow-color; // Subtle shadow for depth
+    background-color: $primary-color;
+    box-shadow: 0 0 0.625rem $box-shadow-color;
   }
 
   .classic-menu {
@@ -61,7 +61,7 @@ img {
 #menu__toggle {
   opacity: 0;
   position: relative;
-  z-index: 2; /* Ensure the checkbox is above the span elements */
+  z-index: 2;
 }
 
 .menu__btn {
@@ -103,22 +103,20 @@ img {
   top: 0.5rem;
 }
 
-/* Transformations when checked */
 #menu__toggle:checked + .menu__btn > span {
-  transform: rotate(45deg); /* Rotates the middle span */
+  transform: rotate(45deg);
 }
 
 #menu__toggle:checked + .menu__btn > span::before {
   top: 0;
-  transform: rotate(0); /* Aligns with the middle span */
+  transform: rotate(0);
 }
 
 #menu__toggle:checked + .menu__btn > span::after {
   top: 0;
-  transform: rotate(90deg); /* Perpendicular to the middle span */
+  transform: rotate(90deg);
 }
 
-/* Ensure the menu box appears as expected */
 #menu__toggle:checked ~ .menu__box {
   right: 0;
 }
@@ -159,8 +157,8 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; // Add this line to vertically center the content
-    text-align: center; // Add this line to center the text horizontally
+    justify-content: center;
+    text-align: center;
 
     .menu__logo {
       height: 4rem;
@@ -184,7 +182,7 @@ img {
 
   .menu__contact {
     font-size: 0.9rem;
-  
+
     p {
       margin: 0.5rem 0;
     }
@@ -212,7 +210,7 @@ img {
   transition-duration: 0.3s;
   &:hover {
     color: $hover-color;
-    border-bottom: 1px solid#ef4565;
+    border-bottom: 1px solid #ef4565;
     transition: 0.3s ease-in-out;
   }
 
@@ -237,7 +235,6 @@ img {
       transition-duration: 0.3s;
     }
   }
-
 }
 
 @media screen and (min-width: 1024px) {
@@ -252,11 +249,11 @@ img {
     position: sticky;
     top: 0;
     z-index: 100;
-    transition: background-color 0.5s ease, box-shadow 0.5s ease; // Smooth transition for background and shadow
+    transition: background-color 0.5s ease, box-shadow 0.5s ease;
 
     &.transparent {
-      background-color: $primary-color; // Solid background color when scrolled
-      box-shadow: 0 0 0.625rem $box-shadow-color; // Subtle shadow for depth
+      background-color: $primary-color;
+      box-shadow: 0 0 0.625rem $box-shadow-color;
     }
 
     img {
@@ -287,10 +284,20 @@ img {
 
         &:hover {
           color: $hover-color;
-          border-bottom: 1px solid#ef4565;
+          border-bottom: 1px solid #ef4565;
           transition: 0.3s ease-in-out;
         }
       }
     }
+  }
+
+  @media screen and (min-width: 1280px) {
+    nav .classic-menu ul {
+      gap: 2rem; // Increase the gap between menu items for better spacing
+    }
+  }
+
+  nav .classic-menu ul li {
+    font-size: 0.5rem; // Decrease the font size for menu items
   }
 }

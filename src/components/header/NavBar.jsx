@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import './NavBar.scss';
 import scrollToTop from '../../utils/scrollToTop';
@@ -10,23 +10,23 @@ const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  const toggleMenu = useCallback(() => {
+  const toggleMenu = () => {
     setIsOpen(prevIsOpen => !prevIsOpen);
-  }, []);
+  };
 
-  const closeMenu = useCallback(() => {
+  const closeMenu = () => {
     setIsOpen(false);
-  }, []);
-
-  const handleScroll = useCallback(() => {
-    const offset = window.scrollY;
-    setIsScrolled(offset > 10);
-  }, []);
+  };
 
   useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY;
+      setIsScrolled(offset > 10);
+    };
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
+  }, []);
 
   const navClass = isScrolled ? 'nav transparent' : 'nav';
 
@@ -66,7 +66,7 @@ const NavBar = () => {
   return (
     <nav className={navClass}>
       <div className='store'>
-        <Link to="/booking" onClick={closeMenu}>
+        <Link to="/booking" onClick={closeMenu} aria-label="Book Now">
           <button><i className="fa-solid fa-store"></i>Book Now</button>
         </Link>
       </div>
@@ -98,7 +98,7 @@ const NavBar = () => {
             <img src={logo} alt="Logo" className="menu__logo" />
             <div className="menu__contact">
               <p>Destination Paradise</p>
-              <p>Phone: +255 777 777 777</p>
+              <p>Phone: +255 748 352 657</p>
               <p>Zanzibar, Tanzania</p>
             </div>
           </div>

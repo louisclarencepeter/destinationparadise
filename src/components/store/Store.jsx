@@ -85,7 +85,7 @@ const Store = () => {
         <h2>Booking Request</h2>
         <p>Welcome to the booking request page. Please fill out the form below to make a new booking.</p>
         <form onSubmit={handleSubmit} className="booking-form">
-          <div className="form-group">
+          <div className=" reveal form-group">
             <label htmlFor="name">Name:</label>
             <input
               type="text"
@@ -96,7 +96,7 @@ const Store = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className=" reveal form-group">
             <label htmlFor="email">Email:</label>
             <input
               type="email"
@@ -107,7 +107,7 @@ const Store = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className=" reveal form-group">
             <label htmlFor="phone">Phone:</label>
             <input
               type="tel"
@@ -118,7 +118,7 @@ const Store = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className=" reveal form-group">
             <label htmlFor="date">Preferred Date:</label>
             <input
               type="date"
@@ -129,7 +129,7 @@ const Store = () => {
               required
             />
           </div>
-          <div className="form-group">
+          <div className="reveal form-group">
             <label htmlFor="tour">Select Tour:</label>
             <select
               id="tour"
@@ -144,8 +144,8 @@ const Store = () => {
               ))}
             </select>
           </div>
-          <div className="form-group">
-            <label htmlFor="location">Location (Part of the Island):</label>
+          <div className=" reveal form-group">
+            <label htmlFor="location">Pick Up Location (Part of the Island):</label>
             <select
               id="location"
               name="location"
@@ -159,7 +159,7 @@ const Store = () => {
               ))}
             </select>
           </div>
-          <div className="form-group">
+          <div className="reveal form-group">
             <label htmlFor="message">Message:</label>
             <textarea
               id="message"

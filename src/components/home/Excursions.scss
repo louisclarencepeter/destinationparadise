@@ -18,7 +18,7 @@
 
 .excursion-card {
   width: 90%;
-  height: 55vh;
+  height: 90vh;
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 16px -5px rgba(0, 0, 0, 0.08);
@@ -48,7 +48,8 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 100%;
+    width: 90%;
+    height: 50%;
     text-align: center;
     background-color: #fffffe;
     padding: 1rem;
@@ -107,7 +108,7 @@
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767px) {
   .excursions__grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
@@ -116,24 +117,24 @@
   .excursion-card {
     height: 600px;
     width: 100%;
-    max-width: 450px;
+    max-width: 550px;
 
     &__content {
       padding: 1.5rem;
     }
 
     &__title {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
 
     &__text {
       font-size: 1.2rem;
       padding: 1rem 0;
-      margin: 0 2rem;
+      margin: 0 1rem;
     }
 
     &__link {
-      font-size: 1.2rem;
+      font-size: 1rem;
       margin-top: 1.5rem;
 
       svg {
@@ -145,6 +146,12 @@
     &__image {
       height: 60%;
     }
+  }
+
+  .excursion-card:nth-child(3) {
+    grid-column: span 2;
+    justify-self: center;
+    max-width: 550px; /* Ensure the same max-width as other cards */
   }
 }
 
@@ -165,5 +172,22 @@
     &__text {
       font-size: 1.2rem;
     }
+  }
+
+  .excursion-card:nth-child(3) {
+    grid-column: unset;
+    justify-self: unset;
+    max-width: 400px; /* Ensure the same max-width as other cards */
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .excursion-card {
+    max-width: 500px;
+    height: 75vh;
+  }
+
+  .excursion-card:nth-child(3) {
+    max-width: 500px; /* Ensure the same max-width as other cards */
   }
 }

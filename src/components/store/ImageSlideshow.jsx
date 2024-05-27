@@ -17,7 +17,7 @@ const ImageSlideshow = ({ images }) => {
   };
 
   return (
-    <Slider {...settings} className="image-slideshow">
+    <Slider {...settings} className="image-slideshow reveal">
       {images.map((image, index) => (
         <div key={index} className="slide">
           <img src={image} alt={`Slide ${index}`} />

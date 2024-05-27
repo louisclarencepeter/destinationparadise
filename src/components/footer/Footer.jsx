@@ -12,7 +12,7 @@ function Footer() {
         </form>
         <div className="footer__info">
           <p>Destination Paradise</p>
-          <p>Phone: +255 777 777 777</p>
+          <p>Phone: +255 748 352 657</p>
           <p>Zanzibar, Tanzania</p>
         </div>
         <div className="footer__contact">
