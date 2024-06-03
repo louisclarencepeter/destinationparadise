@@ -35,12 +35,18 @@ const Chatbot = () => {
       setMessages(prevMessages => [...prevMessages, userMessage]);
       setInput('');
       try {
-        const response = await axios.post('http://localhost:8000/api/openai', {
+        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
           messages: [...messages, userMessage],
-          apiKey
+          model: 'gpt-3.5-turbo',
+          max_tokens: 2048,
+        }, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${apiKey}`
+          }
         });
         const assistantMessage = {
-          content: response.data.content,
+          content: response.data.choices[0].message.content,
           role: 'assistant'
         };
         setMessages(prevMessages => [...prevMessages, assistantMessage]);
