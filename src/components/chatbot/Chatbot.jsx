@@ -76,6 +76,9 @@ const Chatbot = () => {
   return (
     <div className="chatbot-container">
       <div className={`chatbot ${isOpen ? 'open' : ''}`}>
+        <div className="chatbot-header">
+          {isOpen && <button className="close-button" onClick={toggleChat}>×</button>}
+        </div>
         <div className="chatbot-messages">
           {messages.map((message, index) => (
             <div key={index} className={`chatbot-message ${message.role}`}>
@@ -94,9 +97,11 @@ const Chatbot = () => {
           <button className="clear-button" onClick={handleClearHistory}>Clear History</button>
         </div>
       </div>
-      <button className="chatbot-toggle" onClick={toggleChat} aria-label="Toggle Chatbot">
-        <FontAwesomeIcon icon={faCommentDots} size="2x" />
-      </button>
+      {!isOpen && (
+        <button className="chatbot-toggle" onClick={toggleChat} aria-label="Toggle Chatbot">
+          <FontAwesomeIcon icon={faCommentDots} size="2x" />
+        </button>
+      )}
     </div>
   );
 };
