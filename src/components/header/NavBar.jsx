@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import './NavBar.scss';
 import scrollToTop from '../../utils/scrollToTop';
@@ -10,23 +10,23 @@ const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  const toggleMenu = () => {
+  const toggleMenu = useCallback(() => {
     setIsOpen(prevIsOpen => !prevIsOpen);
-  };
+  }, []);
 
-  const closeMenu = () => {
+  const closeMenu = useCallback(() => {
     setIsOpen(false);
-  };
+  }, []);
+
+  const handleScroll = useCallback(() => {
+    const offset = window.scrollY;
+    setIsScrolled(offset > 10);
+  }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const offset = window.scrollY;
-      setIsScrolled(offset > 10);
-    };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [handleScroll]);
 
   const navClass = isScrolled ? 'nav transparent' : 'nav';
 
@@ -70,31 +70,31 @@ const NavBar = () => {
           <button><i className="fa-solid fa-store"></i>Book Now</button>
         </Link>
       </div>
-      <div className='classic-menu'>
+      <nav className="classic-menu" aria-label="Main navigation">
         <MenuList className="classic-menu__list" onClick={closeMenu} />
-      </div>
+      </nav>
       <div>
-        <Link to="/" className="menu__logo" onClick={() => {
+        <Link to="/" className="menu__logo" aria-label="Go to homepage" onClick={() => {
           closeMenu();
           scrollToTop();
         }}>
-          <img src={logo} alt="Logo" />
+          <img src={logo} alt="Destination Paradise Logo" />
         </Link>
       </div>
-      <div className="hamburger-menu">
+      <nav className="hamburger-menu">
         <input
           id="menu__toggle"
           type="checkbox"
           checked={isOpen}
           onChange={toggleMenu}
+          aria-expanded={isOpen ? 'true' : 'false'}
         />
-        <label htmlFor="menu__toggle" className="sr-only">Toggle Menu</label>
-        <label className="menu__btn" htmlFor="menu__toggle">
+        <label className="menu__btn" htmlFor="menu__toggle" aria-label="Toggle navigation menu">
           <span></span>
         </label>
         <div className={`menu__box ${isOpen ? 'open' : ''}`}>
           <MenuList className="hamburger-menu__list" onClick={closeMenu} />
-          <div className="menu__header">
+          <div className={`menu__header ${isOpen ? 'open' : ''}`}>
             <img src={logo} alt="Logo" className="menu__logo" />
             <div className="menu__contact">
               <p>Destination Paradise</p>
@@ -103,7 +103,7 @@ const NavBar = () => {
             </div>
           </div>
         </div>
-      </div>
+      </nav>
     </nav>
   );
 };
