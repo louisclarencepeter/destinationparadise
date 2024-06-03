@@ -293,11 +293,35 @@ img {
 
   @media screen and (min-width: 1280px) {
     nav .classic-menu ul {
-      gap: 2rem; // Increase the gap between menu items for better spacing
+      gap: 2rem;
+    }
+  }
+}
+
+@media screen and (min-height: 1079px) {
+  nav {
+    height: 4rem;
+    padding:0rem;
+  }
+
+  .store {
+    button {
+      font-size: 0.6rem;
+      margin-left: 0.4rem;
     }
   }
 
-  nav .classic-menu ul li {
-    font-size: 0.5rem; // Decrease the font size for menu items
+  .menu__logo {
+    height: 1rem;
+  }
+
+  .classic-menu {
+    ul {
+      gap: 0.1rem;
+    }
+
+    .menu__item {
+      font-size: 0.8rem;
+    }
   }
 }
