@@ -94,7 +94,7 @@ const NavBar = () => {
         </label>
         <div className={`menu__box ${isOpen ? 'open' : ''}`}>
           <MenuList className="hamburger-menu__list" onClick={closeMenu} />
-          <div className={`menu__header ${isOpen ? 'open' : ''}`}>
+          <div className="menu__header">
             <img src={logo} alt="Logo" className="menu__logo" />
             <div className="menu__contact">
               <p>Destination Paradise</p>

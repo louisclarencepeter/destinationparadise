@@ -51,7 +51,6 @@ img {
   height: 2rem;
   top: 1.3rem;
 
-
   li {
     list-style: none;
     padding: 0.5rem;
@@ -144,20 +143,20 @@ img {
     align-items: center;
     justify-content: center;
     text-align: center;
+  }
 
-    .menu__logo {
-      height: 4rem;
-      width: auto;
-      margin: 0 auto 1rem;
-      opacity: 0;
-      transform: translateY(-20px);
-      transition: opacity 1s ease-in-out, transform 1s ease-in-out;
-    }
-    
-    .menu__header.open .menu__logo {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .menu__logo {
+    height: 4rem;
+    width: auto;
+    margin: 0 auto 1rem;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+  }
+
+  &.open .menu__logo {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .menu__contact {
