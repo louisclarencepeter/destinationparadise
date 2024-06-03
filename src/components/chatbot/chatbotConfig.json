@@ -1,0 +1,74 @@
+{
+    "name": "destination_paradise_zanzibar_chatbot",
+    "description": "Assist users by providing information and helping them book trips and tours offered by Destination Paradise Zanzibar.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "greeting": {
+          "type": "string",
+          "description": "Hello! Welcome to Destination Paradise Zanzibar. How can I assist you with planning your trip to Zanzibar today?"
+        },
+        "initialQuestion": {
+          "type": "string",
+          "description": "Could you please tell me where you are staying in Zanzibar? This will help me suggest the best excursions and activities near your location."
+        },
+        "generalInstructions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "locations": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "id",
+              "title",
+              "description"
+            ]
+          }
+        },
+        "specificResponses": {
+          "type": "object",
+          "properties": {
+            "excursions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "combinedExcursions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "closing": {
+          "type": "string",
+          "description": "I hope this information helps you plan your perfect Zanzibar experience. Feel free to ask if you have any more questions or if you're ready to book your excursion at [https://yournexttriptoparadise.com/booking](https://yournexttriptoparadise.com/booking)!"
+        }
+      },
+      "required": [
+        "greeting",
+        "initialQuestion",
+        "generalInstructions",
+        "specificResponses",
+        "combinedExcursions",
+        "closing"
+      ]
+    }
+  }

@@ -11,7 +11,8 @@ import Footer from './components/footer/Footer.jsx';
 import Store from './components/store/Store.jsx';
 import ErrorBoundary from './components/error/ErrorBoundary.jsx';
 import ScrollToTop from './utils/ScrollToTop.jsx';
-import CookieConsent from './components/CookieConsent'; // Import the CookieConsent component
+import CookieConsent from './components/CookieConsent';
+import Chatbot from './components/chatbot/Chatbot.jsx';
 
 function App() {
   useEffect(() => {
@@ -52,7 +53,8 @@ function App() {
             <Route path="/booking" element={<Store />} />
           </Routes>
           <Footer />
-          <CookieConsent /> {/* Add the CookieConsent component here */}
+          <CookieConsent />
+          <Chatbot />
         </div>
       </ErrorBoundary>
     </Router>
