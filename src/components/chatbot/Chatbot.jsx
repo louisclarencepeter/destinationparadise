@@ -37,8 +37,8 @@ const Chatbot = () => {
       try {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
           messages: [...messages, userMessage],
-          model: 'gpt-3.5-turbo',
-          max_tokens: 2048,
+          model: 'gpt-4o',
+          max_tokens: 8192,
         }, {
           headers: {
             'Content-Type': 'application/json',
