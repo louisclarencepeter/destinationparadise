@@ -1,13 +1,13 @@
 const { Configuration, OpenAIApi } = require('openai');
 
-// Set up OpenAI API configuration
+
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
   organization: 'org-GzMndbuvCzjcwousNwv4aLnz',
 });
 const openai = new OpenAIApi(configuration);
 
-// Replace this with your fine-tuned model ID
+
 const MODEL_ID = 'ft-gpt-3.5-turbo-1106:personal:9WKUxzbq';
 
 exports.handler = async (event) => {

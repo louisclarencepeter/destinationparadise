@@ -1,74 +1,94 @@
 {
-    "name": "destination_paradise_zanzibar_chatbot",
-    "description": "Assist users by providing information and helping them book trips and tours offered by Destination Paradise Zanzibar.",
-    "parameters": {
-      "type": "object",
-      "properties": {
-        "greeting": {
-          "type": "string",
-          "description": "Hello! Welcome to Destination Paradise Zanzibar. How can I assist you with planning your trip to Zanzibar today?"
-        },
-        "initialQuestion": {
-          "type": "string",
-          "description": "Could you please tell me where you are staying in Zanzibar? This will help me suggest the best excursions and activities near your location."
-        },
-        "generalInstructions": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "id": {
-                "type": "integer"
-              },
-              "title": {
-                "type": "string"
-              },
-              "description": {
-                "type": "string"
-              },
-              "locations": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            },
-            "required": [
-              "id",
-              "title",
-              "description"
-            ]
-          }
-        },
-        "specificResponses": {
+  "name": "destination_paradise_zanzibar_chatbot",
+  "description": "Assist users by providing information and helping them book trips and tours offered by Destination Paradise Zanzibar.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "greeting": {
+        "type": "string",
+        "description": "Hello! Welcome to Destination Paradise Zanzibar. How can I assist you with planning your trip to Zanzibar today?"
+      },
+      "initialQuestion": {
+        "type": "string",
+        "description": "Could you please tell me where you are staying in Zanzibar? This will help me suggest the best excursions and activities near your location."
+      },
+      "generalInstructions": {
+        "type": "array",
+        "items": {
           "type": "object",
           "properties": {
-            "excursions": {
+            "id": {
+              "type": "integer"
+            },
+            "title": {
+              "type": "string"
+            },
+            "description": {
+              "type": "string"
+            },
+            "locations": {
               "type": "array",
               "items": {
                 "type": "string"
               }
             }
-          }
-        },
-        "combinedExcursions": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        },
-        "closing": {
-          "type": "string",
-          "description": "I hope this information helps you plan your perfect Zanzibar experience. Feel free to ask if you have any more questions or if you're ready to book your excursion at [https://yournexttriptoparadise.com/booking](https://yournexttriptoparadise.com/booking)!"
+          },
+          "required": [
+            "id",
+            "title",
+            "description"
+          ]
         }
       },
-      "required": [
-        "greeting",
-        "initialQuestion",
-        "generalInstructions",
-        "specificResponses",
-        "combinedExcursions",
-        "closing"
-      ]
-    }
+      "specificResponses": {
+        "type": "object",
+        "properties": {
+          "excursions": {
+            "type": "array",
+            "items": [
+              "Spice Tour: Discover Zanzibar's rich spice heritage with a guided tour of a spice farm. Includes tasting and learning about various spices.",
+              "Historical City Tour: Explore Stone Town's historical sites and immerse yourself in the local culture. Includes visits to museums and markets.",
+              "Prison Island Boat Trip: Visit the historic Prison Island and see the giant tortoises. Includes a boat trip and guided tour.",
+              "Jozani Forest Tour: Experience Zanzibar's natural beauty with a tour of Jozani Forest, home to the rare Red Colobus monkeys.",
+              "Dolphin Tour: Enjoy a boat trip to Kizimkazi and swim with wild dolphins. Includes snorkeling gear.",
+              "Sunset & The Rock Restaurant: Relax with a stunning sunset view and dine at the iconic Rock Restaurant.",
+              "Snorkeling: Explore vibrant coral reefs and marine life with a guided snorkeling tour.",
+              "Village Tour: Get an authentic taste of local life with a tour of a traditional village.",
+              "Motorbike Renting: Rent a motorbike to explore Zanzibar at your own pace.",
+              "Mnemba Snorkeling & Trip to the North: Snorkel in the crystal-clear waters around Mnemba Island and visit northern Zanzibar.",
+              "Safari Blue: Enjoy a full-day adventure with dhow sailing, snorkeling, seafood lunch, and more.",
+              "Fishing in Kizimkazi: Experience deep-sea fishing with professional guides.",
+              "Local Game Fishing: Try your hand at traditional fishing methods.",
+              "Mangrove Tour: Explore the unique mangrove ecosystems by boat.",
+              "Sandbank Picnic: Relax on a pristine sandbank and enjoy a picnic.",
+              "Swimming in the Cave: Swim in the natural cave pools of Zanzibar."
+            ]
+          }
+        }
+      },
+      "combinedExcursions": {
+        "type": "array",
+        "items": [
+          "Jozani Forest Tour & Spice Tour",
+          "Spice Tour & Stone Town Tour",
+          "Dolphin Tour & Jozani Forest",
+          "Stone Town Tour & Prison Island Tour",
+          "Snorkeling Tour & Mangroves Forest Tour",
+          "Snorkeling in Mnemba & Nungwi"
+        ]
+      },
+      "closing": {
+        "type": "string",
+        "description": "I hope this information helps you plan your perfect Zanzibar experience. Feel free to ask if you have any more questions or if you're ready to book your excursion at [https://yournexttriptoparadise.com/booking](https://yournexttriptoparadise.com/booking)!"
+      }
+    },
+    "required": [
+      "greeting",
+      "initialQuestion",
+      "generalInstructions",
+      "specificResponses",
+      "combinedExcursions",
+      "closing"
+    ]
   }
+}

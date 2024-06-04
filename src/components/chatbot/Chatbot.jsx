@@ -71,7 +71,7 @@ const Chatbot = () => {
     const truncatedMessages = [];
   
     for (let i = messages.length - 1; i >= 0; i--) {
-      const messageTokens = messages[i].content.split(' ').length + 4; // Add 4 tokens for the role and separators
+      const messageTokens = messages[i].content.split(' ').length + 4; 
       if (tokenCount + messageTokens <= maxTokens) {
         truncatedMessages.unshift(messages[i]);
         tokenCount += messageTokens;
