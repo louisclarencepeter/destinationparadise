@@ -14,3 +14,11 @@
   runtime = "nodejs14"
   include = ["dist"]
   exclude = ["node_modules/**"]
+
+[dev]
+  framework = "#custom"
+  command = "npm run dev"
+  targetPort = 5173
+  port = 8888
+  publish = "dist"
+  autoLaunch = false
