@@ -34,7 +34,7 @@ const Chatbot = () => {
       setInput('');
       try {
         const response = await axios.post('/.netlify/functions/chatbot', {
-          input: userMessage.content
+          messages: [...truncateMessages(messages), userMessage]
         });
         const assistantMessage = {
           content: response.data.response,
@@ -69,9 +69,9 @@ const Chatbot = () => {
     const maxTokens = 8192;
     let tokenCount = 0;
     const truncatedMessages = [];
-
+  
     for (let i = messages.length - 1; i >= 0; i--) {
-      const messageTokens = messages[i].content.split(' ').length;
+      const messageTokens = messages[i].content.split(' ').length + 4; // Add 4 tokens for the role and separators
       if (tokenCount + messageTokens <= maxTokens) {
         truncatedMessages.unshift(messages[i]);
         tokenCount += messageTokens;
@@ -79,7 +79,7 @@ const Chatbot = () => {
         break;
       }
     }
-
+  
     return truncatedMessages;
   };
 
