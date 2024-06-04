@@ -37,7 +37,7 @@ const Chatbot = () => {
       try {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
           messages: [...messages, userMessage],
-          model: 'gpt-4',
+          model: 'gpt-4o',
           max_tokens: 8192,
         }, {
           headers: {
@@ -52,7 +52,20 @@ const Chatbot = () => {
         setMessages(prevMessages => [...prevMessages, assistantMessage]);
       } catch (error) {
         console.error('Error sending message:', error);
-        // Handle error, e.g., display an error message to the user
+        if (error.response && error.response.status === 400) {
+          const errorMessage = {
+            content: 'Sorry, the service is not available at the moment. Please contact us directly at +255 748 352 657 or via WhatsApp with this number for assistance.',
+            role: 'assistant'
+          };
+          setMessages(prevMessages => [...prevMessages, errorMessage]);
+        } else {
+          // Handle other errors
+          const errorMessage = {
+            content: 'An error occurred while processing your request. Please try again later.',
+            role: 'assistant'
+          };
+          setMessages(prevMessages => [...prevMessages, errorMessage]);
+        }
       }
     }
   };
