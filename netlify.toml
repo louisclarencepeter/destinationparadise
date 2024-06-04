@@ -1,14 +1,15 @@
 [build]
-    command = "npm run build"
-    publish = "dist"
-    functions = "functions"
-    base = "/
+  command = "npm run build"
+  publish = "dist"
+  functions = "functions"
+  base = "/"
+
 [functions]
   node_bundler = "esbuild"
   timeout = 30
-    memory = 128
-    max_concurrent_requests = 1
-    max_idle_instances = 1
-    runtime = "nodejs14"
-    include = ["dist"]
-    exclude = ["node_modules/**"]
+  memory = 128
+  max_concurrent_requests = 1
+  max_idle_instances = 1
+  runtime = "nodejs14"
+  include = ["dist"]
+  exclude = ["node_modules/**"]
