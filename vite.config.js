@@ -7,7 +7,7 @@ export default defineConfig({
   server: {
     port: 3002,
     open: true,
-    host: '0.0.0.0', // This allows access from your local network
+    host: '0.0.0.0',
     proxy: {
       "/api": {
         target: "https://localhost:8000",

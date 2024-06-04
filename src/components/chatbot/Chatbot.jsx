@@ -5,8 +5,6 @@ import config from './chatbotConfig.json';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCommentDots } from '@fortawesome/free-solid-svg-icons';
 
-const apiKey = import.meta.env.VITE_OPENAI_API_KEY;
-
 const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
@@ -35,37 +33,21 @@ const Chatbot = () => {
       setMessages(prevMessages => [...prevMessages, userMessage]);
       setInput('');
       try {
-        const response = await axios.post('https://api.openai.com/v1/chat/completions', {
-          messages: [...messages, userMessage],
-          model: 'gpt-3.5-turbo',
-          max_tokens: 2048,
-        }, {
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${apiKey}`
-          }
+        const response = await axios.post('/.netlify/functions/chatbot', {
+          input: userMessage.content
         });
         const assistantMessage = {
-          content: response.data.choices[0].message.content,
+          content: response.data.response,
           role: 'assistant'
         };
         setMessages(prevMessages => [...prevMessages, assistantMessage]);
       } catch (error) {
         console.error('Error sending message:', error);
-        if (error.response && error.response.status === 400) {
-          const errorMessage = {
-            content: 'Sorry, the service is not available at the moment. Please contact us directly at +255 748 352 657 or via WhatsApp with this number for assistance.',
-            role: 'assistant'
-          };
-          setMessages(prevMessages => [...prevMessages, errorMessage]);
-        } else {
-          // Handle other errors
-          const errorMessage = {
-            content: 'An error occurred while processing your request. Please try again later.',
-            role: 'assistant'
-          };
-          setMessages(prevMessages => [...prevMessages, errorMessage]);
-        }
+        const errorMessage = {
+          content: 'An error occurred while processing your request. Please try again later.',
+          role: 'assistant'
+        };
+        setMessages(prevMessages => [...prevMessages, errorMessage]);
       }
     }
   };
