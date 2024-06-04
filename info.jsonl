@@ -1,0 +1,34 @@
+{"greeting_type":"string"}
+{"greeting_description":"Hello! Welcome to Destination Paradise Zanzibar. How can I assist you with planning your trip to Zanzibar today?"}
+{"initialQuestion_type":"string"}
+{"initialQuestion_description":"Could you please tell me where you are staying in Zanzibar? This will help me suggest the best excursions and activities near your location."}
+{"generalInstructions_type":"array"}
+{"generalInstructions_items_type":"object"}
+{"generalInstructions_items_properties_id_type":"integer"}
+{"generalInstructions_items_properties_title_type":"string"}
+{"generalInstructions_items_properties_description_type":"string"}
+{"generalInstructions_items_properties_locations_type":"array"}
+{"generalInstructions_items_properties_locations_items_type":"string"}
+{"generalInstructions_required":["id","title","description","locations"]}
+{"specificResponses_type":"object"}
+{"specificResponses_properties_excursions_type":"array"}
+{"specificResponses_properties_excursions_items_type":"string"}
+{"combinedExcursions_type":"array"}
+{"combinedExcursions_items_type":"string"}
+{"closing_type":"string"}
+{"closing_description":"I hope this information helps you plan your perfect Zanzibar experience. Feel free to ask if you have any more questions or if you're ready to book your excursion at [https://yournexttriptoparadise.com/booking](https://yournexttriptoparadise.com/booking)!"}
+{"id":1,"title":"Spice Tour","description":"A guided tour of a spice farm where you will learn about the various spices grown on the island and their uses.","locations":["Zanzibar City"]}
+{"id":2,"title":"City or Stone Town Tour","description":"A walking tour through the historic Stone Town, exploring its narrow streets, old buildings, and local markets.","locations":["Stone Town"]}
+{"id":3,"title":"Snorkeling Tour","description":"A trip to the coral reefs for snorkeling and observing the vibrant marine life.","locations":["Mnemba Island","Chumbe Island"]}
+{"id":4,"title":"Jozani Forest Tour","description":"A guided tour through the Jozani Forest, home to the rare Red Colobus monkeys and other wildlife.","locations":["Jozani Forest"]}
+{"id":5,"title":"Dolphin Tour","description":"A boat trip to Kizimkazi to see and swim with dolphins in their natural habitat.","locations":["Kizimkazi"]}
+{"id":6,"title":"Sunset Trip & The Rock Restaurant","description":"A sunset cruise along the coast followed by dinner at the iconic Rock Restaurant.","locations":["Michamvi"]}
+{"id":7,"title":"Safari Blue","description":"A full-day excursion exploring the Menai Bay Conservation Area, including dhow sailing, snorkeling, and a seafood feast.","locations":["Menai Bay"]}
+{"id":8,"title":"Prison Island Tour","description":"A visit to the historic Prison Island, home to giant tortoises and beautiful beaches.","locations":["Prison Island"]}
+{"id":9,"title":"Mnemba Snorkeling & Trip to the North","description":"A snorkeling trip to Mnemba Island followed by a tour of the northern beaches of Zanzibar.","locations":["Mnemba Island","Nungwi"]}
+{"id":10,"title":"Village Tour","description":"A walk to the local village of Bwejuu, meeting local people, visiting shops, local houses, and a charity school.","locations":["Bwejuu"]}
+{"id":11,"title":"Sandbank Picnic","description":"A full-day excursion starting with a visit to the historical Prison Island, followed by relaxing on the Pange sandbank.","locations":["Prison Island","Pange Sandbank"]}
+{"id":12,"title":"Fishing in Kizimkazi","description":"Experience traditional fishing with local fishermen. The waters are home to kingfish, yellowfin tuna, barracuda, and grouper.","locations":["Kizimkazi"]}
+{"specificResponses":{"excursions":["Spice Tour","City or Stone Town Tour","Snorkeling Tour","Jozani Forest Tour","Dolphin Tour","Sunset Trip & The Rock Restaurant","Safari Blue","Prison Island Tour","Mnemba Snorkeling & Trip to the North","Village Tour","Sandbank Picnic","Fishing in Kizimkazi"]}}
+{"combinedExcursions":["Jozani Forest Tour & Spice Tour","Spice Tour & Stone Town Tour","Dolphin Tour & Jozani Forest","Stone Town Tour & Prison Island Tour"]}
+{"closing":"I hope this information helps you plan your perfect Zanzibar experience. Feel free to ask if you have any more questions or if you're ready to book your excursion at [https://yournexttriptoparadise.com/booking](https://yournexttriptoparadise.com/booking)!"}
