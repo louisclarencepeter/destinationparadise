@@ -6,7 +6,8 @@
 
 [functions]
   node_bundler = "esbuild"
-  timeout = 30
+  [functions.timeout]
+    duration = 30
   memory = 128
   max_concurrent_requests = 1
   max_idle_instances = 1
