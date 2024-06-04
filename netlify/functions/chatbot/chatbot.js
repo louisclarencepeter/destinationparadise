@@ -1,9 +1,9 @@
 const { Configuration, OpenAIApi } = require('openai');
 
-
 const configuration = new Configuration({
-  apiKey: process.env.OPENAI_API_KEY,
+  apiKey: import.meta.env.OPENAI_API_KEY,
   organization: 'org-GzMndbuvCzjcwousNwv4aLnz',
+  projectId: 'proj_0kJYNBJJ7WV1e705faOfCyes',
 });
 const openai = new OpenAIApi(configuration);
 
@@ -16,6 +16,7 @@ exports.handler = async (event) => {
       statusCode: 405,
       body: 'Method Not Allowed',
     };
+
   }
 
   try {
