@@ -37,7 +37,7 @@ const Chatbot = () => {
       try {
         const response = await axios.post('https://api.openai.com/v1/chat/completions', {
           messages: [...messages, userMessage],
-          model: 'gpt-4o',
+          model: 'gpt-4',
           max_tokens: 8192,
         }, {
           headers: {
@@ -52,6 +52,7 @@ const Chatbot = () => {
         setMessages(prevMessages => [...prevMessages, assistantMessage]);
       } catch (error) {
         console.error('Error sending message:', error);
+        // Handle error, e.g., display an error message to the user
       }
     }
   };
@@ -69,6 +70,24 @@ const Chatbot = () => {
     }
   };
 
+  const truncateMessages = (messages) => {
+    const maxTokens = 8192;
+    let tokenCount = 0;
+    const truncatedMessages = [];
+
+    for (let i = messages.length - 1; i >= 0; i--) {
+      const messageTokens = messages[i].content.split(' ').length;
+      if (tokenCount + messageTokens <= maxTokens) {
+        truncatedMessages.unshift(messages[i]);
+        tokenCount += messageTokens;
+      } else {
+        break;
+      }
+    }
+
+    return truncatedMessages;
+  };
+
   const toggleChat = () => {
     setIsOpen(!isOpen);
   };
@@ -80,7 +99,7 @@ const Chatbot = () => {
           {isOpen && <button className="close-button" onClick={toggleChat}>×</button>}
         </div>
         <div className="chatbot-messages">
-          {messages.map((message, index) => (
+          {truncateMessages(messages).map((message, index) => (
             <div key={index} className={`chatbot-message ${message.role}`}>
               {message.content}
             </div>
