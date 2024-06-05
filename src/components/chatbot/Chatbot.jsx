@@ -36,7 +36,7 @@ const Chatbot = () => {
       console.log('User message sent:', userMessage);
       setInput('');
       try {
-        const response = await axios.post('/.functions/chatbot', {
+        const response = await axios.post('/.netlify/functions/chatbot', {
           messages: [...truncateMessages(messages), userMessage]
         });
         console.log('API response received:', response.data);
