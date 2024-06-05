@@ -6,7 +6,7 @@ const openai = new OpenAI({
   project: "proj_0kJYNBJJ7WV1e705faOfCyes",
 });
 
-const assistantId = 'asst_vDBb5Rc2RZ8sLD6gf0uCxPl0'; // Replace with your actual assistant ID
+const assistantId = 'asst_vDBb5Rc2RZ8sLD6gf0uCxPl0';
 
 export const handler = async (event) => {
   if (event.httpMethod !== "POST") {
@@ -19,21 +19,13 @@ export const handler = async (event) => {
   try {
     const { message } = JSON.parse(event.body);
 
-    // Create Thread
     const thread = await openai.beta.threads.create();
 
-    // Add Message to Thread
-// Add Message to Thread
-const userMessage = await openai.beta.threads.messages.create(thread.id, {
-  role: "user",
-  content: message,
-});
-console.log('User message created:', userMessage);
+    await openai.beta.threads.messages.create(thread.id, {
+      role: "user",
+      content: message,
+    });
 
-console.log('Request body:', event.body);
-console.log('Message:', message);
-
-    // Create and Stream Run
     let responseText = '';
     const run = openai.beta.threads.runs.stream(thread.id, {
       assistant_id: assistantId,
@@ -63,7 +55,6 @@ console.log('Message:', message);
       }
     });
 
-    // Wait for the response
     await new Promise((resolve) => run.on('end', resolve));
 
     return {

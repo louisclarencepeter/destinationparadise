@@ -20,7 +20,6 @@ const Chatbot = () => {
         role: 'assistant'
       };
       setMessages([greetingMessage]);
-      console.log('Greeting message set:', greetingMessage);
     } else {
       console.error('Greeting description is undefined');
     }
@@ -29,19 +28,16 @@ const Chatbot = () => {
   const handleSend = async () => {
     if (input.trim()) {
       setMessages(prevMessages => [...prevMessages, { content: input, role: 'user' }]);
-      console.log('User message sent:', input);
       setInput('');
       try {
         const response = await axios.post('/.netlify/functions/chatbot', {
-          message: input // Only sending the new message
+          message: input
         });
-        console.log('API response received:', response.data);
         const assistantMessage = {
           content: response.data.response,
           role: 'assistant'
         };
         setMessages(prevMessages => [...prevMessages, assistantMessage]);
-        console.log('Assistant message set:', assistantMessage);
       } catch (error) {
         console.error('Error sending message:', error);
         const errorMessage = {
@@ -70,7 +66,6 @@ const Chatbot = () => {
       };
       setMessages([greetingMessage]);
       setInput('');
-      console.log('Greeting message set after clearing history:', greetingMessage);
     } else {
       console.error('Greeting description is undefined');
     }
@@ -98,8 +93,7 @@ const Chatbot = () => {
     if (typeof content === 'string') {
       return content.split(' ').length + 4;
     } else {
-      // Estimate token count for non-string content
-      return 50; // Adjust this value based on the complexity of non-string content
+      return 50;
     }
   };
 
