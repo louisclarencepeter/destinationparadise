@@ -28,16 +28,12 @@ const Chatbot = () => {
 
   const handleSend = async () => {
     if (input.trim()) {
-      const userMessage = {
-        content: input,
-        role: 'user'
-      };
-      setMessages(prevMessages => [...prevMessages, userMessage]);
-      console.log('User message sent:', userMessage);
+      setMessages(prevMessages => [...prevMessages, { content: input, role: 'user' }]);
+      console.log('User message sent:', input);
       setInput('');
       try {
         const response = await axios.post('/.netlify/functions/chatbot', {
-          messages: [...truncateMessages(messages), userMessage]
+          message: input // Only sending the new message
         });
         console.log('API response received:', response.data);
         const assistantMessage = {
