@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #007bff;
+  --primary-color: #153464;
   --primary-hover-color: #0056b3;
   --secondary-color: #f44336;
   --secondary-hover-color: #d32f2f;
@@ -20,11 +20,13 @@
   align-items: flex-end;
   justify-content: flex-end;
   z-index: 1000;
+  border-radius: 5px;
 
   @media (max-width: 480px) {
     bottom: 0;
     right: 0;
     left: 0;
+    width: 100%;
     align-items: stretch;
   }
 }
@@ -72,10 +74,10 @@
 
   @media (max-width: 480px) {
     width: 100%;
-    height: calc(100vh - 80px);
+    height: calc(100vh - 20px);
     border: none;
     border-radius: 0;
-    margin-right: 0;
+    margin: 0;
   }
 }
 
@@ -106,6 +108,19 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
+  span {
+    a.whatsapp-link {
+      color: var(--primary-color);
+      margin: 0 10px;
+      display: inline-flex;
+      align-items: center;
+
+      &:hover {
+        color: var(--secondary-hover-color);
+      }
+    }
+  }
 
   @media (max-width: 480px) {
     padding-bottom: 20vh;

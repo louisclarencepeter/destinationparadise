@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.css';
 import Header from './components/header/NavBar.jsx';
-import Home from './components/Home.jsx';
+import Home from './components/home/Home.jsx';
 import AboutPage from './components/aboutus/AboutPage.jsx';
 import ToursPage from './components/excursions/ToursPage.jsx';
 import MyImageGallery from './components/gallery/MyImageGallery.jsx';
@@ -11,7 +11,7 @@ import Footer from './components/footer/Footer.jsx';
 import Store from './components/store/Store.jsx';
 import ErrorBoundary from './components/error/ErrorBoundary.jsx';
 import ScrollToTop from './utils/ScrollToTop.jsx';
-import CookieConsent from './components/CookieConsent';
+import CookieConsent from './components/cookies/CookieConsent';
 import Chatbot from './components/chatbot/Chatbot.jsx';
 
 function App() {

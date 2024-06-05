@@ -79,12 +79,12 @@
       },
       "closing": {
         "type": "string",
-        "description": "I hope this information helps you plan your perfect Zanzibar experience. Feel free to ask if you have any more questions or if you're ready to book your excursion at [https://yournexttriptoparadise.com/booking](https://yournexttriptoparadise.com/booking)!"
+        "description": "I hope this information helps you plan your perfect Zanzibar experience. Feel free to ask if you have any more questions or if you're ready to book your excursion at \\[https://yournexttriptoparadise.com/booking\\]\\(https://yournexttriptoparadise.com/booking\\)!"
       }
     },
     "required": [
       "greeting",
-      "initialQuestion",
+      "initialQuestion", 
       "generalInstructions",
       "specificResponses",
       "combinedExcursions",

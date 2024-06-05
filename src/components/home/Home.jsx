@@ -1,8 +1,8 @@
-import Hero from './home/Hero.jsx';
-import Excursions from './home/Excursions.jsx';
-import Images from './home/Images.jsx';
-import Testimonials from './home/Testimonials.jsx';
-import MyMap from './home/MyMap.jsx';
+import Hero from './Hero.jsx';
+import Excursions from './Excursions.jsx';
+import Images from './Images.jsx';
+import Testimonials from './Testimonials.jsx';
+import MyMap from './MyMap.jsx';
 
 function Home() {
     return (
