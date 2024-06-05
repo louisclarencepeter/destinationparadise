@@ -2,15 +2,15 @@ import OpenAI from "openai";
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
-  organization: "org-GzMndbuvCzjcwousNwv4aLnz", 
-  project: "proj_0kJYNBJJ7WV1e705faOfCyes"  
+  organization: "org-GzMndbuvCzjcwousNwv4aLnz",
+  project: "proj_0kJYNBJJ7WV1e705faOfCyes",
 });
 
 export const handler = async (event, context) => {
-  if (event.httpMethod !== 'POST') {
+  if (event.httpMethod !== "POST") {
     return {
       statusCode: 405,
-      body: 'Method Not Allowed',
+      body: "Method Not Allowed",
     };
   }
 
@@ -34,10 +34,10 @@ export const handler = async (event, context) => {
       body: JSON.stringify({ response: generatedResponse }),
     };
   } catch (error) {
-    console.error('Error generating response:', error);
+    console.error("Error generating response:", error);
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: 'Failed to generate response' }),
+      body: JSON.stringify({ error: "Failed to generate response" }),
     };
   }
 };
