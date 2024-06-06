@@ -27,17 +27,21 @@ const Chatbot = () => {
 
   const handleSend = async () => {
     if (input.trim()) {
-      setMessages(prevMessages => [...prevMessages, { content: input, role: 'user' }]);
+      const userMessage = { content: input, role: 'user' };
+      setMessages(prevMessages => [...prevMessages, userMessage]);
       setInput('');
+      
       try {
         const response = await axios.post('/.netlify/functions/chatbot', {
           message: input
         });
+
         const assistantMessage = {
           content: response.data.response,
           role: 'assistant'
         };
         setMessages(prevMessages => [...prevMessages, assistantMessage]);
+
       } catch (error) {
         console.error('Error sending message:', error);
         const errorMessage = {
