@@ -30,14 +30,11 @@ export const handler = async (event) => {
     const run = openai.beta.threads.runs.stream(thread.id, {
       assistant_id: assistantId,
     })
-    .on('textCreated', () => {
-      responseText += '\nassistant > ';
-    })
     .on('textDelta', (textDelta) => {
       responseText += textDelta.value;
     })
     .on('toolCallCreated', (toolCall) => {
-      responseText += `\nassistant > ${toolCall.type}\n\n`;
+      responseText += `\n${toolCall.type}\n\n`;
     })
     .on('toolCallDelta', (toolCallDelta) => {
       if (toolCallDelta.type === 'code_interpreter') {
