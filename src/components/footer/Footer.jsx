@@ -32,6 +32,14 @@ function Footer() {
             </a>
           </div>
         </div>
+        <div className="footer__legal">
+          <a href="/privacy-policy">Privacy Policy</a>
+          |
+          <a href="/terms-of-service">Terms of Service</a>
+        </div>
+        <div className="footer__copyright">
+          <p>&copy; 2023 Destination Paradise. All rights reserved.</p>
+        </div>
       </div>
     </footer>
   );
