@@ -84,7 +84,7 @@ const Store = () => {
       <div className="booking-request">
         <h2>Booking Request</h2>
         <p>Welcome to the booking request page. Please fill out the form below to make a new booking.</p>
-        <form onSubmit={handleSubmit} className="booking-form">
+        <form onSubmit={handleSubmit} className="booking-form" netlify>
           <div className=" reveal form-group">
             <label htmlFor="name">Name:</label>
             <input
