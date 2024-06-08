@@ -98,8 +98,8 @@ nav {
   position: relative;
   width: 1.8rem;
   height: 2rem;
-  top: 1.4rem;
-  right: -1rem;
+  top: 1.5em;
+  right: 1em;
 
   li {
     list-style: none;
@@ -236,6 +236,7 @@ nav {
   border-radius: 0.9rem;
   padding: 0.4rem;
   font-size: 0.7rem;
+
 
   &:hover {
     color: $hover-color;
