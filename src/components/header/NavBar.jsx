@@ -95,7 +95,7 @@ const NavBar = () => {
         <div className={`menu__box ${isOpen ? 'open' : ''}`}>
           <MenuList className="hamburger-menu__list" onClick={closeMenu} />
           <div className="menu__header">
-            <img src={logo} alt="Logo" className="menu__logo" />
+            <img src={logo} alt="Logo" className={`menu__logo ${isOpen ? 'open' : ''}`} />
             <div className="menu__contact">
               <p>Destination Paradise</p>
               <p>Phone: +255 748 352 657</p>
