@@ -252,6 +252,21 @@ nav {
 
 // Media queries
 
+@media screen and (min-width : 320px) {
+  .hamburger-menu {
+    top: 1.5em;
+    right: -1em;
+  }
+}
+
+@media  screen and (min-width: 360px){
+  .hamburger-menu {
+    top: 1.5em;
+    right: -1em;
+  }
+  
+}
+
 
 @media screen and (min-width: 390px) {
  .hamburger-menu {
