@@ -17,20 +17,22 @@ import localFishingImage from '../../assets/images/fishing/fishing.jpg';
 import swimmingCaveImage from '../../assets/images/cave/maalum.jpg';
 import sailingSunsetImage from '../../assets/images/sunsetsailing/sunsetsail.jpg';
 import quadTourImage from '../../assets/images/quad/quadtour.jpg';
+import map from '../../assets/map/zanzibar.png';
+
 
 const TourCard = ({ id, title, description, activities, duration, inclusions, image }) => (
   <div id={id} className="tour-card reveal">
     <img src={image} alt={title} />
-    <h3>{title}</h3>
+    <h3 className='reveal'>{title}</h3>
     <p>{description}</p>
-    <h4>Activities:</h4>
+    <h4 className='reveal'>Activities:</h4>
     <ul>
       {activities.map((activity, index) => (
         <li key={index}>{activity}</li>
       ))}
     </ul>
     <p>Duration: {duration}</p>
-    <h4>Inclusions:</h4>
+    <h4 className='reveal'>Inclusions:</h4>
     <ul>
       {inclusions.map((inclusion, index) => (
         <li key={index}>{inclusion}</li>
@@ -165,7 +167,14 @@ const ToursPage = () => {
           inclusions={['Motorbike', 'Driving permit', 'Helmets']}
           image={motorbikeImage}
         />
+      </div>
 
+      <div className='map'>
+        <h4 className="reveal">Map of Zanzibar</h4>
+        <img src={map} alt="Zanzibar map" className="map reveal" />
+      </div>
+
+      <div className="tour-card-container">
         <TourCard
           title="Mnemba Snorkeling & Trip to the North"
           description="Snorkel in the crystal-clear waters of Mnemba Island, a private conserved island in the northeast. Spot a variety of fish and enjoy the beautiful beach of Nungwi."
