@@ -73,11 +73,11 @@
   }
 
   @media (max-width: 480px) {
-    width: 100%;
-    height: calc(100vh - 20px);
+    width: 92%;
+    margin: 0 auto;
+    height: calc(70vh - 20px);
     border: none;
-    border-radius: 0;
-    margin: 0;
+    border-radius: 1rem 1rem 0 0;
   }
 }
 

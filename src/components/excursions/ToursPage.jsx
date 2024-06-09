@@ -102,7 +102,7 @@ const ToursPage = () => {
           activities={['Guided walk through Stone Town', 'Visit historical sites', 'Explore markets and shops']}
           duration="Half-day"
           inclusions={['Guide', 'Entrance fees']}
-          image={historicalCityTourImage}
+          image={historicalCityTourImage}   
         />
 
         <TourCard
