@@ -237,7 +237,6 @@ nav {
   padding: 0.4rem;
   font-size: 0.7rem;
 
-
   &:hover {
     color: $hover-color;
   }
@@ -248,7 +247,6 @@ nav {
     transition-duration: $transition-duration;
   }
 }
-
 
 // Media queries
 
@@ -277,10 +275,12 @@ nav {
   }
 }
 
-@media screen and (min-width: 883px) {
+
+@media screen and (min-height: 1100px) {
   .hamburger-menu {
-    right: -1em;
+    right: 1em;
   }
+
 }
 
 @media screen and (min-height: 800px) {
@@ -289,6 +289,21 @@ nav {
     right: 1em;
   }
 }
+
+@media screen and (min-height: 400px) {
+  .hamburger-menu {
+    top: 1.5em;
+    right: -1em;
+  }
+}
+
+@media screen and (min-height: 1200px) {
+  .hamburger-menu {
+    top: 1.5em;
+    right: 1em;
+  }
+}
+
 
 
 @media screen and (min-width: 1024px) {
@@ -327,10 +342,10 @@ nav {
 }
 
 @media screen and (min-height: 1079px),
-       screen and (min-width: 1279px),
-       screen and (min-width: 1439px),
-       screen and (min-width: 1727px) {
-
+  screen and (min-width: 1022px),
+  screen and (min-width: 1279px),
+  screen and (min-width: 1439px),
+  screen and (min-width: 1727px) {
   nav {
     height: 4rem;
     padding: 0;
@@ -361,4 +376,3 @@ nav {
     }
   }
 }
-
