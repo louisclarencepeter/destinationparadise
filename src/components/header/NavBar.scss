@@ -249,12 +249,9 @@ nav {
 }
 
 // Media queries
-
-@media screen and (min-width: 320px) {
-  .hamburger-menu {
-    top: 1.5em;
-    right: -1em;
-  }
+.hamburger-menu {
+  top: 1.5em;
+  right: -1em;
 }
 
 @media screen and (min-width: 450px) {
@@ -263,48 +260,35 @@ nav {
   }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 740px)
+  {
   .hamburger-menu {
     right: -1em;
   }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 800px), 
+       screen and (min-height: 800px),
+       screen and (min-height: 1100px),
+       screen and (min-height: 1200px) {
   .hamburger-menu {
     right: 1em;
   }
 }
 
-
-@media screen and (min-height: 1100px) {
-  .hamburger-menu {
-    right: 1em;
-  }
-
-}
-
-@media screen and (min-height: 800px) {
+@media screen and (min-height: 360px) {
   .hamburger-menu {
     top: 1.5em;
-    right: 1em;
+    right: -1em;
   }
 }
 
 @media screen and (min-height: 400px) {
   .hamburger-menu {
-    top: 1.5em;
-    right: -1em;
-  }
-}
-
-@media screen and (min-height: 1200px) {
-  .hamburger-menu {
-    top: 1.5em;
+    top: 1.2em;
     right: 1em;
   }
 }
-
-
 
 @media screen and (min-width: 1024px) {
   .hamburger-menu {
