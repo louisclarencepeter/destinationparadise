@@ -99,7 +99,7 @@ nav {
   width: 1.8rem;
   height: 2rem;
   top: 1.5em;
-  right: 1em;
+  right: -1em;
 
   li {
     list-style: none;
@@ -249,46 +249,30 @@ nav {
 }
 
 // Media queries
-.hamburger-menu {
-  top: 1.5em;
-  right: -1em;
-}
+@media screen and (min-height: 768px){
 
-@media screen and (min-width: 450px) {
   .hamburger-menu {
     right: 1em;
   }
+  
 }
 
-@media screen and (min-width: 740px)
-  {
+@media screen and (min-height: 771px){
+
   .hamburger-menu {
     right: -1em;
   }
 }
 
-@media screen and (min-width: 800px), 
-       screen and (min-height: 800px),
-       screen and (min-height: 1100px),
-       screen and (min-height: 1200px) {
+@media screen and (min-height: 1084px){
+
   .hamburger-menu {
     right: 1em;
   }
+  
 }
 
-@media screen and (min-height: 360px) {
-  .hamburger-menu {
-    top: 1.5em;
-    right: -1em;
-  }
-}
 
-@media screen and (min-height: 400px) {
-  .hamburger-menu {
-    top: 1.2em;
-    right: 1em;
-  }
-}
 
 @media screen and (min-width: 1024px) {
   .hamburger-menu {
