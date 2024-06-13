@@ -62,6 +62,7 @@ const BookingForm = ({ tours, locations }) => {
       data-netlify-honeypot="bot-field" 
       className="booking-form"
       onSubmit={handleSubmit}
+      netlify
     >
       <input type="hidden" name="form-name" value="booking-request" />
       <input type="hidden" name="bot-field" />
