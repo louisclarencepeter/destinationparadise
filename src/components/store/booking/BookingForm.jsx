@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import FormInput from './FormInput';
 import FormSelect from './FormSelect';
 import FormTextarea from './FormTextarea';
 
 const BookingForm = ({ tours, locations }) => {
+  const [state, handleSubmit] = useForm("yourFormspreeID"); // Replace with your Formspree form ID
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,56 +16,17 @@ const BookingForm = ({ tours, locations }) => {
     message: '',
   });
 
-  const [formStatus, setFormStatus] = useState('');
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    const form = e.target;
-    const data = new FormData(form);
-
-    try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(data).toString()
-      });
-
-      if (response.ok) {
-        setFormStatus('Booking request submitted successfully.');
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          date: '',
-          tour: '',
-          location: '',
-          message: '',
-        });
-      } else {
-        setFormStatus('Failed to submit booking request.');
-      }
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      setFormStatus('Error submitting booking request.');
-    }
-  };
+  if (state.succeeded) {
+    return <p>Thanks for your booking request!</p>;
+  }
 
   return (
-    <form 
-      name="booking-request" 
-      method="POST" 
-      data-netlify="true" 
-      data-netlify-honeypot="bot-field" 
-      className="booking-form"
-      onSubmit={handleSubmit}
-      netlify
-    >
+    <form onSubmit={handleSubmit} className="booking-form">
       <input type="hidden" name="form-name" value="booking-request" />
       <input type="hidden" name="bot-field" />
       <FormInput 
@@ -75,6 +38,7 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autocomplete="name"
       />
+      <ValidationError prefix="Name" field="name" errors={state.errors} />
       <FormInput 
         label="Email:" 
         id="email" 
@@ -84,6 +48,7 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autocomplete="email"
       />
+      <ValidationError prefix="Email" field="email" errors={state.errors} />
       <FormInput 
         label="Phone:" 
         id="phone" 
@@ -93,6 +58,7 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autocomplete="tel"
       />
+      <ValidationError prefix="Phone" field="phone" errors={state.errors} />
       <FormInput 
         label="Preferred Date:" 
         id="date" 
@@ -103,6 +69,7 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autocomplete="bday"
       />
+      <ValidationError prefix="Date" field="date" errors={state.errors} />
       <FormSelect 
         label="Select Tour:" 
         id="tour" 
@@ -113,6 +80,7 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autocomplete="off"
       />
+      <ValidationError prefix="Tour" field="tour" errors={state.errors} />
       <FormSelect 
         label="Pick Up Location (Part of the Island):" 
         id="location" 
@@ -123,6 +91,7 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autocomplete="off"
       />
+      <ValidationError prefix="Location" field="location" errors={state.errors} />
       <FormTextarea 
         label="Message:" 
         id="message" 
@@ -132,8 +101,11 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autocomplete="off"
       />
-      <button type="submit" className="submit-button">Submit Booking Request</button>
-      {formStatus && <p>{formStatus}</p>}
+      <ValidationError prefix="Message" field="message" errors={state.errors} />
+      <button type="submit" disabled={state.submitting} className="submit-button">
+        Submit Booking Request
+      </button>
+      {state.errors.length > 0 && <p className="error-message">Please fix the errors above.</p>}
     </form>
   );
 };
