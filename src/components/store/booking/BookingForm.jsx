@@ -3,7 +3,6 @@ import FormInput from './FormInput';
 import FormSelect from './FormSelect';
 import FormTextarea from './FormTextarea';
 
-
 const BookingForm = ({ tours, locations }) => {
   const [formData, setFormData] = useState({
     name: '',
@@ -27,7 +26,6 @@ const BookingForm = ({ tours, locations }) => {
       data-netlify="true" 
       data-netlify-honeypot="bot-field" 
       className="booking-form"
-      netlify
     >
       <input type="hidden" name="form-name" value="booking-request" />
       <input type="hidden" name="bot-field" />
