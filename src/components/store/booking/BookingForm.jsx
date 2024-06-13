@@ -5,7 +5,7 @@ import FormSelect from './FormSelect';
 import FormTextarea from './FormTextarea';
 
 const BookingForm = ({ tours, locations }) => {
-  const [state, handleSubmit] = useForm("yourFormspreeID"); // Replace with your Formspree form ID
+  const [state, handleSubmit] = useForm("mlekgonz");
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -105,7 +105,7 @@ const BookingForm = ({ tours, locations }) => {
       <button type="submit" disabled={state.submitting} className="submit-button">
         Submit Booking Request
       </button>
-      {state.errors.length > 0 && <p className="error-message">Please fix the errors above.</p>}
+      {state.errors && state.errors.length > 0 && <p className="error-message">Please fix the errors above.</p>}
     </form>
   );
 };
