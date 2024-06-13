@@ -22,7 +22,7 @@ const BookingForm = ({ tours, locations }) => {
   };
 
   if (state.succeeded) {
-    return <p>Thanks for your booking request!</p>;
+    return <p>Thank you for your booking request!</p>;
   }
 
   return (
