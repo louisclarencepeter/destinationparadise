@@ -4,16 +4,16 @@ import './AboutPage.scss';
 const AboutPage = () => {
   return (
     <div className="about-page">
-      <h2 className="reveal">About Us</h2>
+      <h2>About Us</h2>
       <div className="about-content">
         <PhotoSlide />
         <div className="about-text">
-          <h3 className='reveal'>Welcome to Destination Paradise</h3>
+          <h3>Welcome to Destination Paradise</h3>
           <p className='reveal'>
             <strong>Destination Paradise</strong>, your premier travel agency specializing in unforgettable trips and tours on the enchanting island of Zanzibar. Our current focus is on exploring the wonders of Zanzibar Island (Unguja), with ambitious plans to expand our offerings throughout Tanzania, beginning with its captivating main islands.
           </p>
           <p className="reveal motto">
-            <em>"your next trip to paradise..."</em>
+            for <em>your next trip to paradise...</em>
           </p>
           <p className='reveal'>
             At Destination Paradise, we strive to provide an extensive array of tours that showcase the most stunning locations and exciting events not only on the main island of Zanzibar but across the entire country of Tanzania. Our expertly crafted itineraries are designed to immerse you in the rich culture, breathtaking landscapes, and thrilling adventures that await you.
