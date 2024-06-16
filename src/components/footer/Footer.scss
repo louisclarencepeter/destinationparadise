@@ -47,6 +47,12 @@
     }
   }
 
+  &__message {
+    text-align: center;
+    color: #ef4565;
+    margin-bottom: 1rem;
+  }
+
   &__info {
     margin-bottom: 1rem;
     text-align: center;
@@ -64,10 +70,10 @@
 
   &__whatsapp-link {
     margin-left: 10px;
-    color: #25d366;
+    color: #153464;
 
     &:hover {
-      color: #128c7e;
+      color: #ef4565;
     }
   }
 

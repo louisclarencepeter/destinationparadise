@@ -19,8 +19,7 @@ function Footer() {
       });
 
       if (response.ok) {
-        const result = await response.json();
-        setMessage(result.message);
+        setMessage('Thank you for subscribing to our newsletter!');
         setEmail('');
       } else {
         const error = await response.json();
