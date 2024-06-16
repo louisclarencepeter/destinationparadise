@@ -1,18 +1,61 @@
-// Footer.jsx
 import './Footer.scss';
+import { useState } from 'react';
 
 function Footer() {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage('');
+
+    try {
+      const response = await fetch('/.netlify/functions/sendEmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email })
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        setMessage(result.message);
+        setEmail('');
+      } else {
+        const error = await response.json();
+        setMessage(error.message);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      setMessage('An error occurred. Please try again.');
+    }
+  };
+
   return (
     <footer className="footer reveal">
       <div className="footer__container">
         <h5 className="footer__title">Subscribe to our newsletter! 🚀💬💌</h5>
-        <form action="/submit-email" method="post" className="footer__form">
-          <input type="email" className="footer__input" placeholder="E-Mail" name="email" required />
+        <form onSubmit={handleSubmit} className="footer__form">
+          <input
+            type="email"
+            className="footer__input"
+            placeholder="E-Mail"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
           <button type="submit" className="footer__button">&gt;</button>
         </form>
+        {message && <p className="footer__message">{message}</p>}
         <div className="footer__info">
           <p>Destination Paradise</p>
-          <p>Phone: +255 748 352 657</p>
+          <p>
+            Phone: +255 748 352 657
+            <a href="https://wa.me/255748352657" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp" className="footer__whatsapp-link">
+              <i className="fab fa-whatsapp footer__whatsapp-icon"></i>
+            </a>
+          </p>
           <p>Zanzibar, Tanzania</p>
         </div>
         <div className="footer__contact">

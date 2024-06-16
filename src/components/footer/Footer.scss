@@ -50,6 +50,29 @@
   &__info {
     margin-bottom: 1rem;
     text-align: center;
+
+    a {
+      color: #153464;
+      text-decoration: none;
+
+      &:hover {
+        color: #ef4565;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__whatsapp-link {
+    margin-left: 10px;
+    color: #25d366;
+
+    &:hover {
+      color: #128c7e;
+    }
+  }
+
+  &__whatsapp-icon {
+    font-size: 1.25rem;
   }
 
   &__contact {
