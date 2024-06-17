@@ -13,12 +13,16 @@ function MyMap() {
 
     const map = new window.google.maps.Map(mapRef.current, mapOptions);
 
-    // Using AdvancedMarkerElement instead of Marker
-    new window.google.maps.marker.AdvancedMarkerElement({
-      position: mapOptions.center,
-      map: map,
-      title: 'My location',
-    });
+    // Check if AdvancedMarkerElement is available
+    if (window.google.maps.marker && window.google.maps.marker.AdvancedMarkerElement) {
+      new window.google.maps.marker.AdvancedMarkerElement({
+        position: mapOptions.center,
+        map: map,
+        title: 'My location',
+      });
+    } else {
+      console.error('AdvancedMarkerElement is not available in this version of the Google Maps API.');
+    }
   }, []);
 
   const loadGoogleMapsScript = useCallback(() => {
@@ -38,7 +42,7 @@ function MyMap() {
     const script = document.createElement('script');
     script.id = scriptId;
     script.type = 'text/javascript';
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap&libraries=marker`;
     script.async = true;
     script.defer = true;
     window.initMap = initializeMap;
