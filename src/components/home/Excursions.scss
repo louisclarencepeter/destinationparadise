@@ -109,7 +109,7 @@
 
 @media screen and (min-width: 375px) {
   .excursion-card {
-    height: 53vh;
+    height: 43vh;
   }
 }
 
@@ -137,7 +137,6 @@
   }
 
   .excursion-card {
-    height: 650px;
     width: 100%;
 
     &__content {
@@ -172,7 +171,13 @@
   .excursion-card:nth-child(3) {
     grid-column: span 2;
     justify-self: center;
-    max-width: 400px;
+    max-width: 550px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .excursion-card {
+    height: 36vh;
   }
 }
 
@@ -187,11 +192,11 @@
     max-width: 400px;
 
     &__title {
-      font-size: 1.4rem;
+      font-size: 1.2rem;
     }
 
     &__text {
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
 
     &__content {
@@ -209,6 +214,47 @@
 @media screen and (min-width: 1440px) {
   .excursion-card {
     height: 65vh;
+
+    &__content {
+      height: 30vh;
+    }
   }
-  
+}
+
+@media screen and (min-width: 1919px) {
+  .excursion-card {
+    height: 65vh;
+    max-width: 500px;
+
+    &__content {
+      height: 40vh;
+    }
+  }
+
+  .excursion-card:nth-child(3) {
+    max-width: 500px;
+  }
+}
+
+@media screen and (min-width: 2560px) {
+  .excursions {
+    width: 60%;
+
+    .excursion-card {
+      height: 65vh;
+      max-width: 500px;
+
+      &__title {
+        font-size: 1.2rem;
+      }
+
+      &__text {
+        font-size: 1rem;
+      }
+
+      &__content {
+        height: 30vh;
+      }
+    }
+  }
 }
