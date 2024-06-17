@@ -1,11 +1,10 @@
-// Hero.scss
 .hero {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 83vh;
+  height: 93vh;
   margin-top: -6rem;
   padding-top: 6rem;
   overflow: hidden;
@@ -31,10 +30,8 @@
     align-items: center;
     text-align: center;
     z-index: 1;
-  }
-
-  &__heading {
     padding: 0 1rem;
+ 
   }
 
   &__description {
@@ -49,6 +46,8 @@
     opacity: 0.85;
     animation: fadeIn 3s ease-out;
     border-radius: 10px;
+    width: 90%;
+    max-width: 40rem;
   }
 }
 
@@ -63,20 +62,28 @@
 
 @media screen and (min-width: 420px) {
   .hero {
+    height: 95vh;
+
     &__description {
-      width: 20rem;
       font-size: 1.3rem;
+    }
+  }
+}
+
+@media screen and (min-width: 665px) {
+  .hero {
+    &__content {
+      padding: 0 2rem;
+    }
+
+    &__description {
+      font-size: 1.5rem;
     }
   }
 }
 
 @media screen and (min-width: 768px) {
   .hero {
-    height: 110vh;
-
-    &__description {
-      width: 30rem;
-      font-size: 1.5rem;
-    }
+    height: 100vh;
   }
 }

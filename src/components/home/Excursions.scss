@@ -6,14 +6,14 @@
   width: 90%;
   margin: 0 auto;
   padding: 1rem;
-}
 
-.excursions__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  width: 100%;
-  justify-items: center;
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    width: 100%;
+    justify-items: center;
+  }
 }
 
 .excursion-card {
@@ -107,12 +107,27 @@
   }
 }
 
-@media  screen and (min-width: 375px){
-
+@media screen and (min-width: 375px) {
   .excursion-card {
-    height: 63vh;
+    height: 53vh;
   }
-  
+}
+
+@media screen and (min-width: 665px) {
+  .excursion-card {
+    height: 60vh;
+  }
+
+  .excursions__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .excursion-card:nth-child(3) {
+    grid-column: span 2;
+    justify-self: center;
+    max-width: 300px;
+  }
 }
 
 @media screen and (min-width: 767px) {
@@ -124,7 +139,6 @@
   .excursion-card {
     height: 650px;
     width: 100%;
-    max-width: 550px;
 
     &__content {
       padding: 1.5rem;
@@ -158,7 +172,7 @@
   .excursion-card:nth-child(3) {
     grid-column: span 2;
     justify-self: center;
-    max-width: 550px; /* Ensure the same max-width as other cards */
+    max-width: 400px;
   }
 }
 
@@ -180,23 +194,20 @@
       font-size: 1.2rem;
     }
 
-    .excursion-card__content {
-      height: 40vh;
+    &__content {
+      height: 30vh;
     }
   }
 
   .excursion-card:nth-child(3) {
     grid-column: unset;
     justify-self: unset;
-    max-width: 400px; /* Ensure the same max-width as other cards */
+    max-width: 400px;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .excursion-card {
     height: 65vh;
-
   }
-
-
 }
