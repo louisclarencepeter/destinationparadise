@@ -58,7 +58,7 @@
     text-align: center;
 
     a {
-      color: #153464;
+      color: inherit;
       text-decoration: none;
 
       &:hover {
@@ -87,6 +87,16 @@
     align-items: center;
     gap: 0.625rem;
     margin-bottom: 1rem;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      &:hover {
+        color: #ef4565;
+        text-decoration: underline;
+      }
+    }
   }
 
   &__social {

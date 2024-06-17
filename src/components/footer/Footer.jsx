@@ -50,7 +50,7 @@ function Footer() {
         <div className="footer__info">
           <p>Destination Paradise</p>
           <p>
-            Phone: +255 748 352 657
+            Phone: <a href="tel:+255748352657">+255 748 352 657</a>
             <a href="https://wa.me/255748352657" target="_blank" rel="noopener noreferrer" aria-label="Chat with us on WhatsApp" className="footer__whatsapp-link">
               <i className="fab fa-whatsapp footer__whatsapp-icon"></i>
             </a>
@@ -58,7 +58,7 @@ function Footer() {
           <p>Zanzibar, Tanzania</p>
         </div>
         <div className="footer__contact">
-          <p>info@yournexttriptoparadise.com</p>
+          <p><a href="mailto:info@yournexttriptoparadise.com">info@yournexttriptoparadise.com</a></p>
           <div className="footer__social">
             <a href="https://www.facebook.com/yournexttriptoparadise/" target="_blank" rel="noopener noreferrer" aria-label="Visit our Facebook page">
               <i className="fab fa-facebook" aria-hidden="true"></i>
