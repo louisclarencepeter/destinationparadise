@@ -27,7 +27,6 @@
 
   &:hover {
     .excursion-card__content {
-      background-color: #f8f9fa;
       transform: translateY(-10%);
       transition: all 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
     }
@@ -169,7 +168,7 @@
   }
 
   .excursion-card {
-    height: 97vh;
+    height: 70vh;
     width: 100%;
     max-width: 400px;
 
@@ -179,6 +178,10 @@
 
     &__text {
       font-size: 1.2rem;
+    }
+
+    .excursion-card__content {
+      height: 40vh;
     }
   }
 
@@ -191,11 +194,9 @@
 
 @media screen and (min-width: 1440px) {
   .excursion-card {
-    max-width: 500px;
-    height: 75vh;
+    height: 65vh;
+
   }
 
-  .excursion-card:nth-child(3) {
-    max-width: 500px; /* Ensure the same max-width as other cards */
-  }
+
 }

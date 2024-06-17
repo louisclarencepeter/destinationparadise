@@ -1,8 +1,8 @@
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 
 function MyMap() {
   const mapRef = useRef(null);
-  const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+  const [apiKey, setApiKey] = useState(null);
 
   const initializeMap = useCallback(() => {
     const mapOptions = {
@@ -40,17 +40,28 @@ function MyMap() {
     script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
     script.async = true;
     script.defer = true;
-    window.initMap = initializeMap; // Set a global function for callback
+    window.initMap = initializeMap;
     document.head.appendChild(script);
   }, [apiKey, initializeMap]);
 
   useEffect(() => {
-    if (!apiKey) {
-      console.error('Google Maps API key is missing');
-      return;
-    }
+    const fetchApiKey = async () => {
+      try {
+        const response = await fetch('/.netlify/functions/getGoogleMapsApiKey');
+        const data = await response.json();
+        setApiKey(data.apiKey);
+      } catch (error) {
+        console.error('Error fetching Google Maps API key:', error);
+      }
+    };
 
-    loadGoogleMapsScript();
+    fetchApiKey();
+  }, []);
+
+  useEffect(() => {
+    if (apiKey) {
+      loadGoogleMapsScript();
+    }
   }, [apiKey, loadGoogleMapsScript]);
 
   return <div style={{ height: '50vh', width: '100%' }} ref={mapRef} className="reveal"></div>;
