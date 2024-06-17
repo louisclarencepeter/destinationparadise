@@ -13,7 +13,6 @@ function MyMap() {
 
     const map = new window.google.maps.Map(mapRef.current, mapOptions);
 
-    // Check if AdvancedMarkerElement is available
     if (window.google.maps.marker && window.google.maps.marker.AdvancedMarkerElement) {
       new window.google.maps.marker.AdvancedMarkerElement({
         position: mapOptions.center,
@@ -42,10 +41,10 @@ function MyMap() {
     const script = document.createElement('script');
     script.id = scriptId;
     script.type = 'text/javascript';
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap&libraries=marker`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=marker`;
     script.async = true;
     script.defer = true;
-    window.initMap = initializeMap;
+    script.onload = initializeMap;
     document.head.appendChild(script);
   }, [apiKey, initializeMap]);
 
