@@ -13,7 +13,8 @@ function MyMap() {
 
     const map = new window.google.maps.Map(mapRef.current, mapOptions);
 
-    new window.google.maps.Marker({
+    // Using AdvancedMarkerElement instead of Marker
+    new window.google.maps.marker.AdvancedMarkerElement({
       position: mapOptions.center,
       map: map,
       title: 'My location',
