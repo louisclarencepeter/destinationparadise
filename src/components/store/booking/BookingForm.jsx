@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import FormInput from './FormInput';
 import FormSelect from './FormSelect';
@@ -36,7 +37,7 @@ const BookingForm = ({ tours, locations }) => {
         value={formData.name} 
         onChange={handleChange} 
         required 
-        autocomplete="name"
+        autoComplete="name"
       />
       <ValidationError prefix="Name" field="name" errors={state.errors} />
       <FormInput 
@@ -46,7 +47,7 @@ const BookingForm = ({ tours, locations }) => {
         value={formData.email} 
         onChange={handleChange} 
         required 
-        autocomplete="email"
+        autoComplete="email"
       />
       <ValidationError prefix="Email" field="email" errors={state.errors} />
       <FormInput 
@@ -56,7 +57,7 @@ const BookingForm = ({ tours, locations }) => {
         value={formData.phone} 
         onChange={handleChange} 
         required 
-        autocomplete="tel"
+        autoComplete="tel"
       />
       <ValidationError prefix="Phone" field="phone" errors={state.errors} />
       <FormInput 
@@ -67,7 +68,7 @@ const BookingForm = ({ tours, locations }) => {
         value={formData.date} 
         onChange={handleChange} 
         required 
-        autocomplete="bday"
+        autoComplete="bday"
       />
       <ValidationError prefix="Date" field="date" errors={state.errors} />
       <FormSelect 
@@ -78,7 +79,7 @@ const BookingForm = ({ tours, locations }) => {
         options={tours} 
         onChange={handleChange} 
         required 
-        autocomplete="off"
+        autoComplete="off"
       />
       <ValidationError prefix="Tour" field="tour" errors={state.errors} />
       <FormSelect 
@@ -89,7 +90,7 @@ const BookingForm = ({ tours, locations }) => {
         options={locations} 
         onChange={handleChange} 
         required 
-        autocomplete="off"
+        autoComplete="off"
       />
       <ValidationError prefix="Location" field="location" errors={state.errors} />
       <FormTextarea 
@@ -99,7 +100,7 @@ const BookingForm = ({ tours, locations }) => {
         value={formData.message} 
         onChange={handleChange} 
         required 
-        autocomplete="off"
+        autoComplete="off"
       />
       <ValidationError prefix="Message" field="message" errors={state.errors} />
       <button type="submit" disabled={state.submitting} className="submit-button">
@@ -108,6 +109,11 @@ const BookingForm = ({ tours, locations }) => {
       {state.errors && state.errors.length > 0 && <p className="error-message">Please fix the errors above.</p>}
     </form>
   );
+};
+
+BookingForm.propTypes = {
+  tours: PropTypes.arrayOf(PropTypes.string).isRequired,
+  locations: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default BookingForm;

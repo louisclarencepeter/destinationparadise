@@ -1,4 +1,3 @@
-import React from 'react';
 import './Store.scss';
 import ImageSlideshow from './ImageSlideshow';
 import BookingForm from './booking/BookingForm';
