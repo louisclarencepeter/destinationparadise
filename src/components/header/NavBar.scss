@@ -62,14 +62,10 @@ nav {
 
         &:hover {
           color: $hover-color;
-          border-bottom: 1px solid $hover-color;
         }
 
-        .menu__item {
-          &.active {
-            color: $hover-color;
-            border-bottom: 1px solid $hover-color;
-          }
+        .menu__item.active {
+          color: $hover-color;
         }
       }
     }
@@ -222,12 +218,55 @@ nav {
   font-weight: 600;
   color: $secondary-color;
   text-decoration: none;
-  transition-duration: $transition-duration;
+  position: relative;
+  transition: color $transition-duration;
 
-  &:hover,
+  &:hover {
+    color: $hover-color;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: $hover-color;
+    transition: width $transition-duration;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
   &.active {
     color: $hover-color;
-    border-bottom: 1px solid $hover-color;
+  }
+
+  &.active::after {
+    width: 100%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    font-size: inherit;
+  }
+
+  @media screen and (min-height: 1079px),
+    screen and (min-width: 1022px),
+    screen and (min-width: 1279px),
+    screen and (min-width: 1439px),
+    screen and (min-width: 1727px) {
+    font-size: 0.8rem;
+
+    @media screen and (min-width: 1439px) {
+      font-size: 1rem;
+    }
+
+    @media screen and (min-width: 1727px) {
+      font-size: 1.2rem;
+    }
   }
 }
 
@@ -249,30 +288,23 @@ nav {
 }
 
 // Media queries
-@media screen and (min-height: 768px){
-
+@media screen and (min-height: 768px) {
   .hamburger-menu {
     right: 1em;
   }
-  
 }
 
-@media screen and (min-height: 771px){
-
+@media screen and (min-height: 771px) {
   .hamburger-menu {
     right: -1em;
   }
 }
 
-@media screen and (min-height: 1084px){
-
+@media screen and (min-height: 1084px) {
   .hamburger-menu {
     right: 1em;
   }
-  
 }
-
-
 
 @media screen and (min-width: 1024px) {
   .hamburger-menu {
@@ -301,7 +333,6 @@ nav {
 
           &:hover {
             color: $hover-color;
-            border-bottom: 1px solid $hover-color;
           }
         }
       }
