@@ -1,102 +1,69 @@
-// Testimonials.scss
+@import '../../styles/variables.scss';
+
 .testimonials {
-  text-align: center;
-  margin: 2rem 0;
-  width: 100%;
-  color: #153464;
-  font-family: 'Montserrat', sans-serif;
-
-  &__title {
-    margin-bottom: 1rem;
-  }
-
-  &__button {
-    padding: 0.5rem;
-    margin: 1rem;
-    border-radius: 0.9rem;
-  }
-}
-
-.testimonial {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  width: 90vw;
-  height: 100%;
-  margin: 0 auto;
+  gap: $gap-large;
+  padding: $gap-large $padding-base;
 
-  &__header {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+  &__title {
+    font-family: $font-family;
+    font-size: $font-size-large;
+    color: $primary-color;
+    text-align: center;
   }
 
-  &__image {
-    width: 100px;
-    height: 100px;
-    object-fit: center;
-    border-radius: 50%;
-  }
-
-  &__name-stars {
+  &__list {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-  }
-
-  &__name {
-    color: #153464;
-    margin: 0;
-  }
-
-  &__stars {
-    color: #ef4565;
-  }
-
-  &__review {
-    padding: 20px;
-    font-size: 1rem;
-    text-align: center;
-    height: 100px;
+    align-items: center;
+    gap: $gap-large;
     width: 100%;
-    color: #5f6c7b;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    transition: height 0.3s ease;
+    max-width: 800px;
+  }
+}
 
-    &.expanded {
-      height: auto;
-      -webkit-line-clamp: unset;
-    }
+.testimonial-card {
+  background-color: $background-color;
+  border-radius: $border-radius;
+  box-shadow: 0 0 16px -5px $box-shadow-color;
+  padding: $padding-large;
+  width: 90%;
+  max-width: 700px;
+  text-align: center;
+  transition: transform $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 0 20px -5px $hover-box-shadow-color;
   }
 
-  &__expand-btn {
-    background: none;
-    border: none;
-    color: #ef4565;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 0.5rem;
+  &__text {
+    font-family: $font-family;
+    font-size: $font-size-base;
+    color: $text-color;
+    margin: 0 0 $gap-base;
+  }
+
+  &__author {
+    font-family: $font-family;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: $primary-color;
+    margin: 0;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .testimonial {
-    width: 80vw;
+  .testimonials__list {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 
-    &__name {
-      font-size: 1.3rem;
-    }
-
-    &__review {
-      font-size: 1.3rem;
-    }
+  .testimonial-card {
+    width: 45%;
+    margin: $gap-base;
   }
 }

@@ -1,20 +1,49 @@
-// Images.scss
-.gallery {
+@import '../../styles/variables.scss';
+
+.images {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $gap-large;
+  padding: $gap-large $padding-base;
+
   &__title {
-    margin-bottom: 1rem;
+    font-family: $font-family;
+    font-size: $font-size-large;
+    color: $primary-color;
+    text-align: center;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $gap-base;
+    width: 100%;
+    max-width: 1200px;
   }
 
   &__image {
     width: 100%;
     height: auto;
-    padding: 1rem;
-    box-sizing: border-box;
-    transition: transform 0.3s ease-in-out;
+    border-radius: $border-radius;
+    box-shadow: 0 0 16px -5px $box-shadow-color;
+    transition: transform $transition-hover;
 
     &:hover {
       transform: scale(1.05);
-      z-index: 1;
-      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 0 20px -5px $hover-box-shadow-color;
     }
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .images__grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .images__grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 }
