@@ -1,0 +1,11 @@
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-default), transform var(--transition-default);
+  }
+  
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  

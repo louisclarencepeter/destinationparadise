@@ -1,0 +1,16 @@
+button {
+    font-family: var(--font-family-primary);
+    font-weight: 300;
+    text-align: center;
+    color: #fffffe;
+    background-image: var(--button-bg);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color var(--transition-default);
+  }
+  
+  button:hover {
+    color: var(--secondary-color);
+  }
+  

@@ -1,0 +1,39 @@
+@import './variables';
+@import './fonts';
+@import './typography';
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family-primary);
+    font-size: var(--font-size-base);
+    color: var(--primary-color);
+    height: 100vh;
+}
+
+button {
+    font-family: var(--font-family-primary);
+    font-weight: 300;
+    text-align: center;
+    color: #fffffe;
+    background-image: var(--button-bg);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color var(--transition-default);
+}
+
+button:hover {
+    color: var(--secondary-color);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--transition-default), transform var(--transition-default);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}

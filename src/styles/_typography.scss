@@ -1,0 +1,28 @@
+h1, h2, h3, h4, h5 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+h1 {
+  font-family: var(--font-family-cursive);
+  font-size: var(--font-size-h1);
+  font-weight: 500;
+  color: #fffffe;
+}
+
+h2 {
+  font-family: var(--font-family-secondary);
+  font-size: var(--font-size-h2);
+  font-weight: 300;
+  color: #094067;
+}
+
+h3, h4, h5 {
+  font-family: var(--font-family-secondary);
+  font-weight: 300;
+  color: #094067;
+}
+
+h3 { font-size: var(--font-size-h3); }
+h4 { font-size: var(--font-size-h4); }
+h5 { font-size: var(--font-size-h5); }

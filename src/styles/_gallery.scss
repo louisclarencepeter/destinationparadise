@@ -1,0 +1,40 @@
+// _gallery.scss
+.gallery {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    width: 100%;
+    padding: 1rem;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+    transition: transform 0.3s ease-in-out;
+
+    &:hover {
+      transform: scale(1.05);
+      z-index: 1;
+      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity var(--transition-default), transform var(--transition-default);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
