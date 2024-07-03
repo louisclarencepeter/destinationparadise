@@ -1,136 +1,19 @@
-/* fonts.css */
-@font-face {
-    font-family: 'Pacifico';
-    src: url("./assets/fonts/Pacifico/Pacifico-Regular.ttf") format("truetype");
-}
+/* Import fonts */
+@import '@/styles/fonts.css';
 
-@font-face {
-    font-family: 'Playfair Display';
-    src: url("./assets/fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf") format("truetype");
-}
+/* Import variables */
+@import '@/styles/variables.css';
 
-@font-face {
-    font-family: 'Kaushan Script';
-    src: url("./assets/fonts/Kaushan_Script/KaushanScript-Regular.ttf") format("truetype");
-}
+/* Import base styles */
+@import '@/styles/base.css';
 
-/* variables.css */
-:root {
-    --font-primary: 'Montserrat', sans-serif;
-    --font-secondary: 'Playfair Display', serif;
-    --font-accent: 'Kaushan Script', cursive;
-    
-    --color-primary: #153464;
-    --color-secondary: #094067;
-    --color-background: #fffffe;
-    --color-accent: #ef4565;
-    
-    --gradient-button: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
-    
-    --transition-default: all 0.3s ease-in-out;
-}
+/* Import utilities */
+@import '@/styles/utilities.css';
 
-/* base styles */
-body {
-    font-family: var(--font-primary);
-    color: var(--color-primary);
-    background-color: var(--color-background);
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: calc(1rem + 0.5vw);
-}
+/* Import component styles */
+@import '@/styles/components.css';
 
-/* typography */
-h1, h2, h3, h4, h5 {
-    font-family: var(--font-secondary);
-    text-align: center;
-    margin: 0 0 1rem;
-}
+/* Import media queries */
+@import '@/styles/media-queries.css';
 
-h1 {
-    font-family: var(--font-accent);
-    font-size: 4rem;
-    font-weight: 500;
-    color: var(--color-background);
-}
-
-h2 {
-    font-size: 2rem;
-    font-weight: 300;
-    color: var(--color-secondary);
-}
-
-h3 {
-    font-size: 1.5rem;
-    color: var(--color-background);
-}
-
-h4 {
-    font-size: 1.3rem;
-    color: var(--color-secondary);
-}
-
-h5 {
-    font-size: 1rem;
-    color: var(--color-secondary);
-}
-
-/* buttons */
-button {
-    font-family: var(--font-primary);
-    font-weight: 300;
-    text-align: center;
-    color: var(--color-background);
-    background-image: var(--gradient-button);
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: var(--transition-default);
-}
-
-button:hover {
-    color: var(--color-accent);
-}
-
-/* utilities */
-.reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* gallery */
-.gallery-container .gallery-image {
-    transition: var(--transition-default);
-    box-sizing: border-box;
-    position: relative;
-    padding: 1rem;
-    width: 90%;
-    height: 100%;
-    margin: 0 auto;
-}
-
-.gallery-container .gallery-image:hover {
-    transform: scale(1.05);
-    z-index: 1;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* media queries */
-@media screen and (min-width: 420px) {
-    h1 { font-size: 4rem; }
-    h2 { font-size: 2.5rem; }
-    h3 { font-size: 1.5rem; }
-}
-
-@media screen and (min-width: 768px) {
-    h1 { font-size: 5rem; }
-    h2 { font-size: 3rem; }
-    h3 { font-size: 2rem; }
-}
+/* Any additional App-specific styles can go here */

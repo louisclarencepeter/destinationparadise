@@ -1,0 +1,16 @@
+/* Gallery */
+.gallery-container .gallery-image {
+    transition: var(--transition-default);
+    box-sizing: border-box;
+    position: relative;
+    padding: 1rem;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.gallery-container .gallery-image:hover {
+    transform: scale(1.05);
+    z-index: 1;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}

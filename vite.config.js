@@ -15,4 +15,16 @@ export default defineConfig({
       },
     },
   },
+  css: {
+    preprocessorOptions: {
+      css: {
+        charset: false,
+      },
+    },
+  },
+  resolve: {
+    alias: {
+      '@': '/src',
+    },
+  },
 });
