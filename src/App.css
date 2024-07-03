@@ -2,7 +2,7 @@
 @import '@/styles/fonts.css';
 
 /* Import variables */
-@import '@/styles/variables.css';
+@import '@/styles/_variables.scss';
 
 /* Import base styles */
 @import '@/styles/base.css';

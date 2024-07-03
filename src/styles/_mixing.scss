@@ -1,0 +1,77 @@
+@mixin flex-center($justify: center, $align: center) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+  }
+  
+  @mixin sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+  
+  @mixin responsive-font-size {
+    @media screen and (min-width: 1024px) {
+      font-size: inherit;
+    }
+  
+    @media screen and (min-height: 1079px),
+      screen and (min-width: 1022px),
+      screen and (min-width: 1279px),
+      screen and (min-width: 1439px),
+      screen and (min-width: 1727px) {
+      font-size: 0.8rem;
+  
+      @media screen and (min-width: 1439px) {
+        font-size: 1rem;
+      }
+  
+      @media screen and (min-width: 1727px) {
+        font-size: 1.2rem;
+      }
+    }
+  }
+  
+  @mixin responsive-layout {
+    @media screen and (min-height: 1079px),
+      screen and (min-width: 1022px),
+      screen and (min-width: 1279px),
+      screen and (min-width: 1439px),
+      screen and (min-width: 1727px) {
+      .nav {
+        height: 4rem;
+        padding: 0;
+  
+        .store button {
+          font-size: 0.6rem;
+          margin-left: 0.4rem;
+        }
+  
+        .menu__logo {
+          height: 1rem;
+        }
+  
+        .classic-menu ul {
+          gap: 0.1rem;
+        }
+  
+        .menu__item {
+          font-size: 0.8rem;
+  
+          @media screen and (min-width: 1439px) {
+            font-size: 1rem;
+          }
+  
+          @media screen and (min-width: 1727px) {
+            font-size: 1.2rem;
+          }
+        }
+      }
+    }
+  }
