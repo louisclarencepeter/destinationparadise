@@ -1,3 +1,4 @@
+/* fonts.css */
 @font-face {
     font-family: 'Pacifico';
     src: url("./assets/fonts/Pacifico/Pacifico-Regular.ttf") format("truetype");
@@ -13,84 +14,86 @@
     src: url("./assets/fonts/Kaushan_Script/KaushanScript-Regular.ttf") format("truetype");
 }
 
+/* variables.css */
 :root {
-    font-size: calc(1rem + 0.5vw);
-    font-family: 'Montserrat', sans-serif;
-    color: #153464;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    background-color: #fffffe;
+    --font-primary: 'Montserrat', sans-serif;
+    --font-secondary: 'Playfair Display', serif;
+    --font-accent: 'Kaushan Script', cursive;
+    
+    --color-primary: #153464;
+    --color-secondary: #094067;
+    --color-background: #fffffe;
+    --color-accent: #ef4565;
+    
+    --gradient-button: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+    
+    --transition-default: all 0.3s ease-in-out;
 }
 
-.main-container {
+/* base styles */
+body {
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    background-color: var(--color-background);
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: calc(1rem + 0.5vw);
+}
+
+/* typography */
+h1, h2, h3, h4, h5 {
+    font-family: var(--font-secondary);
+    text-align: center;
+    margin: 0 0 1rem;
 }
 
 h1 {
-    font-family: 'Kaushan Script', cursive;
+    font-family: var(--font-accent);
     font-size: 4rem;
     font-weight: 500;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #fffffe;
+    color: var(--color-background);
 }
 
 h2 {
-    font-family: 'Playfair Display', serif;
     font-size: 2rem;
     font-weight: 300;
-    text-align: center;
-    color: #094067;
+    color: var(--color-secondary);
 }
 
 h3 {
-    font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
-    font-weight: 300;
-    margin: 0;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #fffffe;
+    color: var(--color-background);
 }
 
 h4 {
-    font-family: 'Playfair Display', serif;
     font-size: 1.3rem;
-    font-weight: 300;
-    margin: 0;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #094067;
+    color: var(--color-secondary);
 }
 
 h5 {
-    font-family: 'Playfair Display', serif;
     font-size: 1rem;
-    font-weight: 300;
-    margin: 0;
-    margin-bottom: 1rem;
-    text-align: center;
-    color: #094067;
+    color: var(--color-secondary);
 }
 
+/* buttons */
 button {
-    font-family: 'Montserrat', sans-serif;
+    font-family: var(--font-primary);
     font-weight: 300;
     text-align: center;
-    color: #fffffe;
-    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+    color: var(--color-background);
+    background-image: var(--gradient-button);
     border: none;
     padding: 10px 20px;
     cursor: pointer;
+    transition: var(--transition-default);
 }
 
 button:hover {
-    color: #ef4565;
+    color: var(--color-accent);
 }
 
+/* utilities */
 .reveal {
     opacity: 0;
     transform: translateY(20px);
@@ -102,49 +105,32 @@ button:hover {
     transform: translateY(0);
 }
 
+/* gallery */
+.gallery-container .gallery-image {
+    transition: var(--transition-default);
+    box-sizing: border-box;
+    position: relative;
+    padding: 1rem;
+    width: 90%;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.gallery-container .gallery-image:hover {
+    transform: scale(1.05);
+    z-index: 1;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* media queries */
 @media screen and (min-width: 420px) {
-    h1 {
-        font-size: 4rem;
-    }
-
-    h2 {
-        font-size: 2.5rem;
-    }
-
-    h3 {
-        font-size: 1.5rem;
-    }
+    h1 { font-size: 4rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 1.5rem; }
 }
 
 @media screen and (min-width: 768px) {
-    h1 {
-        font-size: 5rem;
-    }
-
-    h2 {
-        font-size: 3rem;
-    }
-
-    h3 {
-        font-size: 2rem;
-    }
-}
-
-
-.gallery-container {
-    .gallery-image {
-        transition: all 0.3s ease-in-out;
-        box-sizing: border-box;
-        position: relative;
-        padding: 1rem;
-        width: 90%;
-        height: 100%;
-        margin: 0 auto;
-    }
-
-    .gallery-image:hover {
-        transform: scale(1.05);
-        z-index: 1;
-        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
-    }
+    h1 { font-size: 5rem; }
+    h2 { font-size: 3rem; }
+    h3 { font-size: 2rem; }
 }
