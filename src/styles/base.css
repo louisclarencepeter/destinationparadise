@@ -15,7 +15,7 @@ h1, h2, h3, h4, h5 {
 }
 
 h1 {
-    font-family: var(--font-accent);
+    font-family: 'Kaushan Script'; /* Apply Kaushan Script to h1 */
     font-size: 4rem;
     font-weight: 500;
     color: var(--color-background);

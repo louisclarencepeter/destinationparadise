@@ -1,0 +1,47 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.cookie-info {
+    font-family: $font-primary;
+    color: $color-primary;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2em;
+
+    h2 {
+        font-family: $font-secondary;
+        color: $color-secondary;
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+    }
+
+    p {
+        margin-bottom: 1em;
+    }
+
+    a {
+        color: $color-secondary;
+        text-decoration: underline;
+        transition: $transition-default;
+
+        &:hover {
+            color: $color-accent;
+        }
+    }
+
+    button {
+        font-family: $font-primary;
+        font-weight: 300;
+        text-align: center;
+        color: $color-background;
+        background-color: $color-primary;
+        border: none;
+        padding: 0.5em 1em;
+        cursor: pointer;
+        transition: $transition-default;
+
+        &:hover {
+            background-color: $color-secondary;
+        }
+    }
+}

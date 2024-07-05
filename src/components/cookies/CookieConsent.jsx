@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
+import './CookieConsent.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite } from '@fortawesome/free-solid-svg-icons';
-import './CookieConsent.scss';
 import CookieModal from './CookieModal';
+import CookieInfo from './CookieInfo';
 
 const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -43,22 +44,7 @@ const CookieConsent = () => {
       {isVisible && (
         <div className="cookie-consent-banner">
           <div className="cookie-consent-content">
-            <p>
-              We use cookies to improve your experience on our site and to show you
-              personalized content. By using our site, you accept our use of cookies.
-              <a
-                href="/cookies-policy"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="Read our policy on how we use cookies"
-              >
-                Read our Cookies Policy
-              </a>
-              |
-              <a href="/privacy-policy">Privacy Policy</a>
-              |
-              <a href="/terms-of-service">Terms of Service</a>
-            </p>
+            <CookieInfo />
             <div className="cookie-consent-buttons">
               <button onClick={handleAccept}>Accept</button>
               <button onClick={handleDecline}>Decline</button>
@@ -67,9 +53,9 @@ const CookieConsent = () => {
         </div>
       )}
       {isIconVisible && (
-        <div className="cookie-icon" onClick={handleIconClick}>
+        <button className="cookie-icon" onClick={handleIconClick}>
           <FontAwesomeIcon icon={faCookieBite} />
-        </div>
+        </button>
       )}
       <CookieModal isOpen={isModalOpen} onClose={handleCloseModal} />
     </>

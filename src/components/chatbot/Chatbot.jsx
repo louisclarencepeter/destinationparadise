@@ -30,7 +30,7 @@ const Chatbot = () => {
       const userMessage = { content: input, role: 'user' };
       setMessages(prevMessages => [...prevMessages, userMessage]);
       setInput('');
-      
+
       try {
         const response = await axios.post('/.netlify/functions/chatbot', {
           message: input
@@ -61,78 +61,35 @@ const Chatbot = () => {
     }
   };
 
-  const handleClearHistory = () => {
-    const greetingDescription = config.parameters?.properties?.greeting?.description;
-    if (greetingDescription) {
-      const greetingMessage = {
-        content: greetingDescription,
-        role: 'assistant'
-      };
-      setMessages([greetingMessage]);
-      setInput('');
-    } else {
-      console.error('Greeting description is undefined');
-    }
-  };
-
-  const truncateMessages = (messages) => {
-    const maxTokens = 8192;
-    let tokenCount = 0;
-    const truncatedMessages = [];
-
-    for (let i = messages.length - 1; i >= 0; i--) {
-      const messageTokens = estimateTokenCount(messages[i].content);
-      if (tokenCount + messageTokens <= maxTokens) {
-        truncatedMessages.unshift(messages[i]);
-        tokenCount += messageTokens;
-      } else {
-        break;
-      }
-    }
-
-    return truncatedMessages;
-  };
-
-  const estimateTokenCount = (content) => {
-    if (typeof content === 'string') {
-      return content.split(' ').length + 4;
-    } else {
-      return 50;
-    }
-  };
-
-  const toggleChat = () => {
-    setIsOpen(!isOpen);
-  };
-
   return (
     <div className="chatbot-container">
-      <div className={`chatbot ${isOpen ? 'open' : ''}`} aria-live="polite" aria-atomic="false">
-        <div className="chatbot-header">
-          {isOpen && <button className="close-button" onClick={toggleChat}>×</button>}
+      <button className="chatbot-toggle" onClick={() => setIsOpen(!isOpen)}>
+        <FontAwesomeIcon icon={faCommentDots} />
+      </button>
+      {isOpen && (
+        <div className={`chatbot ${isOpen ? 'open' : ''}`}>
+          <div className="chatbot-header">
+            <button className="close-button" onClick={() => setIsOpen(false)}>
+              &times;
+            </button>
+          </div>
+          <div className="chatbot-messages">
+            {messages.map((message, index) => (
+              <div key={index} className={`message ${message.role}`}>
+                {message.content}
+              </div>
+            ))}
+          </div>
+          <div className="chatbot-input">
+            <input
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+            />
+            <button onClick={handleSend}>Send</button>
+          </div>
         </div>
-        <div className="chatbot-messages">
-          {truncateMessages(messages).map((message, index) => (
-            <div key={index} className={`chatbot-message ${message.role}`}>
-              {typeof message.content === 'string' ? message.content : message.content}
-            </div>
-          ))}
-        </div>
-        <div className="chatbot-input">
-          <input
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleSend()}
-          />
-          <button className="send-button" onClick={handleSend}>Send</button>
-          <button className="clear-button" onClick={handleClearHistory}>Clear History</button>
-        </div>
-      </div>
-      {!isOpen && (
-        <button className="chatbot-toggle" onClick={toggleChat} aria-label={`${isOpen ? 'Close' : 'Open'} Chatbot`}>
-          <FontAwesomeIcon icon={faCommentDots} size="2x" />
-        </button>
       )}
     </div>
   );

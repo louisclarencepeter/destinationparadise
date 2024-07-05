@@ -1,15 +1,6 @@
-:root {
-  --primary-color: #153464;
-  --primary-hover-color: #0056b3;
-  --secondary-color: #f44336;
-  --secondary-hover-color: #d32f2f;
-  --background-color: #fff;
-  --border-color: #ddd;
-  --box-shadow-color: rgba(0, 0, 0, 0.2);
-  --user-message-color: #dcf8c6;
-  --assistant-message-color: #f1f0f0;
-  --text-color: #333;
-}
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/common'; // Import the common styles
 
 .chatbot-container {
   position: fixed;
@@ -32,21 +23,11 @@
 }
 
 .chatbot-toggle {
-  background-color: var(--primary-color);
-  border: none;
-  padding: 1rem;
-  border-radius: 50%;
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 5px var(--box-shadow-color);
-  color: var(--background-color);
+  @extend .common-icon-style; // Use the common class
+
 
   &:hover {
-    background-color: var(--primary-hover-color);
+    background-color: $color-secondary;
   }
 
   @media (max-width: 480px) {
@@ -61,10 +42,10 @@
   flex-direction: column;
   width: 400px;
   height: 600px;
-  background: var(--background-color);
-  border: 1px solid var(--border-color);
+  background: $color-background;
+  border: 1px solid $color-secondary;
   border-radius: 8px;
-  box-shadow: 0 4px 8px var(--box-shadow-color);
+  box-shadow: 0 4px 8px $box-shadow-color;
   overflow: hidden;
   margin-right: 4rem;
 
@@ -85,19 +66,20 @@
   display: flex;
   justify-content: flex-end;
   padding: 8px;
-  background-color: var(--background-color);
-  border-bottom: 1px solid var(--border-color);
+  background-color: $color-background;
+  border-bottom: 1px solid $color-secondary;
 }
 
 .close-button {
   background: none;
   border: none;
-  color: var(--text-color);
+  color: $color-primary;
   font-size: 1.2rem;
   cursor: pointer;
+  transition: $transition-default;
 
   &:hover {
-    color: var(--secondary-hover-color);
+    color: $hover-color;
   }
 }
 
@@ -111,89 +93,10 @@
 
   span {
     a.whatsapp-link {
-      color: var(--primary-color);
+      color: $color-primary;
       margin: 0 10px;
-      display: inline-flex;
-      align-items: center;
-
-      &:hover {
-        color: var(--secondary-hover-color);
-      }
-    }
-  }
-
-  @media (max-width: 480px) {
-    padding-bottom: 20vh;
-  }
-}
-
-.chatbot-message {
-  margin-bottom: 10px;
-  padding: 10px;
-  border-radius: 4px;
-  max-width: 80%;
-  word-wrap: break-word;
-
-  &.user {
-    align-self: flex-end;
-    background-color: var(--user-message-color);
-  }
-
-  &.assistant {
-    align-self: flex-start;
-    background-color: var(--assistant-message-color);
-  }
-}
-
-.chatbot-input {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  border-top: 1px solid var(--border-color);
-
-  input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-  }
-
-  button {
-    padding: 10px;
-    margin-left: 10px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    color: var(--text-color);
-
-    &.send-button {
-      background-color: var(--primary-color);
-
-      &:hover {
-        background-color: var(--primary-hover-color);
-      }
-    }
-
-    &.clear-button {
-      background-color: var(--secondary-color);
-
-      &:hover {
-        background-color: var(--secondary-hover-color);
-      }
-    }
-  }
-
-  @media (max-width: 480px) {
-    padding: 5px;
-
-    input {
-      padding: 5px;
-    }
-
-    button {
-      padding: 5px;
-      margin-left: 5px;
     }
   }
 }
+
+@include responsive-layout;

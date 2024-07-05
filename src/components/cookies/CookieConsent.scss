@@ -1,80 +1,66 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+@import '../../styles/common'; // Import the common styles
+
 .cookie-consent-banner {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #ffffff;
-    color: #153464;
-    padding: 1em;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
-    z-index: 1000;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: $color-background;
+  color: $color-primary;
+  padding: 1em;
+  box-shadow: 0 -2px 5px $box-shadow-color;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .cookie-consent-content {
+    max-width: 90%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
+    text-align: center;
 
-    .cookie-consent-content {
-        max-width: 90%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
+    p {
+      margin: 0 0 1rem;
+      font-family: $font-primary;
+      font-size: 1rem;
+      color: $color-primary;
 
-        p {
-            margin: 0 0 1rem;
-            font-family: "Montserrat", sans-serif;
-            font-size: 1rem;
-            color: #153464;
-
-            a {
-                color: #094067;
-                text-decoration: underline;
-            }
-        }
+      a {
+        color: $color-secondary;
+        text-decoration: underline;
+      }
     }
+  }
 
-    .cookie-consent-buttons {
-        display: flex;
-        gap: 1em;
+  .cookie-consent-buttons {
+    display: flex;
+    gap: 1em;
 
-        button {
-            font-family: "Montserrat", sans-serif;
-            font-weight: 300;
-            text-align: center;
-            color: #ffffff;
-            background-color: #153464;
-            border: none;
-            padding: 0.5em 1em;
-            cursor: pointer;
+    button {
+      font-family: $font-primary;
+      font-weight: 300;
+      text-align: center;
+      color: $color-background;
+      background-color: $color-primary;
+      border: none;
+      padding: 0.5em 1em;
+      cursor: pointer;
+      transition: $transition-default;
 
-            &:hover {
-                color: #153464;
-                background-color: #e0e0e0;
-            }
-        }
+      &:hover {
+        color: $color-primary;
+        background-color: #e0e0e0;
+      }
     }
+  }
 }
 
 .cookie-icon {
-    position: fixed;
-    bottom: 1em;
-    left: 1em;
-    background-color: #153464;
-    padding: 0.5em;
-    border-radius: 50%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
-
-    svg {
-        color: #ffffff;
-        width: 2em;
-        height: 2em;
-
-        &:hover {
-            color: #ef4565;
-        }
-    }
+  @extend .common-icon-style; // Use the common class
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  background-image: $gradient-button;
 }

@@ -1,0 +1,22 @@
+@import './variables';
+@import './mixins';
+
+.common-icon-style {
+  background-color: $color-primary;
+  padding: 0.5em;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px $box-shadow-color;
+  cursor: pointer;
+  @include flex-center;
+
+  svg {
+    color: $color-background;
+    width: 2em; // Standardized size
+    height: 2em; // Standardized size
+    transition: $transition-default;
+
+    &:hover {
+      color: $color-accent;
+    }
+  }
+}
