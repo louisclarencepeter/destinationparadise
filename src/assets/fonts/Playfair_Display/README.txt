@@ -7,24 +7,24 @@ Playfair Display is a variable font with this axis:
   wght
 
 This means all the styles are contained in these files:
-  PlayfairDisplay-VariableFont_wght.ttf
-  PlayfairDisplay-Italic-VariableFont_wght.ttf
+  Playfair_Display/PlayfairDisplay-VariableFont_wght.ttf
+  Playfair_Display/PlayfairDisplay-Italic-VariableFont_wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles
 that aren’t available as static fonts. Not all apps support variable fonts, and
 in those cases you can use the static font files for Playfair Display:
-  static/PlayfairDisplay-Regular.ttf
-  static/PlayfairDisplay-Medium.ttf
-  static/PlayfairDisplay-SemiBold.ttf
-  static/PlayfairDisplay-Bold.ttf
-  static/PlayfairDisplay-ExtraBold.ttf
-  static/PlayfairDisplay-Black.ttf
-  static/PlayfairDisplay-Italic.ttf
-  static/PlayfairDisplay-MediumItalic.ttf
-  static/PlayfairDisplay-SemiBoldItalic.ttf
-  static/PlayfairDisplay-BoldItalic.ttf
-  static/PlayfairDisplay-ExtraBoldItalic.ttf
-  static/PlayfairDisplay-BlackItalic.ttf
+  Playfair_Display/static/PlayfairDisplay-Regular.ttf
+  Playfair_Display/static/PlayfairDisplay-Medium.ttf
+  Playfair_Display/static/PlayfairDisplay-SemiBold.ttf
+  Playfair_Display/static/PlayfairDisplay-Bold.ttf
+  Playfair_Display/static/PlayfairDisplay-ExtraBold.ttf
+  Playfair_Display/static/PlayfairDisplay-Black.ttf
+  Playfair_Display/static/PlayfairDisplay-Italic.ttf
+  Playfair_Display/static/PlayfairDisplay-MediumItalic.ttf
+  Playfair_Display/static/PlayfairDisplay-SemiBoldItalic.ttf
+  Playfair_Display/static/PlayfairDisplay-BoldItalic.ttf
+  Playfair_Display/static/PlayfairDisplay-ExtraBoldItalic.ttf
+  Playfair_Display/static/PlayfairDisplay-BlackItalic.ttf
 
 Get started
 -----------

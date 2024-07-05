@@ -1,45 +1,27 @@
-:root {
-    // Fonts
-    --font-primary: 'Montserrat', sans-serif;
-    --font-secondary: 'Playfair Display', serif;
-    --font-accent: 'Kaushan Script', cursive;
-    
-    // Colors
-    --color-primary: #153464;
-    --color-secondary: #094067;
-    --color-background: #fffffe;
-    --color-accent: #ef4565;
-    
-    // Gradients
-    --gradient-button: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
-    
-    // Transitions
-    --transition-default: all 0.3s ease-in-out;
-  }
-  
-  // SCSS Variables
-  $font-primary: var(--font-primary);
-  $font-secondary: var(--font-secondary);
-  $font-accent: var(--font-accent);
-  
-  $color-primary: var(--color-primary);
-  $color-secondary: var(--color-secondary);
-  $color-background: var(--color-background);
-  $color-accent: var(--color-accent);
-  
-  $gradient-button: var(--gradient-button);
-  
-  $transition-default: var(--transition-default);
-  
-  // Additional variables used in NavBar
-  $hover-color: $color-accent;
-  $menu-background: $color-background;
-  $box-shadow-color: rgba(0, 0, 0, 0.4);
-  
-  $transition-duration: 0.3s;
-  $transition-ease: 0.5s ease;
-  
-  // Additional variables for Chatbot
-  $color-user-message: #dcf8c6;
-  $color-assistant-message: #f1f0f0;
-  
+/* Fonts */
+$font-primary: var(--font-primary);
+$font-secondary: var(--font-secondary);
+$font-tertiary: var(--font-tertiary);
+
+/* Colors */
+$color-primary: var(--color-primary);
+$color-secondary: var(--color-secondary);
+$color-background: var(--color-background);
+$color-accent: var(--color-accent);
+
+/* Gradients */
+$gradient-button: var(--gradient-button);
+
+/* Transitions */
+$transition-default: var(--transition-default);
+
+/* Additional variables used in NavBar */
+$hover-color: $color-accent;
+$menu-background: $color-background;
+$box-shadow-color: rgba(0, 0, 0, 0.4);
+$transition-duration: 0.3s;
+$transition-ease: 0.5s ease;
+
+/* Additional variables for Chatbot */
+$color-user-message: #dcf8c6;
+$color-assistant-message: #f1f0f0;

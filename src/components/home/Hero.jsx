@@ -1,4 +1,3 @@
-// Hero.jsx
 import './Hero.scss';
 import backgroundVideo from '../../assets/videos/background.mp4';
 

@@ -1,3 +1,5 @@
+@import '../../styles/variables';
+
 .hero {
   display: flex;
   flex-direction: column;
@@ -33,8 +35,21 @@
     padding: 0 1rem;
   }
 
+  &__heading {
+    h1 {
+      font-family: $font-tertiary; /* Apply Kaushan Script to h1 */
+      font-size: 4rem;
+      font-weight: 500;
+      color: var(--color-background);
+    }
+
+    h3 {
+      font-family: $font-primary;
+    }
+  }
+
   &__description {
-    font-family: "Montserrat", sans-serif;
+    font-family: $font-primary;
     font-size: 1rem;
     font-weight: 300;
     margin: 0 1rem 1rem;

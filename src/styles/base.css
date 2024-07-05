@@ -1,5 +1,5 @@
 body {
-    font-family: var(--font-primary);
+    font-family: 'Playfair Display', serif; /* Use Playfair Display for body text */
     color: var(--color-primary);
     background-color: var(--color-background);
     margin: 0;
@@ -8,17 +8,17 @@ body {
     font-size: calc(1rem + 0.5vw);
 }
 
-h1, h2, h3, h4, h5 {
-    font-family: var(--font-secondary);
-    text-align: center;
-    margin: 0 0 1rem;
-}
-
 h1 {
-    font-family: 'Kaushan Script'; /* Apply Kaushan Script to h1 */
+    font-family: 'Kaushan Script', cursive; /* Apply Kaushan Script to h1 */
     font-size: 4rem;
     font-weight: 500;
     color: var(--color-background);
+}
+
+h2, h3, h4, h5 {
+    font-family: 'Montserrat', sans-serif; /* Use Montserrat for other headings */
+    text-align: center;
+    margin: 0 0 1rem;
 }
 
 h2 {
@@ -43,7 +43,7 @@ h5 {
 }
 
 button {
-    font-family: var(--font-primary);
+    font-family: var(--font-primary); /* Use Playfair Display for buttons */
     font-weight: 300;
     text-align: center;
     color: var(--color-background);

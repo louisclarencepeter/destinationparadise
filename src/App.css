@@ -16,4 +16,5 @@
 /* Import media queries */
 @import '@/styles/media-queries.css';
 
-/* Any additional App-specific styles can go here */
+/* Additional styles */
+@import './components/home/Hero.scss';

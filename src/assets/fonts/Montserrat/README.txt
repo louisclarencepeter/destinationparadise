@@ -7,30 +7,30 @@ Montserrat is a variable font with this axis:
   wght
 
 This means all the styles are contained in these files:
-  Montserrat-VariableFont_wght.ttf
-  Montserrat-Italic-VariableFont_wght.ttf
+  Montserrat/Montserrat-VariableFont_wght.ttf
+  Montserrat/Montserrat-Italic-VariableFont_wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles
 that aren’t available as static fonts. Not all apps support variable fonts, and
 in those cases you can use the static font files for Montserrat:
-  static/Montserrat-Thin.ttf
-  static/Montserrat-ExtraLight.ttf
-  static/Montserrat-Light.ttf
-  static/Montserrat-Regular.ttf
-  static/Montserrat-Medium.ttf
-  static/Montserrat-SemiBold.ttf
-  static/Montserrat-Bold.ttf
-  static/Montserrat-ExtraBold.ttf
-  static/Montserrat-Black.ttf
-  static/Montserrat-ThinItalic.ttf
-  static/Montserrat-ExtraLightItalic.ttf
-  static/Montserrat-LightItalic.ttf
-  static/Montserrat-Italic.ttf
-  static/Montserrat-MediumItalic.ttf
-  static/Montserrat-SemiBoldItalic.ttf
-  static/Montserrat-BoldItalic.ttf
-  static/Montserrat-ExtraBoldItalic.ttf
-  static/Montserrat-BlackItalic.ttf
+  Montserrat/static/Montserrat-Thin.ttf
+  Montserrat/static/Montserrat-ExtraLight.ttf
+  Montserrat/static/Montserrat-Light.ttf
+  Montserrat/static/Montserrat-Regular.ttf
+  Montserrat/static/Montserrat-Medium.ttf
+  Montserrat/static/Montserrat-SemiBold.ttf
+  Montserrat/static/Montserrat-Bold.ttf
+  Montserrat/static/Montserrat-ExtraBold.ttf
+  Montserrat/static/Montserrat-Black.ttf
+  Montserrat/static/Montserrat-ThinItalic.ttf
+  Montserrat/static/Montserrat-ExtraLightItalic.ttf
+  Montserrat/static/Montserrat-LightItalic.ttf
+  Montserrat/static/Montserrat-Italic.ttf
+  Montserrat/static/Montserrat-MediumItalic.ttf
+  Montserrat/static/Montserrat-SemiBoldItalic.ttf
+  Montserrat/static/Montserrat-BoldItalic.ttf
+  Montserrat/static/Montserrat-ExtraBoldItalic.ttf
+  Montserrat/static/Montserrat-BlackItalic.ttf
 
 Get started
 -----------
