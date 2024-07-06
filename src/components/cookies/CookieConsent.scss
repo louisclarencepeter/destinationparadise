@@ -37,6 +37,7 @@
   .cookie-consent-buttons {
     display: flex;
     gap: 1em;
+  
 
     button {
       font-family: $font-primary;
@@ -48,6 +49,7 @@
       padding: 0.5em 1em;
       cursor: pointer;
       transition: $transition-default;
+    
 
       &:hover {
         color: $color-primary;
@@ -63,4 +65,5 @@
   bottom: 1rem;
   left: 1rem;
   background-image: $gradient-button;
+  z-index: 1000;
 }
