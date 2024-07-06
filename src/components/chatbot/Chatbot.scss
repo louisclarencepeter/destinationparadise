@@ -1,6 +1,6 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
-@import '../../styles/common'; // Import the common styles
+@import '../../styles/common';
 
 .chatbot-container {
   position: fixed;
@@ -23,11 +23,10 @@
 }
 
 .chatbot-toggle {
-  @extend .common-icon-style; // Use the common class
+  @extend .common-icon-style;
 
-
-  &:hover {
-    background-color: $color-secondary;
+  &.hidden {
+    display: none !important;
   }
 
   @media (max-width: 480px) {
@@ -89,12 +88,60 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 
-  span {
-    a.whatsapp-link {
-      color: $color-primary;
-      margin: 0 10px;
+  .message {
+    max-width: 80%;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+
+    &.user {
+      align-self: flex-end;
+      background-color: $color-user-message;
+      color: black;
+    }
+
+    &.assistant {
+      align-self: flex-start;
+      background-color: $color-assistant-message;
+      color: black;
+    }
+
+    span {
+      a.whatsapp-link {
+        color: $color-primary;
+        margin: 0 10px;
+      }
+    }
+  }
+}
+
+.chatbot-input {
+  display: flex;
+  padding: 8px;
+  background-color: $color-background;
+  border-top: 1px solid $color-secondary;
+
+  input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid $color-secondary;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+
+  button {
+    padding: 8px 16px;
+    background-color: $color-primary;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: $transition-default;
+
+    &:hover {
+      background-color: $hover-color;
     }
   }
 }

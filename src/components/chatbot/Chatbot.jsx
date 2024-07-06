@@ -15,63 +15,64 @@ const Chatbot = () => {
     const greetingDescription = config.parameters?.properties?.greeting?.description;
 
     if (greetingDescription) {
-      const greetingMessage = {
-        content: greetingDescription,
-        role: 'assistant'
-      };
-      setMessages([greetingMessage]);
+      setMessages([{ content: greetingDescription, role: 'assistant' }]);
     } else {
       console.error('Greeting description is undefined');
     }
   }, []);
 
   const handleSend = async () => {
-    if (input.trim()) {
-      const userMessage = { content: input, role: 'user' };
-      setMessages(prevMessages => [...prevMessages, userMessage]);
-      setInput('');
+    if (!input.trim()) return;
 
-      try {
-        const response = await axios.post('/.netlify/functions/chatbot', {
-          message: input
-        });
+    const userMessage = { content: input, role: 'user' };
+    setMessages(prevMessages => [...prevMessages, userMessage]);
+    setInput('');
 
-        const assistantMessage = {
-          content: response.data.response,
-          role: 'assistant'
-        };
-        setMessages(prevMessages => [...prevMessages, assistantMessage]);
-
-      } catch (error) {
-        console.error('Error sending message:', error);
-        const errorMessage = {
-          content: (
-            <span>
-              Currently, this service is unavailable. Please contact us directly via WhatsApp
-              <a href="https://wa.me/message/EM3ESMRKYXLVK1" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="whatsapp-link">
-                <FontAwesomeIcon icon={faWhatsapp} size="lg" />
-              </a>
-              for assistance.
-            </span>
-          ),
-          role: 'assistant'
-        };
-        setMessages(prevMessages => [...prevMessages, errorMessage]);
-      }
+    try {
+      const response = await axios.post('/.netlify/functions/chatbot', { message: input });
+      const assistantMessage = { content: response.data.response, role: 'assistant' };
+      setMessages(prevMessages => [...prevMessages, assistantMessage]);
+    } catch (error) {
+      console.error('Error sending message:', error);
+      const errorMessage = {
+        content: (
+          <span>
+            Currently, this service is unavailable. Please contact us directly via WhatsApp
+            <a
+              href="https://wa.me/message/EM3ESMRKYXLVK1"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="WhatsApp"
+              className="whatsapp-link"
+            >
+              <FontAwesomeIcon icon={faWhatsapp} size="lg" />
+            </a>
+            for assistance.
+          </span>
+        ),
+        role: 'assistant'
+      };
+      setMessages(prevMessages => [...prevMessages, errorMessage]);
     }
+  };
+
+  const toggleChatbot = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleInputChange = (event) => {
+    setInput(event.target.value);
   };
 
   return (
     <div className="chatbot-container">
-      <button className="chatbot-toggle" onClick={() => setIsOpen(!isOpen)}>
+      <button className={`chatbot-toggle ${isOpen ? 'hidden' : ''}`} onClick={toggleChatbot}>
         <FontAwesomeIcon icon={faCommentDots} />
       </button>
       {isOpen && (
         <div className={`chatbot ${isOpen ? 'open' : ''}`}>
           <div className="chatbot-header">
-            <button className="close-button" onClick={() => setIsOpen(false)}>
-              &times;
-            </button>
+            <button className="close-button" onClick={toggleChatbot}>×</button>
           </div>
           <div className="chatbot-messages">
             {messages.map((message, index) => (
@@ -84,8 +85,8 @@ const Chatbot = () => {
             <input
               type="text"
               value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSend()}
+              onChange={handleInputChange}
+              onKeyPress={event => event.key === 'Enter' && handleSend()}
             />
             <button onClick={handleSend}>Send</button>
           </div>
