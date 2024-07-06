@@ -6,10 +6,10 @@
   align-items: center;
   justify-content: center;
   position: relative;
-  height: 93vh;
   margin-top: -6rem;
   padding-top: 6rem;
   overflow: hidden;
+  height: 100vh;
 
   &__background {
     position: absolute;
@@ -37,14 +37,15 @@
 
   &__heading {
     h1 {
-      font-family: $font-tertiary; /* Apply Kaushan Script to h1 */
-      font-size: 4rem;
+      font-family: $font-tertiary;
+      font-size: 3rem;
       font-weight: 500;
       color: var(--color-background);
     }
 
     h3 {
       font-family: $font-primary;
+      font-size: 1.2rem;
     }
   }
 
@@ -74,9 +75,30 @@
   }
 }
 
+
+@media screen and (min-width: 374px){
+  .hero {
+    height: 80h;
+
+    &__heading {
+      h1 {
+        font-size: 3.5rem;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+      }
+    }
+
+    &__description {
+      font-size: 1.2rem;
+    }
+  }
+  
+}
+
 @media screen and (min-width: 420px) {
   .hero {
-    height: 95vh;
 
     &__description {
       font-size: 1.3rem;
@@ -89,15 +111,27 @@
     &__content {
       padding: 0 2rem;
     }
-
-    &__description {
-      font-size: 1.5rem;
-    }
   }
 }
 
 @media screen and (min-width: 768px) {
   .hero {
-    height: 100vh;
+    &__content {
+      padding: 0 3rem;
+    }
+
+    &__heading {
+      h1 {
+        font-size: 6rem;
+      }
+
+      h3 {
+        font-size: 1.8rem;
+      }
+    }
+
+    &__description {
+      font-size: 1.5rem;
+    }
   }
 }
