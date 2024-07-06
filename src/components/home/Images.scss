@@ -18,3 +18,28 @@
     }
   }
 }
+
+@media screen and (min-width: 768px) {
+  .gallery {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .gallery {
+    width: 80%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .gallery {
+    width: 70%;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .gallery {
+    width: 60%;
+  }
+}
