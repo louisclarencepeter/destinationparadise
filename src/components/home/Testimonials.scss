@@ -118,27 +118,11 @@
 @media screen and (min-width: 1024px) {
   .testimonial {
     width: 70vw;
-
-    &__name {
-      font-size: 1.5rem;
-    }
-
-    &__review {
-      font-size: 1.5rem;
-    }
   }
 }
 
 @media screen and (min-width: 1200px) {
   .testimonial {
     width: 60vw;
-
-    &__name {
-      font-size: 1.7rem;
-    }
-
-    &__review {
-      font-size: 1.7rem;
-    }
   }
 }
