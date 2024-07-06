@@ -18,7 +18,7 @@
 
 .excursion-card {
   width: 90%;
-  height: 40vh;
+  height: 95vh;
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 16px -5px rgba(0, 0, 0, 0.08);
@@ -107,28 +107,36 @@
   }
 }
 
-@media screen and (min-width: 420px){
+@media screen and (min-width: 360px){
 
   .excursion-card {
-    height: 30vh;
+    height: 70vh;
+  }
+  
+}
+
+@media screen and (min-width: 375px){
+
+  .excursion-card {
+    height: 60vh;
   }
   
 }
 
 
-/* @media screen and (min-width: 569px){
+
+@media screen and (min-width: 410px){
 
   .excursion-card {
     height: 45vh;
   }
   
-} */
-
+}
 
 @media screen and (min-width: 665px) {
 
   .excursion-card {
-    height: 40vh;
+    height: 50vh;
   }
   .excursions__grid {
     grid-template-columns: repeat(2, 1fr);
