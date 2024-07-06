@@ -64,6 +64,10 @@
     height: 3rem;
     width: auto;
     margin: 0 2.5rem 0 0;
+
+    @media screen and (min-width: 1024px) {
+      margin: 0;
+    }
   }
 }
 
