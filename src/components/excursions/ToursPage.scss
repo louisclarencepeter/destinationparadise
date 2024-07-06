@@ -141,7 +141,7 @@
     padding: 0.4rem;
     border-radius: 0.9rem;
     cursor: pointer;
-    width: 50%;
+    width: 30%;
     margin: 0 auto;
     text-align: center;
     transition: opacity 0.3s ease, color 0.3s ease, background-color 0.3s ease;
@@ -189,3 +189,45 @@
     }
   }
 }
+
+@media screen and (min-width: 768px) {
+  .tour-card {
+    h3 {
+      font-size: 1.5rem;
+    }
+
+    p {
+      font-size: 1rem;
+    }
+
+    h4 {
+      font-size: 1rem;
+    }
+
+    ul {
+      font-size: 1rem;
+    }
+
+    .learn-more-btn {
+      font-size: 0.5rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+
+  .tours-page {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+
+}
+
+@media screen and (min-width: 1440px) {
+  .tours-page {
+    width: 60%;
+  }
+}
+
+

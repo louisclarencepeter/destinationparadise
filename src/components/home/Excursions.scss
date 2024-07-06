@@ -253,7 +253,7 @@
 @media screen and (min-width: 1440px){
 
   .excursions {
-    max-width: 80%;
+    max-width: 60%;
   }
 
   .excursion-card {
@@ -267,6 +267,11 @@
     &__text {
       font-size: 1rem;
     }
+
+    &__image {
+      height: 70%;
+    }
+
   }
 
   .excursion-card:nth-child(3) {
@@ -278,9 +283,6 @@
 
 @media screen and (min-width: 1600px) {
 
-  .excursions {
-    max-width: 70%;
-  }
 
   .excursion-card {
     height: 35vh;
@@ -305,9 +307,6 @@
 
 @media screen and (min-width: 1920px) {
 
-  .excursions {
-    max-width: 50%;
-  }
 
   .excursion-card {
     height: 45vh;
@@ -333,11 +332,13 @@
 @media screen and (min-width: 2560px){
 
   .excursions {
-    max-width: 40%;
+    height: 35vh;
+    padding: 2rem;
   }
 
+
   .excursion-card {
-    height: 35vh;
+    height: 25vh;
     width: 100%;
     max-width: 400px;
 

@@ -73,3 +73,29 @@
     }
   }
 }
+
+@media screen and (min-width: 768px) {
+  .store-container {
+    padding: 3rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .store-container {
+    padding: 4rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .store-container {
+    padding: 5rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .store-container {
+    padding: 6rem;
+    width: 60%;
+    margin: 0 auto;
+  }
+}

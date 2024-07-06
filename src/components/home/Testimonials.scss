@@ -67,13 +67,27 @@
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    line-clamp: 3;
     -webkit-box-orient: vertical;
     transition: height 0.3s ease;
 
     &.expanded {
       height: auto;
       -webkit-line-clamp: unset;
+      -webkit-box-orient: unset;
+      -webkit-line-clamp: unset;
+      -webkit-box-orient: unset;
+      -moz-box-orient: unset;
+      -ms-box-orient: unset;
+      -o-box-orient: unset;
+      box-orient: unset;
+      -webkit-line-clamp: unset;
+      -webkit-box-orient: unset;
+      -moz-box-orient: unset;
+      -ms-box-orient: unset;
+      -o-box-orient: unset;
+      box-orient: unset;
+      line-clamp: unset;
     }
   }
 
@@ -97,6 +111,34 @@
 
     &__review {
       font-size: 1.3rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .testimonial {
+    width: 70vw;
+
+    &__name {
+      font-size: 1.5rem;
+    }
+
+    &__review {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .testimonial {
+    width: 60vw;
+
+    &__name {
+      font-size: 1.7rem;
+    }
+
+    &__review {
+      font-size: 1.7rem;
     }
   }
 }
