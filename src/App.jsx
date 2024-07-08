@@ -12,6 +12,7 @@ const AboutPage = lazy(() => import('./components/aboutus/AboutPage'));
 const ToursPage = lazy(() => import('./components/excursions/ToursPage'));
 const MyImageGallery = lazy(() => import('./components/gallery/MyImageGallery'));
 const Store = lazy(() => import('./components/store/Store'));
+const PolicyInfo = lazy(() => import('./components/cookies/PolicyInfo'));
 
 function App() {
   useEffect(() => {
@@ -34,6 +35,9 @@ function App() {
               <Route path="/aboutus" element={<AboutPage />} />
               <Route path="/gallery" element={<MyImageGallery />} />  
               <Route path="/booking" element={<Store />} />
+              <Route path="/cookies-policy" element={<PolicyInfo />} />
+              <Route path="/privacy-policy" element={<PolicyInfo />} />
+              <Route path="/terms-of-service" element={<PolicyInfo />} />
             </Routes>
           </Suspense>
         </Layout>

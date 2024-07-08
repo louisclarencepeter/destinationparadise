@@ -1,0 +1,76 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.policy-info {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  h1 {
+    font-family: var(--font-primary);
+    color: var(--color-primary);
+    font-size: 2.5em;
+    margin-bottom: 1em;
+    text-align: center;
+
+    @media (max-width: 768px) {
+      font-size: 2em;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.5em;
+    }
+  }
+
+  h2 {
+    font-family: var(--font-secondary);
+    color: var(--color-secondary);
+    font-size: 1.8em;
+    margin-top: 2em;
+    margin-bottom: 1em;
+
+    @media (max-width: 768px) {
+      font-size: 1.5em;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.2em;
+    }
+  }
+
+  p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+    font-size: 1em;
+
+    @media (max-width: 768px) {
+      font-size: 0.95em;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.9em;
+    }
+  }
+
+  a {
+    color: var(--color-secondary);
+    text-decoration: underline;
+    transition: var(--transition-default);
+
+    &:hover {
+      color: var(--color-accent);
+    }
+  }
+
+  section {
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem;
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem;
+  }
+}
