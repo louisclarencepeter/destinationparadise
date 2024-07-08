@@ -2,46 +2,45 @@
 @import '../../styles/mixins';
 
 .cookie-info {
-    font-family: $font-primary;
-    color: $color-primary;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 2em;
+  font-family: $font-primary;
+  color: $color-primary;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center; 
+  @media (max-width: 768px) {
+    padding: 1em;
+  }
 
-    h2 {
-        font-family: $font-secondary;
-        color: $color-secondary;
-        margin-top: 1.5em;
-        margin-bottom: 0.5em;
+  @media (max-width: 480px) {
+    padding: 0.5em;
+  }
+
+  p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+
+    @media (max-width: 768px) {
+      font-size: 0.95em;
     }
 
-    p {
-        margin-bottom: 1em;
+    @media (max-width: 480px) {
+      font-size: 0.8em;
+      margin-bottom: 0.8em;
     }
 
     a {
-        color: $color-secondary;
-        text-decoration: underline;
-        transition: $transition-default;
+      color: $color-secondary;
+      text-decoration: underline;
+      transition: $transition-default;
 
-        &:hover {
-            color: $color-accent;
-        }
+      &:hover {
+        color: $color-accent;
+      }
+
+      @media (max-width: 480px) {
+        display: inline-block;
+        margin-top: 0.3em;
+      }
     }
-
-    button {
-        font-family: $font-primary;
-        font-weight: 300;
-        text-align: center;
-        color: $color-background;
-        background-color: $color-primary;
-        border: none;
-        padding: 0.5em 1em;
-        cursor: pointer;
-        transition: $transition-default;
-
-        &:hover {
-            background-color: $color-secondary;
-        }
-    }
+  }
 }

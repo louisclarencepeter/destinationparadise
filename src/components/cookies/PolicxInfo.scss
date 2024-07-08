@@ -1,0 +1,57 @@
+// PolicyInfo.scss
+.policy-info {
+    p {
+      margin-bottom: 1em;
+      line-height: 1.6;
+  
+      a {
+        color: $color-secondary;
+        text-decoration: underline;
+        transition: $transition-default;
+  
+        &:hover {
+          color: $color-accent;
+        }
+      }
+    }
+  
+    h2 {
+      font-family: $font-secondary;
+      color: $color-secondary;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+  
+      @media (max-width: 768px) {
+        font-size: 1.2em;
+        margin-top: 1em;
+        margin-bottom: 0.4em;
+      }
+  
+      @media (max-width: 480px) {
+        font-size: 0.9em;
+        margin-top: 0.8em;
+        margin-bottom: 0.3em;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      p {
+        font-size: 0.95em;
+      }
+  
+      a {
+        font-size: 0.95em;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      p {
+        font-size: 0.8em;
+      }
+  
+      a {
+        font-size: 0.8em;
+      }
+    }
+  }
+  
