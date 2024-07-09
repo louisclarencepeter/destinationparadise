@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import './Excursions.scss';
@@ -31,6 +31,7 @@ const TRIPS = [
 ];
 
 const ExcursionCard = ({ trip, index }) => {
+  const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef(null);
 
   useEffect(() => {
@@ -38,8 +39,7 @@ const ExcursionCard = ({ trip, index }) => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          card.style.animationDelay = `${index * 0.1}s`;
-          card.classList.add('animate');
+          setIsVisible(true);
           observer.unobserve(entry.target);
         }
       },
@@ -55,10 +55,14 @@ const ExcursionCard = ({ trip, index }) => {
         observer.unobserve(card);
       }
     };
-  }, [index]);
+  }, []);
 
   return (
-    <article ref={cardRef} className="excursion-card">
+    <article 
+      ref={cardRef} 
+      className={`excursion-card ${isVisible ? 'animate' : ''}`}
+      style={{ animationDelay: `${index * 0.1}s` }}
+    >
       <img src={trip.image} alt={trip.title} className="excursion-card__image" />
       <div className="excursion-card__content">
         <h3 className="excursion-card__title">{trip.title}</h3>
