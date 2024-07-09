@@ -1,348 +1,161 @@
-.excursions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  width: 90%;
-  margin: 0 auto;
-  padding: 1rem;
-}
+// Variables
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$card-min-width: 280px;
+$grid-gap: 2rem;
 
-.excursions__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1rem;
-  width: 100%;
-  justify-items: center;
+.excursions {
+  width: 90%;
+  max-width: 1200px;
+  margin: 4rem auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  &__title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--color-secondary);
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: $grid-gap;
+    
+    @media (min-width: $breakpoint-tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (min-width: $breakpoint-desktop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
 }
 
 .excursion-card {
-  width: 90%;
-  height: 95vh;
-  position: relative;
+  background-color: var(--color-background);
+  border-radius: 0.5rem;
   overflow: hidden;
-  box-shadow: 0 0 16px -5px rgba(0, 0, 0, 0.08);
-  transition: all 0.35s;
-  border-radius: 1rem;
-  max-width: 400px; /* Ensures cards don't exceed this width */
-
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  
+  &.animate {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+  
   &:hover {
-    .excursion-card__content {
-      transform: translateY(-10%);
-      transition: all 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
-    }
-
-    .excursion-card__link {
-      opacity: 1;
-      transform: translateY(0);
-      transition: all 0.3s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
-    }
-
-    .excursion-card__image {
-      transform: scale(1.05);
-      transition: 0.35s 0.1s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
-    }
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
-
+  
+  &__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  &:hover &__image {
+    transform: scale(1.05);
+  }
+  
   &__content {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    height: 50%;
+    padding: 1.5rem;
     text-align: center;
-    background-color: #fffffe;
-    padding: 1rem;
-    transform: translateY(0);
-    transition: all 0.35s 0.35s cubic-bezier(0.1, 0.72, 0.4, 0.97);
-    z-index: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
   }
-
+  
   &__title {
-    font-family: "Montserrat", sans-serif;
-    margin: 0;
-    color: #005f73;
-    font-size: 1.2rem;
-    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
   }
-
+  
+  &:hover &__title {
+    color: var(--color-accent);
+  }
+  
   &__text {
-    font-family: "Montserrat", sans-serif;
-    font-size: 1rem;
-    padding: 0.5rem 0;
-    margin: 0 1rem;
-    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: calc(0.8rem + 0.5vw);
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  
   }
-
+  
   &__link {
+    font-family: 'Playfair Display', serif;
+    font-size: calc(0.7rem + 0.25vw);
+    color: var(--color-accent);
+    text-decoration: none;
     display: inline-flex;
     align-items: center;
-    text-decoration: none;
-    color: #ef4565;
-    opacity: 0;
-    transition: all 0.35s;
-    font-size: 1rem;
-    margin-top: 1rem;
-
+    transition: color 0.3s ease, transform 0.3s ease;
+    
+    &:hover {
+      color: var(--color-secondary);
+      transform: translateX(5px);
+    }
+    
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+    
     &:hover svg {
       transform: translateX(4px);
     }
-
-    svg {
-      width: 18px;
-      margin-left: 4px;
-      transition: transform 0.3s;
-    }
-  }
-
-  &__image {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    object-position: center;
-    transform: scale(1.2);
-    transition: 0.35s 0.35s transform cubic-bezier(0.1, 0.72, 0.4, 0.97);
   }
 }
 
-@media screen and (min-width: 360px){
-
-  .excursion-card {
-    height: 60vh;
-  }
-  
-}
-
-@media screen and (min-width: 375px){
-
-  .excursion-card {
-    height: 60vh;
-  }
-}
-
-
-
-@media screen and (min-width: 410px){
-
-  .excursion-card {
-    height: 50vh;
-  }
-  
-}
-
-@media screen and (min-width: 665px) {
-
-  .excursion-card {
-    height: 35vh;
-  }
+// Specific styles for 2-column layout (including 770px width)
+@media (min-width: $breakpoint-tablet) and (max-width: calc(#{$breakpoint-desktop} - 1px)) {
   .excursions__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-
-  .excursion-card:nth-child(3) {
-    grid-column: span 2;
-    justify-self: center;
+    .excursion-card:last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      justify-self: center;
+      max-width: calc(50% - #{$grid-gap / 2});
+    }
   }
 }
 
-@media screen and (min-width: 767px) {
+// Styles for 3-column layout
+@media (min-width: $breakpoint-desktop) {
   .excursions__grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-  }
-
-  .excursion-card {
-    width: 100%;
-    height: 50vh;
-
-    &__content {
-      padding: 1.5rem;
+    .excursion-card:last-child:nth-child(3n-1) {
+      grid-column: 2;
     }
-
-    &__title {
-      font-size: 1.2rem;
+    .excursion-card:last-child:nth-child(3n-2) {
+      grid-column: 2 / span 2;
+      max-width: calc(66.66% - #{$grid-gap / 3});
+      justify-self: center;
     }
-
-    &__text {
-      font-size: 1.2rem;
-      padding: 1rem 0;
-      margin: 0 1rem;
-    }
-
-    &__link {
-      font-size: 1rem;
-      margin-top: 1.5rem;
-
-      svg {
-        width: 24px;
-        margin-left: 6px;
-      }
-    }
-
-    &__image {
-      height: 60%;
-    }
-  }
-
-  .excursion-card:nth-child(3) {
-    grid-column: span 2;
-    justify-self: center;
   }
 }
 
-@media screen and (min-width: 819px) {
-
-  .excursion-card {
-    height: 40vh;
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
   }
-}
-
-@media screen and (min-width: 1023px){
-  
-  
-    .excursion-card {
-      height: 25vh;
-  
-      &__title {
-        font-size: 1.2rem;
-      }
-  
-      &__text {
-        font-size: 1rem;
-      }
-    }
-}
-
-
-@media screen and (min-width: 1280px) {
-
-  .excursions {
-    max-width: 90%;
+  to {
+    opacity: 1;
+    transform: none;
   }
-  .excursions__grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .excursion-card {
-
-    height: 45vh;
-    &__title {
-      font-size: 1.2rem;
-    }
-
-    &__text {
-      font-size: 1rem;
-    }
-  }
-
-  .excursion-card:nth-child(3) {
-    grid-column: span 1; 
-    justify-self: center;
-    max-width: 400px;
-  }
-}
-
-@media screen and (min-width: 1440px){
-
-  .excursions {
-    max-width: 80%;
-  }
-
-  .excursion-card {
-
-    height: 45vh;
-    width: 100%;
-
-    &__title {
-      font-size: 1.2rem;
-    }
-
-    &__text {
-      font-size: 1rem;
-    }
-
-    &__image {
-      height: 70%;
-    }
-
-  }
-
-  .excursion-card:nth-child(3) {
-    grid-column: span 1; 
-    justify-self: center;
-    max-width: 400px;
-  }
-}
-
-@media screen and (min-width: 1600px) {
-
-  .excursions {
-    max-width: 60%;
-  }
-
-
-  .excursion-card {
-    height: 45vh;
-    width: 100%;
-    max-width: 400px;
-
-    &__title {
-      font-size: 1.2rem;
-    }
-
-    &__text {
-      font-size: 1rem;
-    }
-  }
-
-  .excursion-card:nth-child(3) {
-    grid-column: span 1; 
-    justify-self: center;
-    max-width: 400px;
-  }
-}
-
-@media screen and (min-width: 1919px) {
-
-
-  .excursion-card {
-    width: 100%;
-    height: 45vh;
-    max-width: 400px;
-
-    &__title {
-      font-size: 1.3rem;
-    }
-
-    &__text {
-      font-size: 1.2rem;
-    }
-  }
-
-}
-
-@media screen and (min-width: 2560px){
-
-  .excursions {
-    height: 50vh;
-    padding: 2rem;
-  }
-
-
-  .excursion-card {
-    width: 100%;
-    max-width: 400px;
-
-    &__title {
-      font-size: 1.5rem;
-    }
-
-    &__text {
-      font-size: 1.3rem;
-    }
-  }
-  
 }

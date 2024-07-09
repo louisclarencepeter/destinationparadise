@@ -22,7 +22,7 @@ function App() {
       window.removeEventListener("scroll", revealElements);
     };
   }, []);
-
+  
   return (
     <Router>
       <ScrollToTop />
