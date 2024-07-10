@@ -65,8 +65,8 @@ const ExcursionCard = ({ trip, index }) => {
     >
       <img src={trip.image} alt={trip.title} className="excursion-card__image" />
       <div className="excursion-card__content">
-        <h3 className="excursion-card__title">{trip.title}</h3>
-        <p className="excursion-card__text">{trip.description}</p>
+        <h3 className="excursion-card__title reveal">{trip.title}</h3>
+        <p className="excursion-card__text reveal">{trip.description}</p>
         <Link to={`/excursions#${trip.id}`} className="excursion-card__link" aria-label={`Learn more about ${trip.title}`}>
           {trip.linkText}
           <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
@@ -117,7 +117,7 @@ const Excursions = () => {
 
   return (
     <section ref={sectionRef} className="excursions">
-      <h2 className="excursions__title">Roaming Retreats</h2>
+      <h2 className="excursions__title reveal">Roaming Retreats</h2>
       <div className="excursions__grid">
         {TRIPS.map((trip, index) => (
           <ExcursionCard key={trip.id} trip={trip} index={index} />
