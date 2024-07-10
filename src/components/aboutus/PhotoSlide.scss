@@ -1,78 +1,28 @@
 .photo-slide {
-  margin-bottom: 1rem;
   padding: 0.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 300px;
+  height: 0;
+  padding-bottom: 56.25%; // This creates a 16:9 aspect ratio
+  position: relative;
   overflow: hidden;
 
-  @media (max-width: 768px) {
-    height: 250px;
-  }
-
-  @media (max-width: 480px) {
-    height: 200px;
-  }
-
-  .image-fade-in {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-
   .slick-slider {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 
-    .slick-arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      z-index: 1;
-    }
-
-    .slick-prev {
-      left: 10px;
-    }
-
-    .slick-next {
-      right: 10px;
-    }
-
-    .slick-dots {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-    }
-
-    .slick-list {
-      height: 100%;
-    }
-
-    .slick-track {
-      display: flex;
-      align-items: center;
+    .slick-list,
+    .slick-track,
+    .slick-slide,
+    .slick-slide > div {
       height: 100%;
     }
 
     .slick-slide {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-
       > div {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
         height: 100%;
         padding: 0.25rem;
-        margin: 0;
       }
 
       img {
@@ -83,5 +33,35 @@
         border-radius: 0.5rem;
       }
     }
+
+    .slick-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+
+      &.slick-prev { left: 10px; }
+      &.slick-next { right: 10px; }
+    }
+
+    .slick-dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
+
+/* // Responsive adjustments
+@media (max-width: 768px) {
+  .photo-slide {
+    padding-bottom: 75%; // 4:3 aspect ratio for smaller screens
+  }
+}
+
+@media (max-width: 480px) {
+  .photo-slide {
+    padding-bottom: 100%; // 1:1 aspect ratio for very small screens
+  }
+} */
