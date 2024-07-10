@@ -1,5 +1,8 @@
 // Images.scss
 .gallery {
+
+  margin: 2rem auto;
+
   &__title {
     margin: 2rem;
   }
@@ -21,7 +24,6 @@
 
 @media screen and (min-width: 1440px) {
   .gallery {
-    width: 60%;
-    margin: 0 auto;
+    width: 60%;   
   }
 }
