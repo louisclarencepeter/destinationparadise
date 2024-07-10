@@ -39,12 +39,17 @@ $grid-gap: 2rem;
 }
 
 .excursions {
-  width: 90%;
-  max-width: 1200px;
-  margin: 4rem auto;
+  width: 95%;
+  margin: 1rem auto;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  @media screen and (min-width: 1440px) {
+    width: 60%;
+    margin: 0 auto;
+    
+  }
   
   &.animate {
     opacity: 1;
@@ -57,7 +62,7 @@ $grid-gap: 2rem;
     font-weight: 300;
     color: var(--color-secondary);
     text-align: center;
-    margin-bottom: 2rem;
+    margin: 2rem;
   }
   
   &__grid {
