@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import './CookieConsent.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCookieBite } from '@fortawesome/free-solid-svg-icons';
 import CookieModal from './CookieModal';
-import CookieInfo from './CookieInfo';
 
 const CookieConsent = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,13 +31,29 @@ const CookieConsent = () => {
     setIsIconVisible(true);
   };
 
-  const handleIconClick = () => {
-    setIsModalOpen(true);
-  };
+  const handleIconClick = () => setIsModalOpen(true);
+  const handleCloseModal = () => setIsModalOpen(false);
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
+  const CookieInfo = () => (
+    <div className="cookie-info">
+      <p>
+        By continuing to use our website, you acknowledge that you have read and
+        understood our{" "}
+        <Link to="/cookies-policy" rel="noopener noreferrer">
+          Cookies Policy
+        </Link>
+        ,{" "}
+        <Link to="/privacy-policy" rel="noopener noreferrer">
+          Privacy Policy
+        </Link>
+        , and{" "}
+        <Link to="/terms-of-service" rel="noopener noreferrer">
+          Terms of Service
+        </Link>
+        , and you consent to the practices described therein.
+      </p>
+    </div>
+  );
 
   return (
     <>

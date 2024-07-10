@@ -1,3 +1,5 @@
+/*base.css*/
+
 body {
     font-family: 'Playfair Display', serif; /* Use Playfair Display for body text */
     color: var(--color-primary);

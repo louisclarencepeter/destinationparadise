@@ -1,11 +1,11 @@
 @import '../../styles/variables';
 @import '../../styles/mixins';
-@import '../../styles/common'; // Import the common styles
+@import '../../styles/base.css';
+@import '../../styles/common';
 
 .cookie-consent-banner {
   position: fixed;
   bottom: 0;
-  width: 100%;
   background-color: $color-background;
   color: $color-primary;
   padding: 1em;
@@ -14,57 +14,68 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-x: hidden; 
 
   .cookie-consent-content {
-    max-width: 90%;
+    max-width: 90vw; 
     display: flex;
     flex-direction: column;
+    align-items: center;
     text-align: center;
 
-    p {
-      margin: 0 0 1rem;
-      font-family: $font-primary;
-      font-size: 1rem;
-      color: $color-primary;
-
-      a {
-        color: $color-secondary;
-        text-decoration: underline;
-      }
-    }
-  }
-
-  .cookie-consent-buttons {
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-    gap: 1em;
-  
-    button {
-      font-family: $font-primary;
-      font-weight: 300;
-      text-align: center;
-      color: $color-background;
-      background-color: $color-primary;
-      border: none;
-      padding: 0.5em 1em;
-      cursor: pointer;
-      transition: $transition-default;
-  
-      &:hover {
+    .cookie-info {
+      margin-bottom: 1em;
+      p {
+        margin: 0;
+        font-family: $font-primary;
+        font-size: 1rem;
         color: $color-primary;
-        background-color: #e0e0e0;
+
+        a {
+          color: $color-secondary;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .cookie-consent-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1em;
+
+      button {
+        font-family: $font-primary;
+        font-weight: 300;
+        text-align: center;
+        color: $color-background;
+        background-color: $color-primary;
+        border: none;
+        padding: 0.5em 1em;
+        cursor: pointer;
+        transition: $transition-default;
+
+        &:hover {
+          color: $color-primary;
+          background-color: #e0e0e0;
+        }
       }
     }
   }
-  
 }
 
 .cookie-icon {
-  @extend .common-icon-style; // Use the common class
+  @extend .common-icon-style;
   position: fixed;
   bottom: 1rem;
   left: 1rem;
   background-image: $gradient-button;
-  z-index: 1000;
+  border: none;
+  padding: 0.5em;
+  cursor: pointer;
+  z-index: 999;
+
+  .fa-cookie-bite {
+    color: $color-background;
+  }
 }
