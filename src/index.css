@@ -10,14 +10,14 @@ body {
 :root {
   /* Fonts */
   --font-primary: 'Playfair Display', serif;
-  --font-secondary: 'Pacifico';
+  --font-secondary: 'Montserrat', sans-serif;
   --font-tertiary: 'Kaushan Script';
   
   /* Colors */
   --color-primary: #153464;
   --color-secondary: #094067;
   --color-background: #fffffe;
-  --color-accent: #ef4565;
+  --color-accent: #f97316;
   
   /* Gradients */
   --gradient-button: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);

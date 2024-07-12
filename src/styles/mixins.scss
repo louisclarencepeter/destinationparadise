@@ -75,3 +75,26 @@
     }
   }
 }
+
+@mixin button-styles {
+  border-radius: 0.9rem;
+  padding: 0.4rem;
+  font-size: 0.7rem;
+  background-image: $gradient-button;
+  color: $color-background;
+  border: none;
+  font-family: $font-primary;
+  cursor: pointer;
+  transition: $transition-default;
+
+  &:hover {
+    color: $hover-color;
+  }
+
+  i {
+    margin-right: 0.5rem;
+    text-decoration: none;
+    transition: $transition-default;
+  }
+}
+

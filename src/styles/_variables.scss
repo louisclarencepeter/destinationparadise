@@ -1,19 +1,19 @@
 /* Fonts */
-$font-primary: var(--font-primary);
-$font-secondary: var(--font-secondary);
-$font-tertiary: var(--font-tertiary);
+$font-primary: 'Playfair Display', serif;
+$font-secondary: 'Montserrat', sans-serif;
+$font-tertiary: 'Kaushan Script', cursive;
 
 /* Colors */
 $color-primary: #153464;
 $color-secondary: #094067;
 $color-background: #fffffe;
-$color-accent: #ef4565;
+$color-accent: #f97316; // Orange
 
 /* Gradients */
-$gradient-button: var(--gradient-button);
+$gradient-button: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
 
 /* Transitions */
-$transition-default: var(--transition-default);
+$transition-default: all 0.3s ease-in-out;
 
 /* Additional variables used in NavBar */
 $hover-color: $color-accent;

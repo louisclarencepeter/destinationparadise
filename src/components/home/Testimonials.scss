@@ -1,19 +1,22 @@
-// Testimonials.scss
+@import '../../styles/_variables';
+@import '../../styles/mixins'; 
+
 .testimonials {
   text-align: center;
   margin: 2rem 0;
   width: 100%;
-  color: #153464;
-  font-family: 'Montserrat', sans-serif;
+  color: $color-primary;
+  font-family: $font-primary;
 
   &__title {
     margin-bottom: 1rem;
+    font-family: $font-secondary;
+    font-size: 2rem;
+    color: $color-secondary;
   }
 
   &__button {
-    padding: 0.5rem;
-    margin: 1rem;
-    border-radius: 0.9rem;
+    @include button-styles; 
   }
 }
 
@@ -38,7 +41,7 @@
   &__image {
     width: 100px;
     height: 100px;
-    object-fit: center;
+    object-fit: cover;
     border-radius: 50%;
   }
 
@@ -49,12 +52,14 @@
   }
 
   &__name {
-    color: #153464;
+    color: $color-primary;
     margin: 0;
+    font-family: $font-primary;
+    font-size: 1rem;
   }
 
   &__stars {
-    color: #ef4565;
+    color: $color-accent;
   }
 
   &__review {
@@ -63,7 +68,8 @@
     text-align: center;
     height: 100px;
     width: 100%;
-    color: #5f6c7b;
+    color: $color-secondary;
+    font-family: $font-primary;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -73,14 +79,6 @@
 
     &.expanded {
       height: auto;
-      -webkit-line-clamp: unset;
-      -webkit-box-orient: unset;
-      -webkit-line-clamp: unset;
-      -webkit-box-orient: unset;
-      -moz-box-orient: unset;
-      -ms-box-orient: unset;
-      -o-box-orient: unset;
-      box-orient: unset;
       -webkit-line-clamp: unset;
       -webkit-box-orient: unset;
       -moz-box-orient: unset;
@@ -94,8 +92,9 @@
   &__expand-btn {
     background: none;
     border: none;
-    color: #ef4565;
+    color: $color-accent;
     cursor: pointer;
+    font-family: $font-primary;
     font-size: 1rem;
     margin-top: 0.5rem;
   }

@@ -12,10 +12,10 @@ function Hero() {
       <div className="hero__content">
         <div className="hero__heading">
           <h1>Destination Paradise</h1>
-          <h3>Explore the beauty of Zanzibar</h3>
+          <h3>your next trip to Paradise..</h3>
         </div>
         <p className="hero__description">
-          Welcome to Destination Paradise, your gateway to the enchanting Zanzibar Island! Imagine a place where each day is an adventure, and every horizon promises new discoveries.
+          Welcome to your gateway to the enchanting Zanzibar Island! Imagine a place where each day is an adventure, and every horizon promises new discoveries.
         </p>
       </div>
     </div>

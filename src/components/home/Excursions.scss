@@ -1,3 +1,5 @@
+@import '../../styles/_variables.scss'; 
+
 // Variables
 $breakpoint-tablet: 768px;
 $breakpoint-desktop: 1024px;
@@ -48,7 +50,6 @@ $grid-gap: 2rem;
   @media screen and (min-width: 1440px) {
     width: 60%;
     margin: 0 auto;
-    
   }
   
   &.animate {
@@ -57,10 +58,10 @@ $grid-gap: 2rem;
   }
   
   &__title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: $font-secondary;  
     font-size: 2rem;
     font-weight: 300;
-    color: var(--color-secondary);
+    color: $color-secondary;
     text-align: center;
     margin: 2rem;
   }
@@ -81,7 +82,7 @@ $grid-gap: 2rem;
 }
 
 .excursion-card {
-  background-color: var(--color-background);
+  background-color: $color-background;
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -138,37 +139,37 @@ $grid-gap: 2rem;
   }
   
   &__title {
-    font-family: 'Montserrat', sans-serif;
+    font-family: $font-secondary;  
     font-size: 1.5rem;
     font-weight: 300;
-    color: var(--color-secondary);
+    color: $color-secondary;
     margin-bottom: 1rem;
     transition: color 0.3s ease;
   }
   
   &:hover &__title {
-    color: var(--color-accent);
+    color: $color-accent;
   }
   
   &__text {
-    font-family: 'Playfair Display';
+    font-family: $font-primary;  
     font-size: calc(0.8rem + 0.5vw);
-    color: var(--color-primary);
+    color: $color-primary;
     margin-bottom: 1.5rem;
     line-height: 1.6;
   }
   
   &__link {
-    font-family: 'Playfair Display';
+    font-family: $font-secondary;  
     font-size: calc(0.7rem + 0.25vw);
-    color: var(--color-accent);
+    color: $color-accent;
     text-decoration: none;
     display: inline-flex;
     align-items: center;
     transition: color 0.3s ease, transform 0.3s ease;
     
     &:hover {
-      color: var(--color-secondary);
+      color: $color-secondary;
       transform: translateX(5px);
     }
     
