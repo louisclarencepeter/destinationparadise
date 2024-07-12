@@ -17,15 +17,14 @@ $font-secondary: 'Playfair Display', serif;
     gap: 2rem;
 
     .about-text {
-      //margin-top: 2rem;
-
+      
       h3 {
         font-family: $font-secondary;
         font-size: 2rem;
-        font-weight: 600;
         margin-bottom: 1rem;
         color: $primary-color;
         text-align: center;
+        font-weight: normal;
       }
 
       p {

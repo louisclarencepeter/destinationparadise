@@ -1,7 +1,5 @@
-/*base.css*/
-
 body {
-    font-family: 'Playfair Display', serif; /* Use Playfair Display for body text */
+    font-family: 'Playfair Display', serif;
     color: var(--color-primary);
     background-color: var(--color-background);
     margin: 0;
@@ -11,14 +9,14 @@ body {
 }
 
 h1 {
-    font-family: 'Kaushan Script', cursive; /* Apply Kaushan Script to h1 */
+    font-family: 'Kaushan Script', cursive;
     font-size: 4rem;
     font-weight: 500;
     color: var(--color-background);
 }
 
 h2, h3, h4, h5 {
-    font-family: 'Montserrat', sans-serif; /* Use Montserrat for other headings */
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
     margin: 0 0 1rem;
 }
@@ -45,7 +43,7 @@ h5 {
 }
 
 button {
-    font-family: var(--font-primary); /* Use Playfair Display for buttons */
+    font-family: var(--font-primary);
     font-weight: 300;
     text-align: center;
     color: var(--color-background);
