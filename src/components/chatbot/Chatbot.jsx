@@ -12,7 +12,7 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const greeting = config.parameters?.greeting || "Welcome to Destination Paradise Zanzibar! How can I help today? :)";
+    const greeting = /* config.parameters?.greeting */ "Welcome to Destination Paradise Zanzibar! How can I help today? :)";
     setMessages([{ content: greeting, role: 'assistant' }]);
   }, []);
 
