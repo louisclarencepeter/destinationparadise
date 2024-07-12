@@ -1,5 +1,6 @@
 /* Gallery */
-.gallery-container .gallery-image {
+.gallery-container
+.gallery-image {
     transition: var(--transition-default);
     box-sizing: border-box;
     position: relative;
