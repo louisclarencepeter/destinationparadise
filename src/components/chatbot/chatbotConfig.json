@@ -2,7 +2,7 @@
   "name": "destination_paradise_zanzibar_chatbot",
   "description": "Assist users with Zanzibar trip planning",
   "parameters": {
-    "greeting": "Welcome to Destination Paradise Zanzibar! To suggest the best activities, where are you staying?",
+    "greeting": "Welcome to Destination Paradise Zanzibar! How can I help today? :)",
     "fallbackMessage": "I apologize, I'm having trouble connecting to our service. Please contact us directly via WhatsApp for immediate assistance.",
     "whatsappLink": "https://wa.me/message/EM3ESMRKYXLVK1",
     "excursions": [

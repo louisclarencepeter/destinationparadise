@@ -12,16 +12,8 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    const greetingDescription = config.parameters?.properties?.greeting?.description;
-
-    if (greetingDescription) {
-      setMessages([{ content: greetingDescription, role: 'assistant', isTyping: true }]);
-      setTimeout(() => {
-        setMessages([{ content: greetingDescription, role: 'assistant', isTyping: false }]);
-      }, 1000); // Adjust delay as needed
-    } else {
-      console.error('Greeting description is undefined');
-    }
+    const greeting = config.parameters?.greeting || "Welcome to Destination Paradise Zanzibar! How can I help today? :)";
+    setMessages([{ content: greeting, role: 'assistant' }]);
   }, []);
 
   const handleSend = async () => {
@@ -35,11 +27,13 @@ const Chatbot = () => {
 
     try {
       const response = await axios.post('/.netlify/functions/chatbot', { message: input });
-      const assistantMessage = { content: response.data.response, role: 'assistant', isTyping: true };
-      setMessages(prevMessages => [...prevMessages, assistantMessage]);
 
       setTimeout(() => {
-        setMessages(prevMessages => prevMessages.map(msg => msg.isTyping ? { ...msg, isTyping: false } : msg));
+        setMessages(prevMessages => {
+          const newMessages = prevMessages.slice();
+          newMessages[newMessages.length - 1] = { content: response.data.response, role: 'assistant', isTyping: false };
+          return newMessages;
+        });
       }, 2000); // Adjust delay as needed
     } catch (error) {
       console.error('Error sending message:', error);
@@ -48,7 +42,7 @@ const Chatbot = () => {
           <span>
             Currently, this service is unavailable. Please contact us directly via WhatsApp
             <a
-              href="https://wa.me/message/EM3ESMRKYXLVK1"
+              href={config.parameters.whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
