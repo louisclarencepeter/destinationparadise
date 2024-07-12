@@ -1,19 +1,13 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
 .tours-page {
   padding: 2rem;
-  background-color: #fffffe;
-  color: #094067;
+  background-color: $color-background;
+  color: $color-primary;
 
   .tour-card .learn-more-link {
     text-decoration: none;
-  }
-
-  h1 {
-    font-family: "Kaushan Script", cursive;
-    font-size: 3rem;
-    font-weight: 500;
-    margin-bottom: 2rem;
-    text-align: center;
-    color: #094067;
   }
 
   .tour-card-container {
@@ -33,14 +27,13 @@
   .map {
     width: 100%;
     margin-bottom: 2rem;
-  
-  
+
     img {
       width: 90%;
       object-fit: cover;
       border-radius: 1rem;
     }
-  
+
     @media screen and (min-width: 768px) {
       h4 {
         font-size: 2.5rem;
@@ -51,21 +44,21 @@
         margin: 0 auto;
       }
     }
-  
+
     @media screen and (min-width: 1024px) {
       display: flex;
       flex-direction: column;
       align-items: center;
-  
+
       h4 {
         font-size: 2rem;
       }
-  
+
       img {
         width: 60%;
       }
     }
-  
+
     @media screen and (min-width: 1440px) {
       img {
         width: 27%;
@@ -75,7 +68,7 @@
 }
 
 .tour-card {
-  background-color: #fffffe;
+  background-color: $color-background;
   border-radius: 1rem;
   box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
   padding: 2rem;
@@ -96,28 +89,28 @@
   }
 
   h3 {
-    font-family: "Playfair Display", serif;
+    font-family: $font-secondary;
     font-size: 2rem;
     font-weight: 300;
     margin-bottom: 1rem;
-    color: #094067;
+    color: $color-primary;
     text-align: left;
   }
 
   p {
-    font-family: "Montserrat", sans-serif;
+    font-family: $font-primary;
     font-size: 1.2rem;
     margin-bottom: 1rem;
-    color: #5f6c7b;
+    color: $color-secondary;
     text-align: left;
   }
 
   h4 {
-    font-family: "Playfair Display", serif;
+    font-family: $font-secondary;
     font-size: 1.5rem;
     font-weight: 300;
     margin-bottom: 1rem;
-    color: #094067;
+    color: $color-primary;
     text-align: left;
   }
 
@@ -129,32 +122,23 @@
   }
 
   li {
-    font-family: "Montserrat", sans-serif;
+    font-family: $font-primary;
     font-size: 1.2rem;
-    color: #5f6c7b;
+    color: $color-secondary;
   }
 
   .learn-more-btn {
+    @include button-styles;
     opacity: 0;
-    background-color: #fffffe;
-    color: #094067;
-    padding: 0.4rem;
-    border-radius: 0.9rem;
-    cursor: pointer;
-    width: 30%;
     margin: 0 auto;
     text-align: center;
-    transition: opacity 0.3s ease, color 0.3s ease, background-color 0.3s ease;
     margin-top: 1rem;
-    font-size: 0.7rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: opacity 0.3s ease;
 
     &:hover {
-      color: #ef4565;
-      background-color: #094067;
-
       i {
         transform: translateX(4px);
       }
@@ -183,10 +167,8 @@
 }
 
 @media screen and (max-width: 767px) {
-  .tour-card {
-    .learn-more-btn {
-      opacity: 1;
-    }
+  .tour-card .learn-more-btn {
+    opacity: 1;
   }
 }
 
@@ -215,13 +197,10 @@
 }
 
 @media screen and (min-width: 1280px) {
-
   .tours-page {
     width: 80%;
     margin: 0 auto;
   }
-
-
 }
 
 @media screen and (min-width: 1440px) {
@@ -229,5 +208,3 @@
     width: 60%;
   }
 }
-
-
