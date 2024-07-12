@@ -1,24 +1,29 @@
-// components/store/Store.scss
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
 .store-container {
-  padding: 2rem;
-  //background-color: #f9f9f9;
+  padding: 2rem 2rem 2rem 2rem; // Adjust padding to reduce top space
+  background-color: $color-background;
   border-radius: 10px;
-  //box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   .booking-request {
-    padding: 20px;
+    padding: 10px; // Adjust inner padding to reduce overall space
     text-align: center;
 
     h1 {
       font-size: 2rem;
       margin-bottom: 1rem;
-      color: #153464;
+      margin-top: 0; // Remove top margin
+      color: $color-primary;
+      font-family: $font-secondary;
     }
 
     p {
       font-size: 1.2rem;
-      margin-bottom: 2rem;
-      color: #5f6c7b;
+      margin-bottom: 1rem; // Adjust bottom margin
+      color: $color-secondary;
+      font-family: $font-primary;
     }
 
     .booking-form {
@@ -27,14 +32,15 @@
       align-items: center;
 
       .form-group {
-        margin-bottom: 1.5rem;
+        margin-bottom: 1rem; // Adjust bottom margin
         width: 90%;
 
         label {
           display: block;
           margin-bottom: 0.5rem;
           font-size: 1rem;
-          color: #094067;
+          color: $color-primary;
+          font-family: $font-primary;
         }
 
         input,
@@ -42,11 +48,12 @@
         textarea {
           width: 100%;
           padding: 0.75rem;
-          border: 1px solid #ccc;
+          border: 1px solid $color-secondary;
           border-radius: 5px;
           font-size: 1rem;
-          color: #094067;
+          color: $color-primary;
           box-sizing: border-box;
+          font-family: $font-primary;
         }
 
         textarea {
@@ -58,16 +65,16 @@
       .submit-button {
         padding: 0.75rem 2rem;
         font-size: 1rem;
-        color: #ffffff;
-        background-color: #153464;
+        color: $color-background;
+        background-color: $color-primary;
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        transition: background-color 0.3s ease;
+        transition: background-color 0.3s ease, color 0.3s ease;
 
         &:hover {
-          color: #ef4565;
-          background-color: #094067;
+          color: $color-accent;
+          background-color: $color-secondary;
         }
       }
     }
@@ -76,25 +83,25 @@
 
 @media screen and (min-width: 768px) {
   .store-container {
-    padding: 3rem;
+    padding: 2rem 3rem; // Adjust top padding for larger screens
   }
 }
 
 @media screen and (min-width: 1024px) {
   .store-container {
-    padding: 4rem;
+    padding: 2rem 4rem; // Adjust top padding for larger screens
   }
 }
 
 @media screen and (min-width: 1200px) {
   .store-container {
-    padding: 5rem;
+    padding: 2rem 5rem; // Adjust top padding for larger screens
   }
 }
 
 @media screen and (min-width: 1440px) {
   .store-container {
-    padding: 6rem;
+    padding: 2rem 6rem; // Adjust top padding for larger screens
     width: 60%;
     margin: 0 auto;
   }
