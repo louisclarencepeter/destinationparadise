@@ -3,7 +3,6 @@
     transition: var(--transition-default);
     box-sizing: border-box;
     position: relative;
-    padding: 1rem;
     width: 90%;
     height: 100%;
     margin: 0 auto;
