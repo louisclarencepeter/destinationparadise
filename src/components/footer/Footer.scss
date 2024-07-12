@@ -1,10 +1,13 @@
+@import '../../styles/_variables';
+@import '../../styles/mixins';
+
 .footer {
-  background-color: #fffffe;
+  background-color: $color-background;
   padding: 1.25rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: #153464;
-  font-family: 'Montserrat', sans-serif;
+  color: $color-primary;
+  font-family: $font-secondary;
 
   &__container {
     max-width: 1200px;
@@ -20,7 +23,7 @@
 
   &__form {
     display: flex;
-    border: 1px solid #000;
+    border: 1px solid $color-primary;
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 1rem;
@@ -34,22 +37,30 @@
   }
 
   &__button {
-    border-left: 1px solid #000;
+    border-left: 1px solid $color-primary;
     border-radius: 0;
     padding: 10px 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: $gradient-button;
+    color: $color-background;
+    transition: $transition-default;
+
+    &:hover {
+      color: $hover-color;
+      background-color: $color-secondary;
+    }
 
     &:active {
-      background-color: #333;
+      background-color: $color-primary;
     }
   }
 
   &__message {
     text-align: center;
-    color: #ef4565;
+    color: $color-accent;
     margin-bottom: 1rem;
   }
 
@@ -62,7 +73,7 @@
       text-decoration: none;
 
       &:hover {
-        color: #ef4565;
+        color: $color-accent;
         text-decoration: underline;
       }
     }
@@ -70,10 +81,10 @@
 
   &__whatsapp-link {
     margin-left: 10px;
-    color: #153464;
+    color: $color-primary;
 
     &:hover {
-      color: #ef4565;
+      color: $color-accent;
     }
   }
 
@@ -93,7 +104,7 @@
       text-decoration: none;
 
       &:hover {
-        color: #ef4565;
+        color: $color-accent;
         text-decoration: underline;
       }
     }
@@ -104,11 +115,11 @@
     gap: 0.625rem;
 
     a {
-      color: #003366;
+      color: $color-primary;
       text-decoration: none;
 
       &:hover {
-        color: #ef4565;
+        color: $color-accent;
         text-decoration: underline;
       }
     }
@@ -125,11 +136,11 @@
     margin-bottom: 1rem;
 
     a {
-      color: #003366;
+      color: $color-primary;
       text-decoration: none;
 
       &:hover {
-        color: #ef4565;
+        color: $color-accent;
         text-decoration: underline;
       }
     }

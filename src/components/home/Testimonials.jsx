@@ -1,5 +1,3 @@
-// Testimonials.jsx
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
@@ -21,12 +19,6 @@ Stars.propTypes = {
 };
 
 const Testimonial = ({ imgSrc, name, review, starCount }) => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const toggleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   return (
     <div className="testimonial">
       <div className="testimonial__header">
@@ -36,14 +28,9 @@ const Testimonial = ({ imgSrc, name, review, starCount }) => {
           <Stars count={starCount} />
         </div>
       </div>
-      <div className={`testimonial__review ${isExpanded ? 'expanded' : ''}`}>
+      <div className="testimonial__review">
         <span>{review}</span>
       </div>
-      {review.length > 200 && (
-        <button className="testimonial__expand-btn" onClick={toggleExpand}>
-          {isExpanded ? 'Read Less' : 'Read More'}
-        </button>
-      )}
     </div>
   );
 };
