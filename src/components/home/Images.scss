@@ -12,9 +12,10 @@
   }
 
   &__image {
-    width: 95%;
+    width: 90%;
+    margin: 0 auto;
     height: auto;
-    padding: 1rem;
+    padding: 0.5rem;
     box-sizing: border-box;
     transition: transform 0.3s ease-in-out;
 
