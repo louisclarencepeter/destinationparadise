@@ -1,13 +1,18 @@
-$primary-color: #094067;
-$secondary-color: #5f6c7b;
-$background-color: #fffffe;
-$font-primary: 'Montserrat', sans-serif;
-$font-secondary: 'Playfair Display', serif;
+@import '../../styles/variables';
+@import '../../styles/mixins';
 
 .about-page {
   padding: 1rem;
-  background-color: $background-color;
-  color: $primary-color;
+  background-color: $color-background;
+  color: $color-primary;
+
+  h2 {
+    font-family: $font-secondary;
+    font-size: 2.5rem;
+    text-align: center;
+    color: $color-primary;
+    margin-bottom: 2rem;
+  }
 
   .about-content {
     max-width: 1000px;
@@ -17,12 +22,11 @@ $font-secondary: 'Playfair Display', serif;
     gap: 2rem;
 
     .about-text {
-      
       h3 {
         font-family: $font-secondary;
         font-size: 2rem;
         margin-bottom: 1rem;
-        color: $primary-color;
+        color: $color-primary;
         text-align: center;
         font-weight: normal;
       }
@@ -32,35 +36,33 @@ $font-secondary: 'Playfair Display', serif;
         font-size: 1.1rem;
         line-height: 1.6;
         margin-bottom: 1rem;
-        color: $secondary-color;
+        color: $color-secondary;
         text-align: left;
-      }
 
-      .motto {
-        font-family: 'Playfair Display', serif;
-        color: $primary-color;
-        width: 100%;
-        text-align: center;
+        &.motto {
+          font-family: $font-secondary;
+          color: $color-primary;
+          width: 100%;
+          text-align: center;
+        }
+
+        &.reveal {
+          opacity: 0;
+          transform: translateY(20px);
+          transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+          &.active {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
       }
     }
   }
 
-  .reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-
-    &.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-@media (min-width: 768px) {
-  .about-page {
+  @media (min-width: 768px) {
     .about-content {
-      flex-direction: column;
+      flex-direction: row;
       .about-text {
         flex: 1;
       }
