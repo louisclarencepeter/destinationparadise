@@ -15,7 +15,10 @@ const Chatbot = () => {
     const greetingDescription = config.parameters?.properties?.greeting?.description;
 
     if (greetingDescription) {
-      setMessages([{ content: greetingDescription, role: 'assistant' }]);
+      setMessages([{ content: greetingDescription, role: 'assistant', isTyping: true }]);
+      setTimeout(() => {
+        setMessages([{ content: greetingDescription, role: 'assistant', isTyping: false }]);
+      }, 1000); // Adjust delay as needed
     } else {
       console.error('Greeting description is undefined');
     }
@@ -28,10 +31,16 @@ const Chatbot = () => {
     setMessages(prevMessages => [...prevMessages, userMessage]);
     setInput('');
 
+    setMessages(prevMessages => [...prevMessages, { content: '', role: 'assistant', isTyping: true }]);
+
     try {
       const response = await axios.post('/.netlify/functions/chatbot', { message: input });
-      const assistantMessage = { content: response.data.response, role: 'assistant' };
+      const assistantMessage = { content: response.data.response, role: 'assistant', isTyping: true };
       setMessages(prevMessages => [...prevMessages, assistantMessage]);
+
+      setTimeout(() => {
+        setMessages(prevMessages => prevMessages.map(msg => msg.isTyping ? { ...msg, isTyping: false } : msg));
+      }, 2000); // Adjust delay as needed
     } catch (error) {
       console.error('Error sending message:', error);
       const errorMessage = {
@@ -50,7 +59,8 @@ const Chatbot = () => {
             for assistance.
           </span>
         ),
-        role: 'assistant'
+        role: 'assistant',
+        isTyping: false
       };
       setMessages(prevMessages => [...prevMessages, errorMessage]);
     }
@@ -77,7 +87,15 @@ const Chatbot = () => {
           <div className="chatbot-messages">
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.role}`}>
-                {message.content}
+                {message.isTyping ? (
+                  <span className="typing-indicator">
+                    <span className="dot"></span>
+                    <span className="dot"></span>
+                    <span className="dot"></span>
+                  </span>
+                ) : (
+                  message.content
+                )}
               </div>
             ))}
           </div>

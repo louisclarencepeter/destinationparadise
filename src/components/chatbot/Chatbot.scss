@@ -95,17 +95,40 @@
     border-radius: 8px;
     margin-bottom: 10px;
     word-wrap: break-word;
+    font-family: $font-primary;
 
     &.user {
       align-self: flex-end;
       background-color: $color-user-message;
-      color: black;
+      color: $color-primary;
     }
 
     &.assistant {
       align-self: flex-start;
       background-color: $color-assistant-message;
-      color: black;
+      color: $color-primary;
+    }
+
+    .typing-indicator {
+      display: flex;
+      align-items: center;
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        margin: 0 2px;
+        background-color: $color-primary;
+        border-radius: 50%;
+        animation: typing 1s infinite;
+      }
+
+      .dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+
+      .dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
     }
 
     span {
@@ -114,6 +137,15 @@
         margin: 0 10px;
       }
     }
+  }
+}
+
+@keyframes typing {
+  0%, 60%, 100% {
+    opacity: 0.2;
+  }
+  20% {
+    opacity: 1;
   }
 }
 
@@ -129,6 +161,13 @@
     border: 1px solid $color-secondary;
     border-radius: 4px;
     margin-right: 8px;
+    font-family: $font-primary;
+    transition: $transition-default;
+
+    &:focus {
+      border-color: $hover-color;
+      outline: none;
+    }
   }
 
   button {
@@ -139,11 +178,10 @@
     border-radius: 4px;
     cursor: pointer;
     transition: $transition-default;
+    font-family: $font-primary;
 
     &:hover {
       background-color: $hover-color;
     }
   }
 }
-
-@include responsive-layout;
