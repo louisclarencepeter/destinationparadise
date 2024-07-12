@@ -151,7 +151,7 @@ $grid-gap: 2rem;
   }
   
   &__text {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display';
     font-size: calc(0.8rem + 0.5vw);
     color: var(--color-primary);
     margin-bottom: 1.5rem;
@@ -159,7 +159,7 @@ $grid-gap: 2rem;
   }
   
   &__link {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display';
     font-size: calc(0.7rem + 0.25vw);
     color: var(--color-accent);
     text-decoration: none;

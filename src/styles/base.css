@@ -9,7 +9,7 @@ body {
 }
 
 h1 {
-    font-family: 'Kaushan Script', cursive;
+    font-family: 'Kaushan Script';
     font-size: 4rem;
     font-weight: 500;
     color: var(--color-background);
@@ -18,7 +18,7 @@ h1 {
 h2, h3, h4, h5 {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
-    margin: 0 0 1rem;
+    margin-bottom: 1rem;
 }
 
 h2 {

@@ -4,10 +4,10 @@ $font-secondary: var(--font-secondary);
 $font-tertiary: var(--font-tertiary);
 
 /* Colors */
-$color-primary: var(--color-primary);
-$color-secondary: var(--color-secondary);
-$color-background: var(--color-background);
-$color-accent: var(--color-accent);
+$color-primary: #153464;
+$color-secondary: #094067;
+$color-background: #fffffe;
+$color-accent: #ef4565;
 
 /* Gradients */
 $gradient-button: var(--gradient-button);
@@ -23,5 +23,5 @@ $transition-duration: 0.3s;
 $transition-ease: 0.5s ease;
 
 /* Additional variables for Chatbot */
-$color-user-message: #ecc1c9;
+$color-user-message: lighten($color-accent, 30%);
 $color-assistant-message: #f1f0f0;
