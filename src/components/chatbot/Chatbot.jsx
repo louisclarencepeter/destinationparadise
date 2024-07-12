@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import './Chatbot.scss';
 import config from './chatbotConfig.json';
@@ -10,11 +10,18 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    const greeting = /* config.parameters?.greeting */ "Welcome to Destination Paradise Zanzibar! How can I help today? :)";
+    const greeting = config.parameters?.greeting || "Welcome to Destination Paradise Zanzibar! How can I help today? :)";
     setMessages([{ content: greeting, role: 'assistant' }]);
   }, []);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -92,6 +99,7 @@ const Chatbot = () => {
                 )}
               </div>
             ))}
+            <div ref={messagesEndRef} />
           </div>
           <div className="chatbot-input">
             <input
