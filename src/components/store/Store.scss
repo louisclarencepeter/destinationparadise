@@ -2,26 +2,26 @@
 @import '../../styles/mixins';
 
 .store-container {
-  padding: 2rem 2rem 2rem 2rem; // Adjust padding to reduce top space
+  padding: 2rem 2rem 2rem 2rem;
   background-color: $color-background;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
   .booking-request {
-    padding: 10px; // Adjust inner padding to reduce overall space
+    padding: 10px;
     text-align: center;
 
     h1 {
       font-size: 2rem;
       margin-bottom: 1rem;
-      margin-top: 0; // Remove top margin
+      margin-top: 0;
       color: $color-primary;
       font-family: $font-secondary;
     }
 
     p {
       font-size: 1.2rem;
-      margin-bottom: 1rem; // Adjust bottom margin
+      margin-bottom: 1rem;
       color: $color-secondary;
       font-family: $font-primary;
     }
@@ -32,7 +32,7 @@
       align-items: center;
 
       .form-group {
-        margin-bottom: 1rem; // Adjust bottom margin
+        margin-bottom: 1rem;
         width: 90%;
 
         label {
@@ -63,19 +63,7 @@
       }
 
       .submit-button {
-        padding: 0.75rem 2rem;
-        font-size: 1rem;
-        color: $color-background;
-        background-color: $color-primary;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease, color 0.3s ease;
-
-        &:hover {
-          color: $color-accent;
-          background-color: $color-secondary;
-        }
+        @include button-styles;
       }
     }
   }
@@ -83,25 +71,25 @@
 
 @media screen and (min-width: 768px) {
   .store-container {
-    padding: 2rem 3rem; // Adjust top padding for larger screens
+    padding: 2rem 3rem;
   }
 }
 
 @media screen and (min-width: 1024px) {
   .store-container {
-    padding: 2rem 4rem; // Adjust top padding for larger screens
+    padding: 2rem 4rem;
   }
 }
 
 @media screen and (min-width: 1200px) {
   .store-container {
-    padding: 2rem 5rem; // Adjust top padding for larger screens
+    padding: 2rem 5rem;
   }
 }
 
 @media screen and (min-width: 1440px) {
   .store-container {
-    padding: 2rem 6rem; // Adjust top padding for larger screens
+    padding: 2rem 6rem;
     width: 60%;
     margin: 0 auto;
   }
