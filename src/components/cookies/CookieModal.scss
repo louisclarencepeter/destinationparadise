@@ -67,31 +67,40 @@
 
     .cookie-modal-footer {
         @include flex-center(space-between);
-        button {
-            padding: 0.5em 1em;
-            border: none;
-            cursor: pointer;
-            font-family: $font-primary;
-            transition: $transition-default;
+        
+        .button {
+            @include button-styles;
+            font-size: 0.6em;
+
 
             &:nth-child(1) {
-                background-color: #f0f0f0;
-                color: $color-secondary;
+                background-color: lighten($color-secondary, 40%);
+                color: $color-background;
+
+                &:hover {
+                    background-color: lighten($color-secondary, 30%);
+                    color: $color-accent;
+                }
             }
 
             &:nth-child(2) {
                 background-color: $color-accent;
                 color: $color-background;
+
+                &:hover {
+                    background-color: darken($color-accent, 10%);
+                    color: $color-accent;
+                }
             }
 
             &:nth-child(3) {
-                background-color: #5cb85c;
+                background-color: lighten($color-primary, 30%);
                 color: $color-background;
-            }
 
-            &:hover {
-                filter: brightness(1.1);
-                color: $color-accent;
+                &:hover {
+                    background-color: lighten($color-primary, 20%);
+                    color: $color-accent;
+                }
             }
         }
     }

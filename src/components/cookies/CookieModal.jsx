@@ -14,15 +14,15 @@ const CookieModal = ({ isOpen, onClose }) => {
         <div className="cookie-modal-body">
           <p>This tool helps you to select and deactivate various tags/trackers/analysis tools used on this website.</p>
           <ul>
-            <li>Functional: These tags enable us to analyze website usage so that we can measure and improve its performance.</li>
-            <li>Marketing: Marketing/target cookies are usually used to show you advertisements that meet your interests.</li>
-            <li>Essential: These tags are required for the basic functions of the website.</li>
+            <li><strong>Functional:</strong> These tags enable us to analyze website usage so that we can measure and improve its performance.</li>
+            <li><strong>Marketing:</strong> Marketing/target cookies are usually used to show you advertisements that meet your interests.</li>
+            <li><strong>Essential:</strong> These tags are required for the basic functions of the website.</li>
           </ul>
         </div>
         <div className="cookie-modal-footer">
-          <button onClick={onClose}>Save</button>
-          <button onClick={onClose}>Deny</button>
-          <button onClick={onClose}>Accept and close</button>
+          <button onClick={onClose} className="button save-button">Save</button>
+          <button onClick={onClose} className="button deny-button">Deny</button>
+          <button onClick={onClose} className="button accept-button">Accept and close</button>
         </div>
       </div>
     </div>
