@@ -1,7 +1,7 @@
 .photo-slide {
   padding: 0.5rem;
   height: 0;
-  padding-bottom: 56.25%; // This creates a 16:9 aspect ratio
+  padding-bottom: 56.25%; 
   position: relative;
   overflow: hidden;
 
@@ -52,16 +52,3 @@
     }
   }
 }
-
-/* // Responsive adjustments
-@media (max-width: 768px) {
-  .photo-slide {
-    padding-bottom: 75%; // 4:3 aspect ratio for smaller screens
-  }
-}
-
-@media (max-width: 480px) {
-  .photo-slide {
-    padding-bottom: 100%; // 1:1 aspect ratio for very small screens
-  }
-} */

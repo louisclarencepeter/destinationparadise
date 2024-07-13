@@ -5,6 +5,8 @@
   padding: 1rem;
   background-color: $color-background;
   color: $color-primary;
+  max-width: 1200px;
+  margin: 0 auto;
 
   h2 {
     font-family: $font-secondary;
@@ -15,7 +17,7 @@
   }
 
   .about-content {
-    max-width: 1000px;
+
     margin: 0 auto;
     display: flex;
     flex-direction: column;

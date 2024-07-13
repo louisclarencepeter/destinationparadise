@@ -5,8 +5,7 @@
   text-align: center;
   color: $color-primary;
   font-family: $font-primary;
-  width: 95%;
-  margin: 2rem auto;
+  margin: 0 auto;
   &__title {
     margin-bottom: 1rem;
     font-family: $font-secondary;
@@ -120,6 +119,6 @@
 
 @media screen and (min-width: 1200px) {
   .testimonial {
-    width: 60vw;
+    width: 50vw;
   }
 }
