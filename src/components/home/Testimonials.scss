@@ -10,7 +10,6 @@
   &__title {
     margin-bottom: 1rem;
     font-family: $font-secondary;
-    font-size: 2rem;
     color: $color-secondary;
   }
 
@@ -26,6 +25,7 @@
   justify-content: center;
   gap: 1.5rem;
   width: 100vw;
+  height: 100%;
   max-width: 1200px;
   margin: 0 auto;
 
@@ -71,25 +71,23 @@
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
-    line-clamp: 3; 
+    line-clamp: 3;
     transition: height 0.3s ease;
-
-    &.expanded {
-      height: auto;
-      -webkit-line-clamp: unset;
-      -webkit-box-orient: unset;
-      line-clamp: unset;
-    }
   }
+}
 
-  &__expand-btn {
-    background: none;
-    border: none;
-    color: $color-accent;
-    cursor: pointer;
-    font-family: $font-primary;
-    font-size: 1rem;
-    margin-top: 0.5rem;
+@media screen and (max-width: 768px) {
+  .testimonial {
+    &__name {
+      font-size: 0.875rem; 
+    }
+
+    &__review {
+      font-size: 0.875rem; 
+      padding: 15px; 
+      -webkit-line-clamp: 10; 
+      line-clamp: 5;
+    }
   }
 }
 
