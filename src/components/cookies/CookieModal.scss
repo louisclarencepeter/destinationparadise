@@ -102,6 +102,11 @@
                     color: $color-accent;
                 }
             }
+
+            @media (max-width: 600px) {
+                font-size: 0.7em;
+                padding: 0.5em 1em;
+            }
         }
     }
 }
