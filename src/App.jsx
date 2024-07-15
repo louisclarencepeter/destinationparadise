@@ -6,6 +6,7 @@ import ErrorBoundary from './components/error/ErrorBoundary';
 import ScrollToTop from './utils/scrollToTop';
 import { revealElements } from './utils/revealElements';
 import Layout from './components/layout/Layout';
+//import ErrorTrigger from './components/error/ErrorTrigger';
 
 const Home = lazy(() => import('./components/home/Home'));
 const AboutPage = lazy(() => import('./components/aboutus/AboutPage'));
@@ -38,6 +39,7 @@ function App() {
               <Route path="/cookies-policy" element={<PolicyInfo />} />
               <Route path="/privacy-policy" element={<PolicyInfo />} />
               <Route path="/terms-of-service" element={<PolicyInfo />} />
+              {/* <ErrorTrigger /> */}
             </Routes>
           </Suspense>
         </Layout>
