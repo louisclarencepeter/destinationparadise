@@ -95,7 +95,8 @@
     border-radius: 8px;
     margin-bottom: 10px;
     word-wrap: break-word;
-    font-family: $font-primary;
+    font-family: $font-secondary;
+    font-size: calc(0.8rem + 0.5vw); 
 
     &.user {
       align-self: flex-end;
@@ -161,7 +162,8 @@
     border: 1px solid $color-secondary;
     border-radius: 4px;
     margin-right: 8px;
-    font-family: $font-primary;
+    font-family: $font-secondary;
+    font-size: calc(0.8rem + 0.5vw); 
     transition: $transition-default;
 
     &:focus {
