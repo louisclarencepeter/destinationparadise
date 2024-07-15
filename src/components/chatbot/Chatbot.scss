@@ -171,18 +171,7 @@
   }
 
   button {
-    padding: 8px 16px;
-    background-color: $color-primary;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: $transition-default;
-    font-family: $font-primary;
-
-    &:hover {
-      background-color: $hover-color;
-    }
+    @include button-styles;
   }
 }
 
