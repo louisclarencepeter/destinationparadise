@@ -79,9 +79,9 @@
 }
 
 @mixin button-styles {
-  border-radius: 0.9rem;
+  border-radius: 0.7rem;
   padding: 0.4rem;
-  font-size: 0.7rem;
+  font-size: calc(0.6rem + 0.5vw);
   background-image: $gradient-button;
   color: $color-background;
   border: none;

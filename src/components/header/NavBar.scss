@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@import "../../styles/variables";
+@import "../../styles/mixins";
 
 // Keyframes
 @keyframes fadeIn {
@@ -205,7 +205,7 @@
   }
 
   &::after {
-    content: '';
+    content: "";
     display: block;
     width: 0;
     height: 2px;
@@ -233,10 +233,7 @@
 
 // Store button styles
 .store button {
-  border-radius: 0.9rem;
-  padding: 0.4rem;
-  font-size: 0.7rem;
-  background-image: $gradient-button;
+  @include button-styles;
 
   &:hover {
     color: $hover-color;

@@ -30,8 +30,8 @@
       margin-bottom: 1em;
       p {
         margin: 0;
-        font-family: $font-primary;
-        font-size: 1rem;
+        font-family: $font-secondary;
+        font-size: calc(0.8rem + 0.5vw);
         color: $color-primary;
 
         a {
@@ -48,20 +48,8 @@
       gap: 1em;
 
       button {
-        font-family: $font-primary;
-        font-weight: 300;
-        text-align: center;
-        color: $color-background;
-        background-color: $color-primary;
-        border: none;
-        padding: 0.5em 1em;
-        cursor: pointer;
-        transition: $transition-default;
-
-        &:hover {
-          color: $color-primary;
-          background-color: #e0e0e0;
-        }
+        @include button-styles;
+        font-family: $font-secondary;
       }
     }
   }
