@@ -1,23 +1,54 @@
-import { Link, useLocation } from 'react-router-dom';
 import { useState, useEffect, useCallback } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import './NavBar.scss';
 import scrollToTop from '../../utils/scrollToTop';
 import logo from '../../assets/logo/dlp.png';
 
+const menuItems = [
+  { label: "Home", path: "/" },
+  { label: "Excursions", path: "/excursions" },
+  { label: "About Us", path: "/aboutus" },
+  { label: "Gallery", path: "/gallery" },
+  { label: "Booking Request", path: "/booking" }
+];
+
+const MenuList = ({ className, onClick }) => {
+  const location = useLocation();
+  
+  return (
+    <ul className={className}>
+      {menuItems.map(({ label, path }) => (
+        <li key={label}>
+          <Link
+            className={`menu__item ${location.pathname === path ? 'active' : ''}`}
+            to={path}
+            onClick={() => {
+              onClick();
+              scrollToTop();
+            }}
+          >
+            {label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+MenuList.propTypes = {
+  className: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+};
+
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
 
-  const toggleMenu = useCallback((prevIsOpen) => {
-    setIsOpen(prevIsOpen => !prevIsOpen);
-    if (!prevIsOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
-  }, []);
+  const toggleMenu = useCallback(() => {
+    setIsOpen(prev => !prev);
+    document.body.style.overflow = isOpen ? 'auto' : 'hidden';
+  }, [isOpen]);
 
   const closeMenu = useCallback(() => {
     setIsOpen(false);
@@ -25,8 +56,7 @@ const NavBar = () => {
   }, []);
 
   const handleScroll = useCallback(() => {
-    const offset = window.scrollY;
-    setIsScrolled(offset > 10);
+    setIsScrolled(window.scrollY > 10);
   }, []);
 
   useEffect(() => {
@@ -34,43 +64,8 @@ const NavBar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
-  const navClass = isScrolled ? 'nav transparent' : 'nav';
-
-  const menuItems = [
-    { label: "Home", path: "/" },
-    { label: "Excursions", path: "/excursions" },
-    { label: "About Us", path: "/aboutus" },
-    { label: "Gallery", path: "/gallery" },
-    { label: "Booking Request", path: "/booking" }
-  ];
-
-  const MenuList = ({ className, onClick }) => (
-    <ul className={className}>
-      {menuItems.map(item => (
-        <li key={item.label}>
-          <Link
-            className={`menu__item ${location.pathname === item.path ? 'active' : ''}`}
-            to={item.path}
-            onClick={() => {
-              onClick();
-              closeMenu();
-              scrollToTop();
-            }}
-          >
-            {item.label}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  );
-
-  MenuList.propTypes = {
-    className: PropTypes.string,
-    onClick: PropTypes.func,
-  };
-
   return (
-    <nav className={navClass}>
+    <nav className={`nav ${isScrolled ? 'transparent' : ''}`}>
       <div className='store'>
         <Link to="/booking" onClick={closeMenu} aria-label="Book Now">
           <button><i className="fa-solid fa-store"></i>Book Now</button>

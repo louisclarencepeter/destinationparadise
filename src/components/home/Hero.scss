@@ -1,10 +1,14 @@
 @import '../../styles/variables';
+@import '../../styles/mixins';
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
 
 .hero {
-  display: flex;
+  @include flex-center;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   position: relative;
   margin-top: -6rem;
   padding-top: 6rem;
@@ -27,9 +31,8 @@
   }
 
   &__content {
-    display: flex;
+    @include flex-center;
     flex-direction: column;
-    align-items: center;
     text-align: center;
     z-index: 1;
     padding: 0 1rem;
@@ -41,6 +44,7 @@
       font-size: 3rem;
       font-weight: 500;
       color: $color-background;
+      @include responsive-font-size;
     }
 
     h3 {
@@ -48,6 +52,7 @@
       font-size: 1.2rem;
       font-weight: 300;
       color: $color-background;
+      @include responsive-font-size;
     }
   }
 
@@ -65,70 +70,41 @@
     border-radius: 10px;
     width: 90%;
     max-width: 40rem;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
+    @include responsive-font-size;
   }
 }
 
 @media screen and (min-width: 374px) {
   .hero {
     &__heading {
-      h1 {
-        font-size: 3.5rem;
-      }
-
-      h3 {
-        font-size: 1.5rem;
-      }
+      h1 { font-size: 3.5rem; }
+      h3 { font-size: 1.5rem; }
     }
-
-    &__description {
-      font-size: 1.2rem;
-    }
+    &__description { font-size: 1.2rem; }
   }
 }
 
 @media screen and (min-width: 420px) {
   .hero {
-    &__description {
-      font-size: 1.3rem;
-    }
+    &__description { font-size: 1.3rem; }
   }
 }
 
 @media screen and (min-width: 665px) {
   .hero {
-    &__content {
-      padding: 0 2rem;
-    }
+    &__content { padding: 0 2rem; }
   }
 }
 
 @media screen and (min-width: 768px) {
   .hero {
-    &__content {
-      padding: 0 3rem;
-    }
-
+    &__content { padding: 0 3rem; }
     &__heading {
-      h1 {
-        font-size: 6rem;
-      }
-
-      h3 {
-        font-size: 1.8rem;
-      }
+      h1 { font-size: 6rem; }
+      h3 { font-size: 1.8rem; }
     }
-
-    &__description {
-      font-size: 1.5rem;
-    }
+    &__description { font-size: 1.5rem; }
   }
 }
+
+@include responsive-layout;
