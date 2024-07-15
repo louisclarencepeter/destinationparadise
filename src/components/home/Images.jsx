@@ -27,7 +27,7 @@ const Images = () => {
 
   return (
     <div className="gallery">
-      <h2 className="gallery__title">Gallery</h2>
+      <h2 className="gallery__title reveal">Gallery</h2>
       <ResponsiveMasonry
         columnsCountBreakPoints={{
           350: 1,

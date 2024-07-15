@@ -20,13 +20,13 @@ const Testimonial = ({ imgSrc, name, review, starCount }) => {
   return (
     <div className="testimonial">
       <div className="testimonial__header">
-        <img src={imgSrc} alt={`${name}'s testimonial`} className="testimonial__image" />
-        <div className="testimonial__name-stars">
+        <img src={imgSrc} alt={`${name}'s testimonial`} className="testimonial__image reveal" />
+        <div className="testimonial__name-stars reveal">
           <p className="testimonial__name">{name}</p>
           <Stars count={starCount} />
         </div>
       </div>
-      <div className="testimonial__review">
+      <div className="testimonial__review reveal">
         <span>{review}</span>
       </div>
     </div>
@@ -44,7 +44,7 @@ const Testimonials = () => {
   return (
     <div className="testimonials">
       <div className="testimonials__container">
-        <h2 className="testimonials__title">Testimonials</h2>
+        <h2 className="testimonials__title reveal">Testimonials</h2>
         <Carousel
           showArrows={true}
           infiniteLoop={true}
@@ -61,7 +61,7 @@ const Testimonials = () => {
         </Carousel>
         <div className="testimonials__button-container">
           <Link to="/booking">
-            <button className="testimonials__button">Book Now</button>
+            <button className="testimonials__button reveal">Book Now</button>
           </Link>
         </div>
       </div>
