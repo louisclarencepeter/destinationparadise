@@ -35,7 +35,7 @@
 
       p {
         font-family: $font-primary;
-        font-size: 1.1rem;
+        font-size: calc(0.8rem + 0.5vw);
         line-height: 1.6;
         margin-bottom: 1rem;
         color: $color-secondary;

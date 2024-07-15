@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@import "../../styles/variables";
+@import "../../styles/mixins";
 
 .tours-page {
   padding: 2rem;
@@ -100,7 +100,7 @@
 
   p {
     font-family: $font-primary;
-    font-size: 1.2rem;
+    font-size: calc(0.8rem + 0.5vw);
     margin-bottom: 1rem;
     color: $color-secondary;
     text-align: left;
@@ -124,7 +124,7 @@
 
   li {
     font-family: $font-primary;
-    font-size: 1.2rem;
+    font-size: calc(0.8rem + 0.5vw);
     color: $color-secondary;
   }
 

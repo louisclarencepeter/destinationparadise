@@ -20,7 +20,7 @@
     }
 
     p {
-      font-size: 1.2rem;
+      font-size: calc(0.8rem + 0.5vw);
       margin-bottom: 1rem;
       color: $color-secondary;
       font-family: $font-primary;

@@ -1,98 +1,83 @@
-@import "../../styles/_variables";
+/* Testimonials.scss */
+@import "../../styles/variables";
 @import "../../styles/mixins";
 
 .testimonials {
+  padding: 40px 20px;
+  background-color: $color-background;
   text-align: center;
-  color: $color-primary;
-  font-family: $font-primary;
-  margin: 3rem auto;
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
   &__title {
-    margin-bottom: 1rem;
-    font-family: $font-secondary;
-    color: $color-secondary;
-  }
-
-  &__button {
-    @include button-styles;
-  }
-}
-
-.testimonial {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1.5rem;
-  width: 100vw;
-  height: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-
-  &__header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-
-  &__image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-
-  &__name-stars {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  &__name {
+    font-size: 2rem;
+    margin: 2rem;
     color: $color-primary;
-    margin: 0;
-    font-family: $font-primary;
-    font-size: 1rem;
+    font-family: $font-secondary;
   }
 
-  &__stars {
-    color: $color-accent;
-  }
+  &__carousel {
+    margin-bottom: 40px;
 
-  &__review {
-    padding: 20px;
-    font-size: 1rem;
-    text-align: center;
-    width: 100%;
-    color: $color-secondary;
-    font-family: $font-primary;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    line-clamp: 3;
-    transition: height 0.3s ease;
-  }
-}
+    .testimonial {
+      background-color: $color-background;
+      padding: 20px;
+      border-radius: 10px;
+      transition: $transition-default;
 
-@media screen and (max-width: 768px) {
-  .testimonial {
-    &__name {
-      font-size: 0.875rem; 
+      &__header {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
+
+        .testimonial__image {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          margin-right: 15px;
+        }
+
+        .testimonial__name-stars {
+          text-align: left;
+
+          .testimonial__name {
+            font-size: 1.2rem;
+            color: $color-secondary;
+            margin-bottom: 5px;
+            font-family: $font-secondary;
+          }
+
+          .testimonial__stars {
+            color: $color-accent;
+
+            i {
+              margin-right: 2px;
+            }
+          }
+        }
+      }
+
+      &__review {
+        font-size: calc(0.8rem + 0.5vw);
+        color: $color-primary;
+        line-height: 1.4;
+        font-family: $font-primary;
+      }
+
+      &:hover {
+        transform: scale(1.02);
+      }
     }
-
-    &__review {
-      font-size: 0.875rem; 
-      padding: 15px; 
-      -webkit-line-clamp: 10; 
-      line-clamp: 5;
-    }
   }
-}
 
-@media screen and (min-width: 1440px) {
-  .testimonial {
-    width: 60%;
+  &__button-container {
+    margin-top: 20px;
+
+    .testimonials__button {
+      @include button-styles;
+    }
   }
 }

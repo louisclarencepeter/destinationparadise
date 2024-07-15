@@ -193,7 +193,7 @@
 .menu__item {
   margin: 1.5rem;
   font-family: $font-primary;
-  font-size: 1.2rem;
+  font-size: calc(0.8rem + 0.5vw);
   font-weight: 600;
   color: $color-secondary;
   text-decoration: none;

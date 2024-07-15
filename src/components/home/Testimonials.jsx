@@ -1,11 +1,9 @@
 import { Link } from 'react-router-dom';
-import { Slide } from 'react-slideshow-image';
-import 'react-slideshow-image/dist/styles.css';
+import { Carousel } from 'react-responsive-carousel';
+import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import PropTypes from 'prop-types';
 import './Testimonials.scss';
-import img1 from '../../assets/images/testimonials/isa.jpg';
-import img2 from '../../assets/images/testimonials/arturo.jpg';
-import img3 from '../../assets/images/testimonials/coleman.jpg';
+import testimonials from '../../assets/data/testimonials-data';
 
 const Star = () => <i className="fa-solid fa-star"></i>;
 
@@ -45,30 +43,28 @@ Testimonial.propTypes = {
 const Testimonials = () => {
   return (
     <div className="testimonials">
-      <h2 className="testimonials__title">Testimonials</h2>
-      <Slide>
-        <Testimonial
-          imgSrc={img1}
-          name="Isa Jua"
-          review="Si !!! Mangroves trip is amazing !!! Y no solo lo que disfrutas navegando en un dhow!! You can also have a walk on the mangroves and enjoy the best sunset ever. Thanks to Louis and the team and congrats!"
-          starCount={5}
-        />
-        <Testimonial
-          imgSrc={img2}
-          name="Arturo"
-          review="This trip was amazing our tour guide was knowledgeable, upbeat and friendly .. the dowe experience was amazing and the lagoon was a site to see. I was afraid to snorkel but my tour guide got in with me and made me feel safe. The food they provided was very delicious I did not expect a buffet style meal on the beach ! This is what added to the experience! Will definitely recommend."
-          starCount={4}
-        />
-        <Testimonial
-          imgSrc={img3}
-          name="Coleman"
-          review="We had a great time and really enjoyed smelling all the spices and learning about their uses, beyond cooking. Louis was very easy to communicate with and actually went above and beyond to help us book and brainstorm to resolve a couple of challenges that we had."
-          starCount={5}
-        />
-      </Slide>
-      <Link to="/booking">
-        <button className="testimonials__button">Book Now</button>
-      </Link>
+      <div className="testimonials__container">
+        <h2 className="testimonials__title">Testimonials</h2>
+        <Carousel
+          showArrows={true}
+          infiniteLoop={true}
+          showThumbs={false}
+          showStatus={false}
+          showIndicators={false}
+          autoPlay={true}
+          interval={10000}
+          className="testimonials__carousel"
+        >
+          {testimonials.map((testimonial, index) => (
+            <Testimonial key={index} {...testimonial} />
+          ))}
+        </Carousel>
+        <div className="testimonials__button-container">
+          <Link to="/booking">
+            <button className="testimonials__button">Book Now</button>
+          </Link>
+        </div>
+      </div>
     </div>
   );
 };
