@@ -4,7 +4,7 @@
 .footer {
   background-color: $color-background;
   padding: 1.25rem;
-  font-size: 0.875rem;
+  font-size: calc(0.8rem + 0.5vw);
   font-weight: 600;
   color: $color-primary;
   font-family: $font-secondary;
