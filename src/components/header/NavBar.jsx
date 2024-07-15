@@ -10,12 +10,18 @@ const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  const toggleMenu = useCallback(() => {
+  const toggleMenu = useCallback((prevIsOpen) => {
     setIsOpen(prevIsOpen => !prevIsOpen);
+    if (!prevIsOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   }, []);
 
   const closeMenu = useCallback(() => {
     setIsOpen(false);
+    document.body.style.overflow = 'auto';
   }, []);
 
   const handleScroll = useCallback(() => {
