@@ -1,32 +1,35 @@
-import { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import './Excursions.scss';
-import stoneTownImage from '../../assets/images/stonetown/stonetown.jpg';
-import safariBlueImage from '../../assets/images/safariblue/safariblue.jpg';
-import spiceTourImage from '../../assets/images/spicetour/spice.jpg';
+import { useEffect, useRef, useState } from "react";
+import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import "./Excursions.scss";
+import stoneTownImage from "../../assets/images/stonetown/stonetown.jpg";
+import safariBlueImage from "../../assets/images/safariblue/safariblue.jpg";
+import spiceTourImage from "../../assets/images/spicetour/spice.jpg";
 
 const TRIPS = [
   {
-    id: 'stone-town-heritage-walk',
-    title: 'Stone Town Heritage Walk',
-    description: 'Embark on a journey through the timeless Stone Town, a place where history resonates in every alley.',
+    id: "stone-town-heritage-walk",
+    title: "Stone Town Heritage Walk",
+    description:
+      "Embark on a journey through the timeless Stone Town, a place where history resonates in every alley.",
     image: stoneTownImage,
-    linkText: 'Explore Stone Town Heritage Walk',
+    linkText: "Explore Stone Town Heritage Walk",
   },
   {
-    id: 'dhow-snorkeling-safari-blue',
-    title: 'Dhow & Snorkeling Safari Blue',
-    description: 'Experience the authentic and unrivaled Safari Blue - a full-day excursion aboard traditional, locally-crafted sailing dhows.',
+    id: "dhow-snorkeling-safari-blue",
+    title: "Dhow & Snorkeling Safari Blue",
+    description:
+      "Experience the authentic and unrivaled Safari Blue - a full-day excursion aboard traditional, locally-crafted sailing dhows.",
     image: safariBlueImage,
-    linkText: 'Discover Dhow & Snorkeling Safari Blue',
+    linkText: "Discover Dhow & Snorkeling Safari Blue",
   },
   {
-    id: 'zanzibar-spice-culture-tour',
-    title: 'Zanzibar Spice & Culture Tour',
-    description: 'Embark on a half-day journey through Central Zanzibar, exploring the rich history shaped by cloves, nutmeg, cinnamon, and pepper.',
+    id: "zanzibar-spice-culture-tour",
+    title: "Zanzibar Spice & Culture Tour",
+    description:
+      "Embark on a half-day journey through Central Zanzibar, exploring the rich history shaped by cloves, nutmeg, cinnamon, and pepper.",
     image: spiceTourImage,
-    linkText: 'Experience Zanzibar Spice & Culture Tour',
+    linkText: "Experience Zanzibar Spice & Culture Tour",
   },
 ];
 
@@ -58,19 +61,37 @@ const ExcursionCard = ({ trip, index }) => {
   }, []);
 
   return (
-    <article 
-      ref={cardRef} 
-      className={`excursion-card ${isVisible ? 'animate' : ''}`}
+    <article
+      ref={cardRef}
+      className={`excursion-card ${isVisible ? "animate" : ""}`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <img src={trip.image} alt={trip.title} className="excursion-card__image" />
+      <img
+        src={trip.image}
+        alt={trip.title}
+        className="excursion-card__image"
+      />
       <div className="excursion-card__content">
         <h3 className="excursion-card__title reveal">{trip.title}</h3>
         <p className="excursion-card__text reveal">{trip.description}</p>
-        <Link to={`/excursions#${trip.id}`} className="excursion-card__link" aria-label={`Learn more about ${trip.title}`}>
+        <Link
+          to={`/excursions#${trip.id}`}
+          className="excursion-card__link reveal"
+          aria-label={`Learn more about ${trip.title}`}
+        >
           {trip.linkText}
-          <svg fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+          <svg
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
           </svg>
         </Link>
       </div>
@@ -97,7 +118,7 @@ const Excursions = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          section.classList.add('animate');
+          section.classList.add("animate");
           observer.unobserve(entry.target);
         }
       },
