@@ -139,7 +139,7 @@ const Excursions = () => {
   return (
     <section ref={sectionRef} className="excursions">
       <h2 className="excursions__title reveal">Roaming Retreats</h2>
-      <div className="excursions__grid">
+      <div className="excursions__grid reveal">
         {TRIPS.map((trip, index) => (
           <ExcursionCard key={trip.id} trip={trip} index={index} />
         ))}
