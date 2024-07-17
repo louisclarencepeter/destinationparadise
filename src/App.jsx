@@ -6,7 +6,7 @@ import ErrorBoundary from './components/error/ErrorBoundary';
 import ScrollToTop from './utils/scrollToTop';
 import { revealElements } from './utils/revealElements';
 import Layout from './components/layout/Layout';
-//import ErrorTrigger from './components/error/ErrorTrigger';
+// import ErrorTrigger from './components/error/ErrorTrigger';
 
 const Home = lazy(() => import('./components/home/Home'));
 const AboutPage = lazy(() => import('./components/aboutus/AboutPage'));
@@ -17,13 +17,13 @@ const PolicyInfo = lazy(() => import('./components/cookies/PolicyInfo'));
 
 function App() {
   useEffect(() => {
-    window.addEventListener("scroll", revealElements);
+    window.addEventListener('scroll', revealElements);
     revealElements();
     return () => {
-      window.removeEventListener("scroll", revealElements);
+      window.removeEventListener('scroll', revealElements);
     };
   }, []);
-  
+
   return (
     <Router>
       <ScrollToTop />
@@ -31,10 +31,10 @@ function App() {
         <Layout>
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
-              <Route exact path="/" element={<Home />} />
+              <Route path="/" element={<Home />} />
               <Route path="/excursions" element={<ToursPage />} />
               <Route path="/aboutus" element={<AboutPage />} />
-              <Route path="/gallery" element={<MyImageGallery />} />  
+              <Route path="/gallery" element={<MyImageGallery />} />
               <Route path="/booking" element={<Store />} />
               <Route path="/cookies-policy" element={<PolicyInfo />} />
               <Route path="/privacy-policy" element={<PolicyInfo />} />
