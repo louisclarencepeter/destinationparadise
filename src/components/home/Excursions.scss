@@ -86,7 +86,7 @@ $grid-gap: 2rem;
     object-fit: cover;
     transition: transform 0.3s ease;
 
-    &:hover {
+    .excursion-card:hover & {
       transform: scale(1.05);
     }
   }
@@ -104,7 +104,7 @@ $grid-gap: 2rem;
     margin-bottom: 1rem;
     transition: color 0.3s ease;
 
-    &:hover {
+    .excursion-card:hover & {
       color: $color-accent;
     }
   }
