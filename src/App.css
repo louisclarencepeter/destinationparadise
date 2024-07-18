@@ -1,14 +1,14 @@
 /* Import fonts */
 @import '@/styles/fonts.css';
 
-/* Import variables */
-@import '@/styles/_variables.scss';
-
 /* Import base styles */
-@import '@/styles/base.css';
+@import '@/styles/base.scss';
 
 /* Import utilities */
 @import '@/styles/utilities.css';
+
+/* Import common styles */
+@import '@/styles/common.scss';
 
 /* Import component styles */
 @import '@/styles/components.css';
@@ -18,3 +18,5 @@
 
 /* Additional styles */
 @import './components/home/Hero.scss';
+@import './components/cookies/CookieConsent.scss';
+@import './components/chatbot/Chatbot.scss';

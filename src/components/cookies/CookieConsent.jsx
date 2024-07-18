@@ -62,14 +62,14 @@ const CookieConsent = () => {
           <div className="cookie-consent-content">
             <CookieInfo />
             <div className="cookie-consent-buttons">
-              <button onClick={handleAccept}>Accept</button>
-              <button onClick={handleDecline}>Decline</button>
+              <button onClick={handleAccept} aria-label="Accept Cookies">Accept</button>
+              <button onClick={handleDecline} aria-label="Decline Cookies">Decline</button>
             </div>
           </div>
         </div>
       )}
       {isIconVisible && (
-        <button className="cookie-icon" onClick={handleIconClick}>
+        <button className="cookie-icon" onClick={handleIconClick} aria-label="Cookie Settings">
           <FontAwesomeIcon icon={faCookieBite} />
         </button>
       )}

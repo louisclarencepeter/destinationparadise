@@ -25,8 +25,8 @@
   transition: background-color $transition-ease, box-shadow $transition-ease;
 
   &.transparent {
-    background-color: $color-background;
     box-shadow: 0 0 0.625rem $box-shadow-color;
+    background-color: rgba(255, 255, 255, 0.9); 
   }
 
   .classic-menu {

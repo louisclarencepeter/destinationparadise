@@ -1,24 +1,20 @@
 @import "../../styles/variables";
 @import "../../styles/mixins";
-@import "../../styles/base.css";
 @import "../../styles/common";
 
 .cookie-consent-banner {
   position: fixed;
   bottom: 0;
-  background-color: $color-background;
+  background-color: rgba(255, 255, 255, 0.9);
   color: $color-primary;
   padding: 1em;
   box-shadow: 0 -2px 5px $box-shadow-color;
   z-index: 1000;
   display: flex;
+
   justify-content: center;
   align-items: center;
-
-  @media screen and (min-width: 1440px) {
-    width: 100%;
-    margin: 0 auto;
-  }
+  border-top: 1px solid $color-primary;
 
   .cookie-consent-content {
     display: flex;
@@ -50,6 +46,8 @@
       button {
         @include button-styles;
         font-family: $font-secondary;
+        padding: 0.5em 1em;
+        font-size: 1rem;
       }
     }
   }

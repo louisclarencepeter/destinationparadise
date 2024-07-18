@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
+import path from 'path';
 
 export default defineConfig({
   plugins: [react()],
@@ -17,6 +18,12 @@ export default defineConfig({
   },
   css: {
     preprocessorOptions: {
+      scss: {
+        additionalData: `
+          @import "@/styles/variables";
+          @import "@/styles/mixins";
+        `
+      },
       css: {
         charset: false,
       },
@@ -24,7 +31,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      '@': '/src',
+      '@': path.resolve(__dirname, 'src'),
     },
   },
 });
