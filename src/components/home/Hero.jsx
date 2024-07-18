@@ -1,11 +1,13 @@
 import './Hero.scss';
-import backgroundVideo from '../../assets/videos/background.mp4';
+import backgroundVideoH from '../../assets/videos/background_h.mp4';
+import backgroundVideoV from '../../assets/videos/background_v.mp4';
 import placeholderImage from '../../assets/images/boat.jpg';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const Hero = () => {
   const [videoLoaded, setVideoLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     const handleVideoLoad = () => {
@@ -17,32 +19,40 @@ const Hero = () => {
       videoElement.addEventListener('loadeddata', handleVideoLoad);
     }
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+
     return () => {
       if (videoElement) {
         videoElement.removeEventListener('loadeddata', handleVideoLoad);
       }
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
   return (
     <section className="hero">
-      <BackgroundVideo videoLoaded={videoLoaded} />
+      <BackgroundVideo videoLoaded={videoLoaded} isMobile={isMobile} />
       <HeroContent />
     </section>
   );
 };
 
-const BackgroundVideo = ({ videoLoaded }) => (
+const BackgroundVideo = ({ videoLoaded, isMobile }) => (
   <div className="hero__background">
     {!videoLoaded && <img src={placeholderImage} alt="Placeholder" className="hero__placeholder" />}
     <video autoPlay loop muted playsInline className={`hero__video ${videoLoaded ? 'visible' : 'hidden'}`}>
-      <source src={backgroundVideo} type="video/mp4" />
+      <source src={isMobile ? backgroundVideoH : backgroundVideoV} type="video/mp4" />
     </video>
   </div>
 );
 
 BackgroundVideo.propTypes = {
   videoLoaded: PropTypes.bool.isRequired,
+  isMobile: PropTypes.bool.isRequired,
 };
 
 const HeroContent = () => (
