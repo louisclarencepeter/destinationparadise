@@ -5,7 +5,6 @@
   background-color: $color-background;
   padding: 1.25rem;
   font-size: calc(0.8rem + 0.5vw);
-  font-weight: 600;
   color: $color-primary;
   font-family: $font-secondary;
 
@@ -16,9 +15,10 @@
 
   &__title {
     font-size: 1rem;
-    font-weight: 700;
     margin-bottom: 0.625rem;
     text-align: center;
+    font-weight: normal;
+    color: $color-accent;
   }
 
   &__form {
