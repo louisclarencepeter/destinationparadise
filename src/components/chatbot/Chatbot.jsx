@@ -76,20 +76,31 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="chatbot-container">
-      <button className={`chatbot-toggle ${isOpen ? 'hidden' : ''}`} onClick={toggleChatbot}>
+    <div className="chatbot-container" aria-live="polite">
+      <button 
+        className={`chatbot-toggle ${isOpen ? 'hidden' : ''}`} 
+        onClick={toggleChatbot}
+        aria-label="Open chat"
+      >
         <FontAwesomeIcon icon={faCommentDots} />
       </button>
       {isOpen && (
-        <div className={`chatbot ${isOpen ? 'open' : ''}`}>
+        <div className={`chatbot ${isOpen ? 'open' : ''}`} role="dialog" aria-labelledby="chatbot-title">
           <div className="chatbot-header">
-            <button className="close-button" onClick={toggleChatbot}>×</button>
+            <h2 id="chatbot-title" className="sr-only">Chatbot</h2>
+            <button 
+              className="close-button" 
+              onClick={toggleChatbot}
+              aria-label="Close chat"
+            >
+              ×
+            </button>
           </div>
           <div className="chatbot-messages">
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.role}`}>
                 {message.isTyping ? (
-                  <span className="typing-indicator">
+                  <span className="typing-indicator" aria-live="assertive">
                     <span className="dot"></span>
                     <span className="dot"></span>
                     <span className="dot"></span>
@@ -107,8 +118,9 @@ const Chatbot = () => {
               value={input}
               onChange={handleInputChange}
               onKeyPress={event => event.key === 'Enter' && handleSend()}
+              aria-label="Type your message"
             />
-            <button onClick={handleSend}>Send</button>
+            <button onClick={handleSend} aria-label="Send message">Send</button>
           </div>
         </div>
       )}
