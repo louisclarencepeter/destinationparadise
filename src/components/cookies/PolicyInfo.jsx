@@ -129,8 +129,8 @@ const PolicyInfo = () => {
           For any inquiries regarding our policies, you can reach us at:
         </p>
         <ul>
-          <li>Phone: +255 748 352 657</li>
-          <li>Email: info@yournexttriptoparadise.com</li>
+          <li>Phone: <a href="tel:+255748352657">+255 748 352 657</a></li>
+          <li>Email: <a href="mailto:info@yournexttriptoparadise.com">info@yournexttriptoparadise.com</a></li>
         </ul>
         <p>
           Our office is located in Zanzibar, Tanzania.
@@ -138,7 +138,8 @@ const PolicyInfo = () => {
         <p>
           You can also use our contact form below for privacy and policy-related inquiries.
         </p>
-        <form onSubmit={handleSubmit} className="contact-form">
+        <form onSubmit={handleSubmit} className="contact-form" aria-labelledby="contact-form-title">
+          <h3 id="contact-form-title">Contact Us</h3>
           <div className="form-group">
             <label htmlFor="name">Name</label>
             <input 
@@ -148,7 +149,10 @@ const PolicyInfo = () => {
               value={formData.name} 
               onChange={handleChange} 
               required 
+              aria-required="true"
+              aria-describedby="name-desc"
             />
+            <small id="name-desc">Please enter your full name</small>
           </div>
           <div className="form-group">
             <label htmlFor="email">Email</label>
@@ -159,7 +163,10 @@ const PolicyInfo = () => {
               value={formData.email} 
               onChange={handleChange} 
               required 
+              aria-required="true"
+              aria-describedby="email-desc"
             />
+            <small id="email-desc">Please enter a valid email address</small>
           </div>
           <div className="form-group">
             <label htmlFor="message">Message</label>
@@ -169,7 +176,10 @@ const PolicyInfo = () => {
               value={formData.message} 
               onChange={handleChange} 
               required 
+              aria-required="true"
+              aria-describedby="message-desc"
             ></textarea>
+            <small id="message-desc">Please enter your message</small>
           </div>
           <button type="submit">Submit</button>
         </form>

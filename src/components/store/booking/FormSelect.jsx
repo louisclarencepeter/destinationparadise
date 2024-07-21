@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const FormSelect = ({ label, id, name, value, options, onChange, required, autoComplete }) => {
+const FormSelect = ({ label, id, name, value, options, onChange, required = false, autoComplete = 'off' }) => {
   return (
     <div className="reveal form-group">
       <label htmlFor={id}>{label}</label>
@@ -11,6 +11,7 @@ const FormSelect = ({ label, id, name, value, options, onChange, required, autoC
         onChange={onChange}
         required={required}
         autoComplete={autoComplete}
+        aria-required={required}
       >
         <option value="" disabled>Select an option</option>
         {options.map((option, index) => (

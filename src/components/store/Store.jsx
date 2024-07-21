@@ -55,9 +55,9 @@ const Store = () => {
 
   return (
     <div className="store-container">
-     <h2>Booking Request</h2>
-      <ImageSlideshow images={images} />
-      <div className="booking-request"> 
+      <h2>Booking Request</h2>
+      <ImageSlideshow images={images} aria-label="Image slideshow of tours" />
+      <div className="booking-request">
         <p>Welcome to the booking request page. Please fill out the form below to make a new booking.</p>
         <BookingForm tours={tours} locations={locations} handleSubmit={handleSubmit} />
       </div>

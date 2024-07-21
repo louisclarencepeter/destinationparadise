@@ -19,12 +19,13 @@ class ErrorBoundary extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="error-container">
+        <div className="error-container" role="alert" aria-live="assertive">
           <h2>Oops! Something went wrong...</h2>
           <p>We&apos;re sorry for the inconvenience. Please try again later.</p>
           <button
             onClick={() => window.location.reload()}
             className="reload-button"
+            aria-label="Reload the page"
           >
             Reload Page
           </button>
@@ -40,12 +41,12 @@ class ErrorBoundary extends React.Component {
                 aria-label="Chat with us on WhatsApp"
                 className="footer__whatsapp-link"
               >
-                <i className="fab fa-whatsapp footer__whatsapp-icon"></i>
+                <i className="fab fa-whatsapp footer__whatsapp-icon" aria-hidden="true"></i>
               </a>
             </p>
             <p>Zanzibar, Tanzania</p>
             <p>
-              <a href="mailto:info@yournexttriptoparadise.com">
+              <a href="mailto:info@yournexttriptoparadise.com" aria-label="Send us an email">
                 info@yournexttriptoparadise.com
               </a>
             </p>

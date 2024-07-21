@@ -17,16 +17,18 @@ const MenuList = ({ className, onClick }) => {
   const location = useLocation();
   
   return (
-    <ul className={className}>
+    <ul className={className} role="menubar">
       {menuItems.map(({ label, path }) => (
-        <li key={label}>
+        <li key={label} role="none">
           <Link
+            role="menuitem"
             className={`menu__item ${location.pathname === path ? 'active' : ''}`}
             to={path}
             onClick={() => {
               onClick();
               scrollToTop();
             }}
+            aria-label={`Navigate to ${label}`}
           >
             {label}
           </Link>
@@ -89,11 +91,12 @@ const NavBar = () => {
           checked={isOpen}
           onChange={toggleMenu}
           aria-expanded={isOpen ? 'true' : 'false'}
+          aria-controls="menu__box"
         />
         <label className="menu__btn" htmlFor="menu__toggle" aria-label="Toggle navigation menu">
           <span></span>
         </label>
-        <div className={`menu__box ${isOpen ? 'open' : ''}`}>
+        <div id="menu__box" className={`menu__box ${isOpen ? 'open' : ''}`}>
           <MenuList className="hamburger-menu__list" onClick={closeMenu} />
           <div className="menu__header">
             <img src={logo} alt="Logo" className={`menu__logo ${isOpen ? 'open' : ''}`} width="100" height="40" />

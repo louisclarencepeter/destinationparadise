@@ -5,11 +5,11 @@ const CookieModal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="cookie-modal-overlay" onClick={onClose}>
+    <div className="cookie-modal-overlay" onClick={onClose} role="dialog" aria-labelledby="cookie-modal-title" aria-modal="true">
       <div className="cookie-modal" onClick={(e) => e.stopPropagation()}>
         <div className="cookie-modal-header">
-          <h2>Privacy Settings</h2>
-          <button className="close-button" onClick={onClose}>×</button>
+          <h2 id="cookie-modal-title">Privacy Settings</h2>
+          <button className="close-button" onClick={onClose} aria-label="Close Privacy Settings">×</button>
         </div>
         <div className="cookie-modal-body">
           <p>This tool helps you to select and deactivate various tags/trackers/analysis tools used on this website.</p>
@@ -20,9 +20,9 @@ const CookieModal = ({ isOpen, onClose }) => {
           </ul>
         </div>
         <div className="cookie-modal-footer">
-          <button onClick={onClose} className="button save-button">Save</button>
-          <button onClick={onClose} className="button deny-button">Deny</button>
-          <button onClick={onClose} className="button accept-button">Accept and close</button>
+          <button onClick={onClose} className="button save-button" aria-label="Save Privacy Settings">Save</button>
+          <button onClick={onClose} className="button deny-button" aria-label="Deny Privacy Settings">Deny</button>
+          <button onClick={onClose} className="button accept-button" aria-label="Accept Privacy Settings and Close">Accept and close</button>
         </div>
       </div>
     </div>

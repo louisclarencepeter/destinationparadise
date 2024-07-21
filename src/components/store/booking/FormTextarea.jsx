@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const FormTextarea = ({ label, id, name, value, onChange, required, autoComplete }) => {
+const FormTextarea = ({ label, id, name, value, onChange, required = false, autoComplete = 'off' }) => {
   return (
     <div className="reveal form-group">
       <label htmlFor={id}>{label}</label>
@@ -11,6 +11,7 @@ const FormTextarea = ({ label, id, name, value, onChange, required, autoComplete
         onChange={onChange}
         required={required}
         autoComplete={autoComplete}
+        aria-required={required}
       ></textarea>
     </div>
   );

@@ -5,6 +5,7 @@ import FormInput from './FormInput';
 import FormSelect from './FormSelect';
 import FormTextarea from './FormTextarea';
 
+
 const BookingForm = ({ tours, locations }) => {
   const [state, handleSubmit] = useForm("mlekgonz");
   const [formData, setFormData] = useState({
@@ -27,7 +28,8 @@ const BookingForm = ({ tours, locations }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="booking-form">
+    <form onSubmit={handleSubmit} className="booking-form" aria-labelledby="booking-form-title">
+      <h3 id="booking-form-title">Booking Request Form</h3>
       <input type="hidden" name="form-name" value="booking-request" />
       <input type="hidden" name="bot-field" />
       <FormInput 
