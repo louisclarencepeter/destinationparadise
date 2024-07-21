@@ -49,9 +49,6 @@
 
       button {
         @include button-styles;
-        font-family: $font-secondary;
-        padding: 0.5em 1em;
-        font-size: 1rem;
       }
     }
   }
