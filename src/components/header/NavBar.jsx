@@ -70,7 +70,7 @@ const NavBar = () => {
     <nav className={`nav ${isScrolled ? 'transparent' : ''}`}>
       <div className='store'>
         <Link to="/booking" onClick={closeMenu} aria-label="Book Now">
-          <button><i className="fa-solid fa-store"></i>Book Now</button>
+          <button><i className="fa-solid fa-store"></i></button>
         </Link>
       </div>
       <nav className="classic-menu" aria-label="Main navigation">
