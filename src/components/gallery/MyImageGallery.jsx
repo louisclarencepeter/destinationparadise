@@ -43,7 +43,7 @@ const MyImageGallery = () => {
               <img
                 key={image.id}
                 src={image.src}
-                className="image reveal"
+                className="image"
                 alt={image.alt}
               />
             ))}
