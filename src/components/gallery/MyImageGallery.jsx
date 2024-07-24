@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import './MyImageGallery.scss';
 
 const MyImageGallery = () => {
-  const [imagesLoaded, setImagesLoaded] = useState(false);
   const [galleryImages, setGalleryImages] = useState([]);
+  const galleryRef = useRef(null);
 
   useEffect(() => {
     const loadImages = () => {
@@ -17,7 +17,6 @@ const MyImageGallery = () => {
           alt: `Image ${i}`,
         });
       }
-      setImagesLoaded(true);
       setGalleryImages(importedImages);
     };
 
@@ -25,31 +24,42 @@ const MyImageGallery = () => {
   }, []);
 
   useEffect(() => {
-    if (imagesLoaded) {
-      const reveals = document.querySelectorAll('.reveal');
-      reveals.forEach((reveal) => {
-        reveal.classList.add('active');
+    const revealElements = () => {
+      const reveals = galleryRef.current.querySelectorAll(".reveal");
+      const windowHeight = window.innerHeight;
+
+      reveals.forEach((element) => {
+        const elementTop = element.getBoundingClientRect().top;
+        const elementVisible = 150;
+
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add("active");
+        }
       });
+    };
+
+
+    if (galleryImages.length > 0) {
+      setTimeout(revealElements, 100); // Small delay to ensure DOM is updated
     }
-  }, [imagesLoaded]);
+  }, [galleryImages]);
 
   return (
-    <div className="gallery">
-      <h2 className='reveal'>Gallery</h2>
-      {imagesLoaded && (
-        <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
-          <Masonry>
-            {galleryImages.map((image) => (
+    <div className="gallery" ref={galleryRef}>
+      <h2 className="reveal">Gallery</h2>
+      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
+        <Masonry>
+          {galleryImages.map((image) => (
+            <div key={image.id} className="reveal">
               <img
-                key={image.id}
                 src={image.src}
                 className="image"
                 alt={image.alt}
               />
-            ))}
-          </Masonry>
-        </ResponsiveMasonry>
-      )}
+            </div>
+          ))}
+        </Masonry>
+      </ResponsiveMasonry>
     </div>
   );
 };

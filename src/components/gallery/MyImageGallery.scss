@@ -1,33 +1,37 @@
-// src/components/gallery/MyImageGallery.scss
-
 .gallery {
-
   max-width: 1200px;
-    .image {
-      transition: all 0.3s ease-in-out;
-      box-sizing: border-box;
-      position: relative;
-      padding: 1rem;
-      width: 100%;
-      height: 100%;
-      margin: 0 auto;
-    }
-  
-    .image:hover {
+  margin: 0 auto;
+  padding: 20px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .image {
+    transition: all 0.3s ease-in-out;
+    box-sizing: border-box;
+    position: relative;
+    padding: 1rem;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+
+    &:hover {
       transform: scale(1.05);
       z-index: 1;
       box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
     }
-  
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.65s ease, transform 0.65s ease;
-    }
-  
-    .reveal.active {
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+
+    &.active {
       opacity: 1;
       transform: translateY(0);
     }
   }
-  
+}
