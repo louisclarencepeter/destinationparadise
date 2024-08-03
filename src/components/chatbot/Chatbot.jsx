@@ -46,7 +46,7 @@ const Chatbot = () => {
       console.error('Error sending message:', error);
       const errorMessage = {
         content: (
-          <span>
+          <span role="alert">
             Currently, this service is unavailable. Please contact us directly via WhatsApp
             <a
               href={config.parameters.whatsappLink}
@@ -81,11 +81,13 @@ const Chatbot = () => {
         className={`chatbot-toggle ${isOpen ? 'hidden' : ''}`} 
         onClick={toggleChatbot}
         aria-label="Open chat"
+        aria-expanded={isOpen}
+        aria-controls="chatbot"
       >
         <FontAwesomeIcon icon={faCommentDots} />
       </button>
       {isOpen && (
-        <div className={`chatbot ${isOpen ? 'open' : ''}`} role="dialog" aria-labelledby="chatbot-title">
+        <div id="chatbot" className={`chatbot ${isOpen ? 'open' : ''}`} role="dialog" aria-labelledby="chatbot-title">
           <div className="chatbot-header">
             <h2 id="chatbot-title" className="sr-only">Chatbot</h2>
             <button 
@@ -96,7 +98,7 @@ const Chatbot = () => {
               ×
             </button>
           </div>
-          <div className="chatbot-messages">
+          <div className="chatbot-messages" aria-live="polite">
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.role}`}>
                 {message.isTyping ? (

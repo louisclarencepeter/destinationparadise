@@ -96,7 +96,7 @@
     margin-bottom: 10px;
     word-wrap: break-word;
     font-family: $font-secondary;
-    font-size: calc(0.8rem + 0.5vw); 
+    font-size: calc(0.8rem + 0.5vw);
 
     &.user {
       align-self: flex-end;
@@ -152,9 +152,9 @@
 
 .chatbot-input {
   display: flex;
-  padding: 8px;
   background-color: $color-background;
   border-top: 1px solid $color-secondary;
+  padding: 8px;
 
   input {
     flex: 1;
@@ -163,7 +163,7 @@
     border-radius: 4px;
     margin-right: 8px;
     font-family: $font-secondary;
-    font-size: calc(0.8rem + 0.5vw); 
+    font-size: calc(0.8rem + 0.5vw);
     transition: $transition-default;
 
     &:focus {

@@ -67,11 +67,15 @@
 
     .cookie-modal-footer {
         @include flex-center(space-between);
-        
-        .button {
-            @include button-styles;
-            font-size: 0.6em;
 
+        .button {
+            font-size: 0.6em;
+            @include button-styles;
+
+            @media (max-width: 600px) {
+                font-size: 0.7em;
+                padding: 0.5em 1em;
+            }
 
             &:nth-child(1) {
                 background-color: lighten($color-secondary, 40%);
@@ -101,11 +105,6 @@
                     background-color: lighten($color-primary, 20%);
                     color: $color-accent;
                 }
-            }
-
-            @media (max-width: 600px) {
-                font-size: 0.7em;
-                padding: 0.5em 1em;
             }
         }
     }

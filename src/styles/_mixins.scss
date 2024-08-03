@@ -1,5 +1,3 @@
-// _mixins.scss
-
 @mixin flex-center($justify: center, $align: center) {
   display: flex;
   justify-content: $justify;
@@ -79,23 +77,15 @@
 }
 
 @mixin button-styles {
-  border-radius: 0.7rem;
-  padding: 1rem 2rem;
-  font-size: calc(0.6rem + 0.5vw);
-  background-image: $gradient-button;
-  color: $color-background;
-  border: none;
-  font-family: $font-primary;
-  cursor: pointer;
-  transition: $transition-default;
-
-  &:hover {
-    color: $hover-color;
-    background-image: linear-gradient(120deg, darken(#89f7fe, 10%) 0%, darken(#66a6ff, 10%) 100%);
-  }
-
-  i {
-    text-decoration: none;
+  & {
+    border-radius: 0.7rem;
+    padding: 0.5rem 1rem;
+    font-size: calc(0.6rem + 0.5vw);
+    background-image: $gradient-button;
+    color: $color-background;
+    border: none;
+    font-family: $font-primary;
+    cursor: pointer;
     transition: $transition-default;
   }
 
@@ -108,6 +98,15 @@
     padding: 0.6rem 1.2rem;
     font-size: calc(0.4rem + 1.5vw);
   }
-}
 
+  &:hover {
+    color: $hover-color;
+    background-image: linear-gradient(120deg, darken(#89f7fe, 10%) 0%, darken(#66a6ff, 10%) 100%);
+  }
+
+  i {
+    text-decoration: none;
+    transition: $transition-default;
+  }
+}
 
