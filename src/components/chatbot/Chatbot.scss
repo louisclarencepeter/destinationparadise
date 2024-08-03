@@ -12,6 +12,7 @@
   justify-content: flex-end;
   z-index: 999;
   border-radius: 5px;
+  width: auto;
 
   @media (max-width: 480px) {
     bottom: 0;
@@ -20,6 +21,7 @@
     width: 100%;
     align-items: stretch;
   }
+
 }
 
 .chatbot-toggle {
@@ -46,7 +48,6 @@
   border-radius: 8px;
   box-shadow: 0 4px 8px $box-shadow-color;
   overflow: hidden;
-  margin-right: 4rem;
 
   &.open {
     display: flex;
@@ -59,6 +60,11 @@
     border: none;
     border-radius: 1rem 1rem 0 0;
   }
+
+  @media (min-width: 2560px) { /* For 4K screens */
+    width: 600px;
+    height: 800px;
+  }
 }
 
 .chatbot-header {
@@ -67,6 +73,10 @@
   padding: 8px;
   background-color: $color-background;
   border-bottom: 1px solid $color-secondary;
+
+  @media (min-width: 2560px) { /* For 4K screens */
+    padding: 16px;
+  }
 }
 
 .close-button {
@@ -79,6 +89,10 @@
 
   &:hover {
     color: $hover-color;
+  }
+
+  @media (min-width: 2560px) { /* For 4K screens */
+    font-size: 1.8rem;
   }
 }
 
@@ -96,7 +110,7 @@
     margin-bottom: 10px;
     word-wrap: break-word;
     font-family: $font-secondary;
-    font-size: calc(0.8rem + 0.5vw);
+    font-size: calc(0.5rem + 0.5vw);
 
     &.user {
       align-self: flex-end;
@@ -139,6 +153,21 @@
       }
     }
   }
+
+  @media (min-width: 2560px) { /* For 4K screens */
+    padding: 20px;
+
+    .message {
+      padding: 20px;
+      margin-bottom: 20px;
+      font-size: calc(0.7rem + 0.5vw);
+
+      .typing-indicator .dot {
+        width: 12px;
+        height: 12px;
+      }
+    }
+  }
 }
 
 @keyframes typing {
@@ -152,6 +181,7 @@
 
 .chatbot-input {
   display: flex;
+  align-items: center;
   background-color: $color-background;
   border-top: 1px solid $color-secondary;
   padding: 8px;
@@ -174,6 +204,20 @@
 
   button {
     @include button-styles;
+  }
+
+  @media (min-width: 2560px) { /* For 4K screens */
+    padding: 16px;
+
+    input {
+      padding: 16px;
+      margin-right: 16px;
+      font-size: calc(1rem + 0.5vw);
+    }
+
+    button {
+      font-size: 1rem; /* Adjust font-size here if needed */
+    }
   }
 }
 
