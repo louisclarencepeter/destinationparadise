@@ -6,7 +6,6 @@ import ErrorBoundary from './components/error/ErrorBoundary';
 import ScrollToTop from './utils/scrollToTop';
 import { revealElements } from './utils/revealElements';
 import Layout from './components/layout/Layout';
-// import ErrorTrigger from './components/error/ErrorTrigger';
 
 const Home = lazy(() => import('./components/home/Home'));
 const AboutPage = lazy(() => import('./components/aboutus/AboutPage'));
@@ -14,6 +13,7 @@ const ToursPage = lazy(() => import('./components/excursions/ToursPage'));
 const MyImageGallery = lazy(() => import('./components/gallery/MyImageGallery'));
 const Store = lazy(() => import('./components/store/Store'));
 const PolicyInfo = lazy(() => import('./components/cookies/PolicyInfo'));
+const ChatbotPage = lazy(() => import('./components/chatbot/ChatbotPage'));
 
 function App() {
   useEffect(() => {
@@ -39,7 +39,7 @@ function App() {
               <Route path="/cookies-policy" element={<PolicyInfo />} />
               <Route path="/privacy-policy" element={<PolicyInfo />} />
               <Route path="/terms-of-service" element={<PolicyInfo />} />
-              {/* <ErrorTrigger /> */}
+              <Route path="/chat" element={<ChatbotPage />} /> 
             </Routes>
           </Suspense>
         </Layout>

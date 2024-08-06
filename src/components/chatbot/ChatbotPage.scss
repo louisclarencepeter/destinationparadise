@@ -1,0 +1,38 @@
+.chatbot-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+    background-color: $color-background;
+  }
+  
+  .chatbot-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .chatbot {
+    width: 100%;
+    height: 100%;
+    background: $color-background;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: hidden;
+  
+    @media (min-width: 480px) {
+      width: 80%;
+      height: 80%;
+      max-width: 600px;
+      max-height: 800px;
+      border: 1px solid $color-secondary;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px $box-shadow-color;
+    }
+  }
+  
