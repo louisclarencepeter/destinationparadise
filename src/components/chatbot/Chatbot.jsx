@@ -10,6 +10,7 @@ const Chatbot = () => {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [isOpen, setIsOpen] = useState(false);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -22,6 +23,19 @@ const Chatbot = () => {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
+
+  useEffect(() => {
+    const handleKeyboardShow = () => setIsKeyboardOpen(true);
+    const handleKeyboardHide = () => setIsKeyboardOpen(false);
+
+    window.addEventListener('focusin', handleKeyboardShow);
+    window.addEventListener('focusout', handleKeyboardHide);
+
+    return () => {
+      window.removeEventListener('focusin', handleKeyboardShow);
+      window.removeEventListener('focusout', handleKeyboardHide);
+    };
+  }, []);
 
   const handleSend = async () => {
     if (!input.trim()) return;
@@ -87,7 +101,7 @@ const Chatbot = () => {
         <FontAwesomeIcon icon={faCommentDots} />
       </button>
       {isOpen && (
-        <div id="chatbot" className={`chatbot ${isOpen ? 'open' : ''}`} role="dialog" aria-labelledby="chatbot-title">
+        <div id="chatbot" className={`chatbot ${isOpen ? 'open' : ''} ${isKeyboardOpen ? 'keyboard-open' : ''}`} role="dialog" aria-labelledby="chatbot-title">
           <div className="chatbot-header">
             <h2 id="chatbot-title" className="sr-only">Chatbot</h2>
             <button 
