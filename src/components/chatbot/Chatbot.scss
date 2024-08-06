@@ -21,7 +21,6 @@
     width: 100%;
     align-items: stretch;
   }
-
 }
 
 .chatbot-toggle {
@@ -61,7 +60,7 @@
     border-radius: 1rem 1rem 0 0;
   }
 
-  @media (min-width: 2560px) { /* For 4K screens */
+  @media (min-width: 2560px) {
     width: 600px;
     height: 800px;
   }
@@ -74,7 +73,7 @@
   background-color: $color-background;
   border-bottom: 1px solid $color-secondary;
 
-  @media (min-width: 2560px) { /* For 4K screens */
+  @media (min-width: 2560px) {
     padding: 16px;
   }
 }
@@ -91,7 +90,7 @@
     color: $hover-color;
   }
 
-  @media (min-width: 2560px) { /* For 4K screens */
+  @media (min-width: 2560px) {
     font-size: 1.8rem;
   }
 }
@@ -154,7 +153,7 @@
     }
   }
 
-  @media (min-width: 2560px) { /* For 4K screens */
+  @media (min-width: 2560px) {
     padding: 20px;
 
     .message {
@@ -206,7 +205,7 @@
     @include button-styles;
   }
 
-  @media (min-width: 2560px) { /* For 4K screens */
+  @media (min-width: 2560px) {
     padding: 16px;
 
     input {
@@ -216,7 +215,7 @@
     }
 
     button {
-      font-size: 1rem; /* Adjust font-size here if needed */
+      font-size: 1rem;
     }
   }
 }
