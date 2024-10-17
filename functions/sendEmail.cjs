@@ -1,6 +1,6 @@
 const { Resend } = require('resend');
 
-const resend = new Resend('RESEND_API_KEY'); // Replace with your actual Resend API key
+const resend = new Resend('RESEND_API_KEY'); 
 
 exports.handler = async (event) => {
   try {
