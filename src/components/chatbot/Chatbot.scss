@@ -25,10 +25,6 @@
 
 .chatbot-toggle {
   @extend .common-icon-style;
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  z-index: 1000;
 
   &.hidden {
     display: none !important;
@@ -38,7 +34,6 @@
     position: fixed;
     bottom: 1rem;
     right: 1rem;
-    left: auto;
   }
 }
 
@@ -57,22 +52,12 @@
     display: flex;
   }
 
-  &.keyboard-open {
-    width: 50%;
-    height: calc(45vh - 50px);
-  }
-
   @media (max-width: 480px) {
-    width: 80%;
+    width: 92%;
     margin: 0 auto;
     height: calc(70vh - 20px);
     border: none;
     border-radius: 1rem 1rem 0 0;
-
-    &.keyboard-open {
-      width: 80%;
-      height: calc(45vh - 20px);
-    }
   }
 
   @media (min-width: 2560px) {
