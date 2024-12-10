@@ -21,4 +21,8 @@
       color: $color-accent;
     }
   }
+
+  &:hover {
+    transform: scale(1.2);
+  }
 }
