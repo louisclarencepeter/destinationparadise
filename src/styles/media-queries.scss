@@ -1,0 +1,16 @@
+/* Variables (_variables.scss) */
+$breakpoint-sm: 420px;
+$breakpoint-md: 768px;
+
+/* Media Queries (media-queries.css) */
+@media screen and (min-width: #{$breakpoint-sm}) {
+    h1 { font-size: 4rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 1.5rem; }
+}
+
+@media screen and (min-width: #{$breakpoint-md}) {
+    h1 { font-size: 5rem; }
+    h2 { font-size: 3rem; }
+    h3 { font-size: 2rem; }
+}

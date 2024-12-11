@@ -5,7 +5,7 @@
 @import '@/styles/base.scss';
 
 /* Import utilities */
-@import '@/styles/utilities.css';
+@import '@/styles/utilities.scss';
 
 /* Import common styles */
 @import '@/styles/common.scss';
@@ -14,7 +14,7 @@
 @import '@/styles/components.css';
 
 /* Import media queries */
-@import '@/styles/media-queries.css';
+@import '@/styles/media-queries.scss';
 
 /* Additional styles */
 @import './components/home/Hero.scss';

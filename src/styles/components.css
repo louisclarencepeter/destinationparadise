@@ -1,16 +1,17 @@
 /* Gallery */
-.gallery-container
 .gallery-image {
+    --box-shadow-hover: 5px 5px 15px rgba(0, 0, 0, 0.3);
     transition: var(--transition-default);
     box-sizing: border-box;
     position: relative;
     width: 90%;
     height: 100%;
     margin: 0 auto;
+    will-change: transform, box-shadow;
 }
 
-.gallery-container .gallery-image:hover {
+.gallery-image:hover {
     transform: scale(1.05);
     z-index: 1;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: var(--box-shadow-hover);
 }
