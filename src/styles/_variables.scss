@@ -1,4 +1,4 @@
-// _variables.scss
+@use "sass:color";
 
 /* Fonts */
 $font-primary: 'Playfair Display', serif;
@@ -26,12 +26,14 @@ $transition-duration: 0.3s;
 $transition-ease: 0.5s ease;
 
 /* Additional variables for Chatbot */
-$color-user-message: lighten($color-accent, 30%);
+$color-user-message: color.adjust($color-accent, $lightness: 30%);
 $color-assistant-message: #f1f0f0;
 
-/* Added missing variables */
-$color-background-light: lighten($color-background, 10%);
-$color-background-dark: darken($color-background, 10%);
-$color-on-primary: #ffffff; // Text on primary background
-$color-on-user-message: #ffffff; // Text color for user message
-$color-on-assistant-message: #333333; // Text color for assistant message
+/* Adjusted color backgrounds using color.adjust instead of lighten/darken */
+$color-background-light: color.adjust($color-background, $lightness: 10%);
+$color-background-dark: color.adjust($color-background, $lightness: -10%);
+
+/* Text colors for various backgrounds */
+$color-on-primary: #ffffff;
+$color-on-user-message: #ffffff;
+$color-on-assistant-message: #333333;

@@ -1,3 +1,6 @@
+@use "sass:color";
+@use "src/styles/variables" as vars; // Adjust path if necessary
+
 @mixin flex-center($justify: center, $align: center) {
   display: flex;
   justify-content: $justify;
@@ -81,12 +84,12 @@
     border-radius: 0.7rem;
     padding: 0.5rem 1rem;
     font-size: calc(0.6rem + 0.5vw);
-    background-image: $gradient-button;
-    color: $color-background;
+    background-image: vars.$gradient-button;
+    color: vars.$color-background;
     border: none;
-    font-family: $font-primary;
+    font-family: vars.$font-primary;
     cursor: pointer;
-    transition: $transition-default;
+    transition: vars.$transition-default;
   }
 
   @media (max-width: 768px) {
@@ -100,13 +103,16 @@
   }
 
   &:hover {
-    color: $hover-color;
-    background-image: linear-gradient(120deg, darken(#89f7fe, 10%) 0%, darken(#66a6ff, 10%) 100%);
+    color: vars.$hover-color;
+    background-image: linear-gradient(
+      120deg,
+      color.adjust(#89f7fe, $lightness: -10%) 0%,
+      color.adjust(#66a6ff, $lightness: -10%) 100%
+    );
   }
 
   i {
     text-decoration: none;
-    transition: $transition-default;
+    transition: vars.$transition-default;
   }
 }
-
