@@ -38,7 +38,9 @@ function Footer() {
           Subscribe to our newsletter! 🚀💬💌
         </h5>
         <form onSubmit={handleSubmit} className="footer__form reveal" aria-label="Newsletter subscription form">
+          <label htmlFor="email" className="visually-hidden">Email address</label>
           <input
+            id="email"
             type="email"
             className="footer__input reveal"
             placeholder="E-Mail"
@@ -62,6 +64,7 @@ function Footer() {
               rel="noopener noreferrer"
               aria-label="Chat with us on WhatsApp"
               className="footer__whatsapp-link reveal"
+              style={{ padding: '12px', margin: '0 8px' }}
             >
               <i className="fab fa-whatsapp footer__whatsapp-icon reveal" aria-hidden="true"></i>
             </a>
@@ -81,6 +84,8 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit our Facebook page"
+              className="footer__social-link"
+              style={{ display: 'inline-block', width: '48px', height: '48px', padding: '12px', textAlign: 'center' }}
             >
               <i className="fab fa-facebook" aria-hidden="true"></i>
             </a>
@@ -89,6 +94,8 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit our Instagram page"
+              className="footer__social-link"
+              style={{ display: 'inline-block', width: '48px', height: '48px', padding: '12px', textAlign: 'center' }}
             >
               <i className="fab fa-instagram" aria-hidden="true"></i>
             </a>
@@ -97,6 +104,8 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit our YouTube channel"
+              className="footer__social-link"
+              style={{ display: 'inline-block', width: '48px', height: '48px', padding: '12px', textAlign: 'center' }}
             >
               <i className="fab fa-youtube" aria-hidden="true"></i>
             </a>
@@ -105,14 +114,16 @@ function Footer() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Visit our Twitter page"
+              className="footer__social-link"
+              style={{ display: 'inline-block', width: '48px', height: '48px', padding: '12px', textAlign: 'center' }}
             >
               <i className="fab fa-twitter" aria-hidden="true"></i>
             </a>
           </div>
         </div>
         <div className="footer__legal">
-          <a href="/privacy-policy" aria-label="Read our Privacy Policy">Privacy Policy</a>|
-          <a href="/terms-of-service" aria-label="Read our Terms of Service">Terms of Service</a>
+          <a href="/privacy-policy" aria-label="Read our Privacy Policy" style={{ padding: '8px' }}>Privacy Policy</a>|
+          <a href="/terms-of-service" aria-label="Read our Terms of Service" style={{ padding: '8px' }}>Terms of Service</a>
         </div>
         <div className="footer__copyright">
           <p>&copy; 2023 Destination Paradise. All rights reserved.</p>
