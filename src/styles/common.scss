@@ -1,28 +1,31 @@
-// common.scss
+// filepath: /a:/Projects/destinationparadise/src/styles/common.scss
+@use './variables' as vars;
+@use './mixins' as mixins;
 
-@import './variables';
-@import './mixins';
-
-.common-icon-style {
-  background-color: $color-primary;
+@mixin common-icon-style {
+  background-color: vars.$color-primary;
   padding: 0.5em;
   border-radius: 50%;
-  box-shadow: 0 2px 5px $box-shadow-color;
+  box-shadow: 0 2px 5px vars.$box-shadow-color;
   cursor: pointer;
-  @include flex-center;
+  @include mixins.flex-center;
 
   svg {
-    color: $color-background;
+    color: vars.$color-background;
     width: 2em;
     height: 2em;
-    transition: $transition-default;
+    transition: vars.$transition-default;
 
     &:hover {
-      color: $color-accent;
+      color: vars.$color-accent;
     }
   }
 
   &:hover {
     transform: scale(1.2);
   }
+}
+
+.common-icon-style {
+  @include common-icon-style;
 }

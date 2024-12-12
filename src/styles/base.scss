@@ -1,10 +1,9 @@
-@import './variables';
+@use './variables' as variables;
 
-/* This file contains the base styles for the application. */
 body {
-    font-family: $font-primary;
-    color: $color-primary;
-    background-color: $color-background;
+    font-family: variables.$font-primary;
+    color: variables.$color-primary;
+    background-color: variables.$color-background;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,14 +11,14 @@ body {
 }
 
 h1 {
-    font-family: $font-tertiary;
+    font-family: variables.$font-tertiary;
     font-size: 4rem;
     font-weight: 500;
-    color: $color-background;
+    color: variables.$color-background;
 }
 
 h2, h3, h4, h5 {
-    font-family: $font-secondary;
+    font-family: variables.$font-secondary;
     text-align: center;
     margin-bottom: 1rem;
 }
@@ -27,36 +26,36 @@ h2, h3, h4, h5 {
 h2 {
     font-size: 2rem;
     font-weight: 300;
-    color: $color-secondary;
+    color: variables.$color-secondary;
 }
 
 h3 {
     font-size: 1.5rem;
-    color: $color-background;
+    color: variables.$color-background;
 }
 
 h4 {
     font-size: 1.3rem;
-    color: $color-secondary;
+    color: variables.$color-secondary;
 }
 
 h5 {
     font-size: 1rem;
-    color: $color-secondary;
+    color: variables.$color-secondary;
 }
 
 button {
-    font-family: $font-primary;
+    font-family: variables.$font-primary;
     font-weight: 300;
     text-align: center;
-    color: $color-background;
-    background-image: $gradient-button;
+    color: variables.$color-background;
+    background-image: variables.$gradient-button;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
-    transition: $transition-default;
+    transition: variables.$transition-default;
 }
 
 button:hover {
-    color: $color-accent;
+    color: variables.$color-accent;
 }

@@ -1,5 +1,5 @@
 @use "sass:color";
-@use "src/styles/variables" as vars; // Adjust path if necessary
+@use "../styles/variables" as vars;
 
 @mixin flex-center($justify: center, $align: center) {
   display: flex;

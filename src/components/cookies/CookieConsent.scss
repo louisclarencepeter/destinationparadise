@@ -1,20 +1,19 @@
-@import "../../styles/variables";
-@import "../../styles/mixins";
-@import "../../styles/common";
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins";
+@use "../../styles/common";
 
 .cookie-consent-banner {
   position: fixed;
   bottom: 0;
   background-color: rgba(255, 255, 255, 0.9);
-  color: $color-primary;
+  color: vars.$color-primary;
   padding: 1em;
-  box-shadow: 0 -2px 5px $box-shadow-color;
+  box-shadow: 0 -2px 5px vars.$box-shadow-color;
   z-index: 1000;
   display: flex;
-
   justify-content: center;
   align-items: center;
-  border-top: 1px solid $color-primary;
+  border-top: 1px solid vars.$color-primary;
 
   .cookie-consent-content {
     display: flex;
@@ -24,18 +23,19 @@
 
     .cookie-info {
       margin-bottom: 1em;
+
       p {
         margin: 0;
-        font-family: $font-secondary;
+        font-family: vars.$font-secondary;
         font-size: calc(0.8rem + 0.5vw);
-        color: $color-primary;
+        color: vars.$color-primary;
 
         a {
-          color: $color-secondary;
+          color: vars.$color-secondary;
           text-decoration: underline;
 
           &:hover {
-            color: $color-accent; 
+            color: vars.$color-accent; 
           }
         }
       }
@@ -48,24 +48,24 @@
       gap: 1em;
 
       button {
-        @include button-styles;
+        @include mixins.button-styles;
       }
     }
   }
 }
 
 .cookie-icon {
-  @extend .common-icon-style;
+  @include common.common-icon-style;
   position: fixed;
   bottom: 1rem;
   left: 1rem;
-  background-image: $gradient-button;
+  background-image: vars.$gradient-button;
   border: none;
   padding: 0.5em;
   cursor: pointer;
   z-index: 999;
 
   .fa-cookie-bite {
-    color: $color-background;
+    color: vars.$color-background;
   }
 }
