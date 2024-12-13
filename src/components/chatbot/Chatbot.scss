@@ -1,6 +1,6 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
-@import '../../styles/common';
+@use '../../styles/variables' as vars;
+@use '../../styles/mixins' as mixins;
+@use '../../styles/common' as common;
 
 .chatbot-container {
   position: fixed;
@@ -43,8 +43,8 @@
   flex-direction: column;
   width: 400px;
   height: 600px;
-  background: linear-gradient(145deg, $color-background-light, $color-background-dark);
-  border: 1px solid $color-secondary;
+  background: linear-gradient(145deg, vars.$color-background-light, vars.$color-background-dark);
+  border: 1px solid vars.$color-secondary;
   border-radius: 16px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -75,9 +75,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: $color-primary;
-  color: $color-on-primary;
-  border-bottom: 1px solid $color-secondary;
+  background-color: vars.$color-primary;
+  color: vars.$color-on-primary;
+  border-bottom: 1px solid vars.$color-secondary;
   font-weight: bold;
   font-size: 1.2rem;
 
@@ -90,13 +90,13 @@
 .close-button {
   background: none;
   border: none;
-  color: $color-on-primary;
+  color: vars.$color-on-primary;
   font-size: 1.5rem;
   cursor: pointer;
   transition: color 0.3s;
 
   &:hover {
-    color: $hover-color;
+    color: vars.$hover-color;
   }
 
   @media (min-width: 2560px) {
@@ -110,7 +110,7 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  background-color: $color-background-light;
+  background-color: vars.$color-background-light;
 
   .message {
     max-width: 75%;
@@ -118,20 +118,20 @@
     border-radius: 12px;
     margin-bottom: 12px;
     word-wrap: break-word;
-    font-family: $font-secondary;
+    font-family: vars.$font-secondary;
     font-size: calc(0.9rem + 0.4vw);
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
     &.user {
       align-self: flex-end;
-      background-color: $color-user-message;
-      color: $color-on-user-message;
+      background-color: vars.$color-user-message;
+      color: vars.$color-on-user-message;
     }
 
     &.assistant {
       align-self: flex-start;
-      background-color: $color-assistant-message;
-      color: $color-on-assistant-message;
+      background-color: vars.$color-assistant-message;
+      color: vars.$color-on-assistant-message;
     }
 
     .typing-indicator {
@@ -142,7 +142,7 @@
         width: 10px;
         height: 10px;
         margin: 0 3px;
-        background-color: $color-primary;
+        background-color: vars.$color-primary;
         border-radius: 50%;
         animation: typing 1.5s infinite;
       }
@@ -185,31 +185,35 @@
 .chatbot-input {
   display: flex;
   align-items: center;
-  background-color: $color-background;
-  border-top: 1px solid $color-secondary;
+  background-color: vars.$color-background;
+  border-top: 1px solid vars.$color-secondary;
   padding: 12px;
 
   input {
     flex: 1;
     padding: 12px;
-    border: 1px solid $color-secondary;
+    border: 1px solid vars.$color-secondary;
     border-radius: 8px;
     margin-right: 12px;
-    font-family: $font-secondary;
+    font-family: vars.$font-secondary;
     font-size: calc(0.9rem + 0.4vw);
     transition: border-color 0.3s;
 
     &:focus {
-      border-color: $hover-color;
+      border-color: vars.$hover-color;
       outline: none;
     }
   }
 
   button {
-    @include button-styles;
-    border-radius: 8px;
     padding: 10px 16px;
+  
+    @media (max-width: 480px) {
+      padding: 0.6rem 1.2rem;
+      font-size: calc(0.4rem + 1.5vw);
+    }
   }
+  
 
   @media (min-width: 2560px) {
     padding: 16px;
@@ -232,12 +236,13 @@
 }
 
 .chatbot-messages::-webkit-scrollbar-thumb {
-  background-color: $color-secondary;
+  background-color: vars.$color-secondary;
   border-radius: 8px;
 }
 
 .chatbot-messages::-webkit-scrollbar-track {
-  background-color: $color-background;
+  background-color: vars.$color-background;
 }
 
-@include responsive-layout;
+@include mixins.responsive-layout;
+

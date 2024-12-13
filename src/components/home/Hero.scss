@@ -1,5 +1,5 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use '../../styles/variables' as vars;
+@use '../../styles/mixins' as mixins;
 
 @keyframes fadeIn {
   from { opacity: 0; }
@@ -7,7 +7,7 @@
 }
 
 .hero {
-  @include flex-center;
+  @include mixins.flex-center;
   flex-direction: column;
   position: relative;
   margin-top: -6rem;
@@ -44,7 +44,7 @@
   }
 
   &__content {
-    @include flex-center;
+    @include mixins.flex-center;
     flex-direction: column;
     text-align: center;
     z-index: 1;
@@ -53,38 +53,35 @@
 
   &__heading {
     h1 {
-      font-family: $font-tertiary;
+      font-family: vars.$font-tertiary;
       font-size: 3rem;
       font-weight: 500;
-      color: $color-background;
+      color: vars.$color-background;
       margin-top: -12rem;
-      @include responsive-font-size;
+      @include mixins.responsive-font-size;
     }
 
     h3 {
-      font-family: $font-primary;
+      font-family: vars.$font-primary;
       font-size: 1.2rem;
       font-weight: 300;
-      color: $color-background;
-      @include responsive-font-size;
+      color: vars.$color-background;
+      @include mixins.responsive-font-size;
     }
   }
 
   &__description {
-    font-family: $font-primary;
+    font-family: vars.$font-primary;
     font-size: 1rem;
     font-weight: 300;
     margin: 0 1rem 1rem;
-    color: $color-background;
-
-    //background-color: rgba(245, 247, 250, 0.85);
-    //box-shadow: 0.1rem 0.1rem 0.7rem rgba(190, 190, 190, 0.7), -0.1rem -0.1rem 0.7rem rgba(255, 255, 255, 0.7);
+    color: vars.$color-background;
     padding: 0.5rem 1rem;
     animation: fadeIn 3s ease-out;
     border-radius: 10px;
     width: 90%;
     max-width: 40rem;
-    @include responsive-font-size;
+    @include mixins.responsive-font-size;
   }
 }
 
@@ -121,4 +118,4 @@
   }
 }
 
-@include responsive-layout;
+@include mixins.responsive-layout;
