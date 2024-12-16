@@ -1,13 +1,13 @@
 import { useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.css';
 import './App.css';
 import ErrorBoundary from './components/error/ErrorBoundary';
 import ScrollToTop from './utils/scrollToTop';
 import { revealElements } from './utils/revealElements';
 import Layout from './components/layout/Layout';
-// import ErrorTrigger from './components/error/ErrorTrigger';
 
+// Lazy-loaded components
 const Home = lazy(() => import('./components/home/Home'));
 const AboutPage = lazy(() => import('./components/aboutus/AboutPage'));
 const ToursPage = lazy(() => import('./components/excursions/ToursPage'));
@@ -25,7 +25,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <BrowserRouter>
       <ScrollToTop />
       <ErrorBoundary>
         <Layout>
@@ -39,12 +39,11 @@ function App() {
               <Route path="/cookies-policy" element={<PolicyInfo />} />
               <Route path="/privacy-policy" element={<PolicyInfo />} />
               <Route path="/terms-of-service" element={<PolicyInfo />} />
-              {/* <ErrorTrigger /> */}
             </Routes>
           </Suspense>
         </Layout>
       </ErrorBoundary>
-    </Router>
+    </BrowserRouter>
   );
 }
 
