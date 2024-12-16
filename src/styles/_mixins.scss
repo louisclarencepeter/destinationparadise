@@ -84,12 +84,12 @@
     border-radius: 0.7rem;
     padding: 0.5rem 1rem;
     font-size: calc(0.6rem + 0.5vw);
-    background-image: vars.$gradient-button;
-    color: vars.$color-background;
+    background-image: vars.$gradient-button; // Gradient defined in variables
+    color: vars.$color-background;          // Text color
     border: none;
-    font-family: vars.$font-primary;
+    font-family: vars.$font-primary;        // Primary font family
     cursor: pointer;
-    transition: vars.$transition-default;
+    transition: vars.$transition-default;   // Smooth transition
   }
 
   @media (max-width: 768px) {
@@ -103,12 +103,12 @@
   }
 
   &:hover {
-    color: vars.$hover-color;
+    color: vars.$hover-color;              // Hover text color
     background-image: linear-gradient(
       120deg,
       color.adjust(#89f7fe, $lightness: -10%) 0%,
       color.adjust(#66a6ff, $lightness: -10%) 100%
-    );
+    ); // Adjusted gradient for hover
   }
 
   i {
@@ -116,3 +116,4 @@
     transition: vars.$transition-default;
   }
 }
+

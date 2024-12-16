@@ -1,9 +1,9 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use '../../styles/variables' as vars;
+@use '../../styles/mixins' as mixins;
 
 .store-container {
-  padding: 2rem 2rem 2rem 2rem;
-  background-color: $color-background;
+  padding: 2rem;
+  background-color: vars.$color-background;
   border-radius: 10px;
   max-width: 1200px;
 
@@ -15,15 +15,15 @@
       font-size: 2rem;
       margin-bottom: 1rem;
       margin-top: 0;
-      color: $color-primary;
-      font-family: $font-secondary;
+      color: vars.$color-primary;
+      font-family: vars.$font-secondary;
     }
 
     p {
       font-size: calc(0.8rem + 0.5vw);
       margin-bottom: 1rem;
-      color: $color-secondary;
-      font-family: $font-primary;
+      color: vars.$color-secondary;
+      font-family: vars.$font-primary;
     }
 
     .booking-form {
@@ -39,8 +39,8 @@
           display: block;
           margin-bottom: 0.5rem;
           font-size: 1rem;
-          color: $color-primary;
-          font-family: $font-primary;
+          color: vars.$color-primary;
+          font-family: vars.$font-primary;
         }
 
         input,
@@ -48,12 +48,12 @@
         textarea {
           width: 100%;
           padding: 0.75rem;
-          border: 1px solid $color-secondary;
+          border: 1px solid vars.$color-secondary;
           border-radius: 5px;
           font-size: 1rem;
-          color: $color-primary;
+          color: vars.$color-primary;
           box-sizing: border-box;
-          font-family: $font-primary;
+          font-family: vars.$font-primary;
         }
 
         textarea {
@@ -63,7 +63,7 @@
       }
 
       .submit-button {
-        @include button-styles;
+        @include mixins.button-styles;
       }
     }
   }

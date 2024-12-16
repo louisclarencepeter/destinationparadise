@@ -1,23 +1,22 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use '../../styles/variables' as vars;
+@use '../../styles/mixins' as mixins;
 
 .about-page {
   padding: 1rem;
-  background-color: $color-background;
-  color: $color-primary;
+  background-color: vars.$color-background;
+  color: vars.$color-primary;
   max-width: 1200px;
   margin: 0 auto;
 
   h2 {
-    font-family: $font-secondary;
+    font-family: vars.$font-secondary;
     font-size: 2.5rem;
     text-align: center;
-    color: $color-primary;
+    color: vars.$color-primary;
     margin-bottom: 2rem;
   }
 
   .about-content {
-
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -25,25 +24,25 @@
 
     .about-text {
       h3 {
-        font-family: $font-secondary;
+        font-family: vars.$font-secondary;
         font-size: 2rem;
         margin-bottom: 1rem;
-        color: $color-primary;
+        color: vars.$color-primary;
         text-align: center;
         font-weight: normal;
       }
 
       p {
-        font-family: $font-primary;
+        font-family: vars.$font-primary;
         font-size: calc(0.8rem + 0.5vw);
         line-height: 1.6;
         margin-bottom: 1rem;
-        color: $color-secondary;
+        color: vars.$color-secondary;
         text-align: left;
 
         &.motto {
-          font-family: $font-secondary;
-          color: $color-primary;
+          font-family: vars.$font-secondary;
+          color: vars.$color-primary;
           width: 100%;
           text-align: center;
         }
@@ -65,9 +64,11 @@
   @media (min-width: 768px) {
     .about-content {
       flex-direction: row;
+
       .about-text {
         flex: 1;
       }
+
       .photo-slide {
         flex: 1;
       }
