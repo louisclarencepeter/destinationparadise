@@ -1,10 +1,26 @@
-@import "../../styles/variables";
-@import "../../styles/mixins";
+@use "../../styles/variables" as variables;
+@use "../../styles/mixins" as mixins;
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'mobile' {
+    @media screen and (max-width: 767px) {
+      @content;
+    }
+  } @else if $breakpoint == 'tablet' {
+    @media screen and (min-width: 768px) and (max-width: 1023px) {
+      @content;
+    }
+  } @else if $breakpoint == 'desktop' {
+    @media screen and (min-width: 1024px) {
+      @content;
+    }
+  }
+}
 
 .tours-page {
   padding: 2rem;
-  background-color: $color-background;
-  color: $color-primary;
+  background-color: variables.$color-background;
+  color: variables.$color-primary;
   max-width: 1200px;
 
   .tour-card .learn-more-link {
@@ -16,11 +32,11 @@
     grid-template-columns: 1fr;
     gap: 2rem;
 
-    @media screen and (min-width: 768px) {
+    @include respond-to('tablet') {
       grid-template-columns: repeat(2, 1fr);
     }
 
-    @media screen and (min-width: 1024px) {
+    @include respond-to('desktop') {
       grid-template-columns: repeat(3, 1fr);
     }
   }
@@ -35,7 +51,7 @@
       border-radius: 1rem;
     }
 
-    @media screen and (min-width: 768px) {
+    @include respond-to('tablet') {
       h4 {
         font-size: 2.5rem;
         font-weight: 300;
@@ -47,7 +63,7 @@
       }
     }
 
-    @media screen and (min-width: 1024px) {
+    @include respond-to('desktop') {
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -70,7 +86,7 @@
 }
 
 .tour-card {
-  background-color: $color-background;
+  background-color: variables.$color-background;
   border-radius: 1rem;
   box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
   padding: 2rem;
@@ -91,28 +107,28 @@
   }
 
   h3 {
-    font-family: $font-secondary;
+    font-family: variables.$font-secondary;
     font-size: 2rem;
     font-weight: 300;
     margin-bottom: 1rem;
-    color: $color-primary;
+    color: variables.$color-primary;
     text-align: left;
   }
 
   p {
-    font-family: $font-primary;
+    font-family: variables.$font-primary;
     font-size: calc(0.8rem + 0.5vw);
     margin-bottom: 1rem;
-    color: $color-secondary;
+    color: variables.$color-secondary;
     text-align: left;
   }
 
   h4 {
-    font-family: $font-secondary;
+    font-family: variables.$font-secondary;
     font-size: 1.5rem;
     font-weight: 300;
     margin-bottom: 1rem;
-    color: $color-primary;
+    color: variables.$color-primary;
     text-align: left;
   }
 
@@ -124,21 +140,22 @@
   }
 
   li {
-    font-family: $font-primary;
+    font-family: variables.$font-primary;
     font-size: calc(0.8rem + 0.5vw);
-    color: $color-secondary;
+    color: variables.$color-secondary;
   }
 
   .learn-more-btn {
-    @include button-styles;
-    opacity: 0;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: opacity 0.3s ease;
+    & {
+      opacity: 0;
+      margin: 0 auto;
+      text-align: center;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: opacity 0.3s ease;
+    }
 
     &:hover {
       i {
@@ -168,13 +185,13 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@include respond-to('mobile') {
   .tour-card .learn-more-btn {
     opacity: 1;
   }
 }
 
-@media screen and (min-width: 768px) {
+@include respond-to('tablet') {
   .tour-card {
     h3 {
       font-size: 1.7rem;
