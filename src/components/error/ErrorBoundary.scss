@@ -1,44 +1,44 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
-@import '../../styles/common';
+@use '../../styles/variables' as vars;
+@use '../../styles/mixins' as mixins;
+@use 'sass:color';
 
 .error-container {
   padding: 2rem;
   text-align: center;
-  background-color: lighten($color-accent, 40%);
-  color: darken($color-accent, 20%);
-  border: 1px solid lighten($color-accent, 20%);
+  background-color: color.adjust(vars.$color-accent, $lightness: 40%);
+  color: color.adjust(vars.$color-accent, $lightness: -20%);
+  border: 1px solid color.adjust(vars.$color-accent, $lightness: 20%);
   border-radius: 0.25rem;
   margin: 2rem;
 
   h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
-    font-family: $font-primary;
-    color: black;
+    font-family: vars.$font-primary;
+    color: vars.$black;
   }
 
   p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    font-family: $font-secondary;
+    font-family: vars.$font-secondary;
   }
 
   .reload-button {
-    @include button-styles;
+    @include mixins.button-styles;
   }
 
   .footer__info,
   .footer__contact {
     margin-top: 2rem;
-    font-family: $font-secondary;
-    
+    font-family: vars.$font-secondary;
+
     p {
       margin: 0.5rem 0;
     }
-    
+
     a {
-      color: darken($color-accent, 20%);
+      color: color.adjust(vars.$color-accent, $lightness: -20%);
       text-decoration: none;
 
       &:hover {
@@ -62,10 +62,10 @@
 
       a {
         font-size: 1.5rem;
-        color: darken($color-accent, 20%);
+        color: color.adjust(vars.$color-accent, $lightness: -20%);
 
         &:hover {
-          color: $hover-color;
+          color: vars.$hover-color;
         }
       }
     }

@@ -1,5 +1,6 @@
-@import '../../styles/variables';
-@import '../../styles/mixins';
+@use '../../styles/variables' as vars;
+@use '../../styles/mixins' as mixins;
+@use 'sass:color';
 
 .cookie-modal-overlay {
     position: fixed;
@@ -8,27 +9,27 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    @include flex-center;
+    @include mixins.flex-center;
     z-index: 2000;
 }
 
 .cookie-modal {
-    background-color: $color-background;
+    background-color: vars.$color-background;
     padding: 2em;
     border-radius: 8px;
     max-width: 500px;
     width: 90%;
-    box-shadow: 0 5px 15px $box-shadow-color;
+    box-shadow: 0 5px 15px vars.$box-shadow-color;
     position: relative;
 
     .cookie-modal-header {
-        @include flex-center(space-between);
+        @include mixins.flex-center(space-between);
         margin-bottom: 1em;
 
         h2 {
             margin: 0;
-            font-family: $font-secondary;
-            color: $color-secondary;
+            font-family: vars.$font-secondary;
+            color: vars.$color-secondary;
         }
 
         .close-button {
@@ -36,19 +37,19 @@
             border: none;
             font-size: 1.5em;
             cursor: pointer;
-            color: $color-secondary;
-            transition: $transition-default;
+            color: vars.$color-secondary;
+            transition: vars.$transition-default;
 
             &:hover {
-                color: $color-accent;
+                color: vars.$color-accent;
             }
         }
     }
 
     .cookie-modal-body {
         p, ul {
-            font-family: $font-primary;
-            color: $color-primary;
+            font-family: vars.$font-primary;
+            color: vars.$color-primary;
         }
 
         p {
@@ -66,11 +67,11 @@
     }
 
     .cookie-modal-footer {
-        @include flex-center(space-between);
+        @include mixins.flex-center(space-between);
 
         .button {
             font-size: 0.6em;
-            @include button-styles;
+            @include mixins.button-styles;
 
             @media (max-width: 600px) {
                 font-size: 0.7em;
@@ -78,32 +79,32 @@
             }
 
             &:nth-child(1) {
-                background-color: lighten($color-secondary, 40%);
-                color: $color-background;
+                background-color: color.adjust(vars.$color-secondary, $lightness: 40%);
+                color: vars.$color-background;
 
                 &:hover {
-                    background-color: lighten($color-secondary, 30%);
-                    color: $color-accent;
+                    background-color: color.adjust(vars.$color-secondary, $lightness: 30%);
+                    color: vars.$color-accent;
                 }
             }
 
             &:nth-child(2) {
-                background-color: $color-accent;
-                color: $color-background;
+                background-color: vars.$color-accent;
+                color: vars.$color-background;
 
                 &:hover {
-                    background-color: darken($color-accent, 10%);
-                    color: $color-accent;
+                    background-color: color.adjust(vars.$color-accent, $lightness: -10%);
+                    color: vars.$color-accent;
                 }
             }
 
             &:nth-child(3) {
-                background-color: lighten($color-primary, 30%);
-                color: $color-background;
+                background-color: color.adjust(vars.$color-primary, $lightness: 30%);
+                color: vars.$color-background;
 
                 &:hover {
-                    background-color: lighten($color-primary, 20%);
-                    color: $color-accent;
+                    background-color: color.adjust(vars.$color-primary, $lightness: 20%);
+                    color: vars.$color-accent;
                 }
             }
         }

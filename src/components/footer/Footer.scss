@@ -1,12 +1,12 @@
-@import '../../styles/_variables';
-@import '../../styles/mixins';
+@use '../../styles/variables' as vars;
+@use '../../styles/mixins' as mixins;
 
 .footer {
-  background-color: $color-background;
+  background-color: vars.$color-background;
   padding: 1.25rem;
   font-size: calc(0.8rem + 0.5vw);
-  color: $color-primary;
-  font-family: $font-secondary;
+  color: vars.$color-primary;
+  font-family: vars.$font-secondary;
 
   &__container {
     max-width: 1200px;
@@ -18,12 +18,12 @@
     margin-bottom: 0.625rem;
     text-align: center;
     font-weight: normal;
-    color: $color-accent;
+    color: vars.$color-accent;
   }
 
   &__form {
     display: flex;
-    border: 1px solid $color-primary;
+    border: 1px solid vars.$color-primary;
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 1rem;
@@ -38,30 +38,30 @@
   }
 
   &__button {
-    border-left: 1px solid $color-primary;
+    border-left: 1px solid vars.$color-primary;
     border-radius: 0;
     padding: 10px 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: $gradient-button;
-    color: $color-background;
-    transition: $transition-default;
+    background: vars.$gradient-button;
+    color: vars.$color-background;
+    transition: vars.$transition-default;
 
     &:hover {
-      color: $hover-color;
-      background-color: $color-secondary;
+      color: vars.$hover-color;
+      background-color: vars.$color-secondary;
     }
 
     &:active {
-      background-color: $color-primary;
+      background-color: vars.$color-primary;
     }
   }
 
   &__message {
     text-align: center;
-    color: $color-accent;
+    color: vars.$color-accent;
     margin-bottom: 1rem;
   }
 
@@ -74,7 +74,7 @@
       text-decoration: none;
 
       &:hover {
-        color: $color-accent;
+        color: vars.$color-accent;
         text-decoration: underline;
       }
     }
@@ -82,10 +82,10 @@
 
   &__whatsapp-link {
     margin-left: 10px;
-    color: $color-primary;
+    color: vars.$color-primary;
 
     &:hover {
-      color: $color-accent;
+      color: vars.$color-accent;
     }
   }
 
@@ -105,7 +105,7 @@
       text-decoration: none;
 
       &:hover {
-        color: $color-accent;
+        color: vars.$color-accent;
         text-decoration: underline;
       }
     }
@@ -116,11 +116,11 @@
     gap: 0.625rem;
 
     a {
-      color: $color-primary;
+      color: vars.$color-primary;
       text-decoration: none;
 
       &:hover {
-        color: $color-accent;
+        color: vars.$color-accent;
         text-decoration: underline;
       }
     }
@@ -137,11 +137,11 @@
     margin-bottom: 1rem;
 
     a {
-      color: $color-primary;
+      color: vars.$color-primary;
       text-decoration: none;
 
       &:hover {
-        color: $color-accent;
+        color: vars.$color-accent;
         text-decoration: underline;
       }
     }
