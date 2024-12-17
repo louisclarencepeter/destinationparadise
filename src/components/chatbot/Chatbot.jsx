@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 import axios from 'axios';
 import './Chatbot.scss';
 import config from './chatbotConfig.json';
@@ -12,73 +12,79 @@ const Chatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const messagesEndRef = useRef(null);
 
+  // Initial Greeting
   useEffect(() => {
     const greeting = config.parameters?.greeting || "Welcome to Destination Paradise Zanzibar! How can I help today? :)";
     setMessages([{ content: greeting, role: 'assistant' }]);
   }, []);
 
+  // Auto-scroll to the latest message
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
 
-  const handleSend = async () => {
+  // Handle input change
+  const handleInputChange = useCallback((event) => {
+    setInput(event.target.value);
+  }, []);
+
+  // Send message
+  const handleSend = useCallback(async () => {
     if (!input.trim()) return;
 
     const userMessage = { content: input, role: 'user' };
-    setMessages(prevMessages => [...prevMessages, userMessage]);
+    setMessages((prev) => [...prev, userMessage, { content: '', role: 'assistant', isTyping: true }]);
     setInput('');
-
-    setMessages(prevMessages => [...prevMessages, { content: '', role: 'assistant', isTyping: true }]);
 
     try {
       const response = await axios.post('/.netlify/functions/chatbot', { message: input });
-
-      setTimeout(() => {
-        setMessages(prevMessages => {
-          const newMessages = prevMessages.slice();
-          newMessages[newMessages.length - 1] = { content: response.data.response, role: 'assistant', isTyping: false };
-          return newMessages;
-        });
-      }, 2000); // Adjust delay as needed
+      setMessages((prev) => {
+        const updatedMessages = [...prev];
+        updatedMessages[updatedMessages.length - 1] = {
+          content: response.data.response,
+          role: 'assistant',
+          isTyping: false,
+        };
+        return updatedMessages;
+      });
     } catch (error) {
       console.error('Error sending message:', error);
-      const errorMessage = {
-        content: (
-          <span role="alert">
-            Currently, this service is unavailable. Please contact us directly via WhatsApp
-            <a
-              href={config.parameters.whatsappLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="WhatsApp"
-              className="whatsapp-link"
-            >
-              <FontAwesomeIcon icon={faWhatsapp} size="lg" />
-            </a>
-            for assistance.
-          </span>
-        ),
-        role: 'assistant',
-        isTyping: false
-      };
-      setMessages(prevMessages => [...prevMessages, errorMessage]);
+      setMessages((prev) => {
+        const updatedMessages = [...prev];
+        updatedMessages[updatedMessages.length - 1] = {
+          content: (
+            <span role="alert">
+              Service unavailable. Contact us via WhatsApp{' '}
+              <a
+                href={config.parameters.whatsappLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="WhatsApp"
+                className="whatsapp-link"
+              >
+                <FontAwesomeIcon icon={faWhatsapp} size="lg" />
+              </a>
+            </span>
+          ),
+          role: 'assistant',
+          isTyping: false,
+        };
+        return updatedMessages;
+      });
     }
-  };
+  }, [input]);
 
-  const toggleChatbot = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const handleInputChange = (event) => {
-    setInput(event.target.value);
-  };
+  // Handle toggling chatbot visibility
+  const toggleChatbot = useCallback(() => {
+    setIsOpen((prev) => !prev);
+  }, []);
 
   return (
     <div className="chatbot-container" aria-live="polite">
-      <button 
-        className={`chatbot-toggle ${isOpen ? 'hidden' : ''}`} 
+      <button
+        className={`chatbot-toggle ${isOpen ? 'hidden' : ''}`}
         onClick={toggleChatbot}
         aria-label="Open chat"
         aria-expanded={isOpen}
@@ -89,12 +95,10 @@ const Chatbot = () => {
       {isOpen && (
         <div id="chatbot" className={`chatbot ${isOpen ? 'open' : ''}`} role="dialog" aria-labelledby="chatbot-title">
           <div className="chatbot-header">
-            <h2 id="chatbot-title" className="sr-only">Chatbot</h2>
-            <button 
-              className="close-button" 
-              onClick={toggleChatbot}
-              aria-label="Close chat"
-            >
+            <h2 id="chatbot-title" className="sr-only">
+              Chatbot
+            </h2>
+            <button className="close-button" onClick={toggleChatbot} aria-label="Close chat">
               ×
             </button>
           </div>
@@ -102,7 +106,7 @@ const Chatbot = () => {
             {messages.map((message, index) => (
               <div key={index} className={`message ${message.role}`}>
                 {message.isTyping ? (
-                  <span className="typing-indicator" aria-live="assertive">
+                  <span className="typing-indicator" role="status">
                     <span className="dot"></span>
                     <span className="dot"></span>
                     <span className="dot"></span>
@@ -119,10 +123,12 @@ const Chatbot = () => {
               type="text"
               value={input}
               onChange={handleInputChange}
-              onKeyPress={event => event.key === 'Enter' && handleSend()}
+              onKeyPress={(event) => event.key === 'Enter' && handleSend()}
               aria-label="Type your message"
             />
-            <button onClick={handleSend} aria-label="Send message">Send</button>
+            <button onClick={handleSend} aria-label="Send message">
+              Send
+            </button>
           </div>
         </div>
       )}

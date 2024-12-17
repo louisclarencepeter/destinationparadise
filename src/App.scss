@@ -1,0 +1,21 @@
+/* Use SCSS modules */
+@use '@/styles/base';
+@use '@/styles/utilities';
+@use '@/styles/common';
+@use '@/styles/media-queries';
+@use './components/home/Hero';
+@use './components/cookies/CookieConsent';
+@use './components/chatbot/Chatbot';
+
+/* Import CSS files (remains @import) */
+@import '@/styles/fonts.css';
+@import '@/styles/components.css';
+
+/* Additional base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Playfair Display', serif;
+  font-size: calc(1rem + 0.5vw);
+  color: #153464;
+}

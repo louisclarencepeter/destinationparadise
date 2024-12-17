@@ -13,7 +13,7 @@ function MyMap() {
 
     const map = new window.google.maps.Map(mapRef.current, mapOptions);
 
-    if (window.google.maps.marker && window.google.maps.marker.AdvancedMarkerElement) {
+    if (window.google.maps.marker?.AdvancedMarkerElement) {
       new window.google.maps.marker.AdvancedMarkerElement({
         position: mapOptions.center,
         map: map,
@@ -25,27 +25,23 @@ function MyMap() {
   }, []);
 
   const loadGoogleMapsScript = useCallback(() => {
-    const scriptId = 'google-maps-script';
-    const existingScript = document.getElementById(scriptId);
-
     if (window.google?.maps) {
       initializeMap();
       return;
     }
 
-    if (existingScript) {
-      existingScript.addEventListener('load', initializeMap);
-      return;
-    }
+    const scriptId = 'google-maps-script';
+    if (document.getElementById(scriptId)) return;
 
     const script = document.createElement('script');
     script.id = scriptId;
-    script.type = 'text/javascript';
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=marker`;
-    script.async = true;
-    script.defer = true;
-    script.onload = initializeMap;
-    document.head.appendChild(script);
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=marker&callback=initMap`;
+    script.async = true;  // Load asynchronously
+    script.defer = true;  // Execute after parsing the HTML
+    script.onerror = () => console.error('Failed to load Google Maps script.');
+    document.head.appendChild(script);    
+
+    window.initMap = initializeMap; // Expose initializeMap globally
   }, [apiKey, initializeMap]);
 
   useEffect(() => {
@@ -55,6 +51,14 @@ function MyMap() {
     }
 
     loadGoogleMapsScript();
+
+    return () => {
+      const script = document.getElementById('google-maps-script');
+      if (script) {
+        script.remove();
+      }
+      delete window.initMap;
+    };
   }, [apiKey, loadGoogleMapsScript]);
 
   return <div style={{ height: '50vh', width: '100%' }} ref={mapRef} className="reveal"></div>;
