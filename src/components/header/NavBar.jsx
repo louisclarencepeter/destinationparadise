@@ -111,7 +111,6 @@ const NavBar = () => {
             type="checkbox"
             checked={isOpen}
             onChange={toggleMenu}
-            aria-hidden="true" /* Hide ARIA invalid attributes on input */
           />
           <label
             className="menu__btn"
