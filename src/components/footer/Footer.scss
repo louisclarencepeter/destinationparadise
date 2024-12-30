@@ -75,6 +75,7 @@
 
       &:hover {
         color: vars.$color-accent;
+        text-decoration: none;
       }
     }
   }
@@ -105,32 +106,33 @@
 
       &:hover {
         color: vars.$color-accent;
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
   }
 
   &__social {
     display: flex;
-    gap: 0.75rem; // Increases spacing between social links
-  
+    gap: 0.75rem;
+
     a {
-      display: inline-flex; // Makes padding and sizing apply correctly
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-width: 48px; // Ensures a minimum tap width
-      min-height: 48px; // Ensures a minimum tap height
+      min-width: 48px;
+      min-height: 48px;
       text-decoration: none;
       color: vars.$color-primary;
-  
+
       &:hover {
         color: vars.$color-accent;
+        text-decoration: none;
       }
     }
-  
+
     i {
-      font-size: 1.25rem; // Keeps icon size visually small
-      line-height: 1; // Ensures proper vertical alignment
+      font-size: 1.25rem;
+      line-height: 1;
     }
   }
 
@@ -146,7 +148,7 @@
 
       &:hover {
         color: vars.$color-accent;
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
   }
