@@ -22,9 +22,8 @@ const MenuList = ({ className, onClick }) => {
         <li key={label} role="none">
           <Link
             role="menuitem"
-            className={`menu__item ${
-              location.pathname === path ? "active" : ""
-            }`}
+            className={`menu__item ${location.pathname === path ? "active" : ""}`}
+            aria-current={location.pathname === path ? "page" : undefined}
             to={path}
             onClick={() => {
               onClick();
@@ -68,8 +67,15 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
+  useEffect(() => {
+    if (isOpen) {
+      const firstMenuItem = document.querySelector(".hamburger-menu__list a");
+      if (firstMenuItem) firstMenuItem.focus();
+    }
+  }, [isOpen]);
+
   return (
-    <nav className={`nav ${isScrolled ? "transparent" : ""}`}>
+    <nav className={`nav ${isScrolled ? "transparent" : ""}`} aria-label="Main navigation">
       <div className="store">
         <Link to="/booking" onClick={closeMenu} aria-label="Book Now">
           <button aria-label="Book Now">
@@ -79,9 +85,10 @@ const NavBar = () => {
         </Link>
       </div>
 
-      <nav className="classic-menu" aria-label="Main navigation">
+      <div className="classic-menu">
         <MenuList className="classic-menu__list" onClick={closeMenu} />
-      </nav>
+      </div>
+
       <div>
         <Link
           to="/"
@@ -100,11 +107,16 @@ const NavBar = () => {
           />
         </Link>
       </div>
-      <nav className="hamburger-menu">
+
+      <div className="hamburger-menu">
         <div
           className="menu__toggle-container"
+          role="button"
           aria-expanded={isOpen ? "true" : "false"}
           aria-controls="menu__box"
+          tabIndex={0}
+          onClick={toggleMenu}
+          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && toggleMenu()}
         >
           <input
             id="menu__toggle"
@@ -115,10 +127,11 @@ const NavBar = () => {
           <label
             className="menu__btn"
             htmlFor="menu__toggle"
-            aria-label="Toggle navigation menu"
+            aria-label={isOpen ? "Close menu" : "Open menu"}
           >
             <span></span>
           </label>
+          
         </div>
 
         <div id="menu__box" className={`menu__box ${isOpen ? "open" : ""}`}>
@@ -138,7 +151,7 @@ const NavBar = () => {
             </div>
           </div>
         </div>
-      </nav>
+      </div>
     </nav>
   );
 };
