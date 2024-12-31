@@ -1,9 +1,15 @@
 @use '../../styles/variables' as vars;
 @use '../../styles/mixins' as mixins;
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+@keyframes slideInFade {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero {
@@ -60,19 +66,32 @@
       font-weight: 500;
       color: vars.$color-background;
       margin-top: -12rem;
+      animation: slideInFade 1.5s ease-out forwards;
+      opacity: 0;
       @include mixins.responsive-font-size;
     }
 
-    h2 {
+    h2.motto {
       font-family: vars.$font-primary;
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       font-weight: 300;
       color: vars.$color-background;
+      animation: slideInFade 1.5s ease-out forwards;
+      opacity: 0;
+      animation-delay: 0.5s;
       @include mixins.responsive-font-size;
-    }
 
-    .motto {
-      color: vars.$color-background;
+      @media screen and (min-width: 374px) {
+        font-size: 1.8rem;
+      }
+
+      @media screen and (min-width: 768px) {
+        font-size: 2.5rem;
+      }
+
+      @media screen and (min-width: 1024px) {
+        font-size: 3rem;
+      }
     }
   }
 
@@ -83,7 +102,9 @@
     margin: 0 1rem 1rem;
     color: vars.$color-background;
     padding: 0.5rem 1rem;
-    animation: fadeIn 3s ease-out;
+    animation: slideInFade 2s ease-out forwards;
+    animation-delay: 1s;
+    opacity: 0;
     border-radius: 10px;
     width: 90%;
     max-width: 40rem;
@@ -95,7 +116,7 @@
   .hero {
     &__heading {
       h1 { font-size: 3.5rem; }
-      h2 { font-size: 1.5rem; }
+      h2.motto { font-size: 1.8rem; }
     }
     &__description { font-size: 1.2rem; }
   }
@@ -107,43 +128,22 @@
   }
 }
 
-@media screen and (min-width: 665px) {
-  .hero {
-    &__content { padding: 0 2rem; }
-  }
-}
-
 @media screen and (min-width: 768px) {
   .hero {
-    &__content { padding: 0 3rem; }
     &__heading {
       h1 { font-size: 6rem; }
-      h2 { font-size: 1.8rem; }
+      h2.motto { font-size: 2.5rem; }
     }
     &__description { font-size: 1.5rem; }
   }
 }
 
-@keyframes slideInFade {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.hero {
-  &__heading {
-    h2.motto {
-      font-family: vars.$font-primary;
-      font-size: 1.2rem;
-      font-weight: 300;
-      color: vars.$color-background;
-      animation: slideInFade 1.5s ease-out forwards;
-      opacity: 0; // Ensure it starts hidden
+@media screen and (min-width: 1024px) {
+  .hero {
+    &__heading {
+      h1 { font-size: 7rem; }
+      h2.motto { font-size: 3rem; }
     }
+    &__description { font-size: 1.8rem; }
   }
 }
