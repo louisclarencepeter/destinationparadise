@@ -38,7 +38,7 @@ function Footer() {
   return (
     <footer className="footer">
       <div className="footer__container">
-        <h5 className="footer__title">Subscribe to our newsletter! 🚀💬💌</h5>
+        <h3 className="footer__title">Subscribe to our newsletter! 🚀💬💌</h3>
         <form
   onSubmit={handleSubmit}
   className="footer__form"

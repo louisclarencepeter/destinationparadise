@@ -68,6 +68,10 @@
       color: vars.$color-background;
       @include mixins.responsive-font-size;
     }
+
+    .motto {
+      color: vars.$color-background;
+    }
   }
 
   &__description {

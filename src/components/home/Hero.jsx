@@ -65,7 +65,7 @@ const HeroContent = () => (
 const HeroHeading = () => (
   <div className="hero__heading">
     <h1>Destination Paradise</h1>
-    <h3><i>Your next trip to Paradise..</i></h3>
+    <h2 className='motto'><i>Your next trip to Paradise..</i></h2>
   </div>
 );
 
