@@ -6,35 +6,35 @@ $font-secondary: 'Montserrat', sans-serif;
 $font-tertiary: 'Kaushan Script', cursive;
 
 /* Colors */
-$color-primary: #153464;
-$color-secondary: #094067;
-$color-background: #fffffe;
-$color-accent: #f97316;
-$color-border: #dcdcdc; // Added border color
-$black: #000;
+$color-primary: #1A4D6E;
+$color-secondary: #376B8C;
+$color-background: #FAFBFD;
+$color-accent: #FF6F61;
+$color-border: #E1E6EB;
+$black: #1A1A1A;
 
 /* Gradients */
-$gradient-button: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
+$gradient-button: linear-gradient(120deg, #1A4D6E 0%, #FF6F61 100%);
 
 /* Transitions */
 $transition-default: all 0.3s ease-in-out;
 
 /* Additional variables used in NavBar */
-$hover-color: $color-accent;
+$hover-color: #FF926B;
 $menu-background: $color-background;
-$box-shadow-color: rgba(0, 0, 0, 0.4);
+$box-shadow-color: rgba(26, 77, 110, 0.2);
 $transition-duration: 0.3s;
 $transition-ease: 0.5s ease;
 
 /* Additional variables for Chatbot */
-$color-user-message: color.adjust($color-accent, $lightness: 30%);
-$color-assistant-message: #f1f0f0;
+$color-user-message: color.adjust($color-accent, $lightness: 10%);
+$color-assistant-message: #F4F7FA;
 
-/* Adjusted color backgrounds using color.adjust instead of lighten/darken */
-$color-background-light: color.adjust($color-background, $lightness: 10%);
-$color-background-dark: color.adjust($color-background, $lightness: -10%);
+/* Adjusted color backgrounds using color.adjust */
+$color-background-light: color.adjust($color-background, $lightness: 8%);
+$color-background-dark: color.adjust($color-background, $lightness: -8%);
 
 /* Text colors for various backgrounds */
-$color-on-primary: #ffffff;
-$color-on-user-message: #ffffff;
-$color-on-assistant-message: #333333;
+$color-on-primary: #FFFFFF;
+$color-on-user-message: #FFFFFF;
+$color-on-assistant-message: #1A1A1A;

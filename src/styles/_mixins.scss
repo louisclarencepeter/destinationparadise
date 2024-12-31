@@ -20,6 +20,8 @@
 }
 
 @mixin responsive-font-size {
+  font-size: calc(0.8rem + 0.5vw);
+
   @media screen and (min-width: 1024px) {
     font-size: inherit;
   }
@@ -84,12 +86,12 @@
     border-radius: 0.7rem;
     padding: 0.5rem 1rem;
     font-size: calc(0.6rem + 0.5vw);
-    background-image: vars.$gradient-button; // Gradient defined in variables
-    color: vars.$color-background;          // Text color
+    background-image: vars.$gradient-button;
+    color: vars.$color-background;
     border: none;
-    font-family: vars.$font-primary;        // Primary font family
+    font-family: vars.$font-primary;
     cursor: pointer;
-    transition: vars.$transition-default;   // Smooth transition
+    transition: vars.$transition-default;
   }
 
   @media (max-width: 768px) {
@@ -103,12 +105,12 @@
   }
 
   &:hover {
-    color: vars.$hover-color;              // Hover text color
+    color: vars.$hover-color;
     background-image: linear-gradient(
       120deg,
-      color.adjust(#89f7fe, $lightness: -10%) 0%,
-      color.adjust(#66a6ff, $lightness: -10%) 100%
-    ); // Adjusted gradient for hover
+      color.adjust(vars.$color-primary, $lightness: -10%) 0%,
+      color.adjust(vars.$color-accent, $lightness: -10%) 100%
+    );
   }
 
   i {
@@ -116,4 +118,3 @@
     transition: vars.$transition-default;
   }
 }
-

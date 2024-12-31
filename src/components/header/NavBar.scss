@@ -97,7 +97,6 @@
     cursor: pointer;
     z-index: 1;
 
-
     & > span,
     & > span::before,
     & > span::after {
@@ -202,6 +201,11 @@
 
   &:hover {
     color: vars.$hover-color;
+  }
+
+  &:focus {
+    outline: 2px solid vars.$hover-color; // Add focus outline for keyboard accessibility
+    outline-offset: 4px; // Offset for better visibility
   }
 
   &::after {

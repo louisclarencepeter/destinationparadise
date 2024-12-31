@@ -2,10 +2,10 @@
 @use '../../styles/mixins' as mixins;
 
 .footer {
-  background-color: vars.$color-background;
+  background-color: vars.$color-background; // Ensure light background
   padding: 1.25rem;
   font-size: calc(0.8rem + 0.5vw);
-  color: vars.$color-primary;
+  color: vars.$color-primary; // High-contrast primary text color
   font-family: vars.$font-secondary;
 
   &__container {
@@ -18,15 +18,19 @@
     margin-bottom: 0.625rem;
     text-align: center;
     font-weight: normal;
-    color: vars.$color-accent;
+    color: vars.$color-accent; // Accent color for emphasis
   }
 
   &__form {
     display: flex;
-    border: 1px solid vars.$color-primary;
+    border: 1px solid vars.$color-border; // Visible border for forms
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 1rem;
+
+    &:focus-within {
+      border-color: vars.$color-accent; // Highlight on focus
+    }
   }
 
   &__input {
@@ -35,10 +39,16 @@
     flex-grow: 1;
     outline: none;
     width: 100%;
+    background-color: vars.$color-background-light; // Subtle background for input
+    color: vars.$color-primary;
+
+    &:focus {
+      outline: 2px solid vars.$color-accent; // Visible focus outline
+    }
   }
 
   &__button {
-    border-left: 1px solid vars.$color-primary;
+    border-left: 1px solid vars.$color-border;
     border-radius: 0;
     padding: 10px 20px;
     cursor: pointer;
@@ -46,12 +56,12 @@
     align-items: center;
     justify-content: center;
     background: vars.$gradient-button;
-    color: vars.$color-background;
+    color: vars.$color-on-primary; // Ensure readable text on gradient
     transition: vars.$transition-default;
 
     &:hover {
-      color: vars.$hover-color;
-      background-color: vars.$color-secondary;
+      color: vars.$color-background; // Text visibility on hover
+      background-color: vars.$hover-color; // Strong hover contrast
     }
 
     &:active {
@@ -61,7 +71,7 @@
 
   &__message {
     text-align: center;
-    color: vars.$color-accent;
+    color: vars.$color-accent; // Use accent for feedback messages
     margin-bottom: 1rem;
   }
 
@@ -70,12 +80,12 @@
     text-align: center;
 
     a {
-      color: inherit;
+      color: vars.$color-secondary; // Distinctive link color
       text-decoration: none;
 
       &:hover {
-        color: vars.$color-accent;
-        text-decoration: none;
+        color: vars.$hover-color; // Strong hover effect
+        text-decoration: underline; // Improve visibility
       }
     }
   }
@@ -101,12 +111,12 @@
     margin-bottom: 1rem;
 
     a {
-      color: inherit;
+      color: vars.$color-secondary;
       text-decoration: none;
 
       &:hover {
-        color: vars.$color-accent;
-        text-decoration: none;
+        color: vars.$hover-color;
+        text-decoration: underline;
       }
     }
   }
@@ -122,10 +132,10 @@
       min-width: 48px;
       min-height: 48px;
       text-decoration: none;
-      color: vars.$color-primary;
+      color: vars.$color-secondary;
 
       &:hover {
-        color: vars.$color-accent;
+        color: vars.$hover-color;
         text-decoration: none;
       }
     }
@@ -143,12 +153,12 @@
     margin-bottom: 1rem;
 
     a {
-      color: vars.$color-primary;
+      color: vars.$color-secondary;
       text-decoration: none;
 
       &:hover {
-        color: vars.$color-accent;
-        text-decoration: none;
+        color: vars.$hover-color;
+        text-decoration: underline;
       }
     }
   }
@@ -156,6 +166,7 @@
   &__copyright {
     text-align: center;
     margin-bottom: 1rem;
+    color: vars.$color-secondary; // Ensure copyright text is visible
   }
 }
 
