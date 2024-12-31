@@ -10,18 +10,24 @@ const Hero = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
-    const handleVideoLoad = () => {
-      setVideoLoaded(true);
-    };
+    const handleVideoLoad = () => setVideoLoaded(true);
 
     const videoElement = document.querySelector('.hero__video');
     if (videoElement) {
       videoElement.addEventListener('loadeddata', handleVideoLoad);
     }
 
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
+    const debounce = (func, delay) => {
+      let timeoutId;
+      return (...args) => {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => func(...args), delay);
+      };
     };
+
+    const handleResize = debounce(() => {
+      setIsMobile(window.innerWidth < 768);
+    }, 200);
 
     window.addEventListener('resize', handleResize);
 
@@ -43,8 +49,20 @@ const Hero = () => {
 
 const BackgroundVideo = ({ videoLoaded, isMobile }) => (
   <div className="hero__background">
-    {!videoLoaded && <img src={placeholderImage} alt="Placeholder" className="hero__placeholder" />}
-    <video autoPlay loop muted playsInline className={`hero__video ${videoLoaded ? 'visible' : 'hidden'}`}>
+    {!videoLoaded && (
+      <img
+        src={placeholderImage}
+        alt="Placeholder"
+        className="hero__placeholder"
+      />
+    )}
+    <video
+      autoPlay
+      loop
+      muted
+      playsInline
+      className={`hero__video ${videoLoaded ? 'visible' : 'hidden'}`}
+    >
       <source src={isMobile ? backgroundVideoH : backgroundVideoV} type="video/mp4" />
     </video>
   </div>
@@ -65,13 +83,17 @@ const HeroContent = () => (
 const HeroHeading = () => (
   <div className="hero__heading">
     <h1>Destination Paradise</h1>
-    <h2 className='motto'><i>Your next trip to Paradise..</i></h2>
+    <h2 className="motto">
+      <i>Your next trip to Paradise..</i>
+    </h2>
   </div>
 );
 
+
 const HeroDescription = () => (
   <p className="hero__description">
-    Welcome to your gateway to the enchanting Zanzibar Island! Imagine a place where each day is an adventure, and every horizon promises new discoveries.
+    Welcome to your gateway to the enchanting Zanzibar Island! Imagine a place
+    where each day is an adventure, and every horizon promises new discoveries.
   </p>
 );
 
