@@ -5,12 +5,13 @@
 .cookie-consent-banner {
   position: fixed;
   bottom: 0;
+  left: 0;
   background-color: rgba(255, 255, 255, 0.9);
   color: vars.$color-primary;
   padding: 1em;
   box-shadow: 0 -2px 5px vars.$box-shadow-color;
   z-index: 1000;
-  display: flex;
+  display: none; 
   justify-content: center;
   align-items: center;
   border-top: 1px solid vars.$color-primary;
@@ -35,7 +36,7 @@
           text-decoration: underline;
 
           &:hover {
-            color: vars.$color-accent; 
+            color: vars.$color-accent;
           }
         }
       }
@@ -64,6 +65,7 @@
   padding: 0.5em;
   cursor: pointer;
   z-index: 999;
+  display: none;
 
   .fa-cookie-bite {
     color: vars.$color-background;
