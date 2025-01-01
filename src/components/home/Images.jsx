@@ -1,4 +1,3 @@
-// Images.jsx
 import { useState, useEffect } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 import "./Images.scss";
@@ -12,10 +11,20 @@ const Images = () => {
 
       for (let i = 1; i <= 6; i++) {
         const imagePath = `/gallery/${i}.jpg`;
-        importedImages.push({
-          id: i,
-          src: imagePath,
-          alt: `Image ${i}`,
+        const img = new Image();
+        img.src = imagePath;
+
+        await new Promise((resolve) => {
+          img.onload = () => {
+            importedImages.push({
+              id: i,
+              src: imagePath,
+              alt: `Image ${i}`,
+              width: img.naturalWidth,
+              height: img.naturalHeight,
+            });
+            resolve();
+          };
         });
       }
 
@@ -42,6 +51,8 @@ const Images = () => {
               src={image.src}
               alt={image.alt}
               className="gallery__image reveal"
+              width={image.width}
+              height={image.height}
             />
           ))}
         </Masonry>
