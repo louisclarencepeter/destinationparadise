@@ -73,10 +73,9 @@
 // Hamburger menu styles
 .hamburger-menu {
   position: relative;
-  width: 1.8rem;
+  right: 0.5em;
+  width: 2rem;
   height: 2rem;
-  top: 0.8em;
-  right: 0.3em;
 
   li {
     list-style: none;
@@ -93,15 +92,17 @@
     position: relative;
     display: block;
     width: 2rem;
-    height: 3rem;
+    height: 2rem;
     cursor: pointer;
     z-index: 1;
 
+    /* Middle line + pseudo-elements for top/bottom lines */
     & > span,
     & > span::before,
     & > span::after {
       display: block;
       position: absolute;
+      left: 0;
       width: 100%;
       height: 0.125rem;
       background-color: vars.$color-primary;
@@ -113,31 +114,43 @@
       }
     }
 
-    & > span::before {
-      content: "";
-      top: -0.5rem;
+    /* Center the middle line vertically */
+    & > span {
+      top: 50%;
+      transform: translateY(-50%);
     }
 
+    /* The top line */
+    & > span::before {
+      content: "";
+      top: calc(50% - 0.5rem);
+      transform: translateY(-50%);
+    }
+
+    /* The bottom line */
     & > span::after {
       content: "";
-      top: 0.5rem;
+      top: calc(50% + 0.5rem);
+      transform: translateY(-50%);
     }
   }
 
+  /* Transform lines into an "X" when checked */
   #menu__toggle:checked + .menu__btn > span {
-    transform: rotate(45deg);
+    transform: rotate(45deg) translateY(-50%);
   }
 
   #menu__toggle:checked + .menu__btn > span::before,
   #menu__toggle:checked + .menu__btn > span::after {
-    top: 0;
-    transform: rotate(90deg);
+    top: 50%;
+    transform: rotate(90deg) translateY(-50%);
   }
 
   #menu__toggle:checked ~ .menu__box {
     right: 0;
   }
 
+  /* The dropdown menu overlay */
   .menu__box {
     position: fixed;
     top: 0;
@@ -204,8 +217,7 @@
   }
 
   &:focus {
-    //outline: 2px solid vars.$hover-color; // Add focus outline for keyboard accessibility
-    outline-offset: 4px; // Offset for better visibility
+    outline-offset: 4px;
   }
 
   &::after {
@@ -244,6 +256,7 @@
   }
 }
 
+// Show classic menu at larger breakpoints, hide hamburger
 @media screen and (min-width: 1024px) {
   .hamburger-menu {
     display: none;
