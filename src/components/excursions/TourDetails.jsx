@@ -17,13 +17,20 @@ export default function TourDetails() {
   }
 
   return (
-    <section className="tour-details"> {/* Changed to <section> */}
+    <section className="tour-details">
       <div className="tour-image">
         <img src={tour.image} alt={tour.title} />
       </div>
-      <article className="tour-info"> {/* Changed to <article> */}
+      <article className="tour-info">
         <h3 className="tour-title">{tour.title}</h3>
         <p className="tour-details-description">{tour.description}</p>
+
+        <h3>Itinerary:</h3> {/* Changed to Itinerary */}
+        <ul>
+          {tour.itinerary.map((step, index) => (
+            <li key={index}>{step}</li>
+          ))}
+        </ul>
 
         <h3>Activities:</h3>
         <ul>
@@ -36,6 +43,24 @@ export default function TourDetails() {
         <ul>
           {tour.inclusions.map((inclusion, index) => (
             <li key={index}>{inclusion}</li>
+          ))}
+        </ul>
+
+        <h3>What to Bring:</h3> {/* Added What to Bring section */}
+        <ul>
+          {tour.whatToBring.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
+        </ul>
+
+        <h3>FAQs:</h3> {/* Added FAQs section */}
+        <ul>
+          {tour.FAQs.map((faq, index) => (
+            <li key={index}>
+              <b>Q:</b> {faq.question}
+              <br />
+              <b>A:</b> {faq.answer}
+            </li>
           ))}
         </ul>
 
