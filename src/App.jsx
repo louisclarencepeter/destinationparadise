@@ -7,6 +7,7 @@ import ScrollToTop from './utils/scrollToTop';
 import { revealElements } from './utils/revealElements';
 import Layout from './components/layout/Layout';
 
+
 // Lazy-loaded components
 const Home = lazy(() => import('./components/home/Home'));
 const AboutPage = lazy(() => import('./components/aboutus/AboutPage'));

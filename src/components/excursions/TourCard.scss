@@ -1,0 +1,56 @@
+@use "sass:color";
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.tour-card {
+  border: 1px solid $color-border;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: $color-background;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow $transition-duration ease-in-out;
+
+  &:hover {
+    box-shadow: 0 2px 8px $box-shadow-color;
+  }
+
+  .tour-image {
+    img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  }
+
+  .tour-info {
+    padding: 0.75rem 1rem;
+
+    .tour-duration {
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: color.adjust($color-secondary, $lightness: 20%);
+      margin: 0.25rem 0;
+      font-family: $font-secondary;
+      @include responsive-font-size; 
+    }
+
+    .tour-title {
+      margin: 0.25rem 0;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: $font-secondary;
+      color: $color-primary;
+      text-align: left;
+      @include responsive-font-size; 
+    }
+
+    .tour-price {
+      font-size: 0.95rem;
+      color: $black;
+      margin: 0.5rem 0 0;
+      font-family: $font-secondary;
+      @include responsive-font-size; 
+    }
+  }
+}

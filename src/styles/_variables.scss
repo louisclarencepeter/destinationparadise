@@ -14,7 +14,7 @@ $color-border: #E1E6EB;
 $black: #1A1A1A;
 
 /* Gradients */
-$gradient-button: linear-gradient(120deg, #1A4D6E 0%, #FF6F61 100%);
+$gradient-button: linear-gradient(120deg, $color-primary 0%, $color-accent 100%);
 
 /* Transitions */
 $transition-default: all 0.3s ease-in-out;
@@ -38,3 +38,8 @@ $color-background-dark: color.adjust($color-background, $lightness: -8%);
 $color-on-primary: #FFFFFF;
 $color-on-user-message: #FFFFFF;
 $color-on-assistant-message: #1A1A1A;
+
+// Breakpoints
+$breakpoint-mobile: 767px;
+$breakpoint-tablet: 1023px;
+$breakpoint-desktop: 1024px;

@@ -1,229 +1,50 @@
-@use "../../styles/variables" as variables;
-@use "../../styles/mixins" as mixins;
+@use "sass:color";
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
-@mixin respond-to($breakpoint) {
-  @if $breakpoint == 'mobile' {
-    @media screen and (max-width: 767px) {
-      @content;
-    }
-  } @else if $breakpoint == 'tablet' {
-    @media screen and (min-width: 768px) and (max-width: 1023px) {
-      @content;
-    }
-  } @else if $breakpoint == 'desktop' {
-    @media screen and (min-width: 1024px) {
-      @content;
-    }
-  }
-}
-
-.tours-page {
-  padding: 2rem;
-  background-color: variables.$color-background;
-  color: variables.$color-primary;
+.tour-page-container {
   max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
 
-  .tour-card .learn-more-link {
-    text-decoration: none;
+  @media (max-width: $breakpoint-mobile) {
+    padding: 0.5rem;
   }
 
-  .tour-card-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2rem;
+  /* Left-align the title */
+  h2 {
+    margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    color: $color-primary;
+    font-family: $font-secondary;
 
-    @include respond-to('tablet') {
+
+    @media (max-width: $breakpoint-mobile) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .tour-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    align-items: start;
+
+    @media (max-width: $breakpoint-mobile) {
+      /* Force exactly 2 columns on mobile screens */
       grid-template-columns: repeat(2, 1fr);
     }
-
-    @include respond-to('desktop') {
-      grid-template-columns: repeat(3, 1fr);
-    }
   }
 
-  .map {
-    width: 100%;
-    margin-bottom: 2rem;
-
-    img {
-      width: 90%;
-      object-fit: cover;
-      border-radius: 1rem;
-    }
-
-    @include respond-to('tablet') {
-      h4 {
-        font-size: 2.5rem;
-        font-weight: 300;
-      }
-
-      img {
-        width: 50%;
-        margin: 0 auto;
-      }
-    }
-
-    @include respond-to('desktop') {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      h4 {
-        font-size: 2rem;
-      }
-
-      img {
-        width: 60%;
-      }
-    }
-
-    @media screen and (min-width: 1440px) {
-      img {
-        width: 27%;
-      }
-    }
-  }
-}
-
-.tour-card {
-  background-color: variables.$color-background;
-  border-radius: 1rem;
-  box-shadow: 0 0 32px -10px rgba(0, 0, 0, 0.08);
-  padding: 2rem;
-  margin-bottom: 2rem;
-  transition: all 0.35s;
-
-  img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
-
-  h3 {
-    font-family: variables.$font-secondary;
-    font-size: 2rem;
-    font-weight: 300;
-    margin-bottom: 1rem;
-    color: variables.$color-primary;
+  /* Left-align all text within each tour card wrapper */
+  .tour-card-wrapper {
     text-align: left;
   }
 
-  p {
-    font-family: variables.$font-primary;
-    font-size: calc(0.8rem + 0.5vw);
-    margin-bottom: 1rem;
-    color: variables.$color-secondary;
-    text-align: left;
-  }
-
-  h4 {
-    font-family: variables.$font-secondary;
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin-bottom: 1rem;
-    color: variables.$color-primary;
-    text-align: left;
-  }
-
-  ul {
-    list-style-type: disc;
-    margin-bottom: 1rem;
-    padding-left: 1.5rem;
-    text-align: left;
-  }
-
-  li {
-    font-family: variables.$font-primary;
-    font-size: calc(0.8rem + 0.5vw);
-    color: variables.$color-secondary;
-  }
-
-  .learn-more-btn {
-    & {
-      opacity: 0;
-      margin: 0 auto;
-      text-align: center;
-      margin-top: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: opacity 0.3s ease;
-    }
-
-    &:hover {
-      i {
-        transform: translateX(4px);
-      }
-    }
-
-    i {
-      margin-left: 0.5rem;
-      transition: transform 0.3s ease;
-    }
-  }
-
-  &:hover .learn-more-btn {
-    opacity: 1;
-  }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-
-  &.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@include respond-to('mobile') {
-  .tour-card .learn-more-btn {
-    opacity: 1;
-  }
-}
-
-@include respond-to('tablet') {
-  .tour-card {
-    h3 {
-      font-size: 1.7rem;
-    }
-
-    p {
-      font-size: 1.3rem;
-    }
-
-    h4 {
-      font-size: 1.3rem;
-    }
-
-    ul {
-      font-size: 1rem;
-    }
-
-    .learn-more-btn {
-      font-size: 1rem;
-    }
-  }
-}
-
-@media screen and (min-width: 1280px) {
-  .tours-page {
-    width: 80%;
-    margin: 0 auto;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .tours-page {
-    width: 60%;
+  .tour-page-loading {
+    font-size: 1.2rem;
+    color: color.adjust($color-secondary, $lightness: 20%);
+    font-family: $font-secondary;
+    @include responsive-font-size;
   }
 }
