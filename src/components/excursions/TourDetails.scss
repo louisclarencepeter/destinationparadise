@@ -1,0 +1,81 @@
+@use "sass:color";
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.tour-details {
+    border: 1px solid $color-border;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    overflow: hidden;
+    background-color: $color-background;
+    display: flex;
+    flex-direction: column;
+    @include flex-center;
+    transition: box-shadow $transition-duration ease-in-out;
+
+    &:hover {
+        box-shadow: 0 0.125rem 0.5rem $box-shadow-color;
+    }
+
+    .tour-image {
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+
+    .tour-info {
+        padding: 0.75rem 1rem;
+
+        .tour-title {
+            margin: 0.25rem 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: $font-secondary;
+            color: $color-primary;
+            text-align: left;
+            @include responsive-font-size;
+
+            @media (min-width: $breakpoint-tablet) {
+                font-size: 1.5rem;
+            }
+        }
+
+        .tour-details-description {
+            font-size: 1rem;
+            font-weight: 400;
+            color: color.adjust($color-secondary, $lightness: 20%);
+            margin: 0.25rem 0;
+            font-family: $font-secondary;
+            @include responsive-font-size;
+
+            @media (min-width: $breakpoint-tablet) {
+                font-size: 1.2rem;
+            }
+        }
+
+        .tour-price {
+            font-size: 1rem;
+            color: $black;
+            margin: 0.5rem 0 0;
+            font-family: $font-secondary;
+            @include responsive-font-size;
+
+            @media (min-width: $breakpoint-tablet) {
+                font-size: 1.2rem;
+            }
+        }
+
+        ul {
+            list-style: disc;
+            margin-bottom: 0.9375rem;
+            padding-left: 1.25rem;
+            font-size: 1rem;
+
+            @media (min-width: $breakpoint-tablet) {
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
