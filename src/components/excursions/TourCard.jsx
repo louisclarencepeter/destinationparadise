@@ -7,7 +7,7 @@ export default function TourCard({ tour }) {
   const { title, duration, image, price, currency = "$" } = tour;
 
   return (
-    <Link to={`/excursions/${tour.id}`}>
+    <Link to={`/excursions/${tour.id}`} style={{ textDecoration: "none" }}> 
       <div className="tour-card">
         <div className="tour-image">
           <img src={image} alt={title} />
