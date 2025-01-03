@@ -48,16 +48,17 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Toggle menu open/close (no direct style manipulation here)
   const toggleMenu = useCallback(() => {
     setIsOpen((prev) => !prev);
-    document.body.style.overflow = isOpen ? "auto" : "hidden";
-  }, [isOpen]);
-
-  const closeMenu = useCallback(() => {
-    setIsOpen(false);
-    document.body.style.overflow = "auto";
   }, []);
 
+  // Explicitly close menu
+  const closeMenu = useCallback(() => {
+    setIsOpen(false);
+  }, []);
+
+  // Handle scroll for changing navbar appearance
   const handleScroll = useCallback(() => {
     setIsScrolled(window.scrollY > 10);
   }, []);
@@ -67,6 +68,17 @@ const NavBar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
+  // Lock/unlock page scroll based on `isOpen`
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? "hidden" : "auto";
+
+    // Cleanup in case the component unmounts while open
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isOpen]);
+
+  // Auto-focus the first menu link when opening the hamburger menu
   useEffect(() => {
     if (isOpen) {
       const firstMenuItem = document.querySelector(".hamburger-menu__list a");
@@ -85,10 +97,12 @@ const NavBar = () => {
         </Link>
       </div>
 
+      {/* Desktop menu */}
       <div className="classic-menu">
         <MenuList className="classic-menu__list" onClick={closeMenu} />
       </div>
 
+      {/* Logo */}
       <div>
         <Link
           to="/"
@@ -108,6 +122,7 @@ const NavBar = () => {
         </Link>
       </div>
 
+      {/* Hamburger menu */}
       <div className="hamburger-menu">
         <div
           className="menu__toggle-container"
@@ -131,7 +146,6 @@ const NavBar = () => {
           >
             <span></span>
           </label>
-          
         </div>
 
         <div id="menu__box" className={`menu__box ${isOpen ? "open" : ""}`}>
