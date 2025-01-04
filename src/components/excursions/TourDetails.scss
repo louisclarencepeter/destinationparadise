@@ -13,29 +13,34 @@
   padding: 1rem;
   font-family: $font-secondary;
 
+  // --- Media Queries for Responsiveness ---
+
+  // Tablets (768px and up)
   @media (min-width: 768px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr; // 2 columns
     padding: 2rem;
   }
 
-  // --- Large Screen Adjustments ---
+  // Larger Desktops (1024px and up)
   @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1.5fr;
+    grid-template-columns: 1fr 1.5fr; // Image wider than content
     gap: 4rem;
     padding: 4rem;
   }
 
+  // Very Large Desktops (1440px and up)
   @media (min-width: 1440px) {
     max-width: 1400px;
     padding: 5rem;
   }
 
-  // Image Section
+  // --- Image Section ---
   .tour-image {
     position: relative;
     border-radius: $border-radius;
     overflow: hidden;
 
+    // Sticky Image on Tablets and Larger
     @media (min-width: 768px) {
       height: 100%;
       position: sticky;
@@ -48,10 +53,11 @@
 
     img {
       width: 100%;
-      height: 300px;
+      height: 300px; // Default height for mobile
       object-fit: cover;
       transition: transform 0.3s ease;
 
+      // Responsive Image Heights
       @media (min-width: 768px) {
         height: 500px;
       }
@@ -60,44 +66,50 @@
         height: 600px;
       }
 
+      // Hover Effect
       &:hover {
         transform: scale(1.05);
       }
     }
   }
 
-  // Content Section
+  // --- Content Section ---
   .tour-info {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
 
-    // Typography
+    // --- Typography ---
+
     .tour-title {
-      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      font-size: clamp(1.5rem, 3vw, 2.5rem); // Fluid sizing
       font-weight: 700;
       line-height: 1.2;
       color: $color-primary;
 
       @media (min-width: 1024px) {
-        font-size: 2.5rem;
+        font-size: 2.5rem; // Fixed size on large screens
       }
     }
 
     .tour-details-description {
-      font-size: 1rem;
+      font-size: 1.1rem; // Increased for readability
       line-height: 1.6;
       color: color.adjust($color-primary, $lightness: 20%);
 
+      @media (min-width: 768px) {
+        font-size: 1.2rem;
+      }
+
       @media (min-width: 1024px) {
-        font-size: 1.5rem;
+        font-size: 1.4rem; // Larger on larger screens
         line-height: 1.7;
       }
     }
 
     // Section Headers
     h3 {
-      font-size: 1.3rem;
+      font-size: 1.2rem; // Refined for hierarchy
       font-weight: 600;
       margin: 2rem 0 1rem;
       color: $color-primary;
@@ -105,12 +117,12 @@
       padding-bottom: 0.5rem;
 
       @media (min-width: 1024px) {
-        font-size: 1.6rem;
+        font-size: 1.5rem;
         margin: 2.5rem 0 1.25rem;
       }
     }
 
-    // Lists
+    // --- Lists ---
     ul {
       list-style: none;
       padding: 0;
@@ -121,7 +133,7 @@
 
       @media (min-width: 1024px) {
         gap: 1rem;
-        font-size: 1.2rem;
+        font-size: 1.2rem; // Slightly larger on larger screens
       }
 
       li {
@@ -130,10 +142,12 @@
         line-height: 1.5;
         transition: background-color 0.2s ease;
 
+        // Hover Effect
         &:hover {
           background-color: color.adjust($color-primary, $lightness: 90%);
         }
 
+        // Custom Bullet with Pseudo-element
         &::before {
           content: "";
           position: absolute;
@@ -153,19 +167,20 @@
           }
         }
 
+        // Hover Effect for Bullet
         &:hover::before {
           background-color: $color-primary;
         }
 
-        // FAQ Items
-        &:has(b) {
+        // FAQ Item Styling
+        &:has(b) { // Using the :has() selector (well-supported now)
           padding: 1rem;
           background-color: color.adjust($color-primary, $lightness: 95%);
           border-radius: $border-radius;
           margin-bottom: 0.5rem;
 
           &::before {
-            display: none;
+            display: none; // Hide bullet for FAQ items
           }
 
           b {
@@ -177,10 +192,10 @@
       }
     }
 
-    // Price and Duration
+    // --- Price and Duration ---
     .tour-duration,
     .tour-price {
-      font-size: 1.1rem;
+      font-size: 1rem; // Refined for balance
       margin-top: 1rem;
       padding: 1rem;
       background-color: color.adjust($color-primary, $lightness: 95%);
@@ -192,21 +207,20 @@
       }
 
       @media (min-width: 1024px) {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         padding: 1.25rem;
       }
     }
 
     .tour-price {
-      
       b {
-        color: $color-accent;
+        color: $color-accent; // Accent color for price
       }
     }
 
-    // "Book Now" Button Styles
+    // --- "Book Now" Button ---
     .book-now-button {
-      @include button-styles; 
+      @include button-styles; // Using your button mixin
     }
   }
 }
