@@ -26,8 +26,8 @@
   }
 
   @media (min-width: 1440px) {
-      max-width: 1400px;
-      padding: 5rem;
+    max-width: 1400px;
+    padding: 5rem;
   }
 
   // Image Section
@@ -43,7 +43,7 @@
     }
 
     @media (min-width: 1024px) {
-        top: 4rem;
+      top: 4rem;
     }
 
     img {
@@ -80,7 +80,7 @@
       color: $color-primary;
 
       @media (min-width: 1024px) {
-          font-size: 2.5rem;
+        font-size: 2.5rem;
       }
     }
 
@@ -90,8 +90,8 @@
       color: color.adjust($color-primary, $lightness: 20%);
 
       @media (min-width: 1024px) {
-          font-size: 1.5rem;
-          line-height: 1.7;
+        font-size: 1.5rem;
+        line-height: 1.7;
       }
     }
 
@@ -105,8 +105,8 @@
       padding-bottom: 0.5rem;
 
       @media (min-width: 1024px) {
-          font-size: 1.6rem;
-          margin: 2.5rem 0 1.25rem;
+        font-size: 1.6rem;
+        margin: 2.5rem 0 1.25rem;
       }
     }
 
@@ -120,8 +120,8 @@
       gap: 0.75rem;
 
       @media (min-width: 1024px) {
-          gap: 1rem;
-          font-size: 1.2rem;
+        gap: 1rem;
+        font-size: 1.2rem;
       }
 
       li {
@@ -147,9 +147,9 @@
           transition: background-color 0.2s ease;
 
           @media (min-width: 1024px) {
-              top: 0.85em;
-              width: 0.6rem;
-              height: 0.6rem;
+            top: 0.85em;
+            width: 0.6rem;
+            height: 0.6rem;
           }
         }
 
@@ -192,8 +192,8 @@
       }
 
       @media (min-width: 1024px) {
-          font-size: 1.2rem;
-          padding: 1.25rem;
+        font-size: 1.2rem;
+        padding: 1.25rem;
       }
     }
 
@@ -205,23 +205,7 @@
 
     // "Book Now" Button Styles
     .book-now-button {
-      background-color: $color-accent;
-      color: white;
-      border: none;
-      padding: 1rem 2rem;
-      border-radius: $border-radius;
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background-color 0.2s ease;
-
-      &:hover {
-        background-color: color.adjust($color-accent, $lightness: -10%);
-      }
-
-      @media (min-width: 1024px) {
-          font-size: 1.4rem;
-          padding: 1.25rem 2.5rem;
-      }
+      @include button-styles; // Apply the button styles from the mixin
     }
   }
 }

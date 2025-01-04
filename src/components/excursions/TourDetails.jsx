@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { tours } from "../../assets/data/tours";
 import "./TourDetails.scss";
 
 export default function TourDetails() {
   const { id } = useParams();
+  const navigate = useNavigate();
   const tour = tours.find((tour) => tour.id === id);
 
   useEffect(() => {
@@ -19,7 +20,6 @@ export default function TourDetails() {
           We couldn't find a tour with that ID. Please check the URL or browse
           our other exciting tours below:
         </p>
-        {/* Example of suggesting other tours (replace with your logic) */}
         <ul>
           {tours.slice(0, 3).map((otherTour) => (
             <li key={otherTour.id}>
@@ -32,10 +32,13 @@ export default function TourDetails() {
     );
   }
 
+  const handleBookNowClick = () => {
+    navigate('/booking#top'); 
+  };
+
   return (
     <section className="tour-details">
       <div className="tour-image">
-        {/* Correctly setting the src attribute */}
         <img src={tour.imageKey} alt={tour.title} />
       </div>
       <article className="tour-info">
@@ -44,7 +47,6 @@ export default function TourDetails() {
           <p className="tour-details-description">{tour.description}</p>
         </div>
 
-        {/* Use optional chaining to prevent errors if properties are undefined */}
         {tour.itinerary?.length > 0 && (
           <div>
             <h3>Itinerary:</h3>
@@ -113,7 +115,9 @@ export default function TourDetails() {
           <b>Price:</b> From ${tour.price} / person
         </p>
 
-        <button className="book-now-button">Book Now</button>
+        <button className="book-now-button" onClick={handleBookNowClick}>
+          Book Now
+        </button>
       </article>
     </section>
   );
