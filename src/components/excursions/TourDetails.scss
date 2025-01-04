@@ -198,6 +198,7 @@
     }
 
     .tour-price {
+      
       b {
         color: $color-accent;
       }
@@ -205,7 +206,7 @@
 
     // "Book Now" Button Styles
     .book-now-button {
-      @include button-styles; // Apply the button styles from the mixin
+      @include button-styles; 
     }
   }
 }
