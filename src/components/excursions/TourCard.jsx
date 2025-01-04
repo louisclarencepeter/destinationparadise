@@ -1,16 +1,18 @@
 // TourCard.jsx
 import React from "react";
-import { Link } from "react-router-dom"; // Import the Link component
+import { Link } from "react-router-dom";
 import "./TourCard.scss";
 
 export default function TourCard({ tour }) {
-  const { title, duration, image, price, currency = "$" } = tour;
+  // Destructure imageKey (instead of image)
+  const { title, duration, imageKey, price, currency = "$" } = tour;
 
   return (
-    <Link to={`/excursions/${tour.id}`} style={{ textDecoration: "none" }}> 
+    <Link to={`/excursions/${tour.id}`} style={{ textDecoration: "none" }}>
       <div className="tour-card">
         <div className="tour-image">
-          <img src={image} alt={title} />
+          {/* Use imageKey here */}
+          <img src={imageKey} alt={title} />
         </div>
         <div className="tour-info">
           <p className="tour-duration">{duration}</p>

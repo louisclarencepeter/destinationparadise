@@ -2,9 +2,6 @@ import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Excursions.scss";
-import stoneTownImage from "../../assets/images/stonetown/stonetown.jpg";
-import safariBlueImage from "../../assets/images/safariblue/safariblue.jpg";
-import spiceTourImage from "../../assets/images/spicetour/spice.jpg";
 
 const TRIPS = [
   {
@@ -12,7 +9,7 @@ const TRIPS = [
     title: "Stone Town Heritage Walk",
     description:
       "Embark on a journey through the timeless Stone Town, a place where history resonates in every alley.",
-    image: stoneTownImage,
+    image: "/images/stonetown/stonetown.jpg", // Direct URL path
     linkText: "Explore Stone Town Heritage Walk",
   },
   {
@@ -20,7 +17,7 @@ const TRIPS = [
     title: "Dhow & Snorkeling Safari Blue",
     description:
       "Experience the authentic and unrivaled Safari Blue - a full-day excursion aboard traditional, locally-crafted sailing dhows.",
-    image: safariBlueImage,
+    image: "/images/safariblue/safariblue.jpg", // Direct URL path
     linkText: "Discover Dhow & Snorkeling Safari Blue",
   },
   {
@@ -28,7 +25,7 @@ const TRIPS = [
     title: "Zanzibar Spice & Culture Tour",
     description:
       "Embark on a half-day journey through Central Zanzibar, exploring the rich history shaped by cloves, nutmeg, cinnamon, and pepper.",
-    image: spiceTourImage,
+    image: "/images/spicetour/spice.jpg", // Direct URL path
     linkText: "Experience Zanzibar Spice & Culture Tour",
   },
 ];

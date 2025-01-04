@@ -22,17 +22,14 @@ export default function ToursPage() {
       });
     };
 
-    // Add the event listener and trigger the function on mount
     window.addEventListener('scroll', reveal);
     reveal();
 
-    // Cleanup: remove the event listener on unmount
     return () => {
       window.removeEventListener('scroll', reveal);
     };
   }, []);
 
-  // Safeguard if "tours" might be undefined or an unexpected type
   if (!tours || !Array.isArray(tours)) {
     return <div className="tour-page-loading">Loading tours...</div>;
   }
@@ -41,12 +38,13 @@ export default function ToursPage() {
     <div className="tour-page-container">
       <h2>Trips and Tours in Zanzibar</h2>
       <div className="tour-grid">
-        {tours.map((tour) => (
-          // The .reveal class is essential for the scroll reveal effect
-          <div className="tour-card-wrapper reveal" key={tour.id}>
-            <TourCard tour={tour} />
-          </div>
-        ))}
+        {tours.map((tour) => {
+          return (
+            <div className="tour-card-wrapper reveal" key={tour.id}>
+              <TourCard tour={tour} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
