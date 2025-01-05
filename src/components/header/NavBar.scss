@@ -73,10 +73,12 @@
 // Hamburger menu styles
 .hamburger-menu {
   position: relative;
-  right: 0.5em;
-  top: -0.3em;
   width: 2rem;
   height: 2rem;
+
+  @media screen and (min-height: 1024px) {
+    right: 1rem;
+  }
 
   li {
     list-style: none;
