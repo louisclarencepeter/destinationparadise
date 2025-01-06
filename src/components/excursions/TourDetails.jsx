@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import { tours } from "../../assets/data/tours";
 import "./TourDetails.scss";
 
@@ -17,7 +17,7 @@ function TourImage({ imageKey, title }) {
 // Displays the tour header (title and description)
 function TourHeader({ title, description }) {
   return (
-    <div className="tour-header">
+    <div className="tour-header reveal"> 
       <h3 className="tour-title">{title}</h3>
       <p className="tour-details-description">{description}</p>
     </div>
@@ -31,7 +31,7 @@ function ListSection({ title, items }) {
   }
 
   return (
-    <div>
+    <div className="reveal"> 
       <h3>{title}:</h3>
       <ul>
         {items.map((item, index) => (
@@ -62,7 +62,7 @@ function FaqList({ faqs }) {
   }
 
   return (
-    <div>
+    <div className="reveal"> 
       <h3>FAQs:</h3>
       <ul>
         {faqs.map((faq, index) => (
@@ -73,59 +73,39 @@ function FaqList({ faqs }) {
   );
 }
 
-// Displays the "Book Now" button
-function BookNowButton({ onBookNow }) {
-  return (
-    <button className="book-now-button" onClick={onBookNow}>
-      Book Now
-    </button>
-  );
-}
-
 // --- Main TourDetails Component ---
 
 export default function TourDetails() {
   const { id } = useParams();
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false); // Loading state (add logic if using API)
-  const [error, setError] = useState(null); // Error state
 
-  // Simulate API call (replace with actual data fetching if needed)
+  // Find the tour from the tours array (no API call)
   const tour = tours.find((tour) => tour.id === id);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const reveal = () => {
+      const reveals = document.querySelectorAll(".reveal");
+      const windowHeight = window.innerHeight;
+      const elementVisible = 150;
 
-    // Example of how you would fetch data from an API:
-    // setLoading(true);
-    // setError(null);
-    // fetch(`/api/tours/${id}`) // Replace with your API endpoint
-    //   .then(res => {
-    //     if (!res.ok) {
-    //       throw new Error('Tour not found');
-    //     }
-    //     return res.json();
-    //   })
-    //   .then(data => {
-    //     setTour(data);
-    //   })
-    //   .catch(err => {
-    //     setError(err.message);
-    //   })
-    //   .finally(() => {
-    //     setLoading(false);
-    //   });
-  }, [id]);
+      reveals.forEach((element) => {
+        const elementTop = element.getBoundingClientRect().top;
+        if (elementTop < windowHeight - elementVisible) {
+          element.classList.add("active");
+        } else {
+          element.classList.remove("active");
+        }
+      });
+    };
 
-  const handleBookNowClick = () => {
-    navigate("/booking#top", { replace: true });
-  };
+    window.addEventListener("scroll", reveal);
+    reveal(); 
 
-  if (loading) {
-    return <div className="loading">Loading...</div>; // Display loading indicator
-  }
+    return () => {
+      window.removeEventListener("scroll", reveal);
+    };
+  }, []);
 
-  if (error || !tour) {
+  if (!tour) {
     return (
       <div className="tour-not-found">
         <h2>Tour not found</h2>
@@ -133,6 +113,7 @@ export default function TourDetails() {
           We couldn't find a tour with the ID: {id}. Please check the URL or
           browse our other exciting tours below:
         </p>
+
         <ul>
           {tours.slice(0, 3).map((otherTour) => (
             <li key={otherTour.id}>
@@ -147,24 +128,22 @@ export default function TourDetails() {
 
   return (
     <section className="tour-details">
-      <TourImage imageKey={tour.imageKey} title={tour.title} />
+      <TourImage imageKey={tour.imageKey} title={tour.title} /> 
       <article className="tour-info">
-        <TourHeader title={tour.title} description={tour.description} />
+        <TourHeader title={tour.title} description={tour.description} /> 
 
-        <ListSection title="Itinerary" items={tour.itinerary} />
-        <ListSection title="Activities" items={tour.activities} />
-        <ListSection title="Inclusions" items={tour.inclusions} />
-        <ListSection title="What to Bring" items={tour.whatToBring} />
-        <FaqList faqs={tour.FAQs} />
+        <ListSection title="Itinerary" items={tour.itinerary} /> 
+        <ListSection title="Activities" items={tour.activities} /> 
+        <ListSection title="Inclusions" items={tour.inclusions} /> 
+        <ListSection title="What to Bring" items={tour.whatToBring} /> 
+        <FaqList faqs={tour.FAQs} /> 
 
-        <p className="tour-duration">
+        <p className="tour-duration reveal"> 
           <b>Duration:</b> {tour.duration}
         </p>
-        <p className="tour-price">
+        <p className="tour-price reveal">
           <b>Price:</b> From ${tour.price} / person
         </p>
-
-        <BookNowButton onBookNow={handleBookNowClick} />
       </article>
     </section>
   );
