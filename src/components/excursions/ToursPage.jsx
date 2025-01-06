@@ -1,32 +1,32 @@
 // ToursPage.jsx
-import React, { useEffect } from 'react';
-import TourCard from './TourCard';
-import './ToursPage.scss';
-import { tours } from '../../assets/data/tours';
+import React, { useEffect } from "react";
+import TourCard from "./TourCard";
+import "./ToursPage.scss";
+import { tours } from "../../assets/data/tours";
 
 export default function ToursPage() {
   // Scroll Reveal Logic
   useEffect(() => {
     const reveal = () => {
-      const reveals = document.querySelectorAll('.reveal');
+      const reveals = document.querySelectorAll(".reveal");
       const windowHeight = window.innerHeight;
       const elementVisible = 150;
 
       reveals.forEach((element) => {
         const elementTop = element.getBoundingClientRect().top;
         if (elementTop < windowHeight - elementVisible) {
-          element.classList.add('active');
+          element.classList.add("active");
         } else {
-          element.classList.remove('active');
+          element.classList.remove("active");
         }
       });
     };
 
-    window.addEventListener('scroll', reveal);
+    window.addEventListener("scroll", reveal);
     reveal();
 
     return () => {
-      window.removeEventListener('scroll', reveal);
+      window.removeEventListener("scroll", reveal);
     };
   }, []);
 

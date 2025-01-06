@@ -1,128 +1,252 @@
 // tourDescriptions.js
 
 export const tourDescriptions = {
-  "zanzibar-spice-culture-tour": {
+  spiceTour: {
     title: "Spice Tour",
     description:
-      "Explore the history and plantations of Zanzibar's spice trade. Dazzle your senses with fresh spices and learn about their uses in medicine, cosmetics, and cooking.",
+      "Embark on a sensory journey through Zanzibar's aromatic spice farms. See, smell, and taste fresh spices like cloves, cinnamon, and nutmeg. Learn about their cultivation and uses. Enjoy exotic fruits and a traditional Swahili lunch.",
     itinerary: [
-      "Pickup from your hotel in the morning.",
-      "Drive to spice plantations (approximately 30 minutes).",
-      "Guided tour of the spice plantations, learning about the history and uses of spices.",
-      "Taste fresh spices and exotic fruits.",
-      "Enjoy an opulent lunch (if requested).",
-      "Return to your hotel by early afternoon.",
+      "Hotel pickup",
+      "Visit spice plantations",
+      "Spice tasting and fruit sampling",
+      "Traditional lunch (optional)",
+      "Return to hotel",
     ],
     duration: "Half-day",
   },
-  "stone-town-heritage-walk": {
-    title: "Historical City Tour",
+  historicalCityTour: {
+    title: "Stone Town Tour",
     description:
-      "Take a fascinating walk through Stone Town and visit historical sites like the House of Wonders, Palace Museum, Dr. Livingston's House, and Arab Fort.",
+      "Explore the historical Stone Town, a UNESCO World Heritage Site. Visit iconic landmarks like the House of Wonders, the Old Fort, and the Slave Market. Discover the city's rich history and culture.",
     itinerary: [
-      "Morning or afternoon pickup from your hotel.",
-      "Begin the guided walk through Stone Town's narrow streets.",
-      "Visit key landmarks: House of Wonders, Palace Museum, and Arab Fort.",
-      "Explore vibrant markets and local artisan shops.",
-      "Enjoy a refreshing local snack before returning to your hotel.",
+      "Hotel pickup",
+      "Guided walk through Stone Town",
+      "Visit historical sites",
+      "Explore local markets",
+      "Return to hotel",
     ],
     duration: "Half-day",
   },
-  "prison-island-boat-trip": {
-    title: "Prison Island Boat Trip",
+  prisonIsland: {
+    title: "Prison Island Tour",
     description:
-      "Escape to Prison Island, home to giant tortoises and a beautiful coral reef. Enjoy snorkeling, sunbathing, and a visit to the historic prison.",
+      "Visit Prison Island, once a quarantine station and slave prison. See giant Aldabra tortoises, enjoy snorkeling and swimming in the turquoise waters.",
     itinerary: [
-      "Pickup from your hotel in the morning.",
-      "Board a traditional boat to Prison Island.",
-      "Tour the historic prison and learn its history.",
-      "Meet the giant tortoises in the sanctuary.",
-      "Optional snorkeling session to explore the coral reef.",
-      "Relax on the beach before returning to the mainland.",
+      "Hotel pickup",
+      "Boat trip to Prison Island",
+      "Visit historical sites",
+      "See giant tortoises",
+      "Snorkeling and swimming",
+      "Return to hotel",
     ],
-    duration: "Half-day or Full-day",
+    duration: "Half-day",
   },
-  "jozani-forest-tour": {
+  jozaniForest: {
     title: "Jozani Forest Tour",
     description:
-      "Explore the Jozani Forest, home to the rare red colobus monkey and other wildlife. Walk through the impressive flora and fauna on a guided nature trail.",
+      "Explore Jozani Forest, Zanzibar's last remaining indigenous forest. See the rare red colobus monkeys, Sykes monkeys, and other wildlife. Enjoy a guided nature walk and learn about the forest's ecosystem.",
     itinerary: [
-      "Pickup from your hotel in the morning.",
-      "Drive to Jozani Forest (approximately 1 hour).",
-      "Begin the guided nature walk through the forest trails.",
-      "Spot red colobus monkeys and learn about their conservation.",
-      "Visit the mangrove boardwalk to explore unique ecosystems.",
-      "Relax and enjoy light refreshments before the return journey.",
+      "Hotel pickup",
+      "Guided walk through Jozani Forest",
+      "See red colobus monkeys",
+      "Explore mangrove boardwalk",
+      "Return to hotel",
     ],
     duration: "Half-day",
   },
-  "dolphin-tour": {
+  dolphinTour: {
     title: "Dolphin Tour",
     description:
-      "Visit Kizimkazi fishing village and take a boat trip to see schools of bottle-nosed and humpback dolphins. Swim close to the dolphins and visit a 12th-century mosque.",
+      "Embark on a boat trip to Kizimkazi to see dolphins in their natural habitat. Swim with dolphins (optional) and visit the historic Kizimkazi Mosque.",
     itinerary: [
-      "Early morning pickup from your hotel.",
-      "Drive to Kizimkazi fishing village (approximately 1 hour).",
-      "Board a boat and begin the dolphin sighting adventure.",
-      "Optional swim with the dolphins in their natural habitat.",
-      "Visit the historical 12th-century mosque in Kizimkazi.",
-      "Return to your hotel by noon.",
+      "Hotel pickup",
+      "Boat trip to Kizimkazi",
+      "Dolphin watching",
+      "Swimming with dolphins (optional)",
+      "Visit Kizimkazi Mosque",
+      "Return to hotel",
     ],
     duration: "Half-day",
   },
-  "mnemba-snorkeling-trip-north": {
-    title: "Mnemba Snorkeling & Trip to the North",
+  sunsetRock: {
+    title: "Sunset Trip & The Rock Restaurant",
     description:
-      "Snorkel in the crystal-clear waters of Mnemba Island, a private conserved island in the northeast. Spot a variety of fish and enjoy the beautiful beach of Nungwi.",
+      "Experience a magical sunset at Michamvi Beach and visit The Rock Restaurant, perched on a rock in the ocean. Enjoy dinner with stunning views (optional).",
     itinerary: [
-      "Morning pickup from your hotel.",
-      "Drive to the boat departure point (approximately 1.5 hours).",
-      "Board a traditional dhow or motorboat to Mnemba Island.",
-      "Snorkel in the protected waters around Mnemba, exploring vibrant marine life.",
-      "Break for lunch on the beach at Nungwi village.",
-      "Relax on Nungwi beach before returning to your hotel in the evening.",
+      "Hotel pickup",
+      "Travel to Michamvi Beach",
+      "Watch the sunset",
+      "Visit The Rock Restaurant (optional)",
+      "Return to hotel",
+    ],
+    duration: "Half-day",
+  },
+  snorkeling: {
+    title: "Snorkeling Adventure",
+    description:
+      "Discover Zanzibar's underwater world with a snorkeling trip to Mnemba Atoll or the Blue Lagoon. See colorful coral reefs and diverse marine life.",
+    itinerary: [
+      "Hotel pickup",
+      "Boat trip to snorkeling site",
+      "Snorkeling with guide",
+      "Return to hotel",
+    ],
+    duration: "Half-day",
+  },
+  villageTour: {
+    title: "Village Tour",
+    description:
+      "Experience authentic Zanzibari life with a visit to Bwejuu village. Learn about local customs, crafts, and daily routines. Interact with friendly villagers and visit a local school.",
+    itinerary: [
+      "Hotel pickup",
+      "Guided walk through Bwejuu village",
+      "Visit local homes and shops",
+      "Interact with villagers",
+      "Visit a charity school",
+      "Return to hotel",
+    ],
+    duration: "Half-day",
+  },
+  motorbikeRenting: {
+    title: "Motorbike Rental",
+    description:
+      "Rent a motorbike and explore Zanzibar at your own pace. Discover hidden beaches, local villages, and scenic landscapes.",
+    itinerary: ["Motorbike pickup", "Explore the island", "Motorbike return"],
+    duration: "Full-day",
+  },
+  mnembaSnorkeling: {
+    title: "Mnemba Snorkeling & Northern Zanzibar Trip",
+    description:
+      "Combine snorkeling at Mnemba Atoll with a visit to Nungwi, a charming fishing village in northern Zanzibar. Enjoy pristine beaches and explore local life.",
+    itinerary: [
+      "Hotel pickup",
+      "Boat trip to Mnemba Atoll",
+      "Snorkeling",
+      "Visit Nungwi village",
+      "Relax on Nungwi beach",
+      "Return to hotel",
     ],
     duration: "Full-day",
   },
-  "dhow-snorkeling-safari-blue": {
+  safariBlue: {
     title: "Safari Blue",
     description:
-      "Embark on a full-day excursion on traditional sailing dhows. Swim, sunbathe, and explore the sandbank in Menai Bay. Enjoy traditional seafood lunch and refreshments.",
+      "Experience a full-day sailing adventure in Menai Bay. Swim, snorkel, explore sandbanks, and enjoy a delicious seafood barbecue on Kwale Island.",
     itinerary: [
-      "Morning pickup from your hotel.",
-      "Drive to Fumba village (approximately 1 hour).",
-      "Board a traditional dhow and set sail to Menai Bay.",
-      "Explore sandbanks, snorkel, and swim in the crystal-clear waters.",
-      "Enjoy a seafood lunch served on Kwale Island.",
-      "Sail back to Fumba village and return to your hotel in the evening.",
+      "Hotel pickup",
+      "Dhow sailing in Menai Bay",
+      "Snorkeling and swimming",
+      "Sandbank exploration",
+      "Seafood barbecue on Kwale Island",
+      "Return to hotel",
     ],
     duration: "Full-day",
   },
-  "local-game-fishing": {
-    title: "Local Game Fishing",
+  localFishing: {
+    title: "Local Fishing Adventure",
     description:
-      "Join a Zanzibarian fisherman on a traditional dhow and experience fishing for a living. Use simple fishing gear to catch kingfish, yellowfin tuna, barracuda, and grouper.",
+      "Join local fishermen on a traditional dhow and experience authentic Zanzibari fishing. Learn traditional techniques and try your luck at catching fish.",
     itinerary: [
-      "Early morning pickup from your hotel.",
-      "Drive to the fishing village (approximately 1 hour).",
-      "Board a traditional dhow and begin the fishing adventure.",
-      "Learn traditional fishing techniques and try your luck catching fish.",
-      "Break for refreshments and snacks on the dhow.",
-      "Return to the mainland and drive back to your hotel.",
+      "Hotel pickup",
+      "Board a traditional dhow",
+      "Fishing with local fishermen",
+      "Return to hotel",
+    ],
+    duration: "Half-day",
+  },
+  swimmingCave: {
+    title: "Trip to Maalum Cave",
+    description:
+      "Visit Maalum Cave, a hidden natural swimming pool on the east coast of Zanzibar. Enjoy swimming in the crystal-clear water and relax in a serene environment.",
+    itinerary: [
+      "Hotel pickup",
+      "Travel to Maalum Cave",
+      "Swimming and relaxation",
+      "Return to hotel",
+    ],
+    duration: "Half-day",
+  },
+  "sandbank-picnic": {
+    title: "Sandbank Picnic",
+    description:
+      "Spend a tranquil day on a pristine sandbank surrounded by turquoise waters. Relax, swim, snorkel, and enjoy a delicious seafood picnic.",
+    itinerary: [
+      "Pickup from your hotel.",
+      "Boat ride to a secluded sandbank.",
+      "Free time for swimming, sunbathing, and snorkeling.",
+      "Seafood picnic lunch served on the sandbank.",
+      "Return to your hotel in the afternoon.",
     ],
     duration: "Half-day or Full-day",
   },
-  "swimming-cave": {
-    title: "Swimming in the Cave",
+  "kizimkazi-fishing": {
+    title: "Fishing in Kizimkazi",
     description:
-      "Visit Maalum, a beautiful natural water swimming cave on the East Coast of Zanzibar. Relax, swim, and enjoy the wonders of this special place.",
+      "Join local fishermen in Kizimkazi and experience traditional fishing techniques. Catch a variety of fish and learn about Zanzibar's fishing heritage.",
     itinerary: [
-      "Morning pickup from your hotel.",
-      "Drive to Maalum cave (approximately 1 hour).",
-      "Enjoy a refreshing swim in the natural cave pool.",
-      "Relax and take photos in the serene environment.",
-      "Return to your hotel by early afternoon.",
+      "Pickup from your hotel.",
+      "Drive to Kizimkazi fishing village.",
+      "Board a traditional fishing boat.",
+      "Fish with local fishermen using traditional methods.",
+      "Enjoy refreshments and snacks on the boat.",
+      "Return to your hotel in the afternoon.",
     ],
-    duration: "Half-day",
+    duration: "Half-day or Full-day",
+  },
+  "nungwi-trip": {
+    title: "Trip to Nungwi",
+    description:
+      "Visit Nungwi, a vibrant northern village known for its lively atmosphere, dhow-building workshops, and stunning beaches. Explore, sunbathe, and enjoy local cuisine.",
+    itinerary: [
+      "Pickup from your hotel.",
+      "Drive to Nungwi village.",
+      "Explore the village and visit dhow-building workshops.",
+      "Free time for sunbathing and swimming at Nungwi beach.",
+      "Enjoy lunch at a local restaurant.",
+      "Return to your hotel in the afternoon.",
+    ],
+    duration: "Half-day or Full-day",
+  },
+  quadAdventure: {
+    title: "Quad Adventure: Local Villages, The Rock Restaurant, and Sunset",
+    description:
+      "Embark on an exciting quad biking adventure through Zanzibar's rural and scenic landscapes. Explore local villages, experience breathtaking coastal views, and enjoy a stunning sunset.",
+    itinerary: [
+      "3:00 PM: Begin at the quad station with a safety briefing",
+      "3:30 PM: Ride to a local village",
+      "4:00 PM: Visit a local school",
+      "5:00 PM: Photo stop at The Rock Restaurant",
+      "5:45 PM: Enjoy the sunset at Michamvi",
+      "6:30 PM: Return to the quad station"
+    ],
+    duration: "3.5 hours",
+  },
+  sunsetTrip: {
+    title: "Sunset Experience: Michamvi Beach & The Rock Restaurant",
+    description:
+      "Unwind and experience the magical beauty of Zanzibar's sunset on this serene trip to Michamvi. This tour combines a visit to the iconic Rock Restaurant and a spectacular sunset at the beach.",
+    itinerary: [
+      "4:00 PM: Pickup from your accommodation",
+      "4:45 PM: Arrive at The Rock Restaurant",
+      "5:30 PM: Continue to Michamvi Beach",
+      "5:45 PM: Enjoy the sunset",
+      "6:30 PM: Relax and soak in the evening ambiance",
+      "7:00 PM: Arrive back at your accommodation"
+    ],
+    duration: "3 hours",
+  },
+  sunsetSailing: {
+    title: "Sunset Sailing: A Serene Evening on the Water",
+    description:
+      "Set sail on a traditional dhow and experience the magic of Zanzibar’s coastline at sunset. This relaxing journey offers stunning views, cool ocean breezes, and a tranquil ambiance.",
+    itinerary: [
+      "4:30 PM: Pickup from your accommodation",
+      "5:00 PM: Board the dhow and set sail",
+      "5:30 PM: Enjoy a leisurely sail",
+      "6:15 PM: Anchor for sunset viewing and refreshments",
+      "6:45 PM: Begin the return journey",
+      "7:15 PM: Return to shore and transfer back"
+    ],
+    duration: "3 hours",
   },
 };
