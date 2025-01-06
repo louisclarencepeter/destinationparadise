@@ -17,7 +17,7 @@ function TourImage({ imageKey, title }) {
 // Displays the tour header (title and description)
 function TourHeader({ title, description }) {
   return (
-    <div className="tour-header reveal"> 
+    <div className="tour-header reveal">
       <h3 className="tour-title">{title}</h3>
       <p className="tour-details-description">{description}</p>
     </div>
@@ -31,7 +31,7 @@ function ListSection({ title, items }) {
   }
 
   return (
-    <div className="reveal"> 
+    <div className="reveal">
       <h3>{title}:</h3>
       <ul>
         {items.map((item, index) => (
@@ -62,7 +62,7 @@ function FaqList({ faqs }) {
   }
 
   return (
-    <div className="reveal"> 
+    <div className="reveal">
       <h3>FAQs:</h3>
       <ul>
         {faqs.map((faq, index) => (
@@ -98,7 +98,7 @@ export default function TourDetails() {
     };
 
     window.addEventListener("scroll", reveal);
-    reveal(); 
+    reveal();
 
     return () => {
       window.removeEventListener("scroll", reveal);
@@ -128,22 +128,27 @@ export default function TourDetails() {
 
   return (
     <section className="tour-details">
-      <TourImage imageKey={tour.imageKey} title={tour.title} /> 
+      <TourImage imageKey={tour.imageKey} title={tour.title} />
       <article className="tour-info">
-        <TourHeader title={tour.title} description={tour.description} /> 
+        <TourHeader title={tour.title} description={tour.description} />
 
-        <ListSection title="Itinerary" items={tour.itinerary} /> 
-        <ListSection title="Activities" items={tour.activities} /> 
-        <ListSection title="Inclusions" items={tour.inclusions} /> 
-        <ListSection title="What to Bring" items={tour.whatToBring} /> 
-        <FaqList faqs={tour.FAQs} /> 
+        <ListSection title="Itinerary" items={tour.itinerary} />
+        <ListSection title="Activities" items={tour.activities} />
+        <ListSection title="Inclusions" items={tour.inclusions} />
+        <ListSection title="What to Bring" items={tour.whatToBring} />
+        <FaqList faqs={tour.FAQs} />
 
-        <p className="tour-duration reveal"> 
+        <p className="tour-duration reveal">
           <b>Duration:</b> {tour.duration}
         </p>
         <p className="tour-price reveal">
           <b>Price:</b> From ${tour.price} / person
         </p>
+
+        {/* --- Book Now Button --- */}
+        <div className="book-now-button reveal">
+          <Link to="/booking">Book Now</Link>
+        </div>
       </article>
     </section>
   );

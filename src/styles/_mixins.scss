@@ -92,29 +92,24 @@
     font-family: vars.$font-primary;
     cursor: pointer;
     transition: vars.$transition-default;
-  }
 
-  @media (max-width: 768px) {
-    padding: 0.8rem 1.6rem;
-    font-size: calc(0.5rem + 1vw);
-  }
+    @media (max-width: 768px) {
+      padding: 0.8rem 1.6rem;
+      font-size: calc(0.5rem + 1vw);
+    }
 
-  @media (max-width: 480px) {
-    padding: 0.6rem 1.2rem;
-    font-size: calc(0.4rem + 1.5vw);
-  }
+    @media (max-width: 480px) {
+      padding: 0.6rem 1.2rem;
+      font-size: calc(0.4rem + 1.5vw);
+    }
 
-  &:hover {
-    color: vars.$hover-color;
-    background-image: linear-gradient(
-      120deg,
-      color.adjust(vars.$color-primary, $lightness: -10%) 0%,
-      color.adjust(vars.$color-accent, $lightness: -10%) 100%
-    );
-  }
-
-  i {
-    text-decoration: none;
-    transition: vars.$transition-default;
+    &:hover {
+      color: vars.$hover-color;
+      background-image: linear-gradient(
+        120deg,
+        color.adjust(vars.$color-primary, $lightness: -10%) 0%,
+        color.adjust(vars.$color-accent, $lightness: -10%) 100%
+      );
+    }
   }
 }

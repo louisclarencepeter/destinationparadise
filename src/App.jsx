@@ -14,7 +14,7 @@ const ToursPage = lazy(() => import("./components/excursions/ToursPage"));
 const MyImageGallery = lazy(() => import("./components/gallery/MyImageGallery"));
 const Store = lazy(() => import("./components/store/Store"));
 const PolicyInfo = lazy(() => import("./components/cookies/PolicyInfo"));
-const TourDetails = lazy(() => import("./components/excursions/TourDetails")); // Import TourDetails
+const TourDetails = lazy(() => import("./components/excursions/TourDetails")); 
 
 function App() {
   useEffect(() => {
