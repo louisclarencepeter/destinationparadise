@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { tours } from "../../assets/data/tours";
 import "./TourDetails.scss";
+import TourCard from "./TourCard";
 
 // --- Smaller Components ---
 
-// Displays the tour image
 function TourImage({ imageKey, title }) {
   return (
     <div className="tour-image">
@@ -14,7 +14,6 @@ function TourImage({ imageKey, title }) {
   );
 }
 
-// Displays the tour header (title and description)
 function TourHeader({ title, description }) {
   return (
     <div className="tour-header reveal">
@@ -24,7 +23,6 @@ function TourHeader({ title, description }) {
   );
 }
 
-// Displays a generic list (used for itinerary, activities, inclusions, etc.)
 function ListSection({ title, items }) {
   if (!items || items.length === 0) {
     return null;
@@ -42,7 +40,6 @@ function ListSection({ title, items }) {
   );
 }
 
-// Displays a single FAQ item
 function FaqItem({ faq }) {
   return (
     <li>
@@ -55,7 +52,6 @@ function FaqItem({ faq }) {
   );
 }
 
-// Displays the list of FAQs
 function FaqList({ faqs }) {
   if (!faqs || faqs.length === 0) {
     return null;
@@ -77,8 +73,7 @@ function FaqList({ faqs }) {
 
 export default function TourDetails() {
   const { id } = useParams();
-
-  // Find the tour from the tours array (no API call)
+  const navigate = useNavigate();
   const tour = tours.find((tour) => tour.id === id);
 
   useEffect(() => {
@@ -104,6 +99,19 @@ export default function TourDetails() {
       window.removeEventListener("scroll", reveal);
     };
   }, []);
+
+  const getRandomTours = (currentTourId) => {
+    const otherTours = tours.filter((tour) => tour.id !== currentTourId);
+    const shuffledTours = [...otherTours].sort(() => 0.5 - Math.random());
+    return shuffledTours.slice(0, 2);
+  };
+
+  const randomTours = getRandomTours(id);
+
+  const handleTourCardClick = (tourId) => {
+    navigate(`/excursions/${tourId}`);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   if (!tour) {
     return (
@@ -145,11 +153,27 @@ export default function TourDetails() {
           <b>Price:</b> From ${tour.price} / person
         </p>
 
-        {/* --- Book Now Button --- */}
         <div className="book-now-button reveal">
           <Link to="/booking">Book Now</Link>
         </div>
       </article>
+
+      <div className="random-tours">
+        <h2>Other Tours You Might Like</h2>
+        <div className="tour-cards">
+          {randomTours.map((tour) => (
+            <div
+              key={tour.id}
+              onClick={() => handleTourCardClick(tour.id)}
+              role="button"
+              tabIndex={0}
+              style={{ cursor: "pointer" }}
+            >
+              <TourCard tour={tour} />
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }

@@ -214,5 +214,25 @@
         @include button-styles;
       }
     }
+
+    .random-tours {
+      grid-column: span 2; // Make it span both columns
+      margin-top: 2rem; // Add some space above
+  
+      h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: $color-primary; 
+      }
+  
+      .tour-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); // Responsive columns
+        gap: 1.5rem;
+      }
+    }
   }
+
+  
 }
