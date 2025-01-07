@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { tours } from "../../assets/data/tours";
+import { Clock, MapPin, ChevronRight } from 'lucide-react';
 import "./TourDetails.scss";
-import TourCard from "./TourCard";
 
 // --- Smaller Components ---
-
 function TourImage({ imageKey, title }) {
   return (
     <div className="tour-image">
@@ -69,8 +68,62 @@ function FaqList({ faqs }) {
   );
 }
 
-// --- Main TourDetails Component ---
+// Tour Cards Component
+function TourCards({ tours, onTourClick }) {
+  return (
+    <div className="random-tours">
+      <h2>Other Tours You Might Like</h2>
+      <div className="tour-cards">
+        {tours.map((tour) => (
+          <div
+            key={tour.id}
+            className="tour-card"
+            onClick={() => onTourClick(tour.id)}
+            onKeyPress={(event) => {
+              if (event.key === "Enter") {
+                onTourClick(tour.id);
+              }
+            }}
+            role="button"
+            tabIndex={0}
+          >
+            <div className="card-image">
+              <img src={tour.imageKey} alt={tour.title} />
+              <div className="price-badge">
+                From ${tour.price}
+              </div>
+            </div>
+            
+            <div className="card-content">
+              <h3>{tour.title}</h3>
+              <p>{tour.description}</p>
+              
+              <div className="tour-details">
+                <div className="detail-item">
+                  <Clock size={16} />
+                  <span>{tour.duration}</span>
+                </div>
+                {tour.location && (
+                  <div className="detail-item">
+                    <MapPin size={16} />
+                    <span>{tour.location}</span>
+                  </div>
+                )}
+              </div>
+              
+              <button className="cta-button">
+                View Details
+                <ChevronRight size={16} />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
+// --- Main TourDetails Component ---
 export default function TourDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -121,7 +174,6 @@ export default function TourDetails() {
           We couldn't find a tour with the ID: {id}. Please check the URL or
           browse our other exciting tours below:
         </p>
-
         <ul>
           {tours.slice(0, 3).map((otherTour) => (
             <li key={otherTour.id}>
@@ -158,22 +210,10 @@ export default function TourDetails() {
         </div>
       </article>
 
-      <div className="random-tours">
-        <h2>Other Tours You Might Like</h2>
-        <div className="tour-cards">
-          {randomTours.map((tour) => (
-            <div
-              key={tour.id}
-              onClick={() => handleTourCardClick(tour.id)}
-              role="button"
-              tabIndex={0}
-              style={{ cursor: "pointer" }}
-            >
-              <TourCard tour={tour} />
-            </div>
-          ))}
-        </div>
-      </div>
+      <TourCards 
+        tours={randomTours}
+        onTourClick={handleTourCardClick}
+      />
     </section>
   );
 }

@@ -1,3 +1,5 @@
+//mixins
+
 @use "sass:color";
 @use "../styles/variables" as vars;
 
@@ -20,7 +22,9 @@
 }
 
 @mixin responsive-font-size {
-  font-size: calc(0.8rem + 0.5vw);
+  & {
+    font-size: calc(0.8rem + 0.5vw);
+  }
 
   @media screen and (min-width: 1024px) {
     font-size: inherit;
@@ -82,17 +86,18 @@
 }
 
 @mixin button-styles {
-  & {
-    border-radius: 0.3rem;
-    padding: 0.5rem 1rem;
-    font-size: calc(0.6rem + 0.5vw);
-    background-image: vars.$gradient-button;
-    color: vars.$color-background;
-    border: none;
-    font-family: vars.$font-primary;
-    cursor: pointer;
-    transition: vars.$transition-default;
+  // General button styles (moved outside the & {} block)
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  font-size: calc(0.6rem + 0.5vw);
+  background-image: vars.$gradient-button;
+  color: vars.$color-background;
+  border: none;
+  font-family: vars.$font-primary;
+  cursor: pointer;
+  transition: vars.$transition-default;
 
+  & { // The & {} block now only contains nested rules and pseudo-classes
     @media (max-width: 768px) {
       padding: 0.8rem 1.6rem;
       font-size: calc(0.5rem + 1vw);
