@@ -141,8 +141,28 @@ const Excursions = () => {
           <ExcursionCard key={trip.id} trip={trip} index={index} />
         ))}
       </div>
+      <div className="excursions__more reveal">
+        <Link to="/excursions" className="excursions__more-link">
+          <span>View More Excursions</span>
+          <svg
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
+          </svg>
+          <span className="sr-only">View all available excursions</span>
+        </Link>
+      </div>
     </section>
   );
 };
+
 
 export default Excursions;
