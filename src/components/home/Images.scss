@@ -35,10 +35,13 @@
 
   &__more-link {
     @include button-styles;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
+    
+    & {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
     svg {
       width: 20px;
