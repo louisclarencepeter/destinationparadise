@@ -1,3 +1,4 @@
+// ToursPage.scss
 @use "sass:color";
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
@@ -5,47 +6,67 @@
 .tour-page-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 1rem;
-
+  padding: 1.5rem;
+  min-height: 60vh;
 
   @media (max-width: $breakpoint-mobile) {
-    padding: 0.5rem;
+    padding: 1rem;
   }
 
-  /* Left-align the title */
   h2 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     font-size: 2.5rem;
     color: $color-primary;
     font-family: $font-secondary;
 
-
     @media (max-width: $breakpoint-mobile) {
-      font-size: 1.5rem;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
     }
   }
 
   .tour-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
     align-items: start;
 
-    @media (max-width: $breakpoint-mobile) {
-      /* Force exactly 2 columns on mobile screens */
-      grid-template-columns: repeat(2, 1fr);
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
     }
   }
 
-  /* Left-align all text within each tour card wrapper */
   .tour-card-wrapper {
     text-align: left;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+    &.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
   .tour-page-loading {
+    text-align: center;
+    padding: 2rem;
     font-size: 1.2rem;
     color: color.adjust($color-secondary, $lightness: 20%);
     font-family: $font-secondary;
-    @include responsive-font-size;
+  }
+}
+
+// Reveal animation delay for cards
+.reveal {
+  &:nth-child(2) {
+    transition-delay: 0.1s;
+  }
+  &:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+  &:nth-child(4) {
+    transition-delay: 0.3s;
   }
 }
