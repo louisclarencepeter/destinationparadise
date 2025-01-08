@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
+import { Link } from "react-router-dom";
 import "./Images.scss";
 
 const Images = () => {
@@ -57,6 +58,24 @@ const Images = () => {
           ))}
         </Masonry>
       </ResponsiveMasonry>
+      <div className="gallery__more reveal">
+        <Link to="/gallery" className="gallery__more-link">
+          <span>View More Pictures</span>
+          <svg
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            aria-hidden="true"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+            />
+          </svg>
+        </Link>
+      </div>
     </div>
   );
 };
