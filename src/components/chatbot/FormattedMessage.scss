@@ -1,0 +1,86 @@
+// FormattedMessage.scss
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+@use "sass:color";
+
+.message {
+  max-width: 75%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  line-height: 1.5;
+  font-family: vars.$font-secondary;
+  box-shadow: 0 2px 4px vars.$box-shadow-color;
+  transition: vars.$transition-default;
+  word-wrap: break-word;
+  position: relative; // To position the tail pseudo-element
+
+  // Moved the mixin inclusion to the end of declarations
+  @include mixins.responsive-font-size;
+
+  &.assistant {
+    background-color: vars.$color-assistant-message;
+    color: vars.$color-on-assistant-message;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+  }
+
+  &.user {
+    background-color: vars.$color-user-message;
+    color: vars.$color-on-user-message;
+    align-self: flex-end;
+    border-bottom-right-radius: 4px;
+  }
+
+  @media (max-width: vars.$breakpoint-mobile) {
+    max-width: 85%;
+    padding: 0.875rem;
+  }
+}
+
+.message-point-header {
+  font-family: vars.$font-primary;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  color: inherit;
+
+  .assistant & {
+    color: vars.$color-primary;
+  }
+
+  .user & {
+    color: vars.$color-on-user-message;
+  }
+}
+
+.message-point-content {
+  font-family: vars.$font-secondary;
+  margin-bottom: 0.75rem;
+  padding-left: 1rem;
+  line-height: 1.6;
+
+  @media (max-width: vars.$breakpoint-mobile) {
+    padding-left: 0.75rem;
+  }
+}
+
+// Link styles within messages
+.message a {
+  color: inherit;
+  text-decoration: underline;
+  transition: vars.$transition-default;
+
+  &:hover {
+    color: vars.$hover-color;
+    text-decoration: none;
+  }
+
+  .user & {
+    color: vars.$color-on-user-message;
+
+    &:hover {
+      color: color.adjust(vars.$color-on-user-message, $alpha: -0.2);
+    }
+  }
+}

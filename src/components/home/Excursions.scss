@@ -1,5 +1,5 @@
 @use '../../styles/variables' as vars;
-@use "../../styles/mixins" as *;
+@use '../../styles/mixins' as *;
 
 // Variables
 $breakpoint-tablet: 768px;
@@ -71,10 +71,13 @@ $grid-gap: 2rem;
 
   &__more-link {
     @include button-styles;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
+
+    & {
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
     svg {
       width: 20px;
@@ -115,7 +118,9 @@ $grid-gap: 2rem;
     transition: transform 0.3s ease;
 
     .excursion-card:hover & {
-      transform: scale(1.05);
+      & {
+        transform: scale(1.05);
+      }
     }
   }
 
@@ -133,7 +138,9 @@ $grid-gap: 2rem;
     transition: color 0.3s ease;
 
     .excursion-card:hover & {
-      color: vars.$color-accent;
+      & {
+        color: vars.$color-accent;
+      }
     }
   }
 
@@ -155,8 +162,10 @@ $grid-gap: 2rem;
     transition: color 0.3s ease, transform 0.3s ease;
 
     &:hover {
-      color: vars.$color-secondary;
-      transform: translateX(5px);
+      & {
+        color: vars.$color-secondary;
+        transform: translateX(5px);
+      }
 
       svg {
         transform: translateX(4px);
