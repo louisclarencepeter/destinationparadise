@@ -1,0 +1,50 @@
+// _input.scss
+@use '../../../styles/variables' as vars;
+@use '../../../styles/mixins' as mixins;
+
+.chatbot-input {
+    display: flex;
+    align-items: center;
+    background-color: vars.$color-background;
+    border-top: 1px solid vars.$color-secondary;
+    padding: 12px;
+  
+    input {
+      flex: 1;
+      padding: 12px;
+      border: 1px solid vars.$color-secondary;
+      border-radius: 8px;
+      margin-right: 12px;
+      font-family: vars.$font-secondary;
+      transition: border-color 0.3s;
+      
+      & {
+        font-size: 0.9rem;
+  
+        @media (max-width: 480px) {
+          font-size: 0.85rem;
+        }
+  
+        @media (min-width: 2560px) {
+          font-size: 1rem;
+        }
+      }
+  
+      &:focus {
+        border-color: vars.$hover-color;
+        outline: none;
+      }
+    }
+  
+    button {
+      @include mixins.button-styles;
+      
+      & {
+        font-size: 0.9rem;
+  
+        @media (min-width: 2560px) {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
