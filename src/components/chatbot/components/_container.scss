@@ -18,13 +18,9 @@ z-index: 2;
   @media (max-width: 480px) {
    
     position: fixed;
-    inset: 0; 
-    margin: 0;
     width: 100%;
     margin: 0 auto;
     height: 90%;
-    align-items: stretch;
-    justify-content: flex-end;
   }
 }
 
