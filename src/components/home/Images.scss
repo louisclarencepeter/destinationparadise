@@ -1,5 +1,5 @@
 @use '../../styles/variables' as vars;
-@use "../../styles/mixins" as *;
+@use '../../styles/mixins' as *;
 
 .gallery {
   margin: 2rem auto;
@@ -35,7 +35,7 @@
 
   &__more-link {
     @include button-styles;
-    
+
     & {
       text-decoration: none;
       display: inline-flex;

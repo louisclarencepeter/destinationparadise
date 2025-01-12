@@ -1,0 +1,50 @@
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins" as mixins;
+
+.chatbot-input {
+  display: flex;
+  align-items: center;
+  background-color: vars.$color-background;
+  border-top: 1px solid vars.$color-secondary;
+  padding: 12px;
+
+  input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid vars.$color-secondary;
+    border-radius: 8px;
+    margin-right: 12px;
+    font-family: vars.$font-secondary;
+    font-size: calc(0.9rem + 0.4vw);
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: vars.$hover-color;
+      outline: none;
+    }
+  }
+
+  button {
+    padding: 10px 16px;
+  
+    @media (max-width: 480px) {
+      padding: 0.6rem 1.2rem;
+      font-size: calc(0.4rem + 1.5vw);
+    }
+  }
+  
+
+  @media (min-width: 2560px) {
+    padding: 16px;
+
+    input {
+      padding: 16px;
+      margin-right: 16px;
+      font-size: calc(1rem + 0.5vw);
+    }
+
+    button {
+      font-size: 1rem;
+    }
+  }
+}

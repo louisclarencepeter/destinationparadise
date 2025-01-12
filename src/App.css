@@ -1,0 +1,9 @@
+@import url("@/styles/base.scss");
+@import url("@/styles/utilities.scss");
+@import url("@/styles/common.scss");
+@import url("@/styles/media-queries.scss");
+@import url("./components/home/Hero.scss");
+@import url("./components/cookies/CookieConsent.scss");
+@import url("./components/chatbot/Chatbot.scss");
+@import url("@/styles/fonts.css");
+@import url("@/styles/components.css");

@@ -1,0 +1,57 @@
+@use '../../../styles/variables' as vars;
+@use '../../../styles/mixins' as mixins;
+@use '../../../styles/common' as common;
+
+.chatbot-container {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: flex-end;
+  z-index: 999;
+  border-radius: 10px;
+  width: auto;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+
+  @media (max-width: 480px) {
+    bottom: 10;
+    right: 0;
+    left: 0;
+    width: 100%;
+    align-items: stretch;
+  }
+}
+
+.chatbot {
+  display: none;
+  flex-direction: column;
+  width: 400px;
+  height: 600px;
+  background: linear-gradient(145deg, vars.$color-background-light, vars.$color-background-dark);
+  border: 1px solid vars.$color-secondary;
+  border-radius: 16px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: all 0.3s ease;
+
+  &.open {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  @media (max-width: 480px) {
+    width: 92%;
+    margin: 0 auto;
+    height: calc(70vh - 20px);
+    border: none;
+    border-radius: 1rem 1rem 0 0;
+  }
+
+  @media (min-width: 2560px) {
+    width: 600px;
+    height: 800px;
+  }
+}

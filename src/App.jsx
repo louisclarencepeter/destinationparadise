@@ -1,7 +1,7 @@
 import { useEffect, lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "@fortawesome/fontawesome-free/css/all.css";
-import "./App.scss";
+import "./App.css";
 import ErrorBoundary from "./components/error/ErrorBoundary";
 import ScrollToTop from "./utils/scrollToTop";
 import { revealElements } from "./utils/revealElements";
