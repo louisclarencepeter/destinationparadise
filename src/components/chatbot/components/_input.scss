@@ -9,35 +9,41 @@
   padding: 12px;
 
   input {
-    font-size: 0.9rem;
-    width: 100%;
+    flex: 1;
     padding: 12px;
     border: 1px solid vars.$color-secondary;
     border-radius: 8px;
     margin-right: 12px;
     font-family: vars.$font-secondary;
+    font-size: calc(0.9rem + 0.4vw);
     transition: border-color 0.3s;
 
     &:focus {
       border-color: vars.$hover-color;
       outline: none;
     }
-
-    @media (max-width: 480px) {
-      font-size: 0.85rem;
-    }
-
-    @media (min-width: 2560px) {
-      font-size: 1rem;
-    }
   }
 
   button {
-    font-size: 0.9rem;
+    padding: 10px 16px;
+  
+    @media (max-width: 480px) {
+      padding: 0.6rem 1.2rem;
+      font-size: calc(0.4rem + 1.5vw);
+    }
+  }
+  
 
-    @include mixins.button-styles;
+  @media (min-width: 2560px) {
+    padding: 16px;
 
-    @media (min-width: 2560px) {
+    input {
+      padding: 16px;
+      margin-right: 16px;
+      font-size: calc(1rem + 0.5vw);
+    }
+
+    button {
       font-size: 1rem;
     }
   }

@@ -6,35 +6,30 @@
   position: fixed;
   bottom: 1rem;
   right: 1rem;
-z-index: 2;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: flex-end;
+  z-index: 999;
   border-radius: 10px;
   width: auto;
   transition: transform 0.3s ease, opacity 0.3s ease;
 
   @media (max-width: 480px) {
-   
-    position: fixed;
+    bottom: 10;
+    right: 0;
+    left: 0;
     width: 100%;
-    margin: 0 auto;
-    height: 90%;
+    align-items: stretch;
   }
 }
 
 .chatbot {
   display: none;
   flex-direction: column;
-  padding-bottom: env(safe-area-inset-bottom);
   width: 400px;
   height: 600px;
-  background: linear-gradient(
-    145deg, 
-    vars.$color-background-light, 
-    vars.$color-background-dark
-  );
+  background: linear-gradient(145deg, vars.$color-background-light, vars.$color-background-dark);
   border: 1px solid vars.$color-secondary;
   border-radius: 16px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
@@ -48,13 +43,11 @@ z-index: 2;
   }
 
   @media (max-width: 480px) {
-  
-    width: 100%;
-    height: 100%;
-    margin: 0;
+    width: 92%;
+    margin: 0 auto;
+    height: calc(70vh - 20px);
     border: none;
-    border-radius: 0;
-    box-shadow: none; 
+    border-radius: 1rem 1rem 0 0;
   }
 
   @media (min-width: 2560px) {
