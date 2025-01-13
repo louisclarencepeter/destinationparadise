@@ -1,4 +1,3 @@
-import PhotoSlide from "./PhotoSlide";
 import logo from "../../assets/logo/dlp1.png";
 import "./AboutPage.scss";
 import { useEffect } from "react";
@@ -67,7 +66,6 @@ const AboutPage = () => {
           </p>
         </div>
       </div>
-      <PhotoSlide />
     </div>
   );
 };
