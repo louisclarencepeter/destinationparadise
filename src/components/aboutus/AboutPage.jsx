@@ -5,7 +5,7 @@ const AboutPage = () => {
   return (
     <div className="about-page">
          <h2>About Us</h2>
-      <PhotoSlide />
+      
       <div className="about-content">
         <div className="about-text">
           <h3>Welcome to Destination Paradise</h3>
@@ -23,6 +23,7 @@ const AboutPage = () => {
           </p>
         </div>
       </div>
+      <PhotoSlide />
     </div>
   );
 };
