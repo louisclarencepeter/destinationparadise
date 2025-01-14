@@ -6,31 +6,31 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3002,
-    open: "/",
-    host: "0.0.0.0",
+    open: "/", // Automatically open the app in the browser
+    host: "0.0.0.0", // Allow access from network
     proxy: {
       "/api": {
         target: "https://localhost:8000",
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""),
-        secure: false, // For local development with self-signed certificates
+        rewrite: (path) => path.replace(/^\/api/, ""), // Remove /api prefix when forwarding
+        secure: false, // Allow self-signed certificates for local development
       },
     },
   },
   css: {
     preprocessorOptions: {
       scss: {
-        charset: false,
+        charset: false, // Disable charset in SCSS to avoid warnings
       },
     },
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"),
+      "@": path.resolve(__dirname, "src"), // Create alias for src directory
     },
   },
   optimizeDeps: {
-    include: ["react-router-dom"], // Pre-bundle `react-router-dom` for smoother development
+    include: ["react-router-dom"], // Pre-bundle react-router-dom for faster development
   },
   build: {
     sourcemap: true, // Enable source maps for easier debugging
