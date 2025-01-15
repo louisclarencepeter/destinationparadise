@@ -2,94 +2,97 @@
 @use "../../styles/mixins" as mixins;
 
 .testimonials {
- padding: 40px 20px;
- background-color: vars.$color-background;
- text-align: center;
+  padding: 40px 20px;
+  background-color: vars.$color-background;
+  text-align: center;
 
- &__container {
-   max-width: 1200px;
-   margin: 0 auto;
- }
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 
- &__title {
-   font-size: 2rem;
-   margin: 2rem;
-   color: vars.$color-primary;
-   font-family: vars.$font-secondary;
- }
+  &__title {
+    font-size: 2rem;
+    margin: 2rem;
+    color: vars.$color-primary;
+    font-family: vars.$font-secondary;
+  }
 
- &__carousel {
-   margin-bottom: 40px;
+  &__carousel {
+    margin-bottom: 40px;
 
-   .testimonial {
-     background-color: vars.$color-background;
-     padding: 20px;
-     border-radius: 10px;
-     transition: vars.$transition-default;
+    .testimonial {
+      background-color: vars.$color-background;
+      padding: 20px;
+      border-radius: 10px;
+      transition: vars.$transition-default;
 
-     &__header {
-       display: flex;
-       justify-content: center;
-       margin-bottom: 15px;
+      &__header {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 15px;
 
-       .testimonial__image {
-         width: 100px;
-         height: 100px;
-         border-radius: 50%;
-         margin-right: 15px;
-       }
+        .testimonial__image {
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+          margin-right: 15px;
+        }
 
-       .testimonial__name-stars {
-         text-align: left;
+        .testimonial__name-stars {
+          text-align: left;
 
-         .testimonial__name {
-           font-size: 1.2rem;
-           color: vars.$color-secondary;
-           margin-bottom: 5px;
-           font-family: vars.$font-secondary;
-         }
+          .testimonial__name {
+            font-size: 1.2rem;
+            color: vars.$color-secondary;
+            margin-bottom: 5px;
+            font-family: vars.$font-secondary;
+          }
 
-         .testimonial__stars {
-           color: vars.$color-accent;
+          .testimonial__stars {
+            color: vars.$color-accent;
 
-           i {
-             margin-right: 2px;
-           }
-         }
-       }
-     }
+            i {
+              margin-right: 2px;
+            }
+          }
+        }
+      }
 
-     &__review {
-       font-size: calc(0.8rem + 0.5vw);
-       color: vars.$color-primary;
-       line-height: 1.4;
-       font-family: vars.$font-primary;
-     }
+      &__review {
+        font-size: calc(0.8rem + 0.5vw);
+        color: vars.$color-primary;
+        line-height: 1.4;
+        font-family: vars.$font-primary;
+      }
 
-     &:hover {
-       transform: scale(1.02);
-     }
-   }
- }
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  }
 
- &__button-container {
-   margin-top: 20px;
+  &__button-container {
+    margin-top: 20px;
 
-   .testimonials__button {
-     @include mixins.button-styles-compact; // Changed from button-styles to button-styles-compact
-     display: inline-flex;
-     align-items: center;
-     gap: 0.75rem;
+    .testimonials__button {
+      @include mixins.button-styles-compact;
 
-     svg {
-       width: 20px;
-       height: 20px;
-       transition: transform 0.3s ease;
-     }
+      & {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
 
-     &:hover svg {
-       transform: translateX(4px);
-     }
-   }
- }
+      svg {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover svg {
+        transform: translateX(4px);
+      }
+    }
+  }
 }

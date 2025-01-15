@@ -4,6 +4,7 @@
 .images-gallery {
   margin: 2rem auto;
   width: 100%;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 
   .gallery__title {
     margin: 2rem 0;
@@ -19,6 +20,7 @@
     gap: 16px;
     max-width: 1200px;
     margin: 0 auto;
+    overflow-y: auto; /* Allow vertical scrolling if necessary */
   }
 
   .gallery__item {

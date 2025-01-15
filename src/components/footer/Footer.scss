@@ -7,6 +7,8 @@
   font-size: calc(0.8rem + 0.5vw);
   color: vars.$color-primary; // High-contrast primary text color
   font-family: vars.$font-secondary;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  margin-top: auto; /* Push footer to the bottom of the viewport */
 
   &__container {
     max-width: 1200px;
