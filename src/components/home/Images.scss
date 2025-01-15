@@ -1,11 +1,9 @@
 @use "../../styles/variables" as vars;
 @use "../../styles/mixins" as *;
 
-.images-gallery {
+.gallery {
   margin: 2rem auto;
-  padding: 0 1rem;
   max-width: 1200px;
-  box-sizing: border-box;
 
   &__title {
     margin: 2rem 0;
@@ -13,6 +11,45 @@
     font-size: 2rem;
     color: vars.$color-primary;
     text-align: center;
+  }
+
+  &__more {
+    text-align: center;
+    margin-top: 3rem;
+
+    .gallery__more-link {
+      @include button-styles; // Apply button styles
+
+      & {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        font-size: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        padding: 0.8rem 1.6rem;
+        font-size: calc(0.5rem + 1vw);
+      }
+
+      @media (max-width: 480px) {
+        padding: 0.6rem 1.2rem;
+        font-size: calc(0.4rem + 1.5vw);
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        svg {
+          transform: translateX(4px); // Arrow animation
+        }
+      }
+    }
   }
 }
 
@@ -24,12 +61,13 @@
 
 .gallery__item {
   overflow: hidden;
+  padding: 0 1rem;
   position: relative;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 
   &:hover {
-    transform: scale(1.03);
-    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); // Slightly larger zoom
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); // Enhanced shadow
     z-index: 1;
   }
 
@@ -50,6 +88,12 @@
 }
 
 /* Responsive Design */
+@media screen and (min-width: 1440px) {
+  .gallery {
+    width: 60%; // Reduced width for larger screens
+  }
+}
+
 @media screen and (max-width: 900px) {
   .gallery-grid {
     gap: 12px;
@@ -57,11 +101,15 @@
 }
 
 @media screen and (max-width: 600px) {
-  .images-gallery {
+  .gallery {
     padding: 0 0.5rem;
   }
 
   .gallery__title {
     font-size: 1.5rem;
+  }
+
+  .gallery__more-link {
+    font-size: 0.9rem;
   }
 }
