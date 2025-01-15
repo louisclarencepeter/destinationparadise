@@ -49,7 +49,7 @@ const Images = () => {
       </div>
       <div className="gallery__more">
         <Link to="/gallery" className="gallery__more-link">
-          <span>View More Pictures</span>
+          <span>View More</span>
           <svg
             fill="none"
             viewBox="0 0 24 24"
