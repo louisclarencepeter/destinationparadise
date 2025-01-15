@@ -14,6 +14,12 @@ const Images = () => {
         { id: 4, type: 'video', videoId: 'qYBauN6rzfI', alt: 'Video 2: Zanzibar Culture' },
         { id: 5, type: 'image', src: '/galleryimages/3.jpg', alt: 'Image 3' },
         { id: 6, type: 'video', videoId: 'X8UgUg8a0Rc', alt: 'Video 3: Exploring Stone Town' },
+        // Added 5 more photos
+        { id: 7, type: 'image', src: '/galleryimages/4.jpg', alt: 'Image 4' },
+        { id: 8, type: 'image', src: '/galleryimages/5.jpg', alt: 'Image 5' },
+        { id: 9, type: 'image', src: '/galleryimages/6.jpg', alt: 'Image 6' },
+        { id: 10, type: 'image', src: '/galleryimages/7.jpg', alt: 'Image 7' },
+        { id: 11, type: 'image', src: '/galleryimages/8.jpg', alt: 'Image 8' },
       ];
 
       setGalleryItems(items);
