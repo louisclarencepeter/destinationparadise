@@ -16,14 +16,17 @@ const MyImageGallery = () => {
         { id: 4, type: 'video', videoId: 'qYBauN6rzfI', alt: 'Video 2: Zanzibar Culture' },
         { id: 5, type: 'image', src: '/galleryimages/3.jpg', alt: 'Image 3' },
         { id: 6, type: 'video', videoId: 'X8UgUg8a0Rc', alt: 'Video 3: Exploring Stone Town' },
-        { id: 7, type: 'image', src: '/galleryimages/4.jpg', alt: 'Image 4' },
+        { id: 7, type: 'video', videoId: 'CV1kZngopa4', alt: 'Video 4: Zanzibar Shorts' },
+        { id: 8, type: 'image', src: '/galleryimages/4.jpg', alt: 'Image 4' },
+        { id: 9, type: 'video', videoId: 'c22eXs1BzbM', alt: 'Video 5: New Zanzibar Tour' },
+        { id: 10, type: 'video', videoId: 'roDvGTjHdxc', alt: 'Video 6: Zanzibar Adventure Shorts' }, // New short video
       ];
 
-      // Remaining photos
+      // Add remaining photos
       const additionalPhotos = [];
       for (let i = 5; i <= 26; i++) {
         additionalPhotos.push({
-          id: i + 3, // Ensures unique IDs
+          id: i + mixedItems.length, // Ensure unique IDs
           type: 'image',
           src: `/galleryimages/${i}.jpg`,
           alt: `Image ${i}`,
@@ -51,9 +54,8 @@ const MyImageGallery = () => {
       });
     };
 
-    if (galleryItems.length > 0) {
-      setTimeout(revealElements, 100); // Small delay to ensure DOM is updated
-    }
+    window.addEventListener('scroll', revealElements);
+    return () => window.removeEventListener('scroll', revealElements);
   }, [galleryItems]);
 
   return (
