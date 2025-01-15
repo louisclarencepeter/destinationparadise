@@ -8,7 +8,6 @@ const MyImageGallery = () => {
 
   useEffect(() => {
     const loadItems = () => {
-      // Mixed videos and initial photos
       const mixedItems = [
         { id: 1, type: 'video', videoId: 'iq-NDeo_33k', alt: 'Video 1: Zanzibar Beaches' },
         { id: 2, type: 'image', src: '/galleryimages/1.jpg', alt: 'Image 1' },
@@ -19,14 +18,13 @@ const MyImageGallery = () => {
         { id: 7, type: 'video', videoId: 'CV1kZngopa4', alt: 'Video 4: Zanzibar Shorts' },
         { id: 8, type: 'image', src: '/galleryimages/4.jpg', alt: 'Image 4' },
         { id: 9, type: 'video', videoId: 'c22eXs1BzbM', alt: 'Video 5: New Zanzibar Tour' },
-        { id: 10, type: 'video', videoId: 'roDvGTjHdxc', alt: 'Video 6: Zanzibar Adventure Shorts' }, // New short video
+        { id: 10, type: 'video', videoId: 'roDvGTjHdxc', alt: 'Video 6: Zanzibar Adventure Shorts' },
       ];
 
-      // Add remaining photos
       const additionalPhotos = [];
       for (let i = 5; i <= 26; i++) {
         additionalPhotos.push({
-          id: i + mixedItems.length, // Ensure unique IDs
+          id: i + mixedItems.length,
           type: 'image',
           src: `/galleryimages/${i}.jpg`,
           alt: `Image ${i}`,
@@ -40,31 +38,23 @@ const MyImageGallery = () => {
   }, []);
 
   useEffect(() => {
-    const revealElements = () => {
-      const reveals = galleryRef.current.querySelectorAll('.reveal');
-      const windowHeight = window.innerHeight;
-
-      reveals.forEach((element) => {
-        const elementTop = element.getBoundingClientRect().top;
-        const elementVisible = 150;
-
-        if (elementTop < windowHeight - elementVisible) {
-          element.classList.add('active');
-        }
+    const preloadImages = () => {
+      const images = document.querySelectorAll('.image');
+      images.forEach((img) => {
+        img.classList.add('active');
       });
     };
 
-    window.addEventListener('scroll', revealElements);
-    return () => window.removeEventListener('scroll', revealElements);
+    preloadImages();
   }, [galleryItems]);
 
   return (
     <div className="gallery" ref={galleryRef}>
-      <h2 className="reveal">Gallery</h2>
+      <h2 className="reveal active">Gallery</h2>
       <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
         <Masonry>
           {galleryItems.map((item) => (
-            <div key={item.id} className="reveal">
+            <div key={item.id} className="reveal active">
               {item.type === 'image' ? (
                 <img src={item.src} className="image" alt={item.alt} />
               ) : (
