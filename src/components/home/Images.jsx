@@ -1,81 +1,50 @@
-import { useState, useEffect } from "react";
-import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-import { Link } from "react-router-dom";
-import "./Images.scss";
+import React, { useState, useEffect } from 'react';
+import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
+import './Images.scss';
 
 const Images = () => {
-  const [galleryImages, setGalleryImages] = useState([]);
+  const [galleryItems, setGalleryItems] = useState([]);
 
   useEffect(() => {
-    const loadImages = async () => {
-      const importedImages = [];
+    const loadItems = () => {
+      const items = [
+        { id: 1, type: 'image', src: '/galleryimages/1.jpg', alt: 'Image 1' },
+        { id: 2, type: 'video', videoId: 'iq-NDeo_33k', alt: 'Video 1: Zanzibar Beaches' },
+        { id: 3, type: 'image', src: '/galleryimages/2.jpg', alt: 'Image 2' },
+        { id: 4, type: 'video', videoId: 'qYBauN6rzfI', alt: 'Video 2: Zanzibar Culture' },
+        { id: 5, type: 'image', src: '/galleryimages/3.jpg', alt: 'Image 3' },
+        { id: 6, type: 'video', videoId: 'X8UgUg8a0Rc', alt: 'Video 3: Exploring Stone Town' },
+      ];
 
-      for (let i = 1; i <= 6; i++) {
-        const imagePath = `/gallery/${i}.jpg`;
-        const img = new Image();
-        img.src = imagePath;
-
-        await new Promise((resolve) => {
-          img.onload = () => {
-            importedImages.push({
-              id: i,
-              src: imagePath,
-              alt: `Image ${i}`,
-              width: img.naturalWidth,
-              height: img.naturalHeight,
-            });
-            resolve();
-          };
-        });
-      }
-
-      setGalleryImages(importedImages);
+      setGalleryItems(items);
     };
 
-    loadImages();
+    loadItems();
   }, []);
 
   return (
-    <div className="gallery">
-      <h2 className="gallery__title reveal">Gallery</h2>
-      <ResponsiveMasonry
-        columnsCountBreakPoints={{
-          350: 1,
-          750: 2,
-          900: 3,
-        }}
-      >
+    <div className="images-gallery">
+      <h2 className="gallery__title">Gallery</h2>
+      <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
         <Masonry>
-          {galleryImages.map((image) => (
-            <img
-              key={image.id}
-              src={image.src}
-              alt={image.alt}
-              className="gallery__image reveal"
-              width={image.width}
-              height={image.height}
-            />
+          {galleryItems.map((item) => (
+            <div key={item.id} className="gallery-item reveal">
+              {item.type === 'image' ? (
+                <img src={item.src} alt={item.alt} className="gallery-image" />
+              ) : (
+                <iframe
+                  src={`https://www.youtube.com/embed/${item.videoId}`}
+                  title={item.alt}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="gallery-video"
+                ></iframe>
+              )}
+            </div>
           ))}
         </Masonry>
       </ResponsiveMasonry>
-      <div className="gallery__more reveal">
-        <Link to="/gallery" className="gallery__more-link">
-          <span>View More Pictures</span>
-          <svg
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
-            />
-          </svg>
-        </Link>
-      </div>
     </div>
   );
 };
