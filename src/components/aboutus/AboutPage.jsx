@@ -30,7 +30,7 @@ const AboutPage = () => {
 
   return (
     <div className="about-page">
-      <h2>About Us</h2>
+        <h2 className="reveal">About Us</h2>
       <img className="logo" src={logo} alt="Destination Paradise Logo" />
       <div className="about-content">
         <div className="about-text">
