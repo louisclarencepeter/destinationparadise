@@ -2,6 +2,21 @@ import { useState, useEffect, useCallback, memo } from 'react';
 import Masonry, { ResponsiveMasonry } from 'react-responsive-masonry';
 import './MyImageGallery.scss';
 
+// Reveal function moved inside component to avoid import issues
+const revealElements = () => {
+  const reveals = document.querySelectorAll(".reveal");
+  for (let i = 0; i < reveals.length; i++) {
+    const windowHeight = window.innerHeight;
+    const elementTop = reveals[i].getBoundingClientRect().top;
+    const elementVisible = 150;
+    if (elementTop < windowHeight - elementVisible) {
+      reveals[i].classList.add("active");
+    } else {
+      reveals[i].classList.remove("active");
+    }
+  }
+};
+
 // Memoized Image Component
 const GalleryImage = memo(({ src, alt }) => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -58,6 +73,34 @@ const MyImageGallery = () => {
     { id: 10, type: 'video', videoId: 'roDvGTjHdxc', alt: 'Video 6: Zanzibar Adventure Shorts' },
   ];
 
+  // Handle initial reveal and scroll effects
+  useEffect(() => {
+    // Initial reveal for items in viewport
+    const initialReveal = () => {
+      revealElements(); // Use the same reveal function for consistency
+    };
+
+    // Handle scroll reveals
+    const handleScroll = () => {
+      requestAnimationFrame(revealElements); // Use requestAnimationFrame for better performance
+    };
+
+    // Add scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Initial reveal after a short delay to ensure content is loaded
+    const timer = setTimeout(initialReveal, 100);
+
+    // Second reveal after images might have loaded
+    const secondTimer = setTimeout(initialReveal, 1000);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearTimeout(timer);
+      clearTimeout(secondTimer);
+    };
+  }, [galleryItems]);
+
   // Load additional photos
   const loadAdditionalPhotos = useCallback(() => {
     const additionalPhotos = [];
@@ -96,11 +139,11 @@ const MyImageGallery = () => {
 
   return (
     <div className="gallery-wrapper">
-      <h2 className="gallery-title">Gallery</h2>
+      <h2 className="gallery-title reveal">Gallery</h2>
       <ResponsiveMasonry columnsCountBreakPoints={{ 350: 1, 750: 2, 900: 3 }}>
         <Masonry gutter="16px">
           {galleryItems.map((item) => (
-            <div key={item.id} className="gallery-item">
+            <div key={item.id} className="gallery-item reveal">
               {item.type === 'image' ? (
                 <GalleryImage src={item.src} alt={item.alt} />
               ) : (
