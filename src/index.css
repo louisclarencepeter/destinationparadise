@@ -4,23 +4,24 @@ body {
   font-family: var(--font-primary);
   font-size: calc(1rem + 0.5vw);
   color: #153464;
+  overflow: hidden auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+html {
+  height: 100%;
+  overflow-x: hidden;
 }
 
 :root {
-  /* Fonts */
   --font-primary: 'Playfair Display', serif;
   --font-secondary: 'Montserrat', sans-serif;
   --font-tertiary: 'Kaushan Script';
-  
-  /* Colors */
   --color-primary: #153464;
   --color-secondary: #094067;
   --color-background: #fffffe;
   --color-accent: #f97316;
-
-  /* Gradients */
-  --gradient-button: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);
-
-  /* Transitions */
   --transition-default: all 0.3s ease-in-out;
 }

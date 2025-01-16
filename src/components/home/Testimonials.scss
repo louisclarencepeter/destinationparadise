@@ -76,7 +76,23 @@
     margin-top: 20px;
 
     .testimonials__button {
-      @include mixins.button-styles;
+      @include mixins.button-styles-compact;
+
+      & {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover svg {
+        transform: translateX(4px);
+      }
     }
   }
 }

@@ -1,62 +1,170 @@
-@use '../../styles/variables' as vars;
-@use '../../styles/mixins' as *;
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as *;
 
-.gallery {
+// Custom Properties
+:root {
+  --gallery-padding: clamp(0.5rem, 2vw, 2rem);
+  --gallery-gap: clamp(12px, 2vw, 16px);
+  --gallery-item-min-width: min(400px, 100%);
+  --gallery-transition-duration: 0.3s;
+}
+
+.images-gallery {
   margin: 2rem auto;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1250px;
 
-  &__title {
-    margin: 2rem;
+  .gallery__title {
+    margin: 2rem 0;
     font-family: vars.$font-secondary;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
     color: vars.$color-primary;
     text-align: center;
   }
 
-  &__image {
-    width: 95%;
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--gallery-item-min-width), 1fr));
+    gap: var(--gallery-gap);
+    max-width: 1200px;
     margin: 0 auto;
-    height: auto;
-    padding: 0.3rem;
-    box-sizing: border-box;
-    transition: transform 0.3s ease-in-out;
+    padding: 0 var(--gallery-padding);
+  }
+
+  .gallery__item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    transition: transform var(--gallery-transition-duration) ease-in-out,
+                box-shadow var(--gallery-transition-duration) ease-in-out;
+    aspect-ratio: 16 / 9;
 
     &:hover {
       transform: scale(1.05);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
       z-index: 1;
-      box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .media-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .loading-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        110deg,
+        #ececec 8%,
+        #f5f5f5 18%,
+        #ececec 33%
+      );
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite linear;
+      border-radius: 10px;
+    }
+
+    .error-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 0, 0, 0.1);
+      padding: 1rem;
+      border-radius: 5px;
+      text-align: center;
+      color: #ff0000;
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 10px;
+      }
     }
   }
 
-  &__more {
+  .gallery__more {
     text-align: center;
     margin-top: 3rem;
-  }
 
-  &__more-link {
-    @include button-styles;
-
-    & {
+    .gallery__more-link {
+      font-family: vars.$font-secondary;
+      font-size: calc(0.7rem + 0.25vw);
+      color: white;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-    }
+      transition: color 0.3s ease, transform 0.3s ease;
 
-    svg {
-      width: 20px;
-      height: 20px;
-      transition: transform 0.3s ease;
-    }
+      @include button-styles;
 
-    &:hover svg {
-      transform: translateX(4px);
+      &:hover {
+        $hover-color: #FF926B;
+        transform: translateX(5px);
+
+        svg {
+          transform: translateX(4px);
+        }
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        margin-left: 0.5rem;
+        transition: transform 0.3s ease;
+      }
     }
   }
 }
 
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
 @media screen and (min-width: 1440px) {
-  .gallery {
-    width: 60%;
+  .images-gallery {
+    .gallery-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .gallery__item {
+      &:hover {
+        transform: scale(1.03);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .images-gallery {
+    margin: 1rem auto;
+
+    .gallery-grid {
+      padding: 0 calc(var(--gallery-padding) / 2);
+    }
   }
 }

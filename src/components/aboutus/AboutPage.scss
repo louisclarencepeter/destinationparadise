@@ -16,6 +16,25 @@
     margin-bottom: 2rem;
   }
 
+  .logo {
+    display: block;
+    max-width: 90%;
+    height: auto;
+    margin: 0 auto 2rem;
+    opacity: 0;
+    transform: scale(0.8);
+    animation: scaleIn 2.5s ease-out forwards;
+    mix-blend-mode: multiply;
+
+    @media (min-width: 768px) {
+      max-width: 70%;
+    }
+
+    @media (min-width: 1200px) {
+      max-width: 50%;
+    }
+  }
+
   .about-content {
     margin: 0 auto;
     display: flex;
@@ -61,15 +80,27 @@
     }
   }
 
+  .photo-slide {
+    margin: 0;
+    padding: 0;
+  }
+
+  @keyframes scaleIn {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
   @media (min-width: 768px) {
     .about-content {
       flex-direction: row;
 
       .about-text {
-        flex: 1;
-      }
-
-      .photo-slide {
         flex: 1;
       }
     }
