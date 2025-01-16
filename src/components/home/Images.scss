@@ -5,14 +5,13 @@
 :root {
   --gallery-padding: clamp(0.5rem, 2vw, 2rem);
   --gallery-gap: clamp(12px, 2vw, 16px);
-  --gallery-item-min-width: min(300px, 100%);
+  --gallery-item-min-width: min(400px, 100%);
   --gallery-transition-duration: 0.3s;
 }
 
 .images-gallery {
   margin: 2rem auto;
   width: 100%;
-  overflow-x: hidden;
 
   .gallery__title {
     margin: 2rem 0;
@@ -37,6 +36,7 @@
     border-radius: 10px;
     transition: transform var(--gallery-transition-duration) ease-in-out,
                 box-shadow var(--gallery-transition-duration) ease-in-out;
+    aspect-ratio: 16 / 9;
 
     &:hover {
       transform: scale(1.05);
@@ -44,10 +44,15 @@
       z-index: 1;
     }
 
+    .media-container {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
     .loading-placeholder {
       width: 100%;
-      height: 0;
-      padding-bottom: 56.25%; // 16:9 aspect ratio
+      height: 100%;
       background: linear-gradient(
         110deg,
         #ececec 8%,
@@ -71,32 +76,27 @@
       color: #ff0000;
     }
 
-    img,
-    .video-wrapper {
+    .gallery-image {
       width: 100%;
+      height: 100%;
+      object-fit: cover;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%; // 16:9 aspect ratio
-      height: 0;
+      width: 100%;
+      height: 100%;
       overflow: hidden;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 
       iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
         height: 100%;
         border: none;
         border-radius: 10px;
       }
-    }
-
-    .hidden {
-      display: none;
     }
   }
 
@@ -105,29 +105,35 @@
     margin-top: 3rem;
 
     .gallery__more-link {
+      font-family: vars.$font-secondary;
+      font-size: calc(0.7rem + 0.25vw);
+      color: white;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      text-decoration: none;
-      transition: all var(--gallery-transition-duration) ease;
+      transition: color 0.3s ease, transform 0.3s ease;
+
       @include button-styles;
 
-      .gallery__more-icon {
-        width: clamp(16px, 2vw, 20px);
-        height: clamp(16px, 2vw, 20px);
-        transition: transform var(--gallery-transition-duration) ease;
-      }
-
       &:hover {
-        .gallery__more-icon {
+        $hover-color: #FF926B;
+        transform: translateX(5px);
+
+        svg {
           transform: translateX(4px);
         }
+      }
+
+      svg {
+        width: 20px;
+        height: 20px;
+        margin-left: 0.5rem;
+        transition: transform 0.3s ease;
       }
     }
   }
 }
 
-// Loading animation
 @keyframes shimmer {
   0% {
     background-position: -200% 0;
@@ -137,38 +143,16 @@
   }
 }
 
-// Responsive layouts
-.images-gallery {
-  .gallery__item {
-    aspect-ratio: 4/3; // Maintain consistent aspect ratio
-    height: 100%;
-
-    img {
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .video-wrapper {
-      height: 100%;
-      padding-bottom: 0; // Remove the padding-bottom since we're using aspect-ratio
-
-      iframe {
-        height: 100%;
-      }
-    }
-  }
-}
-
 @media screen and (min-width: 1440px) {
   .images-gallery {
     .gallery-grid {
-      width: min(1400px, 90%); // Constrain maximum width
+      max-width: 1400px;
       margin: 0 auto;
     }
 
     .gallery__item {
       &:hover {
-        transform: scale(1.03); // Slightly reduced scale on larger screens
+        transform: scale(1.03);
       }
     }
   }
