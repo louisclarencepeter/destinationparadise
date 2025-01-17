@@ -6,41 +6,78 @@
   background-color: vars.$color-background;
   border-radius: 10px;
   max-width: 1200px;
+  margin: 0 auto;
+  transition: opacity 0.3s ease;
+
+  @media screen and (min-width: 768px) {
+    padding: 2rem 3rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 2rem 4rem;
+  }
+
+  @media screen and (min-width: 1200px) {
+    padding: 2rem 5rem;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 2rem 6rem;
+    width: 60%;
+  }
 
   .booking-request {
-    padding: 10px;
+    padding: clamp(10px, 2vw, 20px);
     text-align: center;
+    width: min(100%, 800px);
+    margin: 0 auto;
 
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      margin-top: 0;
-      color: vars.$color-primary;
+    h2 {
       font-family: vars.$font-secondary;
+      font-size: clamp(2rem, 3vw, 2.5rem);
+      text-align: center;
+      color: vars.$color-primary;
+      margin-bottom: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.2;
+  
+      &.reveal {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        will-change: opacity, transform;
+  
+        &.active {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
     }
-
+    
     p {
-      font-size: calc(0.8rem + 0.5vw);
-      margin-bottom: 1rem;
+      font-size: clamp(0.875rem, 1vw + 0.5rem, 1.125rem);
+      margin-bottom: clamp(1rem, 2vw, 1.5rem);
       color: vars.$color-secondary;
       font-family: vars.$font-primary;
+      line-height: 1.6;
     }
 
     .booking-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      display: grid;
+      gap: 1.5rem;
+      width: min(90%, 800px);
+      margin: 0 auto;
 
       .form-group {
-        margin-bottom: 1rem;
-        width: 90%;
+        display: grid;
+        gap: 0.5rem;
+        width: 100%;
 
         label {
           display: block;
-          margin-bottom: 0.5rem;
-          font-size: 1rem;
+          font-size: clamp(0.875rem, 1vw, 1rem);
           color: vars.$color-primary;
           font-family: vars.$font-primary;
+          font-weight: 500;
         }
 
         input,
@@ -50,47 +87,88 @@
           padding: 0.75rem;
           border: 1px solid vars.$color-secondary;
           border-radius: 5px;
-          font-size: 1rem;
+          font-size: clamp(0.875rem, 1vw, 1rem);
           color: vars.$color-primary;
           box-sizing: border-box;
           font-family: vars.$font-primary;
+          transition: all 0.2s ease;
+
+          &:hover {
+            border-color: darken(vars.$color-secondary, 10%);
+          }
+
+          &:focus {
+            outline: none;
+            border-color: vars.$color-primary;
+            box-shadow: 0 0 0 2px rgba(vars.$color-primary, 0.1);
+          }
+
+          &:focus-visible {
+            outline: 2px solid vars.$color-primary;
+            outline-offset: 2px;
+          }
+
+          &::placeholder {
+            color: lighten(vars.$color-secondary, 20%);
+            opacity: 1;
+          }
         }
 
         textarea {
           height: 100px;
           resize: vertical;
+          min-height: 100px;
+          line-height: 1.5;
         }
       }
 
       .submit-button {
         @include mixins.button-styles;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
       }
     }
   }
 }
 
-@media screen and (min-width: 768px) {
+// Print styles
+@media print {
   .store-container {
-    padding: 2rem 3rem;
+    padding: 0;
+    max-width: none;
+    background: none;
+    
+    .booking-form {
+      page-break-inside: avoid;
+    }
+
+    .submit-button {
+      display: none;
+    }
   }
 }
 
-@media screen and (min-width: 1024px) {
+// High contrast mode support
+@media (forced-colors: active) {
   .store-container {
-    padding: 2rem 4rem;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .store-container {
-    padding: 2rem 5rem;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .store-container {
-    padding: 2rem 6rem;
-    width: 60%;
-    margin: 0 auto;
+    .form-group {
+      input,
+      select,
+      textarea {
+        border: 1px solid CanvasText;
+        
+        &:focus {
+          outline: 2px solid Highlight;
+        }
+      }
+    }
   }
 }

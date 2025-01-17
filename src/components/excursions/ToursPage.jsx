@@ -36,7 +36,7 @@ export default function ToursPage() {
 
   return (
     <div className="tour-page-container">
-      <h2>Trips and Tours in Zanzibar</h2>
+      <h2 className="reveal">Trips and Tours in Zanzibar</h2>
       <div className="tour-grid">
         {tours.map((tour) => {
           return (
