@@ -1,57 +1,63 @@
 // src/components/NavBar/components/HamburgerMenu/HamburgerMenu.jsx
-import PropTypes from "prop-types";
+import React from "react";
 import { MenuList } from "../MenuList/MenuList";
-import dlpLogo from "../../../../assets/logo/dlp.png"; // Update this path to match your logo location
+import dlpLogo from "../../../../assets/logo/dlp.png";
 import "./HamburgerMenu.scss";
 
-export const HamburgerMenu = ({ isOpen, toggleMenu, closeMenu }) => (
-  <div className="hamburger-menu">
-    <div
-      className="menu__toggle-container"
-      role="button"
-      aria-expanded={isOpen ? "true" : "false"}
-      aria-controls="menu__box"
-      tabIndex={0}
-      onClick={toggleMenu}
-      onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && toggleMenu()}
-    >
+export const HamburgerMenu = ({ isOpen, toggleMenu, closeMenu }) => {
+  return (
+    <nav className="hamburger-menu">
+      {/* Hidden checkbox (checkbox hack) */}
       <input
         id="menu__toggle"
         type="checkbox"
         checked={isOpen}
         onChange={toggleMenu}
       />
+      
+      {/* Label as the visible "hamburger" icon */}
       <label
-        className="menu__btn"
         htmlFor="menu__toggle"
+        className="menu__btn"
         aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-controls="menu__box"
+        aria-expanded={isOpen}
       >
         <span></span>
       </label>
-    </div>
 
-    <div id="menu__box" className={`menu__box ${isOpen ? "open" : ""}`}>
-      <MenuList className="hamburger-menu__list" onClick={closeMenu} />
-      <div className="menu__header">
-        <img
-          src={dlpLogo}
-          alt="Destination Paradise Logo"
-          className={`menu__logo ${isOpen ? "open" : ""}`}
-          width="100"
-          height="40"
+      {/* Sliding menu container */}
+      <div
+        id="menu__box"
+        className="menu__box"
+        data-open={isOpen}
+      >
+        <MenuList
+          className="hamburger-menu__list"
+          onClick={closeMenu}
         />
-        <div className="menu__contact">
-          <p>Destination Paradise</p>
-          <p>Phone: +255 748 352 657</p>
-          <p>Zanzibar, Tanzania</p>
+        <div className="menu__header">
+          <img
+            src={dlpLogo}
+            alt="Destination Paradise Logo"
+            className="menu__logo"
+            data-open={isOpen}
+            width="auto"
+            height="64"
+            onError={(e) => {
+              e.target.style.display = "none";
+              console.error("Failed to load logo");
+            }}
+          />
+          <address className="menu__contact">
+            <p>Destination Paradise</p>
+            <p>
+              Phone: <a href="tel:+255748352657">+255 748 352 657</a>
+            </p>
+            <p>Zanzibar, Tanzania</p>
+          </address>
         </div>
       </div>
-    </div>
-  </div>
-);
-
-HamburgerMenu.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  toggleMenu: PropTypes.func.isRequired,
-  closeMenu: PropTypes.func.isRequired,
+    </nav>
+  );
 };

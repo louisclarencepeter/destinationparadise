@@ -1,5 +1,5 @@
 // src/components/NavBar/NavBar.jsx
-import { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { MenuList } from "./components/MenuList/MenuList";
 import { Logo } from "./components/Logo/Logo";
 import { StoreButton } from "./components/StoreButton/StoreButton";
@@ -20,14 +20,17 @@ const NavBar = () => {
   }, []);
 
   const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 10);
+    const scrollThreshold = 10;
+    setIsScrolled(window.scrollY > scrollThreshold);
   }, []);
 
+  // Listen for scroll events to switch navbar background or style
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
+  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
     return () => {
@@ -35,6 +38,7 @@ const NavBar = () => {
     };
   }, [isOpen]);
 
+  // Auto-focus the first menu link once the menu opens
   useEffect(() => {
     if (isOpen) {
       const firstMenuItem = document.querySelector(".hamburger-menu__list a");
@@ -43,24 +47,47 @@ const NavBar = () => {
   }, [isOpen]);
 
   return (
-    <nav className={`nav ${isScrolled ? "transparent" : ""}`} aria-label="Main navigation">
-      <StoreButton onClick={closeMenu} />
-      
-      <div className="classic-menu">
-        <MenuList className="classic-menu__list" onClick={closeMenu} />
-      </div>
+    <>
+      <nav
+        className={`nav ${isScrolled ? "transparent" : ""}`}
+        aria-label="Main navigation"
+      >
+        {/* LEFT: Store Button + Desktop Menu */}
+        <div className="nav-left">
+          <StoreButton onClick={closeMenu} />
+          <div className="classic-menu">
+            <MenuList
+              className="classic-menu__list"
+              onClick={closeMenu}
+              aria-label="Desktop navigation menu"
+            />
+          </div>
+        </div>
 
-      <Logo onClick={() => {
-        closeMenu();
-        scrollToTop();
-      }} />
+        {/* CENTER: Logo */}
+        <div className="nav-center">
+          <Logo
+            onClick={() => {
+              closeMenu();
+              scrollToTop();
+            }}
+            aria-label="Home"
+          />
+        </div>
 
-      <HamburgerMenu
-        isOpen={isOpen}
-        toggleMenu={toggleMenu}
-        closeMenu={closeMenu}
-      />
-    </nav>
+        {/* RIGHT: Hamburger (mobile only) */}
+        <div className="nav-right">
+          <HamburgerMenu
+            isOpen={isOpen}
+            toggleMenu={toggleMenu}
+            closeMenu={closeMenu}
+          />
+        </div>
+      </nav>
+
+      {/* Spacer so content doesn't hide behind the fixed nav */}
+      <div style={{ paddingTop: isScrolled ? "5rem" : "4rem" }} />
+    </>
   );
 };
 

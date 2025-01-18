@@ -1,4 +1,3 @@
-// src/components/NavBar/NavBar.scss
 @use "../../styles/variables" as vars;
 @use "../../styles/mixins" as mixins;
 
@@ -14,21 +13,38 @@
 }
 
 .nav {
-  @include mixins.flex-center(space-between);
-  padding: 0 1rem;
-  height: 4rem;
-  background-color: transparent;
-  position: sticky;
+  display: grid;
+  /* 3 columns: left, center, right */
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: fixed;
   top: 0;
+  left: 0;
   z-index: 100;
-  transition: background-color vars.$transition-ease, 
-              box-shadow vars.$transition-ease;
+
+  height: 4rem;     /* default nav height on mobile */
+  padding: 0 1rem;
+  background-color: transparent;
+  transition: background-color vars.$transition-ease, box-shadow vars.$transition-ease;
 
   &.transparent {
-    box-shadow: 0 0 0.625rem vars.$box-shadow-color;
     background-color: rgba(255, 255, 255, 0.9);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 0.625rem vars.$box-shadow-color;
   }
 
+  /* Increase nav height + padding on desktop */
+  @media screen and (min-width: 1024px) {
+    height: 5rem;
+    padding: 0 2rem;
+  }
+
+  /* --- Desktop (classic) menu is hidden on mobile --- */
   .classic-menu {
     display: none;
 
@@ -36,30 +52,64 @@
       display: flex;
 
       &__list {
+        /* Horizontal row of links, spaced out */
         @include mixins.flex-center(center);
-        gap: 1rem;
+        display: flex;
+        flex-direction: row;
+        gap: 1.5rem;
+        margin: 0;
+        padding: 0;
+        list-style: none;
 
         li {
-          list-style: none;
-          font-family: vars.$font-secondary;
-          font-size: 1.2rem;
-          font-weight: 600;
-          color: vars.$color-primary;
-          text-decoration: none;
-          transition: vars.$transition-default;
+          margin: 0;
+          padding: 0;
 
-          &:hover {
-            color: vars.$hover-color;
+          a {
+            font-family: vars.$font-secondary;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: vars.$color-primary;
+            text-decoration: none;
+            transition: color vars.$transition-default;
+
+            &:hover,
+            &:focus {
+              color: vars.$hover-color;
+            }
           }
         }
       }
     }
   }
 
-  @media screen and (min-width: 1024px) {
-    padding: 0 2rem;
-    height: 5rem;
+  /* --- Mobile hamburger is hidden on desktop --- */
+  .hamburger-menu {
+    @media (min-width: 1024px) {
+      display: none;
+    }
   }
 }
 
+/* Left column: store button only */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
 
+/* Middle column: the classic menu (desktop) */
+.nav-center {
+  justify-self: center;
+}
+
+/* Right column: logo + hamburger menu (hamburger hidden on desktop) */
+.nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  /* The logo might need spacing from the hamburger on mobile */
+  & > *:not(:last-child) {
+    margin-right: 1rem; 
+  }
+}
