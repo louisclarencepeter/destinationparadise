@@ -1,0 +1,38 @@
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
+
+.classic-menu {
+  @media screen and (min-width: 1024px) {
+    display: flex;
+    justify-content: center;
+
+    &__list {
+      @include mixins.flex-center(center);
+      display: flex;
+      flex-direction: row;
+      gap: 1.5rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        margin: 0;
+        padding: 0;
+
+        a {
+          font-family: vars.$font-secondary;
+          font-size: 1.2rem;
+          font-weight: 600;
+          color: vars.$color-primary;
+          text-decoration: none;
+          transition: color vars.$transition-default;
+
+          &:hover,
+          &:focus {
+            color: vars.$hover-color;
+          }
+        }
+      }
+    }
+  }
+}

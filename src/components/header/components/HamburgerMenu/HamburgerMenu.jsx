@@ -7,7 +7,6 @@ import "./HamburgerMenu.scss";
 export const HamburgerMenu = ({ isOpen, toggleMenu, closeMenu }) => {
   return (
     <nav className="hamburger-menu">
-      {/* Hidden checkbox (checkbox hack) */}
       <input
         id="menu__toggle"
         type="checkbox"
@@ -15,7 +14,6 @@ export const HamburgerMenu = ({ isOpen, toggleMenu, closeMenu }) => {
         onChange={toggleMenu}
       />
       
-      {/* Label as the visible "hamburger" icon */}
       <label
         htmlFor="menu__toggle"
         className="menu__btn"
@@ -26,16 +24,11 @@ export const HamburgerMenu = ({ isOpen, toggleMenu, closeMenu }) => {
         <span></span>
       </label>
 
-      {/* Sliding menu container */}
       <div
         id="menu__box"
         className="menu__box"
         data-open={isOpen}
       >
-        <MenuList
-          className="hamburger-menu__list"
-          onClick={closeMenu}
-        />
         <div className="menu__header">
           <img
             src={dlpLogo}
@@ -49,14 +42,18 @@ export const HamburgerMenu = ({ isOpen, toggleMenu, closeMenu }) => {
               console.error("Failed to load logo");
             }}
           />
-          <address className="menu__contact">
-            <p>Destination Paradise</p>
-            <p>
-              Phone: <a href="tel:+255748352657">+255 748 352 657</a>
-            </p>
-            <p>Zanzibar, Tanzania</p>
-          </address>
         </div>
+        <MenuList
+          className="hamburger-menu__list"
+          onClick={closeMenu}
+        />
+        <address className="menu__contact">
+          <p>Destination Paradise</p>
+          <p>
+            Phone: <a href="tel:+255748352657">+255 748 352 657</a>
+          </p>
+          <p>Zanzibar, Tanzania</p>
+        </address>
       </div>
     </nav>
   );

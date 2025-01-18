@@ -14,10 +14,8 @@
 
 .nav {
   display: grid;
-  /* 3 columns: left, center, right */
   grid-template-columns: auto 1fr auto;
   align-items: center;
-
   width: 100%;
   box-sizing: border-box;
   overflow: hidden;
@@ -25,8 +23,7 @@
   top: 0;
   left: 0;
   z-index: 100;
-
-  height: 4rem;     /* default nav height on mobile */
+  height: 4rem;
   padding: 0 1rem;
   background-color: transparent;
   transition: background-color vars.$transition-ease, box-shadow vars.$transition-ease;
@@ -38,13 +35,11 @@
     box-shadow: 0 0 0.625rem vars.$box-shadow-color;
   }
 
-  /* Increase nav height + padding on desktop */
   @media screen and (min-width: 1024px) {
     height: 5rem;
     padding: 0 2rem;
   }
 
-  /* --- Desktop (classic) menu is hidden on mobile --- */
   .classic-menu {
     display: none;
 
@@ -52,7 +47,6 @@
       display: flex;
 
       &__list {
-        /* Horizontal row of links, spaced out */
         @include mixins.flex-center(center);
         display: flex;
         flex-direction: row;
@@ -83,7 +77,6 @@
     }
   }
 
-  /* --- Mobile hamburger is hidden on desktop --- */
   .hamburger-menu {
     @media (min-width: 1024px) {
       display: none;
@@ -91,24 +84,20 @@
   }
 }
 
-/* Left column: store button only */
 .nav-left {
   display: flex;
   align-items: center;
 }
 
-/* Middle column: the classic menu (desktop) */
 .nav-center {
   justify-self: center;
 }
 
-/* Right column: logo + hamburger menu (hamburger hidden on desktop) */
 .nav-right {
   display: flex;
   align-items: center;
   justify-content: flex-end;
 
-  /* The logo might need spacing from the hamburger on mobile */
   & > *:not(:last-child) {
     margin-right: 1rem; 
   }

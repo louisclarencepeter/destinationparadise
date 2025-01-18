@@ -5,5 +5,5 @@ export const menuItems = [
     { label: "Excursions", path: "/excursions" },
     { label: "About Us", path: "/aboutus" },
     { label: "Gallery", path: "/gallery" },
-    { label: "Booking Request", path: "/booking" },
+    { label: "Booking", path: "/booking" },
   ];

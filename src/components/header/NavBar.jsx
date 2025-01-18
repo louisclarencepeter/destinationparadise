@@ -1,11 +1,13 @@
-// src/components/NavBar/NavBar.jsx
 import React, { useState, useEffect, useCallback } from "react";
-import { MenuList } from "./components/MenuList/MenuList";
 import { Logo } from "./components/Logo/Logo";
 import { StoreButton } from "./components/StoreButton/StoreButton";
 import { HamburgerMenu } from "./components/HamburgerMenu/HamburgerMenu";
+import { ClassicMenu } from "./components/ClassicMenu/ClassicMenu";
 import scrollToTop from "../../utils/scrollToTop";
 import "./NavBar.scss";
+import { useMediaQuery } from "react-responsive";
+
+const SCROLL_THRESHOLD = 10;
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -20,17 +22,14 @@ const NavBar = () => {
   }, []);
 
   const handleScroll = useCallback(() => {
-    const scrollThreshold = 10;
-    setIsScrolled(window.scrollY > scrollThreshold);
+    setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
   }, []);
 
-  // Listen for scroll events to switch navbar background or style
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  // Prevent body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
     return () => {
@@ -38,7 +37,6 @@ const NavBar = () => {
     };
   }, [isOpen]);
 
-  // Auto-focus the first menu link once the menu opens
   useEffect(() => {
     if (isOpen) {
       const firstMenuItem = document.querySelector(".hamburger-menu__list a");
@@ -46,26 +44,27 @@ const NavBar = () => {
     }
   }, [isOpen]);
 
+  const isDesktopOrLaptop = useMediaQuery({
+    query: "(min-width: 1024px)",
+  });
+
   return (
     <>
       <nav
         className={`nav ${isScrolled ? "transparent" : ""}`}
         aria-label="Main navigation"
       >
-        {/* LEFT: Store Button + Desktop Menu */}
         <div className="nav-left">
           <StoreButton onClick={closeMenu} />
-          <div className="classic-menu">
-            <MenuList
-              className="classic-menu__list"
-              onClick={closeMenu}
-              aria-label="Desktop navigation menu"
-            />
-          </div>
         </div>
 
-        {/* CENTER: Logo */}
-        <div className="nav-center">
+        {isDesktopOrLaptop && (
+          <div className="nav-center">
+            <ClassicMenu closeMenu={closeMenu} />
+          </div>
+        )}
+
+        <div className="nav-right">
           <Logo
             onClick={() => {
               closeMenu();
@@ -73,19 +72,17 @@ const NavBar = () => {
             }}
             aria-label="Home"
           />
-        </div>
 
-        {/* RIGHT: Hamburger (mobile only) */}
-        <div className="nav-right">
-          <HamburgerMenu
-            isOpen={isOpen}
-            toggleMenu={toggleMenu}
-            closeMenu={closeMenu}
-          />
+          {!isDesktopOrLaptop && (
+            <HamburgerMenu
+              isOpen={isOpen}
+              toggleMenu={toggleMenu}
+              closeMenu={closeMenu}
+            />
+          )}
         </div>
       </nav>
 
-      {/* Spacer so content doesn't hide behind the fixed nav */}
       <div style={{ paddingTop: isScrolled ? "5rem" : "4rem" }} />
     </>
   );
