@@ -1,12 +1,14 @@
 @use "sass:color";
 @use "../styles/variables" as vars;
 
+// Flex layouts
 @mixin flex-center($justify: center, $align: center) {
   display: flex;
   justify-content: $justify;
   align-items: $align;
 }
 
+// Screen reader only
 @mixin sr-only {
   position: absolute;
   width: 1px;
@@ -19,8 +21,9 @@
   border: 0;
 }
 
+// Responsive font sizing
 @mixin responsive-font-size {
-  font-size: calc(0.8rem + 0.5vw); // Moved outside nested rules
+  font-size: calc(0.8rem + 0.5vw);
 
   @media screen and (min-width: 1024px) {
     font-size: inherit;
@@ -43,6 +46,7 @@
   }
 }
 
+// Responsive layout
 @mixin responsive-layout {
   @media screen and (min-height: 1079px),
     screen and (min-width: 1022px),
@@ -67,7 +71,7 @@
       }
 
       .menu__item {
-        font-size: 0.8rem; // Moved outside nested rules
+        font-size: 0.8rem;
 
         @media screen and (min-width: 1439px) {
           font-size: 1rem;
@@ -85,7 +89,7 @@
 @mixin button-styles {
   border-radius: 0.3rem;
   padding: 0.5rem 1rem;
-  font-size: calc(0.6rem + 0.5vw); // Moved outside nested rules
+  font-size: calc(0.6rem + 0.5vw);
   background-image: vars.$gradient-button;
   color: vars.$color-background;
   border: none;
@@ -117,7 +121,7 @@
 @mixin button-styles-compact {
   border-radius: 0.3rem;
   padding: 0.5rem 1rem;
-  font-size: 1rem; // Moved outside nested rules
+  font-size: 1rem;
   background-image: vars.$gradient-button;
   color: vars.$color-background;
   border: none;
@@ -146,5 +150,98 @@
       color.adjust(vars.$color-primary, $lightness: -10%) 0%,
       color.adjust(vars.$color-accent, $lightness: -10%) 100%
     );
+  }
+}
+
+// New mixins from NavBar
+
+// Nav button styles
+@mixin nav-button-styles {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: vars.$color-primary;
+  font-size: 1.5rem;
+  transition: vars.$transition-default;
+  padding: 0.5rem;
+  
+  &:hover {
+    color: vars.$hover-color;
+  }
+}
+
+// Menu item base styles
+@mixin menu-item-base {
+  font-family: vars.$font-secondary;
+  font-weight: 600;
+  color: vars.$color-primary;
+  text-decoration: none;
+  transition: color vars.$transition-duration;
+  position: relative;
+
+  &:hover {
+    color: vars.$hover-color;
+  }
+
+  &::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: vars.$hover-color;
+    transition: width vars.$transition-duration;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+  }
+
+  &:hover::after,
+  &.active::after {
+    width: 100%;
+  }
+}
+
+// Hamburger line styles
+@mixin hamburger-line {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 0.125rem;
+  background-color: vars.$color-primary;
+  transition: vars.$transition-default;
+
+  &:hover {
+    background-color: vars.$hover-color;
+  }
+}
+
+// Animation keyframes mixin
+@mixin fade-in($duration: 0.3s, $delay: 0s) {
+  animation: fadeIn $duration ease-in-out forwards;
+  animation-delay: $delay;
+}
+
+// Mobile menu overlay
+@mixin mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: vars.$menu-background;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity vars.$transition-duration,
+              visibility vars.$transition-duration;
+  overflow-y: auto;
+}
+
+// Focus styles
+@mixin focus-outline {
+  outline: 2px solid vars.$color-primary;
+  outline-offset: 4px;
+  
+  &:not(:focus-visible) {
+    outline: none;
   }
 }

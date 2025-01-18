@@ -1,0 +1,13 @@
+// src/components/NavBar/components/StoreButton/StoreButton.scss
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
+
+.store {
+  button {
+    @include mixins.button-styles;
+
+    &:hover {
+      color: vars.$hover-color;
+    }
+  }
+}

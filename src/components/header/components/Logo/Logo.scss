@@ -1,0 +1,17 @@
+// src/components/NavBar/components/Logo/Logo.scss
+.menu__logo {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0.5rem 0;
+  
+    img {
+      height: 40px; // Fixed height
+      width: auto;
+      object-fit: contain;
+      
+      @media screen and (min-width: 1024px) {
+        margin-right: 0;
+      }
+    }
+  }
