@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useLocation } from "react-router-dom"; // Import useLocation
+import { useLocation } from "react-router-dom";
 import "./Store.scss";
 import ImageSlideshow from "./ImageSlideshow";
 import BookingForm from "./booking/BookingForm";
@@ -51,23 +51,41 @@ const Store = () => {
     "/gallery/6.jpg",
   ];
 
-  const handleSubmit = (formData) => {
+  const handleSubmit = async (formData) => {
     console.log("Form submitted:", formData);
+
+    try {
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        console.log("Booking request submitted successfully!");
+      } else {
+        console.error("Booking request submission failed.");
+      }
+    } catch (error) {
+      console.error("Error submitting booking request:", error);
+    }
   };
 
   const location = useLocation();
 
   useEffect(() => {
-      if (location.state?.scrollToTop) {
-          window.scrollTo(0, 0);
-      }
+    if (location.state?.scrollToTop) {
+      window.scrollTo(0, 0);
+    }
   }, [location]);
 
   return (
-    <div className="store-container" id="top">
-      <h2>Booking Request</h2>
+    <main className="store-container" id="top">
+      <h2 className="title visible">Booking Request</h2>
       <ImageSlideshow images={images} aria-label="Image slideshow of tours" />
-      <div className="booking-request">
+      <section className="booking-request animated-container visible">
         <p>
           Welcome to the booking request page. Please fill out the form below to
           make a new booking.
@@ -77,8 +95,8 @@ const Store = () => {
           locations={locations}
           handleSubmit={handleSubmit}
         />
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 

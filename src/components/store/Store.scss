@@ -1,5 +1,5 @@
-@use '../../styles/variables' as vars;
-@use '../../styles/mixins' as mixins;
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
 
 .store-container {
   padding: 2rem;
@@ -7,17 +7,26 @@
   border-radius: 10px;
   max-width: 1200px;
 
+  .title {
+    font-family: vars.$font-tertiary;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    text-align: center;
+    color: vars.$color-primary;
+    opacity: 1; // Make visible by default
+    transform: translateY(0);
+    transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 2px 2px 4px vars.$box-shadow-color;
+  }
+
+  .animated-container {
+    opacity: 1; // Visible by default
+    transform: translateY(0); // No translation on page load
+    transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
   .booking-request {
     padding: 10px;
     text-align: center;
-
-    h1 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      margin-top: 0;
-      color: vars.$color-primary;
-      font-family: vars.$font-secondary;
-    }
 
     p {
       font-size: calc(0.8rem + 0.5vw);
@@ -60,6 +69,12 @@
           height: 100px;
           resize: vertical;
         }
+
+        .error {
+          color: red;
+          font-size: 0.8rem;
+          margin-top: 0.2rem;
+        }
       }
 
       .submit-button {
@@ -69,6 +84,7 @@
   }
 }
 
+// Media queries (no changes needed, but you can adjust if necessary)
 @media screen and (min-width: 768px) {
   .store-container {
     padding: 2rem 3rem;

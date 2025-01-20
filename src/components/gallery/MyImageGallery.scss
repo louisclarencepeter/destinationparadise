@@ -1,127 +1,184 @@
 @use '../../styles/variables' as vars;
-@use '../../styles/mixins' as mixins;
+@use "sass:color";
+
+// Animation keyframes
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .gallery {
   &-wrapper {
-    padding: 2rem;
-    width: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    overflow-x: hidden; // Prevent horizontal scroll
-    box-sizing: border-box; // Include padding in width calculation
+    padding: clamp(1.5rem, 5vw, 3rem);
+    background-color: vars.$color-background;
+    max-width: 1400px;
+    margin: 0 auto 2rem auto;
+    overflow-x: hidden;
   }
 
   &-title {
-    font-family: vars.$font-secondary;
-    font-size: 2.5rem;
+    font-family: vars.$font-tertiary;
+    font-size: clamp(2.5rem, 6vw, 4rem);
     text-align: center;
     color: vars.$color-primary;
-    margin-bottom: 2rem;
+    margin-bottom: clamp(2rem, 5vw, 3rem);
+    text-shadow: 2px 2px 4px vars.$box-shadow-color;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlideUp 0.6s ease forwards;
+    animation-delay: 0.2s;
+
+    @media (max-width: vars.$breakpoint-mobile) {
+      font-size: 2.5rem;
+    }
   }
 
-  &-loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 300px;
-    font-size: 1.2rem;
-    color: #666;
+  &-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-gap: 16px;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlideUp 0.6s ease forwards;
+    animation-delay: 0.4s;
+
+    @media (min-width: 750px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: 900px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
   &-item {
-    margin: 8px; // Use equal margin on all sides
-    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    box-sizing: border-box; // Include padding in width calculation
+    background-color: color.adjust(vars.$color-background, $lightness: -2%);
+    box-shadow: 0 4px 6px vars.$box-shadow-color;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover {
-      transform: translateY(-4px);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 12px vars.$box-shadow-color;
+    }
+
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        transition-delay: #{$i * 0.1}s;
+      }
+    }
+
+    .gallery-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+
+      &.loaded {
+        opacity: 1;
+      }
+    }
+
+    .placeholder {
+      filter: blur(5px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
     }
   }
 }
 
-// Image Container Styles
 .image-container {
   position: relative;
   width: 100%;
-  background-color: #f5f5f5;
+  background-color: color.adjust(vars.$color-background, $lightness: -5%);
   overflow: hidden;
-  box-sizing: border-box; // Include padding in width calculation
 
   &.loaded {
     background-color: transparent;
   }
 }
 
-// Gallery Image Styles
-.gallery-image {
+.video-container {
+  position: relative;
   width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  display: block; // Remove any inline spacing
+  padding-bottom: 56.25%;
+  background-color: color.adjust(vars.$color-background, $lightness: -10%);
 
-  &.active {
+  .gallery-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+}
+
+.error-state {
+  padding: 2rem;
+  text-align: center;
+  background-color: color.adjust(vars.$color-accent, $lightness: 35%);
+  color: vars.$color-accent;
+  font-family: vars.$font-secondary;
+  font-size: 0.875rem;
+
+  button {
+    margin-top: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    background-color: vars.$color-primary;
+    color: #fff;
+    font-family: vars.$font-secondary;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: color.scale(vars.$color-primary, $lightness: -10%);
+    }
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
     opacity: 1;
   }
 }
 
-// Video Container Styles
-.video-container {
-  position: relative;
-  width: 100%;
-  padding-bottom: 56.25%; // 16:9 Aspect Ratio
-  background-color: #000;
-  box-sizing: border-box; // Include padding in width calculation
+.loading-content {
+  animation: pulse 2s infinite;
 }
 
-// Gallery Video Styles
-.gallery-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-}
-
-// Error State Styles
-.error-state {
-  padding: 2rem;
-  text-align: center;
-  background-color: #fff5f5;
-  color: #e53e3e;
-  font-size: 0.875rem;
-}
-
-// Responsive Styles
-@media (max-width: 768px) {
-  .gallery {
-    &-wrapper {
-      padding: 1rem;
-    }
-
-    &-title {
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
-    }
-
-    &-item {
-      margin: 4px; // Smaller margins on mobile
-    }
+@media (prefers-reduced-motion: reduce) {
+  .gallery-item,
+  .gallery-title,
+  .gallery-grid {
+    transition: none;
+    animation: none;
+    opacity: 1;
+    transform: none;
   }
-}
-
-// Animation for Loading State
-@keyframes pulse {
-  0% { opacity: 0.6; }
-  50% { opacity: 1; }
-  100% { opacity: 0.6; }
-}
-
-.gallery-loading {
-  animation: pulse 1.5s infinite;
 }

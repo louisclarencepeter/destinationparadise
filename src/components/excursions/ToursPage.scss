@@ -1,72 +1,127 @@
 // ToursPage.scss
 @use "sass:color";
-@use "../../styles/variables" as *;
-@use "../../styles/mixins" as *;
+@use "../../styles/variables" as vars;
 
-.tour-page-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.5rem;
-  min-height: 60vh;
-
-  @media (max-width: $breakpoint-mobile) {
-    padding: 1rem;
+// Animation keyframes
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
   }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  h2 {
-    margin-bottom: 2rem;
-    font-size: 2.5rem;
-    color: $color-primary;
-    font-family: $font-secondary;
+.tours-page {
+  padding: clamp(1.5rem, 5vw, 3rem);
+  background-color: vars.$color-background;
+  color: vars.$color-primary;
+  max-width: 1400px;
+  margin: 0 auto;
+  margin-bottom: 2rem;
 
-    @media (max-width: $breakpoint-mobile) {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
+  .tours-header {
+    margin-bottom: vars.$grid-gap;
+    text-align: center;
+
+    .title {
+      font-family: vars.$font-tertiary;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: vars.$color-primary;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
+      text-shadow: 2px 2px 4px vars.$box-shadow-color;
+      margin-bottom: 1rem;
+      
+      &.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: vars.$breakpoint-mobile) {
+        font-size: 2.5rem;
+      }
+    }
+
+    .subtitle {
+      font-family: vars.$font-primary;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      color: vars.$color-secondary;
+      margin-bottom: 2rem;
+      opacity: 0.9;
     }
   }
 
   .tour-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    align-items: start;
+    gap: vars.$grid-gap;
+    margin-top: 2rem;
 
-    @media (max-width: 768px) {
+    @media (max-width: vars.$breakpoint-mobile) {
       grid-template-columns: 1fr;
-      gap: 1.5rem;
+      gap: calc(vars.$grid-gap / 1.5);
     }
   }
 
   .tour-card-wrapper {
-    text-align: left;
     opacity: 0;
     transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 
-    &.active {
+    &.visible {
       opacity: 1;
       transform: translateY(0);
     }
-  }
 
-  .tour-page-loading {
-    text-align: center;
-    padding: 2rem;
-    font-size: 1.2rem;
-    color: color.adjust($color-secondary, $lightness: 20%);
-    font-family: $font-secondary;
+    @for $i from 1 through 12 {
+      &:nth-child(#{$i}) {
+        transition-delay: #{$i * 0.1}s;
+      }
+    }
   }
 }
 
-// Reveal animation delay for cards
-.reveal {
-  &:nth-child(2) {
-    transition-delay: 0.1s;
+.tour-page-loading {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  .loading-text {
+    font-family: vars.$font-tertiary;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    color: vars.$color-accent;
+    text-shadow: 1px 1px 2px vars.$box-shadow-color;
+    animation: pulse 2s infinite;
   }
-  &:nth-child(3) {
-    transition-delay: 0.2s;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
   }
-  &:nth-child(4) {
-    transition-delay: 0.3s;
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
+
+// Accessibility
+@media (prefers-reduced-motion: reduce) {
+  .tours-page {
+    .title,
+    .tour-grid,
+    .tour-card-wrapper {
+      transition: none;
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
   }
 }
