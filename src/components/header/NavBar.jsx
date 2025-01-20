@@ -1,17 +1,21 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, lazy, Suspense } from "react";
 import { Logo } from "./components/Logo/Logo";
 import { StoreButton } from "./components/StoreButton/StoreButton";
 import { HamburgerMenu } from "./components/HamburgerMenu/HamburgerMenu";
 import { ClassicMenu } from "./components/ClassicMenu/ClassicMenu";
-import scrollToTop from "../../utils/scrollToTop";
+import scrollToTop from "../../utils/scrollToTop.js"; 
+import useScroll from "./components/utils/useScroll";     
 import "./NavBar.scss";
 import { useMediaQuery } from "react-responsive";
+
+// Centralize lazy loading of MenuList
+const MenuList = lazy(() => import("./components/MenuList/MenuList"));
 
 const SCROLL_THRESHOLD = 10;
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const isScrolled = useScroll(SCROLL_THRESHOLD);
 
   const toggleMenu = useCallback(() => {
     setIsOpen((prev) => !prev);
@@ -20,15 +24,6 @@ const NavBar = () => {
   const closeMenu = useCallback(() => {
     setIsOpen(false);
   }, []);
-
-  const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > SCROLL_THRESHOLD);
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
@@ -78,6 +73,7 @@ const NavBar = () => {
               isOpen={isOpen}
               toggleMenu={toggleMenu}
               closeMenu={closeMenu}
+              aria-haspopup="true"
             />
           )}
         </div>

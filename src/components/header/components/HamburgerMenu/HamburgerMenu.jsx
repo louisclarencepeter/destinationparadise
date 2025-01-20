@@ -1,7 +1,5 @@
-// src/components/NavBar/components/HamburgerMenu/HamburgerMenu.jsx
 import React from "react";
 import { MenuList } from "../MenuList/MenuList";
-import dlpLogo from "../../../../assets/logo/dlp.png";
 import "./HamburgerMenu.scss";
 
 export const HamburgerMenu = ({ isOpen, toggleMenu, closeMenu }) => {
@@ -29,29 +27,13 @@ export const HamburgerMenu = ({ isOpen, toggleMenu, closeMenu }) => {
         className="menu__box"
         data-open={isOpen}
       >
-        <div className="menu__header">
-          <img
-            src={dlpLogo}
-            alt="Destination Paradise Logo"
-            className="menu__logo"
-            data-open={isOpen}
-            width="auto"
-            height="64"
-            onError={(e) => {
-              e.target.style.display = "none";
-              console.error("Failed to load logo");
-            }}
-          />
-        </div>
         <MenuList
           className="hamburger-menu__list"
           onClick={closeMenu}
         />
         <address className="menu__contact">
           <p>Destination Paradise</p>
-          <p>
-            Phone: <a href="tel:+255748352657">+255 748 352 657</a>
-          </p>
+          <p>Phone: <a href="tel:+255748352657">+255 748 352 657</a></p>
           <p>Zanzibar, Tanzania</p>
         </address>
       </div>
