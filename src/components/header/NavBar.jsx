@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
+
 import "./NavBar.scss";
 import scrollToTop from "../../utils/scrollToTop";
 import logo from "../../assets/logo/dlp.png";
@@ -22,7 +23,9 @@ const MenuList = ({ className, onClick }) => {
         <li key={label} role="none">
           <Link
             role="menuitem"
-            className={`menu__item ${location.pathname === path ? "active" : ""}`}
+            className={`menu__item ${
+              location.pathname === path ? "active" : ""
+            }`}
             aria-current={location.pathname === path ? "page" : undefined}
             to={path}
             onClick={() => {
@@ -48,37 +51,36 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
-  // Toggle menu open/close (no direct style manipulation here)
   const toggleMenu = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
 
-  // Explicitly close menu
   const closeMenu = useCallback(() => {
     setIsOpen(false);
   }, []);
 
-  // Handle scroll for changing navbar appearance
-  const handleScroll = useCallback(() => {
-    setIsScrolled(window.scrollY > 10);
+  useEffect(() => {
+    const handleScroll = () => {
+      const threshold = 10;
+      setIsScrolled(window.scrollY > threshold);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
-
-  // Lock/unlock page scroll based on `isOpen`
-  useEffect(() => {
     document.body.style.overflow = isOpen ? "hidden" : "auto";
 
-    // Cleanup in case the component unmounts while open
     return () => {
       document.body.style.overflow = "auto";
     };
   }, [isOpen]);
 
-  // Auto-focus the first menu link when opening the hamburger menu
   useEffect(() => {
     if (isOpen) {
       const firstMenuItem = document.querySelector(".hamburger-menu__list a");
@@ -87,86 +89,75 @@ const NavBar = () => {
   }, [isOpen]);
 
   return (
-    <nav className={`nav ${isScrolled ? "transparent" : ""}`} aria-label="Main navigation">
-      <div className="store">
-        <Link to="/booking" onClick={closeMenu} aria-label="Book Now">
-          <button aria-label="Book Now">
-            <i className="fa-solid fa-store" aria-hidden="true"></i>
-            <span className="sr-only">Book Now</span>
-          </button>
-        </Link>
-      </div>
-
-      {/* Desktop menu */}
-      <div className="classic-menu">
-        <MenuList className="classic-menu__list" onClick={closeMenu} />
-      </div>
-
-      {/* Logo */}
-      <div>
-        <Link
-          to="/"
-          className="menu__logo"
-          aria-label="Go to homepage"
-          onClick={() => {
-            closeMenu();
-            scrollToTop();
-          }}
-        >
-          <img
-            src={logo}
-            alt="Destination Paradise Logo"
-            width="100"
-            height="40"
-          />
-        </Link>
-      </div>
-
-      {/* Hamburger menu */}
-      <div className="hamburger-menu">
-        <div
-          className="menu__toggle-container"
-          role="button"
-          aria-expanded={isOpen ? "true" : "false"}
-          aria-controls="menu__box"
-          tabIndex={0}
-          onClick={toggleMenu}
-          onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && toggleMenu()}
-        >
-          <input
-            id="menu__toggle"
-            type="checkbox"
-            checked={isOpen}
-            onChange={toggleMenu}
-          />
-          <label
-            className="menu__btn"
-            htmlFor="menu__toggle"
-            aria-label={isOpen ? "Close menu" : "Open menu"}
-          >
-            <span></span>
-          </label>
+    <div className="navbar-wrapper">
+      <nav className={`nav ${isScrolled ? "scrolled" : ""}`} aria-label="Main navigation">
+        <div className="store">
+          <Link to="/booking" onClick={closeMenu} aria-label="Book Now">
+            <button aria-label="Book Now">
+              <i className="fa-solid fa-store" aria-hidden="true"></i>
+              <span className="sr-only">Book Now</span>
+            </button>
+          </Link>
         </div>
 
-        <div id="menu__box" className={`menu__box ${isOpen ? "open" : ""}`}>
-          <MenuList className="hamburger-menu__list" onClick={closeMenu} />
-          <div className="menu__header">
-            <img
-              src={logo}
-              alt="Logo"
-              className={`menu__logo ${isOpen ? "open" : ""}`}
-              width="100"
-              height="40"
-            />
-            <div className="menu__contact">
-              <p>Destination Paradise</p>
-              <p>Phone: +255 748 352 657</p>
-              <p>Zanzibar, Tanzania</p>
+        <div className="classic-menu">
+          <MenuList className="classic-menu__list" onClick={closeMenu} />
+        </div>
+
+        <div>
+          <Link
+            to="/"
+            className="menu__logo"
+            aria-label="Go to homepage"
+            onClick={() => {
+              closeMenu();
+              scrollToTop();
+            }}
+          >
+            <img src={logo} alt="Destination Paradise Logo" width="100" height="40" />
+          </Link>
+        </div>
+
+        <div className="hamburger-menu">
+          <div
+            className="menu__toggle-container"
+            role="button"
+            aria-expanded={isOpen ? "true" : "false"}
+            aria-controls="menu__box"
+            tabIndex={0}
+            onClick={toggleMenu}
+            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && toggleMenu()}
+          >
+            <input id="menu__toggle" type="checkbox" checked={isOpen} onChange={toggleMenu} />
+            <label
+              className="menu__btn"
+              htmlFor="menu__toggle"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+            >
+              <span></span>
+            </label>
+          </div>
+
+          <div id="menu__box" className={`menu__box ${isOpen ? "open" : ""}`}>
+            <MenuList className="hamburger-menu__list" onClick={closeMenu} />
+            <div className="menu__header">
+              <img
+                src={logo}
+                alt="Logo"
+                className={`menu__logo ${isOpen ? "open" : ""}`}
+                width="100"
+                height="40"
+              />
+              <div className="menu__contact">
+                <p>Destination Paradise</p>
+                <p>Phone: +255 748 352 657</p>
+                <p>Zanzibar, Tanzania</p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 };
 

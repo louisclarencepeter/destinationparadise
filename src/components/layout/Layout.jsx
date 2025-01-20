@@ -1,3 +1,4 @@
+// Layout.jsx
 import PropTypes from 'prop-types';
 import useScrollToTop from '../../utils/scrollToTop'; 
 import Header from '../header/NavBar';
@@ -9,13 +10,15 @@ const Layout = ({ children }) => {
   useScrollToTop(); 
 
   return (
-    <div className='main-container'>
+    <>
       <Header />
-      {children}
+      <main className='main-content'>
+        {children}
+      </main>
       <Footer />
       <CookieConsent />
       <Chatbot />
-    </div>
+    </>
   );
 };
 

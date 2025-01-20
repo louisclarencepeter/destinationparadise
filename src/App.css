@@ -1,4 +1,5 @@
-@import url("@/styles/base.scss");
+/* App.css */
+@import url("@/styles/base.scss"); 
 @import url("@/styles/utilities.scss");
 @import url("@/styles/common.scss");
 @import url("@/styles/media-queries.scss");
