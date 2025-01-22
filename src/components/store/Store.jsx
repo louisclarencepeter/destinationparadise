@@ -1,34 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import "./Store.scss";
-import ImageSlideshow from "./ImageSlideshow";
 import BookingForm from "./booking/BookingForm";
+import Alert from '../ui/Alert';
 
-// Custom hook for intersection observer
-const useIntersectionObserver = (options = {}) => {
-  const [elements, setElements] = React.useState([]);
-  const [entries, setEntries] = React.useState([]);
+// Lazy load the ImageSlideshow component
+const ImageSlideshow = React.lazy(() => import("./ImageSlideshow"));
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((observedEntries) => {
-      setEntries(observedEntries);
-    }, options);
-
-    elements.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
-  }, [elements, options]);
-
-  const ref = (element) => {
-    if (element && !elements.includes(element)) {
-      setElements((prevElements) => [...prevElements, element]);
-    }
-  };
-
-  return [ref, entries];
-};
-
-const Store = () => {
-  const tours = [
+// Move to a separate config file later
+const TOUR_CONFIG = {
+  tours: [
     "Spice Tour",
     "Historical City Tour",
     "Prison Island Boat Trip",
@@ -44,9 +25,8 @@ const Store = () => {
     "Swimming in the Cave",
     "Sailing into the Sunset",
     "Quad Tour",
-  ];
-
-  const locations = [
+  ],
+  locations: [
     "Stone Town",
     "Nungwi",
     "Kendwa",
@@ -63,18 +43,53 @@ const Store = () => {
     "Paje",
     "Jambiani",
     "Makunduchi",
-  ];
-
-  const images = [
+  ],
+  images: [
     "/gallery/1.jpg",
     "/gallery/2.jpg",
     "/gallery/3.jpg",
     "/gallery/4.jpg",
     "/gallery/5.jpg",
     "/gallery/6.jpg",
-  ];
+  ],
+};
 
-  // Intersection Observer for title and content animations
+// Custom hook for intersection observer
+const useIntersectionObserver = (options = {}) => {
+  const [elements, setElements] = useState([]);
+  const [entries, setEntries] = useState([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((observedEntries) => {
+      setEntries(observedEntries);
+    }, options);
+
+    elements.forEach((element) => observer.observe(element));
+    
+    return () => {
+      elements.forEach((element) => observer.unobserve(element));
+      observer.disconnect();
+    };
+  }, [elements, options]);
+
+  const ref = (element) => {
+    if (element && !elements.includes(element)) {
+      setElements((prevElements) => [...prevElements, element]);
+    }
+  };
+
+  return [ref, entries];
+};
+
+const Store = () => {
+  // Memoize the static data
+  const { tours, locations, images } = useMemo(() => TOUR_CONFIG, []);
+  
+  // Form submission state
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState({ type: '', message: '' });
+
+  // Intersection Observer for animations
   const [titleRef, titleEntries] = useIntersectionObserver({
     threshold: 0.1,
     rootMargin: "50px",
@@ -86,7 +101,8 @@ const Store = () => {
   });
 
   const handleSubmit = async (formData) => {
-    console.log("Form submitted:", formData);
+    setIsSubmitting(true);
+    setSubmitStatus({ type: '', message: '' });
 
     try {
       const response = await fetch("/api/bookings", {
@@ -98,17 +114,27 @@ const Store = () => {
       });
 
       if (response.ok) {
-        console.log("Booking request submitted successfully!");
+        setSubmitStatus({
+          type: 'success',
+          message: 'Booking request submitted successfully!'
+        });
       } else {
-        console.error("Booking request submission failed.");
+        const errorData = await response.json();
+        throw new Error(errorData.message || 'Submission failed');
       }
     } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message: `Error submitting booking request: ${error.message}`
+      });
       console.error("Error submitting booking request:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
+  // Handle scroll to top on navigation
   const location = useLocation();
-
   useEffect(() => {
     if (location.state?.scrollToTop) {
       window.scrollTo({
@@ -118,13 +144,19 @@ const Store = () => {
     }
   }, [location]);
 
+  // Visibility states for animations
   const isTitleVisible = titleEntries?.some((entry) => entry.isIntersecting);
   const isContentVisible = contentEntries?.some(
     (entry) => entry.isIntersecting
   );
 
   return (
-    <main className="store-container" id="top">
+    <main 
+      className="store-container" 
+      id="top"
+      role="main"
+      aria-label="Booking request page"
+    >
       <h2
         ref={titleRef}
         className={`title ${isTitleVisible ? "visible" : ""}`}
@@ -138,18 +170,41 @@ const Store = () => {
         make a new booking.
       </p>
 
-      <ImageSlideshow images={images} aria-label="Image slideshow of tours" />
+      <Suspense 
+        fallback={
+          <div className="slideshow-loading" aria-label="Loading slideshow">
+            Loading tour images...
+          </div>
+        }
+      >
+        <ImageSlideshow 
+          images={images} 
+          aria-label="Image slideshow of tours"
+        />
+      </Suspense>
 
       <section
         ref={contentRef}
         className={`booking-request animated-container ${
           isContentVisible ? "visible" : ""
         }`}
+        aria-label="Booking request form section"
       >
+        {submitStatus.message && (
+          <Alert 
+            className={`alert-${submitStatus.type}`}
+            role="alert"
+            aria-live="polite"
+          >
+            {submitStatus.message}
+          </Alert>
+        )}
+        
         <BookingForm
           tours={tours}
           locations={locations}
           onSubmit={handleSubmit}
+          isSubmitting={isSubmitting}
         />
       </section>
     </main>

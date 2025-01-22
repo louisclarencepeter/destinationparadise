@@ -1,3 +1,4 @@
+// _variables.scss
 @use "sass:color";
 
 /* Fonts */
@@ -46,3 +47,7 @@ $breakpoint-desktop: 1024px;
 
 // New Variable
 $grid-gap: 2rem; /* Added grid-gap */
+
+// ADD THIS:
+$border-radius-default: 0.5rem; // Add border-radius-default (adjust value as needed)
+$box-shadow-default: 0 4px 6px -6px rgba(0, 0, 0, 0.2); // Add a default box-shadow (adjust as needed)
