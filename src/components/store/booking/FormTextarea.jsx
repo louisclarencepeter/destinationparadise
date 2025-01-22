@@ -1,8 +1,29 @@
-import PropTypes from 'prop-types';
+// FormTextarea.jsx
+import PropTypes from "prop-types";
+import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver";
 
-const FormTextarea = ({ label, id, name, value, onChange, required = false, autoComplete = 'off' }) => {
+const FormTextarea = ({ 
+  label, 
+  id, 
+  name, 
+  value, 
+  onChange, 
+  required = false, 
+  autoComplete = 'off',
+  placeholder = '' 
+}) => {
+  const [ref, entries] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: '50px'
+  });
+
+  const isVisible = entries?.some(entry => entry.isIntersecting);
+
   return (
-    <div className="reveal form-group">
+    <div 
+      ref={ref} 
+      className={`form-group ${isVisible ? 'visible' : ''}`}
+    >
       <label htmlFor={id}>{label}</label>
       <textarea
         id={id}
@@ -11,8 +32,10 @@ const FormTextarea = ({ label, id, name, value, onChange, required = false, auto
         onChange={onChange}
         required={required}
         autoComplete={autoComplete}
-        aria-required={required}
-      ></textarea>
+        placeholder={placeholder}
+        aria-required={required === true ? "true" : "false"}
+        className="form-control"
+      />
     </div>
   );
 };
@@ -25,6 +48,8 @@ FormTextarea.propTypes = {
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
   autoComplete: PropTypes.string,
+  placeholder: PropTypes.string
 };
 
+// Only export FormTextarea
 export default FormTextarea;

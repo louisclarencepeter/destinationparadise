@@ -4,6 +4,29 @@ import "./Store.scss";
 import ImageSlideshow from "./ImageSlideshow";
 import BookingForm from "./booking/BookingForm";
 
+// Custom hook for intersection observer
+const useIntersectionObserver = (options = {}) => {
+  const [elements, setElements] = React.useState([]);
+  const [entries, setEntries] = React.useState([]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver((observedEntries) => {
+      setEntries(observedEntries);
+    }, options);
+
+    elements.forEach((element) => observer.observe(element));
+    return () => observer.disconnect();
+  }, [elements, options]);
+
+  const ref = (element) => {
+    if (element && !elements.includes(element)) {
+      setElements((prevElements) => [...prevElements, element]);
+    }
+  };
+
+  return [ref, entries];
+};
+
 const Store = () => {
   const tours = [
     "Spice Tour",
@@ -51,6 +74,17 @@ const Store = () => {
     "/gallery/6.jpg",
   ];
 
+  // Intersection Observer for title and content animations
+  const [titleRef, titleEntries] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: "50px",
+  });
+
+  const [contentRef, contentEntries] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: "50px",
+  });
+
   const handleSubmit = async (formData) => {
     console.log("Form submitted:", formData);
 
@@ -77,23 +111,45 @@ const Store = () => {
 
   useEffect(() => {
     if (location.state?.scrollToTop) {
-      window.scrollTo(0, 0);
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }
   }, [location]);
 
+  const isTitleVisible = titleEntries?.some((entry) => entry.isIntersecting);
+  const isContentVisible = contentEntries?.some(
+    (entry) => entry.isIntersecting
+  );
+
   return (
     <main className="store-container" id="top">
-      <h2 className="title visible">Booking Request</h2>
+      <h2
+        ref={titleRef}
+        className={`title ${isTitleVisible ? "visible" : ""}`}
+        aria-label="Booking Request Form Title"
+      >
+        Booking Request
+      </h2>
+
+      <p className="booking-intro">
+        Welcome to the booking request page. Please fill out the form below to
+        make a new booking.
+      </p>
+
       <ImageSlideshow images={images} aria-label="Image slideshow of tours" />
-      <section className="booking-request animated-container visible">
-        <p>
-          Welcome to the booking request page. Please fill out the form below to
-          make a new booking.
-        </p>
+
+      <section
+        ref={contentRef}
+        className={`booking-request animated-container ${
+          isContentVisible ? "visible" : ""
+        }`}
+      >
         <BookingForm
           tours={tours}
           locations={locations}
-          handleSubmit={handleSubmit}
+          onSubmit={handleSubmit}
         />
       </section>
     </main>

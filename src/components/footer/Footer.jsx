@@ -52,7 +52,7 @@ function Footer() {
     id="email"
     type="email"
     className="footer__input"
-    placeholder="E-Mail"
+    placeholder="Enter your email address"
     value={email}
     onChange={(e) => setEmail(e.target.value)}
     required

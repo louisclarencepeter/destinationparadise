@@ -1,8 +1,30 @@
-import PropTypes from 'prop-types';
+// FormInput.jsx
+import PropTypes from "prop-types";
+import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver";
 
-const FormInput = ({ label, id, name, type = "text", value, onChange, required = false, autoComplete = 'off' }) => {
+const FormInput = ({ 
+  label, 
+  id, 
+  name, 
+  type = "text", 
+  value, 
+  onChange, 
+  required = false, 
+  autoComplete = "off",
+  placeholder = "" 
+}) => {
+  const [ref, entries] = useIntersectionObserver({
+    threshold: 0.1,
+    rootMargin: "50px"
+  });
+
+  const isVisible = entries?.some((entry) => entry.isIntersecting);
+
   return (
-    <div className="reveal form-group">
+    <div 
+      ref={ref} 
+      className={`form-group ${isVisible ? "visible" : ""}`}
+    >
       <label htmlFor={id}>{label}</label>
       <input
         type={type}
@@ -12,7 +34,9 @@ const FormInput = ({ label, id, name, type = "text", value, onChange, required =
         onChange={onChange}
         required={required}
         autoComplete={autoComplete}
-        aria-required={required}
+        placeholder={placeholder}
+        aria-required={required.toString()}
+        className="form-control reveal"
       />
     </div>
   );
@@ -27,6 +51,7 @@ FormInput.propTypes = {
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
   autoComplete: PropTypes.string,
+  placeholder: PropTypes.string
 };
 
 export default FormInput;

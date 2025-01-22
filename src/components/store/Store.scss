@@ -2,111 +2,169 @@
 @use "../../styles/mixins" as mixins;
 
 .store-container {
-  padding: 2rem;
+  padding: vars.$grid-gap;
   background-color: vars.$color-background;
-  border-radius: 10px;
   max-width: 1200px;
+  margin: 0 auto;
 
   .title {
     font-family: vars.$font-tertiary;
-    font-size: clamp(2.5rem, 6vw, 4rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     text-align: center;
     color: vars.$color-primary;
-    opacity: 1; // Make visible by default
-    transform: translateY(0);
-    transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
-    text-shadow: 2px 2px 4px vars.$box-shadow-color;
+    margin: vars.$grid-gap 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: vars.$transition-default;
+
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 
-  .animated-container {
-    opacity: 1; // Visible by default
-    transform: translateY(0); // No translation on page load
-    transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
+  .booking-intro {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    text-align: center;
+    color: vars.$color-secondary;
+    font-family: vars.$font-primary;
+    margin: vars.$grid-gap 0;
+
+    // Responsive text size for booking-intro
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 0.9rem;
+    }
   }
 
   .booking-request {
-    padding: 10px;
-    text-align: center;
+    margin: vars.$grid-gap auto;
+    background-color: vars.$color-on-primary;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px vars.$box-shadow-color;
+    padding: calc(vars.$grid-gap * 2);
+    max-width: 700px;
 
-    p {
-      font-size: calc(0.8rem + 0.5vw);
-      margin-bottom: 1rem;
-      color: vars.$color-secondary;
-      font-family: vars.$font-primary;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    // Responsive adjustments for smaller screens
+    @media (max-width: 768px) {
+      max-width: 90%;
+      padding: vars.$grid-gap;
+    }
+
+    @media (max-width: 480px) {
+      padding: calc(vars.$grid-gap / 2);
     }
 
     .booking-form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      width: 100%;
+      padding: calc(vars.$grid-gap / 2);
+      box-sizing: border-box;
+
+      h3 {
+        font-family: vars.$font-primary;
+        font-size: 1.8rem;
+        color: vars.$color-primary;
+        margin-bottom: vars.$grid-gap;
+        text-align: center;
+
+        // Responsive font size for h3
+        @media (max-width: 768px) {
+          font-size: 1.6rem;
+        }
+
+        @media (max-width: 480px) {
+          font-size: 1.4rem;
+        }
+      }
 
       .form-group {
-        margin-bottom: 1rem;
-        width: 90%;
+        margin-bottom: calc(vars.$grid-gap / 2);
 
         label {
           display: block;
           margin-bottom: 0.5rem;
           font-size: 1rem;
           color: vars.$color-primary;
-          font-family: vars.$font-primary;
+          font-family: vars.$font-secondary;
+          font-weight: 600;
+
+          // Responsive font size for label
+          @media (max-width: 480px) {
+            font-size: 0.9rem;
+          }
         }
 
         input,
         select,
         textarea {
           width: 100%;
-          padding: 0.75rem;
-          border: 1px solid vars.$color-secondary;
-          border-radius: 5px;
+          padding: 0.8rem;
+          border: 1px solid vars.$color-border;
+          border-radius: 0.5rem;
           font-size: 1rem;
-          color: vars.$color-primary;
-          box-sizing: border-box;
-          font-family: vars.$font-primary;
+          background-color: vars.$color-background;
+          color: vars.$black;
+          font-family: vars.$font-secondary;
+          transition: box-shadow 0.2s ease, border-color 0.2s ease;
+
+          &::placeholder {
+            color: vars.$color-border;
+          }
+
+          &:focus {
+            border-color: vars.$color-primary;
+            box-shadow: 0 0 6px rgba(vars.$color-primary, 0.5);
+            outline: none;
+          }
+
+          // Responsive padding and font size for form inputs
+          @media (max-width: 768px) {
+            padding: 0.7rem;
+            font-size: 0.9rem;
+          }
+
+          @media (max-width: 480px) {
+            padding: 0.6rem;
+            font-size: 0.8rem;
+          }
         }
 
         textarea {
-          height: 100px;
+          min-height: 120px;
           resize: vertical;
-        }
-
-        .error {
-          color: red;
-          font-size: 0.8rem;
-          margin-top: 0.2rem;
         }
       }
 
       .submit-button {
+        display: block;
+        width: 50%;
+        max-width: 300px;
+        margin: calc(vars.$grid-gap / 2) auto 0;
+        text-align: center;
         @include mixins.button-styles;
+
+        // Responsive button styles
+        @media (max-width: 768px) {
+          padding: 0.8rem 1.6rem;
+          font-size: calc(0.5rem + 1vw);
+          width: 60%;
+        }
+
+        @media (max-width: 480px) {
+          padding: 0.6rem 1.2rem;
+          font-size: calc(0.4rem + 1.5vw);
+          width: 75%;
+        }
       }
     }
-  }
-}
-
-// Media queries (no changes needed, but you can adjust if necessary)
-@media screen and (min-width: 768px) {
-  .store-container {
-    padding: 2rem 3rem;
-  }
-}
-
-@media screen and (min-width: 1024px) {
-  .store-container {
-    padding: 2rem 4rem;
-  }
-}
-
-@media screen and (min-width: 1200px) {
-  .store-container {
-    padding: 2rem 5rem;
-  }
-}
-
-@media screen and (min-width: 1440px) {
-  .store-container {
-    padding: 2rem 6rem;
-    width: 60%;
-    margin: 0 auto;
   }
 }
