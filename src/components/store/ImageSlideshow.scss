@@ -25,10 +25,14 @@ $breakpoints: (
   overflow: hidden;
   background-color: #f8f9fa;
   border-radius: vars.$border-radius-default;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
 
   // Slick slider overrides
   .slick-slider {
     height: 100%;
+    width: 100%;
   }
 
   .slick-list,
@@ -41,6 +45,9 @@ $breakpoints: (
     position: relative;
     height: 100%;
     overflow: hidden;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
 
     img {
       width: 100%;

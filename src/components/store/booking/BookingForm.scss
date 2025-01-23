@@ -1,3 +1,4 @@
+// BookingForm.scss
 @use '../../../styles/variables' as vars;
 @use '../../../styles/mixins' as mixins;
 
@@ -7,19 +8,25 @@
   width: min(90%, 800px);
   margin: 0 auto;
   max-width: 1400px;
+  justify-items: center;
+  align-items: center;
 
-.booking-form-title {
+  .booking-form-title {
     font-size: clamp(1.5rem, 3vw, 2rem);
     text-align: center;
     color: vars.$color-primary;
     font-family: vars.$font-primary;
     margin-bottom: 1rem;
     font-weight: 400;
+    width: 100%;
   }
+
   .form-group {
     display: grid;
     gap: 0.5rem;
     width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
 
     label {
       display: block;
@@ -27,6 +34,7 @@
       color: vars.$color-primary;
       font-family: vars.$font-primary;
       font-weight: 500;
+      text-align: center;
     }
 
     input,
@@ -41,7 +49,6 @@
       box-sizing: border-box;
       font-family: vars.$font-primary;
       transition: all 0.2s ease;
-
     }
 
     textarea {
@@ -64,16 +71,23 @@
       transform: translateY(0);
     }
   }
+
+  .error-message,
+  .success-message {
+    text-align: center;
+    width: 100%;
+  }
 }
 
 // Print styles
 @media print {
   .booking-form {
     page-break-inside: avoid;
-  }
+    justify-items: start;
 
-  .submit-button {
-    display: none;
+    .submit-button {
+      display: none;
+    }
   }
 }
 
@@ -84,6 +98,7 @@
     select,
     textarea {
       border: 1px solid CanvasText;
+      margin: 0 auto;
 
       &:focus {
         outline: 2px solid Highlight;

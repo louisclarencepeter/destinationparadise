@@ -1,3 +1,4 @@
+// Store.scss
 @use '../../styles/variables' as vars;
 @use '../../styles/mixins' as mixins;
 
@@ -8,6 +9,11 @@
   max-width: 1400px;
   margin: 0 auto;
   transition: opacity 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 
   .store-title {
     font-family: vars.$font-tertiary;
@@ -15,6 +21,7 @@
     text-align: center;
     color: vars.$color-primary;
     margin-bottom: 1rem;
+    width: 100%;
   }
 
   p {
@@ -26,6 +33,15 @@
     margin: 1rem auto;
     max-width: 800px;
     padding: 0 vars.$grid-gap;
+  }
+
+  .booking-request {
+    padding: clamp(10px, 2vw, 20px);
+    text-align: center;
+    width: min(100%, 800px);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
   }
 
   @media screen and (min-width: 768px) {
@@ -44,13 +60,6 @@
     padding: 2rem 6rem;
     width: 60%;
   }
-
-  .booking-request {
-    padding: clamp(10px, 2vw, 20px);
-    text-align: center;
-    width: min(100%, 800px);
-    margin: 0 auto;
-  }
 }
 
 // Print styles
@@ -59,5 +68,6 @@
     padding: 0;
     max-width: none;
     background: none;
+    min-height: initial;
   }
 }
