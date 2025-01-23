@@ -1,0 +1,93 @@
+@use '../../../styles/variables' as vars;
+@use '../../../styles/mixins' as mixins;
+
+.booking-form {
+  display: grid;
+  gap: 1.5rem;
+  width: min(90%, 800px);
+  margin: 0 auto;
+  max-width: 1400px;
+
+.booking-form-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    text-align: center;
+    color: vars.$color-primary;
+    font-family: vars.$font-primary;
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  .form-group {
+    display: grid;
+    gap: 0.5rem;
+    width: 100%;
+
+    label {
+      display: block;
+      font-size: clamp(0.875rem, 1vw, 1rem);
+      color: vars.$color-primary;
+      font-family: vars.$font-primary;
+      font-weight: 500;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid vars.$color-secondary;
+      border-radius: 5px;
+      font-size: clamp(0.875rem, 1vw, 1rem);
+      color: vars.$color-primary;
+      box-sizing: border-box;
+      font-family: vars.$font-primary;
+      transition: all 0.2s ease;
+
+    }
+
+    textarea {
+      height: 100px;
+      resize: vertical;
+      min-height: 100px;
+      line-height: 1.5;
+    }
+  }
+
+  .submit-button {
+    @include mixins.button-styles;
+
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+// Print styles
+@media print {
+  .booking-form {
+    page-break-inside: avoid;
+  }
+
+  .submit-button {
+    display: none;
+  }
+}
+
+// High contrast mode support
+@media (forced-colors: active) {
+  .form-group {
+    input,
+    select,
+    textarea {
+      border: 1px solid CanvasText;
+
+      &:focus {
+        outline: 2px solid Highlight;
+      }
+    }
+  }
+}

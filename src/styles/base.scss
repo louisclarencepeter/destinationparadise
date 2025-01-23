@@ -1,61 +1,64 @@
-@use './variables' as variables;
+@use "./variables" as variables;
 
 body {
-    font-family: variables.$font-primary;
-    color: variables.$color-primary;
-    background-color: variables.$color-background;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: calc(1rem + 0.5vw);
+  font-family: variables.$font-primary;
+  color: variables.$color-primary;
+  background-color: variables.$color-background;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: calc(1rem + 0.5vw);
 }
 
 h1 {
-    font-family: variables.$font-tertiary;
-    font-size: 4rem;
-    font-weight: 500;
-    color: variables.$color-background;
+  font-family: variables.$font-tertiary;
+  font-size: 4rem;
+  font-weight: 500;
+  color: variables.$color-background;
 }
 
-h2, h3, h4, h5 {
-    font-family: variables.$font-secondary;
-    text-align: center;
-    margin-bottom: 1rem;
+h3,
+h4,
+h5 {
+  font-family: variables.$font-secondary;
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
 h2 {
-    font-size: 2rem;
-    font-weight: 300;
-    color: variables.$color-secondary;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 300;
+  color: variables.$color-secondary;
 }
 
 h3 {
-    font-size: 1.5rem;
-    color: variables.$color-background;
+  font-size: 1.5rem;
+  color: variables.$color-background;
 }
 
 h4 {
-    font-size: 1.3rem;
-    color: variables.$color-secondary;
+  font-size: 1.3rem;
+  color: variables.$color-secondary;
 }
 
 h5 {
-    font-size: 1rem;
-    color: variables.$color-secondary;
+  font-size: 1rem;
+  color: variables.$color-secondary;
 }
 
 button {
-    font-family: variables.$font-primary;
-    font-weight: 300;
-    text-align: center;
-    color: variables.$color-background;
-    background-image: variables.$gradient-button;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: variables.$transition-default;
+  font-family: variables.$font-primary;
+  font-weight: 300;
+  text-align: center;
+  color: variables.$color-background;
+  background-image: variables.$gradient-button;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: variables.$transition-default;
 }
 
 button:hover {
-    color: variables.$color-accent;
+  color: variables.$color-accent;
 }

@@ -1,279 +1,63 @@
-@use "../../styles/variables" as vars;
-@use "../../styles/mixins" as mixins;
-@use "sass:map";
+@use '../../styles/variables' as vars;
+@use '../../styles/mixins' as mixins;
 
-// Common breakpoints - using existing variables structure
-$breakpoints: (
-  tablet: 768px,
-  mobile: 480px
-);
-
-@mixin respond-to($breakpoint) {
-  @media (max-width: map.get($breakpoints, $breakpoint)) {
-    @content;
-  }
-}
-
-// Mixin for fade-in-from-below effect
-@mixin fade-in-up($distance: 20px) {
-  opacity: 0;
-  transform: translateY($distance);
-  transition: opacity 0.3s ease, transform 0.3s ease;
-
-  &.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-// Mixin for standard input styles (Modified for Responsiveness)
-@mixin input-styles {
-  width: 90%;
-  padding: 0.8rem;
-  border: 1px solid vars.$color-border;
-  border-radius: 0.5rem;
-  font-size: 1rem;
-  background-color: vars.$color-background;
-  color: vars.$black;
-  font-family: vars.$font-secondary;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
-
-  &::placeholder {
-    color: vars.$color-border;
-    opacity: 0.8;
-  }
-
-  &:focus {
-    border-color: vars.$color-primary;
-    box-shadow: 0 0 0 2px rgba(vars.$color-primary, 0.1);
-    outline: none;
-  }
-
-  &:disabled {
-    background-color: #f3f4f6;
-    cursor: not-allowed;
-  }
-
-  // Responsive adjustments for smaller screens
-  @include respond-to(tablet) {
-    padding: 0.7rem;
-    font-size: 0.9rem;
-  }
-
-  @include respond-to(mobile) {
-    padding: 0.5rem; // Reduce padding further on mobile
-    font-size: 0.8rem; // Reduce font size further on mobile
-  }
-}
-
-// Optional mixin for focus outlines
-@mixin focus-outline {
-  &:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px vars.$color-primary;
-  }
-}
-
-// ------------------------------
-// Main Store Container Styles
-// ------------------------------
 .store-container {
-  padding: vars.$grid-gap;
+  padding: 2rem;
   background-color: vars.$color-background;
-  max-width: 1400px; // Consistent max-width with Gallery
+  border-radius: 10px;
+  max-width: 1400px;
   margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  gap: vars.$grid-gap;
+  transition: opacity 0.3s ease;
 
-  // Title section
-  .title {
+  .store-title {
     font-family: vars.$font-tertiary;
-    font-size: clamp(2rem, 4vw, 3rem);
+    font-size: clamp(2.5rem, 6vw, 4rem);
     text-align: center;
     color: vars.$color-primary;
-    margin: vars.$grid-gap 0;
-    @include fade-in-up(); // fade in from below
-    @include focus-outline; // optional outline on focus
+    margin-bottom: 1rem;
   }
 
-  // Introduction section
-  .booking-intro {
-    font-size: clamp(0.9rem, 2vw, 1.2rem);
+  p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
     line-height: 1.8;
     text-align: center;
     color: vars.$color-secondary;
     font-family: vars.$font-primary;
-    margin: 0 auto;
+    margin: 1rem auto;
     max-width: 800px;
     padding: 0 vars.$grid-gap;
-
-    @include respond-to(mobile) {
-      padding: 0 calc(vars.$grid-gap / 2);
-    }
   }
 
-  // Main booking section
+  @media screen and (min-width: 768px) {
+    padding: 2rem 3rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    padding: 2rem 4rem;
+  }
+
+  @media screen and (min-width: 1200px) {
+    padding: 2rem 5rem;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 2rem 6rem;
+    width: 60%;
+  }
+
   .booking-request {
-    margin: vars.$grid-gap auto;
-    background-color: vars.$color-on-primary;
-    border-radius: 1rem;
-    box-shadow: 0 4px 20px vars.$box-shadow-color;
-    padding: calc(vars.$grid-gap * 2);
-    width: 100%;
-    @include fade-in-up();
+    padding: clamp(10px, 2vw, 20px);
+    text-align: center;
+    width: min(100%, 800px);
+    margin: 0 auto;
+  }
+}
 
-    @include respond-to(tablet) {
-      max-width: 90%;
-      padding: vars.$grid-gap;
-    }
-
-    @include respond-to(mobile) {
-      padding: calc(vars.$grid-gap / 2);
-    }
-
-    // Limit width on larger screens
-    @media (min-width: 1400px) {
-      max-width: 700px;
-    }
-
-    // Alert messages
-    .alert {
-      margin-bottom: vars.$grid-gap;
-      padding: 1rem;
-      border-radius: 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-
-      &-success {
-        background-color: #dcfce7;
-        color: #166534;
-        border: 1px solid #4ade80;
-      }
-
-      &-error {
-        background-color: #fee2e2;
-        color: #991b1b;
-        border: 1px solid #f87171;
-      }
-    }
-
-    // Form styles
-    .booking-form {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: calc(vars.$grid-gap / 2);
-
-      h3 {
-        font-family: vars.$font-primary;
-        font-size: clamp(1.4rem, 3vw, 1.8rem);
-        color: vars.$color-primary;
-        margin-bottom: vars.$grid-gap;
-        text-align: center;
-      }
-
-      .form-group {
-        margin-bottom: calc(vars.$grid-gap / 2);
-
-        label {
-          display: block;
-          margin-bottom: 0.5rem;
-          font-size: 1rem;
-          color: vars.$color-primary;
-          font-family: vars.$font-secondary;
-          font-weight: 600;
-
-          &[aria-required="true"]::after {
-            content: "*";
-            color: #ef4444;
-            margin-left: 0.25rem;
-          }
-        }
-
-        // Inputs
-        input,
-        select,
-        textarea {
-          @include input-styles;
-        }
-        
-        // Responsive adjustments for Date input on mobile
-        input[type="date"] {
-          @include respond-to(mobile) {
-            padding: 0.5rem;
-            font-size: 0.8rem;
-          }
-        }
-
-        // Responsive adjustments for Select elements
-        select {
-          @include respond-to(mobile) {
-            padding: 0.5rem; 
-            font-size: 0.8rem; 
-            appearance: none; 
-            -webkit-appearance: none;
-            -moz-appearance: none; 
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000000'%3E%3Cpath d='M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z'/%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 0.7rem center;
-            background-size: 0.65rem auto;
-          }
-        }
-
-        textarea {
-          min-height: 80px;
-          resize: vertical;
-            @include respond-to(mobile) {
-              min-height: 60px;
-              padding: 0.5rem;
-              font-size: 0.8rem;
-            }
-        }
-
-        // Error styling
-        &.has-error {
-          input,
-          select,
-          textarea {
-            border-color: #ef4444;
-            background-color: #fef2f2;
-          }
-
-          .error-message {
-            color: #ef4444;
-            font-size: 0.875rem;
-            margin-top: 0.25rem;
-          }
-        }
-      }
-
-      .submit-button {
-        display: block;
-        width: 50%;
-        max-width: 300px;
-        margin: calc(vars.$grid-gap / 2) auto 0;
-        text-align: center;
-
-        @include mixins.button-styles;
-
-        &:disabled {
-          opacity: 0.7;
-          cursor: not-allowed;
-        }
-
-        @include respond-to(tablet) {
-          width: 60%;
-          font-size: calc(0.5rem + 1vw);
-        }
-
-        @include respond-to(mobile) {
-          width: 75%;
-          font-size: calc(0.4rem + 1.5vw);
-        }
-      }
-    }
+// Print styles
+@media print {
+  .store-container {
+    padding: 0;
+    max-width: none;
+    background: none;
   }
 }

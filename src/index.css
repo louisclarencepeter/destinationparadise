@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
   font-family: var(--font-primary);
   font-size: calc(1rem + 0.5vw);
   color: #153464;
