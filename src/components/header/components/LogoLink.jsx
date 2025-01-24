@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import scrollToTop from "../../../utils/scrollToTop";
 import logo from "../../../assets/logo/dlp.png";
+import "./LogoLink.scss";
 
 const LogoLink = ({ className, onClick }) => (
   <Link

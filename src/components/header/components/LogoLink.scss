@@ -1,0 +1,23 @@
+@use "../../../styles/variables" as vars;
+
+.menu__logo {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 4rem;
+    height: 4rem;
+    margin-right: 0;
+  }
+}

@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import MenuList from "./MenuList";
 import LogoLink from "./LogoLink";
+import "./HamburgerMenuBox.scss";
 
 const HamburgerMenuBox = ({ isOpen, closeMenu }) => (
   <div id="menu__box" className={`menu__box ${isOpen ? "open" : ""}`}>

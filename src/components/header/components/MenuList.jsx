@@ -1,6 +1,7 @@
 import { Link, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import scrollToTop from "../../../utils/scrollToTop";
+import "./MenuList.scss";
 
 const MenuList = ({ className, onClick }) => {
   const location = useLocation();

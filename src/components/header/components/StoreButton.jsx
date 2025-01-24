@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import "./StoreButton.scss";
 
 const StoreButton = ({ closeMenu }) => (
   <div className="store">

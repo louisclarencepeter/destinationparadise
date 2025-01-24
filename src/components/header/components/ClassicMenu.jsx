@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import MenuList from "./MenuList";
+import "./ClassicMenu.scss";
 
 const ClassicMenu = ({ closeMenu }) => (
   <div className="classic-menu">

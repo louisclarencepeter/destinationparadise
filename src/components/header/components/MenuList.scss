@@ -1,0 +1,38 @@
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins" as mixins;
+
+.menu__item {
+  margin: 1.5rem;
+  font-family: vars.$font-secondary;
+  font-size: calc(0.8rem + 0.5vw);
+  font-weight: 600;
+  color: vars.$color-primary;
+  text-decoration: none;
+  position: relative;
+  transition: color vars.$transition-duration;
+  @include mixins.responsive-font-size;
+
+  &:focus {
+    outline-offset: 4px;
+  }
+
+  &::after {
+    content: "";
+    width: 0;
+    height: 2px;
+    background: vars.$hover-color;
+    transition: width vars.$transition-duration;
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+  }
+
+  &:hover,
+  &.active {
+    color: vars.$hover-color;
+
+    &::after {
+      width: 100%;
+    }
+  }
+}
