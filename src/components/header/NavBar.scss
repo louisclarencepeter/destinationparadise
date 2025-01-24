@@ -1,14 +1,17 @@
 @use "../../styles/variables" as vars;
 @use "../../styles/mixins" as mixins;
 
+.navbar-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 .nav {
   @include mixins.flex-center(space-between);
   padding: 0 1rem;
   height: 4rem;
   background-color: transparent;
-  position: sticky;
-  top: 0;
-  z-index: 100;
   transition: all vars.$transition-ease;
 
   &.scrolled {
@@ -21,7 +24,6 @@
   }
 }
 
-// Responsive overrides
 @media screen and (min-width: 1024px) {
   .nav {
     padding: 0 2rem;

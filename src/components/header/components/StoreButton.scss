@@ -3,7 +3,6 @@
 
 .store button {
   @include mixins.button-styles;
-  transition: vars.$transition-default;
 
   &:hover {
     color: vars.$hover-color;
