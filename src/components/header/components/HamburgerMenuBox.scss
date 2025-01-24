@@ -1,0 +1,74 @@
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins" as mixins;
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.hamburger-menu {
+  .menu__box {
+    position: fixed;
+    top: 0;
+    @include mixins.flex-center(space-between);
+    flex-direction: column;
+    gap: 1rem;
+    right: -100%;
+    width: 100%;
+    height: 90%;
+    margin: 0;
+    padding: 4rem 0;
+    list-style: none;
+    background-color: vars.$menu-background;
+    box-shadow: 0.125rem 0.125rem 0.375rem vars.$box-shadow-color;
+    transition: right 0.4s;
+
+    &.open {
+      right: 0;
+    }
+
+    .menu__header {
+      @include mixins.flex-center;
+      flex-direction: column;
+      text-align: center;
+
+      .menu__logo {
+        width: 5rem;
+        height: 5rem;
+        margin: 0 auto 1rem;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+
+        img {
+          object-fit: contain;
+        }
+
+        &.open {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .menu__contact {
+        font-size: 0.9rem;
+
+        p {
+          margin: 0.5rem 0;
+        }
+      }
+    }
+  }
+
+  li {
+    list-style: none;
+    padding: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .hamburger-menu {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}

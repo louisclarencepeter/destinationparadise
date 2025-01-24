@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import "./HamburgerToggle.scss";
 
 const HamburgerToggle = ({ isOpen, toggleMenu }) => (
   <div
