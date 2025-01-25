@@ -49,6 +49,11 @@
       box-sizing: border-box;
       font-family: vars.$font-primary;
       transition: all 0.2s ease;
+
+      &:invalid:not(:focus):not(:placeholder-shown) {
+        border-color: vars.$color-error;
+        background-color: vars.$color-error-bg;
+      }
     }
 
     textarea {
@@ -72,11 +77,28 @@
     }
   }
 
-  .error-message,
+  .error-message {
+    color: vars.$color-error;
+    font-size: 0.875rem;
+    margin-top: -0.5rem; // Pull closer to input
+    margin-bottom: 0.5rem;
+    @include mixins.fade-in-up();
+    text-align: center;
+    width: 100%;
+  }
+
   .success-message {
     text-align: center;
     width: 100%;
   }
+}
+
+// Style Formspree validation errors
+[role="alert"] {
+  color: vars.$color-error;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
 }
 
 // Print styles
