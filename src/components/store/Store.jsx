@@ -24,31 +24,14 @@ const Store = () => {
   ];
 
   const locations = [
-    "Stone Town",
-    "Nungwi",
-    "Kendwa",
-    "Matemwe",
-    "Pongwe",
-    "Kiwengwa",
-    "Uroa",
-    "Chwaka",
-    "Michamvi",
-    "Bwejuu",
-    "Pingwe",
-    "Kizimkazi",
-    "Fumba",
-    "Paje",
-    "Jambiani",
-    "Makunduchi",
+    "Stone Town", "Nungwi", "Kendwa", "Matemwe", "Pongwe",
+    "Kiwengwa", "Uroa", "Chwaka", "Michamvi", "Bwejuu",
+    "Pingwe", "Kizimkazi", "Fumba", "Paje", "Jambiani", "Makunduchi",
   ];
 
   const images = [
-    "/gallery/1.jpg",
-    "/gallery/2.jpg",
-    "/gallery/3.jpg",
-    "/gallery/4.jpg",
-    "/gallery/5.jpg",
-    "/gallery/6.jpg",
+    "/gallery/1.jpg", "/gallery/2.jpg", "/gallery/3.jpg",
+    "/gallery/4.jpg", "/gallery/5.jpg", "/gallery/6.jpg",
   ];
 
   const location = useLocation();
@@ -70,11 +53,14 @@ const Store = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             entry.target.classList.add("active");
-            observer.unobserve(entry.target); 
+            observer.unobserve(entry.target);
           }
         });
       },
-      { threshold: 0.1 }
+      { 
+        threshold: 0.1,
+        rootMargin: "50px"
+      }
     );
 
     revealElements.forEach((element) => observer.observe(element));
@@ -95,10 +81,7 @@ const Store = () => {
       <ImageSlideshow images={images} />
 
       <div className="booking-request">
-        <BookingForm
-          tours={tours}
-          locations={locations}
-        />
+        <BookingForm tours={tours} locations={locations} />
       </div>
     </div>
   );

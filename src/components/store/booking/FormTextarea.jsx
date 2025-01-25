@@ -1,6 +1,5 @@
 // FormTextarea.jsx
 import PropTypes from "prop-types";
-import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver";
 
 const FormTextarea = ({ 
   label, 
@@ -12,18 +11,8 @@ const FormTextarea = ({
   autoComplete = 'off',
   placeholder = '' 
 }) => {
-  const [ref, entries] = useIntersectionObserver({
-    threshold: 0.1,
-    rootMargin: '50px'
-  });
-
-  const isVisible = entries?.some(entry => entry.isIntersecting);
-
   return (
-    <div 
-      ref={ref} 
-      className={`form-group ${isVisible ? 'visible' : ''}`}
-    >
+    <div className="form-group">
       <label htmlFor={id}>{label}</label>
       <textarea
         id={id}
@@ -51,5 +40,4 @@ FormTextarea.propTypes = {
   placeholder: PropTypes.string
 };
 
-// Only export FormTextarea
 export default FormTextarea;

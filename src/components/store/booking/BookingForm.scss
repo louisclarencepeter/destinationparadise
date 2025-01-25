@@ -68,7 +68,7 @@
     }
 
     &:active {
-      transform: translateY(0);
+      animation: fadeInUp 0.5s ease-in-out;
     }
   }
 
