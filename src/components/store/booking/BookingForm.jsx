@@ -6,7 +6,6 @@ import FormSelect from './FormSelect';
 import FormTextarea from './FormTextarea';
 import './BookingForm.scss';
 
-
 const BookingForm = ({ tours, locations }) => {
   const [state, handleSubmit] = useForm("mlekgonz");
   const [formData, setFormData] = useState({
@@ -25,16 +24,18 @@ const BookingForm = ({ tours, locations }) => {
   };
 
   if (state.succeeded) {
-      return (
-        <div className="booking-form">
-          <p className="success-message">Thank you for your booking request! We will get back to you shortly.</p>
-        </div>
-      );
+    return (
+      <div className="booking-form">
+        <p className="success-message" role="status" aria-live="polite">
+          Thank you for your booking request! We will get back to you shortly.
+        </p>
+      </div>
+    );
   }
 
   return (
     <form onSubmit={handleSubmit} className="booking-form" aria-labelledby="booking-form-title">
-      <h3 className="booking-form-title">Booking Request Form</h3>
+      <h3 id="booking-form-title" className="booking-form-title">Booking Request Form</h3>
       <input type="hidden" name="form-name" value="booking-request" />
       <input type="hidden" name="bot-field" />
       <FormInput 
@@ -46,7 +47,7 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autoComplete="name"
       />
-      <ValidationError prefix="Name" field="name" errors={state.errors} />
+      <ValidationError prefix="Name" field="name" errors={state.errors} className="error-message" aria-live="polite" />
       <FormInput 
         label="Email:" 
         id="email" 
@@ -56,7 +57,7 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autoComplete="email"
       />
-      <ValidationError prefix="Email" field="email" errors={state.errors} />
+      <ValidationError prefix="Email" field="email" errors={state.errors} className="error-message" aria-live="polite" />
       <FormInput 
         label="Phone:" 
         id="phone" 
@@ -66,7 +67,7 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autoComplete="tel"
       />
-      <ValidationError prefix="Phone" field="phone" errors={state.errors} />
+      <ValidationError prefix="Phone" field="phone" errors={state.errors} className="error-message" aria-live="polite" />
       <FormInput 
         label="Preferred Date:" 
         id="date" 
@@ -77,7 +78,7 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autoComplete="bday"
       />
-      <ValidationError prefix="Date" field="date" errors={state.errors} />
+      <ValidationError prefix="Date" field="date" errors={state.errors} className="error-message" aria-live="polite" />
       <FormSelect 
         label="Select Tour:" 
         id="tour" 
@@ -88,7 +89,7 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autoComplete="off"
       />
-      <ValidationError prefix="Tour" field="tour" errors={state.errors} />
+      <ValidationError prefix="Tour" field="tour" errors={state.errors} className="error-message" aria-live="polite" />
       <FormSelect 
         label="Pick Up Location (Part of the Island):" 
         id="location" 
@@ -99,7 +100,7 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autoComplete="off"
       />
-      <ValidationError prefix="Location" field="location" errors={state.errors} />
+      <ValidationError prefix="Location" field="location" errors={state.errors} className="error-message" aria-live="polite" />
       <FormTextarea 
         label="Message:" 
         id="message" 
@@ -109,11 +110,13 @@ const BookingForm = ({ tours, locations }) => {
         required 
         autoComplete="off"
       />
-      <ValidationError prefix="Message" field="message" errors={state.errors} />
+      <ValidationError prefix="Message" field="message" errors={state.errors} className="error-message" aria-live="polite" />
       <button type="submit" disabled={state.submitting} className="submit-button">
         Submit Booking Request
       </button>
-      {state.errors && state.errors.length > 0 && <p className="error-message">Please fix the errors above.</p>}
+      {state.errors && state.errors.length > 0 && (
+        <p className="error-message" role="alert">Please fix the errors above.</p>
+      )}
     </form>
   );
 };
