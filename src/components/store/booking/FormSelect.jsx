@@ -1,6 +1,5 @@
 // FormSelect.jsx
 import PropTypes from "prop-types";
-import { useIntersectionObserver } from "../../../hooks/useIntersectionObserver";
 
 const FormSelect = ({
   label,
@@ -12,18 +11,8 @@ const FormSelect = ({
   required = false,
   autoComplete = "off",
 }) => {
-  const [ref, entries] = useIntersectionObserver({
-    threshold: 0.1,
-    rootMargin: "50px",
-  });
-
-  const isVisible = entries?.some((entry) => entry.isIntersecting);
-
   return (
-    <div
-      ref={ref}
-      className={`form-group ${isVisible ? "visible" : ""}`}
-    >
+    <div className="form-group">
       <label htmlFor={id}>{label}</label>
       <select
         id={id}
