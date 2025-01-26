@@ -1,12 +1,14 @@
 @use "sass:color";
 @use "../styles/variables" as vars;
 
+/* Flex Center Mixin */
 @mixin flex-center($justify: center, $align: center) {
   display: flex;
   justify-content: $justify;
   align-items: $align;
 }
 
+/* Fade-in Animation Mixin */
 @mixin fade-in-up() {
   animation: fadeInUp 0.5s ease-in-out;
 }
@@ -22,22 +24,24 @@
   }
 }
 
+/* Responsive Media Query Mixin */
 @mixin respond-to($breakpoint) {
-  @if $breakpoint == mobile {
-    @media (max-width: 767px) {
+  @if $breakpoint == sm {
+    @media (max-width: vars.$breakpoint-sm) {
       @content;
     }
-  } @else if $breakpoint == tablet {
-    @media (max-width: 1023px) {
+  } @else if $breakpoint == md {
+    @media (max-width: vars.$breakpoint-md) {
       @content;
     }
-  } @else if $breakpoint == desktop {
-    @media (min-width: 1024px) {
+  } @else if $breakpoint == lg {
+    @media (min-width: vars.$breakpoint-lg) {
       @content;
     }
   }
 }
 
+/* Screen Reader Only Mixin */
 @mixin sr-only {
   position: absolute;
   width: 1px;
@@ -50,33 +54,27 @@
   border: 0;
 }
 
+/* Responsive Font Size Mixin */
 @mixin responsive-font-size {
-  font-size: calc(0.8rem + 0.5vw); // Moved outside nested rules
+  font-size: calc(0.8rem + 0.5vw);
 
-  @media screen and (min-width: 1024px) {
+  @include respond-to(lg) {
     font-size: inherit;
   }
 
-  @media screen and (min-height: 1079px),
-    screen and (min-width: 1022px),
-    screen and (min-width: 1279px),
-    screen and (min-width: 1439px),
-    screen and (min-width: 1727px) {
+  @include respond-to(md) {
     font-size: 0.8rem;
 
-    @media screen and (min-width: 1439px) {
+    @include respond-to(lg) {
       font-size: 1rem;
-    }
-
-    @media screen and (min-width: 1727px) {
-      font-size: 1.2rem;
     }
   }
 }
 
+/* Responsive Layout Mixin */
 @mixin responsive-layout {
   @media screen and (min-height: 1079px),
-    screen and (min-width: 1022px),
+    screen and (min-width: vars.$breakpoint-md),
     screen and (min-width: 1279px),
     screen and (min-width: 1439px),
     screen and (min-width: 1727px) {
@@ -98,13 +96,13 @@
       }
 
       .menu__item {
-        font-size: 0.8rem; // Moved outside nested rules
+        font-size: 0.8rem;
 
-        @media screen and (min-width: 1439px) {
+        @include respond-to(lg) {
           font-size: 1rem;
         }
 
-        @media screen and (min-width: 1727px) {
+        @include respond-to(1727px) {
           font-size: 1.2rem;
         }
       }
@@ -112,11 +110,11 @@
   }
 }
 
-// Regular button styles
+/* Button Styles Mixin */
 @mixin button-styles {
-  border-radius: 0.3rem;
+  border-radius: vars.$border-radius-default;
   padding: 0.5rem 1rem;
-  font-size: calc(0.6rem + 0.5vw); // Moved outside nested rules
+  font-size: calc(0.6rem + 0.5vw);
   background-image: vars.$gradient-button;
   color: vars.$color-background;
   border: none;
@@ -124,58 +122,22 @@
   cursor: pointer;
   transition: vars.$transition-default;
 
-  @media (max-width: 768px) {
-    padding: 0.8rem 1.6rem;
-    font-size: calc(0.5rem + 1vw);
-  }
-
-  @media (max-width: 480px) {
+  @include respond-to(sm) {
     padding: 0.6rem 1.2rem;
     font-size: calc(0.4rem + 1.5vw);
   }
 
   &:hover {
     color: vars.$hover-color;
-    background-image: linear-gradient(
-      120deg,
-      color.adjust(vars.$color-primary, $lightness: -10%) 0%,
-      color.adjust(vars.$color-accent, $lightness: -10%) 100%
-    );
+    background-image: vars.$gradient-hover;
   }
 }
 
-// Compact button styles
+/* Compact Button Styles Mixin */
 @mixin button-styles-compact {
-  border-radius: 0.3rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem; // Moved outside nested rules
-  background-image: vars.$gradient-button;
-  color: vars.$color-background;
-  border: none;
-  font-family: vars.$font-primary;
-  cursor: pointer;
-  transition: vars.$transition-default;
+  @include button-styles;
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   text-decoration: none;
-
-  @media (max-width: 768px) {
-    padding: 0.8rem 1.6rem;
-    font-size: calc(0.5rem + 1vw);
-  }
-
-  @media (max-width: 480px) {
-    padding: 0.6rem 1.2rem;
-    font-size: calc(0.4rem + 1.5vw);
-  }
-
-  &:hover {
-    color: vars.$hover-color;
-    background-image: linear-gradient(
-      120deg,
-      color.adjust(vars.$color-primary, $lightness: -10%) 0%,
-      color.adjust(vars.$color-accent, $lightness: -10%) 100%
-    );
-  }
 }
