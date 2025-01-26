@@ -112,7 +112,7 @@ const BookingForm = ({ tours, locations }) => {
       />
       <ValidationError prefix="Message" field="message" errors={state.errors} className="error-message" aria-live="polite" />
       <button type="submit" disabled={state.submitting} className="submit-button">
-        Submit Booking Request
+        {state.submitting ? "Submitting..." : "Submit Booking Request"}
       </button>
       {state.errors && state.errors.length > 0 && (
         <p className="error-message" role="alert">Please fix the errors above.</p>
