@@ -1,28 +1,14 @@
 // FormSelect.jsx
 import PropTypes from "prop-types";
 
-const FormSelect = ({
-  label,
-  id,
-  name,
-  value,
-  options,
-  onChange,
-  required = false,
-  autoComplete = "off",
-}) => {
+const FormSelect = ({ label, id, options, ...props }) => {
   return (
     <div className="form-group">
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} className="form-group__label">{label}</label>
       <select
         id={id}
-        name={name}
-        value={value}
-        onChange={onChange}
-        required={required}
-        autoComplete={autoComplete || "off"}
-        aria-required={required === true ? "true" : "false"}
-        className="form-control"
+        {...props}
+        className="form-group__input reveal"
       >
         <option value="" disabled>
           Select an option
@@ -45,7 +31,7 @@ FormSelect.propTypes = {
   options: PropTypes.arrayOf(PropTypes.string).isRequired,
   onChange: PropTypes.func.isRequired,
   required: PropTypes.bool,
-  autoComplete: PropTypes.string,
+  autoComplete: PropTypes.string
 };
 
 export default FormSelect;
