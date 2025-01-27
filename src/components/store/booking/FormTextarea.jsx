@@ -1,29 +1,14 @@
 // FormTextarea.jsx
 import PropTypes from "prop-types";
 
-const FormTextarea = ({ 
-  label, 
-  id, 
-  name, 
-  value, 
-  onChange, 
-  required = false, 
-  autoComplete = 'off',
-  placeholder = '' 
-}) => {
+const FormTextarea = ({ label, id, ...props }) => {
   return (
     <div className="form-group">
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} className="form-group__label">{label}</label>
       <textarea
         id={id}
-        name={name}
-        value={value}
-        onChange={onChange}
-        required={required}
-        autoComplete={autoComplete}
-        placeholder={placeholder}
-        aria-required={required === true ? "true" : "false"}
-        className="form-control"
+        {...props}
+        className="form-group__input"
       />
     </div>
   );

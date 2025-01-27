@@ -6,11 +6,8 @@
   gap: 1.5rem;
   width: min(90%, 800px);
   margin: 0 auto;
-  max-width: 1400px;
-  justify-items: center;
-  align-items: center;
 
-  .booking-form-title {
+  &__title {
     font-size: clamp(1.5rem, 3vw, 2rem);
     text-align: center;
     color: vars.$color-primary;
@@ -20,7 +17,7 @@
     width: 100%;
   }
 
-  .form-group {
+  &__group {
     display: grid;
     gap: 0.5rem;
     width: 100%;
@@ -69,7 +66,7 @@
     }
   }
 
-  .submit-button {
+  &__submit {
     @include mixins.button-styles;
 
     &:hover {
@@ -99,23 +96,25 @@
     }
   }
 
-  .error-message {
+  &__error {
     color: vars.$color-error;
     font-size: 0.875rem;
-    margin-top: -0.5rem; // Pull closer to input
+    margin-top: -0.5rem;
     margin-bottom: 0.5rem;
     @include mixins.fade-in-up();
     text-align: center;
   }
 
-  .success-message {
+  &__success-message {
     text-align: center;
   }
 }
 
 // Spinner animation
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 // Style Formspree validation errors
@@ -132,7 +131,7 @@
     page-break-inside: avoid;
     justify-items: start;
 
-    .submit-button {
+    &__submit {
       display: none;
     }
   }
@@ -140,7 +139,7 @@
 
 // High contrast mode support
 @media (forced-colors: active) {
-  .form-group {
+  .booking-form__group {
     input,
     select,
     textarea {

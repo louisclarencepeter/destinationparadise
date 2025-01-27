@@ -1,31 +1,14 @@
 // FormInput.jsx
 import PropTypes from "prop-types";
 
-const FormInput = ({ 
-  label, 
-  id, 
-  name, 
-  type = "text", 
-  value, 
-  onChange, 
-  required = false, 
-  autoComplete = "off",
-  placeholder = "" 
-}) => {
+const FormInput = ({ label, id, ...props }) => {
   return (
     <div className="form-group">
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} className="form-group__label">{label}</label>
       <input
-        type={type}
         id={id}
-        name={name}
-        value={value}
-        onChange={onChange}
-        required={required}
-        autoComplete={autoComplete}
-        placeholder={placeholder}
-        aria-required={required.toString()}
-        className="form-control reveal"
+        {...props}
+        className="form-group__input"
       />
     </div>
   );
