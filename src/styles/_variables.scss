@@ -1,9 +1,8 @@
-// _variables.scss
 @use "sass:color";
 
 /* Fonts */
-$font-primary: 'Playfair Display', serif;
-$font-secondary: 'Montserrat', sans-serif;
+$font-primary: 'Playfair Display', Georgia, serif;
+$font-secondary: 'Montserrat', Arial, sans-serif;
 $font-tertiary: 'Kaushan Script', cursive;
 
 /* Colors */
@@ -16,22 +15,35 @@ $black: #1A1A1A;
 
 /* Gradients */
 $gradient-button: linear-gradient(120deg, $color-primary 0%, $color-accent 100%);
+$gradient-hover: linear-gradient(
+  120deg,
+  color.adjust($color-primary, $lightness: -10%) 0%,
+  color.adjust($color-accent, $lightness: -10%) 100%
+);
 
 /* Transitions */
 $transition-default: all 0.3s ease-in-out;
 
-/* Additional variables used in NavBar */
+/* Additional variables */
 $hover-color: #FF926B;
 $menu-background: $color-background;
 $box-shadow-color: rgba(26, 77, 110, 0.2);
 $transition-duration: 0.3s;
 $transition-ease: 0.5s ease;
+$border-radius-default: 0.5rem;
+$box-shadow-default: 0 4px 6px -6px rgba(0, 0, 0, 0.2);
 
-/* Additional variables for Chatbot */
+/* Feedback colors */
+$color-error: #991b1b;
+$color-error-bg: #fee2e2;
+$color-success: #166534;
+$color-success-bg: #dcfce7;
+
+/* Chatbot-specific colors */
 $color-user-message: color.adjust($color-accent, $lightness: 10%);
 $color-assistant-message: #F4F7FA;
 
-/* Adjusted color backgrounds using color.adjust */
+/* Adjusted color backgrounds */
 $color-background-light: color.adjust($color-background, $lightness: 8%);
 $color-background-dark: color.adjust($color-background, $lightness: -8%);
 
@@ -40,19 +52,11 @@ $color-on-primary: #FFFFFF;
 $color-on-user-message: #FFFFFF;
 $color-on-assistant-message: #1A1A1A;
 
-// Breakpoints
-$breakpoint-mobile: 767px;
-$breakpoint-tablet: 1023px;
-$breakpoint-desktop: 1024px;
+/* Breakpoints */
+$breakpoint-sm: 767px;
+$breakpoint-md: 1023px;
+$breakpoint-lg: 1024px;
 
-// New Variable
-$grid-gap: 2rem; /* Added grid-gap */
 
-// ADD THIS:
-$border-radius-default: 0.5rem; // Add border-radius-default (adjust value as needed)
-$box-shadow-default: 0 4px 6px -6px rgba(0, 0, 0, 0.2); // Add a default box-shadow (adjust as needed)
-
-$color-error: #991b1b;
-$color-error-bg: #fee2e2;
-$color-success: #166534;
-$color-success-bg: #dcfce7;
+/* Layout */
+$grid-gap: 2rem;

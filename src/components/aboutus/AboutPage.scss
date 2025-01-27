@@ -1,185 +1,184 @@
-// AboutPage.scss
 @use '../../styles/variables' as vars;
+@use '../../styles/mixins' as mixins; 
 @use "sass:color";
 
-// Animation keyframes
 @keyframes fadeSlideUp {
-  0% {
-    opacity: 0;
-    transform: translateY(30px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+ from {
+   opacity: 0;
+   transform: translateY(30px);
+ }
+ to {
+   opacity: 1;
+   transform: translateY(0);
+ }
 }
 
 @keyframes logoReveal {
-  0% {
-    opacity: 0;
-    transform: translate(-50%, -50%) scale(0.8);
-    filter: blur(10px);
-  }
-  50% {
-    opacity: 0.5;
-    transform: translate(-50%, -50%) scale(0.9);
-    filter: blur(5px);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    filter: blur(0);
-  }
+ 0% {
+   opacity: 0;
+   transform: translate(-50%, -50%) scale(0.8);
+   filter: blur(10px);
+ }
+ 50% {
+   opacity: 0.5;
+   transform: translate(-50%, -50%) scale(0.9);
+   filter: blur(5px);
+ }
+ 100% {
+   opacity: 1;
+   transform: translate(-50%, -50%) scale(1);
+   filter: blur(0);
+ }
 }
 
 .about-page {
-  padding: clamp(1.5rem, 5vw, 3rem);
-  background-color: vars.$color-background;
-  color: vars.$color-primary;
-  max-width: 1400px;
-  margin: 0 auto;
-  margin-bottom: 2rem;
+ padding: clamp(1.5rem, 5vw, 3rem);
+ background-color: vars.$color-background;
+ color: vars.$color-primary;
+ max-width: min(1400px, 100%);
+ margin: 0 auto 2rem;
+ overflow-x: hidden;
 
-  .about-header {
-    margin-bottom: vars.$grid-gap;
+ .about-header {
+   margin-bottom: vars.$grid-gap;
+   width: 100%;
 
-    .title {
-      font-family: vars.$font-tertiary;
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      text-align: center;
-      color: vars.$color-primary;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
-      text-shadow: 2px 2px 4px vars.$box-shadow-color;
-      
-      &.visible {
-        opacity: 1;
-        transform: translateY(0);
-      }
+   .title {
+     font-family: vars.$font-tertiary;
+     font-size: clamp(2.5rem, 6vw, 4rem);
+     text-align: center;
+     color: vars.$color-primary;
+     opacity: 0;
+     transform: translateY(20px);
+     transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
+     text-shadow: 2px 2px 4px vars.$box-shadow-color;
 
-      @media (max-width: vars.$breakpoint-mobile) {
-        font-size: 2.5rem;
-      }
-    }
-  }
+     &.visible {
+       opacity: 1;
+       transform: translateY(0);
+     }
 
-  .logo-container {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto vars.$grid-gap;
-    padding: 1rem;
-    
-    .logo-wrapper {
-      position: relative;
-      width: 100%;
-      min-height: 200px;
-      
-      @media (min-width: vars.$breakpoint-tablet) {
-        aspect-ratio: 16 / 9;
-      }
-    }
+     @include mixins.respond-to(sm) {
+       font-size: 2.5rem;
+     }
+   }
+ }
 
-    .logo {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 100%;
-      max-width: 300px;
-      height: auto;
-      opacity: 0;
-      mix-blend-mode: multiply;
-      object-fit: contain;
-      transform: translate(-50%, -50%) scale(0.8);
-      transition: filter vars.$transition-duration ease;
-      
-      &.loaded {
-        animation: logoReveal 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-      }
-      
-      @media (min-width: vars.$breakpoint-mobile) {
-        max-width: 400px;
-      }
-      
-      @media (min-width: vars.$breakpoint-tablet) {
-        max-width: 500px;
-      }
-      
-      @media (min-width: vars.$breakpoint-desktop) {
-        max-width: 600px;
-      }
-    }
-  }
+ .logo-container {
+   position: relative;
+   width: 100%;
+   max-width: min(1200px, 100%);
+   margin: 0 auto vars.$grid-gap;
+   padding: 1rem;
+   
+   .logo-wrapper {
+     position: relative;
+     width: 100%;
+     min-height: 200px;
 
-  .about-content {
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    
-    .about-text {
-      .welcome-title {
-        font-family: vars.$font-tertiary;
-        font-size: clamp(2rem, 4vw, 3rem);
-        margin-bottom: calc(vars.$grid-gap / 2);
-        color: vars.$color-primary;
-        text-align: center;
-        font-weight: normal;
-        text-shadow: 1px 1px 2px vars.$box-shadow-color;
-      }
+     @media (min-width: vars.$breakpoint-md) {
+       aspect-ratio: 16 / 9;
+     }
+   }
 
-      .animated-text {
-        font-family: vars.$font-primary;
-        font-size: clamp(1.1rem, 2vw, 1.3rem);
-        line-height: 1.8;
-        margin-bottom: 2rem;
-        color: vars.$color-secondary;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
-        
-        strong {
-          color: vars.$color-primary;
-          font-weight: 600;
-        }
-        
-        &.visible {
-          opacity: 1;
-          transform: translateY(0);
-        }
-        
-        &.motto {
-          font-family: vars.$font-tertiary;
-          color: vars.$color-accent;
-          text-align: center;
-          font-size: clamp(1.5rem, 3vw, 2.2rem);
-          margin: calc(vars.$grid-gap * 1.5) 0;
-          
-          em {
-            color: color.adjust(vars.$color-accent, $lightness: -10%);
-            font-style: normal;
-          }
-        }
-      }
-    }
-  }
+   .logo {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     width: 100%;
+     max-width: 300px;
+     height: auto;
+     opacity: 0;
+     mix-blend-mode: multiply;
+     object-fit: contain;
+     transform: translate(-50%, -50%) scale(0.8);
+     transition: filter vars.$transition-duration ease;
+     
+     &.loaded {
+       animation: logoReveal 1.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+     }
+     
+     @media (min-width: vars.$breakpoint-sm) {
+       max-width: 400px;
+     }
+     
+     @media (min-width: vars.$breakpoint-md) {
+       max-width: 500px;
+     }
+     
+     @media (min-width: vars.$breakpoint-lg) {
+       max-width: 600px;
+     }
+   }
+ }
+
+ .about-content {
+   max-width: min(1000px, 100%);
+   margin: 0 auto;
+   padding: 0 1rem;
+   overflow-x: hidden;
+   
+   .about-text {
+     width: 100%;
+     word-wrap: break-word;
+
+     .welcome-title {
+       font-family: vars.$font-tertiary;
+       @include mixins.responsive-font-size;
+     }
+
+     .animated-text {
+       font-family: vars.$font-primary;
+       font-size: clamp(1.1rem, 2vw, 1.3rem);
+       line-height: 1.8;
+       margin-bottom: 2rem;
+       color: vars.$color-secondary;
+       opacity: 0;
+       transform: translateY(30px);
+       transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
+       
+       strong {
+         color: vars.$color-primary;
+         font-weight: 600;
+       }
+       
+       &.visible {
+         opacity: 1;
+         transform: translateY(0);
+       }
+       
+       &.motto {
+         @include mixins.flex-center;
+         font-family: vars.$font-tertiary;
+         color: vars.$color-accent;
+         text-align: center;
+         font-size: clamp(1.5rem, 3vw, 2.2rem);
+         margin: calc(vars.$grid-gap * 1.5) 0;
+
+         em {
+           color: color.adjust(vars.$color-accent, $lightness: -10%);
+           font-style: normal;
+         }
+       }
+     }
+   }
+ }
 }
 
-// Accessibility and reduced motion preferences
 @media (prefers-reduced-motion: reduce) {
-  .about-page {
-    .logo-container .logo {
-      animation: none;
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-    }
-    
-    .title,
-    .animated-text {
-      transition: none;
-      animation: none;
-      opacity: 1;
-      transform: none;
-    }
-  }
+ .about-page {
+   .logo-container .logo {
+     animation: none;
+     opacity: 1;
+     transform: translate(-50%, -50%) scale(1);
+   }
+   
+   .title,
+   .animated-text {
+     transition: none;
+     animation: none;
+     opacity: 1;
+     transform: none;
+   }
+ }
 }
