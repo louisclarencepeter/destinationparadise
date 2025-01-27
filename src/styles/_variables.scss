@@ -8,10 +8,10 @@ $font-tertiary: 'Kaushan Script', cursive;
 /* Colors */
 $color-primary: #1A4D6E;
 $color-secondary: #215A7C;
-$color-background: #FAFBFD; 
+$color-background: #FAFBFD;
 $color-accent: #FF6F61;
 $color-border: #E1E6EB;
-$black: #1A1A1A; 
+$black: #1A1A1A;
 
 /* Gradients */
 $gradient-button: linear-gradient(120deg, $color-primary 0%, $color-accent 100%);
@@ -24,7 +24,7 @@ $gradient-hover: linear-gradient(
 /* Transitions */
 $transition-default: all 0.3s ease-in-out;
 
-/* Additional variables */
+/* Additional Variables */
 $hover-color: #FF926B;
 $menu-background: $color-background;
 $box-shadow-color: rgba(26, 77, 110, 0.2);
@@ -33,21 +33,21 @@ $transition-ease: 0.5s ease;
 $border-radius-default: 0.5rem;
 $box-shadow-default: 0 4px 6px -6px rgba(0, 0, 0, 0.2);
 
-/* Feedback colors */
+/* Feedback Colors */
 $color-error: #991b1b;
 $color-error-bg: #fee2e2;
 $color-success: #166534;
 $color-success-bg: #dcfce7;
 
-/* Chatbot-specific colors */
+/* Chatbot-Specific Colors */
 $color-user-message: color.adjust($color-accent, $lightness: 10%);
 $color-assistant-message: #F4F7FA;
 
-/* Adjusted color backgrounds */
+/* Adjusted Background Colors */
 $color-background-light: color.adjust($color-background, $lightness: 8%);
 $color-background-dark: color.adjust($color-background, $lightness: -8%);
 
-/* Text colors for various backgrounds */
+/* Text Colors for Various Backgrounds */
 $color-on-primary: #FFFFFF;
 $color-on-user-message: #FFFFFF;
 $color-on-assistant-message: #1A1A1A;
@@ -56,7 +56,6 @@ $color-on-assistant-message: #1A1A1A;
 $breakpoint-sm: 767px;
 $breakpoint-md: 1023px;
 $breakpoint-lg: 1024px;
-
 
 /* Layout */
 $grid-gap: 2rem;
