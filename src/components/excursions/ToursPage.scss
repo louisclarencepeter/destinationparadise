@@ -1,4 +1,3 @@
-// ToursPage.scss
 @use "sass:color";
 @use "../../styles/variables" as vars;
 
@@ -35,13 +34,13 @@
       transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
       text-shadow: 2px 2px 4px vars.$box-shadow-color;
       margin-bottom: 1rem;
-      
+
       &.visible {
         opacity: 1;
         transform: translateY(0);
       }
 
-      @media (max-width: vars.$breakpoint-mobile) {
+      @media (max-width: vars.$breakpoint-sm) {
         font-size: 2.5rem;
       }
     }
@@ -61,7 +60,7 @@
     gap: vars.$grid-gap;
     margin-top: 2rem;
 
-    @media (max-width: vars.$breakpoint-mobile) {
+    @media (max-width: vars.$breakpoint-sm) {
       grid-template-columns: 1fr;
       gap: calc(vars.$grid-gap / 1.5);
     }

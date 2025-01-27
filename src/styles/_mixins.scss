@@ -1,7 +1,5 @@
 @use "sass:color";
-
 @use "../styles/variables" as vars;
-
 
 /* Flex Center Mixin */
 @mixin flex-center($justify: center, $align: center) {
@@ -59,12 +57,14 @@
 /* Responsive Font Size Mixin */
 @mixin responsive-font-size {
   font-size: calc(0.8rem + 0.5vw);
+
   @include respond-to(lg) {
     font-size: inherit;
   }
 
   @include respond-to(md) {
     font-size: 0.8rem;
+
     @include respond-to(lg) {
       font-size: 1rem;
     }
@@ -97,6 +97,7 @@
 
       .menu__item {
         font-size: 0.8rem;
+
         @include respond-to(lg) {
           font-size: 1rem;
         }
@@ -120,6 +121,7 @@
   font-family: vars.$font-primary;
   cursor: pointer;
   transition: vars.$transition-default;
+
   @include respond-to(sm) {
     padding: 0.6rem 1.2rem;
     font-size: calc(0.4rem + 1.5vw);
@@ -134,8 +136,11 @@
 /* Compact Button Styles Mixin */
 @mixin button-styles-compact {
   @include button-styles;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  text-decoration: none;
+
+  & {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
 }
