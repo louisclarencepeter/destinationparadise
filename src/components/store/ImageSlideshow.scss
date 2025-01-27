@@ -54,6 +54,15 @@ $breakpoints: (
       height: 100%;
       object-fit: cover;
       display: block;
+      
+      // Add responsive sizing
+      @include respond-to(tablet) {
+        object-position: center 25%;
+      }
+      
+      @include respond-to(mobile) {
+        object-position: center 30%;
+      }
     }
 
     // Error state styling

@@ -1,16 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Slider from 'react-slick';
-import { AlertTriangle } from 'lucide-react';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
-import './ImageSlideshow.scss';
+import React from "react";
+import PropTypes from "prop-types";
+import Slider from "react-slick";
+import { AlertTriangle } from "lucide-react";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import "./ImageSlideshow.scss";
 
-const ImageSlideshow = ({ 
-  images, 
-  autoplaySpeed = 3000, 
-  autoplay = true 
-}) => {
+const ImageSlideshow = ({ images, autoplaySpeed = 3000, autoplay = true }) => {
   // Slider settings
   const settings = {
     dots: false,
@@ -25,7 +21,7 @@ const ImageSlideshow = ({
     pauseOnHover: false,
     draggable: false,
     swipe: false,
-    touchMove: false
+    touchMove: false,
   };
 
   return (
@@ -34,11 +30,13 @@ const ImageSlideshow = ({
         {images?.map((imageUrl, index) => (
           <div key={index} className="slide">
             {imageUrl ? (
-              <img 
-                src={imageUrl} 
+              <img
+                src={imageUrl.replace(".jpg", ".webp")}
                 alt={`Slide ${index + 1}`}
+                loading="lazy"
+                decoding="async"
                 onError={(e) => {
-                  e.currentTarget.style.display = 'none';
+                  e.currentTarget.style.display = "none";
                   console.error(`Failed to load image: ${imageUrl}`);
                 }}
               />
@@ -58,7 +56,7 @@ const ImageSlideshow = ({
 ImageSlideshow.propTypes = {
   images: PropTypes.arrayOf(PropTypes.string).isRequired,
   autoplaySpeed: PropTypes.number,
-  autoplay: PropTypes.bool
+  autoplay: PropTypes.bool,
 };
 
 export default ImageSlideshow;
