@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import logo from "../../assets/logo/dlp1.png";
+import zanzibarmap from "../../assets/map/zanzibar.png";
 import "./AboutPage.scss";
 
 const useIntersectionObserver = (options = {}) => {
@@ -36,13 +37,13 @@ const AnimatedText = ({ children, delay = 0, className = '' }) => {
   const isVisible = entries.some((entry) => entry.isIntersecting);
 
   return (
-    <p 
+    <div 
       ref={ref}
       className={`animated-text ${className} ${isVisible ? 'visible' : ''}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}
-    </p>
+    </div>
   );
 };
 
@@ -54,11 +55,11 @@ AnimatedText.propTypes = {
 
 const AboutPage = () => {
   const [isLogoLoaded, setIsLogoLoaded] = useState(false);
-  const [headerRef, headerEntries] = useIntersectionObserver({
-    threshold: 0.1,
-  });
+  const [headerRef, headerEntries] = useIntersectionObserver({ threshold: 0.1 });
+  const [mapRef, mapEntries] = useIntersectionObserver({ threshold: 0.1 });
 
   const isHeaderVisible = headerEntries.some((entry) => entry.isIntersecting);
+  const isMapVisible = mapEntries.some(entry => entry.isIntersecting);
 
   return (
     <div className="about-page">
@@ -79,8 +80,6 @@ const AboutPage = () => {
             alt="Destination Paradise Logo" 
             loading="eager"
             onLoad={() => setIsLogoLoaded(true)}
-            width="800"
-            height="auto"
           />
         </div>
       </div>
@@ -121,6 +120,19 @@ const AboutPage = () => {
             Zanzibar to the magnificent Selous and Mikumi reserves.
           </AnimatedText>
         </div>
+      </div>
+
+      <div 
+        ref={mapRef}
+        className={`map-container ${isMapVisible ? 'visible' : ''}`}
+      >
+        <h3 className="map-title">Map of Unguja Zanzibar</h3>
+        <img 
+          src={zanzibarmap} 
+          alt="Zanzibar Map" 
+          className="map-image"
+          loading="lazy"
+        />
       </div>
     </div>
   );
