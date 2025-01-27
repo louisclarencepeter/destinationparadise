@@ -8,7 +8,7 @@ const FormInput = ({ label, id, ...props }) => {
       <input
         id={id}
         {...props}
-        className="form-group__input"
+        className="form-group__input reveal"
       />
     </div>
   );

@@ -8,7 +8,7 @@ const FormTextarea = ({ label, id, ...props }) => {
       <textarea
         id={id}
         {...props}
-        className="form-group__input"
+        className="form-group__input reveal"
       />
     </div>
   );

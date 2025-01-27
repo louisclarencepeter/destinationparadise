@@ -123,7 +123,7 @@ const BookingForm = ({ tours, locations }) => {
         />
         <ValidationError prefix="Message" field="message" errors={state.errors} className="booking-form__error" aria-live="polite" />
       </div>
-      <button type="submit" disabled={state.submitting} className="booking-form__submit">
+      <button type="submit" disabled={state.submitting} className="booking-form__submit reveal">
         {state.submitting ? "Submitting..." : "Submit Booking Request"}
       </button>
       {state.errors && state.errors.length > 0 && (

@@ -23,7 +23,7 @@ $breakpoints: (
   margin: 0 auto;
   aspect-ratio: 16/9;
   overflow: hidden;
-  background-color: #f8f9fa;
+  background-color: vars.$color-background; // Replaced #f8f9fa
   border-radius: vars.$border-radius-default;
   display: flex !important;
   justify-content: center;
@@ -76,9 +76,9 @@ $breakpoints: (
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background-color: #f8f9fa;
-      color: #6c757d;
-      gap: 8px;
+      background-color: vars.$color-background; // Replaced #f8f9fa
+      color: vars.$color-secondary; // Replaced #6c757d
+      gap: vars.$grid-gap; // Replaced 8px
 
       .error-icon {
         width: 24px;

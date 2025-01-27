@@ -8,7 +8,7 @@ const FormSelect = ({ label, id, options, ...props }) => {
       <select
         id={id}
         {...props}
-        className="form-group__input"
+        className="form-group__input reveal"
       >
         <option value="" disabled>
           Select an option
