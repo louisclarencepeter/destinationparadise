@@ -24,7 +24,7 @@ const GalleryItem = ({ item }) => {
           <img
             src={item.src}
             alt={item.alt}
-            className={`gallery-image ${isLoading ? "opacity-0" : "opacity-100"}`}
+            className={`gallery-image ${isLoading ? "opacity-0" : "opacity-100"} reveal`}
             onLoad={handleLoad}
             onError={handleError}
             loading="eager"
@@ -38,7 +38,7 @@ const GalleryItem = ({ item }) => {
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
-              className="gallery-video"
+              className="gallery-video reveal"
               onLoad={handleLoad}
               onError={handleError}
               loading="eager"
