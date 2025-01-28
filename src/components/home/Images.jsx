@@ -109,7 +109,7 @@ const Images = () => {
 
   return (
     <div className="images-gallery">
-      <h2 className="gallery__title">Gallery</h2>
+      <h2 className="gallery__title reveal">Gallery</h2>
       <div className="gallery-grid">
         {galleryItems.slice(0, ITEMS_PER_PAGE).map((item) => (
           <GalleryItem key={item.id} item={item} />
