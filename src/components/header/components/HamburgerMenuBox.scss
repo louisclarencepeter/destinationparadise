@@ -20,6 +20,7 @@
     padding: 4rem 0;
     list-style: none;
     background-color: vars.$menu-background;
+    color: vars.$color-primary;
     box-shadow: 0.125rem 0.125rem 0.375rem vars.$box-shadow-color;
     transition: right 0.4s;
 
@@ -52,6 +53,7 @@
 
       .menu__contact {
         font-size: 0.9rem;
+        color: vars.$color-secondary;
 
         p {
           margin: 0.5rem 0;
@@ -63,6 +65,16 @@
   li {
     list-style: none;
     padding: 0.5rem;
+
+    a {
+      color: vars.$color-primary;
+      text-decoration: none;
+
+      &:hover {
+        color: vars.$hover-color;
+        text-decoration: underline;
+      }
+    }
   }
 }
 
