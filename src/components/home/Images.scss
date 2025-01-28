@@ -15,11 +15,12 @@
   max-width: 1250px;
 
   .gallery__title {
-    margin: 2rem 0;
-    font-family: vars.$font-secondary;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    color: vars.$color-primary;
+    font-family: vars.$font-tertiary; 
+    font-size: 2rem;
+    font-weight: 300;
+    color: vars.$color-secondary;
     text-align: center;
+    margin: 2rem;
   }
 
   .gallery-grid {
