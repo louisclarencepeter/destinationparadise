@@ -1,0 +1,19 @@
+// _container.scss
+@use './variables' as vars;
+
+@mixin standard-container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  box-sizing: border-box;
+}
+
+// Optional inner container for content
+@mixin content-container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  box-sizing: border-box;
+}

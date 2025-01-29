@@ -1,15 +1,13 @@
 @use '../../styles/variables' as vars;
 @use '../../styles/mixins' as mixins; 
+@use '../../styles/container' as container;
 @use "sass:color";
 
 .about-page {
-  padding: clamp(1.5rem, 5vw, 3rem);
+  @include container.standard-container;
   background-color: vars.$color-background;
   color: vars.$color-primary;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto 2rem;
-  box-sizing: border-box;
+  margin-bottom: 2rem;
   
   .about-header {
     margin-bottom: vars.$grid-gap;
@@ -87,11 +85,7 @@
   }
 
   .about-content {
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 1rem;
-    box-sizing: border-box;
+    @include container.content-container;
     
     .about-text {
       width: 100%;
@@ -142,10 +136,8 @@
   }
 
   .map-container {
-    width: 100%;
-    max-width: 1000px;
-    margin: 3rem auto 0;
-    padding: 0 1rem;
+    @include container.content-container;
+    margin-top: 3rem;
     box-sizing: border-box;
     opacity: 0;
     transform: translateY(30px);

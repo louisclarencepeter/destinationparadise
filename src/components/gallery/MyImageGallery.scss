@@ -1,4 +1,5 @@
 @use '../../styles/variables' as vars;
+@use '../../styles/container' as container;
 @use "sass:color";
 
 // Animation keyframes
@@ -15,10 +16,8 @@
 
 .gallery {
   &-wrapper {
-    padding: clamp(1.5rem, 5vw, 3rem);
+    @include container.standard-container;
     background-color: vars.$color-background;
-    max-width: 1400px;
-    margin: 0 auto 2rem auto;
     overflow-x: hidden;
   }
 
