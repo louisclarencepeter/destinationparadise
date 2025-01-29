@@ -1,0 +1,48 @@
+// src/components/aboutus/components/styles/_map.scss
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
+@use "../../../../styles/container" as container;
+
+.map-container {
+  @include container.content-container;
+  margin-top: 3rem;
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+  transition: transform vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1),
+              opacity vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
+
+  &.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .map-title {
+    font-family: vars.$font-tertiary;
+    color: vars.$color-primary;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    opacity: 0;
+    transform: translateY(20px);
+    will-change: transform, opacity;
+    transition: inherit;
+    transition-delay: 0.2s;
+  }
+
+  .map-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    filter: saturate(0.9);
+    border-radius: vars.$border-radius-default;
+  }
+
+  &.visible {
+    .map-title {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
