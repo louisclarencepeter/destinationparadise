@@ -1,5 +1,6 @@
 @use "sass:color";
 @use "../../styles/variables" as vars;
+@use '../../styles/container' as container;
 
 // Animation keyframes
 @keyframes fadeSlideUp {
@@ -14,11 +15,9 @@
 }
 
 .tours-page {
-  padding: clamp(1.5rem, 5vw, 3rem);
+  @include container.standard-container;
   background-color: vars.$color-background;
   color: vars.$color-primary;
-  max-width: 1400px;
-  margin: 0 auto;
   margin-bottom: 2rem;
 
   .tours-header {

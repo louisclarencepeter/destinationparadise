@@ -1,0 +1,56 @@
+// src/components/aboutus/components/styles/_content.scss
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
+@use "../../../../styles/container" as container;
+@use "sass:color";
+
+.about-content {
+  @include container.content-container;
+  
+  .about-text {
+    width: 100%;
+    word-wrap: break-word;
+
+    .welcome-title {
+      font-family: vars.$font-tertiary;
+      @include mixins.responsive-font-size;
+    }
+
+    .animated-text {
+      font-family: vars.$font-primary;
+      font-size: clamp(1.1rem, 2vw, 1.3rem);
+      line-height: 1.8;
+      margin-bottom: 2rem;
+      color: vars.$color-secondary;
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+      transition: transform vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
+      
+      strong {
+        color: vars.$color-primary;
+        font-weight: 600;
+      }
+      
+      &.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      
+      &.motto {
+        @include mixins.flex-center;
+        font-family: vars.$font-tertiary;
+        color: vars.$color-accent;
+        text-align: center;
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        margin: calc(vars.$grid-gap * 1.5) 0;
+
+        em {
+          color: color.adjust(vars.$color-accent, $lightness: -10%);
+          font-style: normal;
+        }
+      }
+    }
+  }
+}

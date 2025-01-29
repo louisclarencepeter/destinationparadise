@@ -2,13 +2,13 @@
 @use '../../styles/mixins' as mixins;
 
 .footer {
-  background-color: vars.$color-background; // Ensure light background
+  background-color: vars.$color-background;
   padding: 1.25rem;
   font-size: calc(0.8rem + 0.5vw);
-  color: vars.$color-primary; // High-contrast primary text color
+  color: vars.$color-primary;
   font-family: vars.$font-secondary;
-  overflow-x: hidden; /* Prevent horizontal scrolling */
-  margin-top: auto; /* Push footer to the bottom of the viewport */
+  overflow-x: hidden;
+  margin-top: auto;
 
   &__container {
     max-width: 1200px;
@@ -20,18 +20,18 @@
     margin-bottom: 0.625rem;
     text-align: center;
     font-weight: normal;
-    color: vars.$color-accent; // Accent color for emphasis
+    color: vars.$color-accent;
   }
 
   &__form {
     display: flex;
-    border: 1px solid vars.$color-border; // Visible border for forms
+    border: 1px solid vars.$color-border;
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 1rem;
 
     &:focus-within {
-      border-color: vars.$color-accent; // Highlight on focus
+      border-color: vars.$color-accent;
     }
   }
 
@@ -41,11 +41,11 @@
     flex-grow: 1;
     outline: none;
     width: 100%;
-    background-color: vars.$color-background-light; // Subtle background for input
+    background-color: vars.$color-background-light;
     color: vars.$color-primary;
 
     &:focus {
-      outline: 2px solid vars.$color-accent; // Visible focus outline
+      outline: 2px solid vars.$color-accent;
     }
   }
 
@@ -58,12 +58,12 @@
     align-items: center;
     justify-content: center;
     background: vars.$gradient-button;
-    color: vars.$color-on-primary; // Ensure readable text on gradient
+    color: vars.$color-on-primary;
     transition: vars.$transition-default;
 
     &:hover {
-      color: vars.$color-background; // Text visibility on hover
-      background-color: vars.$hover-color; // Strong hover contrast
+      color: vars.$color-background;
+      background-color: vars.$hover-color;
     }
 
     &:active {
@@ -73,7 +73,7 @@
 
   &__message {
     text-align: center;
-    color: vars.$color-accent; // Use accent for feedback messages
+    color: vars.$color-accent;
     margin-bottom: 1rem;
   }
 
@@ -82,12 +82,12 @@
     text-align: center;
 
     a {
-      color: vars.$color-secondary; // Distinctive link color
+      color: vars.$color-secondary;
       text-decoration: none;
 
       &:hover {
-        color: vars.$hover-color; // Strong hover effect
-        text-decoration: underline; // Improve visibility
+        color: vars.$hover-color;
+        text-decoration: underline;
       }
     }
   }
@@ -168,7 +168,7 @@
   &__copyright {
     text-align: center;
     margin-bottom: 1rem;
-    color: vars.$color-secondary; // Ensure copyright text is visible
+    color: vars.$color-secondary;
   }
 }
 

@@ -1,0 +1,49 @@
+// src/components/aboutus/components/styles/_logo.scss
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
+@use "../../../../styles/container" as container;
+
+.logo-container {
+  @include container.content-container;
+  margin-bottom: vars.$grid-gap;
+  
+  .logo-wrapper {
+    width: 100%;
+    min-height: 200px;
+    @include mixins.flex-center;
+
+    @media (min-width: vars.$breakpoint-md) {
+      aspect-ratio: 16 / 9;
+    }
+  }
+
+  .logo {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    opacity: 0;
+    mix-blend-mode: multiply;
+    object-fit: contain;
+    transform: scale(0.8);
+    will-change: transform, opacity;
+    
+    &.loaded {
+      opacity: 1;
+      transform: scale(1);
+      transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1),
+                  opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    @media (min-width: vars.$breakpoint-sm) {
+      max-width: 400px;
+    }
+    
+    @media (min-width: vars.$breakpoint-md) {
+      max-width: 500px;
+    }
+    
+    @media (min-width: vars.$breakpoint-lg) {
+      max-width: 600px;
+    }
+  }
+}

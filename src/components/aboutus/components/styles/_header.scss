@@ -1,0 +1,29 @@
+// src/components/aboutus/components/styles/_header.scss
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
+@use "../../../../styles/container" as container;
+
+.about-header {
+  margin-bottom: vars.$grid-gap;
+  width: 100%;
+
+  .title {
+    font-family: vars.$font-tertiary;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    text-align: center;
+    color: vars.$color-primary;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
+    text-shadow: 2px 2px 4px vars.$box-shadow-color;
+
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @include mixins.respond-to(sm) {
+      font-size: 2.5rem;
+    }
+  }
+}
