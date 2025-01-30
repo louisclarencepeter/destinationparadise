@@ -1,0 +1,61 @@
+// components/NewsletterForm.scss
+@use '../../../styles/variables' as vars;
+@use '../../../styles/mixins' as mixins;
+
+.newsletter-form {
+  &__form {
+    display: flex;
+    border: 1px solid vars.$color-border;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    max-width: 500px;
+    margin: 0 auto 1rem;
+
+    &:focus-within {
+      border-color: vars.$color-accent;
+    }
+  }
+
+  &__input {
+    border: none;
+    padding: 10px;
+    flex-grow: 1;
+    outline: none;
+    width: 100%;
+    background-color: vars.$color-background-light;
+    color: vars.$color-primary;
+
+    &:focus {
+      outline: 2px solid vars.$color-accent;
+    }
+  }
+
+  &__button {
+    border-left: 1px solid vars.$color-border;
+    border-radius: 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: vars.$gradient-button;
+    color: vars.$color-on-primary;
+    transition: vars.$transition-default;
+
+    &:hover {
+      color: vars.$color-background;
+      background-color: vars.$hover-color;
+    }
+
+    &:active {
+      background-color: vars.$color-primary;
+    }
+  }
+
+  &__message {
+    text-align: center;
+    color: vars.$color-accent;
+    margin-bottom: 1rem;
+  }
+}
