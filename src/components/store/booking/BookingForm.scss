@@ -1,55 +1,87 @@
 @use '../../../styles/variables' as vars;
 @use '../../../styles/mixins' as mixins;
+@use '../../../styles/container' as container;
 
 .booking-form {
+  @include container.content-container;
   display: grid;
   gap: 1.5rem;
   width: min(90%, 800px);
   margin: 0 auto;
+  padding: 2rem;
+  background-color: rgba(vars.$color-background, 0.95);
+  border-radius: vars.$border-radius-default;
+  box-shadow: vars.$box-shadow-default;
+
+  @include mixins.respond-to(lg) {
+    gap: 2rem;
+    padding: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width: min(80%, 600px);
+  }
 
   &__title {
-    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
     text-align: center;
     color: vars.$color-primary;
-    font-family: vars.$font-primary;
-    margin-bottom: 1rem;
+    font-family: vars.$font-tertiary;
+    margin-bottom: 2rem;
     font-weight: 400;
     width: 100%;
+
+    @include mixins.respond-to(lg) {
+      margin-bottom: 3rem;
+    }
   }
 
   &__group {
     display: grid;
     gap: 0.5rem;
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+
+    @include mixins.respond-to(lg) {
+      gap: 0.75rem;
+    }
 
     label {
-      display: block;
       font-size: clamp(0.875rem, 1vw, 1rem);
       color: vars.$color-primary;
-      font-family: vars.$font-primary;
+      font-family: vars.$font-secondary;
       font-weight: 500;
       text-align: center;
+
+      @include mixins.respond-to(lg) {
+        font-size: 1.1rem;
+      }
     }
 
     input,
     select,
     textarea {
       width: 100%;
-      padding: 0.75rem;
-      border: 1px solid vars.$color-secondary;
+      padding: 1rem;
+      border: 1px solid vars.$color-border;
       border-radius: vars.$border-radius-default;
-      font-size: clamp(0.875rem, 1vw, 1rem);
+      font-size: 1rem;
       color: vars.$color-primary;
-      box-sizing: border-box;
-      font-family: vars.$font-primary;
+      background-color: vars.$color-background;
+      font-family: vars.$font-secondary;
       transition: vars.$transition-default;
+
+      @include mixins.respond-to(lg) {
+        padding: 1.25rem;
+        font-size: 1.1rem;
+      }
 
       &:focus {
         border-color: vars.$color-accent;
         box-shadow: 0 0 0 2px rgba(vars.$color-accent, 0.2);
         outline: none;
+      }
+
+      &:hover:not(:focus) {
+        border-color: vars.$color-secondary;
       }
 
       &:invalid:not(:focus):not(:placeholder-shown) {
@@ -59,28 +91,41 @@
     }
 
     textarea {
-      height: 100px;
+      height: 150px;
       resize: vertical;
       min-height: 100px;
-      line-height: 1.5;
+      line-height: 1.6;
+
+      @include mixins.respond-to(lg) {
+        height: 200px;
+      }
     }
   }
 
   &__submit {
     @include mixins.button-styles;
 
+    @include mixins.respond-to(lg) {
+      margin: 2rem auto 0;
+      width: 100%;
+      max-width: 400px;
+      padding: 1.25rem 2rem;
+      font-size: 1.1rem;
+    }
+
     &:hover {
-      transform: translateY(-1px);
-      box-shadow: vars.$box-shadow-default;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(vars.$color-primary, 0.15);
     }
 
     &:active {
-      @include mixins.fade-in-up();
+      transform: translateY(0);
     }
 
     &[disabled] {
       opacity: 0.8;
-      background-image: vars.$gradient-button;
+      cursor: not-allowed;
+      transform: none;
 
       &::after {
         content: "";
@@ -92,6 +137,7 @@
         border-radius: 50%;
         animation: spin 0.8s linear infinite;
         margin-left: 0.8rem;
+        vertical-align: middle;
       }
     }
   }
@@ -99,56 +145,55 @@
   &__error {
     color: vars.$color-error;
     font-size: 0.875rem;
-    margin-top: -0.5rem;
-    margin-bottom: 0.5rem;
-    @include mixins.fade-in-up();
+    margin-top: 0.25rem;
     text-align: center;
+    @include mixins.fade-in-up();
+
+    @include mixins.respond-to(lg) {
+      font-size: 1rem;
+    }
   }
 
   &__success-message {
     text-align: center;
+    color: vars.$color-success;
+    background-color: vars.$color-success-bg;
+    padding: 2rem;
+    border-radius: vars.$border-radius-default;
+    font-family: vars.$font-secondary;
+    @include mixins.fade-in-up();
+
+    @include mixins.respond-to(lg) {
+      padding: 3rem;
+      font-size: 1.2rem;
+    }
   }
 }
 
-// Spinner animation
 @keyframes spin {
   to {
     transform: rotate(360deg);
   }
 }
 
-// Style Formspree validation errors
-[role="alert"] {
-  color: vars.$color-error;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-  display: block;
-}
-
-// Print styles
 @media print {
   .booking-form {
-    page-break-inside: avoid;
-    justify-items: start;
-
+    box-shadow: none;
+    padding: 0;
+    
     &__submit {
       display: none;
     }
   }
 }
 
-// High contrast mode support
 @media (forced-colors: active) {
-  .booking-form__group {
-    input,
-    select,
-    textarea {
-      border: 1px solid CanvasText;
-      margin: 0 auto;
-
-      &:focus {
-        outline: 2px solid Highlight;
-        outline-offset: 2px;
+  .booking-form {
+    &__group {
+      input,
+      select,
+      textarea {
+        border: 2px solid CanvasText;
       }
     }
   }
