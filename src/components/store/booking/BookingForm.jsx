@@ -35,7 +35,7 @@ const BookingForm = ({ tours, locations }) => {
 
   return (
     <form onSubmit={handleSubmit} className="booking-form" aria-labelledby="booking-form-title">
-      <h3 className="booking-form__title" id="booking-form-title">Booking Request Form</h3>
+      <h3 className="booking-form__title" id="booking-form-title">Request Form</h3>
       <div className="booking-form__group">
         <FormInput 
           label="Name:" 
