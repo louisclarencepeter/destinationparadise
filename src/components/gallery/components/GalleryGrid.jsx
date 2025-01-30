@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { GalleryImage } from './GalleryImage';
+import { GalleryVideo } from './GalleryVideo';
 import './GalleryGrid.scss';
 
 export const GalleryGrid = ({ items }) => {
@@ -30,15 +31,24 @@ export const GalleryGrid = ({ items }) => {
     };
   }, [items]);
 
+  const renderGalleryItem = (item) => {
+    if (item.type === 'video') {
+      return <GalleryVideo videoId={item.videoId} title={item.title} />;
+    }
+    return (
+      <GalleryImage
+        src={item.src}
+        placeholderSrc={item.placeholderSrc}
+        alt={item.alt}
+      />
+    );
+  };
+
   return (
     <div className="gallery-grid">
       {items.map((item) => (
         <div key={item.id} className="gallery-item">
-          <GalleryImage
-            src={item.src}
-            placeholderSrc={item.placeholderSrc}
-            alt={item.alt}
-          />
+          {renderGalleryItem(item)}
         </div>
       ))}
     </div>
@@ -49,9 +59,12 @@ GalleryGrid.propTypes = {
   items: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
-      src: PropTypes.string.isRequired,
-      placeholderSrc: PropTypes.string.isRequired,
+      type: PropTypes.oneOf(['image', 'video']).isRequired,
+      src: PropTypes.string,
+      placeholderSrc: PropTypes.string,
       alt: PropTypes.string,
+      videoId: PropTypes.string,
+      title: PropTypes.string,
     })
   ).isRequired,
 };
