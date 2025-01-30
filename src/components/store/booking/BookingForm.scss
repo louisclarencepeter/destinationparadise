@@ -1,154 +1,286 @@
 @use '../../../styles/variables' as vars;
 @use '../../../styles/mixins' as mixins;
+@use '../../../styles/container' as container;
 
 .booking-form {
+  @include container.content-container;
   display: grid;
-  gap: 1.5rem;
-  width: min(90%, 800px);
-  margin: 0 auto;
+  gap: 2rem;
+  width: min(90%, 600px);
+  margin: 2rem auto;
+  padding: 2.5rem;
+  background: rgba(vars.$color-background, 0.98);
+  border-radius: vars.$border-radius-default * 1.5;
+  box-shadow: vars.$box-shadow-default;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(vars.$color-primary, 0.1);
+
+  /* Centers all grid items (the groups, title, button, etc.) */
+  justify-items: center;
+  /* Also centers text within this container by default. */
+  text-align: center;
+
+  @include mixins.respond-to(lg) {
+    padding: 3.5rem;
+    margin: 3rem auto;
+    gap: 2.5rem;
+  }
 
   &__title {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    text-align: center;
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
     color: vars.$color-primary;
-    font-family: vars.$font-primary;
-    margin-bottom: 1rem;
-    font-weight: 400;
-    width: 100%;
+    font-family: vars.$font-tertiary;
+    margin: 0 0 2.5rem;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    position: relative;
+    padding-bottom: 1rem;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background: vars.$color-accent;
+    }
+
+    @include mixins.respond-to(lg) {
+      margin-bottom: 3.5rem;
+      padding-bottom: 1.5rem;
+    }
   }
 
   &__group {
     display: grid;
-    gap: 0.5rem;
+    gap: 0.75rem;
+    position: relative;
+
+    /* Ensures the group itself is centered in the form's grid cell */
+    justify-items: center;
     width: 100%;
-    max-width: 500px;
-    margin: 0 auto;
+
+    @include mixins.respond-to(lg) {
+      gap: 1rem;
+    }
 
     label {
-      display: block;
-      font-size: clamp(0.875rem, 1vw, 1rem);
-      color: vars.$color-primary;
-      font-family: vars.$font-primary;
+      font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+      color: rgba(vars.$color-primary, 0.9);
+      font-family: vars.$font-secondary;
       font-weight: 500;
-      text-align: center;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+
+      /* Centers label text horizontally (since it's a flex container) */
+      justify-content: center;
+
+      &::before {
+        content: '*';
+        color: vars.$color-error;
+        font-size: 1.2em;
+        opacity: 0.8;
+      }
     }
 
     input,
     select,
     textarea {
-      width: 100%;
-      padding: 0.75rem;
-      border: 1px solid vars.$color-secondary;
+      /* Reduced padding to 0.5rem */
+      padding: 0.5rem;
+      border: 2px solid rgba(vars.$color-border, 0.3);
       border-radius: vars.$border-radius-default;
-      font-size: clamp(0.875rem, 1vw, 1rem);
+      font-size: 1rem;
       color: vars.$color-primary;
-      box-sizing: border-box;
-      font-family: vars.$font-primary;
+      background: rgba(vars.$color-background, 0.8);
+      font-family: vars.$font-secondary;
       transition: vars.$transition-default;
+      width: 100%;
+      appearance: none;
+
+      @include mixins.respond-to(lg) {
+        /* Increase slightly on larger screens if desired */
+        padding: 0.75rem;
+        font-size: 1.1rem;
+      }
 
       &:focus {
         border-color: vars.$color-accent;
-        box-shadow: 0 0 0 2px rgba(vars.$color-accent, 0.2);
-        outline: none;
+        box-shadow: 0 0 0 3px rgba(vars.$color-accent, 0.15);
+        background: rgba(vars.$color-background, 0.9);
       }
 
-      &:invalid:not(:focus):not(:placeholder-shown) {
-        border-color: vars.$color-error;
-        background-color: vars.$color-error-bg;
+      &:hover {
+        border-color: rgba(vars.$color-primary, 0.5);
+      }
+
+      &::placeholder {
+        color: rgba(vars.$color-primary, 0.4);
+        font-style: italic;
       }
     }
 
+    /* Make sure the date input also fills the width and hides its default icon */
+    input[type='date'] {
+      width: 100% !important;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      &::-webkit-calendar-picker-indicator {
+        opacity: 0;
+        display: none;
+        pointer-events: none;
+      }
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23333'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      background-size: 1.2em;
+      padding-right: 2.5rem; /* Adjust as needed */
+    }
+
     textarea {
-      height: 100px;
-      resize: vertical;
-      min-height: 100px;
-      line-height: 1.5;
+      height: 160px;
+      min-height: 120px;
+      line-height: 1.6;
+      /* Use the same 0.5rem or a bit more for comfort */
+      padding: 0.5rem;
+
+      @include mixins.respond-to(lg) {
+        height: 180px;
+        min-height: 140px;
+      }
     }
   }
 
   &__submit {
     @include mixins.button-styles;
 
-    &:hover {
-      transform: translateY(-1px);
-      box-shadow: vars.$box-shadow-default;
+    @include mixins.respond-to(lg) {
+      margin-top: 2rem;
+      padding: 1rem 2rem; /* Adjust as desired */
+      font-size: 1.15rem;
+      max-width: none;
     }
 
-    &:active {
-      @include mixins.fade-in-up();
+    &:hover:not([disabled]) {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(vars.$color-primary, 0.2);
+    }
+
+    &:active:not([disabled]) {
+      transform: translateY(0);
     }
 
     &[disabled] {
-      opacity: 0.8;
-      background-image: vars.$gradient-button;
+      opacity: 0.7;
+      cursor: not-allowed;
+      position: relative;
+      padding-right: 4.5rem;
 
       &::after {
         content: "";
-        display: inline-block;
-        width: 1.2em;
-        height: 1.2em;
-        border: 2px solid vars.$color-background;
-        border-top-color: transparent;
+        position: absolute;
+        right: 1.5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1.4em;
+        height: 1.4em;
+        border: 3px solid rgba(vars.$color-background, 0.3);
+        border-top-color: vars.$color-background;
         border-radius: 50%;
         animation: spin 0.8s linear infinite;
-        margin-left: 0.8rem;
       }
     }
   }
 
   &__error {
     color: vars.$color-error;
-    font-size: 0.875rem;
-    margin-top: -0.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     @include mixins.fade-in-up();
-    text-align: center;
+
+    &::before {
+      content: '⚠';
+      font-size: 1.1em;
+    }
+
+    @include mixins.respond-to(lg) {
+      font-size: 1rem;
+    }
   }
 
   &__success-message {
     text-align: center;
+    color: vars.$color-success;
+    background: rgba(vars.$color-success, 0.08);
+    padding: 2.5rem;
+    border-radius: vars.$border-radius-default;
+    border: 2px solid vars.$color-success;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    @include mixins.fade-in-up();
+
+    @include mixins.respond-to(lg) {
+      padding: 3rem;
+      font-size: 1.25rem;
+    }
+
+    &::before {
+      content: '✓';
+      display: block;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: vars.$color-success;
+      animation: checkmark 0.6s ease;
+    }
   }
 }
 
-// Spinner animation
 @keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
+  to { transform: rotate(360deg); }
 }
 
-// Style Formspree validation errors
-[role="alert"] {
-  color: vars.$color-error;
-  font-size: 0.875rem;
-  margin-top: 0.25rem;
-  display: block;
+@keyframes checkmark {
+  0%   { transform: scale(0); opacity: 0; }
+  80%  { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
 }
 
-// Print styles
 @media print {
   .booking-form {
-    page-break-inside: avoid;
-    justify-items: start;
-
+    background: white !important;
+    box-shadow: none;
+    padding: 0 !important;
+    
     &__submit {
+      display: none;
+    }
+    &__title::after {
       display: none;
     }
   }
 }
 
-// High contrast mode support
 @media (forced-colors: active) {
-  .booking-form__group {
-    input,
-    select,
-    textarea {
-      border: 1px solid CanvasText;
-      margin: 0 auto;
-
-      &:focus {
-        outline: 2px solid Highlight;
-        outline-offset: 2px;
+  .booking-form {
+    border: 2px solid CanvasText;
+    
+    &__group {
+      input,
+      select,
+      textarea {
+        border: 2px solid CanvasText !important;
       }
     }
   }

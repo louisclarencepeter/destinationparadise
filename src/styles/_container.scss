@@ -1,19 +1,104 @@
 // _container.scss
+@use 'sass:map';
 @use './variables' as vars;
 
-@mixin standard-container {
+// Container sizes
+$containers: (
+  xs: 640px,
+  sm: 768px,
+  md: 1000px,
+  lg: 1200px,
+  xl: 1400px
+);
+
+// Base container mixin with flexible options
+@mixin container-base(
+  $max-width: map.get($containers, 'xl'),
+  $padding: true,
+  $margin: true,
+  $center: true
+) {
   width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: clamp(1.5rem, 5vw, 3rem);
+  max-width: $max-width;
   box-sizing: border-box;
+
+  @if $padding {
+    padding-inline: clamp(1rem, 3vw, 2rem);
+  }
+
+  @if $margin and $center {
+    margin-inline: auto;
+  } @else if $margin {
+    margin: 0;
+  }
 }
 
-// Optional inner container for content
+// Standard container (previous standard-container)
+@mixin standard-container {
+  @include container-base(
+    $max-width: map.get($containers, 'xl'),
+    $padding: true
+  );
+  padding-block: clamp(1.5rem, 5vw, 3rem);
+}
+
+// Content container (previous content-container)
 @mixin content-container {
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 1rem;
-  box-sizing: border-box;
+  @include container-base(
+    $max-width: map.get($containers, 'md'),
+    $padding: true
+  );
+}
+
+// Responsive container that adapts to breakpoints
+@mixin responsive-container {
+  @include container-base($max-width: 100%);
+
+  @each $breakpoint, $width in $containers {
+    @media (min-width: $width) {
+      max-width: $width;
+    }
+  }
+}
+
+// Fluid container with no max-width
+@mixin fluid-container($padding: true) {
+  @include container-base(
+    $max-width: 100%,
+    $padding: $padding
+  );
+}
+
+// Narrow container for focused content
+@mixin narrow-container {
+  @include container-base(
+    $max-width: map.get($containers, 'sm'),
+    $padding: true
+  );
+}
+
+// Wide container for full-width layouts
+@mixin wide-container {
+  @include container-base(
+    $max-width: map.get($containers, 'xl'),
+    $padding: true
+  );
+}
+
+// Custom container with specific settings
+@mixin custom-container(
+  $max-width: map.get($containers, 'lg'),
+  $padding-inline: true,
+  $padding-block: 0,
+  $center: true
+) {
+  @include container-base(
+    $max-width: $max-width,
+    $padding: $padding-inline,
+    $center: $center
+  );
+
+  @if $padding-block > 0 {
+    padding-block: $padding-block;
+  }
 }
