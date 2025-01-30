@@ -1,0 +1,35 @@
+// src/components/gallery/components/GalleryImage.scss
+@use '../../../styles/_variables.scss' as vars;
+@use "sass:color";
+
+.image-container {
+  position: relative;
+  width: 100%;
+  background-color: color.adjust(vars.$color-background, $lightness: -5%);
+  overflow: hidden;
+
+  &.loaded {
+    background-color: transparent;
+  }
+
+  .gallery-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+
+    &.loaded {
+      opacity: 1;
+    }
+
+    &.placeholder {
+      filter: blur(5px);
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+  }
+}

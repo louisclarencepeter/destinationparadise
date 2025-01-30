@@ -1,0 +1,15 @@
+// src/components/gallery/components/LoadingState.scss
+@use '../../../styles/_variables.scss' as vars;
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.6;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.loading-content {
+  animation: pulse 2s infinite;
+}
