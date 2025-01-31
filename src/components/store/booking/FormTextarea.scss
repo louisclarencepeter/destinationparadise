@@ -1,0 +1,26 @@
+@use '../../../styles/_variables' as vars;
+@use '../../../styles/_mixins' as mixins;
+@use '../../../styles/common' as common;
+
+.form-group {
+  &__input {
+    &[name="message"] {
+      height: 160px;
+      min-height: 120px;
+      line-height: 1.6;
+      resize: vertical;
+      padding: 0.75rem;
+
+      @include mixins.respond-to(lg) {
+        height: 180px;
+        min-height: 140px;
+      }
+
+      // Fixed mixin name to match the definition
+      @include mixins.customScrollbar(
+        rgba(vars.$color-primary, 0.3),
+        transparent
+      );
+    }
+  }
+}

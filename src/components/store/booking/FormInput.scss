@@ -1,0 +1,97 @@
+@use '../../../styles/_variables' as vars;
+@use '../../../styles/_mixins' as mixins;
+@use '../../../styles/common' as common;
+
+.form-group {
+  display: grid;
+  gap: 0.75rem;
+  position: relative;
+  justify-items: center;
+  width: 100%;
+
+  @include mixins.respond-to(lg) {
+    gap: 1rem;
+  }
+
+  &__label {
+    font-size: clamp(0.95rem, 1.25vw, 1.15rem);
+    color: rgba(vars.$color-primary, 0.9);
+    font-family: vars.$font-secondary;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    justify-content: center;
+
+    &::before {
+      content: '*';
+      color: vars.$color-error;
+      font-size: 1.2em;
+      opacity: 0.8;
+    }
+  }
+
+  &__input {
+    padding: 0.5rem;
+    border: 2px solid rgba(vars.$color-border, 0.3);
+    border-radius: vars.$border-radius-default;
+    font-size: 1rem;
+    color: vars.$color-primary;
+    background: rgba(vars.$color-background, 0.8);
+    font-family: vars.$font-secondary;
+    transition: vars.$transition-default;
+    width: 100%;
+    appearance: none;
+
+    @include mixins.respond-to(lg) {
+      padding: 0.75rem;
+      font-size: 1.1rem;
+    }
+
+    &:focus {
+      border-color: vars.$color-accent;
+      box-shadow: 0 0 0 3px rgba(vars.$color-accent, 0.15);
+      background: rgba(vars.$color-background, 0.9);
+    }
+
+    &:hover {
+      border-color: rgba(vars.$color-primary, 0.5);
+    }
+
+    &::placeholder {
+      color: rgba(vars.$color-primary, 0.4);
+      font-style: italic;
+    }
+
+    &[type='date'] {
+      width: 100% !important;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+
+      &::-webkit-calendar-picker-indicator {
+        opacity: 0;
+        display: none;
+        pointer-events: none;
+      }
+    }
+  }
+
+  &__error {
+    color: vars.$color-error;
+    font-size: 0.9rem;
+    margin: 0.5rem 0 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &::before {
+      content: '⚠';
+      font-size: 1.1em;
+    }
+
+    @include mixins.respond-to(lg) {
+      font-size: 1rem;
+    }
+  }
+}

@@ -144,3 +144,33 @@
     text-decoration: none;
   }
 }
+
+@mixin customScrollbar($thumb-color: rgba(0, 0, 0, 0.3), $track-color: transparent) {
+  // Basic overflow behavior
+  
+  // WebKit scrollbar styles
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $track-color;
+    border-radius: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $thumb-color;
+    border-radius: 3px;
+    
+    &:hover {
+      background-color: color.adjust($thumb-color, $lightness: -10%);
+    }
+  }
+
+  // Standard scrollbar properties for future compatibility
+  @supports (scrollbar-width: thin) {
+    scrollbar-width: thin;
+    scrollbar-color: $thumb-color $track-color;
+  }
+}

@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm, ValidationError } from '@formspree/react';
 import FormInput from './FormInput';
 import FormSelect from './FormSelect';
@@ -8,6 +8,7 @@ import './BookingForm.scss';
 
 const BookingForm = ({ tours, locations }) => {
   const [state, handleSubmit] = useForm("mlekgonz");
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -17,6 +18,12 @@ const BookingForm = ({ tours, locations }) => {
     location: '',
     message: '',
   });
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -36,6 +43,7 @@ const BookingForm = ({ tours, locations }) => {
   return (
     <form onSubmit={handleSubmit} className="booking-form" aria-labelledby="booking-form-title">
       <h3 className="booking-form__title" id="booking-form-title">Request Form</h3>
+      
       <div className="booking-form__group">
         <FormInput 
           label="Name:" 
@@ -44,47 +52,67 @@ const BookingForm = ({ tours, locations }) => {
           value={formData.name} 
           onChange={handleChange} 
           required 
-          autoComplete="name"
+          autoComplete="name" 
         />
         <ValidationError prefix="Name" field="name" errors={state.errors} className="booking-form__error" aria-live="polite" />
       </div>
+
       <div className="booking-form__group">
         <FormInput 
           label="Email:" 
           id="email" 
           name="email" 
+          type="email" 
           value={formData.email} 
           onChange={handleChange} 
           required 
-          autoComplete="email"
+          autoComplete="email" 
         />
         <ValidationError prefix="Email" field="email" errors={state.errors} className="booking-form__error" aria-live="polite" />
       </div>
+
       <div className="booking-form__group">
         <FormInput 
           label="Phone:" 
           id="phone" 
           name="phone" 
+          type="tel" 
           value={formData.phone} 
           onChange={handleChange} 
           required 
-          autoComplete="tel"
+          autoComplete="tel" 
         />
         <ValidationError prefix="Phone" field="phone" errors={state.errors} className="booking-form__error" aria-live="polite" />
       </div>
+
       <div className="booking-form__group">
-        <FormInput 
-          label="Preferred Date:" 
-          id="date" 
-          name="date" 
-          type="date" 
-          value={formData.date} 
-          onChange={handleChange} 
-          required 
-          autoComplete="bday"
-        />
+        {isMobile ? (
+          <FormInput 
+            label="Preferred Date:" 
+            id="date" 
+            name="date" 
+            type="date" 
+            value={formData.date} 
+            onChange={handleChange} 
+            required 
+            min={new Date().toISOString().split('T')[0]}
+          />
+        ) : (
+          <FormInput 
+            label="Preferred Date:" 
+            id="date" 
+            name="date" 
+            type="text" 
+            value={formData.date} 
+            onChange={handleChange} 
+            required 
+            placeholder="dd.mm.yyyy"
+            pattern="\d{2}\.\d{2}\.\d{4}"
+          />
+        )}
         <ValidationError prefix="Date" field="date" errors={state.errors} className="booking-form__error" aria-live="polite" />
       </div>
+
       <div className="booking-form__group">
         <FormSelect 
           label="Select Tour:" 
@@ -94,10 +122,11 @@ const BookingForm = ({ tours, locations }) => {
           options={tours} 
           onChange={handleChange} 
           required 
-          autoComplete="off"
+          autoComplete="off" 
         />
         <ValidationError prefix="Tour" field="tour" errors={state.errors} className="booking-form__error" aria-live="polite" />
       </div>
+
       <div className="booking-form__group">
         <FormSelect 
           label="Pick Up Location (Part of the Island):" 
@@ -107,10 +136,11 @@ const BookingForm = ({ tours, locations }) => {
           options={locations} 
           onChange={handleChange} 
           required 
-          autoComplete="off"
+          autoComplete="off" 
         />
         <ValidationError prefix="Location" field="location" errors={state.errors} className="booking-form__error" aria-live="polite" />
       </div>
+
       <div className="booking-form__group">
         <FormTextarea 
           label="Message:" 
@@ -119,13 +149,15 @@ const BookingForm = ({ tours, locations }) => {
           value={formData.message} 
           onChange={handleChange} 
           required 
-          autoComplete="off"
+          autoComplete="off" 
         />
         <ValidationError prefix="Message" field="message" errors={state.errors} className="booking-form__error" aria-live="polite" />
       </div>
+
       <button type="submit" disabled={state.submitting} className="booking-form__submit reveal">
         {state.submitting ? "Submitting..." : "Submit Booking Request"}
       </button>
+      
       {state.errors && state.errors.length > 0 && (
         <p className="booking-form__error-message" role="alert">Please fix the errors above.</p>
       )}
