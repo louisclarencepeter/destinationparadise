@@ -14,11 +14,15 @@ $color-border: #E1E6EB;
 $black: #1A1A1A;
 
 /* Gradients */
-$gradient-button: linear-gradient(120deg, $color-primary 0%, $color-accent 100%);
+$gradient-button: linear-gradient(
+  120deg,
+  rgba($color-primary, 0.8) 0%, // 80% opacity for primary color
+  rgba($color-accent, 0.8) 100%  // 80% opacity for accent color
+);
 $gradient-hover: linear-gradient(
   120deg,
-  color.adjust($color-primary, $lightness: -10%) 0%,
-  color.adjust($color-accent, $lightness: -10%) 100%
+  rgba(color.adjust($color-primary, $lightness: -10%), 0.8) 0%, // 80% opacity for adjusted primary
+  rgba(color.adjust($color-accent, $lightness: -10%), 0.8) 100% // 80% opacity for adjusted accent
 );
 
 /* Transitions */

@@ -49,6 +49,7 @@
         em {
           color: color.adjust(vars.$color-accent, $lightness: -10%);
           font-style: normal;
+          padding: 0 0.5rem;
         }
       }
     }
