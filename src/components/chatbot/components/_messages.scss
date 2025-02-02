@@ -1,23 +1,30 @@
 @use '../../../styles/variables' as vars;
 
 .chatbot-messages {
-    flex: 1;
-    padding: 15px;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-    background-color: vars.$color-background-light;
-  
-    &::-webkit-scrollbar {
-      width: 8px;
-    }
-  
-    &::-webkit-scrollbar-thumb {
-      background-color: vars.$color-secondary;
-      border-radius: 8px;
-    }
-  
-    &::-webkit-scrollbar-track {
-      background-color: vars.$color-background;
-    }
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  background-color: vars.$color-background-light;
+
+  // Firefox scrollbar styling (if supported)
+  @supports (scrollbar-width: thin) {
+    scrollbar-width: thin;
+    scrollbar-color: vars.$color-secondary vars.$color-background;
   }
+
+  // WebKit scrollbar styling for Chrome, Safari, and Edge
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: vars.$color-secondary;
+    border-radius: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: vars.$color-background;
+  }
+}

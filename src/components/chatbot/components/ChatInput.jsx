@@ -3,36 +3,31 @@ import React, { useState, useCallback } from 'react';
 const ChatInput = ({ onSend }) => {
   const [input, setInput] = useState('');
 
-  const handleSend = useCallback(() => {
-    if (input.trim()) {
-      onSend(input);
-      setInput('');
-    }
-  }, [input, onSend]);
-
-  const handleKeyPress = useCallback((event) => {
-    if (event.key === 'Enter') {
-      handleSend();
-    }
-  }, [handleSend]);
+  const handleSubmit = useCallback(
+    (event) => {
+      event.preventDefault();
+      const trimmedInput = input.trim();
+      if (trimmedInput) {
+        onSend(trimmedInput);
+        setInput('');
+      }
+    },
+    [input, onSend]
+  );
 
   return (
-    <div className="chatbot-input">
+    <form className="chatbot-input" onSubmit={handleSubmit}>
       <input
         type="text"
         value={input}
         onChange={(e) => setInput(e.target.value)}
-        onKeyPress={handleKeyPress}
         aria-label="Type your message"
         placeholder="Type your message..."
       />
-      <button 
-        onClick={handleSend} 
-        aria-label="Send message"
-      >
+      <button type="submit" aria-label="Send message" disabled={!input.trim()}>
         Send
       </button>
-    </div>
+    </form>
   );
 };
 
