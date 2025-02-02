@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import Message from './Message';
 import { useChatScroll } from '../hooks/useChatScroll';
 
 const ChatMessages = ({ messages }) => {
-  const { containerRef, lastMessageRef, scrollToBottom } = useChatScroll({
+  const { containerRef, lastMessageRef } = useChatScroll({
     messages,
-    smooth: true
+    smooth: true,
   });
+
+  const renderedMessages = useMemo(() => {
+    return messages.map((message, index) => {
+      // Use a unique identifier if available; fallback to index.
+      const key = message.id || index;
+      return (
+        <div
+          key={key}
+          ref={index === messages.length - 1 ? lastMessageRef : null}
+        >
+          <Message {...message} />
+        </div>
+      );
+    });
+  }, [messages, lastMessageRef]);
 
   return (
     <div 
@@ -14,16 +29,9 @@ const ChatMessages = ({ messages }) => {
       className="chatbot-messages" 
       aria-live="polite"
     >
-      {messages.map((message, index) => (
-        <div
-          key={index}
-          ref={index === messages.length - 1 ? lastMessageRef : null}
-        >
-          <Message {...message} />
-        </div>
-      ))}
+      {renderedMessages}
     </div>
   );
 };
 
-export default ChatMessages;
+export default React.memo(ChatMessages);

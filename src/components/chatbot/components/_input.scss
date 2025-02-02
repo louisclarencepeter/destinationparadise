@@ -26,14 +26,21 @@
 
   button {
     padding: 10px 16px;
-  
+    cursor: pointer;
+    transition: opacity 0.3s;
+
+    // Disabled state styling
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
     @media (max-width: 480px) {
       padding: 0.6rem 1.2rem;
       font-size: calc(0.4rem + 1.5vw);
     }
   }
   
-
   @media (min-width: 2560px) {
     padding: 16px;
 

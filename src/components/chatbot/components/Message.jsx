@@ -1,38 +1,34 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { formatMessageContent } from '../utils/messageFormatter';
 
-const TypingIndicator = () => (
+const TypingIndicator = memo(() => (
   <span className="typing-indicator" role="status">
-    <span className="dot"></span>
-    <span className="dot"></span>
-    <span className="dot"></span>
+    <span className="dot" />
+    <span className="dot" />
+    <span className="dot" />
   </span>
-);
+));
 
-const MessageContent = ({ content }) => {
+const MessageContent = memo(({ content }) => {
   const formatted = formatMessageContent(content);
-  
-  if (formatted.type === 'raw') return formatted.content;
-  
+
+  if (formatted.type === 'raw') {
+    return <>{formatted.content}</>;
+  }
+
   return formatted.sections.map((section, index) => (
-    <p 
-      key={index} 
+    <p
+      key={index}
       className={section.isNumbered ? 'numbered-item' : ''}
-      dangerouslySetInnerHTML={{ __html: section.text }} 
+      dangerouslySetInnerHTML={{ __html: section.text }}
     />
   ));
-};
+});
 
-const Message = ({ role, content, isTyping }) => {
-  return (
-    <div className={`message ${role}`}>
-      {isTyping ? (
-        <TypingIndicator />
-      ) : (
-        <MessageContent content={content} />
-      )}
-    </div>
-  );
-};
+const Message = memo(({ role, content, isTyping }) => (
+  <div className={`message ${role}`}>
+    {isTyping ? <TypingIndicator /> : <MessageContent content={content} />}
+  </div>
+));
 
 export default Message;

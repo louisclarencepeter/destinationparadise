@@ -1,18 +1,19 @@
-// _toggle.scss
 @use '../../../styles/variables' as vars;
 @use '../../../styles/mixins' as mixins;
 @use '../../../styles/common' as common;
 
 .chatbot-toggle {
-    @extend .common-icon-style;
-  
-    &.hidden {
-      display: none !important;
-    }
-  
-    @media (max-width: 480px) {
-      position: fixed;
-      bottom: 1rem;
-      right: 1rem;
-    }
+  @extend .common-icon-style;
+
+  // Hide the toggle button when chat is open
+  &.hidden {
+    display: none; // Remove !important if possible; add it back only if needed
   }
+
+  // Position adjustments for small screens
+  @media (max-width: 480px) {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+  }
+}
