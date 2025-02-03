@@ -1,3 +1,5 @@
+/* _container.scss */
+
 .chatbot-container {
   position: fixed;
   bottom: 1rem;
@@ -7,6 +9,7 @@
   flex-direction: column;
   align-items: flex-end;
   transition: transform 0.3s ease, opacity 0.3s ease;
+  border-radius: 20px;
 
   @media (max-width: 480px) {
     bottom: 1rem;
@@ -17,19 +20,15 @@
   }
 
   @media (min-width: 481px) and (max-width: 768px) {
-/*     bottom: 1.2rem;
-    right: 1.2rem; */
     left: auto;
     width: auto;
   }
+}
 
-/*   @media (min-width: 769px) and (max-width: 1024px) {
-    bottom: 1.5rem;
-    right: 1.5rem;
-  }
-
-  @media (min-width: 1025px) {
-    bottom: 2rem;
-    right: 2rem;
-  } */
+.chatbot-messages {
+  overflow-y: auto;
+  max-height: 300px;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
 }
