@@ -1,20 +1,27 @@
+// hooks/useChatScroll.js
+
 import { useEffect, useRef } from 'react';
 
 /**
- * Custom hook to manage chat scroll behavior
+ * Custom hook to manage chat scroll behavior.
  * @param {Object} params
- * @param {Array} params.messages - Array of chat messages
- * @param {boolean} params.smooth - Whether to use smooth scrolling
- * @returns {{ containerRef: React.RefObject, scrollToBottom: Function }}
+ * @param {Array} params.messages - Array of chat messages.
+ * @param {boolean} params.smooth - Whether to use smooth scrolling.
+ * @param {boolean} params.isOpen - Whether the chat window is open.
+ * @returns {{
+ *   containerRef: React.RefObject,
+ *   lastMessageRef: React.RefObject,
+ *   scrollToBottom: Function
+ * }}
  */
-export const useChatScroll = ({ messages, smooth = true }) => {
+export const useChatScroll = ({ messages, smooth = true, isOpen }) => {
   const containerRef = useRef(null);
   const lastMessageRef = useRef(null);
   
-  // Track if user has manually scrolled up
+  // Track if user has manually scrolled up.
   const userScrolledRef = useRef(false);
   
-  // Track last message count to detect new messages
+  // Track last message count to detect new messages.
   const messageCountRef = useRef(messages.length);
 
   const scrollToBottom = (force = false) => {
@@ -26,14 +33,14 @@ export const useChatScroll = ({ messages, smooth = true }) => {
     });
   };
 
-  // Handle scroll events to detect when user manually scrolls up
+  // Listen for manual scrolling to update the userScrolled flag.
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
     const handleScroll = () => {
       const { scrollTop, scrollHeight, clientHeight } = container;
-      // Consider user has scrolled up if not at bottom (with small threshold)
+      // Consider user has scrolled up if not at the bottom (with a small threshold).
       userScrolledRef.current = Math.abs(scrollHeight - clientHeight - scrollTop) > 50;
     };
 
@@ -41,13 +48,18 @@ export const useChatScroll = ({ messages, smooth = true }) => {
     return () => container.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Auto-scroll on new messages
+  // Auto-scroll when new messages arrive or when chat opens.
   useEffect(() => {
-    if (messages.length > messageCountRef.current) {
+    if (isOpen) {
+      // Reset the user scrolled flag when the chat is opened.
+      userScrolledRef.current = false;
+    }
+    
+    if (messages.length > messageCountRef.current || isOpen) {
       messageCountRef.current = messages.length;
       scrollToBottom();
     }
-  }, [messages]);
+  }, [messages, isOpen]);
 
   return {
     containerRef,
