@@ -1,11 +1,14 @@
+// ChatMessages.jsx
+
 import React, { useMemo } from 'react';
 import Message from './Message';
 import { useChatScroll } from '../hooks/useChatScroll';
 
-const ChatMessages = ({ messages }) => {
+const ChatMessages = ({ messages, isOpen }) => {
   const { containerRef, lastMessageRef } = useChatScroll({
     messages,
     smooth: true,
+    isOpen, // Pass the isOpen state so the hook can auto-scroll on open
   });
 
   const renderedMessages = useMemo(() => {
@@ -24,9 +27,9 @@ const ChatMessages = ({ messages }) => {
   }, [messages, lastMessageRef]);
 
   return (
-    <div 
+    <div
       ref={containerRef}
-      className="chatbot-messages" 
+      className="chatbot-messages"
       aria-live="polite"
     >
       {renderedMessages}
