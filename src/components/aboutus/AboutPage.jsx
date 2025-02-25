@@ -3,7 +3,7 @@ import { useIntersectionObserver } from '../../hooks/useIntersectionObserver';
 import { Header } from './components/Header';
 import { Logo } from './components/Logo';
 import { ContentSection } from './components/ContentSection';
-import { Map } from './components/Map';
+import MapComponent from './components/Map.jsx';
 import "./AboutPage.scss";
 
 const AboutPage = () => {
@@ -18,7 +18,7 @@ const AboutPage = () => {
       <Header isVisible={isHeaderVisible} headerRef={headerRef} />
       <Logo />
       <ContentSection />
-      <Map isVisible={isMapVisible} mapRef={mapRef} />
+      <MapComponent isVisible={isMapVisible} mapRef={mapRef} />
     </div>
   );
 };

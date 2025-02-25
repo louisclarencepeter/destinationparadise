@@ -20,4 +20,5 @@ export const tourImages = {
   quadAdventure: "/images/quad/quadtour.jpg",
   sunsetTrip: "/images/sunsetrock/sunsetrock.jpg",
   sunsetSailing: "/images/sunsetsailing/sunsetsail.jpg"
+  
 };
