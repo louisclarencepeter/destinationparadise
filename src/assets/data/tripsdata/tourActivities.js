@@ -91,4 +91,6 @@ export const tourActivities = {
     "Enjoy sunset views of the Zanzibar coastline",
     "Relax with cool ocean breezes and tranquil ambiance"
   ],
+  
+
 };
