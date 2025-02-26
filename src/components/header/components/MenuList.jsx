@@ -15,23 +15,30 @@ const MenuList = ({ className, onClick }) => {
 
   return (
     <ul className={className} role="menubar">
-      {menuItems.map(({ label, path }) => (
-        <li key={label} role="none">
-          <Link
-            role="menuitem"
-            className={`menu__item ${location.pathname === path ? "active" : ""}`}
-            aria-current={location.pathname === path ? "page" : undefined}
-            to={path}
-            onClick={() => {
-              onClick();
-              scrollToTop();
-            }}
-            aria-label={`Navigate to ${label}`}
-          >
-            {label}
-          </Link>
-        </li>
-      ))}
+      {menuItems.map(({ label, path }) => {
+        const isActive =
+          path === "/"
+            ? location.pathname === path // Exact match for "/"
+            : location.pathname.startsWith(path); // Prefix match for others
+
+        return (
+          <li key={label} role="none">
+            <Link
+              role="menuitem"
+              className={`menu__item ${isActive ? "active" : ""}`}
+              aria-current={isActive ? "page" : undefined}
+              to={path}
+              onClick={() => {
+                onClick();
+                scrollToTop();
+              }}
+              aria-label={`Navigate to ${label}`}
+            >
+              {label}
+            </Link>
+          </li>
+        );
+      })}
     </ul>
   );
 };
