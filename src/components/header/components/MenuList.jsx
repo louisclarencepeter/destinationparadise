@@ -8,9 +8,11 @@ const MenuList = ({ className, onClick }) => {
   const menuItems = [
     { label: "Home", path: "/" },
     { label: "Excursions", path: "/excursions" },
+    { label: "Safaris", path: "/safaris" },
     { label: "About Us", path: "/aboutus" },
     { label: "Gallery", path: "/gallery" },
     { label: "Booking Request", path: "/booking" },
+   
   ];
 
   return (

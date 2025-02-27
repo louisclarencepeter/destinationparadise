@@ -1,0 +1,61 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+.safaris-item {
+  background-color: vars.$color-background; // Use your background color for consistency
+  padding: 20px;
+  border-radius: vars.$border-radius-default; // Use your default border radius
+  box-shadow: vars.$box-shadow-default; // Use your default box shadow
+  text-align: center;
+  @include mixins.fade-in-up; // Apply fade-in animation for items
+
+  @include mixins.respond-to(sm) {
+    padding: 15px; // Smaller padding on mobile
+  }
+
+  @include mixins.respond-to(md) {
+    padding: 18px; // Medium padding on tablets
+  }
+
+  @include mixins.respond-to(lg) {
+    padding: 25px; // Larger padding on desktop
+  }
+
+  h3 {
+    font-family: vars.$font-secondary;
+    font-size: 1.5rem;
+    color: vars.$color-primary;
+    margin-bottom: 10px;
+
+    @include mixins.respond-to(sm) {
+      font-size: 1.2rem; // Smaller on mobile
+    }
+
+    @include mixins.respond-to(md) {
+      font-size: 1.4rem; // Medium on tablets
+    }
+
+    @include mixins.respond-to(lg) {
+      font-size: 1.6rem; // Larger on desktop
+    }
+  }
+
+  p {
+    font-family: vars.$font-secondary;
+    font-size: 1rem;
+    color: vars.$color-secondary;
+    line-height: 1.6; // Improved readability
+
+    @include mixins.respond-to(sm) {
+      font-size: 0.9rem; // Smaller on mobile
+    }
+
+    @include mixins.respond-to(md) {
+      font-size: 1rem; // Default on tablets
+    }
+
+    @include mixins.respond-to(lg) {
+      font-size: 1.1rem; // Larger on desktop
+    }
+  }
+}

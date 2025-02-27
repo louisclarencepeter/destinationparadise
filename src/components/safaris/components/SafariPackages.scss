@@ -1,0 +1,114 @@
+@use "sass:color";
+@use "../../../styles/variables" as vars;
+@use "../../../styles/mixins" as mixins;
+
+/* Use the flex-center mixin for centering content if needed */
+.safari-packages {
+  padding: 2rem; /* Using a more semantic value */
+  max-width: 1200px;
+  margin: 0 auto;
+
+  @include mixins.customScrollbar($thumb-color: rgba(vars.$black, 0.3), $track-color: transparent);
+
+  .safari-package {
+    background: vars.$color-background;
+    border-radius: vars.$border-radius-default;
+    box-shadow: vars.$box-shadow-default;
+    margin-bottom: vars.$grid-gap;
+    padding: 1.5rem;
+    transition: vars.$transition-default;
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 12px rgba(vars.$black, 0.15);
+    }
+
+    h3 {
+      color: vars.$color-primary;
+      margin-bottom: 1rem;
+      @include mixins.responsive-font-size;
+    }
+
+    p {
+      color: vars.$black;
+      margin: 0.5rem 0;
+      font-family: vars.$font-secondary;
+    }
+
+    h4 {
+      color: vars.$color-secondary;
+      margin: 1rem 0 0.5rem;
+      @include mixins.responsive-font-size;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        color: vars.$color-secondary;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid vars.$color-border;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+
+  /* Responsive design using your breakpoints */
+  @include mixins.respond-to(sm) {
+    padding: 1rem;
+
+    .safari-package {
+      padding: 1rem;
+      margin-bottom: 1rem;
+
+      h3, h4 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
+  @include mixins.respond-to(md) {
+    .safari-package {
+      padding: 1.25rem;
+
+      h3 {
+        font-size: 1.2rem;
+      }
+
+      h4 {
+        font-size: 1rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  @include mixins.respond-to(lg) {
+    .safari-package {
+      padding: 1.5rem;
+
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      h4 {
+        font-size: 1.1rem;
+      }
+
+      p {
+        font-size: 1.1rem;
+      }
+    }
+  }
+}

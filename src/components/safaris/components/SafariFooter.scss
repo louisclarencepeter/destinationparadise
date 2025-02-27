@@ -1,0 +1,20 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+.safaris-footer {
+  text-align: center;
+  padding: 20px;
+  font-family: vars.$font-secondary;
+  font-size: 0.9rem;
+  color: vars.$color-secondary;
+  background-color: vars.$color-background-light;
+
+  @include mixins.respond-to(sm) {
+    padding: 15px;
+    font-size: 0.8rem;
+  }
+
+  @include mixins.respond-to(lg) {
+    font-size: 1rem;
+  }
+}
