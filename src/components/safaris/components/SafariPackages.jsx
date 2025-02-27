@@ -6,7 +6,8 @@ const SafariPackages = () => {
     {
       title: "Classic Northern Circuit Safari",
       duration: "6 Days / 5 Nights",
-      destinations: "Tarangire National Park, Lake Manyara National Park, Serengeti National Park, Ngorongoro Crater",
+      destinations:
+        "Tarangire National Park, Lake Manyara National Park, Serengeti National Park, Ngorongoro Crater",
       bestFor: "First-time safari travelers, wildlife enthusiasts",
       highlights: [
         "Game drives in Tarangire, famous for elephants and baobab trees",
@@ -103,12 +104,19 @@ const SafariPackages = () => {
 
   return (
     <div className="safari-packages">
+      <h2>Our Safari Packages</h2>
       {safariPackages.map((safari, index) => (
         <div key={index} className="safari-package">
           <h3>{safari.title}</h3>
-          <p><strong>Duration:</strong> {safari.duration}</p>
-          <p><strong>Destinations:</strong> {safari.destinations}</p>
-          <p><strong>Best for:</strong> {safari.bestFor}</p>
+          <p>
+            <strong>Duration:</strong> {safari.duration}
+          </p>
+          <p>
+            <strong>Destinations:</strong> {safari.destinations}
+          </p>
+          <p>
+            <strong>Best for:</strong> {safari.bestFor}
+          </p>
           <h4>Highlights:</h4>
           <ul>
             {safari.highlights.map((highlight, i) => (
@@ -118,7 +126,9 @@ const SafariPackages = () => {
           <h4>Estimated Price:</h4>
           <ul>
             {safari.prices.budget && <li>Budget: {safari.prices.budget}</li>}
-            {safari.prices.midRange && <li>Mid-Range: {safari.prices.midRange}</li>}
+            {safari.prices.midRange && (
+              <li>Mid-Range: {safari.prices.midRange}</li>
+            )}
             {safari.prices.luxury && <li>Luxury: {safari.prices.luxury}</li>}
           </ul>
         </div>
