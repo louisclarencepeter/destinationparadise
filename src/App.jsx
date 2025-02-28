@@ -18,6 +18,7 @@ const Store = lazy(() => import("./components/store/Store"));
 const PolicyInfo = lazy(() => import("./components/cookies/PolicyInfo"));
 const TourDetails = lazy(() => import("./components/excursions/TourDetails"));
 const Safaris = lazy(() => import("./components/safaris/Safaris"));
+const SafariInfo = lazy(() => import("./components/safaris/components/safarisinfo/SafariInfo"));
 
 function App() {
   useEffect(() => {
@@ -45,6 +46,7 @@ function App() {
               <Route path="/privacy-policy" element={<PolicyInfo />} />
               <Route path="/terms-of-service" element={<PolicyInfo />} />
               <Route path="/excursions/:id" element={<TourDetails />} />
+              <Route path="/safarisinfo/:title" element={<SafariInfo />} />
             </Routes>
           </Suspense>
         </Layout>

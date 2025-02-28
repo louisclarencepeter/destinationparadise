@@ -1,24 +1,35 @@
-@use "../../styles/variables" as vars;
-@use "../../styles/mixins" as mixins;
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
 
-.safaris-item {
-  background-color: vars.$color-background; // Use your background color for consistency
+.safari-item {
+  background-color: vars.$color-background;
   padding: 20px;
-  border-radius: vars.$border-radius-default; // Use your default border radius
-  box-shadow: vars.$box-shadow-default; // Use your default box shadow
+  border-radius: vars.$border-radius-default;
+  box-shadow: vars.$box-shadow-default;
   text-align: center;
-  @include mixins.fade-in-up; // Apply fade-in animation for items
+  @include mixins.fade-in-up;
 
   @include mixins.respond-to(sm) {
-    padding: 15px; // Smaller padding on mobile
+    padding: 15px;
   }
 
   @include mixins.respond-to(md) {
-    padding: 18px; // Medium padding on tablets
+    padding: 18px;
   }
 
   @include mixins.respond-to(lg) {
-    padding: 25px; // Larger padding on desktop
+    padding: 25px;
+  }
+
+  img {
+    width: 100%;
+    border-radius: vars.$border-radius-default;
+    margin-bottom: 15px;
+    
+    @include mixins.respond-to(lg) {
+      height: 200px;
+      object-fit: cover;
+    }
   }
 
   h3 {
@@ -28,15 +39,15 @@
     margin-bottom: 10px;
 
     @include mixins.respond-to(sm) {
-      font-size: 1.2rem; // Smaller on mobile
+      font-size: 1.2rem;
     }
 
     @include mixins.respond-to(md) {
-      font-size: 1.4rem; // Medium on tablets
+      font-size: 1.4rem;
     }
 
     @include mixins.respond-to(lg) {
-      font-size: 1.6rem; // Larger on desktop
+      font-size: 1.6rem;
     }
   }
 
@@ -44,18 +55,28 @@
     font-family: vars.$font-secondary;
     font-size: 1rem;
     color: vars.$color-secondary;
-    line-height: 1.6; // Improved readability
+    line-height: 1.6;
 
     @include mixins.respond-to(sm) {
-      font-size: 0.9rem; // Smaller on mobile
+      font-size: 0.9rem;
     }
 
     @include mixins.respond-to(md) {
-      font-size: 1rem; // Default on tablets
+      font-size: 1rem;
     }
 
     @include mixins.respond-to(lg) {
-      font-size: 1.1rem; // Larger on desktop
+      font-size: 1.1rem;
     }
+  }
+
+  a {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+  }
+
+  .learn-more {
+    @include mixins.button-styles;
   }
 }

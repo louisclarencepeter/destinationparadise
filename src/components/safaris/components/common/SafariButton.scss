@@ -1,37 +1,16 @@
-@use "../../styles/variables" as vars;
-@use "../../styles/mixins" as mixins;
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
 
 .safaris-button {
   display: block;
   margin: 0 auto 40px;
-  @include mixins.button-styles; // Applying the button styles mixin
+  @include mixins.button-styles;
   
-  // Override or add specific styles
-  color: vars.$color-on-primary; // Ensure text is readable on button background
-  cursor: pointer;
-
-  // Mobile responsive styles
+  // You could keep just the specific overrides you need
+  // but remove duplicates of what's already in the mixin
+  
+  // Mobile-specific adjustments if needed
   @include mixins.respond-to(sm) {
-    padding: 8px 16px; // Smaller padding on mobile
-    font-size: 0.9rem; // Smaller font on mobile
-    width: 100%; // Full width on mobile for better touch targets
     max-width: 200px; // Limit max width for balance
-  }
-
-  // Tablet responsive styles
-  @include mixins.respond-to(md) {
-    padding: 12px 24px; // Larger padding on tablets
-    font-size: 1rem; // Default font size on tablets
-    width: auto; // Reset to default width
-  }
-
-  // Desktop responsive styles
-  @include mixins.respond-to(lg) {
-    padding: 14px 28px; // Larger padding on desktop
-    font-size: 1.1rem; // Slightly larger on desktop
-  }
-
-  &:hover {
-    color: vars.$hover-color; // This matches the mixin hover color
   }
 }
