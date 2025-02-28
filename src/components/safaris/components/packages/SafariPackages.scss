@@ -1,6 +1,6 @@
 @use "sass:color";
-@use "../../../styles/variables" as vars;
-@use "../../../styles/mixins" as mixins;
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
 
 /* Use the flex-center mixin for centering content if needed */
 .safari-packages {

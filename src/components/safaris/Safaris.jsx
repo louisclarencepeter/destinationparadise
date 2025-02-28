@@ -1,10 +1,10 @@
 import React, { useRef, useEffect, useState } from "react";
-import SafariTitle from "./components/SafariTitle";
-import SafariDescription from "./components/SafariDescription";
-import SafariPackages from "./components/SafariPackages";
-import SafariList from "./components/SafariList";
-import SafariButton from "./components/SafariButton";
-import SafariFooter from "./components/SafariFooter";
+import SafariTitle from "./components/common/SafariTitle";
+import SafariDescription from "./components/safarisinfo/SafariDescription";
+import SafariPackages from "./components/packages/SafariPackages";
+import SafariList from "./components/list/SafariList";
+import SafariButton from "./components/common/SafariButton";
+import SafariFooter from "./components/common/SafariFooter";
 import "./Safaris.scss";
 
 const Safaris = () => {
