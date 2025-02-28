@@ -3,29 +3,73 @@
 @use "../../../../styles/mixins" as mixins;
 
 .safari-info-container {
-  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 1rem;
+  background-color: vars.$color-background;
   
   @include mixins.fade-in-up();
+  
+  @include mixins.respond-to(sm) {
+    padding: 1.5rem 0.75rem;
+  }
   
   .safari-info-header {
     text-align: center;
     margin-bottom: 2rem;
+    position: relative;
+    
+    @include mixins.respond-to(sm) {
+      margin-bottom: 1.5rem;
+    }
+    
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: vars.$color-accent;
+      border-radius: 10px;
+      
+      @include mixins.respond-to(sm) {
+        width: 60px;
+        height: 2px;
+        bottom: -8px;
+      }
+    }
     
     h1 {
       font-family: vars.$font-primary;
       color: vars.$color-primary;
       font-size: 2.5rem;
-      margin-bottom: 1rem;
+      margin-bottom: 0.75rem;
+      text-transform: capitalize;
+      letter-spacing: 1px;
+      font-weight: 700;
       
       @include mixins.respond-to(md) {
         font-size: 2rem;
+        margin-bottom: 0.5rem;
       }
       
       @include mixins.respond-to(sm) {
-        font-size: 1.8rem;
+        font-size: 1.75rem;
+      }
+    }
+    
+    .safari-subtitle {
+      font-family: vars.$font-secondary;
+      color: color.adjust(vars.$color-primary, $lightness: 20%);
+      font-size: 1.2rem;
+      font-style: italic;
+      max-width: 700px;
+      margin: 0 auto;
+      
+      @include mixins.respond-to(sm) {
+        font-size: 1rem;
       }
     }
   }
@@ -36,11 +80,19 @@
     
     @include mixins.respond-to(md) {
       flex-direction: column;
+      gap: 1.5rem;
     }
     
     .safari-info-image {
       flex: 1;
       max-width: 50%;
+      transition: vars.$transition-default;
+      overflow: hidden;
+      position: relative;
+      
+      &:hover img {
+        transform: scale(1.03);
+      }
       
       @include mixins.respond-to(md) {
         max-width: 100%;
@@ -51,26 +103,105 @@
         height: auto;
         border-radius: vars.$border-radius-default;
         box-shadow: vars.$box-shadow-default;
+        transition: vars.$transition-ease;
+        object-fit: cover;
+        
+        @include mixins.respond-to(md) {
+          aspect-ratio: 16/9;
+        }
+      }
+      
+      .safari-location {
+        position: absolute;
+        bottom: 15px;
+        left: 15px;
+        background-color: rgba(vars.$black, 0.6);
+        color: vars.$color-on-primary;
+        padding: 0.5rem 0.8rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        font-family: vars.$font-secondary;
+        
+        .location-icon {
+          font-size: 1rem;
+        }
       }
     }
     
     .safari-info-details {
       flex: 1;
       
+      .safari-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid vars.$color-border;
+        
+        @include mixins.respond-to(sm) {
+          gap: 1rem;
+          margin-bottom: 1rem;
+          padding-bottom: 0.75rem;
+        }
+        
+        .meta-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-family: vars.$font-secondary;
+          color: vars.$black;
+          
+          .meta-icon {
+            font-size: 1.2rem;
+            color: vars.$color-accent;
+          }
+        }
+      }
+      
       .safari-description {
         font-family: vars.$font-secondary;
-        line-height: 1.6;
-        margin-bottom: 2rem;
+        line-height: 1.8;
+        margin-bottom: 2.5rem;
         color: vars.$black;
+        font-size: 1.05rem;
+        text-align: justify;
       }
       
       .safari-highlights {
-        margin-bottom: 2rem;
+        margin-bottom: 1.5rem;
+        background-color: vars.$color-background-dark;
+        padding: 1.25rem;
+        border-radius: vars.$border-radius-default;
+        border-left: 4px solid vars.$color-accent;
+        
+        @include mixins.respond-to(sm) {
+          padding: 1rem;
+          margin-bottom: 1.25rem;
+        }
         
         h3 {
           font-family: vars.$font-primary;
           color: vars.$color-primary;
           margin-bottom: 1rem;
+          font-size: 1.25rem;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          
+          @include mixins.respond-to(sm) {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+          }
+          
+          &::before {
+            content: "✦";
+            margin-right: 0.5rem;
+            color: vars.$color-accent;
+          }
         }
         
         ul {
@@ -80,12 +211,89 @@
           li {
             position: relative;
             padding-left: 1.5rem;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.75rem;
             font-family: vars.$font-secondary;
+            font-size: 0.95rem;
+            
+            @include mixins.respond-to(sm) {
+              margin-bottom: 0.5rem;
+              padding-left: 1.25rem;
+            }
             
             &:before {
-              content: "•";
+              content: "→";
               color: vars.$color-accent;
+              position: absolute;
+              left: 0;
+              font-weight: bold;
+            }
+            
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+      
+      .safari-includes {
+        margin-bottom: 1.5rem;
+        background-color: vars.$color-background-dark;
+        padding: 1.25rem;
+        border-radius: vars.$border-radius-default;
+        border-left: 4px solid vars.$color-primary;
+        
+        @include mixins.respond-to(sm) {
+          padding: 1rem;
+          margin-bottom: 1.25rem;
+        }
+        
+        h3 {
+          font-family: vars.$font-primary;
+          color: vars.$color-primary;
+          margin-bottom: 1rem;
+          font-size: 1.25rem;
+          font-weight: 600;
+          display: flex;
+          align-items: center;
+          
+          @include mixins.respond-to(sm) {
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+          }
+          
+          &::before {
+            content: "✓";
+            margin-right: 0.5rem;
+            color: vars.$color-primary;
+          }
+        }
+        
+        .includes-list {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+          gap: 0.75rem;
+          list-style-type: none;
+          padding-left: 0;
+          
+          @include mixins.respond-to(sm) {
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.5rem;
+          }
+          
+          li {
+            position: relative;
+            padding-left: 1.25rem;
+            font-family: vars.$font-secondary;
+            font-size: 0.95rem;
+            
+            @include mixins.respond-to(sm) {
+              padding-left: 1.1rem;
+              font-size: 0.9rem;
+            }
+            
+            &:before {
+              content: "✓";
+              color: vars.$color-primary;
               position: absolute;
               left: 0;
               font-weight: bold;
@@ -94,8 +302,43 @@
         }
       }
       
-      .back-button {
-        @include mixins.button-styles;
+      .safari-actions {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        
+        @include mixins.respond-to(sm) {
+          flex-direction: column;
+          gap: 0.75rem;
+          margin-top: 1.25rem;
+        }
+        
+        .back-button {
+          @include mixins.button-styles;
+          
+          &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px vars.$box-shadow-color;
+            color: vars.$color-primary;
+          }
+          
+          &:active {
+            transform: translateY(-1px);
+          }
+        }
+        
+        .book-button {
+          @include mixins.button-styles;
+          
+          &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px vars.$box-shadow-color;
+          }
+          
+          &:active {
+            transform: translateY(-1px);
+          }
+        }
       }
     }
   }
@@ -103,15 +346,61 @@
 
 .safari-not-found {
   text-align: center;
-  padding: 4rem 1rem;
+  padding: 6rem 1rem;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: vars.$color-background;
   
   h2 {
     font-family: vars.$font-primary;
     color: vars.$color-error;
+    margin-bottom: 1rem;
+    font-size: 2.2rem;
+  }
+  
+  p {
+    font-family: vars.$font-secondary;
+    color: vars.$black;
     margin-bottom: 2rem;
+    font-size: 1.1rem;
   }
   
   .back-button {
     @include mixins.button-styles;
+    
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px vars.$box-shadow-color;
+    }
+    
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+}
+
+.safari-loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  background-color: vars.$color-background;
+  
+  .loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid vars.$color-border;
+    border-radius: 50%;
+    border-top-color: vars.$color-primary;
+    animation: spin 1s ease-in-out infinite;
+  }
+  
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 }
