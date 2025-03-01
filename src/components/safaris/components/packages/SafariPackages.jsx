@@ -1,6 +1,7 @@
 import React from "react";
 import "./SafariPackages.scss";
 import { safariPackages, MULTI_DAY_SAFARI_COUNT } from "./safariPackageData";
+import SafariButton from "../common/SafariButton";
 
 const SafariPackages = () => {
   // Split the safari packages into multi-day and day safaris
@@ -40,6 +41,7 @@ const SafariPackages = () => {
               )}
               {safari.prices.luxury && <li>Luxury: {safari.prices.luxury}</li>}
             </ul>
+            <SafariButton text="Book Now" to={`/booking/${safari.title.replace(/\s+/g, '-').toLowerCase()}`} />
           </div>
         ))}
       </div>
@@ -94,6 +96,7 @@ const SafariPackages = () => {
                 </ul>
               </div>
             </div>
+            <SafariButton text="Book Now" to={`/booking/${safari.title.replace(/\s+/g, '-').toLowerCase()}`} />
           </div>
         ))}
         
