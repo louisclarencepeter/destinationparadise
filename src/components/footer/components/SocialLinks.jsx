@@ -38,7 +38,7 @@ function SocialLinks() {
         aria-label="Visit our Twitter page"
         className="social-links__link"
       >
-        <i className="fab fa-twitter" aria-hidden="true"></i>
+        <i className="fa-brands fa-x-twitter" aria-hidden="true"></i>
       </a>
     </div>
   );
