@@ -4,7 +4,6 @@ import SafariDescription from "./components/safarisinfo/SafariDescription";
 import SafariPackages from "./components/packages/SafariPackages";
 import SafariList from "./components/list/SafariList";
 import SafariButton from "./components/common/SafariButton";
-import SafariFooter from "./components/common/SafariFooter";
 import "./Safaris.scss";
 
 const Safaris = () => {
@@ -59,7 +58,6 @@ const Safaris = () => {
         }
       />
       <SafariButton text="Book Now" />
-      <SafariFooter />
     </div>
   );
 };
