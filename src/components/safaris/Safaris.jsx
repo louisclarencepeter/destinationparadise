@@ -40,8 +40,8 @@ const Safaris = () => {
       <SafariDescription
         text="Tanzania is one of the best safari destinations in the world, offering a variety of incredible wildlife experiences. From the vast plains of the Serengeti to the lush landscapes of Ngorongoro Crater, here are some of the top safaris a person can take in Tanzania:"
       />
-        <SafariList />
-      <SafariPackages /> 
+      <SafariList />
+      <SafariPackages />
       <SafariDescription
         text={
           <>
@@ -57,7 +57,8 @@ const Safaris = () => {
           </>
         }
       />
-      <SafariButton text="Book Now" />
+      {/* Update this line */}
+      <SafariButton text="Book Now" to="/book-now" />
     </div>
   );
 };

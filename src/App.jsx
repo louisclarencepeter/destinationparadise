@@ -11,14 +11,13 @@ import Layout from "./components/layout/Layout";
 const Home = lazy(() => import("./components/home/Home"));
 const AboutPage = lazy(() => import("./components/aboutus/AboutPage"));
 const ToursPage = lazy(() => import("./components/excursions/ToursPage"));
-const MyImageGallery = lazy(() =>
-  import("./components/gallery/MyImageGallery")
-);
+const MyImageGallery = lazy(() => import("./components/gallery/MyImageGallery"));
 const Store = lazy(() => import("./components/store/Store"));
 const PolicyInfo = lazy(() => import("./components/cookies/PolicyInfo"));
 const TourDetails = lazy(() => import("./components/excursions/TourDetails"));
 const Safaris = lazy(() => import("./components/safaris/Safaris"));
 const SafariInfo = lazy(() => import("./components/safaris/components/safarisinfo/SafariInfo"));
+const BookNow = lazy(() => import("./components/safaris/BookNow")); 
 
 function App() {
   useEffect(() => {
@@ -34,7 +33,7 @@ function App() {
       <ScrollToTop />
       <ErrorBoundary>
         <Layout>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<div className="loading">Loading Your Safari Adventure...</div>}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/excursions" element={<ToursPage />} />
@@ -47,6 +46,7 @@ function App() {
               <Route path="/terms-of-service" element={<PolicyInfo />} />
               <Route path="/excursions/:id" element={<TourDetails />} />
               <Route path="/safarisinfo/:title" element={<SafariInfo />} />
+              <Route path="/book-now" element={<BookNow />} /> 
             </Routes>
           </Suspense>
         </Layout>

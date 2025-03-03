@@ -41,7 +41,7 @@ const SafariPackages = () => {
               )}
               {safari.prices.luxury && <li>Luxury: {safari.prices.luxury}</li>}
             </ul>
-            <SafariButton text="Book Now" to={`/booking/${safari.title.replace(/\s+/g, '-').toLowerCase()}`} />
+            <SafariButton text="Book Now" to="/book-now" />
           </div>
         ))}
       </div>
@@ -96,7 +96,7 @@ const SafariPackages = () => {
                 </ul>
               </div>
             </div>
-            <SafariButton text="Book Now" to={`/booking/${safari.title.replace(/\s+/g, '-').toLowerCase()}`} />
+            <SafariButton text="Book Now" to="/book-now" />
           </div>
         ))}
         
