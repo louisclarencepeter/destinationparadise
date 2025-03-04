@@ -1,7 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import SafariTitle from "./components/common/SafariTitle";
 import SafariDescription from "./components/safarisinfo/SafariDescription";
-import SafariPackages from "./components/packages/SafariPackages";
 import SafariList from "./components/list/SafariList";
 import SafariButton from "./components/common/SafariButton";
 import "./Safaris.scss";
