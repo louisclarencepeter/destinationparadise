@@ -1,5 +1,6 @@
 @use "../../../../styles/variables" as vars;
 @use "../../../../styles/mixins" as mixins;
+@use "sass:color";
 
 .safari-item {
   background-color: vars.$color-background;
@@ -78,5 +79,54 @@
 
   .learn-more {
     @include mixins.button-styles;
+  }
+
+  .related-packages {
+    margin-top: 15px;
+    text-align: left;
+    padding-top: 10px;
+    border-top: 1px solid #e0e0e0; // Using a direct hex value instead of lighten
+
+    h4 {
+      font-family: vars.$font-secondary;
+      font-size: 1.1rem;
+      color: vars.$color-primary;
+      margin-bottom: 10px;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+
+      li {
+        padding: 10px;
+        margin-bottom: 8px;
+        background-color: #f9f9f9; // Using a direct hex value instead of lighten
+        border-radius: vars.$border-radius-default;
+        border-left: 3px solid vars.$color-primary;
+        
+        strong {
+          display: block;
+          font-family: vars.$font-secondary;
+          font-size: 1rem;
+          color: vars.$color-primary;
+          margin-bottom: 5px;
+        }
+        
+        div {
+          font-size: 0.9rem;
+          color: vars.$color-secondary;
+          line-height: 1.4;
+          
+          @include mixins.respond-to(sm) {
+            font-size: 0.85rem;
+          }
+          
+          @include mixins.respond-to(lg) {
+            font-size: 0.95rem;
+          }
+        }
+      }
+    }
   }
 }

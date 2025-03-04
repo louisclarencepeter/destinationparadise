@@ -14,6 +14,20 @@ const SafariInfo = () => {
   // Find the safari with the matching title
   const safari = safariData.find((item) => item.title === title);
 
+  // Helper function to get all available price options
+  const getPriceOptions = (prices) => {
+    const options = [];
+    if (prices.budget) options.push({ type: "Budget", price: prices.budget });
+    if (prices.midRange) options.push({ type: "Mid-Range", price: prices.midRange });
+    if (prices.luxury) options.push({ type: "Luxury", price: prices.luxury });
+    return options.length > 0 ? options : [{ type: "Contact", price: "Contact for pricing" }];
+  };
+
+  // Helper function to get the best available price
+  const getBestPrice = (prices) => {
+    return prices.budget || prices.midRange || prices.luxury || "Contact for pricing";
+  };
+
   useEffect(() => {
     // Simulate data loading (can be removed in production)
     const timer = setTimeout(() => {
@@ -216,7 +230,7 @@ const SafariInfo = () => {
         </div>
       </div>
       
-      {/* Related Packages Section */}
+      {/* Related Packages Section - Updated with better price display */}
       {relatedPackages.length > 0 && (
         <div className="related-safaris">
           <h2>Related Safari Packages</h2>
@@ -230,12 +244,20 @@ const SafariInfo = () => {
                 <p className="related-safari-duration">
                   <strong>Duration:</strong> {pkg.duration}
                 </p>
-                <p className="related-safari-price">
-                  <strong>From:</strong> {pkg.prices.budget || 
-                    pkg.prices.midRange || 
-                    pkg.prices.luxury || 
-                    'Contact for pricing'}
-                </p>
+                
+                {/* Updated price display */}
+                <div className="related-safari-prices">
+                  <strong>Available Options:</strong>
+                  <ul className="price-options-list">
+                    {getPriceOptions(pkg.prices).map((option, i) => (
+                      <li key={i} className="price-option">
+                        <span className="price-type">{option.type}:</span> 
+                        <span className="price-value">{option.price}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
                 <SafariButton 
                   text="View Package" 
                   to={`/safari-package/${pkg.title.replace(/\s+/g, '-').toLowerCase()}`} 
