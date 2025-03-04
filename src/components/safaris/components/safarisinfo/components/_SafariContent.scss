@@ -1,0 +1,60 @@
+@use "../../../../../styles/variables" as vars;
+@use "../../../../../styles/mixins" as mixins;
+
+.safari-info-content {
+  @include mixins.flex-center(space-between, flex-start);
+  gap: 2rem;
+
+  @include mixins.respond-to(md) {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .safari-info-image {
+    flex: 1;
+    max-width: 50%;
+    transition: vars.$transition-default;
+    overflow: hidden;
+    position: relative;
+
+    &:hover img {
+      transform: scale(1.03);
+    }
+
+    @include mixins.respond-to(md) {
+      max-width: 100%;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+      border-radius: vars.$border-radius-default;
+      box-shadow: vars.$box-shadow-default;
+      transition: vars.$transition-ease;
+      object-fit: cover;
+
+      @include mixins.respond-to(md) {
+        aspect-ratio: 16/9;
+      }
+    }
+
+    .safari-location {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      background-color: rgba(vars.$black, 0.6);
+      color: vars.$color-on-primary;
+      padding: 0.5rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-family: vars.$font-secondary;
+
+      .location-icon {
+        font-size: 1rem;
+      }
+    }
+  }
+}

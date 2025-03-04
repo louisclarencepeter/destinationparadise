@@ -1,0 +1,40 @@
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
+
+.safari-not-found {
+  text-align: center;
+  padding: 6rem 1rem;
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: vars.$color-background;
+
+  h2 {
+    font-family: vars.$font-primary;
+    color: vars.$color-error;
+    margin-bottom: 1rem;
+    font-size: 2.2rem;
+  }
+
+  p {
+    font-family: vars.$font-secondary;
+    color: vars.$black;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+  }
+
+  .back-button {
+    @include mixins.button-styles;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px vars.$box-shadow-color;
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
+}

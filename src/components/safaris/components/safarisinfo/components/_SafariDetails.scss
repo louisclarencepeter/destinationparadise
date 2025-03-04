@@ -1,0 +1,201 @@
+@use "../../../../../styles/variables" as vars;
+@use "../../../../../styles/mixins" as mixins;
+
+.safari-info-details {
+  flex: 1;
+
+  .safari-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid vars.$color-border;
+
+    @include mixins.respond-to(sm) {
+      gap: 1rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.75rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: vars.$font-secondary;
+      color: vars.$black;
+
+      .meta-icon {
+        font-size: 1.2rem;
+        color: vars.$color-accent;
+      }
+    }
+  }
+
+  .safari-description {
+    font-family: vars.$font-secondary;
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    color: vars.$black;
+    font-size: 1.05rem;
+    text-align: justify;
+  }
+
+  .safari-highlights {
+    margin-bottom: 1.5rem;
+    background-color: vars.$color-background-dark;
+    padding: 1.25rem;
+    border-radius: vars.$border-radius-default;
+    border-left: 4px solid vars.$color-accent;
+
+    @include mixins.respond-to(sm) {
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    h3 {
+      font-family: vars.$font-primary;
+      color: vars.$color-primary;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+
+      @include mixins.respond-to(sm) {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+      }
+
+      &::before {
+        content: "✦";
+        margin-right: 0.5rem;
+        color: vars.$color-accent;
+      }
+    }
+
+    ul {
+      list-style-type: none;
+      padding-left: 0;
+
+      li {
+        position: relative;
+        padding-left: 1.5rem;
+        margin-bottom: 0.75rem;
+        font-family: vars.$font-secondary;
+        font-size: 0.95rem;
+
+        @include mixins.respond-to(sm) {
+          margin-bottom: 0.5rem;
+          padding-left: 1.25rem;
+        }
+
+        &:before {
+          content: "→";
+          color: vars.$color-accent;
+          position: absolute;
+          left: 0;
+          font-weight: bold;
+        }
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .safari-includes {
+    margin-bottom: 1.5rem;
+    background-color: vars.$color-background-dark;
+    padding: 1.25rem;
+    border-radius: vars.$border-radius-default;
+    border-left: 4px solid vars.$color-primary;
+
+    @include mixins.respond-to(sm) {
+      padding: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    h3 {
+      font-family: vars.$font-primary;
+      color: vars.$color-primary;
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+
+      @include mixins.respond-to(sm) {
+        font-size: 1.1rem;
+        margin-bottom: 0.75rem;
+      }
+
+      &::before {
+        content: "✓";
+        margin-right: 0.5rem;
+        color: vars.$color-primary;
+      }
+    }
+
+    .includes-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 0.75rem;
+      list-style-type: none;
+      padding-left: 0;
+
+      @include mixins.respond-to(sm) {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 0.5rem;
+      }
+
+      li {
+        position: relative;
+        padding-left: 1.25rem;
+        font-family: vars.$font-secondary;
+        font-size: 0.95rem;
+
+        @include mixins.respond-to(sm) {
+          padding-left: 1.1rem;
+          font-size: 0.9rem;
+        }
+
+        &:before {
+          content: "✓";
+          color: vars.$color-primary;
+          position: absolute;
+          left: 0;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .safari-actions {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+
+    @include mixins.respond-to(sm) {
+      flex-direction: column;
+      gap: 0.75rem;
+      margin-top: 1.25rem;
+    }
+
+    .back-button,
+    .book-button {
+      @include mixins.button-styles;
+
+      &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px vars.$box-shadow-color;
+        color: vars.$color-primary; // Adjust as needed
+      }
+
+      &:active {
+        transform: translateY(-1px);
+      }
+    }
+  }
+}
