@@ -1,4 +1,5 @@
 import React from "react";
+import BookNowButton from "../../common/BookNowButton";
 
 const SafariDetails = ({ safari, onNavigate }) => {
   const formatPrice = (price) =>
@@ -50,15 +51,16 @@ const SafariDetails = ({ safari, onNavigate }) => {
         </div>
       )}
       <div className="safari-actions">
-        <button onClick={() => onNavigate("/safaris")} className="back-button">
+        <button 
+          onClick={() => onNavigate("/safaris")} 
+          className="back-button button-equal-width"
+        >
           Back to Safaris
         </button>
-        <button
-          onClick={() => onNavigate(`/book-safari/${safari.id || safari.title}`)}
-          className="book-button"
-        >
-          Book Now
-        </button>
+        <BookNowButton 
+          packageTitle={safari.title}
+          className="book-button button-equal-width"
+        />
       </div>
     </div>
   );

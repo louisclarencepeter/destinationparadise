@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./SafariButton.scss";
 
-const SafariButton = ({ text, to, onClick }) => {
+const SafariButton = ({ text, to, onClick, className = "" }) => {
   const navigate = useNavigate();
   
   const handleClick = () => {
@@ -14,7 +14,10 @@ const SafariButton = ({ text, to, onClick }) => {
   };
 
   return (
-    <button className="safaris-button" onClick={handleClick}>
+    <button 
+      className={`safaris-button ${className}`} 
+      onClick={handleClick}
+    >
       {text}
     </button>
   );

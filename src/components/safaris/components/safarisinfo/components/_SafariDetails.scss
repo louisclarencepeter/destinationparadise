@@ -183,14 +183,22 @@
       margin-top: 1.25rem;
     }
 
+    .button-equal-width {
+      flex: 1;
+      min-width: 160px;
+      text-align: center;
+      white-space: nowrap;
+    }
+
     .back-button,
     .book-button {
       @include mixins.button-styles;
-
+   
+      
       &:hover {
         transform: translateY(-3px);
         box-shadow: 0 10px 20px vars.$box-shadow-color;
-        color: vars.$color-primary; // Adjust as needed
+        color: vars.$color-primary;
       }
 
       &:active {

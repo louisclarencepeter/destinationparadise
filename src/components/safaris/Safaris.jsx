@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react";
 import SafariTitle from "./components/common/SafariTitle";
 import SafariDescription from "./components/safarisinfo/SafariDescription";
 import SafariList from "./components/list/SafariList";
-import SafariButton from "./components/common/SafariButton";
+import BookNowButton from "./components/common/BookNowButton";
 import "./Safaris.scss";
 
 const Safaris = () => {
@@ -51,12 +51,12 @@ const Safaris = () => {
               <li><strong>Boat Safaris</strong> – Available in places like Selous and Saadani, offering a different perspective of wildlife.</li>
               <li><strong>Chimpanzee Trekking</strong> – Unique primate encounters in Mahale Mountains and Gombe Stream.</li>
             </ul>
-            Tanzania offers an incredible variety of safari experiences, catering to different interests and budgets. Whether you want a luxurious lodge safari or a rugged adventure in the wild, there’s something for everyone in this stunning East African destination.
+            Tanzania offers an incredible variety of safari experiences, catering to different interests and budgets. Whether you want a luxurious lodge safari or a rugged adventure in the wild, there's something for everyone in this stunning East African destination.
           </>
         }
       />
-      {/* Update this line */}
-      <SafariButton text="Book Now" to="/book-now" />
+      {/* Use BookNowButton instead of SafariButton */}
+      <BookNowButton packageTitle="" />
     </div>
   );
 };

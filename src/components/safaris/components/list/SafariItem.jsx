@@ -30,9 +30,11 @@ const SafariItem = ({ title, imageUrl, shortDescription, fullDetails, relatedPac
         </div>
       )}
       
-      <Link to={`/safarisinfo/${encodeURIComponent(title)}`}>
-        <button className="learn-more">Learn More</button>
-      </Link>
+      <div className="safari-item-actions">
+        <Link to={`/safarisinfo/${encodeURIComponent(title)}`}>
+          <button className="learn-more">Learn More</button>
+        </Link>
+      </div>
     </div>
   );
 };

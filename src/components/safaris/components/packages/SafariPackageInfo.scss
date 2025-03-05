@@ -1,0 +1,77 @@
+@use "sass:color";
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
+
+.safari-package-info {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  h2 {
+    color: vars.$color-primary;
+    margin-bottom: 1.5rem;
+    @include mixins.responsive-font-size;
+  }
+
+  .package-details {
+    background: vars.$color-background;
+    border-radius: vars.$border-radius-default;
+    box-shadow: vars.$box-shadow-default;
+    padding: 1.5rem;
+    transition: vars.$transition-default;
+
+    &:hover {
+      box-shadow: 0 6px 12px rgba(vars.$black, 0.15);
+    }
+
+    p {
+      color: vars.$black;
+      margin: 0.5rem 0;
+      font-family: vars.$font-secondary;
+    }
+
+    h3 {
+      color: vars.$color-secondary;
+      margin: 1.5rem 0 0.5rem;
+      @include mixins.responsive-font-size;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        color: vars.$color-secondary;
+        padding: 0.5rem 0;
+        border-bottom: 1px solid vars.$color-border;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+
+    .includes li {
+      color: vars.$color-success; // Green for included items
+    }
+
+    .excludes li {
+      color: vars.$color-error; // Red for excluded items
+    }
+  }
+
+  @include mixins.respond-to(sm) {
+    padding: 1rem;
+
+    .package-details {
+      padding: 1rem;
+    }
+  }
+
+  @include mixins.respond-to(md) {
+    .package-details {
+      padding: 1.25rem;
+    }
+  }
+}

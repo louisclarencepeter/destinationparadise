@@ -2,26 +2,34 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import SafariButton from "./components/common/SafariButton";
 import { safariPackages } from "./components/packages/safariPackageData";
+import safariData from "../../assets/data/safarisdata/safariData";
 import "./BookNow.scss";
 
 const BookNow = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const selectedPackageParam = queryParams.get("package");
+  const selectedPackageTitle = queryParams.get("package");
+
+  // Find package in both safariPackages and safariData
+  const findPackageByTitle = (title) => {
+    if (!title) return null;
+    
+    return safariPackages.find(pkg => pkg.title === title) || 
+           safariData.find(safari => safari.title === title);
+  };
+
+  const initialPackage = findPackageByTitle(selectedPackageTitle);
 
   // State for form selections
   const [selectedPackage, setSelectedPackage] = useState(
-    selectedPackageParam && safariPackages.some(pkg => 
-      pkg.title.toLowerCase().replace(/\s+/g, '-') === selectedPackageParam.toLowerCase()
-    ) ? safariPackages.find(pkg => 
-      pkg.title.toLowerCase().replace(/\s+/g, '-') === selectedPackageParam.toLowerCase()
-    ).title : ""
+    initialPackage ? initialPackage.title : ""
   );
   const [budgetTier, setBudgetTier] = useState("");
   const [tourType, setTourType] = useState(""); // Shared or Private
 
   // Helper function to get the starting price for a package
   const getStartingPrice = (pkg) => {
+    if (!pkg.prices) return null;
     const prices = Object.values(pkg.prices);
     return prices.length > 0 ? prices.reduce((min, price) => Math.min(min, parseFloat(price.replace(/[^0-9.]/g, ''))), Infinity) : null;
   };
@@ -43,8 +51,13 @@ const BookNow = () => {
   };
 
   // Available budget options and duration based on selected package
-  const currentPackage = safariPackages.find(pkg => pkg.title === selectedPackage);
-  const budgetOptions = currentPackage ? Object.keys(currentPackage.prices) : [];
+  const currentPackage = findPackageByTitle(selectedPackage);
+  const budgetOptions = currentPackage && currentPackage.prices ? Object.keys(currentPackage.prices) : [];
+
+  // Combine packages from both sources for the dropdown
+  const allPackages = [...safariPackages, ...safariData.filter(safari => 
+    !safariPackages.some(pkg => pkg.title === safari.title)
+  )];
 
   return (
     <div className="book-now-container">
@@ -61,11 +74,15 @@ const BookNow = () => {
           <h2 className="package-title">Select Your Safari Package</h2>
           <select
             value={selectedPackage}
-            onChange={(e) => setSelectedPackage(e.target.value)}
+            onChange={(e) => {
+              setSelectedPackage(e.target.value);
+              setBudgetTier(""); // Reset budget tier when package changes
+              setTourType(""); // Reset tour type when package changes
+            }}
             className="package-select"
           >
             <option value="">Choose a Safari Package</option>
-            {safariPackages.map((pkg, index) => (
+            {allPackages.map((pkg, index) => (
               <option key={index} value={pkg.title}>
                 {pkg.title}
               </option>
@@ -74,7 +91,7 @@ const BookNow = () => {
         </div>
 
         {/* Budget Tier Selection */}
-        {selectedPackage && (
+        {selectedPackage && currentPackage && currentPackage.prices && (
           <div className="package-card">
             <h2 className="package-title">Select Budget Tier</h2>
             <select
@@ -93,7 +110,7 @@ const BookNow = () => {
         )}
 
         {/* Shared or Private Selection */}
-        {selectedPackage && (
+        {selectedPackage && currentPackage && (
           <div className="package-card">
             <h2 className="package-title">Tour Type</h2>
             <div className="tour-type-options">
@@ -122,18 +139,20 @@ const BookNow = () => {
         )}
 
         {/* Summary with Starting Price */}
-        {selectedPackage && budgetTier && tourType && (
+        {selectedPackage && currentPackage && budgetTier && tourType && (
           <div className="package-card">
             <h2 className="package-title">Booking Summary</h2>
             <ul className="pricing-list">
               <li><strong>Package:</strong> {selectedPackage}</li>
               <li><strong>Duration:</strong> {currentPackage.duration}</li>
-              <li>
-                <strong>Budget Tier:</strong> {budgetTier.charAt(0).toUpperCase() + budgetTier.slice(1)} - {currentPackage.prices[budgetTier]}
-                {getStartingPrice(currentPackage) && (
-                  <span> (Starting from ${getStartingPrice(currentPackage).toLocaleString()} per person)</span>
-                )}
-              </li>
+              {currentPackage.prices && (
+                <li>
+                  <strong>Budget Tier:</strong> {budgetTier.charAt(0).toUpperCase() + budgetTier.slice(1)} - {currentPackage.prices[budgetTier]}
+                  {getStartingPrice(currentPackage) && (
+                    <span> (Starting from ${getStartingPrice(currentPackage).toLocaleString()} per person)</span>
+                  )}
+                </li>
+              )}
               <li><strong>Tour Type:</strong> {tourType}</li>
             </ul>
             <SafariButton text="Submit Booking Request" onClick={handleBookingRequest} />
