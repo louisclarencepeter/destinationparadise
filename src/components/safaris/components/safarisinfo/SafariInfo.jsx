@@ -71,6 +71,12 @@ const SafariInfo = () => {
       <SafariHeader title={safari.title} subtitle={safari.subtitle} />
       <SafariContent safari={safari} onNavigate={navigate} />
       {relatedPackages.length > 0 && <RelatedSafaris packages={relatedPackages} />}
+      <button 
+          onClick={() => navigate("/safaris")} 
+          className="back-button button-equal-width"
+        >
+          Back to Safaris
+        </button>
     </div>
   );
 };

@@ -51,12 +51,7 @@ const SafariDetails = ({ safari, onNavigate }) => {
         </div>
       )}
       <div className="safari-actions">
-        <button 
-          onClick={() => onNavigate("/safaris")} 
-          className="back-button button-equal-width"
-        >
-          Back to Safaris
-        </button>
+
         <BookNowButton 
           packageTitle={safari.title}
           className="book-button button-equal-width"

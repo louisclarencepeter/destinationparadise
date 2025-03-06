@@ -19,4 +19,21 @@
   @include mixins.respond-to(sm) {
     padding: 1.5rem 0.75rem;
   }
+
+  .back-button {
+    display: inline-block;
+    margin: 1.5rem;
+    width: 90%;
+    @include mixins.button-styles;
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px vars.$box-shadow-color;
+      color: vars.$color-primary;
+    }
+
+    &:active {
+      transform: translateY(-1px);
+    }
+  }
 }

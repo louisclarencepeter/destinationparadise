@@ -10,6 +10,11 @@ const RelatedSafaris = ({ packages, isPackage = true }) => {
     return options.length > 0 ? options : [{ type: "Contact", price: "Contact for pricing" }];
   };
 
+  // Helper function to format the title for the URL
+  const formatTitleForUrl = (title) => {
+    return title.toLowerCase().replace(/\s+/g, "-");
+  };
+
   return (
     <div className="related-safaris">
       <h2>{isPackage ? "Related Safari Packages" : "Related Safaris"}</h2>
@@ -43,8 +48,8 @@ const RelatedSafaris = ({ packages, isPackage = true }) => {
             <SafariButton
               text={isPackage ? "View Package" : "View Safari"}
               to={isPackage 
-                ? `/safaripackageinfo/${pkg.title}` 
-                : `/safarisinfo/${pkg.title}`
+                ? `/safaripackageinfo/${formatTitleForUrl(pkg.title)}` 
+                : `/safarisinfo/${formatTitleForUrl(pkg.title)}`
               }
             />
           </div>
