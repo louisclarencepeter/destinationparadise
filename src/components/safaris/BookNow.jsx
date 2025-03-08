@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import SafariButton from "./components/common/SafariButton";
 import { safariPackages } from "./components/packages/safariPackageData";
@@ -27,11 +27,38 @@ const BookNow = () => {
   const [budgetTier, setBudgetTier] = useState("");
   const [tourType, setTourType] = useState(""); // Shared or Private
 
+  // Get current package and pricing info
+  const currentPackage = findPackageByTitle(selectedPackage);
+  
+  // Helper function to get pricing based on tour type
+  const getPricing = () => {
+    if (!currentPackage) return null;
+    
+    if (tourType === "Shared" && currentPackage.sharedPrices) {
+      return currentPackage.sharedPrices;
+    } else if (tourType === "Private" && currentPackage.privatePrices) {
+      return currentPackage.privatePrices;
+    } else {
+      return currentPackage.prices; // Fallback to original pricing
+    }
+  };
+
+  // Reset budget tier when tour type changes
+  useEffect(() => {
+    setBudgetTier("");
+  }, [tourType]);
+
+  // Available budget options based on selected package and tour type
+  const pricing = getPricing();
+  const budgetOptions = pricing ? Object.keys(pricing) : [];
+
   // Helper function to get the starting price for a package
-  const getStartingPrice = (pkg) => {
-    if (!pkg.prices) return null;
-    const prices = Object.values(pkg.prices);
-    return prices.length > 0 ? prices.reduce((min, price) => Math.min(min, parseFloat(price.replace(/[^0-9.]/g, ''))), Infinity) : null;
+  const getStartingPrice = (priceObj) => {
+    if (!priceObj) return null;
+    const prices = Object.values(priceObj).map(price => 
+      parseFloat(price.replace(/[^0-9.]/g, ''))
+    );
+    return prices.length > 0 ? Math.min(...prices) : null;
   };
 
   // Handle form submission
@@ -40,19 +67,22 @@ const BookNow = () => {
       alert("Please complete all selections before submitting.");
       return;
     }
+    
+    // Get the correct price based on tour type and budget tier
+    const selectedPricing = getPricing();
+    const priceValue = selectedPricing[budgetTier];
+    
     const bookingSummary = {
       package: selectedPackage,
       budget: budgetTier,
       type: tourType,
       duration: currentPackage.duration,
+      price: priceValue
     };
+    
     console.log("Booking Request Submitted:", bookingSummary);
-    alert(`Booking Request Sent!\nPackage: ${selectedPackage}\nDuration: ${currentPackage.duration}\nBudget: ${budgetTier}\nType: ${tourType}`);
+    alert(`Booking Request Sent!\nPackage: ${selectedPackage}\nDuration: ${currentPackage.duration}\nBudget: ${budgetTier}\nType: ${tourType}\nPrice: ${priceValue}`);
   };
-
-  // Available budget options and duration based on selected package
-  const currentPackage = findPackageByTitle(selectedPackage);
-  const budgetOptions = currentPackage && currentPackage.prices ? Object.keys(currentPackage.prices) : [];
 
   // Combine packages from both sources for the dropdown
   const allPackages = [...safariPackages, ...safariData.filter(safari => 
@@ -90,26 +120,7 @@ const BookNow = () => {
           </select>
         </div>
 
-        {/* Budget Tier Selection */}
-        {selectedPackage && currentPackage && currentPackage.prices && (
-          <div className="package-card">
-            <h2 className="package-title">Select Budget Tier</h2>
-            <select
-              value={budgetTier}
-              onChange={(e) => setBudgetTier(e.target.value)}
-              className="package-select"
-            >
-              <option value="">Choose a Budget Tier</option>
-              {budgetOptions.map((tier, index) => (
-                <option key={index} value={tier}>
-                  {tier.charAt(0).toUpperCase() + tier.slice(1)}: {currentPackage.prices[tier]}
-                </option>
-              ))}
-            </select>
-          </div>
-        )}
-
-        {/* Shared or Private Selection */}
+        {/* Tour Type Selection (Moved before Budget Tier) */}
         {selectedPackage && currentPackage && (
           <div className="package-card">
             <h2 className="package-title">Tour Type</h2>
@@ -122,7 +133,7 @@ const BookNow = () => {
                   checked={tourType === "Shared"}
                   onChange={(e) => setTourType(e.target.value)}
                 />
-                Shared
+                Shared Group Trip
               </label>
               <label className="meta-item">
                 <input
@@ -132,28 +143,50 @@ const BookNow = () => {
                   checked={tourType === "Private"}
                   onChange={(e) => setTourType(e.target.value)}
                 />
-                Private
+                Private Trip
               </label>
             </div>
           </div>
         )}
 
-        {/* Summary with Starting Price */}
+        {/* Budget Tier Selection */}
+        {selectedPackage && currentPackage && tourType && pricing && (
+          <div className="package-card">
+            <h2 className="package-title">Select Budget Tier</h2>
+            <select
+              value={budgetTier}
+              onChange={(e) => setBudgetTier(e.target.value)}
+              className="package-select"
+            >
+              <option value="">Choose a Budget Tier</option>
+              {budgetOptions.map((tier, index) => (
+                <option key={index} value={tier}>
+                  {tier === 'midRange' ? 'Mid-Range' : tier.charAt(0).toUpperCase() + tier.slice(1)}: {pricing[tier]}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
+
+        {/* Summary with Selected Price */}
         {selectedPackage && currentPackage && budgetTier && tourType && (
           <div className="package-card">
             <h2 className="package-title">Booking Summary</h2>
             <ul className="pricing-list">
               <li><strong>Package:</strong> {selectedPackage}</li>
               <li><strong>Duration:</strong> {currentPackage.duration}</li>
-              {currentPackage.prices && (
+              <li><strong>Tour Type:</strong> {tourType === "Shared" ? "Shared Group Trip" : "Private Trip"}</li>
+              {pricing && (
                 <li>
-                  <strong>Budget Tier:</strong> {budgetTier.charAt(0).toUpperCase() + budgetTier.slice(1)} - {currentPackage.prices[budgetTier]}
-                  {getStartingPrice(currentPackage) && (
-                    <span> (Starting from ${getStartingPrice(currentPackage).toLocaleString()} per person)</span>
-                  )}
+                  <strong>Budget Tier:</strong> {budgetTier === 'midRange' ? 'Mid-Range' : budgetTier.charAt(0).toUpperCase() + budgetTier.slice(1)} - {pricing[budgetTier]}
                 </li>
               )}
-              <li><strong>Tour Type:</strong> {tourType}</li>
+              {tourType === "Shared" && (
+                <li><em>Note: Shared trips offer lower rates as costs are distributed among travelers</em></li>
+              )}
+              {tourType === "Private" && (
+                <li><em>Note: Private trips provide exclusive vehicle, guide, and customized schedule</em></li>
+              )}
             </ul>
             <SafariButton text="Submit Booking Request" onClick={handleBookingRequest} />
           </div>
