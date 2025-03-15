@@ -32,13 +32,13 @@ function SocialLinks() {
         <i className="fab fa-youtube" aria-hidden="true"></i>
       </a>
       <a
-        href="https://twitter.com/destinationpar5"
+        href="https://x.com/destinationxpar"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Visit our Twitter page"
         className="social-links__link"
       >
-        <i className="fab fa-twitter" aria-hidden="true"></i>
+        <i className="fa-brands fa-x-twitter" aria-hidden="true"></i>
       </a>
     </div>
   );
