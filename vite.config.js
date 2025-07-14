@@ -1,38 +1,68 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import path from "path";
+import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react-swc';
+import legacy from '@vitejs/plugin-legacy';
+import path from 'path';
 
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 3002,
-    open: "/", // Automatically open the app in the browser
-    host: "0.0.0.0", // Allow access from network
-    proxy: {
-      "/api": {
-        target: "https://localhost:8000",
-        changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""), // Remove /api prefix when forwarding
-        secure: false, // Allow self-signed certificates for local development
+export default defineConfig(({ mode }) => {
+  // Load environment variables based on the current mode (development, production, etc.)
+  const env = loadEnv(mode, process.cwd(), '');
+
+  return {
+    // Base public path when served in production
+    base: env.VITE_BASE_URL || '/',
+
+    // Plugins configuration
+    plugins: [
+      react({
+        fastRefresh: true,       // Enable React Fast Refresh
+        jsxRuntime: 'automatic', // Use the new JSX transform in React 17+
+      }),
+      legacy({
+        targets: ['defaults', 'not IE 11'], // Support modern browsers excluding IE11
+      }),
+    ],
+
+    // Development server settings
+    server: {
+      port: Number(env.VITE_DEV_PORT) || 3002,
+      open: '/',
+      host: '0.0.0.0',
+      proxy: {
+        '/api': {
+          target: env.VITE_API_URL,
+          changeOrigin: true,
+          rewrite: (url) => url.replace(/^\/api/, ''),
+          secure: false, // Accept self-signed certificates
+        },
       },
     },
-  },
-  css: {
-    preprocessorOptions: {
-      scss: {
-        charset: false, // Disable charset in SCSS to avoid warnings
+
+    // CSS preprocessor options
+    css: {
+      preprocessorOptions: {
+        scss: {
+          charset: false, // Disable @charset warnings
+        },
       },
     },
-  },
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "src"), // Create alias for src directory
+
+    // Resolve path aliases
+    resolve: {
+      alias: {
+        '@': path.resolve(__dirname, 'src'),
+      },
     },
-  },
-  optimizeDeps: {
-    include: ["react-router-dom"], // Pre-bundle react-router-dom for faster development
-  },
-  build: {
-    sourcemap: true, // Enable source maps for easier debugging
-  },
+
+    // Optimize dependencies for faster cold starts
+    optimizeDeps: {
+      include: ['react-router-dom'],
+    },
+
+    // Production build options
+    build: {
+      sourcemap: true,
+      minify: 'esbuild',
+      chunkSizeWarningLimit: 600,
+    },
+  };
 });
