@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import TourCard from "./TourCard";
 import "./ToursPage.scss";
 import { tours } from "../../assets/data/tours";
+import SEO from '../SEO.jsx';
 
 const useIntersectionObserver = (options = {}) => {
   const [elements, setElements] = useState([]);
@@ -48,6 +49,9 @@ export default function ToursPage() {
 
   return (
     <div className="tours-page">
+      <SEO
+        title="Excursions | Destination Paradise Zanzibar"
+        description="Browse our curated selection of tours and excursions around Zanzibar."/>
       <header className="tours-header">
         <h2 
           ref={headerRef}

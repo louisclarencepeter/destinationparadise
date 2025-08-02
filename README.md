@@ -8,6 +8,7 @@ Destination Paradise is a web app developed for a travel company in Zanzibar, Ta
 - Fresh, modern homepage design to inspire wanderlust
 - Optimized performance with refactored code
 - Enhanced SEO for better online visibility
+- Dynamic meta tags powered by a reusable SEO component
 - Streamlined data management with modularized organization
 - Upgraded excursion pages with fresh, user-friendly layouts
 - Updated to React 19 for cutting-edge performance
