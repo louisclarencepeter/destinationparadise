@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import "./Store.scss";
 import ImageSlideshow from "./ImageSlideshow";
 import BookingForm from "./booking/BookingForm";
+import SEO from '../SEO.jsx';
 
 const Store = () => {
   const tours = [
@@ -72,6 +73,9 @@ const Store = () => {
 
   return (
     <div className="store-container" id="top">
+      <SEO
+        title="Booking | Destination Paradise Zanzibar"
+        description="Request your booking for unforgettable Zanzibar adventures."/>
       <h2 className="reveal store-title">Booking Request</h2>
       <p className="store-description">
         Welcome to the booking request page. Please fill out the form below to

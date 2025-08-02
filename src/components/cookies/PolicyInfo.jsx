@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./PolicyInfo.scss";
+import SEO from '../SEO.jsx';
 
 const PolicyInfo = () => {
   const location = useLocation();
@@ -67,6 +68,9 @@ const PolicyInfo = () => {
 
   return (
     <div className="policy-info">
+      <SEO
+        title="Policies | Destination Paradise Zanzibar"
+        description="Read about our cookies policy, privacy policy, and terms of service."/>
       <h2>Our Policies</h2>
 
       <section ref={cookiesRef} id="cookies-policy" className="reveal">

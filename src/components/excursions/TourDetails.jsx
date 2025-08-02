@@ -3,6 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import { tours } from "../../assets/data/tours";
 import { Clock, MapPin, ChevronRight } from 'lucide-react';
 import "./TourDetails.scss";
+import SEO from '../SEO.jsx';
 
 // --- Smaller Components ---
 function TourImage({ imageKey, title }) {
@@ -188,6 +189,7 @@ export default function TourDetails() {
 
   return (
     <section className="tour-details">
+      <SEO title={`${tour.title} | Destination Paradise Zanzibar`} description={tour.description} />
       <TourImage imageKey={tour.imageKey} title={tour.title} />
       <article className="tour-info">
         <TourHeader title={tour.title} description={tour.description} />
