@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="./src/assets/logo/dlp1.png" />
-    <meta 
-  name="viewport" 
-  content="width=device-width, initial-scale=1.0, viewport-fit=cover" 
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
 />
 
-    <meta
-      name="description"
-      content="Explore unforgettable excursions and tours with Destination Paradise Zanzibar. Experience the beauty of Zanzibar's heritage and culture."
-    />
-    <title>Destination Paradise Zanzibar - Excursions and Tours</title>
+  <title>Destination Paradise Zanzibar — Excursions & Tours</title>
+  <meta name="description" content="Explore unforgettable excursions and tours with Destination Paradise Zanzibar. Experience the beauty of Zanzibar's heritage and culture." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://yournexttriptoparadise.com/" />
 
-    <!-- Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-44V46CDF6Y"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-44V46CDF6Y");
-    </script>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <!-- Icons / PWA (adjust paths if you have these) -->
+  <link rel="icon" type="image/png" href="/src/assets/logo/dlp1.png" />
+  <link rel="apple-touch-icon" href="/src/assets/logo/dlp1.png" />
+  <!-- <link rel="manifest" href="/manifest.webmanifest" /> -->
+
+  <!-- Brand color for mobile address bars -->
+  <meta name="theme-color" content="#0a3d62" />
+
+  <!-- Social sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Destination Paradise Zanzibar — Excursions & Tours" />
+  <meta property="og:description" content="Explore unforgettable excursions and tours in Zanzibar with Destination Paradise." />
+  <meta property="og:url" content="https://yournexttriptoparadise.com/" />
+  <meta property="og:image" content="https://yournexttriptoparadise.com/og-cover.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Destination Paradise Zanzibar — Excursions & Tours" />
+  <meta name="twitter:description" content="Explore unforgettable excursions and tours in Zanzibar with Destination Paradise." />
+  <meta name="twitter:image" content="https://yournexttriptoparadise.com/og-cover.jpg" />
+
+  <!-- Perf hints -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="preconnect" href="https://www.googletagmanager.com" crossorigin>
+
+  <!-- Google Analytics (Consent Mode + anonymize IP) -->
+  <script>
+    // Default consent; switch to 'granted' after your cookie banner is accepted.
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied'
+    });
+  </script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-44V46CDF6Y"></script>
+  <script>
+    gtag('js', new Date());
+    gtag('config', 'G-44V46CDF6Y', { anonymize_ip: true });
+  </script>
+</head>
+<body>
+  <noscript>
+    <strong>JavaScript is required to view this site. Please enable it to continue.</strong>
+  </noscript>
+
+  <div id="root"></div>
+
+  <!-- Your app entry (Vite/ESM). module scripts are deferred by default -->
+  <script type="module" src="/src/main.jsx"></script>
+</body>
 </html>
