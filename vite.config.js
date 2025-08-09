@@ -2,37 +2,49 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
-export default defineConfig({
+// Use environment variables if available (.env or Netlify dashboard)
+const PORT = parseInt(process.env.VITE_PORT) || 3002;
+const API_URL = process.env.VITE_API_URL || "https://localhost:8000";
+
+export default defineConfig(({ mode }) => ({
   plugins: [react()],
   server: {
-    port: 3002,
-    open: "/", // Automatically open the app in the browser
-    host: "0.0.0.0", // Allow access from network
-    proxy: {
+    port: PORT,
+    open: "/",                  // Auto-open in browser
+    host: "0.0.0.0",             // Accessible on local network
+    proxy: mode === "development" ? {
       "/api": {
-        target: "https://localhost:8000",
+        target: API_URL,
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ""), // Remove /api prefix when forwarding
-        secure: false, // Allow self-signed certificates for local development
+        rewrite: (p) => p.replace(/^\/api/, ""), // Strip /api prefix
+        secure: false, // Allow self-signed certs locally
       },
-    },
+    } : undefined,
   },
   css: {
     preprocessorOptions: {
       scss: {
-        charset: false, // Disable charset in SCSS to avoid warnings
+        charset: false, // Prevent @charset warnings in SCSS
       },
     },
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"), // Create alias for src directory
+      "@": path.resolve(__dirname, "src"), // Alias for src/
     },
   },
   optimizeDeps: {
-    include: ["react-router-dom"], // Pre-bundle react-router-dom for faster development
+    include: ["react-router-dom"], // Pre-bundle for faster dev start
   },
   build: {
-    sourcemap: true, // Enable source maps for easier debugging
+    sourcemap: process.env.VITE_SOURCEMAP === "true" || false, // Only enable when needed
+    chunkSizeWarningLimit: 1000, // Avoid large bundle warnings
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ["react", "react-dom", "react-router-dom"], // Separate vendor chunk
+        },
+      },
+    },
   },
-});
+}));
