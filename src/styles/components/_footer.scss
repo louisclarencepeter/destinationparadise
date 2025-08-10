@@ -2,12 +2,13 @@
 @import '../utils/mixins';
 
 .footer {
-  background-color: $color-background;
+  background-color: #0a3d62; // Dark blue for strong contrast
   padding: 1.25rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: $color-primary;
+  color: #ffffff; // White text for max contrast
   font-family: 'Montserrat', sans-serif;
+  line-height: 1.5;
 
   &__container {
     max-width: 1200px;
@@ -19,11 +20,12 @@
     font-weight: 700;
     margin-bottom: 0.625rem;
     text-align: center;
+    color: #ffffff; // Ensures title is always high contrast
   }
 
   &__form {
     display: flex;
-    border: 1px solid $color-primary;
+    border: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 1rem;
@@ -34,25 +36,33 @@
     padding: 10px;
     flex-grow: 1;
     outline: none;
+    background: #ffffff;
+    color: #111111; // Dark text on white
   }
 
   &__button {
-    border-left: 1px solid $color-primary;
+    border-left: 1px solid rgba(255, 255, 255, 0.6);
     border-radius: 0;
     padding: 10px 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+    color: #ffffff;
+    background: transparent;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
 
     &:active {
-      background-color: #333;
+      background-color: rgba(0, 0, 0, 0.2);
     }
   }
 
   &__message {
     text-align: center;
-    color: $color-secondary;
+    color: #f0f0f0; // Slightly lighter gray for subtle contrast
     margin-bottom: 1rem;
   }
 
@@ -61,22 +71,21 @@
     text-align: center;
 
     a {
-      color: inherit;
-      text-decoration: none;
+      color: #ffffff;
+      text-decoration: underline;
 
       &:hover {
-        color: $color-secondary;
-        text-decoration: underline;
+        color: #e6f2ff; // Light blue hover
       }
     }
   }
 
   &__whatsapp-link {
     margin-left: 10px;
-    color: $color-primary;
+    color: #ffffff;
 
     &:hover {
-      color: $color-secondary;
+      color: #e6f2ff;
     }
   }
 
@@ -92,12 +101,11 @@
     margin-bottom: 1rem;
 
     a {
-      color: inherit;
-      text-decoration: none;
+      color: #ffffff;
+      text-decoration: underline;
 
       &:hover {
-        color: $color-secondary;
-        text-decoration: underline;
+        color: #e6f2ff;
       }
     }
   }
@@ -107,11 +115,11 @@
     gap: 0.625rem;
 
     a {
-      color: $color-primary;
+      color: #ffffff;
       text-decoration: none;
 
       &:hover {
-        color: $color-secondary;
+        color: #e6f2ff;
         text-decoration: underline;
       }
     }
@@ -128,11 +136,11 @@
     margin-bottom: 1rem;
 
     a {
-      color: $color-primary;
+      color: #ffffff;
       text-decoration: none;
 
       &:hover {
-        color: $color-secondary;
+        color: #e6f2ff;
         text-decoration: underline;
       }
     }
