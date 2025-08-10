@@ -3,13 +3,14 @@
 @use '../../styles/mixins' as mixins;
 
 .footer {
-  background-color: vars.$color-background;
+  background-color: #0a3d62; // Dark footer background for strong contrast
   padding: 1.25rem;
   font-size: calc(0.8rem + 0.5vw);
-  color: vars.$color-primary;
+  color: #ffffff; // White text for max contrast
   font-family: vars.$font-secondary;
   overflow-x: hidden;
   margin-top: auto;
+  line-height: 1.5;
 
   &__container {
     max-width: 1200px;
@@ -20,13 +21,13 @@
     font-size: 1rem;
     margin-bottom: 0.625rem;
     text-align: center;
-    font-weight: normal;
-    color: vars.$color-accent;
+    font-weight: 700;
+    color: #ffffff; // Ensures title is readable
   }
 
   &__copyright {
     text-align: center;
     margin-bottom: 1rem;
-    color: vars.$color-secondary;
+    color: #e6f2ff; // Slightly off-white for softer contrast while passing WCAG
   }
 }
