@@ -8,9 +8,8 @@
     border: 1px solid vars.$color-border;
     border-radius: 5px;
     overflow: hidden;
-    margin-bottom: 1rem;
-    max-width: 500px;
     margin: 0 auto 1rem;
+    max-width: 500px;
 
     &:focus-within {
       border-color: vars.$color-accent;
@@ -24,7 +23,7 @@
     outline: none;
     width: 100%;
     background-color: vars.$color-background-light;
-    color: vars.$color-primary;
+    color: if(vars.$color-primary == vars.$color-background-light, #111111, vars.$color-primary); // ensure dark enough text
 
     &:focus {
       outline: 2px solid vars.$color-accent;
@@ -40,22 +39,22 @@
     align-items: center;
     justify-content: center;
     background: vars.$gradient-button;
-    color: vars.$color-on-primary;
+    color: if(vars.$color-on-primary == vars.$color-background, #ffffff, vars.$color-on-primary); // ensure text visible
     transition: vars.$transition-default;
 
     &:hover {
-      color: vars.$color-background;
-      background-color: vars.$hover-color;
+      color: #ffffff; // always high contrast on hover color
+      background-color: darken(vars.$hover-color, 10%);
     }
 
     &:active {
-      background-color: vars.$color-primary;
+      background-color: darken(vars.$color-primary, 15%);
     }
   }
 
   &__message {
     text-align: center;
-    color: vars.$color-accent;
+    color: if(lightness(vars.$color-accent) > 70, darken(vars.$color-accent, 30%), vars.$color-accent); // adjust if too light
     margin-bottom: 1rem;
   }
 }
