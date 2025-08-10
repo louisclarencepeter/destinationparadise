@@ -14,9 +14,32 @@
   background-color: transparent;
   transition: all vars.$transition-ease;
 
+  // Default state: white text with shadow for image backgrounds
+  color: #ffffff;
+
+  a {
+    color: #ffffff;
+    text-decoration: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8); // Improves contrast over light images
+
+    &:hover {
+      color: #e6f2ff;
+    }
+  }
+
   &.scrolled {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.95);
     box-shadow: 0 0 0.625rem vars.$box-shadow-color;
+    color: #111111; // Dark text for light background
+
+    a {
+      color: #111111;
+      text-shadow: none;
+
+      &:hover {
+        color: vars.$color-primary; // or a brand-safe dark hover color
+      }
+    }
   }
 
   .sr-only {
