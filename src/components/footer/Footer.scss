@@ -1,9 +1,10 @@
-// Footer.scss
+/* src/components/footer/Footer.scss */
+@use "sass:color";
 @use '../../styles/variables' as vars;
 @use '../../styles/mixins' as mixins;
 
 .footer {
-  background-color: vars.$color-primary; // dark base
+  background-color: vars.$color-primary; // dark base for strong contrast
   padding: 1.25rem;
   font-size: calc(0.8rem + 0.5vw);
   color: vars.$color-on-primary; // #FFFFFF
@@ -22,12 +23,25 @@
     margin-bottom: 0.625rem;
     text-align: center;
     font-weight: 700;
-    color: vars.$color-on-primary; // ensure readable
+    color: vars.$color-on-primary; // readable
   }
 
   &__copyright {
     text-align: center;
     margin-bottom: 1rem;
-    color: color.scale(vars.$color-on-primary, $lightness: -10%); // soft but passing
+    // Slightly softer than pure white but still passing
+    color: color.scale(vars.$color-on-primary, $lightness: -10%);
+  }
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    padding: 1.875rem 0;
   }
 }
