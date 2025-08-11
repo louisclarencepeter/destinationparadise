@@ -1,18 +1,19 @@
-// components/NewsletterForm.scss
+/* src/components/newsletter/NewsletterForm.scss */
+@use "sass:color";
 @use '../../../styles/variables' as vars;
 @use '../../../styles/mixins' as mixins;
 
 .newsletter-form {
   &__form {
     display: flex;
-    border: 1px solid vars.$color-border-strong; // ≥3:1 vs background
+    border: 1px solid vars.$color-border-strong; // darker border for contrast
     border-radius: 5px;
     overflow: hidden;
     margin: 0 auto 1rem;
     max-width: 500px;
 
     &:focus-within {
-      border-color: vars.$color-secondary; // dark, passes
+      border-color: vars.$color-secondary; // visible focus state
     }
   }
 
@@ -23,11 +24,13 @@
     outline: none;
     width: 100%;
     background-color: vars.$color-background-light;
-    color: vars.$black; // guaranteed ≥7:1 on light bg
-    &::placeholder { color: color.scale(vars.$black, $lightness: 40%); } // readable placeholder
+    color: vars.$black; // guaranteed readable on light bg
+    &::placeholder {
+      color: color.scale(vars.$black, $lightness: 40%); // readable placeholder
+    }
 
     &:focus {
-      outline: 2px solid vars.$color-secondary; // visible focus ring
+      outline: 2px solid vars.$color-secondary;
       outline-offset: -2px;
     }
   }
@@ -41,15 +44,14 @@
     align-items: center;
     justify-content: center;
 
-    /* Use solid, opaque gradient for reliable white text contrast */
+    /* Opaque gradient ensures reliable white text contrast */
     background: vars.$gradient-button;
-    color: vars.$color-on-primary; // #FFFFFF (passes on both ends)
-
+    color: vars.$color-on-primary; // #FFFFFF
     transition: vars.$transition-default;
 
     &:hover {
       background: vars.$gradient-hover;   // darker gradient
-      color: vars.$color-on-primary;      // stays white, still passes
+      color: vars.$color-on-primary;
     }
 
     &:active {
@@ -59,8 +61,7 @@
 
   &__message {
     text-align: center;
-    /* Accent is too light on #FAFBFD; use contrast-safe variant */
-    color: vars.$color-accent-contrast;
+    color: vars.$color-accent-contrast; // contrast-safe accent
     margin-bottom: 1rem;
   }
 }
