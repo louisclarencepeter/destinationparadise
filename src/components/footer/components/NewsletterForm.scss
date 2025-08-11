@@ -5,14 +5,14 @@
 .newsletter-form {
   &__form {
     display: flex;
-    border: 1px solid vars.$color-border;
+    border: 1px solid vars.$color-border-strong; // ≥3:1 vs background
     border-radius: 5px;
     overflow: hidden;
     margin: 0 auto 1rem;
     max-width: 500px;
 
     &:focus-within {
-      border-color: vars.$color-accent;
+      border-color: vars.$color-secondary; // dark, passes
     }
   }
 
@@ -23,38 +23,44 @@
     outline: none;
     width: 100%;
     background-color: vars.$color-background-light;
-    color: if(vars.$color-primary == vars.$color-background-light, #111111, vars.$color-primary); // ensure dark enough text
+    color: vars.$black; // guaranteed ≥7:1 on light bg
+    &::placeholder { color: color.scale(vars.$black, $lightness: 40%); } // readable placeholder
 
     &:focus {
-      outline: 2px solid vars.$color-accent;
+      outline: 2px solid vars.$color-secondary; // visible focus ring
+      outline-offset: -2px;
     }
   }
 
   &__button {
-    border-left: 1px solid vars.$color-border;
+    border-left: 1px solid vars.$color-border-strong;
     border-radius: 0;
     padding: 10px 20px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
+
+    /* Use solid, opaque gradient for reliable white text contrast */
     background: vars.$gradient-button;
-    color: if(vars.$color-on-primary == vars.$color-background, #ffffff, vars.$color-on-primary); // ensure text visible
+    color: vars.$color-on-primary; // #FFFFFF (passes on both ends)
+
     transition: vars.$transition-default;
 
     &:hover {
-      color: #ffffff; // always high contrast on hover color
-      background-color: darken(vars.$hover-color, 10%);
+      background: vars.$gradient-hover;   // darker gradient
+      color: vars.$color-on-primary;      // stays white, still passes
     }
 
     &:active {
-      background-color: darken(vars.$color-primary, 15%);
+      background: color.adjust(vars.$color-primary, $lightness: -15%);
     }
   }
 
   &__message {
     text-align: center;
-    color: if(lightness(vars.$color-accent) > 70, darken(vars.$color-accent, 30%), vars.$color-accent); // adjust if too light
+    /* Accent is too light on #FAFBFD; use contrast-safe variant */
+    color: vars.$color-accent-contrast;
     margin-bottom: 1rem;
   }
 }
