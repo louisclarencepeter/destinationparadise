@@ -1,33 +1,65 @@
-// Footer.scss
-@use '../../styles/variables' as vars;
-@use '../../styles/mixins' as mixins;
+@use "sass:color";
 
-.footer {
-  background-color: vars.$color-primary; // dark base
-  padding: 1.25rem;
-  font-size: calc(0.8rem + 0.5vw);
-  color: vars.$color-on-primary; // #FFFFFF
-  font-family: vars.$font-secondary;
-  overflow-x: hidden;
-  margin-top: auto;
-  line-height: 1.5;
+/* Fonts */
+$font-primary: 'Playfair Display', Georgia, serif;
+$font-secondary: 'Montserrat', Arial, sans-serif;
+$font-tertiary: 'Kaushan Script', cursive;
 
-  &__container {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
+/* Brand Colors */
+$color-primary: #1A4D6E;   // dark blue
+$color-secondary: #215A7C; // dark teal
+$color-background: #FAFBFD; // near-white
+$color-accent: #FF6F61;     // brand coral (too light for text on light bg)
+$color-border: #E1E6EB;
+$black: #1A1A1A;
 
-  &__title {
-    font-size: 1rem;
-    margin-bottom: 0.625rem;
-    text-align: center;
-    font-weight: 700;
-    color: vars.$color-on-primary; // ensure readable
-  }
+/* Contrast-safe aliases (measured on #FAFBFD) */
+$color-accent-contrast: #B24D43;   // 5.02:1 vs background
+$hover-color: #A55E45;             // 4.73:1 vs background (replaces old #FF926B)
+$color-border-strong: #6E8FAA;     // 3.29:1 vs background (non-text)
 
-  &__copyright {
-    text-align: center;
-    margin-bottom: 1rem;
-    color: color.scale(vars.$color-on-primary, $lightness: -10%); // soft but passing
-  }
-}
+/* Solid gradients (opaque for reliable contrast with #FFF text) */
+$gradient-button: linear-gradient(120deg, $color-primary 0%, $color-accent-contrast 100%);
+$gradient-hover: linear-gradient(
+  120deg,
+  color.adjust($color-primary, $lightness: -10%) 0%,
+  color.adjust($color-accent-contrast, $lightness: -10%) 100%
+);
+
+/* Transitions */
+$transition-default: all 0.3s ease-in-out;
+
+/* Additional */
+$menu-background: $color-background;
+$box-shadow-color: rgba(26, 77, 110, 0.2);
+$transition-duration: 0.3s;
+$transition-ease: 0.5s ease;
+$border-radius-default: 0.5rem;
+$box-shadow-default: 0 4px 6px -6px rgba(0, 0, 0, 0.2);
+
+/* Feedback */
+$color-error: #991b1b;
+$color-error-bg: #fee2e2;
+$color-success: #166534;
+$color-success-bg: #dcfce7;
+
+/* Chatbot */
+$color-user-message: color.adjust($color-accent, $lightness: 10%);
+$color-assistant-message: #F4F7FA;
+
+/* Adjusted backgrounds */
+$color-background-light: color.adjust($color-background, $lightness: 8%);
+$color-background-dark: color.adjust($color-background, $lightness: -8%);
+
+/* Text-on-* */
+$color-on-primary: #FFFFFF;
+$color-on-user-message: #FFFFFF;
+$color-on-assistant-message: #1A1A1A;
+
+/* Breakpoints */
+$breakpoint-sm: 767px;
+$breakpoint-md: 1023px;
+$breakpoint-lg: 1024px;
+
+/* Layout */
+$grid-gap: 2rem;
