@@ -3,10 +3,10 @@
 @use '../../styles/mixins' as mixins;
 
 .footer {
-  background-color: #0a3d62; // Dark footer background for strong contrast
+  background-color: vars.$color-primary; // dark base
   padding: 1.25rem;
   font-size: calc(0.8rem + 0.5vw);
-  color: #ffffff; // White text for max contrast
+  color: vars.$color-on-primary; // #FFFFFF
   font-family: vars.$font-secondary;
   overflow-x: hidden;
   margin-top: auto;
@@ -22,12 +22,12 @@
     margin-bottom: 0.625rem;
     text-align: center;
     font-weight: 700;
-    color: #ffffff; // Ensures title is readable
+    color: vars.$color-on-primary; // ensure readable
   }
 
   &__copyright {
     text-align: center;
     margin-bottom: 1rem;
-    color: #e6f2ff; // Slightly off-white for softer contrast while passing WCAG
+    color: color.scale(vars.$color-on-primary, $lightness: -10%); // soft but passing
   }
 }
