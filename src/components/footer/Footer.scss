@@ -4,10 +4,10 @@
 @use '../../styles/mixins' as mixins;
 
 .footer {
-  background-color: vars.$color-primary; // dark base for strong contrast
+  background-color: vars.$color-primary; // dark base
   padding: 1.25rem;
   font-size: calc(0.8rem + 0.5vw);
-  color: vars.$color-on-primary; // #FFFFFF
+  color: vars.$color-on-primary; // #fff
   font-family: vars.$font-secondary;
   overflow-x: hidden;
   margin-top: auto;
@@ -23,14 +23,56 @@
     margin-bottom: 0.625rem;
     text-align: center;
     font-weight: 700;
-    color: vars.$color-on-primary; // readable
+    color: vars.$color-on-primary;
+  }
+
+  /* Ensure all content sections are fully visible (not translucent) */
+  &__info,
+  &__contact,
+  &__legal,
+  &__social {
+    color: vars.$color-on-primary;
+    opacity: 1; /* override any inherited fading */
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+
+  /* Links: solid white, readable hover */
+  &__info a,
+  &__contact a,
+  &__legal a,
+  &__social a {
+    color: vars.$color-on-primary;
+    text-decoration: none;
+    opacity: 1;
+
+    &:hover,
+    &:focus-visible {
+      color: #e6f2ff;              // high-contrast hover
+      text-decoration: underline;  // clearer affordance
+      outline: none;
+    }
+  }
+
+  /* Icons inherit link color; keep them crisp */
+  &__social i {
+    font-size: 1.25rem;
+    color: currentColor;  // matches link color (white / hover color)
+    opacity: 1;
+  }
+
+  /* Optional divider utility if you use one */
+  &__divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 0.75rem 0 1rem;
   }
 
   &__copyright {
     text-align: center;
-    margin-bottom: 1rem;
-    // Slightly softer than pure white but still passing
-    color: color.scale(vars.$color-on-primary, $lightness: -10%);
+    margin-bottom: 0.5rem;
+    color: color.scale(vars.$color-on-primary, $lightness: -10%); // slightly softer but still passing
   }
 }
 
