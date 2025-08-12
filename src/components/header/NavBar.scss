@@ -24,6 +24,7 @@
 
     &:hover {
       color: #e6f2ff;
+      text-decoration: underline;
     }
 
     &:focus-visible {
@@ -47,6 +48,7 @@
 
       &:hover {
         color: vars.$color-primary; /* brand dark, still passes on light bg */
+        text-decoration: underline;
       }
 
       &:focus-visible {
