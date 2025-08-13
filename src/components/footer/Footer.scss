@@ -1,12 +1,11 @@
 /* src/components/footer/Footer.scss */
 @use "sass:color";
-@use '../../styles/variables' as vars;
-@use '../../styles/mixins' as mixins;
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
 
-/* Footer (dark background, light text) */
 .footer {
-  background-color: vars.$color-primary;       // dark base
-  color: vars.$color-on-primary;               // typically #fff
+  background-color: vars.$color-primary;      /* dark base */
+  color: vars.$color-on-primary;              /* usually #fff */
   font-family: vars.$font-secondary;
   font-size: calc(0.8rem + 0.5vw);
   line-height: 1.5;
@@ -14,7 +13,6 @@
   overflow-x: hidden;
   padding: 1.25rem;
 
-  /* Layout */
   &__container {
     max-width: 1200px;
     margin: 0 auto;
@@ -25,7 +23,7 @@
     font-weight: 700;
     margin-bottom: 0.625rem;
     text-align: center;
-    color: inherit; /* keep contrast */
+    color: inherit;
   }
 
   /* Sections */
@@ -35,25 +33,61 @@
   &__social {
     text-align: center;
     margin-bottom: 1rem;
-    color: inherit; /* no opacity tricks on text */
+    color: inherit;
   }
 
-  /* Links: explicit states so browser defaults never reduce contrast */
+  /* Links */
   a,
   a:link,
   a:visited {
-    color: inherit;                 /* #fff (or on-primary) */
-    text-decoration: underline;     /* don’t rely on color alone */
+    color: inherit;                 /* inherits on-primary */
+    text-decoration: underline;
     text-underline-offset: 2px;
   }
 
   a:hover,
   a:focus-visible {
-    color: #e6f2ff;                 /* accessible hover */
+    color: #e6f2ff;                 /* accessible hover on dark bg */
     outline: 2px solid currentColor;
     outline-offset: 2px;
     text-decoration: underline;
   }
 
-  /* If a third-party class overrides link color, normalize it here */
-  .legal-
+  /* 3rd-party legal link class used inside footer */
+  .legal-section__link {
+    color: inherit;
+  }
+
+  /* Icons */
+  &__social i {
+    font-size: 1.25rem;
+    color: currentColor;
+  }
+
+  /* Divider */
+  &__divider {
+    width: 100%;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.6);
+    margin: 0.75rem 0 1rem;
+  }
+
+  /* Copyright */
+  &__copyright {
+    text-align: center;
+    margin-bottom: 0.5rem;
+    color: inherit;
+  }
+}
+
+@media (min-width: 768px) {
+  .footer {
+    padding: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    padding: 1.875rem 0;
+  }
+}
