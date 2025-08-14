@@ -4,12 +4,13 @@
 @use "../../styles/mixins" as mixins;
 
 .footer {
+  /* CSS custom props derived from theme variables */
   --footer-bg: #{vars.$color-primary};
   --footer-text: #{vars.$color-on-primary};
   --footer-hover: #e6f2ff;
   --footer-divider: rgba(255, 255, 255, 0.2);
   --footer-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-  
+
   background-color: var(--footer-bg);
   color: var(--footer-text);
   font-family: vars.$font-secondary;
@@ -18,37 +19,37 @@
   margin-top: auto;
   overflow-x: hidden;
   padding: clamp(1.25rem, 2vw, 2rem);
-  
+
   &__container {
     max-width: min(1200px, 95vw);
     margin: 0 auto;
     width: 100%;
   }
-  
+
   &__content {
     display: grid;
     gap: 2rem;
-    
+
     @media (min-width: 768px) {
       grid-template-columns: 1fr;
       gap: 2.5rem;
     }
-    
+
     @media (min-width: 1024px) {
       grid-template-columns: 1fr 2fr;
       align-items: start;
       gap: 3rem;
     }
   }
-  
+
   &__newsletter {
     text-align: center;
-    
+
     @media (min-width: 1024px) {
       text-align: left;
     }
   }
-  
+
   &__title {
     font-size: clamp(1rem, 1.5vw, 1.25rem);
     font-weight: 700;
@@ -56,29 +57,29 @@
     color: inherit;
     line-height: 1.3;
   }
-  
+
   &__sections {
     display: grid;
     gap: 1.5rem;
     text-align: center;
-    
+
     @media (min-width: 480px) {
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 2rem;
     }
-    
+
     @media (min-width: 1024px) {
       text-align: left;
     }
   }
-  
-  // Individual sections
+
+  /* Section blocks */
   &__info,
   &__contact,
   &__legal,
   &__social {
     color: inherit;
-    
+
     h4 {
       font-size: 1rem;
       font-weight: 600;
@@ -86,8 +87,8 @@
       color: var(--footer-hover);
     }
   }
-  
-  // Enhanced link styles
+
+  /* === Accessible link styling (fixed outlines) === */
   a,
   a:link,
   a:visited {
@@ -96,38 +97,65 @@
     text-underline-offset: 3px;
     text-decoration-thickness: 1px;
     transition: var(--footer-transition);
-    
+
     &:hover,
     &:focus-visible {
       color: var(--footer-hover);
       text-decoration-thickness: 2px;
       text-underline-offset: 4px;
-      outline: 2px solid currentColor;
-      outline-offset: 3px;
-      border-radius: 2px;
     }
-    
-    &:focus-visible {
-      outline-style: solid;
-    }
-    
-    &:active {
-      transform: translateY(1px);
+
+    /* Remove focus styles when not keyboard-focused */
+    &:focus:not(:focus-visible) {
+      outline: none;
     }
   }
-  
-  // Social links specific styling
+
+  /* === Legal links: compact focus ring around text only === */
+  .legal-section__link {
+    display: inline-block; /* prevents full-height focus boxes */
+    line-height: 1.2;
+    padding: 2px 4px; /* nicer outline + larger hit area */
+    text-decoration: underline;
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 3px;
+      border-radius: 4px;
+    }
+
+    /* bullet separator between legal links */
+    &:not(:last-child)::after {
+      content: "•";
+      margin-left: 1rem;
+      margin-right: 0.5rem;
+      color: var(--footer-divider);
+      text-decoration: none;
+    }
+  }
+
+  /* If LegalSection uses list markup, keep items inline */
+  .legal-section__list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .legal-section__item {
+    display: inline;
+  }
+
+  /* === Social links === */
   &__social {
     .social-links {
       display: flex;
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
-      
+
       @media (min-width: 1024px) {
         justify-content: flex-start;
       }
-      
+
       a {
         display: inline-flex;
         align-items: center;
@@ -136,15 +164,21 @@
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.1);
         transition: var(--footer-transition);
-        text-decoration: none;
-        
+        text-decoration: none; /* icons don’t need underline */
+
         &:hover,
         &:focus-visible {
           background: rgba(255, 255, 255, 0.2);
           transform: translateY(-2px) scale(1.05);
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          outline: 2px solid currentColor;
+          outline-offset: 3px;
         }
-        
+
+        &:focus:not(:focus-visible) {
+          outline: none;
+        }
+
         i {
           font-size: 1.25rem;
           color: currentColor;
@@ -152,111 +186,13 @@
       }
     }
   }
-  
-  // Legal section links
-  .legal-section__link {
-    color: inherit;
-    margin: 0 0.5rem;
-    
-    &:not(:last-child)::after {
-      content: '•';
-      margin-left: 1rem;
-      color: var(--footer-divider);
-    }
-  }
-  
-  // Divider
+
+  /* Divider */
   &__divider {
     width: 100%;
     height: 1px;
     background: linear-gradient(
-      90deg, 
-      transparent 0%, 
-      var(--footer-divider) 20%, 
-      var(--footer-divider) 80%, 
-      transparent 100%
-    );
-    margin: 2rem 0 1rem;
-    
-    @media (min-width: 768px) {
-      margin: 2.5rem 0 1.5rem;
-    }
-  }
-  
-  // Bottom section
-  &__bottom {
-    text-align: center;
-  }
-  
-  &__copyright {
-    font-size: 0.875rem;
-    opacity: 0.9;
-    
-    p {
-      margin: 0;
-    }
-  }
-  
-  // Dark mode support
-  @media (prefers-color-scheme: dark) {
-    --footer-hover: #b3d9ff;
-    --footer-divider: rgba(255, 255, 255, 0.15);
-  }
-  
-  // Reduced motion support
-  @media (prefers-reduced-motion: reduce) {
-    --footer-transition: none;
-    
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-  
-  // High contrast mode
-  @media (prefers-contrast: high) {
-    --footer-divider: rgba(255, 255, 255, 0.8);
-    
-    a:focus-visible {
-      outline-width: 3px;
-      outline-color: var(--footer-hover);
-    }
-  }
-  
-  // Print styles
-  @media print {
-    background: white !important;
-    color: black !important;
-    padding: 1rem !important;
-    
-    &__social,
-    &__newsletter {
-      display: none;
-    }
-    
-    a {
-      color: black !important;
-      text-decoration: none !important;
-      
-      &::after {
-        content: ' (' attr(href) ')';
-        font-size: 0.8em;
-        color: #666;
-      }
-    }
-  }
-}
-
-// Container queries for modern browsers
-@supports (container-type: inline-size) {
-  .footer__container {
-    container-type: inline-size;
-  }
-  
-  @container (min-width: 768px) {
-    .footer__sections {
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    }
-  }
-}
+      90deg,
+      transparent 0%,
+      var(--footer-divider) 20%,
+      var(--footer-divider) 80%
