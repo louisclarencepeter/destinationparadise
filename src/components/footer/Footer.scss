@@ -4,7 +4,7 @@
 @use "../../styles/mixins" as mixins;
 
 .footer {
-  /* CSS custom props derived from theme variables */
+  /* Theme-derived custom props */
   --footer-bg: #{vars.$color-primary};
   --footer-text: #{vars.$color-on-primary};
   --footer-hover: #e6f2ff;
@@ -26,27 +26,34 @@
     width: 100%;
   }
 
+  /* ===== Layout ===== */
+  /* Base (mobile/tablet): stack neatly */
   &__content {
-    display: grid;
-    gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
 
-    @media (min-width: 768px) {
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-    }
-
-    @media (min-width: 1024px) {
-      grid-template-columns: 1fr 2fr;
-      align-items: start;
-      gap: 3rem;
+  /* Desktop: single horizontal row */
+  @media (min-width: 1024px) {
+    &__content {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      gap: 2rem;
     }
   }
 
   &__newsletter {
-    text-align: center;
+    width: 100%;
+    max-width: 560px;
 
     @media (min-width: 1024px) {
-      text-align: left;
+      flex: 1 1 40%;
+      max-width: none;
     }
   }
 
@@ -58,22 +65,23 @@
     line-height: 1.3;
   }
 
+  /* Group the other sections together so they can sit next to the newsletter */
   &__sections {
-    display: grid;
-    gap: 1.5rem;
-    text-align: center;
-
-    @media (min-width: 480px) {
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 2rem;
-    }
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
 
     @media (min-width: 1024px) {
-      text-align: left;
+      flex: 1 1 60%;
+      flex-direction: row;          /* all sections side-by-side */
+      justify-content: flex-end;
+      align-items: center;
+      gap: 2rem;
     }
   }
 
-  /* Section blocks */
+  /* Individual section blocks */
   &__info,
   &__contact,
   &__legal,
@@ -83,199 +91,34 @@
     h4 {
       font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 0.75rem;
+      margin-bottom: 0.5rem;
       color: var(--footer-hover);
     }
   }
 
-  /* === Accessible link styling (fixed outlines) === */
+  /* Make simple, tight horizontal rows inside each section on desktop */
+  @media (min-width: 1024px) {
+    &__info,
+    &__contact,
+    &__legal,
+    &__social {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 0; /* prevent accidental spacing shifts */
+    }
+  }
+
+  /* ===== Links (accessible, compact focus) ===== */
   a,
   a:link,
   a:visited {
     color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
     transition: var(--footer-transition);
 
     &:hover,
     &:focus-visible {
-      color: var(--footer-hover);
-
-    }
-
-    /* Remove focus styles when not keyboard-focused */
-    &:focus:not(:focus-visible) {
-      outline: none;
-    }
-  }
-
-  /* === Legal links: compact focus ring around text only === */
-  .legal-section__link {
-    display: inline-block; /* prevents full-height focus boxes */
-    line-height: 1.2;
-    padding: 2px 4px; /* nicer outline + larger hit area */
-    text-decoration: underline;
-
-    &:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
-    /* bullet separator between legal links */
-    &:not(:last-child)::after {
-      content: "•";
-      margin-left: 1rem;
-      margin-right: 0.5rem;
-      color: var(--footer-divider);
-      text-decoration: none;
-    }
-  }
-
-  /* If LegalSection uses list markup, keep items inline */
-  .legal-section__list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-  .legal-section__item {
-    display: inline;
-  }
-
-  /* === Social links === */
-  &__social {
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-
-      @media (min-width: 1024px) {
-        justify-content: flex-start;
-      }
-
-      a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        transition: var(--footer-transition);
-        text-decoration: none; /* icons don’t need underline */
-
-        &:hover,
-        &:focus-visible {
-          background: rgba(255, 255, 255, 0.2);
-          transform: translateY(-2px) scale(1.05);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-          outline: 2px solid currentColor;
-          outline-offset: 3px;
-        }
-
-        &:focus:not(:focus-visible) {
-          outline: none;
-        }
-
-        i {
-          font-size: 1.25rem;
-          color: currentColor;
-        }
-      }
-    }
-  }
-
-  /* Divider */
-  &__divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      var(--footer-divider) 20%,
-      var(--footer-divider) 80%, /* fixed: comma present */
-      transparent 100%
-    );
-    margin: 2rem 0 1rem;
-
-    @media (min-width: 768px) {
-      margin: 2.5rem 0 1.5rem;
-    }
-  }
-
-  /* Bottom */
-  &__bottom {
-    text-align: center;
-  }
-
-  &__copyright {
-    font-size: 0.875rem;
-    opacity: 0.9;
-
-    p {
-      margin: 0;
-    }
-  }
-
-  /* Dark mode tweaks */
-  @media (prefers-color-scheme: dark) {
-    --footer-hover: #b3d9ff;
-    --footer-divider: rgba(255, 255, 255, 0.15);
-  }
-
-  /* Reduced motion */
-  @media (prefers-reduced-motion: reduce) {
-    --footer-transition: none;
-
-    * {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-    }
-  }
-
-  /* High contrast */
-  @media (prefers-contrast: high) {
-    --footer-divider: rgba(255, 255, 255, 0.8);
-
-    a:focus-visible,
-    .legal-section__link:focus-visible {
-      outline-width: 3px;
-      outline-color: var(--footer-hover);
-    }
-  }
-
-  /* Print */
-  @media print {
-    background: white !important;
-    color: black !important;
-    padding: 1rem !important;
-
-    &__social,
-    &__newsletter {
-      display: none !important;
-    }
-
-    a {
-      color: black !important;
-      text-decoration: none !important;
-
-      &::after {
-        content: " (" attr(href) ")";
-        font-size: 0.8em;
-        color: #666;
-      }
-    }
-  }
-}
-
-/* Container queries */
-@supports (container-type: inline-size) {
-  .footer__container {
-    container-type: inline-size;
-  }
-
-  @container (min-width: 768px) {
-    .footer__sections {
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    }
-  }
-}
+      c
