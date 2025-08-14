@@ -93,16 +93,12 @@
   a:link,
   a:visited {
     color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    text-decoration-thickness: 1px;
     transition: var(--footer-transition);
 
     &:hover,
     &:focus-visible {
       color: var(--footer-hover);
-      text-decoration-thickness: 2px;
-      text-underline-offset: 4px;
+
     }
 
     /* Remove focus styles when not keyboard-focused */
