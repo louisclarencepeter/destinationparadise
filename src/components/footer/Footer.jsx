@@ -1,11 +1,10 @@
 // Footer.jsx
-import { memo, useMemo, useState } from 'react';
+import { memo, useState } from 'react';
 import "./Footer.scss";
 import NewsletterForm from "./components/NewsletterForm";
 import ContactInfo from "./components/ContactInfo";
 import SocialLinks from "./components/SocialLinks";
 import LegalSection from "./components/LegalSection";
-import ErrorBoundary from "./components/ErrorBoundary";
 
 const Footer = memo(function Footer() {
   const currentYear = new Date().getFullYear(); // Removed unnecessary useMemo
@@ -23,12 +22,10 @@ const Footer = memo(function Footer() {
             <h3 className="footer__title" id="newsletter-heading">
               Subscribe to our newsletter! 🚀💬💌
             </h3>
-            <ErrorBoundary fallback={<p>Newsletter signup temporarily unavailable</p>}>
-              <NewsletterForm 
-                ariaLabelledBy="newsletter-heading"
-                onStatusChange={handleNewsletterStatusChange}
-              />
-            </ErrorBoundary>
+            <NewsletterForm 
+              ariaLabelledBy="newsletter-heading"
+              onStatusChange={handleNewsletterStatusChange}
+            />
             {/* Live region for newsletter status updates */}
             <div 
               className="sr-only" 
@@ -40,20 +37,14 @@ const Footer = memo(function Footer() {
           </section>
           
           <div className="footer__sections">
-            <ErrorBoundary fallback={<p>Contact information unavailable</p>}>
-              <ContactInfo />
-            </ErrorBoundary>
+            <ContactInfo />
             
             <section aria-labelledby="social-heading">
               <h4 className="sr-only" id="social-heading">Follow us on social media</h4>
-              <ErrorBoundary fallback={<p>Social links unavailable</p>}>
-                <SocialLinks ariaLabelledBy="social-heading" />
-              </ErrorBoundary>
+              <SocialLinks ariaLabelledBy="social-heading" />
             </section>
             
-            <ErrorBoundary fallback={<p>Legal links unavailable</p>}>
-              <LegalSection />
-            </ErrorBoundary>
+            <LegalSection />
           </div>
         </div>
         
