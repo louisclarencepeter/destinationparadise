@@ -2,24 +2,35 @@
 import "./LegalSection.scss";
 
 function LegalSection() {
+  const legalLinks = [
+    { 
+      href: "/privacy-policy", 
+      label: "Privacy Policy",
+      ariaLabel: "Read our Privacy Policy"
+    },
+    { 
+      href: "/terms-of-service", 
+      label: "Terms of Service",
+      ariaLabel: "Read our Terms of Service"
+    }
+  ];
+
   return (
-    <div className="legal-section">
-      <a
-        href="/privacy-policy"
-        aria-label="Read our Privacy Policy"
-        className="legal-section__link"
-      >
-        Privacy Policy
-      </a>
-      |
-      <a
-        href="/terms-of-service"
-        aria-label="Read our Terms of Service"
-        className="legal-section__link"
-      >
-        Terms of Service
-      </a>
-    </div>
+    <nav className="legal-section" role="navigation" aria-label="Legal information">
+      <ul className="legal-section__list">
+        {legalLinks.map((link, index) => (
+          <li key={link.href} className="legal-section__item">
+            <a
+              href={link.href}
+              aria-label={link.ariaLabel}
+              className="legal-section__link"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 }
 
