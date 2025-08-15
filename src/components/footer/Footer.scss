@@ -1,221 +1,240 @@
 /* src/components/footer/Footer.scss */
-@use "sass:color";
-@use "../../styles/variables" as vars;
-@use "../../styles/mixins" as mixins;
+@use “sass:color”;
+@use “../../styles/variables” as vars;
+@use “../../styles/mixins” as mixins;
 
 .footer {
-  /* Theme custom props */
-  --footer-bg: #{vars.$color-primary};
-  --footer-text: #{vars.$color-on-primary};
-  --footer-hover: #e6f2ff;
-  --footer-divider: rgba(255, 255, 255, 0.2);
-  --footer-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+/* Theme custom props */
+–footer-bg: #{vars.$color-primary};
+–footer-text: #{vars.$color-on-primary};
+–footer-hover: #e6f2ff;
+–footer-divider: rgba(255, 255, 255, 0.2);
+–footer-transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 
-  background-color: var(--footer-bg);
-  color: var(--footer-text);
-  font-family: vars.$font-secondary;
-  font-size: clamp(0.875rem, 0.8rem + 0.5vw, 1rem);
-  line-height: 1.6;
-  margin-top: auto;
-  overflow-x: hidden;
-  padding: clamp(1.25rem, 2vw, 2rem);
+background-color: var(–footer-bg);
+color: var(–footer-text);
+font-family: vars.$font-secondary;
+font-size: clamp(0.875rem, 0.8rem + 0.5vw, 1rem);
+line-height: 1.6;
+margin-top: auto;
+overflow-x: hidden;
+padding: clamp(1.25rem, 2vw, 2rem);
+z-index: 0;
 
-  &__container {
-    max-width: min(1200px, 95vw);
-    margin: 0 auto;
-    width: 100%;
-    overflow-x: hidden; /* Prevent horizontal overflow */
-  }
+&__container {
+max-width: min(1200px, 95vw);
+margin: 0 auto;
+width: 100%;
+overflow-x: hidden; /* Prevent horizontal overflow */
+}
 
-  /* ===== Layout ===== */
-  /* All screens: stacked vertically and centered */
-  &__content {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    align-items: center;
-    text-align: center;
-  }
+/* ===== Layout ===== */
+/* All screens: stacked vertically and centered */
+&__content {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+align-items: center;
+text-align: center;
+}
 
+@media (min-width: 1024px) {
+&__content {
+gap: 2rem; /* Slightly larger gap on desktop */
+}
+}
+
+&__newsletter {
+width: 100%;
+max-width: 560px;
+}
+
+&__title {
+font-size: clamp(1rem, 1.5vw, 1.25rem);
+font-weight: 700;
+margin-bottom: 1rem;
+color: inherit;
+line-height: 1.3;
+}
+
+/* Footer sections stacked vertically */
+&__sections {
+display: flex;
+flex-direction: column;
+gap: 1.5rem;
+align-items: center;
+text-align: center;
+
+```
+@media (min-width: 1024px) {
+  gap: 2rem; /* Larger gap on desktop */
+}
+```
+
+}
+
+/* Section blocks - always centered */
+&__info,
+&__contact,
+&__legal,
+&__social {
+color: inherit;
+text-align: center;
+
+```
+h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--footer-hover);
+}
+```
+
+}
+
+/* ===== Link styling (accessible) ===== */
+a,
+a:link,
+a:visited {
+color: inherit;
+text-decoration: none;
+transition: var(–footer-transition);
+
+```
+&:hover,
+&:focus-visible {
+  color: var(--footer-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+
+&:focus:not(:focus-visible) {
+  outline: none;
+}
+```
+
+}
+
+/* Legal links inline with compact focus ring */
+.legal-section__list {
+margin: 0;
+padding: 0;
+list-style: none;
+}
+
+.legal-section__item {
+display: inline;
+}
+
+.legal-section__link {
+display: inline-block;
+line-height: 1.2;
+padding: 2px 4px;
+text-decoration: none;
+
+```
+&:hover,
+&:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+&:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+&:not(:last-child)::after {
+  content: "•";
+  margin-left: 1rem;
+  margin-right: 0.5rem;
+  color: var(--footer-divider);
+  text-decoration: none;
+}
+```
+
+}
+
+/* ===== Social icons ===== */
+&__social {
+.social-links {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 0.75rem;
+flex-wrap: wrap;
+
+```
   @media (min-width: 1024px) {
-    &__content {
-      gap: 2rem; /* Slightly larger gap on desktop */
-    }
+    justify-content: center;
   }
 
-  &__newsletter {
-    width: 100%;
-    max-width: 560px;
-  }
-
-  &__title {
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
-    font-weight: 700;
-    margin-bottom: 1rem;
-    color: inherit;
-    line-height: 1.3;
-  }
-
-  /* Footer sections stacked vertically */
-  &__sections {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  a {
+    display: inline-flex;
     align-items: center;
-    text-align: center;
-
-    @media (min-width: 1024px) {
-      gap: 2rem; /* Larger gap on desktop */
-    }
-  }
-
-  /* Section blocks - always centered */
-  &__info,
-  &__contact,
-  &__legal,
-  &__social {
-    color: inherit;
-    text-align: center;
-
-    h4 {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-      color: var(--footer-hover);
-    }
-  }
-
-  /* ===== Link styling (accessible) ===== */
-  a,
-  a:link,
-  a:visited {
-    color: inherit;
-    text-decoration: none;
+    justify-content: center;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
     transition: var(--footer-transition);
+    text-decoration: none;
 
     &:hover,
     &:focus-visible {
-      color: var(--footer-hover);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      text-decoration-thickness: 1px;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      outline: 2px solid currentColor;
+      outline-offset: 3px;
     }
 
     &:focus:not(:focus-visible) {
       outline: none;
     }
-  }
 
-  /* Legal links inline with compact focus ring */
-  .legal-section__list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .legal-section__item {
-    display: inline;
-  }
-
-  .legal-section__link {
-    display: inline-block;
-    line-height: 1.2;
-    padding: 2px 4px;
-    text-decoration: none;
-
-    &:hover,
-    &:focus-visible {
-      text-decoration: underline;
-      text-underline-offset: 3px;
-    }
-
-    &:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 3px;
-      border-radius: 4px;
-    }
-
-    &:not(:last-child)::after {
-      content: "•";
-      margin-left: 1rem;
-      margin-right: 0.5rem;
-      color: var(--footer-divider);
-      text-decoration: none;
+    i {
+      font-size: 1.25rem;
+      color: currentColor;
     }
   }
+}
+```
 
-  /* ===== Social icons ===== */
-  &__social {
-    .social-links {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
+}
 
-      @media (min-width: 1024px) {
-        justify-content: center;
-      }
+/* ===== Divider ===== */
+&__divider {
+width: 100%;
+height: 1px;
+background: linear-gradient(
+90deg,
+transparent,
+var(–footer-divider) 20%,
+var(–footer-divider) 80%,
+transparent
+);
+margin: 1.5rem 0 1rem;
 
-      a {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0.5rem;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.1);
-        transition: var(--footer-transition);
-        text-decoration: none;
+```
+@media (min-width: 1024px) {
+  margin: 2rem 0 1.5rem;
+}
+```
 
-        &:hover,
-        &:focus-visible {
-          background: rgba(255, 255, 255, 0.2);
-          transform: translateY(-2px) scale(1.05);
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-          outline: 2px solid currentColor;
-          outline-offset: 3px;
-        }
+}
 
-        &:focus:not(:focus-visible) {
-          outline: none;
-        }
+/* ===== Bottom section ===== */
+&__bottom {
+text-align: center;
+}
 
-        i {
-          font-size: 1.25rem;
-          color: currentColor;
-        }
-      }
-    }
-  }
-
-  /* ===== Divider ===== */
-  &__divider {
-    width: 100%;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      var(--footer-divider) 20%,
-      var(--footer-divider) 80%,
-      transparent
-    );
-    margin: 1.5rem 0 1rem;
-
-    @media (min-width: 1024px) {
-      margin: 2rem 0 1.5rem;
-    }
-  }
-
-  /* ===== Bottom section ===== */
-  &__bottom {
-    text-align: center;
-  }
-
-  &__copyright {
-    p {
-      margin: 0;
-      font-size: 0.875rem;
-      opacity: 0.8;
-    }
-  }
+&__copyright {
+p {
+margin: 0;
+font-size: 0.875rem;
+opacity: 0.8;
+}
+}
 }
