@@ -1,29 +1,59 @@
 // Footer.jsx
-import { memo, useMemo } from 'react';
+import { memo, useMemo, useState } from 'react';
 import "./Footer.scss";
 import NewsletterForm from "./components/NewsletterForm";
 import ContactInfo from "./components/ContactInfo";
 import SocialLinks from "./components/SocialLinks";
 import LegalSection from "./components/LegalSection";
+import ErrorBoundary from "./components/ErrorBoundary";
 
 const Footer = memo(function Footer() {
-  const currentYear = useMemo(() => new Date().getFullYear(), []);
+  const currentYear = new Date().getFullYear(); // Removed unnecessary useMemo
+  const [newsletterStatus, setNewsletterStatus] = useState('');
+  
+  const handleNewsletterStatusChange = (status) => {
+    setNewsletterStatus(status);
+  };
   
   return (
     <footer className="footer" role="contentinfo" aria-label="Site footer">
       <div className="footer__container">
         <div className="footer__content">
-          <div className="footer__newsletter">
+          <section className="footer__newsletter" aria-labelledby="newsletter-heading">
             <h3 className="footer__title" id="newsletter-heading">
               Subscribe to our newsletter! 🚀💬💌
             </h3>
-            <NewsletterForm ariaLabelledBy="newsletter-heading" />
-          </div>
+            <ErrorBoundary fallback={<p>Newsletter signup temporarily unavailable</p>}>
+              <NewsletterForm 
+                ariaLabelledBy="newsletter-heading"
+                onStatusChange={handleNewsletterStatusChange}
+              />
+            </ErrorBoundary>
+            {/* Live region for newsletter status updates */}
+            <div 
+              className="sr-only" 
+              aria-live="polite" 
+              aria-atomic="true"
+            >
+              {newsletterStatus}
+            </div>
+          </section>
           
           <div className="footer__sections">
-            <ContactInfo />
-            <SocialLinks />
-            <LegalSection />
+            <ErrorBoundary fallback={<p>Contact information unavailable</p>}>
+              <ContactInfo />
+            </ErrorBoundary>
+            
+            <section aria-labelledby="social-heading">
+              <h4 className="sr-only" id="social-heading">Follow us on social media</h4>
+              <ErrorBoundary fallback={<p>Social links unavailable</p>}>
+                <SocialLinks ariaLabelledBy="social-heading" />
+              </ErrorBoundary>
+            </section>
+            
+            <ErrorBoundary fallback={<p>Legal links unavailable</p>}>
+              <LegalSection />
+            </ErrorBoundary>
           </div>
         </div>
         
