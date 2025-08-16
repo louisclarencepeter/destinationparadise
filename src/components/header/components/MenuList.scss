@@ -1,3 +1,4 @@
+/* MenuList.scss */
 @use "../../../styles/variables" as vars;
 @use "../../../styles/mixins" as mixins;
 
@@ -12,8 +13,10 @@
   transition: color vars.$transition-duration;
   @include mixins.responsive-font-size;
 
-  &:focus {
+  &:focus-visible {
+    outline: 2px solid vars.$focus-ring-color;
     outline-offset: 4px;
+    border-radius: 6px;
   }
 
   &::after {
@@ -37,8 +40,16 @@
   }
 }
 
-// Specific styles for hamburger menu list
+/* Hamburger menu variant */
 .hamburger-menu__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    margin: 0; /* reset list spacing for the panel */
+  }
+
   .menu__item {
     margin: 0;
     font-size: 1.4rem;
@@ -47,10 +58,10 @@
     padding: 0.6rem 1.5rem;
     text-align: center;
     border-radius: 8px;
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 
     &::after {
-      display: none; // Remove underline effect in hamburger menu
+      display: none; /* no underline in the overlay menu */
     }
 
     &:hover,
@@ -62,23 +73,30 @@
     &:focus-visible {
       outline: 2px solid vars.$hover-color;
       outline-offset: 2px;
+      border-radius: 10px;
     }
   }
 }
 
-// Classic menu specific styles (desktop)
+/* Desktop (classic) variant */
 .classic-menu__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li { margin: 0; }
+
   .menu__item {
     margin: 0 1rem;
     font-size: 1.1rem;
-    
+
     &::after {
-      display: block; // Keep underline effect for desktop
+      display: block; /* keep the underline for desktop nav */
     }
   }
 }
 
-// Responsive adjustments for hamburger menu
+/* Responsive */
 @media screen and (max-width: 480px) {
   .hamburger-menu__list .menu__item {
     font-size: 1.2rem;
@@ -93,7 +111,6 @@
   }
 }
 
-// Landscape mobile adjustments
 @media screen and (max-width: 767px) and (orientation: landscape) {
   .hamburger-menu__list .menu__item {
     font-size: 1.1rem;
@@ -102,7 +119,6 @@
   }
 }
 
-// Very small screens
 @media screen and (max-width: 320px) {
   .hamburger-menu__list .menu__item {
     font-size: 1.1rem;
