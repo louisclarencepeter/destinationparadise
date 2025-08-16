@@ -6,8 +6,9 @@ import "./HamburgerMenuBox.scss";
 const HamburgerMenuBox = ({ isOpen, closeMenu }) => (
   <div id="menu__box" className={`menu__box ${isOpen ? "open" : ""}`}>
     <MenuList className="hamburger-menu__list" onClick={closeMenu} />
+    
     <div className="menu__header">
-      <LogoLink className={`menu__logo ${isOpen ? "open" : ""}`} onClick={closeMenu} />
+      <LogoLink className="menu__logo" onClick={closeMenu} />
       <div className="menu__contact">
         <p>Destination Paradise</p>
         <p>Phone: +255 748 352 657</p>
