@@ -1,48 +1,37 @@
-// HamburgerToggle.scss
 @use "../../../styles/variables" as vars;
 @use "../../../styles/mixins" as mixins;
 
 .hamburger-toggle {
-  /* sizing */
   inline-size: 2.5rem;
   block-size: 2.5rem;
 
-  /* layout */
   position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
 
-  /* visuals */
-  color: vars.$color-primary; // bars use currentColor
+  color: vars.$color-primary; // bars inherit this
   background: transparent;
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
   z-index: 102;
 
-  /* accessibility focus */
   &:focus-visible {
-    outline: 2px solid vars.$focus-ring-color;
+    outline: 2px solid var(--focus-ring-color, currentColor);
     outline-offset: 2px;
   }
 
-  /* hover state */
   &:hover .bars,
   &:hover .bars::before,
   &:hover .bars::after {
     background-color: vars.$hover-color;
   }
 
-  /* motion safety */
   @media (prefers-reduced-motion: reduce) {
-    * {
-      transition: none !important;
-      animation: none !important;
-    }
+    * { transition: none !important; animation: none !important; }
   }
 
-  /* The middle bar element */
   .bars,
   .bars::before,
   .bars::after {
@@ -56,42 +45,22 @@
     content: "";
   }
 
-  .bars {
-    /* middle bar sits centered */
-    transform: translateY(0);
-  }
+  .bars { transform: translateY(0); }
+  .bars::before { transform: translateY(-0.5rem); }
+  .bars::after  { transform: translateY( 0.5rem); }
 
-  /* top bar */
-  .bars::before {
-    transform: translateY(-0.5rem);
-  }
-
-  /* bottom bar */
-  .bars::after {
-    transform: translateY(0.5rem);
-  }
-
-  /* Open state → turn into “X” */
   &.is-open {
-    .bars {
-      transform: rotate(45deg);
-    }
-    .bars::before {
-      opacity: 0;
-      transform: rotate(0deg) translateY(0); // collapse into center, hidden
-    }
-    .bars::after {
-      transform: rotate(-90deg);
-    }
+    .bars { transform: rotate(45deg); }
+    .bars::before { opacity: 0; transform: rotate(0) translateY(0); }
+    .bars::after  { transform: rotate(-90deg); }
   }
 
-  /* Optional sizing tweaks by viewport — keep positioning to parent layout */
-  @media screen and (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     inline-size: 2.75rem;
     block-size: 2.75rem;
   }
 
-  @media screen and (max-width: 320px) {
+  @media (max-width: 320px) {
     inline-size: 2.25rem;
     block-size: 2.25rem;
   }
