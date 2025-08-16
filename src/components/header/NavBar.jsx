@@ -1,4 +1,4 @@
-// NavBar.jsx
+// src/components/header/NavBar.jsx
 import { useState, useEffect, useRef, useCallback } from "react";
 import ClassicMenu from "./components/ClassicMenu";
 import StoreButton from "./components/StoreButton";
@@ -12,13 +12,10 @@ const NavBar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const rafRef = useRef(null);
 
-  const toggleMenu = useCallback(() => {
-    setIsOpen((prev) => !prev);
-  }, []);
-
+  const toggleMenu = useCallback(() => setIsOpen((p) => !p), []);
   const closeMenu = useCallback(() => setIsOpen(false), []);
 
-  // Smart scroll state (rAF to avoid layout thrash)
+  // Smooth scroll state (avoid jank)
   useEffect(() => {
     const threshold = 10;
     const onScroll = () => {
@@ -28,7 +25,6 @@ const NavBar = () => {
         rafRef.current = null;
       });
     };
-
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
     return () => {
@@ -37,16 +33,14 @@ const NavBar = () => {
     };
   }, []);
 
-  // Focus first interactive element inside the menu when opened
+  // Focus first link when menu opens
   useEffect(() => {
     if (!isOpen) return;
     const menuRoot = document.getElementById("menu__box");
-    if (!menuRoot) return;
-    const focusable = menuRoot.querySelector(
+    const focusable = menuRoot?.querySelector(
       'a, button, [href], [tabindex]:not([tabindex="-1"])'
     );
     if (focusable) {
-      // slight delay to ensure panel is in DOM/painted
       const t = setTimeout(() => focusable.focus(), 10);
       return () => clearTimeout(t);
     }
@@ -54,12 +48,26 @@ const NavBar = () => {
 
   return (
     <header className="navbar-wrapper" role="banner">
-      <nav
-        className={`nav ${isScrolled ? "scrolled" : ""}`}
-        aria-label="Main navigation"
-      >
-        {/* Left cluster: store CTA + desktop menu */}
+      <nav className={`nav ${isScrolled ? "scrolled" : ""}`} aria-label="Main navigation">
+        {/* Left cluster */}
         <div className="nav__left">
           <StoreButton closeMenu={closeMenu} />
           <ClassicMenu closeMenu={closeMenu} />
         </div>
+
+        {/* Center logo */}
+        <div className="nav__center">
+          <LogoLink className="menu__logo" onClick={closeMenu} />
+        </div>
+
+        {/* Right cluster (mobile) */}
+        <div className="nav__right hamburger-menu">
+          <HamburgerToggle isOpen={isOpen} toggleMenu={toggleMenu} />
+          <HamburgerMenuBox isOpen={isOpen} closeMenu={closeMenu} />
+        </div>
+      </nav>
+    </header>
+  );
+};
+
+export default NavBar;
