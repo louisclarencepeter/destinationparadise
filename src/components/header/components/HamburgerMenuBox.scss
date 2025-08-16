@@ -1,310 +1,74 @@
-// src/components/header/components/HamburgerMenuBox.scss
 @use "../../../styles/variables" as vars;
 @use "../../../styles/mixins" as mixins;
 
-// Animations
-@keyframes slideInFromRightItem {
-  0% { opacity: 0; transform: translateX(40px); }
-  100% { opacity: 1; transform: translateX(0); }
-}
+.hamburger-toggle {
+  inline-size: 2.5rem;
+  block-size: 2.5rem;
 
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(16px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-.hamburger-menu {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 
-  .menu__overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0);
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease, background 0.3s ease;
-    z-index: 98;
-    border: 0;
-    padding: 0;
-    margin: 0;
-    cursor: pointer;
+  color: vars.$color-primary;
+  background: transparent;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  z-index: 102;
 
-    &.open {
-      background: rgba(0, 0, 0, 0.45);
-      opacity: 1;
-      visibility: visible;
+  &:focus-visible {
+    outline: 2px solid var(--focus-ring-color, currentColor);
+    outline-offset: 2px;
+  }
+
+  &:hover .bars,
+  &:hover .bars::before,
+  &:hover .bars::after {
+    background-color: vars.$hover-color;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      transition: none !important;
+      animation: none !important;
     }
   }
 
-  .menu__box {
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: min(100%, 420px);
-    height: 100vh;
-    margin: 0;
-    padding: 2rem 1.5rem;
-    background-color: vars.$menu-background;
-    color: vars.$color-primary;
-    box-shadow: 0 0.25rem 1.25rem vars.$box-shadow-color;
-    z-index: 99;
-
-    transform: translateX(100%);
-    opacity: 0;
-    visibility: hidden;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-
-    transition:
-      transform 0.35s cubic-bezier(0.22, 0.61, 0.36, 1),
-      opacity 0.35s ease,
-      visibility 0.35s ease;
-
-    &.open {
-      transform: translateX(0);
-      opacity: 1;
-      visibility: visible;
-
-      .hamburger-menu__list > li {
-        animation: slideInFromRightItem 0.5s ease-out forwards;
-      }
-    }
-
-    .menu__nav {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hamburger-menu__list {
-      width: 100%;
-      max-width: 28rem;
-      display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 0.75rem;
-      padding: 2rem 0;
-      margin: 0;
-      list-style: none;
-
-      > li {
-        opacity: 0;
-        transform: translateX(40px);
-
-        > a {
-          display: block;
-          width: 100%;
-          text-align: center;
-          font-size: 1.25rem;
-          font-weight: 600;
-          color: vars.$color-primary;
-          text-decoration: none;
-          padding: 0.75rem 1rem;
-          border-radius: 10px;
-          transition: transform 0.25s ease, background-color 0.25s ease, color 0.25s ease;
-
-          &:hover,
-          &.active {
-            color: vars.$hover-color;
-            background-color: rgba(255, 255, 255, 0.08);
-            transform: translateY(-1px);
-          }
-        }
-      }
-
-      @for $i from 1 through 12 {
-        > li:nth-child(#{$i}) { animation-delay: #{0.06s * $i}; }
-      }
-    }
-
-    .menu__header {
-      padding: 1.25rem 0 1.75rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.15);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      animation: fadeInUp 0.45s ease-out 0.25s both;
-
-      .menu__logo {
-        width: 4rem;
-        height: 4rem;
-        margin: 0 auto 1rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.25s ease;
-
-        &:hover { transform: scale(1.04); }
-
-        img {
-          width: 100%;
-          height: 100%;
-          object-fit: contain;
-          display: block;
-        }
-      }
-
-      .menu__contact {
-        text-align: center;
-        font-size: 0.95rem;
-        color: vars.$color-secondary;
-        line-height: 1.55;
-        width: 100%;
-
-        p {
-          margin: 0.45rem 0;
-
-          &:first-child {
-            font-weight: 700;
-            font-size: 1.05rem;
-            color: vars.$color-primary;
-            margin-bottom: 0.75rem;
-          }
-
-          &:not(:first-child) {
-            color: rgba(255, 255, 255, 0.85);
-          }
-        }
-      }
-    }
+  .bars,
+  .bars::before,
+  .bars::after {
+    position: absolute;
+    inset-inline-start: 0;
+    block-size: 0.125rem;
+    inline-size: 1.6rem;
+    background-color: currentColor;
+    border-radius: 2px;
+    transition: transform vars.$transition-default, opacity vars.$transition-default,
+      background-color vars.$transition-default;
+    content: "";
   }
-}
 
-/* ——— Responsive ——— */
+  .bars { transform: translateY(0); }
+  .bars::before { transform: translateY(-0.5rem); }
+  .bars::after { transform: translateY(0.5rem); }
 
-/* Small phones */
-@media (max-width: 480px) {
-  .hamburger-menu {
-    .menu__box {
-      width: 100%;
-      padding: 1.5rem 1rem;
-
-      .hamburger-menu__list {
-        gap: 0.65rem;
-        padding: 1.5rem 0;
-
-        > li > a {
-          font-size: 1.1rem;
-          padding: 0.7rem 0.9rem;
-        }
-      }
-
-      .menu__header {
-        padding: 1.25rem 0 1.25rem;
-
-        .menu__logo {
-          width: 3.25rem;
-          height: 3.25rem;
-          margin-bottom: 0.85rem;
-        }
-
-        .menu__contact {
-          font-size: 0.9rem;
-
-          p:first-child {
-            font-size: 1rem;
-            margin-bottom: 0.6rem;
-          }
-        }
-      }
+  &.is-open {
+    .bars { transform: rotate(45deg); }
+    .bars::before {
+      opacity: 0;
+      transform: rotate(0deg) translateY(0);
     }
+    .bars::after { transform: rotate(-90deg); }
   }
-}
 
-/* Landscape handhelds */
-@media (max-width: 767px) and (orientation: landscape) {
-  .hamburger-menu .menu__box {
-    display: grid;
-    grid-template-columns: 1fr 0.9fr;
-    gap: 1rem;
-    align-items: stretch;
-
-    .menu__nav { align-items: center; justify-content: center; }
-
-    .hamburger-menu__list {
-      padding: 1rem 0;
-      gap: 0.5rem;
-
-      > li > a {
-        font-size: 1rem;
-        padding: 0.55rem 0.8rem;
-      }
-    }
-
-    .menu__header {
-      padding: 1rem 0 1rem;
-      border-top: none;
-      border-left: 1px solid rgba(255, 255, 255, 0.15);
-      justify-content: center;
-      min-width: 200px;
-
-      .menu__logo {
-        width: 3rem;
-        height: 3rem;
-        margin-bottom: 0.75rem;
-      }
-
-      .menu__contact {
-        font-size: 0.85rem;
-
-        p {
-          margin: 0.3rem 0;
-
-          &:first-child {
-            font-size: 0.95rem;
-            margin-bottom: 0.5rem;
-          }
-        }
-      }
-    }
+  @media screen and (min-width: 768px) and (max-width: 1023px) {
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
   }
-}
 
-/* Tablets */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .hamburger-menu .menu__box {
-    padding: 2rem;
-
-    .hamburger-menu__list > li > a {
-      font-size: 1.3rem;
-      padding: 0.8rem 1.2rem;
-    }
-
-    .menu__header .menu__logo {
-      width: 4.5rem;
-      height: 4.5rem;
-    }
-  }
-}
-
-/* Very small screens */
-@media (max-width: 320px) {
-  .hamburger-menu .menu__box {
-    padding: 1rem 0.5rem;
-
-    .hamburger-menu__list > li > a {
-      font-size: 1rem;
-      padding: 0.6rem 0.85rem;
-    }
-
-    .menu__header {
-      .menu__logo {
-        width: 2.8rem;
-        height: 2.8rem;
-      }
-
-      .menu__contact {
-        font-size: 0.8rem;
-
-        p:first-child { font-size: 0.95rem; }
-      }
-    }
+  @media screen and (max-width: 320px) {
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
   }
 }
