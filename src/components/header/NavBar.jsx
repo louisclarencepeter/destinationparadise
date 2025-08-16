@@ -1,4 +1,5 @@
-import { useState, useEffect, useCallback } from "react";
+// NavBar.jsx
+import { useState, useEffect, useRef, useCallback } from "react";
 import ClassicMenu from "./components/ClassicMenu";
 import StoreButton from "./components/StoreButton";
 import LogoLink from "./components/LogoLink";
@@ -9,58 +10,56 @@ import "./NavBar.scss";
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const rafRef = useRef(null);
 
   const toggleMenu = useCallback(() => {
     setIsOpen((prev) => !prev);
   }, []);
 
-  const closeMenu = useCallback(() => {
-    setIsOpen(false);
-  }, []);
+  const closeMenu = useCallback(() => setIsOpen(false), []);
 
+  // Smart scroll state (rAF to avoid layout thrash)
   useEffect(() => {
-    const handleScroll = () => {
-      const threshold = 10;
-      setIsScrolled(window.scrollY > threshold);
+    const threshold = 10;
+    const onScroll = () => {
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        setIsScrolled(window.scrollY > threshold);
+        rafRef.current = null;
+      });
     };
 
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", onScroll);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
 
+  // Focus first interactive element inside the menu when opened
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "auto";
-    return () => (document.body.style.overflow = "auto");
-  }, [isOpen]);
-
-  useEffect(() => {
-    if (isOpen) {
-      const firstMenuItem = document.querySelector(".hamburger-menu__list a");
-      firstMenuItem?.focus();
+    if (!isOpen) return;
+    const menuRoot = document.getElementById("menu__box");
+    if (!menuRoot) return;
+    const focusable = menuRoot.querySelector(
+      'a, button, [href], [tabindex]:not([tabindex="-1"])'
+    );
+    if (focusable) {
+      // slight delay to ensure panel is in DOM/painted
+      const t = setTimeout(() => focusable.focus(), 10);
+      return () => clearTimeout(t);
     }
   }, [isOpen]);
 
   return (
-    <div className="navbar-wrapper">
-      <nav className={`nav ${isScrolled ? "scrolled" : ""}`} aria-label="Main navigation">
-        <StoreButton closeMenu={closeMenu} />
-        <ClassicMenu closeMenu={closeMenu} />
-        
-        <div>
-          <LogoLink className="menu__logo" onClick={closeMenu} />
+    <header className="navbar-wrapper" role="banner">
+      <nav
+        className={`nav ${isScrolled ? "scrolled" : ""}`}
+        aria-label="Main navigation"
+      >
+        {/* Left cluster: store CTA + desktop menu */}
+        <div className="nav__left">
+          <StoreButton closeMenu={closeMenu} />
+          <ClassicMenu closeMenu={closeMenu} />
         </div>
-
-        <div className="hamburger-menu">
-          <HamburgerToggle isOpen={isOpen} toggleMenu={toggleMenu} />
-          <HamburgerMenuBox isOpen={isOpen} closeMenu={closeMenu} />
-        </div>
-      </nav>
-    </div>
-  );
-};
-
-export default NavBar;
