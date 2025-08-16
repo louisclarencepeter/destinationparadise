@@ -73,7 +73,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      gap: 1.5rem;
+      gap: 1rem;
       padding: 2rem 0;
       margin: 0;
       list-style: none;
@@ -84,18 +84,20 @@
         
         a {
           display: block;
-          font-size: 1.8rem;
+          font-size: 1.4rem;
           font-weight: 600;
           color: vars.$color-primary;
           text-decoration: none;
-          padding: 0.5rem 1rem;
+          padding: 0.6rem 1.5rem;
           transition: all 0.3s ease;
           text-align: center;
+          border-radius: 8px;
 
           &:hover,
           &.active {
             color: vars.$hover-color;
-            transform: scale(1.05);
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: scale(1.02);
           }
         }
       }
@@ -167,10 +169,11 @@
 
     .hamburger-menu__list {
       padding: 1.5rem 0;
+      gap: 0.8rem;
       
       li a {
-        font-size: 1.6rem;
-        padding: 0.8rem 1rem;
+        font-size: 1.2rem;
+        padding: 0.7rem 1.2rem;
       }
     }
 
@@ -201,7 +204,8 @@
     padding: 2rem;
 
     .hamburger-menu__list li a {
-      font-size: 2rem;
+      font-size: 1.6rem;
+      padding: 0.8rem 1.8rem;
     }
 
     .menu__header .menu__logo {
@@ -220,13 +224,13 @@
 
     .hamburger-menu__list {
       flex: 2;
-      gap: 1rem;
+      gap: 0.6rem;
       padding: 1rem 0;
       justify-content: center;
       
       li a {
-        font-size: 1.4rem;
-        padding: 0.4rem 1rem;
+        font-size: 1.1rem;
+        padding: 0.5rem 1rem;
       }
     }
 
@@ -266,8 +270,8 @@
     padding: 1rem 0.5rem;
 
     .hamburger-menu__list li a {
-      font-size: 1.4rem;
-      padding: 0.4rem 0.5rem;
+      font-size: 1.1rem;
+      padding: 0.6rem 1rem;
     }
 
     .menu__header {
