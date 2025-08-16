@@ -36,3 +36,76 @@
     }
   }
 }
+
+// Specific styles for hamburger menu list
+.hamburger-menu__list {
+  .menu__item {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+    display: block;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    &::after {
+      display: none; // Remove underline effect in hamburger menu
+    }
+
+    &:hover,
+    &.active {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: scale(1.05);
+    }
+
+    &:focus-visible {
+      outline: 2px solid vars.$hover-color;
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Classic menu specific styles (desktop)
+.classic-menu__list {
+  .menu__item {
+    margin: 0 1rem;
+    font-size: 1.1rem;
+    
+    &::after {
+      display: block; // Keep underline effect for desktop
+    }
+  }
+}
+
+// Responsive adjustments for hamburger menu
+@media screen and (max-width: 480px) {
+  .hamburger-menu__list .menu__item {
+    font-size: 1.6rem;
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .hamburger-menu__list .menu__item {
+    font-size: 2rem;
+    padding: 0.7rem 1.2rem;
+  }
+}
+
+// Landscape mobile adjustments
+@media screen and (max-width: 767px) and (orientation: landscape) {
+  .hamburger-menu__list .menu__item {
+    font-size: 1.4rem;
+    padding: 0.4rem 0.8rem;
+    margin: 0;
+  }
+}
+
+// Very small screens
+@media screen and (max-width: 320px) {
+  .hamburger-menu__list .menu__item {
+    font-size: 1.4rem;
+    padding: 0.5rem 0.6rem;
+  }
+}
