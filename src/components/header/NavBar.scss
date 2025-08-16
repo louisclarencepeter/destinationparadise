@@ -13,6 +13,7 @@
   height: 4rem;
   background-color: transparent;
   transition: vars.$transition-default;
+  position: relative; // Add this to establish positioning context
 
   /* Default over-hero: light text + softer shadow for contrast on images */
   color: #ffffff;
@@ -54,6 +55,20 @@
         outline-offset: 3px;
       }
     }
+
+    // Ensure hamburger colors update properly when scrolled
+    .hamburger-menu {
+      .menu__btn > span,
+      .menu__btn > span::before,
+      .menu__btn > span::after {
+        background-color: #111111;
+
+        &:hover,
+        &:active {
+          background-color: vars.$color-primary;
+        }
+      }
+    }
   }
 
   .sr-only {
@@ -62,6 +77,8 @@
 
   .hamburger-menu {
     display: block;
+    position: relative; // Ensure proper positioning
+    z-index: 101; // Higher than navbar wrapper
 
     @media screen and (min-width: 1024px) {
       display: none;
@@ -102,13 +119,16 @@
 }
 
 /* Hamburger button focus/tap affordance */
-.hamburger-menu button {
+.hamburger-menu button,
+.hamburger-menu .menu__toggle-container {
   background: transparent;
   border: 0;
   color: inherit;
   cursor: pointer;
 }
-.hamburger-menu button:focus-visible {
+
+.hamburger-menu button:focus-visible,
+.hamburger-menu .menu__toggle-container:focus-visible {
   outline: 2px solid currentColor;
   outline-offset: 3px;
 }
