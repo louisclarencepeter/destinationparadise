@@ -212,9 +212,53 @@
   }
 }
 
+// Media query for very small screens
+@media screen and (max-width: 320px) {
+  .hamburger-menu .menu__box {
+    padding: 1rem 0.5rem;
+
+    .hamburger-menu__list li a {
+      font-size: 1.4rem;
+      padding: 0.4rem 0.5rem;
+    }
+
+    .menu__header {
+      .menu__logo {
+        width: 3rem;
+        height: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .menu__contact {
+        font-size: 0.8rem;
+        
+        p:first-child {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+// Ensure proper spacing and visibility
 @media screen and (max-width: 767px) {
   .hamburger-menu {
     width: 2.2rem;
     height: 2.2rem;
+
+    .menu__box .hamburger-menu__list {
+      padding: 1rem 0;
+      
+      li a {
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+
+        &:hover,
+        &.active {
+          background-color: rgba(255, 255, 255, 0.1);
+        }
+      }
+    }
   }
 }
