@@ -1,3 +1,4 @@
+/* NavBar.scss */
 @use "../../styles/variables" as vars;
 @use "../../styles/mixins" as mixins;
 
@@ -7,35 +8,57 @@
   z-index: 100;
 }
 
+/* Base nav layout */
 .nav {
   @include mixins.flex-center(space-between);
+  position: relative;
   padding: 0 1rem;
   height: 4rem;
   background-color: transparent;
   transition: vars.$transition-default;
-  position: relative; // Add this to establish positioning context
 
-  /* Default over-hero: light text + softer shadow for contrast on images */
-  color: #ffffff;
-
+  color: #ffffff; /* over-hero default */
   a {
     color: #ffffff;
     text-decoration: none;
-    font-weight: 500; // base weight for desktop
+    font-weight: 500;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.6);
 
-    &:hover {
-      color: #e6f2ff;
-    }
-
+    &:hover { color: #e6f2ff; }
     &:focus-visible {
       outline: 2px solid #ffffff;
       outline-offset: 3px;
     }
   }
 
+  .nav__left,
+  .nav__center,
+  .nav__right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .nav__center {
+    /* keep logo centered even when left/right change width */
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* Mobile hamburger visibility handled here */
+  .hamburger-menu {
+    display: block;
+    position: relative;
+    z-index: 101;
+
+    @media (min-width: 1024px) {
+      display: none;
+    }
+  }
+
+  /* Scrolled state = solid bg + high contrast text */
   &.scrolled {
-    /* Solid/light bg + dark text for ≥4.5:1 contrast */
     background-color: rgba(255, 255, 255, 0.95);
     -webkit-backdrop-filter: saturate(120%) blur(6px);
     backdrop-filter: saturate(120%) blur(6px);
@@ -46,89 +69,55 @@
       color: #111111;
       text-shadow: none;
 
-      &:hover {
-        color: vars.$color-primary;
-      }
-
+      &:hover { color: vars.$color-primary; }
       &:focus-visible {
         outline: 2px solid vars.$color-primary;
         outline-offset: 3px;
       }
     }
-
-    // Ensure hamburger colors update properly when scrolled
-    .hamburger-menu {
-      .menu__btn > span,
-      .menu__btn > span::before,
-      .menu__btn > span::after {
-        background-color: #111111;
-
-        &:hover,
-        &:active {
-          background-color: vars.$color-primary;
-        }
-      }
-    }
-  }
-
-  .sr-only {
-    @include mixins.sr-only;
-  }
-
-  .hamburger-menu {
-    display: block;
-    position: relative; // Ensure proper positioning
-    z-index: 101; // Higher than navbar wrapper
-
-    @media screen and (min-width: 1024px) {
-      display: none;
-    }
   }
 }
 
-/* Mobile readability tweaks */
-@media screen and (max-width: 767px) {
+/* Mobile readability */
+@media (max-width: 767px) {
   .nav a {
-    font-weight: 400; // lighter for clarity
-    font-size: 1rem; // slightly larger touch-friendly text
-    letter-spacing: 0.25px; // improves legibility
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5); // softer shadow
+    font-weight: 400;
+    font-size: 1rem;
+    letter-spacing: 0.25px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
   }
 }
 
 /* Larger screens */
-@media screen and (min-width: 1024px) {
+@media (min-width: 1024px) {
   .nav {
     padding: 0 2rem;
     height: 5rem;
+
+    /* example: show classic/desktop menu only on desktop */
+    .classic-menu__list { display: flex; }
   }
 }
 
 /* Motion safety */
 @media (prefers-reduced-motion: reduce) {
-  .nav {
-    transition: none;
-  }
+  .nav { transition: none; }
 }
 
 /* Backdrop-filter fallback */
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .nav.scrolled {
-    background-color: rgba(255, 255, 255, 0.98);
-  }
+  .nav.scrolled { background-color: rgba(255, 255, 255, 0.98); }
 }
 
-/* Hamburger button focus/tap affordance */
-.hamburger-menu button,
-.hamburger-menu .menu__toggle-container {
+/* Hamburger button affordance (works with both checkbox-hack or button impls) */
+.hamburger-menu button {
   background: transparent;
   border: 0;
   color: inherit;
   cursor: pointer;
-}
 
-.hamburger-menu button:focus-visible,
-.hamburger-menu .menu__toggle-container:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 3px;
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+  }
 }
