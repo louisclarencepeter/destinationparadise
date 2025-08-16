@@ -1,51 +1,54 @@
-import { Link, useLocation } from "react-router-dom";
+// MenuList.jsx
+import { NavLink } from "react-router-dom";
 import PropTypes from "prop-types";
 import scrollToTop from "../../../utils/scrollToTop";
 import "./MenuList.scss";
 
-const MenuList = ({ className, onClick }) => {
-  const location = useLocation();
-  const menuItems = [
-    { label: "Home", path: "/" },
-    { label: "Excursions", path: "/excursions" },
-    { label: "About Us", path: "/aboutus" },
-    { label: "Gallery", path: "/gallery" },
-    { label: "Booking Request", path: "/booking" },
-  ];
+const DEFAULT_ITEMS = [
+  { label: "Home", path: "/" },
+  { label: "Excursions", path: "/excursions" },
+  { label: "About Us", path: "/aboutus" },
+  { label: "Gallery", path: "/gallery" },
+  { label: "Booking Request", path: "/booking" },
+];
+
+const MenuList = ({ className, onClick, items = DEFAULT_ITEMS }) => {
+  const handleNavigate = () => {
+    scrollToTop();
+    if (onClick) onClick();
+  };
 
   return (
-    <ul className={className} role="menubar">
-      {menuItems.map(({ label, path }) => {
-        const isActive =
-          path === "/"
-            ? location.pathname === path // Exact match for "/"
-            : location.pathname.startsWith(path); // Prefix match for others
-
-        return (
-          <li key={label} role="none">
-            <Link
-              role="menuitem"
-              className={`menu__item ${isActive ? "active" : ""}`}
-              aria-current={isActive ? "page" : undefined}
-              to={path}
-              onClick={() => {
-                onClick();
-                scrollToTop();
-              }}
-              aria-label={`Navigate to ${label}`}
-            >
-              {label}
-            </Link>
-          </li>
-        );
-      })}
+    <ul className={className}>
+      {items.map(({ label, path }) => (
+        <li key={label}>
+          <NavLink
+            to={path}
+            // `end` ensures exact match for "/"
+            end={path === "/"}
+            className={({ isActive }) =>
+              `menu__item ${isActive ? "active" : ""}`
+            }
+            onClick={handleNavigate}
+            aria-label={`Navigate to ${label}`}
+          >
+            {label}
+          </NavLink>
+        </li>
+      ))}
     </ul>
   );
 };
 
 MenuList.propTypes = {
   className: PropTypes.string.isRequired,
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,              // make optional
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.string.isRequired,
+      path: PropTypes.string.isRequired,
+    })
+  ),
 };
 
 export default MenuList;
