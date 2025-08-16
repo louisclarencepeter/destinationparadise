@@ -1,23 +1,21 @@
-// HamburgerMenuBox.scss
+// src/components/header/components/HamburgerMenuBox.scss
 @use "../../../styles/variables" as vars;
 @use "../../../styles/mixins" as mixins;
 
 // Animations
 @keyframes slideInFromRightItem {
-  0%   { opacity: 0; transform: translateX(40px); }
+  0% { opacity: 0; transform: translateX(40px); }
   100% { opacity: 1; transform: translateX(0); }
 }
 
 @keyframes fadeInUp {
-  0%   { opacity: 0; transform: translateY(16px); }
+  0% { opacity: 0; transform: translateY(16px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
-// Root
 .hamburger-menu {
   position: relative;
 
-  // Fullscreen overlay
   .menu__overlay {
     position: fixed;
     inset: 0;
@@ -38,7 +36,6 @@
     }
   }
 
-  // Sliding panel
   .menu__box {
     position: fixed;
     top: 0;
@@ -52,7 +49,6 @@
     box-shadow: 0 0.25rem 1.25rem vars.$box-shadow-color;
     z-index: 99;
 
-    // GPU-accelerated slide
     transform: translateX(100%);
     opacity: 0;
     visibility: hidden;
@@ -74,7 +70,6 @@
       opacity: 1;
       visibility: visible;
 
-      // Staggered list items
       .hamburger-menu__list > li {
         animation: slideInFromRightItem 0.5s ease-out forwards;
       }
@@ -87,7 +82,6 @@
       justify-content: center;
     }
 
-    // Menu navigation section
     .hamburger-menu__list {
       width: 100%;
       max-width: 28rem;
@@ -124,15 +118,11 @@
         }
       }
 
-      // Stagger up to 12 items
       @for $i from 1 through 12 {
-        > li:nth-child(#{$i}) {
-          animation-delay: #{0.06s * $i};
-        }
+        > li:nth-child(#{$i}) { animation-delay: #{0.06s * $i}; }
       }
     }
 
-    // Footer section with logo and contact
     .menu__header {
       padding: 1.25rem 0 1.75rem;
       border-top: 1px solid rgba(255, 255, 255, 0.15);
@@ -140,7 +130,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
       animation: fadeInUp 0.45s ease-out 0.25s both;
 
       .menu__logo {
@@ -190,7 +179,7 @@
 
 /* ——— Responsive ——— */
 
-// Small phones
+/* Small phones */
 @media (max-width: 480px) {
   .hamburger-menu {
     .menu__box {
@@ -214,3 +203,108 @@
           width: 3.25rem;
           height: 3.25rem;
           margin-bottom: 0.85rem;
+        }
+
+        .menu__contact {
+          font-size: 0.9rem;
+
+          p:first-child {
+            font-size: 1rem;
+            margin-bottom: 0.6rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Landscape handhelds */
+@media (max-width: 767px) and (orientation: landscape) {
+  .hamburger-menu .menu__box {
+    display: grid;
+    grid-template-columns: 1fr 0.9fr;
+    gap: 1rem;
+    align-items: stretch;
+
+    .menu__nav { align-items: center; justify-content: center; }
+
+    .hamburger-menu__list {
+      padding: 1rem 0;
+      gap: 0.5rem;
+
+      > li > a {
+        font-size: 1rem;
+        padding: 0.55rem 0.8rem;
+      }
+    }
+
+    .menu__header {
+      padding: 1rem 0 1rem;
+      border-top: none;
+      border-left: 1px solid rgba(255, 255, 255, 0.15);
+      justify-content: center;
+      min-width: 200px;
+
+      .menu__logo {
+        width: 3rem;
+        height: 3rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .menu__contact {
+        font-size: 0.85rem;
+
+        p {
+          margin: 0.3rem 0;
+
+          &:first-child {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .hamburger-menu .menu__box {
+    padding: 2rem;
+
+    .hamburger-menu__list > li > a {
+      font-size: 1.3rem;
+      padding: 0.8rem 1.2rem;
+    }
+
+    .menu__header .menu__logo {
+      width: 4.5rem;
+      height: 4.5rem;
+    }
+  }
+}
+
+/* Very small screens */
+@media (max-width: 320px) {
+  .hamburger-menu .menu__box {
+    padding: 1rem 0.5rem;
+
+    .hamburger-menu__list > li > a {
+      font-size: 1rem;
+      padding: 0.6rem 0.85rem;
+    }
+
+    .menu__header {
+      .menu__logo {
+        width: 2.8rem;
+        height: 2.8rem;
+      }
+
+      .menu__contact {
+        font-size: 0.8rem;
+
+        p:first-child { font-size: 0.95rem; }
+      }
+    }
+  }
+}
