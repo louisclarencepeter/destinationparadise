@@ -41,10 +41,10 @@
 .hamburger-menu__list {
   .menu__item {
     margin: 0;
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     font-weight: 600;
     display: block;
-    padding: 0.5rem 1rem;
+    padding: 0.6rem 1.5rem;
     text-align: center;
     border-radius: 8px;
     transition: all 0.3s ease;
@@ -56,7 +56,7 @@
     &:hover,
     &.active {
       background-color: rgba(255, 255, 255, 0.1);
-      transform: scale(1.05);
+      transform: scale(1.02);
     }
 
     &:focus-visible {
@@ -81,23 +81,23 @@
 // Responsive adjustments for hamburger menu
 @media screen and (max-width: 480px) {
   .hamburger-menu__list .menu__item {
-    font-size: 1.6rem;
-    padding: 0.6rem 0.8rem;
+    font-size: 1.2rem;
+    padding: 0.7rem 1.2rem;
   }
 }
 
 @media screen and (min-width: 768px) and (max-width: 1023px) {
   .hamburger-menu__list .menu__item {
-    font-size: 2rem;
-    padding: 0.7rem 1.2rem;
+    font-size: 1.6rem;
+    padding: 0.8rem 1.8rem;
   }
 }
 
 // Landscape mobile adjustments
 @media screen and (max-width: 767px) and (orientation: landscape) {
   .hamburger-menu__list .menu__item {
-    font-size: 1.4rem;
-    padding: 0.4rem 0.8rem;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
     margin: 0;
   }
 }
@@ -105,7 +105,7 @@
 // Very small screens
 @media screen and (max-width: 320px) {
   .hamburger-menu__list .menu__item {
-    font-size: 1.4rem;
-    padding: 0.5rem 0.6rem;
+    font-size: 1.1rem;
+    padding: 0.6rem 1rem;
   }
 }
