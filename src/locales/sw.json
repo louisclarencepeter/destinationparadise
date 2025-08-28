@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "title": "Peponi la Marudio",
+    "subtitle": "safari yako ijayo ya kwenda Peponi...",
+    "description": "Karibu kwenye mlango wako wa kuingia katika Kisiwa cha Zanzibar chenye uchawi! Fikiria mahali ambapo kila siku ni adventure, na kila upande wa anga unaahidi ukaguzi mpya.",
+    "placeholder_alt": "Picha ya kusubiri"
+  },
+  "excursions": {
+    "title": "Mahali pa Kupumzika",
+    "view_more": "Ona Safari Zaidi",
+    "view_all_aria": "Ona safari zote zinazopatikana",
+    "trips": {
+      "stone_town": {
+        "title": "Matembezi ya Utamaduni wa Mji wa Mawe",
+        "description": "Anza safari katika Mji wa Mawe wa kijadi, mahali ambapo historia inasikika katika kila njia ndogo.",
+        "link_text": "Gundua Matembezi ya Utamaduni wa Mji wa Mawe",
+        "aria_label": "Jua zaidi kuhusu Matembezi ya Utamaduni wa Mji wa Mawe"
+      },
+      "safari_blue": {
+        "title": "Dhow na Safari Blue ya Kupiga Mbizi",
+        "description": "Furahia Safari Blue halisi na ya kipekee - safari ya siku nzima kwenye mashua za jadi za ndau.",
+        "link_text": "Gundua Dhow na Safari Blue ya Kupiga Mbizi",
+        "aria_label": "Jua zaidi kuhusu Dhow na Safari Blue ya Kupiga Mbizi"
+      },
+      "spice_tour": {
+        "title": "Safari ya Viungo na Utamaduni wa Zanzibar",
+        "description": "Anza safari ya nusu siku katikati ya Zanzibar, ukigundua historia tajiri iliyoumbwa na karafuu, kunazi, mdalasini, na pilipili.",
+        "link_text": "Furahia Safari ya Viungo na Utamaduni wa Zanzibar",
+        "aria_label": "Jua zaidi kuhusu Safari ya Viungo na Utamaduni wa Zanzibar"
+      }
+    }
+  },
+  "gallery": {
+    "title": "Maktaba ya Picha",
+    "view_more": "Ona Zaidi",
+    "loading": "Inapakia gallery...",
+    "error": "Imeshindwa kupakia vitu vya gallery",
+    "failed_to_load": "Imeshindwa kupakia",
+    "images": {
+      "image_1": "Picha 1",
+      "image_2": "Picha 2",
+      "image_3": "Picha 3"
+    },
+    "videos": {
+      "safari_blue": "Safari Blue",
+      "snorkeling_mnemba": "Kupiga Mbizi Mnemba",
+      "stone_town": "Kugundua Mji wa Mawe"
+    }
+  },
+  "testimonials": {
+    "title": "Ushahidi",
+    "book_now": "Weka Nafasi",
+    "testimonial_alt": " ushahidi wa"
+  },
+  "map": {
+    "location_title": "Mahali pangu",
+    "api_key_missing": "API key ya Google Maps haipatikani.",
+    "failed_to_load": "Imeshindwa kupakia ramani. Tafadhali jaribu tena baadaye.",
+    "script_failed": "Script ya Google Maps imeshindwa kupakia.",
+    "marker_unavailable": "AdvancedMarkerElement haipatikani.",
+    "error_initializing": "Hitilafu katika kuanzisha ramani:"
+  },
+  "common": {
+    "image": "picha",
+    "video": "video"
+  }
+}
