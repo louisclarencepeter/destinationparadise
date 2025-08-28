@@ -52,6 +52,39 @@
           color: vars.$color-accent;
           font-weight: 700;
         }
+
+        .partner-link {
+          display: inline-flex;
+          align-items: center;
+          gap: 0.5rem;
+          text-decoration: none;
+          color: inherit;
+          transition: all 0.3s ease;
+          border-radius: 4px;
+          padding: 0.2rem 0.4rem;
+
+          &:hover {
+            background-color: color.adjust(vars.$color-accent, $alpha: -0.9);
+            transform: translateY(-1px);
+            
+            .partner-logo {
+              transform: scale(1.1);
+            }
+          }
+
+          .partner-logo {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+            border-radius: 2px;
+          }
+
+          strong {
+            color: vars.$color-accent;
+            font-weight: 700;
+          }
+        }
       }
 
       // Partnership benefits styling

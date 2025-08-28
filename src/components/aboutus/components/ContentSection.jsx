@@ -15,7 +15,19 @@ export const ContentSection = () => (
 
         <AnimatedText delay={150} className="partnership-highlight">
           We are excited to announce our strategic partnership with{' '}
-          <strong>Unique Touch Ltd</strong>, bringing together decades of 
+          <a 
+            href="https://www.uniquetouchgroup.com/" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="partner-link"
+          >
+            <img 
+              src="/src/assets/partners/unique-touch-logo.png" 
+              alt="Unique Touch Ltd Logo" 
+              className="partner-logo"
+            />
+            <strong>Unique Touch Ltd</strong>
+          </a>, bringing together decades of 
           combined expertise to deliver exceptional travel experiences that 
           go beyond the ordinary.
         </AnimatedText>
