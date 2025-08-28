@@ -12,18 +12,34 @@ export const ContentSection = () => (
           Zanzibar Island (Unguja), with ambitious plans to expand our
           offerings throughout Tanzania.
         </AnimatedText>
+
+        <AnimatedText delay={150} className="partnership-highlight">
+          We are excited to announce our strategic partnership with{' '}
+          <strong>Unique Touch Ltd</strong>, bringing together decades of 
+          combined expertise to deliver exceptional travel experiences that 
+          go beyond the ordinary.
+        </AnimatedText>
   
         <AnimatedText delay={200} className="motto">
           for <em>your next trip to paradise...</em>
         </AnimatedText>
   
         <AnimatedText delay={300}>
-          At Destination Paradise, we strive to provide an extensive array of
-          tours that showcase the most stunning locations and exciting events
-          not only on the main island of Zanzibar but across the entire
-          country of Tanzania. Our expertly crafted itineraries are designed
-          to immerse you in the rich culture, breathtaking landscapes, and
-          thrilling adventures that await you.
+          At Destination Paradise, in collaboration with Unique Touch, we 
+          strive to provide an extensive array of tours that showcase the 
+          most stunning locations and exciting events not only on the main 
+          island of Zanzibar but across the entire country of Tanzania. Our 
+          expertly crafted itineraries are designed to immerse you in the 
+          rich culture, breathtaking landscapes, and thrilling adventures 
+          that await you.
+        </AnimatedText>
+
+        <AnimatedText delay={350}>
+          Through our partnership with Unique Touch Ltd, we've enhanced our 
+          service offerings with innovative approaches to hospitality and 
+          unique local experiences. This collaboration allows us to provide 
+          more personalized tours, exclusive access to hidden gems, and 
+          premium accommodations that reflect the authentic spirit of Zanzibar.
         </AnimatedText>
   
         <AnimatedText delay={400}>
@@ -35,6 +51,16 @@ export const ContentSection = () => (
           wilderness and its incredible wildlife. For those seeking a more
           compact adventure, we also arrange convenient day safaris from
           Zanzibar to the magnificent Selous and Mikumi reserves.
+        </AnimatedText>
+
+        <AnimatedText delay={450} className="partnership-benefits">
+          Our partnership brings you:
+          <ul className="benefits-list">
+            <li>Enhanced local expertise and cultural insights</li>
+            <li>Exclusive access to unique experiences and locations</li>
+            <li>Premium service standards and personalized attention</li>
+            <li>Innovative tour packages combining tradition with modern comfort</li>
+          </ul>
         </AnimatedText>
       </div>
     </div>

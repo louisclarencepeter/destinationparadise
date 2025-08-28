@@ -37,6 +37,55 @@
         opacity: 1;
         transform: translateY(0);
       }
+
+      // Partnership highlight styling
+      &.partnership-highlight {
+        background: linear-gradient(135deg, 
+          color.adjust(vars.$color-accent, $alpha: -0.9) 0%, 
+          color.adjust(vars.$color-primary, $alpha: -0.95) 100%);
+        padding: 1.5rem;
+        border-radius: vars.$border-radius-default;
+        border-left: 4px solid vars.$color-accent;
+        margin: 2.5rem 0;
+        
+        strong {
+          color: vars.$color-accent;
+          font-weight: 700;
+        }
+      }
+
+      // Partnership benefits styling
+      &.partnership-benefits {
+        background: color.adjust(vars.$color-background, $lightness: -2%);
+        padding: 2rem;
+        border-radius: vars.$border-radius-default;
+        margin-top: 2.5rem;
+        
+        .benefits-list {
+          list-style: none;
+          padding: 0;
+          margin: 1rem 0 0 0;
+          
+          li {
+            position: relative;
+            padding: 0.5rem 0 0.5rem 2rem;
+            color: vars.$color-secondary;
+            
+            &::before {
+              content: '✨';
+              position: absolute;
+              left: 0;
+              top: 0.5rem;
+              font-size: 1.2rem;
+            }
+            
+            &:hover {
+              color: vars.$color-primary;
+              transition: color 0.3s ease;
+            }
+          }
+        }
+      }
       
       &.motto {
         @include mixins.flex-center;
