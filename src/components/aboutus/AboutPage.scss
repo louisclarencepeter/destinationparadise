@@ -5,6 +5,7 @@
 @use './components/styles/header';
 @use './components/styles/logo';
 @use './components/styles/content';
+@use './components/styles/partners';
 @use './components/styles/map';
 
 .about-page {
@@ -13,4 +14,3 @@
   color: vars.$color-primary;
   margin-bottom: 2rem;
 }
-
