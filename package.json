@@ -29,7 +29,6 @@
     "lucide-react": "^0.468.0",
     "mapbox-gl": "^3.10.0",
     "openai": "^4.76.3",
-    "patch-package": "^8.0.0",
     "postcss-preset-env": "^10.1.2",
     "postinstall-postinstall": "^2.1.0",
     "prop-types": "^15.8.1",
