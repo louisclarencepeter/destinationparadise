@@ -1,0 +1,67 @@
+{
+  "hero": {
+    "title": "Destination Paradise",
+    "subtitle": "your next trip to Paradise...",
+    "description": "Welcome to your gateway to the enchanting Zanzibar Island! Imagine a place where each day is an adventure, and every horizon promises new discoveries.",
+    "placeholder_alt": "Placeholder"
+  },
+  "excursions": {
+    "title": "Roaming Retreats",
+    "view_more": "View More Excursions",
+    "view_all_aria": "View all available excursions",
+    "trips": {
+      "stone_town": {
+        "title": "Stone Town Heritage Walk",
+        "description": "Embark on a journey through the timeless Stone Town, a place where history resonates in every alley.",
+        "link_text": "Explore Stone Town Heritage Walk",
+        "aria_label": "Learn more about Stone Town Heritage Walk"
+      },
+      "safari_blue": {
+        "title": "Dhow & Snorkeling Safari Blue",
+        "description": "Experience the authentic and unrivaled Safari Blue - a full-day excursion aboard traditional, locally-crafted sailing dhows.",
+        "link_text": "Discover Dhow & Snorkeling Safari Blue",
+        "aria_label": "Learn more about Dhow & Snorkeling Safari Blue"
+      },
+      "spice_tour": {
+        "title": "Zanzibar Spice & Culture Tour",
+        "description": "Embark on a half-day journey through Central Zanzibar, exploring the rich history shaped by cloves, nutmeg, cinnamon, and pepper.",
+        "link_text": "Experience Zanzibar Spice & Culture Tour",
+        "aria_label": "Learn more about Zanzibar Spice & Culture Tour"
+      }
+    }
+  },
+  "gallery": {
+    "title": "Gallery",
+    "view_more": "View More",
+    "loading": "Loading gallery...",
+    "error": "Failed to load gallery items",
+    "failed_to_load": "Failed to load",
+    "images": {
+      "image_1": "Image 1",
+      "image_2": "Image 2", 
+      "image_3": "Image 3"
+    },
+    "videos": {
+      "safari_blue": "Safari Blue",
+      "snorkeling_mnemba": "Snorkeling at Mnemba",
+      "stone_town": "Exploring Stone Town"
+    }
+  },
+  "testimonials": {
+    "title": "Testimonials",
+    "book_now": "Book Now",
+    "testimonial_alt": "'s testimonial"
+  },
+  "map": {
+    "location_title": "My location",
+    "api_key_missing": "Google Maps API key is missing.",
+    "failed_to_load": "Failed to load the map. Please try again later.",
+    "script_failed": "Google Maps script failed to load.",
+    "marker_unavailable": "AdvancedMarkerElement is not available.",
+    "error_initializing": "Error initializing map:"
+  },
+  "common": {
+    "image": "image",
+    "video": "video"
+  }
+}
