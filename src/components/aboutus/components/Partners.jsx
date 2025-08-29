@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { AnimatedText } from './AnimatedText';
+import uniqueTouchLogo from '../../../assets/partners/unique-touch-logo.png';
 
 // Partners data - easily expandable
 const partnersData = {
@@ -7,7 +8,7 @@ const partnersData = {
     {
       id: 1,
       name: "Unique Touch Ltd",
-      logo: "/src/assets/partners/unique-touch-logo.png",
+      logo: uniqueTouchLogo,
       url: "https://www.uniquetouchgroup.com/",
       description: "Strategic partnership bringing enhanced hospitality services and exclusive local experiences",
       type: "Official Partner"
