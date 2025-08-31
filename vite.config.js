@@ -1,9 +1,19 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+import svgr from "vite-plugin-svgr";
+import viteCompression from "vite-plugin-compression";
+import dotenv from "dotenv";
+
+// Load environment variables from .env file
+dotenv.config();
 
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    svgr(), // Import SVGs as React components
+    viteCompression(), // Gzip compression for build assets
+  ],
   server: {
     port: 3002,
     open: "/", // Automatically open the app in the browser
@@ -34,5 +44,7 @@ export default defineConfig({
   },
   build: {
     sourcemap: true, // Enable source maps for easier debugging
+    outDir: "dist", // Custom build output directory
+    chunkSizeWarningLimit: 800, // Warn if chunk size exceeds 800kb
   },
 });
