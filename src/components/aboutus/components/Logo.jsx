@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import logo from "../../../assets/logo/dlp1.png";
+import logo from "../../../assets/logo/DPL.pngG1.png";
 
 export const Logo = () => {
     const [isLogoLoaded, setIsLogoLoaded] = useState(false);
