@@ -7,8 +7,8 @@ function ContactInfo() {
       <p>Destination Paradise</p>
       <p>
         Phone:{" "}
-        <a href="tel:+255748352657" aria-label="Call us at +255 748 352 657">
-          +255 748 352 657
+        <a href="tel:+255748352657" aria-label="Call us at +255 768 779 517">
+          +255 768 779 517
         </a>
         <a
           href="https://wa.me/255748352657"
