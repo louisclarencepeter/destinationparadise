@@ -4,6 +4,7 @@ import { Header } from './components/Header';
 import { Logo } from './components/Logo';
 import { ContentSection } from './components/ContentSection';
 import MapComponent from './components/Map.jsx';
+
 import "./AboutPage.scss";
 
 const AboutPage = () => {

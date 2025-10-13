@@ -1,0 +1,98 @@
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
+@use "../../../../styles/container" as container;
+@use "../../../../styles/components/card" as card;
+@use "sass:color";
+
+.founder-pitch {
+  @include container.content-container;
+  margin: 4rem auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .pitch-card {
+    @include card.dp-card;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    border-radius: vars.$border-radius-default;
+
+    h2 {
+      font-family: vars.$font-tertiary;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      color: vars.$color-primary;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-family: vars.$font-primary;
+      font-size: clamp(1.1rem, 2vw, 1.2rem);
+      line-height: 1.8;
+      color: vars.$color-secondary;
+      margin-bottom: 1.5rem;
+
+      &.impact {
+        font-weight: 600;
+        color: vars.$color-accent;
+        border-left: 3px solid vars.$color-accent;
+        padding-left: 1.5rem;
+        margin: 2rem 0;
+      }
+
+      &.closer {
+        font-family: vars.$font-secondary;
+        font-size: clamp(1.2rem, 2.2vw, 1.4rem);
+        text-align: center;
+        margin-top: 2.5rem;
+        font-weight: 500;
+        color: vars.$color-primary;
+      }
+    }
+
+    .thanks {
+      margin-top: 3rem;
+      text-align: center;
+      font-family: vars.$font-secondary;
+      color: vars.$color-secondary;
+      font-size: 1rem;
+
+      span {
+        font-weight: 600;
+        color: vars.$color-primary;
+      }
+
+      ul {
+        display: inline;
+        list-style: none;
+        padding-left: 0.5rem;
+
+        li {
+          display: inline;
+          font-style: italic;
+
+          &:not(:last-child)::after {
+            content: ", ";
+            font-style: normal;
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: vars.$breakpoint-sm) {
+    .pitch-card { padding: 1.5rem; }
+    .pitch-card h2 { font-size: clamp(1.8rem, 5vw, 2.2rem); }
+    .pitch-card p  { font-size: clamp(1rem, 2.5vw, 1.1rem); }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .pitch-card { transition: transform .25s ease, box-shadow .25s ease; }
+    .pitch-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px color.adjust(vars.$color-primary, $alpha: -0.85);
+    }
+  }
+}

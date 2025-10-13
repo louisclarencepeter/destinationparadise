@@ -1,184 +1,107 @@
-// src/components/aboutus/components/styles/_partners.scss
 @use "../../../../styles/variables" as vars;
 @use "../../../../styles/mixins" as mixins;
 @use "../../../../styles/container" as container;
+@use "../../../../styles/components/card" as card;
 @use "sass:color";
 
 .partners-section {
   @include container.content-container;
-  margin: 4rem 0;
+  margin: 4rem auto;
+  text-align: center;
 
-  .partners-title {
-    text-align: center;
-    margin-bottom: 3rem;
-
-    h3 {
-      font-family: vars.$font-tertiary;
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      color: vars.$color-primary;
-      margin: 0;
-    }
+  .partners-title h3 {
+    font-family: vars.$font-tertiary;
+    font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+    color: vars.$color-primary;
+    margin-bottom: 1rem;
   }
 
-  .section-subtitle {
-    margin-bottom: 2rem;
-
-    h4 {
-      font-family: vars.$font-secondary;
-      font-size: clamp(1.4rem, 2.5vw, 1.8rem);
-      color: vars.$color-accent;
-      text-align: center;
-      margin: 0;
-      position: relative;
-
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -8px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 60px;
-        height: 2px;
-        background: vars.$color-accent;
-      }
-    }
-  }
-
-  .official-partners {
-    margin-bottom: 3rem;
+  .section-subtitle h4 {
+    font-family: vars.$font-secondary;
+    font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+    color: vars.$color-secondary;
+    opacity: 0.95;
+    margin: 0 0 2rem;
   }
 
   .partners-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 2rem;
-    margin-top: 2rem;
-
-    @media (min-width: vars.$breakpoint-lg) {
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    }
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
   }
 
   .partner-card {
-    background: linear-gradient(135deg, 
-      color.adjust(vars.$color-background, $lightness: 2%) 0%, 
-      color.adjust(vars.$color-background, $lightness: -1%) 100%);
-    border: 1px solid color.adjust(vars.$color-primary, $alpha: -0.9);
-    border-radius: vars.$border-radius-default;
+    @include card.dp-card;            // same skin as FounderPitch
     padding: 2rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, vars.$color-accent, vars.$color-primary);
-    }
-
-    &:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px color.adjust(vars.$color-primary, $alpha: -0.85);
-      border-color: vars.$color-accent;
-    }
+    text-align: left;
+    border-radius: vars.$border-radius-default;
 
     .partner-header {
       display: flex;
       align-items: center;
       gap: 1rem;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+    }
 
-      .partner-logo {
-        width: 50px;
-        height: 50px;
-        object-fit: contain;
-        border-radius: 8px;
-        transition: transform 0.3s ease;
-        flex-shrink: 0;
+    .partner-logo {
+      width: 64px;
+      height: 64px;
+      object-fit: contain;
+      border-radius: 12px;
+      background: color.adjust(vars.$color-background, $lightness: 3%);
+      padding: 6px;
+      border: 1px solid color.adjust(vars.$color-primary, $alpha: -0.9);
+      flex: 0 0 64px;
+    }
+
+    .partner-info { display: flex; flex-direction: column; gap: 0.25rem; }
+
+    .partner-name {
+      font-family: vars.$font-tertiary;
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      color: vars.$color-primary;
+      text-decoration: none;
+
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+        text-underline-offset: 3px;
       }
-
-      .partner-info {
-        flex: 1;
-
-        .partner-name {
-          display: block;
-          font-family: vars.$font-secondary;
-          font-size: 1.3rem;
-          font-weight: 600;
-          color: vars.$color-primary;
-          text-decoration: none;
-          margin-bottom: 0.3rem;
-          transition: color 0.3s ease;
-
-          &:hover {
-            color: vars.$color-accent;
-          }
-        }
-
-        .partner-type {
-          font-size: 0.9rem;
-          color: vars.$color-accent;
-          font-weight: 500;
-          background: color.adjust(vars.$color-accent, $alpha: -0.9);
-          padding: 0.2rem 0.8rem;
-          border-radius: 12px;
-          display: inline-block;
-        }
-      }
-    }
-
-    .partner-description {
-      color: vars.$color-secondary;
-      line-height: 1.6;
-      margin: 0;
-      font-size: 1rem;
-    }
-
-    &:hover .partner-logo {
-      transform: scale(1.1);
-    }
-  }
-
-  // Special styling for official partners
-  .official-partners .partner-card {
-    border-left: 4px solid vars.$color-accent;
-    
-    &::before {
-      background: linear-gradient(90deg, 
-        vars.$color-accent, 
-        color.adjust(vars.$color-accent, $lightness: 10%));
     }
 
     .partner-type {
-      background: vars.$color-accent !important;
-      color: white !important;
+      font-family: vars.$font-secondary;
+      font-size: 0.9rem;
+      color: vars.$color-accent;
+      background: color.adjust(vars.$color-accent, $alpha: -0.9);
+      border: 1px solid color.adjust(vars.$color-accent, $alpha: -0.85);
+      border-radius: 999px;
+      padding: 0.15rem 0.6rem;
+      width: fit-content;
+    }
+
+    .partner-description {
+      font-family: vars.$font-primary;
+      color: vars.$color-secondary;
+      line-height: 1.6;
+      margin-top: 0.75rem;
     }
   }
 
-  // Responsive adjustments
   @media (max-width: vars.$breakpoint-sm) {
-    .partners-grid {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-    }
+    .partners-grid { gap: 1rem; }
+    .partner-card  { padding: 1.5rem; }
+    .partner-logo  { width: 56px; height: 56px; flex-basis: 56px; }
+  }
 
-    .partner-card {
-      padding: 1.5rem;
-
-      .partner-header {
-        .partner-logo {
-          width: 40px;
-          height: 40px;
-        }
-
-        .partner-name {
-          font-size: 1.2rem;
-        }
-      }
+  @media (prefers-reduced-motion: no-preference) {
+    .partner-card { transition: transform .25s ease, box-shadow .25s ease; }
+    .partner-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px color.adjust(vars.$color-primary, $alpha: -0.85);
     }
   }
 }

@@ -1,5 +1,6 @@
 import { AnimatedText } from './AnimatedText';
 import { Partners } from './Partners';
+import FounderPitch from './FounderPitch.jsx';
 
 export const ContentSection = () => (
     <div className="about-content">
@@ -40,5 +41,6 @@ export const ContentSection = () => (
       </div>
 
       <Partners />
+      <FounderPitch />
     </div>
   );

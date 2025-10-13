@@ -1,0 +1,17 @@
+@use "../variables" as vars;
+@use "sass:color";
+
+/* Single source of truth for card skin */
+@mixin dp-card {
+  background: linear-gradient(
+    135deg,
+    color.adjust(vars.$color-background, $lightness: 2%) 0%,
+    color.adjust(vars.$color-background, $lightness: -1%) 100%
+  );
+  border: 1px solid color.adjust(vars.$color-primary, $alpha: -0.9);
+  border-radius: vars.$border-radius-default;
+  box-shadow: 0 10px 30px color.adjust(vars.$color-primary, $alpha: -0.85);
+}
+
+/* Optional utility */
+.dp-card { @include dp-card; }

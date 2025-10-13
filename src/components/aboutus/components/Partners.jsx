@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { AnimatedText } from './AnimatedText';
 import uniqueTouchLogo from '../../../assets/partners/unique-touch-logo.png';
+import './styles/_partners.scss';
 
 // Partners data - easily expandable
 const partnersData = {
