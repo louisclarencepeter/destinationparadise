@@ -29,7 +29,7 @@ const partnersData = {
 };
 
 const PartnerCard = ({ partner, delay = 0 }) => (
-  <AnimatedText delay={delay} className="partner-card">
+  <AnimatedText delay={delay} className="partner-card reveal" style={{ transitionDelay: `${Math.max(0, delay / 1000)}s` }}>
     <div className="partner-header">
       <img 
         src={partner.logo} 
@@ -73,14 +73,14 @@ export const Partners = () => {
   }
 
   return (
-    <div className="partners-section">
-      <AnimatedText delay={100} className="partners-title">
+    <div className="partners-section reveal">
+      <AnimatedText delay={100} className="partners-title reveal" style={{ transitionDelay: "0.1s" }}>
         <h3>Our Partners</h3>
       </AnimatedText>
 
       {hasOfficialPartners && (
-        <div className="official-partners">
-          <AnimatedText delay={200} className="section-subtitle">
+        <div className="official-partners reveal" style={{ transitionDelay: "0.2s" }}>
+          <AnimatedText delay={200} className="section-subtitle reveal" style={{ transitionDelay: "0.2s" }}>
             <h4>Official Partnership</h4>
           </AnimatedText>
           <div className="partners-grid">
@@ -96,8 +96,8 @@ export const Partners = () => {
       )}
 
       {hasCollaborators && (
-        <div className="collaborators">
-          <AnimatedText delay={400} className="section-subtitle">
+        <div className="collaborators reveal" style={{ transitionDelay: "0.3s" }}>
+          <AnimatedText delay={400} className="section-subtitle reveal" style={{ transitionDelay: "0.3s" }}>
             <h4>Collaborators & Associates</h4>
           </AnimatedText>
           <div className="partners-grid">

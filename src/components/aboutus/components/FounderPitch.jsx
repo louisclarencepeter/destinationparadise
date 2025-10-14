@@ -5,46 +5,48 @@ const FounderPitch = ({
   thanks = ["Ania my Wife", "Steven", "Ibrahim", "Tamim"],
 }) => {
   return (
-    <section className="founder-pitch" aria-labelledby="founder-pitch-title">
+    <section className="founder-pitch reveal" aria-labelledby="founder-pitch-title">
       <div className="pitch-card">
-        <h2 id="founder-pitch-title">{title}</h2>
+        <h2 id="founder-pitch-title" className="reveal" style={{ transitionDelay: "0.05s" }}>
+          {title}
+        </h2>
 
-        <p>
+        <p className="reveal" style={{ transitionDelay: "0.15s" }}>
           This all started as a dream. Years ago, while managing Evergreen
           Bungalows, I had a vision of something bigger to show the world the
           beauty of Zanzibar and beyond. At first, I was too young and afraid,
           so I just wrote it down and left it. But the dream stayed alive.
         </p>
 
-        <p>
+        <p className="reveal" style={{ transitionDelay: "0.25s" }}>
           I shared it with my sister we registered the company and tragically,
           she passed before we could continue. Still, I kept going, little by
           little: I learned to code in Germany, built the website, and formed a
           small team.
         </p>
 
-        <p>
+        <p className="reveal" style={{ transitionDelay: "0.35s" }}>
           Now, after 10 years, in collaboration with Unique Touch, we’re
           launching. We start in Unguja, then Pemba, Mafia, and mainland
           Tanzania step by step.
         </p>
 
-        <p className="impact">
+        <p className="impact reveal" style={{ transitionDelay: "0.45s" }}>
           What makes us different? We partner with local drivers, hotels, and
           service providers so the community grows with us.
         </p>
 
-        <p className="closer">
+        <p className="closer reveal" style={{ transitionDelay: "0.55s" }}>
           Destination Paradise isn’t just about travel it’s about sharing the
           beauty of the world, together.
         </p>
 
         {/* {thanks?.length > 0 && (
-          <div className="thanks">
+          <div className="thanks reveal" style={{ transitionDelay: "0.65s" }}>
             <span>With gratitude to </span>
             <ul>
               {thanks.map((name) => (
-                <li key={name}>{name}</li>
+                <li key={name} className="reveal">{name}</li>
               ))}
             </ul>
           </div>
