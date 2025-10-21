@@ -1,7 +1,7 @@
 // src/components/excursions/DreamDhow.jsx
 import { useEffect } from "react";
-import { revealElements } from "../../utils/revealElements";
-import { useScrollToTop } from "../../utils/useScrollToTop";
+import { revealElements } from "../../utils/revealElements.js";
+import useScrollToTop from "../../utils/scrollToTop.js";
 import "../../styles/pages/_DreamDhow.scss";
 
 const DreamDhow = () => {
