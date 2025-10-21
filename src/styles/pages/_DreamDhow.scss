@@ -1,0 +1,54 @@
+// src/styles/pages/_DreamDhow.scss
+@use "../variables" as vars;
+@use "../mixins" as mixins;
+
+.dream-dhow-page {
+  padding: 4rem 1rem;
+  background: vars.$color-background;
+  color: vars.$color-primary;
+  font-family: vars.$font-secondary;
+
+  .hero-section {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    .title-script {
+      font-family: vars.$font-tertiary;
+      font-size: clamp(2.2rem, 5vw, 3.5rem);
+      color: vars.$color-primary;
+    }
+
+    .slogan {
+      font-size: 1.25rem;
+      color: vars.$color-secondary;
+      margin-top: 1rem;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.75rem 2rem;
+      font-size: 1rem;
+      background: vars.$color-accent;
+      color: #fff;
+      border-radius: 6px;
+      transition: vars.$transition-default;
+      text-decoration: none;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+      }
+    }
+  }
+
+  .content-section {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    text-align: center;
+    color: vars.$color-primary;
+  }
+}
