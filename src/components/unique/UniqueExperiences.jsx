@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import useScrollToTop from "@/hooks/scrollToTop";
-import { revealElements } from "@/utils/revealElements";
-import "@/styles/pages/UniqueExperiences.scss";
+import "./UniqueExperiences.scss";
+
 
 const partnerExperiences = [
   {
