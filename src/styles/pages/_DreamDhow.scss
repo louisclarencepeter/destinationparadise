@@ -61,16 +61,16 @@
     margin-bottom: 2.5rem;
   }
 
-.book-now-section {
-  text-align: center;
-  margin: 3rem auto;
+  .book-now-section {
+    text-align: center;
+    margin: 3rem auto;
 
-  .cta-button {
-    font-weight: 600;
-    text-decoration: none;
-    @include mixins.button-styles;
+    .cta-button {
+      font-weight: 600;
+      text-decoration: none;
+      @include mixins.button-styles;
+    }
   }
-}
 
   .gallery-section {
     margin-top: 4rem;
@@ -100,6 +100,67 @@
 
       &:hover {
         transform: scale(1.03);
+      }
+    }
+  }
+
+  .tour-products-section {
+    margin-top: 5rem;
+    padding: 0 1rem;
+    text-align: center;
+
+    h2 {
+      font-family: vars.$font-primary;
+      font-size: 2rem;
+      color: vars.$color-primary;
+      margin-bottom: 2rem;
+    }
+
+    .tour-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      justify-content: center;
+    }
+
+    .tour-card {
+      background-color: #fff;
+      border-radius: 0.75rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      text-align: left;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+      }
+
+      h3 {
+        font-size: 1.4rem;
+        font-family: vars.$font-secondary;
+        color: vars.$color-accent;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        margin: 0.5rem 0;
+        line-height: 1.6;
+        font-size: 1rem;
+        color: vars.$color-primary;
+
+        strong {
+          font-weight: 600;
+          color: vars.$color-secondary;
+        }
+      }
+
+      .cta-button {
+        @include mixins.button-styles;
+        display: inline-block;
+        margin-top: 1.5rem;
+        text-decoration: none;
+        font-weight: 600;
       }
     }
   }
