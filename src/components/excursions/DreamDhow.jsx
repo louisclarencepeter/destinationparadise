@@ -1,7 +1,6 @@
-// src/components/excursions/DreamDhow.jsx
 import { useEffect } from "react";
-import { revealElements } from "../../utils/revealElements.js";
-import useScrollToTop from "../../utils/scrollToTop.js";
+import useScrollToTop from "../../utils/scrollToTop";
+import { revealElements } from "../../utils/revealElements";
 import "../../styles/pages/_DreamDhow.scss";
 
 const DreamDhow = () => {
@@ -13,7 +12,8 @@ const DreamDhow = () => {
     return () => window.removeEventListener("scroll", revealElements);
   }, []);
 
-  const originalImages = [
+  // List of images in /public/dreamdhow (shuffled)
+  const imageList = [
     "DJI_20250915124414_0001_D.jpg",
     "DJI_20250915124543_0003_D.jpg",
     "DJI_20250915124633_0008_D.jpg",
@@ -36,29 +36,26 @@ const DreamDhow = () => {
     "Snapshot_202509259_040909 2.jpg",
   ];
 
-  const shuffleArray = (array) => [...array].sort(() => Math.random() - 0.5);
-  const galleryImages = shuffleArray(originalImages);
-  const previewImages = galleryImages.slice(0, 4);
-  const remainingImages = galleryImages.slice(4);
+  const shuffledImages = imageList.sort(() => 0.5 - Math.random());
 
   return (
     <section className="dream-dhow-page">
       <div className="hero-section reveal">
         <h1 className="title-script">Dream Dhow Zanzibar</h1>
         <p className="slogan">
-          Sail into Paradise, feel the ocean breeze, <br />
+          Sail into Paradise, feel the ocean breeze,
+          <br />
           and make your Zanzibar story one to remember.
         </p>
       </div>
 
       <div className="image-preview reveal">
-        {previewImages.map((file, i) => (
+        {shuffledImages.slice(0, 4).map((filename, index) => (
           <img
-            key={i}
-            src={`/dreamdhow/${file}`}
-            alt={`Preview ${i + 1}`}
+            key={index}
+            src={`/dreamdhow/${filename}`}
+            alt="Dream Dhow preview"
             className="preview-image"
-            loading="lazy"
           />
         ))}
       </div>
@@ -67,97 +64,47 @@ const DreamDhow = () => {
         <p>
           Experience the magic of Zanzibar’s coastline aboard a traditional
           dhow. Choose a romantic sunset cruise or a group sail filled with
-          laughter and panoramic views.
-        </p>
-        <p>
-          Our Dream Dhow sails through crystal-clear waters, surrounded by
-          tropical marine life and guided by our warm local crew. Perfect for
-          couples, families, and small groups looking for something memorable.
-        </p>
-        <p>
-          Enjoy onboard refreshments, music, snorkeling stops, and the golden
-          glow of a Zanzibar sunset. This is more than a tour — it’s a story
-          you’ll tell forever.
+          laughter and views. Dream Dhow is more than a boat — it's your
+          gateway to memories on the ocean.
         </p>
       </div>
 
       <div className="book-now-section reveal">
         <a href="/contact" className="cta-button">
-          Book Your Dhow Experience Now
+          Book Now
         </a>
       </div>
 
       <div className="tour-products-section reveal">
         <h2>Our Tour Packages</h2>
-
         <div className="tour-cards">
           <div className="tour-card">
-            <h3>🌊 Mnemba Island (Best Seller)</h3>
-            <p>
-              <strong>Departure:</strong> 9:00 AM from Kendwa Beach
-            </p>
-            <p>
-              <strong>Activities:</strong> Dolphin spotting, snorkeling,
-              sandbank/lagoon, sunset sail
-            </p>
-            <p>
-              <strong>Food:</strong> Seafood lunch + fruits, snacks & drinks
-            </p>
-            <p>
-              <strong>Private boat:</strong> from $185 to $110 p.p. ·{" "}
-              <strong>Shared:</strong> $95/person
-            </p>
-            <p>
-              <strong>Kids:</strong> 0–4 free · 5–10 years $50
-            </p>
-            <a href="/contact" className="cta-button">
-              Book Mnemba Island
-            </a>
+            <h3><i className="fas fa-water"></i> Mnemba Island (Best Seller)</h3>
+            <p><strong>Departure:</strong> 9:00 AM from Kendwa Beach</p>
+            <p><strong>Activities:</strong> Dolphin spotting, snorkeling, sandbank/lagoon, sunset sail</p>
+            <p><strong>Food:</strong> Seafood lunch + fruits, snacks & drinks</p>
+            <p><strong>Private boat:</strong> from $185 to $110 p.p. · <strong>Shared:</strong> $95/person</p>
+            <p><strong>Kids:</strong> 0–4 free · 5–10 years $50</p>
+            <a href="/contact" className="cta-button">Book Mnemba Island</a>
           </div>
 
           <div className="tour-card">
-            <h3>🐢 Tumbatu Island</h3>
-            <p>
-              <strong>Departure:</strong> 9:00 AM from Kendwa Beach
-            </p>
-            <p>
-              <strong>Activities:</strong> Snorkeling (turtles!), beach walk,
-              sunset sail
-            </p>
-            <p>
-              <strong>Food:</strong> Seafood lunch + fruits & soft drinks
-            </p>
-            <p>
-              <strong>Private boat:</strong> from $185 to $110 p.p. ·{" "}
-              <strong>Shared:</strong> $95/person
-            </p>
-            <p>
-              <strong>Kids:</strong> 0–4 free · 5–10 years $50
-            </p>
-            <a href="/contact" className="cta-button">
-              Book Tumbatu Island
-            </a>
+            <h3><i className="fas fa-fish"></i> Tumbatu Island</h3>
+            <p><strong>Departure:</strong> 9:00 AM from Kendwa Beach</p>
+            <p><strong>Activities:</strong> Snorkeling (turtles!), beach walk, sunset sail</p>
+            <p><strong>Food:</strong> Seafood lunch + fruits & soft drinks</p>
+            <p><strong>Private boat:</strong> from $185 to $110 p.p. · <strong>Shared:</strong> $95/person</p>
+            <p><strong>Kids:</strong> 0–4 free · 5–10 years $50</p>
+            <a href="/contact" className="cta-button">Book Tumbatu Island</a>
           </div>
 
           <div className="tour-card">
-            <h3>🌅 Romantic Sunset Cruise</h3>
-            <p>
-              <strong>Departure:</strong> 5:00 PM from Nungwi & Kendwa
-            </p>
-            <p>
-              <strong>Activities:</strong> Sunset sailing, romantic vibes,
-              dinner onboard
-            </p>
-            <p>
-              <strong>Dinner:</strong> $110 → $90 p.p. ·{" "}
-              <strong>Snacks:</strong> $90 → $70 p.p.
-            </p>
-            <p>
-              <strong>Kids:</strong> 0–4 free · 5–10 years $50
-            </p>
-            <a href="/contact" className="cta-button">
-              Book Sunset Cruise
-            </a>
+            <h3><i className="fas fa-heart"></i> Romantic Sunset Cruise</h3>
+            <p><strong>Departure:</strong> 5:00 PM from Nungwi & Kendwa</p>
+            <p><strong>Activities:</strong> Sunset sailing, romantic vibes, dinner onboard</p>
+            <p><strong>Dinner:</strong> $110 → $90 p.p. · <strong>Snacks:</strong> $90 → $70 p.p.</p>
+            <p><strong>Kids:</strong> 0–4 free · 5–10 years $50</p>
+            <a href="/contact" className="cta-button">Book Sunset Cruise</a>
           </div>
         </div>
       </div>
@@ -165,13 +112,12 @@ const DreamDhow = () => {
       <div className="gallery-section reveal">
         <h2>Gallery</h2>
         <div className="gallery-grid">
-          {remainingImages.map((file, i) => (
+          {shuffledImages.map((filename, index) => (
             <img
-              key={i}
-              src={`/dreamdhow/${file}`}
-              alt={`Dream Dhow ${i + 5}`}
+              key={index}
+              src={`/dreamdhow/${filename}`}
+              alt="Dream Dhow gallery"
               className="gallery-image"
-              loading="lazy"
             />
           ))}
         </div>
