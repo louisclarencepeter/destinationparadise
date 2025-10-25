@@ -13,7 +13,7 @@ const DreamDhow = () => {
     return () => window.removeEventListener("scroll", revealElements);
   }, []);
 
-  const galleryImages = [
+  const originalImages = [
     "DJI_20250915124414_0001_D.jpg",
     "DJI_20250915124543_0003_D.jpg",
     "DJI_20250915124633_0008_D.jpg",
@@ -36,40 +36,71 @@ const DreamDhow = () => {
     "Snapshot_202509259_040909 2.jpg"
   ];
 
+  const shuffleArray = (array) => [...array].sort(() => Math.random() - 0.5);
+  const galleryImages = shuffleArray(originalImages);
+
+  // Split gallery into top preview (first 4) and full gallery (rest)
+  const previewImages = galleryImages.slice(0, 4);
+  const remainingImages = galleryImages.slice(4);
+
   return (
     <section className="dream-dhow-page">
+      {/* Hero */}
       <div className="hero-section reveal">
         <h1 className="title-script">Dream Dhow Zanzibar</h1>
         <p className="slogan">
-          Sail into Paradise, feel the ocean breeze,
-          <br />
+          Sail into Paradise, feel the ocean breeze, <br />
           and make your Zanzibar story one to remember.
         </p>
-        <a href="/contact" className="cta-button">
-          Book Now
-        </a>
       </div>
 
+      {/* Teaser image row */}
+      <div className="image-preview reveal">
+        {previewImages.map((file, i) => (
+          <img
+            key={i}
+            src={`/dreamdhow/${file}`}
+            alt={`Preview ${i + 1}`}
+            className="preview-image"
+            loading="lazy"
+          />
+        ))}
+      </div>
+
+      {/* Main content */}
       <div className="content-section reveal">
         <p>
           Experience the magic of Zanzibar’s coastline aboard a traditional
           dhow. Choose a romantic sunset cruise or a group sail filled with
-          laughter and views.
+          laughter and panoramic views.
         </p>
         <p>
-          Dream Dhow is more than a boat — it's your gateway to memories on the
-          ocean.
+          Our Dream Dhow sails through crystal-clear waters, surrounded by
+          tropical marine life and guided by our warm local crew. Perfect for
+          couples, families, and small groups looking for something memorable.
+        </p>
+        <p>
+          Enjoy onboard refreshments, music, snorkeling stops, and the golden
+          glow of a Zanzibar sunset. This is more than a tour — it’s a story you’ll tell forever.
         </p>
       </div>
 
+      {/* Book now CTA */}
+      <div className="book-now-section reveal">
+        <a href="/contact" className="cta-button">
+          Book Your Dhow Experience Now
+        </a>
+      </div>
+
+      {/* Full gallery */}
       <div className="gallery-section reveal">
         <h2>Gallery</h2>
         <div className="gallery-grid">
-          {galleryImages.map((file, i) => (
+          {remainingImages.map((file, i) => (
             <img
               key={i}
               src={`/dreamdhow/${file}`}
-              alt={`Dream Dhow ${i + 1}`}
+              alt={`Dream Dhow ${i + 5}`}
               className="gallery-image"
               loading="lazy"
             />
