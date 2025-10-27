@@ -117,13 +117,32 @@
     }
 
     .tour-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      /*
+        FIX 1: Use flexbox to center the last item
+      */
+      display: flex;
+      flex-wrap: wrap;
       gap: 2rem;
       justify-content: center;
     }
 
     .tour-card {
+      /*
+        FIX 2: Use flex-grow, flex-shrink, and flex-basis.
+        - 'flex: 1 1 280px;' mimics your old 'minmax(280px, 1fr)'.
+        - It lets cards grow (1) and shrink (1) from a base of 280px.
+      */
+      flex: 1 1 280px;
+      
+      /*
+        FIX 3: Add a max-width.
+        - This prevents the *last* card from growing to 100% width.
+        - It will grow up to 400px, and 'justify-content: center' 
+          will center it in the row.
+        - You can adjust this value!
+      */
+      max-width: 400px;
+
       background-color: #fff;
       border-radius: 0.75rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -156,9 +175,6 @@
       }
 
       .cta-button {
-        /* FIX: Simple declarations moved *above* the @include 
-          to resolve Sass [mixed-decls] warning.
-        */
         display: inline-block;
         margin-top: 1.5rem;
         text-decoration: none;
