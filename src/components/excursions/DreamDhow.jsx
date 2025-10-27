@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useMemo } from "react"; // <-- Import useMemo
 import useScrollToTop from "../../utils/scrollToTop";
 import { revealElements } from "../../utils/revealElements";
 import "../../styles/pages/_DreamDhow.scss";
@@ -36,7 +36,14 @@ const DreamDhow = () => {
     "Snapshot_202509259_040909 2.jpg",
   ];
 
-  const shuffledImages = imageList.sort(() => 0.5 - Math.random());
+  /*
+    FIX: Use useMemo to shuffle the array only once on component mount.
+    This prevents re-shuffling on every render and avoids
+    mutating the original 'imageList' array by sorting a copy ([...imageList]).
+  */
+  const shuffledImages = useMemo(() => {
+    return [...imageList].sort(() => 0.5 - Math.random());
+  }, []); // Empty dependency array [] ensures this runs only once.
 
   return (
     <section className="dream-dhow-page">
