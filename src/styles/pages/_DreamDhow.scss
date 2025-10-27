@@ -147,11 +147,11 @@
         - It lets cards grow (1) and shrink (1) from a base of 280px.
       */
       flex: 1 1 280px;
-      
+
       /*
         FIX 3: Add a max-width.
         - This prevents the *last* card from growing to 100% width.
-        - It will grow up to 400px, and 'justify-content: center' 
+        - It will grow up to 400px, and 'justify-content: center'
           will center it in the row.
         - You can adjust this value!
       */
@@ -163,6 +163,17 @@
       padding: 2rem;
       text-align: left;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      /* --- START: New Styles for Slideshow Image --- */
+      .tour-card-image {
+        width: calc(100% + 4rem); // Extends to cover padding (2rem left + 2rem right)
+        height: 150px;
+        object-fit: cover;
+        border-radius: 0.75rem 0.75rem 0 0; // Match the card's top corners
+        margin: -2rem -2rem 1.5rem -2rem; // Pulls image to top/left/right edges
+        animation: fadeIn 0.7s ease-in-out; // Apply the fade-in animation
+      }
+      /* --- END: New Styles --- */
 
       &:hover {
         transform: translateY(-4px);
@@ -198,3 +209,15 @@
     }
   }
 }
+
+/* --- START: New Animation --- */
+/* Add this at the end of your file */
+@keyframes fadeIn {
+  from {
+    opacity: 0.3;
+  }
+  to {
+    opacity: 1;
+  }
+}
+/* --- END: New Animation --- */

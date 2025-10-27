@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react"; // <-- Import useMemo
+import { useEffect, useMemo, useState, useRef } from "react"; // 1. Import hooks
 import useScrollToTop from "../../utils/scrollToTop";
 import { revealElements } from "../../utils/revealElements";
 import "../../styles/pages/_DreamDhow.scss";
@@ -6,6 +6,7 @@ import "../../styles/pages/_DreamDhow.scss";
 const DreamDhow = () => {
   useScrollToTop();
 
+  // This is your existing scroll reveal setup
   useEffect(() => {
     window.addEventListener("scroll", revealElements);
     revealElements();
@@ -36,14 +37,65 @@ const DreamDhow = () => {
     "Snapshot_202509259_040909 2.jpg",
   ];
 
-  /*
-    FIX: Use useMemo to shuffle the array only once on component mount.
-    This prevents re-shuffling on every render and avoids
-    mutating the original 'imageList' array by sorting a copy ([...imageList]).
-  */
+  // Your existing memoized shuffle
   const shuffledImages = useMemo(() => {
     return [...imageList].sort(() => 0.5 - Math.random());
-  }, []); // Empty dependency array [] ensures this runs only once.
+  }, []);
+
+  // --- START: New logic for Mnemba Card Slideshow ---
+
+  // 2. State to hold the current image and visibility
+  const [currentMnembaImage, setCurrentMnembaImage] = useState(
+    shuffledImages[0]
+  );
+  const [isMnembaCardVisible, setIsMnembaCardVisible] = useState(false);
+  const mnembaCardRef = useRef(null); // 3. Ref to attach to the card
+
+  // 4. This effect observes the card
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Update state based on whether the card is intersecting (in view)
+        setIsMnembaCardVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 } // Trigger when 10% of the card is visible
+    );
+
+    const currentRef = mnembaCardRef.current; // Capture ref value
+
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, []); // Empty dependency array, runs once
+
+  // 5. This effect runs the slideshow *only* when the card is visible
+  useEffect(() => {
+    let intervalId = null;
+
+    if (isMnembaCardVisible) {
+      // If card is visible, start an interval
+      intervalId = setInterval(() => {
+        // Pick a new random image from the shuffled list
+        const randomIndex = Math.floor(Math.random() * shuffledImages.length);
+        setCurrentMnembaImage(shuffledImages[randomIndex]);
+      }, 2500); // Change image every 2.5 seconds
+    }
+
+    // Cleanup: clear the interval when the component unmounts or card is not visible
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [isMnembaCardVisible, shuffledImages]); // Dependencies
+
+  // --- END: New logic for Mnemba Card Slideshow ---
 
   return (
     <section className="dream-dhow-page">
@@ -85,7 +137,14 @@ const DreamDhow = () => {
       <div className="tour-products-section reveal">
         <h2>Our Tour Packages</h2>
         <div className="tour-cards">
-          <div className="tour-card">
+          {/* 6. Add the ref and the new image tag to the Mnemba card */}
+          <div className="tour-card" ref={mnembaCardRef}>
+            <img
+              key={currentMnembaImage} // This "key" is the trick to re-triggering the animation
+              src={`/dreamdhow/${currentMnembaImage}`}
+              alt="Mnemba Island preview"
+              className="tour-card-image" // New class for styling
+            />
             <h3><i className="fas fa-water"></i> Mnemba Island (Best Seller)</h3>
             <p><strong>Departure:</strong> 9:00 AM from Kendwa Beach</p>
             <p><strong>Activities:</strong> Dolphin spotting, snorkeling, sandbank/lagoon, sunset sail</p>
