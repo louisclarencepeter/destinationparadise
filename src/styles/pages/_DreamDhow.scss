@@ -84,14 +84,28 @@
     }
 
     .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      /*
+        FIX: Changed from grid to flex
+        This allows justify-content to center the
+        last images when they are on their own row.
+      */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 1rem;
       padding: 0 1rem;
     }
 
     .gallery-image {
-      width: 100%;
+      /*
+        FIX: Replaced 'width: 100%' with flex properties
+        - 'flex: 1 1 220px;' mimics the old 'minmax(220px, 1fr)'.
+        - 'max-width' prevents the last image(s) from stretching
+          too wide. Adjust '350px' as needed.
+      */
+      flex: 1 1 220px;
+      max-width: 350px; // You can adjust this value
+
       height: 250px;
       object-fit: cover;
       border-radius: 0.5rem;

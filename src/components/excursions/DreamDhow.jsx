@@ -124,7 +124,7 @@ const DreamDhow = () => {
               key={index}
               src={`/dreamdhow/${filename}`}
               alt="Dream Dhow gallery"
-              className="gallery-image"
+              className="gallery-image reveal"
             />
           ))}
         </div>
