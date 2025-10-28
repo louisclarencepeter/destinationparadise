@@ -161,8 +161,13 @@
       border-radius: 0.75rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       padding: 2rem;
-      text-align: left;
+      text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      /* 1. Make the card a vertical flex container */
+      display: flex;
+      flex-direction: column;
+
 
       /* --- START: New Styles for Slideshow Image --- */
       .tour-card-image {
@@ -200,8 +205,12 @@
       }
 
       .cta-button {
-        display: inline-block;
-        margin-top: 1.5rem;
+        /* --- START: THIS IS THE FIX --- */
+        display: inline-block; // Reverted from 'block'
+        margin-top: auto;      // Pushes to bottom
+        align-self: center;    // Centers the button in the flex column
+        /* --- END: THIS IS THE FIX --- */
+        
         text-decoration: none;
         font-weight: 600;
         @include mixins.button-styles;
