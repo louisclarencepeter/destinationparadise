@@ -1,101 +1,154 @@
-import { useEffect, useMemo, useState, useRef } from "react"; // 1. Import hooks
+import { useEffect, useMemo, useState, useRef } from "react";
 import useScrollToTop from "../../utils/scrollToTop";
 import { revealElements } from "../../utils/revealElements";
 import "../../styles/pages/_DreamDhow.scss";
 
+// --- START: Reusable Slideshow Hook ---
+// We create this hook to avoid repeating the state and effect logic for all 3 cards.
+const useCardSlideshow = (cardRef, imageList, intervalTime) => {
+  // Set the initial image
+  const [currentImage, setCurrentImage] = useState(imageList[0]);
+  const [isVisible, setIsVisible] = useState(false);
+
+  // Effect 1: Observe the card
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.1 } // Trigger when 10% of the card is visible
+    );
+
+    const currentRef = cardRef.current; // Capture ref value
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [cardRef]); // Only re-run if the ref itself changes
+
+  // Effect 2: Run the slideshow timer when visible
+  useEffect(() => {
+    let intervalId = null;
+
+    // Only start interval if the card is visible AND there's more than one image
+    if (isVisible && imageList.length > 1) {
+      intervalId = setInterval(() => {
+        const randomIndex = Math.floor(Math.random() * imageList.length);
+        setCurrentImage(imageList[randomIndex]);
+      }, intervalTime);
+    }
+
+    // Clear interval on cleanup
+    return () => {
+      if (intervalId) {
+        clearInterval(intervalId);
+      }
+    };
+  }, [isVisible, imageList, intervalTime]); // Re-run if visibility or images change
+
+  return currentImage;
+};
+// --- END: Reusable Slideshow Hook ---
+
 const DreamDhow = () => {
   useScrollToTop();
 
-  // This is your existing scroll reveal setup
+  // Scroll reveal setup
   useEffect(() => {
     window.addEventListener("scroll", revealElements);
     revealElements();
     return () => window.removeEventListener("scroll", revealElements);
   }, []);
 
-  // List of images in /public/dreamdhow (shuffled)
-  const imageList = [
-    "DJI_20250915124414_0001_D.jpg",
-    "DJI_20250915124543_0003_D.jpg",
-    "DJI_20250915124633_0008_D.jpg",
-    "DJI_20250915124638_0009_D.jpg",
-    "DJI_20250915170806_0003_D.jpg",
-    "DJI_20250915170921_0008_D.jpg",
-    "DJI_20250915170937_0009_D.jpg",
-    "DJI_20250915171037_0011_D.jpg",
-    "DJI_20250915171311_0018_D.jpg",
-    "DJI_20250915191226_0022_D.jpg",
-    "DJI_20250915191246_0026_D.jpg",
-    "DJI_20250915191436_0032_D.jpg",
-    "DJI_20250915192140_0043_D.jpg",
-    "DJI_20250915192450_0049_D.jpg",
-    "DJI_20250915192525_0051_D.jpg",
-    "DJI_20250915194507_0075_D.jpg",
-    "IMG_20250916_041952_456.jpg",
-    "Snapshot_202509259_040901.jpg",
-    "Snapshot_202509259_040902.jpg",
-    "Snapshot_202509259_040909 2.jpg",
+  // --- START: Updated Image Lists ---
+  // Updated with the 'mnemba/' subfolder prefix
+
+  const mnembaImageList = [
+    "mnemba/DJI_20250915124414_0001_D.jpg",
+    "mnemba/DJI_20250915124543_0003_D.jpg",
+    "mnemba/DJI_20250915124633_0008_D.jpg",
+    "mnemba/DJI_20250915124638_0009_D.jpg",
+    "mnemba/DJI_20250915170806_0003_D.jpg",
+    "mnemba/DJI_20250915170921_0008_D.jpg",
+    "mnemba/DJI_20250915170937_0009_D.jpg",
+    "mnemba/DJI_20250915171037_0011_D.jpg",
+    "mnemba/DJI_20250915171311_0018_D.jpg",
+    "mnemba/DJI_20250915191226_0022_D.jpg",
+    "mnemba/DJI_20250915191246_0026_D.jpg",
+    "mnemba/DJI_20250915191436_0032_D.jpg",
+    "mnemba/DJI_20250915192140_0043_D.jpg",
+    "mnemba/DJI_20250915192450_0049_D.jpg",
+    "mnemba/DJI_20250915192525_0051_D.jpg",
+    "mnemba/DJI_20250915194507_0075_D.jpg",
+    "mnemba/IMG_20250916_041952_456.jpg",
+    "mnemba/Snapshot_202509259_040901.jpg",
+    "mnemba/Snapshot_202509259_040902.jpg",
+    "mnemba/Snapshot_202509259_040909 2.jpg",
   ];
 
-  // Your existing memoized shuffle
-  const shuffledImages = useMemo(() => {
-    return [...imageList].sort(() => 0.5 - Math.random());
-  }, []);
+  const tumbatuImageList = [
+    "tumbatu/WhatsApp Image 2025-10-27 at 6.51.22 AM.jpeg",
+  ];
 
-  // --- START: New logic for Mnemba Card Slideshow ---
+  const sunsetImageList = [
+    "sunset/WhatsApp Image 2025-10-27 at 6.49.17 AM (1).jpeg",
+    "sunset/WhatsApp Image 2025-10-27 at 6.50.22 AM (1).jpeg",
+    "sunset/WhatsApp Image 2025-10-27 at 6.50.22 AM.jpeg",
+    "sunset/WhatsApp Image 2025-10-27 at 6.50.23 AM.jpeg",
+  ];
 
-  // 2. State to hold the current image and visibility
-  const [currentMnembaImage, setCurrentMnembaImage] = useState(
-    shuffledImages[0]
+  // Combine all images for the main gallery
+  const mainGalleryList = [
+    ...mnembaImageList,
+    ...tumbatuImageList,
+    ...sunsetImageList,
+  ];
+
+  // Shuffle each list once using useMemo
+  const shuffledMnembaImages = useMemo(
+    () => [...mnembaImageList].sort(() => 0.5 - Math.random()),
+    []
   );
-  const [isMnembaCardVisible, setIsMnembaCardVisible] = useState(false);
-  const mnembaCardRef = useRef(null); // 3. Ref to attach to the card
+  const shuffledSunsetImages = useMemo(
+    () => [...sunsetImageList].sort(() => 0.5 - Math.random()),
+    []
+  );
+  const shuffledGalleryImages = useMemo(
+    () => [...mainGalleryList].sort(() => 0.5 - Math.random()),
+    []
+  );
+  // --- END: Updated Image Lists ---
 
-  // 4. This effect observes the card
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        // Update state based on whether the card is intersecting (in view)
-        setIsMnembaCardVisible(entry.isIntersecting);
-      },
-      { threshold: 0.1 } // Trigger when 10% of the card is visible
-    );
+  // --- START: Card Slideshow Logic ---
+  // Create a ref for each card
+  const mnembaCardRef = useRef(null);
+  const tumbatuCardRef = useRef(null);
+  const sunsetCardRef = useRef(null);
 
-    const currentRef = mnembaCardRef.current; // Capture ref value
+  // Use our custom hook for each card
+  const currentMnembaImage = useCardSlideshow(
+    mnembaCardRef,
+    shuffledMnembaImages,
+    10000 // 10 seconds
+  );
 
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
+  // For Tumbatu, it will just display the one image (hook won't start interval)
+  const currentTumbatuImage = useCardSlideshow(
+    tumbatuCardRef,
+    tumbatuImageList, // No need to shuffle a 1-item list
+    10000
+  );
 
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, []); // Empty dependency array, runs once
-
-  // 5. This effect runs the slideshow *only* when the card is visible
-  useEffect(() => {
-    let intervalId = null;
-
-    if (isMnembaCardVisible) {
-      // If card is visible, start an interval
-      intervalId = setInterval(() => {
-        // Pick a new random image from the shuffled list
-        const randomIndex = Math.floor(Math.random() * shuffledImages.length);
-        setCurrentMnembaImage(shuffledImages[randomIndex]);
-      }, 10000); // Change image every 2.5 seconds
-    }
-
-    // Cleanup: clear the interval when the component unmounts or card is not visible
-    return () => {
-      if (intervalId) {
-        clearInterval(intervalId);
-      }
-    };
-  }, [isMnembaCardVisible, shuffledImages]); // Dependencies
-
-  // --- END: New logic for Mnemba Card Slideshow ---
+  const currentSunsetImage = useCardSlideshow(
+    sunsetCardRef,
+    shuffledSunsetImages,
+    10000
+  );
+  // --- END: Card Slideshow Logic ---
 
   return (
     <section className="dream-dhow-page">
@@ -109,7 +162,8 @@ const DreamDhow = () => {
       </div>
 
       <div className="image-preview reveal">
-        {shuffledImages.slice(0, 4).map((filename, index) => (
+        {/* Preview still uses the main gallery list */}
+        {shuffledGalleryImages.slice(0, 4).map((filename, index) => (
           <img
             key={index}
             src={`/dreamdhow/${filename}`}
@@ -137,13 +191,13 @@ const DreamDhow = () => {
       <div className="tour-products-section reveal">
         <h2>Our Tour Packages</h2>
         <div className="tour-cards">
-          {/* 6. Add the ref and the new image tag to the Mnemba card */}
+          {/* Mnemba Card */}
           <div className="tour-card" ref={mnembaCardRef}>
             <img
-              key={currentMnembaImage} // This "key" is the trick to re-triggering the animation
+              key={currentMnembaImage}
               src={`/dreamdhow/${currentMnembaImage}`}
               alt="Mnemba Island preview"
-              className="tour-card-image" // New class for styling
+              className="tour-card-image"
             />
             <h3><i className="fas fa-water"></i> Mnemba Island (Best Seller)</h3>
             <p><strong>Departure:</strong> 9:00 AM from Kendwa Beach</p>
@@ -154,7 +208,14 @@ const DreamDhow = () => {
             <a href="/contact" className="cta-button">Book Mnemba Island</a>
           </div>
 
-          <div className="tour-card">
+          {/* Tumbatu Card (NOW with ref and image) */}
+          <div className="tour-card" ref={tumbatuCardRef}>
+            <img
+              key={currentTumbatuImage}
+              src={`/dreamdhow/${currentTumbatuImage}`}
+              alt="Tumbatu Island preview"
+              className="tour-card-image"
+            />
             <h3><i className="fas fa-fish"></i> Tumbatu Island</h3>
             <p><strong>Departure:</strong> 9:00 AM from Kendwa Beach</p>
             <p><strong>Activities:</strong> Snorkeling (turtles!), beach walk, sunset sail</p>
@@ -164,7 +225,14 @@ const DreamDhow = () => {
             <a href="/contact" className="cta-button">Book Tumbatu Island</a>
           </div>
 
-          <div className="tour-card">
+          {/* Sunset Cruise Card (NOW with ref and image) */}
+          <div className="tour-card" ref={sunsetCardRef}>
+            <img
+              key={currentSunsetImage}
+              src={`/dreamdhow/${currentSunsetImage}`}
+              alt="Romantic Sunset Cruise preview"
+              className="tour-card-image"
+            />
             <h3><i className="fas fa-heart"></i> Romantic Sunset Cruise</h3>
             <p><strong>Departure:</strong> 5:00 PM from Nungwi & Kendwa</p>
             <p><strong>Activities:</strong> Sunset sailing, romantic vibes, dinner onboard</p>
@@ -178,7 +246,8 @@ const DreamDhow = () => {
       <div className="gallery-section reveal">
         <h2>Gallery</h2>
         <div className="gallery-grid">
-          {shuffledImages.map((filename, index) => (
+          {/* Main gallery uses the combined and shuffled list */}
+          {shuffledGalleryImages.map((filename, index) => (
             <img
               key={index}
               src={`/dreamdhow/${filename}`}
