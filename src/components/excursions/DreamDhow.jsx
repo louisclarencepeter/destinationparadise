@@ -84,7 +84,7 @@ const DreamDhow = () => {
         // Pick a new random image from the shuffled list
         const randomIndex = Math.floor(Math.random() * shuffledImages.length);
         setCurrentMnembaImage(shuffledImages[randomIndex]);
-      }, 2500); // Change image every 2.5 seconds
+      }, 10000); // Change image every 2.5 seconds
     }
 
     // Cleanup: clear the interval when the component unmounts or card is not visible
