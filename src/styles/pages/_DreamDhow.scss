@@ -61,16 +61,10 @@
     margin-bottom: 2.5rem;
   }
 
-  /* --- START: Updated Video Styles --- */
   .video-section {
     text-align: center;
     margin: 4rem auto;
-    
-    /* This max-width pairs with the 9:16 ratio
-       to create a "phone" like container
-    */
-    max-width: 450px; 
-    
+    max-width: 450px;
     padding: 0 1rem;
 
     h2 {
@@ -83,16 +77,11 @@
 
   .video-wrapper {
     position: relative;
-
-    /* FIX: Changed from 16:9 to 9:16 for portrait video
-      (16 / 9 = 1.7777...)
-    */
-    padding-bottom: 177.78%; 
-    
+    padding-bottom: 177.78%; // 9:16 portrait
     height: 0;
     overflow: hidden;
-    border-radius: 0.75rem; 
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 
     iframe {
       position: absolute;
@@ -102,7 +91,6 @@
       height: 100%;
     }
   }
-  /* --- END: Updated Video Styles --- */
 
   .book-now-section {
     text-align: center;
@@ -115,36 +103,100 @@
     }
   }
 
-  .gallery-section {
-    margin-top: 4rem;
+  .why-book-us-section {
+    max-width: 900px;
+    margin: 4rem auto 5rem auto;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
     text-align: center;
 
     h2 {
       font-family: vars.$font-primary;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
       color: vars.$color-primary;
+      margin-bottom: 1rem;
     }
 
-    .gallery-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 1rem;
-      padding: 0 1rem;
+    .promo-text {
+      font-size: 1.15rem;
+      line-height: 1.7;
+      color: vars.$color-secondary;
+      max-width: 650px;
+      margin: 0 auto 2.5rem auto;
+
+      strong {
+        color: vars.$color-accent;
+        font-weight: 600;
+      }
     }
 
-    .gallery-image {
-      flex: 1 1 220px;
-      max-width: 350px; 
-      height: 250px;
-      object-fit: cover;
-      border-radius: 0.5rem;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+    .value-props {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      text-align: left;
+      margin-bottom: 2.5rem;
 
-      &:hover {
-        transform: scale(1.03);
+      @media (min-width: 768px) {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .value-prop-item {
+      /* CHANGES HERE */
+      display: flex; // Keep flex for children
+      flex-direction: column; // Stack children vertically
+      align-items: center; // Center content horizontally
+      text-align: center; // Center text
+
+      i {
+        font-size: 2.2rem; /* Make icons a bit larger for prominence */
+        color: vars.$color-accent;
+        margin-bottom: 0.75rem; /* Space below icon */
+        margin-top: 0; /* Reset margin-top from previous */
+      }
+
+      div { /* Target the div containing h3 and p */
+        flex-grow: 1; /* Allow content to grow if needed */
+      }
+
+      h3 {
+        font-size: 1.1rem;
+        color: vars.$color-primary;
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: vars.$color-secondary;
+        line-height: 1.6;
+      }
+    }
+
+    .slogan-footer {
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: vars.$color-primary;
+      line-height: 1.8;
+
+      .contact-link {
+        display: inline-block;
+        font-weight: 600;
+        color: vars.$color-accent;
+        text-decoration: none;
+        margin-top: 0.5rem;
+        transition: transform 0.3s ease;
+
+        i {
+          margin-right: 0.5rem;
+        }
+
+        &:hover {
+          transform: scale(1.05);
+        }
       }
     }
   }
@@ -181,12 +233,12 @@
       flex-direction: column;
 
       .tour-card-image {
-        width: calc(100% + 4rem); 
+        width: calc(100% + 4rem);
         height: 150px;
         object-fit: cover;
-        border-radius: 0.75rem 0.75rem 0 0; 
-        margin: -2rem -2rem 1.5rem -2rem; 
-        animation: fadeIn 0.7s ease-in-out; 
+        border-radius: 0.75rem 0.75rem 0 0;
+        margin: -2rem -2rem 1.5rem -2rem;
+        animation: fadeIn 0.7s ease-in-out;
       }
 
       &:hover {
@@ -214,12 +266,46 @@
       }
 
       .cta-button {
-        display: inline-block; 
-        margin-top: auto;      
-        align-self: center;    
+        display: inline-block;
+        margin-top: auto;
+        align-self: center;
         text-decoration: none;
         font-weight: 600;
         @include mixins.button-styles;
+      }
+    }
+  }
+
+  .gallery-section {
+    margin-top: 4rem;
+    text-align: center;
+
+    h2 {
+      font-family: vars.$font-primary;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: vars.$color-primary;
+    }
+
+    .gallery-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      padding: 0 1rem;
+    }
+
+    .gallery-image {
+      flex: 1 1 220px;
+      max-width: 350px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 0.5rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.03);
       }
     }
   }

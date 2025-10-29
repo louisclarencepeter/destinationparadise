@@ -177,12 +177,11 @@ const DreamDhow = () => {
         <p>
           Experience the magic of Zanzibar’s coastline aboard a traditional
           dhow. Choose a romantic sunset cruise or a group sail filled with
-          laughter and views. Dream Dhow is more than a boat — it's your
-          gateway to memories on the ocean.
+          laughter and views. Dream Dhow is more than a boat — it's your gateway
+          to memories on the ocean.
         </p>
       </div>
 
-      {/* --- START: Updated Video Section --- */}
       <div className="video-section reveal">
         <h2>Experience the Dream</h2>
         <div className="video-wrapper">
@@ -195,7 +194,59 @@ const DreamDhow = () => {
           ></iframe>
         </div>
       </div>
-      {/* --- END: Updated Video Section --- */}
+
+      {/* --- START: New "Why Book With Us" Section --- */}
+      <div className="why-book-us-section reveal">
+        <h2>🌊 Destination Paradise x DreamDhow 🌅</h2>
+        <p className="promo-text">
+          Book your DreamDhow experience through us and unlock{" "}
+          <strong>exclusive discounts</strong> on transfers & tours across
+          Zanzibar!
+        </p>
+
+        <div className="value-props">
+          <div className="value-prop-item">
+            <i className="fas fa-check-circle"></i>
+            <div>
+              <h3>Best-in-Class Partners</h3>
+              <p>
+                We've vetted the best, safest, and most professional dhow
+                operators so you don't have to.
+              </p>
+            </div>
+          </div>
+          <div className="value-prop-item">
+            <i className="fas fa-percent"></i>
+            <div>
+              <h3>Unlock Exclusive Savings</h3>
+              <p>
+                Your dhow booking is your key to special rates on our other
+                top-rated services, from airport transfers to private tours.
+              </p>
+            </div>
+          </div>
+          <div className="value-prop-item">
+            <i className="fas fa-concierge-bell"></i>
+            <div>
+              <h3>Seamless One-Stop Planning</h3>
+              <p>
+                Let us handle all the details. We're your single point of
+                contact for a stress-free, perfectly coordinated itinerary.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p className="slogan-footer">
+          ✨ Good vibes. Great company. Pure paradise.
+          <br />
+          <a href="/contact" className="contact-link">
+            <i className="fas fa-paper-plane"></i> DM us now to reserve your
+            spot!
+          </a>
+        </p>
+      </div>
+      {/* --- END: New Section --- */}
 
       <div className="book-now-section reveal">
         <a href="/contact" className="cta-button">
@@ -214,13 +265,29 @@ const DreamDhow = () => {
               alt="Mnemba Island preview"
               className="tour-card-image"
             />
-            <h3><i className="fas fa-water"></i> Mnemba Island (Best Seller)</h3>
-            <p><strong>Departure:</strong> 9:00 AM from Kendwa Beach</p>
-            <p><strong>Activities:</strong> Dolphin spotting, snorkeling, sandbank/lagoon, sunset sail</p>
-            <p><strong>Food:</strong> Seafood lunch + fruits, snacks & drinks</p>
-            <p><strong>Private boat:</strong> from $185 to $110 p.p. · <strong>Shared:</strong> $95/person</p>
-            <p><strong>Kids:</strong> 0–4 free · 5–10 years $50</p>
-            <a href="/contact" className="cta-button">Book Mnemba Island</a>
+            <h3>
+              <i className="fas fa-water"></i> Mnemba Island (Best Seller)
+            </h3>
+            <p>
+              <strong>Departure:</strong> 9:00 AM from Kendwa Beach
+            </p>
+            <p>
+              <strong>Activities:</strong> Dolphin spotting, snorkeling,
+              sandbank/lagoon, sunset sail
+            </p>
+            <p>
+              <strong>Food:</strong> Seafood lunch + fruits, snacks & drinks
+            </p>
+            <p>
+              <strong>Private boat:</strong> from $185 to $110 p.p. ·{" "}
+              <strong>Shared:</strong> $95/person
+            </p>
+            <p>
+              <strong>Kids:</strong> 0–4 free · 5–10 years $50
+            </p>
+            <a href="/contact" className="cta-button">
+              Book Mnemba Island
+            </a>
           </div>
 
           {/* Tumbatu Card (NOW with ref and image) */}
@@ -231,13 +298,29 @@ const DreamDhow = () => {
               alt="Tumbatu Island preview"
               className="tour-card-image"
             />
-            <h3><i className="fas fa-fish"></i> Tumbatu Island</h3>
-            <p><strong>Departure:</strong> 9:00 AM from Kendwa Beach</p>
-            <p><strong>Activities:</strong> Snorkeling (turtles!), beach walk, sunset sail</p>
-            <p><strong>Food:</strong> Seafood lunch + fruits & soft drinks</p>
-            <p><strong>Private boat:</strong> from $185 to $110 p.p. · <strong>Shared:</strong> $95/person</p>
-            <p><strong>Kids:</strong> 0–4 free · 5–10 years $50</p>
-            <a href="/contact" className="cta-button">Book Tumbatu Island</a>
+            <h3>
+              <i className="fas fa-fish"></i> Tumbatu Island
+            </h3>
+            <p>
+              <strong>Departure:</strong> 9:00 AM from Kendwa Beach
+            </p>
+            <p>
+              <strong>Activities:</strong> Snorkeling (turtles!), beach walk,
+              sunset sail
+            </p>
+            <p>
+              <strong>Food:</strong> Seafood lunch + fruits & soft drinks
+            </p>
+            <p>
+              <strong>Private boat:</strong> from $185 to $110 p.p. ·{" "}
+              <strong>Shared:</strong> $95/person
+            </p>
+            <p>
+              <strong>Kids:</strong> 0–4 free · 5–10 years $50
+            </p>
+            <a href="/contact" className="cta-button">
+              Book Tumbatu Island
+            </a>
           </div>
 
           {/* Sunset Cruise Card (NOW with ref and image) */}
@@ -248,12 +331,26 @@ const DreamDhow = () => {
               alt="Romantic Sunset Cruise preview"
               className="tour-card-image"
             />
-            <h3><i className="fas fa-heart"></i> Romantic Sunset Cruise</h3>
-            <p><strong>Departure:</strong> 5:00 PM from Nungwi & Kendwa</p>
-            <p><strong>Activities:</strong> Sunset sailing, romantic vibes, dinner onboard</p>
-            <p><strong>Dinner:</strong> $110 → $90 p.p. · <strong>Snacks:</strong> $90 → $70 p.p.</p>
-            <p><strong>Kids:</strong> 0–4 free · 5–10 years $50</p>
-            <a href="/contact" className="cta-button">Book Sunset Cruise</a>
+            <h3>
+              <i className="fas fa-heart"></i> Romantic Sunset Cruise
+            </h3>
+            <p>
+              <strong>Departure:</strong> 5:00 PM from Nungwi & Kendwa
+            </p>
+            <p>
+              <strong>Activities:</strong> Sunset sailing, romantic vibes,
+              dinner onboard
+            </p>
+            <p>
+              <strong>Dinner:</strong> $110 → $90 p.p. ·{" "}
+              <strong>Snacks:</strong> $90 → $70 p.p.
+            </p>
+            <p>
+              <strong>Kids:</strong> 0–4 free · 5–10 years $50
+            </p>
+            <a href="/contact" className="cta-button">
+              Book Sunset Cruise
+            </a>
           </div>
         </div>
       </div>
