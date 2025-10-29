@@ -182,6 +182,21 @@ const DreamDhow = () => {
         </p>
       </div>
 
+      {/* --- START: Updated Video Section --- */}
+      <div className="video-section reveal">
+        <h2>Experience the Dream</h2>
+        <div className="video-wrapper">
+          <iframe
+            src="https://www.youtube.com/embed/GNWH_dBIUtM"
+            title="Experience Dream Dhow Zanzibar"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          ></iframe>
+        </div>
+      </div>
+      {/* --- END: Updated Video Section --- */}
+
       <div className="book-now-section reveal">
         <a href="/contact" className="cta-button">
           Book Now

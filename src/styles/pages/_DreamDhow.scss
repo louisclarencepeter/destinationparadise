@@ -61,6 +61,49 @@
     margin-bottom: 2.5rem;
   }
 
+  /* --- START: Updated Video Styles --- */
+  .video-section {
+    text-align: center;
+    margin: 4rem auto;
+    
+    /* This max-width pairs with the 9:16 ratio
+       to create a "phone" like container
+    */
+    max-width: 450px; 
+    
+    padding: 0 1rem;
+
+    h2 {
+      font-family: vars.$font-primary;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      color: vars.$color-primary;
+    }
+  }
+
+  .video-wrapper {
+    position: relative;
+
+    /* FIX: Changed from 16:9 to 9:16 for portrait video
+      (16 / 9 = 1.7777...)
+    */
+    padding-bottom: 177.78%; 
+    
+    height: 0;
+    overflow: hidden;
+    border-radius: 0.75rem; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  /* --- END: Updated Video Styles --- */
+
   .book-now-section {
     text-align: center;
     margin: 3rem auto;
@@ -84,11 +127,6 @@
     }
 
     .gallery-grid {
-      /*
-        FIX: Changed from grid to flex
-        This allows justify-content to center the
-        last images when they are on their own row.
-      */
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -97,15 +135,8 @@
     }
 
     .gallery-image {
-      /*
-        FIX: Replaced 'width: 100%' with flex properties
-        - 'flex: 1 1 220px;' mimics the old 'minmax(220px, 1fr)'.
-        - 'max-width' prevents the last image(s) from stretching
-          too wide. Adjust '350px' as needed.
-      */
       flex: 1 1 220px;
-      max-width: 350px; // You can adjust this value
-
+      max-width: 350px; 
       height: 250px;
       object-fit: cover;
       border-radius: 0.5rem;
@@ -131,9 +162,6 @@
     }
 
     .tour-cards {
-      /*
-        FIX 1: Use flexbox to center the last item
-      */
       display: flex;
       flex-wrap: wrap;
       gap: 2rem;
@@ -141,44 +169,25 @@
     }
 
     .tour-card {
-      /*
-        FIX 2: Use flex-grow, flex-shrink, and flex-basis.
-        - 'flex: 1 1 280px;' mimics your old 'minmax(280px, 1fr)'.
-        - It lets cards grow (1) and shrink (1) from a base of 280px.
-      */
       flex: 1 1 280px;
-
-      /*
-        FIX 3: Add a max-width.
-        - This prevents the *last* card from growing to 100% width.
-        - It will grow up to 400px, and 'justify-content: center'
-          will center it in the row.
-        - You can adjust this value!
-      */
       max-width: 400px;
-
       background-color: #fff;
       border-radius: 0.75rem;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       padding: 2rem;
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-      /* 1. Make the card a vertical flex container */
       display: flex;
       flex-direction: column;
 
-
-      /* --- START: New Styles for Slideshow Image --- */
       .tour-card-image {
-        width: calc(100% + 4rem); // Extends to cover padding (2rem left + 2rem right)
+        width: calc(100% + 4rem); 
         height: 150px;
         object-fit: cover;
-        border-radius: 0.75rem 0.75rem 0 0; // Match the card's top corners
-        margin: -2rem -2rem 1.5rem -2rem; // Pulls image to top/left/right edges
-        animation: fadeIn 0.7s ease-in-out; // Apply the fade-in animation
+        border-radius: 0.75rem 0.75rem 0 0; 
+        margin: -2rem -2rem 1.5rem -2rem; 
+        animation: fadeIn 0.7s ease-in-out; 
       }
-      /* --- END: New Styles --- */
 
       &:hover {
         transform: translateY(-4px);
@@ -205,12 +214,9 @@
       }
 
       .cta-button {
-        /* --- START: THIS IS THE FIX --- */
-        display: inline-block; // Reverted from 'block'
-        margin-top: auto;      // Pushes to bottom
-        align-self: center;    // Centers the button in the flex column
-        /* --- END: THIS IS THE FIX --- */
-        
+        display: inline-block; 
+        margin-top: auto;      
+        align-self: center;    
         text-decoration: none;
         font-weight: 600;
         @include mixins.button-styles;
@@ -219,8 +225,6 @@
   }
 }
 
-/* --- START: New Animation --- */
-/* Add this at the end of your file */
 @keyframes fadeIn {
   from {
     opacity: 0.3;
@@ -229,4 +233,3 @@
     opacity: 1;
   }
 }
-/* --- END: New Animation --- */
