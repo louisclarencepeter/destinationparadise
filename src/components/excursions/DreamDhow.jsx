@@ -240,10 +240,16 @@ const DreamDhow = () => {
         <p className="slogan-footer">
           ✨ Good vibes. Great company. Pure paradise.
           <br />
-          <a href="/contact" className="contact-link">
-            <i className="fas fa-paper-plane"></i> DM us now to reserve your
-            spot!
+          {/* --- START: This is the change --- */}
+          <a
+            href="https://wa.me/message/YCOQDKJSDMXFD1"
+            className="contact-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-whatsapp"></i> DM us now to reserve your spot!
           </a>
+          {/* --- END: This is the change --- */}
         </p>
       </div>
       {/* --- END: New Section --- */}
