@@ -37,23 +37,19 @@
     margin: 2.5rem auto 3.5rem;
 
     .preview-image {
-      /* --- START: This is the fix --- */
-      
-      /* 1. Mobile-first: Force 2x2 grid */
+      /* --- FIXED: Move all declarations before the @media rule --- */
       flex: 1 1 45%; 
-      
-      /* 2. Desktop override: Revert to a 1x4 row */
-      @media (min-width: 768px) {
-        flex: 1 1 200px; /* Allow them to have a basis of 200px */
-        max-width: 250px; /* But cap them at 250px */
-      }
-      /* --- END: This is the fix --- */
-
       height: 180px;
       object-fit: cover;
       border-radius: 0.5rem;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease;
+
+      /* Desktop override: Revert to a 1x4 row */
+      @media (min-width: 768px) {
+        flex: 1 1 200px;
+        max-width: 250px;
+      }
 
       &:hover {
         transform: scale(1.03);
