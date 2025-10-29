@@ -4,29 +4,66 @@
 
 .footer {
   background-color: vars.$color-background;
-  padding: 1.25rem;
-  font-size: calc(0.8rem + 0.5vw);
   color: vars.$color-primary;
   font-family: vars.$font-secondary;
+  font-size: clamp(0.9rem, 0.8rem + 0.5vw, 1.1rem);
+  padding: 2rem 1.25rem;
   overflow-x: hidden;
   margin-top: auto;
+  transition: background-color 0.3s ease, color 0.3s ease;
 
   &__container {
     max-width: 1200px;
     margin: 0 auto;
+    display: grid;
+    gap: 2rem;
+    text-align: center; // ✅ ensures central alignment of text-based elements
   }
 
   &__title {
-    font-size: 1rem;
-    margin-bottom: 0.625rem;
-    text-align: center;
-    font-weight: normal;
+    font-size: 1.2rem;
+    margin-bottom: 0.75rem;
+    font-weight: 500;
     color: vars.$color-accent;
   }
 
+  &__section-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: vars.$color-primary;
+    margin-bottom: 0.5rem;
+  }
+
+  // ✅ Center and style the copyright text
+  &__grid-area--copyright,
   &__copyright {
-    text-align: center;
-    margin-bottom: 1rem;
+    grid-column: 1 / -1;         // spans full grid width
+    text-align: center;          // centers text
+    justify-self: center;        // centers inside grid cell
+    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 2rem;
     color: vars.$color-secondary;
+    font-size: 0.9rem;
+  }
+
+  // ✅ Add smooth fade-in animation when visible
+  &.is-visible {
+    animation: fadeInUp 0.6s ease forwards;
+  }
+}
+
+// ✅ Simple scroll-reveal fade animation
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
