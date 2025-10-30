@@ -1,43 +1,23 @@
-import { useEffect, useRef, useState } from "react";
+import React from "react"; // We no longer need useEffect, useRef, or useState here
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Excursions.scss";
-// 1. IMPORT: Data is now imported from an external file
-import { EXCURSIONS_DATA } from "../../assets/data/excursionsData"; 
 
-// 2. REMOVED: The hardcoded 'TRIPS' array is gone
+// Import data from Suggestion 1
+import { EXCURSIONS_DATA } from "../../assets/data/excursionsData"; 
+// Import hook from Suggestion 2
+import { useAnimateOnScroll } from "../../hooks/useAnimateOnScroll"; 
 
 const ExcursionCard = ({ trip, index }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const cardRef = useRef(null);
+  // 1. REPLACED: All observer logic is replaced with our new hook
+  const [cardRef, isVisible] = useAnimateOnScroll({ threshold: 0.1 });
 
-  useEffect(() => {
-    const card = cardRef.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (card) {
-      observer.observe(card);
-    }
-
-    return () => {
-      if (card) {
-        observer.unobserve(card);
-      }
-    };
-  }, []);
+  // 2. REMOVED: The old useEffect for the observer is gone
 
   return (
     <article
-      ref={cardRef}
-      className={`excursion-card ${isVisible ? "animate" : ""}`}
+      ref={cardRef} // 3. The ref from the hook is attached
+      className={`excursion-card ${isVisible ? "animate" : ""}`} // 4. isVisible from the hook controls the class
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       <img
@@ -85,36 +65,18 @@ ExcursionCard.propTypes = {
 };
 
 const Excursions = () => {
-  const sectionRef = useRef(null);
+  // 1. REPLACED: Observer logic is replaced with the hook
+  const [sectionRef, isVisible] = useAnimateOnScroll({ threshold: 0.1 });
 
-  useEffect(() => {
-    const section = sectionRef.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          section.classList.add("animate");
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
-  }, []);
+  // 2. REMOVED: The old useEffect for the observer is gone
 
   return (
-    <section ref={sectionRef} className="excursions">
+    <section 
+      ref={sectionRef} // 3. The ref is attached
+      className={`excursions ${isVisible ? "animate" : ""}`} // 4. isVisible controls the class
+    >
       <h2 className="excursions__title reveal">Roaming Retreats</h2>
       <div className="excursions__grid reveal">
-        {/* 3. UPDATED: We now map over the imported EXCURSIONS_DATA */}
         {EXCURSIONS_DATA.map((trip, index) => (
           <ExcursionCard key={trip.id} trip={trip} index={index} />
         ))}
