@@ -1,5 +1,6 @@
 @use '../../styles/variables' as vars;
 @use '../../styles/mixins' as *;
+@use 'sass:color'; // Import the sass:color module
 
 // Variables
 $breakpoint-tablet: 768px;
@@ -51,7 +52,7 @@ $grid-gap: 2rem;
     grid-template-columns: 1fr; // Mobile-first (1 column)
     gap: $grid-gap;
 
-    // 1. REPLACED: This one rule replaces all other grid-template-columns rules
+    // Simplified grid from Suggestion 3
     @media (min-width: $breakpoint-tablet) {
       grid-template-columns: repeat(auto-fit, minmax($card-min-width, 1fr));
     }
@@ -101,6 +102,11 @@ $grid-gap: 2rem;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
+  &__image-wrapper {
+    position: relative;
+    overflow: hidden; 
+  }
+
   &__image {
     width: 100%;
     height: 200px;
@@ -110,6 +116,26 @@ $grid-gap: 2rem;
     .excursion-card:hover & {
       transform: scale(1.05);
     }
+  }
+
+  &__badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+    // 1. FIX: Use color.adjust instead of fade-out
+    background-color: color.adjust(vars.$color-accent, $alpha: -0.1);
+    // 2. FIX: Use the correct variable from _variables.scss
+    color: vars.$color-on-primary;
+    font-family: vars.$font-primary;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 
   &__content {
@@ -164,5 +190,3 @@ $grid-gap: 2rem;
     }
   }
 }
-
-// 2. REMOVED: All the complex media queries for 2-col and 3-col layouts are gone!

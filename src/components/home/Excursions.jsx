@@ -1,30 +1,35 @@
-import React from "react"; // We no longer need useEffect, useRef, or useState here
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Excursions.scss";
 
-// Import data from Suggestion 1
-import { EXCURSIONS_DATA } from "../../assets/data/excursionsData"; 
-// Import hook from Suggestion 2
-import { useAnimateOnScroll } from "../../hooks/useAnimateOnScroll"; 
+// Import data
+import { EXCURSIONS_DATA } from "../../assets/data/excursionsData";
+// Import hook
+import { useAnimateOnScroll } from "../../hooks/useAnimateOnScroll";
 
 const ExcursionCard = ({ trip, index }) => {
-  // 1. REPLACED: All observer logic is replaced with our new hook
   const [cardRef, isVisible] = useAnimateOnScroll({ threshold: 0.1 });
-
-  // 2. REMOVED: The old useEffect for the observer is gone
 
   return (
     <article
-      ref={cardRef} // 3. The ref from the hook is attached
-      className={`excursion-card ${isVisible ? "animate" : ""}`} // 4. isVisible from the hook controls the class
+      ref={cardRef}
+      className={`excursion-card ${isVisible ? "animate" : ""}`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <img
-        src={trip.image}
-        alt={trip.title}
-        className="excursion-card__image"
-      />
+      {/* 1. NEW: Wrapper for image and badge */}
+      <div className="excursion-card__image-wrapper">
+        <img
+          src={trip.image}
+          alt={trip.title}
+          className="excursion-card__image"
+        />
+        {/* 2. NEW: Conditionally render the badge */}
+        {trip.duration && (
+          <span className="excursion-card__badge">{trip.duration}</span>
+        )}
+      </div>
+
       <div className="excursion-card__content">
         <h3 className="excursion-card__title reveal">{trip.title}</h3>
         <p className="excursion-card__text reveal">{trip.description}</p>
@@ -60,20 +65,18 @@ ExcursionCard.propTypes = {
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     linkText: PropTypes.string.isRequired,
+    duration: PropTypes.string, // 3. NEW: Add optional duration prop
   }).isRequired,
   index: PropTypes.number.isRequired,
 };
 
 const Excursions = () => {
-  // 1. REPLACED: Observer logic is replaced with the hook
   const [sectionRef, isVisible] = useAnimateOnScroll({ threshold: 0.1 });
 
-  // 2. REMOVED: The old useEffect for the observer is gone
-
   return (
-    <section 
-      ref={sectionRef} // 3. The ref is attached
-      className={`excursions ${isVisible ? "animate" : ""}`} // 4. isVisible controls the class
+    <section
+      ref={sectionRef}
+      className={`excursions ${isVisible ? "animate" : ""}`}
     >
       <h2 className="excursions__title reveal">Roaming Retreats</h2>
       <div className="excursions__grid reveal">
