@@ -2,33 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Excursions.scss";
+// 1. IMPORT: Data is now imported from an external file
+import { EXCURSIONS_DATA } from "../../assets/data/excursionsData"; 
 
-const TRIPS = [
-  {
-    id: "stone-town-heritage-walk",
-    title: "Stone Town Heritage Walk",
-    description:
-      "Embark on a journey through the timeless Stone Town, a place where history resonates in every alley.",
-    image: "/images/stonetown/stonetown.jpg", 
-    linkText: "Explore Stone Town Heritage Walk",
-  },
-  {
-    id: "dhow-snorkeling-safari-blue",
-    title: "Dhow & Snorkeling Safari Blue",
-    description:
-      "Experience the authentic and unrivaled Safari Blue - a full-day excursion aboard traditional, locally-crafted sailing dhows.",
-    image: "/images/safariblue/safariblue.jpg", 
-    linkText: "Discover Dhow & Snorkeling Safari Blue",
-  },
-  {
-    id: "zanzibar-spice-culture-tour",
-    title: "Zanzibar Spice & Culture Tour",
-    description:
-      "Embark on a half-day journey through Central Zanzibar, exploring the rich history shaped by cloves, nutmeg, cinnamon, and pepper.",
-    image: "/images/spicetour/spice.jpg", 
-    linkText: "Experience Zanzibar Spice & Culture Tour",
-  },
-];
+// 2. REMOVED: The hardcoded 'TRIPS' array is gone
 
 const ExcursionCard = ({ trip, index }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -72,7 +49,7 @@ const ExcursionCard = ({ trip, index }) => {
         <h3 className="excursion-card__title reveal">{trip.title}</h3>
         <p className="excursion-card__text reveal">{trip.description}</p>
         <Link
-          to={`/excursions/${trip.id}`} 
+          to={`/excursions/${trip.id}`}
           className="excursion-card__link reveal"
           aria-label={`Learn more about ${trip.title}`}
         >
@@ -137,7 +114,8 @@ const Excursions = () => {
     <section ref={sectionRef} className="excursions">
       <h2 className="excursions__title reveal">Roaming Retreats</h2>
       <div className="excursions__grid reveal">
-        {TRIPS.map((trip, index) => (
+        {/* 3. UPDATED: We now map over the imported EXCURSIONS_DATA */}
+        {EXCURSIONS_DATA.map((trip, index) => (
           <ExcursionCard key={trip.id} trip={trip} index={index} />
         ))}
       </div>
@@ -163,6 +141,5 @@ const Excursions = () => {
     </section>
   );
 };
-
 
 export default Excursions;
