@@ -9,185 +9,160 @@ $grid-gap: 2rem;
 
 // Keyframe Animations
 @keyframes fadeInUp {
- from {
-   opacity: 0;
-   transform: translateY(20px);
- }
- to {
-   opacity: 1;
-   transform: none;
- }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .excursions {
- width: 95%;
- margin: 1rem auto;
- opacity: 0;
- transform: translateY(20px);
- transition: opacity 0.6s ease-out, transform 0.6s ease-out;
- max-width: 1200px;
+  width: 95%;
+  margin: 1rem auto;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  max-width: 1200px;
 
- @media screen and (min-width: 1440px) {
-   width: 60%;
-   margin: 0 auto;
- }
+  @media screen and (min-width: 1440px) {
+    width: 60%;
+    margin: 0 auto;
+  }
 
- &.animate {
-   opacity: 1;
-   transform: translateY(0);
- }
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
- &__title {
-  font-family: vars.$font-tertiary; 
-   font-size: 2rem;
-   font-weight: 300;
-   color: vars.$color-secondary;
-   text-align: center;
-   margin: 2rem;
- }
+  &__title {
+    font-family: vars.$font-tertiary;
+    font-size: 2rem;
+    font-weight: 300;
+    color: vars.$color-secondary;
+    text-align: center;
+    margin: 2rem;
+  }
 
- &__grid {
-   display: grid;
-   grid-template-columns: 1fr;
-   gap: $grid-gap;
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr; // Mobile-first (1 column)
+    gap: $grid-gap;
 
-   @media (min-width: $breakpoint-tablet) {
-     grid-template-columns: repeat(2, 1fr);
-   }
+    // 1. REPLACED: This one rule replaces all other grid-template-columns rules
+    @media (min-width: $breakpoint-tablet) {
+      grid-template-columns: repeat(auto-fit, minmax($card-min-width, 1fr));
+    }
+  }
 
-   @media (min-width: $breakpoint-desktop) {
-     grid-template-columns: repeat(3, 1fr);
-   }
- }
+  &__more {
+    text-align: center;
+    margin-top: 3rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.3s;
+  }
 
- &__more {
-   text-align: center;
-   margin-top: 3rem;
-   opacity: 0;
-   transform: translateY(20px);
-   animation: fadeInUp 0.6s ease-out forwards;
-   animation-delay: 0.3s;
- }
+  &__more-link {
+    @include button-styles-compact;
 
- &__more-link {
-   @include button-styles-compact;
+    svg {
+      width: 20px;
+      height: 20px;
+      transition: transform 0.3s ease;
+    }
 
-   svg {
-     width: 20px;
-     height: 20px;
-     transition: transform 0.3s ease;
-   }
-
-   &:hover svg {
-     transform: translateX(4px);
-   }
- }
+    &:hover svg {
+      transform: translateX(4px);
+    }
+  }
 }
 
 .excursion-card {
- background-color: vars.$color-background;
- border-radius: 0.5rem;
- overflow: hidden;
- box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
- transition: transform 0.3s ease, box-shadow 0.3s ease;
- opacity: 0;
- transform: translateY(20px);
- animation: fadeInUp 0.6s ease-out forwards;
+  background-color: vars.$color-background;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.6s ease-out forwards;
 
- &.animate {
-   opacity: 1;
-   transform: translateY(0);
- }
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
- &:hover {
-   transform: translateY(-5px);
-   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
- }
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
 
- &__image {
-   width: 100%;
-   height: 200px;
-   object-fit: cover;
-   transition: transform 0.3s ease;
+  &__image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
 
-   .excursion-card:hover & {
-     transform: scale(1.05);
-   }
- }
+    .excursion-card:hover & {
+      transform: scale(1.05);
+    }
+  }
 
- &__content {
-   padding: 1.5rem;
-   text-align: center;
- }
+  &__content {
+    padding: 1.5rem;
+    text-align: center;
+  }
 
- &__title {
-   font-family: vars.$font-secondary;
-   font-size: 1.5rem;
-   font-weight: 300;
-   color: vars.$color-secondary;
-   margin-bottom: 1rem;
-   transition: color 0.3s ease;
+  &__title {
+    font-family: vars.$font-secondary;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: vars.$color-secondary;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
 
-   .excursion-card:hover & {
-     color: vars.$color-accent;
-   }
- }
+    .excursion-card:hover & {
+      color: vars.$color-accent;
+    }
+  }
 
- &__text {
-   font-family: vars.$font-primary;
-   font-size: calc(0.8rem + 0.5vw);
-   color: vars.$color-primary;
-   margin-bottom: 1.5rem;
-   line-height: 1.6;
- }
+  &__text {
+    font-family: vars.$font-primary;
+    font-size: calc(0.8rem + 0.5vw);
+    color: vars.$color-primary;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
 
- &__link {
-   font-family: vars.$font-secondary;
-   font-size: calc(0.7rem + 0.25vw);
-   color: vars.$color-accent;
-   text-decoration: none;
-   display: inline-flex;
-   align-items: center;
-   transition: color 0.3s ease, transform 0.3s ease;
+  &__link {
+    font-family: vars.$font-secondary;
+    font-size: calc(0.7rem + 0.25vw);
+    color: vars.$color-accent;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s ease, transform 0.3s ease;
 
-   &:hover {
-     color: vars.$color-secondary;
-     transform: translateX(5px);
+    &:hover {
+      color: vars.$color-secondary;
+      transform: translateX(5px);
 
-     svg {
-       transform: translateX(4px);
-     }
-   }
+      svg {
+        transform: translateX(4px);
+      }
+    }
 
-   svg {
-     width: 20px;
-     height: 20px;
-     margin-left: 0.5rem;
-     transition: transform 0.3s ease;
-   }
- }
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-left: 0.5rem;
+      transition: transform 0.3s ease;
+    }
+  }
 }
 
-// Specific styles for 2-column layout
-@media (min-width: $breakpoint-tablet) and (max-width: calc(#{$breakpoint-desktop} - 1px)) {
- .excursions__grid .excursion-card:last-child:nth-child(odd) {
-   grid-column: 1 / -1;
-   justify-self: center;
-   max-width: calc(50% - calc(#{$grid-gap} / 2));
- }
-}
-
-// Styles for 3-column layout
-@media (min-width: $breakpoint-desktop) {
- .excursions__grid {
-   .excursion-card:last-child:nth-child(3n-1) {
-     grid-column: 2;
-   }
-
-   .excursion-card:last-child:nth-child(3n-2) {
-     grid-column: 2 / span 2;
-     max-width: calc(66.66% - calc(#{$grid-gap} / 3));
-     justify-self: center;
-   }
- }
-}
+// 2. REMOVED: All the complex media queries for 2-col and 3-col layouts are gone!
