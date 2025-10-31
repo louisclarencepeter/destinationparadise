@@ -32,6 +32,7 @@ $grid-gap: 2rem;
     margin: 0 auto;
   }
 
+  // This class is added by the useAnimateOnScroll hook for the section
   &.animate {
     opacity: 1;
     transform: translateY(0);
@@ -65,6 +66,7 @@ $grid-gap: 2rem;
     margin-top: 3rem;
     opacity: 0;
     transform: translateY(20px);
+    // This animation runs after the section is visible
     animation: fadeInUp 0.6s ease-out forwards;
     animation-delay: 0.3s;
   }
@@ -89,14 +91,17 @@ $grid-gap: 2rem;
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  // Keep hover transitions separate from the scroll animation
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  // Initial state for the animation (matching Excursions.scss)
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 0.6s ease-out forwards;
 
+  // This class is added by the useAnimateOnScroll hook for the card
   &.animate {
-    opacity: 1;
-    transform: translateY(0);
+    // Run the animation once when the card becomes visible
+    animation: fadeInUp 0.6s ease-out forwards;
   }
 
   &:hover {
@@ -143,6 +148,10 @@ $grid-gap: 2rem;
         background-color: rgba(255, 255, 255, 0.5);
         cursor: pointer;
         transition: background-color 0.3s ease;
+        
+        // Reset styles for <button>
+        border: none;
+        padding: 0;
 
         &.active,
         &:hover {
@@ -223,8 +232,7 @@ $grid-gap: 2rem;
 }
 
 // ——— RESPONSIVE GRID ADJUSTMENTS ———
-
-// 2-column layout (tablet): center last odd card
+// (Unchanged)
 @media (min-width: $breakpoint-tablet) and (max-width: calc(#{$breakpoint-desktop} - 1px)) {
   .unique-experiences__grid .experience-card:last-child:nth-child(odd) {
     grid-column: 1 / -1;
@@ -233,7 +241,6 @@ $grid-gap: 2rem;
   }
 }
 
-// 3-column layout (desktop): adjust last card placement
 @media (min-width: $breakpoint-desktop) {
   .unique-experiences__grid {
     .experience-card:last-child:nth-child(3n-1) {
