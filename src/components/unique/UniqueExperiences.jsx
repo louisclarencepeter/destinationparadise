@@ -4,6 +4,42 @@ import { Link } from "react-router-dom";
 import "./UniqueExperiences.scss";
 import uniqueExperiences from "../../assets/data/uniqueData.js";
 
+const Slideshow = ({ images, title }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3000); // Change image every 3 seconds
+
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  return (
+    <div className="experience-card__slideshow">
+      {images.map((img, idx) => (
+        <img
+          key={idx}
+          src={img}
+          alt={`${title} - ${idx + 1}`}
+          className={`slideshow__image ${
+            idx === currentIndex ? "active" : ""
+          }`}
+        />
+      ))}
+      <div className="slideshow__dots">
+        {images.map((_, idx) => (
+          <span
+            key={idx}
+            className={`dot ${idx === currentIndex ? "active" : ""}`}
+            onClick={() => setCurrentIndex(idx)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const ExperienceCard = ({ trip, index }) => {
   const [isVisible, setIsVisible] = useState(false);
   const cardRef = useRef(null);
@@ -20,15 +56,8 @@ const ExperienceCard = ({ trip, index }) => {
       { threshold: 0.1 }
     );
 
-    if (card) {
-      observer.observe(card);
-    }
-
-    return () => {
-      if (card) {
-        observer.unobserve(card);
-      }
-    };
+    if (card) observer.observe(card);
+    return () => card && observer.unobserve(card);
   }, []);
 
   return (
@@ -37,11 +66,17 @@ const ExperienceCard = ({ trip, index }) => {
       className={`experience-card ${isVisible ? "animate" : ""}`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <img
-        src={trip.image}
-        alt={trip.title}
-        className="experience-card__image"
-      />
+      {/* Slideshow for Dream Dhow (has 'images' array) */}
+      {trip.images ? (
+        <Slideshow images={trip.images} title={trip.title} />
+      ) : (
+        <img
+          src={trip.image}
+          alt={trip.title}
+          className="experience-card__image"
+        />
+      )}
+
       <div className="experience-card__content">
         <h3 className="experience-card__title reveal">{trip.title}</h3>
         <p className="experience-card__text reveal">{trip.description}</p>
@@ -75,7 +110,8 @@ ExperienceCard.propTypes = {
     id: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    image: PropTypes.string,
+    images: PropTypes.arrayOf(PropTypes.string),
     linkText: PropTypes.string.isRequired,
   }).isRequired,
   index: PropTypes.number.isRequired,
@@ -96,15 +132,8 @@ const UniqueExperiences = () => {
       { threshold: 0.1 }
     );
 
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
+    if (section) observer.observe(section);
+    return () => section && observer.unobserve(section);
   }, []);
 
   return (

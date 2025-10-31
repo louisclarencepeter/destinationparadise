@@ -104,6 +104,60 @@ $grid-gap: 2rem;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
+  // ——— SLIDESHOW STYLES ———
+  &__slideshow {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 0.5rem 0.5rem 0 0;
+
+    .slideshow__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    .slideshow__dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &.active,
+        &:hover {
+          background-color: vars.$color-accent;
+        }
+      }
+    }
+  }
+
+  // Hover zoom for active slideshow image
+  &:hover .slideshow__image.active {
+    transform: scale(1.05);
+  }
+
+  // ——— SINGLE IMAGE (fallback) ———
   &__image {
     width: 100%;
     height: 200px;
@@ -168,7 +222,9 @@ $grid-gap: 2rem;
   }
 }
 
-// Specific styles for 2-column layout
+// ——— RESPONSIVE GRID ADJUSTMENTS ———
+
+// 2-column layout (tablet): center last odd card
 @media (min-width: $breakpoint-tablet) and (max-width: calc(#{$breakpoint-desktop} - 1px)) {
   .unique-experiences__grid .experience-card:last-child:nth-child(odd) {
     grid-column: 1 / -1;
@@ -177,7 +233,7 @@ $grid-gap: 2rem;
   }
 }
 
-// Styles for 3-column layout
+// 3-column layout (desktop): adjust last card placement
 @media (min-width: $breakpoint-desktop) {
   .unique-experiences__grid {
     .experience-card:last-child:nth-child(3n-1) {
