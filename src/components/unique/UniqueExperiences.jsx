@@ -52,11 +52,17 @@ Slideshow.propTypes = {
 const ExperienceCard = ({ trip, index }) => {
   const [cardRef, isVisible] = useAnimateOnScroll({ threshold: 0.1 });
 
+  // --- THIS IS THE FIX ---
+  // Use the correct ID from uniqueData.js
+  const destination = trip.id === 'dream-dhow-cruise' 
+    ? '/dream-dhow' 
+    : `/excursions/${trip.id}`;
+  // ---------------------
+
   return (
     <article
       ref={cardRef} 
       className={`experience-card ${isVisible ? "animate" : ""}`}
-      // --- Changed back to animationDelay ---
       style={{ animationDelay: `${index * 0.1}s` }}
     >
       {trip.images ? (
@@ -70,13 +76,10 @@ const ExperienceCard = ({ trip, index }) => {
       )}
 
       <div className="experience-card__content">
-        {/* --- 'reveal' class ADDED BACK --- */}
         <h3 className="experience-card__title reveal">{trip.title}</h3>
-        {/* --- 'reveal' class ADDED BACK --- */}
         <p className="experience-card__text reveal">{trip.description}</p>
         <Link
-          to={`/excursions/${trip.id}`}
-          // --- 'reveal' class ADDED BACK ---
+          to={destination}
           className="experience-card__link reveal"
           aria-label={`Learn more about ${trip.title}`}
         >
@@ -120,7 +123,6 @@ const UniqueExperiences = () => {
       ref={sectionRef}
       className={`unique-experiences ${isVisible ? "animate" : ""}`}
     >
-      {/* 'reveal' class for the global utility */}
       <h2 className="unique-experiences__title reveal">Unique Experiences</h2>
       <div className="unique-experiences__grid reveal">
         {uniqueExperiences.map((trip, index) => (
