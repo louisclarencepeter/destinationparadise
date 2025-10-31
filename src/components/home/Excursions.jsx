@@ -1,61 +1,15 @@
-import { useEffect, useRef, useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import "./Excursions.scss";
 
-const TRIPS = [
-  {
-    id: "stone-town-heritage-walk",
-    title: "Stone Town Heritage Walk",
-    description:
-      "Embark on a journey through the timeless Stone Town, a place where history resonates in every alley.",
-    image: "/images/stonetown/stonetown.jpg", 
-    linkText: "Explore Stone Town Heritage Walk",
-  },
-  {
-    id: "dhow-snorkeling-safari-blue",
-    title: "Dhow & Snorkeling Safari Blue",
-    description:
-      "Experience the authentic and unrivaled Safari Blue - a full-day excursion aboard traditional, locally-crafted sailing dhows.",
-    image: "/images/safariblue/safariblue.jpg", 
-    linkText: "Discover Dhow & Snorkeling Safari Blue",
-  },
-  {
-    id: "zanzibar-spice-culture-tour",
-    title: "Zanzibar Spice & Culture Tour",
-    description:
-      "Embark on a half-day journey through Central Zanzibar, exploring the rich history shaped by cloves, nutmeg, cinnamon, and pepper.",
-    image: "/images/spicetour/spice.jpg", 
-    linkText: "Experience Zanzibar Spice & Culture Tour",
-  },
-];
+// Import data
+import { EXCURSIONS_DATA } from "../../assets/data/excursionsData";
+// Import hook
+import { useAnimateOnScroll } from "../../hooks/useAnimateOnScroll";
 
 const ExcursionCard = ({ trip, index }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const cardRef = useRef(null);
-
-  useEffect(() => {
-    const card = cardRef.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (card) {
-      observer.observe(card);
-    }
-
-    return () => {
-      if (card) {
-        observer.unobserve(card);
-      }
-    };
-  }, []);
+  const [cardRef, isVisible] = useAnimateOnScroll({ threshold: 0.1 });
 
   return (
     <article
@@ -63,16 +17,24 @@ const ExcursionCard = ({ trip, index }) => {
       className={`excursion-card ${isVisible ? "animate" : ""}`}
       style={{ animationDelay: `${index * 0.1}s` }}
     >
-      <img
-        src={trip.image}
-        alt={trip.title}
-        className="excursion-card__image"
-      />
+      {/* 1. NEW: Wrapper for image and badge */}
+      <div className="excursion-card__image-wrapper">
+        <img
+          src={trip.image}
+          alt={trip.title}
+          className="excursion-card__image"
+        />
+        {/* 2. NEW: Conditionally render the badge */}
+        {trip.duration && (
+          <span className="excursion-card__badge">{trip.duration}</span>
+        )}
+      </div>
+
       <div className="excursion-card__content">
         <h3 className="excursion-card__title reveal">{trip.title}</h3>
         <p className="excursion-card__text reveal">{trip.description}</p>
         <Link
-          to={`/excursions/${trip.id}`} 
+          to={`/excursions/${trip.id}`}
           className="excursion-card__link reveal"
           aria-label={`Learn more about ${trip.title}`}
         >
@@ -103,41 +65,22 @@ ExcursionCard.propTypes = {
     description: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     linkText: PropTypes.string.isRequired,
+    duration: PropTypes.string, // 3. NEW: Add optional duration prop
   }).isRequired,
   index: PropTypes.number.isRequired,
 };
 
 const Excursions = () => {
-  const sectionRef = useRef(null);
-
-  useEffect(() => {
-    const section = sectionRef.current;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          section.classList.add("animate");
-          observer.unobserve(entry.target);
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (section) {
-      observer.observe(section);
-    }
-
-    return () => {
-      if (section) {
-        observer.unobserve(section);
-      }
-    };
-  }, []);
+  const [sectionRef, isVisible] = useAnimateOnScroll({ threshold: 0.1 });
 
   return (
-    <section ref={sectionRef} className="excursions">
+    <section
+      ref={sectionRef}
+      className={`excursions ${isVisible ? "animate" : ""}`}
+    >
       <h2 className="excursions__title reveal">Roaming Retreats</h2>
       <div className="excursions__grid reveal">
-        {TRIPS.map((trip, index) => (
+        {EXCURSIONS_DATA.map((trip, index) => (
           <ExcursionCard key={trip.id} trip={trip} index={index} />
         ))}
       </div>
@@ -163,6 +106,5 @@ const Excursions = () => {
     </section>
   );
 };
-
 
 export default Excursions;

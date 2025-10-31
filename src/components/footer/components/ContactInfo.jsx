@@ -2,16 +2,24 @@
 import "./ContactInfo.scss";
 
 function ContactInfo() {
+  // Use the new number you just provided
+  const phoneNumber = "+255768779517";
+  const phoneDisplay = "+255 768 779 517";
+  
+  // Use the new WhatsApp link you provided
+  const whatsAppLink = "https://wa.me/message/YCOQDKJSDMXFD1"; 
+  const email = "info@yournexttriptoparadise.com";
+
   return (
     <div className="contact-info">
       <p>Destination Paradise</p>
       <p>
         Phone:{" "}
-        <a href="tel:+255748352657" aria-label="Call us at +255 768 779 517">
-          +255 768 779 517
+        <a href={`tel:${phoneNumber}`} aria-label={`Call us at ${phoneDisplay}`}>
+          {phoneDisplay}
         </a>
         <a
-          href="https://wa.me/255748352657"
+          href={whatsAppLink} // <-- Updated WhatsApp link
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat with us on WhatsApp"
@@ -21,8 +29,8 @@ function ContactInfo() {
         </a>
       </p>
       <p>
-        <a href="mailto:info@yournexttriptoparadise.com" aria-label="Send us an email">
-          info@yournexttriptoparadise.com
+        <a href={`mailto:${email}`} aria-label="Send us an email">
+          {email}
         </a>
       </p>
       <p>Zanzibar, Tanzania</p>

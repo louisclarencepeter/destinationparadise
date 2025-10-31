@@ -1,6 +1,5 @@
 @use '../../styles/variables' as vars;
 @use '../../styles/mixins' as *;
-@use 'sass:color'; // Import the sass:color module
 
 // Variables
 $breakpoint-tablet: 768px;
@@ -20,7 +19,7 @@ $grid-gap: 2rem;
   }
 }
 
-.excursions {
+.unique-experiences {
   width: 95%;
   margin: 1rem auto;
   opacity: 0;
@@ -33,6 +32,7 @@ $grid-gap: 2rem;
     margin: 0 auto;
   }
 
+  // This class is added by the useAnimateOnScroll hook for the section
   &.animate {
     opacity: 1;
     transform: translateY(0);
@@ -49,12 +49,15 @@ $grid-gap: 2rem;
 
   &__grid {
     display: grid;
-    grid-template-columns: 1fr; // Mobile-first (1 column)
+    grid-template-columns: 1fr;
     gap: $grid-gap;
 
-    // Simplified grid from Suggestion 3
     @media (min-width: $breakpoint-tablet) {
-      grid-template-columns: repeat(auto-fit, minmax($card-min-width, 1fr));
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (min-width: $breakpoint-desktop) {
+      grid-template-columns: repeat(3, 1fr);
     }
   }
 
@@ -63,6 +66,7 @@ $grid-gap: 2rem;
     margin-top: 3rem;
     opacity: 0;
     transform: translateY(20px);
+    // This animation runs after the section is visible
     animation: fadeInUp 0.6s ease-out forwards;
     animation-delay: 0.3s;
   }
@@ -82,19 +86,22 @@ $grid-gap: 2rem;
   }
 }
 
-.excursion-card {
+.experience-card {
   background-color: vars.$color-background;
   border-radius: 0.5rem;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  // Keep hover transitions separate from the scroll animation
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  // Initial state for the animation (matching Excursions.scss)
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeInUp 0.6s ease-out forwards;
 
+  // This class is added by the useAnimateOnScroll hook for the card
   &.animate {
-    opacity: 1;
-    transform: translateY(0);
+    // Run the animation once when the card becomes visible
+    animation: fadeInUp 0.6s ease-out forwards;
   }
 
   &:hover {
@@ -102,40 +109,73 @@ $grid-gap: 2rem;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
   }
 
-  &__image-wrapper {
+  // ——— SLIDESHOW STYLES ———
+  &__slideshow {
     position: relative;
-    overflow: hidden; 
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 0.5rem 0.5rem 0 0;
+
+    .slideshow__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+
+    .slideshow__dots {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      z-index: 2;
+
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background-color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        
+        // Reset styles for <button>
+        border: none;
+        padding: 0;
+
+        &.active,
+        &:hover {
+          background-color: vars.$color-accent;
+        }
+      }
+    }
   }
 
+  // Hover zoom for active slideshow image
+  &:hover .slideshow__image.active {
+    transform: scale(1.05);
+  }
+
+  // ——— SINGLE IMAGE (fallback) ———
   &__image {
     width: 100%;
     height: 200px;
     object-fit: cover;
     transition: transform 0.3s ease;
 
-    .excursion-card:hover & {
+    .experience-card:hover & {
       transform: scale(1.05);
     }
-  }
-
-  &__badge {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    z-index: 2;
-    // 1. FIX: Use color.adjust instead of fade-out
-    background-color: color.adjust(vars.$color-accent, $alpha: -0.1);
-    // 2. FIX: Use the correct variable from _variables.scss
-    color: vars.$color-on-primary;
-    font-family: vars.$font-primary;
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.25rem 0.75rem;
-    border-radius: 2rem;
-    backdrop-filter: blur(5px);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
   }
 
   &__content {
@@ -151,7 +191,7 @@ $grid-gap: 2rem;
     margin-bottom: 1rem;
     transition: color 0.3s ease;
 
-    .excursion-card:hover & {
+    .experience-card:hover & {
       color: vars.$color-accent;
     }
   }
@@ -187,6 +227,30 @@ $grid-gap: 2rem;
       height: 20px;
       margin-left: 0.5rem;
       transition: transform 0.3s ease;
+    }
+  }
+}
+
+// ——— RESPONSIVE GRID ADJUSTMENTS ———
+// (Unchanged)
+@media (min-width: $breakpoint-tablet) and (max-width: calc(#{$breakpoint-desktop} - 1px)) {
+  .unique-experiences__grid .experience-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: calc(50% - calc(#{$grid-gap} / 2));
+  }
+}
+
+@media (min-width: $breakpoint-desktop) {
+  .unique-experiences__grid {
+    .experience-card:last-child:nth-child(3n-1) {
+      grid-column: 2;
+    }
+
+    .experience-card:last-child:nth-child(3n-2) {
+      grid-column: 2 / span 2;
+      max-width: calc(66.66% - calc(#{$grid-gap} / 3));
+      justify-self: center;
     }
   }
 }

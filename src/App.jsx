@@ -14,7 +14,8 @@ const ToursPage = lazy(() => import("./components/excursions/ToursPage"));
 const MyImageGallery = lazy(() => import("./components/gallery/MyImageGallery"));
 const Store = lazy(() => import("./components/store/Store"));
 const PolicyInfo = lazy(() => import("./components/cookies/PolicyInfo"));
-const TourDetails = lazy(() => import("./components/excursions/TourDetails")); 
+const TourDetails = lazy(() => import("./components/excursions/TourDetails"));
+const DreamDhow = lazy(() => import("./components/excursions/DreamDhow")); // ✅ new
 
 function App() {
   useEffect(() => {
@@ -34,16 +35,14 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/excursions" element={<ToursPage />} />
+              <Route path="/excursions/:id" element={<TourDetails />} />
+              <Route path="/dream-dhow" element={<DreamDhow />} /> {/* ✅ new */}
               <Route path="/aboutus" element={<AboutPage />} />
               <Route path="/gallery" element={<MyImageGallery />} />
               <Route path="/booking" element={<Store />} />
               <Route path="/cookies-policy" element={<PolicyInfo />} />
               <Route path="/privacy-policy" element={<PolicyInfo />} />
               <Route path="/terms-of-service" element={<PolicyInfo />} />
-              <Route
-                path="/excursions/:id" 
-                element={<TourDetails />}
-              />
             </Routes>
           </Suspense>
         </Layout>
