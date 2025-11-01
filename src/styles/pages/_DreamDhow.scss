@@ -2,6 +2,25 @@
 @use "../variables" as vars;
 @use "../mixins" as mixins;
 
+// --- START: New Reveal Animation Styles ---
+// These styles work with the `useElementVisibility` hook
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  // Add a slight delay to gallery images for a staggered effect
+  &.gallery-image {
+    transition-delay: 0.1s;
+  }
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+// --- END: New Reveal Animation Styles ---
+
 .dream-dhow-page {
   padding: 4rem 1rem;
   background: vars.$color-background;
@@ -38,7 +57,7 @@
 
     .preview-image {
       /* --- FIXED: Move all declarations before the @media rule --- */
-      flex: 1 1 45%; 
+      flex: 1 1 45%;
       height: 180px;
       object-fit: cover;
       border-radius: 0.5rem;
@@ -306,7 +325,7 @@
       object-fit: cover;
       border-radius: 0.5rem;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease; // Note: The reveal transition is separate
 
       &:hover {
         transform: scale(1.03);
