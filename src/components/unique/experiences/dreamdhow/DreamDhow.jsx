@@ -1,10 +1,9 @@
 import { useEffect, useMemo, useState, useRef } from "react";
-import useScrollToTop from "../../utils/scrollToTop";
-import "../../styles/pages/_DreamDhow.scss";
+import useScrollToTop from "../../../../utils/scrollToTop";
+import "./_DreamDhow.scss";
 
 // --- START: Reusable Visibility Hook ---
-// This new hook replaces the old `revealElements` scroll listener.
-// It uses IntersectionObserver for high performance.
+// This hook is unchanged. It's perfect for triggering the container.
 const useElementVisibility = (options = { threshold: 0.1, triggerOnce: true }) => {
   const ref = useRef(null);
   const [isVisible, setIsVisible] = useState(false);
@@ -12,15 +11,13 @@ const useElementVisibility = (options = { threshold: 0.1, triggerOnce: true }) =
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        // Set visibility
         if (entry.isIntersecting) {
           setIsVisible(true);
-          // If triggerOnce is true, stop observing
           if (options.triggerOnce) {
             observer.unobserve(entry.target);
           }
         } else if (!options.triggerOnce) {
-          setIsVisible(false); // Only set to false if we're not triggering once
+          setIsVisible(false);
         }
       },
       options
@@ -36,24 +33,22 @@ const useElementVisibility = (options = { threshold: 0.1, triggerOnce: true }) =
         observer.unobserve(currentRef);
       }
     };
-  }, [ref, options]); // Re-run if ref or options change
+  }, [ref, options]); 
 
   return [ref, isVisible];
 };
 // --- END: Reusable Visibility Hook ---
 
-// --- START: Reusable Slideshow Hook (Updated) ---
+// --- START: Reusable Slideshow Hook (Unchanged) ---
 const useCardSlideshow = (cardRef, imageList, intervalTime) => {
   const [currentImage, setCurrentImage] = useState(imageList[0]);
   const [isVisible, setIsVisible] = useState(false);
-  const currentImageRef = useRef(imageList[0]); // Ref to hold current image for interval
+  const currentImageRef = useRef(imageList[0]); 
 
-  // Update ref whenever state changes
   useEffect(() => {
     currentImageRef.current = currentImage;
   }, [currentImage]);
 
-  // Effect 1: Observe the card
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -73,13 +68,11 @@ const useCardSlideshow = (cardRef, imageList, intervalTime) => {
     };
   }, [cardRef]);
 
-  // Effect 2: Run the slideshow timer when visible
   useEffect(() => {
     let intervalId = null;
     if (isVisible && imageList.length > 1) {
       intervalId = setInterval(() => {
         let randomIndex;
-        // Keep picking until we get a *different* image
         do {
           randomIndex = Math.floor(Math.random() * imageList.length);
         } while (imageList.length > 1 && imageList[randomIndex] === currentImageRef.current);
@@ -98,30 +91,14 @@ const useCardSlideshow = (cardRef, imageList, intervalTime) => {
 };
 // --- END: Reusable Slideshow Hook ---
 
-// --- START: Gallery Image Component ---
-// This component uses the visibility hook for each gallery image
-// to ensure they fade in as they become visible.
-const RevealedGalleryImage = ({ filename }) => {
-  const [ref, isVisible] = useElementVisibility({ threshold: 0.1, triggerOnce: true });
-  return (
-    <img
-      ref={ref}
-      src={`/dreamdhow/${filename}`}
-      alt="A beautiful photo from a Dream Dhow tour in Zanzibar"
-      className={`gallery-image reveal ${isVisible ? "is-visible" : ""}`}
-    />
-  );
-};
-// --- END: Gallery Image Component ---
+// --- DELETED ---
+// The `RevealedGalleryImage` component is no longer needed
+// as we will apply styles directly in the .map() loop.
 
 const DreamDhow = () => {
   useScrollToTop();
 
-  // --- REMOVED ---
-  // The old `useEffect` for `revealElements` has been completely removed.
-
-  // --- START: Image Lists ---
-  // (No changes to this section)
+  // --- START: Image Lists (Unchanged) ---
   const mnembaImageList = [
     "mnemba/DJI_20250915124414_0001_D.jpg", "mnemba/DJI_20250915124543_0003_D.jpg",
     "mnemba/DJI_20250915124633_0008_D.jpg", "mnemba/DJI_20250915124638_0009_D.jpg",
@@ -147,7 +124,7 @@ const DreamDhow = () => {
   const shuffledGalleryImages = useMemo(() => [...mainGalleryList].sort(() => 0.5 - Math.random()), []);
   // --- END: Image Lists ---
 
-  // --- START: Card Slideshow Logic ---
+  // --- START: Card Slideshow Logic (Unchanged) ---
   const mnembaCardRef = useRef(null);
   const tumbatuCardRef = useRef(null);
   const sunsetCardRef = useRef(null);
@@ -156,8 +133,7 @@ const DreamDhow = () => {
   const currentSunsetImage = useCardSlideshow( sunsetCardRef, shuffledSunsetImages, 10000 );
   // --- END: Card Slideshow Logic ---
 
-  // --- START: Section Visibility Hooks ---
-  // Use the new hook for each section that needs to be revealed
+  // --- START: Section Visibility Hooks (Unchanged) ---
   const [heroRef, isHeroVisible] = useElementVisibility();
   const [previewRef, isPreviewVisible] = useElementVisibility();
   const [contentRef, isContentVisible] = useElementVisibility();
@@ -170,6 +146,7 @@ const DreamDhow = () => {
 
   return (
     <section className="dream-dhow-page">
+      {/* This section is a single block, so .reveal is fine */}
       <div
         ref={heroRef}
         className={`hero-section reveal ${isHeroVisible ? "is-visible" : ""}`}
@@ -182,9 +159,10 @@ const DreamDhow = () => {
         </p>
       </div>
 
+      {/* --- UPDATED: This section has a list, so we use .stagger-container --- */}
       <div
         ref={previewRef}
-        className={`image-preview reveal ${isPreviewVisible ? "is-visible" : ""}`}
+        className={`image-preview stagger-container ${isPreviewVisible ? "is-visible" : ""}`}
       >
         {shuffledGalleryImages.slice(0, 4).map((filename, index) => (
           <img
@@ -195,23 +173,27 @@ const DreamDhow = () => {
                 ? "A traditional dhow boat on turquoise water"
                 : "A beautiful Zanzibar sandbank"
             }
-            className="preview-image"
+            // Add .stagger-item class and the inline style for delay
+            className="preview-image stagger-item"
+            style={{ animationDelay: `${index * 0.1}s` }}
           />
         ))}
       </div>
 
+      {/* This section is a single block, so .reveal is fine */}
       <div
         ref={contentRef}
         className={`content-section reveal ${isContentVisible ? "is-visible" : ""}`}
       >
         <p>
-          Experience the magic of Zanzibar’s coastline aboard a traditional
+          Experience the magic of Zanzibar's coastline aboard a traditional
           dhow. Choose a romantic sunset cruise or a group sail filled with
           laughter and views. Dream Dhow is more than a boat — it's your gateway
           to memories on the ocean.
         </p>
       </div>
 
+      {/* This section is a single block, so .reveal is fine */}
       <div
         ref={videoRef}
         className={`video-section reveal ${isVideoVisible ? "is-visible" : ""}`}
@@ -228,9 +210,10 @@ const DreamDhow = () => {
         </div>
       </div>
 
+      {/* --- UPDATED: This section has a list, so we use .stagger-container --- */}
       <div
         ref={whyBookRef}
-        className={`why-book-us-section reveal ${isWhyBookVisible ? "is-visible" : ""}`}
+        className={`why-book-us-section reveal stagger-container ${isWhyBookVisible ? "is-visible" : ""}`}
       >
         <h2>🌊 Destination Paradise x DreamDhow 🌅</h2>
         <p className="promo-text">
@@ -239,8 +222,11 @@ const DreamDhow = () => {
           Zanzibar!
         </p>
         <div className="value-props">
-          {/* ... value prop items ... */}
-          <div className="value-prop-item">
+          {/* Add .stagger-item class and inline style to each item */}
+          <div
+            className="value-prop-item stagger-item"
+            style={{ animationDelay: "0.1s" }}
+          >
             <i className="fas fa-check-circle"></i>
             <div>
               <h3>Best-in-Class Partners</h3>
@@ -250,7 +236,10 @@ const DreamDhow = () => {
               </p>
             </div>
           </div>
-          <div className="value-prop-item">
+          <div
+            className="value-prop-item stagger-item"
+            style={{ animationDelay: "0.2s" }}
+          >
             <i className="fas fa-percent"></i>
             <div>
               <h3>Unlock Exclusive Savings</h3>
@@ -260,7 +249,10 @@ const DreamDhow = () => {
               </p>
             </div>
           </div>
-          <div className="value-prop-item">
+          <div
+            className="value-prop-item stagger-item"
+            style={{ animationDelay: "0.3s" }}
+          >
             <i className="fas fa-concierge-bell"></i>
             <div>
               <h3>Seamless One-Stop Planning</h3>
@@ -285,6 +277,7 @@ const DreamDhow = () => {
         </p>
       </div>
 
+      {/* This section is a single block, so .reveal is fine */}
       <div
         ref={bookNowRef}
         className={`book-now-section reveal ${isBookNowVisible ? "is-visible" : ""}`}
@@ -294,14 +287,19 @@ const DreamDhow = () => {
         </a>
       </div>
 
+      {/* --- UPDATED: This section has a list, so we use .stagger-container --- */}
       <div
         ref={toursRef}
-        className={`tour-products-section reveal ${isToursVisible ? "is-visible" : ""}`}
+        className={`tour-products-section reveal stagger-container ${isToursVisible ? "is-visible" : ""}`}
       >
         <h2>Our Tour Packages</h2>
         <div className="tour-cards">
-          {/* Mnemba Card */}
-          <div className="tour-card" ref={mnembaCardRef}>
+          {/* Mnemba Card: Add .stagger-item and style */}
+          <div
+            className="tour-card stagger-item"
+            ref={mnembaCardRef}
+            style={{ animationDelay: "0.1s" }}
+          >
             <img
               key={currentMnembaImage}
               src={`/dreamdhow/${currentMnembaImage}`}
@@ -333,8 +331,12 @@ const DreamDhow = () => {
             </a>
           </div>
 
-          {/* Tumbatu Card */}
-          <div className="tour-card" ref={tumbatuCardRef}>
+          {/* Tumbatu Card: Add .stagger-item and style */}
+          <div
+            className="tour-card stagger-item"
+            ref={tumbatuCardRef}
+            style={{ animationDelay: "0.2s" }}
+          >
             <img
               key={currentTumbatuImage}
               src={`/dreamdhow/${currentTumbatuImage}`}
@@ -366,8 +368,12 @@ const DreamDhow = () => {
             </a>
           </div>
 
-          {/* Sunset Cruise Card */}
-          <div className="tour-card" ref={sunsetCardRef}>
+          {/* Sunset Cruise Card: Add .stagger-item and style */}
+          <div
+            className="tour-card stagger-item"
+            ref={sunsetCardRef}
+            style={{ animationDelay: "0.3s" }}
+          >
             <img
               key={currentSunsetImage}
               src={`/dreamdhow/${currentSunsetImage}`}
@@ -398,15 +404,24 @@ const DreamDhow = () => {
         </div>
       </div>
 
+      {/* --- UPDATED: This section has a list, so we use .stagger-container --- */}
       <div
         ref={galleryRef}
-        className={`gallery-section reveal ${isGalleryVisible ? "is-visible" : ""}`}
+        className={`gallery-section reveal stagger-container ${isGalleryVisible ? "is-visible" : ""}`}
       >
         <h2>Gallery</h2>
         <div className="gallery-grid">
-          {/* Use the new component for efficient, individual image reveals */}
+          {/* We apply the stagger styles directly in the map */}
           {shuffledGalleryImages.map((filename, index) => (
-            <RevealedGalleryImage key={index} filename={filename} />
+            <img
+              key={index}
+              src={`/dreamdhow/${filename}`}
+              alt="A beautiful photo from a Dream Dhow tour in Zanzibar"
+              // Add .stagger-item and the inline style
+              className="gallery-image stagger-item"
+              // Use a smaller delay for a long list
+              style={{ animationDelay: `${index * 0.05}s` }}
+            />
           ))}
         </div>
       </div>

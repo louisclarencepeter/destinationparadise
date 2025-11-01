@@ -1,25 +1,49 @@
-// src/styles/pages/_DreamDhow.scss
-@use "../variables" as vars;
-@use "../mixins" as mixins;
+// src/components/unique/experiences/dreamdhow/_DreamDhow.scss
+@use "../../../../styles/variables" as vars;
+@use "../../../../styles/mixins" as mixins;
 
-// --- START: New Reveal Animation Styles ---
-// These styles work with the `useElementVisibility` hook
+// --- START: Added from UniqueExperiences.scss ---
+
+// 1. Add the keyframe animation
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// 2. Add styles for staggering items
+// This is the initial, hidden state for an item
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+// 3. When the parent container gets 'is-visible',
+//    find all .stagger-item children and animate them.
+//    The delay will be added via inline styles in React.
+.stagger-container.is-visible .stagger-item {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+// --- END: Added styles ---
+
+
+// --- EXISTING STYLES (for single block reveals) ---
+// We keep this for sections that fade in as a whole block
 .reveal {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 
-  // Add a slight delay to gallery images for a staggered effect
-  &.gallery-image {
-    transition-delay: 0.1s;
+  &.is-visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
-
-.reveal.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-// --- END: New Reveal Animation Styles ---
 
 .dream-dhow-page {
   padding: 4rem 1rem;
@@ -56,13 +80,12 @@
     margin: 2.5rem auto 3.5rem;
 
     .preview-image {
-      /* --- FIXED: Move all declarations before the @media rule --- */
       flex: 1 1 45%;
       height: 180px;
       object-fit: cover;
       border-radius: 0.5rem;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease; // Keep hover transition
 
       /* Desktop override: Revert to a 1x4 row */
       @media (min-width: 768px) {
@@ -325,7 +348,8 @@
       object-fit: cover;
       border-radius: 0.5rem;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease; // Note: The reveal transition is separate
+      // We only need the hover transition here
+      transition: transform 0.3s ease;
 
       &:hover {
         transform: scale(1.03);
@@ -334,6 +358,7 @@
   }
 }
 
+// Original animation for the card image slideshow
 @keyframes fadeIn {
   from {
     opacity: 0.3;

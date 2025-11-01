@@ -15,7 +15,7 @@ const MyImageGallery = lazy(() => import("./components/gallery/MyImageGallery"))
 const Store = lazy(() => import("./components/store/Store"));
 const PolicyInfo = lazy(() => import("./components/cookies/PolicyInfo"));
 const TourDetails = lazy(() => import("./components/excursions/TourDetails"));
-const DreamDhow = lazy(() => import("./components/excursions/DreamDhow")); // ✅ new
+const DreamDhow = lazy(() => import("./components/unique/experiences/dreamdhow/DreamDhow")); 
 
 function App() {
   useEffect(() => {

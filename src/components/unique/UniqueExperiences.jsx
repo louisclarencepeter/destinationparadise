@@ -20,7 +20,7 @@ const Slideshow = ({ images, title }) => {
     <div className="experience-card__slideshow">
       {images.map((img, idx) => (
         <img
-          key={img} 
+          key={`${title}-img-${idx}`} 
           src={img}
           alt={`${title} - ${idx + 1}`}
           className={`slideshow__image ${
@@ -31,7 +31,7 @@ const Slideshow = ({ images, title }) => {
       <div className="slideshow__dots">
         {images.map((img, idx) => (
           <button
-            key={`${img}-dot`} 
+            key={`${title}-dot-${idx}`} 
             type="button"
             className={`dot ${idx === currentIndex ? "active" : ""}`}
             onClick={() => setCurrentIndex(idx)}
