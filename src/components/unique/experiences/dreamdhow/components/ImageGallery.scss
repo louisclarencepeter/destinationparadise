@@ -1,0 +1,41 @@
+// ImageGallery Component Styles
+
+.gallery-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.gallery-image {
+  flex: 1 1 220px;
+  max-width: 350px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+
+.preview-image {
+  flex: 1 1 45%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+
+  @media (min-width: 768px) {
+    flex: 1 1 200px;
+    max-width: 250px;
+  }
+
+  &:hover {
+    transform: scale(1.03);
+  }
+}

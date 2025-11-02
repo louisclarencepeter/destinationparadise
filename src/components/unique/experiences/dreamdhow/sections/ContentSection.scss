@@ -1,0 +1,12 @@
+// ContentSection Component Styles
+@use "../../../../../styles/variables" as vars;
+
+.content-section {
+  max-width: 800px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: center;
+  color: vars.$color-primary;
+  margin-bottom: 2.5rem;
+}

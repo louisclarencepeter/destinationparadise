@@ -1,0 +1,14 @@
+// GallerySection Component Styles
+@use "../../../../../styles/variables" as vars;
+
+.gallery-section {
+  margin-top: 4rem;
+  text-align: center;
+
+  h2 {
+    font-family: vars.$font-primary;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: vars.$color-primary;
+  }
+}
