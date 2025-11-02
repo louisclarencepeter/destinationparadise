@@ -45,7 +45,11 @@ const uniqueExperiences = [
     title: "Stand-Up Paddling Adventure",
     description:
       "Glide across crystal-clear turquoise waters on a stand-up paddleboard, enjoying the serene beauty of Zanzibar's coastline.",
-    image: "/images/paddling/paddling.jpg",
+    images: [
+      "/standuppaddling/DSC_0348.jpg",
+      "/standuppaddling/caption.jpg",
+      "/standuppaddling/sup-tour-in-mangrove.jpg",
+    ],
     linkText: "Discover Paddling",
   },
 ];
