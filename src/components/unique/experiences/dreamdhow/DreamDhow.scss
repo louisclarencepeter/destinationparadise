@@ -1,0 +1,285 @@
+// Main DreamDhow Styles with Enhanced Animations
+// Single entry point - imports all component styles
+
+// ============================================
+// IMPORTS MUST COME FIRST!
+// ============================================
+
+@use "../../../../styles/variables" as vars;
+
+// Components
+@use "./components/CTAButton.scss";
+@use "./components/ImageGallery.scss";
+@use "./components/TourCard.scss";
+@use "./components/ValueProp.scss";
+
+// Sections
+@use "./sections/HeroSection.scss";
+@use "./sections/ImagePreviewSection.scss";
+@use "./sections/ContentSection.scss";
+@use "./sections/VideoSection.scss";
+@use "./sections/WhyBookUsSection.scss";
+@use "./sections/BookNowSection.scss";
+@use "./sections/TourPackagesSection.scss";
+@use "./sections/GallerySection.scss";
+
+// ============================================
+// ANIMATIONS (Enhanced with smooth transitions)
+// ============================================
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+// ============================================
+// ANIMATION UTILITY CLASSES
+// ============================================
+
+// Initial hidden state
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  
+  &.animate {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+}
+
+// Stagger animation for multiple items
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.stagger-container.is-visible .stagger-item,
+.stagger-container.animate .stagger-item {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+// Simple reveal (existing pattern - keep for compatibility)
+.reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+
+  &.is-visible,
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Fade in without movement
+.fade-in {
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+  
+  &.animate {
+    opacity: 1;
+  }
+}
+
+// Scale in animation
+.scale-in {
+  opacity: 0;
+  transform: scale(0.95);
+  
+  &.animate {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+}
+
+// Slide from sides
+.slide-left {
+  opacity: 0;
+  transform: translateX(-30px);
+  
+  &.animate {
+    animation: slideInFromLeft 0.8s ease-out forwards;
+  }
+}
+
+.slide-right {
+  opacity: 0;
+  transform: translateX(30px);
+  
+  &.animate {
+    animation: slideInFromRight 0.8s ease-out forwards;
+  }
+}
+
+// ============================================
+// MAIN CONTAINER
+// ============================================
+
+.dream-dhow-page {
+  padding: 4rem 1rem;
+  background: vars.$color-background;
+  color: vars.$color-primary;
+  font-family: vars.$font-secondary;
+  overflow-x: hidden; // Prevent horizontal scroll during animations
+}
+
+// ============================================
+// ENHANCED SECTION ANIMATIONS
+// ============================================
+
+// Smooth scroll behavior
+html {
+  scroll-behavior: smooth;
+}
+
+// Add smooth transitions to all sections
+.hero-section,
+.image-preview,
+.content-section,
+.video-section,
+.why-book-us-section,
+.book-now-section,
+.tour-products-section,
+.gallery-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  
+  &.is-visible,
+  &.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Special animation delays for sequential appearance
+.hero-section.is-visible,
+.hero-section.animate {
+  animation-delay: 0s;
+}
+
+.image-preview.is-visible,
+.image-preview.animate {
+  animation-delay: 0.1s;
+}
+
+.content-section.is-visible,
+.content-section.animate {
+  animation-delay: 0.2s;
+}
+
+// ============================================
+// ENHANCED HOVER EFFECTS
+// ============================================
+
+// Smooth hover transitions
+.preview-image,
+.gallery-image,
+.tour-card-image {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Card hover effects
+.tour-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  }
+}
+
+// Button hover effects
+.cta-button {
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+  }
+  
+  &:hover::before {
+    width: 300px;
+    height: 300px;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+// ============================================
+// ACCESSIBILITY
+// ============================================
+
+// Respect user's motion preferences
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,8 @@
+// CTAButton Component Styles
+@use "../../../../../styles/mixins" as mixins;
+
+.cta-button {
+  font-weight: 600;
+  text-decoration: none;
+  @include mixins.button-styles;
+}

@@ -1,0 +1,68 @@
+// WhyBookUsSection Component Styles
+@use "../../../../../styles/variables" as vars;
+
+.why-book-us-section {
+  max-width: 900px;
+  margin: 4rem auto 5rem auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+  text-align: center;
+
+  h2 {
+    font-family: vars.$font-primary;
+    font-size: 1.8rem;
+    color: vars.$color-primary;
+    margin-bottom: 1rem;
+  }
+
+  .promo-text {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: vars.$color-secondary;
+    max-width: 650px;
+    margin: 0 auto 2.5rem auto;
+
+    strong {
+      color: vars.$color-accent;
+      font-weight: 600;
+    }
+  }
+
+  .value-props {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: left;
+    margin-bottom: 2.5rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .slogan-footer {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: vars.$color-primary;
+    line-height: 1.8;
+
+    .contact-link {
+      display: inline-block;
+      font-weight: 600;
+      color: vars.$color-accent;
+      text-decoration: none;
+      margin-top: 0.5rem;
+      transition: transform 0.3s ease;
+
+      i {
+        margin-right: 0.5rem;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+// TourPackagesSection Component Styles
+@use "../../../../../styles/variables" as vars;
+
+.tour-products-section {
+  margin-top: 5rem;
+  padding: 0 1rem;
+  text-align: center;
+
+  h2 {
+    font-family: vars.$font-primary;
+    font-size: 2rem;
+    color: vars.$color-primary;
+    margin-bottom: 2rem;
+  }
+
+  .tour-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+}

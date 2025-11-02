@@ -1,0 +1,33 @@
+// VideoSection Component Styles
+@use "../../../../../styles/variables" as vars;
+
+.video-section {
+  text-align: center;
+  margin: 4rem auto;
+  max-width: 450px;
+  padding: 0 1rem;
+
+  h2 {
+    font-family: vars.$font-primary;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: vars.$color-primary;
+  }
+}
+
+.video-wrapper {
+  position: relative;
+  padding-bottom: 177.78%; // 9:16 portrait
+  height: 0;
+  overflow: hidden;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+  iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
