@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import ExperienceCard from "./ExperienceCard";
+import ExperienceCard from "../components/ExperienceCard";
 import "./ExperiencesGrid.scss";
 
 const ExperiencesGrid = ({ experiences }) => {

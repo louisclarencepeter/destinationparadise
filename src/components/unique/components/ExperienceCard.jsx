@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { useAnimateOnScroll } from "../../hooks/useAnimateOnScroll";
-import Slideshow from "./Slideshow";
+import { useAnimateOnScroll } from "../../../hooks/useAnimateOnScroll";
+import Slideshow from "../sections/Slideshow";
 import ArrowIcon from "./ArrowIcon";
 import "./ExperienceCard.scss";
 
