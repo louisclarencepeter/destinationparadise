@@ -11,8 +11,8 @@ import CTAButton from "./CTAButton";
  * @param {Array} props.images - Array of image paths
  * @param {string} props.departure - Departure information
  * @param {string} props.activities - Activities description
- * @param {string} props.food - Food information
- * @param {string} props.pricing - Pricing details
+ * @param {string} props.food - Food information (can include HTML)
+ * @param {string} props.pricing - Pricing details (can include HTML)
  * @param {string} props.kids - Kids pricing
  * @param {string} props.ctaText - CTA button text
  * @param {string} props.ctaLink - CTA button link
@@ -56,9 +56,13 @@ const TourCard = ({
         <strong>Activities:</strong> {activities}
       </p>
       <p>
-        <strong>Food:</strong> {food}
+        <strong>Food:</strong>{" "}
+        <span dangerouslySetInnerHTML={{ __html: food }} />
       </p>
-      <p dangerouslySetInnerHTML={{ __html: pricing }} />
+      <p>
+        <strong>Private boat:</strong>{" "}
+        <span dangerouslySetInnerHTML={{ __html: pricing }} />
+      </p>
       <p>
         <strong>Kids:</strong> {kids}
       </p>
