@@ -1,7 +1,7 @@
-import { useAnimateOnScroll } from "../../hooks/useAnimateOnScroll";
-import uniqueExperiences from "../../assets/data/uniqueData.js";
+import { useAnimateOnScroll } from "../../../hooks/useAnimateOnScroll";
+import uniqueExperiences from "../../../assets/data/uniqueData.js";
 import ExperiencesGrid from "./ExperiencesGrid";
-import ViewAllLink from "./ViewAllLink";
+import ViewAllLink from "../components/ViewAllLink";
 import "./UniqueExperiences.scss";
 
 const UniqueExperiences = () => {
