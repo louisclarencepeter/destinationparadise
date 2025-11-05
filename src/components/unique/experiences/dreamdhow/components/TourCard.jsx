@@ -66,7 +66,15 @@ const TourCard = ({
       <p>
         <strong>Kids:</strong> {kids}
       </p>
-      <CTAButton href={ctaLink}>{ctaText}</CTAButton>
+      <CTAButton 
+        href={ctaLink}
+        state={{
+          selectedTour: title,
+          fromDreamDhow: true,
+        }}
+      >
+        {ctaText}
+      </CTAButton>
     </div>
   );
 };

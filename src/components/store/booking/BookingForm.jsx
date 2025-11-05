@@ -6,7 +6,7 @@ import FormSelect from './FormSelect';
 import FormTextarea from './FormTextarea';
 import './BookingForm.scss';
 
-const BookingForm = ({ tours, locations }) => {
+const BookingForm = ({ tours, locations, prefilledTour = '' }) => {
   const [state, handleSubmit] = useForm("mlekgonz");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const BookingForm = ({ tours, locations }) => {
     email: '',
     phone: '',
     date: '',
-    tour: '',
+    tour: prefilledTour,
     location: '',
     message: '',
   });
@@ -24,6 +24,16 @@ const BookingForm = ({ tours, locations }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  // Update tour field when prefilledTour changes
+  useEffect(() => {
+    if (prefilledTour) {
+      setFormData(prevData => ({
+        ...prevData,
+        tour: prefilledTour
+      }));
+    }
+  }, [prefilledTour]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -43,6 +53,12 @@ const BookingForm = ({ tours, locations }) => {
   return (
     <form onSubmit={handleSubmit} className="booking-form" aria-labelledby="booking-form-title">
       <h3 className="booking-form__title" id="booking-form-title">Request Form</h3>
+      
+      {prefilledTour && (
+        <p className="booking-form__prefill-notice">
+          ✨ Tour pre-selected: <strong>{prefilledTour}</strong>
+        </p>
+      )}
       
       <div className="booking-form__group">
         <FormInput 
@@ -168,6 +184,7 @@ const BookingForm = ({ tours, locations }) => {
 BookingForm.propTypes = {
   tours: PropTypes.arrayOf(PropTypes.string).isRequired,
   locations: PropTypes.arrayOf(PropTypes.string).isRequired,
+  prefilledTour: PropTypes.string,
 };
 
 export default BookingForm;

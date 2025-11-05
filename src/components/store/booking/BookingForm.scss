@@ -57,6 +57,27 @@
     }
   }
 
+  &__prefill-notice {
+    background: rgba(vars.$color-accent, 0.1);
+    border: 2px solid vars.$color-accent;
+    border-radius: vars.$border-radius-default;
+    padding: 1rem 1.5rem;
+    margin: -1rem 0 1rem;
+    font-size: 1rem;
+    color: vars.$color-primary;
+    animation: slideIn 0.5s ease-out;
+
+    strong {
+      color: vars.$color-accent;
+      font-weight: 600;
+    }
+
+    @include mixins.respond-to(lg) {
+      font-size: 1.1rem;
+      padding: 1.25rem 2rem;
+    }
+  }
+
   &__submit {
     @include mixins.button-styles;
 
@@ -135,6 +156,17 @@
   100% { transform: scale(1); opacity: 1; }
 }
 
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 // Print styles
 @media print {
   .booking-form {
@@ -146,6 +178,9 @@
       display: none;
     }
     &__title::after {
+      display: none;
+    }
+    &__prefill-notice {
       display: none;
     }
   }

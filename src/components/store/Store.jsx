@@ -21,6 +21,10 @@ const Store = () => {
     "Swimming in the Cave",
     "Sailing into the Sunset",
     "Quad Tour",
+    // DreamDhow tours
+    "Mnemba Island (Best Seller)",
+    "Tumbatu Island",
+    "Romantic Sunset Cruise",
   ];
 
   const locations = [
@@ -35,15 +39,29 @@ const Store = () => {
   ];
 
   const location = useLocation();
+  
+  // Get the selected tour from DreamDhow if available
+  const selectedTour = location.state?.selectedTour || "";
+  const fromDreamDhow = location.state?.fromDreamDhow || false;
 
   useEffect(() => {
-    if (location.state?.scrollToTop) {
+    if (location.state?.scrollToTop || fromDreamDhow) {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       });
+      
+      // Optional: Scroll to form after a short delay
+      if (fromDreamDhow) {
+        setTimeout(() => {
+          const formElement = document.querySelector('.booking-request');
+          if (formElement) {
+            formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }
+        }, 500);
+      }
     }
-  }, [location]);
+  }, [location, fromDreamDhow]);
 
   useEffect(() => {
     const revealElements = document.querySelectorAll(".reveal");
@@ -72,6 +90,12 @@ const Store = () => {
 
   return (
     <div className="store-container" id="top">
+      {fromDreamDhow && (
+        <div className="breadcrumb">
+          <a href="/dream-dhow">← Back to Dream Dhow</a>
+        </div>
+      )}
+      
       <h2 className="reveal store-title">Booking Request</h2>
       <p className="store-description">
         Welcome to the booking request page. Please fill out the form below to
@@ -81,7 +105,11 @@ const Store = () => {
       <ImageSlideshow images={images} />
 
       <div className="booking-request">
-        <BookingForm tours={tours} locations={locations} />
+        <BookingForm 
+          tours={tours} 
+          locations={locations} 
+          prefilledTour={selectedTour}
+        />
       </div>
     </div>
   );

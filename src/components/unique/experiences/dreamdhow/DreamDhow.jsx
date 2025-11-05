@@ -74,7 +74,7 @@ const DreamDhow = () => {
         whatsappLink="https://wa.me/message/YCOQDKJSDMXFD1"
       />
 
-      <BookNowSection ctaText="Book Now" ctaLink="/contact" />
+      <BookNowSection ctaText="Book Now" ctaLink="/booking" />
 
       <TourPackagesSection title="Our Tour Packages" tours={tourPackages} />
 
