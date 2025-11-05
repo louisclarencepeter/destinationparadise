@@ -206,7 +206,15 @@ export default function TourDetails() {
         </p>
 
         <div className="book-now-button reveal">
-          <Link to="/booking">Book Now</Link>
+          <Link 
+            to="/booking"
+            state={{
+              selectedTour: tour.title,
+              fromExcursions: true,
+            }}
+          >
+            Book Now
+          </Link>
         </div>
       </article>
 
