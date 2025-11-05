@@ -82,7 +82,7 @@ export const getTourPackages = (
       '<strong>Private boat:</strong> from $185 to $110 p.p. · <strong>Shared:</strong> $95/person',
     kids: "0–4 free · 5–10 years $50",
     ctaText: "Book Mnemba Island",
-    ctaLink: "/contact",
+    ctaLink: "/booking",
   },
   {
     title: "Tumbatu Island",
@@ -95,7 +95,7 @@ export const getTourPackages = (
       '<strong>Private boat:</strong> from $185 to $110 p.p. · <strong>Shared:</strong> $95/person',
     kids: "0–4 free · 5–10 years $50",
     ctaText: "Book Tumbatu Island",
-    ctaLink: "/contact",
+    ctaLink: "/booking",
   },
   {
     title: "Romantic Sunset Cruise",
@@ -107,6 +107,6 @@ export const getTourPackages = (
     pricing: "",
     kids: "0–4 free · 5–10 years $50",
     ctaText: "Book Sunset Cruise",
-    ctaLink: "/contact",
+    ctaLink: "/booking",
   },
 ];

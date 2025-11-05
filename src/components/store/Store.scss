@@ -12,6 +12,50 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  position: relative;
+
+  .breadcrumb {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 10;
+
+    a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.25rem;
+      background: rgba(vars.$color-primary, 0.05);
+      border: 2px solid vars.$color-primary;
+      border-radius: vars.$border-radius-default;
+      color: vars.$color-primary;
+      text-decoration: none;
+      font-family: vars.$font-secondary;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: vars.$color-primary;
+        color: vars.$color-background;
+        transform: translateX(-4px);
+      }
+
+      &:active {
+        transform: translateX(-2px);
+      }
+    }
+
+    @media screen and (min-width: 768px) {
+      top: 2rem;
+      left: 2rem;
+
+      a {
+        font-size: 1rem;
+        padding: 0.875rem 1.5rem;
+      }
+    }
+  }
 
   .store-title {
     font-family: vars.$font-tertiary;
@@ -19,7 +63,12 @@
     text-align: center;
     color: vars.$color-primary;
     margin-bottom: 1rem;
+    margin-top: 3rem;
     width: 100%;
+
+    @media screen and (min-width: 768px) {
+      margin-top: 0;
+    }
   }
 
   p {
@@ -65,5 +114,9 @@
     max-width: none;
     background: none;
     min-height: initial;
+
+    .breadcrumb {
+      display: none;
+    }
   }
 }

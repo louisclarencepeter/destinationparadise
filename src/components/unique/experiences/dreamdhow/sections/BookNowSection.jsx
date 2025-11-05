@@ -16,7 +16,14 @@ const BookNowSection = ({ ctaText, ctaLink }) => {
       ref={bookNowRef}
       className={`book-now-section scale-in ${isAnimating ? "animate" : ""}`}
     >
-      <CTAButton href={ctaLink}>{ctaText}</CTAButton>
+      <CTAButton 
+        href={ctaLink}
+        state={{
+          fromDreamDhow: true,
+        }}
+      >
+        {ctaText}
+      </CTAButton>
     </div>
   );
 };
