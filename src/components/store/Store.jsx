@@ -40,19 +40,30 @@ const Store = () => {
 
   const location = useLocation();
   
-  // Get the selected tour from DreamDhow if available
+  // Get the selected tour and source from router state
   const selectedTour = location.state?.selectedTour || "";
   const fromDreamDhow = location.state?.fromDreamDhow || false;
+  const fromExcursions = location.state?.fromExcursions || false;
+  const hasSource = fromDreamDhow || fromExcursions;
+
+  // Determine the back link based on source
+  const getBackLink = () => {
+    if (fromDreamDhow) return { url: "/dream-dhow", label: "Dream Dhow" };
+    if (fromExcursions) return { url: "/excursions", label: "Excursions" };
+    return null;
+  };
+
+  const backLink = getBackLink();
 
   useEffect(() => {
-    if (location.state?.scrollToTop || fromDreamDhow) {
+    if (location.state?.scrollToTop || hasSource) {
       window.scrollTo({
         top: 0,
         behavior: "smooth",
       });
       
       // Optional: Scroll to form after a short delay
-      if (fromDreamDhow) {
+      if (hasSource) {
         setTimeout(() => {
           const formElement = document.querySelector('.booking-request');
           if (formElement) {
@@ -61,7 +72,7 @@ const Store = () => {
         }, 500);
       }
     }
-  }, [location, fromDreamDhow]);
+  }, [location, hasSource]);
 
   useEffect(() => {
     const revealElements = document.querySelectorAll(".reveal");
@@ -90,9 +101,9 @@ const Store = () => {
 
   return (
     <div className="store-container" id="top">
-      {fromDreamDhow && (
+      {backLink && (
         <div className="breadcrumb">
-          <a href="/dream-dhow">← Back to Dream Dhow</a>
+          <a href={backLink.url}>← Back to {backLink.label}</a>
         </div>
       )}
       
