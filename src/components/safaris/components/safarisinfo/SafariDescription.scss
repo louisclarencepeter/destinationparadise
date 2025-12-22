@@ -1,0 +1,26 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+.safaris-description {
+  font-family: vars.$font-secondary;
+  font-size: 1.2rem;
+  color: vars.$color-secondary;
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1.6; // Improved readability
+
+  @include mixins.respond-to(sm) {
+    font-size: 1rem; // Smaller text on mobile
+    padding: 0 10px; // Add horizontal padding for mobile readability
+  }
+
+  @include mixins.respond-to(md) {
+    font-size: 1.1rem; // Slightly larger on tablets
+  }
+
+  @include mixins.respond-to(lg) {
+    font-size: 1.3rem; // Larger text on desktop
+    max-width: 900px; // Wider content on desktop
+    margin: 0 auto; // Center align
+  }
+}

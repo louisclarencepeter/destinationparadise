@@ -5,13 +5,14 @@ import "./MenuList.scss";
 
 const MenuList = ({ className, onClick }) => {
   const location = useLocation();
-  const menuItems = [
-    { label: "Home", path: "/" },
-    { label: "Excursions", path: "/excursions" },
-    { label: "About Us", path: "/aboutus" },
-    { label: "Gallery", path: "/gallery" },
-    { label: "Booking Request", path: "/booking" },
-  ];
+const menuItems = [
+  { label: "Home", path: "/" },
+  { label: "Excursions", path: "/excursions" },
+  { label: "Safaris", path: "/safaris" }, // 👈 ADD THIS
+  { label: "About Us", path: "/aboutus" },
+  { label: "Gallery", path: "/gallery" },
+  { label: "Booking Request", path: "/booking" },
+];
 
   return (
     <ul className={className} role="menubar">
