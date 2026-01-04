@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import safariData from "../../../../assets/data/safarisdata/safariData";
+import { safariPackages } from "../packages/safariPackageData";
+import SafariButton from "../common/SafariButton";
 import "./SafariInfo.scss";
 
 const SafariInfo = () => {
   const { title } = useParams();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
+  const [relatedPackages, setRelatedPackages] = useState([]);
 
   // Find the safari with the matching title
   const safari = safariData.find((item) => item.title === title);
@@ -20,8 +23,78 @@ const SafariInfo = () => {
     // Scroll to top on component mount
     window.scrollTo(0, 0);
 
+    // Find related packages if safari exists
+    if (safari) {
+      // Get related packages based on location keywords and package type
+      const getRelatedPackages = () => {
+        // Get the park/location name from the current safari
+        const currentTitle = safari.title.toLowerCase();
+        const currentDescription = (safari.fullDescription || safari.description || '').toLowerCase();
+        
+        // Common locations/parks in Tanzania
+        const locations = [
+          'serengeti', 'ngorongoro', 'tarangire', 'manyara', 'lake manyara',
+          'zanzibar', 'selous', 'nyerere', 'ruaha', 'mikumi', 'mahale'
+        ];
+        
+        // Find locations mentioned in the current safari
+        const mentionedLocations = locations.filter(loc => 
+          currentTitle.includes(loc) || currentDescription.includes(loc)
+        );
+        
+        // If no specific locations found, use broader categories
+        const isMultiDay = currentTitle.includes('day') || 
+                          currentDescription.includes('day') ||
+                          (safari.duration && safari.duration.includes('day'));
+        
+        const isZanzibar = currentTitle.includes('zanzibar') || 
+                          currentDescription.includes('zanzibar');
+        
+        // Filter packages based on matching criteria
+        return safariPackages.filter(pkg => {
+          // Skip the current safari if it's in packages
+          if (pkg.title === safari.title) return false;
+          
+          // If we found specific locations, prioritize packages with those locations
+          if (mentionedLocations.length > 0) {
+            const pkgDestinations = pkg.destinations.toLowerCase();
+            const locationMatch = mentionedLocations.some(loc => pkgDestinations.includes(loc));
+            if (locationMatch) return true;
+          }
+          
+          // For Zanzibar safaris, recommend other Zanzibar options
+          if (isZanzibar && pkg.destinations.toLowerCase().includes('zanzibar')) {
+            return true;
+          }
+          
+          // Match by safari type (day safari or multi-day)
+          const pkgIsMultiDay = !pkg.duration.toLowerCase().includes('1 day');
+          if (isMultiDay === pkgIsMultiDay) {
+            return true;
+          }
+          
+          return false;
+        })
+        .sort((a, b) => {
+          // Prioritize packages that match more of the mentioned locations
+          const aMatches = mentionedLocations.filter(loc => 
+            a.destinations.toLowerCase().includes(loc)
+          ).length;
+          
+          const bMatches = mentionedLocations.filter(loc => 
+            b.destinations.toLowerCase().includes(loc)
+          ).length;
+          
+          return bMatches - aMatches;
+        })
+        .slice(0, 3); // Limit to 3 related packages
+      };
+      
+      setRelatedPackages(getRelatedPackages());
+    }
+
     return () => clearTimeout(timer);
-  }, []);
+  }, [safari]);
 
   if (loading) {
     return (
@@ -142,6 +215,36 @@ const SafariInfo = () => {
           </div>
         </div>
       </div>
+      
+      {/* Related Packages Section */}
+      {relatedPackages.length > 0 && (
+        <div className="related-safaris">
+          <h2>Related Safari Packages</h2>
+          <div className="related-safaris-container">
+            {relatedPackages.map((pkg, index) => (
+              <div key={index} className="related-safari-card">
+                <h3>{pkg.title}</h3>
+                <p className="related-safari-destinations">
+                  <strong>Destinations:</strong> {pkg.destinations}
+                </p>
+                <p className="related-safari-duration">
+                  <strong>Duration:</strong> {pkg.duration}
+                </p>
+                <p className="related-safari-price">
+                  <strong>From:</strong> {pkg.prices.budget || 
+                    pkg.prices.midRange || 
+                    pkg.prices.luxury || 
+                    'Contact for pricing'}
+                </p>
+                <SafariButton 
+                  text="View Package" 
+                  to={`/safari-package/${pkg.title.replace(/\s+/g, '-').toLowerCase()}`} 
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

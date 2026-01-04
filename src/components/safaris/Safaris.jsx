@@ -1,3 +1,4 @@
+// Safaris.jsx
 import React, { useRef, useEffect, useState } from "react";
 import SafariTitle from "./components/common/SafariTitle";
 import SafariDescription from "./components/safarisinfo/SafariDescription";
@@ -13,52 +14,59 @@ const Safaris = () => {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            observer.unobserve(entry.target);
-          }
-        });
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect(); // clean, one-shot animation
+        }
       },
       { threshold: 0.1 }
     );
 
-    if (headerRef.current) {
-      observer.observe(headerRef.current);
-    }
-
-    return () => {
-      if (headerRef.current) {
-        observer.unobserve(headerRef.current);
-      }
-    };
+    if (headerRef.current) observer.observe(headerRef.current);
+    return () => observer.disconnect();
   }, []);
 
   return (
     <div className="safaris-container">
       <SafariTitle ref={headerRef} isVisible={isVisible} />
+
       <SafariDescription
-        text="Tanzania is one of the best safari destinations in the world, offering a variety of incredible wildlife experiences. From the vast plains of the Serengeti to the lush landscapes of Ngorongoro Crater, here are some of the top safaris a person can take in Tanzania:"
+        text="Tanzania is one of the best safari destinations in the world, offering a variety of incredible wildlife experiences. From the vast plains of the Serengeti to the lush landscapes of Ngorongoro Crater, here are some of the top safaris you can experience in Tanzania."
       />
-        <SafariList />
-      <SafariPackages /> 
+
+      <SafariList />
+
+      <SafariPackages />
+
       <SafariDescription
         text={
           <>
             <strong>Types of Safari Experiences in Tanzania</strong>
             <ul>
-              <li><strong>Game Drive Safaris</strong> – Traditional safaris in 4x4 vehicles with expert guides.</li>
-              <li><strong>Walking Safaris</strong> – Explore the wilderness on foot with an armed ranger for a more immersive experience.</li>
-              <li><strong>Hot Air Balloon Safaris</strong> – A breathtaking way to see the Serengeti from above, especially during the Great Migration.</li>
-              <li><strong>Boat Safaris</strong> – Available in places like Selous and Saadani, offering a different perspective of wildlife.</li>
-              <li><strong>Chimpanzee Trekking</strong> – Unique primate encounters in Mahale Mountains and Gombe Stream.</li>
+              <li>
+                <strong>Game Drive Safaris</strong> – Classic 4x4 safaris led by expert guides.
+              </li>
+              <li>
+                <strong>Walking Safaris</strong> – On-foot exploration with an armed ranger for maximum immersion.
+              </li>
+              <li>
+                <strong>Hot Air Balloon Safaris</strong> – Aerial views of the Serengeti, especially during the Great Migration.
+              </li>
+              <li>
+                <strong>Boat Safaris</strong> – Unique wildlife encounters in Selous and Saadani.
+              </li>
+              <li>
+                <strong>Chimpanzee Trekking</strong> – Rare primate experiences in Mahale Mountains and Gombe Stream.
+              </li>
             </ul>
-            Tanzania offers an incredible variety of safari experiences, catering to different interests and budgets. Whether you want a luxurious lodge safari or a rugged adventure in the wild, there’s something for everyone in this stunning East African destination.
+            Tanzania offers safari experiences for every traveler — from ultra-luxury lodges to raw, off-grid adventures.
           </>
         }
       />
+
       <SafariButton text="Book Now" />
+
       <SafariFooter />
     </div>
   );

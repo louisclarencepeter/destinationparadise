@@ -1,8 +1,12 @@
+// SafariFooter.jsx
 import React from "react";
+import "./SafariFooter.scss";
 
 const SafariFooter = () => (
   <footer className="safaris-footer">
-    <p>© 2025 Tanzania Safari Adventures. All rights reserved. Prices and availability subject to change.</p>
+    <p>
+      © {new Date().getFullYear()} Destination Paradise. All rights reserved. Prices and availability subject to change.
+    </p>
   </footer>
 );
 

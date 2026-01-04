@@ -1,98 +1,98 @@
-@use "../../styles/variables" as vars; // Imports $breakpoint-sm, $breakpoint-md, etc.
-@use "../../styles/container" as container; // Imports container mixins
+// src/components/safaris/Safaris.scss
+@use "../../styles/variables" as vars;
+@use "../../styles/container" as container;
 
 .safaris-container {
-  @include container.standard-container; // Uses the standard-container mixin
-  background-color: vars.$color-background-light; // Assuming this variable exists in your _variables.scss
+  @include container.standard-container;
+  background-color: vars.$color-background-light;
 }
 
+/* =========================
+   Title
+   ========================= */
 .title {
-  font-family: vars.$font-tertiary; // Assuming this variable exists
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-family: vars.$font-tertiary;
+  font-size: clamp(2.2rem, 6vw, 4rem);
   text-align: center;
-  color: vars.$color-primary; // Assuming this variable exists
+  color: vars.$color-primary;
   opacity: 0;
   transform: translateY(20px);
-  transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1); // Assuming $transition-duration exists
-  text-shadow: 2px 2px 4px vars.$box-shadow-color; // Assuming this variable exists
+  transition: all vars.$transition-duration cubic-bezier(0.4, 0, 0.2, 1);
+  text-shadow: 2px 2px 4px vars.$box-shadow-color;
 
   &.visible {
     opacity: 1;
     transform: translateY(0);
   }
-
-  @media (min-width: vars.$breakpoint-sm) {
-    font-size: 2.5rem; // Matches your media-queries.css for h2
-  }
-
-  @media (min-width: vars.$breakpoint-md) {
-    font-size: 3rem; // Matches your media-queries.css for h2
-  }
 }
 
+/* =========================
+   Description blocks
+   ========================= */
 .safaris-description {
-  font-family: vars.$font-secondary; // Assuming this variable exists
-  font-size: 1.2rem;
-  color: vars.$color-secondary; // Assuming this variable exists
+  font-family: vars.$font-secondary;
+  font-size: 1rem; // mobile-first
+  color: vars.$color-secondary;
   text-align: center;
-  margin-bottom: 20px;
   line-height: 1.6;
+  margin: 0 auto 24px;
+  padding: 0 12px;
+  max-width: 900px;
 
-  @media (min-width: vars.$breakpoint-sm) {
-    font-size: 1rem;
-    padding: 0 10px;
+  ul {
+    margin: 16px auto;
+    padding-left: 0;
+    list-style: none;
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+
+  strong {
+    color: vars.$color-primary;
   }
 
   @media (min-width: vars.$breakpoint-md) {
     font-size: 1.1rem;
-    max-width: 900px;
-    margin: 0 auto;
+    padding: 0;
   }
 }
 
+/* =========================
+   Safari list grid
+   ========================= */
 .safaris-items {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
-  justify-content: center;
-  padding: 20px 0;
-
-  @media (min-width: vars.$breakpoint-sm) {
-    grid-template-columns: 1fr;
-    gap: 15px;
-    padding: 10px 0;
-  }
+  grid-template-columns: 1fr; // mobile-first
+  gap: 16px;
+  padding: 16px 0;
 
   @media (min-width: vars.$breakpoint-md) {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 18px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
   }
 }
 
 .safaris-item {
-  background-color: vars.$color-background; // Assuming this variable exists
-  padding: 20px;
-  border-radius: vars.$border-radius-default; // Assuming this variable exists
-  box-shadow: vars.$box-shadow-default; // Assuming this variable exists
+  background-color: vars.$color-background;
+  padding: 16px;
+  border-radius: vars.$border-radius-default;
+  box-shadow: vars.$box-shadow-default;
   text-align: center;
+  transition: transform vars.$transition-duration ease,
+              box-shadow vars.$transition-duration ease;
 
-  @media (min-width: vars.$breakpoint-sm) {
-    padding: 15px;
-  }
-
-  @media (min-width: vars.$breakpoint-md) {
-    padding: 18px;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: vars.$box-shadow-default; // ✅ use existing token
   }
 
   h3 {
-    font-family: vars.$font-secondary; // Assuming this variable exists
-    font-size: 1.5rem;
-    color: vars.$color-primary; // Assuming this variable exists
-    margin-bottom: 10px;
-
-    @media (min-width: vars.$breakpoint-sm) {
-      font-size: 1.2rem;
-    }
+    font-family: vars.$font-secondary;
+    font-size: 1.2rem;
+    color: vars.$color-primary;
+    margin-bottom: 8px;
 
     @media (min-width: vars.$breakpoint-md) {
       font-size: 1.4rem;
@@ -100,14 +100,10 @@
   }
 
   p {
-    font-family: vars.$font-secondary; // Assuming this variable exists
-    font-size: 1rem;
-    color: vars.$color-secondary; // Assuming this variable exists
+    font-family: vars.$font-secondary;
+    font-size: 0.95rem;
+    color: vars.$color-secondary;
     line-height: 1.6;
-
-    @media (min-width: vars.$breakpoint-sm) {
-      font-size: 0.9rem;
-    }
 
     @media (min-width: vars.$breakpoint-md) {
       font-size: 1rem;
@@ -115,43 +111,38 @@
   }
 }
 
+/* =========================
+   Call-to-action button
+   ========================= */
 .safaris-button {
   display: block;
-  margin: 0 auto 40px;
-  padding: 10px 20px;
+  margin: 24px auto 40px;
+  padding: 12px 24px;
   font-size: 1rem;
-  color: vars.$color-on-primary; // Assuming this variable exists
+  font-family: vars.$font-secondary;
+  color: vars.$color-on-primary;
+  background-color: vars.$color-primary;
   border: none;
+  border-radius: vars.$border-radius-default;
   cursor: pointer;
+  transition: transform vars.$transition-duration ease,
+              opacity vars.$transition-duration ease;
 
-  @media (min-width: vars.$breakpoint-sm) {
-    padding: 8px 16px;
-    font-size: 0.9rem;
-    width: 100%;
-    max-width: 200px;
+  width: 100%;
+  max-width: 220px;
+
+  &:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+  }
+
+  &:focus-visible {
+    outline: 2px solid vars.$color-primary;
+    outline-offset: 3px;
   }
 
   @media (min-width: vars.$breakpoint-md) {
-    padding: 12px 24px;
-    font-size: 1rem;
     width: auto;
-  }
-}
-
-.safaris-footer {
-  text-align: center;
-  padding: 20px;
-  font-family: vars.$font-secondary; // Assuming this variable exists
-  font-size: 0.9rem;
-  color: vars.$color-secondary; // Assuming this variable exists
-  background-color: vars.$color-background-light; // Assuming this variable exists
-
-  @media (min-width: vars.$breakpoint-sm) {
-    padding: 15px;
-    font-size: 0.8rem;
-  }
-
-  @media (min-width: vars.$breakpoint-md) {
-    font-size: 1rem;
+    max-width: none;
   }
 }
