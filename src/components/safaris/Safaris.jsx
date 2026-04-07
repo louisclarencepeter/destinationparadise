@@ -65,7 +65,8 @@ const Safaris = () => {
         }
       />
 
-      <SafariButton text="Book Now" />
+      {/* Updated: Button now navigates to the new BookNow page */}
+      <SafariButton text="Book Now" to="/book-now" />
 
       <SafariFooter />
     </div>

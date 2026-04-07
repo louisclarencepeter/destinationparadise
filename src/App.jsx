@@ -16,8 +16,9 @@ const Store = lazy(() => import("./components/store/Store"));
 const PolicyInfo = lazy(() => import("./components/cookies/PolicyInfo"));
 const TourDetails = lazy(() => import("./components/excursions/TourDetails"));
 const DreamDhow = lazy(() => import("./components/unique/experiences/dreamdhow/DreamDhow"));
-// Added Safaris Component import
+// Safaris imports
 const Safaris = lazy(() => import("./components/safaris/Safaris"));
+const BookNow = lazy(() => import("./components/safaris/BookNow")); // ← NEW: BookNow page
 
 function App() {
   useEffect(() => {
@@ -40,8 +41,9 @@ function App() {
               <Route path="/excursions/:id" element={<TourDetails />} />
               <Route path="/dream-dhow" element={<DreamDhow />} />
               
-              {/* Added Safaris Route */}
+              {/* Safaris Routes */}
               <Route path="/safaris" element={<Safaris />} />
+              <Route path="/book-now" element={<BookNow />} /> {/* ← NEW: BookNow route */}
               
               <Route path="/aboutus" element={<AboutPage />} />
               <Route path="/gallery" element={<MyImageGallery />} />
