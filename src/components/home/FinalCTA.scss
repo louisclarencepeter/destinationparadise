@@ -1,0 +1,97 @@
+@use '../../styles/variables' as vars;
+@use 'sass:color';
+
+.final-cta {
+  padding: vars.$section-py 1.25rem;
+  background:
+    linear-gradient(135deg, rgba(vars.$color-primary, 0.92), rgba(vars.$color-secondary, 0.88)),
+    url('/images/boat.jpg') center / cover no-repeat;
+  color: #fff;
+  text-align: center;
+  position: relative;
+
+  &__inner {
+    max-width: 50rem;
+    margin: 0 auto;
+  }
+
+  &__eyebrow {
+    display: inline-block;
+    font-family: vars.$font-secondary;
+    font-size: 0.75rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: vars.$color-accent;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-family: vars.$font-secondary;
+    font-weight: 300;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+    margin: 0 0 1.25rem;
+
+    em {
+      font-family: vars.$font-tertiary;
+      font-style: normal;
+      font-weight: 400;
+      color: vars.$color-accent;
+    }
+  }
+
+  &__text {
+    font-family: vars.$font-primary;
+    font-size: 1.1rem;
+    line-height: 1.65;
+    color: rgba(#fff, 0.88);
+    max-width: 36rem;
+    margin: 0 auto 2.25rem;
+  }
+
+  &__buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  &__btn {
+    font-family: vars.$font-secondary;
+    font-size: 0.92rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    text-decoration: none;
+    padding: 1rem 1.85rem;
+    border-radius: 999px;
+    transition: vars.$transition-default;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+
+    &--primary {
+      background: vars.$color-accent;
+      color: #fff;
+      box-shadow: 0 14px 30px -10px rgba(vars.$color-accent, 0.7);
+
+      i { font-size: 1.2rem; }
+
+      &:hover {
+        transform: translateY(-2px);
+        background: color.adjust(vars.$color-accent, $lightness: -6%);
+      }
+    }
+
+    &--ghost {
+      background: transparent;
+      color: #fff;
+      border: 1.5px solid rgba(#fff, 0.6);
+
+      &:hover {
+        background: rgba(#fff, 0.12);
+        border-color: #fff;
+      }
+    }
+  }
+}

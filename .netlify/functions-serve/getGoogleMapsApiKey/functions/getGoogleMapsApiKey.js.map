@@ -1,0 +1,8 @@
+{
+  "version": 3,
+  "sources": ["../../../../../../../Users/louisclarencepetersgmail.com/Projects/destinationparadise/functions/getGoogleMapsApiKey.cjs"],
+  "sourceRoot": "/private/var/folders/pn/h5qzlcpj69920cg5125gwr300000gn/T/tmp-69607-MEZIRtCJjsxY",
+  "sourcesContent": ["exports.handler = async function () {\n  // Retrieve the API key from environment variables\n  const apiKey = process.env.GOOGLE_MAPS_API_KEY;\n\n  // Check if the API key is available\n  if (!apiKey) {\n    return {\n      statusCode: 500,\n      body: JSON.stringify({ error: \"Google Maps API key is not configured\" }),\n    };\n  }\n\n  // Respond with the API key\n  return {\n    statusCode: 200,\n    body: JSON.stringify({ apiKey }),\n  };\n};\n"],
+  "mappings": ";AAAA,QAAQ,UAAU,iBAAkB;AAElC,QAAM,SAAS,QAAQ,IAAI;AAG3B,MAAI,CAAC,QAAQ;AACX,WAAO;AAAA,MACL,YAAY;AAAA,MACZ,MAAM,KAAK,UAAU,EAAE,OAAO,wCAAwC,CAAC;AAAA,IACzE;AAAA,EACF;AAGA,SAAO;AAAA,IACL,YAAY;AAAA,IACZ,MAAM,KAAK,UAAU,EAAE,OAAO,CAAC;AAAA,EACjC;AACF;",
+  "names": []
+}

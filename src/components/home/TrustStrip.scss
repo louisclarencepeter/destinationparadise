@@ -1,0 +1,55 @@
+@use '../../styles/variables' as vars;
+
+.trust-strip {
+  background: #fff;
+  border-top: 1px solid rgba(vars.$color-border, 0.6);
+  border-bottom: 1px solid rgba(vars.$color-border, 0.6);
+  padding: 1.75rem 1.25rem;
+
+  &__inner {
+    width: min(92%, #{vars.$container-max});
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem 1rem;
+
+    @media (min-width: 768px) {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    justify-content: flex-start;
+
+    @media (min-width: 768px) { justify-content: center; }
+  }
+
+  &__icon {
+    font-size: 1.6rem;
+    line-height: 1;
+    color: vars.$color-accent;
+    flex-shrink: 0;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.25;
+    font-family: vars.$font-secondary;
+
+    strong {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: vars.$color-primary;
+    }
+    span {
+      font-size: 0.75rem;
+      color: rgba(vars.$color-primary, 0.6);
+      margin-top: 0.15rem;
+    }
+  }
+}
