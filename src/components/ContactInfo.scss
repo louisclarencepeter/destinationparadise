@@ -1,0 +1,40 @@
+.contact-info {
+  margin-top: 0.9rem;
+  display: grid;
+  gap: 0.45rem;
+  text-align: left;
+  color: var(--brand-copy);
+  font-size: 0.9rem;
+  line-height: 1.45;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: var(--brand-teal);
+    text-decoration: none;
+  }
+}
+
+.contact-info__whatsapp-link {
+  display: inline-flex;
+  vertical-align: middle;
+  margin-left: 0.5rem;
+}
+
+.contact-info__whatsapp-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 1.7rem;
+  height: 1.7rem;
+  padding: 0.22rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--brand-teal), var(--brand-coral));
+  color: #fff;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}

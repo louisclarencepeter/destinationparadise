@@ -1,0 +1,46 @@
+:root {
+  --brand-ink: #244357;
+  --brand-teal: #3f6f87;
+  --brand-teal-soft: rgba(63, 111, 135, 0.16);
+  --brand-coral: #d18a84;
+  --brand-coral-soft: rgba(209, 138, 132, 0.18);
+  --brand-sand: #f7f1ec;
+  --brand-paper: rgba(255, 252, 249, 0.82);
+  --brand-line: rgba(63, 111, 135, 0.14);
+  --brand-copy: #5d6873;
+
+  font-family: Georgia, 'Times New Roman', serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--brand-ink);
+  background:
+    radial-gradient(circle at top, rgba(255, 255, 255, 0.88), transparent 34%),
+    radial-gradient(circle at 18% 18%, var(--brand-coral-soft), transparent 28%),
+    linear-gradient(180deg, #fbf7f3 0%, #edf4f7 100%);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+body,
+#root {
+  min-height: 100vh;
+}
+
+p {
+  margin: 0;
+}
