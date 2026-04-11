@@ -9,8 +9,8 @@
   --brand-line: rgba(63, 111, 135, 0.14);
   --brand-copy: #5d6873;
 
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  --font-display: 'Fraunces', 'Playfair Display', Georgia, serif;
+  font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  --font-display: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
   line-height: 1.5;
   font-weight: 400;
   color: var(--brand-ink);

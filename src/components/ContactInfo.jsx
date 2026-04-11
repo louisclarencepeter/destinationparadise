@@ -11,10 +11,7 @@ function ContactInfo() {
     <div className="contact-info">
       <p>Destination Paradise</p>
       <p>
-        Phone:{' '}
-        <a href={`tel:${phoneNumber}`} aria-label={`Call us at ${phoneDisplay}`}>
-          {phoneDisplay}
-        </a>
+        Phone: <a href={`tel:${phoneNumber}`}>{phoneDisplay}</a>
         <a
           href={whatsAppLink}
           target="_blank"
@@ -28,9 +25,7 @@ function ContactInfo() {
         </a>
       </p>
       <p>
-        <a href={`mailto:${email}`} aria-label="Send us an email">
-          {email}
-        </a>
+        <a href={`mailto:${email}`}>{email}</a>
       </p>
       <p>Zanzibar, Tanzania</p>
     </div>

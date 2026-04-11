@@ -1,4 +1,4 @@
-import logo from './assets/DPL.pngG1.png'
+import logo from './assets/logo-ui.png'
 import ContactInfo from './components/ContactInfo'
 import { SocialIcon } from './components/SocialIcons'
 import './App.css'
@@ -44,7 +44,15 @@ function App() {
 
       <header className="site-header">
         <a className="brand" href="/" aria-label="Destination Paradise home">
-          <img className="brand__logo" src={logo} alt="" />
+          <img
+            className="brand__logo"
+            src={logo}
+            alt=""
+            width="360"
+            height="360"
+            fetchPriority="high"
+            decoding="async"
+          />
           <span className="brand__lockup">
             <span className="brand__name">Destination Paradise</span>
             <span className="brand__tagline">Your next trip to paradise</span>
@@ -100,7 +108,6 @@ function App() {
                 href={link.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={`Visit our ${link.label} page`}
                 className="social-links__link"
               >
                 <span className="social-links__icon" aria-hidden="true">
@@ -121,6 +128,9 @@ function App() {
             className="construction__logo"
             src={logo}
             alt="Destination Paradise logo"
+            width="360"
+            height="360"
+            decoding="async"
           />
           <p className="construction__card-eyebrow">In the meantime</p>
           <p className="construction__card-title">Let&rsquo;s plan together</p>
@@ -130,7 +140,15 @@ function App() {
 
       <footer className="site-footer">
         <div className="site-footer__brand">
-          <img className="site-footer__logo" src={logo} alt="" />
+          <img
+            className="site-footer__logo"
+            src={logo}
+            alt=""
+            width="360"
+            height="360"
+            loading="lazy"
+            decoding="async"
+          />
           <span>Destination Paradise</span>
         </div>
         <p className="site-footer__copy">

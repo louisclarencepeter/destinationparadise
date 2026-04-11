@@ -392,7 +392,7 @@
 .construction__logo {
   position: relative;
   display: block;
-  width: min(11rem, 75%);
+  width: min(13.5rem, 82%);
   height: auto;
   margin: 0 auto;
   filter: drop-shadow(0 22px 36px rgba(15, 23, 42, 0.18));
@@ -491,6 +491,142 @@
 }
 
 /* ---------- Responsive ---------- */
+@media (min-width: 961px) {
+  .site-shell {
+    padding:
+      clamp(0.9rem, 1.6vh, 1.45rem)
+      clamp(1.15rem, 2.2vw, 1.85rem);
+  }
+
+  .site-header {
+    padding-block: 0.2rem;
+  }
+
+  .brand__logo,
+  .site-footer__logo {
+    width: 3.15rem;
+    height: 3.15rem;
+  }
+
+  .site-status {
+    padding: 0.48rem 0.9rem;
+    font-size: 0.76rem;
+  }
+
+  .construction {
+    grid-template-columns: minmax(0, 1.15fr) minmax(18.5rem, 0.72fr);
+    gap: clamp(1.35rem, 2.4vw, 2.4rem);
+    padding: clamp(0.7rem, 1.7vh, 1.45rem) 0;
+  }
+
+  .construction h1 {
+    font-size: clamp(2.8rem, 4.6vw, 4.7rem);
+    line-height: 0.95;
+    max-width: 11ch;
+  }
+
+  .construction__body {
+    margin-top: 1rem;
+    max-width: 33rem;
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .progress,
+  .construction__highlights,
+  .social-links {
+    margin-top: 1.15rem;
+  }
+
+  .construction__pill,
+  .social-links__link {
+    padding-block: 0.5rem;
+  }
+
+  .construction__card {
+    padding: 1.55rem 1.45rem;
+    border-radius: 1.55rem;
+  }
+
+  .construction__logo {
+    width: min(11.75rem, 72%);
+  }
+
+  .construction__card-eyebrow {
+    margin-top: 1rem;
+  }
+
+  .construction__card-title {
+    margin-bottom: 0.85rem;
+  }
+
+  .site-footer {
+    margin-top: 0.35rem;
+    padding-top: 0.9rem;
+  }
+}
+
+@media (min-width: 961px) and (max-height: 860px) {
+  .site-shell {
+    padding-block: 0.75rem;
+  }
+
+  .construction {
+    align-items: start;
+    padding: 0.55rem 0;
+  }
+
+  .construction__eyebrow {
+    margin-bottom: 0.9rem;
+  }
+
+  .construction h1 {
+    font-size: clamp(2.55rem, 4.1vw, 4.1rem);
+  }
+
+  .construction__body {
+    margin-top: 0.8rem;
+    font-size: 0.94rem;
+  }
+
+  .progress,
+  .construction__highlights,
+  .social-links {
+    margin-top: 0.9rem;
+  }
+
+  .construction__highlights {
+    gap: 0.5rem;
+  }
+
+  .construction__pill,
+  .social-links__link {
+    font-size: 0.79rem;
+  }
+
+  .construction__card {
+    padding: 1.25rem 1.2rem;
+  }
+
+  .construction__logo {
+    width: min(10.5rem, 64%);
+  }
+
+  .construction__card-eyebrow {
+    margin-top: 0.8rem;
+    font-size: 0.66rem;
+  }
+
+  .construction__card-title {
+    font-size: 1.35rem;
+    margin-bottom: 0.7rem;
+  }
+
+  .site-footer {
+    padding-top: 0.7rem;
+  }
+}
+
 @media (max-width: 960px) {
   .construction {
     grid-template-columns: 1fr;
@@ -508,21 +644,194 @@
 
 @media (max-width: 640px) {
   .site-shell {
-    padding: 1rem;
+    padding: 0.85rem;
+  }
+
+  .aurora {
+    background:
+      radial-gradient(ellipse at top, rgba(255, 255, 255, 0.82), transparent 52%),
+      linear-gradient(180deg, #fcf7f2 0%, #eef5f8 72%, #f8eee6 100%);
+  }
+
+  .aurora__blob {
+    filter: blur(56px);
+    opacity: 0.45;
+  }
+
+  .aurora__blob--teal {
+    width: 28rem;
+    height: 28rem;
+    top: -9rem;
+    left: 28%;
+  }
+
+  .aurora__blob--coral {
+    width: 22rem;
+    height: 22rem;
+    left: -8rem;
+    bottom: 8%;
+  }
+
+  .aurora__blob--sand {
+    width: 18rem;
+    height: 18rem;
+    right: -6rem;
+    bottom: -2rem;
+  }
+
+  .aurora__grain {
+    display: none;
+  }
+
+  .site-header {
+    gap: 0.75rem;
+    padding-block: 0.25rem;
+  }
+
+  .brand {
+    gap: 0.75rem;
+    align-items: flex-start;
+  }
+
+  .brand__lockup {
+    gap: 0.1rem;
+  }
+
+  .brand__name,
+  .site-footer__brand span {
+    font-size: 0.82rem;
+    letter-spacing: 0.1em;
+  }
+
+  .brand__tagline {
+    font-size: 0.75rem;
+  }
+
+  .site-status {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.74rem;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .construction {
+    gap: 1.35rem;
+    padding: 1rem 0 1.25rem;
+    align-items: start;
+  }
+
+  .construction__copy {
+    display: grid;
+    gap: 1.15rem;
+  }
+
+  .construction__eyebrow {
+    margin: 0;
+    padding: 0.42rem 0.78rem;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    background: rgba(255, 255, 255, 0.82);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 
   .construction h1 {
-    font-size: clamp(2.1rem, 9vw, 3rem);
+    font-size: clamp(2rem, 10vw, 2.8rem);
+    line-height: 0.96;
+    max-width: 12ch;
+  }
+
+  .construction__body {
+    margin-top: 0;
+    font-size: 0.96rem;
+    line-height: 1.55;
+  }
+
+  .progress,
+  .construction__highlights,
+  .social-links {
+    margin-top: 0;
+  }
+
+  .progress__meta {
+    font-size: 0.72rem;
+  }
+
+  .construction__highlights {
+    gap: 0.5rem;
+  }
+
+  .construction__pill {
+    padding: 0.62rem 0.85rem;
+    font-size: 0.79rem;
+    background: rgba(255, 255, 255, 0.86);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .social-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
+  }
+
+  .social-links__link {
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0.65rem 0.8rem;
+    box-shadow: none;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .social-links__link:hover,
+  .social-links__link:focus-visible {
+    transform: none;
+    box-shadow: none;
   }
 
   .construction__card {
-    padding: 1.5rem 1.25rem;
-    border-radius: 1.5rem;
+    padding: 1.4rem 1.1rem;
+    border-radius: 1.35rem;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow:
+      0 18px 32px rgba(36, 67, 87, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .construction__logo {
+    width: min(11rem, 84%);
+  }
+
+  .construction__card-eyebrow {
+    margin-top: 1rem;
+  }
+
+  .site-footer {
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    gap: 0.65rem;
+  }
+
+  .site-footer__copy {
+    font-size: 0.74rem;
   }
 
   .brand__logo {
-    width: 3rem;
-    height: 3rem;
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .aurora__blob,
+  .construction__logo,
+  .site-status__dot,
+  .progress__fill {
+    animation: none;
   }
 }
 
