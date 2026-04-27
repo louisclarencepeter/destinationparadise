@@ -8,17 +8,67 @@
   --brand-paper: rgba(255, 252, 249, 0.82);
   --brand-line: rgba(63, 111, 135, 0.14);
   --brand-copy: #5d6873;
+  --theme-bg: #f6f1ec;
+  --theme-panel: rgba(255, 255, 255, 0.58);
+  --theme-panel-strong: rgba(255, 255, 255, 0.9);
+  --theme-chip: rgba(255, 255, 255, 0.72);
+  --theme-chip-strong: rgba(255, 255, 255, 0.88);
+  --theme-border: rgba(36, 67, 87, 0.1);
+  --theme-border-strong: rgba(255, 255, 255, 0.7);
+  --theme-shadow: rgba(36, 67, 87, 0.14);
+  --theme-shadow-soft: rgba(36, 67, 87, 0.08);
+  --theme-icon-bg: rgba(63, 111, 135, 0.1);
+  --theme-primary-bg: #244357;
+  --theme-on-primary: #ffffff;
+  --theme-available: #2f9b73;
+  --theme-available-glow: rgba(47, 155, 115, 0.42);
+  --theme-aurora-cut: rgba(255, 255, 255, 0.92);
+  --theme-aurora-a: rgba(238, 245, 248, 0.92);
+  --theme-aurora-b: rgba(247, 241, 236, 0.96);
+  --theme-grain-opacity: 0.5;
+  --theme-grain-blend: multiply;
 
   font-family: 'Avenir Next', Avenir, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   --font-display: 'Iowan Old Style', 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
   line-height: 1.5;
   font-weight: 400;
   color: var(--brand-ink);
-  background: #f6f1ec;
+  background: var(--theme-bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+:root[data-theme='night'] {
+  --brand-ink: #f7fcff;
+  --brand-teal: #aee4f3;
+  --brand-teal-soft: rgba(174, 228, 243, 0.24);
+  --brand-coral: #ffbeb5;
+  --brand-coral-soft: rgba(255, 190, 181, 0.28);
+  --brand-sand: #121d28;
+  --brand-paper: rgba(19, 34, 47, 0.95);
+  --brand-line: rgba(224, 245, 250, 0.24);
+  --brand-copy: #d8e9ee;
+  --theme-bg: #06111d;
+  --theme-panel: rgba(18, 34, 48, 0.9);
+  --theme-panel-strong: rgba(21, 40, 56, 0.97);
+  --theme-chip: rgba(24, 44, 61, 0.94);
+  --theme-chip-strong: rgba(27, 50, 68, 0.98);
+  --theme-border: rgba(224, 245, 250, 0.22);
+  --theme-border-strong: rgba(224, 245, 250, 0.34);
+  --theme-shadow: rgba(0, 0, 0, 0.52);
+  --theme-shadow-soft: rgba(0, 0, 0, 0.36);
+  --theme-icon-bg: rgba(174, 228, 243, 0.18);
+  --theme-primary-bg: #bdeaf5;
+  --theme-on-primary: #06111d;
+  --theme-available: #8ce5b3;
+  --theme-available-glow: rgba(140, 229, 179, 0.48);
+  --theme-aurora-cut: rgba(21, 40, 56, 0.82);
+  --theme-aurora-a: rgba(7, 23, 36, 0.98);
+  --theme-aurora-b: rgba(38, 29, 45, 0.98);
+  --theme-grain-opacity: 0.2;
+  --theme-grain-blend: screen;
 }
 
 * {

@@ -59,6 +59,99 @@ export function SocialIcon({ type }) {
           />
         </IconFrame>
       )
+    case 'mail':
+      return (
+        <IconFrame>
+          <rect
+            x="3.75"
+            y="5.5"
+            width="16.5"
+            height="13"
+            rx="2.2"
+            stroke="currentColor"
+            strokeWidth="1.8"
+          />
+          <path
+            d="M5 7.15L12 12.5L19 7.15"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </IconFrame>
+      )
+    case 'phone':
+      return (
+        <IconFrame>
+          <path
+            d="M7.1 4.75L9.45 4.2L11.15 8.4L9.45 9.45C10.36 11.4 11.86 12.91 13.8 13.82L14.9 12.13L19.05 13.85L18.5 16.2C18.3 17.05 17.55 17.66 16.67 17.66C10.96 17.66 6.34 13.04 6.34 7.33C6.34 6.45 6.95 4.95 7.1 4.75Z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </IconFrame>
+      )
+    case 'pin':
+      return (
+        <IconFrame>
+          <path
+            d="M12 21C12 21 18.2 15.45 18.2 9.9C18.2 6.48 15.42 3.7 12 3.7C8.58 3.7 5.8 6.48 5.8 9.9C5.8 15.45 12 21 12 21Z"
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinejoin="round"
+          />
+          <circle cx="12" cy="9.9" r="2.15" stroke="currentColor" strokeWidth="1.8" />
+        </IconFrame>
+      )
+    case 'compass':
+      return (
+        <IconFrame>
+          <circle cx="12" cy="12" r="8.2" stroke="currentColor" strokeWidth="1.7" />
+          <path
+            d="M14.9 8.6L13.35 13.35L8.6 14.9L10.15 10.15L14.9 8.6Z"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinejoin="round"
+          />
+        </IconFrame>
+      )
+    case 'suitcase':
+      return (
+        <IconFrame>
+          <path
+            d="M8.25 8V6.85C8.25 5.83 9.08 5 10.1 5H13.9C14.92 5 15.75 5.83 15.75 6.85V8"
+            stroke="currentColor"
+            strokeWidth="1.75"
+            strokeLinecap="round"
+          />
+          <rect
+            x="4.3"
+            y="8"
+            width="15.4"
+            height="10.8"
+            rx="2.2"
+            stroke="currentColor"
+            strokeWidth="1.75"
+          />
+          <path d="M8 12H16" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" />
+        </IconFrame>
+      )
+    case 'sparkle':
+      return (
+        <IconFrame>
+          <path
+            d="M12 3.8L13.55 8.45L18.2 10L13.55 11.55L12 16.2L10.45 11.55L5.8 10L10.45 8.45L12 3.8Z"
+            stroke="currentColor"
+            strokeWidth="1.6"
+            strokeLinejoin="round"
+          />
+          <path
+            d="M18.1 14.2L18.75 16.05L20.6 16.7L18.75 17.35L18.1 19.2L17.45 17.35L15.6 16.7L17.45 16.05L18.1 14.2Z"
+            fill="currentColor"
+          />
+        </IconFrame>
+      )
     default:
       return null
   }

@@ -1,6 +1,8 @@
+import { useEffect, useState } from 'react'
 import logo from './assets/logo-ui.png'
 import ContactInfo from './components/ContactInfo'
 import { SocialIcon } from './components/SocialIcons'
+import { getCurrentTheme, onThemeChange, toggleManualTheme } from './themeLayer'
 import './App.css'
 
 const socialLinks = [
@@ -27,18 +29,36 @@ const socialLinks = [
 ]
 
 const highlights = [
-  { icon: '◷', label: 'Tailored island itineraries' },
-  { icon: '☼', label: 'Stay & safari planning' },
-  { icon: '✦', label: 'Polished booking experience' },
+  { icon: 'compass', label: 'Private island tours' },
+  { icon: 'suitcase', label: 'Stay and transfer planning' },
+  { icon: 'sparkle', label: 'Handpicked Zanzibar experiences' },
+]
+
+const contactLinks = [
+  {
+    href: 'https://wa.me/message/YCOQDKJSDMXFD1',
+    label: 'Chat on WhatsApp',
+    icon: 'whatsapp',
+    primary: true,
+  },
+  {
+    href: 'mailto:info@yournexttriptoparadise.com',
+    label: 'Email us',
+    icon: 'mail',
+  },
 ]
 
 function App() {
+  const [theme, setTheme] = useState(getCurrentTheme)
+  const nextTheme = theme === 'night' ? 'light' : 'dark'
+
+  useEffect(() => onThemeChange((updatedTheme) => {
+    setTheme(updatedTheme)
+  }), [])
+
   return (
     <div className="site-shell">
       <div className="aurora" aria-hidden="true">
-        <span className="aurora__blob aurora__blob--teal" />
-        <span className="aurora__blob aurora__blob--coral" />
-        <span className="aurora__blob aurora__blob--sand" />
         <span className="aurora__grain" />
       </div>
 
@@ -60,41 +80,53 @@ function App() {
         </a>
         <p className="site-status">
           <span className="site-status__dot" aria-hidden="true" />
-          Website update in progress
+          Bookings remain open
         </p>
       </header>
 
       <main className="construction">
         <section className="construction__copy">
           <p className="construction__eyebrow">
-            <span aria-hidden="true">✦</span> Coming Soon
+            <span className="construction__eyebrow-icon" aria-hidden="true">
+              <SocialIcon type="sparkle" />
+            </span>
+            Coming Soon
           </p>
           <h1>
-            We&rsquo;re crafting something
-            <span className="construction__accent"> beautiful</span> for your
-            next escape.
+            A new home for
+            <span className="construction__accent"> unforgettable</span>
+            Zanzibar escapes.
           </h1>
           <p className="construction__body">
-            Destination Paradise is getting a fresh new online home. Behind the
-            scenes we&rsquo;re shaping a richer, smoother experience &mdash;
-            and the full site will be live soon.
+            Destination Paradise is refreshing its online experience. While the
+            full site is being prepared, our team is still arranging tours,
+            transfers, stays, and tailored island moments across Zanzibar.
           </p>
 
-          <div className="progress" aria-label="Launch progress">
-            <div className="progress__track">
-              <div className="progress__fill" style={{ width: '72%' }} />
-            </div>
-            <div className="progress__meta">
-              <span>Build progress</span>
-              <span className="progress__value">72%</span>
-            </div>
+          <div className="construction__actions" aria-label="Contact options">
+            {contactLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith('http') ? '_blank' : undefined}
+                rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className={`construction__button ${
+                  link.primary ? 'construction__button--primary' : ''
+                }`}
+              >
+                <span className="construction__button-icon" aria-hidden="true">
+                  <SocialIcon type={link.icon} />
+                </span>
+                <span>{link.label}</span>
+              </a>
+            ))}
           </div>
 
           <div className="construction__highlights" aria-label="What is coming">
             {highlights.map((item) => (
               <span key={item.label} className="construction__pill">
                 <span className="construction__pill-icon" aria-hidden="true">
-                  {item.icon}
+                  <SocialIcon type={item.icon} />
                 </span>
                 {item.label}
               </span>
@@ -132,8 +164,12 @@ function App() {
             height="360"
             decoding="async"
           />
-          <p className="construction__card-eyebrow">In the meantime</p>
-          <p className="construction__card-title">Let&rsquo;s plan together</p>
+          <p className="construction__card-eyebrow">Travel desk</p>
+          <p className="construction__card-title">Plan your visit now</p>
+          <p className="construction__card-copy">
+            Send your dates, group size, and dream itinerary. We&rsquo;ll help
+            shape the details while the new site is getting ready.
+          </p>
           <ContactInfo />
         </aside>
       </main>
@@ -151,10 +187,23 @@ function App() {
           />
           <span>Destination Paradise</span>
         </div>
-        <p className="site-footer__copy">
-          &copy; {new Date().getFullYear()} Destination Paradise &middot; Crafted in
-          Zanzibar
-        </p>
+        <div className="site-footer__actions">
+          <p className="site-footer__copy">
+            &copy; {new Date().getFullYear()} Destination Paradise &middot; Crafted in
+            Zanzibar
+          </p>
+          <button
+            type="button"
+            className="theme-switch"
+            role="switch"
+            aria-checked={theme === 'night'}
+            aria-label={`Switch to ${nextTheme} theme`}
+            onClick={toggleManualTheme}
+          >
+            <span className="theme-switch__option">Light</span>
+            <span className="theme-switch__option">Dark</span>
+          </button>
+        </div>
       </footer>
     </div>
   )
