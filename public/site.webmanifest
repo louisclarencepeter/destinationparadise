@@ -1,0 +1,28 @@
+{
+  "name": "Destination Paradise Zanzibar",
+  "short_name": "Destination Paradise",
+  "description": "Destination Paradise is refreshing its online experience while bookings remain open for Zanzibar tours and stays.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f6f1ec",
+  "theme_color": "#244357",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/maskable-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
