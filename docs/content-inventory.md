@@ -1,6 +1,8 @@
 # Destination Paradise Content Inventory
 
-This document captures the current `development` website content before a redesign. Use it as the source map for preserving words, routes, booking flows, data modules, and assets while changing the visual design.
+This document captures the current Destination Paradise website content, routes, booking flows, data modules, integrations, and asset locations. Use it as the source map for preserving the website while updating design, copy, or media.
+
+Asset snapshot: a docs-side copy of the website assets now lives in `docs/website-assets/`. See `docs/website-assets/README.md` for the copied folders, reference design files, images, fonts, videos, data modules, and source locations.
 
 ## Current Routes
 
@@ -30,7 +32,7 @@ Header menu items come from `src/components/header/components/MenuList.jsx`:
 - Gallery: `/gallery`
 - Booking Request: `/booking`
 
-The global layout wraps every route with header, main content, footer, cookie consent, and chatbot in `src/components/layout/Layout.jsx`.
+The global layout wraps most routes with header, main content, footer, cookie consent, and chatbot in `src/components/layout/Layout.jsx`. The redesigned homepage at `/` uses its own standalone navigation, footer, and homepage stylesheet so it can match the supplied Destination Paradise reference design.
 
 ## Global Brand And Contact
 
@@ -56,41 +58,76 @@ Sections:
 
 - Hero
 - Roaming Retreats / featured excursions
-- Unique Experiences
+- Why book with Destination Paradise
+- Zanzibar/Tanzania map highlights
+- Best-time weather guide
 - Gallery preview
 - Testimonials
-- Map
+- Newsletter
+- Footer
 
-Hero copy from `src/components/home/Hero.jsx`:
+The redesigned homepage injects `public/dp-home/styles.css` only while the homepage is mounted.
 
 - H1: Destination Paradise
-- Motto: your next trip to Paradise...
-- Body: Welcome to your gateway to the enchanting Zanzibar Island! Imagine a place where each day is an adventure, and every horizon promises new discoveries.
+- Logo subtitle: Zanzibar & Tanzania
+- Eyebrow: Zanzibar & Tanzania · Private & group tours
+- Motto: your next trip to paradise...
+- Body: Welcome to Destination Paradise, a Zanzibar-based travel company offering private and group tours across Zanzibar and Tanzania - from island excursions to unforgettable safari experiences.
+- Primary CTA: Browse excursions
+- Secondary CTA: Explore the gallery
+
+Homepage navigation:
+
+- Home: `/`
+- Excursions: `/excursions`
+- Safaris: `/safaris`
+- About Us: `/aboutus`
+- Gallery: `/gallery`
+- Booking Request: `/booking`
+- Book Now: `/booking`
 
 Hero assets:
 
-- Placeholder image: `/images/boat.jpg`
-- Video assets:
-  - `src/assets/videos/background_h.mp4`
-  - `src/assets/videos/background_v.mp4`
+- Hero background: `/dp-home/boat.jpg`
+- Logo: `/dp-home/logo-primary.png`
+- Homepage stylesheet: `/dp-home/styles.css`
+- Docs copy: `docs/website-assets/public/dp-home/`
+- Original reference copy: `docs/website-assets/reference-design/`
 
-Featured excursions from `src/assets/data/excursionsData.js`:
+Featured homepage excursions from `src/assets/data/tours.js`:
 
-- Stone Town Heritage Walk: Embark on a journey through the timeless Stone Town, a place where history resonates in every alley.
-- Dhow & Snorkeling Safari Blue: Experience the authentic and unrivaled Safari Blue - a full-day excursion aboard traditional, locally-crafted sailing dhows.
-- Zanzibar Spice & Culture Tour: Embark on a half-day journey through Central Zanzibar, exploring the rich history shaped by cloves, nutmeg, cinnamon, and pepper.
+- Dhow & Snorkeling Safari Blue
+- Stone Town Tour
+- Spice Tour
+- Dolphin Tour
+- Prison Island Tour
+- Mnemba Snorkeling & Northern Zanzibar Trip
 
 Homepage gallery preview:
 
 - Title: Gallery
-- CTA: View More
-- Mixes `/galleryimages/1.jpg`, `/galleryimages/2.jpg`, `/galleryimages/3.jpg` with YouTube videos.
+- CTA: Open gallery
+- Uses `/dp-home/1.webp`, `/dp-home/2.webp`, and `/dp-home/3.webp`
 
 Testimonials section:
 
-- Title: Testimonials
-- CTA: Book Now
+- Title: Guest stories
 - Data source: `src/assets/data/testimonials-data.js`
+
+Homepage newsletter:
+
+- Title: Trip ideas from Destination Paradise
+- Endpoint: `/.netlify/functions/sendEmail`
+
+Homepage social/contact links:
+
+- Email: `info@yournexttriptoparadise.com`
+- Phone: `+255 768 779 517`
+- WhatsApp: `https://wa.me/message/YCOQDKJSDMXFD1`
+- Facebook: `https://www.facebook.com/yournexttriptoparadise/`
+- Instagram: `https://www.instagram.com/yournexttriptoparadise/`
+- YouTube: `https://www.youtube.com/@destinationparadisezanzibar`
+- X/Twitter: `https://x.com/destinationxpar`
 
 ## Excursions
 
@@ -403,8 +440,19 @@ Knowledge/training files:
 
 ## Asset Library
 
+Docs-side asset snapshot:
+
+- Snapshot folder: `docs/website-assets`
+- Snapshot README: `docs/website-assets/README.md`
+- Total copied files: 196
+- Total snapshot size: about 83 MB
+- Public asset copy: `docs/website-assets/public`
+- Source asset copy: `docs/website-assets/src-assets`
+- Original reference design copy: `docs/website-assets/reference-design`
+
 Public assets:
 
+- `public/dp-home`: 8 files
 - `public/dreamdhow`: 26 files
 - `public/gallery`: 18 files
 - `public/galleryimages`: 32 files
