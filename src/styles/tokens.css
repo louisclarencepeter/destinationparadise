@@ -1,0 +1,99 @@
+/* Destination Paradise — Colors & Type tokens (from claude design handoff) */
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("/fonts/PlayfairDisplay-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 400 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("/fonts/Montserrat-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kaushan Script";
+  src: url("/fonts/KaushanScript-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --dp-primary:        #1A4D6E;
+  --dp-secondary:      #215A7C;
+  --dp-accent:         #FF6F61;
+  --dp-hover:          #FF926B;
+  --dp-background:     #FAFBFD;
+  --dp-background-lt:  #ffffff;
+  --dp-background-dk:  #E2E6EC;
+  --dp-border:         #E1E6EB;
+  --dp-black:          #1A1A1A;
+  --dp-on-primary:     #ffffff;
+  --dp-box-shadow:     rgba(26, 77, 110, 0.2);
+
+  --dp-error:          #991b1b;
+  --dp-error-bg:       #fee2e2;
+  --dp-success:        #166534;
+  --dp-success-bg:     #dcfce7;
+
+  --dp-user-msg:       #FF9183;
+  --dp-assistant-msg:  #F4F7FA;
+
+  --dp-fg-1: var(--dp-primary);
+  --dp-fg-2: var(--dp-secondary);
+  --dp-fg-3: #4a6c82;
+  --dp-fg-invert: var(--dp-background);
+  --dp-bg-1: var(--dp-background);
+  --dp-bg-2: var(--dp-background-lt);
+  --dp-bg-3: var(--dp-background-dk);
+
+  --dp-gradient-button: linear-gradient(120deg, rgba(26, 77, 110, 0.8) 0%, rgba(255, 111, 97, 0.8) 100%);
+  --dp-gradient-button-hover: linear-gradient(120deg, rgba(19, 58, 83, 0.8) 0%, rgba(255, 79, 62, 0.8) 100%);
+  --dp-gradient-accent-bar: linear-gradient(90deg, var(--dp-accent), #2B6F93);
+  --dp-gradient-hero-scrim: linear-gradient(180deg, transparent 40%, rgba(26, 77, 110, 0.28));
+
+  --dp-font-display: "Playfair Display", Georgia, serif;
+  --dp-font-sans:    "Montserrat", Arial, sans-serif;
+  --dp-font-script:  "Kaushan Script", cursive;
+
+  --dp-fs-h1:  clamp(2.75rem, 4vw + 1rem, 7rem);
+  --dp-fs-h2:  clamp(1.6rem, 2vw + 0.6rem, 3.25rem);
+  --dp-fs-h3:  clamp(1.25rem, 1vw + 0.75rem, 1.6rem);
+  --dp-fs-h4:  1.3rem;
+  --dp-fs-h5:  1rem;
+  --dp-fs-body:     clamp(1rem, 0.5vw + 0.85rem, 1.25rem);
+  --dp-fs-body-sm:  0.875rem;
+  --dp-fs-caption:  0.72rem;
+  --dp-fs-eyebrow:  0.72rem;
+
+  --dp-space-1:  0.25rem;
+  --dp-space-2:  0.5rem;
+  --dp-space-3:  0.75rem;
+  --dp-space-4:  1rem;
+  --dp-space-5:  1.5rem;
+  --dp-space-6:  2rem;
+  --dp-space-7:  3rem;
+  --dp-space-8:  4rem;
+
+  --dp-radius-sm:  0.5rem;
+  --dp-radius-md:  10px;
+  --dp-radius-lg:  22px;
+  --dp-radius-xl:  28px;
+  --dp-radius-2xl: 32px;
+  --dp-radius-pill: 999px;
+
+  --dp-shadow-1: 0 4px 6px -6px rgba(0, 0, 0, 0.2);
+  --dp-shadow-2: 0 10px 26px rgba(26, 77, 110, 0.18);
+  --dp-shadow-3: 0 20px 45px rgba(26, 77, 110, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  --dp-shadow-4: 0 24px 60px rgba(26, 77, 110, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --dp-shadow-hover: 0 28px 55px rgba(26, 77, 110, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.92);
+
+  --dp-transition: all 0.3s ease-in-out;
+  --dp-ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --dp-container-sm:  768px;
+  --dp-container-md:  1000px;
+  --dp-container-lg:  1200px;
+  --dp-container-xl:  1400px;
+}

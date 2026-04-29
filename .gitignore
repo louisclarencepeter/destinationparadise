@@ -1,0 +1,10 @@
+node_modules
+dist
+.env
+.env.local
+.netlify
+.DS_Store
+*.log
+
+# Local Claude Code tooling (preview launch config, local settings)
+.claude/
