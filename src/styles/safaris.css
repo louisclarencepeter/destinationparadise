@@ -1,5 +1,6 @@
 .safaris-page {
   min-height: 100vh;
+  padding-top: var(--nav-height);
   background: var(--page-bg);
   color: var(--text);
 }
@@ -19,9 +20,11 @@
 }
 
 .safaris-page__nav {
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 80;
+  left: 0;
+  right: 0;
+  z-index: 1000;
   min-height: var(--nav-height);
   display: flex;
   align-items: center;
