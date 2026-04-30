@@ -6,5 +6,8 @@ dist
 .DS_Store
 *.log
 
+# Docs-side asset/archive snapshots
+docs/
+
 # Local Claude Code tooling (preview launch config, local settings)
 .claude/

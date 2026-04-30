@@ -3,6 +3,12 @@
 // Set ANTHROPIC_API_KEY in the Netlify site environment.
 // The frontend calls /api/planner (rewritten to this function via netlify.toml).
 
+const PLANNER_MODEL = 'claude-3-5-haiku-20241022';
+const MAX_REQUEST_BYTES = 20_000;
+const MAX_HISTORY_MESSAGES = 16;
+const MAX_MESSAGE_CHARS = 1_200;
+const MAX_TOTAL_CHARS = 6_000;
+
 const PLANNER_SYSTEM = `You are the Destination Paradise Trip Planner — a warm, conversational travel concierge for a small Zanzibar-based travel company. You ask thoughtful, focused questions one or two at a time to understand what kind of trip the guest wants, then draft a day-by-day itinerary.
 
 What you know:
@@ -17,9 +23,57 @@ Style:
 - Once you have enough, draft a clear day-by-day plan with location, what they do, suggested hotel tier, and approximate price range. End by saying "Want me to send this draft to the team to price and confirm?"
 - Never invent specific live availability or final prices — flag that the team will confirm.`;
 
+const plannerError = (reply, status = 400) =>
+  Response.json({ reply }, { status });
+
+function validateHistory(rawHistory) {
+  if (!Array.isArray(rawHistory)) {
+    return { ok: false, reply: 'Please send the planner history as a list of messages.' };
+  }
+
+  if (rawHistory.length > MAX_HISTORY_MESSAGES) {
+    return { ok: false, reply: 'That conversation is getting a little long. Please start over or send a shorter summary.' };
+  }
+
+  let totalChars = 0;
+  const messages = [];
+
+  for (const item of rawHistory) {
+    if (!item || (item.role !== 'user' && item.role !== 'assistant') || typeof item.content !== 'string') {
+      return { ok: false, reply: 'One of the planner messages was not in a format I can use. Please try again.' };
+    }
+
+    const content = item.content.trim();
+    if (!content) continue;
+
+    if (content.length > MAX_MESSAGE_CHARS) {
+      return { ok: false, reply: 'That message is a little too long for the quick planner. Please shorten it and try again.' };
+    }
+
+    totalChars += content.length;
+    if (totalChars > MAX_TOTAL_CHARS) {
+      return { ok: false, reply: 'That conversation is a little too long for the quick planner. Please start over with a shorter summary.' };
+    }
+
+    messages.push({ role: item.role, content });
+  }
+
+  return { ok: true, messages };
+}
+
 export default async (req) => {
   if (req.method !== 'POST') {
     return new Response('Method Not Allowed', { status: 405 });
+  }
+
+  const requestBytes = Number(req.headers.get('content-length') || 0);
+  if (requestBytes > MAX_REQUEST_BYTES) {
+    return plannerError('That request is too large for the quick planner. Please shorten it and try again.');
+  }
+
+  const contentType = req.headers.get('content-type') || '';
+  if (!contentType.includes('application/json')) {
+    return plannerError('Please send the planner request as JSON.', 415);
   }
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
@@ -30,14 +84,19 @@ export default async (req) => {
   }
 
   let body;
-  try { body = await req.json(); } catch { body = {}; }
-  const history = Array.isArray(body.history) ? body.history : [];
+  try {
+    body = await req.json();
+  } catch {
+    return plannerError('I could not read that planner request. Please try again.');
+  }
 
-  // Map UI history → Anthropic Messages API format
-  const messages = history
-    .filter((m) => m && (m.role === 'user' || m.role === 'assistant') && typeof m.content === 'string')
-    .map((m) => ({ role: m.role, content: m.content }));
+  // Map UI history → Anthropic Messages API format, with public-input guards.
+  const validation = validateHistory(body.history);
+  if (!validation.ok) {
+    return plannerError(validation.reply);
+  }
 
+  const { messages } = validation;
   if (messages.length === 0 || messages[messages.length - 1].role !== 'user') {
     return Response.json({ reply: 'Tell me a bit about the trip you have in mind?' }, { status: 200 });
   }
@@ -51,7 +110,7 @@ export default async (req) => {
         'anthropic-version': '2023-06-01',
       },
       body: JSON.stringify({
-        model: 'claude-haiku-4-5',
+        model: PLANNER_MODEL,
         max_tokens: 800,
         system: PLANNER_SYSTEM,
         messages,

@@ -1,15 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
+import { Fragment, useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import '../styles/homepage.css';
 
 const EXCURSIONS = [
-  { id: 'safari-blue', title: 'Safari Blue Dhow & Snorkel', category: 'Water', description: 'A full day aboard traditional sailing dhows — mangrove swims, sandbank picnics, snorkel reefs off Kwale island.', image: '/img/boat.jpg', duration: 'Full Day', price: 95, group: 'Up to 8', from: 'Fumba' },
-  { id: 'stone-town', title: 'Stone Town Heritage Walk', category: 'Culture', description: "A journey through timeless alleys where history resonates — carved doors, the Old Fort, spice markets and Freddie Mercury's birthplace.", image: '/img/stone-town.jpg', duration: 'Half Day', price: 55, group: 'Up to 6', from: 'Stone Town' },
-  { id: 'spice-tour', title: 'Spice & Culture Tour', category: 'Culture', description: 'A half-day journey through Central Zanzibar — cloves, nutmeg, cinnamon and the stories shaped by the Spice Islands.', image: '/img/mizingani.jpg', duration: 'Half Day', price: 45, group: 'Up to 8', from: 'Stone Town' },
-  { id: 'dream-dhow', title: 'Dream Dhow Sunset Cruise', category: 'Water', description: 'Two hours on the Indian Ocean at golden hour. Fresh fruit, traditional dhow, a swim if the mood strikes.', image: '/img/gallery/1.webp', duration: 'Evening', price: 60, group: 'Up to 10', from: 'Nungwi' },
-  { id: 'dolphins', title: 'Dolphin Snorkeling', category: 'Water', description: 'An early morning in Kizimkazi with bottlenose pods, followed by lunch at a beachfront local spot.', image: '/img/gallery/2.webp', duration: 'Half Day', price: 70, group: 'Up to 6', from: 'Kizimkazi' },
-  { id: 'prison-island', title: 'Prison Island & Giant Tortoises', category: 'Nature', description: 'A short crossing to Changuu — Aldabra tortoises over a century old, coral pools and a quiet beach.', image: '/img/gallery/3.webp', duration: 'Half Day', price: 50, group: 'Up to 8', from: 'Stone Town' },
+  { id: 'safari-blue', title: 'Safari Blue Dhow & Snorkel', category: 'Water', description: 'A full day aboard traditional sailing dhows — mangrove swims, sandbank picnics, snorkel reefs off Kwale island.', image: '/assets/images/excursions/safari-blue-sandbank.jpg', duration: 'Full Day', price: 95, group: 'Up to 8', from: 'Fumba' },
+  { id: 'stone-town', title: 'Stone Town Heritage Walk', category: 'Culture', description: "A journey through timeless alleys where history resonates — carved doors, the Old Fort, spice markets and Freddie Mercury's birthplace.", image: '/assets/images/excursions/stone-town-old-fort.jpg', duration: 'Half Day', price: 55, group: 'Up to 6', from: 'Stone Town' },
+  { id: 'spice-tour', title: 'Spice & Culture Tour', category: 'Culture', description: 'A half-day journey through Central Zanzibar — cloves, nutmeg, cinnamon and the stories shaped by the Spice Islands.', image: '/assets/images/excursions/spice-tour-nutmeg.webp', duration: 'Half Day', price: 45, group: 'Up to 8', from: 'Stone Town' },
+  { id: 'dream-dhow', title: 'Dream Dhow Sunset Cruise', category: 'Water', description: 'Two hours on the Indian Ocean at golden hour. Fresh fruit, traditional dhow, a swim if the mood strikes.', image: '/assets/images/excursions/dream-dhow-sunset.jpeg', duration: 'Evening', price: 60, group: 'Up to 10', from: 'Nungwi' },
+  { id: 'dolphins', title: 'Dolphin Snorkeling', category: 'Water', description: 'An early morning in Kizimkazi with bottlenose pods, followed by lunch at a beachfront local spot.', image: '/assets/images/excursions/dolphin-snorkeling.jpg', duration: 'Half Day', price: 70, group: 'Up to 6', from: 'Kizimkazi' },
+  { id: 'prison-island', title: 'Prison Island & Giant Tortoises', category: 'Nature', description: 'A short crossing to Changuu — Aldabra tortoises over a century old, coral pools and a quiet beach.', image: '/assets/images/excursions/prison-island-tortoise.webp', duration: 'Half Day', price: 50, group: 'Up to 8', from: 'Stone Town' },
 ];
 
 const PINS = [
@@ -47,7 +48,7 @@ const MONTHS = [
   { m: 'Dec', t: 31, season: 'peak' },  // festive premium
 ];
 const SCORES = [72, 78, 62, 42, 56, 82, 92, 95, 90, 80, 55, 68];
-const NOW_MONTH = 3;
+const NOW_MONTH = new Date().getMonth();
 
 const TWEAKS_DEFAULTS = { hero: 'photo', layout: '3up', theme: 'light' };
 
@@ -56,6 +57,47 @@ const ArrowIcon = (p) => (
     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
   </svg>
 );
+
+const renderInlineFormatting = (text) => {
+  const parts = [];
+  const pattern = /(\*\*([^*\n]+)\*\*|\*([^*\n]+)\*)/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = pattern.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.slice(lastIndex, match.index));
+    }
+
+    if (match[2]) {
+      parts.push(<strong key={`strong-${match.index}`}>{match[2]}</strong>);
+    } else {
+      parts.push(<em key={`em-${match.index}`}>{match[3]}</em>);
+    }
+
+    lastIndex = pattern.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.slice(lastIndex));
+  }
+
+  return parts;
+};
+
+const renderFormattedText = (text) =>
+  (text || '')
+    .split(/\n\n+/)
+    .map((paragraph, paragraphIndex) => (
+      <p key={paragraphIndex}>
+        {paragraph.split('\n').map((line, lineIndex) => (
+          <Fragment key={lineIndex}>
+            {lineIndex > 0 && <br />}
+            {renderInlineFormatting(line)}
+          </Fragment>
+        ))}
+      </p>
+    ));
 
 function loadTweaks() {
   try {
@@ -72,6 +114,7 @@ export default function Homepage() {
   const [navOpen, setNavOpen] = useState(false);
   const [tweaksOpen, setTweaksOpen] = useState(false);
   const [tweaksGearVisible, setTweaksGearVisible] = useState(false);
+  const [plannerPrompt, setPlannerPrompt] = useState(null);
 
   // Persist theme + tweaks
   useEffect(() => {
@@ -113,6 +156,22 @@ export default function Homepage() {
   const setTweak = (key, val) => setTweaks((s) => ({ ...s, [key]: val }));
 
   const filteredEx = EXCURSIONS.filter((t) => activeCat === 'All' || t.category === activeCat).slice(0, 6);
+
+  const handleHeroSearch = (e) => {
+    e.preventDefault();
+    const fields = new FormData(e.currentTarget);
+    const excursion = fields.get('excursion') || 'Any experience';
+    const date = fields.get('date') || '';
+    const guests = fields.get('guests') || '2 guests';
+    const experienceText = excursion === 'Any experience' ? 'a recommended Zanzibar experience' : excursion;
+    const dateText = date ? ` on ${date}` : ' on flexible dates';
+
+    setPlannerPrompt({
+      id: Date.now(),
+      text: `I'm looking for ${experienceText}${dateText} for ${guests}. Can you suggest the best fit and ask me anything else you need?`,
+    });
+    document.getElementById('planner')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   // ---- Leaflet map (Zanzibar + Tanzania mainland) ----
   const mapElRef = useRef(null);
@@ -198,7 +257,7 @@ export default function Homepage() {
       {/* ============ NAV ============ */}
       <nav className="nav" id="top">
         <a className="nav__logo" href="#top">
-          <img src="/img/logo-primary.png" alt="Destination Paradise" />
+          <img src="/assets/brand/destination-paradise-logo.png" alt="Destination Paradise" />
           <span className="nav__logo-text">Destination Paradise<small>Zanzibar Island</small></span>
         </a>
         <ul className={`nav__menu${navOpen ? ' nav__menu--open' : ''}`} id="navMenu" onClick={(e) => { if (e.target.tagName === 'A') setNavOpen(false); }}>
@@ -225,8 +284,8 @@ export default function Homepage() {
               </svg>
             )}
           </button>
-          <a className="btn" href="#contact" style={{ padding: '.65rem 1.1rem' }}>
-            Book Now <ArrowIcon size={16} />
+          <a className="btn nav__cta" href="#contact">
+            <span className="nav__cta-text">Book Now</span> <ArrowIcon size={16} />
           </a>
           <button className="nav__burger" aria-label="Menu" onClick={() => setNavOpen((v) => !v)}>
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
@@ -238,7 +297,7 @@ export default function Homepage() {
 
       {/* ============ HERO ============ */}
       <section className={`hero hero--${tweaks.hero}`} id="hero">
-        <div className="hero__bg"><img src="/img/boat.jpg" alt="" /></div>
+        <div className="hero__bg"><img src="/assets/images/home/aerial-boats-turquoise-water.jpg" alt="" /></div>
         <div className="hero__content">
           <span className="hero__eyebrow">Guided excursions · Since 2015</span>
           <h1 className="hero__title">Destination Paradise</h1>
@@ -248,10 +307,10 @@ export default function Homepage() {
             <a className="btn" href="#excursions">Browse excursions <ArrowIcon size={18} /></a>
             <a className="btn btn--ghost" href="#map">Explore the island</a>
           </div>
-          <div className="hero__search">
+          <form className="hero__search" onSubmit={handleHeroSearch}>
             <div className="hero__search-field">
               <label>Excursion</label>
-              <select defaultValue="Any experience">
+              <select name="excursion" defaultValue="Any experience">
                 <option>Any experience</option>
                 <option>Stone Town Heritage Walk</option>
                 <option>Safari Blue Dhow</option>
@@ -262,11 +321,11 @@ export default function Homepage() {
             </div>
             <div className="hero__search-field">
               <label>Date</label>
-              <input type="date" defaultValue="2026-05-12" />
+              <input type="date" name="date" defaultValue="2026-05-12" />
             </div>
             <div className="hero__search-field">
               <label>Guests</label>
-              <select defaultValue="2 guests">
+              <select name="guests" defaultValue="2 guests">
                 <option>1 guest</option>
                 <option>2 guests</option>
                 <option>3 guests</option>
@@ -274,13 +333,13 @@ export default function Homepage() {
                 <option>5+ guests</option>
               </select>
             </div>
-            <button className="hero__search-submit">
+            <button className="hero__search-submit" type="submit">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
                 <circle cx="11" cy="11" r="8" /><path d="M21 21l-4.35-4.35" />
               </svg>
               Find trips
             </button>
-          </div>
+          </form>
         </div>
         <div className="hero__scroll"><span>Scroll</span><div className="hero__scroll-line"></div></div>
       </section>
@@ -304,7 +363,7 @@ export default function Homepage() {
         </header>
         <div className="excursions__grid">
           {filteredEx.map((t) => (
-            <article className="ex-card" key={t.id}>
+            <Link className="ex-card" key={t.id} to={`/excursions/${t.id}`} aria-label={`Explore ${t.title}`}>
               <div className="ex-card__img">
                 <img src={t.image} alt={t.title} />
                 <span className="ex-card__badge">{t.duration}</span>
@@ -331,11 +390,11 @@ export default function Homepage() {
                 <p className="ex-card__text">{t.description}</p>
                 <span className="ex-card__link">Explore this trip <ArrowIcon size={15} /></span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
         <div className="excursions__more">
-          <a className="btn btn--on-light" href="#contact">View all 14 excursions <ArrowIcon size={16} /></a>
+          <Link className="btn btn--on-light" to="/excursions">View all 14 excursions <ArrowIcon size={16} /></Link>
         </div>
       </section>
 
@@ -458,7 +517,7 @@ export default function Homepage() {
       </section>
 
       {/* ============ TRIP PLANNER ============ */}
-      <TripPlanner />
+      <TripPlanner initialPrompt={plannerPrompt} />
 
       {/* ============ WHY ============ */}
       <section className="why reveal" id="why">
@@ -667,11 +726,11 @@ export default function Homepage() {
           <p className="section-lead">Real photos from recent trips. No stock, no filters — just the island as we found it.</p>
         </div>
         <div className="gallery-strip">
-          <figure className="gallery-tile gallery-tile--tall"><img src="/img/gallery/1.webp" alt="" /><figcaption className="gallery-tile__caption">Dhow at golden hour</figcaption></figure>
-          <figure className="gallery-tile"><img src="/img/stone-town.jpg" alt="" /><figcaption className="gallery-tile__caption">Stone Town doors</figcaption></figure>
-          <figure className="gallery-tile gallery-tile--wide"><img src="/img/gallery/2.webp" alt="" /><figcaption className="gallery-tile__caption">Reef drift</figcaption></figure>
-          <figure className="gallery-tile"><img src="/img/mizingani.jpg" alt="" /><figcaption className="gallery-tile__caption">Mizingani morning</figcaption></figure>
-          <figure className="gallery-tile gallery-tile--tall"><img src="/img/gallery/3.webp" alt="" /><figcaption className="gallery-tile__caption">Sandbank picnic</figcaption></figure>
+          <figure className="gallery-tile gallery-tile--tall"><img src="/assets/images/excursions/dream-dhow-sunset.jpeg" alt="" /><figcaption className="gallery-tile__caption">Dream Dhow sunset</figcaption></figure>
+          <figure className="gallery-tile"><img src="/assets/images/excursions/stone-town-old-fort.jpg" alt="" /><figcaption className="gallery-tile__caption">Stone Town Old Fort</figcaption></figure>
+          <figure className="gallery-tile gallery-tile--wide"><img src="/assets/images/excursions/dolphin-snorkeling.jpg" alt="" /><figcaption className="gallery-tile__caption">Dolphin snorkel</figcaption></figure>
+          <figure className="gallery-tile"><img src="/assets/images/home/mizingani-waterfront.jpg" alt="" /><figcaption className="gallery-tile__caption">Mizingani morning</figcaption></figure>
+          <figure className="gallery-tile gallery-tile--tall"><img src="/assets/images/excursions/safari-blue-sandbank.jpg" alt="" /><figcaption className="gallery-tile__caption">Safari Blue sandbank</figcaption></figure>
         </div>
       </section>
 
@@ -685,17 +744,17 @@ export default function Homepage() {
           <figure className="tm">
             <div className="tm__mark">"</div>
             <blockquote className="tm__quote">You can walk the mangroves and enjoy the best sunset ever. Thanks to the team — the warmth and care were unreal.</blockquote>
-            <div className="tm__foot"><img className="tm__avatar" src="/img/gallery/1.webp" alt="" /><div><div className="tm__name">Isa Jua</div><div className="tm__trip">Mangroves &amp; Sunset</div></div><div className="tm__stars">★★★★★</div></div>
+            <div className="tm__foot"><img className="tm__avatar" src="/assets/images/testimonials/isa.jpg" alt="" /><div><div className="tm__name">Isa Jua</div><div className="tm__trip">Mangroves &amp; Sunset</div></div><div className="tm__stars">★★★★★</div></div>
           </figure>
           <figure className="tm">
             <div className="tm__mark">"</div>
             <blockquote className="tm__quote">Our guide was knowledgeable, upbeat and friendly. The dhow was beautiful, the lagoon unforgettable. Booked again before leaving.</blockquote>
-            <div className="tm__foot"><img className="tm__avatar" src="/img/gallery/2.webp" alt="" /><div><div className="tm__name">Arturo García</div><div className="tm__trip">Safari Blue Dhow</div></div><div className="tm__stars">★★★★★</div></div>
+            <div className="tm__foot"><img className="tm__avatar" src="/assets/images/testimonials/arturo.jpg" alt="" /><div><div className="tm__name">Arturo García</div><div className="tm__trip">Safari Blue Dhow</div></div><div className="tm__stars">★★★★★</div></div>
           </figure>
           <figure className="tm">
             <div className="tm__mark">"</div>
             <blockquote className="tm__quote">We smelled every spice, asked a hundred questions, and the team went above and beyond to answer them all. Best day of our trip.</blockquote>
-            <div className="tm__foot"><img className="tm__avatar" src="/img/gallery/3.webp" alt="" /><div><div className="tm__name">Coleman Reid</div><div className="tm__trip">Spice &amp; Culture Tour</div></div><div className="tm__stars">★★★★★</div></div>
+            <div className="tm__foot"><img className="tm__avatar" src="/assets/images/testimonials/coleman.jpg" alt="" /><div><div className="tm__name">Coleman Reid</div><div className="tm__trip">Spice &amp; Culture Tour</div></div><div className="tm__stars">★★★★★</div></div>
           </figure>
         </div>
       </section>
@@ -711,7 +770,7 @@ export default function Homepage() {
         <div className="footer__inner">
           <div className="footer__brand">
             <div className="footer__logo">
-              <img src="/img/logo-primary.png" alt="Destination Paradise" />
+              <img src="/assets/brand/destination-paradise-logo.png" alt="Destination Paradise" />
               <span className="footer__logo-text">Destination Paradise<small>Zanzibar Island</small></span>
             </div>
             <p>A small, local travel company on the shores of Zanzibar. Unhurried days, traditional boats, and guides who grew up here.</p>
@@ -724,13 +783,13 @@ export default function Homepage() {
               <a href="https://x.com/destinationxpar" target="_blank" rel="noreferrer" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" /></svg></a>
             </div>
           </div>
-          <div className="footer__col"><h4>Excursions</h4><ul><li><a href="#">Safari Blue Dhow</a></li><li><a href="#">Stone Town Walk</a></li><li><a href="#">Spice Tour</a></li><li><a href="#">Dream Dhow Sunset</a></li><li><a href="#">Dolphin Snorkel</a></li><li><a href="#">Prison Island</a></li></ul></div>
-          <div className="footer__col"><h4>Company</h4><ul><li><a href="#">Our story</a></li><li><a href="#">Guides</a></li><li><a href="#">Sustainability</a></li><li><a href="#">Press</a></li><li><a href="#">Careers</a></li></ul></div>
+          <div className="footer__col"><h4>Excursions</h4><ul><li><Link to="/excursions/safari-blue">Safari Blue Dhow</Link></li><li><Link to="/excursions/stone-town">Stone Town Walk</Link></li><li><Link to="/excursions/spice-tour">Spice Tour</Link></li><li><Link to="/excursions/dream-dhow">Dream Dhow Sunset</Link></li><li><Link to="/excursions/dolphins">Dolphin Snorkel</Link></li><li><Link to="/excursions/prison-island">Prison Island</Link></li></ul></div>
+          <div className="footer__col"><h4>Company</h4><ul><li><Link to="/aboutus">Our story</Link></li><li><Link to="/aboutus">Guides</Link></li><li><Link to="/aboutus">Sustainability</Link></li><li><Link to="/aboutus">Press</Link></li><li><Link to="/aboutus">Careers</Link></li></ul></div>
           <div className="footer__col"><h4>Get in touch</h4><ul><li><a href="mailto:info@yournexttriptoparadise.com">info@yournexttriptoparadise.com</a></li><li><a href="tel:+255768779517">+255 768 779 517</a></li><li><a href="tel:+255748352657">+255 748 352 657</a></li><li><a href="#contact">Zanzibar, Tanzania</a></li><li><a href="https://wa.me/message/YCOQDKJSDMXFD1" target="_blank" rel="noreferrer">WhatsApp us</a></li></ul></div>
         </div>
         <div className="footer__bottom">
           <span>© {new Date().getFullYear()} Destination Paradise · Zanzibar, Tanzania</span>
-          <span><a href="#">Privacy</a> <a href="#">Terms</a> <a href="#">Cookies</a></span>
+          <span><Link to="/privacy-policy">Privacy</Link> <Link to="/terms-of-service">Terms</Link> <Link to="/cookies-policy">Cookies</Link></span>
         </div>
       </footer>
 
@@ -772,29 +831,18 @@ export default function Homepage() {
 }
 
 /* ============ TRIP PLANNER ============ */
-function TripPlanner() {
+function TripPlanner({ initialPrompt }) {
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const [resetKey, setResetKey] = useState(0);
   const logRef = useRef(null);
   const inputRef = useRef(null);
+  const handledPromptRef = useRef(null);
 
   useEffect(() => {
     if (logRef.current) logRef.current.scrollTop = logRef.current.scrollHeight;
   }, [history, sending]);
-
-  const renderBubble = (text) =>
-    (text || '')
-      .split(/\n\n+/)
-      .map((p, i) => (
-        <p key={i} dangerouslySetInnerHTML={{
-          __html: p
-            .replace(/\n/g, '<br/>')
-            .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-            .replace(/\*([^*]+)\*/g, '<em>$1</em>'),
-        }} />
-      ));
 
   async function send(text) {
     if (!text || sending) return;
@@ -819,6 +867,12 @@ function TripPlanner() {
       if (inputRef.current) inputRef.current.focus();
     }
   }
+
+  useEffect(() => {
+    if (!initialPrompt || handledPromptRef.current === initialPrompt.id || sending) return;
+    handledPromptRef.current = initialPrompt.id;
+    send(initialPrompt.text);
+  }, [initialPrompt, sending]);
 
   return (
     <section className="planner reveal" id="planner">
@@ -867,7 +921,7 @@ function TripPlanner() {
             </div>
             {history.map((m, i) => (
               <div key={i} className={`planner__msg planner__msg--${m.role === 'user' ? 'user' : 'bot'}`}>
-                <div className="planner__bubble">{renderBubble(m.content)}</div>
+                <div className="planner__bubble">{renderFormattedText(m.content)}</div>
               </div>
             ))}
             {sending && (
@@ -939,17 +993,20 @@ function NewsletterSection() {
   const [email, setEmail] = useState('');
   const [done, setDone] = useState(false);
   const [pending, setPending] = useState(false);
+  const [error, setError] = useState(false);
 
   const onSubmit = async (e) => {
     e.preventDefault();
     if (pending || done) return;
     setPending(true);
+    setError(false);
     try {
-      await postNetlifyForm('newsletter', { email });
+      const res = await postNetlifyForm('newsletter', { email });
+      if (!res.ok) throw new Error('newsletter-submit-failed');
       setDone(true);
       setEmail('');
     } catch {
-      /* swallow — Netlify retries are out of scope here */
+      setError(true);
     } finally {
       setPending(false);
     }
@@ -987,6 +1044,11 @@ function NewsletterSection() {
           <span>{done ? 'Sent' : pending ? 'Sending…' : 'Subscribe'}</span>
         </button>
       </form>
+      {error && (
+        <p className="newsletter__note newsletter__note--error" role="status">
+          That did not go through. Please try again in a moment.
+        </p>
+      )}
     </section>
   );
 }
@@ -1022,24 +1084,52 @@ function ContactSection() {
       <div className="contact__grid">
         <aside className="contact__details">
           <div className="contact__detail">
-            <span className="contact__detail-label">Email</span>
+            <span className="contact__detail-label">
+              <svg className="contact__detail-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                <polyline points="22,6 12,13 2,6" />
+              </svg>
+              Email
+            </span>
             <a className="contact__detail-value" href="mailto:info@yournexttriptoparadise.com">info@yournexttriptoparadise.com</a>
           </div>
           <div className="contact__detail">
-            <span className="contact__detail-label">Phone</span>
+            <span className="contact__detail-label">
+              <svg className="contact__detail-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+              Phone
+            </span>
             <a className="contact__detail-value" href="tel:+255768779517">+255 768 779 517</a>
             <a className="contact__detail-value" href="tel:+255748352657">+255 748 352 657</a>
           </div>
           <div className="contact__detail">
-            <span className="contact__detail-label">WhatsApp</span>
+            <span className="contact__detail-label">
+              <svg className="contact__detail-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.47-.148-.669.15-.198.296-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413" />
+              </svg>
+              WhatsApp
+            </span>
             <a className="contact__detail-value" href="https://wa.me/message/YCOQDKJSDMXFD1" target="_blank" rel="noreferrer">Message us on WhatsApp</a>
           </div>
           <div className="contact__detail">
-            <span className="contact__detail-label">Find us</span>
+            <span className="contact__detail-label">
+              <svg className="contact__detail-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Find us
+            </span>
             <span className="contact__detail-value">Zanzibar, Tanzania</span>
           </div>
           <div className="contact__detail">
-            <span className="contact__detail-label">Hours</span>
+            <span className="contact__detail-label">
+              <svg className="contact__detail-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              Hours
+            </span>
             <span className="contact__detail-value">Daily · 8:00 – 19:00 EAT</span>
           </div>
         </aside>

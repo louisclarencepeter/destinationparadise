@@ -53,10 +53,14 @@ way the homepage was — paste the next Claude design and we port it.
 
 ```
 public/
-  fonts/        # Playfair Display, Montserrat, Kaushan Script (from design)
-  img/          # All homepage images (from design)
-    gallery/    #   1-4.webp
-  _redirects    # SPA fallback (also defined in netlify.toml)
+  assets/
+    brand/       # Destination Paradise logo assets
+    fonts/       # Playfair Display, Montserrat, Kaushan Script
+    images/
+      home/      # Homepage hero and place images
+      excursions/ # Trip-specific card/gallery images
+      testimonials/ # Guest avatar images
+  _redirects     # SPA fallback (also defined in netlify.toml)
 src/
   main.jsx
   App.jsx
@@ -77,10 +81,10 @@ netlify.toml    # Build + redirects (/api/planner → function)
 **From the design (`/tmp/dp-design/destination-paradise/project/`):**
 
 - `Homepage.html` → `src/pages/Homepage.jsx` (markup ported, scripts rewritten as React state/effects)
-- `styles.css` → `src/styles/homepage.css` (verbatim, with `assets/img/...` rewritten to `/img/...`)
+- `styles.css` → `src/styles/homepage.css` (verbatim, with asset URLs rewritten to `/assets/...`)
 - `assets/colors_and_type.css` → `src/styles/tokens.css` (verbatim, with font URLs rewritten)
-- `assets/fonts/*` → `public/fonts/*`
-- `assets/img/*` → `public/img/*`
+- `assets/fonts/*` → `public/assets/fonts/*`
+- `assets/img/*` → `public/assets/images/*` and `public/assets/brand/*`
 
 **Filled in:**
 
