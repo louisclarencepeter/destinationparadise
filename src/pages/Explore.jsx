@@ -1,4 +1,5 @@
 import '../styles/homepage.css';
+import { Link } from 'react-router-dom';
 
 const PLACES = [
   'Stone Town',
@@ -25,7 +26,7 @@ export default function Explore() {
         </header>
         <div className="standalone-tag-grid">
           {PLACES.map((place) => (
-            <a className="standalone-tag" href="/#map" key={place}>{place}</a>
+            <Link className="standalone-tag" to="/#map" key={place}>{place}</Link>
           ))}
         </div>
       </section>

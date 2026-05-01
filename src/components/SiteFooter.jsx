@@ -1,7 +1,8 @@
 import { Link } from 'react-router-dom';
 import '../styles/homepage.css';
+import { CONTACT_INFO, SOCIAL_LINKS } from '../constants/contactInfo.js';
 
-export const WHATSAPP_URL = 'https://wa.me/message/YCOQDKJSDMXFD1';
+export const WHATSAPP_URL = CONTACT_INFO.whatsappUrl;
 
 export const WhatsAppIcon = ({ size = 20 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -32,15 +33,15 @@ export default function SiteFooter() {
           <p className="footer__script">your next trip to paradise...</p>
           <div className="footer__socials">
             <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label="WhatsApp"><WhatsAppIcon /></a>
-            <a href="https://www.instagram.com/yournexttriptoparadise/" target="_blank" rel="noreferrer" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" strokeWidth="2" /></svg></a>
-            <a href="https://www.facebook.com/yournexttriptoparadise/" target="_blank" rel="noreferrer" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg></a>
-            <a href="https://www.youtube.com/@destinationparadisezanzibar" target="_blank" rel="noreferrer" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg></a>
-            <a href="https://x.com/destinationxpar" target="_blank" rel="noreferrer" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" /></svg></a>
+            <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" strokeWidth="2" /></svg></a>
+            <a href={SOCIAL_LINKS.facebook} target="_blank" rel="noreferrer" aria-label="Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg></a>
+            <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noreferrer" aria-label="YouTube"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" /></svg></a>
+            <a href={SOCIAL_LINKS.x} target="_blank" rel="noreferrer" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" /></svg></a>
           </div>
         </div>
         <div className="footer__col"><h4>Pages</h4><ul><li><Link to="/">Home</Link></li><li><Link to="/excursions">Excursions</Link></li><li><Link to="/safaris">Safaris</Link></li><li><Link to="/packages">Packages</Link></li><li><Link to="/trip-planner">Trip Planner</Link></li><li><Link to="/explore">Explore</Link></li></ul></div>
         <div className="footer__col"><h4>Company</h4><ul><li><Link to="/aboutus">Our story</Link></li><li><Link to="/aboutus">Guides</Link></li><li><Link to="/aboutus">Sustainability</Link></li><li><Link to="/aboutus">Press</Link></li><li><Link to="/aboutus">Careers</Link></li></ul></div>
-        <div className="footer__col"><h4>Get in touch</h4><ul><li><a href="mailto:info@yournexttriptoparadise.com">info@yournexttriptoparadise.com</a></li><li><a href="tel:+255768779517">+255 768 779 517</a></li><li><a href="tel:+255748352657">+255 748 352 657</a></li><li><Link to="/#contact">Zanzibar, Tanzania</Link></li><li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">WhatsApp us</a></li></ul></div>
+        <div className="footer__col"><h4>Get in touch</h4><ul><li><a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a></li><li><a href={`tel:${CONTACT_INFO.phones[0]}`}>+255 768 779 517</a></li><li><a href={`tel:${CONTACT_INFO.phones[1]}`}>+255 748 352 657</a></li><li><Link to="/#contact">{CONTACT_INFO.location}</Link></li><li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">WhatsApp us</a></li></ul></div>
       </div>
       <div className="footer__bottom">
         <span>© {new Date().getFullYear()} Destination Paradise · Zanzibar, Tanzania</span>

@@ -1,18 +1,13 @@
-import { Fragment, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import '../styles/homepage.css';
 import { SAFARI_TRIPS } from '../data/safariAssets.js';
-
-const EXCURSIONS = [
-  { id: 'safari-blue', title: 'Safari Blue Dhow & Snorkel', category: 'Water', description: 'A full day aboard traditional sailing dhows — mangrove swims, sandbank picnics, snorkel reefs off Kwale island.', image: '/assets/images/excursions/safari-blue-sandbank.jpg', duration: 'Full Day', price: 95, group: 'Up to 8', from: 'Fumba' },
-  { id: 'stone-town', title: 'Stone Town Heritage Walk', category: 'Culture', description: "A journey through timeless alleys where history resonates — carved doors, the Old Fort, spice markets and Freddie Mercury's birthplace.", image: '/assets/images/excursions/stone-town-old-fort.jpg', duration: 'Half Day', price: 55, group: 'Up to 6', from: 'Stone Town' },
-  { id: 'spice-tour', title: 'Spice & Culture Tour', category: 'Culture', description: 'A half-day journey through Central Zanzibar — cloves, nutmeg, cinnamon and the stories shaped by the Spice Islands.', image: '/assets/images/excursions/spice-tour-nutmeg.webp', duration: 'Half Day', price: 45, group: 'Up to 8', from: 'Stone Town' },
-  { id: 'dream-dhow', title: 'Dream Dhow Sunset Cruise', category: 'Water', description: 'Two hours on the Indian Ocean at golden hour. Fresh fruit, traditional dhow, a swim if the mood strikes.', image: '/assets/images/excursions/dream-dhow-sunset.jpeg', duration: 'Evening', price: 60, group: 'Up to 10', from: 'Nungwi' },
-  { id: 'dolphins', title: 'Dolphin Snorkeling', category: 'Water', description: 'An early morning in Kizimkazi with bottlenose pods, followed by lunch at a beachfront local spot.', image: '/assets/images/excursions/dolphin-snorkeling.jpg', duration: 'Half Day', price: 70, group: 'Up to 6', from: 'Kizimkazi' },
-  { id: 'prison-island', title: 'Prison Island & Giant Tortoises', category: 'Nature', description: 'A short crossing to Changuu — Aldabra tortoises over a century old, coral pools and a quiet beach.', image: '/assets/images/excursions/prison-island-tortoise.webp', duration: 'Half Day', price: 50, group: 'Up to 8', from: 'Stone Town' },
-];
+import { EXCURSIONS } from '../data/excursionsData.js';
+import PlannerSection from '../components/homepage/PlannerSection.jsx';
+import ContactSection from '../components/homepage/ContactSection.jsx';
+import NewsletterSection from '../components/homepage/NewsletterSection.jsx';
 
 const PINS = [
   // Zanzibar — the island
@@ -52,54 +47,12 @@ const SCORES = [72, 78, 62, 42, 56, 82, 92, 95, 90, 80, 55, 68];
 const NOW_MONTH = new Date().getMonth();
 
 const TWEAKS_DEFAULTS = { hero: 'photo', layout: '3up', theme: 'light' };
-const PLANNER_TITLE = 'Tell me about your dream trip';
 
 const ArrowIcon = (p) => (
   <svg width={p.size || 16} height={p.size || 16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
     <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
   </svg>
 );
-
-const renderInlineFormatting = (text) => {
-  const parts = [];
-  const pattern = /(\*\*([^*\n]+)\*\*|\*([^*\n]+)\*)/g;
-  let lastIndex = 0;
-  let match;
-
-  while ((match = pattern.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      parts.push(text.slice(lastIndex, match.index));
-    }
-
-    if (match[2]) {
-      parts.push(<strong key={`strong-${match.index}`}>{match[2]}</strong>);
-    } else {
-      parts.push(<em key={`em-${match.index}`}>{match[3]}</em>);
-    }
-
-    lastIndex = pattern.lastIndex;
-  }
-
-  if (lastIndex < text.length) {
-    parts.push(text.slice(lastIndex));
-  }
-
-  return parts;
-};
-
-const renderFormattedText = (text) =>
-  (text || '')
-    .split(/\n\n+/)
-    .map((paragraph, paragraphIndex) => (
-      <p key={paragraphIndex}>
-        {paragraph.split('\n').map((line, lineIndex) => (
-          <Fragment key={lineIndex}>
-            {lineIndex > 0 && <br />}
-            {renderInlineFormatting(line)}
-          </Fragment>
-        ))}
-      </p>
-    ));
 
 function loadTweaks() {
   try {
@@ -469,7 +422,7 @@ export default function Homepage() {
       </section>
 
       {/* ============ TRIP PLANNER ============ */}
-      <TripPlanner initialPrompt={plannerPrompt} />
+  <PlannerSection initialPrompt={plannerPrompt} />
 
       {/* ============ WHY ============ */}
       <section className="why reveal" id="why">
@@ -522,14 +475,17 @@ export default function Homepage() {
                 {islandPins.map((p) => {
                   const i = PINS.findIndex((x) => x.id === p.id);
                   return (
-                    <li
-                      key={p.id}
-                      className={p.id === activePin ? 'is-active' : ''}
-                      onClick={() => setActivePin(p.id)}
-                    >
-                      <span className="num">{i + 1}</span>
-                      <span>{p.name}</span>
-                      <span style={{ marginLeft: 'auto', fontSize: 12, color: 'var(--text-muted)', fontWeight: 500 }}>{p.desc}</span>
+                    <li key={p.id} className={p.id === activePin ? 'is-active' : ''}>
+                      <button
+                        type="button"
+                        className="map-list__button"
+                        aria-pressed={p.id === activePin}
+                        onClick={() => setActivePin(p.id)}
+                      >
+                        <span className="num">{i + 1}</span>
+                        <span>{p.name}</span>
+                        <span style={{ marginLeft: 'auto', fontSize: 12, color: 'var(--text-muted)', fontWeight: 500 }}>{p.desc}</span>
+                      </button>
                     </li>
                   );
                 })}
@@ -540,14 +496,17 @@ export default function Homepage() {
                 {mainlandPins.map((p) => {
                   const i = PINS.findIndex((x) => x.id === p.id);
                   return (
-                    <li
-                      key={p.id}
-                      className={p.id === activePin ? 'is-active' : ''}
-                      onClick={() => setActivePin(p.id)}
-                    >
-                      <span className="num">{i + 1}</span>
-                      <span>{p.name}</span>
-                      <span style={{ marginLeft: 'auto', fontSize: 12, color: 'var(--text-muted)', fontWeight: 500 }}>{p.desc}</span>
+                    <li key={p.id} className={p.id === activePin ? 'is-active' : ''}>
+                      <button
+                        type="button"
+                        className="map-list__button"
+                        aria-pressed={p.id === activePin}
+                        onClick={() => setActivePin(p.id)}
+                      >
+                        <span className="num">{i + 1}</span>
+                        <span>{p.name}</span>
+                        <span style={{ marginLeft: 'auto', fontSize: 12, color: 'var(--text-muted)', fontWeight: 500 }}>{p.desc}</span>
+                      </button>
                     </li>
                   );
                 })}
@@ -746,397 +705,5 @@ export default function Homepage() {
         ))}
       </aside>
     </>
-  );
-}
-
-/* ============ TRIP PLANNER ============ */
-function TripPlanner({ initialPrompt }) {
-  const [history, setHistory] = useState([]);
-  const [input, setInput] = useState('');
-  const [sending, setSending] = useState(false);
-  const [resetKey, setResetKey] = useState(0);
-  const [typedTitle, setTypedTitle] = useState(PLANNER_TITLE);
-  const [titleTyping, setTitleTyping] = useState(false);
-  const logRef = useRef(null);
-  const inputRef = useRef(null);
-  const handledPromptRef = useRef(null);
-
-  useEffect(() => {
-    if (logRef.current) logRef.current.scrollTop = logRef.current.scrollHeight;
-  }, [history, sending]);
-
-  useEffect(() => {
-    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      setTypedTitle(PLANNER_TITLE);
-      setTitleTyping(false);
-      return undefined;
-    }
-
-    let timeoutId;
-    let index = 0;
-    setTypedTitle('');
-    setTitleTyping(true);
-
-    const typeNext = () => {
-      index += 1;
-      setTypedTitle(PLANNER_TITLE.slice(0, index));
-
-      if (index >= PLANNER_TITLE.length) {
-        setTitleTyping(false);
-        return;
-      }
-
-      const char = PLANNER_TITLE[index - 1];
-      const nextChar = PLANNER_TITLE[index];
-      const pause = char === ' ' || nextChar === ' ' ? 94 : 42 + ((index % 5) * 13);
-      timeoutId = window.setTimeout(typeNext, pause);
-    };
-
-    timeoutId = window.setTimeout(typeNext, 360);
-    return () => window.clearTimeout(timeoutId);
-  }, []);
-
-  async function send(text) {
-    if (!text || sending) return;
-    const next = [...history, { role: 'user', content: text }];
-    setHistory(next);
-    setInput('');
-    setSending(true);
-    if (inputRef.current) inputRef.current.style.height = 'auto';
-    try {
-      const res = await fetch('/api/planner', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ history: next }),
-      });
-      const data = await res.json();
-      const reply = data.reply || "Hmm, I lost my train of thought. Could you say that again?";
-      setHistory((h) => [...h, { role: 'assistant', content: reply }]);
-    } catch (err) {
-      setHistory((h) => [...h, { role: 'assistant', content: "Pole sana — I couldn't reach the planner just now. Try again in a moment, or message the team directly via the WhatsApp button." }]);
-    } finally {
-      setSending(false);
-      if (inputRef.current) inputRef.current.focus();
-    }
-  }
-
-  useEffect(() => {
-    if (!initialPrompt || handledPromptRef.current === initialPrompt.id || sending) return;
-    handledPromptRef.current = initialPrompt.id;
-    send(initialPrompt.text);
-  }, [initialPrompt, sending]);
-
-  return (
-    <section className="planner reveal" id="planner">
-      <div className="planner__wrap">
-        <div className="planner__intro">
-          <span className="section-eyebrow planner__eyebrow"><span className="planner__pulse"></span> AI Trip Planner</span>
-          <h2 className="section-title planner__title" aria-label={PLANNER_TITLE}>
-            <span className="planner__typing" aria-hidden="true">{typedTitle}</span>
-            <span className={`planner__cursor${titleTyping ? ' planner__cursor--typing' : ''}`} aria-hidden="true"></span>
-          </h2>
-          <p className="planner__lead">Chat with our AI planner — built on years of routes the team has walked. It'll ask the right questions and sketch a day-by-day itinerary you can hand to us to book.</p>
-          <ul className="planner__bullets">
-            <li><span className="planner__bullet-icon">✦</span> <span><strong>Asks about you</strong> — pace, budget, water vs. wildlife, kids in tow, special dates.</span></li>
-            <li><span className="planner__bullet-icon">✦</span> <span><strong>Builds a draft</strong> — nights per place, recommended hotels, excursion pacing.</span></li>
-            <li><span className="planner__bullet-icon">✦</span> <span><strong>Hands it to a human</strong> — our team reviews, prices, and confirms with real availability.</span></li>
-          </ul>
-          <div className="planner__suggestions">
-            <span className="planner__suggestions-label">Try:</span>
-            <button className="planner__suggest" onClick={() => send("We're a couple, 8 nights in October. We want a mix of beach, dhow sailing, and one big experience. Mid-range hotels.")}>Couple, 8 nights, beach + dhow</button>
-            <button className="planner__suggest" onClick={() => send('Family of four with kids 9 and 12. Two weeks in July. We want a few days of safari then unwind on a beach. Budget around $4k pp.')}>Family with kids, safari + beach</button>
-            <button className="planner__suggest" onClick={() => send('Solo traveler, 5 nights in February. Love spice markets, history, snorkeling. Boutique hotel under $200/night.')}>Solo, history + snorkel</button>
-          </div>
-        </div>
-
-        <div className="planner__chat" key={resetKey}>
-          <header className="planner__header">
-            <div className="planner__avatar">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="10" />
-                <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76" />
-              </svg>
-            </div>
-            <div className="planner__header-text">
-              <strong>Paradise Planner</strong>
-              <span><span className="planner__online"></span> Powered by Claude · usually replies instantly</span>
-            </div>
-            <button
-              className="planner__reset"
-              title="Start over"
-              onClick={() => { setHistory([]); setResetKey((k) => k + 1); }}
-            >↻</button>
-          </header>
-          <div className="planner__log" ref={logRef} role="log" aria-live="polite">
-            <div className="planner__msg planner__msg--bot">
-              <div className="planner__bubble">
-                <p>Karibu! 👋 I'm the Destination Paradise planner — let's sketch your trip together.</p>
-                <p>To start, what kind of pace are you after? <em>Beach &amp; chill, mainland safari, deep cultural dive,</em> or a mix?</p>
-              </div>
-            </div>
-            {history.map((m, i) => (
-              <div key={i} className={`planner__msg planner__msg--${m.role === 'user' ? 'user' : 'bot'}`}>
-                <div className="planner__bubble">{renderFormattedText(m.content)}</div>
-              </div>
-            ))}
-            {sending && (
-              <div className="planner__msg planner__msg--bot planner__msg--typing">
-                <div className="planner__bubble">
-                  <span className="planner__dot"></span>
-                  <span className="planner__dot"></span>
-                  <span className="planner__dot"></span>
-                </div>
-              </div>
-            )}
-          </div>
-          <form
-            className="planner__form"
-            onSubmit={(e) => { e.preventDefault(); send(input.trim()); }}
-          >
-            <textarea
-              ref={inputRef}
-              className="planner__input"
-              rows={1}
-              placeholder="Tell me what you're dreaming of…"
-              value={input}
-              onChange={(e) => {
-                setInput(e.target.value);
-                e.target.style.height = 'auto';
-                e.target.style.height = Math.min(e.target.scrollHeight, 140) + 'px';
-              }}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' && !e.shiftKey) {
-                  e.preventDefault();
-                  send(input.trim());
-                }
-              }}
-              required
-            />
-            <button className="planner__send" type="submit" aria-label="Send" disabled={sending || !input.trim()}>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                <line x1="22" y1="2" x2="11" y2="13" />
-                <polygon points="22 2 15 22 11 13 2 9 22 2" />
-              </svg>
-            </button>
-          </form>
-          <footer className="planner__foot">
-            <span>Itineraries are drafts. A human reviews and prices everything before you book.</span>
-            <a className="planner__handoff" href="#contact">Send draft to the team →</a>
-          </footer>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ============ NETLIFY FORMS HELPER ============ */
-const encodeForm = (data) =>
-  Object.keys(data)
-    .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
-    .join('&');
-
-async function postNetlifyForm(formName, fields) {
-  return fetch('/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: encodeForm({ 'form-name': formName, ...fields }),
-  });
-}
-
-/* ============ NEWSLETTER ============ */
-function NewsletterSection() {
-  const [email, setEmail] = useState('');
-  const [done, setDone] = useState(false);
-  const [pending, setPending] = useState(false);
-  const [error, setError] = useState(false);
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    if (pending || done) return;
-    setPending(true);
-    setError(false);
-    try {
-      const res = await postNetlifyForm('newsletter', { email });
-      if (!res.ok) throw new Error('newsletter-submit-failed');
-      setDone(true);
-      setEmail('');
-    } catch {
-      setError(true);
-    } finally {
-      setPending(false);
-    }
-  };
-
-  return (
-    <section className="newsletter reveal" id="newsletter">
-      <div>
-        <span className="newsletter__eyebrow">Stay in the loop</span>
-        <h3 className="newsletter__title">Sea stories and sunsets, every month</h3>
-        <p className="newsletter__desc">Hand-written notes from the team — trip openings, shoulder-season deals, and the occasional spice recipe. One email a month. Never anything else.</p>
-      </div>
-      <form
-        className="newsletter__form"
-        name="newsletter"
-        method="POST"
-        data-netlify="true"
-        onSubmit={onSubmit}
-      >
-        <input type="hidden" name="form-name" value="newsletter" />
-        <input
-          className="newsletter__input"
-          name="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder={done ? "✓ You're on the list" : 'you@example.com'}
-          required={!done}
-          disabled={done}
-        />
-        <button type="submit" className="newsletter__submit" disabled={pending || done}>
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
-            <path d="M4 4h16v16H4z" /><path d="M4 6l8 7 8-7" />
-          </svg>
-          <span>{done ? 'Sent' : pending ? 'Sending…' : 'Subscribe'}</span>
-        </button>
-      </form>
-      {error && (
-        <p className="newsletter__note newsletter__note--error" role="status">
-          That did not go through. Please try again in a moment.
-        </p>
-      )}
-    </section>
-  );
-}
-
-/* ============ CONTACT ============ */
-function ContactSection() {
-  const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
-  const [status, setStatus] = useState('idle'); // idle | sending | sent | error
-  const update = (k) => (e) => setForm((s) => ({ ...s, [k]: e.target.value }));
-
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    if (status === 'sending' || status === 'sent') return;
-    setStatus('sending');
-    try {
-      const res = await postNetlifyForm('contact', form);
-      if (!res.ok) throw new Error('http');
-      setStatus('sent');
-      setForm({ name: '', email: '', subject: '', message: '' });
-    } catch {
-      setStatus('error');
-    }
-  };
-
-  return (
-    <section className="contact reveal" id="contact">
-      <header className="contact__head">
-        <span className="section-eyebrow">Get in touch</span>
-        <h2 className="section-title">Send us an email</h2>
-        <p className="section-lead">Tell us about the trip you're dreaming of — group size, rough dates, what you're hoping to see. We'll come back to you within a day with ideas, dates, and a price.</p>
-      </header>
-
-      <div className="contact__grid">
-        <aside className="contact__details">
-          <div className="contact__detail">
-            <span className="contact__detail-label">
-              <svg className="contact__detail-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                <polyline points="22,6 12,13 2,6" />
-              </svg>
-              Email
-            </span>
-            <a className="contact__detail-value" href="mailto:info@yournexttriptoparadise.com">info@yournexttriptoparadise.com</a>
-          </div>
-          <div className="contact__detail">
-            <span className="contact__detail-label">
-              <svg className="contact__detail-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-              </svg>
-              Phone
-            </span>
-            <a className="contact__detail-value" href="tel:+255768779517">+255 768 779 517</a>
-            <a className="contact__detail-value" href="tel:+255748352657">+255 748 352 657</a>
-          </div>
-          <div className="contact__detail">
-            <span className="contact__detail-label">
-              <svg className="contact__detail-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.47-.148-.669.15-.198.296-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.372-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413" />
-              </svg>
-              WhatsApp
-            </span>
-            <a className="contact__detail-value" href="https://wa.me/message/YCOQDKJSDMXFD1" target="_blank" rel="noreferrer">Message us on WhatsApp</a>
-          </div>
-          <div className="contact__detail">
-            <span className="contact__detail-label">
-              <svg className="contact__detail-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z" />
-                <circle cx="12" cy="10" r="3" />
-              </svg>
-              Find us
-            </span>
-            <span className="contact__detail-value">Zanzibar, Tanzania</span>
-          </div>
-          <div className="contact__detail">
-            <span className="contact__detail-label">
-              <svg className="contact__detail-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="10" />
-                <polyline points="12 6 12 12 16 14" />
-              </svg>
-              Hours
-            </span>
-            <span className="contact__detail-value">Daily · 8:00 – 19:00 EAT</span>
-          </div>
-        </aside>
-
-        <form
-          className="contact__form"
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          onSubmit={onSubmit}
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <p hidden><label>Don't fill this out: <input name="bot-field" onChange={() => {}} /></label></p>
-
-          <div className="contact__row">
-            <label className="contact__field">
-              <span>Your name</span>
-              <input type="text" name="name" required value={form.name} onChange={update('name')} />
-            </label>
-            <label className="contact__field">
-              <span>Email</span>
-              <input type="email" name="email" required value={form.email} onChange={update('email')} />
-            </label>
-          </div>
-          <label className="contact__field">
-            <span>Subject</span>
-            <input type="text" name="subject" placeholder="Trip dates, group size, anything specific" value={form.subject} onChange={update('subject')} />
-          </label>
-          <label className="contact__field">
-            <span>Message</span>
-            <textarea name="message" rows={5} required value={form.message} onChange={update('message')} />
-          </label>
-
-          {status === 'sent' && (
-            <p className="contact__status contact__status--ok">✓ Asante — we got it. We'll come back to you within a day.</p>
-          )}
-          {status === 'error' && (
-            <p className="contact__status contact__status--err">Pole sana — that didn't go through. Email us directly at info@yournexttriptoparadise.com or try again.</p>
-          )}
-
-          <button
-            type="submit"
-            className="btn contact__submit"
-            disabled={status === 'sending' || status === 'sent'}
-          >
-            {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Sent' : 'Send message'}
-            <ArrowIcon size={16} />
-          </button>
-        </form>
-      </div>
-    </section>
   );
 }

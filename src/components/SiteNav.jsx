@@ -24,7 +24,9 @@ function getInitialTheme() {
   return document.documentElement.getAttribute('data-theme') || 'light';
 }
 
-export default function SiteNav({ theme: controlledTheme, onThemeToggle }) {
+export default function SiteNav(props) {
+  const controlledTheme = props?.theme;
+  const onThemeToggle = props?.onThemeToggle;
   const [navOpen, setNavOpen] = useState(false);
   const [localTheme, setLocalTheme] = useState(getInitialTheme);
   const theme = controlledTheme || localTheme;
@@ -64,6 +66,7 @@ export default function SiteNav({ theme: controlledTheme, onThemeToggle }) {
         <div className="nav__right">
           <button
             className="theme-toggle"
+            type="button"
             aria-label="Toggle theme"
             onClick={toggleTheme}
           >
@@ -81,7 +84,14 @@ export default function SiteNav({ theme: controlledTheme, onThemeToggle }) {
           <Link className="btn nav__cta" to="/booking">
             <span className="nav__cta-text">Book Now</span> <ArrowIcon size={16} />
           </Link>
-          <button className="nav__burger" aria-label="Menu" onClick={() => setNavOpen((v) => !v)}>
+          <button
+            className="nav__burger"
+            type="button"
+            aria-label={navOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={navOpen}
+            aria-controls="navMenu"
+            onClick={() => setNavOpen((v) => !v)}
+          >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
             </svg>

@@ -1,4 +1,5 @@
 import '../styles/homepage.css';
+import { Link } from 'react-router-dom';
 
 const PACKAGES = [
   {
@@ -40,7 +41,7 @@ export default function Packages() {
               <p>{pkg.lead}</p>
               <div className="standalone-card__foot">
                 <span>From <strong>{pkg.price}</strong> pp</span>
-                <a href="/#contact">Build this trip</a>
+                <Link to="/#contact">Build this trip</Link>
               </div>
             </article>
           ))}
