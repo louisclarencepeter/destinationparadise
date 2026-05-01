@@ -1,0 +1,24 @@
+/* ------------ BUTTONS ------------ */
+.btn {
+  font-family: var(--dp-font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  letter-spacing: .02em;
+  border: none;
+  border-radius: var(--dp-radius-sm);
+  padding: .85rem 1.4rem;
+  background-image: var(--dp-gradient-button);
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  text-decoration: none;
+  transition: all .3s ease;
+}
+.btn:hover { background-image: var(--dp-gradient-button-hover); color: var(--dp-hover); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(26,77,110,.25); }
+.btn--ghost { background: transparent; background-image: none; color: #fff; border: 1px solid rgba(255,255,255,.45); }
+.btn--ghost:hover { background: rgba(255,255,255,.12); color: #fff; border-color: #fff; }
+.btn--on-light { color: var(--text-soft); border-color: var(--border); background: transparent; background-image: none; }
+.btn--on-light:hover { color: var(--dp-accent); border-color: var(--dp-accent); background: rgba(255,111,97,0.06); }
+

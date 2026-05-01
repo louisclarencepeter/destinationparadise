@@ -1,0 +1,303 @@
+/* =========================================================
+   MOBILE RESPONSIVENESS PASS
+   ========================================================= */
+
+/* Safety: prevent horizontal scroll from any decorative overflow
+   (rotated package ribbons, carousel negative margins, ken-burns
+   transforms on the hero img, etc.) */
+html, body { overflow-x: hidden; }
+html, body { max-width: 100%; }
+
+/* Long words/URLs in cards & quotes shouldn't push width */
+.ex-card__text, .safari-card__body p, .pkg-card__lead,
+.tm__quote, .planner__bubble, .weather__desc,
+.contact__detail-value, .map-list li {
+  overflow-wrap: anywhere;
+}
+
+/* ---- Nav: keep CTA compact, give burger a real tap target ---- */
+.nav__cta { padding: .55rem .95rem; font-size: 13px; white-space: nowrap; }
+.nav__burger { padding: .6rem; min-width: 44px; min-height: 44px; }
+
+@media (max-width: 720px) {
+  .nav { padding: .65rem 1rem; gap: .5rem; }
+  .nav__logo img { height: 36px; }
+  .nav__logo-text { font-size: 1rem; white-space: nowrap; }
+  .nav__logo-text small { font-size: 8px; letter-spacing: .2em; }
+  .nav__right { gap: .45rem; }
+  .theme-toggle { width: 40px; height: 40px; }
+  .nav__cta { padding: .5rem .8rem; font-size: 12px; }
+}
+
+/* Below ~480 the CTA still bloats — shrink to icon-only */
+@media (max-width: 480px) {
+  .nav__cta-text { display: none; }
+  .nav__cta { padding: .55rem .65rem; gap: 0; }
+  .nav__logo-text small { display: none; }
+  .nav__logo-text { font-size: .95rem; }
+}
+
+@media (max-width: 360px) {
+  .nav__cta { display: none; } /* burger already exposes Book in menu */
+  .nav__logo img { height: 32px; }
+}
+
+/* ---- Hero: tame display sizes & padding ---- */
+@media (max-width: 720px) {
+  .hero--photo { padding: 2.5rem 1rem 4rem; }
+  .hero__eyebrow { font-size: 10px; padding: .4rem .8rem; margin-bottom: 1rem; letter-spacing: .18em; }
+  .hero__title { font-size: clamp(2.75rem, 13vw, 4.25rem); line-height: 1; }
+  .hero__motto { font-size: clamp(1.15rem, 5.5vw, 1.6rem); margin: .15rem 0 1.1rem; }
+  .hero__desc { font-size: 1rem; line-height: 1.55; margin-bottom: 1.5rem; }
+  .hero__cta-row { gap: .6rem; }
+  .hero__cta-row .btn { width: 100%; justify-content: center; padding: .85rem 1.2rem; }
+  .hero__scroll { display: none; }
+}
+
+/* Hero search — cleaner stacked touch targets */
+@media (max-width: 780px) {
+  .hero__search { margin-top: 1.25rem; padding: .35rem; border-radius: 14px; }
+  .hero__search-field { padding: .65rem .9rem; }
+  .hero__search-field label { font-size: 9px; }
+  .hero__search-field select, .hero__search-field input { font-size: 16px; /* prevents iOS zoom */ }
+  .hero__search-submit { padding: .95rem; justify-content: center; min-height: 48px; border-radius: 10px; }
+}
+
+/* Split & video hero variants on mobile */
+@media (max-width: 720px) {
+  .hero--split { min-height: auto; }
+  .hero--split .hero__panel { padding: 2rem 1.25rem; }
+  .hero--split .hero__photo { min-height: 280px; }
+  .hero--split .hero__stats { grid-template-columns: 1fr 1fr; left: 1rem; right: 1rem; bottom: 1rem; }
+  .hero--video .hero__play { top: 1rem; right: 1rem; padding: .45rem .75rem; font-size: 11px; }
+}
+
+/* ---- Section heads ---- */
+@media (max-width: 720px) {
+  .section-title { font-size: clamp(1.85rem, 7.5vw, 2.4rem); margin-top: .6rem; }
+  .section-eyebrow { font-size: 10px; letter-spacing: .2em; }
+  .section-eyebrow::before, .section-eyebrow::after { width: 14px; }
+  .section-lead { font-size: 1rem; line-height: 1.55; }
+}
+
+/* ---- Excursion cards: tap-friendly meta + tabs scroll if many ---- */
+@media (max-width: 720px) {
+  .excursions { padding: 3rem 1rem; }
+  .excursions__tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    justify-content: flex-start;
+    scrollbar-width: none;
+    margin: 1rem -1rem 0;
+    padding: 0 1rem .25rem;
+    scroll-snap-type: x proximity;
+  }
+  .excursions__tabs::-webkit-scrollbar { display: none; }
+  .excursions__tab { flex: 0 0 auto; scroll-snap-align: start; padding: .55rem 1rem; font-size: 13px; }
+  .ex-card__img { aspect-ratio: 16/11; }
+  .ex-card__price-num { font-size: 1.6rem; }
+  .ex-card__body { padding: 1.1rem 1.15rem 1.25rem; }
+  .ex-card__title { font-size: 1.15rem; }
+  .ex-card__text { font-size: .95rem; }
+  .ex-card__meta { font-size: 10px; gap: .55rem; flex-wrap: wrap; }
+  .excursions[data-layout="carousel"] .ex-card { flex: 0 0 85%; }
+}
+
+/* ---- Safaris ---- */
+@media (max-width: 720px) {
+  .safaris { padding: 3rem 1rem; }
+  .safari-card__body { padding: 1.15rem 1.15rem 1.25rem; gap: .55rem; }
+  .safari-card__body h3 { font-size: 1.2rem; }
+  .safari-card__body p { font-size: .92rem; }
+  .safari-card__foot { flex-wrap: wrap; gap: .65rem; }
+  .safaris__modes { margin-top: 1rem; }
+  .safaris__modes li { font-size: .9rem; }
+}
+
+/* ---- Packages ---- */
+@media (max-width: 720px) {
+  .packages { padding: 3rem 1rem; }
+  .pkg-card { padding: 1.5rem 1.25rem 1.35rem; }
+  .pkg-card h3 { font-size: 1.3rem; }
+  .pkg-card__list li { font-size: .88rem; gap: .5rem; }
+  .pkg-tag { min-width: 56px; font-size: 9px; padding: .22rem .45rem; }
+  .pkg-card__foot { gap: .75rem; }
+  .pkg-card__price { font-size: 1.5rem; }
+  .pkg-card__rib { right: -42px; padding: .3rem 3rem; font-size: 10px; }
+}
+
+/* ---- Trip planner ---- */
+@media (max-width: 720px) {
+  .planner { padding: 3rem 1rem; }
+  .planner__wrap { gap: 1.75rem; }
+  .planner__title { font-size: clamp(1.85rem, 7.5vw, 2.4rem); min-height: 2.2em; }
+  .planner__lead { font-size: 1rem; }
+  .planner__bullets li { font-size: .92rem; gap: .65rem; }
+  .planner__chat { height: clamp(440px, 70vh, 560px); border-radius: 18px; }
+  .planner__header { padding: .85rem 1rem; gap: .65rem; }
+  .planner__header-text strong { font-size: .9rem; }
+  .planner__header-text span { font-size: 11px; }
+  .planner__avatar { width: 36px; height: 36px; border-radius: 10px; }
+  .planner__log { padding: 1rem; gap: .7rem; }
+  .planner__msg { max-width: 92%; }
+  .planner__bubble { font-size: .92rem; padding: .7rem .85rem; }
+  .planner__form { padding: .65rem .8rem; }
+  .planner__input { font-size: 16px; /* prevents iOS zoom */ }
+  .planner__send { width: 44px; height: 44px; }
+  .planner__foot { flex-direction: column; align-items: flex-start; gap: .35rem; padding: .6rem 1rem .75rem; font-size: 10.5px; }
+  .planner__suggestions { gap: .4rem; }
+  .planner__suggest { font-size: 11.5px; padding: .4rem .7rem; }
+}
+
+/* On the smallest phones, abbreviate planner header subtext */
+@media (max-width: 420px) {
+  .planner__header-text span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+}
+
+/* ---- Why ---- */
+@media (max-width: 720px) {
+  .why-card { padding: 1.5rem 1.35rem; border-radius: 20px; }
+  .why-card__num { font-size: 2rem; top: 1rem; right: 1.15rem; }
+  .why-card__title { font-size: 1.05rem; }
+  .why-card__text { font-size: .92rem; }
+}
+
+/* ---- Map ---- */
+@media (max-width: 720px) {
+  .map-section { padding: 0 1rem; }
+  .map-stage { min-height: 360px; border-radius: 22px; }
+  .map-list__button { padding: .6rem .65rem; font-size: 13px; gap: .65rem; }
+  .map-list__button > span:last-child { font-size: 11px !important; }
+  .map-list .num { width: 24px; height: 24px; font-size: 10px; }
+  .map-list-label { font-size: 9px; }
+  .map-compass { width: 44px; height: 44px; bottom: .65rem; right: .65rem; }
+}
+
+/* ---- Weather ---- */
+@media (max-width: 720px) {
+  .weather { padding: 0 1rem; }
+  .weather-card { padding: 1.5rem 1.25rem; border-radius: 24px; }
+  .weather__row { gap: .85rem; }
+  .weather__icon { width: 64px; height: 64px; margin-bottom: .75rem; }
+  .weather__temp { font-size: clamp(3.5rem, 18vw, 5.5rem); }
+  .weather__desc { font-size: .95rem; }
+  .weather__facts { gap: .55rem; }
+  .weather-fact { padding: .65rem .75rem; border-radius: 12px; }
+  .weather-fact__value { font-size: .98rem; }
+  .weather-month {
+    grid-template-columns: 56px 1fr 48px 38px;
+    gap: .5rem;
+    padding: .5rem .1rem;
+  }
+  .weather-month__m { font-size: 12px; }
+  .weather-month__season { font-size: 9px; letter-spacing: .08em; }
+  .weather-month__score { font-size: 11px; }
+  .weather-month.is-now::after { font-size: 8px; }
+  .weather__legend-item { font-size: 10.5px; line-height: 1.45; align-items: flex-start; }
+  .weather__legend-dot { margin-top: 4px; }
+}
+
+/* ---- Gallery ---- */
+@media (max-width: 720px) {
+  .gallery-strip { gap: 8px; padding: 0 8px; }
+  .gallery-tile { border-radius: 14px; }
+  .gallery-tile__caption { font-size: 10px; left: .6rem; right: .6rem; bottom: .6rem; letter-spacing: .14em; }
+}
+/* When the strip is 2-up, the 5th tile is alone on its row — center it
+   horizontally at one-column width instead of pinning it left. */
+@media (max-width: 900px) {
+  .gallery-strip > :nth-child(5) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 5px); /* matches default 10px gap */
+  }
+}
+@media (max-width: 720px) {
+  .gallery-strip > :nth-child(5) { width: calc(50% - 4px); /* mobile 8px gap */ }
+}
+
+/* ---- Testimonials ---- */
+@media (max-width: 720px) {
+  .testimonials { padding: 0 1rem; }
+  .tm { padding: 1.5rem 1.35rem; border-radius: 20px; }
+  .tm__quote { font-size: .95rem; line-height: 1.55; margin-bottom: 1.1rem; }
+  .tm__mark { font-size: 2.5rem; top: .85rem; right: 1.1rem; }
+  .tm__avatar { width: 40px; height: 40px; }
+  .tm__name { font-size: .9rem; }
+  .tm__trip { font-size: 10px; }
+  .tm__stars { font-size: 13px; letter-spacing: 1px; }
+}
+
+/* ---- Contact ---- */
+@media (max-width: 720px) {
+  .contact { padding: 3rem 1rem; }
+  .contact__form { padding: 1.25rem 1.1rem; gap: .85rem; }
+  .contact__field input, .contact__field textarea { font-size: 16px; padding: .75rem .85rem; }
+  .contact__detail-value { font-size: 1rem; }
+  .contact__submit { width: 100%; justify-content: center; }
+}
+
+/* ---- Newsletter ---- */
+@media (max-width: 720px) {
+  .newsletter { padding: 1.75rem 1.35rem; border-radius: 24px; }
+  .newsletter__title { font-size: clamp(1.6rem, 6.5vw, 2.2rem); }
+  .newsletter__desc { font-size: .95rem; }
+}
+@media (max-width: 480px) {
+  .newsletter__form { flex-direction: column; background: transparent; box-shadow: none; gap: .55rem; }
+  .newsletter__input {
+    background: rgba(255,255,255,.95);
+    border-radius: 12px;
+    padding: .85rem 1rem;
+    font-size: 16px;
+  }
+  .newsletter__submit { border-radius: 12px; padding: .9rem 1.2rem; justify-content: center; }
+}
+
+/* ---- Footer ---- */
+@media (max-width: 720px) {
+  .footer { padding: 2.25rem 1.25rem 1.25rem; }
+  .footer__inner { gap: 1.5rem; }
+  .footer__col h4 { margin-bottom: .65rem; }
+  .footer__col ul { gap: .5rem; }
+  .footer__bottom {
+    margin-top: 1.75rem; padding-top: 1rem;
+    flex-direction: column; align-items: flex-start; gap: .55rem; text-align: left;
+  }
+  .footer__bottom span:last-child a:first-child { margin-left: 0; }
+  .footer__bottom a { margin-left: 0; margin-right: .85rem; }
+}
+
+/* ---- WhatsApp FAB: shrink to icon-only on phones ---- */
+@media (max-width: 720px) {
+  .whatsapp-fab {
+    bottom: 1rem; right: 1rem;
+    padding: .72rem;
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    justify-content: center;
+    gap: 0;
+    background: rgba(255, 255, 255, .9);
+    color: #128c4a;
+    box-shadow: 0 8px 24px rgba(26, 77, 110, .16);
+  }
+  .whatsapp-fab__label { display: none; }
+  .whatsapp-fab svg { width: 22px; height: 22px; }
+  .whatsapp-fab__dot {
+    position: absolute; top: 6px; right: 6px;
+    width: 8px; height: 8px;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, .9);
+  }
+}
+
+/* ---- Tweaks panel: never wider than viewport ---- */
+@media (max-width: 720px) {
+  .tweaks { width: calc(100vw - 2rem); right: 1rem; bottom: 5rem; }
+  .tweaks-gear { right: 1rem; bottom: 5rem; }
+}
+
+/* ---- Tap-target floor for small icon buttons ---- */
+@media (max-width: 720px) {
+  .nav__item a { padding: .55rem 0; }
+  .planner__reset { width: 36px; height: 36px; }
+}

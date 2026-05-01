@@ -1,0 +1,83 @@
+/* ------------ LEAFLET MAP (Zanzibar + Tanzania) ------------ */
+.map-leaflet {
+  position: absolute; inset: 0;
+  border-radius: 28px;
+  overflow: hidden;
+}
+.map-stage::before { z-index: 4; }
+.map-stage .map-compass { z-index: 5; }
+.map-stage .leaflet-control-container { z-index: 4; }
+.map-stage .leaflet-bar {
+  border: 1px solid var(--border);
+  box-shadow: 0 6px 16px rgba(26,77,110,.12);
+}
+.map-stage .leaflet-bar a {
+  background: rgba(255,255,255,.92);
+  color: var(--text-soft);
+  border-bottom-color: var(--border);
+  font-family: var(--dp-font-sans);
+}
+.map-stage .leaflet-bar a:hover { color: var(--dp-accent); }
+html[data-theme="dark"] .map-stage .leaflet-bar a {
+  background: rgba(17,44,63,.92);
+  color: var(--text-soft);
+  border-bottom-color: rgba(255,255,255,.08);
+}
+.map-stage .leaflet-control-attribution {
+  background: rgba(255,255,255,.78);
+  font-family: var(--dp-font-sans);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+html[data-theme="dark"] .map-stage .leaflet-control-attribution {
+  background: rgba(17,44,63,.78);
+  color: var(--text-muted);
+}
+
+.leaflet-div-icon.dp-leaflet-pin,
+.dp-leaflet-pin {
+  background: transparent !important;
+  border: none !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  overflow: visible;
+}
+.dp-leaflet-pin .map-pin__ping {
+  display: none;
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 34px; height: 34px; border-radius: 50%; border: 2px solid var(--dp-accent);
+  animation: ping 1.8s var(--dp-ease-out) infinite;
+}
+.dp-leaflet-pin.is-active .map-pin__ping { display: block; }
+.dp-leaflet-pin .map-pin__label {
+  opacity: 0; transform: translateY(-4px);
+  pointer-events: none;
+}
+.dp-leaflet-pin:hover .map-pin__label,
+.dp-leaflet-pin.is-active .map-pin__label {
+  opacity: 1; transform: translateY(0);
+}
+.dp-leaflet-pin:hover .map-pin__dot,
+.dp-leaflet-pin.is-active .map-pin__dot {
+  background: var(--dp-accent); color: #fff;
+  transform: scale(1.15);
+  box-shadow: 0 10px 24px rgba(255,111,97,.45), 0 0 0 8px rgba(255,111,97,.18);
+}
+
+/* Map list region grouping */
+.map-list-group { display: flex; flex-direction: column; gap: .25rem; margin: 1rem 0 1.5rem; }
+.map-list-label {
+  font-family: var(--dp-font-sans);
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  color: var(--dp-accent);
+  margin: .75rem 0 .15rem;
+  display: flex; align-items: center; gap: .55rem;
+}
+.map-list-label:first-child { margin-top: 0; }
+.map-list-label::before { content: ""; width: 14px; height: 1px; background: var(--dp-accent); }
+.map-list-group .map-list { margin: 0; }
+
+
