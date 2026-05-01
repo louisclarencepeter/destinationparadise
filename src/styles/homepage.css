@@ -51,13 +51,20 @@ a { color: inherit; }
 /* ------------ NAV ------------ */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  display: flex; align-items: center; justify-content: space-between;
   padding: 0.85rem clamp(1rem, 3vw, 2.25rem);
   background: color-mix(in oklab, var(--page-bg) 82%, transparent);
   backdrop-filter: saturate(1.4) blur(14px);
   -webkit-backdrop-filter: saturate(1.4) blur(14px);
   border-bottom: 1px solid var(--border);
   min-height: var(--nav-height);
+}
+.nav__inner {
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(1rem, 2vw, 2rem);
 }
 .nav__logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--text); }
 .nav__logo img { height: 42px; width: auto; }
@@ -81,6 +88,14 @@ a { color: inherit; }
 }
 .nav__item a:hover { color: var(--dp-accent); }
 .nav__item a:hover::after { transform: scaleX(1); }
+.nav__item--active a,
+.nav__item a[aria-current="page"] {
+  color: var(--dp-accent);
+}
+.nav__item--active a::after,
+.nav__item a[aria-current="page"]::after {
+  transform: scaleX(1);
+}
 
 .nav__right { display: flex; align-items: center; gap: 1rem; }
 .theme-toggle {
@@ -109,6 +124,156 @@ a { color: inherit; }
 
 /* ------------ HERO ------------ */
 .hero { position: relative; overflow: hidden; margin-top: var(--nav-height); }
+
+/* ------------ STANDALONE NAV PAGES ------------ */
+.standalone-page {
+  min-height: 100vh;
+  padding-top: var(--nav-height);
+  background: var(--page-bg);
+  color: var(--text);
+}
+
+.standalone-page__section {
+  width: min(100%, 1280px);
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 5vw, 4rem);
+}
+
+.standalone-page__section--narrow {
+  width: min(100%, 920px);
+}
+
+.standalone-page__head {
+  max-width: 780px;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+
+.standalone-page__head .section-lead {
+  margin-top: .75rem;
+}
+
+.standalone-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.standalone-card {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: .9rem;
+  padding: 1.4rem;
+  border-radius: 18px;
+  background: var(--card-bg, #fff);
+  border: 1px solid rgba(26,77,110,.09);
+  box-shadow: 0 1px 0 rgba(26,77,110,.04), 0 18px 42px -32px rgba(26,77,110,.28);
+}
+
+.standalone-card__eyebrow {
+  font-family: var(--dp-font-sans);
+  font-size: .7rem;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dp-accent);
+}
+
+.standalone-card h2 {
+  margin: 0;
+  font-family: var(--dp-font-sans);
+  color: var(--ink);
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.standalone-card p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: .95rem;
+  line-height: 1.6;
+  flex: 1;
+}
+
+.standalone-card__foot {
+  display: flex;
+  justify-content: space-between;
+  gap: .8rem;
+  padding-top: .85rem;
+  border-top: 1px solid rgba(26,77,110,.09);
+  font-family: var(--dp-font-sans);
+  font-size: .82rem;
+  color: var(--text-muted);
+}
+
+.standalone-card__foot strong {
+  color: var(--ink);
+}
+
+.standalone-card__foot a {
+  color: var(--dp-accent);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.standalone-form {
+  max-width: 760px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+}
+
+.standalone-form label {
+  display: grid;
+  gap: .55rem;
+  font-family: var(--dp-font-sans);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.standalone-form textarea {
+  width: 100%;
+  resize: vertical;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 1rem;
+  background: var(--surface);
+  color: var(--text);
+  font: 1rem/1.55 var(--dp-font-display);
+}
+
+.standalone-tag-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .7rem;
+}
+
+.standalone-tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: .45rem .9rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-soft);
+  text-decoration: none;
+  font-family: var(--dp-font-sans);
+  font-size: .82rem;
+  font-weight: 700;
+}
+
+@media (max-width: 820px) {
+  .standalone-card-grid {
+    grid-template-columns: 1fr;
+  }
+}
 
 /* Variant: photo (default) */
 .hero--photo {

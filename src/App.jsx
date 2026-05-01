@@ -1,7 +1,11 @@
 import { Routes, Route } from 'react-router-dom';
+import SiteLayout from './components/SiteLayout.jsx';
 import Homepage from './pages/Homepage.jsx';
 import Excursions from './pages/Excursions.jsx';
 import Safaris from './pages/Safaris.jsx';
+import Packages from './pages/Packages.jsx';
+import TripPlannerPage from './pages/TripPlannerPage.jsx';
+import Explore from './pages/Explore.jsx';
 import About from './pages/About.jsx';
 import Gallery from './pages/Gallery.jsx';
 import Booking from './pages/Booking.jsx';
@@ -12,19 +16,24 @@ import NotFound from './pages/NotFound.jsx';
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Homepage />} />
-      <Route path="/excursions" element={<Excursions />} />
-      <Route path="/excursions/:id" element={<Excursions />} />
-      <Route path="/safaris" element={<Safaris />} />
-      <Route path="/book-now" element={<Safaris />} />
-      <Route path="/aboutus" element={<About />} />
-      <Route path="/gallery" element={<Gallery />} />
-      <Route path="/booking" element={<Booking />} />
-      <Route path="/dream-dhow" element={<DreamDhow />} />
-      <Route path="/cookies-policy" element={<Policy section="cookies" />} />
-      <Route path="/privacy-policy" element={<Policy section="privacy" />} />
-      <Route path="/terms-of-service" element={<Policy section="terms" />} />
-      <Route path="*" element={<NotFound />} />
+      <Route element={<SiteLayout />}>
+        <Route path="/" element={<Homepage />} />
+        <Route path="/excursions" element={<Excursions />} />
+        <Route path="/excursions/:id" element={<Excursions />} />
+        <Route path="/safaris" element={<Safaris />} />
+        <Route path="/packages" element={<Packages />} />
+        <Route path="/trip-planner" element={<TripPlannerPage />} />
+        <Route path="/explore" element={<Explore />} />
+        <Route path="/book-now" element={<Booking />} />
+        <Route path="/aboutus" element={<About />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/booking" element={<Booking />} />
+        <Route path="/dream-dhow" element={<DreamDhow />} />
+        <Route path="/cookies-policy" element={<Policy section="cookies" />} />
+        <Route path="/privacy-policy" element={<Policy section="privacy" />} />
+        <Route path="/terms-of-service" element={<Policy section="terms" />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
     </Routes>
   );
 }
