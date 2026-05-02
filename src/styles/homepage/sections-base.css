@@ -30,3 +30,47 @@
 .reveal { opacity: 0; transform: translateY(24px); transition: opacity .8s var(--dp-ease-out), transform .8s var(--dp-ease-out); }
 .reveal.is-visible { opacity: 1; transform: none; }
 
+.scroll-cue {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .45rem;
+  width: max-content;
+  margin: -1rem auto 1.75rem;
+  color: var(--text-muted);
+  opacity: .78;
+  text-decoration: none;
+  font-family: var(--dp-font-sans);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  transition: opacity .25s ease, color .25s ease, transform .25s ease;
+}
+.scroll-cue:hover {
+  opacity: 1;
+  color: var(--dp-accent);
+  transform: translateY(2px);
+}
+.scroll-cue__line {
+  width: 1px;
+  height: 34px;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--text-soft) 78%, transparent), transparent);
+  position: relative;
+  overflow: hidden;
+}
+.scroll-cue__line::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -14px;
+  height: 14px;
+  background: currentColor;
+  animation: scrollCueDot 2.2s ease-in-out infinite;
+}
+@keyframes scrollCueDot {
+  0% { top: -14px; }
+  100% { top: 34px; }
+}
+

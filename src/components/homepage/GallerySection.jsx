@@ -1,6 +1,6 @@
 export default function GallerySection() {
   return (
-    <section className="gallery-section reveal">
+    <section className="gallery-section reveal" id="gallery">
       <div className="gallery-head">
         <span className="section-eyebrow">A Glimpse</span>
         <h2 className="section-title">Moments from the shore</h2>

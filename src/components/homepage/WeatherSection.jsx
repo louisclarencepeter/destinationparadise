@@ -1,6 +1,6 @@
 export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
   return (
-    <section className="weather reveal">
+    <section className="weather reveal" id="weather">
       <div className="weather-card">
         <div className="weather__hero">
           <div className="weather__place">

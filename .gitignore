@@ -11,3 +11,6 @@ docs/
 
 # Local Claude Code tooling (preview launch config, local settings)
 .claude/
+
+# Local editor workspace settings
+.vscode/

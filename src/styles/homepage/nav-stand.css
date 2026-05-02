@@ -229,6 +229,7 @@
   z-index: 3; color: #fff; display: flex; flex-direction: column; align-items: center; gap: .55rem;
   font-family: var(--dp-font-sans); font-size: 10px; letter-spacing: .3em; text-transform: uppercase;
   opacity: .85;
+  text-decoration: none;
 }
 .hero__scroll-line { width: 1px; height: 48px; background: linear-gradient(180deg, rgba(255,255,255,.7), transparent); position: relative; overflow: hidden; }
 .hero__scroll-line::after { content: ""; position: absolute; left: 0; right: 0; top: -20px; height: 20px; background: #fff; animation: scrollDot 2.2s ease-in-out infinite; }

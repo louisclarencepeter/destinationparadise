@@ -1,4 +1,5 @@
 import { ArrowIcon } from './Icons.jsx';
+import ScrollCue from './ScrollCue.jsx';
 
 export default function HeroSection({ tweaks, handleHeroSearch }) {
   return (
@@ -48,7 +49,7 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
           </button>
         </form>
       </div>
-      <div className="hero__scroll"><span>Scroll</span><div className="hero__scroll-line"></div></div>
+      <ScrollCue to="excursions" label="Scroll" variant="hero" />
     </section>
   );
 }

@@ -17,6 +17,7 @@ import TestimonialsSection from '../components/homepage/TestimonialsSection.jsx'
 import PlannerSection from '../components/homepage/PlannerSection.jsx';
 import ContactSection from '../components/homepage/ContactSection.jsx';
 import NewsletterSection from '../components/homepage/NewsletterSection.jsx';
+import ScrollCue from '../components/homepage/ScrollCue.jsx';
 
 const PINS = [
   // Zanzibar — the island
@@ -228,10 +229,15 @@ export default function Homepage() {
     <>
       <HeroSection tweaks={tweaks} handleHeroSearch={handleHeroSearch} />
       <ExcursionsSection tweaks={tweaks} activeCat={activeCat} setActiveCat={setActiveCat} filteredEx={filteredEx} />
+      <ScrollCue to="safaris" label="Next" />
       <SafarisSection />
+      <ScrollCue to="packages" label="Next" />
       <PackagesSection />
+      <ScrollCue to="planner" label="Next" />
       <PlannerSection initialPrompt={plannerPrompt} />
+      <ScrollCue to="why" label="Next" />
       <WhySection />
+      <ScrollCue to="map" label="Next" />
       <MapSection 
         tweaks={tweaks} 
         PINS={PINS} 
@@ -240,10 +246,15 @@ export default function Homepage() {
         islandPins={islandPins} 
         mainlandPins={mainlandPins} 
       />
+      <ScrollCue to="weather" label="Next" />
       <WeatherSection MONTHS={MONTHS} SCORES={SCORES} NOW_MONTH={NOW_MONTH} />
+      <ScrollCue to="gallery" label="Next" />
       <GallerySection />
+      <ScrollCue to="reviews" label="Next" />
       <TestimonialsSection />
+      <ScrollCue to="contact" label="Next" />
       <ContactSection />
+      <ScrollCue to="newsletter" label="Next" />
       <NewsletterSection />
 
       {/* ============ TWEAKS PANEL (claude.ai design preview only) ============ */}

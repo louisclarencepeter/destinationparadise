@@ -53,6 +53,7 @@ html, body { max-width: 100%; }
   .hero__cta-row { gap: .6rem; }
   .hero__cta-row .btn { width: 100%; justify-content: center; padding: .85rem 1.2rem; }
   .hero__scroll { display: none; }
+  .scroll-cue { display: none; }
 }
 
 /* Hero search — cleaner stacked touch targets */
