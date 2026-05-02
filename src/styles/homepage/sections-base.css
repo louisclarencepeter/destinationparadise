@@ -35,57 +35,49 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: .45rem;
+  gap: .5rem;
   width: max-content;
-  margin: -1.35rem auto;
+  margin: -.55rem auto;
   padding: 0;
   min-height: 0;
-  color: var(--text-muted);
-  opacity: .78;
+  color: var(--dp-accent);
+  opacity: .94;
   background: transparent;
   text-decoration: none;
+  position: relative;
+  z-index: 5;
   font-family: var(--dp-font-sans);
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 700;
-  letter-spacing: .24em;
+  letter-spacing: .26em;
   text-transform: uppercase;
+  text-shadow: 0 0 14px rgba(255,111,97,.28);
   transition: opacity .25s ease, color .25s ease, transform .25s ease;
 }
 .scroll-cue:hover {
   opacity: 1;
   color: var(--dp-accent);
-  transform: translateY(2px);
+  transform: translateY(1px);
 }
 .scroll-cue__line {
-  width: 1px;
-  height: 24px;
-  background: linear-gradient(180deg, color-mix(in oklab, var(--text-soft) 78%, transparent), transparent);
+  width: 2px;
+  height: 30px;
+  background: linear-gradient(180deg, color-mix(in oklab, var(--dp-accent) 90%, #fff 10%), transparent);
   position: relative;
   overflow: hidden;
+  border-radius: 999px;
 }
 .scroll-cue__line::after {
   content: "";
   position: absolute;
   left: 0;
   right: 0;
-  top: -10px;
-  height: 10px;
+  top: -12px;
+  height: 12px;
   background: currentColor;
   animation: scrollCueDot 2.2s ease-in-out infinite;
 }
 @keyframes scrollCueDot {
-  0% { top: -10px; }
-  100% { top: 24px; }
+  0% { top: -12px; }
+  100% { top: 30px; }
 }
-
-/* When cue sits between sections, it already provides transition rhythm.
-   Remove extra top margin from the next section to avoid oversized gaps. */
-.scroll-cue + .why,
-.scroll-cue + .map-section,
-.scroll-cue + .weather,
-.scroll-cue + .gallery-section,
-.scroll-cue + .testimonials,
-.scroll-cue + .newsletter {
-  margin-top: 0;
-}
-

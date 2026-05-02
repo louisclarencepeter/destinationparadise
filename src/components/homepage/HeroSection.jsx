@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowIcon } from './Icons.jsx';
-import ScrollCue from './ScrollCue.jsx';
 
 const HERO_SLIDES = [
   '/assets/images/home/aerial-boats-turquoise-water.jpg',
@@ -102,7 +101,6 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
           </button>
         </form>
       </div>
-      <ScrollCue to="excursions" label="Scroll" variant="hero" />
     </section>
   );
 }

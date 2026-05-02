@@ -31,14 +31,15 @@
   --card-accent-opacity: 0.08;
 
   /* Shared homepage section rhythm */
-  --section-pad-block: clamp(4.5rem, 8.5vw, 7.5rem);
+  --section-gap: clamp(2.5rem, 5vw, 4rem);
+  --section-pad-block: var(--section-gap);
   --section-pad-inline: clamp(1.25rem, 5vw, 6rem);
-  --section-stack-gap: clamp(3.5rem, 6.5vw, 5.75rem);
+  --section-stack-gap: var(--section-gap);
   --section-contained-width: min(95%, 1240px);
   --section-contained-inline: clamp(1rem, 3vw, 2rem);
-  --section-transition-gap: clamp(1.1rem, 2.2vw, 1.65rem);
-  --section-cue-overlap: clamp(.85rem, 1.8vw, 1.25rem);
-  --section-pad-block-mobile: 3.5rem;
+  --section-transition-gap: clamp(.75rem, 1.5vw, 1.1rem);
+  --section-cue-overlap: clamp(.5rem, 1vw, .85rem);
+  --section-pad-block-mobile: 2rem;
   --section-pad-inline-mobile: 1rem;
 
   /* Aliases used by safari/package/planner CSS — kept theme-aware */
