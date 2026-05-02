@@ -45,6 +45,7 @@ html, body { max-width: 100%; }
 /* ---- Hero: tame display sizes & padding ---- */
 @media (max-width: 720px) {
   .hero--photo { padding: 2.5rem 1rem 4rem; }
+  .hero__content { transform: none; }
   .hero__eyebrow { font-size: 10px; padding: .4rem .8rem; margin-bottom: 1rem; letter-spacing: .18em; }
   .hero__title { font-size: clamp(2.75rem, 13vw, 4.25rem); line-height: 1; }
   .hero__motto { font-size: clamp(1.15rem, 5.5vw, 1.6rem); margin: .15rem 0 1.1rem; }
