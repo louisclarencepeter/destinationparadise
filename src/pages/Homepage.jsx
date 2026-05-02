@@ -136,7 +136,10 @@ export default function Homepage() {
     const excursion = fields.get('excursion') || 'Any experience';
     const date = fields.get('date') || '';
     const guests = fields.get('guests') || '2 guests';
-    const experienceText = excursion === 'Any experience' ? 'a recommended Zanzibar experience' : excursion;
+    const genericSelections = new Set(['Any experience', 'Any trip or safari']);
+    const experienceText = genericSelections.has(excursion)
+      ? 'a recommended Zanzibar trip or Tanzania safari'
+      : excursion;
     const dateText = date ? ` on ${date}` : ' on flexible dates';
 
     setPlannerPrompt({

@@ -27,7 +27,7 @@ export default function SiteFooter() {
         <div className="footer__brand">
           <div className="footer__logo">
             <img src="/assets/brand/destination-paradise-logo.png" alt="Destination Paradise" />
-            <span className="footer__logo-text">Destination Paradise<small>Zanzibar Island</small></span>
+            <span className="footer__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
           </div>
           <p>A small, local travel company on the shores of Zanzibar. Unhurried days, traditional boats, and guides who grew up here.</p>
           <p className="footer__script">your next trip to paradise...</p>

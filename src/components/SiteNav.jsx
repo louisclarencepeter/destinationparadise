@@ -54,7 +54,7 @@ export default function SiteNav(props) {
       <div className="nav__inner">
         <Link className="nav__logo" to="/">
           <img src="/assets/brand/destination-paradise-logo.png" alt="Destination Paradise" />
-          <span className="nav__logo-text">Destination Paradise<small>Zanzibar Island</small></span>
+          <span className="nav__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
         </Link>
         <ul className={`nav__menu${navOpen ? ' nav__menu--open' : ''}`} id="navMenu" onClick={(e) => { if (e.target.tagName === 'A') setNavOpen(false); }}>
           {NAV_ITEMS.map((item) => (
