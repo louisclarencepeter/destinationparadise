@@ -1,5 +1,5 @@
 /* ------------ GALLERY ------------ */
-.gallery-section { width: 100%; margin: clamp(3rem, 6vw, 5rem) 0; overflow: hidden; }
+.gallery-section { width: 100%; margin: var(--section-stack-gap) 0; overflow: hidden; }
 .gallery-head { text-align: center; margin: 0 auto clamp(2rem, 3vw, 2.5rem); max-width: 640px; padding: 0 1rem; }
 .gallery-strip {
   display: grid;

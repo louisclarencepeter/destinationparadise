@@ -84,7 +84,7 @@ html, body { max-width: 100%; }
 
 /* ---- Excursion cards: tap-friendly meta + tabs scroll if many ---- */
 @media (max-width: 720px) {
-  .excursions { padding: 3rem 1rem; }
+  .excursions { padding: var(--section-pad-block-mobile) var(--section-pad-inline-mobile); }
   .excursions__tabs {
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -107,7 +107,7 @@ html, body { max-width: 100%; }
 
 /* ---- Safaris ---- */
 @media (max-width: 720px) {
-  .safaris { padding: 3rem 1rem; }
+  .safaris { padding: var(--section-pad-block-mobile) var(--section-pad-inline-mobile); }
   .safari-card__body { padding: 1.15rem 1.15rem 1.25rem; gap: .55rem; }
   .safari-card__body h3 { font-size: 1.2rem; }
   .safari-card__body p { font-size: .92rem; }
@@ -118,7 +118,7 @@ html, body { max-width: 100%; }
 
 /* ---- Packages ---- */
 @media (max-width: 720px) {
-  .packages { padding: 3rem 1rem; }
+  .packages { padding: var(--section-pad-block-mobile) var(--section-pad-inline-mobile); }
   .pkg-card { padding: 1.5rem 1.25rem 1.35rem; }
   .pkg-card h3 { font-size: 1.3rem; }
   .pkg-card__list li { font-size: .88rem; gap: .5rem; }
@@ -130,7 +130,7 @@ html, body { max-width: 100%; }
 
 /* ---- Trip planner ---- */
 @media (max-width: 720px) {
-  .planner { padding: 3rem 1rem; }
+  .planner { padding: var(--section-pad-block-mobile) var(--section-pad-inline-mobile); }
   .planner__wrap { gap: 1.75rem; }
   .planner__title { font-size: clamp(1.85rem, 7.5vw, 2.4rem); min-height: 2.2em; }
   .planner__lead { font-size: 1rem; }
@@ -232,7 +232,7 @@ html, body { max-width: 100%; }
 
 /* ---- Contact ---- */
 @media (max-width: 720px) {
-  .contact { padding: 3rem 1rem; }
+  .contact { padding: var(--section-pad-block-mobile) var(--section-pad-inline-mobile); }
   .contact__form { padding: 1.25rem 1.1rem; gap: .85rem; }
   .contact__field input, .contact__field textarea { font-size: 16px; padding: .75rem .85rem; }
   .contact__detail-value { font-size: 1rem; }

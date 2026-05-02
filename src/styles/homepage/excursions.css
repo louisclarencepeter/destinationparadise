@@ -2,7 +2,7 @@
 /* Matches the Safaris / Packages section style: full-bleed, plain surface, centered head */
 .excursions {
   position: relative;
-  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
+  padding: var(--section-pad-block) var(--section-pad-inline);
   background: var(--surface);
 }
 .excursions__head {

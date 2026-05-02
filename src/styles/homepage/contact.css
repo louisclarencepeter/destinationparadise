@@ -1,6 +1,6 @@
 /* ===== CONTACT ===== */
 .contact {
-  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
+  padding: var(--section-pad-block) var(--section-pad-inline);
   background: linear-gradient(180deg, var(--surface) 0%, rgba(26,77,110,.04) 100%);
 }
 .contact__head {

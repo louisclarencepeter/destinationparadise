@@ -1,7 +1,8 @@
 /* ------------ NEWSLETTER ------------ */
 .newsletter {
   position: relative;
-  width: min(95%, 1240px); margin: clamp(3rem, 5vw, 4rem) auto;
+  width: var(--section-contained-width);
+  margin: var(--section-stack-gap) auto;
   padding: clamp(2.25rem, 4vw, 3.5rem);
   border-radius: 32px;
   overflow: hidden;

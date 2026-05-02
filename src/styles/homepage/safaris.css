@@ -1,6 +1,6 @@
 /* ===== SAFARIS ===== */
 .safaris {
-  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
+  padding: var(--section-pad-block) var(--section-pad-inline);
   background: var(--surface);
 }
 .safaris__head { max-width: 760px; margin: 0 auto clamp(2rem, 4vw, 3.5rem); text-align: center; }

@@ -33,12 +33,16 @@
 .scroll-cue {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   gap: .45rem;
   width: max-content;
-  margin: -1rem auto 1.75rem;
+  margin: -1.35rem auto;
+  padding: 0;
+  min-height: 0;
   color: var(--text-muted);
   opacity: .78;
+  background: transparent;
   text-decoration: none;
   font-family: var(--dp-font-sans);
   font-size: 10px;
@@ -54,7 +58,7 @@
 }
 .scroll-cue__line {
   width: 1px;
-  height: 34px;
+  height: 24px;
   background: linear-gradient(180deg, color-mix(in oklab, var(--text-soft) 78%, transparent), transparent);
   position: relative;
   overflow: hidden;
@@ -64,13 +68,24 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: -14px;
-  height: 14px;
+  top: -10px;
+  height: 10px;
   background: currentColor;
   animation: scrollCueDot 2.2s ease-in-out infinite;
 }
 @keyframes scrollCueDot {
-  0% { top: -14px; }
-  100% { top: 34px; }
+  0% { top: -10px; }
+  100% { top: 24px; }
+}
+
+/* When cue sits between sections, it already provides transition rhythm.
+   Remove extra top margin from the next section to avoid oversized gaps. */
+.scroll-cue + .why,
+.scroll-cue + .map-section,
+.scroll-cue + .weather,
+.scroll-cue + .gallery-section,
+.scroll-cue + .testimonials,
+.scroll-cue + .newsletter {
+  margin-top: 0;
 }
 

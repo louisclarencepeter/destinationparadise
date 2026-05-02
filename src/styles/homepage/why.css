@@ -1,7 +1,8 @@
 /* ------------ WHY ------------ */
 .why {
-  width: min(95%, 1240px); margin: clamp(3rem, 6vw, 5rem) auto;
-  padding: 0 clamp(1rem, 3vw, 2rem);
+  width: var(--section-contained-width);
+  margin: var(--section-stack-gap) auto;
+  padding: 0 var(--section-contained-inline);
 }
 .why__head { text-align: center; max-width: 620px; margin: 0 auto clamp(2rem, 3vw, 3rem); }
 .why__grid {

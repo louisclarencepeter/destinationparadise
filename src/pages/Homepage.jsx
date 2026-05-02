@@ -133,9 +133,14 @@ export default function Homepage() {
   const handleHeroSearch = (e) => {
     e.preventDefault();
     const fields = new FormData(e.currentTarget);
-    const excursion = fields.get('excursion') || 'Any experience';
-    const date = fields.get('date') || '';
-    const guests = fields.get('guests') || '2 guests';
+    const readStringField = (name, fallback = '') => {
+      const value = fields.get(name);
+      return typeof value === 'string' && value.trim() ? value : fallback;
+    };
+
+    const excursion = readStringField('excursion', 'Any trip or safari');
+    const date = readStringField('date', '');
+    const guests = readStringField('guests', '2 guests');
     const genericSelections = new Set(['Any experience', 'Any trip or safari']);
     const experienceText = genericSelections.has(excursion)
       ? 'a recommended Zanzibar trip or Tanzania safari'
