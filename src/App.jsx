@@ -191,7 +191,7 @@ function App() {
         <div className="site-footer__actions">
           <p className="site-footer__copy">
             &copy; {new Date().getFullYear()} Destination Paradise &middot; Crafted in
-            Zanzibar
+            Zanzibar &amp; Tanzania
           </p>
           <button
             type="button"

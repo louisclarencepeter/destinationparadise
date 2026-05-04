@@ -964,13 +964,24 @@
   }
 
   .site-footer__actions {
-    align-items: center;
-    width: auto;
-    gap: 0.5rem;
+    display: contents;
   }
 
   .site-footer__copy {
-    display: none;
+    display: block;
+    grid-column: 1 / -1;
+    margin: 0.25rem 0 0;
+    font-size: 0.65rem;
+    line-height: 1.3;
+    letter-spacing: 0.035em;
+    text-align: center;
+    max-width: none;
+  }
+
+  .theme-switch {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
   }
 
   .brand__logo {
@@ -1039,10 +1050,10 @@
     letter-spacing: 0.06em;
   }
 
-  .site-footer__actions {
-    flex-direction: row;
-    align-items: center;
-    gap: 0.45rem;
+  .site-footer__copy {
+    margin-top: 0.2rem;
+    font-size: 0.58rem;
+    letter-spacing: 0.03em;
   }
 }
 
