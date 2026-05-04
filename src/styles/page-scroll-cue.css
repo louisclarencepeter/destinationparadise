@@ -1,0 +1,53 @@
+.page-scroll-cue {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 36px;
+  border: 1.5px solid rgba(245, 241, 232, 0.58);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  z-index: 35;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.page-scroll-cue span {
+  display: block;
+  width: 2px;
+  height: 8px;
+  background: rgba(245, 241, 232, 0.95);
+  margin-top: 6px;
+  border-radius: 2px;
+  animation: pageScrollCuePulse 1.8s infinite;
+}
+
+.page-scroll-cue.is-hidden {
+  opacity: 0;
+  transform: translate(-50%, 10px);
+}
+
+@keyframes pageScrollCuePulse {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  40% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-scroll-cue span {
+    animation: none;
+  }
+}

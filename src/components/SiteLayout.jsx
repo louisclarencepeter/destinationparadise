@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import SiteNav from './SiteNav.jsx';
 import SiteFooter, { WhatsAppFab } from './SiteFooter.jsx';
+import PageScrollCue from './PageScrollCue.jsx';
 
 export default function SiteLayout() {
   const location = useLocation();
@@ -29,6 +30,7 @@ export default function SiteLayout() {
       <SiteNav />
       <Outlet />
       <SiteFooter />
+      <PageScrollCue />
       <WhatsAppFab />
     </>
   );
