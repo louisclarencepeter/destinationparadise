@@ -1,35 +1,213 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  SAFARI_IMAGES,
-  SAFARI_PACKAGES,
-  SAFARI_PAGE_CONTENT,
-  SAFARI_TRIPS,
-  SAFARI_TYPES,
-} from '../data/safariAssets.js';
 import '../styles/homepage.css';
 import '../styles/safaris.css';
 
-const heroImage = SAFARI_IMAGES.find((image) => image.id === 'male-lion-in-grass') || SAFARI_IMAGES[0];
-const slugify = (value) => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
-const compactPrice = (price) => price.replace(/\s+per person\b/i, ' pp');
-const getLowestGroupPrice = (packages) => {
-  const prices = packages
-    .flatMap((pkg) => Object.values(pkg.prices))
-    .map((price) => ({
-      price,
-      amount: Number(price.replace(/[^0-9.]/g, '')),
-    }))
-    .filter(({ amount }) => Number.isFinite(amount))
-    .sort((a, b) => a.amount - b.amount);
+const safariImg = (file) => `/assets/images/safaris/${file}`;
 
-  return prices[0] ? compactPrice(prices[0].price) : 'Custom quote';
-};
-const safariPackageGroups = SAFARI_TYPES.map((style) => ({
-  ...style,
-  id: slugify(style.type),
-  packages: SAFARI_PACKAGES.filter((pkg) => pkg.safariType === style.type),
-})).filter((group) => group.packages.length > 0);
+const PARKS = [
+  {
+    label: 'Park 01',
+    area: '14,750 km²',
+    name: 'Serengeti National Park',
+    blurb: 'The endless plains. Home to the great migration — 1.5 million wildebeest and 250,000 zebra moving in lockstep with the rains.',
+    tags: ['Migration', 'Big Five', 'Hot-air balloon'],
+    image: safariImg('zebra-herd-on-track.jpg'),
+    size: 'lg',
+  },
+  {
+    label: 'Park 02',
+    area: '260 km²',
+    name: 'Ngorongoro Crater',
+    blurb: 'A collapsed volcano, now a self-contained ecosystem with the densest concentration of predators in Africa. Black rhino still roam.',
+    tags: ['Black rhino', 'Big Five', 'Crater rim lodges'],
+    image: safariImg('rhino-on-plains.jpg'),
+    size: 'lg',
+  },
+  {
+    label: 'Park 03',
+    area: '2,850 km²',
+    name: 'Tarangire National Park',
+    blurb: 'Elephant capital. Ancient baobabs and a year-round river that draws giant herds in the dry season. Wildly underrated.',
+    tags: ['Elephants', 'Baobabs', 'Quiet roads'],
+    image: safariImg('eland-herd-plains.jpg'),
+  },
+  {
+    label: 'Park 04',
+    area: '30,893 km²',
+    name: 'Nyerere (Selous)',
+    blurb: 'Africa’s largest game reserve. Boat safaris on the Rufiji, walking with armed rangers, fly-camping under impossible stars.',
+    tags: ['Boat safari', 'Walking safari', 'Wild dog'],
+    image: safariImg('buffalo-and-egret.jpg'),
+  },
+  {
+    label: 'Park 05',
+    area: '330 km²',
+    name: 'Lake Manyara',
+    blurb: 'Tree-climbing lions, alkaline flats stained pink with flamingos, and one of East Africa’s great birding spots — 400+ species.',
+    tags: ['Tree-climbing lions', 'Flamingos', 'Birding'],
+    image: safariImg('yellow-weaver-on-rail.jpg'),
+  },
+];
+
+const ITINERARIES = [
+  {
+    rib: '3 nights · From $1,890 pp',
+    title: 'Serengeti Migration',
+    intro: 'Track the great wildebeest crossing on the Mara River. Tented camps, dawn game drives, sundowners on the kopjes.',
+    days: [
+      { d: 'Day 1', h: 'Fly Zanzibar → Seronera', p: 'Bush flight via Arusha. Afternoon game drive in the central Serengeti.' },
+      { d: 'Day 2', h: 'Mara River crossing', p: 'Full-day drive following the migration. Picnic lunch on the plains. Optional balloon at dawn.' },
+      { d: 'Day 3', h: 'Western corridor & back', p: 'Predator territory — lion, cheetah, hyena clans. Fly back to Zanzibar at sunset.' },
+    ],
+    includes: '✓ Bush flights · ✓ All meals · ✓ Park fees · ✓ Pro guide',
+  },
+  {
+    rib: 'Most popular · 5 nights · From $2,640 pp',
+    title: 'Ngorongoro & Tarangire',
+    intro: 'Descend the crater for the Big Five at first light, then move to Tarangire’s elephant herds and baobabs. A classic Northern Circuit pairing.',
+    days: [
+      { d: 'Day 1', h: 'Fly to Arusha → Tarangire', p: 'Drive 2hrs to camp. Evening game drive among the baobabs.' },
+      { d: 'Day 2', h: 'Tarangire elephants', p: 'Full-day drive along the Tarangire River. Hundreds of elephants in the dry months.' },
+      { d: 'Day 3', h: 'Transfer to crater rim', p: 'Drive via Lake Manyara (optional stop for tree-climbing lions). Lodge perched on the crater edge.' },
+      { d: 'Day 4', h: 'Crater floor', p: 'Pre-dawn descent. Black rhino, lion prides, flamingo flats. Picnic at Ngoitokitok Springs.' },
+      { d: 'Day 5', h: 'Olduvai & back', p: 'Visit Olduvai Gorge (Leakey’s "cradle of mankind"). Fly back to Zanzibar.' },
+    ],
+    includes: '✓ All flights & transfers · ✓ Lodge upgrades · ✓ Crater fees · ✓ Cultural visit included',
+    feature: true,
+  },
+  {
+    rib: '4 nights · From $2,180 pp',
+    title: 'Nyerere (Selous) Wild',
+    intro: 'Boat safaris on the Rufiji, walking with armed rangers, fly-camping under the stars. The road less travelled.',
+    days: [
+      { d: 'Day 1', h: 'Zanzibar → Selous', p: '50-min flight to Mtemere airstrip. Afternoon boat safari at sunset.' },
+      { d: 'Day 2', h: 'Walking safari', p: 'Morning bush walk with ranger. Afternoon game drive — wild dog territory.' },
+      { d: 'Day 3', h: 'Fly camp', p: 'Move to a fly-camp deeper in the reserve. Camp fire, no fences, full stars.' },
+      { d: 'Day 4', h: 'Rufiji to Zanzibar', p: 'Final boat safari at dawn (hippos, crocs, fish eagles). Fly back midday.' },
+    ],
+    includes: '✓ Boat & walking safaris · ✓ Fly-camping kit · ✓ All gear & meals · ✓ Ranger fees',
+  },
+];
+
+const WILDLIFE_CATEGORIES = [
+  {
+    title: 'Big cats',
+    sub: 'Predators',
+    rowMod: 'cats',
+    tiles: [
+      { src: 'male-lion-in-grass.jpg', alt: 'Male lion lying in grass', cap: 'Male lion · Ngorongoro Crater', mod: 'wide' },
+      { src: 'serval-in-grass.jpg', alt: 'Serval cat in grass', cap: 'Serval · rare daylight sighting' },
+      { src: 'lion-cub-in-grass.jpg', alt: 'Lion cub in grass', cap: 'Cub · ten weeks old' },
+      { src: 'lioness-and-cub-resting.jpg', alt: 'Lioness with cub resting', cap: 'Lioness & cub · evening rest', mod: 'wide' },
+    ],
+  },
+  {
+    title: 'Hooved giants',
+    sub: 'The grazers',
+    rowMod: 'ungulates',
+    tiles: [
+      { src: 'zebra-mare-and-foal.jpg', alt: 'Zebra mare and foal', cap: 'Zebra · mare and foal', mod: 'tall' },
+      { src: 'zebra-herd-on-track.jpg', alt: 'Zebra herd on track', cap: 'The herd, deciding', mod: 'wide' },
+      { src: 'wildebeest-grazing.jpg', alt: 'Blue wildebeest grazing', cap: 'Blue wildebeest' },
+      { src: 'eland-grazing.jpg', alt: 'Eland grazing', cap: 'Eland · the largest antelope' },
+      { src: 'eland-herd-plains.jpg', alt: 'Eland herd', cap: 'Eland herd · Ngorongoro', mod: 'wide' },
+      { src: 'warthog-on-plains.jpg', alt: 'Warthog', cap: 'Warthog · Pumbaa, in person' },
+    ],
+  },
+  {
+    title: 'Heavyweights',
+    sub: 'Big & rare',
+    rowMod: 'heavy',
+    tiles: [
+      { src: 'buffalo-herd-close.jpg', alt: 'Cape buffalo herd close-up', cap: 'Cape buffalo · the dagga boys', mod: 'wide' },
+      { src: 'buffalo-and-egret.jpg', alt: 'Buffalo with cattle egret', cap: 'Buffalo & egret · partners', mod: 'wide' },
+      { src: 'rhino-on-plains.jpg', alt: 'Black rhino on plains', cap: 'Black rhino · <30 left in the crater', mod: 'full' },
+    ],
+  },
+  {
+    title: 'Birds',
+    sub: '400+ species',
+    rowMod: 'birds',
+    tiles: [
+      { src: 'crowned-crane-close.jpg', alt: 'Grey crowned crane close-up', cap: 'Grey crowned crane', mod: 'tall' },
+      { src: 'crowned-cranes-in-grass.jpg', alt: 'Pair of crowned cranes', cap: 'The pair · always two' },
+      { src: 'yellow-weaver-on-rail.jpg', alt: 'Yellow weaver on rail', cap: "Speke's weaver · lodge regular" },
+      { src: 'raptor-on-log.jpg', alt: 'Lanner falcon on rock', cap: 'Lanner falcon · with prey', mod: 'wide' },
+    ],
+  },
+];
+
+const SEASONS = [
+  {
+    mod: 'peak',
+    months: 'Jun · Jul · Aug · Sep · Oct',
+    title: 'Dry & classic',
+    blurb: 'Animals cluster at waterholes. The Mara River crossings happen July–September. Cool, golden grass, picture-postcard. Books out 6+ months ahead.',
+    rating: '★★★★★',
+  },
+  {
+    mod: 'good',
+    months: 'Dec · Jan · Feb',
+    title: 'Calving season',
+    blurb: 'Wildebeest drop half a million calves on the southern Serengeti plains in February. Predator action peaks. Hot, but lush. Quieter parks.',
+    rating: '★★★★☆',
+  },
+  {
+    mod: 'shoulder',
+    months: 'Nov · Mar',
+    title: 'Green & cheap',
+    blurb: 'Short rains. Skies are dramatic, parks empty, prices drop 20–30%. Birding peaks in November. Some bush roads can muddy.',
+    rating: '★★★☆☆',
+  },
+  {
+    mod: 'avoid',
+    months: 'Apr · May',
+    title: 'Long rains',
+    blurb: 'Many camps close. Roads flood. Bargain-hunters only — and even then, we usually steer guests elsewhere this season.',
+    rating: '★★☆☆☆',
+  },
+];
+
+const INCLUDED_LIST = [
+  'Bush flights between parks (Cessna)',
+  'All park & conservation fees',
+  'Silver-level certified guide',
+  'Full board at every camp',
+  'Sundowners & bush picnics',
+  'Airport pickups in Zanzibar & Arusha',
+  'Bottled water & drinks at lodge',
+  '24/7 concierge on WhatsApp',
+];
+
+const FAQS = [
+  {
+    q: 'How many days do I need on safari?',
+    a: 'Three nights is the absolute minimum and only worth it if you fly between parks. Five nights is the sweet spot. Anything over seven and you’ll start to crave the beach — which is why most guests pair safari with Zanzibar.',
+    open: true,
+  },
+  {
+    q: 'Is it safe to bring kids?',
+    a: 'Yes — most camps welcome children 7+. We pick "family" lodges with pools and flexible game drives. For kids under 7, we suggest Tarangire (shorter drives, big elephant sightings) over Serengeti.',
+  },
+  {
+    q: 'What about malaria?',
+    a: 'Tanzania is a malaria area. Speak to your travel doctor about prophylaxis. Camps provide repellent, mosquito nets, and most have screened tents.',
+  },
+  {
+    q: 'Big Five — guaranteed?',
+    a: 'In the Ngorongoro Crater, you’ll usually tick four of five in a single day. Leopard is the wildcard — sometimes the same morning, sometimes never. We don’t promise sightings; the bush isn’t a zoo. We do promise we’ll work hard to find them.',
+  },
+  {
+    q: 'What kind of camera should I bring?',
+    a: 'A 200mm zoom minimum if you want frame-fillers. Most of our guests now shoot phones with a small clip-on telephoto and they do great. Bring a dust-blower — every camp’s nightmare is sand on the sensor.',
+  },
+  {
+    q: 'Can I extend with Zanzibar?',
+    a: 'Yes — and you should. We design every safari to flow into a beach stay. See our Bush & Beach package for a 10-night example.',
+    extendLink: true,
+  },
+];
 
 export default function Safaris() {
   const pageRef = useRef(null);
@@ -38,10 +216,10 @@ export default function Safaris() {
     const root = pageRef.current;
     if (!root) return undefined;
 
-    const revealItems = root.querySelectorAll('.safari-reveal');
+    const items = root.querySelectorAll('.reveal');
 
     if (!('IntersectionObserver' in window)) {
-      revealItems.forEach((item) => item.classList.add('is-visible'));
+      items.forEach((item) => item.classList.add('is-visible'));
       return undefined;
     }
 
@@ -52,185 +230,230 @@ export default function Safaris() {
           observer.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.14 });
+    }, { threshold: 0.08 });
 
-    revealItems.forEach((item) => observer.observe(item));
+    items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
   }, []);
 
   return (
     <main className="safaris-page" ref={pageRef}>
-      <section className="safaris-page__hero" style={{ '--safari-hero-image': `url(${heroImage.src})` }}>
-        <div className="safaris-page__hero-copy">
-          <span className="section-eyebrow">{SAFARI_PAGE_CONTENT.eyebrow}</span>
-          <h1>{SAFARI_PAGE_CONTENT.title}</h1>
-          <p>{SAFARI_PAGE_CONTENT.subtitle}</p>
-          <div className="safaris-page__hero-actions">
-            <Link className="btn" to="/#planner">Build My Safari</Link>
-            <a className="btn btn--ghost" href="#safari-packages">View Safaris</a>
+      {/* HERO */}
+      <section className="saf-hero">
+        <div className="saf-hero__bg">
+          <img src={safariImg('male-lion-in-grass.jpg')} alt="" />
+        </div>
+        <div className="saf-hero__inner">
+          <span className="saf-hero__eyebrow">Mainland Tanzania · the heart of what we do</span>
+          <h1 className="saf-hero__title">Where the wild things <em>still</em> are.</h1>
+          <p className="saf-hero__lead">
+            From the Serengeti’s rolling plains to the Ngorongoro Crater’s lost world, we run small-group safaris with the rangers, pilots, and lodge owners we’ve known for years. No bus tours. No half-truths. Just the bush, well done.
+          </p>
+          <div className="saf-hero__cta">
+            <a className="btn btn--lg" href="#itineraries">See itineraries</a>
+            <Link className="btn btn--ghost btn--lg" to="/trip-planner">Plan with AI →</Link>
+          </div>
+          <div className="saf-hero__stats">
+            <div><strong>5</strong><span>Parks</span></div>
+            <div><strong>2.0M</strong><span>Wildebeest</span></div>
+            <div><strong>$1,890</strong><span>From, per person</span></div>
+            <div><strong>4.9★</strong><span>Tripadvisor</span></div>
           </div>
         </div>
+        <div className="saf-hero__scroll" aria-hidden="true"><span /></div>
       </section>
 
-      <section className="safaris-page__section safaris-page__section--types" id="safari-types">
-        <header className="safaris-page__section-head safari-reveal">
-          <span className="section-eyebrow">Ways to Explore</span>
-          <h2 className="section-title">Safari styles</h2>
-        </header>
-
-        <div className="safari-type-grid">
-          {SAFARI_TYPES.map((item, index) => (
-            <a
-              className="safari-type-card safari-reveal"
-              href={`#${slugify(item.type)}`}
-              key={item.type}
-              style={{ '--safari-delay': `${index * 70}ms` }}
-            >
-              <h3>{item.type}</h3>
-              <p>{item.description}</p>
-            </a>
-          ))}
+      {/* INTRO */}
+      <section className="saf-intro reveal">
+        <div className="saf-intro__grid">
+          <div className="saf-intro__copy">
+            <span className="section-eyebrow">Our approach</span>
+            <h2 className="section-title">Tanzania-bred guides who know the bush — and the islands.</h2>
+            <p className="section-lead">
+              We run the northern circuit — Serengeti, Ngorongoro, Tarangire — with bush flights so you spend more time on game drives and less in a Land Cruiser. Pair with a few days on Zanzibar’s coast, or stay pure bush. Every camp is hand-picked. Every guide is Silver-level certified or higher.
+            </p>
+          </div>
+          <ul className="saf-intro__bullets">
+            <li>
+              <span className="saf-intro__num">01</span>
+              <div>
+                <strong>Small vehicles</strong>
+                <p>Max 4 guests per Land Cruiser, every seat a window seat. No mini-buses.</p>
+              </div>
+            </li>
+            <li>
+              <span className="saf-intro__num">02</span>
+              <div>
+                <strong>Bush flights</strong>
+                <p>Skip the 8-hour drive. Cessnas connect parks in under an hour.</p>
+              </div>
+            </li>
+            <li>
+              <span className="saf-intro__num">03</span>
+              <div>
+                <strong>Conservation fees built in</strong>
+                <p>Park fees, ranger fees, community levies — never tacked on later.</p>
+              </div>
+            </li>
+          </ul>
         </div>
       </section>
 
-      <section className="safaris-page__section" id="safari-options">
-        <header className="safaris-page__section-head safari-reveal">
-          <span className="section-eyebrow">Ways to Book</span>
-          <h2 className="section-title">Mainland safari options</h2>
-          <p className="section-lead">
-            Start with the booking style that fits your trip: a dedicated safari, a fast fly-in from Zanzibar, or a full bush-and-beach package.
-          </p>
+      {/* PARKS */}
+      <section className="parks reveal" id="parks">
+        <header className="parks__head">
+          <span className="section-eyebrow">The Northern Circuit & beyond</span>
+          <h2 className="section-title">Five parks. Each its own world.</h2>
         </header>
-
-        <div className="safaris__grid safaris-page__trips">
-          {SAFARI_TRIPS.map((trip, index) => (
-            <article
-              className={`safari-card safari-reveal${trip.featured ? ' safari-card--feature' : ''}`}
-              key={trip.id}
-              style={{ '--safari-delay': `${index * 90}ms` }}
-            >
-              <div className="safari-card__img">
-                <img src={trip.image} alt={trip.imageAlt} loading="lazy" />
-                <span className="safari-card__nights">{trip.nights}</span>
-              </div>
-              <div className="safari-card__body">
-                <h3>{trip.title}</h3>
-                <p>{trip.description}</p>
-                <div className="safari-card__foot">
-                  <span className="safari-card__from">From <strong>{trip.price}</strong> pp</span>
-                  <Link className="ex-card__link" to="/#planner">Ask us</Link>
-                </div>
+        <div className="parks__grid">
+          {PARKS.map((park) => (
+            <article className={`park-card${park.size === 'lg' ? ' park-card--lg' : ''}`} key={park.name}>
+              <div className="park-card__img"><img src={park.image} alt="" loading="lazy" /></div>
+              <div className="park-card__body">
+                <div className="park-card__meta"><span>{park.label}</span><span>{park.area}</span></div>
+                <h3>{park.name}</h3>
+                <p>{park.blurb}</p>
+                <ul className="park-card__tags">
+                  {park.tags.map((tag) => <li key={tag}>{tag}</li>)}
+                </ul>
               </div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="safaris-page__section safaris-page__section--packages" id="safari-packages">
-        <header className="safaris-page__section-head safari-reveal">
-          <span className="section-eyebrow">All Safari Packages</span>
-          <h2 className="section-title">Choose your route</h2>
-          <p className="section-lead">
-            The docs currently list {SAFARI_PACKAGES.length} safari packages, from one-day fly-in trips to longer northern and southern circuits.
-          </p>
+      {/* ITINERARIES */}
+      <section className="itineraries reveal" id="itineraries">
+        <header className="itineraries__head">
+          <span className="section-eyebrow">Suggested routes</span>
+          <h2 className="section-title">Itineraries — pick a starting point.</h2>
+          <p className="section-lead">Every route is a sketch. Tell us your dates and we’ll re-plot the camps and flights around you.</p>
         </header>
 
-        <div className="safari-package-groups">
-          {safariPackageGroups.map((group, groupIndex) => {
-            const anchorPackage = group.packages.find((pkg) => pkg.featured) || group.packages[0];
-            const fromPrice = getLowestGroupPrice(group.packages);
-
-            return (
-              <section
-                className="safari-package-group"
-                id={group.id}
-                key={group.type}
-                aria-labelledby={`safari-group-${group.id}`}
-              >
-                <header className="safari-package-group__head safari-reveal">
-                  <span className="safari-package-group__label">
-                    {String(groupIndex + 1).padStart(2, '0')} / {group.packages.length} {group.packages.length === 1 ? 'option' : 'options'}
-                  </span>
-                  <h3 id={`safari-group-${group.id}`}>{group.type}</h3>
-                  <p>{group.description}</p>
-
-                  <div className="safari-package-group__preview">
-                    <img src={anchorPackage.image} alt={anchorPackage.imageAlt} loading="lazy" />
-                    <div className="safari-package-group__preview-body">
-                      <span>Signature route</span>
-                      <strong>{anchorPackage.duration}</strong>
-                      <p>{anchorPackage.destinations}</p>
-                    </div>
+        {ITINERARIES.map((it) => (
+          <div className={`itin${it.feature ? ' itin--feature' : ''}`} key={it.title}>
+            <div className={`itin__rib${it.feature ? ' itin__rib--gold' : ''}`}>{it.rib}</div>
+            <div className="itin__head">
+              <h3>{it.title}</h3>
+              <p>{it.intro}</p>
+            </div>
+            <ol className="itin__days">
+              {it.days.map((day) => (
+                <li key={day.d}>
+                  <span className="itin__day">{day.d}</span>
+                  <div>
+                    <strong>{day.h}</strong>
+                    <p>{day.p}</p>
                   </div>
-
-                  <dl className="safari-package-group__facts">
-                    <div>
-                      <dt>Starting from</dt>
-                      <dd>{fromPrice}</dd>
-                    </div>
-                    <div>
-                      <dt>Best for</dt>
-                      <dd>{anchorPackage.bestFor}</dd>
-                    </div>
-                  </dl>
-                </header>
-
-                <div className="safari-package-grid">
-                  {group.packages.map((pkg, packageIndex) => (
-                    <article
-                      className={`safari-package-card safari-reveal${pkg.featured ? ' safari-package-card--featured' : ''}`}
-                      key={pkg.id}
-                      style={{ '--safari-delay': `${packageIndex * 80}ms` }}
-                    >
-                      <div className="safari-package-card__image">
-                        <img src={pkg.image} alt={pkg.imageAlt} loading="lazy" />
-                        <span>{pkg.duration}</span>
-                      </div>
-                      <div className="safari-package-card__body">
-                        <div>
-                          <h3>{pkg.title}</h3>
-                          <p className="safari-package-card__meta">{pkg.destinations}</p>
-                          <p className="safari-package-card__best">Best for: {pkg.bestFor}</p>
-                        </div>
-                        <ul className="safari-package-card__highlights">
-                          {pkg.highlights.slice(0, 4).map((highlight) => (
-                            <li key={highlight}>{highlight}</li>
-                          ))}
-                        </ul>
-                        <div className="safari-package-card__prices">
-                          {Object.entries(pkg.prices).map(([tier, price]) => (
-                            <span key={tier}><strong>{tier.replace(/([A-Z])/g, ' $1')}</strong>{price}</span>
-                          ))}
-                        </div>
-                      </div>
-                    </article>
-                  ))}
-                </div>
-              </section>
-            );
-          })}
-        </div>
-
-        <p className="safaris-page__disclaimer">{SAFARI_PAGE_CONTENT.disclaimer}</p>
+                </li>
+              ))}
+            </ol>
+            <div className="itin__foot">
+              <span className="itin__includes">{it.includes}</span>
+              <Link className="btn" to="/booking">Book this route →</Link>
+            </div>
+          </div>
+        ))}
       </section>
 
-      <section className="safaris-page__section safaris-page__section--gallery" id="safari-gallery">
-        <header className="safaris-page__section-head safari-reveal">
-          <span className="section-eyebrow">Safari Gallery</span>
-          <h2 className="section-title">Wildlife from the selected set</h2>
+      {/* WILDLIFE GALLERY */}
+      <section className="wildlife reveal" id="wildlife">
+        <header className="wildlife__head">
+          <span className="section-eyebrow">From our last season</span>
+          <h2 className="section-title">What you might see.</h2>
+          <p className="section-lead">Real photos from real game drives, taken by our guides this past season — Ngorongoro and Serengeti, mostly. No stock library.</p>
         </header>
 
-        <div className="safari-photo-grid">
-          {SAFARI_IMAGES.map((image, index) => (
-            <figure
-              className={`safari-photo safari-reveal${image.layout ? ` safari-photo--${image.layout}` : ''}`}
-              key={image.id}
-              style={{ '--safari-delay': `${(index % 6) * 55}ms` }}
-            >
-              <img src={image.src} alt={image.alt} loading={index < 4 ? 'eager' : 'lazy'} />
-              <figcaption>{image.caption}</figcaption>
-            </figure>
+        {WILDLIFE_CATEGORIES.map((cat) => (
+          <div className="wildlife__cat" key={cat.title}>
+            <h3 className="wildlife__cat-title">
+              <span>{cat.title}</span>
+              <em>{cat.sub}</em>
+            </h3>
+            <div className={`wildlife__row wildlife__row--${cat.rowMod}`}>
+              {cat.tiles.map((tile) => (
+                <figure
+                  className={`wildlife__tile${tile.mod ? ` wildlife__tile--${tile.mod}` : ''}`}
+                  key={tile.src}
+                >
+                  <img src={safariImg(tile.src)} alt={tile.alt} loading="lazy" />
+                  <figcaption>{tile.cap}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        ))}
+      </section>
+
+      {/* WHEN TO GO */}
+      <section className="when reveal" id="when">
+        <header className="when__head">
+          <span className="section-eyebrow">When to go</span>
+          <h2 className="section-title">There’s no bad time. Just different ones.</h2>
+        </header>
+        <div className="when__grid">
+          {SEASONS.map((s) => (
+            <article className={`when-card when-card--${s.mod}`} key={s.title}>
+              <div className="when-card__months">{s.months}</div>
+              <h4>{s.title}</h4>
+              <p>{s.blurb}</p>
+              <span className="when-card__rating">{s.rating}</span>
+            </article>
           ))}
+        </div>
+      </section>
+
+      {/* WHAT'S INCLUDED */}
+      <section className="included reveal">
+        <div className="included__wrap">
+          <div className="included__copy">
+            <span className="section-eyebrow">What’s included</span>
+            <h2 className="section-title">One price. Nothing surprise-charged.</h2>
+            <p className="section-lead">We learnt a long time ago that "from $X" with twelve add-ons makes guests miserable. Our quotes include everything below.</p>
+          </div>
+          <ul className="included__list">
+            {INCLUDED_LIST.map((item) => (
+              <li key={item}><span>✓</span> {item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="saf-faq reveal" id="faq">
+        <header className="saf-faq__head">
+          <span className="section-eyebrow">FAQs</span>
+          <h2 className="section-title">The questions everyone asks.</h2>
+        </header>
+        <div className="saf-faq__list">
+          {FAQS.map((faq) => (
+            <details className="saf-faq__item" key={faq.q} {...(faq.open ? { open: true } : {})}>
+              <summary>{faq.q}</summary>
+              <div className="saf-faq__body">
+                {faq.extendLink ? (
+                  <>
+                    Yes — and you should. We design every safari to flow into a beach stay. See our{' '}
+                    <Link to="/packages">Bush &amp; Beach package</Link> for a 10-night example.
+                  </>
+                ) : faq.a}
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="saf-cta">
+        <div className="saf-cta__bg">
+          <img src={safariImg('lioness-and-cub-resting.jpg')} alt="" />
+        </div>
+        <div className="saf-cta__inner">
+          <h2>Ready to plan?</h2>
+          <p>Tell us when you’re free, who’s coming, and what you’re hoping for. We’ll come back within 24 hours with a real itinerary and a real price.</p>
+          <div className="saf-cta__btns">
+            <Link className="btn btn--lg btn--accent" to="/booking">Get a quote →</Link>
+            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Or chat with our AI planner</Link>
+          </div>
         </div>
       </section>
     </main>
