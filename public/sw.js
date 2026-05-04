@@ -1,7 +1,13 @@
 const CACHE_NAME = 'destination-paradise-shell-v1'
 const APP_SHELL = ['/', '/site.webmanifest', '/brand-logo.png', '/icon-192.png', '/icon-512.png']
+const IS_LOCALHOST = ['localhost', '127.0.0.1', '::1'].includes(self.location.hostname)
 
 self.addEventListener('install', (event) => {
+  if (IS_LOCALHOST) {
+    self.skipWaiting()
+    return
+  }
+
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => cache.addAll(APP_SHELL)),
   )
@@ -9,6 +15,22 @@ self.addEventListener('install', (event) => {
 })
 
 self.addEventListener('activate', (event) => {
+  if (IS_LOCALHOST) {
+    event.waitUntil((async () => {
+      const cacheNames = await caches.keys()
+      await Promise.all(
+        cacheNames
+          .filter((cacheName) => cacheName.startsWith('destination-paradise-shell'))
+          .map((cacheName) => caches.delete(cacheName)),
+      )
+
+      await self.registration.unregister()
+      const clients = await self.clients.matchAll({ type: 'window' })
+      clients.forEach((client) => client.navigate(client.url))
+    })())
+    return
+  }
+
   event.waitUntil(
     caches.keys().then((cacheNames) =>
       Promise.all(
@@ -22,6 +44,10 @@ self.addEventListener('activate', (event) => {
 })
 
 self.addEventListener('fetch', (event) => {
+  if (IS_LOCALHOST) {
+    return
+  }
+
   if (event.request.method !== 'GET') {
     return
   }
@@ -50,7 +76,7 @@ self.addEventListener('fetch', (event) => {
         })
 
         return networkResponse
-      })
+      }).catch(() => new Response('', { status: 504, statusText: 'Offline' }))
     }),
   )
 })
