@@ -152,6 +152,29 @@ export function SocialIcon({ type }) {
           />
         </IconFrame>
       )
+    case 'sun':
+      return (
+        <IconFrame>
+          <circle cx="12" cy="12" r="3.85" stroke="currentColor" strokeWidth="1.7" />
+          <path
+            d="M12 3.5V5.5M12 18.5V20.5M4.93 4.93L6.34 6.34M17.66 17.66L19.07 19.07M3.5 12H5.5M18.5 12H20.5M4.93 19.07L6.34 17.66M17.66 6.34L19.07 4.93"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinecap="round"
+          />
+        </IconFrame>
+      )
+    case 'moon':
+      return (
+        <IconFrame>
+          <path
+            d="M20.4 13.6C19.5 18.05 15.6 21.2 11.1 21C6.6 20.8 3 17 3 12.5C3 8 6.6 4.2 11.1 4C8.4 5.4 7 8 7 11C7 14.7 10 17.5 13.7 17.5C16.4 17.5 18.85 16 20.4 13.6Z"
+            stroke="currentColor"
+            strokeWidth="1.7"
+            strokeLinejoin="round"
+          />
+        </IconFrame>
+      )
     default:
       return null
   }

@@ -83,7 +83,7 @@
   text-transform: uppercase;
 }
 
-.contact-info__quick-action {
+.contact-info .contact-info__quick-action {
   background: var(--brand-teal);
   color: var(--theme-on-primary);
   transition:
@@ -112,14 +112,19 @@
   .contact-info__row {
     grid-template-columns: 1.85rem minmax(0, 1fr) auto;
     gap: 0.55rem;
-    padding: 0.6rem;
+    padding: 0.6rem 0.65rem 0.6rem 0.6rem;
   }
 
-  .contact-info__icon,
-  .contact-info__quick-action {
+  .contact-info__icon {
     width: 1.85rem;
     height: 1.85rem;
     padding: 0.4rem;
+  }
+
+  .contact-info__quick-action {
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0.55rem;
   }
 
   .contact-info__label {

@@ -30,8 +30,8 @@ const socialLinks = [
 
 const highlights = [
   { icon: 'compass', label: 'Private island tours' },
-  { icon: 'suitcase', label: 'Stay and transfer planning' },
-  { icon: 'sparkle', label: 'Handpicked Zanzibar experiences' },
+  { icon: 'suitcase', label: 'Tanzania safari planning' },
+  { icon: 'sparkle', label: 'Zanzibar & Tanzania experiences' },
 ]
 
 const contactLinks = [
@@ -93,14 +93,15 @@ function App() {
             Coming Soon
           </p>
           <h1>
-            A new home for
-            <span className="construction__accent"> unforgettable</span>
-            Zanzibar escapes.
+            A new home for{' '}
+            <span className="construction__accent">unforgettable</span>{' '}
+            Zanzibar &amp; Tanzania adventures.
           </h1>
           <p className="construction__body">
             Destination Paradise is refreshing its online experience. While the
             full site is being prepared, our team is still arranging tours,
-            transfers, stays, and tailored island moments across Zanzibar.
+            transfers, stays, and tailored experiences across Zanzibar and
+            Tanzania's finest safari destinations.
           </p>
 
           <div className="construction__actions" aria-label="Contact options">
@@ -200,8 +201,8 @@ function App() {
             aria-label={`Switch to ${nextTheme} theme`}
             onClick={toggleManualTheme}
           >
-            <span className="theme-switch__option">Light</span>
-            <span className="theme-switch__option">Dark</span>
+            <span className="theme-switch__option" aria-hidden="true"><SocialIcon type="sun" /></span>
+            <span className="theme-switch__option" aria-hidden="true"><SocialIcon type="moon" /></span>
           </button>
         </div>
       </footer>
