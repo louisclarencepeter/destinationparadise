@@ -25,10 +25,12 @@ export default function ExcursionsSection({ tweaks, activeCat, setActiveCat, fil
             <div className="ex-card__img">
               <img src={t.image} alt={t.title} />
               <span className="ex-card__badge">{t.duration}</span>
-              <div className="ex-card__price">
-                <div className="ex-card__price-from">From</div>
-                <div className="ex-card__price-num">${t.price}</div>
-              </div>
+              {typeof t.price === 'number' && (
+                <div className="ex-card__price">
+                  <div className="ex-card__price-from">From</div>
+                  <div className="ex-card__price-num">${t.price}</div>
+                </div>
+              )}
             </div>
             <div className="ex-card__body">
               <div className="ex-card__meta">
@@ -52,7 +54,7 @@ export default function ExcursionsSection({ tweaks, activeCat, setActiveCat, fil
         ))}
       </div>
       <div className="excursions__more">
-        <Link className="btn btn--on-light" to="/excursions">View all 14 excursions <ArrowIcon size={16} /></Link>
+        <Link className="btn btn--on-light" to="/excursions">View all excursions <ArrowIcon size={16} /></Link>
       </div>
     </section>
   );

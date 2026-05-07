@@ -1,65 +1,127 @@
+import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import '../styles/homepage.css';
+import '../styles/excursions.css';
+
+const PRACTICAL = [
+  { h: "What's always included", items: ['Hotel pickup & drop-off', 'Licensed local guide', 'Bottled water all day', 'All park & entry fees', 'Equipment provided'] },
+  { h: 'Not included', items: ['Tips for guides & crew', 'Alcohol (where applicable)', 'Travel insurance', 'Spending money'] },
+  { h: 'Booking & payment', items: ['Book at least 48 hours ahead', '20% deposit, balance on the day', 'Free cancellation up to 24h before', 'USD, EUR, GBP, TZS — all accepted'] },
+];
 
 export default function ExcursionDetail() {
   const { id } = useParams();
   const excursion = EXCURSIONS.find((item) => item.id === id);
 
+  useEffect(() => {
+    if (excursion) {
+      document.title = `${excursion.title} · Destination Paradise`;
+    }
+  }, [excursion]);
+
   if (!excursion) {
     return (
-      <main className="standalone-page">
-        <section className="standalone-page__section standalone-page__section--narrow">
-          <header className="standalone-page__head">
+      <main className="excursions-page">
+        <section className="exc-day" style={{ textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <div>
             <span className="section-eyebrow">Excursions</span>
             <h1 className="section-title">Excursion not found</h1>
-            <p className="section-lead">That route is not in our current list yet. Browse all available excursions below.</p>
-          </header>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <Link className="btn" to="/excursions">Back to all excursions</Link>
+            <p className="section-lead">That route is not in our current list. Browse all available excursions below.</p>
+            <Link className="btn btn--accent" to="/excursions" style={{ marginTop: '1.5rem' }}>Back to all excursions →</Link>
           </div>
         </section>
       </main>
     );
   }
 
+  const e = excursion;
+
   return (
-    <main className="standalone-page">
-      <section className="standalone-page__section">
-        <header className="standalone-page__head">
-          <span className="section-eyebrow">{excursion.category}</span>
-          <h1 className="section-title">{excursion.title}</h1>
-          <p className="section-lead">{excursion.description}</p>
-        </header>
+    <main className="excursions-page exc-detail">
+      <nav className="exc-detail__crumbs" aria-label="Breadcrumb">
+        <Link to="/">Home</Link>
+        <span aria-hidden="true">→</span>
+        <Link to="/excursions">Excursions</Link>
+        <span aria-hidden="true">→</span>
+        <span>{e.title}</span>
+      </nav>
 
-        <article className="standalone-card" style={{ maxWidth: 980, margin: '0 auto' }}>
-          <img
-            src={excursion.image}
-            alt={excursion.title}
-            style={{ width: '100%', aspectRatio: '16 / 9', objectFit: 'cover', borderRadius: 12 }}
-          />
-
-          <div className="standalone-card__foot" style={{ marginTop: '1rem' }}>
-            <span><strong>Duration:</strong> {excursion.duration}</span>
-            <span><strong>Group:</strong> {excursion.group}</span>
-            <span><strong>From:</strong> {excursion.from}</span>
-            <span><strong>Price:</strong> ${excursion.price} pp</span>
-          </div>
-
-          <div>
-            <h2 style={{ margin: '1rem 0 .5rem', fontFamily: 'var(--dp-font-sans)', color: 'var(--ink)' }}>Highlights</h2>
-            <ul style={{ margin: 0, paddingLeft: '1.2rem', color: 'var(--text-muted)' }}>
-              {(excursion.highlights || []).map((highlight) => (
-                <li key={highlight}>{highlight}</li>
+      <article id={e.id} data-cat={e.category} className="exc-block exc-block--detail">
+        <div className="exc-block__img">
+          <img src={e.image} alt={e.alt || e.title} />
+          <span className="exc-block__cat" data-cat={e.category}>{e.category}</span>
+        </div>
+        <div className="exc-block__body">
+          <span className="exc-block__eyebrow">{e.eyebrow}</span>
+          <h1 className="exc-block__title">{e.title}</h1>
+          <p className="exc-block__desc">{e.intro || e.description}</p>
+          {e.facts && (
+            <dl className="exc-block__facts">
+              {e.facts.map(([dt, dd, sub]) => (
+                <div key={dt}><dt>{dt}</dt><dd>{dd}<small>{sub}</small></dd></div>
               ))}
-            </ul>
+            </dl>
+          )}
+          {e.cols && (
+            <div className="exc-block__cols">
+              {e.cols.map((col) => (
+                <div className="exc-block__col" key={col.h}>
+                  <h4>{col.h}</h4>
+                  <ul>{col.items.map((it) => <li key={it}>{it}</li>)}</ul>
+                </div>
+              ))}
+            </div>
+          )}
+          {e.highlights && !e.cols && (
+            <div className="exc-block__cols">
+              <div className="exc-block__col">
+                <h4>Highlights</h4>
+                <ul>{e.highlights.map((it) => <li key={it}>{it}</li>)}</ul>
+              </div>
+            </div>
+          )}
+          <div className="exc-block__actions">
+            {typeof e.price === 'number' ? (
+              <span className="exc-block__price">${e.price}<small>{e.priceSub || 'per person'}</small></span>
+            ) : (
+              <span className="exc-block__price-note">Price on request</span>
+            )}
+            {e.priceNote && <span className="exc-block__price-note">{e.priceNote}</span>}
+            <Link className="btn btn--accent" to="/booking">Book this →</Link>
+            <Link className="btn btn--ghost-dark" to="/excursions">All excursions</Link>
           </div>
+        </div>
+      </article>
 
-          <div style={{ display: 'flex', gap: '.75rem', flexWrap: 'wrap', marginTop: '1rem' }}>
-            <Link className="btn" to="/#contact">Book this excursion</Link>
-            <Link className="btn btn--on-light" to="/excursions">View all excursions</Link>
+      <section className="exc-prac">
+        <div className="exc-prac__grid">
+          {PRACTICAL.map((col) => (
+            <div className="exc-prac__col" key={col.h}>
+              <h4>{col.h}</h4>
+              <ul>
+                {col.items.map((it) => (
+                  <li key={it}>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                    {it}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="exc-cta">
+        <div className="exc-cta__bg"><img src={e.image} alt="" /></div>
+        <div className="exc-cta__inner">
+          <h2>Ready to book {e.title}?</h2>
+          <p>Tell us your dates and we'll come back within 24 hours with available pickup times and a final price — no commitment.</p>
+          <div className="exc-cta__btns">
+            <Link className="btn btn--lg btn--accent" to="/booking">Get in touch →</Link>
+            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Or chat with our AI planner</Link>
           </div>
-        </article>
+        </div>
       </section>
     </main>
   );

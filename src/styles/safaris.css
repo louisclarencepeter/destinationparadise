@@ -466,6 +466,11 @@
   border-radius: 999px;
   margin-bottom: 1rem;
 }
+[data-theme="dark"] .itin__rib {
+  background: rgba(255,255,255,.16);
+  color: #e6f3fb;
+  border: 1px solid rgba(255,255,255,.26);
+}
 .itin--feature .itin__rib { background: rgba(255,255,255,.12); color: #F5F1E8; }
 .itin__rib--gold { background: var(--dp-accent) !important; color: #fff !important; }
 .itin__head h3 {

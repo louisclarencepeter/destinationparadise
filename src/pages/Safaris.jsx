@@ -52,47 +52,6 @@ const PARKS = [
 
 const ITINERARIES = [
   {
-    rib: 'Last-minute · 1 day · From $390 pp',
-    title: 'Tarangire Express Day Safari',
-    intro: 'A fast, high-impact one-day option for guests already in Zanzibar who want a real mainland game drive without overnighting.',
-    days: [
-      { d: 'Day 1', h: 'Zanzibar ↔ Arusha/Tarangire', p: 'Early flight out, full-day game drive in Tarangire, sunset return flight to Zanzibar.' },
-    ],
-    includes: '✓ Return flights · ✓ Park fees · ✓ Picnic lunch · ✓ Pro guide',
-  },
-  {
-    rib: 'Last-minute · 1 night · From $790 pp',
-    title: 'Ngorongoro Overnight',
-    intro: 'Perfect when you can spare one night: crater wildlife at first light plus a lodge stay on the rim.',
-    days: [
-      { d: 'Day 1', h: 'Zanzibar → Arusha → crater rim', p: 'Morning flight, transfer to the highlands, evening sundowner at the lodge.' },
-      { d: 'Day 2', h: 'Crater floor & fly back', p: 'Early descent for Big Five tracking, picnic lunch, return flight to Zanzibar.' },
-    ],
-    includes: '✓ Flights & transfers · ✓ Lodge stay · ✓ Crater fees · ✓ Guide',
-  },
-  {
-    rib: 'Last-minute · 2 nights · From $1,190 pp',
-    title: 'Tarangire + Ngorongoro Short Circuit',
-    intro: 'The best-value short safari: elephants and baobabs in Tarangire, then the crater’s dense predator zones.',
-    days: [
-      { d: 'Day 1', h: 'Fly to Arusha → Tarangire', p: 'Transfer to park, afternoon game drive, overnight near Tarangire.' },
-      { d: 'Day 2', h: 'Crater rim transfer', p: 'Morning drive, transfer to Ngorongoro highlands, evening at lodge.' },
-      { d: 'Day 3', h: 'Crater game drive & return', p: 'Early crater descent and wildlife tracking before return flight to Zanzibar.' },
-    ],
-    includes: '✓ Flights · ✓ 2 lodge nights · ✓ Park & crater fees · ✓ Guide',
-  },
-  {
-    rib: '3 nights · From $1,890 pp',
-    title: 'Serengeti Migration',
-    intro: 'Track the great wildebeest crossing on the Mara River. Tented camps, dawn game drives, sundowners on the kopjes.',
-    days: [
-      { d: 'Day 1', h: 'Fly Zanzibar → Seronera', p: 'Bush flight via Arusha. Afternoon game drive in the central Serengeti.' },
-      { d: 'Day 2', h: 'Mara River crossing', p: 'Full-day drive following the migration. Picnic lunch on the plains. Optional balloon at dawn.' },
-      { d: 'Day 3', h: 'Western corridor & back', p: 'Predator territory — lion, cheetah, hyena clans. Fly back to Zanzibar at sunset.' },
-    ],
-    includes: '✓ Bush flights · ✓ All meals · ✓ Park fees · ✓ Pro guide',
-  },
-  {
     rib: 'Most popular · 5 nights · From $2,640 pp',
     title: 'Ngorongoro & Tarangire',
     intro: 'Descend the crater for the Big Five at first light, then move to Tarangire’s elephant herds and baobabs. A classic Northern Circuit pairing.',
@@ -105,6 +64,17 @@ const ITINERARIES = [
     ],
     includes: '✓ All flights & transfers · ✓ Lodge upgrades · ✓ Crater fees · ✓ Cultural visit included',
     feature: true,
+  },
+  {
+    rib: '3 nights · From $1,890 pp',
+    title: 'Serengeti Migration',
+    intro: 'Track the great wildebeest crossing on the Mara River. Tented camps, dawn game drives, sundowners on the kopjes.',
+    days: [
+      { d: 'Day 1', h: 'Fly Zanzibar → Seronera', p: 'Bush flight via Arusha. Afternoon game drive in the central Serengeti.' },
+      { d: 'Day 2', h: 'Mara River crossing', p: 'Full-day drive following the migration. Picnic lunch on the plains. Optional balloon at dawn.' },
+      { d: 'Day 3', h: 'Western corridor & back', p: 'Predator territory — lion, cheetah, hyena clans. Fly back to Zanzibar at sunset.' },
+    ],
+    includes: '✓ Bush flights · ✓ All meals · ✓ Park fees · ✓ Pro guide',
   },
   {
     rib: '4 nights · From $2,180 pp',
@@ -153,6 +123,36 @@ const ITINERARIES = [
       { d: 'Day 5', h: 'Final drive & fly out', p: 'Morning game loop before return flights east and onward transfer.' },
     ],
     includes: '✓ Bush flights · ✓ Luxury fly-camp · ✓ Park fees · ✓ Expert guide team',
+  },
+  {
+    rib: 'Last-minute · 2 nights · From $1,190 pp',
+    title: 'Tarangire + Ngorongoro Short Circuit',
+    intro: 'The best-value short safari: elephants and baobabs in Tarangire, then the crater’s dense predator zones.',
+    days: [
+      { d: 'Day 1', h: 'Fly to Arusha → Tarangire', p: 'Transfer to park, afternoon game drive, overnight near Tarangire.' },
+      { d: 'Day 2', h: 'Crater rim transfer', p: 'Morning drive, transfer to Ngorongoro highlands, evening at lodge.' },
+      { d: 'Day 3', h: 'Crater game drive & return', p: 'Early crater descent and wildlife tracking before return flight to Zanzibar.' },
+    ],
+    includes: '✓ Flights · ✓ 2 lodge nights · ✓ Park & crater fees · ✓ Guide',
+  },
+  {
+    rib: 'Last-minute · 1 night · From $790 pp',
+    title: 'Ngorongoro Overnight',
+    intro: 'Perfect when you can spare one night: crater wildlife at first light plus a lodge stay on the rim.',
+    days: [
+      { d: 'Day 1', h: 'Zanzibar → Arusha → crater rim', p: 'Morning flight, transfer to the highlands, evening sundowner at the lodge.' },
+      { d: 'Day 2', h: 'Crater floor & fly back', p: 'Early descent for Big Five tracking, picnic lunch, return flight to Zanzibar.' },
+    ],
+    includes: '✓ Flights & transfers · ✓ Lodge stay · ✓ Crater fees · ✓ Guide',
+  },
+  {
+    rib: 'Last-minute · 1 day · From $390 pp',
+    title: 'Tarangire Express Day Safari',
+    intro: 'A fast, high-impact one-day option for guests already in Zanzibar who want a real mainland game drive without overnighting.',
+    days: [
+      { d: 'Day 1', h: 'Zanzibar ↔ Arusha/Tarangire', p: 'Early flight out, full-day game drive in Tarangire, sunset return flight to Zanzibar.' },
+    ],
+    includes: '✓ Return flights · ✓ Park fees · ✓ Picnic lunch · ✓ Pro guide',
   },
 ];
 
