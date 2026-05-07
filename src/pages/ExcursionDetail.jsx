@@ -4,6 +4,10 @@ import { EXCURSIONS } from '../data/excursionsData.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 
+function categoryToSlug(cat) {
+  return cat.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
 const PRACTICAL = [
   { h: "What's always included", items: ['Hotel pickup & drop-off', 'Licensed local guide', 'Bottled water all day', 'All park & entry fees', 'Equipment provided'] },
   { h: 'Not included', items: ['Tips for guides & crew', 'Alcohol (where applicable)', 'Travel insurance', 'Spending money'] },
@@ -47,10 +51,11 @@ export default function ExcursionDetail() {
         <span>{e.title}</span>
       </nav>
 
-      <article id={e.id} data-cat={e.category} className="exc-block exc-block--detail">
+      <article id={e.id} data-cat={categoryToSlug(e.category)} className="exc-block exc-block--detail">
         <div className="exc-block__img">
           <img src={e.image} alt={e.alt || e.title} />
-          <span className="exc-block__cat" data-cat={e.category}>{e.category}</span>
+          <span className="exc-block__cat" data-cat={categoryToSlug(e.category)}>{e.category}</span>
+          {e.season && <span className="exc-block__season">Seasonal · {e.season}</span>}
         </div>
         <div className="exc-block__body">
           <span className="exc-block__eyebrow">{e.eyebrow}</span>
@@ -93,6 +98,24 @@ export default function ExcursionDetail() {
           </div>
         </div>
       </article>
+
+      {e.timeline && e.timeline.length > 0 && (
+        <section className="exc-day" id="day">
+          <div className="exc-day__head">
+            <span className="section-eyebrow">Hour by hour</span>
+            <h2 className="section-title">A typical day</h2>
+            <p className="section-lead">Minute by minute, what you can expect. Times are a guide — we adapt to weather, tides, and the mood of the day.</p>
+          </div>
+          <div className="exc-day__timeline">
+            {e.timeline.map(([t, h, p]) => (
+              <div className="exc-day__row" key={t}>
+                <div className="exc-day__time">{t}</div>
+                <div className="exc-day__what"><strong>{h}</strong><p>{p}</p></div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="exc-prac">
         <div className="exc-prac__grid">

@@ -212,8 +212,11 @@
   transform: translateY(-1px);
 }
 .exc-filter__btn.is-active { background: #1a4d6e; color: #fff; border-color: #1a4d6e; }
-.exc-filter__btn.is-active[data-cat="Culture"] { background: #b8541a; border-color: #b8541a; }
-.exc-filter__btn.is-active[data-cat="Nature"] { background: #4a6b3a; border-color: #4a6b3a; }
+.exc-filter__btn.is-active[data-cat="culture-heritage"] { background: #b8541a; border-color: #b8541a; }
+.exc-filter__btn.is-active[data-cat="nature-wildlife"] { background: #4a6b3a; border-color: #4a6b3a; }
+.exc-filter__btn.is-active[data-cat="adventure-sports"] { background: #c2410c; border-color: #c2410c; }
+.exc-filter__btn.is-active[data-cat="wellness-luxury"] { background: #8b5cf6; border-color: #8b5cf6; }
+.exc-filter__btn.is-active[data-cat="festivals-seasonal"] { background: #d97706; border-color: #d97706; }
 .exc-filter__count { font-size: 11px; opacity: .65; margin-left: .25rem; }
 
 /* ============ EXCURSION BLOCK ============ */
@@ -262,9 +265,26 @@
   border-radius: 999px;
   font-weight: 600;
 }
-.exc-block__cat[data-cat="Water"] { background: #c9e7f0; color: #0a3a55; }
-.exc-block__cat[data-cat="Culture"] { background: #f5d9c0; color: #6e3010; }
-.exc-block__cat[data-cat="Nature"] { background: #d2e2c1; color: #2f4922; }
+.exc-block__cat[data-cat="water-snorkeling"] { background: #c9e7f0; color: #0a3a55; }
+.exc-block__cat[data-cat="culture-heritage"] { background: #f5d9c0; color: #6e3010; }
+.exc-block__cat[data-cat="nature-wildlife"] { background: #d2e2c1; color: #2f4922; }
+.exc-block__cat[data-cat="adventure-sports"] { background: #fed7aa; color: #7c2d12; }
+.exc-block__cat[data-cat="wellness-luxury"] { background: #ddd6fe; color: #4c1d95; }
+.exc-block__cat[data-cat="festivals-seasonal"] { background: #fde68a; color: #78350f; }
+.exc-block__season {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  background: #FF6F61;
+  color: #fff;
+  padding: .4rem .75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px -4px rgba(255,111,97,.7);
+}
 
 .exc-block__eyebrow {
   font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
@@ -544,6 +564,176 @@
   .exc-filter__label { display: none; }
   .exc-day__timeline { padding-left: 2.5rem; }
   .exc-day__row { grid-template-columns: 70px 1fr; gap: 1rem; }
+}
+
+/* ============ INDEX CARD GRID ============ */
+.exc-grid-wrap { padding: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem); }
+.exc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: clamp(1.25rem, 2vw, 1.75rem);
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.exc-grid__empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: rgba(8,30,46,.6);
+  font-size: .95rem;
+}
+
+.exc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface, #FFFCF5);
+  border: 1px solid rgba(8,30,46,.08);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text, #1a4d6e);
+  box-shadow: 0 14px 32px -28px rgba(8,30,46,.4);
+  transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.exc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 50px -28px rgba(8,30,46,.45);
+  border-color: rgba(255,111,97,.35);
+}
+
+.exc-card__img {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.exc-card__img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 1.1s ease;
+}
+.exc-card:hover .exc-card__img img { transform: scale(1.05); }
+
+.exc-card__cat {
+  position: absolute;
+  top: .85rem;
+  left: .85rem;
+  font-size: 9.5px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  background: rgba(255,255,255,.95);
+  color: #1a4d6e;
+  padding: .35rem .65rem;
+  border-radius: 999px;
+  font-weight: 700;
+  backdrop-filter: blur(6px);
+}
+.exc-card__cat[data-cat="water-snorkeling"] { background: #c9e7f0; color: #0a3a55; }
+.exc-card__cat[data-cat="culture-heritage"] { background: #f5d9c0; color: #6e3010; }
+.exc-card__cat[data-cat="nature-wildlife"] { background: #d2e2c1; color: #2f4922; }
+.exc-card__cat[data-cat="adventure-sports"] { background: #fed7aa; color: #7c2d12; }
+.exc-card__cat[data-cat="wellness-luxury"] { background: #ddd6fe; color: #4c1d95; }
+.exc-card__cat[data-cat="festivals-seasonal"] { background: #fde68a; color: #78350f; }
+
+.exc-card__season {
+  position: absolute;
+  top: .85rem;
+  right: .85rem;
+  font-size: 9.5px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  background: #FF6F61;
+  color: #fff;
+  padding: .35rem .65rem;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px -4px rgba(255,111,97,.7);
+}
+
+.exc-card__body {
+  padding: 1.1rem 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  flex: 1;
+}
+.exc-card__eyebrow {
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: #FF6F61;
+  font-weight: 700;
+}
+.exc-card__title {
+  font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif);
+  font-size: 1.3rem;
+  line-height: 1.2;
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: -.005em;
+  color: var(--text, #1a4d6e);
+}
+.exc-card__desc {
+  font-size: .88rem;
+  line-height: 1.55;
+  opacity: .75;
+  margin: 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.exc-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .85rem;
+  font-size: 11.5px;
+  color: rgba(8,30,46,.65);
+  margin-top: .15rem;
+}
+.exc-card__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+}
+.exc-card__meta svg { color: #FF6F61; opacity: .85; }
+
+.exc-card__foot {
+  margin-top: auto;
+  padding-top: .85rem;
+  border-top: 1px solid rgba(8,30,46,.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+}
+.exc-card__price {
+  font-size: 12.5px;
+  color: rgba(8,30,46,.7);
+}
+.exc-card__price strong {
+  font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif);
+  font-size: 1.05rem;
+  color: #FF6F61;
+  font-weight: 500;
+  margin: 0 .15rem 0 .25rem;
+}
+.exc-card__price--tbd {
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(8,30,46,.55);
+}
+.exc-card__cta {
+  font-size: 12px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #FF6F61;
+  font-weight: 700;
+}
+
+@media (max-width: 540px) {
+  .exc-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .exc-card__img { aspect-ratio: 16 / 11; }
 }
 
 /* ============ DETAIL PAGE ============ */

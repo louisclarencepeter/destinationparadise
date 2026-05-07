@@ -9,7 +9,7 @@ export default function ExcursionsSection({ tweaks, activeCat, setActiveCat, fil
         <h2 className="section-title">Excursions crafted by locals</h2>
         <p className="section-lead">Hand-built itineraries — small groups, traditional boats, guides who grew up on these shores.</p>
         <div className="excursions__tabs" role="tablist">
-          {['All', 'Water', 'Culture', 'Nature'].map((cat) => (
+          {['All', 'Water', 'Culture', 'Nature', 'Adventure', 'Wellness', 'Festivals'].map((cat) => (
             <button
               key={cat}
               className={`excursions__tab${cat === activeCat ? ' is-active' : ''}`}

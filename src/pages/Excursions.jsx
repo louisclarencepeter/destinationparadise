@@ -2,12 +2,10 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
-import { EXCURSIONS } from '../data/excursionsData.js';
+import { EXCURSIONS, CATEGORIES } from '../data/excursionsData.js';
 
 const HERO_IMAGE = '/assets/images/excursions/dream-dhow-sunset.jpeg';
 const CTA_IMAGE = '/assets/images/excursions/safari-blue-sandbank.jpg';
-
-const CATEGORIES = ['Water', 'Culture', 'Nature'];
 
 const PAIRS = [
   { combo: ['Jozani Forest', 'Spice Tour'], title: 'Forest & spice', desc: 'Red colobus monkeys in the morning, plantation walk and Swahili lunch in the afternoon. The classic nature-and-culture day, all done before sundown.', length: 'One day' },
@@ -18,25 +16,15 @@ const PAIRS = [
   { combo: ['Mnemba', 'Nungwi'], title: 'North-coast all-day', desc: "Snorkel the Mnemba coral ring at first light, then up to Nungwi for lunch and the afternoon — Zanzibar's clearest water and its widest beaches in a single day.", length: 'One long day' },
 ];
 
-const TIMELINE = [
-  ['07:30', 'Pickup', 'Air-conditioned van from your hotel. Coffee or tea in a thermos.'],
-  ['08:30', 'Fumba jetty & boarding', 'Brief safety chat from the captain, life jackets fitted, sails up. The first hour is pure sailing.'],
-  ['10:00', 'Mangrove channel swim', "Drop anchor in a hidden lagoon. The water is glassy and warm. Float, don't swim."],
-  ['11:30', 'Snorkel stop, Kwale reef', 'Masks, fins, and roughly 45 minutes in the water. Parrotfish, butterflyfish, the occasional reef shark.'],
-  ['13:00', 'Sandbank lunch', 'Catch of the day on the grill. Coconut rice, fresh salads, fruit. We sit on mats in the shade.'],
-  ['14:30', 'Slow afternoon sail', "The wind shifts onshore. Most people sleep on deck. We don't rush."],
-  ['16:00', 'Back at the jetty', 'Quick rinse, van back to the hotel. Home by 5, sun-tired and salt-crusted.'],
-];
-
 const PRACTICAL = [
   { h: "What's always included", icon: 'check', items: ['Hotel pickup & drop-off', 'Licensed local guide', 'Bottled water all day', 'All park & entry fees', 'Equipment (masks, fins, life jackets)'] },
-  { h: 'Not included', icon: 'x', items: ['Tips for guides & crew', 'Alcohol on Dream Dhow ($15 add-on)', 'Travel insurance (please bring your own)', 'Spending money for markets/cafés'] },
-  { h: 'Family-friendly', icon: 'check', items: ['Spice Tour & Prison Island — all ages', 'Safari Blue — kids 8+', 'Dolphins — confident swimmers, 10+', 'Children under 5 free on most trips'] },
+  { h: 'Not included', icon: 'x', items: ['Tips for guides & crew', 'Alcohol on certain trips ($15 add-on)', 'Travel insurance (please bring your own)', 'Spending money for markets/cafés'] },
+  { h: 'Family-friendly', icon: 'check', items: ['Spice Tour, Prison Island, Jozani — all ages', 'Safari Blue — kids 8+', 'Dolphins — confident swimmers, 10+', 'Children under 5 free on most trips'] },
   { h: 'Booking & payment', icon: 'clock', items: ['Book at least 48 hours ahead', '20% deposit, balance on the day', 'Free cancellation up to 24h before', 'USD, EUR, GBP, TZS — all accepted'] },
 ];
 
 const FAQS = [
-  { q: 'Can you do private versions?', a: 'Yes — every excursion can run privately for your group only. Pricing scales (Dream Dhow private from $320, Safari Blue private from $640). Just ask at booking.', open: true },
+  { q: 'Can you do private versions?', a: 'Yes — almost every excursion can run privately for your group. Pricing scales (Dream Dhow private from $320, Safari Blue private from $640). Just ask at booking.', open: true },
   { q: 'What if it rains?', a: 'We sail rain or shine — Indian Ocean rain is usually warm and brief. If conditions are unsafe (high winds, lightning), we postpone or refund in full. Your call.' },
   { q: 'Do you pick up from the north / east coast?', a: 'Yes — pickup from Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje and Bwejuu is included. Add 30–60 minutes each way to the day.' },
   { q: 'Is it OK during Ramadan?', a: 'Absolutely — all excursions run as normal. You may notice quieter mornings in town and many cafés closed during the day. Out on the water, life carries on. Be respectful with eating/drinking in public during fasting hours.' },
@@ -71,6 +59,10 @@ const FILTERS = [
   })),
 ];
 
+function categoryToSlug(cat) {
+  return cat.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
 export default function Excursions() {
   const pageRef = useRef(null);
   const [filter, setFilter] = useState('all');
@@ -83,7 +75,7 @@ export default function Excursions() {
   useEffect(() => {
     document.title = 'Zanzibar Excursions · Day Trips & Tours · Destination Paradise';
     const meta = document.querySelector('meta[name="description"]');
-    const desc = 'Eight handpicked Zanzibar day trips — Safari Blue dhow, Stone Town heritage walk, Mnemba snorkel, Jozani Forest and more. Hotel pickup, small groups, local guides.';
+    const desc = `${EXCURSIONS.length} handpicked Zanzibar excursions — dhow sails, Stone Town walks, Mnemba snorkel, Jozani Forest, kitesurfing, festivals and more. Hotel pickup, small groups, local guides.`;
     if (meta) {
       meta.setAttribute('content', desc);
     } else {
@@ -122,8 +114,8 @@ export default function Excursions() {
         <div className="exc-hero__bg"><img src={HERO_IMAGE} alt="" /></div>
         <div className="exc-hero__inner">
           <span className="exc-hero__eyebrow">Zanzibar &amp; the coast · handpicked day trips</span>
-          <h1 className="exc-hero__title">One island. <em>{EXCURSIONS.length} unforgettable journeys.</em></h1>
-          <p className="exc-hero__lead">Trade resort routines for real Zanzibar — sail a traditional dhow, wander Stone Town with a local guide, snorkel Mnemba reefs, and spot red colobus in Jozani. Every trip is small-group, story-rich, and easy to book.</p>
+          <h1 className="exc-hero__title">One island. <em>{EXCURSIONS.length}+ unforgettable journeys.</em></h1>
+          <p className="exc-hero__lead">Trade resort routines for real Zanzibar — sail a traditional dhow, wander Stone Town with a local guide, snorkel Mnemba reefs, kitesurf in Paje, or join a festival in Stone Town. Every trip is small-group, story-rich, and easy to book.</p>
           <div className="exc-hero__tags" aria-label="Excursion highlights">
             <span>Hotel pickup included</span>
             <span>Private options available</span>
@@ -136,7 +128,7 @@ export default function Excursions() {
           <div className="exc-hero__meta">
             <div><strong>{EXCURSIONS.length}</strong><span>Excursions</span></div>
             {minPrice !== null && <div><strong>${minPrice}</strong><span>From, per person</span></div>}
-            <div><strong>4–10</strong><span>Group size</span></div>
+            <div><strong>{CATEGORIES.length}</strong><span>Categories</span></div>
             <div><strong>4.9★</strong><span>Tripadvisor</span></div>
           </div>
         </div>
@@ -149,7 +141,7 @@ export default function Excursions() {
           <button
             key={f.cat}
             type="button"
-            data-cat={f.cat}
+            data-cat={f.cat === 'all' ? 'all' : categoryToSlug(f.cat)}
             className={`exc-filter__btn${filter === f.cat ? ' is-active' : ''}`}
             onClick={() => setFilter(f.cat)}
             aria-pressed={filter === f.cat}
@@ -159,55 +151,55 @@ export default function Excursions() {
         ))}
       </div>
 
-      {/* LIST */}
-      <section className="exc-list" id="list">
-        {visible.map((e, i) => (
-          <article
-            key={e.id}
-            id={e.id}
-            data-cat={e.category}
-            className="exc-block reveal"
-          >
-            <div className="exc-block__img">
-              <img src={e.image} alt={e.alt} loading="lazy" />
-              <span className="exc-block__num">No. {String(i + 1).padStart(2, '0')}</span>
-              <span className="exc-block__cat" data-cat={e.category}>{e.category}</span>
-            </div>
-            <div className="exc-block__body">
-              <span className="exc-block__eyebrow">{e.eyebrow}</span>
-              <h2 className="exc-block__title">{e.title}</h2>
-              <p className="exc-block__desc">{e.intro}</p>
-              <dl className="exc-block__facts">
-                {e.facts.map(([dt, dd, sub]) => (
-                  <div key={dt}><dt>{dt}</dt><dd>{dd}<small>{sub}</small></dd></div>
-                ))}
-              </dl>
-              <div className="exc-block__cols">
-                {e.cols.map((col) => (
-                  <div className="exc-block__col" key={col.h}>
-                    <h4>{col.h}</h4>
-                    <ul>{col.items.map((it) => <li key={it}>{it}</li>)}</ul>
-                  </div>
-                ))}
+      {/* GRID */}
+      <section className="exc-grid-wrap" id="list">
+        <div className="exc-grid">
+          {visible.map((e) => (
+            <Link
+              key={e.id}
+              to={`/excursions/${e.id}`}
+              className="exc-card reveal"
+              data-cat={categoryToSlug(e.category)}
+              aria-label={`Explore ${e.title}`}
+            >
+              <div className="exc-card__img">
+                <img src={e.image} alt={e.alt || e.title} loading="lazy" />
+                <span className="exc-card__cat" data-cat={categoryToSlug(e.category)}>{e.category}</span>
+                {e.season && <span className="exc-card__season">Seasonal · {e.season}</span>}
               </div>
-              <div className="exc-block__actions">
-                {typeof e.price === 'number' ? (
-                  <span className="exc-block__price">
-                    ${e.price}
-                    <small>{e.priceSub}</small>
-                  </span>
-                ) : (
-                  <span className="exc-block__price-note">Price on request</span>
-                )}
-                {e.priceNote && <span className="exc-block__price-note">{e.priceNote}</span>}
-                <Link className="btn btn--accent" to="/booking">Book this →</Link>
-                {e.secondary && (
-                  <a className="btn btn--ghost-dark" href={e.secondary.href}>{e.secondary.label}</a>
-                )}
+              <div className="exc-card__body">
+                {e.eyebrow && <span className="exc-card__eyebrow">{e.eyebrow}</span>}
+                <h3 className="exc-card__title">{e.title}</h3>
+                <p className="exc-card__desc">{e.description}</p>
+                <div className="exc-card__meta">
+                  {e.duration && (
+                    <span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                      {e.duration}
+                    </span>
+                  )}
+                  {e.from && (
+                    <span>
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                      {e.from}
+                    </span>
+                  )}
+                </div>
+                <div className="exc-card__foot">
+                  {typeof e.price === 'number' ? (
+                    <span className="exc-card__price">From <strong>${e.price}</strong>{e.priceSub ? ` ${e.priceSub}` : ' pp'}</span>
+                  ) : (
+                    <span className="exc-card__price exc-card__price--tbd">Price on request</span>
+                  )}
+                  <span className="exc-card__cta">Explore →</span>
+                </div>
               </div>
-            </div>
-          </article>
-        ))}
+            </Link>
+          ))}
+        </div>
+        {visible.length === 0 && (
+          <p className="exc-grid__empty">No excursions in this category yet — check back soon, or filter by All.</p>
+        )}
       </section>
 
       {/* PAIRINGS */}
@@ -229,23 +221,6 @@ export default function Excursions() {
               <p className="exc-pair__desc">{p.desc}</p>
               <div className="exc-pair__foot"><span>{p.length}</span><strong>{p.price || 'On request'}</strong></div>
             </article>
-          ))}
-        </div>
-      </section>
-
-      {/* TYPICAL DAY */}
-      <section className="exc-day reveal" id="day">
-        <div className="exc-day__head">
-          <span className="section-eyebrow">Hour by hour</span>
-          <h2 className="section-title">A typical Safari Blue day</h2>
-          <p className="section-lead">Our most-booked excursion, minute by minute. Other days follow a similar rhythm — slower than you'd expect, longer in the good moments.</p>
-        </div>
-        <div className="exc-day__timeline">
-          {TIMELINE.map(([t, h, p]) => (
-            <div className="exc-day__row" key={t}>
-              <div className="exc-day__time">{t}</div>
-              <div className="exc-day__what"><strong>{h}</strong><p>{p}</p></div>
-            </div>
           ))}
         </div>
       </section>
