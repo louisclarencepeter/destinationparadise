@@ -578,11 +578,16 @@
 /* ============ INDEX CARD GRID ============ */
 .exc-grid-wrap { padding: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem); }
 .exc-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: clamp(1.25rem, 2vw, 1.75rem);
   max-width: 1400px;
   margin: 0 auto;
+}
+.exc-grid .exc-card {
+  flex: 1 1 310px;
+  max-width: 380px;
 }
 .exc-grid__empty {
   text-align: center;
