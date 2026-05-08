@@ -23,7 +23,7 @@
 .saf-hero__inner {
   position: relative;
   z-index: 1;
-  max-width: 1240px;
+  max-width: 780px;
   display: grid;
   gap: clamp(.75rem, 1.35vh, 1.3rem);
 }
