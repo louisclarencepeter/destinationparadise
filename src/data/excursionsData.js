@@ -214,6 +214,8 @@ export const EXCURSIONS = [
     priceSub: 'per person',
     group: 'Up to 6',
     from: 'East coast',
+    price: 65,
+    priceNote: 'Sunset experience at The Rock',
     highlights: ['Sunset over the Indian Ocean', 'Time on Michamvi Beach', 'Optional visit to The Rock Restaurant'],
     facts: [
       ['Duration', 'Evening', '4pm – 8pm'],
@@ -248,6 +250,8 @@ export const EXCURSIONS = [
     priceSub: 'per person',
     group: 'Up to 8',
     from: 'East coast',
+    price: 39,
+    priceNote: 'Per person depending on group size',
     highlights: ['Calm, crystal-clear lagoon water', 'Colourful coral & reef-fish life', 'Traditional dhow sailing'],
     facts: [
       ['Duration', 'Half Day', '9am – 1pm'],
@@ -283,6 +287,8 @@ export const EXCURSIONS = [
     priceSub: 'per person',
     group: 'Up to 6',
     from: 'Bwejuu',
+    price: 35,
+    priceNote: 'Cultural village experience per person',
     highlights: ['Meet locals in their homes & shops', 'Visit a village school', 'See seaweed farming and fishing up close'],
     facts: [
       ['Duration', 'Half Day', '9am – 1pm'],
@@ -393,6 +399,8 @@ export const EXCURSIONS = [
     group: 'Up to 4 anglers',
     from: 'Kizimkazi',
     season: 'Sept – Mar',
+    price: 150,
+    priceNote: 'Deep sea fishing per person',
     highlights: ['Deep-water trolling for pelagics', 'Tuna, kingfish, marlin and dorado', 'All gear and bait included'],
     facts: [
       ['Duration', 'Full Day', '6am – 2pm'],
@@ -429,6 +437,8 @@ export const EXCURSIONS = [
     priceSub: 'per person',
     group: 'Up to 4',
     from: 'East coast',
+    price: 40,
+    priceNote: 'Local fishing experience per person',
     highlights: ['Sail with local fishermen on a wooden dhow', 'Hand-line fishing the inshore reefs', 'Tuna, barracuda, grouper and snapper'],
     facts: [
       ['Duration', 'Half Day', '6am – 11am'],
@@ -464,6 +474,8 @@ export const EXCURSIONS = [
     priceSub: 'per person',
     group: 'Up to 8',
     from: 'Chwaka Bay',
+    price: 50,
+    priceNote: 'Mangrove ecosystem experience',
     highlights: ['Local fishing-boat through mangrove channels', 'Snorkel stop on the bay', 'Swahili lunch in a fishing village'],
     facts: [
       ['Duration', 'Half Day', '9am – 2pm'],
@@ -499,6 +511,8 @@ export const EXCURSIONS = [
     priceSub: 'per person',
     group: 'Up to 8',
     from: 'Stone Town',
+    price: 45,
+    priceNote: 'Shared tour price per person',
     highlights: ['Morning on Prison Island', 'Afternoon on Pange Sandbank', 'Snorkel, swim and beach lunch'],
     facts: [
       ['Duration', 'Full Day', '9am – 4pm'],
@@ -536,6 +550,8 @@ export const EXCURSIONS = [
     priceSub: 'per person',
     group: 'Up to 8',
     from: 'South-central',
+    price: 25,
+    priceNote: 'Cave swimming & exploration tour',
     highlights: ['Natural freshwater cave pool', 'Cool, calm swim out of the sun', "One of Zanzibar's most photogenic spots"],
     facts: [
       ['Duration', 'Half Day', '9am – 1pm'],
@@ -570,6 +586,8 @@ export const EXCURSIONS = [
     priceSub: 'per person',
     group: 'Up to 8',
     from: 'Nungwi',
+    price: 40,
+    priceNote: 'North coast experience per person',
     highlights: ['Best swimming beaches on the island', 'Dhow-builders at the harbour', 'Mnarani turtle aquarium'],
     facts: [
       ['Duration', 'Full Day', '9am – 5pm'],
@@ -605,6 +623,8 @@ export const EXCURSIONS = [
     duration: 'Full Day',
     from: 'Stone Town',
     group: 'Up to 8',
+    price: 25,
+    priceNote: 'Traditional cooking & coffee experience',
     highlights: ['Local market visit', 'Cook a Swahili meal from scratch', 'Rooftop Zanzibar coffee ceremony'],
   },
   {
@@ -619,6 +639,8 @@ export const EXCURSIONS = [
     duration: 'Evening',
     from: 'Stone Town',
     group: 'Up to 8',
+    price: 35,
+    priceNote: 'Stone Town street food tour',
     highlights: ['Forodhani Night Market tasting', 'Zanzibar pizza, mishkaki, urojo', 'Darajani Market by night'],
   },
   {
@@ -633,6 +655,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'South-central',
     group: 'Up to 6',
+    price: 70,
+    priceNote: 'Traditional healer & herbal experience',
     highlights: ['Meet a traditional healer', 'Identify local medicinal plants', 'Hear stories of Swahili healing'],
   },
   {
@@ -647,6 +671,8 @@ export const EXCURSIONS = [
     duration: 'Full Day',
     from: 'East coast',
     group: 'Up to 6',
+    price: 40,
+    priceNote: 'Local craft workshop experience',
     highlights: ['Coconut weaving & pottery', 'Hands-on farming and cooking', 'Lunch with a local family'],
   },
   {
@@ -661,6 +687,8 @@ export const EXCURSIONS = [
     duration: 'Evening',
     from: 'Stone Town / Nungwi',
     group: '2 – 12 guests',
+    price: 120,
+    priceNote: 'Private sunset dhow dinner experience',
     highlights: ['Private dhow charter', 'Seafood dinner & Swahili music', 'Candlelight & stars'],
   },
   {
@@ -675,6 +703,8 @@ export const EXCURSIONS = [
     duration: 'Half / Full Day',
     from: 'Stone Town',
     group: 'Up to 10',
+    price: 45,
+    priceNote: 'Per person in shared group',
     highlights: ['Boat to the sandbank', 'Snorkel & swim in clear water', 'Seafood lunch on the sand'],
   },
   {
@@ -689,6 +719,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'East coast',
     group: 'Up to 6',
+    price: 40,
+    priceNote: 'Mangrove kayaking adventure',
     highlights: ['Kayak through mangrove channels', 'Birdlife & quiet nature', 'Optional sunset run'],
   },
   {
@@ -703,6 +735,8 @@ export const EXCURSIONS = [
     duration: 'Full Day',
     from: 'Stone Town',
     group: 'Up to 12',
+    price: 110,
+    priceNote: 'Marine park day trip per person',
     highlights: ['Pristine protected reef', 'Forest nature walk', 'Conservation education'],
   },
   {
@@ -717,6 +751,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'East coast',
     group: 'Up to 6',
+    price: 10,
+    priceNote: 'Seaweed farm cooperative tour',
     highlights: ["Visit a women's cooperative", 'See harvest at low tide', 'Sample seaweed-based products'],
   },
   {
@@ -731,6 +767,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'Nungwi / Mnarani',
     group: 'Up to 8',
+    price: 25,
+    priceNote: 'Turtle conservation experience',
     highlights: ['Turtle rescue & rehab centre', 'Feeding session', 'Optional natural lagoon swim'],
   },
   {
@@ -745,6 +783,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'Jozani',
     group: 'Up to 8',
+    price: 6,
+    priceNote: 'Butterfly center entrance',
     highlights: ['Tropical butterfly gardens', 'Identification walk', 'Often paired with Jozani'],
   },
   {
@@ -759,6 +799,8 @@ export const EXCURSIONS = [
     duration: 'Evening',
     from: 'East coast',
     group: 'Up to 8',
+    price: 40,
+    priceNote: 'Beach stargazing experience',
     highlights: ['Telescope & sky-legend storytelling', 'Bonfire on the beach', 'Optional astrophotography'],
   },
   {
@@ -773,6 +815,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'Stone Town',
     group: 'Up to 6',
+    price: 10,
+    priceNote: 'Organic spice farm experience',
     highlights: ['Organic certification farms', 'Medicinal herb garden', 'Permaculture in practice'],
   },
   {
@@ -788,6 +832,8 @@ export const EXCURSIONS = [
     from: 'East / North coast',
     group: 'Up to 8',
     season: 'Mar – Aug',
+    price: 30,
+    priceNote: 'Turtle nesting observation experience',
     highlights: ['Nest monitoring with rangers', 'Beach cleanup contribution', 'Environmental briefing'],
   },
   {
@@ -803,6 +849,8 @@ export const EXCURSIONS = [
     from: 'Paje / Jambiani',
     group: '1 – 4',
     season: 'Jun – Sep · Dec – Feb',
+    price: 45,
+    priceNote: 'Kitesurfing lesson per hour',
     highlights: ['IKO-certified instructors', 'Full gear rental', 'Downwind kite safaris'],
   },
   {
@@ -817,6 +865,8 @@ export const EXCURSIONS = [
     duration: '1 – 2 hours',
     from: 'East coast',
     group: '1 – 6',
+    price: 65,
+    priceNote: 'Beach horse riding experience',
     highlights: ['Beach ride at any pace', 'Sunset & swim-with-horses', 'Private romantic option'],
   },
   {
@@ -831,6 +881,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'East / North coast',
     group: 'Up to 8',
+    price: 110,
+    priceNote: 'Quad bike adventure',
     highlights: ['Village & plantation route', 'Hidden beach stops', 'Fruit-tasting break'],
   },
   {
@@ -845,6 +897,8 @@ export const EXCURSIONS = [
     duration: '1 – 2 hours',
     from: 'East / North coast',
     group: '1 – 6',
+    price: 35,
+    priceNote: 'Jet ski rental starting price',
     highlights: ['Guided coastal route', 'Hidden-beach stops', 'Freestyle option'],
   },
   {
@@ -859,6 +913,8 @@ export const EXCURSIONS = [
     duration: '30 – 60 mins',
     from: 'North coast',
     group: '1 – 2',
+    price: 130,
+    priceNote: 'Parasailing experience per person',
     highlights: ['Tandem or solo flight', 'Coastline aerial views', 'GoPro option'],
   },
   {
@@ -873,6 +929,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'North coast',
     group: '1 (tandem)',
+    price: 365,
+    priceNote: 'Tandem skydiving experience',
     highlights: ['Tandem with certified instructor', 'HD video of the jump', 'Beach landing'],
   },
   {
@@ -887,6 +945,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'Nungwi',
     group: 'Up to 6',
+    price: 380,
+    priceNote: 'Traditional dhow building workshop',
     highlights: ['Visit a working dhow yard', 'Try traditional tools', 'Stories from master builders'],
   },
   {
@@ -901,6 +961,8 @@ export const EXCURSIONS = [
     duration: 'Half / Full Day',
     from: 'Nungwi / Matemwe',
     group: 'Up to 6',
+    price: 120,
+    priceNote: 'Certified scuba diving package',
     highlights: ['Leven Bank & Tumbatu', 'Drift & wall dives', 'Big-fish encounters'],
   },
   {
@@ -915,6 +977,8 @@ export const EXCURSIONS = [
     duration: '1 – 2 hours',
     from: 'East / North coast',
     group: 'Up to 6',
+    price: 40,
+    priceNote: 'Kayak & SUP experience per person',
     highlights: ['Transparent kayaks', 'Stand-up paddleboards', 'Calm-water reef route'],
   },
   {
@@ -929,6 +993,8 @@ export const EXCURSIONS = [
     duration: 'Full Day',
     from: 'North coast',
     group: '1 – 4',
+    price: 75,
+    priceNote: 'Ocean & sandbank combo adventure',
     highlights: ['Jet ski + parasail in the morning', 'Snorkel & kayak midday', 'Sunset dhow to close'],
   },
   {
@@ -943,6 +1009,8 @@ export const EXCURSIONS = [
     duration: 'Full Day',
     from: 'Stone Town',
     group: 'Up to 6',
+    price: 45,
+    priceNote: 'Historical ruins & heritage tour',
     highlights: ['Mtoni & Maruhubi palaces', 'Kidichi Persian Baths', 'Mangapwani slave chambers'],
   },
   {
@@ -957,6 +1025,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'Stone Town',
     group: 'Up to 6',
+    price: 45,
+    priceNote: 'Hidden Stone Town walking experience',
     highlights: ['Hidden alleys & courtyards', 'Local art studios', 'Authentic Swahili neighbourhoods'],
   },
   {
@@ -971,6 +1041,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'Stone Town',
     group: 'Up to 6',
+    price: 30,
+    priceNote: 'Persian baths & Sultan history tour',
     highlights: ['Kidichi & Hamamni Baths', 'Palace ruins', 'Stories of the Sultanate'],
   },
   {
@@ -985,6 +1057,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'Stone Town',
     group: 'Up to 6',
+    price: 30,
+    priceNote: 'Mangapwani cave & slave chambers tour',
     highlights: ['Mangapwani coral cave', 'Underground slave chambers', 'Coastal walk & quiet beach'],
   },
   {
@@ -999,6 +1073,8 @@ export const EXCURSIONS = [
     duration: 'Half Day',
     from: 'Stone Town',
     group: 'Up to 6',
+    price: 35,
+    priceNote: 'Traditional dhow heritage experience',
     highlights: ['Dhow yards & maritime museum', 'Indian Ocean trade history', 'Boat-builder visit'],
   },
   {
@@ -1014,6 +1090,8 @@ export const EXCURSIONS = [
     from: 'Stone Town',
     group: 'Open',
     season: 'Early February',
+    price: 120,
+    priceNote: '4-day Sauti za Busara festival pass',
     highlights: ['Live concerts at the Old Fort', 'Street carnival parade', 'Pan-African food & nightlife'],
   },
   {
@@ -1029,6 +1107,8 @@ export const EXCURSIONS = [
     from: 'Stone Town',
     group: 'Open',
     season: 'July',
+    price: 40,
+    priceNote: 'ZIFF festival pass',
     highlights: ['Open-air screenings', 'Art exhibitions & workshops', 'Music & nightlife pop-ups'],
   },
   {
@@ -1044,6 +1124,8 @@ export const EXCURSIONS = [
     from: 'East / North coast',
     group: 'Open',
     season: 'August',
+    price: 15,
+    priceNote: 'Water sports festival access',
     highlights: ['Dhow races & kite contests', 'Beach games & competitions', 'Local performances'],
   },
   {
@@ -1058,6 +1140,8 @@ export const EXCURSIONS = [
     duration: 'Full Day',
     from: 'Stone Town',
     group: '2 – 12 guests',
+    price: 250,
+    priceNote: 'Private VIP island escape',
     highlights: ['Private dhow & chef', 'Custom-built itinerary', 'Photographer included'],
   },
   {
@@ -1072,6 +1156,8 @@ export const EXCURSIONS = [
     duration: 'Half / Full Day',
     from: 'East coast',
     group: 'Up to 8',
+    price: 50,
+    priceNote: 'Wellness & yoga beach session',
     highlights: ['Beach yoga & meditation', 'Sound healing session', 'Massage & healthy cuisine'],
   },
   {
@@ -1087,6 +1173,8 @@ export const EXCURSIONS = [
     from: 'Mafia Island',
     group: 'Up to 6',
     season: 'Oct – Feb',
+    price: 80,
+    priceNote: 'Whale shark snorkeling experience',
     highlights: ['Swim with whale sharks', 'Mafia Marine Park snorkel', 'Quiet, low-impact island stay'],
   },
 ];
