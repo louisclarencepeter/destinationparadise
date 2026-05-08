@@ -7,7 +7,7 @@
   border-radius: 32px;
   overflow: hidden;
   background: linear-gradient(135deg, rgba(26,77,110,.95), rgba(33,90,124,.92)),
-              url('/assets/images/home/aerial-boats-turquoise-water.jpg') center/cover no-repeat;
+              url('/assets/images/home/stone-town-waterfront.webp') center/cover no-repeat;
   color: #fff;
   display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; align-items: center;
   box-shadow: 0 24px 60px rgba(26,77,110,.25);

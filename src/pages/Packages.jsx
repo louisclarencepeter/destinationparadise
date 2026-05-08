@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { destinationParadisePackages } from '../data/destinationParadisePackages.js';
+import { uniqueProductImages } from '../utils/productImages.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
@@ -17,7 +18,7 @@ const PACKAGE_IMAGES = {
   'three-day-serengeti-fly-in-safari': '/assets/images/safaris/zebra-mare-and-foal.jpg',
   'kilimanjaro-safari-zanzibar-expedition': '/assets/images/safaris/warthog-on-plains.jpg',
   'luxury-family-safari-zanzibar': '/assets/images/safaris/lion-cub-in-grass.jpg',
-  'great-migration-luxury-package': '/assets/images/safaris/zebra-herd-on-track.jpg',
+  'great-migration-luxury-package': '/assets/images/safaris/serval-in-grass.jpg',
   'zanzibar-adventure-marine-package': '/assets/images/excursions/dolphin-snorkeling.jpg',
   'stone-town-culture-experience': '/assets/images/excursions/spice-tour-nutmeg.webp',
   'digital-nomad-zanzibar-stay': '/assets/images/home/mizingani-waterfront.jpg',
@@ -26,10 +27,10 @@ const PACKAGE_IMAGES = {
 const imgForPackage = (pkg) => {
   if (PACKAGE_IMAGES[pkg.slug]) return PACKAGE_IMAGES[pkg.slug];
   const { category } = pkg;
-  if (/safari|multi/i.test(category)) return '/assets/images/safaris/zebra-herd-on-track.jpg';
-  if (/honeymoon|romantic|wedding/i.test(category)) return '/assets/images/excursions/dream-dhow-sunset.jpeg';
-  if (/family|festival|digital/i.test(category)) return '/assets/images/home/mizingani-waterfront.jpg';
-  if (/luxury|wellness|creator/i.test(category)) return '/assets/images/home/aerial-boats-turquoise-water.jpg';
+  if (/safari|multi/i.test(category)) return '/assets/images/safaris/raptor-on-log.jpg';
+  if (/honeymoon|romantic|wedding/i.test(category)) return '/assets/images/home/stone-town-waterfront.webp';
+  if (/family|festival|digital/i.test(category)) return '/assets/images/excursions/prison-island-tortoise.webp';
+  if (/luxury|wellness|creator/i.test(category)) return '/assets/images/safaris/eland-grazing.jpg';
   if (/adventure/i.test(category)) return '/assets/images/excursions/dolphin-snorkeling.jpg';
   return '/assets/images/home/stone-town-waterfront.webp';
 };
@@ -42,7 +43,7 @@ const priceLabel = (pricing) => {
 
 const categoryText = (pkg) => `${pkg.category} ${pkg.title} ${(pkg.idealFor || []).join(' ')} ${(pkg.includes || []).join(' ')}`;
 
-export const PACKAGES = destinationParadisePackages.map((pkg) => ({
+export const PACKAGES = uniqueProductImages(destinationParadisePackages.map((pkg) => ({
   ...pkg,
   id: pkg.slug,
   image: imgForPackage(pkg),
@@ -51,7 +52,7 @@ export const PACKAGES = destinationParadisePackages.map((pkg) => ({
   priceLabel: priceLabel(pkg.pricing),
   priceSub: pkg.pricing.unit || 'Per Person',
   description: pkg.split || pkg.focus || pkg.includes.slice(0, 4).join(' · '),
-}));
+})), { scope: 'Package' });
 
 const FILTERS = [
   { key: 'all', label: 'All', match: () => true },
@@ -157,7 +158,7 @@ export default function Packages() {
   return (
     <main className="excursions-page packages-page" ref={pageRef}>
       <section className="exc-hero pkg-hero">
-        <div className="exc-hero__bg"><img src="/assets/images/home/aerial-boats-turquoise-water.jpg" alt="" /></div>
+        <div className="exc-hero__bg"><img src="/assets/images/safaris/eland-grazing.jpg" alt="" /></div>
         <div className="exc-hero__inner">
           <span className="exc-hero__eyebrow">Hotels · safaris · excursions · special moments</span>
           <h1 className="exc-hero__title">Packages for the trip <em>you actually want.</em></h1>
@@ -308,7 +309,7 @@ export default function Packages() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src="/assets/images/excursions/dream-dhow-sunset.jpeg" alt="" /></div>
+        <div className="exc-cta__bg"><img src="/assets/images/excursions/prison-island-tortoise.webp" alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Want us to build it around you?</h2>
           <p>Send dates, group size, and the style you like. We’ll come back with a real package and a real price.</p>

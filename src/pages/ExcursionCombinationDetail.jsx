@@ -94,7 +94,7 @@ export default function ExcursionCombinationDetail() {
               <span className="exc-block__price-note">Price on request</span>
             )}
             <span className="exc-block__price-note">Final combination price depends on transfers, private guide, meals, and pickup area.</span>
-            <Link className="btn" to="/booking">Book this combination →</Link>
+            <Link className="btn" to={`/booking?type=custom&title=${encodeURIComponent(combo.title)}`}>Book this combination →</Link>
             <Link className="btn btn--ghost-dark" to="/excursions">All excursions</Link>
           </div>
         </div>
@@ -122,7 +122,7 @@ export default function ExcursionCombinationDetail() {
           <h2>Ready to book {combo.title}?</h2>
           <p>Tell us your hotel, date, and group size. We’ll confirm the best timing, pickup, guide, and final combination price.</p>
           <div className="exc-cta__btns">
-            <Link className="btn btn--lg" to="/booking">Get in touch →</Link>
+            <Link className="btn btn--lg" to={`/booking?type=custom&title=${encodeURIComponent(combo.title)}`}>Get in touch →</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Plan with AI</Link>
           </div>
         </div>

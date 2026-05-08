@@ -81,7 +81,7 @@ export default function TripPlannerPage() {
         <div className="trip-hero__bg"><img src="/assets/images/safaris/lioness-and-cub-resting.jpg" alt="" /></div>
         <div className="trip-hero__inner">
           <span className="trip-hero__eyebrow">AI Trip Planner · human-reviewed before booking</span>
-          <h1 className="trip-hero__title">Sketch the trip before you commit.</h1>
+          <h1 className="trip-hero__title">Sketch the trip <em>before you commit.</em></h1>
           <p className="trip-hero__lead">Tell the planner what kind of Zanzibar, safari, honeymoon, family trip, or beach escape you want. It will ask the useful questions and shape a route our team can price properly.</p>
           <div className="trip-hero__actions">
             <a className="btn btn--lg" href="#planner">Start planning</a>
@@ -139,7 +139,7 @@ export default function TripPlannerPage() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src="/assets/images/excursions/dream-dhow-sunset.jpeg" alt="" /></div>
+        <div className="exc-cta__bg"><img src="/assets/images/safaris/crowned-cranes-in-grass.jpg" alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Want us to turn the draft into a quote?</h2>
           <p>Send the plan, dates, group size, and travel style. We’ll check availability and come back with a real route and a real price.</p>

@@ -4,9 +4,9 @@ import { ArrowIcon } from './Icons.jsx';
 
 const HERO_SLIDES = [
   '/assets/images/home/aerial-boats-turquoise-water.jpg',
-  '/assets/images/excursions/dream-dhow-sunset.jpeg',
-  '/assets/images/safaris/zebra-herd-on-track.jpg',
-  '/assets/images/safaris/lioness-and-cub-resting.jpg',
+  '/assets/images/safaris/lion-cub-in-grass.jpg',
+  '/assets/images/safaris/crowned-crane-close.jpg',
+  '/assets/images/safaris/yellow-weaver-on-rail.jpg',
 ];
 const HERO_SLIDE_INTERVAL_MS = 7000;
 

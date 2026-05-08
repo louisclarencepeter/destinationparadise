@@ -61,9 +61,8 @@ export default function ExcursionDetail() {
       </nav>
 
       <article id={e.id} data-cat={categoryToSlug(e.category)} className="exc-block exc-block--detail">
-        <div className={`exc-block__img${e.imageTBD ? ' exc-block__img--placeholder' : ''}`} data-cat={categoryToSlug(e.category)}>
-          {!e.imageTBD && <img src={e.image} alt={e.alt || e.title} />}
-          {e.imageTBD && <span className="exc-block__img-pending" aria-hidden="true">Photo coming soon</span>}
+        <div className={`exc-block__img${e.imageNeeded ? ' exc-block__img--placeholder' : ''}`} data-cat={categoryToSlug(e.category)}>
+          <img src={e.image} alt={e.imageNeeded ? '' : e.alt || e.title} />
           <span className="exc-block__cat" data-cat={categoryToSlug(e.category)}>{e.category}</span>
           {e.season && <span className="exc-block__season">Seasonal · {e.season}</span>}
         </div>
@@ -111,7 +110,7 @@ export default function ExcursionDetail() {
               <span className="exc-block__price-note">Price on request</span>
             )}
             {e.priceNote && <span className="exc-block__price-note">{e.priceNote}</span>}
-            <Link className="btn" to="/booking">Book this →</Link>
+            <Link className="btn" to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}`}>Book this →</Link>
             <Link className="btn btn--ghost-dark" to="/excursions">All excursions</Link>
           </div>
         </div>
@@ -154,12 +153,12 @@ export default function ExcursionDetail() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src={e.imageTBD ? '/assets/images/excursions/safari-blue-sandbank.jpg' : e.image} alt="" /></div>
+        <div className="exc-cta__bg"><img src={e.imageNeeded ? '/assets/images/excursions/safari-blue-sandbank.jpg' : e.image} alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Ready to book {e.title}?</h2>
           <p>Tell us your dates and we'll come back within 24 hours with available pickup times and a final price — no commitment.</p>
           <div className="exc-cta__btns">
-            <Link className="btn btn--lg" to="/booking">Get in touch →</Link>
+            <Link className="btn btn--lg" to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}`}>Get in touch →</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Or chat with our AI planner</Link>
           </div>
         </div>

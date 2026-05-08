@@ -6,20 +6,20 @@ import { nextLevelSafariProducts } from '../../data/nextLevelSafariProducts.js';
 const SAFARI_FEATURES = [
   {
     slug: 'tarangire-day-trip',
-    image: '/assets/images/safaris/buffalo-and-egret.jpg',
+    image: '/assets/images/safaris/buffalo-herd-close.jpg',
     label: 'Quick safari',
     text: 'Fly in for a fast wildlife day from Zanzibar, with park fees, lunch, guide, and game drive handled.',
   },
   {
     slug: 'serengeti-migration',
-    image: '/assets/images/safaris/zebra-herd-on-track.jpg',
+    image: '/assets/images/safaris/serval-in-grass.jpg',
     label: 'Migration safari',
     text: 'A strong-selling Serengeti route for migration plains, big cats, camps, meals, and guided game drives.',
     featured: true,
   },
   {
     slug: 'nyerere-selous',
-    image: '/assets/images/safaris/male-lion-in-grass.jpg',
+    image: '/assets/images/safaris/raptor-on-log.jpg',
     label: 'Southern circuit',
     text: 'A wilder fly-in route with boat safari, walking safari, luxury camp, guide, and domestic flights.',
   },

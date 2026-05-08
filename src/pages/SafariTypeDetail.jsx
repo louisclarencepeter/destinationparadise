@@ -62,7 +62,7 @@ export default function SafariTypeDetail() {
             </div>
           </div>
           <div className="exc-block__actions">
-            <Link className="btn btn--ghost-dark" to="/booking">Get a quote →</Link>
+            <Link className="btn btn--ghost-dark" to={`/booking?type=custom&title=${encodeURIComponent(type.title)}`}>Get a quote →</Link>
             <Link className="btn btn--ghost-dark" to="/safaris">All safaris</Link>
           </div>
         </div>
@@ -108,7 +108,7 @@ export default function SafariTypeDetail() {
           <h2>Want this safari style?</h2>
           <p>Tell us your dates, budget, and group size. We’ll match the right parks, camps, and flights within 24 hours.</p>
           <div className="saf-cta__btns">
-            <Link className="btn btn--lg btn--accent" to="/booking">Get a quote →</Link>
+            <Link className="btn btn--lg btn--accent" to={`/booking?type=custom&title=${encodeURIComponent(type.title)}`}>Get a quote →</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Plan with AI</Link>
           </div>
         </div>

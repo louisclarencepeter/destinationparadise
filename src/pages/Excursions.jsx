@@ -5,8 +5,8 @@ import '../styles/excursions.css';
 import { EXCURSIONS, CATEGORIES } from '../data/excursionsData.js';
 import { EXCURSION_COMBINATIONS } from '../data/excursionCombinations.js';
 
-const HERO_IMAGE = '/assets/images/excursions/dream-dhow-sunset.jpeg';
-const CTA_IMAGE = '/assets/images/excursions/safari-blue-sandbank.jpg';
+const HERO_IMAGE = '/assets/images/excursions/safari-blue-sandbank.jpg';
+const CTA_IMAGE = '/assets/images/excursions/dolphin-snorkeling.jpg';
 
 const PRACTICAL = [
   { h: "What's always included", icon: 'check', items: ['Hotel pickup & drop-off', 'Licensed local guide', 'Bottled water all day', 'All park & entry fees', 'Equipment (masks, fins, life jackets)'] },
@@ -172,9 +172,8 @@ export default function Excursions() {
               data-cat={categoryToSlug(e.category)}
               aria-label={`Explore ${e.title}`}
             >
-              <div className={`exc-card__img${e.imageTBD ? ' exc-card__img--placeholder' : ''}`} data-cat={categoryToSlug(e.category)}>
-                {!e.imageTBD && <img src={e.image} alt={e.alt || e.title} loading="lazy" />}
-                {e.imageTBD && <span className="exc-card__img-pending" aria-hidden="true">Photo coming soon</span>}
+              <div className={`exc-card__img${e.imageNeeded ? ' exc-card__img--placeholder' : ''}`} data-cat={categoryToSlug(e.category)}>
+                <img src={e.image} alt={e.imageNeeded ? '' : e.alt || e.title} loading="lazy" />
                 <span className="exc-card__cat" data-cat={categoryToSlug(e.category)}>{e.category}</span>
                 {e.season && <span className="exc-card__season">Seasonal · {e.season}</span>}
               </div>

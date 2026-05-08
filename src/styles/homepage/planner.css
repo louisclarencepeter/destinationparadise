@@ -25,6 +25,7 @@
   height: 100%;
   object-fit: cover;
   transform: scale(1.05);
+  animation: tripHeroImage 1.4s var(--dp-ease-out) both;
 }
 .trip-hero__bg::after {
   content: "";
@@ -55,6 +56,7 @@
   border: 1px solid rgba(255,255,255,.18);
   padding: .5rem 1rem;
   border-radius: 999px;
+  animation: fadeInUp .9s var(--dp-ease-out) both;
 }
 .trip-hero__title {
   font-family: var(--dp-font-display);
@@ -63,6 +65,15 @@
   font-weight: 500;
   margin: 0;
   color: #fff;
+  letter-spacing: -.015em;
+  text-shadow: 0 8px 40px rgba(0,0,0,.34);
+  animation: fadeInUp 1s var(--dp-ease-out) both;
+  animation-delay: .1s;
+}
+.trip-hero__title em {
+  color: var(--dp-accent, #FF6F61);
+  font-style: italic;
+  font-weight: 400;
 }
 .trip-hero__lead {
   font-family: var(--dp-font-display);
@@ -71,6 +82,8 @@
   color: rgba(245,241,232,.88);
   max-width: 640px;
   margin: 0 auto;
+  animation: fadeInUp 1s var(--dp-ease-out) both;
+  animation-delay: .3s;
 }
 .trip-hero__actions {
   display: flex;
@@ -78,6 +91,8 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: clamp(.25rem, .7vh, .65rem);
+  animation: fadeInUp 1s var(--dp-ease-out) both;
+  animation-delay: .5s;
 }
 .trip-hero__stats {
   display: grid;
@@ -87,6 +102,8 @@
   width: 100%;
   padding-top: clamp(.9rem, 1.7vh, 1.3rem);
   border-top: 1px solid rgba(255,255,255,.18);
+  animation: fadeInUp 1s var(--dp-ease-out) both;
+  animation-delay: .7s;
 }
 .trip-hero__stats div {
   display: flex;
@@ -105,6 +122,30 @@
   letter-spacing: .12em;
   text-transform: uppercase;
   opacity: .65;
+}
+
+@keyframes tripHeroImage {
+  from {
+    opacity: 0;
+    transform: scale(1.11);
+    filter: saturate(.82) blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+    filter: saturate(1) blur(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trip-hero__bg img,
+  .trip-hero__eyebrow,
+  .trip-hero__title,
+  .trip-hero__lead,
+  .trip-hero__actions,
+  .trip-hero__stats {
+    animation: none;
+  }
 }
 
 .trip-prompts,

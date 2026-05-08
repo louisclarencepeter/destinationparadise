@@ -35,7 +35,7 @@ const EXPLORE_PATHS = [
     title: 'I need help choosing',
     text: 'Tell the AI planner your dates, pace, budget, and travel style. We turn the draft into a quote.',
     to: '/trip-planner',
-    image: '/assets/images/home/aerial-boats-turquoise-water.jpg',
+    image: '/assets/images/safaris/crowned-crane-close.jpg',
   },
 ];
 
@@ -334,7 +334,7 @@ export default function Explore() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src="/assets/images/home/aerial-boats-turquoise-water.jpg" alt="" /></div>
+        <div className="exc-cta__bg"><img src="/assets/images/safaris/buffalo-herd-close.jpg" alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Want us to map the right route?</h2>
           <p>Tell us the places you like, your travel dates, and your pace. We’ll connect the best packages, excursions, and safaris into one clear plan.</p>

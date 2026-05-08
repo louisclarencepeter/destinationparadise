@@ -1,3 +1,5 @@
+import { uniqueProductImages } from '../utils/productImages.js';
+
 const img = (file) => `/assets/images/excursions/${file}`;
 const homeImg = (file) => `/assets/images/home/${file}`;
 
@@ -24,7 +26,7 @@ export const CATEGORIES = [
   'Festivals & Seasonal',
 ];
 
-export const EXCURSIONS = [
+const EXCURSIONS_RAW = [
   // ============ HEADLINE (rich) ============
   {
     id: 'spice-tour',
@@ -205,7 +207,7 @@ export const EXCURSIONS = [
     title: 'Sunset Trip & The Rock Restaurant',
     category: 'Wellness & Luxury',
     eyebrow: 'Evening · iconic dining',
-    image: img('dream-dhow-sunset.jpeg'),
+    image: homeImg('stone-town-waterfront.webp'),
     imageTBD: true,
     alt: 'Sunset on the east coast of Zanzibar',
     description: "An evening on Michamvi Beach for the sunset, with optional dinner or sightseeing at Zanzibar's iconic Rock Restaurant perched in the tide.",
@@ -241,7 +243,7 @@ export const EXCURSIONS = [
     title: 'Snorkeling Tour · Blue Lagoon',
     category: 'Water & Snorkeling',
     eyebrow: 'Reef snorkel · calm water',
-    image: homeImg('aerial-boats-turquoise-water.jpg'),
+    image: img('safari-blue-sandbank.jpg'),
     imageTBD: true,
     alt: 'Turquoise water and reef, Zanzibar',
     description: "A snorkeling trip to Zanzibar's Blue Lagoon — calm, crystal-clear water, colourful coral reefs, tropical fish and a traditional dhow sail.",
@@ -315,7 +317,7 @@ export const EXCURSIONS = [
     title: 'Mnemba Snorkeling & Trip to the North',
     category: 'Water & Snorkeling',
     eyebrow: 'Full-day · clearest water',
-    image: homeImg('aerial-boats-turquoise-water.jpg'),
+    image: img('dolphin-snorkeling.jpg'),
     imageTBD: true,
     alt: 'Turquoise water around Mnemba Atoll',
     description: 'A full-day combining snorkeling around the Mnemba coral ring with relaxation on Nungwi Beach in northern Zanzibar.',
@@ -541,7 +543,7 @@ export const EXCURSIONS = [
     title: 'Swimming in Maalum Cave',
     category: 'Nature & Wildlife',
     eyebrow: 'Freshwater · scenic cave pool',
-    image: homeImg('aerial-boats-turquoise-water.jpg'),
+    image: img('jozani-red-colobus.webp'),
     imageTBD: true,
     alt: 'Maalum natural cave pool, Zanzibar',
     description: "A half-day visit to the Maalum natural cave — a freshwater cave pool open to the sky, one of Zanzibar's most scenic swims.",
@@ -577,7 +579,7 @@ export const EXCURSIONS = [
     title: 'Trip to the North · Nungwi',
     category: 'Water & Snorkeling',
     eyebrow: 'Beach day · north coast',
-    image: homeImg('aerial-boats-turquoise-water.jpg'),
+    image: img('safari-blue-sandbank.jpg'),
     imageTBD: true,
     alt: 'Nungwi Beach, north Zanzibar',
     description: "A north-coast sightseeing day around Nungwi — Zanzibar's best beaches, dhow-builders, the turtle aquarium and a long, slow lunch on the sand.",
@@ -728,7 +730,7 @@ export const EXCURSIONS = [
     title: 'Chumbe Island Coral Park',
     category: 'Water & Snorkeling',
     eyebrow: 'Eco · protected reef',
-    image: homeImg('aerial-boats-turquoise-water.jpg'),
+    image: img('dolphin-snorkeling.jpg'),
     imageTBD: true,
     alt: 'Chumbe Island Coral Park, Zanzibar',
     description: "A day on the protected Chumbe Marine Park — snorkel one of East Africa's healthiest reefs, walk the nature trail, and learn about the conservation work.",
@@ -760,7 +762,7 @@ export const EXCURSIONS = [
     title: 'Turtle Conservation Tour',
     category: 'Nature & Wildlife',
     eyebrow: 'Conservation · all ages',
-    image: homeImg('aerial-boats-turquoise-water.jpg'),
+    image: img('prison-island-tortoise.webp'),
     imageTBD: true,
     alt: 'Sea turtle in Zanzibar lagoon',
     description: 'A visit to a Zanzibar turtle rescue and rehabilitation centre — learn about the work, feed the turtles, optionally swim in the natural lagoon.',
@@ -792,7 +794,7 @@ export const EXCURSIONS = [
     title: 'Stargazing Beach Experience',
     category: 'Wellness & Luxury',
     eyebrow: 'Night · astronomy',
-    image: img('dream-dhow-sunset.jpeg'),
+    image: homeImg('mizingani-waterfront.jpg'),
     imageTBD: true,
     alt: 'Night sky over Zanzibar beach',
     description: 'A peaceful nighttime beach session — telescope viewing, African sky legends, a small bonfire, and (optionally) astrophotography.',
@@ -824,7 +826,7 @@ export const EXCURSIONS = [
     title: 'Turtle Nesting Volunteer Experience',
     category: 'Festivals & Seasonal',
     eyebrow: 'Conservation · nesting season',
-    image: homeImg('aerial-boats-turquoise-water.jpg'),
+    image: img('prison-island-tortoise.webp'),
     imageTBD: true,
     alt: 'Turtle nesting beach, Zanzibar',
     description: 'A seasonal conservation activity — beach cleanups, turtle-nest monitoring and environmental education with the local marine teams.',
@@ -922,7 +924,7 @@ export const EXCURSIONS = [
     title: 'Skydive Zanzibar',
     category: 'Adventure & Sports',
     eyebrow: 'Premium · tandem skydive',
-    image: homeImg('aerial-boats-turquoise-water.jpg'),
+    image: img('dolphin-snorkeling.jpg'),
     imageTBD: true,
     alt: 'Tandem skydive over Zanzibar',
     description: 'A tandem skydive over the Zanzibar coastline — open-ocean views, beach landing and full HD video of the jump.',
@@ -979,7 +981,7 @@ export const EXCURSIONS = [
     title: 'Advanced Diving Excursions',
     category: 'Adventure & Sports',
     eyebrow: 'Certified divers only',
-    image: homeImg('aerial-boats-turquoise-water.jpg'),
+    image: img('dolphin-snorkeling.jpg'),
     imageTBD: true,
     alt: 'Scuba diver, Zanzibar',
     description: 'PADI-led dives at advanced sites — Leven Bank and Tumbatu — drift dives, coral gardens, turtles, barracuda, tuna and reef sharks.',
@@ -995,7 +997,7 @@ export const EXCURSIONS = [
     title: 'Transparent Kayak & Paddleboarding',
     category: 'Water & Snorkeling',
     eyebrow: 'Glass-bottom · easy water',
-    image: homeImg('aerial-boats-turquoise-water.jpg'),
+    image: img('safari-blue-sandbank.jpg'),
     imageTBD: true,
     alt: 'Transparent kayak in turquoise water',
     description: 'A relaxed paddle in transparent kayaks and stand-up paddleboards — see reef life and small marine animals beneath you while you cruise.',
@@ -1141,7 +1143,7 @@ export const EXCURSIONS = [
     title: 'Zanzibar Beach & Water Sports Festival',
     category: 'Festivals & Seasonal',
     eyebrow: 'Festival · ocean sports',
-    image: homeImg('aerial-boats-turquoise-water.jpg'),
+    image: img('dolphin-snorkeling.jpg'),
     imageTBD: true,
     alt: 'Water sports festival, Zanzibar',
     description: 'A seasonal sports and entertainment week — dhow races, kite surfing, kayaking, beach games, local performances and water competitions.',
@@ -1174,7 +1176,7 @@ export const EXCURSIONS = [
     title: 'Wellness & Yoga Retreat Experience',
     category: 'Wellness & Luxury',
     eyebrow: 'Slow · restorative',
-    image: img('dream-dhow-sunset.jpeg'),
+    image: homeImg('stone-town-waterfront.webp'),
     imageTBD: true,
     alt: 'Beach yoga in Zanzibar',
     description: 'A wellness day combining beach yoga, meditation, healthy Swahili cuisine, massage therapy, sound healing and ocean relaxation.',
@@ -1190,7 +1192,7 @@ export const EXCURSIONS = [
     title: 'Mafia Island Whale Shark Experience',
     category: 'Festivals & Seasonal',
     eyebrow: 'Seasonal · swim with whale sharks',
-    image: homeImg('aerial-boats-turquoise-water.jpg'),
+    image: img('dolphin-snorkeling.jpg'),
     imageTBD: true,
     alt: 'Whale shark, Mafia Island',
     description: "A seasonal trip from Zanzibar to Mafia Island — swim with whale sharks during their feeding season and explore one of Tanzania's richest marine ecosystems.",
@@ -1203,3 +1205,5 @@ export const EXCURSIONS = [
     highlights: ['Swim with whale sharks', 'Mafia Marine Park snorkel', 'Quiet, low-impact island stay'],
   },
 ];
+
+export const EXCURSIONS = uniqueProductImages(EXCURSIONS_RAW, { scope: 'Excursion' });

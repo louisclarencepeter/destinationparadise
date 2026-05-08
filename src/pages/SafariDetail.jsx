@@ -101,7 +101,7 @@ export default function SafariDetail() {
               <small>{price ? `low season · peak from $${price.peakSeason.toLocaleString()}` : safari.priceSub}</small>
             </span>
             <span className="exc-block__price-note">Final price depends on season, camp level, and flight availability.</span>
-            <Link className="btn" to="/booking">Book this route →</Link>
+            <Link className="btn" to={`/booking?type=safari&item=${encodeURIComponent(safari.id)}`}>Book this route →</Link>
             <Link className="btn btn--ghost-dark" to="/safaris">All safaris</Link>
           </div>
         </div>
@@ -151,7 +151,7 @@ export default function SafariDetail() {
           <h2>Ready to plan {safari.title}?</h2>
           <p>Tell us your dates, group size, and preferred comfort level. We’ll come back within 24 hours with a real itinerary and a real price.</p>
           <div className="saf-cta__btns">
-            <Link className="btn btn--lg btn--accent" to="/booking">Get a quote →</Link>
+            <Link className="btn btn--lg btn--accent" to={`/booking?type=safari&item=${encodeURIComponent(safari.id)}`}>Get a quote →</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Or chat with our AI planner</Link>
           </div>
         </div>

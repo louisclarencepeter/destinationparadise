@@ -1,6 +1,6 @@
 export default function GallerySection() {
   const photos = [
-    { src: '/assets/images/excursions/dream-dhow-sunset.jpeg', caption: 'Dream Dhow sunset', className: 'gallery-tile gallery-tile--tall' },
+    { src: '/assets/images/home/mizingani-waterfront.jpg', caption: 'Mizingani waterfront', className: 'gallery-tile gallery-tile--tall' },
     { src: '/assets/images/safaris/zebra-mare-and-foal.jpg', caption: 'Zebra on safari', className: 'gallery-tile gallery-tile--tall' },
     { src: '/assets/images/excursions/dolphin-snorkeling.jpg', caption: 'Dolphin snorkel', className: 'gallery-tile gallery-tile--wide' },
     { src: '/assets/images/safaris/lioness-and-cub-resting.jpg', caption: 'Lioness and cub', className: 'gallery-tile' },

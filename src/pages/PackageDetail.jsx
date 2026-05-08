@@ -104,7 +104,7 @@ export default function PackageDetail() {
           <div className="exc-block__actions">
             <span className="exc-block__price">{pkg.priceLabel}<small>{pkg.priceSub}</small></span>
             <span className="exc-block__price-note">Final package price depends on dates, hotel level, transfers, and availability.</span>
-            <Link className="btn" to="/booking">Build this package →</Link>
+            <Link className="btn" to={`/booking?type=package&item=${encodeURIComponent(pkg.slug)}`}>Build this package →</Link>
             <Link className="btn btn--ghost-dark" to="/packages">All packages</Link>
           </div>
         </div>
@@ -116,7 +116,7 @@ export default function PackageDetail() {
           <h2>Ready to plan {pkg.title}?</h2>
           <p>Tell us your dates, guest count, and comfort level. We’ll shape the package and quote it properly.</p>
           <div className="exc-cta__btns">
-            <Link className="btn btn--lg btn--accent" to="/booking">Get a quote →</Link>
+            <Link className="btn btn--lg btn--accent" to={`/booking?type=package&item=${encodeURIComponent(pkg.slug)}`}>Get a quote →</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Plan with AI</Link>
           </div>
         </div>

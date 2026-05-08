@@ -635,55 +635,9 @@
 .exc-card:hover .exc-card__img img { transform: scale(1.05); }
 
 /* placeholder when no real photo yet */
-.exc-card__img--placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #e6eef3 0%, #cfdde6 100%);
-}
-.exc-card__img--placeholder[data-cat="water-snorkeling"] { background: linear-gradient(135deg, #c9e7f0 0%, #7fb8cc 100%); }
-.exc-card__img--placeholder[data-cat="culture-heritage"] { background: linear-gradient(135deg, #f5d9c0 0%, #c98a5a 100%); }
-.exc-card__img--placeholder[data-cat="nature-wildlife"] { background: linear-gradient(135deg, #d2e2c1 0%, #7fa56e 100%); }
-.exc-card__img--placeholder[data-cat="adventure-sports"] { background: linear-gradient(135deg, #fed7aa 0%, #ea8b3f 100%); }
-.exc-card__img--placeholder[data-cat="wellness-luxury"] { background: linear-gradient(135deg, #ddd6fe 0%, #9b89e0 100%); }
-.exc-card__img--placeholder[data-cat="festivals-seasonal"] { background: linear-gradient(135deg, #fde68a 0%, #d9a834 100%); }
-.exc-card__img-pending {
-  font-family: var(--dp-font-sans, 'Montserrat', system-ui, sans-serif);
-  font-size: 10.5px;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: rgba(255,255,255,.85);
-  background: rgba(8,30,46,.18);
-  backdrop-filter: blur(6px);
-  padding: .55rem 1.1rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.35);
-}
+.exc-card__img--placeholder,
 .exc-block__img--placeholder {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #e6eef3 0%, #cfdde6 100%);
-}
-.exc-block__img--placeholder[data-cat="water-snorkeling"] { background: linear-gradient(135deg, #c9e7f0 0%, #7fb8cc 100%); }
-.exc-block__img--placeholder[data-cat="culture-heritage"] { background: linear-gradient(135deg, #f5d9c0 0%, #c98a5a 100%); }
-.exc-block__img--placeholder[data-cat="nature-wildlife"] { background: linear-gradient(135deg, #d2e2c1 0%, #7fa56e 100%); }
-.exc-block__img--placeholder[data-cat="adventure-sports"] { background: linear-gradient(135deg, #fed7aa 0%, #ea8b3f 100%); }
-.exc-block__img--placeholder[data-cat="wellness-luxury"] { background: linear-gradient(135deg, #ddd6fe 0%, #9b89e0 100%); }
-.exc-block__img--placeholder[data-cat="festivals-seasonal"] { background: linear-gradient(135deg, #fde68a 0%, #d9a834 100%); }
-.exc-block__img-pending {
-  font-family: var(--dp-font-sans, 'Montserrat', system-ui, sans-serif);
-  font-size: 11.5px;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  font-weight: 700;
-  color: rgba(255,255,255,.9);
-  background: rgba(8,30,46,.2);
-  backdrop-filter: blur(8px);
-  padding: .7rem 1.4rem;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.4);
+  background: #071f2c;
 }
 
 .exc-card__cat {

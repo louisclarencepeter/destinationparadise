@@ -5,6 +5,7 @@ import '../styles/excursions.css';
 import '../styles/safaris.css';
 import { destinationParadiseSafariPricing } from '../data/safariPricing.js';
 import { nextLevelSafariProducts } from '../data/nextLevelSafariProducts.js';
+import { uniqueProductImages } from '../utils/productImages.js';
 
 const safariImg = (file) => `/assets/images/safaris/${file}`;
 const pricingBySlug = Object.fromEntries(destinationParadiseSafariPricing.map((item) => [item.slug, item]));
@@ -63,7 +64,7 @@ export const PARKS = [
   },
 ];
 
-export const ITINERARIES = [
+const ITINERARIES_RAW = [
   {
     id: 'ngorongoro-tarangire',
     category: 'Northern Circuit',
@@ -258,7 +259,7 @@ export const ITINERARIES = [
   };
 });
 
-export const SPECIALTY_SAFARIS = nextLevelSafariProducts.map((product) => ({
+const SPECIALTY_SAFARIS_RAW = nextLevelSafariProducts.map((product) => ({
   id: product.slug,
   title: product.title,
   category: product.category,
@@ -278,7 +279,9 @@ export const SPECIALTY_SAFARIS = nextLevelSafariProducts.map((product) => ({
   days: [],
 }));
 
-export const ALL_SAFARI_PRODUCTS = [...ITINERARIES, ...SPECIALTY_SAFARIS];
+export const ALL_SAFARI_PRODUCTS = uniqueProductImages([...ITINERARIES_RAW, ...SPECIALTY_SAFARIS_RAW], { scope: 'Safari' });
+export const ITINERARIES = ALL_SAFARI_PRODUCTS.filter((item) => !item.productType);
+export const SPECIALTY_SAFARIS = ALL_SAFARI_PRODUCTS.filter((item) => item.productType === 'Specialty Safari');
 
 const WILDLIFE_CATEGORIES = [
   {
