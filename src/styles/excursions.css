@@ -190,63 +190,43 @@
 }
 .exc-filter__label {
   font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase;
-  color: rgba(245, 241, 232, 0.55);
+  color: currentColor;
+  opacity: .55;
   margin-right: .5rem;
   font-weight: 600;
-}
-[data-theme="light"] .exc-filter__label,
-.excursions-page:not([data-theme]) .exc-filter__label {
-  color: rgba(8, 30, 46, 0.55);
 }
 .exc-filter__btn {
   font: inherit; cursor: pointer;
   padding: .55rem 1rem;
   border-radius: 999px;
-  border: 1px solid rgba(245, 241, 232, 0.22);
-  background: rgba(255, 255, 255, 0.05);
-  color: rgba(245, 241, 232, 0.92);
+  border: 1px solid currentColor;
+  background: transparent;
+  color: currentColor;
   font-size: 13px;
   font-weight: 500;
-  transition: background .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
+  opacity: .65;
+  transition: opacity .2s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
   display: inline-flex; align-items: center; gap: .4rem;
 }
 .exc-filter__btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(245, 241, 232, 0.4);
-  color: #fff;
+  opacity: 1;
+  background: color-mix(in srgb, currentColor 8%, transparent);
   transform: translateY(-1px);
 }
-[data-theme="light"] .exc-filter__btn,
-.excursions-page:not([data-theme]) .exc-filter__btn {
-  border-color: rgba(8, 30, 46, 0.18);
-  background: rgba(255, 255, 255, 0.6);
-  color: #1a4d6e;
-}
-[data-theme="light"] .exc-filter__btn:hover,
-.excursions-page:not([data-theme]) .exc-filter__btn:hover {
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(8, 30, 46, 0.35);
-  color: #0a3a55;
-}
 .exc-filter__btn.is-active {
+  opacity: 1;
   background: var(--dp-accent, #FF6F61);
   border-color: var(--dp-accent, #FF6F61);
   color: #fff;
-  box-shadow: 0 6px 18px -6px rgba(255, 111, 97, 0.55);
+  box-shadow: 0 8px 22px -8px rgba(255, 111, 97, 0.6);
 }
-.exc-filter__btn.is-active[data-cat="water-snorkeling"] { background: #4ea2c4; border-color: #4ea2c4; box-shadow: 0 6px 18px -6px rgba(78,162,196,.55); }
-.exc-filter__btn.is-active[data-cat="culture-heritage"] { background: #c97648; border-color: #c97648; box-shadow: 0 6px 18px -6px rgba(201,118,72,.55); }
-.exc-filter__btn.is-active[data-cat="nature-wildlife"] { background: #6a8d54; border-color: #6a8d54; box-shadow: 0 6px 18px -6px rgba(106,141,84,.55); }
-.exc-filter__btn.is-active[data-cat="adventure-sports"] { background: #d77439; border-color: #d77439; box-shadow: 0 6px 18px -6px rgba(215,116,57,.55); }
-.exc-filter__btn.is-active[data-cat="wellness-luxury"] { background: #8b5cf6; border-color: #8b5cf6; box-shadow: 0 6px 18px -6px rgba(139,92,246,.55); }
-.exc-filter__btn.is-active[data-cat="festivals-seasonal"] { background: #d9a834; border-color: #d9a834; box-shadow: 0 6px 18px -6px rgba(217,168,52,.55); }
 .exc-filter__count {
   font-size: 11px;
-  opacity: .65;
+  opacity: .7;
   margin-left: .15rem;
   font-variant-numeric: tabular-nums;
 }
-.exc-filter__btn.is-active .exc-filter__count { opacity: .85; color: rgba(255,255,255,.85); }
+.exc-filter__btn.is-active .exc-filter__count { opacity: .9; color: rgba(255,255,255,.9); }
 
 /* ============ EXCURSION BLOCK ============ */
 .exc-list { padding: clamp(3.25rem, 6.5vw, 5.8rem) 0; }
