@@ -1,114 +1,185 @@
 # Destination Paradise
 
-React + Vite rebuild of the Destination Paradise website, ported 1:1 from the
-[Claude Design](https://claude.ai/design) handoff (`Homepage.html`). Hosted on Netlify.
+Premium React + Vite website for Destination Paradise, a Zanzibar and Tanzania travel brand covering complete packages, island excursions, mainland safaris, and an AI-assisted trip planner.
+
+The site has grown from a homepage rebuild into a multi-page travel platform:
+
+- 15 package products across safari + Zanzibar, honeymoon, family, fly-in safari, culture, marine, Kilimanjaro, luxury, and long-stay styles.
+- 29 safari starting points across core routes and specialist safari styles.
+- 40+ Zanzibar excursions and combinations.
+- Interactive Explore map for Zanzibar and mainland Tanzania.
+- AI Trip Planner backed by a Netlify Function.
 
 ## Stack
 
 - Vite + React 18
-- React Router 6 (multi-page scaffolding)
-- Plain CSS (the design's `styles.css` ported with paths rewritten — no preprocessor)
-- Netlify hosting + one Function for the AI Trip Planner
-- Netlify Forms for the newsletter (no backend code needed)
+- React Router 6
+- Plain CSS modules by page/section, no preprocessor
+- Leaflet for the map experience
+- Netlify hosting
+- Netlify Function for `/api/planner`
+- Netlify Forms for contact/newsletter forms
 
-## Run
+## Run Locally
 
 ```bash
 npm install
-npm run dev          # local dev at http://localhost:5173
-npm run build        # production build → dist/
-npm run preview      # preview the dist/ build
+npm run dev
+npm run build
+npm run preview
 ```
 
-For the AI planner to work locally with a real backend, install the Netlify CLI
-and run `netlify dev` instead of `npm run dev` — that wires `/api/planner` to
-the function.
+Local dev runs at `http://localhost:5173`.
 
-## Environment variables
+For the AI planner to call the real Netlify Function locally, use Netlify CLI:
 
-Set on the Netlify site (Site settings → Environment):
+```bash
+netlify dev
+```
 
-- `ANTHROPIC_API_KEY` — required for the AI Trip Planner. Without it the planner
-  returns a friendly fallback message and points users to WhatsApp.
+## Scripts
+
+```bash
+npm run dev        # Vite dev server
+npm run build      # production build to dist/
+npm run preview    # preview built dist/
+npm run lint       # ESLint
+npm run typecheck  # TypeScript check config
+npm run test       # Vitest tests
+```
+
+## Environment
+
+Set this on Netlify:
+
+- `ANTHROPIC_API_KEY` — required for the AI Trip Planner. Without it, the planner returns a friendly fallback message and points guests to WhatsApp.
+
+The planner endpoint is configured in `netlify.toml`:
+
+- Frontend calls `/api/planner`
+- Netlify rewrites that to `/.netlify/functions/planner`
+- Function file: `netlify/functions/planner.mjs`
 
 ## Routes
 
-| Route | Page | Status |
-| --- | --- | --- |
-| `/` | `src/pages/Homepage.jsx` | **1:1 design** — full homepage from `Homepage.html` |
-| `/excursions`, `/excursions/:id` | `src/pages/Excursions.jsx` | Placeholder, awaiting design |
-| `/safaris`, `/book-now` | `src/pages/Safaris.jsx` | Placeholder |
-| `/aboutus` | `src/pages/About.jsx` | Placeholder |
-| `/gallery` | `src/pages/Gallery.jsx` | Placeholder |
-| `/booking` | `src/pages/Booking.jsx` | Placeholder |
-| `/dream-dhow` | `src/pages/DreamDhow.jsx` | Placeholder |
-| `/cookies-policy`, `/privacy-policy`, `/terms-of-service` | `src/pages/Policy.jsx` | Placeholder |
-| `*` | `src/pages/NotFound.jsx` | 404 |
+| Route | Purpose |
+| --- | --- |
+| `/` | Homepage with hero, featured excursions, safari highlights, package highlights, planner, map, gallery, contact |
+| `/excursions` | Full excursions index with filters and progressive reveal |
+| `/excursions/:id` | Excursion detail pages |
+| `/excursions/combinations/:id` | Excursion combination detail pages |
+| `/safaris` | Safari index with filters, safari route cards, safari styles, and selling sections |
+| `/safaris/:id` | Safari detail pages |
+| `/safaris/types/:typeId` | Safari style/type pages |
+| `/packages` | Package portfolio page |
+| `/packages/:id` | Package detail pages |
+| `/trip-planner` | AI Trip Planner page with prompt cards and chat UI |
+| `/explore` | Interactive Explore page with map, destination hubs, related products, and CTA |
+| `/booking`, `/book-now` | Booking placeholder/entry point |
+| `/aboutus` | About placeholder |
+| `/cookies-policy`, `/privacy-policy`, `/terms-of-service` | Policy pages |
+| `*` | 404 page |
 
-The placeholder pages exist so the inventory routes don't 404 and so the
-homepage doesn't break if anything links to them. Each will be rebuilt the same
-way the homepage was — paste the next Claude design and we port it.
+## Project Layout
 
-## Project layout
-
-```
+```text
 public/
   assets/
-    brand/       # Destination Paradise logo assets
-    fonts/       # Playfair Display, Montserrat, Kaushan Script
+    brand/          # logo assets
+    fonts/          # local font files
     images/
-      home/      # Homepage hero and place images
-      excursions/ # Trip-specific card/gallery images
-      testimonials/ # Guest avatar images
-  _redirects     # SPA fallback (also defined in netlify.toml)
+      home/         # homepage/place imagery
+      excursions/   # Zanzibar excursion imagery
+      safaris/      # safari imagery
+      testimonials/ # testimonial avatars
 src/
-  main.jsx
   App.jsx
-  styles/
-    tokens.css      # Design tokens + @font-face (from colors_and_type.css)
-    homepage.css    # Homepage layout + components (from styles.css)
-  pages/        # one file per route
+  main.jsx
   components/
-    Placeholder.jsx
+    SiteLayout.jsx
+    SiteNav.jsx
+    SiteFooter.jsx
+    homepage/       # homepage sections
+  data/
+    excursionsData.js
+    excursionCombinations.js
+    destinationParadisePackages.js
+    safariPricing.js
+    nextLevelSafariProducts.js
+  pages/
+    Homepage.jsx
+    Excursions.jsx
+    Safaris.jsx
+    Packages.jsx
+    TripPlannerPage.jsx
+    Explore.jsx
+    *Detail.jsx
+  styles/
+    tokens.css
+    homepage.css
+    homepage/       # split homepage section styles
+    excursions.css
+    safaris.css
 netlify/
   functions/
-    planner.mjs # AI Trip Planner — calls Anthropic Messages API
-netlify.toml    # Build + redirects (/api/planner → function)
+    planner.mjs
+netlify.toml
 ```
 
-## What came from the design vs. what we filled in
+## Main Data Files
 
-**From the design (`/tmp/dp-design/destination-paradise/project/`):**
+- `src/data/excursionsData.js`  
+  Full Zanzibar excursion catalog, including rich editorial detail for headline excursions and lean entries for the broader catalog.
 
-- `Homepage.html` → `src/pages/Homepage.jsx` (markup ported, scripts rewritten as React state/effects)
-- `styles.css` → `src/styles/homepage.css` (verbatim, with asset URLs rewritten to `/assets/...`)
-- `assets/colors_and_type.css` → `src/styles/tokens.css` (verbatim, with font URLs rewritten)
-- `assets/fonts/*` → `public/assets/fonts/*`
-- `assets/img/*` → `public/assets/images/*` and `public/assets/brand/*`
+- `src/data/excursionCombinations.js`  
+  Combination products that group multiple excursions into route-style experiences.
 
-**Filled in:**
+- `src/data/destinationParadisePackages.js`  
+  Current package portfolio used by package listing/detail pages and homepage package highlights.
 
-- Netlify Function for the AI planner (the design called `window.claude.complete`
-  which only exists inside claude.ai — a real Anthropic API call replaces it).
-- Newsletter form wired for Netlify Forms.
-- React Router + placeholder pages for the other routes from
-  `docs/content-inventory.md`.
+- `src/data/safariPricing.js`  
+  Core safari route pricing and inclusions.
 
-**Left blank / needs you to provide:**
+- `src/data/nextLevelSafariProducts.js`  
+  Extended safari/special-interest product list used to expand the safari catalog.
 
-- Real social-media URLs in the footer (currently `href="#"` per the design).
-- Real footer contact info — design uses `hello@destinationparadise.co.tz` and
-  `+255 000 000 000`. Old site had `info@yournexttriptoparadise.com` and
-  `+255 768 779 517`. Pick one and we'll update.
-- Designs for the other 8 routes.
+## Design Notes
 
-## Notes for redesign continuity
+- The site is positioned as a premium travel concierge/platform, not just a local activity marketplace.
+- Global button variants live in `src/styles/homepage/buttons.css`.
+- The navbar order is intentional: logo, navigation, theme toggle, primary booking CTA.
+- The WhatsApp floating action button is styled to fit the site’s dark glass/gradient visual language while retaining a subtle green signal.
+- Homepage currently uses available local images as placeholders. Higher-quality cinematic Zanzibar/safari media can be dropped into `public/assets/images/...` and referenced from the relevant components.
 
-The `tweaks` panel from the design (hero variant, excursion layout, theme) is
-preserved so design iteration is one click away when running inside the
-claude.ai design preview. In production it stays hidden — the gear button only
-appears when the parent frame sends `__activate_edit_mode`.
+## Current Product Structure
 
-The previous repo's archive lives in [`docs/website-assets/`](docs/website-assets/)
-and remains a content-inventory snapshot only — it is no longer used by the live
-build. (Worth pruning to git-lfs or external storage; flagged in the prior review.)
+Homepage is intentionally curated rather than exhaustive:
+
+- Shows 3 featured excursions.
+- Shows 3 safari highlights from the current safari data.
+- Shows 3 package highlights from the current package data.
+- Uses the planner and Explore map to help guests choose paths.
+
+Full catalogs live on their own pages:
+
+- Excursions page for the full excursion catalog.
+- Safaris page for core routes plus specialist products.
+- Packages page for the complete package portfolio.
+- Explore page for location-first discovery.
+
+## Deployment
+
+Netlify build settings:
+
+```toml
+[build]
+  command = "npm run build"
+  publish = "dist"
+```
+
+SPA fallback and the planner API rewrite are defined in `netlify.toml`.
+
+## Notes
+
+- `docs/website-assets/` is an archived content snapshot from the previous site and is not used by the live build.
+- Some media is temporary and should be replaced with higher-resolution brand photography or video as it becomes available.
