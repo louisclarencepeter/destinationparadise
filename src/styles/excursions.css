@@ -596,12 +596,12 @@
   display: flex;
   flex-direction: column;
   background: var(--surface, #FFFCF5);
-  border: 1px solid rgba(8,30,46,.08);
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
   border-radius: 14px;
   overflow: hidden;
   text-decoration: none;
   color: var(--text, #1a4d6e);
-  box-shadow: 0 14px 32px -28px rgba(8,30,46,.4);
+  box-shadow: 0 14px 32px -28px rgba(0,0,0,.45);
   transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
 }
 .exc-card:hover {
@@ -736,7 +736,8 @@
 .exc-card__desc {
   font-size: .88rem;
   line-height: 1.55;
-  opacity: .75;
+  color: currentColor;
+  opacity: .8;
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
@@ -748,7 +749,7 @@
   flex-wrap: wrap;
   gap: .85rem;
   font-size: 11.5px;
-  color: rgba(8,30,46,.65);
+  color: color-mix(in srgb, currentColor 75%, transparent);
   margin-top: .15rem;
 }
 .exc-card__meta span {
@@ -756,12 +757,12 @@
   align-items: center;
   gap: .35rem;
 }
-.exc-card__meta svg { color: #FF6F61; opacity: .85; }
+.exc-card__meta svg { color: #FF6F61; }
 
 .exc-card__foot {
   margin-top: auto;
   padding-top: .85rem;
-  border-top: 1px solid rgba(8,30,46,.08);
+  border-top: 1px solid color-mix(in srgb, currentColor 14%, transparent);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -769,7 +770,7 @@
 }
 .exc-card__price {
   font-size: 12.5px;
-  color: rgba(8,30,46,.7);
+  color: color-mix(in srgb, currentColor 75%, transparent);
 }
 .exc-card__price strong {
   font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif);
@@ -782,7 +783,7 @@
   font-size: 11px;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: rgba(8,30,46,.55);
+  color: color-mix(in srgb, currentColor 60%, transparent);
 }
 .exc-card__cta {
   font-size: 12px;
