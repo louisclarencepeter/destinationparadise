@@ -273,7 +273,7 @@
 .exc-block__cat[data-cat="festivals-seasonal"] { background: #fde68a; color: #78350f; }
 .exc-block__season {
   position: absolute;
-  top: 1.25rem;
+  bottom: 1.25rem;
   left: 1.25rem;
   font-size: 10px;
   letter-spacing: .14em;
@@ -688,8 +688,8 @@
 
 .exc-card__season {
   position: absolute;
-  top: .85rem;
-  right: .85rem;
+  bottom: .85rem;
+  left: .85rem;
   font-size: 9.5px;
   letter-spacing: .14em;
   text-transform: uppercase;
