@@ -23,7 +23,7 @@
 .saf-hero__inner {
   position: relative;
   z-index: 1;
-  max-width: 760px;
+  max-width: 1240px;
   display: grid;
   gap: clamp(.75rem, 1.35vh, 1.3rem);
 }
@@ -328,7 +328,7 @@
   transform: scale(1.04);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1240px) {
   .saf-types__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
@@ -353,7 +353,7 @@
 }
 .parks__head { max-width: 720px; margin: 0 auto clamp(2.5rem, 4vw, 3.5rem); text-align: center; }
 .parks__grid {
-  max-width: 1280px;
+  max-width: 1240px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -547,7 +547,7 @@
 }
 [data-theme="dark"] .wildlife { background: linear-gradient(180deg, var(--surface), #0a1d2a 100%); }
 .wildlife__head { max-width: 720px; margin: 0 auto clamp(2.5rem, 4vw, 3.5rem); text-align: center; }
-.wildlife__cat { max-width: 1320px; margin: 0 auto 3rem; }
+.wildlife__cat { max-width: 1240px; margin: 0 auto 3rem; }
 .wildlife__cat-title {
   display: flex; align-items: baseline; gap: 1rem;
   margin: 0 0 1rem;
@@ -682,7 +682,7 @@
   color: #F5F1E8;
 }
 .included__wrap {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1.1fr;
