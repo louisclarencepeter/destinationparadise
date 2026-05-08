@@ -40,13 +40,13 @@
 .excursions-page .btn--ghost-dark {
   background: transparent;
   background-image: none;
-  color: #1a4d6e;
-  border: 1px solid rgba(26,77,110,.4);
+  color: currentColor;
+  border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
 }
 .excursions-page .btn--ghost-dark:hover {
-  background: rgba(26,77,110,.06);
-  border-color: #1a4d6e;
-  color: #1a4d6e;
+  background: color-mix(in srgb, currentColor 8%, transparent);
+  border-color: currentColor;
+  color: currentColor;
 }
 
 /* ============ HERO (mirrors .saf-hero pattern) ============ */
