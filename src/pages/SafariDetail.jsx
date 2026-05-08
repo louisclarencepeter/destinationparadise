@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ALL_SAFARI_PRODUCTS, INCLUDED_LIST } from './Safaris.jsx';
+import { ALL_SAFARI_PRODUCTS, INCLUDED_LIST } from '../data/safariPageData.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';

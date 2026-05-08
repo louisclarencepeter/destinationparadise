@@ -1,0 +1,373 @@
+import { destinationParadiseSafariPricing } from './safariPricing.js';
+import { nextLevelSafariProducts } from './nextLevelSafariProducts.js';
+import { uniqueProductImages } from '../utils/productImages.js';
+
+const safariImg = (file) => `/assets/images/safaris/${file}`;
+const pricingBySlug = Object.fromEntries(destinationParadiseSafariPricing.map((item) => [item.slug, item]));
+const specialtyImageForCategory = (category) => {
+  if (/luxury|honeymoon|wellness|combo|beach/i.test(category)) return safariImg('lioness-and-cub-resting.jpg');
+  if (/bird/i.test(category)) return safariImg('crowned-crane-close.jpg');
+  if (/culture|history|maasai|coffee/i.test(category)) return safariImg('zebra-mare-and-foal.jpg');
+  if (/mountain|hiking|adventure|nature/i.test(category)) return safariImg('warthog-on-plains.jpg');
+  if (/quick|fly|helicopter|ultra/i.test(category)) return safariImg('eland-herd-plains.jpg');
+  if (/migration|photography/i.test(category)) return safariImg('zebra-herd-on-track.jpg');
+  return safariImg('male-lion-in-grass.jpg');
+};
+
+export const PARKS = [
+  {
+    label: 'Park 01',
+    area: '14,750 km²',
+    name: 'Serengeti National Park',
+    blurb: 'The endless plains. Home to the great migration — 1.5 million wildebeest and 250,000 zebra moving in lockstep with the rains.',
+    tags: ['Migration', 'Big Five', 'Hot-air balloon'],
+    image: safariImg('zebra-herd-on-track.jpg'),
+    size: 'lg',
+  },
+  {
+    label: 'Park 02',
+    area: '260 km²',
+    name: 'Ngorongoro Crater',
+    blurb: 'A collapsed volcano, now a self-contained ecosystem with the densest concentration of predators in Africa. Black rhino still roam.',
+    tags: ['Black rhino', 'Big Five', 'Crater rim lodges'],
+    image: safariImg('rhino-on-plains.jpg'),
+    size: 'lg',
+  },
+  {
+    label: 'Park 03',
+    area: '2,850 km²',
+    name: 'Tarangire National Park',
+    blurb: 'Elephant capital. Ancient baobabs and a year-round river that draws giant herds in the dry season. Wildly underrated.',
+    tags: ['Elephants', 'Baobabs', 'Quiet roads'],
+    image: safariImg('eland-herd-plains.jpg'),
+  },
+  {
+    label: 'Park 04',
+    area: '30,893 km²',
+    name: 'Nyerere (Selous)',
+    blurb: 'Africa’s largest game reserve. Boat safaris on the Rufiji, walking with armed rangers, fly-camping under impossible stars.',
+    tags: ['Boat safari', 'Walking safari', 'Wild dog'],
+    image: safariImg('buffalo-and-egret.jpg'),
+  },
+  {
+    label: 'Park 05',
+    area: '330 km²',
+    name: 'Lake Manyara',
+    blurb: 'Tree-climbing lions, alkaline flats stained pink with flamingos, and one of East Africa’s great birding spots — 400+ species.',
+    tags: ['Tree-climbing lions', 'Flamingos', 'Birding'],
+    image: safariImg('yellow-weaver-on-rail.jpg'),
+  },
+];
+
+const ITINERARIES_RAW = [
+  {
+    id: 'ngorongoro-tarangire',
+    category: 'Northern Circuit',
+    image: safariImg('rhino-on-plains.jpg'),
+    alt: 'Black rhino on the plains during a Ngorongoro and Tarangire safari',
+    duration: '5 nights',
+    from: 'Arusha / Zanzibar',
+    price: 2640,
+    priceSub: 'pp',
+    rib: 'Most popular · 5 nights · From $2,640 pp',
+    title: 'Ngorongoro & Tarangire',
+    intro: 'Descend the crater for the Big Five at first light, then move to Tarangire’s elephant herds and baobabs. A classic Northern Circuit pairing.',
+    days: [
+      { d: 'Day 1', h: 'Fly to Arusha → Tarangire', p: 'Drive 2hrs to camp. Evening game drive among the baobabs.' },
+      { d: 'Day 2', h: 'Tarangire elephants', p: 'Full-day drive along the Tarangire River. Hundreds of elephants in the dry months.' },
+      { d: 'Day 3', h: 'Transfer to crater rim', p: 'Drive via Lake Manyara (optional stop for tree-climbing lions). Lodge perched on the crater edge.' },
+      { d: 'Day 4', h: 'Crater floor', p: 'Pre-dawn descent. Black rhino, lion prides, flamingo flats. Picnic at Ngoitokitok Springs.' },
+      { d: 'Day 5', h: 'Olduvai & back', p: 'Visit Olduvai Gorge (Leakey’s "cradle of mankind"). Fly back to Zanzibar.' },
+    ],
+    includes: '✓ All flights & transfers · ✓ Lodge upgrades · ✓ Crater fees · ✓ Cultural visit included',
+    feature: true,
+  },
+  {
+    id: 'serengeti-migration',
+    category: 'Migration Safari',
+    image: safariImg('zebra-herd-on-track.jpg'),
+    alt: 'Zebra herd on a Serengeti track during migration season',
+    duration: '3 nights',
+    from: 'Zanzibar / Arusha',
+    price: 1890,
+    priceSub: 'pp',
+    rib: '3 nights · From $1,890 pp',
+    title: 'Serengeti Migration',
+    intro: 'Track the great wildebeest crossing on the Mara River. Tented camps, dawn game drives, sundowners on the kopjes.',
+    days: [
+      { d: 'Day 1', h: 'Fly Zanzibar → Seronera', p: 'Bush flight via Arusha. Afternoon game drive in the central Serengeti.' },
+      { d: 'Day 2', h: 'Mara River crossing', p: 'Full-day drive following the migration. Picnic lunch on the plains. Optional balloon at dawn.' },
+      { d: 'Day 3', h: 'Western corridor & back', p: 'Predator territory — lion, cheetah, hyena clans. Fly back to Zanzibar at sunset.' },
+    ],
+    includes: '✓ Bush flights · ✓ All meals · ✓ Park fees · ✓ Pro guide',
+  },
+  {
+    id: 'nyerere-selous',
+    category: 'Southern Circuit',
+    image: safariImg('buffalo-and-egret.jpg'),
+    alt: 'Buffalo and egret near wetlands in Nyerere National Park',
+    duration: '4 nights',
+    from: 'Zanzibar',
+    price: 2180,
+    priceSub: 'pp',
+    rib: '4 nights · From $2,180 pp',
+    title: 'Nyerere (Selous) Wild',
+    intro: 'Boat safaris on the Rufiji, walking with armed rangers, fly-camping under the stars. The road less travelled.',
+    days: [
+      { d: 'Day 1', h: 'Zanzibar → Selous', p: '50-min flight to Mtemere airstrip. Afternoon boat safari at sunset.' },
+      { d: 'Day 2', h: 'Walking safari', p: 'Morning bush walk with ranger. Afternoon game drive — wild dog territory.' },
+      { d: 'Day 3', h: 'Fly camp', p: 'Move to a fly-camp deeper in the reserve. Camp fire, no fences, full stars.' },
+      { d: 'Day 4', h: 'Rufiji to Zanzibar', p: 'Final boat safari at dawn (hippos, crocs, fish eagles). Fly back midday.' },
+    ],
+    includes: '✓ Boat & walking safaris · ✓ Fly-camping kit · ✓ All gear & meals · ✓ Ranger fees',
+  },
+  {
+    id: 'ruaha-big-cat',
+    category: 'Southern Circuit',
+    image: safariImg('male-lion-in-grass.jpg'),
+    alt: 'Male lion resting in grass on a Ruaha big-cat safari',
+    duration: '3 nights',
+    from: 'Zanzibar',
+    price: 2090,
+    priceSub: 'pp',
+    rib: '3 nights · From $2,090 pp',
+    title: 'Ruaha Big-Cat Trail',
+    intro: 'A southern-circuit favourite for lion prides, leopard sightings, and fewer vehicles than the northern parks.',
+    days: [
+      { d: 'Day 1', h: 'Zanzibar → Ruaha', p: 'Morning bush flight into Ruaha. Evening game drive along the Great Ruaha River.' },
+      { d: 'Day 2', h: 'Predator tracking', p: 'Full-day drive through prime lion and leopard habitat with bush lunch in the park.' },
+      { d: 'Day 3', h: 'Baobabs & return', p: 'Sunrise game drive among baobab valleys, then afternoon flight back to Zanzibar.' },
+    ],
+    includes: '✓ Bush flights · ✓ Full board · ✓ Park fees · ✓ Professional guide',
+  },
+  {
+    id: 'mahale-chimp',
+    category: 'Western Circuit',
+    image: safariImg('crowned-cranes-in-grass.jpg'),
+    alt: 'Wildlife in grassland representing a western Tanzania safari route',
+    duration: '4 nights',
+    from: 'Zanzibar / Kigoma',
+    price: 2860,
+    priceSub: 'pp',
+    rib: '4 nights · From $2,860 pp',
+    title: 'Mahale Chimp & Lake Tanganyika',
+    intro: 'Track wild chimpanzees in Mahale Mountains and unwind on the white-sand shores of Lake Tanganyika.',
+    days: [
+      { d: 'Day 1', h: 'Zanzibar → Kigoma → Mahale', p: 'Flight west to Kigoma, then boat transfer to camp on the lakefront.' },
+      { d: 'Day 2', h: 'Chimpanzee trekking', p: 'Morning forest trek with trackers. Afternoon swim and kayak on Tanganyika.' },
+      { d: 'Day 3', h: 'Second chimp trek', p: 'Another guided trek for better chimp encounters and optional village visit.' },
+      { d: 'Day 4', h: 'Lake morning & return', p: 'Sunrise on the beach, boat to Kigoma, and flight connection back.' },
+    ],
+    includes: '✓ Internal flights · ✓ Boat transfers · ✓ Chimp permits · ✓ Full board',
+  },
+  {
+    id: 'katavi-frontier',
+    category: 'Western Circuit',
+    image: safariImg('buffalo-herd-close.jpg'),
+    alt: 'Cape buffalo herd close-up on a remote Katavi safari',
+    duration: '5 nights',
+    from: 'Zanzibar',
+    price: 3290,
+    priceSub: 'pp',
+    rib: '5 nights · From $3,290 pp',
+    title: 'Katavi Remote Frontier',
+    intro: 'For seasoned safari travellers: dramatic dry-season game concentrations in one of Tanzania’s wildest, least-visited parks.',
+    days: [
+      { d: 'Day 1', h: 'Zanzibar → Katavi', p: 'Multi-leg bush flight to western Tanzania, with sunset game drive on arrival.' },
+      { d: 'Day 2', h: 'Floodplain herds', p: 'Track buffalo super-herds and lion coalitions across Katavi floodplains.' },
+      { d: 'Day 3', h: 'Hippo pools & riverbeds', p: 'Explore seasonal riverbeds packed with hippos and crocodiles.' },
+      { d: 'Day 4', h: 'Full wilderness day', p: 'Deep-park game drives with picnic lunch and optional night drive.' },
+      { d: 'Day 5', h: 'Final drive & fly out', p: 'Morning game loop before return flights east and onward transfer.' },
+    ],
+    includes: '✓ Bush flights · ✓ Luxury fly-camp · ✓ Park fees · ✓ Expert guide team',
+  },
+  {
+    id: 'tarangire-ngorongoro-short',
+    category: 'Last-minute Safari',
+    image: safariImg('eland-herd-plains.jpg'),
+    alt: 'Open plains on a Tarangire and Ngorongoro short safari',
+    duration: '2 nights',
+    from: 'Zanzibar',
+    price: 1190,
+    priceSub: 'pp',
+    rib: 'Last-minute · 2 nights · From $1,190 pp',
+    title: 'Tarangire + Ngorongoro Short Circuit',
+    intro: 'The best-value short safari: elephants and baobabs in Tarangire, then the crater’s dense predator zones.',
+    days: [
+      { d: 'Day 1', h: 'Fly to Arusha → Tarangire', p: 'Transfer to park, afternoon game drive, overnight near Tarangire.' },
+      { d: 'Day 2', h: 'Crater rim transfer', p: 'Morning drive, transfer to Ngorongoro highlands, evening at lodge.' },
+      { d: 'Day 3', h: 'Crater game drive & return', p: 'Early crater descent and wildlife tracking before return flight to Zanzibar.' },
+    ],
+    includes: '✓ Flights · ✓ 2 lodge nights · ✓ Park & crater fees · ✓ Guide',
+  },
+  {
+    id: 'ngorongoro-overnight',
+    category: 'Last-minute Safari',
+    image: safariImg('rhino-on-plains.jpg'),
+    alt: 'Rhino on the plains during a Ngorongoro overnight safari',
+    duration: '1 night',
+    from: 'Zanzibar',
+    price: 790,
+    priceSub: 'pp',
+    rib: 'Last-minute · 1 night · From $790 pp',
+    title: 'Ngorongoro Overnight',
+    intro: 'Perfect when you can spare one night: crater wildlife at first light plus a lodge stay on the rim.',
+    days: [
+      { d: 'Day 1', h: 'Zanzibar → Arusha → crater rim', p: 'Morning flight, transfer to the highlands, evening sundowner at the lodge.' },
+      { d: 'Day 2', h: 'Crater floor & fly back', p: 'Early descent for Big Five tracking, picnic lunch, return flight to Zanzibar.' },
+    ],
+    includes: '✓ Flights & transfers · ✓ Lodge stay · ✓ Crater fees · ✓ Guide',
+  },
+  {
+    id: 'tarangire-day-trip',
+    category: 'Day Safari',
+    image: safariImg('eland-grazing.jpg'),
+    alt: 'Grazing antelope on a Tarangire express day safari',
+    duration: '1 day',
+    from: 'Zanzibar',
+    price: 390,
+    priceSub: 'pp',
+    rib: 'Last-minute · 1 day · From $390 pp',
+    title: 'Tarangire Express Day Safari',
+    intro: 'A fast, high-impact one-day option for guests already in Zanzibar who want a real mainland game drive without overnighting.',
+    days: [
+      { d: 'Day 1', h: 'Zanzibar ↔ Arusha/Tarangire', p: 'Early flight out, full-day game drive in Tarangire, sunset return flight to Zanzibar.' },
+    ],
+    includes: '✓ Return flights · ✓ Park fees · ✓ Picnic lunch · ✓ Pro guide',
+  },
+].map((itinerary) => {
+  const pricing = pricingBySlug[itinerary.id];
+  if (!pricing) return itinerary;
+
+  const low = pricing.recommendedPublicPrice.lowSeason;
+  const peak = pricing.recommendedPublicPrice.peakSeason;
+  return {
+    ...itinerary,
+    price: low,
+    priceSub: 'pp',
+    rib: `${itinerary.duration} · From $${low.toLocaleString()} pp`,
+    publicPrice: pricing.recommendedPublicPrice,
+    positioning: pricing.positioning,
+    includesList: pricing.includes,
+    upsells: pricing.upsells,
+    priceRange: `$${low.toLocaleString()}-$${peak.toLocaleString()} pp`,
+  };
+});
+
+const SPECIALTY_SAFARIS_RAW = nextLevelSafariProducts.map((product) => ({
+  id: product.slug,
+  title: product.title,
+  category: product.category,
+  image: specialtyImageForCategory(product.category),
+  alt: `${product.title} safari experience`,
+  duration: product.duration,
+  from: 'Tanzania / Zanzibar',
+  price: product.pricing.from,
+  priceSub: 'pp',
+  rib: `${product.category} · ${product.duration} · From $${product.pricing.from.toLocaleString()} pp`,
+  intro: product.highlights.slice(0, 4).join(' · '),
+  includesList: product.highlights,
+  highlights: product.highlights,
+  idealFor: product.idealFor || [],
+  positioning: product.category,
+  productType: 'Specialty Safari',
+  days: [],
+}));
+
+export const ALL_SAFARI_PRODUCTS = uniqueProductImages([...ITINERARIES_RAW, ...SPECIALTY_SAFARIS_RAW], { scope: 'Safari' });
+export const ITINERARIES = ALL_SAFARI_PRODUCTS.filter((item) => !item.productType);
+export const SPECIALTY_SAFARIS = ALL_SAFARI_PRODUCTS.filter((item) => item.productType === 'Specialty Safari');
+
+export const INCLUDED_LIST = [
+  'Bush flights between parks (Cessna)',
+  'All park & conservation fees',
+  'Silver-level certified guide',
+  'Full board at every camp',
+  'Sundowners & bush picnics',
+  'Airport pickups in Zanzibar & Arusha',
+  'Bottled water & drinks at lodge',
+  '24/7 concierge on WhatsApp',
+];
+
+export const SAFARI_TYPES = [
+  {
+    id: 'classic-game-drive',
+    title: 'Classic game-drive safaris',
+    desc: 'Private or small-group Land Cruiser drives across Serengeti, Ngorongoro, Tarangire, and Lake Manyara with expert local guides.',
+    bestFor: 'First-time safari travellers',
+    routeIds: ['ngorongoro-tarangire', 'serengeti-migration', 'tarangire-ngorongoro-short'],
+    highlights: ['Private or small-group 4x4 game drives', 'Best access to iconic northern parks', 'Strong Big Five and predator viewing'],
+    image: safariImg('male-lion-in-grass.jpg'),
+    alt: 'Lion resting in grass on a classic game drive',
+  },
+  {
+    id: 'fly-in',
+    title: 'Fly-in safaris',
+    desc: 'Skip long road transfers and connect key parks by bush flight from Zanzibar, Arusha, or Dar es Salaam.',
+    bestFor: 'Limited time, maximum game time',
+    routeIds: ['serengeti-migration', 'nyerere-selous', 'ruaha-big-cat'],
+    highlights: ['Less time on roads', 'Easy Zanzibar-to-bush combinations', 'Best for short premium trips'],
+    image: safariImg('eland-herd-plains.jpg'),
+    alt: 'Open plains landscape viewed on a fly-in safari route',
+  },
+  {
+    id: 'walking',
+    title: 'Walking safaris',
+    desc: 'Guided bush walks with armed rangers in wilderness areas like Nyerere and Ruaha for a close-to-nature experience.',
+    bestFor: 'Adventure and tracking lovers',
+    routeIds: ['nyerere-selous', 'ruaha-big-cat'],
+    highlights: ['Armed ranger-led bush walks', 'Tracks, birds, plants, and smaller wildlife', 'A more intimate wilderness pace'],
+    image: safariImg('warthog-on-plains.jpg'),
+    alt: 'Warthog spotted during a walking safari experience',
+  },
+  {
+    id: 'boat',
+    title: 'Boat safaris',
+    desc: 'River and lake safaris in Nyerere (Selous) and western circuits where wildlife is viewed from the water.',
+    bestFor: 'Unique wildlife angles and birding',
+    routeIds: ['nyerere-selous', 'mahale-chimp'],
+    highlights: ['Hippos, crocodiles, and river birds', 'Sunset river experiences', 'Great contrast to classic game drives'],
+    image: safariImg('buffalo-and-egret.jpg'),
+    alt: 'Buffalo and egret near wetlands, ideal for boat safari viewing',
+  },
+  {
+    id: 'family',
+    title: 'Family safaris',
+    desc: 'Family-friendly itineraries with shorter drives, flexible pacing, and lodges suited for children and multi-gen travel.',
+    bestFor: 'Families with kids',
+    routeIds: ['tarangire-ngorongoro-short', 'ngorongoro-overnight', 'ngorongoro-tarangire'],
+    highlights: ['Shorter drives and flexible starts', 'Lodges with pools and family rooms', 'Routes with reliable wildlife viewing'],
+    image: safariImg('zebra-mare-and-foal.jpg'),
+    alt: 'Zebra mare and foal, a family-friendly wildlife sighting',
+  },
+  {
+    id: 'luxury-lodge-tented',
+    title: 'Luxury lodge & tented safaris',
+    desc: 'High-comfort stays, premium camps, and curated service while staying close to migration routes and big-cat territory.',
+    bestFor: 'Honeymoons and premium trips',
+    routeIds: ['ngorongoro-tarangire', 'serengeti-migration', 'mahale-chimp'],
+    highlights: ['Premium camps and lodge upgrades', 'Smoother logistics and private guiding', 'Best for honeymoons and milestone trips'],
+    image: safariImg('lioness-and-cub-resting.jpg'),
+    alt: 'Lioness and cub resting in golden light near luxury camps',
+  },
+  {
+    id: 'budget-camping',
+    title: 'Budget camping safaris',
+    desc: 'Value-focused routes using well-run camps and essential comforts without compromising guiding quality.',
+    bestFor: 'Backpackers and budget-conscious travellers',
+    routeIds: ['tarangire-day-trip', 'ngorongoro-overnight', 'tarangire-ngorongoro-short'],
+    highlights: ['Lower-cost routes and simpler camps', 'Shared logistics where available', 'Best when dates are flexible'],
+    image: safariImg('wildebeest-grazing.jpg'),
+    alt: 'Wildebeest herd on open plains for budget camping routes',
+  },
+  {
+    id: 'bush-beach',
+    title: 'Bush + beach combinations',
+    desc: 'Seamless Tanzania mainland safari paired with Zanzibar beach stays, with all flights and transfers coordinated.',
+    bestFor: 'Safari + relaxation in one trip',
+    routeIds: ['ngorongoro-tarangire', 'nyerere-selous', 'tarangire-day-trip'],
+    highlights: ['Safari flights coordinated with Zanzibar hotels', 'Easy post-safari beach recovery', 'Best for honeymoons and family holidays'],
+    image: safariImg('crowned-cranes-in-grass.jpg'),
+    alt: 'Crowned cranes in grasslands representing bush and beach combo journeys',
+  },
+];
