@@ -181,20 +181,12 @@
 
 /* ============ FILTER STRIP ============ */
 .exc-filter {
-  position: sticky; top: 64px; z-index: 20;
-  background: rgba(8, 30, 46, 0.78);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 1rem clamp(1.25rem, 5vw, 6rem);
+  position: relative;
+  z-index: 5;
+  padding: 1.25rem clamp(1.25rem, 5vw, 6rem) .25rem;
   display: flex; gap: .55rem; flex-wrap: wrap; align-items: center;
   justify-content: center;
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  box-shadow: 0 10px 30px -24px rgba(0, 0, 0, 0.6);
-}
-[data-theme="light"] .exc-filter,
-.excursions-page:not([data-theme]) .exc-filter {
-  background: rgba(255, 252, 245, 0.85);
-  border-bottom: 1px solid rgba(8, 30, 46, 0.1);
+  background: transparent;
 }
 .exc-filter__label {
   font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase;
