@@ -1,8 +1,19 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import '../../styles/homepage/planner.css';
-import { ArrowIcon } from './Icons.jsx';
 
 const PLANNER_TITLE = 'Tell me about your dream trip';
+const QUICK_REPLIES = [
+  'Beach and chill',
+  'Safari + Zanzibar',
+  'Honeymoon trip',
+  'Family friendly',
+];
+const THINKING_MESSAGES = [
+  'Plotting a route',
+  'Checking the pace',
+  'Balancing beach and safari',
+  'Shaping the draft',
+];
 
 const renderInlineFormatting = (text) => {
   const parts = [];
@@ -45,13 +56,14 @@ const renderFormattedText = (text) =>
       </p>
     ));
 
-export default function PlannerSection({ initialPrompt }) {
+export default function PlannerSection({ initialPrompt, handoffHref = '#contact' }) {
   const [history, setHistory] = useState([]);
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const [resetKey, setResetKey] = useState(0);
   const [typedTitle, setTypedTitle] = useState(PLANNER_TITLE);
   const [titleTyping, setTitleTyping] = useState(false);
+  const [thinkingIndex, setThinkingIndex] = useState(0);
   const logRef = useRef(null);
   const inputRef = useRef(null);
   const handledPromptRef = useRef(null);
@@ -59,6 +71,19 @@ export default function PlannerSection({ initialPrompt }) {
   useEffect(() => {
     if (logRef.current) logRef.current.scrollTop = logRef.current.scrollHeight;
   }, [history, sending]);
+
+  useEffect(() => {
+    if (!sending) {
+      setThinkingIndex(0);
+      return undefined;
+    }
+
+    const intervalId = window.setInterval(() => {
+      setThinkingIndex((index) => (index + 1) % THINKING_MESSAGES.length);
+    }, 1800);
+
+    return () => window.clearInterval(intervalId);
+  }, [sending]);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
@@ -164,10 +189,19 @@ export default function PlannerSection({ initialPrompt }) {
             >↻</button>
           </header>
           <div className="planner__log" ref={logRef} role="log" aria-live="polite">
-            <div className="planner__msg planner__msg--bot">
+            <div className="planner__msg planner__msg--bot planner__msg--welcome">
               <div className="planner__bubble">
                 <p>Karibu! 👋 I'm the Destination Paradise planner — let's sketch your trip together.</p>
                 <p>To start, what kind of pace are you after? <em>Beach &amp; chill, mainland safari, deep cultural dive,</em> or a mix?</p>
+                {history.length === 0 && !sending && (
+                  <div className="planner__quick-replies" aria-label="Quick replies">
+                    {QUICK_REPLIES.map((reply) => (
+                      <button key={reply} type="button" onClick={() => send(reply)}>
+                        {reply}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
             {history.map((m, i) => (
@@ -178,6 +212,7 @@ export default function PlannerSection({ initialPrompt }) {
             {sending && (
               <div className="planner__msg planner__msg--bot planner__msg--typing">
                 <div className="planner__bubble">
+                  <span className="planner__thinking-text">{THINKING_MESSAGES[thinkingIndex]}</span>
                   <span className="planner__dot"></span>
                   <span className="planner__dot"></span>
                   <span className="planner__dot"></span>
@@ -186,7 +221,7 @@ export default function PlannerSection({ initialPrompt }) {
             )}
           </div>
           <form
-            className="planner__form"
+            className={`planner__form${input.trim() ? ' planner__form--active' : ''}`}
             onSubmit={(e) => { e.preventDefault(); send(input.trim()); }}
           >
             <textarea
@@ -217,7 +252,7 @@ export default function PlannerSection({ initialPrompt }) {
           </form>
           <footer className="planner__foot">
             <span>Itineraries are drafts. A human reviews and prices everything before you book.</span>
-            <a className="planner__handoff" href="#contact">Send draft to the team →</a>
+            <a className="planner__handoff" href={handoffHref}>Send draft to the team →</a>
           </footer>
         </div>
       </div>

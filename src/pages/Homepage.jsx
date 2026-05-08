@@ -28,7 +28,7 @@ const PINS = [
   { id: 'serengeti',  region: 'Mainland', name: 'Serengeti',         lat: -2.3333, lng: 34.8333, desc: 'Migration safari' },
   { id: 'ngorongoro', region: 'Mainland', name: 'Ngorongoro',        lat: -3.2250, lng: 35.4880, desc: 'Crater Big Five' },
   { id: 'tarangire',  region: 'Mainland', name: 'Tarangire',         lat: -4.0000, lng: 36.0000, desc: 'Elephants & baobabs' },
-  { id: 'selous',     region: 'Mainland', name: 'Nyerere (Selous)',  lat: -8.5000, lng: 38.0000, desc: 'Boat & walking safari' },
+  { id: 'selous',     region: 'Mainland', name: 'Nyerere',  lat: -8.5000, lng: 38.0000, desc: 'Boat & walking safari' },
 ];
 
 // season: hotel pricing band, not climate.
@@ -53,6 +53,7 @@ const SCORES = [72, 78, 62, 42, 56, 82, 92, 95, 90, 80, 55, 68];
 const NOW_MONTH = new Date().getMonth();
 
 const TWEAKS_DEFAULTS = { hero: 'photo', layout: '3up', theme: 'light' };
+const BEST_SELLING_EXCURSION_IDS = ['safari-blue', 'mnemba', 'spice-tour'];
 
 function loadTweaks() {
   try {
@@ -64,7 +65,6 @@ function loadTweaks() {
 
 export default function Homepage() {
   const [tweaks, setTweaks] = useState(loadTweaks);
-  const [activeCat, setActiveCat] = useState('All');
   const [activePin, setActivePin] = useState('stone-town');
   const [tweaksOpen, setTweaksOpen] = useState(false);
   const [tweaksGearVisible, setTweaksGearVisible] = useState(false);
@@ -118,10 +118,9 @@ export default function Homepage() {
 
   const setTweak = (key, val) => setTweaks((s) => ({ ...s, [key]: val }));
 
-  const filteredEx = EXCURSIONS
-    .filter((t) => !t.imageTBD)
-    .filter((t) => activeCat === 'All' || t.category.startsWith(activeCat))
-    .slice(0, 6);
+  const bestSellingExcursions = BEST_SELLING_EXCURSION_IDS
+    .map((id) => EXCURSIONS.find((trip) => trip.id === id))
+    .filter(Boolean);
 
   const handleHeroSearch = (e) => {
     e.preventDefault();
@@ -131,12 +130,12 @@ export default function Homepage() {
       return typeof value === 'string' && value.trim() ? value : fallback;
     };
 
-    const excursion = readStringField('excursion', 'Any trip or safari');
+    const excursion = readStringField('excursion', 'Any package, excursion, or safari');
     const date = readStringField('date', '');
     const guests = readStringField('guests', '2 guests');
-    const genericSelections = new Set(['Any experience', 'Any trip or safari']);
+    const genericSelections = new Set(['Any experience', 'Any trip or safari', 'Any package, excursion, or safari']);
     const experienceText = genericSelections.has(excursion)
-      ? 'a recommended Zanzibar trip or Tanzania safari'
+      ? 'a recommended Zanzibar package, excursion, or Tanzania safari'
       : excursion;
     const dateText = date ? ` on ${date}` : ' on flexible dates';
 
@@ -153,7 +152,7 @@ export default function Homepage() {
   return (
     <>
       <HeroSection tweaks={tweaks} handleHeroSearch={handleHeroSearch} />
-      <ExcursionsSection tweaks={tweaks} activeCat={activeCat} setActiveCat={setActiveCat} filteredEx={filteredEx} />
+      <ExcursionsSection tweaks={tweaks} excursions={bestSellingExcursions} />
       <SafarisSection />
       <PackagesSection />
       <PlannerSection initialPrompt={plannerPrompt} />
@@ -165,6 +164,8 @@ export default function Homepage() {
         setActivePin={setActivePin} 
         islandPins={islandPins} 
         mainlandPins={mainlandPins} 
+        ctaHref="/explore"
+        ctaLabel="Explore the full map"
       />
       <WeatherSection MONTHS={MONTHS} SCORES={SCORES} NOW_MONTH={NOW_MONTH} />
       <GallerySection />

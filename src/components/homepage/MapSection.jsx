@@ -3,7 +3,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { ArrowIcon } from './Icons.jsx';
 
-export default function MapSection({ tweaks, PINS, activePin, setActivePin, islandPins, mainlandPins }) {
+export default function MapSection({ tweaks, PINS, activePin, setActivePin, islandPins, mainlandPins, ctaHref = '#contact', ctaLabel = 'Build a custom itinerary' }) {
   const mapElRef = useRef(null);
   const mapApiRef = useRef(null);
   const isDark = tweaks.theme === 'dark';
@@ -80,7 +80,7 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
         <div className="map-copy">
           <span className="section-eyebrow">The Region</span>
           <h2 className="section-title">Zanzibar &amp; Tanzania at a glance</h2>
-          <p>One country, two worlds. The island gives you Stone Town's heritage, dhows on the reef, and dolphins in the south. Cross to the mainland for the great migration in the Serengeti, the crater at Ngorongoro, and the boats and walking safaris of Selous.</p>
+          <p>One country, two worlds. The island gives you Stone Town's heritage, dhows on the reef, beaches, culture, and ocean days. Cross to the mainland for Serengeti migration routes, Ngorongoro crater wildlife, Tarangire elephants, and boat or walking safaris in Nyerere.</p>
           
           <div className="map-list-group">
             <div className="map-list-label">Zanzibar</div>
@@ -126,7 +126,7 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
             </ul>
           </div>
 
-          <a className="btn" href="#contact" style={{ alignSelf: 'flex-start' }}>Build a custom itinerary <ArrowIcon size={15} /></a>
+          <a className="btn" href={ctaHref} style={{ alignSelf: 'flex-start' }}>{ctaLabel} <ArrowIcon size={15} /></a>
         </div>
         <div className="map-stage">
           <div ref={mapElRef} className="map-leaflet" />

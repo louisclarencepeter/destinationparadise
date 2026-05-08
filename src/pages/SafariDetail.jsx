@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { INCLUDED_LIST, ITINERARIES } from './Safaris.jsx';
+import { ALL_SAFARI_PRODUCTS, INCLUDED_LIST } from './Safaris.jsx';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
@@ -11,13 +11,13 @@ const PRACTICAL = [
   { h: 'Booking & payment', items: ['Best booked 2-6 months ahead', 'Deposit confirms lodges and flights', 'Final balance before travel', 'USD, EUR, GBP, TZS accepted'] },
 ];
 
-function cleanInclude(item) {
+function cleanInclude(item = '') {
   return item.replace(/^✓\s*/, '').trim();
 }
 
 export default function SafariDetail() {
   const { id } = useParams();
-  const safari = ITINERARIES.find((item) => item.id === id);
+  const safari = ALL_SAFARI_PRODUCTS.find((item) => item.id === id);
 
   useEffect(() => {
     if (safari) {
@@ -40,7 +40,9 @@ export default function SafariDetail() {
     );
   }
 
-  const included = safari.includes.split('·').map(cleanInclude);
+  const included = safari.includesList || safari.highlights || safari.includes.split('·').map(cleanInclude);
+  const price = safari.publicPrice;
+  const upsells = safari.upsells || [];
 
   return (
     <main className="safaris-page exc-detail saf-detail">
@@ -65,21 +67,39 @@ export default function SafariDetail() {
           <dl className="exc-block__facts">
             <div><dt>Duration</dt><dd>{safari.duration}<small>Route length</small></dd></div>
             <div><dt>Starts from</dt><dd>{safari.from}<small>Flights can be adjusted</small></dd></div>
-            <div><dt>Style</dt><dd>{safari.category}<small>Safari type</small></dd></div>
-            <div><dt>Price</dt><dd>${safari.price}<small>{safari.priceSub}</small></dd></div>
+            <div><dt>Style</dt><dd>{safari.positioning || safari.category}<small>Safari type</small></dd></div>
+            <div>
+              <dt>Price</dt>
+              <dd>
+                ${price ? price.lowSeason.toLocaleString() : safari.price.toLocaleString()}
+                {price && `-$${price.peakSeason.toLocaleString()}`}
+                <small>{price?.unit || safari.priceSub}</small>
+              </dd>
+            </div>
           </dl>
           <div className="exc-block__cols">
             <div className="exc-block__col">
-              <h4>Included in this route</h4>
+              <h4>{safari.productType ? 'Highlights' : 'Included in this route'}</h4>
               <ul>{included.map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
             <div className="exc-block__col">
-              <h4>Typical safari inclusions</h4>
-              <ul>{INCLUDED_LIST.slice(0, 4).map((item) => <li key={item}>{item}</li>)}</ul>
+              <h4>{safari.idealFor?.length ? 'Ideal for' : 'Typical safari inclusions'}</h4>
+              <ul>{(safari.idealFor?.length ? safari.idealFor : INCLUDED_LIST.slice(0, 4)).map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
           </div>
+          {upsells.length > 0 && (
+            <div className="exc-block__cols">
+              <div className="exc-block__col">
+                <h4>Optional upgrades</h4>
+                <ul>{upsells.map((item) => <li key={item.name}>{item.name} · +${item.price.toLocaleString()}</li>)}</ul>
+              </div>
+            </div>
+          )}
           <div className="exc-block__actions">
-            <span className="exc-block__price">${safari.price}<small>{safari.priceSub}</small></span>
+            <span className="exc-block__price">
+              ${price ? price.lowSeason.toLocaleString() : safari.price.toLocaleString()}
+              <small>{price ? `low season · peak from $${price.peakSeason.toLocaleString()}` : safari.priceSub}</small>
+            </span>
             <span className="exc-block__price-note">Final price depends on season, camp level, and flight availability.</span>
             <Link className="btn" to="/booking">Book this route →</Link>
             <Link className="btn btn--ghost-dark" to="/safaris">All safaris</Link>
@@ -87,21 +107,23 @@ export default function SafariDetail() {
         </div>
       </article>
 
-      <section className="exc-day" id="route">
-        <div className="exc-day__head">
-          <span className="section-eyebrow">Day by day</span>
-          <h2 className="section-title">A typical route</h2>
-          <p className="section-lead">This is the current route sketch. We adjust flights, camps, and pacing around your dates and travel style.</p>
-        </div>
-        <div className="exc-day__timeline">
-          {safari.days.map((day) => (
-            <div className="exc-day__row" key={day.d}>
-              <div className="exc-day__time">{day.d}</div>
-              <div className="exc-day__what"><strong>{day.h}</strong><p>{day.p}</p></div>
-            </div>
-          ))}
-        </div>
-      </section>
+      {safari.days?.length > 0 && (
+        <section className="exc-day" id="route">
+          <div className="exc-day__head">
+            <span className="section-eyebrow">Day by day</span>
+            <h2 className="section-title">A typical route</h2>
+            <p className="section-lead">This is the current route sketch. We adjust flights, camps, and pacing around your dates and travel style.</p>
+          </div>
+          <div className="exc-day__timeline">
+            {safari.days.map((day) => (
+              <div className="exc-day__row" key={day.d}>
+                <div className="exc-day__time">{day.d}</div>
+                <div className="exc-day__what"><strong>{day.h}</strong><p>{day.p}</p></div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="exc-prac">
         <div className="exc-prac__grid">
@@ -129,7 +151,7 @@ export default function SafariDetail() {
           <h2>Ready to plan {safari.title}?</h2>
           <p>Tell us your dates, group size, and preferred comfort level. We’ll come back within 24 hours with a real itinerary and a real price.</p>
           <div className="saf-cta__btns">
-            <Link className="btn btn--ghost-light btn--lg" to="/booking">Get a quote →</Link>
+            <Link className="btn btn--lg btn--accent" to="/booking">Get a quote →</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Or chat with our AI planner</Link>
           </div>
         </div>

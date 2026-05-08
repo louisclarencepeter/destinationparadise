@@ -3,18 +3,10 @@ import { Link } from 'react-router-dom';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import { EXCURSIONS, CATEGORIES } from '../data/excursionsData.js';
+import { EXCURSION_COMBINATIONS } from '../data/excursionCombinations.js';
 
 const HERO_IMAGE = '/assets/images/excursions/dream-dhow-sunset.jpeg';
 const CTA_IMAGE = '/assets/images/excursions/safari-blue-sandbank.jpg';
-
-const PAIRS = [
-  { combo: ['Jozani Forest', 'Spice Tour'], title: 'Forest & spice', desc: 'Red colobus monkeys in the morning, plantation walk and Swahili lunch in the afternoon. The classic nature-and-culture day, all done before sundown.', length: 'One day' },
-  { combo: ['Spice Tour', 'Stone Town'], title: 'A full Stone Town day', desc: 'Spice plantation in the morning, lunch on the seafront, heritage walk through Stone Town in the afternoon. Home by 5pm with a head full of stories.', length: 'One day' },
-  { combo: ['Dolphin Tour', 'Jozani Forest'], title: 'South-coast nature', desc: "Sunrise dolphins out of Kizimkazi, then a short drive to Jozani for the red colobus monkeys. Both done before 2pm. Lunch at a beachfront local spot on the way home.", length: 'One day' },
-  { combo: ['Stone Town', 'Prison Island'], title: 'Tortoises & alleys', desc: "Heritage walk in the morning while it's still cool, boat to Changuu after lunch for the Aldabra tortoises. The two best half-days, stitched into one.", length: 'One day' },
-  { combo: ['Snorkeling Tour', 'Mangroves'], title: 'Reef & mangrove', desc: 'A morning snorkel on the Blue Lagoon reef, then move to Chwaka Bay for the mangrove channels and a Swahili lunch in a fishing village.', length: 'One day' },
-  { combo: ['Mnemba', 'Nungwi'], title: 'North-coast all-day', desc: "Snorkel the Mnemba coral ring at first light, then up to Nungwi for lunch and the afternoon — Zanzibar's clearest water and its widest beaches in a single day.", length: 'One long day' },
-];
 
 const PRACTICAL = [
   { h: "What's always included", icon: 'check', items: ['Hotel pickup & drop-off', 'Licensed local guide', 'Bottled water all day', 'All park & entry fees', 'Equipment (masks, fins, life jackets)'] },
@@ -63,14 +55,27 @@ function categoryToSlug(cat) {
   return cat.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 }
 
+const INITIAL_EXCURSION_COUNT = 12;
+const EXCURSION_BATCH_COUNT = 12;
+
 export default function Excursions() {
   const pageRef = useRef(null);
   const [filter, setFilter] = useState('all');
+  const [visibleCount, setVisibleCount] = useState(INITIAL_EXCURSION_COUNT);
 
-  const visible = useMemo(
+  const filteredExcursions = useMemo(
     () => (filter === 'all' ? EXCURSIONS : EXCURSIONS.filter((e) => e.category === filter)),
     [filter],
   );
+  const visible = useMemo(
+    () => filteredExcursions.slice(0, visibleCount),
+    [filteredExcursions, visibleCount],
+  );
+  const hasHiddenExcursions = visibleCount < filteredExcursions.length;
+
+  useEffect(() => {
+    setVisibleCount(INITIAL_EXCURSION_COUNT);
+  }, [filter]);
 
   useEffect(() => {
     document.title = 'Zanzibar Excursions · Day Trips & Tours · Destination Paradise';
@@ -129,30 +134,35 @@ export default function Excursions() {
             <div><strong>{EXCURSIONS.length}</strong><span>Excursions</span></div>
             {minPrice !== null && <div><strong>${minPrice}</strong><span>From, per person</span></div>}
             <div><strong>{CATEGORIES.length}</strong><span>Categories</span></div>
-            <div><strong>4.9★</strong><span>Tripadvisor</span></div>
+            <div><strong>Private</strong><span>Options available</span></div>
           </div>
         </div>
       </section>
 
-      {/* FILTER */}
-      <div className="exc-filter">
-        <span className="exc-filter__label">Filter by</span>
-        {FILTERS.map((f) => (
-          <button
-            key={f.cat}
-            type="button"
-            data-cat={f.cat === 'all' ? 'all' : categoryToSlug(f.cat)}
-            className={`exc-filter__btn${filter === f.cat ? ' is-active' : ''}`}
-            onClick={() => setFilter(f.cat)}
-            aria-pressed={filter === f.cat}
-          >
-            {f.label} <span className="exc-filter__count">{f.count}</span>
-          </button>
-        ))}
-      </div>
-
       {/* GRID */}
       <section className="exc-grid-wrap" id="list">
+        <header className="exc-list__head">
+          <span className="section-eyebrow">Handpicked excursions</span>
+          <h2 className="section-title">Excursions — pick a starting point.</h2>
+          <p className="section-lead">Every card opens into the full day plan, inclusions, pickup details, and booking notes. Filter by what you want from the island.</p>
+        </header>
+
+        <div className="exc-filter">
+          <span className="exc-filter__label">Filter by</span>
+          {FILTERS.map((f) => (
+            <button
+              key={f.cat}
+              type="button"
+              data-cat={f.cat === 'all' ? 'all' : categoryToSlug(f.cat)}
+              className={`exc-filter__btn${filter === f.cat ? ' is-active' : ''}`}
+              onClick={() => setFilter(f.cat)}
+              aria-pressed={filter === f.cat}
+            >
+              {f.label} <span className="exc-filter__count">{f.count}</span>
+            </button>
+          ))}
+        </div>
+
         <div className="exc-grid">
           {visible.map((e) => (
             <Link
@@ -201,6 +211,28 @@ export default function Excursions() {
         {visible.length === 0 && (
           <p className="exc-grid__empty">No excursions in this category yet — check back soon, or filter by All.</p>
         )}
+        {filteredExcursions.length > INITIAL_EXCURSION_COUNT && (
+          <div className="exc-grid__actions">
+            {hasHiddenExcursions ? (
+              <button
+                type="button"
+                className="btn btn--ghost btn--lg"
+                onClick={() => setVisibleCount((count) => Math.min(count + EXCURSION_BATCH_COUNT, filteredExcursions.length))}
+              >
+                Show more excursions
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn btn--ghost btn--lg"
+                onClick={() => setVisibleCount(INITIAL_EXCURSION_COUNT)}
+              >
+                Show fewer excursions
+              </button>
+            )}
+            <span>{Math.min(visibleCount, filteredExcursions.length)} of {filteredExcursions.length} shown</span>
+          </div>
+        )}
       </section>
 
       {/* PAIRINGS */}
@@ -211,8 +243,8 @@ export default function Excursions() {
           <p className="section-lead">Some excursions pair beautifully across one or two days. Here's how we'd sequence them.</p>
         </div>
         <div className="exc-pair__grid">
-          {PAIRS.map((p) => (
-            <article className="exc-pair__card" key={p.title}>
+          {EXCURSION_COMBINATIONS.map((p) => (
+            <Link className="exc-pair__card" key={p.title} to={`/excursions/combinations/${p.id}`} aria-label={`Explore ${p.title}`}>
               <div className="exc-pair__combo">
                 <span>{p.combo[0]}</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M5 12h14M13 6l6 6-6 6" /></svg>
@@ -221,7 +253,7 @@ export default function Excursions() {
               <h3 className="exc-pair__title">{p.title}</h3>
               <p className="exc-pair__desc">{p.desc}</p>
               <div className="exc-pair__foot"><span>{p.length}</span><strong>{p.price || 'On request'}</strong></div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>

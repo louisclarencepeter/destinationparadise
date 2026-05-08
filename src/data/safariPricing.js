@@ -1,0 +1,97 @@
+export const destinationParadiseSafariPricing = [
+  {
+    slug: 'ngorongoro-tarangire',
+    title: 'Ngorongoro & Tarangire',
+    recommendedPublicPrice: { lowSeason: 2890, peakSeason: 3290, currency: 'USD', unit: 'Per Person' },
+    positioning: 'Premium Mid-Range',
+    includes: ['Park Fees', 'Professional Safari Guide', '4x4 Safari Vehicle', 'Accommodation', 'Meals', 'Airport Transfers'],
+    upsells: [
+      { name: 'Luxury Lodge Upgrade', price: 450 },
+      { name: 'Private Vehicle', price: 600 },
+      { name: 'Hot Air Balloon Safari', price: 550 },
+    ],
+  },
+  {
+    slug: 'serengeti-migration',
+    title: 'Serengeti Migration',
+    recommendedPublicPrice: { lowSeason: 2190, peakSeason: 2690, currency: 'USD', unit: 'Per Person' },
+    positioning: 'Strong Seller',
+    includes: ['Serengeti Park Fees', 'Safari Vehicle', 'Guide', 'Accommodation', 'Meals'],
+    upsells: [
+      { name: 'Balloon Safari', price: 550 },
+      { name: 'Luxury Tented Camp', price: 700 },
+      { name: 'Fly-In Upgrade', price: 350 },
+    ],
+  },
+  {
+    slug: 'tarangire-ngorongoro-short',
+    title: 'Tarangire + Ngorongoro Short Circuit',
+    recommendedPublicPrice: { lowSeason: 1390, peakSeason: 1690, currency: 'USD', unit: 'Per Person' },
+    positioning: 'Best Short Safari',
+    includes: ['Ngorongoro Crater', 'Tarangire Safari', 'Accommodation', 'Guide', 'Transport'],
+    upsells: [
+      { name: 'Luxury Lodge', price: 250 },
+      { name: 'Private Safari', price: 350 },
+    ],
+  },
+  {
+    slug: 'ngorongoro-overnight',
+    title: 'Ngorongoro Overnight',
+    recommendedPublicPrice: { lowSeason: 950, peakSeason: 1190, currency: 'USD', unit: 'Per Person' },
+    positioning: 'Quick Luxury Escape',
+    includes: ['Crater Safari', 'Lodge Stay', 'Guide', 'Transfers'],
+    upsells: [{ name: 'Crater View Lodge', price: 220 }],
+  },
+  {
+    slug: 'tarangire-day-trip',
+    title: 'Tarangire Express Day Safari',
+    recommendedPublicPrice: { lowSeason: 490, peakSeason: 590, currency: 'USD', unit: 'Per Person' },
+    positioning: 'High Conversion Product',
+    includes: ['Return Flights', 'Park Fees', 'Lunch', 'Safari Guide', 'Game Drive'],
+    upsells: [{ name: 'Private Day Safari', price: 250 }],
+  },
+  {
+    slug: 'nyerere-selous',
+    title: 'Nyerere (Selous) Wild',
+    recommendedPublicPrice: { lowSeason: 2490, peakSeason: 2990, currency: 'USD', unit: 'Per Person' },
+    positioning: 'Premium Wilderness Safari',
+    includes: ['Boat Safari', 'Walking Safari', 'Luxury Camp', 'Guide', 'Domestic Flights'],
+    upsells: [
+      { name: 'Private Fly Camp', price: 400 },
+      { name: 'Luxury Riverside Suite', price: 350 },
+    ],
+  },
+  {
+    slug: 'ruaha-big-cat',
+    title: 'Ruaha Big-Cat Trail',
+    recommendedPublicPrice: { lowSeason: 2590, peakSeason: 3190, currency: 'USD', unit: 'Per Person' },
+    positioning: 'Exclusive Predator Safari',
+    includes: ['Ruaha Park Fees', 'Luxury Bush Camp', 'Guide', '4x4 Safari', 'Domestic Flights'],
+    upsells: [
+      { name: 'Private Guide', price: 450 },
+      { name: 'Fly Camping', price: 300 },
+    ],
+  },
+  {
+    slug: 'mahale-chimp',
+    title: 'Mahale Chimp & Lake Tanganyika',
+    recommendedPublicPrice: { lowSeason: 3890, peakSeason: 4890, currency: 'USD', unit: 'Per Person' },
+    positioning: 'Ultra Premium Expedition',
+    includes: ['Chimp Trekking', 'Luxury Lodge', 'Boat Transfers', 'Domestic Flights', 'All Meals'],
+    upsells: [
+      { name: 'Private Chimp Experience', price: 650 },
+      { name: 'Luxury Beach Suite', price: 500 },
+    ],
+  },
+  {
+    slug: 'katavi-frontier',
+    title: 'Katavi Remote Frontier',
+    recommendedPublicPrice: { lowSeason: 4290, peakSeason: 5490, currency: 'USD', unit: 'Per Person' },
+    positioning: 'Elite Wilderness Expedition',
+    includes: ['Remote Safari Experience', 'Luxury Camp', 'Bush Flights', 'Private Guide', 'All Park Fees'],
+    upsells: [
+      { name: 'Private Expedition Vehicle', price: 850 },
+      { name: 'Fly Camp Experience', price: 500 },
+    ],
+  },
+];

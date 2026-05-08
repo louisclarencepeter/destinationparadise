@@ -27,19 +27,19 @@
   --text-soft: var(--dp-fg-2);
   --text-muted: var(--dp-fg-3);
   --border: var(--dp-border);
-  --nav-height: 72px;
+  --nav-height: 66px;
   --card-accent-opacity: 0.08;
 
   /* Shared homepage section rhythm */
-  --section-gap: clamp(2.5rem, 5vw, 4rem);
+  --section-gap: clamp(4rem, 8vw, 7rem);
   --section-pad-block: var(--section-gap);
-  --section-pad-inline: clamp(1.25rem, 5vw, 6rem);
-  --section-stack-gap: var(--section-gap);
+  --section-pad-inline: clamp(1.5rem, 7vw, 6rem);
+  --section-stack-gap: clamp(3rem, 6vw, 5rem);
   --section-contained-width: min(95%, 1240px);
   --section-contained-inline: clamp(1rem, 3vw, 2rem);
   --section-transition-gap: clamp(.75rem, 1.5vw, 1.1rem);
   --section-cue-overlap: clamp(.5rem, 1vw, .85rem);
-  --section-pad-block-mobile: 2rem;
+  --section-pad-block-mobile: clamp(3rem, 6vw, 4rem);
   --section-pad-inline-mobile: 1rem;
 
   /* Aliases used by safari/package/planner CSS — kept theme-aware */
@@ -67,7 +67,7 @@ html, body {
   font-size: 18px;
   line-height: 1.6;
   scroll-behavior: smooth;
-  scroll-padding-top: 88px;
+  scroll-padding-top: 82px;
   transition: background .4s ease, color .4s ease;
 }
 

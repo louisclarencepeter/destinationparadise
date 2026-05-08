@@ -40,7 +40,7 @@ export default function ContactSection() {
       <header className="contact__head">
         <span className="section-eyebrow">Get in touch</span>
         <h2 className="section-title">Send us an email</h2>
-        <p className="section-lead">Tell us about the trip you're dreaming of — group size, rough dates, what you're hoping to see. We'll come back to you within a day with ideas, dates, and a price.</p>
+        <p className="section-lead">Tell us whether you want a complete package, a few Zanzibar excursions, a mainland safari, or a custom mix. Send group size, rough dates, budget, and pace — we'll come back within a day with ideas, availability, and a real price.</p>
       </header>
 
       <div className="contact__grid">

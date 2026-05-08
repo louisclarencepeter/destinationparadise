@@ -8,47 +8,6 @@
   color: var(--text, #1a4d6e);
 }
 
-/* shared button variants (scoped to the page so they don't override globally) */
-.excursions-page .btn--lg { padding: 1rem 1.75rem; font-size: 15px; }
-.excursions-page .btn--accent {
-  background: var(--dp-accent, #FF6F61);
-  background-image: none;
-  color: #fff;
-  border: none;
-}
-.excursions-page .btn--accent:hover {
-  background: var(--dp-hover, #e25a4d);
-  background-image: none;
-  color: #fff;
-}
-.exc-hero .btn--ghost,
-.exc-cta .btn--ghost,
-.exc-cta .btn--ghost-light {
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.25);
-  color: #F5F1E8;
-  background-image: none;
-  backdrop-filter: blur(10px);
-}
-.exc-hero .btn--ghost:hover,
-.exc-cta .btn--ghost:hover,
-.exc-cta .btn--ghost-light:hover {
-  background: rgba(255,255,255,.16);
-  color: #fff;
-  border-color: #fff;
-}
-.excursions-page .btn--ghost-dark {
-  background: transparent;
-  background-image: none;
-  color: currentColor;
-  border: 1px solid color-mix(in srgb, currentColor 40%, transparent);
-}
-.excursions-page .btn--ghost-dark:hover {
-  background: color-mix(in srgb, currentColor 8%, transparent);
-  border-color: currentColor;
-  color: currentColor;
-}
-
 /* ============ HERO (mirrors .saf-hero pattern) ============ */
 .exc-hero {
   position: relative;
@@ -188,7 +147,7 @@
 .exc-filter {
   position: relative;
   z-index: 5;
-  padding: 1.25rem clamp(1.25rem, 5vw, 6rem) .25rem;
+  padding: 0;
   display: flex; gap: .55rem; flex-wrap: wrap; align-items: center;
   justify-content: center;
   background: transparent;
@@ -408,7 +367,19 @@
   padding: 1.75rem;
   border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
   display: flex; flex-direction: column; gap: 1rem;
+  color: var(--text, #1a4d6e);
+  text-decoration: none;
   box-shadow: 0 14px 32px -28px rgba(0,0,0,.4);
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.exc-pair__card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--dp-accent) 50%, currentColor 18%);
+  box-shadow: 0 22px 44px -32px rgba(0,0,0,.52);
+}
+.exc-pair__card:focus-visible {
+  outline: 2px solid var(--dp-accent);
+  outline-offset: 4px;
 }
 .exc-pair__combo { display: flex; align-items: center; gap: .65rem; flex-wrap: wrap; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: #FF6F61; font-weight: 600; }
 .exc-pair__combo span { padding: .3rem .6rem; background: rgba(255,111,97,.1); border-radius: 4px; }
@@ -581,7 +552,22 @@
 }
 
 /* ============ INDEX CARD GRID ============ */
-.exc-grid-wrap { padding: clamp(2.5rem, 5vw, 4rem) clamp(1.25rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem); }
+.exc-grid-wrap { padding: clamp(3rem, 6vw, 5rem) clamp(1.25rem, 5vw, 4rem) clamp(3rem, 6vw, 5rem); }
+.exc-list__head {
+  max-width: 760px;
+  margin: 0 auto clamp(1.5rem, 2.8vw, 2.25rem);
+  text-align: center;
+}
+.exc-list__head .section-title {
+  margin-bottom: clamp(.75rem, 1.4vw, 1rem);
+}
+.exc-list__head .section-lead {
+  max-width: 680px;
+}
+.exc-grid-wrap > .exc-filter {
+  max-width: 1240px;
+  margin: 0 auto clamp(1.2rem, 2vw, 1.75rem);
+}
 .exc-grid {
   display: flex;
   flex-wrap: wrap;
@@ -599,6 +585,22 @@
   padding: 3rem 1rem;
   color: rgba(8,30,46,.6);
   font-size: .95rem;
+}
+.exc-grid__actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .9rem 1.15rem;
+  max-width: 1240px;
+  margin: clamp(1.5rem, 3vw, 2.25rem) auto 0;
+  color: color-mix(in srgb, currentColor 62%, transparent);
+  font-size: .92rem;
+  font-weight: 700;
+}
+.exc-grid__actions span {
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
 .exc-card {
@@ -751,6 +753,7 @@
   margin: 0;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

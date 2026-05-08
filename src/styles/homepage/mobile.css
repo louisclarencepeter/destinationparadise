@@ -44,12 +44,15 @@ html, body { max-width: 100%; }
 
 /* ---- Hero: tame display sizes & padding ---- */
 @media (max-width: 720px) {
-  .hero--photo { padding: 2.5rem 1rem 4rem; }
+  .hero--photo {
+    min-height: 100svh;
+    padding: clamp(5.2rem, 12vw, 6.2rem) clamp(1.25rem, 5vw, 6rem) clamp(2.25rem, 5vh, 3.5rem);
+  }
   .hero__content { transform: none; }
-  .hero__eyebrow { font-size: 10px; padding: .4rem .8rem; margin-bottom: 1rem; letter-spacing: .18em; }
-  .hero__title { font-size: clamp(2.75rem, 13vw, 4.25rem); line-height: 1; }
-  .hero__motto { font-size: clamp(1.15rem, 5.5vw, 1.6rem); margin: .15rem 0 1.1rem; }
-  .hero__desc { font-size: 1rem; line-height: 1.55; margin-bottom: 1.5rem; }
+  .hero__eyebrow { font-size: 10px; padding: .4rem .8rem; margin-bottom: 0; letter-spacing: .18em; }
+  .hero__title { font-size: clamp(2.75rem, 13vw, 4.25rem); line-height: 1.02; }
+  .hero__motto { font-size: clamp(1.15rem, 5.5vw, 1.6rem); margin: 0; }
+  .hero__desc { font-size: 1rem; line-height: 1.55; margin-bottom: 0; }
   .hero__cta-row { gap: .6rem; }
   .hero__cta-row .btn { width: 100%; justify-content: center; padding: .85rem 1.2rem; }
   .hero__scroll { display: none; }
@@ -205,19 +208,6 @@ html, body { max-width: 100%; }
   .gallery-tile { border-radius: 14px; }
   .gallery-tile__caption { font-size: 10px; left: .6rem; right: .6rem; bottom: .6rem; letter-spacing: .14em; }
 }
-/* When the strip is 2-up, the 5th tile is alone on its row — center it
-   horizontally at one-column width instead of pinning it left. */
-@media (max-width: 900px) {
-  .gallery-strip > :nth-child(5) {
-    grid-column: 1 / -1;
-    justify-self: center;
-    width: calc(50% - 5px); /* matches default 10px gap */
-  }
-}
-@media (max-width: 720px) {
-  .gallery-strip > :nth-child(5) { width: calc(50% - 4px); /* mobile 8px gap */ }
-}
-
 /* ---- Testimonials ---- */
 @media (max-width: 720px) {
   .testimonials { padding: 0 1rem; }
@@ -279,9 +269,9 @@ html, body { max-width: 100%; }
     border-radius: 50%;
     justify-content: center;
     gap: 0;
-    background: rgba(255, 255, 255, .9);
-    color: #128c4a;
-    box-shadow: 0 8px 24px rgba(26, 77, 110, .16);
+    background: linear-gradient(135deg, rgba(8,30,46,.9), rgba(26,77,110,.78));
+    color: #F5F1E8;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .24);
   }
   .whatsapp-fab__label { display: none; }
   .whatsapp-fab svg { width: 22px; height: 22px; }

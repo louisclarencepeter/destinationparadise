@@ -94,8 +94,6 @@
 .pkg-card__from { display: block; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); }
 .pkg-card__price { display: block; font-size: 1.75rem; font-weight: 700; color: var(--ink); line-height: 1; margin-top: 2px; }
 .pkg-card__pp { display: block; font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-.pkg-card--feature .btn { background: #FF6F61; color: #fff; border: none; }
-.pkg-card--feature .btn:hover { background: #ff8678; }
 .packages__note {
   max-width: 720px;
   margin: 2.5rem auto 0;
@@ -112,5 +110,4 @@
 @media (max-width: 720px) {
   .pkg-card { grid-column: span 12; }
 }
-
 

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { ITINERARIES, SAFARI_TYPES } from './Safaris.jsx';
+import { ALL_SAFARI_PRODUCTS, SAFARI_TYPES } from './Safaris.jsx';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
@@ -30,7 +30,7 @@ export default function SafariTypeDetail() {
     );
   }
 
-  const routes = ITINERARIES.filter((route) => type.routeIds.includes(route.id));
+  const routes = ALL_SAFARI_PRODUCTS.filter((route) => type.routeIds.includes(route.id));
 
   return (
     <main className="safaris-page exc-detail saf-type-detail">
@@ -91,7 +91,7 @@ export default function SafariTypeDetail() {
                   <span>{route.from}</span>
                 </div>
                 <div className="exc-card__foot">
-                  <span className="exc-card__price">From <strong>${route.price}</strong> {route.priceSub}</span>
+                  <span className="exc-card__price">From <strong>${route.price.toLocaleString()}</strong> {route.priceSub}</span>
                   <span className="exc-card__cta">Explore →</span>
                 </div>
               </div>
@@ -108,7 +108,7 @@ export default function SafariTypeDetail() {
           <h2>Want this safari style?</h2>
           <p>Tell us your dates, budget, and group size. We’ll match the right parks, camps, and flights within 24 hours.</p>
           <div className="saf-cta__btns">
-            <Link className="btn btn--ghost-light btn--lg" to="/booking">Get a quote →</Link>
+            <Link className="btn btn--lg btn--accent" to="/booking">Get a quote →</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Plan with AI</Link>
           </div>
         </div>

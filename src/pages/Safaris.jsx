@@ -1,10 +1,22 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
+import { destinationParadiseSafariPricing } from '../data/safariPricing.js';
+import { nextLevelSafariProducts } from '../data/nextLevelSafariProducts.js';
 
 const safariImg = (file) => `/assets/images/safaris/${file}`;
+const pricingBySlug = Object.fromEntries(destinationParadiseSafariPricing.map((item) => [item.slug, item]));
+const specialtyImageForCategory = (category) => {
+  if (/luxury|honeymoon|wellness|combo|beach/i.test(category)) return safariImg('lioness-and-cub-resting.jpg');
+  if (/bird/i.test(category)) return safariImg('crowned-crane-close.jpg');
+  if (/culture|history|maasai|coffee/i.test(category)) return safariImg('zebra-mare-and-foal.jpg');
+  if (/mountain|hiking|adventure|nature/i.test(category)) return safariImg('warthog-on-plains.jpg');
+  if (/quick|fly|helicopter|ultra/i.test(category)) return safariImg('eland-herd-plains.jpg');
+  if (/migration|photography/i.test(category)) return safariImg('zebra-herd-on-track.jpg');
+  return safariImg('male-lion-in-grass.jpg');
+};
 
 export const PARKS = [
   {
@@ -94,7 +106,7 @@ export const ITINERARIES = [
     includes: '✓ Bush flights · ✓ All meals · ✓ Park fees · ✓ Pro guide',
   },
   {
-    id: 'nyerere-selous-wild',
+    id: 'nyerere-selous',
     category: 'Southern Circuit',
     image: safariImg('buffalo-and-egret.jpg'),
     alt: 'Buffalo and egret near wetlands in Nyerere National Park',
@@ -114,7 +126,7 @@ export const ITINERARIES = [
     includes: '✓ Boat & walking safaris · ✓ Fly-camping kit · ✓ All gear & meals · ✓ Ranger fees',
   },
   {
-    id: 'ruaha-big-cat-trail',
+    id: 'ruaha-big-cat',
     category: 'Southern Circuit',
     image: safariImg('male-lion-in-grass.jpg'),
     alt: 'Male lion resting in grass on a Ruaha big-cat safari',
@@ -133,7 +145,7 @@ export const ITINERARIES = [
     includes: '✓ Bush flights · ✓ Full board · ✓ Park fees · ✓ Professional guide',
   },
   {
-    id: 'mahale-chimp-lake-tanganyika',
+    id: 'mahale-chimp',
     category: 'Western Circuit',
     image: safariImg('crowned-cranes-in-grass.jpg'),
     alt: 'Wildlife in grassland representing a western Tanzania safari route',
@@ -153,7 +165,7 @@ export const ITINERARIES = [
     includes: '✓ Internal flights · ✓ Boat transfers · ✓ Chimp permits · ✓ Full board',
   },
   {
-    id: 'katavi-remote-frontier',
+    id: 'katavi-frontier',
     category: 'Western Circuit',
     image: safariImg('buffalo-herd-close.jpg'),
     alt: 'Cape buffalo herd close-up on a remote Katavi safari',
@@ -174,7 +186,7 @@ export const ITINERARIES = [
     includes: '✓ Bush flights · ✓ Luxury fly-camp · ✓ Park fees · ✓ Expert guide team',
   },
   {
-    id: 'tarangire-ngorongoro-short-circuit',
+    id: 'tarangire-ngorongoro-short',
     category: 'Last-minute Safari',
     image: safariImg('eland-herd-plains.jpg'),
     alt: 'Open plains on a Tarangire and Ngorongoro short safari',
@@ -211,7 +223,7 @@ export const ITINERARIES = [
     includes: '✓ Flights & transfers · ✓ Lodge stay · ✓ Crater fees · ✓ Guide',
   },
   {
-    id: 'tarangire-express-day-safari',
+    id: 'tarangire-day-trip',
     category: 'Day Safari',
     image: safariImg('eland-grazing.jpg'),
     alt: 'Grazing antelope on a Tarangire express day safari',
@@ -227,7 +239,46 @@ export const ITINERARIES = [
     ],
     includes: '✓ Return flights · ✓ Park fees · ✓ Picnic lunch · ✓ Pro guide',
   },
-];
+].map((itinerary) => {
+  const pricing = pricingBySlug[itinerary.id];
+  if (!pricing) return itinerary;
+
+  const low = pricing.recommendedPublicPrice.lowSeason;
+  const peak = pricing.recommendedPublicPrice.peakSeason;
+  return {
+    ...itinerary,
+    price: low,
+    priceSub: 'pp',
+    rib: `${itinerary.duration} · From $${low.toLocaleString()} pp`,
+    publicPrice: pricing.recommendedPublicPrice,
+    positioning: pricing.positioning,
+    includesList: pricing.includes,
+    upsells: pricing.upsells,
+    priceRange: `$${low.toLocaleString()}-$${peak.toLocaleString()} pp`,
+  };
+});
+
+export const SPECIALTY_SAFARIS = nextLevelSafariProducts.map((product) => ({
+  id: product.slug,
+  title: product.title,
+  category: product.category,
+  image: specialtyImageForCategory(product.category),
+  alt: `${product.title} safari experience`,
+  duration: product.duration,
+  from: 'Tanzania / Zanzibar',
+  price: product.pricing.from,
+  priceSub: 'pp',
+  rib: `${product.category} · ${product.duration} · From $${product.pricing.from.toLocaleString()} pp`,
+  intro: product.highlights.slice(0, 4).join(' · '),
+  includesList: product.highlights,
+  highlights: product.highlights,
+  idealFor: product.idealFor || [],
+  positioning: product.category,
+  productType: 'Specialty Safari',
+  days: [],
+}));
+
+export const ALL_SAFARI_PRODUCTS = [...ITINERARIES, ...SPECIALTY_SAFARIS];
 
 const WILDLIFE_CATEGORIES = [
   {
@@ -309,12 +360,12 @@ const SEASONS = [
 ];
 
 const SAFARI_COMPARISON = [
-  { label: 'Best quick taste', pick: 'Tarangire Express Day Safari', note: 'Lowest commitment, real mainland wildlife in one day.' },
-  { label: 'Best short safari', pick: 'Ngorongoro Overnight', note: 'One night, high wildlife density, crater at first light.' },
-  { label: 'Best first-timer route', pick: 'Ngorongoro & Tarangire', note: 'Classic Big Five scenery plus elephants and baobabs.' },
-  { label: 'Best migration focus', pick: 'Serengeti Migration', note: 'For river-crossing season and big open-plains drama.' },
-  { label: 'Best remote wilderness', pick: 'Nyerere, Ruaha, Katavi', note: 'Fewer vehicles, wilder camps, stronger adventure feel.' },
-  { label: 'Best premium add-on', pick: 'Mahale Chimp & Lake Tanganyika', note: 'Rare chimp trekking with a lakefront finish.' },
+  { label: 'Best quick taste', pick: 'Tarangire Express Day Safari', slug: 'tarangire-day-trip', note: 'Lowest commitment, real mainland wildlife in one day.' },
+  { label: 'Best short safari', pick: 'Ngorongoro Overnight', slug: 'ngorongoro-overnight', note: 'One night, high wildlife density, crater at first light.' },
+  { label: 'Best first-timer route', pick: 'Ngorongoro & Tarangire', slug: 'ngorongoro-tarangire', note: 'Classic Big Five scenery plus elephants and baobabs.' },
+  { label: 'Best migration focus', pick: 'Serengeti Migration', slug: 'serengeti-migration', note: 'For river-crossing season and big open-plains drama.' },
+  { label: 'Best remote wilderness', pick: 'Nyerere, Ruaha, Katavi', slug: 'nyerere-selous', note: 'Fewer vehicles, wilder camps, stronger adventure feel.' },
+  { label: 'Best premium add-on', pick: 'Mahale Chimp & Lake Tanganyika', slug: 'mahale-chimp', note: 'Rare chimp trekking with a lakefront finish.' },
 ];
 
 export const INCLUDED_LIST = [
@@ -334,13 +385,66 @@ const BOOKING_STEPS = [
   { step: '03', title: 'Deposit confirms it', text: 'Your deposit locks the flights, guide, camps, and transfers. The rest is paid before travel.' },
 ];
 
+const minSafariPrice = Math.min(...ALL_SAFARI_PRODUCTS.map((itinerary) => itinerary.price));
+const INITIAL_SAFARI_COUNT = 9;
+const SAFARI_BATCH_COUNT = 9;
+
+const SAFARI_FILTERS = [
+  { key: 'all', label: 'All', match: () => true },
+  {
+    key: 'classic',
+    label: 'Classic routes',
+    match: (item) => ['Northern Circuit', 'Migration Safari', 'Last-minute Safari', 'Day Safari'].includes(item.category),
+  },
+  {
+    key: 'southern',
+    label: 'Southern parks',
+    match: (item) => ['Southern Circuit', 'Quick Safari', 'Beach & Safari', 'Hiking & Nature'].includes(item.category),
+  },
+  {
+    key: 'western',
+    label: 'Western & remote',
+    match: (item) => ['Western Circuit', 'Wildlife'].includes(item.category) || ['katavi-frontier', 'mahale-chimp', 'chimpanzee-trekking'].includes(item.id),
+  },
+  {
+    key: 'short',
+    label: '1-3 day trips',
+    match: (item) => /1 Day|1 - 2 Days|1 - 3 Days|1 night|2 nights/i.test(item.duration),
+  },
+  {
+    key: 'culture',
+    label: 'Culture & nature',
+    match: (item) => ['Culture', 'History & Safari', 'Nature & Culture', 'Nature & Adventure', 'Mountain Adventure'].includes(item.category),
+  },
+  {
+    key: 'luxury',
+    label: 'Luxury & private',
+    match: (item) => ['Luxury', 'Luxury & Wellness', 'Ultra Luxury'].includes(item.category),
+  },
+  {
+    key: 'special',
+    label: 'Special interests',
+    match: (item) => ['Photography', 'Birding', 'Adventure', 'Migration', 'Family'].includes(item.category),
+  },
+  {
+    key: 'combo',
+    label: 'Bush & beach',
+    match: (item) => ['Combo', 'Beach & Safari', 'Multi Country'].includes(item.category),
+  },
+];
+
+const safariFilters = SAFARI_FILTERS.map((filter) => ({
+  ...filter,
+  count: ALL_SAFARI_PRODUCTS.filter(filter.match).length,
+}));
+
 export const SAFARI_TYPES = [
   {
     id: 'classic-game-drive',
     title: 'Classic game-drive safaris',
     desc: 'Private or small-group Land Cruiser drives across Serengeti, Ngorongoro, Tarangire, and Lake Manyara with expert local guides.',
     bestFor: 'First-time safari travellers',
-    routeIds: ['ngorongoro-tarangire', 'serengeti-migration', 'tarangire-ngorongoro-short-circuit'],
+    routeIds: ['ngorongoro-tarangire', 'serengeti-migration', 'tarangire-ngorongoro-short'],
     highlights: ['Private or small-group 4x4 game drives', 'Best access to iconic northern parks', 'Strong Big Five and predator viewing'],
     image: safariImg('male-lion-in-grass.jpg'),
     alt: 'Lion resting in grass on a classic game drive',
@@ -350,7 +454,7 @@ export const SAFARI_TYPES = [
     title: 'Fly-in safaris',
     desc: 'Skip long road transfers and connect key parks by bush flight from Zanzibar, Arusha, or Dar es Salaam.',
     bestFor: 'Limited time, maximum game time',
-    routeIds: ['serengeti-migration', 'nyerere-selous-wild', 'ruaha-big-cat-trail'],
+    routeIds: ['serengeti-migration', 'nyerere-selous', 'ruaha-big-cat'],
     highlights: ['Less time on roads', 'Easy Zanzibar-to-bush combinations', 'Best for short premium trips'],
     image: safariImg('eland-herd-plains.jpg'),
     alt: 'Open plains landscape viewed on a fly-in safari route',
@@ -360,7 +464,7 @@ export const SAFARI_TYPES = [
     title: 'Walking safaris',
     desc: 'Guided bush walks with armed rangers in wilderness areas like Nyerere and Ruaha for a close-to-nature experience.',
     bestFor: 'Adventure and tracking lovers',
-    routeIds: ['nyerere-selous-wild', 'ruaha-big-cat-trail'],
+    routeIds: ['nyerere-selous', 'ruaha-big-cat'],
     highlights: ['Armed ranger-led bush walks', 'Tracks, birds, plants, and smaller wildlife', 'A more intimate wilderness pace'],
     image: safariImg('warthog-on-plains.jpg'),
     alt: 'Warthog spotted during a walking safari experience',
@@ -370,7 +474,7 @@ export const SAFARI_TYPES = [
     title: 'Boat safaris',
     desc: 'River and lake safaris in Nyerere (Selous) and western circuits where wildlife is viewed from the water.',
     bestFor: 'Unique wildlife angles and birding',
-    routeIds: ['nyerere-selous-wild', 'mahale-chimp-lake-tanganyika'],
+    routeIds: ['nyerere-selous', 'mahale-chimp'],
     highlights: ['Hippos, crocodiles, and river birds', 'Sunset river experiences', 'Great contrast to classic game drives'],
     image: safariImg('buffalo-and-egret.jpg'),
     alt: 'Buffalo and egret near wetlands, ideal for boat safari viewing',
@@ -380,7 +484,7 @@ export const SAFARI_TYPES = [
     title: 'Family safaris',
     desc: 'Family-friendly itineraries with shorter drives, flexible pacing, and lodges suited for children and multi-gen travel.',
     bestFor: 'Families with kids',
-    routeIds: ['tarangire-ngorongoro-short-circuit', 'ngorongoro-overnight', 'ngorongoro-tarangire'],
+    routeIds: ['tarangire-ngorongoro-short', 'ngorongoro-overnight', 'ngorongoro-tarangire'],
     highlights: ['Shorter drives and flexible starts', 'Lodges with pools and family rooms', 'Routes with reliable wildlife viewing'],
     image: safariImg('zebra-mare-and-foal.jpg'),
     alt: 'Zebra mare and foal, a family-friendly wildlife sighting',
@@ -390,7 +494,7 @@ export const SAFARI_TYPES = [
     title: 'Luxury lodge & tented safaris',
     desc: 'High-comfort stays, premium camps, and curated service while staying close to migration routes and big-cat territory.',
     bestFor: 'Honeymoons and premium trips',
-    routeIds: ['ngorongoro-tarangire', 'serengeti-migration', 'mahale-chimp-lake-tanganyika'],
+    routeIds: ['ngorongoro-tarangire', 'serengeti-migration', 'mahale-chimp'],
     highlights: ['Premium camps and lodge upgrades', 'Smoother logistics and private guiding', 'Best for honeymoons and milestone trips'],
     image: safariImg('lioness-and-cub-resting.jpg'),
     alt: 'Lioness and cub resting in golden light near luxury camps',
@@ -400,7 +504,7 @@ export const SAFARI_TYPES = [
     title: 'Budget camping safaris',
     desc: 'Value-focused routes using well-run camps and essential comforts without compromising guiding quality.',
     bestFor: 'Backpackers and budget-conscious travellers',
-    routeIds: ['tarangire-express-day-safari', 'ngorongoro-overnight', 'tarangire-ngorongoro-short-circuit'],
+    routeIds: ['tarangire-day-trip', 'ngorongoro-overnight', 'tarangire-ngorongoro-short'],
     highlights: ['Lower-cost routes and simpler camps', 'Shared logistics where available', 'Best when dates are flexible'],
     image: safariImg('wildebeest-grazing.jpg'),
     alt: 'Wildebeest herd on open plains for budget camping routes',
@@ -410,7 +514,7 @@ export const SAFARI_TYPES = [
     title: 'Bush + beach combinations',
     desc: 'Seamless Tanzania mainland safari paired with Zanzibar beach stays, with all flights and transfers coordinated.',
     bestFor: 'Safari + relaxation in one trip',
-    routeIds: ['ngorongoro-tarangire', 'nyerere-selous-wild', 'tarangire-express-day-safari'],
+    routeIds: ['ngorongoro-tarangire', 'nyerere-selous', 'tarangire-day-trip'],
     highlights: ['Safari flights coordinated with Zanzibar hotels', 'Easy post-safari beach recovery', 'Best for honeymoons and family holidays'],
     image: safariImg('crowned-cranes-in-grass.jpg'),
     alt: 'Crowned cranes in grasslands representing bush and beach combo journeys',
@@ -448,6 +552,23 @@ const FAQS = [
 
 export default function Safaris() {
   const pageRef = useRef(null);
+  const [filter, setFilter] = useState('all');
+  const [visibleCount, setVisibleCount] = useState(INITIAL_SAFARI_COUNT);
+
+  const activeFilter = safariFilters.find((item) => item.key === filter) || safariFilters[0];
+  const filteredSafaris = useMemo(
+    () => ALL_SAFARI_PRODUCTS.filter(activeFilter.match),
+    [activeFilter],
+  );
+  const visibleSafaris = useMemo(
+    () => filteredSafaris.slice(0, visibleCount),
+    [filteredSafaris, visibleCount],
+  );
+  const hasHiddenSafaris = visibleCount < filteredSafaris.length;
+
+  useEffect(() => {
+    setVisibleCount(INITIAL_SAFARI_COUNT);
+  }, [filter]);
 
   useEffect(() => {
     const root = pageRef.current;
@@ -471,7 +592,7 @@ export default function Safaris() {
 
     items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
-  }, []);
+  }, [visibleSafaris]);
 
 
   return (
@@ -492,10 +613,10 @@ export default function Safaris() {
             <Link className="btn btn--ghost btn--lg" to="/trip-planner">Plan with AI →</Link>
           </div>
           <div className="saf-hero__stats">
-            <div><strong>{ITINERARIES.length}</strong><span>Safaris</span></div>
+            <div><strong>{ALL_SAFARI_PRODUCTS.length}</strong><span>Safaris</span></div>
             <div><strong>2.0M</strong><span>Wildebeest</span></div>
-            <div><strong>$390</strong><span>From, per person</span></div>
-            <div><strong>4.9★</strong><span>Tripadvisor</span></div>
+            <div><strong>${minSafariPrice.toLocaleString()}</strong><span>From, per person</span></div>
+            <div><strong>3</strong><span>Safari circuits</span></div>
           </div>
         </div>
       </section>
@@ -505,11 +626,26 @@ export default function Safaris() {
         <header className="itineraries__head">
           <span className="section-eyebrow">Suggested routes</span>
           <h2 className="section-title">Safaris — pick a starting point.</h2>
-          <p className="section-lead">Every card opens into the full day-by-day route, inclusions, and booking details. Tell us your dates and we’ll re-plot the camps and flights around you.</p>
+          <p className="section-lead">Every card opens into the full route or specialty experience, inclusions, and booking details. Tell us your dates and we’ll re-plot the camps and flights around you.</p>
         </header>
 
+        <div className="exc-filter saf-filter">
+          <span className="exc-filter__label">Filter by</span>
+          {safariFilters.map((item) => (
+            <button
+              key={item.key}
+              type="button"
+              className={`exc-filter__btn${filter === item.key ? ' is-active' : ''}`}
+              onClick={() => setFilter(item.key)}
+              aria-pressed={filter === item.key}
+            >
+              {item.label} <span className="exc-filter__count">{item.count}</span>
+            </button>
+          ))}
+        </div>
+
         <div className="exc-grid saf-route-grid">
-          {ITINERARIES.map((it) => (
+          {visibleSafaris.map((it) => (
             <Link
               key={it.id}
               to={`/safaris/${it.id}`}
@@ -520,6 +656,7 @@ export default function Safaris() {
                 <img src={it.image} alt={it.alt || it.title} loading="lazy" />
                 <span className="exc-card__cat">{it.category}</span>
                 {it.feature && <span className="exc-card__season">Most popular</span>}
+                {it.productType && <span className="exc-card__season">{it.productType}</span>}
               </div>
               <div className="exc-card__body">
                 <span className="exc-card__eyebrow">{it.rib}</span>
@@ -536,13 +673,38 @@ export default function Safaris() {
                   </span>
                 </div>
                 <div className="exc-card__foot">
-                  <span className="exc-card__price">From <strong>${it.price}</strong> {it.priceSub}</span>
+                  <span className="exc-card__price">From <strong>${it.price.toLocaleString()}</strong> {it.priceSub}</span>
                   <span className="exc-card__cta">Explore →</span>
                 </div>
               </div>
             </Link>
           ))}
         </div>
+        {visibleSafaris.length === 0 && (
+          <p className="exc-grid__empty">No safaris in this filter yet. Try All.</p>
+        )}
+        {filteredSafaris.length > INITIAL_SAFARI_COUNT && (
+          <div className="exc-grid__actions">
+            {hasHiddenSafaris ? (
+              <button
+                type="button"
+                className="btn btn--ghost btn--lg"
+                onClick={() => setVisibleCount((count) => Math.min(count + SAFARI_BATCH_COUNT, filteredSafaris.length))}
+              >
+                Show more safaris
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn btn--ghost btn--lg"
+                onClick={() => setVisibleCount(INITIAL_SAFARI_COUNT)}
+              >
+                Show fewer safaris
+              </button>
+            )}
+            <span>{Math.min(visibleCount, filteredSafaris.length)} of {filteredSafaris.length} shown</span>
+          </div>
+        )}
       </section>
 
       {/* COMPARISON */}
@@ -554,11 +716,11 @@ export default function Safaris() {
         </header>
         <div className="saf-compare__grid">
           {SAFARI_COMPARISON.map((item) => (
-            <article className="saf-compare__card" key={item.label}>
+            <Link className="saf-compare__card" key={item.label} to={`/safaris/${item.slug}`} aria-label={`Explore ${item.pick}`}>
               <span>{item.label}</span>
               <h3>{item.pick}</h3>
               <p>{item.note}</p>
-            </article>
+            </Link>
           ))}
         </div>
       </section>

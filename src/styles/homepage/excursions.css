@@ -47,6 +47,57 @@
 
 .excursions__more { text-align: center; margin-top: 2.25rem; display: flex; justify-content: center; }
 
+.excursions__modes {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem auto 0;
+  max-width: 720px;
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  text-align: left;
+}
+.excursions__modes li {
+  display: flex;
+  align-items: baseline;
+  gap: .75rem;
+  font-family: var(--dp-font-sans);
+  font-size: .95rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.excursions__mode-tag {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 86px;
+  padding: .3rem .65rem;
+  border-radius: 999px;
+  background: rgba(26,77,110,.1);
+  color: var(--dp-secondary);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+.excursions__mode-tag--accent {
+  background: rgba(255,111,97,.14);
+  color: #c44a3d;
+}
+html[data-theme="dark"] .excursions__mode-tag {
+  background: rgba(255,255,255,.08);
+  color: var(--text-soft);
+}
+html[data-theme="dark"] .excursions__mode-tag--accent {
+  background: rgba(255,111,97,.2);
+  color: #ffb1a8;
+}
+@media (max-width: 600px) {
+  .excursions__modes li { flex-direction: column; gap: .35rem; }
+  .excursions__mode-tag { align-self: flex-start; min-width: 0; }
+}
+
 .excursions__tabs {
   display: flex; gap: .4rem; justify-content: center; flex-wrap: wrap;
   margin-top: 1.25rem;
@@ -127,4 +178,3 @@
   align-self: flex-start;
 }
 .ex-card:hover .ex-card__link { transform: translateX(5px); gap: .7rem; }
-

@@ -1,26 +1,21 @@
 import { Link } from 'react-router-dom';
 import { ArrowIcon } from './Icons.jsx';
 
-export default function ExcursionsSection({ tweaks, activeCat, setActiveCat, filteredEx }) {
+export default function ExcursionsSection({ tweaks, excursions }) {
   return (
     <section className="excursions reveal" id="excursions" data-layout={tweaks.layout}>
       <header className="excursions__head">
         <span className="section-eyebrow">Roaming Retreats</span>
         <h2 className="section-title">Excursions crafted by locals</h2>
-        <p className="section-lead">Hand-built itineraries — small groups, traditional boats, guides who grew up on these shores.</p>
-        <div className="excursions__tabs" role="tablist">
-          {['All', 'Water', 'Culture', 'Nature', 'Adventure', 'Wellness', 'Festivals'].map((cat) => (
-            <button
-              key={cat}
-              className={`excursions__tab${cat === activeCat ? ' is-active' : ''}`}
-              aria-selected={cat === activeCat}
-              onClick={() => setActiveCat(cat)}
-            >{cat}</button>
-          ))}
-        </div>
+        <p className="section-lead">Hand-built island days with traditional boats, clear reefs, spice farms, and guides who grew up on these shores.</p>
+        <ul className="excursions__modes">
+          <li><span className="excursions__mode-tag">Ocean</span> Dhow sailing, sandbanks, snorkeling, dolphins, and reef days.</li>
+          <li><span className="excursions__mode-tag excursions__mode-tag--accent">Culture</span> Stone Town, spice farms, Swahili food, dhow-building, and village visits.</li>
+          <li><span className="excursions__mode-tag">Nature</span> Jozani forest, tortoises, mangroves, turtles, and family-friendly wildlife stops.</li>
+        </ul>
       </header>
       <div className="excursions__grid">
-        {filteredEx.map((t) => (
+        {excursions.map((t) => (
           <Link className="ex-card" key={t.id} to={`/excursions/${t.id}`} aria-label={`Explore ${t.title}`}>
             <div className="ex-card__img">
               <img src={t.image} alt={t.title} />
@@ -48,7 +43,7 @@ export default function ExcursionsSection({ tweaks, activeCat, setActiveCat, fil
               </div>
               <h3 className="ex-card__title">{t.title}</h3>
               <p className="ex-card__text">{t.description}</p>
-              <span className="ex-card__link">Explore this trip <ArrowIcon size={15} /></span>
+              <span className="ex-card__link">View details <ArrowIcon size={15} /></span>
             </div>
           </Link>
         ))}

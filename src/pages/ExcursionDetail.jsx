@@ -14,6 +14,10 @@ const PRACTICAL = [
   { h: 'Booking & payment', items: ['Book at least 48 hours ahead', '20% deposit, balance on the day', 'Free cancellation up to 24h before', 'USD, EUR, GBP, TZS — all accepted'] },
 ];
 
+function formatTierName(key) {
+  return key.replace(/([A-Z])/g, ' $1').replace(/^./, (letter) => letter.toUpperCase());
+}
+
 export default function ExcursionDetail() {
   const { id } = useParams();
   const excursion = EXCURSIONS.find((item) => item.id === id);
@@ -40,6 +44,11 @@ export default function ExcursionDetail() {
   }
 
   const e = excursion;
+  const pricingTiers = e.pricing ? Object.entries(e.pricing).map(([key, value]) => ({
+    label: formatTierName(key),
+    price: value.from,
+    currency: value.currency || 'USD',
+  })) : [];
 
   return (
     <main className="excursions-page exc-detail">
@@ -84,6 +93,14 @@ export default function ExcursionDetail() {
               <div className="exc-block__col">
                 <h4>Highlights</h4>
                 <ul>{e.highlights.map((it) => <li key={it}>{it}</li>)}</ul>
+              </div>
+            </div>
+          )}
+          {pricingTiers.length > 0 && (
+            <div className="exc-block__cols">
+              <div className="exc-block__col">
+                <h4>Experience pricing</h4>
+                <ul>{pricingTiers.map((tier) => <li key={tier.label}>{tier.label}: from ${tier.price} {tier.currency}</li>)}</ul>
               </div>
             </div>
           )}

@@ -4,8 +4,9 @@ import { ArrowIcon } from './Icons.jsx';
 
 const HERO_SLIDES = [
   '/assets/images/home/aerial-boats-turquoise-water.jpg',
-  '/assets/images/home/mizingani-waterfront.jpg',
-  '/assets/images/home/stone-town-waterfront.webp',
+  '/assets/images/excursions/dream-dhow-sunset.jpeg',
+  '/assets/images/safaris/zebra-herd-on-track.jpg',
+  '/assets/images/safaris/lioness-and-cub-resting.jpg',
 ];
 const HERO_SLIDE_INTERVAL_MS = 7000;
 
@@ -55,27 +56,28 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
         ))}
       </div>
       <div className="hero__content">
-  <span className="hero__eyebrow">Guided excursions &amp; safaris · Since 2015</span>
+  <span className="hero__eyebrow">15 packages · 29 safaris · 40+ excursions</span>
         <h1 className="hero__title">Destination Paradise</h1>
         <h2 className="hero__motto"><i>your next trip to paradise…</i></h2>
-  <p className="hero__desc">Welcome to your gateway to Zanzibar and Tanzania. Every day brings a new adventure, from curated island excursions to unforgettable mainland safaris.</p>
+  <p className="hero__desc">Plan Zanzibar and Tanzania in one place: complete safari-and-beach packages, island excursions, mainland safaris, and an AI planner that helps shape the right route.</p>
         <div className="hero__cta-row">
-          <Link className="btn" to="/packages">Browse trips &amp; safaris <ArrowIcon size={18} /></Link>
+          <Link className="btn" to="/packages">Browse packages <ArrowIcon size={18} /></Link>
           <Link className="btn btn--ghost" to="/explore">Explore Zanzibar &amp; Tanzania</Link>
         </div>
         <form className="hero__search" onSubmit={handleHeroSearch}>
           <div className="hero__search-field">
             <label>Experience</label>
-            <select name="excursion" defaultValue="Any trip or safari">
-              <option>Any trip or safari</option>
-              <option>Stone Town Heritage Walk</option>
-              <option>Safari Blue Dhow</option>
-              <option>Spice &amp; Culture Tour</option>
-              <option>Dream Dhow Sunset</option>
-              <option>Dolphin Snorkeling</option>
-              <option>Serengeti Wildlife Safari</option>
-              <option>Ngorongoro Crater Safari</option>
-              <option>Tarangire Safari</option>
+            <select name="excursion" defaultValue="Any package, excursion, or safari">
+              <option>Any package, excursion, or safari</option>
+              <option>6 Days Safari &amp; Zanzibar Escape</option>
+              <option>7 Days Honeymoon Safari &amp; Zanzibar</option>
+              <option>10 Days Classic Safari &amp; Zanzibar</option>
+              <option>2 Days Fly-In Safari From Zanzibar</option>
+              <option>Stone Town &amp; Culture Experience</option>
+              <option>Safari Blue Dhow &amp; Snorkel</option>
+              <option>Serengeti Migration</option>
+              <option>Ngorongoro &amp; Tarangire</option>
+              <option>Nyerere Fly-In Safari</option>
             </select>
           </div>
           <div className="hero__search-field">
@@ -97,7 +99,7 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
               <circle cx="11" cy="11" r="8" />
               <path d="M21 21l-4.35-4.35" />
             </svg>
-            Find trips &amp; safaris
+            Find my route
           </button>
         </form>
       </div>

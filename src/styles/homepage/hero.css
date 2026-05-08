@@ -1,3 +1,2 @@
 /* ------------ HERO ------------ */
-.hero { position: relative; overflow: hidden; margin-top: var(--nav-height); }
-
+.hero { position: relative; overflow: hidden; margin-top: 0; }

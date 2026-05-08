@@ -1,7 +1,7 @@
 /* ------------ NAV ------------ */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 0.85rem clamp(1rem, 3vw, 2.25rem);
+  padding: 0.62rem clamp(1rem, 3vw, 2.25rem);
   background: color-mix(in oklab, var(--page-bg) 82%, transparent);
   backdrop-filter: saturate(1.4) blur(14px);
   -webkit-backdrop-filter: saturate(1.4) blur(14px);
@@ -17,7 +17,7 @@
   gap: clamp(1rem, 2vw, 2rem);
 }
 .nav__logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--text); }
-.nav__logo img { height: 42px; width: auto; }
+.nav__logo img { height: 38px; width: auto; }
 .nav__logo-text { font-family: var(--dp-font-script); font-size: 1.1rem; color: var(--text); line-height: 1; }
 .nav__logo-text small { display: block; font-family: var(--dp-font-sans); font-size: 9px; letter-spacing: .24em; text-transform: uppercase; color: var(--text-muted); margin-top: 3px; font-weight: 600; }
 
@@ -49,8 +49,8 @@
 
 .nav__right { display: flex; align-items: center; gap: 1rem; }
 .theme-toggle {
-  width: 38px; height: 38px; border-radius: 999px; border: 1px solid var(--border);
-  background: var(--surface); color: var(--text);
+  width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--border);
+  background: color-mix(in oklab, var(--surface) 88%, transparent); color: var(--text);
   display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
   transition: all .25s ease;
 }
@@ -71,4 +71,3 @@
   .nav__menu--open { transform: translateY(0); opacity: 1; pointer-events: auto; }
   .nav__burger { display: inline-flex; }
 }
-
