@@ -52,8 +52,9 @@ export default function ExcursionDetail() {
       </nav>
 
       <article id={e.id} data-cat={categoryToSlug(e.category)} className="exc-block exc-block--detail">
-        <div className="exc-block__img">
-          <img src={e.image} alt={e.alt || e.title} />
+        <div className={`exc-block__img${e.imageTBD ? ' exc-block__img--placeholder' : ''}`} data-cat={categoryToSlug(e.category)}>
+          {!e.imageTBD && <img src={e.image} alt={e.alt || e.title} />}
+          {e.imageTBD && <span className="exc-block__img-pending" aria-hidden="true">Photo coming soon</span>}
           <span className="exc-block__cat" data-cat={categoryToSlug(e.category)}>{e.category}</span>
           {e.season && <span className="exc-block__season">Seasonal · {e.season}</span>}
         </div>
@@ -136,7 +137,7 @@ export default function ExcursionDetail() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src={e.image} alt="" /></div>
+        <div className="exc-cta__bg"><img src={e.imageTBD ? '/assets/images/excursions/safari-blue-sandbank.jpg' : e.image} alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Ready to book {e.title}?</h2>
           <p>Tell us your dates and we'll come back within 24 hours with available pickup times and a final price — no commitment.</p>

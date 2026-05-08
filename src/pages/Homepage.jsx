@@ -118,7 +118,10 @@ export default function Homepage() {
 
   const setTweak = (key, val) => setTweaks((s) => ({ ...s, [key]: val }));
 
-  const filteredEx = EXCURSIONS.filter((t) => activeCat === 'All' || t.category.startsWith(activeCat)).slice(0, 6);
+  const filteredEx = EXCURSIONS
+    .filter((t) => !t.imageTBD)
+    .filter((t) => activeCat === 'All' || t.category.startsWith(activeCat))
+    .slice(0, 6);
 
   const handleHeroSearch = (e) => {
     e.preventDefault();
