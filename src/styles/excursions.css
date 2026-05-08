@@ -71,7 +71,7 @@
 .exc-hero__inner {
   position: relative;
   z-index: 1;
-  max-width: 760px;
+  max-width: 1240px;
   display: grid;
   gap: clamp(.75rem, 1.35vh, 1.3rem);
 }
@@ -236,7 +236,7 @@
   gap: clamp(2rem, 6vw, 6rem);
   align-items: center;
   padding: clamp(2rem, 4.5vw, 3rem) clamp(1.25rem, 5vw, 6rem);
-  max-width: 1400px;
+  max-width: 1240px;
   margin: 0 auto 1.5rem;
   border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
   border-radius: 18px;
@@ -394,7 +394,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1.5rem;
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
 }
 .exc-pair__card {
@@ -472,7 +472,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
-  max-width: 1200px; margin: 0 auto;
+  max-width: 1240px; margin: 0 auto;
 }
 .exc-prac__col h4 {
   font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
@@ -582,7 +582,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: clamp(1.25rem, 2vw, 1.75rem);
-  max-width: 1400px;
+  max-width: 1240px;
   margin: 0 auto;
 }
 .exc-grid .exc-card {
