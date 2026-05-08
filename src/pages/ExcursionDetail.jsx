@@ -32,7 +32,7 @@ export default function ExcursionDetail() {
             <span className="section-eyebrow">Excursions</span>
             <h1 className="section-title">Excursion not found</h1>
             <p className="section-lead">That route is not in our current list. Browse all available excursions below.</p>
-            <Link className="btn btn--accent" to="/excursions" style={{ marginTop: '1.5rem' }}>Back to all excursions →</Link>
+            <Link className="btn" to="/excursions" style={{ marginTop: '1.5rem' }}>Back to all excursions →</Link>
           </div>
         </section>
       </main>
@@ -94,7 +94,7 @@ export default function ExcursionDetail() {
               <span className="exc-block__price-note">Price on request</span>
             )}
             {e.priceNote && <span className="exc-block__price-note">{e.priceNote}</span>}
-            <Link className="btn btn--accent" to="/booking">Book this →</Link>
+            <Link className="btn" to="/booking">Book this →</Link>
             <Link className="btn btn--ghost-dark" to="/excursions">All excursions</Link>
           </div>
         </div>
@@ -142,7 +142,7 @@ export default function ExcursionDetail() {
           <h2>Ready to book {e.title}?</h2>
           <p>Tell us your dates and we'll come back within 24 hours with available pickup times and a final price — no commitment.</p>
           <div className="exc-cta__btns">
-            <Link className="btn btn--lg btn--accent" to="/booking">Get in touch →</Link>
+            <Link className="btn btn--lg" to="/booking">Get in touch →</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Or chat with our AI planner</Link>
           </div>
         </div>

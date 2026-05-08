@@ -1,11 +1,12 @@
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/homepage.css';
+import '../styles/excursions.css';
 import '../styles/safaris.css';
 
 const safariImg = (file) => `/assets/images/safaris/${file}`;
 
-const PARKS = [
+export const PARKS = [
   {
     label: 'Park 01',
     area: '14,750 km²',
@@ -50,8 +51,16 @@ const PARKS = [
   },
 ];
 
-const ITINERARIES = [
+export const ITINERARIES = [
   {
+    id: 'ngorongoro-tarangire',
+    category: 'Northern Circuit',
+    image: safariImg('rhino-on-plains.jpg'),
+    alt: 'Black rhino on the plains during a Ngorongoro and Tarangire safari',
+    duration: '5 nights',
+    from: 'Arusha / Zanzibar',
+    price: 2640,
+    priceSub: 'pp',
     rib: 'Most popular · 5 nights · From $2,640 pp',
     title: 'Ngorongoro & Tarangire',
     intro: 'Descend the crater for the Big Five at first light, then move to Tarangire’s elephant herds and baobabs. A classic Northern Circuit pairing.',
@@ -66,6 +75,14 @@ const ITINERARIES = [
     feature: true,
   },
   {
+    id: 'serengeti-migration',
+    category: 'Migration Safari',
+    image: safariImg('zebra-herd-on-track.jpg'),
+    alt: 'Zebra herd on a Serengeti track during migration season',
+    duration: '3 nights',
+    from: 'Zanzibar / Arusha',
+    price: 1890,
+    priceSub: 'pp',
     rib: '3 nights · From $1,890 pp',
     title: 'Serengeti Migration',
     intro: 'Track the great wildebeest crossing on the Mara River. Tented camps, dawn game drives, sundowners on the kopjes.',
@@ -77,6 +94,14 @@ const ITINERARIES = [
     includes: '✓ Bush flights · ✓ All meals · ✓ Park fees · ✓ Pro guide',
   },
   {
+    id: 'nyerere-selous-wild',
+    category: 'Southern Circuit',
+    image: safariImg('buffalo-and-egret.jpg'),
+    alt: 'Buffalo and egret near wetlands in Nyerere National Park',
+    duration: '4 nights',
+    from: 'Zanzibar',
+    price: 2180,
+    priceSub: 'pp',
     rib: '4 nights · From $2,180 pp',
     title: 'Nyerere (Selous) Wild',
     intro: 'Boat safaris on the Rufiji, walking with armed rangers, fly-camping under the stars. The road less travelled.',
@@ -89,6 +114,14 @@ const ITINERARIES = [
     includes: '✓ Boat & walking safaris · ✓ Fly-camping kit · ✓ All gear & meals · ✓ Ranger fees',
   },
   {
+    id: 'ruaha-big-cat-trail',
+    category: 'Southern Circuit',
+    image: safariImg('male-lion-in-grass.jpg'),
+    alt: 'Male lion resting in grass on a Ruaha big-cat safari',
+    duration: '3 nights',
+    from: 'Zanzibar',
+    price: 2090,
+    priceSub: 'pp',
     rib: '3 nights · From $2,090 pp',
     title: 'Ruaha Big-Cat Trail',
     intro: 'A southern-circuit favourite for lion prides, leopard sightings, and fewer vehicles than the northern parks.',
@@ -100,6 +133,14 @@ const ITINERARIES = [
     includes: '✓ Bush flights · ✓ Full board · ✓ Park fees · ✓ Professional guide',
   },
   {
+    id: 'mahale-chimp-lake-tanganyika',
+    category: 'Western Circuit',
+    image: safariImg('crowned-cranes-in-grass.jpg'),
+    alt: 'Wildlife in grassland representing a western Tanzania safari route',
+    duration: '4 nights',
+    from: 'Zanzibar / Kigoma',
+    price: 2860,
+    priceSub: 'pp',
     rib: '4 nights · From $2,860 pp',
     title: 'Mahale Chimp & Lake Tanganyika',
     intro: 'Track wild chimpanzees in Mahale Mountains and unwind on the white-sand shores of Lake Tanganyika.',
@@ -112,6 +153,14 @@ const ITINERARIES = [
     includes: '✓ Internal flights · ✓ Boat transfers · ✓ Chimp permits · ✓ Full board',
   },
   {
+    id: 'katavi-remote-frontier',
+    category: 'Western Circuit',
+    image: safariImg('buffalo-herd-close.jpg'),
+    alt: 'Cape buffalo herd close-up on a remote Katavi safari',
+    duration: '5 nights',
+    from: 'Zanzibar',
+    price: 3290,
+    priceSub: 'pp',
     rib: '5 nights · From $3,290 pp',
     title: 'Katavi Remote Frontier',
     intro: 'For seasoned safari travellers: dramatic dry-season game concentrations in one of Tanzania’s wildest, least-visited parks.',
@@ -125,6 +174,14 @@ const ITINERARIES = [
     includes: '✓ Bush flights · ✓ Luxury fly-camp · ✓ Park fees · ✓ Expert guide team',
   },
   {
+    id: 'tarangire-ngorongoro-short-circuit',
+    category: 'Last-minute Safari',
+    image: safariImg('eland-herd-plains.jpg'),
+    alt: 'Open plains on a Tarangire and Ngorongoro short safari',
+    duration: '2 nights',
+    from: 'Zanzibar',
+    price: 1190,
+    priceSub: 'pp',
     rib: 'Last-minute · 2 nights · From $1,190 pp',
     title: 'Tarangire + Ngorongoro Short Circuit',
     intro: 'The best-value short safari: elephants and baobabs in Tarangire, then the crater’s dense predator zones.',
@@ -136,6 +193,14 @@ const ITINERARIES = [
     includes: '✓ Flights · ✓ 2 lodge nights · ✓ Park & crater fees · ✓ Guide',
   },
   {
+    id: 'ngorongoro-overnight',
+    category: 'Last-minute Safari',
+    image: safariImg('rhino-on-plains.jpg'),
+    alt: 'Rhino on the plains during a Ngorongoro overnight safari',
+    duration: '1 night',
+    from: 'Zanzibar',
+    price: 790,
+    priceSub: 'pp',
     rib: 'Last-minute · 1 night · From $790 pp',
     title: 'Ngorongoro Overnight',
     intro: 'Perfect when you can spare one night: crater wildlife at first light plus a lodge stay on the rim.',
@@ -146,6 +211,14 @@ const ITINERARIES = [
     includes: '✓ Flights & transfers · ✓ Lodge stay · ✓ Crater fees · ✓ Guide',
   },
   {
+    id: 'tarangire-express-day-safari',
+    category: 'Day Safari',
+    image: safariImg('eland-grazing.jpg'),
+    alt: 'Grazing antelope on a Tarangire express day safari',
+    duration: '1 day',
+    from: 'Zanzibar',
+    price: 390,
+    priceSub: 'pp',
     rib: 'Last-minute · 1 day · From $390 pp',
     title: 'Tarangire Express Day Safari',
     intro: 'A fast, high-impact one-day option for guests already in Zanzibar who want a real mainland game drive without overnighting.',
@@ -235,7 +308,16 @@ const SEASONS = [
   },
 ];
 
-const INCLUDED_LIST = [
+const SAFARI_COMPARISON = [
+  { label: 'Best quick taste', pick: 'Tarangire Express Day Safari', note: 'Lowest commitment, real mainland wildlife in one day.' },
+  { label: 'Best short safari', pick: 'Ngorongoro Overnight', note: 'One night, high wildlife density, crater at first light.' },
+  { label: 'Best first-timer route', pick: 'Ngorongoro & Tarangire', note: 'Classic Big Five scenery plus elephants and baobabs.' },
+  { label: 'Best migration focus', pick: 'Serengeti Migration', note: 'For river-crossing season and big open-plains drama.' },
+  { label: 'Best remote wilderness', pick: 'Nyerere, Ruaha, Katavi', note: 'Fewer vehicles, wilder camps, stronger adventure feel.' },
+  { label: 'Best premium add-on', pick: 'Mahale Chimp & Lake Tanganyika', note: 'Rare chimp trekking with a lakefront finish.' },
+];
+
+export const INCLUDED_LIST = [
   'Bush flights between parks (Cessna)',
   'All park & conservation fees',
   'Silver-level certified guide',
@@ -246,60 +328,90 @@ const INCLUDED_LIST = [
   '24/7 concierge on WhatsApp',
 ];
 
-const SAFARI_TYPES = [
+const BOOKING_STEPS = [
+  { step: '01', title: 'Choose a route', text: 'Start with a card, or send your dates and we’ll recommend the best safari for your budget.' },
+  { step: '02', title: 'We price the real trip', text: 'We check flights, camp availability, park fees, and seasonality before sending the final quote.' },
+  { step: '03', title: 'Deposit confirms it', text: 'Your deposit locks the flights, guide, camps, and transfers. The rest is paid before travel.' },
+];
+
+export const SAFARI_TYPES = [
   {
+    id: 'classic-game-drive',
     title: 'Classic game-drive safaris',
     desc: 'Private or small-group Land Cruiser drives across Serengeti, Ngorongoro, Tarangire, and Lake Manyara with expert local guides.',
     bestFor: 'First-time safari travellers',
+    routeIds: ['ngorongoro-tarangire', 'serengeti-migration', 'tarangire-ngorongoro-short-circuit'],
+    highlights: ['Private or small-group 4x4 game drives', 'Best access to iconic northern parks', 'Strong Big Five and predator viewing'],
     image: safariImg('male-lion-in-grass.jpg'),
     alt: 'Lion resting in grass on a classic game drive',
   },
   {
+    id: 'fly-in',
     title: 'Fly-in safaris',
     desc: 'Skip long road transfers and connect key parks by bush flight from Zanzibar, Arusha, or Dar es Salaam.',
     bestFor: 'Limited time, maximum game time',
+    routeIds: ['serengeti-migration', 'nyerere-selous-wild', 'ruaha-big-cat-trail'],
+    highlights: ['Less time on roads', 'Easy Zanzibar-to-bush combinations', 'Best for short premium trips'],
     image: safariImg('eland-herd-plains.jpg'),
     alt: 'Open plains landscape viewed on a fly-in safari route',
   },
   {
+    id: 'walking',
     title: 'Walking safaris',
     desc: 'Guided bush walks with armed rangers in wilderness areas like Nyerere and Ruaha for a close-to-nature experience.',
     bestFor: 'Adventure and tracking lovers',
+    routeIds: ['nyerere-selous-wild', 'ruaha-big-cat-trail'],
+    highlights: ['Armed ranger-led bush walks', 'Tracks, birds, plants, and smaller wildlife', 'A more intimate wilderness pace'],
     image: safariImg('warthog-on-plains.jpg'),
     alt: 'Warthog spotted during a walking safari experience',
   },
   {
+    id: 'boat',
     title: 'Boat safaris',
     desc: 'River and lake safaris in Nyerere (Selous) and western circuits where wildlife is viewed from the water.',
     bestFor: 'Unique wildlife angles and birding',
+    routeIds: ['nyerere-selous-wild', 'mahale-chimp-lake-tanganyika'],
+    highlights: ['Hippos, crocodiles, and river birds', 'Sunset river experiences', 'Great contrast to classic game drives'],
     image: safariImg('buffalo-and-egret.jpg'),
     alt: 'Buffalo and egret near wetlands, ideal for boat safari viewing',
   },
   {
+    id: 'family',
     title: 'Family safaris',
     desc: 'Family-friendly itineraries with shorter drives, flexible pacing, and lodges suited for children and multi-gen travel.',
     bestFor: 'Families with kids',
+    routeIds: ['tarangire-ngorongoro-short-circuit', 'ngorongoro-overnight', 'ngorongoro-tarangire'],
+    highlights: ['Shorter drives and flexible starts', 'Lodges with pools and family rooms', 'Routes with reliable wildlife viewing'],
     image: safariImg('zebra-mare-and-foal.jpg'),
     alt: 'Zebra mare and foal, a family-friendly wildlife sighting',
   },
   {
+    id: 'luxury-lodge-tented',
     title: 'Luxury lodge & tented safaris',
     desc: 'High-comfort stays, premium camps, and curated service while staying close to migration routes and big-cat territory.',
     bestFor: 'Honeymoons and premium trips',
+    routeIds: ['ngorongoro-tarangire', 'serengeti-migration', 'mahale-chimp-lake-tanganyika'],
+    highlights: ['Premium camps and lodge upgrades', 'Smoother logistics and private guiding', 'Best for honeymoons and milestone trips'],
     image: safariImg('lioness-and-cub-resting.jpg'),
     alt: 'Lioness and cub resting in golden light near luxury camps',
   },
   {
+    id: 'budget-camping',
     title: 'Budget camping safaris',
     desc: 'Value-focused routes using well-run camps and essential comforts without compromising guiding quality.',
     bestFor: 'Backpackers and budget-conscious travellers',
+    routeIds: ['tarangire-express-day-safari', 'ngorongoro-overnight', 'tarangire-ngorongoro-short-circuit'],
+    highlights: ['Lower-cost routes and simpler camps', 'Shared logistics where available', 'Best when dates are flexible'],
     image: safariImg('wildebeest-grazing.jpg'),
     alt: 'Wildebeest herd on open plains for budget camping routes',
   },
   {
+    id: 'bush-beach',
     title: 'Bush + beach combinations',
     desc: 'Seamless Tanzania mainland safari paired with Zanzibar beach stays, with all flights and transfers coordinated.',
     bestFor: 'Safari + relaxation in one trip',
+    routeIds: ['ngorongoro-tarangire', 'nyerere-selous-wild', 'tarangire-express-day-safari'],
+    highlights: ['Safari flights coordinated with Zanzibar hotels', 'Easy post-safari beach recovery', 'Best for honeymoons and family holidays'],
     image: safariImg('crowned-cranes-in-grass.jpg'),
     alt: 'Crowned cranes in grasslands representing bush and beach combo journeys',
   },
@@ -376,15 +488,111 @@ export default function Safaris() {
             From the Serengeti’s rolling plains to the Ngorongoro Crater’s lost world, we run small-group safaris with the rangers, pilots, and lodge owners we’ve known for years. No bus tours. No half-truths. Just the bush, well done.
           </p>
           <div className="saf-hero__cta">
-            <a className="btn btn--lg" href="#itineraries">See itineraries</a>
+            <a className="btn btn--lg" href="#itineraries">Browse all safaris</a>
             <Link className="btn btn--ghost btn--lg" to="/trip-planner">Plan with AI →</Link>
           </div>
           <div className="saf-hero__stats">
-            <div><strong>5</strong><span>Parks</span></div>
+            <div><strong>{ITINERARIES.length}</strong><span>Safaris</span></div>
             <div><strong>2.0M</strong><span>Wildebeest</span></div>
-            <div><strong>$1,890</strong><span>From, per person</span></div>
+            <div><strong>$390</strong><span>From, per person</span></div>
             <div><strong>4.9★</strong><span>Tripadvisor</span></div>
           </div>
+        </div>
+      </section>
+
+      {/* ITINERARIES */}
+      <section className="itineraries reveal" id="itineraries">
+        <header className="itineraries__head">
+          <span className="section-eyebrow">Suggested routes</span>
+          <h2 className="section-title">Safaris — pick a starting point.</h2>
+          <p className="section-lead">Every card opens into the full day-by-day route, inclusions, and booking details. Tell us your dates and we’ll re-plot the camps and flights around you.</p>
+        </header>
+
+        <div className="exc-grid saf-route-grid">
+          {ITINERARIES.map((it) => (
+            <Link
+              key={it.id}
+              to={`/safaris/${it.id}`}
+              className="exc-card saf-route-card reveal"
+              aria-label={`Explore ${it.title}`}
+            >
+              <div className="exc-card__img">
+                <img src={it.image} alt={it.alt || it.title} loading="lazy" />
+                <span className="exc-card__cat">{it.category}</span>
+                {it.feature && <span className="exc-card__season">Most popular</span>}
+              </div>
+              <div className="exc-card__body">
+                <span className="exc-card__eyebrow">{it.rib}</span>
+                <h3 className="exc-card__title">{it.title}</h3>
+                <p className="exc-card__desc">{it.intro}</p>
+                <div className="exc-card__meta">
+                  <span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
+                    {it.duration}
+                  </span>
+                  <span>
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z" /><circle cx="12" cy="10" r="3" /></svg>
+                    {it.from}
+                  </span>
+                </div>
+                <div className="exc-card__foot">
+                  <span className="exc-card__price">From <strong>${it.price}</strong> {it.priceSub}</span>
+                  <span className="exc-card__cta">Explore →</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* COMPARISON */}
+      <section className="saf-compare reveal" id="choose">
+        <header className="saf-compare__head">
+          <span className="section-eyebrow">Not sure yet?</span>
+          <h2 className="section-title">Choose by what you want most.</h2>
+          <p className="section-lead">Most guests do not know the park names yet. Start with the outcome, then open the route that fits.</p>
+        </header>
+        <div className="saf-compare__grid">
+          {SAFARI_COMPARISON.map((item) => (
+            <article className="saf-compare__card" key={item.label}>
+              <span>{item.label}</span>
+              <h3>{item.pick}</h3>
+              <p>{item.note}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* WHAT'S INCLUDED */}
+      <section className="included reveal">
+        <div className="included__wrap">
+          <div className="included__copy">
+            <span className="section-eyebrow">What’s included</span>
+            <h2 className="section-title">One price. Nothing surprise-charged.</h2>
+            <p className="section-lead">We learnt a long time ago that "from $X" with twelve add-ons makes guests miserable. Our quotes include everything below.</p>
+          </div>
+          <ul className="included__list">
+            {INCLUDED_LIST.map((item) => (
+              <li key={item}><span>✓</span> {item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* BOOKING STEPS */}
+      <section className="saf-steps reveal" id="booking-steps">
+        <header className="saf-steps__head">
+          <span className="section-eyebrow">How booking works</span>
+          <h2 className="section-title">Three steps from idea to confirmed safari.</h2>
+        </header>
+        <div className="saf-steps__grid">
+          {BOOKING_STEPS.map((item) => (
+            <article className="saf-step" key={item.step}>
+              <span>{item.step}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -424,41 +632,6 @@ export default function Safaris() {
         </div>
       </section>
 
-      {/* SAFARI TYPES */}
-      <section className="saf-types reveal" id="safari-types">
-        <header className="saf-types__head">
-          <span className="section-eyebrow">What we offer across Tanzania</span>
-          <h2 className="section-title">Different safari styles for different travellers.</h2>
-          <p className="section-lead">From classic game drives and fly-in circuits to walking, boat, family, and bush-beach combinations — we tailor each route to your travel style.</p>
-          <ul className="saf-types__modes">
-            <li>
-              <span className="saf-types__mode-tag">Dedicated safari</span>
-              Safari-only booking: arrive in Arusha and we’ll pick you up for the northern or southern circuit.
-            </li>
-            <li>
-              <span className="saf-types__mode-tag saf-types__mode-tag--accent">Last-minute</span>
-              Already on Zanzibar? We can run 1 day, 1 night, 2 nights, or longer safari options — fast.
-            </li>
-            <li>
-              <span className="saf-types__mode-tag">In a package</span>
-              Combined with hotels and excursions in one seamless itinerary.
-            </li>
-          </ul>
-        </header>
-        <div className="saf-types__grid">
-          {SAFARI_TYPES.map((item) => (
-            <article className="saf-type-card" key={item.title}>
-              <div className="saf-type-card__media">
-                <img src={item.image} alt={item.alt} loading="lazy" />
-              </div>
-              <h3>{item.title}</h3>
-              <p>{item.desc}</p>
-              <span className="saf-type-card__meta">Best for: {item.bestFor}</span>
-            </article>
-          ))}
-        </div>
-      </section>
-
       {/* PARKS */}
       <section className="parks reveal" id="parks">
         <header className="parks__head">
@@ -482,38 +655,60 @@ export default function Safaris() {
         </div>
       </section>
 
-      {/* ITINERARIES */}
-      <section className="itineraries reveal" id="itineraries">
-        <header className="itineraries__head">
-          <span className="section-eyebrow">Suggested routes</span>
-          <h2 className="section-title">Itineraries — pick a starting point.</h2>
-          <p className="section-lead">Every route is a sketch. Tell us your dates and we’ll re-plot the camps and flights around you.</p>
+      {/* WHEN TO GO */}
+      <section className="when reveal" id="when">
+        <header className="when__head">
+          <span className="section-eyebrow">When to go</span>
+          <h2 className="section-title">There’s no bad time. Just different ones.</h2>
         </header>
+        <div className="when__grid">
+          {SEASONS.map((s) => (
+            <article className={`when-card when-card--${s.mod}`} key={s.title}>
+              <div className="when-card__months">{s.months}</div>
+              <h4>{s.title}</h4>
+              <p>{s.blurb}</p>
+              <span className="when-card__rating">{s.rating}</span>
+            </article>
+          ))}
+        </div>
+      </section>
 
-        {ITINERARIES.map((it) => (
-          <div className={`itin${it.feature ? ' itin--feature' : ''}`} key={it.title}>
-            <div className={`itin__rib${it.feature ? ' itin__rib--gold' : ''}`}>{it.rib}</div>
-            <div className="itin__head">
-              <h3>{it.title}</h3>
-              <p>{it.intro}</p>
-            </div>
-            <ol className="itin__days">
-              {it.days.map((day) => (
-                <li key={day.d}>
-                  <span className="itin__day">{day.d}</span>
-                  <div>
-                    <strong>{day.h}</strong>
-                    <p>{day.p}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
-            <div className="itin__foot">
-              <span className="itin__includes">{it.includes}</span>
-              <Link className="btn" to="/booking">Book this route →</Link>
-            </div>
-          </div>
-        ))}
+      {/* SAFARI TYPES */}
+      <section className="saf-types reveal" id="safari-types">
+        <header className="saf-types__head">
+          <span className="section-eyebrow">Ways to travel</span>
+          <h2 className="section-title">Different safari styles for different travellers.</h2>
+          <p className="section-lead">From classic game drives and fly-in circuits to walking, boat, family, and bush-beach combinations — we tailor each route to your travel style.</p>
+          <ul className="saf-types__modes">
+            <li>
+              <span className="saf-types__mode-tag">Dedicated safari</span>
+              Safari-only booking: arrive in Arusha and we’ll pick you up for the northern or southern circuit.
+            </li>
+            <li>
+              <span className="saf-types__mode-tag saf-types__mode-tag--accent">Last-minute</span>
+              Already on Zanzibar? We can run 1 day, 1 night, 2 nights, or longer safari options — fast.
+            </li>
+            <li>
+              <span className="saf-types__mode-tag">In a package</span>
+              Combined with hotels and excursions in one seamless itinerary.
+            </li>
+          </ul>
+        </header>
+        <div className="saf-types__grid">
+          {SAFARI_TYPES.map((item) => (
+            <Link className="saf-type-card" key={item.title} to={`/safaris/types/${item.id}`} aria-label={`Explore ${item.title}`}>
+              <div className="saf-type-card__media">
+                <img src={item.image} alt={item.alt} loading="lazy" />
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+              <div className="saf-type-card__foot">
+                <span className="saf-type-card__meta">Best for: {item.bestFor}</span>
+                <span className="saf-type-card__cta">Explore →</span>
+              </div>
+            </Link>
+          ))}
+        </div>
       </section>
 
       {/* WILDLIFE GALLERY */}
@@ -543,40 +738,6 @@ export default function Safaris() {
             </div>
           </div>
         ))}
-      </section>
-
-      {/* WHEN TO GO */}
-      <section className="when reveal" id="when">
-        <header className="when__head">
-          <span className="section-eyebrow">When to go</span>
-          <h2 className="section-title">There’s no bad time. Just different ones.</h2>
-        </header>
-        <div className="when__grid">
-          {SEASONS.map((s) => (
-            <article className={`when-card when-card--${s.mod}`} key={s.title}>
-              <div className="when-card__months">{s.months}</div>
-              <h4>{s.title}</h4>
-              <p>{s.blurb}</p>
-              <span className="when-card__rating">{s.rating}</span>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      {/* WHAT'S INCLUDED */}
-      <section className="included reveal">
-        <div className="included__wrap">
-          <div className="included__copy">
-            <span className="section-eyebrow">What’s included</span>
-            <h2 className="section-title">One price. Nothing surprise-charged.</h2>
-            <p className="section-lead">We learnt a long time ago that "from $X" with twelve add-ons makes guests miserable. Our quotes include everything below.</p>
-          </div>
-          <ul className="included__list">
-            {INCLUDED_LIST.map((item) => (
-              <li key={item}><span>✓</span> {item}</li>
-            ))}
-          </ul>
-        </div>
       </section>
 
       {/* FAQ */}

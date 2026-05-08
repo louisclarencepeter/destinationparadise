@@ -4,6 +4,8 @@ import Homepage from './pages/Homepage.jsx';
 import Excursions from './pages/Excursions.jsx';
 import ExcursionDetail from './pages/ExcursionDetail.jsx';
 import Safaris from './pages/Safaris.jsx';
+import SafariDetail from './pages/SafariDetail.jsx';
+import SafariTypeDetail from './pages/SafariTypeDetail.jsx';
 import Packages from './pages/Packages.jsx';
 import TripPlannerPage from './pages/TripPlannerPage.jsx';
 import Explore from './pages/Explore.jsx';
@@ -20,6 +22,8 @@ export default function App() {
         <Route path="/excursions" element={<Excursions />} />
   <Route path="/excursions/:id" element={<ExcursionDetail />} />
         <Route path="/safaris" element={<Safaris />} />
+        <Route path="/safaris/types/:typeId" element={<SafariTypeDetail />} />
+        <Route path="/safaris/:id" element={<SafariDetail />} />
         <Route path="/packages" element={<Packages />} />
         <Route path="/trip-planner" element={<TripPlannerPage />} />
         <Route path="/explore" element={<Explore />} />

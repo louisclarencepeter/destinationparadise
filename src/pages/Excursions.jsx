@@ -122,7 +122,7 @@ export default function Excursions() {
             <span>Local expert guides</span>
           </div>
           <div className="exc-hero__row">
-            <a className="btn btn--lg btn--accent" href="#list">Browse all excursions</a>
+            <a className="btn btn--lg" href="#list">Browse all excursions</a>
             <Link className="btn btn--ghost btn--lg" to="/trip-planner">Build my plan →</Link>
           </div>
           <div className="exc-hero__meta">
