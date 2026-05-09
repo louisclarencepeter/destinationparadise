@@ -133,6 +133,16 @@ export default function Booking() {
   const visibleProducts = form.serviceType === 'custom'
     ? []
     : products.all.filter((item) => item.type === form.serviceType);
+  const selectedService = SERVICE_TYPES.find((item) => item.value === form.serviceType);
+  const isExcursionRequest = form.serviceType === 'excursion';
+  const showDateRange = !isExcursionRequest;
+  const showTravelPreferences = !isExcursionRequest;
+  const dateSummary = showDateRange
+    ? `${form.startDate || 'Flexible'}${form.endDate ? ` to ${form.endDate}` : ''}`
+    : form.startDate || 'Flexible';
+  const messagePlaceholder = isExcursionRequest
+    ? 'Preferred pickup area, hotel name, private/shared preference, kids ages, dietary needs, or timing notes.'
+    : "Hotels you like, pace, special occasion, kids' ages, dietary needs, flight details, or what you want to avoid.";
 
   useEffect(() => {
     let frame = 0;
@@ -195,7 +205,13 @@ export default function Booking() {
     setForm((current) => ({
       ...current,
       [key]: value,
-      ...(key === 'serviceType' ? { product: '' } : {}),
+      ...(key === 'serviceType'
+        ? {
+          product: '',
+          endDate: value === 'excursion' ? '' : current.endDate,
+          budget: value === 'excursion' ? '' : current.budget,
+        }
+        : {}),
     }));
   };
 
@@ -206,6 +222,9 @@ export default function Booking() {
 
     const payload = {
       ...form,
+      endDate: showDateRange ? form.endDate : '',
+      budget: showTravelPreferences ? form.budget : '',
+      accommodationLevel: showTravelPreferences ? form.accommodationLevel : '',
       productLabel: selectedProduct?.label || 'Not selected',
       estimatedPrice: priceLabel(selectedProduct),
     };
@@ -320,15 +339,17 @@ export default function Booking() {
               </label>
             </div>
 
-            <div className="booking-row booking-row--thirds">
+            <div className={`booking-row${showDateRange ? ' booking-row--thirds' : ''}`}>
               <label className="booking-field">
-                <span>Start date</span>
+                <span>{showDateRange ? 'Start date' : 'Date'}</span>
                 <input type="date" name="startDate" value={form.startDate} onChange={update('startDate')} />
               </label>
-              <label className="booking-field">
-                <span>End date</span>
-                <input type="date" name="endDate" value={form.endDate} onChange={update('endDate')} />
-              </label>
+              {showDateRange && (
+                <label className="booking-field">
+                  <span>End date</span>
+                  <input type="date" name="endDate" value={form.endDate} onChange={update('endDate')} />
+                </label>
+              )}
               <label className="booking-field">
                 <span>Guests</span>
                 <select name="guests" value={form.guests} onChange={update('guests')}>
@@ -343,29 +364,31 @@ export default function Booking() {
               </label>
             </div>
 
-            <div className="booking-row">
-              <label className="booking-field">
-                <span>Budget range</span>
-                <select name="budget" value={form.budget} onChange={update('budget')}>
-                  <option value="">Not sure yet</option>
-                  <option>Under $1,000 pp</option>
-                  <option>$1,000 - $2,500 pp</option>
-                  <option>$2,500 - $5,000 pp</option>
-                  <option>$5,000 - $8,000 pp</option>
-                  <option>$8,000+ pp</option>
-                </select>
-              </label>
-              <label className="booking-field">
-                <span>Comfort level</span>
-                <select name="accommodationLevel" value={form.accommodationLevel} onChange={update('accommodationLevel')}>
-                  <option>Budget</option>
-                  <option>Mid-range</option>
-                  <option>Luxury</option>
-                  <option>Ultra luxury</option>
-                  <option>Flexible</option>
-                </select>
-              </label>
-            </div>
+            {showTravelPreferences && (
+              <div className="booking-row">
+                <label className="booking-field">
+                  <span>Budget range</span>
+                  <select name="budget" value={form.budget} onChange={update('budget')}>
+                    <option value="">Not sure yet</option>
+                    <option>Under $1,000 pp</option>
+                    <option>$1,000 - $2,500 pp</option>
+                    <option>$2,500 - $5,000 pp</option>
+                    <option>$5,000 - $8,000 pp</option>
+                    <option>$8,000+ pp</option>
+                  </select>
+                </label>
+                <label className="booking-field">
+                  <span>Comfort level</span>
+                  <select name="accommodationLevel" value={form.accommodationLevel} onChange={update('accommodationLevel')}>
+                    <option>Budget</option>
+                    <option>Mid-range</option>
+                    <option>Luxury</option>
+                    <option>Ultra luxury</option>
+                    <option>Flexible</option>
+                  </select>
+                </label>
+              </div>
+            )}
 
             <fieldset className="booking-fieldset">
               <legend>Online payment</legend>
@@ -382,7 +405,7 @@ export default function Booking() {
 
             <label className="booking-field">
               <span>Anything we should know?</span>
-              <textarea name="message" value={form.message} onChange={update('message')} rows={6} placeholder="Hotels you like, pace, special occasion, kids' ages, dietary needs, flight details, or what you want to avoid." />
+              <textarea name="message" value={form.message} onChange={update('message')} rows={6} placeholder={messagePlaceholder} />
             </label>
 
             {status === 'sent' && (
@@ -405,13 +428,13 @@ export default function Booking() {
             >
               <div className="booking-summary__card">
                 <span className="section-eyebrow">Your request</span>
-                <h3>{selectedProduct?.label || SERVICE_TYPES.find((item) => item.value === form.serviceType)?.label || 'Custom plan'}</h3>
+                <h3>{selectedProduct?.label || selectedService?.label || 'Custom plan'}</h3>
                 <p>{selectedProduct?.category || 'Flexible route'}</p>
                 <div className="booking-summary__price">{priceLabel(selectedProduct)}</div>
                 <dl>
                   <div><dt>Guests</dt><dd>{form.guests || 'Flexible'}</dd></div>
-                  <div><dt>Dates</dt><dd>{form.startDate || 'Flexible'}{form.endDate ? ` to ${form.endDate}` : ''}</dd></div>
-                  <div><dt>Comfort</dt><dd>{form.accommodationLevel}</dd></div>
+                  <div><dt>{showDateRange ? 'Dates' : 'Date'}</dt><dd>{dateSummary}</dd></div>
+                  {showTravelPreferences && <div><dt>Comfort</dt><dd>{form.accommodationLevel}</dd></div>}
                   <div><dt>Payment</dt><dd>{PAYMENT_OPTIONS.find((item) => item.value === form.paymentPreference)?.label}</dd></div>
                 </dl>
               </div>
