@@ -4,6 +4,7 @@ import '../styles/homepage.css';
 import '../styles/excursions.css';
 import { EXCURSIONS, CATEGORIES } from '../data/excursionsData.js';
 import { EXCURSION_COMBINATIONS } from '../data/excursionCombinations.js';
+import { uniqueProductImages } from '../utils/productImages.js';
 
 const HERO_IMAGE = '/assets/images/excursions/safari-blue-sandbank.jpg';
 const CTA_IMAGE = '/assets/images/excursions/dolphin-snorkeling.jpg';
@@ -57,6 +58,7 @@ function categoryToSlug(cat) {
 
 const INITIAL_EXCURSION_COUNT = 12;
 const EXCURSION_BATCH_COUNT = 12;
+const EXCURSION_PAGE_CARDS = uniqueProductImages(EXCURSIONS, { scope: 'Excursion' });
 
 export default function Excursions() {
   const pageRef = useRef(null);
@@ -64,7 +66,7 @@ export default function Excursions() {
   const [visibleCount, setVisibleCount] = useState(INITIAL_EXCURSION_COUNT);
 
   const filteredExcursions = useMemo(
-    () => (filter === 'all' ? EXCURSIONS : EXCURSIONS.filter((e) => e.category === filter)),
+    () => (filter === 'all' ? EXCURSION_PAGE_CARDS : EXCURSION_PAGE_CARDS.filter((e) => e.category === filter)),
     [filter],
   );
   const visible = useMemo(
