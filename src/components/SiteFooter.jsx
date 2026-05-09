@@ -24,6 +24,31 @@ const ThemeIcon = ({ theme }) => (
   )
 );
 
+const FOOTER_ICONS = {
+  home: ['M3 10.5 12 3l9 7.5', 'M5 9.5V21h5v-6h4v6h5V9.5'],
+  compass: ['M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z', 'm15.5 8.5-2 5-5 2 2-5 5-2Z'],
+  binoculars: ['M7 6h3l2 8h-5L5 9a3 3 0 0 1 2-3Z', 'M17 6h-3l-2 8h5l2-5a3 3 0 0 0-2-3Z', 'M7 14a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z', 'M17 14a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z'],
+  suitcase: ['M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2', 'M5 7h14a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V9a2 2 0 0 1 2-2Z', 'M3 13h18'],
+  route: ['M5 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z', 'M19 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z', 'M7 16h4a4 4 0 0 0 0-8h6'],
+  map: ['M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z', 'M9 3v15', 'M15 6v15'],
+  book: ['M4 5a3 3 0 0 1 3-3h13v17H7a3 3 0 0 0-3 3V5Z', 'M4 5v17'],
+  users: ['M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2', 'M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z', 'M22 21v-2a4 4 0 0 0-3-3.87', 'M16 3.13a4 4 0 0 1 0 7.75'],
+  leaf: ['M20 4c-7.5.5-12.5 4.5-13 11 4.5.5 9.5-1.5 13-11Z', 'M5 19c3-5 7-8 12-10'],
+  newspaper: ['M4 5h13a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3V5Z', 'M8 9h5', 'M8 13h8', 'M8 17h6'],
+  briefcase: ['M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1', 'M4 6h16v12a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V6Z', 'M4 12h16'],
+  mail: ['M4 5h16v14H4V5Z', 'm4 7 8 6 8-6'],
+  phone: ['M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.9.66 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.31 1.84.53 2.8.66A2 2 0 0 1 22 16.92Z'],
+  pin: ['M12 21s7-5.8 7-12a7 7 0 1 0-14 0c0 6.2 7 12 7 12Z', 'M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z'],
+  message: ['M21 12a8 8 0 0 1-8 8H6l-3 3v-7a8 8 0 1 1 18-4Z'],
+  plane: ['M21 16 3 21l5-9-5-9 18 5-8 4 8 4Z'],
+};
+
+const FooterIcon = ({ name }) => (
+  <svg className="footer__link-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {FOOTER_ICONS[name].map((path) => <path key={path} d={path} />)}
+  </svg>
+);
+
 const HERO_SELECTOR = [
   'section.hero',
   'section.exc-hero',
@@ -149,9 +174,38 @@ export default function SiteFooter({ theme = 'light', onThemeToggle }) {
             <a href={SOCIAL_LINKS.x} target="_blank" rel="noreferrer" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77z" /></svg></a>
           </div>
         </div>
-        <div className="footer__col"><h4>Pages</h4><ul><li><Link to="/">Home</Link></li><li><Link to="/excursions">Excursions</Link></li><li><Link to="/safaris">Safaris</Link></li><li><Link to="/packages">Packages</Link></li><li><Link to="/trip-planner">Trip Planner</Link></li><li><Link to="/explore">Explore</Link></li></ul></div>
-        <div className="footer__col"><h4>Company</h4><ul><li><Link to="/aboutus">Our story</Link></li><li><Link to="/aboutus">Guides</Link></li><li><Link to="/aboutus">Sustainability</Link></li><li><Link to="/aboutus">Press</Link></li><li><Link to="/aboutus">Careers</Link></li></ul></div>
-        <div className="footer__col"><h4>Get in touch</h4><ul><li><a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a></li><li><a href={`tel:${CONTACT_INFO.phones[0]}`}>+255 768 779 517</a></li><li><a href={`tel:${CONTACT_INFO.phones[1]}`}>+255 748 352 657</a></li><li><Link to="/#contact">{CONTACT_INFO.location}</Link></li><li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">WhatsApp us</a></li><li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">Airport &amp; island transfers</a></li></ul></div>
+        <div className="footer__col">
+          <h4>Pages</h4>
+          <ul>
+            <li><Link to="/"><FooterIcon name="home" />Home</Link></li>
+            <li><Link to="/excursions"><FooterIcon name="compass" />Excursions</Link></li>
+            <li><Link to="/safaris"><FooterIcon name="binoculars" />Safaris</Link></li>
+            <li><Link to="/packages"><FooterIcon name="suitcase" />Packages</Link></li>
+            <li><Link to="/trip-planner"><FooterIcon name="route" />Trip Planner</Link></li>
+            <li><Link to="/explore"><FooterIcon name="map" />Explore</Link></li>
+          </ul>
+        </div>
+        <div className="footer__col">
+          <h4>Company</h4>
+          <ul>
+            <li><Link to="/aboutus"><FooterIcon name="book" />Our story</Link></li>
+            <li><Link to="/aboutus"><FooterIcon name="users" />Guides</Link></li>
+            <li><Link to="/aboutus"><FooterIcon name="leaf" />Sustainability</Link></li>
+            <li><Link to="/aboutus"><FooterIcon name="newspaper" />Press</Link></li>
+            <li><Link to="/aboutus"><FooterIcon name="briefcase" />Careers</Link></li>
+          </ul>
+        </div>
+        <div className="footer__col">
+          <h4>Get in touch</h4>
+          <ul>
+            <li><a href={`mailto:${CONTACT_INFO.email}`}><FooterIcon name="mail" />{CONTACT_INFO.email}</a></li>
+            <li><a href={`tel:${CONTACT_INFO.phones[0]}`}><FooterIcon name="phone" />+255 768 779 517</a></li>
+            <li><a href={`tel:${CONTACT_INFO.phones[1]}`}><FooterIcon name="phone" />+255 748 352 657</a></li>
+            <li><Link to="/#contact"><FooterIcon name="pin" />{CONTACT_INFO.location}</Link></li>
+            <li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer"><FooterIcon name="message" />WhatsApp us</a></li>
+            <li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer"><FooterIcon name="plane" />Airport &amp; island transfers</a></li>
+          </ul>
+        </div>
       </div>
       <div className="footer__theme-row">
         <button
