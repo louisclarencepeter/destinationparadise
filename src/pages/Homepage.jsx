@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/homepage.css';
 import { EXCURSIONS } from '../data/excursionsData.js';
@@ -7,11 +7,12 @@ import ExcursionsSection from '../components/homepage/ExcursionsSection.jsx';
 import SafarisSection from '../components/homepage/SafarisSection.jsx';
 import PackagesSection from '../components/homepage/PackagesSection.jsx';
 import WhySection from '../components/homepage/WhySection.jsx';
-import MapSection from '../components/homepage/MapSection.jsx';
 import WeatherSection from '../components/homepage/WeatherSection.jsx';
 import GallerySection from '../components/homepage/GallerySection.jsx';
 import TestimonialsSection from '../components/homepage/TestimonialsSection.jsx';
-import PlannerSection from '../components/homepage/PlannerSection.jsx';
+
+const MapSection = lazy(() => import('../components/homepage/MapSection.jsx'));
+const PlannerSection = lazy(() => import('../components/homepage/PlannerSection.jsx'));
 import ContactSection from '../components/homepage/ContactSection.jsx';
 import NewsletterSection from '../components/homepage/NewsletterSection.jsx';
 import { announceTheme, applyTheme, normalizeTheme, readStoredTweaks } from '../utils/theme.js';
@@ -155,18 +156,20 @@ export default function Homepage() {
       <ExcursionsSection tweaks={tweaks} excursions={bestSellingExcursions} />
       <SafarisSection />
       <PackagesSection />
-      <PlannerSection initialPrompt={plannerPrompt} />
-      <WhySection />
-      <MapSection 
-        tweaks={tweaks} 
-        PINS={PINS} 
-        activePin={activePin} 
-        setActivePin={setActivePin} 
-        islandPins={islandPins} 
-        mainlandPins={mainlandPins} 
-        ctaHref="/explore"
-        ctaLabel="Explore the full map"
-      />
+      <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
+        <PlannerSection initialPrompt={plannerPrompt} />
+        <WhySection />
+        <MapSection 
+          tweaks={tweaks} 
+          PINS={PINS} 
+          activePin={activePin} 
+          setActivePin={setActivePin} 
+          islandPins={islandPins} 
+          mainlandPins={mainlandPins} 
+          ctaHref="/explore"
+          ctaLabel="Explore the full map"
+        />
+      </Suspense>
       <WeatherSection MONTHS={MONTHS} SCORES={SCORES} NOW_MONTH={NOW_MONTH} />
       <GallerySection />
       <TestimonialsSection />
