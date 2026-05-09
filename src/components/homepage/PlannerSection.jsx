@@ -1,4 +1,5 @@
-import { Fragment, useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
 import '../../styles/homepage/planner.css';
 
 const PLANNER_TITLE = 'Tell me about your dream trip';
@@ -15,49 +16,15 @@ const THINKING_MESSAGES = [
   'Shaping the draft',
 ];
 
-const renderInlineFormatting = (text) => {
-  const parts = [];
-  const pattern = /(\*\*([^*\n]+)\*\*|\*([^*\n]+)\*)/g;
-  let lastIndex = 0;
-  let match;
-
-  while ((match = pattern.exec(text)) !== null) {
-    if (match.index > lastIndex) {
-      parts.push(text.slice(lastIndex, match.index));
-    }
-
-    if (match[2]) {
-      parts.push(<strong key={`strong-${match.index}`}>{match[2]}</strong>);
-    } else {
-      parts.push(<em key={`em-${match.index}`}>{match[3]}</em>);
-    }
-
-    lastIndex = pattern.lastIndex;
-  }
-
-  if (lastIndex < text.length) {
-    parts.push(text.slice(lastIndex));
-  }
-
-  return parts;
-};
-
-const renderFormattedText = (text) =>
-  (text || '')
-    .split(/\n\n+/)
-    .map((paragraph, paragraphIndex) => (
-      <p key={paragraphIndex}>
-        {paragraph.split('\n').map((line, lineIndex) => (
-          <Fragment key={lineIndex}>
-            {lineIndex > 0 && <br />}
-            {renderInlineFormatting(line)}
-          </Fragment>
-        ))}
-      </p>
-    ));
-
 export default function PlannerSection({ initialPrompt, handoffHref = '#contact' }) {
-  const [history, setHistory] = useState([]);
+  const [history, setHistory] = useState(() => {
+    try {
+      const saved = localStorage.getItem('plannerHistory');
+      return saved ? JSON.parse(saved) : [];
+    } catch {
+      return [];
+    }
+  });
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const [resetKey, setResetKey] = useState(0);
@@ -67,6 +34,10 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
   const logRef = useRef(null);
   const inputRef = useRef(null);
   const handledPromptRef = useRef(null);
+
+  useEffect(() => {
+    localStorage.setItem('plannerHistory', JSON.stringify(history));
+  }, [history]);
 
   useEffect(() => {
     if (logRef.current) logRef.current.scrollTop = logRef.current.scrollHeight;
@@ -185,7 +156,7 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
             <button
               className="planner__reset"
               title="Start over"
-              onClick={() => { setHistory([]); setResetKey((k) => k + 1); }}
+              onClick={() => { setHistory([]); localStorage.removeItem('plannerHistory'); setResetKey((k) => k + 1); }}
             >↻</button>
           </header>
           <div className="planner__log" ref={logRef} role="log" aria-live="polite">
@@ -206,7 +177,7 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
             </div>
             {history.map((m, i) => (
               <div key={i} className={`planner__msg planner__msg--${m.role === 'user' ? 'user' : 'bot'}`}>
-                <div className="planner__bubble">{renderFormattedText(m.content)}</div>
+                <div className="planner__bubble"><ReactMarkdown>{m.content}</ReactMarkdown></div>
               </div>
             ))}
             {sending && (

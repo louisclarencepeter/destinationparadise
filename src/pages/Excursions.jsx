@@ -118,7 +118,7 @@ export default function Excursions() {
     <main className="excursions-page" ref={pageRef}>
       {/* HERO */}
       <section className="exc-hero">
-        <div className="exc-hero__bg"><img src={HERO_IMAGE} alt="" /></div>
+        <div className="exc-hero__bg"><img src={HERO_IMAGE} alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
         <div className="exc-hero__inner">
           <span className="exc-hero__eyebrow">Zanzibar &amp; the coast · handpicked day trips</span>
           <h1 className="exc-hero__title">One island. <em>{EXCURSIONS.length}+ unforgettable journeys.</em></h1>

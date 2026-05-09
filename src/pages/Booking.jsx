@@ -245,7 +245,7 @@ export default function Booking() {
   return (
     <main className="booking-page">
       <section className="booking-hero">
-        <div className="booking-hero__bg"><img src="/assets/images/home/mizingani-waterfront.jpg" alt="" /></div>
+        <div className="booking-hero__bg"><img src="/assets/images/home/mizingani-waterfront.jpg" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
         <div className="booking-hero__inner">
           <span className="booking-hero__eyebrow">Booking request</span>
           <h1>One form <em>for every trip.</em></h1>

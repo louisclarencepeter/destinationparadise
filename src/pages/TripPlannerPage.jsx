@@ -78,7 +78,7 @@ export default function TripPlannerPage() {
   return (
     <main className="trip-planner-page">
       <section className="trip-hero">
-        <div className="trip-hero__bg"><img src="/assets/images/safaris/lioness-and-cub-resting.jpg" alt="" /></div>
+        <div className="trip-hero__bg"><img src="/assets/images/safaris/lioness-and-cub-resting.jpg" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
         <div className="trip-hero__inner">
           <span className="trip-hero__eyebrow">AI Trip Planner · human-reviewed before booking</span>
           <h1 className="trip-hero__title">Sketch the trip <em>before you commit.</em></h1>

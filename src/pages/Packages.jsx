@@ -158,7 +158,7 @@ export default function Packages() {
   return (
     <main className="excursions-page packages-page" ref={pageRef}>
       <section className="exc-hero pkg-hero">
-        <div className="exc-hero__bg"><img src="/assets/images/safaris/eland-grazing.jpg" alt="" /></div>
+        <div className="exc-hero__bg"><img src="/assets/images/safaris/eland-grazing.jpg" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
         <div className="exc-hero__inner">
           <span className="exc-hero__eyebrow">Hotels · safaris · excursions · special moments</span>
           <h1 className="exc-hero__title">Packages for the trip <em>you actually want.</em></h1>

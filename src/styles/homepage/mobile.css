@@ -20,7 +20,7 @@ html, body { max-width: 100%; }
 .nav__burger { padding: .6rem; min-width: 44px; min-height: 44px; }
 
 @media (max-width: 720px) {
-  .nav { padding: .65rem 1rem; gap: .5rem; }
+  .nav { padding: .65rem 1rem .65rem 1.6rem; gap: .5rem; }
   .nav__logo img { height: 36px; }
   .nav__logo-text { font-size: 1rem; white-space: nowrap; }
   .nav__logo-text small { font-size: 8px; letter-spacing: .2em; }
@@ -265,16 +265,13 @@ html, body { max-width: 100%; }
 @media (max-width: 720px) {
   .excursions { padding: var(--section-pad-block-mobile) var(--section-pad-inline-mobile); }
   .excursions__tabs {
-    flex-wrap: nowrap;
-    overflow-x: auto;
+    flex-wrap: wrap;
     justify-content: flex-start;
-    scrollbar-width: none;
-    margin: 1rem -1rem 0;
-    padding: 0 1rem .25rem;
-    scroll-snap-type: x proximity;
+    margin: 1rem 0 0;
+    padding: 0;
+    gap: 0.5rem;
   }
-  .excursions__tabs::-webkit-scrollbar { display: none; }
-  .excursions__tab { flex: 0 0 auto; scroll-snap-align: start; padding: .55rem 1rem; font-size: 13px; }
+  .excursions__tab { flex: 0 0 auto; padding: .55rem 1rem; font-size: 13px; }
   .ex-card__img { aspect-ratio: 16/11; }
   .ex-card__price-num { font-size: 1.6rem; }
   .ex-card__body { padding: 1.1rem 1.15rem 1.25rem; }

@@ -242,7 +242,7 @@ export default function Explore() {
   return (
     <main className="explore-page">
       <section className="exc-hero explore-hero">
-        <div className="exc-hero__bg"><img src="/assets/images/home/stone-town-waterfront.webp" alt="" /></div>
+        <div className="exc-hero__bg"><img src="/assets/images/home/stone-town-waterfront.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
         <div className="exc-hero__inner">
           <span className="exc-hero__eyebrow">Explore Zanzibar & Tanzania</span>
           <h1 className="exc-hero__title">Start with the place, <em>or the kind of trip.</em></h1>

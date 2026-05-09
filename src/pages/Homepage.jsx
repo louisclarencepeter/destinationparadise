@@ -54,7 +54,7 @@ const SCORES = [72, 78, 62, 42, 56, 82, 92, 95, 90, 80, 55, 68];
 const NOW_MONTH = new Date().getMonth();
 
 const TWEAKS_DEFAULTS = { hero: 'photo', layout: '3up', theme: 'light' };
-const BEST_SELLING_EXCURSION_IDS = ['safari-blue', 'mnemba', 'spice-tour'];
+const BEST_SELLING_EXCURSION_IDS = ['safari-blue', 'mnemba', 'spice-tour', 'prison-island', 'stone-town', 'jozani'];
 
 function loadTweaks() {
   const saved = readStoredTweaks();

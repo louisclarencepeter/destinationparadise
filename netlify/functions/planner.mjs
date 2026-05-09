@@ -64,31 +64,34 @@ function validateHistory(rawHistory) {
     return { ok: false, reply: 'Please send the planner history as a list of messages.' };
   }
 
-  if (rawHistory.length > MAX_HISTORY_MESSAGES) {
-    return { ok: false, reply: 'That conversation is getting a little long. Please start over or send a shorter summary.' };
-  }
-
   let totalChars = 0;
   const messages = [];
 
-  for (const item of rawHistory) {
+  // Iterate backwards to keep the most recent messages
+  for (let i = rawHistory.length - 1; i >= 0; i--) {
+    const item = rawHistory[i];
     if (!item || (item.role !== 'user' && item.role !== 'assistant') || typeof item.content !== 'string') {
-      return { ok: false, reply: 'One of the planner messages was not in a format I can use. Please try again.' };
+      continue; // Skip invalid messages
     }
 
     const content = item.content.trim();
     if (!content) continue;
 
+    // Check message length
     if (content.length > MAX_MESSAGE_CHARS) {
-      return { ok: false, reply: 'That message is a little too long for the quick planner. Please shorten it and try again.' };
+      if (i === rawHistory.length - 1) {
+        return { ok: false, reply: 'That message is a little too long for the quick planner. Please shorten it and try again.' };
+      }
+      continue; // Skip older messages that are too long
+    }
+
+    // Stop collecting if we reach limits
+    if (messages.length >= MAX_HISTORY_MESSAGES || totalChars + content.length > MAX_TOTAL_CHARS) {
+      break;
     }
 
     totalChars += content.length;
-    if (totalChars > MAX_TOTAL_CHARS) {
-      return { ok: false, reply: 'That conversation is a little too long for the quick planner. Please start over with a shorter summary.' };
-    }
-
-    messages.push({ role: item.role, content });
+    messages.unshift({ role: item.role, content }); // Prepend to keep chronological order
   }
 
   return { ok: true, messages };

@@ -82,15 +82,27 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
             <label>Experience</label>
             <select name="excursion" defaultValue="Any package, excursion, or safari">
               <option>Any package, excursion, or safari</option>
-              <option>6 Days Safari &amp; Zanzibar Escape</option>
-              <option>7 Days Honeymoon Safari &amp; Zanzibar</option>
-              <option>10 Days Classic Safari &amp; Zanzibar</option>
-              <option>2 Days Fly-In Safari From Zanzibar</option>
-              <option>Stone Town &amp; Culture Experience</option>
-              <option>Safari Blue Dhow &amp; Snorkel</option>
-              <option>Serengeti Migration</option>
-              <option>Ngorongoro &amp; Tarangire</option>
-              <option>Nyerere Fly-In Safari</option>
+              <optgroup label="Popular Packages">
+                <option>6 Days Safari &amp; Zanzibar Escape</option>
+                <option>7 Days Honeymoon Safari &amp; Zanzibar</option>
+                <option>10 Days Classic Safari &amp; Zanzibar</option>
+              </optgroup>
+              <optgroup label="Tanzania Safaris">
+                <option>2 Days Fly-In Safari From Zanzibar</option>
+                <option>Serengeti Migration Safari</option>
+                <option>Ngorongoro &amp; Tarangire</option>
+                <option>Nyerere (Selous) Fly-In Safari</option>
+                <option>Ruaha National Park</option>
+              </optgroup>
+              <optgroup label="Zanzibar Excursions">
+                <option>Safari Blue Dhow &amp; Snorkel</option>
+                <option>Stone Town &amp; Culture Tour</option>
+                <option>Prison Island Giant Tortoises</option>
+                <option>Spice Tour &amp; Swahili Lunch</option>
+                <option>Jozani Forest Red Colobus</option>
+                <option>Blue Lagoon Snorkeling</option>
+                <option>Sunset Trip &amp; The Rock Restaurant</option>
+              </optgroup>
             </select>
           </div>
           <div className="hero__search-field">

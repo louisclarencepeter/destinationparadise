@@ -54,15 +54,19 @@
 @media (max-width: 960px) {
   .nav__menu {
     position: absolute; top: 100%; left: 0; right: 0;
-    flex-direction: column; gap: .6rem;
-    background: color-mix(in oklab, var(--page-bg) 96%, transparent);
-    backdrop-filter: blur(14px);
-    border-bottom: 1px solid var(--border);
-    padding: 1rem 1.5rem 1.5rem;
+    height: 100dvh;
+    flex-direction: column; gap: 2rem;
+    justify-content: flex-start; align-items: center;
+    background: color-mix(in oklab, var(--page-bg) 98%, transparent);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: none;
+    padding: 3rem 1.5rem;
     transform: translateY(-10px); opacity: 0; pointer-events: none;
-    transition: all .25s ease;
+    transition: all .3s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .nav__menu--open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+  .nav__item a { font-size: 2rem; font-weight: 500; }
   .nav__item--mobile-only { display: list-item; }
   .nav__burger { display: inline-flex; }
 }
