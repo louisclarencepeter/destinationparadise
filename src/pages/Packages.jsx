@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { destinationParadisePackages } from '../data/destinationParadisePackages.js';
 import { uniqueProductImages } from '../utils/productImages.js';
+import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
@@ -158,7 +159,7 @@ export default function Packages() {
   return (
     <main className="excursions-page packages-page" ref={pageRef}>
       <section className="exc-hero pkg-hero">
-        <div className="exc-hero__bg"><img src="/assets/images/safaris/eland-grazing.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
+        <div className="exc-hero__bg"><ResponsiveImage src="/assets/images/safaris/eland-grazing.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
         <div className="exc-hero__inner">
           <span className="exc-hero__eyebrow">Hotels · safaris · excursions · special moments</span>
           <h1 className="exc-hero__title">Packages for the trip <em>you actually want.</em></h1>
@@ -309,7 +310,7 @@ export default function Packages() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src="/assets/images/excursions/prison-island-tortoise.webp" alt="" /></div>
+        <div className="exc-cta__bg"><ResponsiveImage src="/assets/images/excursions/prison-island-tortoise.webp" alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Want us to build it around you?</h2>
           <p>Send dates, group size, and the style you like. We’ll come back with a real package and a real price.</p>

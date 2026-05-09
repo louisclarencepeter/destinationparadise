@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { PACKAGES } from './Packages.jsx';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -50,7 +51,7 @@ export default function PackageDetail() {
 
       <article id={pkg.id} className="exc-block exc-block--detail">
         <div className="exc-block__img">
-          <img src={pkg.image} alt="" />
+          <ResponsiveImage src={pkg.image} alt="" />
           <span className="exc-block__cat">{pkg.category}</span>
         </div>
         <div className="exc-block__body">
@@ -111,7 +112,7 @@ export default function PackageDetail() {
       </article>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src={pkg.image} alt="" /></div>
+        <div className="exc-cta__bg"><ResponsiveImage src={pkg.image} alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Ready to plan {pkg.title}?</h2>
           <p>Tell us your dates, guest count, and comfort level. We’ll shape the package and quote it properly.</p>

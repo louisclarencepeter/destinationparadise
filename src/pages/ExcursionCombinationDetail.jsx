@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import { EXCURSION_COMBINATIONS } from '../data/excursionCombinations.js';
 import '../styles/homepage.css';
@@ -46,7 +47,7 @@ export default function ExcursionCombinationDetail() {
 
       <article id={combo.id} className="exc-block exc-block--detail">
         <div className="exc-block__img">
-          <img src={heroImage} alt="" />
+          <ResponsiveImage src={heroImage} alt="" />
           <span className="exc-block__cat">Combination</span>
         </div>
         <div className="exc-block__body">
@@ -117,7 +118,7 @@ export default function ExcursionCombinationDetail() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src={heroImage} alt="" /></div>
+        <div className="exc-cta__bg"><ResponsiveImage src={heroImage} alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Ready to book {combo.title}?</h2>
           <p>Tell us your hotel, date, and group size. We’ll confirm the best timing, pickup, guide, and final combination price.</p>

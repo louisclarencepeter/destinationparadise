@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import MapSection from '../components/homepage/MapSection.jsx';
+import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import { destinationParadisePackages } from '../data/destinationParadisePackages.js';
 import { destinationParadiseSafariPricing } from '../data/safariPricing.js';
@@ -242,7 +243,7 @@ export default function Explore() {
   return (
     <main className="explore-page">
       <section className="exc-hero explore-hero">
-        <div className="exc-hero__bg"><img src="/assets/images/home/stone-town-waterfront.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
+        <div className="exc-hero__bg"><ResponsiveImage src="/assets/images/home/stone-town-waterfront.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
         <div className="exc-hero__inner">
           <span className="exc-hero__eyebrow">Explore Zanzibar & Tanzania</span>
           <h1 className="exc-hero__title">Start with the place, <em>or the kind of trip.</em></h1>
@@ -334,7 +335,7 @@ export default function Explore() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src="/assets/images/safaris/buffalo-herd-close.webp" alt="" /></div>
+        <div className="exc-cta__bg"><ResponsiveImage src="/assets/images/safaris/buffalo-herd-close.webp" alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Want us to map the right route?</h2>
           <p>Tell us the places you like, your travel dates, and your pace. We’ll connect the best packages, excursions, and safaris into one clear plan.</p>

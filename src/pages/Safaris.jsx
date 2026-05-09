@@ -4,6 +4,7 @@ import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
 import { ALL_SAFARI_PRODUCTS, INCLUDED_LIST, PARKS, SAFARI_TYPES } from '../data/safariPageData.js';
+import ResponsiveImage from '../components/ResponsiveImage.jsx';
 
 const safariImg = (file) => `/assets/images/safaris/${file}`;
 
@@ -233,7 +234,7 @@ export default function Safaris() {
       {/* HERO */}
       <section className="saf-hero">
         <div className="saf-hero__bg">
-          <img src={safariImg('male-lion-in-grass.webp')} alt="" />
+          <ResponsiveImage src={safariImg('male-lion-in-grass.webp')} alt="" />
         </div>
         <div className="saf-hero__inner">
           <span className="saf-hero__eyebrow">Mainland Tanzania · the heart of what we do</span>
@@ -561,7 +562,7 @@ export default function Safaris() {
       {/* CTA */}
       <section className="saf-cta">
         <div className="saf-cta__bg">
-          <img src={safariImg('lioness-and-cub-resting.webp')} alt="" />
+          <ResponsiveImage src={safariImg('lioness-and-cub-resting.webp')} alt="" />
         </div>
         <div className="saf-cta__inner">
           <h2>Ready to plan?</h2>

@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { ALL_SAFARI_PRODUCTS, INCLUDED_LIST } from '../data/safariPageData.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -56,7 +57,7 @@ export default function SafariDetail() {
 
       <article id={safari.id} className="exc-block exc-block--detail">
         <div className="exc-block__img">
-          <img src={safari.image} alt={safari.alt || safari.title} />
+          <ResponsiveImage src={safari.image} alt={safari.alt || safari.title} />
           <span className="exc-block__cat">{safari.category}</span>
           {safari.feature && <span className="exc-block__season">Most popular</span>}
         </div>
@@ -145,7 +146,7 @@ export default function SafariDetail() {
 
       <section className="saf-cta">
         <div className="saf-cta__bg">
-          <img src={safari.image} alt="" />
+          <ResponsiveImage src={safari.image} alt="" />
         </div>
         <div className="saf-cta__inner">
           <h2>Ready to plan {safari.title}?</h2>

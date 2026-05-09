@@ -53,6 +53,7 @@ export default function NewsletterSection() {
       >
         <input type="hidden" name="form-name" value="newsletter" />
         <input
+          id="newsletter-email"
           className="newsletter__input"
           name="email"
           type="email"
@@ -61,6 +62,8 @@ export default function NewsletterSection() {
           placeholder={done ? "✓ You're on the list" : 'you@example.com'}
           required={!done}
           disabled={done}
+          aria-label="Email address"
+          autoComplete="email"
         />
         <button type="submit" className="newsletter__submit" disabled={pending || done}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">

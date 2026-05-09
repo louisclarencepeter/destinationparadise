@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
+import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -61,8 +62,8 @@ export default function ExcursionDetail() {
       </nav>
 
       <article id={e.id} data-cat={categoryToSlug(e.category)} className="exc-block exc-block--detail">
-        <div className={`exc-block__img${e.imageNeeded ? ' exc-block__img--placeholder' : ''}`} data-cat={categoryToSlug(e.category)}>
-          <img src={e.image} alt={e.imageNeeded ? '' : e.alt || e.title} />
+        <div className="exc-block__img">
+          <ResponsiveImage src={e.image} alt={e.imageNeeded ? '' : e.alt || e.title} />
           <span className="exc-block__cat" data-cat={categoryToSlug(e.category)}>{e.category}</span>
           {e.season && <span className="exc-block__season">Seasonal · {e.season}</span>}
         </div>
@@ -153,7 +154,7 @@ export default function ExcursionDetail() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src={e.imageNeeded ? '/assets/images/excursions/safari-blue-sandbank.webp' : e.image} alt="" /></div>
+        <div className="exc-cta__bg"><ResponsiveImage src={e.imageNeeded ? '/assets/images/excursions/safari-blue-sandbank.webp' : e.image} alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Ready to book {e.title}?</h2>
           <p>Tell us your dates and we'll come back within 24 hours with available pickup times and a final price — no commitment.</p>

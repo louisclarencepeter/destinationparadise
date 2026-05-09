@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PlannerSection from '../components/homepage/PlannerSection.jsx';
+import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 
@@ -78,7 +79,7 @@ export default function TripPlannerPage() {
   return (
     <main className="trip-planner-page">
       <section className="trip-hero">
-        <div className="trip-hero__bg"><img src="/assets/images/safaris/lioness-and-cub-resting.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
+        <div className="trip-hero__bg"><ResponsiveImage src="/assets/images/safaris/lioness-and-cub-resting.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
         <div className="trip-hero__inner">
           <span className="trip-hero__eyebrow">AI Trip Planner · human-reviewed before booking</span>
           <h1 className="trip-hero__title">Sketch the trip <em>before you commit.</em></h1>
@@ -139,7 +140,7 @@ export default function TripPlannerPage() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src="/assets/images/safaris/crowned-cranes-in-grass.webp" alt="" /></div>
+        <div className="exc-cta__bg"><ResponsiveImage src="/assets/images/safaris/crowned-cranes-in-grass.webp" alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Want us to turn the draft into a quote?</h2>
           <p>Send the plan, dates, group size, and travel style. We’ll check availability and come back with a real route and a real price.</p>

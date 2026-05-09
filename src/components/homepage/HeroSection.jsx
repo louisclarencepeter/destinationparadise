@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowIcon } from './Icons.jsx';
+import ResponsiveImage from '../ResponsiveImage.jsx';
 
 const HERO_SLIDES = [
   '/assets/images/home/aerial-boats-turquoise-water.webp',
@@ -56,11 +57,11 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
   return (
     <section className={`hero hero--${tweaks.hero}`} id="hero">
       <div className="hero__bg" aria-hidden="true">
-        {HERO_SLIDES.map((src, index) => (
-          <img
-            key={src}
+        {HERO_SLIDES.map((slide, index) => (
+          <ResponsiveImage
+            key={slide}
             className={`hero__bg-slide${index === activeSlide ? ' is-active' : ''}`}
-            src={src}
+            src={slide}
             alt=""
             loading={index === 0 ? 'eager' : 'lazy'}
             decoding={index === 0 ? 'sync' : 'async'}
@@ -79,8 +80,8 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
         </div>
         <form className="hero__search" onSubmit={handleHeroSearch}>
           <div className="hero__search-field">
-            <label>Experience</label>
-            <select name="excursion" defaultValue="Any package, excursion, or safari">
+            <label htmlFor="hero-experience">Experience</label>
+            <select id="hero-experience" name="excursion" defaultValue="Any package, excursion, or safari" autoComplete="off">
               <option>Any package, excursion, or safari</option>
               <optgroup label="Popular Packages">
                 <option>6 Days Safari &amp; Zanzibar Escape</option>
@@ -106,12 +107,12 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
             </select>
           </div>
           <div className="hero__search-field">
-            <label>Date</label>
-            <input type="date" name="date" defaultValue={defaultTripDate} min={earliestTripDate} />
+            <label htmlFor="hero-date">Date</label>
+            <input id="hero-date" type="date" name="date" defaultValue={defaultTripDate} min={earliestTripDate} autoComplete="off" />
           </div>
           <div className="hero__search-field">
-            <label>Guests</label>
-            <select name="guests" defaultValue="2 guests">
+            <label htmlFor="hero-guests">Guests</label>
+            <select id="hero-guests" name="guests" defaultValue="2 guests" autoComplete="off">
               <option>1 guest</option>
               <option>2 guests</option>
               <option>3 guests</option>

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
+import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import { destinationParadisePackages } from '../data/destinationParadisePackages.js';
 import { destinationParadiseSafariPricing } from '../data/safariPricing.js';
@@ -245,7 +246,7 @@ export default function Booking() {
   return (
     <main className="booking-page">
       <section className="booking-hero">
-        <div className="booking-hero__bg"><img src="/assets/images/home/mizingani-waterfront.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
+        <div className="booking-hero__bg"><ResponsiveImage src="/assets/images/home/mizingani-waterfront.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
         <div className="booking-hero__inner">
           <span className="booking-hero__eyebrow">Booking request</span>
           <h1>One form <em>for every trip.</em></h1>
@@ -459,7 +460,7 @@ export default function Booking() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src="/assets/images/excursions/stone-town-old-fort.webp" alt="" /></div>
+        <div className="exc-cta__bg"><ResponsiveImage src="/assets/images/excursions/stone-town-old-fort.webp" alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Need help before you send it?</h2>
           <p>Open the planner if you want to shape the route first, or explore the full map to choose the right beach, safari circuit, and island days.</p>

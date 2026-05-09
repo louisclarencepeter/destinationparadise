@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import { EXCURSIONS, CATEGORIES } from '../data/excursionsData.js';
@@ -118,7 +119,7 @@ export default function Excursions() {
     <main className="excursions-page" ref={pageRef}>
       {/* HERO */}
       <section className="exc-hero">
-        <div className="exc-hero__bg"><img src={HERO_IMAGE} alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
+        <div className="exc-hero__bg"><ResponsiveImage src={HERO_IMAGE} alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
         <div className="exc-hero__inner">
           <span className="exc-hero__eyebrow">Zanzibar &amp; the coast · handpicked day trips</span>
           <h1 className="exc-hero__title">One island. <em>{EXCURSIONS.length}+ unforgettable journeys.</em></h1>
@@ -293,7 +294,7 @@ export default function Excursions() {
 
       {/* CTA */}
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src={CTA_IMAGE} alt="" /></div>
+        <div className="exc-cta__bg"><ResponsiveImage src={CTA_IMAGE} alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Ready to lock a date?</h2>
           <p>Tell us when you're here and which excursions caught your eye. We'll come back within 24 hours with available dates, pickup times and a final price — no commitment, no chatbot.</p>
