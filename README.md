@@ -75,7 +75,7 @@ The planner endpoint is configured in `netlify.toml`:
 | `/packages/:id` | Package detail pages |
 | `/trip-planner` | AI Trip Planner page with prompt cards and chat UI |
 | `/explore` | Interactive Explore page with map, destination hubs, related products, and CTA |
-| `/booking`, `/book-now` | Booking placeholder/entry point |
+| `/booking`, `/book-now` | Booking request, quote, and payment-link entry point |
 | `/aboutus` | About placeholder |
 | `/cookies-policy`, `/privacy-policy`, `/terms-of-service` | Policy pages |
 | `*` | 404 page |

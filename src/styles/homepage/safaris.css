@@ -14,12 +14,12 @@
 }
 .safari-card {
   grid-column: span 4;
-  background: var(--card-bg, #fff);
+  background: var(--surface-raised);
   border-radius: 18px;
   overflow: hidden;
   box-shadow: 0 1px 0 rgba(26,77,110,.06), 0 18px 48px -28px rgba(26,77,110,.25);
   display: flex; flex-direction: column;
-  border: 1px solid rgba(26,77,110,.07);
+  border: 1px solid var(--divider);
   transition: transform .35s ease, box-shadow .35s ease;
 }
 .safari-card:hover { transform: translateY(-4px); box-shadow: 0 1px 0 rgba(26,77,110,.06), 0 28px 60px -24px rgba(26,77,110,.35); }
@@ -60,7 +60,7 @@ html[data-theme="dark"] .safari-card__placeholder-text { color: rgba(255,255,255
   font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
   padding: .3rem .65rem;
   border-radius: 999px;
-  background: rgba(26,77,110,.1);
+  background: var(--soft-tint);
   color: var(--dp-secondary);
   min-width: 96px; justify-content: center;
 }
@@ -89,7 +89,7 @@ html[data-theme="dark"] .safaris__mode-tag--accent { background: rgba(255,111,97
 .safari-card__body p { color: var(--text-muted); font-size: .95rem; line-height: 1.55; margin: 0; flex: 1; }
 .safari-card__foot {
   display: flex; align-items: center; justify-content: space-between;
-  padding-top: .5rem; border-top: 1px solid rgba(26,77,110,.08);
+  padding-top: .5rem; border-top: 1px solid var(--divider);
   margin-top: .5rem;
 }
 .safari-card__from { font-size: 13px; color: var(--text-muted); }
@@ -116,4 +116,3 @@ html[data-theme="dark"] .safari-card__nights,
 html[data-theme="dark"] .ex-card__badge {
   background: rgba(255,255,255,.92); /* keep light pill — readable on photo or placeholder */
 }
-

@@ -238,7 +238,8 @@ html, body { max-width: 100%; }
 @media (max-width: 480px) {
   .newsletter__form { flex-direction: column; background: transparent; box-shadow: none; gap: .55rem; }
   .newsletter__input {
-    background: rgba(255,255,255,.95);
+    background: color-mix(in srgb, var(--surface) 94%, transparent);
+    border: 1px solid var(--border);
     border-radius: 12px;
     padding: .85rem 1rem;
     font-size: 16px;

@@ -1,7 +1,7 @@
 /* ===== CONTACT ===== */
 .contact {
   padding: var(--section-pad-block) var(--section-pad-inline);
-  background: linear-gradient(180deg, var(--surface) 0%, rgba(26,77,110,.04) 100%);
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-subtle) 100%);
 }
 .contact__head {
   max-width: 760px;
@@ -43,8 +43,8 @@
 a.contact__detail-value:hover { color: var(--dp-accent); }
 
 .contact__form {
-  background: var(--card-bg, #fff);
-  border: 1px solid rgba(26,77,110,.07);
+  background: var(--surface-raised);
+  border: 1px solid var(--divider);
   border-radius: 18px;
   padding: clamp(1.5rem, 3vw, 2.25rem);
   box-shadow: 0 1px 0 rgba(26,77,110,.06), 0 18px 48px -28px rgba(26,77,110,.25);

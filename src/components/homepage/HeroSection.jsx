@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowIcon } from './Icons.jsx';
 
@@ -10,9 +10,22 @@ const HERO_SLIDES = [
 ];
 const HERO_SLIDE_INTERVAL_MS = 7000;
 
+const dateInputValue = (date) => {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+};
+
 export default function HeroSection({ tweaks, handleHeroSearch }) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const defaultTripDate = useMemo(() => {
+    const date = new Date();
+    date.setDate(date.getDate() + 3);
+    return dateInputValue(date);
+  }, []);
+  const earliestTripDate = useMemo(() => dateInputValue(new Date()), []);
 
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
@@ -82,7 +95,7 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
           </div>
           <div className="hero__search-field">
             <label>Date</label>
-            <input type="date" name="date" defaultValue="2026-05-12" />
+            <input type="date" name="date" defaultValue={defaultTripDate} min={earliestTripDate} />
           </div>
           <div className="hero__search-field">
             <label>Guests</label>

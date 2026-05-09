@@ -3,25 +3,58 @@
 // Set ANTHROPIC_API_KEY in the Netlify site environment.
 // The frontend calls /api/planner (rewritten to this function via netlify.toml).
 
+import { EXCURSIONS } from '../../src/data/excursionsData.js';
+import { destinationParadisePackages } from '../../src/data/destinationParadisePackages.js';
+import { nextLevelSafariProducts } from '../../src/data/nextLevelSafariProducts.js';
+import { destinationParadiseSafariPricing } from '../../src/data/safariPricing.js';
+
 const PLANNER_MODEL = 'claude-3-5-haiku-20241022';
 const MAX_REQUEST_BYTES = 20_000;
 const MAX_HISTORY_MESSAGES = 16;
 const MAX_MESSAGE_CHARS = 1_200;
 const MAX_TOTAL_CHARS = 6_000;
 
+const formatMoney = (value) => `$${Number(value).toLocaleString()}`;
+
+const priceRange = (pricing) => {
+  if (!pricing?.from) return 'final price confirmed by the team';
+  const from = formatMoney(pricing.from);
+  const to = pricing.to ? `-${formatMoney(pricing.to)}` : '';
+  return `from ${from}${to}`;
+};
+
+const packageSummary = destinationParadisePackages
+  .map((item) => `${item.title} (${item.duration}, ${item.category}, ${priceRange(item.pricing)})`)
+  .join('; ');
+
+const coreSafariSummary = destinationParadiseSafariPricing
+  .map((item) => `${item.title} (${item.positioning}, from ${formatMoney(item.recommendedPublicPrice.lowSeason)})`)
+  .join('; ');
+
+const specialistSafariSummary = nextLevelSafariProducts
+  .map((item) => `${item.title} (${item.duration}, ${item.category}, ${priceRange(item.pricing)})`)
+  .join('; ');
+
+const excursionSummary = EXCURSIONS
+  .slice(0, 18)
+  .map((item) => `${item.title} (${item.category}, ${item.duration}${typeof item.price === 'number' ? `, from ${formatMoney(item.price)}` : ''})`)
+  .join('; ');
+
 const PLANNER_SYSTEM = `You are the Destination Paradise Trip Planner — a warm, conversational travel concierge for a small Zanzibar-based travel company. You ask thoughtful, focused questions one or two at a time to understand what kind of trip the guest wants, then draft a day-by-day itinerary.
 
 What you know:
 - Destination Paradise specializes in Zanzibar (Stone Town, Nungwi, Matemwe, Paje, Kizimkazi, Jozani Forest), with mainland Tanzania safaris (Serengeti, Ngorongoro, Tarangire, Selous/Nyerere) added on.
-- Signature excursions: Safari Blue Dhow, Stone Town Heritage Walk, Spice & Culture Tour, Dream Dhow Sunset, Dolphin Snorkeling, Prison Island.
-- Packages exist as starting points: Island Essentials (7nt, $2,490), Bush & Beach (10nt, $5,790), Honeymoon Hideaway (5nt, $3,180).
+- Current package starting points: ${packageSummary}.
+- Core safari starting points: ${coreSafariSummary}.
+- Specialist safari styles: ${specialistSafariSummary}.
+- Signature excursions include: ${excursionSummary}. The full site has ${EXCURSIONS.length}+ Zanzibar excursions across ocean, culture, nature, adventure, food, festivals, and family-friendly trips.
 - Best time to visit: June-Oct (dry, cool) and Dec-Feb (hot, dry). Avoid long rains in April.
 
 Style:
 - Warm, concise, a bit of swahili sparkle ("karibu", "asante", "hakuna shida") used very lightly.
 - One short message at a time — usually 2-4 sentences. Do NOT dump huge itineraries until you have asked at least 3-4 questions about pace, dates, budget, party size, and interests.
 - Once you have enough, draft a clear day-by-day plan with location, what they do, suggested hotel tier, and approximate price range. End by saying "Want me to send this draft to the team to price and confirm?"
-- Never invent specific live availability or final prices — flag that the team will confirm.`;
+- Use the listed products as starting points when they fit. Never invent specific live availability or final prices — flag that the team will confirm.`;
 
 const plannerError = (reply, status = 400) =>
   Response.json({ reply }, { status });

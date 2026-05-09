@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { announceTheme, applyTheme, normalizeTheme, persistTheme, readStoredTheme } from '../utils/theme.js';
 
 const NAV_ITEMS = [
   { label: 'Home', to: '/', end: true },
@@ -17,11 +18,7 @@ const ArrowIcon = (p) => (
 );
 
 function getInitialTheme() {
-  try {
-    const saved = JSON.parse(localStorage.getItem('dp_tweaks') || 'null');
-    if (saved?.theme) return saved.theme;
-  } catch (e) { /* noop */ }
-  return document.documentElement.getAttribute('data-theme') || 'light';
+  return readStoredTheme();
 }
 
 export default function SiteNav(props) {
@@ -29,24 +26,22 @@ export default function SiteNav(props) {
   const onThemeToggle = props?.onThemeToggle;
   const [navOpen, setNavOpen] = useState(false);
   const [localTheme, setLocalTheme] = useState(getInitialTheme);
-  const theme = controlledTheme || localTheme;
+  const theme = normalizeTheme(controlledTheme || localTheme);
 
   useEffect(() => {
     if (controlledTheme) return;
-    document.documentElement.setAttribute('data-theme', localTheme);
-    try {
-      const saved = JSON.parse(localStorage.getItem('dp_tweaks') || '{}');
-      localStorage.setItem('dp_tweaks', JSON.stringify({ ...saved, theme: localTheme }));
-    } catch (e) { /* noop */ }
-    window.dispatchEvent(new CustomEvent('dp-theme-change', { detail: { theme: localTheme } }));
+    const nextTheme = applyTheme(localTheme);
+    persistTheme(nextTheme);
+    announceTheme(nextTheme);
   }, [controlledTheme, localTheme]);
 
   const toggleTheme = () => {
+    const nextTheme = theme === 'dark' ? 'light' : 'dark';
     if (onThemeToggle) {
-      onThemeToggle();
+      onThemeToggle(nextTheme);
       return;
     }
-    setLocalTheme((current) => (current === 'dark' ? 'light' : 'dark'));
+    setLocalTheme(nextTheme);
   };
 
   return (
@@ -67,7 +62,7 @@ export default function SiteNav(props) {
           <button
             className="theme-toggle"
             type="button"
-            aria-label="Toggle theme"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
             onClick={toggleTheme}
           >
             {theme === 'dark' ? (

@@ -23,10 +23,14 @@
   --page-bg: var(--dp-bg-1);
   --surface: #ffffff;
   --surface-2: #ffffff;
+  --surface-raised: color-mix(in srgb, var(--surface) 94%, white 6%);
+  --surface-subtle: rgba(26,77,110,.04);
   --text: var(--dp-fg-1);
   --text-soft: var(--dp-fg-2);
   --text-muted: var(--dp-fg-3);
   --border: var(--dp-border);
+  --divider: rgba(26,77,110,.1);
+  --soft-tint: rgba(26,77,110,.08);
   --nav-height: 66px;
   --card-accent-opacity: 0.08;
 
@@ -52,10 +56,14 @@ html[data-theme="dark"] {
   --page-bg: #0B2030;
   --surface: #112C3F;
   --surface-2: #163449;
+  --surface-raised: color-mix(in srgb, var(--surface-2) 88%, white 4%);
+  --surface-subtle: rgba(255,255,255,.04);
   --text: #E6EDF3;
   --text-soft: #CFE1ED;
   --text-muted: #8FAFC2;
   --border: rgba(255,255,255,0.08);
+  --divider: rgba(255,255,255,.1);
+  --soft-tint: rgba(255,255,255,.08);
   --card-accent-opacity: 0.18;
 }
 

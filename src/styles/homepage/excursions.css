@@ -74,7 +74,7 @@
   min-width: 86px;
   padding: .3rem .65rem;
   border-radius: 999px;
-  background: rgba(26,77,110,.1);
+  background: var(--soft-tint);
   color: var(--dp-secondary);
   font-size: 10px;
   font-weight: 700;
@@ -115,8 +115,8 @@ html[data-theme="dark"] .excursions__mode-tag--accent {
 /* ------------ CARD (mirrors .safari-card) ------------ */
 .ex-card {
   position: relative; overflow: hidden; cursor: pointer;
-  background: var(--card-bg, #fff);
-  border: 1px solid rgba(26,77,110,.07);
+  background: var(--surface-raised);
+  border: 1px solid var(--divider);
   border-radius: 18px;
   box-shadow: 0 1px 0 rgba(26,77,110,.06), 0 18px 48px -28px rgba(26,77,110,.25);
   transition: transform .35s ease, box-shadow .35s ease;

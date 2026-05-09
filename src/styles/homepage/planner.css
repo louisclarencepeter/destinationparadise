@@ -240,7 +240,7 @@
   color: var(--dp-accent);
 }
 .trip-steps {
-  background: linear-gradient(180deg, var(--surface), rgba(26,77,110,.04));
+  background: linear-gradient(180deg, var(--surface), var(--surface-subtle));
 }
 
 .nav__pill {
@@ -337,7 +337,7 @@
   width: 28px; height: 28px;
   display: inline-flex; align-items: center; justify-content: center;
   border-radius: 8px;
-  background: rgba(26,77,110,.08);
+  background: var(--soft-tint);
   color: #1A4D6E;
   font-size: 14px;
 }
@@ -357,8 +357,8 @@
   margin-right: .35rem;
 }
 .planner__suggest {
-  background: rgba(255,255,255,.7);
-  border: 1px solid rgba(26,77,110,.15);
+  background: var(--surface-raised);
+  border: 1px solid var(--divider);
   border-radius: 999px;
   padding: .5rem .9rem;
   font-family: var(--dp-font-sans);
@@ -376,9 +376,9 @@
 
 /* Chat panel */
 .planner__chat {
-  background: #fff;
+  background: var(--surface-raised);
   border-radius: 22px;
-  border: 1px solid rgba(26,77,110,.1);
+  border: 1px solid var(--divider);
   box-shadow: 0 1px 0 rgba(26,77,110,.04), 0 30px 80px -32px rgba(26,77,110,.35);
   display: flex; flex-direction: column;
   overflow: hidden;
@@ -389,8 +389,8 @@
 .planner__header {
   display: flex; align-items: center; gap: .85rem;
   padding: 1rem 1.25rem;
-  border-bottom: 1px solid rgba(26,77,110,.08);
-  background: linear-gradient(180deg, rgba(26,77,110,.04), transparent);
+  border-bottom: 1px solid var(--divider);
+  background: linear-gradient(180deg, var(--surface-subtle), transparent);
 }
 [data-theme="dark"] .planner__header { border-bottom-color: rgba(255,255,255,.06); background: linear-gradient(180deg, rgba(255,255,255,.04), transparent); }
 .planner__avatar {
@@ -522,8 +522,8 @@
 .planner__form {
   display: flex; align-items: flex-end; gap: .5rem;
   padding: .85rem 1rem;
-  border-top: 1px solid rgba(26,77,110,.08);
-  background: rgba(26,77,110,.02);
+  border-top: 1px solid var(--divider);
+  background: var(--surface-subtle);
   transition: background .2s ease, box-shadow .2s ease;
 }
 .planner__form--active {
@@ -566,7 +566,7 @@
   gap: .75rem;
   font-size: 11px;
   color: var(--text-muted);
-  border-top: 1px solid rgba(26,77,110,.06);
+  border-top: 1px solid var(--divider);
 }
 [data-theme="dark"] .planner__foot { border-top-color: rgba(255,255,255,.04); }
 .planner__handoff { color: #FF6F61; font-weight: 600; text-decoration: none; flex-shrink: 0; }

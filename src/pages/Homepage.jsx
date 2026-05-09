@@ -14,6 +14,7 @@ import TestimonialsSection from '../components/homepage/TestimonialsSection.jsx'
 import PlannerSection from '../components/homepage/PlannerSection.jsx';
 import ContactSection from '../components/homepage/ContactSection.jsx';
 import NewsletterSection from '../components/homepage/NewsletterSection.jsx';
+import { announceTheme, applyTheme, normalizeTheme, readStoredTweaks } from '../utils/theme.js';
 
 const PINS = [
   // Zanzibar — the island
@@ -56,10 +57,8 @@ const TWEAKS_DEFAULTS = { hero: 'photo', layout: '3up', theme: 'light' };
 const BEST_SELLING_EXCURSION_IDS = ['safari-blue', 'mnemba', 'spice-tour'];
 
 function loadTweaks() {
-  try {
-    const saved = JSON.parse(localStorage.getItem('dp_tweaks') || 'null');
-    if (saved) return { ...TWEAKS_DEFAULTS, ...saved };
-  } catch (e) { /* noop */ }
+  const saved = readStoredTweaks();
+  if (saved) return { ...TWEAKS_DEFAULTS, ...saved, theme: normalizeTheme(saved.theme) };
   return { ...TWEAKS_DEFAULTS };
 }
 
@@ -72,14 +71,15 @@ export default function Homepage() {
 
   // Persist theme + tweaks
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', tweaks.theme);
-    try { localStorage.setItem('dp_tweaks', JSON.stringify(tweaks)); } catch (e) { /* noop */ }
+    const nextTheme = applyTheme(tweaks.theme);
+    try { localStorage.setItem('dp_tweaks', JSON.stringify({ ...tweaks, theme: nextTheme })); } catch (e) { /* noop */ }
+    announceTheme(nextTheme);
   }, [tweaks]);
 
   useEffect(() => {
     const onThemeChange = (event) => {
       const theme = event.detail?.theme;
-      if (theme) setTweaks((current) => ({ ...current, theme }));
+      if (theme) setTweaks((current) => (current.theme === theme ? current : { ...current, theme }));
     };
     window.addEventListener('dp-theme-change', onThemeChange);
     return () => window.removeEventListener('dp-theme-change', onThemeChange);

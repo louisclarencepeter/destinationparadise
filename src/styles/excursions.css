@@ -4,7 +4,7 @@
   background:
     radial-gradient(1200px 600px at 85% -10%, rgba(102, 184, 220, 0.14), transparent 60%),
     radial-gradient(900px 500px at 10% 20%, rgba(255, 159, 122, 0.1), transparent 58%),
-    var(--surface, #FFFCF5);
+    var(--page-bg, #FFFCF5);
   color: var(--text, #1a4d6e);
 }
 
@@ -204,7 +204,7 @@
   margin: 0 auto 1.5rem;
   border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
   border-radius: 18px;
-  background: color-mix(in srgb, var(--surface, #FFFCF5) 94%, white 6%);
+  background: var(--surface-raised);
   box-shadow: 0 22px 42px -36px rgba(0,0,0,.45);
 }
 .exc-block:nth-of-type(even) { grid-template-columns: 1fr 1.05fr; }
@@ -440,8 +440,8 @@
 
 /* ============ PRACTICAL STRIP ============ */
 .exc-prac {
-  background: #1a4d6e;
-  color: #F5F1E8;
+  background: linear-gradient(180deg, var(--surface), var(--surface-subtle));
+  color: var(--text);
   padding: clamp(4rem, 7vw, 6rem) clamp(1.25rem, 5vw, 6rem);
 }
 .exc-prac__grid {
@@ -459,6 +459,11 @@
 .exc-prac__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .65rem; }
 .exc-prac__col li { font-size: .94rem; line-height: 1.55; opacity: .85; display: flex; gap: .55rem; align-items: flex-start; }
 .exc-prac__col li svg { flex-shrink: 0; color: #FF6F61; margin-top: 2px; }
+
+html[data-theme="dark"] .exc-prac {
+  background: #1a4d6e;
+  color: #F5F1E8;
+}
 
 /* ============ FAQ ============ */
 .exc-faq { padding: clamp(4rem, 7vw, 6rem) clamp(1.25rem, 5vw, 6rem); }
@@ -583,7 +588,7 @@
 .exc-grid__empty {
   text-align: center;
   padding: 3rem 1rem;
-  color: rgba(8,30,46,.6);
+  color: var(--text-muted);
   font-size: .95rem;
 }
 .exc-grid__actions {

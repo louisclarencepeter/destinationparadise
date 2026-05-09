@@ -3,7 +3,7 @@ import '../styles/homepage.css';
 
 export default function Placeholder({ title, eyebrow, lead }) {
   return (
-    <main style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4rem 1.5rem', background: 'var(--dp-bg-1)' }}>
+    <main style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '4rem 1.5rem', background: 'var(--page-bg)' }}>
       <div style={{ maxWidth: 640, textAlign: 'center' }}>
         <span className="section-eyebrow">{eyebrow || 'Destination Paradise'}</span>
         <h1 className="section-title" style={{ marginTop: '1rem' }}>{title}</h1>

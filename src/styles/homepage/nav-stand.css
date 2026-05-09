@@ -260,7 +260,7 @@
   position: relative; z-index: 3;
   margin: 0 auto;
   max-width: 880px;
-  background: rgba(255,255,255,.92);
+  background: color-mix(in srgb, var(--surface) 92%, transparent);
   backdrop-filter: blur(14px);
   border-radius: 18px;
   padding: 0.6rem;
@@ -275,13 +275,17 @@
   display: flex; flex-direction: column; gap: 2px;
   padding: .7rem 1rem;
   text-align: left;
-  border-right: 1px solid rgba(26,77,110,.12);
+  border-right: 1px solid var(--divider);
 }
 .hero__search-field:last-of-type { border-right: none; }
-.hero__search-field label { font-family: var(--dp-font-sans); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--dp-secondary); font-weight: 700; }
+.hero__search-field label { font-family: var(--dp-font-sans); font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--text-soft); font-weight: 700; }
 .hero__search-field select, .hero__search-field input {
-  font-family: var(--dp-font-display); font-size: 15px; color: var(--dp-primary);
+  font-family: var(--dp-font-display); font-size: 15px; color: var(--text);
   border: none; outline: none; background: transparent; padding: 0;
+}
+html[data-theme="dark"] .hero__search {
+  background: color-mix(in srgb, var(--surface-2) 92%, transparent);
+  box-shadow: 0 30px 60px rgba(0,0,0,.45);
 }
 .hero__search-submit {
   background-image: var(--dp-gradient-button);

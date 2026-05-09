@@ -491,8 +491,8 @@
 
 .booking-summary__card--dark {
   background:
-    linear-gradient(135deg, rgba(8,30,46,.96), rgba(26,77,110,.86));
-  color: #F5F1E8;
+    linear-gradient(135deg, color-mix(in srgb, var(--surface-raised) 96%, var(--dp-accent) 4%), var(--surface-raised));
+  color: var(--text);
 }
 
 .booking-summary__card--dark span {
@@ -511,13 +511,27 @@
   padding-left: 1.2rem;
   display: grid;
   gap: .55rem;
-  color: rgba(245,241,232,.86);
+  color: var(--text-soft);
 }
 
 .booking-summary__card--dark p {
   margin-top: 1rem;
-  color: rgba(245,241,232,.68);
+  color: var(--text-muted);
   font-size: .9rem;
+}
+
+html[data-theme="dark"] .booking-summary__card--dark {
+  background:
+    linear-gradient(135deg, rgba(8,30,46,.96), rgba(26,77,110,.86));
+  color: #F5F1E8;
+}
+
+html[data-theme="dark"] .booking-summary__card--dark ol {
+  color: rgba(245,241,232,.86);
+}
+
+html[data-theme="dark"] .booking-summary__card--dark p {
+  color: rgba(245,241,232,.68);
 }
 
 .booking-summary__mini {
