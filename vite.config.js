@@ -1,5 +1,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '');
@@ -8,7 +9,16 @@ export default defineConfig(({ mode }) => {
   const strictPort = env.DEV_STRICT_PORT === 'true';
 
   return {
-    plugins: [react()],
+    plugins: [
+      react(),
+      VitePWA({
+        registerType: 'autoUpdate',
+        devOptions: {
+          enabled: true
+        },
+        manifest: false // We already have a static manifest in public/manifest.json
+      })
+    ],
     server: {
       host: devHost,
       open: true,
