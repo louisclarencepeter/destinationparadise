@@ -2,6 +2,7 @@ import { useEffect, useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/homepage.css';
 import { EXCURSIONS } from '../data/excursionsData.js';
+import { DESTINATION_MAP_PINS } from '../data/destinationMapPins.js';
 import HeroSection from '../components/homepage/HeroSection.jsx';
 import ExcursionsSection from '../components/homepage/ExcursionsSection.jsx';
 import SafarisSection from '../components/homepage/SafarisSection.jsx';
@@ -17,21 +18,7 @@ import ContactSection from '../components/homepage/ContactSection.jsx';
 import NewsletterSection from '../components/homepage/NewsletterSection.jsx';
 import { announceTheme, applyTheme, normalizeTheme, readStoredTweaks } from '../utils/theme.js';
 
-const PINS = [
-  // Zanzibar — the island
-  { id: 'stone-town', region: 'Zanzibar', name: 'Stone Town',    lat: -6.1659, lng: 39.1985, desc: 'Heritage walk' },
-  { id: 'fumba',      region: 'Zanzibar', name: 'Fumba',         lat: -6.3413, lng: 39.2900, desc: 'Safari Blue dhow' },
-  { id: 'kizimkazi',  region: 'Zanzibar', name: 'Kizimkazi',     lat: -6.4434, lng: 39.4670, desc: 'Dolphin snorkel' },
-  { id: 'jozani',     region: 'Zanzibar', name: 'Jozani Forest', lat: -6.2790, lng: 39.4130, desc: 'Red colobus' },
-  { id: 'nungwi',     region: 'Zanzibar', name: 'Nungwi',        lat: -5.7260, lng: 39.2960, desc: 'Dream Dhow sunset' },
-  { id: 'matemwe',    region: 'Zanzibar', name: 'Matemwe',       lat: -5.8660, lng: 39.3580, desc: 'Reef snorkel' },
-  { id: 'paje',       region: 'Zanzibar', name: 'Paje',          lat: -6.2700, lng: 39.5470, desc: 'Kitesurf lagoon' },
-  // Tanzania mainland — northern + southern circuits
-  { id: 'serengeti',  region: 'Mainland', name: 'Serengeti',         lat: -2.3333, lng: 34.8333, desc: 'Migration safari' },
-  { id: 'ngorongoro', region: 'Mainland', name: 'Ngorongoro',        lat: -3.2250, lng: 35.4880, desc: 'Crater Big Five' },
-  { id: 'tarangire',  region: 'Mainland', name: 'Tarangire',         lat: -4.0000, lng: 36.0000, desc: 'Elephants & baobabs' },
-  { id: 'selous',     region: 'Mainland', name: 'Nyerere',  lat: -8.5000, lng: 38.0000, desc: 'Boat & walking safari' },
-];
+const PINS = DESTINATION_MAP_PINS;
 
 // season: hotel pricing band, not climate.
 //   'peak' — festive holidays + European summer (most expensive, book months ahead)

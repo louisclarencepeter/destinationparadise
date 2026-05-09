@@ -67,7 +67,18 @@ html[data-theme="dark"] .map-stage .leaflet-control-attribution {
 }
 
 /* Map list region grouping */
-.map-list-group { display: flex; flex-direction: column; gap: .25rem; margin: 1rem 0 1.5rem; }
+.map-list-group {
+  display: flex;
+  flex-direction: column;
+  gap: .25rem;
+  max-height: min(64vh, 680px);
+  margin: 1rem 0 1.5rem;
+  overflow-y: auto;
+  padding-right: .35rem;
+  scrollbar-width: thin;
+}
+.map-list-group::-webkit-scrollbar { width: 6px; }
+.map-list-group::-webkit-scrollbar-thumb { background: rgba(255,111,97,.35); border-radius: 999px; }
 .map-list-label {
   font-family: var(--dp-font-sans);
   font-size: 10px; font-weight: 700;
@@ -79,5 +90,4 @@ html[data-theme="dark"] .map-stage .leaflet-control-attribution {
 .map-list-label:first-child { margin-top: 0; }
 .map-list-label::before { content: ""; width: 14px; height: 1px; background: var(--dp-accent); }
 .map-list-group .map-list { margin: 0; }
-
 

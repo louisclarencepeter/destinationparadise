@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import PlannerSection from '../components/homepage/PlannerSection.jsx';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import '../styles/homepage.css';
@@ -34,10 +34,32 @@ const PLANNER_STEPS = [
   { step: '03', title: 'Send it to us', text: 'Our team checks availability, prices it properly, and turns the draft into a bookable trip.' },
 ];
 
+function buildPlacePrompt(searchParams) {
+  const place = searchParams.get('place')?.trim();
+  if (!place) return null;
+
+  const type = searchParams.get('type')?.trim();
+  const context = searchParams.get('context')?.trim();
+  const bestFor = searchParams.get('bestFor')?.trim();
+  const details = [
+    type ? `Trip angle: ${type}.` : '',
+    context ? `Context: ${context}` : '',
+    bestFor ? `Best for: ${bestFor}.` : '',
+  ].filter(Boolean).join(' ');
+
+  return {
+    id: `place:${place}:${type || ''}:${bestFor || ''}`,
+    label: place,
+    text: `I want to build a trip around ${place}. ${details} Please suggest the best route, how many nights to allow, what to combine it with, and ask me for any missing dates, group size, budget, and travel-style details.`,
+  };
+}
+
 export default function TripPlannerPage() {
+  const [searchParams] = useSearchParams();
   const [initialPrompt, setInitialPrompt] = useState(null);
   const [selectedPrompt, setSelectedPrompt] = useState(null);
   const scrollTimeoutRef = useRef(null);
+  const handledPlacePromptRef = useRef(null);
 
   useEffect(() => {
     document.title = 'AI Trip Planner · Destination Paradise';
@@ -66,6 +88,20 @@ export default function TripPlannerPage() {
     items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
   }, []);
+
+  useEffect(() => {
+    const placePrompt = buildPlacePrompt(searchParams);
+    if (!placePrompt || handledPlacePromptRef.current === placePrompt.id) return;
+
+    handledPlacePromptRef.current = placePrompt.id;
+    setSelectedPrompt(placePrompt.label);
+    setInitialPrompt(placePrompt);
+
+    if (scrollTimeoutRef.current) window.clearTimeout(scrollTimeoutRef.current);
+    scrollTimeoutRef.current = window.setTimeout(() => {
+      document.getElementById('planner')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 140);
+  }, [searchParams]);
 
   const startPrompt = (prompt) => {
     setSelectedPrompt(prompt.label);

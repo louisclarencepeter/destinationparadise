@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import MapSection from '../components/homepage/MapSection.jsx';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { EXCURSIONS } from '../data/excursionsData.js';
+import { DESTINATION_MAP_PINS } from '../data/destinationMapPins.js';
 import { destinationParadisePackages } from '../data/destinationParadisePackages.js';
 import { destinationParadiseSafariPricing } from '../data/safariPricing.js';
 import '../styles/homepage.css';
@@ -27,7 +28,7 @@ const EXPLORE_PATHS = [
   {
     eyebrow: 'Safaris',
     title: 'I want mainland wildlife',
-    text: 'Fly-in safaris, Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha, and migration routes.',
+    text: 'Northern icons, southern wilderness, western chimp routes, quick fly-ins, Kilimanjaro, and cultural stops.',
     to: '/safaris',
     image: '/assets/images/safaris/male-lion-in-grass.webp',
   },
@@ -40,18 +41,7 @@ const EXPLORE_PATHS = [
   },
 ];
 
-const MAP_PINS = [
-  { id: 'stone-town', region: 'Zanzibar', name: 'Stone Town', lat: -6.1659, lng: 39.1985, desc: 'Heritage + food' },
-  { id: 'fumba', region: 'Zanzibar', name: 'Fumba', lat: -6.3413, lng: 39.2900, desc: 'Dhow + sandbank' },
-  { id: 'kizimkazi', region: 'Zanzibar', name: 'Kizimkazi', lat: -6.4434, lng: 39.4670, desc: 'Dolphin coast' },
-  { id: 'jozani', region: 'Zanzibar', name: 'Jozani Forest', lat: -6.2790, lng: 39.4130, desc: 'Red colobus' },
-  { id: 'nungwi', region: 'Zanzibar', name: 'Nungwi', lat: -5.7260, lng: 39.2960, desc: 'Beach + sunsets' },
-  { id: 'paje', region: 'Zanzibar', name: 'Paje', lat: -6.2700, lng: 39.5470, desc: 'Kitesurf lagoon' },
-  { id: 'serengeti', region: 'Mainland', name: 'Serengeti', lat: -2.3333, lng: 34.8333, desc: 'Migration safari' },
-  { id: 'ngorongoro', region: 'Mainland', name: 'Ngorongoro', lat: -3.2250, lng: 35.4880, desc: 'Crater wildlife' },
-  { id: 'tarangire', region: 'Mainland', name: 'Tarangire', lat: -4.0000, lng: 36.0000, desc: 'Elephants' },
-  { id: 'selous', region: 'Mainland', name: 'Nyerere', lat: -8.5000, lng: 38.0000, desc: 'Boat safaris' },
-];
+const MAP_PINS = DESTINATION_MAP_PINS;
 
 const DESTINATION_HUBS = {
   'stone-town': {
@@ -125,6 +115,20 @@ const DESTINATION_HUBS = {
       { label: '10 Days Classic Safari & Zanzibar', to: '/packages/ten-day-classic-safari-zanzibar' },
     ],
   },
+  matemwe: {
+    title: 'Matemwe',
+    type: 'Reef coast',
+    text: 'A quieter northeast-coast base for reef days, Mnemba snorkeling, slower boutique stays, and ocean time without the busiest beach rhythm.',
+    bestFor: ['Snorkeling', 'Quiet beach', 'Reef days', 'Couples'],
+    excursions: [
+      { label: 'Mnemba Snorkeling & Trip to the North', to: '/excursions/mnemba' },
+      { label: 'North-coast all-day combo', to: '/excursions/combinations/north-coast-all-day' },
+    ],
+    packages: [
+      { label: '7 Days Honeymoon Safari & Zanzibar', to: '/packages/seven-day-honeymoon-safari-zanzibar' },
+      { label: 'Zanzibar Adventure & Marine Package', to: '/packages/zanzibar-adventure-marine-package' },
+    ],
+  },
   paje: {
     title: 'Paje',
     type: 'East coast',
@@ -137,6 +141,21 @@ const DESTINATION_HUBS = {
     packages: [
       { label: 'Digital Nomad Zanzibar Stay', to: '/packages/digital-nomad-zanzibar-stay' },
       { label: 'Zanzibar Adventure & Marine Package', to: '/packages/zanzibar-adventure-marine-package' },
+    ],
+  },
+  arusha: {
+    title: 'Arusha',
+    type: 'Safari gateway',
+    text: 'The main launch point for northern Tanzania safaris, Kilimanjaro add-ons, and smooth connections into Tarangire, Manyara, Ngorongoro, and Serengeti.',
+    bestFor: ['Safari start', 'Airport access', 'Northern circuit', 'Kilimanjaro add-on'],
+    safaris: [
+      { label: 'Ngorongoro & Tarangire', to: '/safaris/ngorongoro-tarangire' },
+      { label: 'Serengeti Migration', to: '/safaris/serengeti-migration' },
+      { label: 'Mount Kilimanjaro Day Experience', to: '/safaris/kilimanjaro-day-hike' },
+    ],
+    packages: [
+      { label: '10 Days Classic Safari & Zanzibar', to: '/packages/ten-day-classic-safari-zanzibar' },
+      { label: 'Kilimanjaro + Safari + Zanzibar Expedition', to: '/packages/kilimanjaro-safari-zanzibar-expedition' },
     ],
   },
   serengeti: {
@@ -181,6 +200,94 @@ const DESTINATION_HUBS = {
       { label: '8 Days Tanzania Parks & Zanzibar', to: '/packages/eight-day-tanzania-parks-zanzibar' },
     ],
   },
+  manyara: {
+    title: 'Lake Manyara',
+    type: 'Northern lake park',
+    text: 'A compact northern-circuit stop for lake views, birdlife, forest, and a gentle wildlife day between Tarangire and Ngorongoro.',
+    bestFor: ['Birding', 'Families', 'Short game drive', 'Northern circuit'],
+    safaris: [
+      { label: 'Ngorongoro & Tarangire', to: '/safaris/ngorongoro-tarangire' },
+      { label: 'Tarangire + Ngorongoro Short Circuit', to: '/safaris/tarangire-ngorongoro-short' },
+    ],
+    packages: [
+      { label: '10 Days Classic Safari & Zanzibar', to: '/packages/ten-day-classic-safari-zanzibar' },
+    ],
+  },
+  'lake-natron': {
+    title: 'Lake Natron',
+    type: 'Adventure lake',
+    text: 'Remote soda-lake landscapes, flamingo breeding grounds, hot springs, Maasai villages, and volcanic scenery near Ol Doinyo Lengai.',
+    bestFor: ['Flamingos', 'Remote landscapes', 'Photography', 'Adventure'],
+    safaris: [
+      { label: 'Lake Natron Flamingo Expedition', to: '/safaris/lake-natron-expedition' },
+      { label: 'Authentic Maasai Cultural Safari', to: '/safaris/maasai-cultural-expedition' },
+    ],
+  },
+  olduvai: {
+    title: 'Olduvai Gorge',
+    type: 'History stop',
+    text: 'A human-origins stop between Ngorongoro and Serengeti, good for guests who want archaeology and context alongside wildlife.',
+    bestFor: ['Human origins', 'History', 'Ngorongoro add-on', 'Culture'],
+    safaris: [
+      { label: 'Olduvai Gorge Human Origins Safari', to: '/safaris/olduvai-gorge' },
+      { label: 'Ngorongoro & Tarangire', to: '/safaris/ngorongoro-tarangire' },
+    ],
+    packages: [
+      { label: '9 Days Safari, Zanzibar & Culture', to: '/packages/nine-day-safari-zanzibar-culture' },
+    ],
+  },
+  maasai: {
+    title: 'Maasai Villages',
+    type: 'Cultural safari',
+    text: 'A cultural layer for guests who want village time, Maasai traditions, local cooking, and a more human story around the northern circuit.',
+    bestFor: ['Culture', 'Families', 'Photography', 'Northern add-on'],
+    safaris: [
+      { label: 'Authentic Maasai Cultural Safari', to: '/safaris/maasai-cultural-expedition' },
+      { label: 'Lake Natron Flamingo Expedition', to: '/safaris/lake-natron-expedition' },
+    ],
+    packages: [
+      { label: '9 Days Safari, Zanzibar & Culture', to: '/packages/nine-day-safari-zanzibar-culture' },
+    ],
+  },
+  kilimanjaro: {
+    title: 'Mount Kilimanjaro',
+    type: 'Mountain adventure',
+    text: 'Tanzania’s mountain icon, available as a day experience or as the anchor for a longer climb, safari, and Zanzibar combination.',
+    bestFor: ['Mountain views', 'Hiking', 'Bucket list', 'Adventure'],
+    safaris: [
+      { label: 'Mount Kilimanjaro Day Experience', to: '/safaris/kilimanjaro-day-hike' },
+      { label: 'Materuni Waterfalls & Coffee Experience', to: '/safaris/materuni-waterfalls-coffee' },
+    ],
+    packages: [
+      { label: 'Kilimanjaro + Safari + Zanzibar Expedition', to: '/packages/kilimanjaro-safari-zanzibar-expedition' },
+    ],
+  },
+  materuni: {
+    title: 'Materuni',
+    type: 'Mountain village',
+    text: 'A softer Kilimanjaro foothills day with waterfall hiking, coffee farms, Chagga culture, and mountain scenery.',
+    bestFor: ['Waterfall', 'Coffee', 'Culture', 'Soft adventure'],
+    safaris: [
+      { label: 'Materuni Waterfalls & Coffee Experience', to: '/safaris/materuni-waterfalls-coffee' },
+      { label: 'Mount Kilimanjaro Day Experience', to: '/safaris/kilimanjaro-day-hike' },
+    ],
+    packages: [
+      { label: 'Kilimanjaro + Safari + Zanzibar Expedition', to: '/packages/kilimanjaro-safari-zanzibar-expedition' },
+    ],
+  },
+  mikumi: {
+    title: 'Mikumi National Park',
+    type: 'Quick fly-in safari',
+    text: 'One of the fastest mainland safari choices from Zanzibar, with lions, giraffes, buffalo, zebra, and simpler logistics for short stays.',
+    bestFor: ['Short stays', 'Value', 'First safari', 'Zanzibar guests'],
+    safaris: [
+      { label: 'Mikumi Fly-In Safari From Zanzibar', to: '/safaris/mikumi-flyin' },
+      { label: '2 Days Fly-In Safari From Zanzibar', to: '/packages/two-day-fly-in-safari-zanzibar' },
+    ],
+    packages: [
+      { label: '2 Days Fly-In Safari From Zanzibar', to: '/packages/two-day-fly-in-safari-zanzibar' },
+    ],
+  },
   selous: {
     title: 'Nyerere National Park',
     type: 'Southern safari',
@@ -195,11 +302,75 @@ const DESTINATION_HUBS = {
       { label: '14 Days Ultimate Tanzania & Zanzibar', to: '/packages/fourteen-day-ultimate-tanzania-zanzibar' },
     ],
   },
+  saadani: {
+    title: 'Saadani National Park',
+    type: 'Beach safari',
+    text: 'A rare Indian Ocean safari setting where beach, river, and bush meet, best for guests who want a different coastal wilderness feel.',
+    bestFor: ['Beach + bush', 'Boat safari', 'Turtles', 'Unusual routes'],
+    safaris: [
+      { label: 'Saadani Beach & Safari Experience', to: '/safaris/saadani-beach-safari' },
+      { label: 'Nyerere (Selous) Wild', to: '/safaris/nyerere-selous' },
+    ],
+  },
+  udzungwa: {
+    title: 'Udzungwa Mountains',
+    type: 'Hiking wilderness',
+    text: 'Rainforest hikes, waterfalls, rare primates, and a nature-heavy mountain counterpoint to Mikumi or southern safari routes.',
+    bestFor: ['Hiking', 'Waterfalls', 'Rare primates', 'Nature'],
+    safaris: [
+      { label: 'Udzungwa Mountains Hiking Safari', to: '/safaris/udzungwa-hiking-safari' },
+      { label: 'Mikumi Fly-In Safari From Zanzibar', to: '/safaris/mikumi-flyin' },
+    ],
+  },
+  ruaha: {
+    title: 'Ruaha National Park',
+    type: 'Southern big-cat safari',
+    text: 'A remote southern park known for big-cat country, baobab valleys, fewer vehicles, and a stronger wilderness feel than the classic north.',
+    bestFor: ['Big cats', 'Remote safari', 'Repeat guests', 'Photography'],
+    safaris: [
+      { label: 'Ruaha Big-Cat Trail', to: '/safaris/ruaha-big-cat' },
+      { label: 'Nyerere (Selous) Wild', to: '/safaris/nyerere-selous' },
+    ],
+    packages: [
+      { label: '14 Days Ultimate Tanzania & Zanzibar', to: '/packages/fourteen-day-ultimate-tanzania-zanzibar' },
+    ],
+  },
+  mahale: {
+    title: 'Mahale Mountains & Lake Tanganyika',
+    type: 'Western chimp route',
+    text: 'A premium western circuit for wild chimpanzee trekking, remote lakefront lodges, forest walks, and Lake Tanganyika downtime.',
+    bestFor: ['Chimpanzees', 'Lake Tanganyika', 'Remote luxury', 'Adventure'],
+    safaris: [
+      { label: 'Mahale Chimp & Lake Tanganyika', to: '/safaris/mahale-chimp' },
+      { label: 'Chimpanzee Trekking Expedition', to: '/safaris/chimpanzee-trekking' },
+    ],
+  },
+  katavi: {
+    title: 'Katavi National Park',
+    type: 'Remote frontier',
+    text: 'A far-west wilderness for serious safari travellers, dry-season floodplain herds, lion coalitions, hippo pools, and very few vehicles.',
+    bestFor: ['Remote wilderness', 'Buffalo herds', 'Experienced safari', 'Fly-in'],
+    safaris: [
+      { label: 'Katavi Remote Frontier', to: '/safaris/katavi-frontier' },
+      { label: 'Mahale Chimp & Lake Tanganyika', to: '/safaris/mahale-chimp' },
+    ],
+  },
 };
 
 const minPackagePrice = Math.min(...destinationParadisePackages.map((item) => item.pricing.from));
 const minSafariPrice = Math.min(...destinationParadiseSafariPricing.map((item) => item.recommendedPublicPrice.lowSeason));
 const minExcursionPrice = Math.min(...EXCURSIONS.map((item) => item.price).filter((price) => typeof price === 'number'));
+
+function plannerHrefForHub(hub) {
+  const params = new URLSearchParams({
+    place: hub.title,
+    type: hub.type,
+    context: hub.text,
+    bestFor: hub.bestFor.join(', '),
+  });
+
+  return `/trip-planner?${params.toString()}#planner`;
+}
 
 export default function Explore() {
   const [activePin, setActivePin] = useState('stone-town');
@@ -207,6 +378,7 @@ export default function Explore() {
   const islandPins = MAP_PINS.filter((pin) => pin.region === 'Zanzibar');
   const mainlandPins = MAP_PINS.filter((pin) => pin.region === 'Mainland');
   const activeHub = DESTINATION_HUBS[activePin] || DESTINATION_HUBS['stone-town'];
+  const activeHubPlannerHref = plannerHrefForHub(activeHub);
 
   useEffect(() => {
     document.title = 'Explore Zanzibar & Tanzania · Destination Paradise';
@@ -268,7 +440,7 @@ export default function Explore() {
         setActivePin={setActivePin}
         islandPins={islandPins}
         mainlandPins={mainlandPins}
-        ctaHref="/trip-planner"
+        ctaHref={activeHubPlannerHref}
         ctaLabel="Build this into a trip"
       />
 
@@ -281,7 +453,7 @@ export default function Explore() {
             <div className="explore-hub__tags">
               {activeHub.bestFor.map((item) => <span key={item}>{item}</span>)}
             </div>
-            <Link className="btn btn--ghost-dark" to={`/trip-planner?place=${encodeURIComponent(activeHub.title)}`}>Plan around {activeHub.title}</Link>
+            <Link className="btn btn--ghost-dark" to={activeHubPlannerHref}>Plan around {activeHub.title}</Link>
           </div>
           <div className="explore-hub__matches">
             {[

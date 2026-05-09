@@ -80,7 +80,7 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
         <div className="map-copy">
           <span className="section-eyebrow">The Region</span>
           <h2 className="section-title">Zanzibar &amp; Tanzania at a glance</h2>
-          <p>One country, two worlds. The island gives you Stone Town's heritage, dhows on the reef, beaches, culture, and ocean days. Cross to the mainland for Serengeti migration routes, Ngorongoro crater wildlife, Tarangire elephants, and boat or walking safaris in Nyerere.</p>
+          <p>One country, two worlds. The island gives you Stone Town's heritage, dhows on the reef, beaches, culture, and ocean days. Cross to the mainland for northern icons, southern wilderness, western chimp routes, quick fly-ins, mountain days, and cultural stops.</p>
           
           <div className="map-list-group">
             <div className="map-list-label">Zanzibar</div>
@@ -104,7 +104,7 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
               })}
             </ul>
 
-            <div className="map-list-label">Mainland safari</div>
+            <div className="map-list-label">Mainland Tanzania</div>
             <ul className="map-list">
               {mainlandPins.map((p) => {
                 const i = PINS.findIndex((x) => x.id === p.id);
