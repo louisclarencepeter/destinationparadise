@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { ArrowIcon } from './Icons.jsx';
 
 const HERO_SLIDES = [
-  '/assets/images/home/aerial-boats-turquoise-water.jpg',
-  '/assets/images/safaris/lion-cub-in-grass.jpg',
-  '/assets/images/safaris/crowned-crane-close.jpg',
-  '/assets/images/safaris/yellow-weaver-on-rail.jpg',
+  '/assets/images/home/aerial-boats-turquoise-water.webp',
+  '/assets/images/safaris/lion-cub-in-grass.webp',
+  '/assets/images/safaris/crowned-crane-close.webp',
+  '/assets/images/safaris/yellow-weaver-on-rail.webp',
 ];
 const HERO_SLIDE_INTERVAL_MS = 7000;
 
@@ -63,7 +63,7 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
             src={src}
             alt=""
             loading={index === 0 ? 'eager' : 'lazy'}
-            decoding="async"
+            decoding={index === 0 ? 'sync' : 'async'}
             fetchpriority={index === 0 ? 'high' : 'auto'}
           />
         ))}

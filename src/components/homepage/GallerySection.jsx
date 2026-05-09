@@ -1,17 +1,17 @@
 export default function GallerySection() {
   const photos = [
-    { src: '/assets/images/home/mizingani-waterfront.jpg', caption: 'Mizingani waterfront', className: 'gallery-tile gallery-tile--tall' },
-    { src: '/assets/images/safaris/zebra-mare-and-foal.jpg', caption: 'Zebra on safari', className: 'gallery-tile gallery-tile--tall' },
-    { src: '/assets/images/excursions/dolphin-snorkeling.jpg', caption: 'Dolphin snorkel', className: 'gallery-tile gallery-tile--wide' },
-    { src: '/assets/images/safaris/lioness-and-cub-resting.jpg', caption: 'Lioness and cub', className: 'gallery-tile' },
-    { src: '/assets/images/excursions/stone-town-old-fort.jpg', caption: 'Stone Town Old Fort', className: 'gallery-tile' },
-    { src: '/assets/images/safaris/rhino-on-plains.jpg', caption: 'Ngorongoro rhino', className: 'gallery-tile' },
-    { src: '/assets/images/excursions/safari-blue-sandbank.jpg', caption: 'Safari Blue sandbank', className: 'gallery-tile gallery-tile--tall' },
-    { src: '/assets/images/safaris/crowned-cranes-in-grass.jpg', caption: 'Crowned cranes', className: 'gallery-tile gallery-tile--wide' },
+    { src: '/assets/images/home/mizingani-waterfront.webp', caption: 'Mizingani waterfront', className: 'gallery-tile gallery-tile--tall' },
+    { src: '/assets/images/safaris/zebra-mare-and-foal.webp', caption: 'Zebra on safari', className: 'gallery-tile gallery-tile--tall' },
+    { src: '/assets/images/excursions/dolphin-snorkeling.webp', caption: 'Dolphin snorkel', className: 'gallery-tile gallery-tile--wide' },
+    { src: '/assets/images/safaris/lioness-and-cub-resting.webp', caption: 'Lioness and cub', className: 'gallery-tile' },
+    { src: '/assets/images/excursions/stone-town-old-fort.webp', caption: 'Stone Town Old Fort', className: 'gallery-tile' },
+    { src: '/assets/images/safaris/rhino-on-plains.webp', caption: 'Ngorongoro rhino', className: 'gallery-tile' },
+    { src: '/assets/images/excursions/safari-blue-sandbank.webp', caption: 'Safari Blue sandbank', className: 'gallery-tile gallery-tile--tall' },
+    { src: '/assets/images/safaris/crowned-cranes-in-grass.webp', caption: 'Crowned cranes', className: 'gallery-tile gallery-tile--wide' },
     { src: '/assets/images/excursions/jozani-red-colobus.webp', caption: 'Jozani red colobus', className: 'gallery-tile' },
-    { src: '/assets/images/safaris/wildebeest-grazing.jpg', caption: 'Migration plains', className: 'gallery-tile' },
+    { src: '/assets/images/safaris/wildebeest-grazing.webp', caption: 'Migration plains', className: 'gallery-tile' },
     { src: '/assets/images/excursions/spice-tour-nutmeg.webp', caption: 'Spice farm detail', className: 'gallery-tile gallery-tile--wide' },
-    { src: '/assets/images/safaris/male-lion-in-grass.jpg', caption: 'Serengeti lion', className: 'gallery-tile' },
+    { src: '/assets/images/safaris/male-lion-in-grass.webp', caption: 'Serengeti lion', className: 'gallery-tile' },
   ];
 
   return (

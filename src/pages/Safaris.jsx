@@ -13,10 +13,10 @@ const WILDLIFE_CATEGORIES = [
     sub: 'Predators',
     rowMod: 'cats',
     tiles: [
-      { src: 'male-lion-in-grass.jpg', alt: 'Male lion lying in grass', cap: 'Male lion · Ngorongoro Crater', mod: 'wide' },
-      { src: 'serval-in-grass.jpg', alt: 'Serval cat in grass', cap: 'Serval · rare daylight sighting' },
-      { src: 'lion-cub-in-grass.jpg', alt: 'Lion cub in grass', cap: 'Cub · ten weeks old' },
-      { src: 'lioness-and-cub-resting.jpg', alt: 'Lioness with cub resting', cap: 'Lioness & cub · evening rest', mod: 'wide' },
+      { src: 'male-lion-in-grass.webp', alt: 'Male lion lying in grass', cap: 'Male lion · Ngorongoro Crater', mod: 'wide' },
+      { src: 'serval-in-grass.webp', alt: 'Serval cat in grass', cap: 'Serval · rare daylight sighting' },
+      { src: 'lion-cub-in-grass.webp', alt: 'Lion cub in grass', cap: 'Cub · ten weeks old' },
+      { src: 'lioness-and-cub-resting.webp', alt: 'Lioness with cub resting', cap: 'Lioness & cub · evening rest', mod: 'wide' },
     ],
   },
   {
@@ -24,12 +24,12 @@ const WILDLIFE_CATEGORIES = [
     sub: 'The grazers',
     rowMod: 'ungulates',
     tiles: [
-      { src: 'zebra-mare-and-foal.jpg', alt: 'Zebra mare and foal', cap: 'Zebra · mare and foal', mod: 'tall' },
-      { src: 'zebra-herd-on-track.jpg', alt: 'Zebra herd on track', cap: 'The herd, deciding', mod: 'wide' },
-      { src: 'wildebeest-grazing.jpg', alt: 'Blue wildebeest grazing', cap: 'Blue wildebeest' },
-      { src: 'eland-grazing.jpg', alt: 'Eland grazing', cap: 'Eland · the largest antelope' },
-      { src: 'eland-herd-plains.jpg', alt: 'Eland herd', cap: 'Eland herd · Ngorongoro', mod: 'wide' },
-      { src: 'warthog-on-plains.jpg', alt: 'Warthog', cap: 'Warthog · Pumbaa, in person' },
+      { src: 'zebra-mare-and-foal.webp', alt: 'Zebra mare and foal', cap: 'Zebra · mare and foal', mod: 'tall' },
+      { src: 'zebra-herd-on-track.webp', alt: 'Zebra herd on track', cap: 'The herd, deciding', mod: 'wide' },
+      { src: 'wildebeest-grazing.webp', alt: 'Blue wildebeest grazing', cap: 'Blue wildebeest' },
+      { src: 'eland-grazing.webp', alt: 'Eland grazing', cap: 'Eland · the largest antelope' },
+      { src: 'eland-herd-plains.webp', alt: 'Eland herd', cap: 'Eland herd · Ngorongoro', mod: 'wide' },
+      { src: 'warthog-on-plains.webp', alt: 'Warthog', cap: 'Warthog · Pumbaa, in person' },
     ],
   },
   {
@@ -37,9 +37,9 @@ const WILDLIFE_CATEGORIES = [
     sub: 'Big & rare',
     rowMod: 'heavy',
     tiles: [
-      { src: 'buffalo-herd-close.jpg', alt: 'Cape buffalo herd close-up', cap: 'Cape buffalo · the dagga boys', mod: 'wide' },
-      { src: 'buffalo-and-egret.jpg', alt: 'Buffalo with cattle egret', cap: 'Buffalo & egret · partners', mod: 'wide' },
-      { src: 'rhino-on-plains.jpg', alt: 'Black rhino on plains', cap: 'Black rhino · <30 left in the crater', mod: 'full' },
+      { src: 'buffalo-herd-close.webp', alt: 'Cape buffalo herd close-up', cap: 'Cape buffalo · the dagga boys', mod: 'wide' },
+      { src: 'buffalo-and-egret.webp', alt: 'Buffalo with cattle egret', cap: 'Buffalo & egret · partners', mod: 'wide' },
+      { src: 'rhino-on-plains.webp', alt: 'Black rhino on plains', cap: 'Black rhino · <30 left in the crater', mod: 'full' },
     ],
   },
   {
@@ -47,10 +47,10 @@ const WILDLIFE_CATEGORIES = [
     sub: '400+ species',
     rowMod: 'birds',
     tiles: [
-      { src: 'crowned-crane-close.jpg', alt: 'Grey crowned crane close-up', cap: 'Grey crowned crane', mod: 'tall' },
-      { src: 'crowned-cranes-in-grass.jpg', alt: 'Pair of crowned cranes', cap: 'The pair · always two' },
-      { src: 'yellow-weaver-on-rail.jpg', alt: 'Yellow weaver on rail', cap: "Speke's weaver · lodge regular" },
-      { src: 'raptor-on-log.jpg', alt: 'Lanner falcon on rock', cap: 'Lanner falcon · with prey', mod: 'wide' },
+      { src: 'crowned-crane-close.webp', alt: 'Grey crowned crane close-up', cap: 'Grey crowned crane', mod: 'tall' },
+      { src: 'crowned-cranes-in-grass.webp', alt: 'Pair of crowned cranes', cap: 'The pair · always two' },
+      { src: 'yellow-weaver-on-rail.webp', alt: 'Yellow weaver on rail', cap: "Speke's weaver · lodge regular" },
+      { src: 'raptor-on-log.webp', alt: 'Lanner falcon on rock', cap: 'Lanner falcon · with prey', mod: 'wide' },
     ],
   },
 ];
@@ -233,7 +233,7 @@ export default function Safaris() {
       {/* HERO */}
       <section className="saf-hero">
         <div className="saf-hero__bg">
-          <img src={safariImg('male-lion-in-grass.jpg')} alt="" />
+          <img src={safariImg('male-lion-in-grass.webp')} alt="" />
         </div>
         <div className="saf-hero__inner">
           <span className="saf-hero__eyebrow">Mainland Tanzania · the heart of what we do</span>
@@ -561,7 +561,7 @@ export default function Safaris() {
       {/* CTA */}
       <section className="saf-cta">
         <div className="saf-cta__bg">
-          <img src={safariImg('lioness-and-cub-resting.jpg')} alt="" />
+          <img src={safariImg('lioness-and-cub-resting.webp')} alt="" />
         </div>
         <div className="saf-cta__inner">
           <h2>Ready to plan?</h2>

@@ -7,31 +7,31 @@ import '../styles/excursions.css';
 import '../styles/safaris.css';
 
 const PACKAGE_IMAGES = {
-  'six-day-safari-zanzibar-escape': '/assets/images/safaris/eland-herd-plains.jpg',
-  'seven-day-honeymoon-safari-zanzibar': '/assets/images/safaris/lioness-and-cub-resting.jpg',
-  'eight-day-tanzania-parks-zanzibar': '/assets/images/safaris/zebra-herd-on-track.jpg',
-  'nine-day-safari-zanzibar-culture': '/assets/images/excursions/stone-town-old-fort.jpg',
-  'ten-day-classic-safari-zanzibar': '/assets/images/safaris/rhino-on-plains.jpg',
-  'twelve-day-serengeti-zanzibar': '/assets/images/safaris/wildebeest-grazing.jpg',
-  'fourteen-day-ultimate-tanzania-zanzibar': '/assets/images/safaris/male-lion-in-grass.jpg',
-  'two-day-fly-in-safari-zanzibar': '/assets/images/safaris/buffalo-and-egret.jpg',
-  'three-day-serengeti-fly-in-safari': '/assets/images/safaris/zebra-mare-and-foal.jpg',
-  'kilimanjaro-safari-zanzibar-expedition': '/assets/images/safaris/warthog-on-plains.jpg',
-  'luxury-family-safari-zanzibar': '/assets/images/safaris/lion-cub-in-grass.jpg',
-  'great-migration-luxury-package': '/assets/images/safaris/serval-in-grass.jpg',
-  'zanzibar-adventure-marine-package': '/assets/images/excursions/dolphin-snorkeling.jpg',
+  'six-day-safari-zanzibar-escape': '/assets/images/safaris/eland-herd-plains.webp',
+  'seven-day-honeymoon-safari-zanzibar': '/assets/images/safaris/lioness-and-cub-resting.webp',
+  'eight-day-tanzania-parks-zanzibar': '/assets/images/safaris/zebra-herd-on-track.webp',
+  'nine-day-safari-zanzibar-culture': '/assets/images/excursions/stone-town-old-fort.webp',
+  'ten-day-classic-safari-zanzibar': '/assets/images/safaris/rhino-on-plains.webp',
+  'twelve-day-serengeti-zanzibar': '/assets/images/safaris/wildebeest-grazing.webp',
+  'fourteen-day-ultimate-tanzania-zanzibar': '/assets/images/safaris/male-lion-in-grass.webp',
+  'two-day-fly-in-safari-zanzibar': '/assets/images/safaris/buffalo-and-egret.webp',
+  'three-day-serengeti-fly-in-safari': '/assets/images/safaris/zebra-mare-and-foal.webp',
+  'kilimanjaro-safari-zanzibar-expedition': '/assets/images/safaris/warthog-on-plains.webp',
+  'luxury-family-safari-zanzibar': '/assets/images/safaris/lion-cub-in-grass.webp',
+  'great-migration-luxury-package': '/assets/images/safaris/serval-in-grass.webp',
+  'zanzibar-adventure-marine-package': '/assets/images/excursions/dolphin-snorkeling.webp',
   'stone-town-culture-experience': '/assets/images/excursions/spice-tour-nutmeg.webp',
-  'digital-nomad-zanzibar-stay': '/assets/images/home/mizingani-waterfront.jpg',
+  'digital-nomad-zanzibar-stay': '/assets/images/home/mizingani-waterfront.webp',
 };
 
 const imgForPackage = (pkg) => {
   if (PACKAGE_IMAGES[pkg.slug]) return PACKAGE_IMAGES[pkg.slug];
   const { category } = pkg;
-  if (/safari|multi/i.test(category)) return '/assets/images/safaris/raptor-on-log.jpg';
+  if (/safari|multi/i.test(category)) return '/assets/images/safaris/raptor-on-log.webp';
   if (/honeymoon|romantic|wedding/i.test(category)) return '/assets/images/home/stone-town-waterfront.webp';
   if (/family|festival|digital/i.test(category)) return '/assets/images/excursions/prison-island-tortoise.webp';
-  if (/luxury|wellness|creator/i.test(category)) return '/assets/images/safaris/eland-grazing.jpg';
-  if (/adventure/i.test(category)) return '/assets/images/excursions/dolphin-snorkeling.jpg';
+  if (/luxury|wellness|creator/i.test(category)) return '/assets/images/safaris/eland-grazing.webp';
+  if (/adventure/i.test(category)) return '/assets/images/excursions/dolphin-snorkeling.webp';
   return '/assets/images/home/stone-town-waterfront.webp';
 };
 
@@ -158,7 +158,7 @@ export default function Packages() {
   return (
     <main className="excursions-page packages-page" ref={pageRef}>
       <section className="exc-hero pkg-hero">
-        <div className="exc-hero__bg"><img src="/assets/images/safaris/eland-grazing.jpg" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
+        <div className="exc-hero__bg"><img src="/assets/images/safaris/eland-grazing.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
         <div className="exc-hero__inner">
           <span className="exc-hero__eyebrow">Hotels · safaris · excursions · special moments</span>
           <h1 className="exc-hero__title">Packages for the trip <em>you actually want.</em></h1>

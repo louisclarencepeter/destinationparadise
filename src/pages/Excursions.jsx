@@ -6,8 +6,8 @@ import { EXCURSIONS, CATEGORIES } from '../data/excursionsData.js';
 import { EXCURSION_COMBINATIONS } from '../data/excursionCombinations.js';
 import { uniqueProductImages } from '../utils/productImages.js';
 
-const HERO_IMAGE = '/assets/images/excursions/safari-blue-sandbank.jpg';
-const CTA_IMAGE = '/assets/images/excursions/dolphin-snorkeling.jpg';
+const HERO_IMAGE = '/assets/images/excursions/safari-blue-sandbank.webp';
+const CTA_IMAGE = '/assets/images/excursions/dolphin-snorkeling.webp';
 
 const PRACTICAL = [
   { h: "What's always included", icon: 'check', items: ['Hotel pickup & drop-off', 'Licensed local guide', 'Bottled water all day', 'All park & entry fees', 'Equipment (masks, fins, life jackets)'] },

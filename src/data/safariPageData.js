@@ -5,13 +5,13 @@ import { uniqueProductImages } from '../utils/productImages.js';
 const safariImg = (file) => `/assets/images/safaris/${file}`;
 const pricingBySlug = Object.fromEntries(destinationParadiseSafariPricing.map((item) => [item.slug, item]));
 const specialtyImageForCategory = (category) => {
-  if (/luxury|honeymoon|wellness|combo|beach/i.test(category)) return safariImg('lioness-and-cub-resting.jpg');
-  if (/bird/i.test(category)) return safariImg('crowned-crane-close.jpg');
-  if (/culture|history|maasai|coffee/i.test(category)) return safariImg('zebra-mare-and-foal.jpg');
-  if (/mountain|hiking|adventure|nature/i.test(category)) return safariImg('warthog-on-plains.jpg');
-  if (/quick|fly|helicopter|ultra/i.test(category)) return safariImg('eland-herd-plains.jpg');
-  if (/migration|photography/i.test(category)) return safariImg('zebra-herd-on-track.jpg');
-  return safariImg('male-lion-in-grass.jpg');
+  if (/luxury|honeymoon|wellness|combo|beach/i.test(category)) return safariImg('lioness-and-cub-resting.webp');
+  if (/bird/i.test(category)) return safariImg('crowned-crane-close.webp');
+  if (/culture|history|maasai|coffee/i.test(category)) return safariImg('zebra-mare-and-foal.webp');
+  if (/mountain|hiking|adventure|nature/i.test(category)) return safariImg('warthog-on-plains.webp');
+  if (/quick|fly|helicopter|ultra/i.test(category)) return safariImg('eland-herd-plains.webp');
+  if (/migration|photography/i.test(category)) return safariImg('zebra-herd-on-track.webp');
+  return safariImg('male-lion-in-grass.webp');
 };
 
 export const PARKS = [
@@ -21,7 +21,7 @@ export const PARKS = [
     name: 'Serengeti National Park',
     blurb: 'The endless plains. Home to the great migration — 1.5 million wildebeest and 250,000 zebra moving in lockstep with the rains.',
     tags: ['Migration', 'Big Five', 'Hot-air balloon'],
-    image: safariImg('zebra-herd-on-track.jpg'),
+    image: safariImg('zebra-herd-on-track.webp'),
     size: 'lg',
   },
   {
@@ -30,7 +30,7 @@ export const PARKS = [
     name: 'Ngorongoro Crater',
     blurb: 'A collapsed volcano, now a self-contained ecosystem with the densest concentration of predators in Africa. Black rhino still roam.',
     tags: ['Black rhino', 'Big Five', 'Crater rim lodges'],
-    image: safariImg('rhino-on-plains.jpg'),
+    image: safariImg('rhino-on-plains.webp'),
     size: 'lg',
   },
   {
@@ -39,7 +39,7 @@ export const PARKS = [
     name: 'Tarangire National Park',
     blurb: 'Elephant capital. Ancient baobabs and a year-round river that draws giant herds in the dry season. Wildly underrated.',
     tags: ['Elephants', 'Baobabs', 'Quiet roads'],
-    image: safariImg('eland-herd-plains.jpg'),
+    image: safariImg('eland-herd-plains.webp'),
   },
   {
     label: 'Park 04',
@@ -47,7 +47,7 @@ export const PARKS = [
     name: 'Nyerere (Selous)',
     blurb: 'Africa’s largest game reserve. Boat safaris on the Rufiji, walking with armed rangers, fly-camping under impossible stars.',
     tags: ['Boat safari', 'Walking safari', 'Wild dog'],
-    image: safariImg('buffalo-and-egret.jpg'),
+    image: safariImg('buffalo-and-egret.webp'),
   },
   {
     label: 'Park 05',
@@ -55,7 +55,7 @@ export const PARKS = [
     name: 'Lake Manyara',
     blurb: 'Tree-climbing lions, alkaline flats stained pink with flamingos, and one of East Africa’s great birding spots — 400+ species.',
     tags: ['Tree-climbing lions', 'Flamingos', 'Birding'],
-    image: safariImg('yellow-weaver-on-rail.jpg'),
+    image: safariImg('yellow-weaver-on-rail.webp'),
   },
 ];
 
@@ -63,7 +63,7 @@ const ITINERARIES_RAW = [
   {
     id: 'ngorongoro-tarangire',
     category: 'Northern Circuit',
-    image: safariImg('rhino-on-plains.jpg'),
+    image: safariImg('rhino-on-plains.webp'),
     alt: 'Black rhino on the plains during a Ngorongoro and Tarangire safari',
     duration: '5 nights',
     from: 'Arusha / Zanzibar',
@@ -85,7 +85,7 @@ const ITINERARIES_RAW = [
   {
     id: 'serengeti-migration',
     category: 'Migration Safari',
-    image: safariImg('zebra-herd-on-track.jpg'),
+    image: safariImg('zebra-herd-on-track.webp'),
     alt: 'Zebra herd on a Serengeti track during migration season',
     duration: '3 nights',
     from: 'Zanzibar / Arusha',
@@ -104,7 +104,7 @@ const ITINERARIES_RAW = [
   {
     id: 'nyerere-selous',
     category: 'Southern Circuit',
-    image: safariImg('buffalo-and-egret.jpg'),
+    image: safariImg('buffalo-and-egret.webp'),
     alt: 'Buffalo and egret near wetlands in Nyerere National Park',
     duration: '4 nights',
     from: 'Zanzibar',
@@ -124,7 +124,7 @@ const ITINERARIES_RAW = [
   {
     id: 'ruaha-big-cat',
     category: 'Southern Circuit',
-    image: safariImg('male-lion-in-grass.jpg'),
+    image: safariImg('male-lion-in-grass.webp'),
     alt: 'Male lion resting in grass on a Ruaha big-cat safari',
     duration: '3 nights',
     from: 'Zanzibar',
@@ -143,7 +143,7 @@ const ITINERARIES_RAW = [
   {
     id: 'mahale-chimp',
     category: 'Western Circuit',
-    image: safariImg('crowned-cranes-in-grass.jpg'),
+    image: safariImg('crowned-cranes-in-grass.webp'),
     alt: 'Wildlife in grassland representing a western Tanzania safari route',
     duration: '4 nights',
     from: 'Zanzibar / Kigoma',
@@ -163,7 +163,7 @@ const ITINERARIES_RAW = [
   {
     id: 'katavi-frontier',
     category: 'Western Circuit',
-    image: safariImg('buffalo-herd-close.jpg'),
+    image: safariImg('buffalo-herd-close.webp'),
     alt: 'Cape buffalo herd close-up on a remote Katavi safari',
     duration: '5 nights',
     from: 'Zanzibar',
@@ -184,7 +184,7 @@ const ITINERARIES_RAW = [
   {
     id: 'tarangire-ngorongoro-short',
     category: 'Last-minute Safari',
-    image: safariImg('eland-herd-plains.jpg'),
+    image: safariImg('eland-herd-plains.webp'),
     alt: 'Open plains on a Tarangire and Ngorongoro short safari',
     duration: '2 nights',
     from: 'Zanzibar',
@@ -203,7 +203,7 @@ const ITINERARIES_RAW = [
   {
     id: 'ngorongoro-overnight',
     category: 'Last-minute Safari',
-    image: safariImg('rhino-on-plains.jpg'),
+    image: safariImg('rhino-on-plains.webp'),
     alt: 'Rhino on the plains during a Ngorongoro overnight safari',
     duration: '1 night',
     from: 'Zanzibar',
@@ -221,7 +221,7 @@ const ITINERARIES_RAW = [
   {
     id: 'tarangire-day-trip',
     category: 'Day Safari',
-    image: safariImg('eland-grazing.jpg'),
+    image: safariImg('eland-grazing.webp'),
     alt: 'Grazing antelope on a Tarangire express day safari',
     duration: '1 day',
     from: 'Zanzibar',
@@ -297,7 +297,7 @@ export const SAFARI_TYPES = [
     bestFor: 'First-time safari travellers',
     routeIds: ['ngorongoro-tarangire', 'serengeti-migration', 'tarangire-ngorongoro-short'],
     highlights: ['Private or small-group 4x4 game drives', 'Best access to iconic northern parks', 'Strong Big Five and predator viewing'],
-    image: safariImg('male-lion-in-grass.jpg'),
+    image: safariImg('male-lion-in-grass.webp'),
     alt: 'Lion resting in grass on a classic game drive',
   },
   {
@@ -307,7 +307,7 @@ export const SAFARI_TYPES = [
     bestFor: 'Limited time, maximum game time',
     routeIds: ['serengeti-migration', 'nyerere-selous', 'ruaha-big-cat'],
     highlights: ['Less time on roads', 'Easy Zanzibar-to-bush combinations', 'Best for short premium trips'],
-    image: safariImg('eland-herd-plains.jpg'),
+    image: safariImg('eland-herd-plains.webp'),
     alt: 'Open plains landscape viewed on a fly-in safari route',
   },
   {
@@ -317,7 +317,7 @@ export const SAFARI_TYPES = [
     bestFor: 'Adventure and tracking lovers',
     routeIds: ['nyerere-selous', 'ruaha-big-cat'],
     highlights: ['Armed ranger-led bush walks', 'Tracks, birds, plants, and smaller wildlife', 'A more intimate wilderness pace'],
-    image: safariImg('warthog-on-plains.jpg'),
+    image: safariImg('warthog-on-plains.webp'),
     alt: 'Warthog spotted during a walking safari experience',
   },
   {
@@ -327,7 +327,7 @@ export const SAFARI_TYPES = [
     bestFor: 'Unique wildlife angles and birding',
     routeIds: ['nyerere-selous', 'mahale-chimp'],
     highlights: ['Hippos, crocodiles, and river birds', 'Sunset river experiences', 'Great contrast to classic game drives'],
-    image: safariImg('buffalo-and-egret.jpg'),
+    image: safariImg('buffalo-and-egret.webp'),
     alt: 'Buffalo and egret near wetlands, ideal for boat safari viewing',
   },
   {
@@ -337,7 +337,7 @@ export const SAFARI_TYPES = [
     bestFor: 'Families with kids',
     routeIds: ['tarangire-ngorongoro-short', 'ngorongoro-overnight', 'ngorongoro-tarangire'],
     highlights: ['Shorter drives and flexible starts', 'Lodges with pools and family rooms', 'Routes with reliable wildlife viewing'],
-    image: safariImg('zebra-mare-and-foal.jpg'),
+    image: safariImg('zebra-mare-and-foal.webp'),
     alt: 'Zebra mare and foal, a family-friendly wildlife sighting',
   },
   {
@@ -347,7 +347,7 @@ export const SAFARI_TYPES = [
     bestFor: 'Honeymoons and premium trips',
     routeIds: ['ngorongoro-tarangire', 'serengeti-migration', 'mahale-chimp'],
     highlights: ['Premium camps and lodge upgrades', 'Smoother logistics and private guiding', 'Best for honeymoons and milestone trips'],
-    image: safariImg('lioness-and-cub-resting.jpg'),
+    image: safariImg('lioness-and-cub-resting.webp'),
     alt: 'Lioness and cub resting in golden light near luxury camps',
   },
   {
@@ -357,7 +357,7 @@ export const SAFARI_TYPES = [
     bestFor: 'Backpackers and budget-conscious travellers',
     routeIds: ['tarangire-day-trip', 'ngorongoro-overnight', 'tarangire-ngorongoro-short'],
     highlights: ['Lower-cost routes and simpler camps', 'Shared logistics where available', 'Best when dates are flexible'],
-    image: safariImg('wildebeest-grazing.jpg'),
+    image: safariImg('wildebeest-grazing.webp'),
     alt: 'Wildebeest herd on open plains for budget camping routes',
   },
   {
@@ -367,7 +367,7 @@ export const SAFARI_TYPES = [
     bestFor: 'Safari + relaxation in one trip',
     routeIds: ['ngorongoro-tarangire', 'nyerere-selous', 'tarangire-day-trip'],
     highlights: ['Safari flights coordinated with Zanzibar hotels', 'Easy post-safari beach recovery', 'Best for honeymoons and family holidays'],
-    image: safariImg('crowned-cranes-in-grass.jpg'),
+    image: safariImg('crowned-cranes-in-grass.webp'),
     alt: 'Crowned cranes in grasslands representing bush and beach combo journeys',
   },
 ];

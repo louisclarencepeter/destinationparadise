@@ -14,28 +14,28 @@ const EXPLORE_PATHS = [
     title: 'I want the full trip arranged',
     text: 'Hotels, safaris, excursions, transfers, and special moments packaged into one plan.',
     to: '/packages',
-    image: '/assets/images/safaris/zebra-herd-on-track.jpg',
+    image: '/assets/images/safaris/zebra-herd-on-track.webp',
   },
   {
     eyebrow: 'Excursions',
     title: 'I am already on the island',
     text: 'Day trips, dhow sails, Stone Town, spice farms, Jozani, snorkeling, culture, and ocean days.',
     to: '/excursions',
-    image: '/assets/images/excursions/safari-blue-sandbank.jpg',
+    image: '/assets/images/excursions/safari-blue-sandbank.webp',
   },
   {
     eyebrow: 'Safaris',
     title: 'I want mainland wildlife',
     text: 'Fly-in safaris, Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha, and migration routes.',
     to: '/safaris',
-    image: '/assets/images/safaris/male-lion-in-grass.jpg',
+    image: '/assets/images/safaris/male-lion-in-grass.webp',
   },
   {
     eyebrow: 'Trip Planner',
     title: 'I need help choosing',
     text: 'Tell the AI planner your dates, pace, budget, and travel style. We turn the draft into a quote.',
     to: '/trip-planner',
-    image: '/assets/images/safaris/crowned-crane-close.jpg',
+    image: '/assets/images/safaris/crowned-crane-close.webp',
   },
 ];
 
@@ -334,7 +334,7 @@ export default function Explore() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src="/assets/images/safaris/buffalo-herd-close.jpg" alt="" /></div>
+        <div className="exc-cta__bg"><img src="/assets/images/safaris/buffalo-herd-close.webp" alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Want us to map the right route?</h2>
           <p>Tell us the places you like, your travel dates, and your pace. We’ll connect the best packages, excursions, and safaris into one clear plan.</p>

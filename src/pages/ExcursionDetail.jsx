@@ -153,7 +153,7 @@ export default function ExcursionDetail() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><img src={e.imageNeeded ? '/assets/images/excursions/safari-blue-sandbank.jpg' : e.image} alt="" /></div>
+        <div className="exc-cta__bg"><img src={e.imageNeeded ? '/assets/images/excursions/safari-blue-sandbank.webp' : e.image} alt="" /></div>
         <div className="exc-cta__inner">
           <h2>Ready to book {e.title}?</h2>
           <p>Tell us your dates and we'll come back within 24 hours with available pickup times and a final price — no commitment.</p>

@@ -1,0 +1,16 @@
+{
+  "short_name": "Dest. Paradise",
+  "name": "Destination Paradise Zanzibar & Tanzania",
+  "icons": [
+    {
+      "src": "/assets/brand/destination-paradise-logo.png",
+      "sizes": "192x192 512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#1A4D6E",
+  "background_color": "#ffffff"
+}

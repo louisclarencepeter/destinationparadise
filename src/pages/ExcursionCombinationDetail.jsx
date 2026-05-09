@@ -5,7 +5,7 @@ import { EXCURSION_COMBINATIONS } from '../data/excursionCombinations.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 
-const fallbackImage = '/assets/images/excursions/safari-blue-sandbank.jpg';
+const fallbackImage = '/assets/images/excursions/safari-blue-sandbank.webp';
 
 export default function ExcursionCombinationDetail() {
   const { id } = useParams();
