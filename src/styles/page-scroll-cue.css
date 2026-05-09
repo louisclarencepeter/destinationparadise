@@ -51,3 +51,9 @@
     animation: none;
   }
 }
+
+@media (max-width: 720px) {
+  .page-scroll-cue {
+    display: none;
+  }
+}

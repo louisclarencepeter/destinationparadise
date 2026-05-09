@@ -46,15 +46,9 @@
 .nav__item a[aria-current="page"]::after {
   transform: scaleX(1);
 }
+.nav__item--mobile-only { display: none; }
 
 .nav__right { display: flex; align-items: center; gap: 1rem; }
-.theme-toggle {
-  width: 36px; height: 36px; border-radius: 999px; border: 1px solid var(--border);
-  background: color-mix(in oklab, var(--surface) 88%, transparent); color: var(--text);
-  display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
-  transition: all .25s ease;
-}
-.theme-toggle:hover { color: var(--dp-accent); border-color: var(--dp-accent); transform: rotate(15deg); }
 
 .nav__burger { display: none; background: transparent; border: none; color: var(--text); cursor: pointer; padding: .4rem; }
 @media (max-width: 960px) {
@@ -69,5 +63,6 @@
     transition: all .25s ease;
   }
   .nav__menu--open { transform: translateY(0); opacity: 1; pointer-events: auto; }
+  .nav__item--mobile-only { display: list-item; }
   .nav__burger { display: inline-flex; }
 }

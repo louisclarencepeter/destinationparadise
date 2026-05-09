@@ -1,6 +1,9 @@
 /* ------------ FLOATING CHAT ------------ */
 .whatsapp-fab {
-  position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 30;
+  position: fixed;
+  right: 1.5rem;
+  bottom: 1.5rem;
+  z-index: 30;
   display: inline-flex; align-items: center; gap: .6rem;
   background:
     linear-gradient(135deg, rgba(8,30,46,.84), rgba(26,77,110,.74));
@@ -14,6 +17,16 @@
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   transition: transform .25s ease, box-shadow .25s ease, opacity .25s ease, border-color .25s ease, background .25s ease, color .25s ease;
+}
+.whatsapp-fab.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateY(8px);
+}
+.whatsapp-fab.is-parked {
+  position: absolute;
+  bottom: auto;
 }
 .whatsapp-fab:hover,
 .whatsapp-fab:focus-visible {

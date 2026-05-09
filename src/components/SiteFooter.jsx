@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/homepage.css';
 import { CONTACT_INFO, SOCIAL_LINKS } from '../constants/contactInfo.js';
@@ -10,9 +11,116 @@ export const WhatsAppIcon = ({ size = 20 }) => (
   </svg>
 );
 
-export function WhatsAppFab() {
+const ThemeIcon = ({ theme }) => (
+  theme === 'dark' ? (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="12" cy="12" r="4" />
+      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+    </svg>
+  ) : (
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+    </svg>
+  )
+);
+
+const HERO_SELECTOR = [
+  'section.hero',
+  'section.exc-hero',
+  'section.saf-hero',
+  'section.trip-hero',
+  'section.booking-hero',
+  'section[class*="-hero"]',
+].join(', ');
+
+function getFloatGap() {
+  if (window.innerWidth <= 360) return 11;
+  if (window.innerWidth <= 720) return 16;
+  return 24;
+}
+
+function getNavHeight() {
+  const value = getComputedStyle(document.documentElement).getPropertyValue('--nav-height');
+  return Number.parseFloat(value) || 66;
+}
+
+function getPageHero() {
+  return document.querySelector(HERO_SELECTOR) || document.querySelector('#root section');
+}
+
+export function WhatsAppFab({ locationKey }) {
+  const fabRef = useRef(null);
+  const [placement, setPlacement] = useState({ isVisible: false, isParked: false, top: 0 });
+
+  useEffect(() => {
+    let frameId = 0;
+
+    const updatePlacement = () => {
+      frameId = 0;
+
+      const fab = fabRef.current;
+      const footer = document.querySelector('.footer');
+      const hero = getPageHero();
+      const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      const gap = getFloatGap();
+      const navHeight = getNavHeight();
+      const fabHeight = fab?.offsetHeight || 52;
+      const heroBottom = hero ? hero.getBoundingClientRect().bottom + scrollY : 0;
+      const isVisible = hero ? scrollY + navHeight >= heroBottom - 8 : scrollY > 120;
+
+      let isParked = false;
+      let top = 0;
+
+      if (footer) {
+        const footerTop = footer.getBoundingClientRect().top + scrollY;
+        const fixedBottom = window.innerHeight - gap;
+        isParked = footer.getBoundingClientRect().top <= fixedBottom + gap;
+        top = Math.max(heroBottom + gap, footerTop - fabHeight - gap);
+      }
+
+      setPlacement((current) => {
+        if (current.isVisible === isVisible && current.isParked === isParked && Math.abs(current.top - top) < 1) {
+          return current;
+        }
+        return { isVisible, isParked, top };
+      });
+    };
+
+    const requestUpdate = () => {
+      if (!frameId) frameId = window.requestAnimationFrame(updatePlacement);
+    };
+
+    setPlacement({ isVisible: false, isParked: false, top: 0 });
+    requestUpdate();
+
+    const timeoutId = window.setTimeout(requestUpdate, 150);
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      window.removeEventListener('scroll', requestUpdate);
+      window.removeEventListener('resize', requestUpdate);
+      if (frameId) window.cancelAnimationFrame(frameId);
+    };
+  }, [locationKey]);
+
+  const className = [
+    'whatsapp-fab',
+    placement.isVisible ? 'is-visible' : 'is-hidden',
+    placement.isParked ? 'is-parked' : '',
+  ].filter(Boolean).join(' ');
+
   return (
-    <a className="whatsapp-fab" href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label="Chat with the team on WhatsApp">
+    <a
+      ref={fabRef}
+      className={className}
+      href={WHATSAPP_URL}
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Chat with the team on WhatsApp"
+      style={placement.isParked ? { top: `${placement.top}px` } : undefined}
+    >
       <WhatsAppIcon />
       <span className="whatsapp-fab__dot" aria-hidden="true"></span>
       <span className="whatsapp-fab__label">Chat with the team</span>
@@ -20,7 +128,9 @@ export function WhatsAppFab() {
   );
 }
 
-export default function SiteFooter() {
+export default function SiteFooter({ theme = 'light', onThemeToggle }) {
+  const nextTheme = theme === 'dark' ? 'light' : 'dark';
+
   return (
     <footer className="footer">
       <div className="footer__inner">
@@ -43,9 +153,20 @@ export default function SiteFooter() {
         <div className="footer__col"><h4>Company</h4><ul><li><Link to="/aboutus">Our story</Link></li><li><Link to="/aboutus">Guides</Link></li><li><Link to="/aboutus">Sustainability</Link></li><li><Link to="/aboutus">Press</Link></li><li><Link to="/aboutus">Careers</Link></li></ul></div>
         <div className="footer__col"><h4>Get in touch</h4><ul><li><a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a></li><li><a href={`tel:${CONTACT_INFO.phones[0]}`}>+255 768 779 517</a></li><li><a href={`tel:${CONTACT_INFO.phones[1]}`}>+255 748 352 657</a></li><li><Link to="/#contact">{CONTACT_INFO.location}</Link></li><li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">WhatsApp us</a></li><li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer">Airport &amp; island transfers</a></li></ul></div>
       </div>
+      <div className="footer__theme-row">
+        <button
+          className="footer__theme-toggle"
+          type="button"
+          aria-label={`Switch to ${nextTheme} theme`}
+          onClick={() => onThemeToggle?.(nextTheme)}
+        >
+          <ThemeIcon theme={theme} />
+          <span>{theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>
+        </button>
+      </div>
       <div className="footer__bottom">
-        <span>© {new Date().getFullYear()} Destination Paradise · Zanzibar, Tanzania</span>
-        <span><Link to="/privacy-policy">Privacy</Link> <Link to="/terms-of-service">Terms</Link> <Link to="/cookies-policy">Cookies</Link></span>
+        <span className="footer__copyright">© {new Date().getFullYear()} Destination Paradise · Zanzibar, Tanzania</span>
+        <span className="footer__policy-links"><Link to="/privacy-policy">Privacy</Link> <Link to="/terms-of-service">Terms</Link> <Link to="/cookies-policy">Cookies</Link></span>
       </div>
     </footer>
   );

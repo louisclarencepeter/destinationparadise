@@ -48,11 +48,11 @@ export default function SiteLayout() {
 
   return (
     <>
-      <SiteNav theme={theme} onThemeToggle={toggleTheme} />
+      <SiteNav />
       <Outlet />
-      <SiteFooter />
+      <SiteFooter theme={theme} onThemeToggle={toggleTheme} />
       <PageScrollCue />
-      <WhatsAppFab />
+      <WhatsAppFab locationKey={`${location.pathname}${location.hash}`} />
     </>
   );
 }

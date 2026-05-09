@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { announceTheme, applyTheme, normalizeTheme, persistTheme, readStoredTheme } from '../utils/theme.js';
 
 const NAV_ITEMS = [
   { label: 'Home', to: '/', end: true },
@@ -9,6 +8,7 @@ const NAV_ITEMS = [
   { label: 'Packages', to: '/packages' },
   { label: 'Trip Planner', to: '/trip-planner' },
   { label: 'Explore', to: '/explore' },
+  { label: 'Book Now', to: '/booking', mobileOnly: true },
 ];
 
 const ArrowIcon = (p) => (
@@ -17,32 +17,8 @@ const ArrowIcon = (p) => (
   </svg>
 );
 
-function getInitialTheme() {
-  return readStoredTheme();
-}
-
-export default function SiteNav(props) {
-  const controlledTheme = props?.theme;
-  const onThemeToggle = props?.onThemeToggle;
+export default function SiteNav() {
   const [navOpen, setNavOpen] = useState(false);
-  const [localTheme, setLocalTheme] = useState(getInitialTheme);
-  const theme = normalizeTheme(controlledTheme || localTheme);
-
-  useEffect(() => {
-    if (controlledTheme) return;
-    const nextTheme = applyTheme(localTheme);
-    persistTheme(nextTheme);
-    announceTheme(nextTheme);
-  }, [controlledTheme, localTheme]);
-
-  const toggleTheme = () => {
-    const nextTheme = theme === 'dark' ? 'light' : 'dark';
-    if (onThemeToggle) {
-      onThemeToggle(nextTheme);
-      return;
-    }
-    setLocalTheme(nextTheme);
-  };
 
   return (
     <nav className="nav" id="top">
@@ -53,30 +29,13 @@ export default function SiteNav(props) {
         </Link>
         <ul className={`nav__menu${navOpen ? ' nav__menu--open' : ''}`} id="navMenu" onClick={(e) => { if (e.target.tagName === 'A') setNavOpen(false); }}>
           {NAV_ITEMS.map((item) => (
-            <li className="nav__item" key={item.to}>
+            <li className={`nav__item${item.mobileOnly ? ' nav__item--mobile-only' : ''}`} key={item.to}>
               <NavLink to={item.to} end={item.end}>{item.label}</NavLink>
             </li>
           ))}
         </ul>
         <div className="nav__right">
-          <button
-            className="theme-toggle"
-            type="button"
-            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`}
-            onClick={toggleTheme}
-          >
-            {theme === 'dark' ? (
-              <svg className="i-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-              </svg>
-            ) : (
-              <svg className="i-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-                <circle cx="12" cy="12" r="4" />
-                <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-              </svg>
-            )}
-          </button>
-          <Link className="btn nav__cta" to="/booking">
+          <Link className="btn nav__cta" to="/booking" aria-label="Book now">
             <span className="nav__cta-text">Book Now</span> <ArrowIcon size={16} />
           </Link>
           <button

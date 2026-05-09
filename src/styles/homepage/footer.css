@@ -30,6 +30,40 @@
 }
 .footer__brand p { font-family: var(--dp-font-display); font-size: .95rem; color: var(--text-muted); margin: .75rem 0; line-height: 1.6; max-width: 24em; }
 .footer__script { font-family: var(--dp-font-script); font-size: 1.1rem; color: var(--dp-accent); font-weight: 400; }
+.footer__theme-toggle {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .55rem;
+  padding: .55rem .85rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface-raised) 92%, transparent);
+  color: var(--text-soft);
+  cursor: pointer;
+  font-family: var(--dp-font-sans);
+  font-size: 13px;
+  font-weight: 700;
+  transition: color .25s ease, border-color .25s ease, background .25s ease, transform .25s ease;
+}
+.footer__theme-toggle:hover,
+.footer__theme-toggle:focus-visible {
+  color: var(--dp-accent);
+  border-color: var(--dp-accent);
+  background: color-mix(in srgb, var(--dp-accent) 8%, var(--surface-raised));
+}
+.footer__theme-toggle:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--dp-accent) 22%, transparent);
+  outline-offset: 3px;
+}
+.footer__theme-toggle svg { flex-shrink: 0; }
+.footer__theme-row {
+  max-width: 1240px;
+  margin: 2rem auto 0;
+  display: flex;
+  justify-content: center;
+}
 .footer__col h4 { font-family: var(--dp-font-sans); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-soft); margin: 0 0 1rem; font-weight: 700; }
 .footer__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .6rem; }
 .footer__col a { color: var(--text-muted); text-decoration: none; font-size: 14px; font-family: var(--dp-font-sans); transition: color .25s ease; }
@@ -42,11 +76,16 @@
 }
 .footer__socials a:hover { background: var(--dp-accent); color: #fff; border-color: var(--dp-accent); transform: translateY(-2px); }
 .footer__bottom {
-  max-width: 1240px; margin: 2.5rem auto 0; padding-top: 1.25rem;
+  max-width: 1240px; margin: 1.25rem auto 0; padding-top: 1.25rem;
   border-top: 1px solid var(--border);
-  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
   font-size: 12px; color: var(--text-muted);
 }
+.footer__copyright { min-width: 0; }
+.footer__policy-links { min-width: 0; }
 .footer__bottom a { color: var(--text-muted); text-decoration: none; margin-left: 1rem; }
 .footer__bottom a:hover { color: var(--dp-accent); }
-
