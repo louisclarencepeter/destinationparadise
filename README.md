@@ -181,5 +181,4 @@ SPA fallback and the planner API rewrite are defined in `netlify.toml`.
 
 ## Notes
 
-- `docs/website-assets/` is an archived content snapshot from the previous site and is not used by the live build.
 - Some media is temporary and should be replaced with higher-resolution brand photography or video as it becomes available.
