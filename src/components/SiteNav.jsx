@@ -62,7 +62,7 @@ export default function SiteNav() {
     <nav className="nav" id="top" ref={navRef}>
       <div className="nav__inner">
         <Link className="nav__logo" to="/">
-          <img src="/assets/brand/destination-paradise-logo.png" alt="Destination Paradise" />
+          <img src="/assets/brand/destination-paradise-logo.png" alt="Destination Paradise" width="48" height="48" />
           <span className="nav__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
         </Link>
         <ul className={`nav__menu${navOpen ? ' nav__menu--open' : ''}`} id="navMenu" onClick={(e) => { if (e.target.tagName === 'A') setNavOpen(false); }}>
