@@ -65,7 +65,7 @@ export default function SiteNav() {
           <img src="/assets/brand/destination-paradise-logo.png" alt="Destination Paradise" width="48" height="48" />
           <span className="nav__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
         </Link>
-        <ul className={`nav__menu${navOpen ? ' nav__menu--open' : ''}`} id="navMenu" onClick={(e) => { if (e.target.tagName === 'A') setNavOpen(false); }}>
+        <ul className={`nav__menu${navOpen ? ' nav__menu--open' : ''}`} id="navMenu" onClick={(e) => { if (e.target instanceof HTMLAnchorElement) setNavOpen(false); }}>
           {NAV_ITEMS.map((item) => (
             <li className={`nav__item${item.mobileOnly ? ' nav__item--mobile-only' : ''}`} key={item.to}>
               <NavLink to={item.to} end={item.end}>{item.label}</NavLink>

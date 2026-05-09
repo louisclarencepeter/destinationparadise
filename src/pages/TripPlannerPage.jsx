@@ -121,7 +121,7 @@ export default function TripPlannerPage() {
         </div>
       </section>
 
-      <PlannerSection initialPrompt={initialPrompt} handoffHref="/booking" />
+      <PlannerSection initialPrompt={initialPrompt} handoffHref="/booking?source=planner#booking-form" />
 
       <section className="trip-steps reveal">
         <header className="trip-steps__head">

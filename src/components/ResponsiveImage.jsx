@@ -1,18 +1,18 @@
 import React from 'react';
 
-export default function ResponsiveImage({ src, alt, className, width, height, style, loading, decoding }) {
-  if (!src || !src.endsWith('.webp')) {
+/**
+ * @param {React.ImgHTMLAttributes<HTMLImageElement> & {
+ *   src?: string;
+ *   alt?: string;
+ *   fetchpriority?: string;
+ * }} props
+ */
+export default function ResponsiveImage({ src, alt = '', fetchpriority, ...imageProps }) {
+  const commonProps = { ...imageProps, src, alt, fetchpriority };
+
+  if (typeof src !== 'string' || !src.endsWith('.webp')) {
     return (
-      <img
-        src={src}
-        alt={alt}
-        className={className}
-        width={width}
-        height={height}
-        style={style}
-        loading={loading}
-        decoding={decoding}
-      />
+      <img {...commonProps} />
     );
   }
 
@@ -21,16 +21,9 @@ export default function ResponsiveImage({ src, alt, className, width, height, st
 
   return (
     <img
-      src={src}
+      {...commonProps}
       srcSet={srcSet}
       sizes={sizes}
-      alt={alt}
-      className={className}
-      width={width}
-      height={height}
-      style={style}
-      loading={loading}
-      decoding={decoding}
     />
   );
 }

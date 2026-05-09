@@ -404,7 +404,8 @@ html, body { max-width: 100%; }
   .planner__form { padding: .65rem .8rem; }
   .planner__input { font-size: 16px; /* prevents iOS zoom */ }
   .planner__send { width: 44px; height: 44px; }
-  .planner__foot { flex-direction: column; align-items: flex-start; gap: .35rem; padding: .6rem 1rem .75rem; font-size: 10.5px; }
+  .planner__foot { flex-direction: column; align-items: flex-start; gap: .65rem; padding: .75rem 1rem .9rem; font-size: .82rem; }
+  .planner__handoff { width: 100%; min-height: 46px; font-size: .9rem; }
   .planner__suggestions { gap: .4rem; }
   .planner__suggest { font-size: 11.5px; padding: .4rem .7rem; }
 }

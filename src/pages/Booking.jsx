@@ -4,6 +4,7 @@ import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import { destinationParadisePackages } from '../data/destinationParadisePackages.js';
 import { destinationParadiseSafariPricing } from '../data/safariPricing.js';
+import { buildPlannerHandoff, isPlannerHandoffMessage, readPlannerHandoff } from '../utils/plannerHandoff.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/booking.css';
@@ -94,6 +95,7 @@ export default function Booking() {
   const [searchParams] = useSearchParams();
   const products = useBookingProducts();
   const [form, setForm] = useState(DEFAULT_FORM);
+  const [plannerHandoff, setPlannerHandoff] = useState(null);
   const [status, setStatus] = useState('idle');
   const layoutRef = useRef(null);
   const summarySlotRef = useRef(null);
@@ -129,6 +131,29 @@ export default function Booking() {
       }));
     }
   }, [products.all, searchParams]);
+
+  useEffect(() => {
+    if (searchParams.get('source') !== 'planner') return undefined;
+
+    const handoff = readPlannerHandoff() || buildPlannerHandoff([], '/trip-planner');
+    setPlannerHandoff(handoff);
+    setStatus('idle');
+    setForm((current) => ({
+      ...current,
+      serviceType: 'custom',
+      product: '',
+      paymentPreference: 'later',
+      message: !current.message.trim() || isPlannerHandoffMessage(current.message)
+        ? handoff.message
+        : current.message,
+    }));
+
+    const timeoutId = window.setTimeout(() => {
+      document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 120);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [searchParams]);
 
   const selectedProduct = products.all.find((item) => item.value === form.product);
   const visibleProducts = form.serviceType === 'custom'
@@ -228,6 +253,8 @@ export default function Booking() {
       accommodationLevel: showTravelPreferences ? form.accommodationLevel : '',
       productLabel: selectedProduct?.label || 'Not selected',
       estimatedPrice: priceLabel(selectedProduct),
+      source: plannerHandoff ? 'planner' : 'booking',
+      plannerDraft: plannerHandoff?.transcript || '',
     };
 
     try {
@@ -291,6 +318,8 @@ export default function Booking() {
         <div className="booking-layout" ref={layoutRef}>
           <form className="booking-form" name="booking-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={submit}>
             <input type="hidden" name="form-name" value="booking-request" />
+            <input type="hidden" name="source" value={plannerHandoff ? 'planner' : 'booking'} />
+            <textarea name="plannerDraft" value={plannerHandoff?.transcript || ''} readOnly hidden />
             <p hidden><label>Do not fill this out: <input name="bot-field" onChange={() => {}} /></label></p>
 
             <fieldset className="booking-fieldset">

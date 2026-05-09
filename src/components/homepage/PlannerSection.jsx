@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import '../../styles/homepage/planner.css';
+import { savePlannerHandoff } from '../../utils/plannerHandoff.js';
 
 const PLANNER_TITLE = 'Tell me about your dream trip';
 const QUICK_REPLIES = [
@@ -31,6 +32,7 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
   const [typedTitle, setTypedTitle] = useState(PLANNER_TITLE);
   const [titleTyping, setTitleTyping] = useState(false);
   const [thinkingIndex, setThinkingIndex] = useState(0);
+  const [handoffNotice, setHandoffNotice] = useState('');
   const logRef = useRef(null);
   const inputRef = useRef(null);
   const handledPromptRef = useRef(null);
@@ -90,6 +92,7 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
 
   const send = useCallback(async (text) => {
     if (!text || sending) return;
+    setHandoffNotice('');
     const next = [...history, { role: 'user', content: text }];
     setHistory(next);
     setInput('');
@@ -117,6 +120,20 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
     handledPromptRef.current = initialPrompt.id;
     send(initialPrompt.text);
   }, [initialPrompt, sending, send]);
+
+  const handleHandoff = (event) => {
+    if (sending) {
+      event.preventDefault();
+      setHandoffNotice('Wait for the latest planner reply, then send the draft.');
+      return;
+    }
+
+    const sourcePath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+    const handoff = savePlannerHandoff(history, sourcePath);
+    setHandoffNotice(handoff.messageCount > 0
+      ? 'Draft added to the team form.'
+      : 'Opening the team form so you can add trip details.');
+  };
 
   return (
     <section className="planner reveal" id="planner">
@@ -222,8 +239,10 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
             </button>
           </form>
           <footer className="planner__foot">
-            <span>Itineraries are drafts. A human reviews and prices everything before you book.</span>
-            <a className="planner__handoff" href={handoffHref}>Send draft to the team →</a>
+            <span>
+              {handoffNotice || 'Itineraries are drafts. A human reviews and prices everything before you book.'}
+            </span>
+            <a className="planner__handoff" href={handoffHref} onClick={handleHandoff}>Send draft to the team →</a>
           </footer>
         </div>
       </div>
