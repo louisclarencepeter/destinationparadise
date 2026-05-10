@@ -257,9 +257,18 @@ export default async (req) => {
   if (!validated.ok) return errorResponse(validated.error);
 
   const { contact, handoff } = validated;
+  const updateCount = Math.max(0, Math.min(20, Number(body?.updateCount) || 0));
+  const isUpdate = updateCount > 0;
 
-  const teamSubject = `New planner draft from ${contact.name}`;
-  const guestSubject = `Your trip plan from Destination Paradise`;
+  const teamSubject = isUpdate
+    ? `Update #${updateCount} to planner draft from ${contact.name}`
+    : `New planner draft from ${contact.name}`;
+  const guestSubject = isUpdate
+    ? `Your trip plan update — Destination Paradise`
+    : `Your trip plan from Destination Paradise`;
+  const updateBannerHtml = isUpdate
+    ? `<div style="margin:0 0 18px 0;padding:10px 14px;background:#FFF6F4;border-left:3px solid #FF6F61;border-radius:0 6px 6px 0;font-size:13px;color:#1A4D6E;font-weight:700;letter-spacing:.04em;text-transform:uppercase;">Update #${updateCount} — revised plan below</div>`
+    : '';
 
   const contactRows = `<table cellpadding="0" cellspacing="0" style="width:100%;margin:0 0 6px 0;border-collapse:collapse;">
     <tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;width:90px;">Name</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(contact.name)}</td></tr>
@@ -274,9 +283,10 @@ export default async (req) => {
         <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">${escapeHtml(contact.name)} wants to plan a trip</h1>
       </div>
       <div style="padding:24px;">
+        ${updateBannerHtml}
         ${contactRows}
         ${renderHandoffHtml(handoff)}
-        <p style="margin:24px 0 0 0;font-size:13px;color:#4a6c82;line-height:1.55;">Reply directly to this email and your message will go straight to the guest. A separate copy of this draft has already been sent to them.</p>
+        <p style="margin:24px 0 0 0;font-size:13px;color:#4a6c82;line-height:1.55;">Reply directly to this email and your message will go straight to the guest. A separate copy of this ${isUpdate ? 'update' : 'draft'} has already been sent to them.</p>
       </div>
     </div>
   </body></html>`;
@@ -297,10 +307,10 @@ export default async (req) => {
     <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(26,77,110,0.08);">
       <div style="padding:22px 24px;background:linear-gradient(120deg,#1A4D6E 0%,#FF6F61 100%);color:#fff;">
         <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">Destination Paradise</div>
-        <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">Karibu, ${escapeHtml(contact.name.split(' ')[0])} — your draft is in!</h1>
+        <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">${isUpdate ? `Got the update, ${escapeHtml(contact.name.split(' ')[0])}!` : `Karibu, ${escapeHtml(contact.name.split(' ')[0])} — your draft is in!`}</h1>
       </div>
       <div style="padding:24px;">
-        <p style="margin:0 0 14px 0;font-size:15px;color:#1a1a1a;line-height:1.6;">Asante for using our AI planner. Here's a copy of the draft you built with us — keep it handy for reference.</p>
+        <p style="margin:0 0 14px 0;font-size:15px;color:#1a1a1a;line-height:1.6;">${isUpdate ? "We've sent your revised plan to the team. Here's the latest version for your records." : "Asante for using our AI planner. Here's a copy of the draft you built with us — keep it handy for reference."}</p>
         <p style="margin:0 0 18px 0;font-size:14px;color:#4a6c82;line-height:1.6;">Our team is reviewing it now and will reply within a day with real availability and a final price. If you'd like to add anything in the meantime, just reply to this email.</p>
         ${renderHandoffHtml(handoff)}
         <div style="margin:28px 0 0 0;padding:16px 18px;background:#fafbfd;border-radius:10px;font-size:13px;color:#4a6c82;line-height:1.6;">

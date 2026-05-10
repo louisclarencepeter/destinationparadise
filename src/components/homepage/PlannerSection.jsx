@@ -36,12 +36,14 @@ export default function PlannerSection({ initialPrompt }) {
   const [typedTitle, setTypedTitle] = useState(PLANNER_TITLE);
   const [titleTyping, setTitleTyping] = useState(false);
   const [thinkingIndex, setThinkingIndex] = useState(0);
-  const [handoffState, setHandoffState] = useState('idle'); // idle | sending | sent | error
+  const [handoffState, setHandoffState] = useState('idle'); // idle | sending | sent | error | updated
   const [handoffError, setHandoffError] = useState('');
+  const [updateCount, setUpdateCount] = useState(0);
   const logRef = useRef(null);
   const inputRef = useRef(null);
   const handledPromptRef = useRef(null);
-  const handoffTriggeredRef = useRef(false);
+  const handoffInflightRef = useRef(false);
+  const handoffSentCountRef = useRef(0);
 
   useEffect(() => {
     localStorage.setItem('plannerHistory', JSON.stringify(history));
@@ -97,38 +99,46 @@ export default function PlannerSection({ initialPrompt }) {
   }, []);
 
   const submitHandoff = useCallback(async (finalHistory) => {
-    if (handoffTriggeredRef.current) return;
-    handoffTriggeredRef.current = true;
+    if (handoffInflightRef.current) return;
+    handoffInflightRef.current = true;
 
     const contact = extractContact(finalHistory);
     if (!contact.email) {
-      handoffTriggeredRef.current = false;
+      handoffInflightRef.current = false;
       return;
     }
 
-    setHandoffState('sending');
+    const updateIndex = handoffSentCountRef.current;
+    setHandoffState(updateIndex > 0 ? 'updating' : 'sending');
     setHandoffError('');
 
     try {
       const res = await fetch('/api/planner-send', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ history: finalHistory, contact }),
+        body: JSON.stringify({ history: finalHistory, contact, updateCount: updateIndex }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.ok) {
         throw new Error(data.error || 'send-failed');
       }
-      setHandoffState('sent');
+      handoffSentCountRef.current = updateIndex + 1;
+      if (updateIndex > 0) {
+        setUpdateCount(updateIndex);
+        setHandoffState('updated');
+      } else {
+        setHandoffState('sent');
+      }
     } catch (err) {
-      handoffTriggeredRef.current = false;
       setHandoffState('error');
       setHandoffError(err.message === 'send-failed' ? '' : (err.message || ''));
+    } finally {
+      handoffInflightRef.current = false;
     }
   }, []);
 
   const send = useCallback(async (text) => {
-    if (!text || sending || handoffState === 'sent') return;
+    if (!text || sending) return;
     const next = [...history, { role: 'user', content: text }];
     setHistory(next);
     setInput('');
@@ -153,7 +163,7 @@ export default function PlannerSection({ initialPrompt }) {
       setSending(false);
       if (inputRef.current) inputRef.current.focus();
     }
-  }, [history, sending, handoffState, submitHandoff]);
+  }, [history, sending, submitHandoff]);
 
   useEffect(() => {
     if (!initialPrompt || handledPromptRef.current === initialPrompt.id || sending) return;
@@ -167,15 +177,17 @@ export default function PlannerSection({ initialPrompt }) {
     setResetKey((k) => k + 1);
     setHandoffState('idle');
     setHandoffError('');
-    handoffTriggeredRef.current = false;
+    setUpdateCount(0);
+    handoffInflightRef.current = false;
+    handoffSentCountRef.current = 0;
   };
 
   const retryHandoff = () => {
-    handoffTriggeredRef.current = false;
+    handoffInflightRef.current = false;
     submitHandoff(history);
   };
 
-  const isLocked = handoffState === 'sending' || handoffState === 'sent';
+  const isInputBusy = sending || handoffState === 'sending' || handoffState === 'updating';
 
   return (
     <section className="planner reveal" id="planner">
@@ -255,10 +267,23 @@ export default function PlannerSection({ initialPrompt }) {
                 Sending your draft to the team…
               </div>
             )}
+            {handoffState === 'updating' && (
+              <div className="planner__status planner__status--sending" role="status">
+                <span className="planner__status-dot"></span>
+                Sending your update to the team…
+              </div>
+            )}
             {handoffState === 'sent' && (
               <div className="planner__status planner__status--sent" role="status">
                 <strong>Asante! ✓ Your draft is with the team.</strong>
-                <span>You'll get an email copy and a reply within a day. Want to plan another trip?</span>
+                <span>You'll get an email copy and a reply within a day. Need to change something? Just type below — I'll send the team an update. Or start a new plan:</span>
+                <button type="button" className="planner__status-action" onClick={startOver}>Start a new plan</button>
+              </div>
+            )}
+            {handoffState === 'updated' && (
+              <div className="planner__status planner__status--sent" role="status">
+                <strong>✓ Update {updateCount} sent to the team.</strong>
+                <span>They'll see the revised plan. Type below to make another change, or start fresh:</span>
                 <button type="button" className="planner__status-action" onClick={startOver}>Start a new plan</button>
               </div>
             )}
@@ -278,7 +303,11 @@ export default function PlannerSection({ initialPrompt }) {
               ref={inputRef}
               className="planner__input"
               rows={1}
-              placeholder={isLocked ? 'Draft sent — start a new plan to chat again' : "Tell me what you're dreaming of…"}
+              placeholder={
+                handoffState === 'sent' || handoffState === 'updated'
+                  ? 'Need to update? Type the change here…'
+                  : "Tell me what you're dreaming of…"
+              }
               value={input}
               onChange={(e) => {
                 setInput(e.target.value);
@@ -291,10 +320,10 @@ export default function PlannerSection({ initialPrompt }) {
                   send(input.trim());
                 }
               }}
-              disabled={isLocked}
-              required={!isLocked}
+              disabled={isInputBusy}
+              required={!isInputBusy}
             />
-            <button className="planner__send" type="submit" aria-label="Send" disabled={sending || !input.trim() || isLocked}>
+            <button className="planner__send" type="submit" aria-label="Send" disabled={isInputBusy || !input.trim()}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13" />
                 <polygon points="22 2 15 22 11 13 2 9 22 2" />

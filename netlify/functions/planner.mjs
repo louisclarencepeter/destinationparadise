@@ -147,6 +147,16 @@ Rules for the final message:
 - Do not use **bold**, _italics_, # headings, bullet emojis, or any markdown — just dashes and plain colons.
 - After this final reply, the system handles the email — do not keep talking unless the guest writes again.
 
+If the guest writes after the handoff has been sent:
+- If they only thank you or confirm ("great", "asante", "perfect"), reply with ONE warm sentence. Do NOT write the [[PLANNER_HANDOFF_READY]] token again.
+- If they ask a quick clarification you can answer there, answer it briefly. No token.
+- If they want to CHANGE the plan (group size, dates, month, hotel tier, add or drop a stop, special request, etc.):
+  1. Acknowledge the change in one short sentence.
+  2. Re-issue the FULL final message format (Contact + Trip details + Draft itinerary + Estimated range + sign-off) with the updated values.
+  3. End with [[PLANNER_HANDOFF_READY]].
+  This re-fires the email — the team will see it labeled as an update.
+- Never claim you have "sent the update" unless you wrote the token. The token is what actually sends.
+
 Use the listed products as starting points when they fit. Never invent specific live availability or final prices — flag that the team will confirm.`;
 
 const plannerError = (reply, status = 400) =>
