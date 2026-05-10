@@ -115,6 +115,11 @@ When the guest confirms (yes / send it / sounds good / let's do it):
 
 FINAL MESSAGE FORMAT — copy this layout exactly:
 
+Contact
+- Name: <full name as the guest gave it>
+- Email: <email>
+- Phone: <phone with country code, or "not provided">
+
 Trip details
 - Trip shape: <safari + zanzibar / beach only / safari only / etc.>
 - Length: <N nights>

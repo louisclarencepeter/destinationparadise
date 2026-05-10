@@ -50,23 +50,46 @@ function stripMarkdown(text) {
 }
 
 // Parses the bot's final structured handoff message into discrete blocks.
-// Returns { tripDetails: [{label, value}], itineraryDays: [string], pricing, signoff }
+// Returns { contact, tripDetails: [{label, value}], itineraryDays: [string], pricing, signoff }
 // Falls back to a single "raw" block if the message doesn't match the expected layout.
 function parseHandoff(text) {
   const cleaned = stripMarkdown(text || '');
   const lines = cleaned.split(/\r?\n/).map((line) => line.trim());
 
-  const sections = { tripDetails: [], itineraryDays: [], pricing: '', signoff: '', raw: cleaned };
+  const sections = {
+    contact: { name: '', email: '', phone: '' },
+    tripDetails: [],
+    itineraryDays: [],
+    pricing: '',
+    signoff: '',
+    raw: cleaned,
+  };
   let mode = 'preamble';
 
   for (const line of lines) {
     if (!line) continue;
 
+    if (/^contact\s*$/i.test(line)) { mode = 'contact'; continue; }
     if (/^trip details/i.test(line)) { mode = 'details'; continue; }
     if (/^draft itinerary|^itinerary$/i.test(line)) { mode = 'itinerary'; continue; }
     if (/^estimated\s+(range|budget|price)/i.test(line)) {
       sections.pricing = line;
       mode = 'pricing-done';
+      continue;
+    }
+
+    if (mode === 'contact' && /^[-•]\s+/.test(line)) {
+      const body = line.replace(/^[-•]\s+/, '');
+      const idx = body.indexOf(':');
+      if (idx > 0) {
+        const label = body.slice(0, idx).trim().toLowerCase();
+        const value = body.slice(idx + 1).trim();
+        if (/name/.test(label)) sections.contact.name = value;
+        else if (/email/.test(label)) sections.contact.email = value;
+        else if (/phone|whatsapp|mobile/.test(label)) {
+          sections.contact.phone = /^(not provided|n\/a|none|—|-)$/i.test(value) ? '' : value;
+        }
+      }
       continue;
     }
 
@@ -164,20 +187,15 @@ function renderHandoffPlain(handoff) {
 function validateBody(body) {
   if (!body || typeof body !== 'object') return { ok: false, error: 'Invalid request body.' };
 
-  const { contact, history } = body;
+  const rawContact = (body.contact && typeof body.contact === 'object') ? body.contact : {};
+  let name = (rawContact.name || '').toString().trim().slice(0, 120);
+  let email = (rawContact.email || '').toString().trim().slice(0, 200);
+  let phone = (rawContact.phone || '').toString().trim().slice(0, 60);
 
-  if (!contact || typeof contact !== 'object') return { ok: false, error: 'Missing contact info.' };
-  const name = (contact.name || '').toString().trim().slice(0, 120);
-  const email = (contact.email || '').toString().trim().slice(0, 200);
-  const phone = (contact.phone || '').toString().trim().slice(0, 60);
-
-  if (!name) return { ok: false, error: 'Please share your name so the team knows who they are replying to.' };
-  if (!EMAIL_REGEX.test(email)) return { ok: false, error: 'That email does not look right. Could you double-check it?' };
-
-  if (!Array.isArray(history)) return { ok: false, error: 'Missing chat history.' };
+  if (!Array.isArray(body.history)) return { ok: false, error: 'Missing chat history.' };
 
   const messages = [];
-  for (const item of history) {
+  for (const item of body.history) {
     if (!item || (item.role !== 'user' && item.role !== 'assistant') || typeof item.content !== 'string') continue;
     const content = item.content.trim();
     if (!content) continue;
@@ -188,7 +206,17 @@ function validateBody(body) {
 
   if (messages.length === 0) return { ok: false, error: 'The chat is empty — share a few messages with the planner first.' };
 
-  return { ok: true, contact: { name, email, phone }, messages };
+  // Fall back to the bot's final structured handoff for any missing contact fields.
+  const lastAssistant = [...messages].reverse().find((m) => m.role === 'assistant');
+  const handoff = parseHandoff(lastAssistant ? lastAssistant.content : '');
+  if (!name && handoff.contact.name) name = handoff.contact.name.slice(0, 120);
+  if (!email && handoff.contact.email) email = handoff.contact.email.slice(0, 200);
+  if (!phone && handoff.contact.phone) phone = handoff.contact.phone.slice(0, 60);
+
+  if (!name) return { ok: false, error: 'Please share your name so the team knows who they are replying to.' };
+  if (!EMAIL_REGEX.test(email)) return { ok: false, error: 'That email does not look right. Could you double-check it?' };
+
+  return { ok: true, contact: { name, email, phone }, messages, handoff };
 }
 
 const errorResponse = (message, status = 400) =>
@@ -227,10 +255,7 @@ export default async (req) => {
   const validated = validateBody(body);
   if (!validated.ok) return errorResponse(validated.error);
 
-  const { contact, messages } = validated;
-
-  const lastAssistant = [...messages].reverse().find((m) => m.role === 'assistant');
-  const handoff = parseHandoff(lastAssistant ? lastAssistant.content : '');
+  const { contact, messages, handoff } = validated;
   const subject = `New planner draft from ${contact.name}`;
 
   const contactRows = `<table cellpadding="0" cellspacing="0" style="width:100%;margin:0 0 6px 0;border-collapse:collapse;">
