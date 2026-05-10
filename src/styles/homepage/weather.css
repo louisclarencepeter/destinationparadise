@@ -51,6 +51,71 @@
   flex-shrink: 0;
   margin-bottom: 1.2rem;
 }
+
+/* Weather icon animations */
+.wx-icon { overflow: visible; }
+.wx-sun-disc { transform-origin: center; animation: wx-sun-pulse 4s ease-in-out infinite; }
+.wx-sun-rays { transform-origin: 32px 32px; animation: wx-sun-spin 22s linear infinite; }
+.wx-icon--partly-day .wx-sun-rays { transform-origin: 22px 24px; animation: wx-sun-spin 26s linear infinite; }
+.wx-moon { transform-origin: center; animation: wx-moon-glow 4.5s ease-in-out infinite; }
+.wx-star { animation: wx-star-twinkle 2.6s ease-in-out infinite; }
+.wx-star--2 { animation-delay: .8s; }
+.wx-star--3 { animation-delay: 1.6s; }
+.wx-cloud { animation: wx-cloud-drift 6s ease-in-out infinite; }
+.wx-cloud--solo { animation: wx-cloud-bob 5s ease-in-out infinite; }
+.wx-drop { stroke-linecap: round; animation: wx-drop-fall 1.2s ease-in infinite; transform-origin: top; }
+.wx-drop--2 { animation-delay: .35s; }
+.wx-drop--3 { animation-delay: .7s; }
+.wx-fog-line { stroke-dasharray: 22 12; animation: wx-fog-drift 4s linear infinite; }
+.wx-fog-line--2 { animation-direction: reverse; animation-duration: 5s; }
+.wx-bolt {
+  stroke-linecap: round;
+  fill: var(--dp-accent);
+  stroke: var(--dp-accent);
+  animation: wx-bolt-flicker 2.4s ease-in-out infinite;
+  transform-origin: 32px 50px;
+}
+
+@keyframes wx-sun-spin { to { transform: rotate(360deg); } }
+@keyframes wx-sun-pulse {
+  0%, 100% { transform: scale(1); opacity: .95; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+@keyframes wx-moon-glow {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(207,225,238,0)); }
+  50% { filter: drop-shadow(0 0 6px rgba(207,225,238,.55)); }
+}
+@keyframes wx-star-twinkle {
+  0%, 100% { opacity: .35; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+@keyframes wx-cloud-drift {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(3px); }
+}
+@keyframes wx-cloud-bob {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(-3px); }
+}
+@keyframes wx-drop-fall {
+  0% { transform: translateY(-4px); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateY(6px); opacity: 0; }
+}
+@keyframes wx-fog-drift {
+  to { stroke-dashoffset: -34; }
+}
+@keyframes wx-bolt-flicker {
+  0%, 38%, 44%, 100% { opacity: 1; transform: translateY(0); }
+  40% { opacity: .25; }
+  42% { opacity: 1; }
+  60% { transform: translateY(1px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wx-sun-rays, .wx-sun-disc, .wx-moon, .wx-star,
+  .wx-cloud, .wx-drop, .wx-fog-line, .wx-bolt { animation: none; }
+}
 .weather__desc {
   font-family: var(--dp-font-display); font-size: 1.05rem; color: var(--text); line-height: 1.6; margin: 0; max-width: 32em;
 }

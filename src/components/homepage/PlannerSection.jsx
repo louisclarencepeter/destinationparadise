@@ -105,6 +105,8 @@ export default function PlannerSection({ initialPrompt }) {
     const contact = extractContact(finalHistory);
     if (!contact.email) {
       handoffInflightRef.current = false;
+      setHandoffState('error');
+      setHandoffError('Share your email in the chat first so we can reply.');
       return;
     }
 
@@ -212,7 +214,7 @@ export default function PlannerSection({ initialPrompt }) {
           </div>
         </div>
 
-        <div className="planner__chat" key={resetKey}>
+        <div className="planner__chat" id="planner-chat" key={resetKey}>
           <header className="planner__header">
             <div className="planner__avatar">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
@@ -305,8 +307,8 @@ export default function PlannerSection({ initialPrompt }) {
               rows={1}
               placeholder={
                 handoffState === 'sent' || handoffState === 'updated'
-                  ? 'Need to update? Type the change here…'
-                  : "Tell me what you're dreaming of…"
+                  ? 'Type an update here…'
+                  : 'Tell me your dream trip…'
               }
               value={input}
               onChange={(e) => {
@@ -330,8 +332,22 @@ export default function PlannerSection({ initialPrompt }) {
               </svg>
             </button>
           </form>
-          <footer className="planner__foot planner__foot--simple">
-            <span>Itineraries are drafts. A human reviews and prices everything before you book.</span>
+          <footer className="planner__foot">
+            <span className="planner__foot-note">Itineraries are drafts. A human reviews and prices everything before you book.</span>
+            <button
+              type="button"
+              className="planner__handoff"
+              onClick={() => submitHandoff(history)}
+              disabled={
+                isInputBusy ||
+                handoffState === 'sent' ||
+                history.filter((m) => m.role === 'user').length < 1
+              }
+            >
+              {handoffState === 'sent' || handoffState === 'updated'
+                ? 'Sent to team ✓'
+                : 'Send to team'}
+            </button>
           </footer>
         </div>
       </div>

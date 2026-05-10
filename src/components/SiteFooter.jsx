@@ -24,6 +24,12 @@ const ThemeIcon = ({ theme }) => (
   )
 );
 
+const THEME_MODES = [
+  { mode: 'auto', label: 'Auto' },
+  { mode: 'light', label: 'Light' },
+  { mode: 'dark', label: 'Dark' },
+];
+
 const FOOTER_ICONS = {
   home: ['M3 10.5 12 3l9 7.5', 'M5 9.5V21h5v-6h4v6h5V9.5'],
   compass: ['M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z', 'm15.5 8.5-2 5-5 2 2-5 5-2Z'],
@@ -147,15 +153,71 @@ export function WhatsAppFab({ locationKey }) {
       style={placement.isParked ? { top: `${placement.top}px` } : undefined}
     >
       <WhatsAppIcon />
-      <span className="whatsapp-fab__dot" aria-hidden="true"></span>
       <span className="whatsapp-fab__label">Chat with the team</span>
     </a>
   );
 }
 
-export default function SiteFooter({ theme = 'light', onThemeToggle }) {
-  const nextTheme = theme === 'dark' ? 'light' : 'dark';
+const TYPED_TAGLINE = 'your next trip to paradise...';
 
+function TypedTagline() {
+  const [typed, setTyped] = useState('');
+  const [done, setDone] = useState(false);
+  const elRef = useRef(null);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      setTyped(TYPED_TAGLINE);
+      setDone(true);
+      return undefined;
+    }
+    const el = elRef.current;
+    if (!el || !('IntersectionObserver' in window)) {
+      setTyped(TYPED_TAGLINE);
+      setDone(true);
+      return undefined;
+    }
+    let timeoutId;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0].isIntersecting) return;
+        observer.disconnect();
+        let i = 0;
+        const tick = () => {
+          i += 1;
+          setTyped(TYPED_TAGLINE.slice(0, i));
+          if (i >= TYPED_TAGLINE.length) {
+            setDone(true);
+            return;
+          }
+          const pause = TYPED_TAGLINE[i - 1] === ' ' ? 80 : 48 + (i % 4) * 14;
+          timeoutId = window.setTimeout(tick, pause);
+        };
+        timeoutId = window.setTimeout(tick, 220);
+      },
+      { threshold: 0.4 },
+    );
+    observer.observe(el);
+    return () => {
+      observer.disconnect();
+      if (timeoutId) window.clearTimeout(timeoutId);
+    };
+  }, []);
+
+  return (
+    <p
+      ref={elRef}
+      className={`footer__script footer__script--typed${done ? ' is-done' : ''}`}
+      aria-label={TYPED_TAGLINE}
+    >
+      <span aria-hidden="true">{typed}</span>
+      <span className="footer__script-cursor" aria-hidden="true" />
+    </p>
+  );
+}
+
+export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThemeModeChange }) {
   return (
     <footer className="footer">
       <div className="footer__inner">
@@ -165,7 +227,7 @@ export default function SiteFooter({ theme = 'light', onThemeToggle }) {
             <span className="footer__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
           </div>
           <p>A small, local travel company on the shores of Zanzibar. Unhurried days, traditional boats, and guides who grew up here.</p>
-          <p className="footer__script">your next trip to paradise...</p>
+          <TypedTagline />
           <div className="footer__socials">
             <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label="WhatsApp"><WhatsAppIcon /></a>
             <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noreferrer" aria-label="Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75"><rect x="2" y="2" width="20" height="20" rx="5" /><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" /><line x1="17.5" y1="6.5" x2="17.51" y2="6.5" strokeWidth="2" /></svg></a>
@@ -208,15 +270,28 @@ export default function SiteFooter({ theme = 'light', onThemeToggle }) {
         </div>
       </div>
       <div className="footer__theme-row">
-        <button
-          className="footer__theme-toggle"
-          type="button"
-          aria-label={`Switch to ${nextTheme} theme`}
-          onClick={() => onThemeToggle?.(nextTheme)}
-        >
-          <ThemeIcon theme={theme} />
-          <span>{theme === 'dark' ? 'Light mode' : 'Dark mode'}</span>
-        </button>
+        <div className="footer__theme-toggle" role="radiogroup" aria-label="Theme preference">
+          {THEME_MODES.map((option) => {
+            const isActive = themeMode === option.mode;
+            const iconTheme = option.mode === 'auto' ? theme : option.mode;
+            const label = option.mode === 'auto' ? `Auto ${theme}` : option.label;
+
+            return (
+              <button
+                key={option.mode}
+                className={`footer__theme-option${isActive ? ' is-active' : ''}`}
+                type="button"
+                role="radio"
+                aria-checked={isActive}
+                aria-label={`${label} mode`}
+                onClick={() => onThemeModeChange?.(option.mode)}
+              >
+                <ThemeIcon theme={iconTheme} />
+                <span>{label}</span>
+              </button>
+            );
+          })}
+        </div>
       </div>
       <div className="footer__bottom">
         <span className="footer__copyright">© {new Date().getFullYear()} Destination Paradise · Zanzibar, Tanzania</span>

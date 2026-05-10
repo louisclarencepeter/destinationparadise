@@ -17,7 +17,7 @@ const MapSection = lazy(() => import('../components/homepage/MapSection.jsx'));
 const PlannerSection = lazy(() => import('../components/homepage/PlannerSection.jsx'));
 import ContactSection from '../components/homepage/ContactSection.jsx';
 import NewsletterSection from '../components/homepage/NewsletterSection.jsx';
-import { announceTheme, applyTheme, normalizeTheme, readStoredTweaks } from '../utils/theme.js';
+import { readStoredTheme, readStoredThemeMode, readStoredTweaks } from '../utils/theme.js';
 
 const PINS = DESTINATION_MAP_PINS;
 
@@ -42,13 +42,15 @@ const MONTHS = [
 const SCORES = [72, 78, 62, 42, 56, 82, 92, 95, 90, 80, 55, 68];
 const NOW_MONTH = new Date().getMonth();
 
-const TWEAKS_DEFAULTS = { hero: 'photo', layout: '3up', theme: 'light' };
+const TWEAKS_DEFAULTS = { hero: 'photo', layout: '3up', theme: 'light', themeMode: 'auto' };
 const BEST_SELLING_EXCURSION_IDS = ['safari-blue', 'mnemba', 'spice-tour'];
 
 function loadTweaks() {
+  const theme = readStoredTheme();
+  const themeMode = readStoredThemeMode();
   const saved = readStoredTweaks();
-  if (saved) return { ...TWEAKS_DEFAULTS, ...saved, theme: normalizeTheme(saved.theme) };
-  return { ...TWEAKS_DEFAULTS };
+  if (saved) return { ...TWEAKS_DEFAULTS, ...saved, theme, themeMode };
+  return { ...TWEAKS_DEFAULTS, theme, themeMode };
 }
 
 export default function Homepage() {
@@ -58,17 +60,22 @@ export default function Homepage() {
   const [tweaksGearVisible, setTweaksGearVisible] = useState(false);
   const [plannerPrompt, setPlannerPrompt] = useState(null);
 
-  // Persist theme + tweaks
+  // Persist design-preview tweaks. The active theme is managed globally.
   useEffect(() => {
-    const nextTheme = applyTheme(tweaks.theme);
-    try { localStorage.setItem('dp_tweaks', JSON.stringify({ ...tweaks, theme: nextTheme })); } catch (e) { /* noop */ }
-    announceTheme(nextTheme);
+    try { localStorage.setItem('dp_tweaks', JSON.stringify(tweaks)); } catch (e) { /* noop */ }
   }, [tweaks]);
 
   useEffect(() => {
     const onThemeChange = (event) => {
       const theme = event.detail?.theme;
-      if (theme) setTweaks((current) => (current.theme === theme ? current : { ...current, theme }));
+      const themeMode = event.detail?.mode;
+      if (theme) {
+        setTweaks((current) => (
+          current.theme === theme && (!themeMode || current.themeMode === themeMode)
+            ? current
+            : { ...current, theme, ...(themeMode ? { themeMode } : {}) }
+        ));
+      }
     };
     window.addEventListener('dp-theme-change', onThemeChange);
     return () => window.removeEventListener('dp-theme-change', onThemeChange);
@@ -156,7 +163,8 @@ export default function Homepage() {
       id: Date.now(),
       text: `I'm looking for ${experienceText}${dateText} for ${guests}. Can you suggest the best fit and ask me anything else you need?`,
     });
-    document.getElementById('planner')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const target = document.getElementById('planner-chat') || document.getElementById('planner');
+    target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const islandPins = PINS.filter((p) => p.region === 'Zanzibar');
@@ -206,7 +214,6 @@ export default function Homepage() {
         {[
           { key: 'hero', label: 'Hero variant', opts: [['photo', 'Photo'], ['split', 'Split'], ['video', 'Video']] },
           { key: 'layout', label: 'Excursion layout', opts: [['3up', '3-up'], ['2up', 'Feature'], ['carousel', 'Carousel']] },
-          { key: 'theme', label: 'Theme', opts: [['light', 'Light'], ['dark', 'Dark']] },
         ].map((g) => (
           <div className="tweaks-group" key={g.key}>
             <label className="tweaks-group__label">{g.label}</label>
