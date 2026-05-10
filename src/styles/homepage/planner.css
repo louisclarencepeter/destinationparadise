@@ -646,14 +646,28 @@
   font-size: .82rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background .15s ease, color .15s ease;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
 }
-.planner__status-action:hover {
-  background: currentColor;
+.planner__status--sent .planner__status-action:hover {
+  background: #14532d;
+  color: #ffffff;
+  border-color: #14532d;
 }
-.planner__status-action:hover { color: #fff; }
-[data-theme="dark"] .planner__status--sent .planner__status-action:hover { color: #052e16; }
-[data-theme="dark"] .planner__status--error .planner__status-action:hover { color: #450a0a; }
+[data-theme="dark"] .planner__status--sent .planner__status-action:hover {
+  background: #bbf7d0;
+  color: #052e16;
+  border-color: #bbf7d0;
+}
+.planner__status--error .planner__status-action:hover {
+  background: #991b1b;
+  color: #ffffff;
+  border-color: #991b1b;
+}
+[data-theme="dark"] .planner__status--error .planner__status-action:hover {
+  background: #fecaca;
+  color: #450a0a;
+  border-color: #fecaca;
+}
 [data-theme="dark"] .planner__handoff--disabled {
   border-color: rgba(255,255,255,.12);
 }
