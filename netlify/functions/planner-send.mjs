@@ -40,20 +40,125 @@ const escapeHtml = (text) => String(text || '')
   .replace(/"/g, '&quot;')
   .replace(/'/g, '&#39;');
 
-function formatTranscriptHtml(messages) {
-  return messages.map((message) => {
-    const who = message.role === 'user' ? 'Guest' : 'Planner';
-    const accent = message.role === 'user' ? '#1A4D6E' : '#FF6F61';
-    const body = escapeHtml(message.content).replace(/\n/g, '<br>');
-    return `<div style="margin:0 0 14px 0;padding:10px 14px;border-left:3px solid ${accent};background:#fafbfd;">
-      <div style="font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:${accent};margin-bottom:4px;">${who}</div>
-      <div style="font-size:14px;line-height:1.55;color:#1a1a1a;">${body}</div>
-    </div>`;
-  }).join('');
+function stripMarkdown(text) {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    .replace(/\*(.+?)\*/g, '$1')
+    .replace(/^#{1,6}\s+/gm, '')
+    .replace(/`([^`]+)`/g, '$1')
+    .trim();
 }
 
-function formatTranscriptPlain(messages) {
-  return messages.map((m) => `${m.role === 'user' ? 'Guest' : 'Planner'}: ${m.content}`).join('\n\n');
+// Parses the bot's final structured handoff message into discrete blocks.
+// Returns { tripDetails: [{label, value}], itineraryDays: [string], pricing, signoff }
+// Falls back to a single "raw" block if the message doesn't match the expected layout.
+function parseHandoff(text) {
+  const cleaned = stripMarkdown(text || '');
+  const lines = cleaned.split(/\r?\n/).map((line) => line.trim());
+
+  const sections = { tripDetails: [], itineraryDays: [], pricing: '', signoff: '', raw: cleaned };
+  let mode = 'preamble';
+
+  for (const line of lines) {
+    if (!line) continue;
+
+    if (/^trip details/i.test(line)) { mode = 'details'; continue; }
+    if (/^draft itinerary|^itinerary$/i.test(line)) { mode = 'itinerary'; continue; }
+    if (/^estimated\s+(range|budget|price)/i.test(line)) {
+      sections.pricing = line;
+      mode = 'pricing-done';
+      continue;
+    }
+
+    if (mode === 'details' && /^[-•]\s+/.test(line)) {
+      const body = line.replace(/^[-•]\s+/, '');
+      const [label, ...rest] = body.split(':');
+      if (rest.length > 0) {
+        sections.tripDetails.push({ label: label.trim(), value: rest.join(':').trim() });
+      } else {
+        sections.tripDetails.push({ label: '', value: body.trim() });
+      }
+      continue;
+    }
+
+    if (mode === 'itinerary' && /^day\s+\d+/i.test(line)) {
+      sections.itineraryDays.push(line);
+      continue;
+    }
+
+    if ((mode === 'pricing-done' || mode === 'itinerary') && /^(asante|thank|great)/i.test(line)) {
+      sections.signoff = line;
+      mode = 'signoff';
+      continue;
+    }
+  }
+
+  return sections;
+}
+
+function renderHandoffHtml(handoff) {
+  const blocks = [];
+
+  if (handoff.tripDetails.length > 0) {
+    const rows = handoff.tripDetails.map((item) => `
+      <tr>
+        <td style="padding:8px 12px;font-size:12px;color:#4a6c82;width:160px;vertical-align:top;text-transform:uppercase;letter-spacing:.04em;font-weight:700;">${escapeHtml(item.label || 'Detail')}</td>
+        <td style="padding:8px 12px;font-size:14px;color:#1a1a1a;line-height:1.5;">${escapeHtml(item.value)}</td>
+      </tr>`).join('');
+    blocks.push(`
+      <h2 style="margin:24px 0 10px 0;font-size:13px;color:#4a6c82;font-weight:700;letter-spacing:.06em;text-transform:uppercase;">Trip details</h2>
+      <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background:#fafbfd;border-radius:8px;overflow:hidden;">${rows}</table>`);
+  }
+
+  if (handoff.itineraryDays.length > 0) {
+    const days = handoff.itineraryDays.map((day) => {
+      const match = day.match(/^(day\s+\d+)\s*[:\-–]\s*(.+)$/i);
+      const label = match ? match[1] : '';
+      const body = match ? match[2] : day;
+      return `<li style="margin:0 0 10px 0;padding:10px 14px;background:#fafbfd;border-left:3px solid #FF6F61;border-radius:0 6px 6px 0;list-style:none;">
+        <div style="font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#FF6F61;margin-bottom:3px;">${escapeHtml(label)}</div>
+        <div style="font-size:14px;line-height:1.55;color:#1a1a1a;">${escapeHtml(body)}</div>
+      </li>`;
+    }).join('');
+    blocks.push(`
+      <h2 style="margin:24px 0 10px 0;font-size:13px;color:#4a6c82;font-weight:700;letter-spacing:.06em;text-transform:uppercase;">Draft itinerary</h2>
+      <ol style="margin:0;padding:0;">${days}</ol>`);
+  }
+
+  if (handoff.pricing) {
+    blocks.push(`
+      <p style="margin:18px 0 0 0;padding:12px 14px;background:#FFF6F4;border-radius:8px;font-size:14px;color:#1a1a1a;line-height:1.55;"><strong style="color:#1A4D6E;">${escapeHtml(handoff.pricing.split(':')[0] || 'Estimated range')}:</strong>${escapeHtml(handoff.pricing.includes(':') ? handoff.pricing.split(':').slice(1).join(':') : '')}</p>`);
+  }
+
+  if (blocks.length === 0) {
+    // Fallback: render raw cleaned text as paragraphs.
+    const paragraphs = handoff.raw.split(/\n{2,}/).map((p) => `<p style="margin:0 0 12px 0;font-size:14px;color:#1a1a1a;line-height:1.55;">${escapeHtml(p).replace(/\n/g, '<br>')}</p>`).join('');
+    blocks.push(paragraphs);
+  }
+
+  return blocks.join('');
+}
+
+function renderHandoffPlain(handoff) {
+  const lines = [];
+  if (handoff.tripDetails.length > 0) {
+    lines.push('Trip details');
+    handoff.tripDetails.forEach((item) => {
+      lines.push(`- ${item.label}: ${item.value}`.trim().replace(/^- :\s*/, '- '));
+    });
+    lines.push('');
+  }
+  if (handoff.itineraryDays.length > 0) {
+    lines.push('Draft itinerary');
+    handoff.itineraryDays.forEach((day) => lines.push(day));
+    lines.push('');
+  }
+  if (handoff.pricing) {
+    lines.push(handoff.pricing);
+    lines.push('');
+  }
+  if (lines.length === 0) return handoff.raw;
+  return lines.join('\n').trim();
 }
 
 function validateBody(body) {
@@ -124,8 +229,11 @@ export default async (req) => {
 
   const { contact, messages } = validated;
 
+  const lastAssistant = [...messages].reverse().find((m) => m.role === 'assistant');
+  const handoff = parseHandoff(lastAssistant ? lastAssistant.content : '');
   const subject = `New planner draft from ${contact.name}`;
-  const summary = `<table cellpadding="0" cellspacing="0" style="width:100%;margin:0 0 18px 0;border-collapse:collapse;">
+
+  const contactRows = `<table cellpadding="0" cellspacing="0" style="width:100%;margin:0 0 6px 0;border-collapse:collapse;">
     <tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;width:90px;">Name</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(contact.name)}</td></tr>
     <tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;">Email</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(contact.email)}</td></tr>
     ${contact.phone ? `<tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;">Phone</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(contact.phone)}</td></tr>` : ''}
@@ -138,9 +246,8 @@ export default async (req) => {
         <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">${escapeHtml(contact.name)} wants to plan a trip</h1>
       </div>
       <div style="padding:24px;">
-        ${summary}
-        <h2 style="margin:18px 0 10px 0;font-size:14px;color:#4a6c82;font-weight:700;letter-spacing:.04em;text-transform:uppercase;">Conversation</h2>
-        ${formatTranscriptHtml(messages)}
+        ${contactRows}
+        ${renderHandoffHtml(handoff)}
         <p style="margin:24px 0 0 0;font-size:13px;color:#4a6c82;line-height:1.55;">Reply directly to this email and the guest will receive your note. They have been CC'd on this message.</p>
       </div>
     </div>
@@ -153,9 +260,7 @@ export default async (req) => {
     `Email: ${contact.email}`,
     contact.phone ? `Phone: ${contact.phone}` : '',
     '',
-    '--- Conversation ---',
-    '',
-    formatTranscriptPlain(messages),
+    renderHandoffPlain(handoff),
     '',
     'Reply directly to this email and the guest will receive your note.',
   ].filter(Boolean).join('\n');

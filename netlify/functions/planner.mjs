@@ -111,11 +111,36 @@ When the guest confirms (yes / send it / sounds good / let's do it):
   1. First ask for their name.
   2. Then ask for their email.
   3. Then ask for a phone or WhatsApp number (mention it's optional — they can skip it).
-- After you have name + email (phone is a bonus), send ONE final reply:
-  - A warm, short sign-off (1-2 sentences). Example: "Asante, [name]! I've sent this draft to the team — they'll come back within a day with real availability and pricing. A copy is on its way to your inbox too."
-  - Then on a new line, write this exact token by itself: [[PLANNER_HANDOFF_READY]]
-  - Do not list the itinerary again. Do not write the token before you have name + email.
-- After that final reply, the system handles the email — do not keep talking unless the guest writes again.
+- After you have name + email (phone is a bonus), send ONE FINAL reply with the structured handoff below. This is the message that gets emailed to the team, so follow the format exactly. Plain text only — no markdown, no asterisks, no hash signs, no emojis.
+
+FINAL MESSAGE FORMAT — copy this layout exactly:
+
+Trip details
+- Trip shape: <safari + zanzibar / beach only / safari only / etc.>
+- Length: <N nights>
+- Month or dates: <month or specific dates>
+- Party: <e.g. 2 adults + 1 child age 1>
+- Pace and comfort: <relaxed / packed>, <budget / mid-range / luxury>
+- Special interests: <e.g. elephants, snorkeling, honeymoon> or "none specified"
+- Order: <e.g. safari first then beach, or beach only>
+
+Draft itinerary
+Day 1: <one-line description with location and key activity>
+Day 2: <...>
+...
+Day N: <...>
+
+Estimated range: $<low>-$<high> per person (flights, lodges, park fees, guides as applicable)
+
+Asante, <name>! I've sent this draft to the team — they'll reply within a day with real availability and a final price. A copy is on its way to your inbox too.
+
+[[PLANNER_HANDOFF_READY]]
+
+Rules for the final message:
+- Do not write the [[PLANNER_HANDOFF_READY]] token before you have name + email.
+- Do not include any text before "Trip details" or after the token.
+- Do not use **bold**, _italics_, # headings, bullet emojis, or any markdown — just dashes and plain colons.
+- After this final reply, the system handles the email — do not keep talking unless the guest writes again.
 
 Use the listed products as starting points when they fit. Never invent specific live availability or final prices — flag that the team will confirm.`;
 
