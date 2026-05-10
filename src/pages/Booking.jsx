@@ -4,7 +4,7 @@ import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import { destinationParadisePackages } from '../data/destinationParadisePackages.js';
 import { destinationParadiseSafariPricing } from '../data/safariPricing.js';
-import { buildPlannerHandoff, isPlannerHandoffMessage, readPlannerHandoff } from '../utils/plannerHandoff.js';
+import { buildPlannerHandoff, clearPlannerHandoff, isPlannerHandoffMessage, readPlannerHandoff } from '../utils/plannerHandoff.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/booking.css';
@@ -265,6 +265,9 @@ export default function Booking() {
       });
       if (!response.ok) throw new Error('booking-request-failed');
       setStatus('sent');
+      setForm(DEFAULT_FORM);
+      clearPlannerHandoff();
+      setPlannerHandoff(null);
     } catch {
       setStatus('error');
     }

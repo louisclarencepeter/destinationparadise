@@ -113,3 +113,13 @@ export function readPlannerHandoff() {
     return null;
   }
 }
+
+export function clearPlannerHandoff() {
+  try {
+    if (typeof window !== 'undefined') {
+      window.localStorage.removeItem(PLANNER_HANDOFF_STORAGE_KEY);
+    }
+  } catch {
+    // No-op if storage is unavailable.
+  }
+}

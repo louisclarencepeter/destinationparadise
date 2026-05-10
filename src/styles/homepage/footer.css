@@ -35,11 +35,8 @@
   font-style: italic;
   font-weight: 400;
   line-height: 1.1;
-  color: var(--text);
-  margin: .85rem 0 .75rem;
-}
-html[data-theme="dark"] .footer__brand .footer__script {
   color: var(--dp-accent);
+  margin: .85rem 0 .75rem;
 }
 .footer__theme-toggle {
   min-height: 42px;

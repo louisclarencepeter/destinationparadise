@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import '../../styles/homepage/contact.css';
 import { CONTACT_INFO } from '../../constants/contactInfo.js';
 import { ArrowIcon } from './Icons.jsx';
-import { isPlannerHandoffMessage, PLANNER_HANDOFF_EVENT, readPlannerHandoff } from '../../utils/plannerHandoff.js';
+import { clearPlannerHandoff, isPlannerHandoffMessage, PLANNER_HANDOFF_EVENT, readPlannerHandoff } from '../../utils/plannerHandoff.js';
 
 const encodeForm = (data) =>
   Object.keys(data)
@@ -75,6 +75,8 @@ export default function ContactSection() {
       if (!res.ok) throw new Error('http');
       setStatus('sent');
       setForm({ name: '', email: '', subject: '', message: '' });
+      clearPlannerHandoff();
+      setPlannerHandoff(null);
     } catch {
       setStatus('error');
     }
