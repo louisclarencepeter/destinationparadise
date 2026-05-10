@@ -575,26 +575,43 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 42px;
-  padding: .72rem 1rem;
+  min-height: 32px;
+  padding: .45rem .85rem;
   border-radius: 999px;
   background: #FF6F61;
   color: #fff;
-  font-size: .92rem;
-  font-weight: 800;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .01em;
   line-height: 1;
   text-decoration: none;
-  box-shadow: 0 14px 28px -20px rgba(255,111,97,.9);
-  transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+  box-shadow: 0 6px 14px -10px rgba(255,111,97,.7);
+  transition: background .2s ease, box-shadow .2s ease, transform .2s ease, opacity .2s ease;
 }
 .planner__handoff:hover {
   background: #ff8678;
-  box-shadow: 0 18px 34px -22px rgba(255,111,97,.95);
+  box-shadow: 0 8px 18px -12px rgba(255,111,97,.8);
   transform: translateY(-1px);
 }
 .planner__handoff:focus-visible {
   outline: 2px solid color-mix(in srgb, #FF6F61 65%, #fff);
   outline-offset: 3px;
+}
+.planner__handoff--disabled {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--divider);
+  box-shadow: none;
+  cursor: not-allowed;
+  opacity: .65;
+}
+.planner__handoff--disabled:hover {
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+}
+[data-theme="dark"] .planner__handoff--disabled {
+  border-color: rgba(255,255,255,.12);
 }
 
 @media (max-width: 960px) {

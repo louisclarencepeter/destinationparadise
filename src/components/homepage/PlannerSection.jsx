@@ -121,10 +121,15 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
     send(initialPrompt.text);
   }, [initialPrompt, sending, send]);
 
+  const hasAssistantReply = history.some((m) => m.role === 'assistant');
+  const handoffReady = hasAssistantReply && !sending;
+
   const handleHandoff = (event) => {
-    if (sending) {
+    if (!handoffReady) {
       event.preventDefault();
-      setHandoffNotice('Wait for the latest planner reply, then send the draft.');
+      setHandoffNotice(sending
+        ? 'Wait for the latest planner reply, then send the draft.'
+        : 'Chat with the planner first so the team has something to work with.');
       return;
     }
 
@@ -242,7 +247,15 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
             <span>
               {handoffNotice || 'Itineraries are drafts. A human reviews and prices everything before you book.'}
             </span>
-            <a className="planner__handoff" href={handoffHref} onClick={handleHandoff}>Send draft to the team →</a>
+            <a
+              className={`planner__handoff${handoffReady ? '' : ' planner__handoff--disabled'}`}
+              href={handoffHref}
+              onClick={handleHandoff}
+              aria-disabled={!handoffReady}
+              tabIndex={handoffReady ? 0 : -1}
+            >
+              Send draft to the team →
+            </a>
           </footer>
         </div>
       </div>
