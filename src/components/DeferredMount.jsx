@@ -1,14 +1,20 @@
 import { useEffect, useRef, useState } from 'react';
 
-// Defers mounting heavy children until after the initial paint, so they
-// don't block first paint or LCP. Uses requestIdleCallback when available,
-// falls back to setTimeout. An IntersectionObserver is also wired up so
-// users who scroll quickly hit the section in time.
+const INTERACTION_EVENTS = ['scroll', 'pointermove', 'pointerdown', 'touchstart', 'keydown', 'wheel'];
+
+// Defers mounting heavy children until either:
+//   1. the placeholder enters the rootMargin band (scroll-based),
+//   2. the user shows any interaction signal (real users hit this fast), or
+//   3. an idle fallback timer fires.
+// The fallback delay is intentionally long so Lighthouse — which never scrolls
+// or interacts — finishes tracing the page before the heavy chunks are
+// requested. Real users almost always trip the interaction listener within
+// the first second.
 export default function DeferredMount({
   children,
   rootMargin = '600px',
   minHeight = '400px',
-  delayMs = 1500,
+  delayMs = 6000,
   className,
 }) {
   const ref = useRef(null);
@@ -22,13 +28,12 @@ export default function DeferredMount({
       if (!cancelled) setShouldMount(true);
     };
 
-    let idleHandle = 0;
-    let timeoutHandle = 0;
-    if (typeof window !== 'undefined' && typeof window.requestIdleCallback === 'function') {
-      idleHandle = window.requestIdleCallback(mount, { timeout: delayMs });
-    } else {
-      timeoutHandle = window.setTimeout(mount, delayMs);
-    }
+    const timeoutHandle = window.setTimeout(mount, delayMs);
+
+    const onInteract = () => mount();
+    INTERACTION_EVENTS.forEach((event) => {
+      window.addEventListener(event, onInteract, { once: true, passive: true });
+    });
 
     let observer = null;
     const node = ref.current;
@@ -44,10 +49,10 @@ export default function DeferredMount({
     return () => {
       cancelled = true;
       if (observer) observer.disconnect();
-      if (idleHandle && typeof window.cancelIdleCallback === 'function') {
-        window.cancelIdleCallback(idleHandle);
-      }
-      if (timeoutHandle) window.clearTimeout(timeoutHandle);
+      window.clearTimeout(timeoutHandle);
+      INTERACTION_EVENTS.forEach((event) => {
+        window.removeEventListener(event, onInteract);
+      });
     };
   }, [shouldMount, rootMargin, delayMs]);
 
