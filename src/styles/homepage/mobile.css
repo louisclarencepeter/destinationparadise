@@ -15,9 +15,12 @@ html, body { max-width: 100%; }
   overflow-wrap: anywhere;
 }
 
-/* ---- Nav: keep CTA compact, give burger a real tap target ---- */
-.nav__cta { padding: .55rem .95rem; font-size: 13px; white-space: nowrap; }
-.nav__burger { padding: .6rem; min-width: 44px; min-height: 44px; }
+/* ---- Nav: burger gets a real tap target; CTA hides on mobile (menu has Book) ---- */
+.nav__burger { padding: 0; min-width: 44px; min-height: 44px; }
+
+@media (max-width: 960px) {
+  .nav__cta { display: none; }
+}
 
 @media (max-width: 720px) {
   .nav { padding: .65rem 1rem .65rem 1.6rem; gap: .5rem; }
@@ -25,19 +28,14 @@ html, body { max-width: 100%; }
   .nav__logo-text { font-size: 1rem; white-space: nowrap; }
   .nav__logo-text small { font-size: 8px; letter-spacing: .2em; }
   .nav__right { gap: .45rem; }
-  .nav__cta { padding: .5rem .8rem; font-size: 12px; }
 }
 
-/* Below ~480 the CTA still bloats — shrink to icon-only */
 @media (max-width: 480px) {
-  .nav__cta-text { display: none; }
-  .nav__cta { padding: .55rem .65rem; gap: 0; }
   .nav__logo-text small { display: none; }
   .nav__logo-text { font-size: .95rem; }
 }
 
 @media (max-width: 360px) {
-  .nav__cta { display: none; } /* burger already exposes Book in menu */
   .nav__logo img { height: 32px; }
 }
 
@@ -509,16 +507,17 @@ html, body { max-width: 100%; }
   .footer__inner { gap: 1.5rem; }
   .footer__col h4 { margin-bottom: .65rem; }
   .footer__col ul { gap: .5rem; }
-  .footer__theme-row { margin-top: 1.5rem; justify-content: flex-start; }
+  .footer__theme-row { margin-top: 1.5rem; justify-content: center; }
   .footer__bottom {
     margin-top: 1.75rem; padding-top: 1rem;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     gap: .8rem;
-    text-align: left;
+    text-align: center;
   }
+  .footer__policy-links { display: inline-flex; flex-wrap: wrap; justify-content: center; gap: .85rem; }
   .footer__policy-links a:first-child { margin-left: 0; }
-  .footer__bottom a { margin-left: 0; margin-right: .85rem; }
+  .footer__bottom a { margin-left: 0; margin-right: 0; }
 }
 
 /* ---- WhatsApp FAB: shrink to icon-only on phones ---- */
@@ -573,6 +572,5 @@ html, body { max-width: 100%; }
 
 /* ---- Tap-target floor for small icon buttons ---- */
 @media (max-width: 720px) {
-  .nav__item a { padding: .55rem 0; }
   .planner__reset { width: 36px; height: 36px; }
 }

@@ -546,9 +546,9 @@
 
   .saf-filter {
     max-width: none;
-    margin: 0 -1rem 1.25rem;
-    padding: .2rem 1rem .85rem;
-    justify-content: flex-start;
+    margin: 0 0 1.25rem;
+    padding: .2rem 0 0;
+    justify-content: center;
   }
 }
 .saf-route-grid {

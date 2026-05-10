@@ -665,34 +665,24 @@ html[data-theme="dark"] .exc-prac {
   .exc-filter {
     position: static;
     max-width: none;
-    margin: 0 -1rem 1.65rem;
-    padding: .2rem 1rem 1.05rem;
+    margin: 0 0 1.5rem;
+    padding: .2rem 0 0;
     display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    gap: .5rem;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scroll-snap-type: x proximity;
-    scrollbar-width: none;
-  }
-
-  .exc-grid-wrap > .exc-filter::-webkit-scrollbar,
-  .exc-filter::-webkit-scrollbar {
-    display: none;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: .45rem;
+    overflow: visible;
   }
 
   .exc-filter__btn {
     flex: 0 0 auto;
-    min-height: 42px;
-    scroll-snap-align: start;
-    padding: .56rem .82rem;
+    min-height: 38px;
+    padding: .45rem .75rem;
     border-color: color-mix(in srgb, var(--text-soft) 62%, transparent);
     background: var(--surface);
     color: var(--text-soft);
     opacity: 1;
-    font-size: .86rem;
+    font-size: .82rem;
     line-height: 1.1;
     white-space: nowrap;
   }

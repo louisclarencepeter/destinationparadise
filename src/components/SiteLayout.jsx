@@ -3,29 +3,49 @@ import { Outlet, useLocation } from 'react-router-dom';
 import SiteNav from './SiteNav.jsx';
 import SiteFooter, { WhatsAppFab } from './SiteFooter.jsx';
 import PageScrollCue from './PageScrollCue.jsx';
-import { announceTheme, applyTheme, persistTheme, readStoredTheme } from '../utils/theme.js';
+import {
+  announceTheme,
+  applyTheme,
+  normalizeThemeMode,
+  persistThemeMode,
+  readStoredThemeMode,
+  resolveThemeForMode,
+  watchAutomaticTheme,
+} from '../utils/theme.js';
 
 export default function SiteLayout() {
   const location = useLocation();
-  const [theme, setTheme] = useState(readStoredTheme);
+  const [themeState, setThemeState] = useState(() => {
+    const mode = readStoredThemeMode();
+    return { mode, theme: resolveThemeForMode(mode) };
+  });
+  const { mode, theme } = themeState;
 
   useEffect(() => {
     const nextTheme = applyTheme(theme);
-    persistTheme(nextTheme);
-    announceTheme(nextTheme);
-  }, [theme]);
+    persistThemeMode(mode, nextTheme);
+    announceTheme(nextTheme, mode);
+  }, [mode, theme]);
 
   useEffect(() => {
-    const onThemeChange = (event) => {
-      const nextTheme = event.detail?.theme;
-      if (nextTheme) setTheme((current) => (current === nextTheme ? current : nextTheme));
-    };
-    window.addEventListener('dp-theme-change', onThemeChange);
-    return () => window.removeEventListener('dp-theme-change', onThemeChange);
-  }, []);
+    if (mode !== 'auto') return undefined;
 
-  const toggleTheme = (nextTheme) => {
-    setTheme((current) => nextTheme || (current === 'dark' ? 'light' : 'dark'));
+    return watchAutomaticTheme((nextTheme) => {
+      setThemeState((current) => {
+        if (current.mode !== 'auto' || current.theme === nextTheme) return current;
+        return { ...current, theme: nextTheme };
+      });
+    });
+  }, [mode]);
+
+  const setThemeMode = (nextMode) => {
+    const normalizedMode = normalizeThemeMode(nextMode);
+    const nextTheme = resolveThemeForMode(normalizedMode, theme);
+    setThemeState((current) => (
+      current.mode === normalizedMode && current.theme === nextTheme
+        ? current
+        : { mode: normalizedMode, theme: nextTheme }
+    ));
   };
 
   useEffect(() => {
@@ -50,7 +70,7 @@ export default function SiteLayout() {
     <>
       <SiteNav />
       <Outlet />
-      <SiteFooter theme={theme} onThemeToggle={toggleTheme} />
+      <SiteFooter theme={theme} themeMode={mode} onThemeModeChange={setThemeMode} />
       <PageScrollCue />
       <WhatsAppFab locationKey={`${location.pathname}${location.hash}`} />
     </>

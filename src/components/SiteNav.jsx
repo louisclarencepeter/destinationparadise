@@ -45,32 +45,32 @@ export default function SiteNav() {
       const focusable = navRef.current.querySelectorAll(
         'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
       );
-      
-      if (focusable.length > 0) {
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
 
-        const handleTab = (e) => {
-          if (e.key === 'Tab') {
-            if (e.shiftKey && document.activeElement === first) {
-              e.preventDefault();
-              last.focus();
-            } else if (!e.shiftKey && document.activeElement === last) {
-              e.preventDefault();
-              first.focus();
-            }
+      const handleKey = (e) => {
+        if (e.key === 'Escape') {
+          setNavOpen(false);
+          return;
+        }
+        if (e.key === 'Tab' && focusable.length > 0) {
+          const first = focusable[0];
+          const last = focusable[focusable.length - 1];
+          if (e.shiftKey && document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          } else if (!e.shiftKey && document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
           }
-        };
-        
-        document.addEventListener('keydown', handleTab);
-        return () => {
-          document.body.style.overflow = '';
-          document.removeEventListener('keydown', handleTab);
-        };
-      }
-    } else {
-      document.body.style.overflow = '';
+        }
+      };
+
+      document.addEventListener('keydown', handleKey);
+      return () => {
+        document.body.style.overflow = '';
+        document.removeEventListener('keydown', handleKey);
+      };
     }
+    document.body.style.overflow = '';
     return () => { document.body.style.overflow = ''; };
   }, [navOpen]);
 
@@ -87,6 +87,15 @@ export default function SiteNav() {
           <img src="/assets/brand/destination-paradise-logo-96.webp" alt="Destination Paradise" width="48" height="48" decoding="async" />
           <span className="nav__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
         </Link>
+        {navOpen && (
+          <button
+            type="button"
+            className="nav__backdrop"
+            aria-label="Close menu"
+            tabIndex={-1}
+            onClick={() => setNavOpen(false)}
+          />
+        )}
         <ul className={`nav__menu${navOpen ? ' nav__menu--open' : ''}`} id="navMenu" onClick={closeMenuFromLink}>
           {NAV_ITEMS.map((item) => (
             <li className={`nav__item${item.mobileOnly ? ' nav__item--mobile-only' : ''}`} key={item.to}>
@@ -105,22 +114,18 @@ export default function SiteNav() {
             <span className="nav__cta-text">Book Now</span> <BookingIcon size={16} />
           </Link>
           <button
-            className="nav__burger"
+            className={`nav__burger${navOpen ? ' nav__burger--open' : ''}`}
             type="button"
             aria-label={navOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={navOpen}
             aria-controls="navMenu"
             onClick={() => setNavOpen((v) => !v)}
           >
-            {navOpen ? (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            ) : (
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              </svg>
-            )}
+            <span className="nav__burger-box" aria-hidden="true">
+              <span className="nav__burger-line" />
+              <span className="nav__burger-line" />
+              <span className="nav__burger-line" />
+            </span>
           </button>
         </div>
       </div>
