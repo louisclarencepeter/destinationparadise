@@ -1,3 +1,5 @@
+import ResponsiveImage from '../ResponsiveImage.jsx';
+
 export default function GallerySection() {
   const photos = [
     { src: '/assets/images/home/mizingani-waterfront.webp', caption: 'Mizingani waterfront', className: 'gallery-tile gallery-tile--tall' },
@@ -24,7 +26,7 @@ export default function GallerySection() {
       <div className="gallery-strip">
         {photos.map((photo) => (
           <figure className={photo.className} key={photo.src}>
-            <img src={photo.src} alt="" loading="lazy" />
+            <ResponsiveImage src={photo.src} alt="" loading="lazy" decoding="async" sizes="(max-width: 600px) 50vw, (max-width: 1000px) 33vw, 320px" />
             <figcaption className="gallery-tile__caption">{photo.caption}</figcaption>
           </figure>
         ))}

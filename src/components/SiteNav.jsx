@@ -84,7 +84,7 @@ export default function SiteNav() {
     <nav className="nav" id="top" ref={navRef}>
       <div className="nav__inner">
         <Link className="nav__logo" to="/">
-          <img src="/assets/brand/destination-paradise-logo.png" alt="Destination Paradise" width="48" height="48" />
+          <img src="/assets/brand/destination-paradise-logo-96.webp" alt="Destination Paradise" width="48" height="48" decoding="async" />
           <span className="nav__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
         </Link>
         <ul className={`nav__menu${navOpen ? ' nav__menu--open' : ''}`} id="navMenu" onClick={closeMenuFromLink}>

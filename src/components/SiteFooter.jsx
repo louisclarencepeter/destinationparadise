@@ -161,7 +161,7 @@ export default function SiteFooter({ theme = 'light', onThemeToggle }) {
       <div className="footer__inner">
         <div className="footer__brand">
           <div className="footer__logo">
-            <img src="/assets/brand/destination-paradise-logo.png" alt="Destination Paradise" width="48" height="48" />
+            <img src="/assets/brand/destination-paradise-logo-96.webp" alt="Destination Paradise" width="48" height="48" loading="lazy" decoding="async" />
             <span className="footer__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
           </div>
           <p>A small, local travel company on the shores of Zanzibar. Unhurried days, traditional boats, and guides who grew up here.</p>

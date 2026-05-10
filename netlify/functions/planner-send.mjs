@@ -1,7 +1,7 @@
 // Planner send — emails the chat transcript and contact info to the team
 // via Resend. Triggered after the planner collects the guest's contact info.
 
-const TEAM_TO = process.env.TEAM_EMAIL_PLANNER || 'booking@yournexttriptoparadise.com';
+const TEAM_TO = process.env.TEAM_EMAIL_PLANNER || 'info@yournexttriptoparadise.com';
 const FROM_ADDRESS = process.env.RESEND_FROM_PLANNER || 'Destination Paradise Planner <booking@yournexttriptoparadise.com>';
 
 const MAX_REQUEST_BYTES = 60_000;

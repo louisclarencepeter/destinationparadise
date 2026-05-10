@@ -1,7 +1,7 @@
 // Contact send — homepage contact form, delivered via Resend.
 
 const TEAM_TO = process.env.TEAM_EMAIL_CONTACT || 'info@yournexttriptoparadise.com';
-const FROM_ADDRESS = process.env.RESEND_FROM_CONTACT || 'Destination Paradise <info@yournexttriptoparadise.com>';
+const FROM_ADDRESS = process.env.RESEND_FROM_CONTACT || 'Destination Paradise <booking@yournexttriptoparadise.com>';
 
 const MAX_REQUEST_BYTES = 30_000;
 const MAX_NAME = 120;

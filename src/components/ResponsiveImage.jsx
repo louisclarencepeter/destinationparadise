@@ -7,7 +7,7 @@ import React from 'react';
  *   fetchpriority?: string;
  * }} props
  */
-export default function ResponsiveImage({ src, alt = '', fetchpriority, ...imageProps }) {
+export default function ResponsiveImage({ src, alt = '', fetchpriority, sizes, ...imageProps }) {
   const commonProps = { ...imageProps, src, alt, fetchpriority };
 
   if (typeof src !== 'string' || !src.endsWith('.webp')) {
@@ -17,13 +17,13 @@ export default function ResponsiveImage({ src, alt = '', fetchpriority, ...image
   }
 
   const srcSet = `${src.replace('.webp', '-600w.webp')} 600w, ${src} 1200w`;
-  const sizes = '(max-width: 600px) 100vw, 1200px';
+  const resolvedSizes = sizes || '(max-width: 600px) 100vw, 1200px';
 
   return (
     <img
       {...commonProps}
       srcSet={srcSet}
-      sizes={sizes}
+      sizes={resolvedSizes}
     />
   );
 }
