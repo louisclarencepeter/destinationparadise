@@ -127,7 +127,7 @@ export default async (req) => {
   const subject = `New planner draft from ${contact.name}`;
   const summary = `<table cellpadding="0" cellspacing="0" style="width:100%;margin:0 0 18px 0;border-collapse:collapse;">
     <tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;width:90px;">Name</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(contact.name)}</td></tr>
-    <tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;">Email</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;"><a href="mailto:${escapeHtml(contact.email)}" style="color:#1A4D6E;">${escapeHtml(contact.email)}</a></td></tr>
+    <tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;">Email</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(contact.email)}</td></tr>
     ${contact.phone ? `<tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;">Phone</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(contact.phone)}</td></tr>` : ''}
   </table>`;
 

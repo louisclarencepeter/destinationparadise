@@ -98,7 +98,7 @@ export default async (req) => {
       <div style="padding:24px;">
         <table cellpadding="0" cellspacing="0" style="width:100%;margin:0 0 18px 0;border-collapse:collapse;">
           <tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;width:90px;">Name</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(name)}</td></tr>
-          <tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;">Email</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;"><a href="mailto:${escapeHtml(email)}" style="color:#1A4D6E;">${escapeHtml(email)}</a></td></tr>
+          <tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;">Email</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(email)}</td></tr>
           ${subject ? `<tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;">Subject</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(subject)}</td></tr>` : ''}
         </table>
         <h2 style="margin:18px 0 10px 0;font-size:14px;color:#4a6c82;font-weight:700;letter-spacing:.04em;text-transform:uppercase;">Message</h2>
