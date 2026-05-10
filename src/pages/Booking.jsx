@@ -39,11 +39,6 @@ const DEFAULT_FORM = {
   message: '',
 };
 
-const encodeForm = (data) =>
-  Object.keys(data)
-    .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-    .join('&');
-
 const money = (value) => `$${Number(value).toLocaleString()}`;
 
 function priceLabel(item) {
@@ -262,12 +257,13 @@ export default function Booking() {
     };
 
     try {
-      const response = await fetch('/', {
+      const response = await fetch('/api/booking-send', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encodeForm({ 'form-name': 'booking-request', ...payload }),
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify(payload),
       });
-      if (!response.ok) throw new Error('booking-request-failed');
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok || !data.ok) throw new Error(data.error || 'booking-request-failed');
       setStatus('sent');
       setForm(DEFAULT_FORM);
       clearPlannerHandoff();
@@ -323,11 +319,7 @@ export default function Booking() {
         </div>
 
         <div className="booking-layout" ref={layoutRef}>
-          <form className="booking-form" name="booking-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" onSubmit={submit}>
-            <input type="hidden" name="form-name" value="booking-request" />
-            <input type="hidden" name="source" value={plannerHandoff ? 'planner' : 'booking'} />
-            <textarea name="plannerDraft" value={plannerHandoff?.transcript || ''} readOnly hidden />
-            <p hidden><label>Do not fill this out: <input name="bot-field" onChange={() => {}} /></label></p>
+          <form className="booking-form" onSubmit={submit}>
 
             <fieldset className="booking-fieldset">
               <legend>What are you booking?</legend>

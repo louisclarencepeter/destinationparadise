@@ -17,11 +17,10 @@
   <body>
     <div id="root"></div>
 
-    <!-- Static stub forms so Netlify's build-time form detector sees them.
-         The React forms POST to '/' with the matching `form-name` field.
-         Contact + planner submissions go through Resend (/api/contact-send,
-         /api/planner-send) — only newsletter and booking remain on Netlify
-         Forms. -->
+    <!-- Static stub form so Netlify's build-time form detector sees the
+         newsletter signup. Contact, planner, and booking submissions go
+         through Resend (/api/contact-send, /api/planner-send,
+         /api/booking-send). -->
     <form name="newsletter" data-netlify="true" hidden>
       <input type="email" name="email" />
     </form>
