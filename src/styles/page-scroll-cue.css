@@ -1,12 +1,17 @@
 .page-scroll-cue {
+  --cue-color: 26, 77, 110; /* light mode: deep navy (--dp-primary) */
   position: fixed;
   left: 50%;
   bottom: 18px;
   transform: translateX(-50%);
   width: 22px;
   height: 36px;
-  border: 1.5px solid rgba(245, 241, 232, 0.58);
+  border: 1.5px solid rgba(var(--cue-color), 0.55);
   border-radius: 12px;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   display: flex;
   justify-content: center;
   z-index: 35;
@@ -19,10 +24,16 @@
   display: block;
   width: 2px;
   height: 8px;
-  background: rgba(245, 241, 232, 0.95);
+  background: rgba(var(--cue-color), 0.95);
   margin-top: 6px;
   border-radius: 2px;
   animation: pageScrollCuePulse 1.8s infinite;
+}
+
+html[data-theme="dark"] .page-scroll-cue {
+  --cue-color: 245, 241, 232; /* dark mode: warm cream */
+  background: rgba(0, 0, 0, 0.25);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 }
 
 .page-scroll-cue.is-hidden {

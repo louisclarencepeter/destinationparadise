@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ArrowIcon } from './Icons.jsx';
+import ResponsiveImage from '../ResponsiveImage.jsx';
 import { destinationParadiseSafariPricing } from '../../data/safariPricing.js';
 import { nextLevelSafariProducts } from '../../data/nextLevelSafariProducts.js';
 
@@ -53,7 +54,7 @@ export default function SafarisSection() {
         {safariCards.map((trip) => (
           <article className={`safari-card${trip.featured ? ' safari-card--feature' : ''}`} key={trip.slug}>
             <div className="safari-card__img">
-              <img src={trip.image} alt="" loading="lazy" />
+              <ResponsiveImage src={trip.image} alt="" loading="lazy" decoding="async" sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 380px" />
               <span className="safari-card__nights">{trip.label}</span>
             </div>
             <div className="safari-card__body">

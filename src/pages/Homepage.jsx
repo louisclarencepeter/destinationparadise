@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/homepage.css';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import { DESTINATION_MAP_PINS } from '../data/destinationMapPins.js';
+import DeferredMount from '../components/DeferredMount.jsx';
 import HeroSection from '../components/homepage/HeroSection.jsx';
 import ExcursionsSection from '../components/homepage/ExcursionsSection.jsx';
 import SafarisSection from '../components/homepage/SafarisSection.jsx';
@@ -75,6 +76,11 @@ export default function Homepage() {
 
   // Reveal-on-scroll
   useEffect(() => {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => el.classList.add('is-visible'));
+      return undefined;
+    }
+
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
@@ -83,8 +89,27 @@ export default function Homepage() {
         }
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    const observeReveal = (node) => {
+      if (!(node instanceof Element)) return;
+      if (node.matches('.reveal:not(.is-visible)')) io.observe(node);
+      node.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => io.observe(el));
+    };
+
+    document.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => io.observe(el));
+
+    const root = document.getElementById('root') || document.body;
+    const mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach(observeReveal);
+      });
+    });
+    mutationObserver.observe(root, { childList: true, subtree: true });
+
+    return () => {
+      mutationObserver.disconnect();
+      io.disconnect();
+    };
   }, []);
 
   // Edit-mode iframe handshake (when running inside claude.ai design preview)
@@ -143,20 +168,26 @@ export default function Homepage() {
       <ExcursionsSection tweaks={tweaks} excursions={bestSellingExcursions} />
       <SafarisSection />
       <PackagesSection />
-      <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
-        <PlannerSection initialPrompt={plannerPrompt} />
-        <WhySection />
-        <MapSection 
-          tweaks={tweaks} 
-          PINS={PINS} 
-          activePin={activePin} 
-          setActivePin={setActivePin} 
-          islandPins={islandPins} 
-          mainlandPins={mainlandPins} 
-          ctaHref="/explore"
-          ctaLabel="Explore the full map"
-        />
-      </Suspense>
+      <DeferredMount minHeight="640px">
+        <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
+          <PlannerSection initialPrompt={plannerPrompt} />
+        </Suspense>
+      </DeferredMount>
+      <WhySection />
+      <DeferredMount minHeight="520px">
+        <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
+          <MapSection
+            tweaks={tweaks}
+            PINS={PINS}
+            activePin={activePin}
+            setActivePin={setActivePin}
+            islandPins={islandPins}
+            mainlandPins={mainlandPins}
+            ctaHref="/explore"
+            ctaLabel="Explore the full map"
+          />
+        </Suspense>
+      </DeferredMount>
       <WeatherSection MONTHS={MONTHS} SCORES={SCORES} NOW_MONTH={NOW_MONTH} />
       <GallerySection />
       <TestimonialsSection />

@@ -74,6 +74,8 @@ html, body {
   color: var(--text);
   font-size: 18px;
   line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 82px;
   transition: background .4s ease, color .4s ease;

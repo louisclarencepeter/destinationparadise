@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import '../../styles/homepage/planner.css';
-import { savePlannerHandoff } from '../../utils/plannerHandoff.js';
+import { extractContact } from '../../utils/plannerHandoff.js';
 
 const PLANNER_TITLE = 'Tell me about your dream trip';
 const QUICK_REPLIES = [
@@ -16,8 +16,12 @@ const THINKING_MESSAGES = [
   'Balancing beach and safari',
   'Shaping the draft',
 ];
+const HANDOFF_TOKEN = '[[PLANNER_HANDOFF_READY]]';
+const HANDOFF_TOKEN_REGEX = /\[\[\s*PLANNER_HANDOFF_READY\s*\]\]/g;
 
-export default function PlannerSection({ initialPrompt, handoffHref = '#contact' }) {
+const stripToken = (text = '') => text.replace(HANDOFF_TOKEN_REGEX, '').trim();
+
+export default function PlannerSection({ initialPrompt }) {
   const [history, setHistory] = useState(() => {
     try {
       const saved = localStorage.getItem('plannerHistory');
@@ -32,10 +36,14 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
   const [typedTitle, setTypedTitle] = useState(PLANNER_TITLE);
   const [titleTyping, setTitleTyping] = useState(false);
   const [thinkingIndex, setThinkingIndex] = useState(0);
-  const [handoffNotice, setHandoffNotice] = useState('');
+  const [handoffState, setHandoffState] = useState('idle'); // idle | sending | sent | error | updated
+  const [handoffError, setHandoffError] = useState('');
+  const [updateCount, setUpdateCount] = useState(0);
   const logRef = useRef(null);
   const inputRef = useRef(null);
   const handledPromptRef = useRef(null);
+  const handoffInflightRef = useRef(false);
+  const handoffSentCountRef = useRef(0);
 
   useEffect(() => {
     localStorage.setItem('plannerHistory', JSON.stringify(history));
@@ -43,7 +51,7 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
 
   useEffect(() => {
     if (logRef.current) logRef.current.scrollTop = logRef.current.scrollHeight;
-  }, [history, sending]);
+  }, [history, sending, handoffState]);
 
   useEffect(() => {
     if (!sending) {
@@ -90,9 +98,47 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
     return () => window.clearTimeout(timeoutId);
   }, []);
 
+  const submitHandoff = useCallback(async (finalHistory) => {
+    if (handoffInflightRef.current) return;
+    handoffInflightRef.current = true;
+
+    const contact = extractContact(finalHistory);
+    if (!contact.email) {
+      handoffInflightRef.current = false;
+      return;
+    }
+
+    const updateIndex = handoffSentCountRef.current;
+    setHandoffState(updateIndex > 0 ? 'updating' : 'sending');
+    setHandoffError('');
+
+    try {
+      const res = await fetch('/api/planner-send', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ history: finalHistory, contact, updateCount: updateIndex }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) {
+        throw new Error(data.error || 'send-failed');
+      }
+      handoffSentCountRef.current = updateIndex + 1;
+      if (updateIndex > 0) {
+        setUpdateCount(updateIndex);
+        setHandoffState('updated');
+      } else {
+        setHandoffState('sent');
+      }
+    } catch (err) {
+      setHandoffState('error');
+      setHandoffError(err.message === 'send-failed' ? '' : (err.message || ''));
+    } finally {
+      handoffInflightRef.current = false;
+    }
+  }, []);
+
   const send = useCallback(async (text) => {
     if (!text || sending) return;
-    setHandoffNotice('');
     const next = [...history, { role: 'user', content: text }];
     setHistory(next);
     setInput('');
@@ -105,15 +151,19 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
         body: JSON.stringify({ history: next }),
       });
       const data = await res.json();
-      const reply = data.reply || "Hmm, I lost my train of thought. Could you say that again?";
-      setHistory((h) => [...h, { role: 'assistant', content: reply }]);
+      const rawReply = data.reply || "Hmm, I lost my train of thought. Could you say that again?";
+      const ready = HANDOFF_TOKEN_REGEX.test(rawReply);
+      const cleaned = stripToken(rawReply) || "Asante! I've sent this draft to the team — they'll be in touch within a day.";
+      const updated = [...next, { role: 'assistant', content: cleaned }];
+      setHistory(updated);
+      if (ready) submitHandoff(updated);
     } catch (err) {
       setHistory((h) => [...h, { role: 'assistant', content: "Pole sana — I couldn't reach the planner just now. Try again in a moment, or message the team directly via the WhatsApp button." }]);
     } finally {
       setSending(false);
       if (inputRef.current) inputRef.current.focus();
     }
-  }, [history, sending]);
+  }, [history, sending, submitHandoff]);
 
   useEffect(() => {
     if (!initialPrompt || handledPromptRef.current === initialPrompt.id || sending) return;
@@ -121,19 +171,23 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
     send(initialPrompt.text);
   }, [initialPrompt, sending, send]);
 
-  const handleHandoff = (event) => {
-    if (sending) {
-      event.preventDefault();
-      setHandoffNotice('Wait for the latest planner reply, then send the draft.');
-      return;
-    }
-
-    const sourcePath = `${window.location.pathname}${window.location.search}${window.location.hash}`;
-    const handoff = savePlannerHandoff(history, sourcePath);
-    setHandoffNotice(handoff.messageCount > 0
-      ? 'Draft added to the team form.'
-      : 'Opening the team form so you can add trip details.');
+  const startOver = () => {
+    setHistory([]);
+    localStorage.removeItem('plannerHistory');
+    setResetKey((k) => k + 1);
+    setHandoffState('idle');
+    setHandoffError('');
+    setUpdateCount(0);
+    handoffInflightRef.current = false;
+    handoffSentCountRef.current = 0;
   };
+
+  const retryHandoff = () => {
+    handoffInflightRef.current = false;
+    submitHandoff(history);
+  };
+
+  const isInputBusy = sending || handoffState === 'sending' || handoffState === 'updating';
 
   return (
     <section className="planner reveal" id="planner">
@@ -144,11 +198,11 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
             <span className="planner__typing" aria-hidden="true">{typedTitle}</span>
             <span className={`planner__cursor${titleTyping ? ' planner__cursor--typing' : ''}`} aria-hidden="true"></span>
           </h2>
-          <p className="planner__lead">Chat with our AI planner — built on years of routes the team has walked. It'll ask the right questions and sketch a day-by-day itinerary you can hand to us to book.</p>
+          <p className="planner__lead">Chat with our AI planner — built on years of routes the team has walked. It'll ask the right questions, sketch a day-by-day itinerary, and send it straight to the team when you're ready.</p>
           <ul className="planner__bullets">
             <li><span className="planner__bullet-icon">✦</span> <span><strong>Asks about you</strong> — pace, budget, water vs. wildlife, kids in tow, special dates.</span></li>
             <li><span className="planner__bullet-icon">✦</span> <span><strong>Builds a draft</strong> — nights per place, recommended hotels, excursion pacing.</span></li>
-            <li><span className="planner__bullet-icon">✦</span> <span><strong>Hands it to a human</strong> — our team reviews, prices, and confirms with real availability.</span></li>
+            <li><span className="planner__bullet-icon">✦</span> <span><strong>Sends it to the team</strong> — confirm in the chat and we'll email a copy and reply within a day.</span></li>
           </ul>
           <div className="planner__suggestions">
             <span className="planner__suggestions-label">Try:</span>
@@ -173,7 +227,7 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
             <button
               className="planner__reset"
               title="Start over"
-              onClick={() => { setHistory([]); localStorage.removeItem('plannerHistory'); setResetKey((k) => k + 1); }}
+              onClick={startOver}
             >↻</button>
           </header>
           <div className="planner__log" ref={logRef} role="log" aria-live="polite">
@@ -207,6 +261,39 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
                 </div>
               </div>
             )}
+            {handoffState === 'sending' && (
+              <div className="planner__status planner__status--sending" role="status">
+                <span className="planner__status-dot"></span>
+                Sending your draft to the team…
+              </div>
+            )}
+            {handoffState === 'updating' && (
+              <div className="planner__status planner__status--sending" role="status">
+                <span className="planner__status-dot"></span>
+                Sending your update to the team…
+              </div>
+            )}
+            {handoffState === 'sent' && (
+              <div className="planner__status planner__status--sent" role="status">
+                <strong>Asante! ✓ Your draft is with the team.</strong>
+                <span>You'll get an email copy and a reply within a day. Need to change something? Just type below — I'll send the team an update. Or start a new plan:</span>
+                <button type="button" className="planner__status-action" onClick={startOver}>Start a new plan</button>
+              </div>
+            )}
+            {handoffState === 'updated' && (
+              <div className="planner__status planner__status--sent" role="status">
+                <strong>✓ Update {updateCount} sent to the team.</strong>
+                <span>They'll see the revised plan. Type below to make another change, or start fresh:</span>
+                <button type="button" className="planner__status-action" onClick={startOver}>Start a new plan</button>
+              </div>
+            )}
+            {handoffState === 'error' && (
+              <div className="planner__status planner__status--error" role="status">
+                <strong>Pole sana — that didn't go through.</strong>
+                <span>{handoffError || 'Please try again, or message us on WhatsApp.'}</span>
+                <button type="button" className="planner__status-action" onClick={retryHandoff}>Try again</button>
+              </div>
+            )}
           </div>
           <form
             className={`planner__form${input.trim() ? ' planner__form--active' : ''}`}
@@ -216,7 +303,11 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
               ref={inputRef}
               className="planner__input"
               rows={1}
-              placeholder="Tell me what you're dreaming of…"
+              placeholder={
+                handoffState === 'sent' || handoffState === 'updated'
+                  ? 'Need to update? Type the change here…'
+                  : "Tell me what you're dreaming of…"
+              }
               value={input}
               onChange={(e) => {
                 setInput(e.target.value);
@@ -229,20 +320,18 @@ export default function PlannerSection({ initialPrompt, handoffHref = '#contact'
                   send(input.trim());
                 }
               }}
-              required
+              disabled={isInputBusy}
+              required={!isInputBusy}
             />
-            <button className="planner__send" type="submit" aria-label="Send" disabled={sending || !input.trim()}>
+            <button className="planner__send" type="submit" aria-label="Send" disabled={isInputBusy || !input.trim()}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13" />
                 <polygon points="22 2 15 22 11 13 2 9 22 2" />
               </svg>
             </button>
           </form>
-          <footer className="planner__foot">
-            <span>
-              {handoffNotice || 'Itineraries are drafts. A human reviews and prices everything before you book.'}
-            </span>
-            <a className="planner__handoff" href={handoffHref} onClick={handleHandoff}>Send draft to the team →</a>
+          <footer className="planner__foot planner__foot--simple">
+            <span>Itineraries are drafts. A human reviews and prices everything before you book.</span>
           </footer>
         </div>
       </div>

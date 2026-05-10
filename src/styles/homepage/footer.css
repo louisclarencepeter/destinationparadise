@@ -35,10 +35,10 @@
   font-style: italic;
   font-weight: 400;
   line-height: 1.1;
-  color: var(--text);
+  color: var(--dp-primary);
   margin: .85rem 0 .75rem;
 }
-html[data-theme="dark"] .footer__brand .footer__script {
+[data-theme="dark"] .footer__brand .footer__script {
   color: var(--dp-accent);
 }
 .footer__theme-toggle {
