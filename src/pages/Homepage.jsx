@@ -76,6 +76,11 @@ export default function Homepage() {
 
   // Reveal-on-scroll
   useEffect(() => {
+    if (!('IntersectionObserver' in window)) {
+      document.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => el.classList.add('is-visible'));
+      return undefined;
+    }
+
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
@@ -84,8 +89,27 @@ export default function Homepage() {
         }
       });
     }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-    return () => io.disconnect();
+
+    const observeReveal = (node) => {
+      if (!(node instanceof Element)) return;
+      if (node.matches('.reveal:not(.is-visible)')) io.observe(node);
+      node.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => io.observe(el));
+    };
+
+    document.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => io.observe(el));
+
+    const root = document.getElementById('root') || document.body;
+    const mutationObserver = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        mutation.addedNodes.forEach(observeReveal);
+      });
+    });
+    mutationObserver.observe(root, { childList: true, subtree: true });
+
+    return () => {
+      mutationObserver.disconnect();
+      io.disconnect();
+    };
   }, []);
 
   // Edit-mode iframe handshake (when running inside claude.ai design preview)
