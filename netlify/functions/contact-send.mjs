@@ -2,6 +2,7 @@
 
 const TEAM_TO = process.env.TEAM_EMAIL_CONTACT || 'info@yournexttriptoparadise.com';
 const FROM_ADDRESS = process.env.RESEND_FROM_CONTACT || 'Destination Paradise <booking@yournexttriptoparadise.com>';
+const TEAM_REPLY_TO = process.env.TEAM_REPLY_TO || 'info@yournexttriptoparadise.com';
 
 const MAX_REQUEST_BYTES = 30_000;
 const MAX_NAME = 120;
@@ -87,9 +88,11 @@ export default async (req) => {
   if (!EMAIL_REGEX.test(email)) return errorResponse('That email does not look right. Could you double-check it?');
   if (!message) return errorResponse('Please add a short message so the team knows what you need.');
 
-  const subjectLine = subject ? `Contact form — ${subject}` : `Contact form — message from ${name}`;
+  const teamSubject = subject ? `Contact form — ${subject}` : `Contact form — message from ${name}`;
+  const guestSubject = `We got your message — Destination Paradise`;
+  const messageBlockHtml = `<div style="padding:14px 16px;background:#fafbfd;border-left:3px solid #1A4D6E;border-radius:6px;font-size:14px;line-height:1.55;color:#1a1a1a;white-space:pre-wrap;">${escapeHtml(message)}</div>`;
 
-  const html = `<!doctype html><html><body style="margin:0;padding:24px;background:#f4f7fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  const teamHtml = `<!doctype html><html><body style="margin:0;padding:24px;background:#f4f7fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
     <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(26,77,110,0.08);">
       <div style="padding:22px 24px;background:linear-gradient(120deg,#1A4D6E 0%,#215A7C 100%);color:#fff;">
         <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">Contact form</div>
@@ -102,13 +105,13 @@ export default async (req) => {
           ${subject ? `<tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;">Subject</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(subject)}</td></tr>` : ''}
         </table>
         <h2 style="margin:18px 0 10px 0;font-size:14px;color:#4a6c82;font-weight:700;letter-spacing:.04em;text-transform:uppercase;">Message</h2>
-        <div style="padding:14px 16px;background:#fafbfd;border-left:3px solid #1A4D6E;border-radius:6px;font-size:14px;line-height:1.55;color:#1a1a1a;white-space:pre-wrap;">${escapeHtml(message)}</div>
-        <p style="margin:24px 0 0 0;font-size:13px;color:#4a6c82;line-height:1.55;">Reply directly to this email and the guest will receive your note. They have been CC'd on this message.</p>
+        ${messageBlockHtml}
+        <p style="margin:24px 0 0 0;font-size:13px;color:#4a6c82;line-height:1.55;">Reply directly to this email and your message will go straight to the guest. They received their own confirmation copy.</p>
       </div>
     </div>
   </body></html>`;
 
-  const text = [
+  const teamText = [
     `New message from ${name}`,
     '',
     `Name: ${name}`,
@@ -122,28 +125,76 @@ export default async (req) => {
     'Reply directly to this email to reach the guest.',
   ].filter(Boolean).join('\n');
 
+  const guestHtml = `<!doctype html><html><body style="margin:0;padding:24px;background:#f4f7fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(26,77,110,0.08);">
+      <div style="padding:22px 24px;background:linear-gradient(120deg,#1A4D6E 0%,#215A7C 100%);color:#fff;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">Destination Paradise</div>
+        <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">Asante, ${escapeHtml(name.split(' ')[0])} — we got your message.</h1>
+      </div>
+      <div style="padding:24px;">
+        <p style="margin:0 0 14px 0;font-size:15px;color:#1a1a1a;line-height:1.6;">Our team will read it and reply within a day. Below is the copy of what you sent us, just for your records.</p>
+        ${subject ? `<p style="margin:0 0 12px 0;font-size:13px;color:#4a6c82;"><strong style="color:#1A4D6E;">Subject:</strong> ${escapeHtml(subject)}</p>` : ''}
+        ${messageBlockHtml}
+        <div style="margin:28px 0 0 0;padding:16px 18px;background:#fafbfd;border-radius:10px;font-size:13px;color:#4a6c82;line-height:1.6;">
+          <strong style="color:#1A4D6E;">Need us sooner?</strong><br>
+          WhatsApp: <a href="https://wa.me/255768779517" style="color:#1A4D6E;">+255 768 779 517</a><br>
+          Email: info@yournexttriptoparadise.com
+        </div>
+      </div>
+    </div>
+  </body></html>`;
+
+  const guestText = [
+    `Asante, ${name.split(' ')[0]} — we got your message.`,
+    '',
+    'Our team will read it and reply within a day. Below is the copy of what you sent us.',
+    '',
+    subject ? `Subject: ${subject}` : '',
+    '',
+    message,
+    '',
+    'Need us sooner?',
+    'WhatsApp: +255 768 779 517',
+    'Email: info@yournexttriptoparadise.com',
+  ].filter(Boolean).join('\n');
+
+  const sendEmail = (payload) => fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { 'authorization': `Bearer ${apiKey}`, 'content-type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
   try {
-    const r = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'authorization': `Bearer ${apiKey}`,
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: FROM_ADDRESS,
-        to: [TEAM_TO],
-        cc: [email],
-        reply_to: email,
-        subject: subjectLine,
-        html,
-        text,
-      }),
+    const teamRes = await sendEmail({
+      from: FROM_ADDRESS,
+      to: [TEAM_TO],
+      reply_to: email,
+      subject: teamSubject,
+      html: teamHtml,
+      text: teamText,
     });
 
-    if (!r.ok) {
-      const errText = await r.text().catch(() => '');
-      console.error('Resend error', r.status, errText);
+    if (!teamRes.ok) {
+      const errText = await teamRes.text().catch(() => '');
+      console.error('Resend team error', teamRes.status, errText);
       return errorResponse('We could not send your message just now. Please try again in a moment, or message us on WhatsApp.', 502);
+    }
+
+    try {
+      const guestRes = await sendEmail({
+        from: FROM_ADDRESS,
+        to: [email],
+        reply_to: TEAM_REPLY_TO,
+        subject: guestSubject,
+        html: guestHtml,
+        text: guestText,
+      });
+      if (!guestRes.ok) {
+        const errText = await guestRes.text().catch(() => '');
+        console.error('Resend guest copy failed', guestRes.status, errText);
+      }
+    } catch (err) {
+      console.error('Guest copy send failure', err);
     }
 
     return Response.json({ ok: true });

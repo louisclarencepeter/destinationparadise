@@ -3,6 +3,7 @@
 
 const TEAM_TO = process.env.TEAM_EMAIL_PLANNER || 'info@yournexttriptoparadise.com';
 const FROM_ADDRESS = process.env.RESEND_FROM_PLANNER || 'Destination Paradise Planner <booking@yournexttriptoparadise.com>';
+const TEAM_REPLY_TO = process.env.TEAM_REPLY_TO || 'info@yournexttriptoparadise.com';
 
 const MAX_REQUEST_BYTES = 60_000;
 const MAX_HISTORY_MESSAGES = 40;
@@ -255,8 +256,10 @@ export default async (req) => {
   const validated = validateBody(body);
   if (!validated.ok) return errorResponse(validated.error);
 
-  const { contact, messages, handoff } = validated;
-  const subject = `New planner draft from ${contact.name}`;
+  const { contact, handoff } = validated;
+
+  const teamSubject = `New planner draft from ${contact.name}`;
+  const guestSubject = `Your trip plan from Destination Paradise`;
 
   const contactRows = `<table cellpadding="0" cellspacing="0" style="width:100%;margin:0 0 6px 0;border-collapse:collapse;">
     <tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;width:90px;">Name</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(contact.name)}</td></tr>
@@ -264,7 +267,7 @@ export default async (req) => {
     ${contact.phone ? `<tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;">Phone</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(contact.phone)}</td></tr>` : ''}
   </table>`;
 
-  const html = `<!doctype html><html><body style="margin:0;padding:24px;background:#f4f7fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  const teamHtml = `<!doctype html><html><body style="margin:0;padding:24px;background:#f4f7fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
     <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(26,77,110,0.08);">
       <div style="padding:22px 24px;background:linear-gradient(120deg,#1A4D6E 0%,#FF6F61 100%);color:#fff;">
         <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">AI Planner Draft</div>
@@ -273,12 +276,12 @@ export default async (req) => {
       <div style="padding:24px;">
         ${contactRows}
         ${renderHandoffHtml(handoff)}
-        <p style="margin:24px 0 0 0;font-size:13px;color:#4a6c82;line-height:1.55;">Reply directly to this email and the guest will receive your note. They have been CC'd on this message.</p>
+        <p style="margin:24px 0 0 0;font-size:13px;color:#4a6c82;line-height:1.55;">Reply directly to this email and your message will go straight to the guest. A separate copy of this draft has already been sent to them.</p>
       </div>
     </div>
   </body></html>`;
 
-  const text = [
+  const teamText = [
     `New planner draft from ${contact.name}`,
     '',
     `Name: ${contact.name}`,
@@ -287,31 +290,80 @@ export default async (req) => {
     '',
     renderHandoffPlain(handoff),
     '',
-    'Reply directly to this email and the guest will receive your note.',
+    'Reply directly to this email and your message will go straight to the guest.',
   ].filter(Boolean).join('\n');
 
+  const guestHtml = `<!doctype html><html><body style="margin:0;padding:24px;background:#f4f7fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+    <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(26,77,110,0.08);">
+      <div style="padding:22px 24px;background:linear-gradient(120deg,#1A4D6E 0%,#FF6F61 100%);color:#fff;">
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">Destination Paradise</div>
+        <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">Karibu, ${escapeHtml(contact.name.split(' ')[0])} — your draft is in!</h1>
+      </div>
+      <div style="padding:24px;">
+        <p style="margin:0 0 14px 0;font-size:15px;color:#1a1a1a;line-height:1.6;">Asante for using our AI planner. Here's a copy of the draft you built with us — keep it handy for reference.</p>
+        <p style="margin:0 0 18px 0;font-size:14px;color:#4a6c82;line-height:1.6;">Our team is reviewing it now and will reply within a day with real availability and a final price. If you'd like to add anything in the meantime, just reply to this email.</p>
+        ${renderHandoffHtml(handoff)}
+        <div style="margin:28px 0 0 0;padding:16px 18px;background:#fafbfd;border-radius:10px;font-size:13px;color:#4a6c82;line-height:1.6;">
+          <strong style="color:#1A4D6E;">Need us sooner?</strong><br>
+          WhatsApp: <a href="https://wa.me/255768779517" style="color:#1A4D6E;">+255 768 779 517</a><br>
+          Email: info@yournexttriptoparadise.com
+        </div>
+      </div>
+    </div>
+  </body></html>`;
+
+  const guestText = [
+    `Karibu, ${contact.name.split(' ')[0]} — your trip draft is in!`,
+    '',
+    "Asante for using our AI planner. Here's a copy of the draft you built with us.",
+    "Our team is reviewing it now and will reply within a day with real availability and a final price.",
+    'If you want to add anything in the meantime, just reply to this email.',
+    '',
+    renderHandoffPlain(handoff),
+    '',
+    'Need us sooner?',
+    'WhatsApp: +255 768 779 517',
+    'Email: info@yournexttriptoparadise.com',
+  ].filter(Boolean).join('\n');
+
+  const sendEmail = (payload) => fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: { 'authorization': `Bearer ${apiKey}`, 'content-type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
   try {
-    const r = await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: {
-        'authorization': `Bearer ${apiKey}`,
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        from: FROM_ADDRESS,
-        to: [TEAM_TO],
-        cc: [contact.email],
-        reply_to: contact.email,
-        subject,
-        html,
-        text,
-      }),
+    const teamRes = await sendEmail({
+      from: FROM_ADDRESS,
+      to: [TEAM_TO],
+      reply_to: contact.email,
+      subject: teamSubject,
+      html: teamHtml,
+      text: teamText,
     });
 
-    if (!r.ok) {
-      const errText = await r.text().catch(() => '');
-      console.error('Resend error', r.status, errText);
+    if (!teamRes.ok) {
+      const errText = await teamRes.text().catch(() => '');
+      console.error('Resend team error', teamRes.status, errText);
       return errorResponse('We could not send the draft just now. Please try again in a moment, or message us on WhatsApp.', 502);
+    }
+
+    // Best-effort guest copy: log on failure but don't block success.
+    try {
+      const guestRes = await sendEmail({
+        from: FROM_ADDRESS,
+        to: [contact.email],
+        reply_to: TEAM_REPLY_TO,
+        subject: guestSubject,
+        html: guestHtml,
+        text: guestText,
+      });
+      if (!guestRes.ok) {
+        const errText = await guestRes.text().catch(() => '');
+        console.error('Resend guest copy failed', guestRes.status, errText);
+      }
+    } catch (err) {
+      console.error('Guest copy send failure', err);
     }
 
     return Response.json({ ok: true });
