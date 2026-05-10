@@ -138,11 +138,15 @@ export default function Booking() {
     const handoff = readPlannerHandoff() || buildPlannerHandoff([], '/trip-planner');
     setPlannerHandoff(handoff);
     setStatus('idle');
+    const contact = handoff.contact || {};
     setForm((current) => ({
       ...current,
       serviceType: 'custom',
       product: '',
       paymentPreference: 'later',
+      name: !current.name.trim() && contact.name ? contact.name : current.name,
+      email: !current.email.trim() && contact.email ? contact.email : current.email,
+      phone: !current.phone.trim() && contact.phone ? contact.phone : current.phone,
       message: !current.message.trim() || isPlannerHandoffMessage(current.message)
         ? handoff.message
         : current.message,

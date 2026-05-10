@@ -4,19 +4,6 @@ import { CONTACT_INFO } from '../../constants/contactInfo.js';
 import { ArrowIcon } from './Icons.jsx';
 import { clearPlannerHandoff, isPlannerHandoffMessage, PLANNER_HANDOFF_EVENT, readPlannerHandoff } from '../../utils/plannerHandoff.js';
 
-const encodeForm = (data) =>
-  Object.keys(data)
-    .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(data[k]))
-    .join('&');
-
-async function postNetlifyForm(formName, fields) {
-  return fetch('/', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: encodeForm({ 'form-name': formName, ...fields }),
-  });
-}
-
 export default function ContactSection() {
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [plannerHandoff, setPlannerHandoff] = useState(null);
@@ -33,8 +20,11 @@ export default function ContactSection() {
 
       setPlannerHandoff(handoff);
       setStatus('idle');
+      const contact = handoff.contact || {};
       setForm((current) => ({
         ...current,
+        name: !current.name.trim() && contact.name ? contact.name : current.name,
+        email: !current.email.trim() && contact.email ? contact.email : current.email,
         subject: !current.subject.trim() || current.subject === handoff.subject ? handoff.subject : current.subject,
         message: !current.message.trim() || isPlannerHandoffMessage(current.message) ? handoff.message : current.message,
       }));
@@ -67,12 +57,17 @@ export default function ContactSection() {
     if (status === 'sending' || status === 'sent') return;
     setStatus('sending');
     try {
-      const res = await postNetlifyForm('contact', {
-        ...form,
-        source: plannerHandoff ? 'planner' : 'contact',
-        plannerDraft: plannerHandoff?.transcript || '',
+      const res = await fetch('/api/contact-send', {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({
+          ...form,
+          source: plannerHandoff ? 'planner' : 'contact',
+          plannerDraft: plannerHandoff?.transcript || '',
+        }),
       });
-      if (!res.ok) throw new Error('http');
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok || !data.ok) throw new Error(data.error || 'http');
       setStatus('sent');
       setForm({ name: '', email: '', subject: '', message: '' });
       clearPlannerHandoff();
@@ -143,18 +138,7 @@ export default function ContactSection() {
           </div>
         </aside>
 
-        <form
-          className="contact__form"
-          name="contact"
-          method="POST"
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-          onSubmit={onSubmit}
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <input type="hidden" name="source" value={plannerHandoff ? 'planner' : 'contact'} />
-          <textarea name="plannerDraft" value={plannerHandoff?.transcript || ''} readOnly hidden />
-          <p hidden><label>Don't fill this out: <input name="bot-field" onChange={() => {}} /></label></p>
+        <form className="contact__form" onSubmit={onSubmit}>
 
           <div className="contact__row">
             <label className="contact__field">
