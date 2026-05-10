@@ -8,7 +8,7 @@ import { destinationParadisePackages } from '../../src/data/destinationParadiseP
 import { nextLevelSafariProducts } from '../../src/data/nextLevelSafariProducts.js';
 import { destinationParadiseSafariPricing } from '../../src/data/safariPricing.js';
 
-const PLANNER_MODEL = 'claude-3-5-haiku-20241022';
+const PLANNER_MODEL = 'claude-haiku-4-5-20251001';
 const MAX_REQUEST_BYTES = 20_000;
 const MAX_HISTORY_MESSAGES = 16;
 const MAX_MESSAGE_CHARS = 1_200;
