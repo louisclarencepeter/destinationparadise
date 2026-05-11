@@ -209,8 +209,8 @@ function TypedTagline() {
     <p
       ref={elRef}
       className={`footer__script footer__script--typed${done ? ' is-done' : ''}`}
-      aria-label={TYPED_TAGLINE}
     >
+      <span className="visually-hidden">{TYPED_TAGLINE}</span>
       <span aria-hidden="true">{typed}</span>
       <span className="footer__script-cursor" aria-hidden="true" />
     </p>
