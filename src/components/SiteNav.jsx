@@ -65,16 +65,33 @@ const MM_ITEMS = [
   { label: 'About',        to: '/aboutus',      sub: 'Our story · Guides · Press' },
 ];
 
-const MM_BG = '/assets/images/safaris/male-lion-in-grass.webp';
+const MM_BGS = [
+  '/assets/images/excursions/dream-dhow-sunset.webp',
+  '/assets/images/excursions/safari-blue-sandbank.webp',
+  '/assets/images/home/aerial-boats-turquoise-water.webp',
+  '/assets/images/home/stone-town-waterfront.webp',
+  '/assets/images/safaris/zebra-herd-on-track.webp',
+];
 
 export default function SiteNav() {
   const [navOpen, setNavOpen] = useState(false);
+  const [bgIndex, setBgIndex] = useState(() => Math.floor(Math.random() * MM_BGS.length));
   const navRef = useRef(null);
   const mmRef = useRef(null);
   const location = useLocation();
 
   // Close on route change
   useEffect(() => { setNavOpen(false); }, [location.pathname]);
+
+  // Rotate background each time the menu opens — pick a different image than last time
+  useEffect(() => {
+    if (!navOpen || MM_BGS.length < 2) return;
+    setBgIndex((prev) => {
+      let next = prev;
+      while (next === prev) next = Math.floor(Math.random() * MM_BGS.length);
+      return next;
+    });
+  }, [navOpen]);
 
   useEffect(() => {
     if (navOpen) {
@@ -164,7 +181,7 @@ export default function SiteNav() {
         aria-label="Site navigation"
         aria-hidden={!navOpen}
       >
-        <div className="mm-menu__bg" style={{ backgroundImage: `url('${MM_BG}')` }} />
+        <div className="mm-menu__bg" style={{ backgroundImage: `url('${MM_BGS[bgIndex]}')` }} />
         <div className="mm-menu__scrim" />
 
         <div className="mm-menu__bar">
