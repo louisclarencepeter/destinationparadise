@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { label: 'Packages', to: '/packages', icon: 'suitcase', hint: 'Safari, beach, honeymoon' },
   { label: 'Trip Planner', to: '/trip-planner', icon: 'route', hint: 'Shape a custom route' },
   { label: 'Explore', to: '/explore', icon: 'map', hint: 'Compare places and styles' },
+  { label: 'About', to: '/aboutus', icon: 'info', hint: 'Our story and mission' },
   { label: 'Book Now', to: '/booking', icon: 'bag', hint: 'Send a booking request', mobileOnly: true },
 ];
 
@@ -20,6 +21,7 @@ const NAV_ICONS = {
   route: ['M5 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z', 'M19 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z', 'M7 16h4a4 4 0 0 0 0-8h6'],
   map: ['M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z', 'M9 3v15', 'M15 6v15'],
   bag: ['M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z', 'M3 6h18', 'M16 10a4 4 0 0 1-8 0'],
+  info: ['M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z', 'M12 11v6', 'M12 7.5h.01'],
 };
 
 const NavIcon = ({ name }) => (
@@ -62,7 +64,7 @@ const MM_ITEMS = [
   { label: 'Packages',     to: '/packages',     sub: 'Bush & Beach · 7–14 nights' },
   { label: 'Trip Planner', to: '/trip-planner', sub: 'Hand-built · 90 sec', badge: 'AI' },
   { label: 'Explore',      to: '/explore',      sub: 'Compare places & styles' },
-  { label: 'About',        to: '/aboutus',      sub: 'Our story · Guides · Press' },
+  { label: 'About',        to: '/aboutus',      sub: 'Our story · Mission · Destinations' },
 ];
 
 const MM_BGS = [
