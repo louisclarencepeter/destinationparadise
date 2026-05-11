@@ -1,0 +1,397 @@
+{
+  "/assets/images/excursions/dolphin-snorkeling.webp": {
+    "w": 640,
+    "h": 461
+  },
+  "/assets/images/excursions/dream-dhow-sunset.webp": {
+    "w": 810,
+    "h": 1080
+  },
+  "/assets/images/excursions/jozani-red-colobus.webp": {
+    "w": 535,
+    "h": 800
+  },
+  "/assets/images/excursions/prison-island-tortoise.webp": {
+    "w": 535,
+    "h": 800
+  },
+  "/assets/images/excursions/safari-blue-sandbank.webp": {
+    "w": 1200,
+    "h": 676
+  },
+  "/assets/images/excursions/spice-tour-nutmeg.webp": {
+    "w": 1195,
+    "h": 800
+  },
+  "/assets/images/excursions/stone-town-old-fort.webp": {
+    "w": 640,
+    "h": 427
+  },
+  "/assets/images/excursions/trips/advanced-diving.webp": {
+    "w": 1200,
+    "h": 675,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/blue-lagoon-snorkeling.webp": {
+    "w": 960,
+    "h": 720,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/butterfly-nature-walk.webp": {
+    "w": 903,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/bwejuu-village.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/chumbe-coral-reef.webp": {
+    "w": 1200,
+    "h": 900,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/chwaka-mangrove-road.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/cooking-coffee-spices.webp": {
+    "w": 803,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/dhow-building.webp": {
+    "w": 960,
+    "h": 540,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/dhow-heritage.webp": {
+    "w": 1200,
+    "h": 900,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/dolphin-swim.webp": {
+    "w": 640,
+    "h": 480,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/forodhani-street-food.webp": {
+    "w": 800,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/herbal-medicine.webp": {
+    "w": 803,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/hidden-alleys.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/historical-ruins.webp": {
+    "w": 1200,
+    "h": 800,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/horse-riding-beach.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/jet-ski-water.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/jozani-red-colobus.webp": {
+    "w": 836,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/kitesurfing-beach.webp": {
+    "w": 960,
+    "h": 540,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/kizimkazi-fishing-boat.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/local-game-fishing.webp": {
+    "w": 640,
+    "h": 640,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/maalum-cave-stone.webp": {
+    "w": 1200,
+    "h": 800,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/mafia-whale-shark.webp": {
+    "w": 1200,
+    "h": 675,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/mangapwani-cave.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/mangrove-kayak-dhow.webp": {
+    "w": 960,
+    "h": 540,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/mnemba-snorkeling.webp": {
+    "w": 960,
+    "h": 720,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/nakupenda-sandbank.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/nungwi-coast.webp": {
+    "w": 803,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/ocean-sand-combo.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/organic-spice-farm.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/pange-sandbank.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/parasailing-coast.webp": {
+    "w": 1200,
+    "h": 675,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/persian-baths-sultan.webp": {
+    "w": 1200,
+    "h": 675,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/prison-island-tortoise.webp": {
+    "w": 1200,
+    "h": 817,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/private-sunset-dhow.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/private-vip-island.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/quad-bike-adventure.webp": {
+    "w": 803,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/safari-blue-dhow.webp": {
+    "w": 800,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/sauti-busara-festival.webp": {
+    "w": 1200,
+    "h": 814,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/seaweed-cooperative.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/skydive-zanzibar-beach.webp": {
+    "w": 1200,
+    "h": 675,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/spice-tour.webp": {
+    "w": 803,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/stargazing-beach.webp": {
+    "w": 803,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/stone-town-harbor.webp": {
+    "w": 1200,
+    "h": 800,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/the-rock-restaurant.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/transparent-kayak-sup.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/turtle-conservation.webp": {
+    "w": 1200,
+    "h": 817,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/turtle-nesting-beach.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/village-workshop.webp": {
+    "w": 803,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/water-sports-festival.webp": {
+    "w": 1200,
+    "h": 675,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/wellness-yoga-beach.webp": {
+    "w": 1200,
+    "h": 803,
+    "smallW": 600
+  },
+  "/assets/images/excursions/trips/ziff-film-festival.webp": {
+    "w": 960,
+    "h": 540,
+    "smallW": 600
+  },
+  "/assets/images/home/aerial-boats-turquoise-water.webp": {
+    "w": 360,
+    "h": 640,
+    "smallW": 360
+  },
+  "/assets/images/home/mizingani-waterfront.webp": {
+    "w": 360,
+    "h": 640,
+    "smallW": 360
+  },
+  "/assets/images/home/stone-town-waterfront.webp": {
+    "w": 1195,
+    "h": 800,
+    "smallW": 600
+  },
+  "/assets/images/safaris/buffalo-and-egret.webp": {
+    "w": 1200,
+    "h": 675,
+    "smallW": 600
+  },
+  "/assets/images/safaris/buffalo-herd-close.webp": {
+    "w": 1200,
+    "h": 676,
+    "smallW": 600
+  },
+  "/assets/images/safaris/crowned-crane-close.webp": {
+    "w": 1200,
+    "h": 676,
+    "smallW": 600
+  },
+  "/assets/images/safaris/crowned-cranes-in-grass.webp": {
+    "w": 1200,
+    "h": 676,
+    "smallW": 600
+  },
+  "/assets/images/safaris/eland-grazing.webp": {
+    "w": 1200,
+    "h": 676,
+    "smallW": 600
+  },
+  "/assets/images/safaris/eland-herd-plains.webp": {
+    "w": 1200,
+    "h": 677,
+    "smallW": 600
+  },
+  "/assets/images/safaris/lion-cub-in-grass.webp": {
+    "w": 1200,
+    "h": 675,
+    "smallW": 600
+  },
+  "/assets/images/safaris/lioness-and-cub-resting.webp": {
+    "w": 1200,
+    "h": 675,
+    "smallW": 600
+  },
+  "/assets/images/safaris/male-lion-in-grass.webp": {
+    "w": 1200,
+    "h": 676,
+    "smallW": 600
+  },
+  "/assets/images/safaris/raptor-on-log.webp": {
+    "w": 1200,
+    "h": 706,
+    "smallW": 600
+  },
+  "/assets/images/safaris/rhino-on-plains.webp": {
+    "w": 1200,
+    "h": 677,
+    "smallW": 600
+  },
+  "/assets/images/safaris/serval-in-grass.webp": {
+    "w": 1200,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/safaris/warthog-on-plains.webp": {
+    "w": 1200,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/safaris/wildebeest-grazing.webp": {
+    "w": 1200,
+    "h": 674,
+    "smallW": 600
+  },
+  "/assets/images/safaris/yellow-weaver-on-rail.webp": {
+    "w": 1200,
+    "h": 675,
+    "smallW": 600
+  },
+  "/assets/images/safaris/zebra-herd-on-track.webp": {
+    "w": 1200,
+    "h": 675,
+    "smallW": 600
+  },
+  "/assets/images/safaris/zebra-mare-and-foal.webp": {
+    "w": 1200,
+    "h": 1202,
+    "smallW": 600
+  },
+  "/assets/images/testimonials/arturo.webp": {
+    "w": 100,
+    "h": 100
+  },
+  "/assets/images/testimonials/coleman.webp": {
+    "w": 100,
+    "h": 100
+  },
+  "/assets/images/testimonials/isa.webp": {
+    "w": 100,
+    "h": 100
+  }
+}
