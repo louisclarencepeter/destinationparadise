@@ -179,7 +179,7 @@ export default function SiteNav() {
         role="dialog"
         aria-modal="true"
         aria-label="Site navigation"
-        aria-hidden={!navOpen}
+        {...(navOpen ? {} : { inert: '' })}
       >
         <div className="mm-menu__bg" style={{ backgroundImage: `url('${MM_BGS[bgIndex]}')` }} />
         <div className="mm-menu__scrim" />

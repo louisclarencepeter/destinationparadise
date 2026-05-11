@@ -94,12 +94,12 @@
 }
 .footer__theme-option:hover,
 .footer__theme-option:focus-visible {
-  color: var(--dp-accent);
-  background: color-mix(in srgb, var(--dp-accent) 8%, var(--surface-raised));
+  color: var(--text);
+  background: color-mix(in srgb, var(--dp-accent) 10%, var(--surface-raised));
 }
 .footer__theme-option.is-active {
-  color: var(--dp-accent);
-  background: color-mix(in srgb, var(--dp-accent) 14%, var(--surface-raised));
+  color: var(--text);
+  background: color-mix(in srgb, var(--dp-accent) 18%, var(--surface-raised));
 }
 .footer__theme-option:focus-visible {
   outline: 3px solid color-mix(in srgb, var(--dp-accent) 22%, transparent);
