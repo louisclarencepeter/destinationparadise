@@ -42,6 +42,8 @@ const FOOTER_ICONS = {
   leaf: ['M20 4c-7.5.5-12.5 4.5-13 11 4.5.5 9.5-1.5 13-11Z', 'M5 19c3-5 7-8 12-10'],
   newspaper: ['M4 5h13a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3V5Z', 'M8 9h5', 'M8 13h8', 'M8 17h6'],
   briefcase: ['M9 6V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1', 'M4 6h16v12a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3V6Z', 'M4 12h16'],
+  target: ['M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z', 'M12 17a5 5 0 1 0 0-10 5 5 0 0 0 0 10Z', 'M12 13a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z'],
+  globe: ['M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z', 'M3 12h18', 'M12 3a13.5 13.5 0 0 1 0 18', 'M12 3a13.5 13.5 0 0 0 0 18'],
   mail: ['M4 5h16v14H4V5Z', 'm4 7 8 6 8-6'],
   phone: ['M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.35 1.9.66 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.31 1.84.53 2.8.66A2 2 0 0 1 22 16.92Z'],
   pin: ['M12 21s7-5.8 7-12a7 7 0 1 0-14 0c0 6.2 7 12 7 12Z', 'M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z'],
@@ -245,16 +247,16 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
             <li><Link to="/packages"><FooterIcon name="suitcase" />Packages</Link></li>
             <li><Link to="/trip-planner"><FooterIcon name="route" />Trip Planner</Link></li>
             <li><Link to="/explore"><FooterIcon name="map" />Explore</Link></li>
+            <li><Link to="/aboutus"><FooterIcon name="book" />About us</Link></li>
           </ul>
         </div>
         <div className="footer__col">
-          <h4>Company</h4>
+          <h4>About us</h4>
           <ul>
-            <li><Link to="/aboutus"><FooterIcon name="book" />Our story</Link></li>
-            <li><Link to="/aboutus"><FooterIcon name="users" />Guides</Link></li>
-            <li><Link to="/aboutus"><FooterIcon name="leaf" />Sustainability</Link></li>
-            <li><Link to="/aboutus"><FooterIcon name="newspaper" />Press</Link></li>
-            <li><Link to="/aboutus"><FooterIcon name="briefcase" />Careers</Link></li>
+            <li><Link to="/aboutus#story"><FooterIcon name="book" />Our story</Link></li>
+            <li><Link to="/aboutus#mission"><FooterIcon name="target" />Our mission</Link></li>
+            <li><Link to="/aboutus#community"><FooterIcon name="users" />Community</Link></li>
+            <li><Link to="/aboutus#destinations"><FooterIcon name="globe" />Destinations</Link></li>
           </ul>
         </div>
         <div className="footer__col">

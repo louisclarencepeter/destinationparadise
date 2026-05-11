@@ -63,6 +63,14 @@
 
 .nav__right { display: flex; align-items: center; gap: 1rem; }
 
+.nav__cta {
+  padding: .55rem 1.1rem;
+  font-size: 13px;
+  border-radius: 12px;
+  gap: .45rem;
+}
+.nav__cta svg { width: 14px; height: 14px; }
+
 .nav__burger {
   display: none;
   background: transparent;
