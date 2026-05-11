@@ -58,7 +58,7 @@ const WhatsAppIcon = () => (
 const MM_ITEMS = [
   { label: 'Home',         to: '/',             end: true, sub: 'Start at the island hub' },
   { label: 'Excursions',   to: '/excursions',   sub: 'Stone Town · Reefs · Spice farms' },
-  { label: 'Safaris',      to: '/safaris',      sub: 'Serengeti · Ngorongoro · Selous', italic: true },
+  { label: 'Safaris',      to: '/safaris',      sub: 'Serengeti · Ngorongoro · Selous' },
   { label: 'Packages',     to: '/packages',     sub: 'Bush & Beach · 7–14 nights' },
   { label: 'Trip Planner', to: '/trip-planner', sub: 'Hand-built · 90 sec', badge: 'AI' },
   { label: 'Explore',      to: '/explore',      sub: 'Compare places & styles' },
@@ -216,7 +216,7 @@ export default function SiteNav() {
                 >
                   <span className="mm-menu__row-main">
                     <span className="mm-menu__lbl">
-                      {item.italic ? <em>{item.label}</em> : item.label}
+                      {active ? <em>{item.label}</em> : item.label}
                       {item.badge && <span className="mm-menu__pill-inline">{item.badge}</span>}
                     </span>
                     {item.sub && <span className="mm-menu__sub">{item.sub}</span>}
