@@ -155,9 +155,11 @@ export default function About() {
               </div>
             ))}
           </div>
-          <div className="ab-timeline__photo">
-            <ResponsiveImage src={STORY_IMAGE} alt="A traditional dhow on the Zanzibar coast" loading="lazy" />
-            <div className="ab-timeline__caption">From an idea on paper to a real company — Zanzibar, where it all began.</div>
+          <div className="ab-timeline__photo-wrap">
+            <div className="ab-timeline__photo">
+              <ResponsiveImage src={STORY_IMAGE} alt="A traditional dhow on the Zanzibar coast" loading="lazy" />
+              <div className="ab-timeline__caption">From an idea on paper to a real company — Zanzibar, where it all began.</div>
+            </div>
           </div>
         </div>
       </section>

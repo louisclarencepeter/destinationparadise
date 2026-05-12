@@ -259,6 +259,15 @@
   aspect-ratio: 4/5;
   background: #2a1a10;
 }
+@media (min-width: 981px) {
+  .ab-timeline__photo-wrap { align-self: stretch; }
+  .ab-timeline__photo-wrap .ab-timeline__photo {
+    position: sticky;
+    top: calc(var(--nav-height, 66px) + 1.5rem);
+    aspect-ratio: auto;
+    height: min(45vh, 380px);
+  }
+}
 .ab-timeline__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .ab-timeline__caption {
   position: absolute; left: 1.25rem; bottom: 1.25rem; right: 1.25rem; z-index: 2;
