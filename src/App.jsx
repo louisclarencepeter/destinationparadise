@@ -2,21 +2,39 @@ import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import SiteLayout from './components/SiteLayout.jsx';
 
-const Homepage = lazy(() => import('./pages/Homepage.jsx'));
-const Excursions = lazy(() => import('./pages/Excursions.jsx'));
-const ExcursionCombinationDetail = lazy(() => import('./pages/ExcursionCombinationDetail.jsx'));
-const ExcursionDetail = lazy(() => import('./pages/ExcursionDetail.jsx'));
-const Safaris = lazy(() => import('./pages/Safaris.jsx'));
-const SafariDetail = lazy(() => import('./pages/SafariDetail.jsx'));
-const SafariTypeDetail = lazy(() => import('./pages/SafariTypeDetail.jsx'));
-const Packages = lazy(() => import('./pages/Packages.jsx'));
-const PackageDetail = lazy(() => import('./pages/PackageDetail.jsx'));
-const TripPlannerPage = lazy(() => import('./pages/TripPlannerPage.jsx'));
-const Explore = lazy(() => import('./pages/Explore.jsx'));
-const About = lazy(() => import('./pages/About.jsx'));
-const Booking = lazy(() => import('./pages/Booking.jsx'));
-const Policy = lazy(() => import('./pages/Policy.jsx'));
-const NotFound = lazy(() => import('./pages/NotFound.jsx'));
+function lazyWithRetry(factory) {
+  return lazy(async () => {
+    try {
+      return await factory();
+    } catch (error) {
+      const message = error?.message || '';
+      const isChunkError =
+        error?.name === 'ChunkLoadError' ||
+        /Loading chunk [\w-]+ failed|Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module/i.test(
+          message,
+        );
+      if (!isChunkError) throw error;
+      await new Promise((r) => setTimeout(r, 250));
+      return factory();
+    }
+  });
+}
+
+const Homepage = lazyWithRetry(() => import('./pages/Homepage.jsx'));
+const Excursions = lazyWithRetry(() => import('./pages/Excursions.jsx'));
+const ExcursionCombinationDetail = lazyWithRetry(() => import('./pages/ExcursionCombinationDetail.jsx'));
+const ExcursionDetail = lazyWithRetry(() => import('./pages/ExcursionDetail.jsx'));
+const Safaris = lazyWithRetry(() => import('./pages/Safaris.jsx'));
+const SafariDetail = lazyWithRetry(() => import('./pages/SafariDetail.jsx'));
+const SafariTypeDetail = lazyWithRetry(() => import('./pages/SafariTypeDetail.jsx'));
+const Packages = lazyWithRetry(() => import('./pages/Packages.jsx'));
+const PackageDetail = lazyWithRetry(() => import('./pages/PackageDetail.jsx'));
+const TripPlannerPage = lazyWithRetry(() => import('./pages/TripPlannerPage.jsx'));
+const Explore = lazyWithRetry(() => import('./pages/Explore.jsx'));
+const About = lazyWithRetry(() => import('./pages/About.jsx'));
+const Booking = lazyWithRetry(() => import('./pages/Booking.jsx'));
+const Policy = lazyWithRetry(() => import('./pages/Policy.jsx'));
+const NotFound = lazyWithRetry(() => import('./pages/NotFound.jsx'));
 
 export default function App() {
   return (
