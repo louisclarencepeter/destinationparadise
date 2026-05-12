@@ -248,9 +248,19 @@ export default function About() {
             </div>
 
             <aside className="ab-sus__quote">
-              <p className="ab-sus__quote-text">&ldquo;Every destination has a story. Every island has its own culture, energy and hidden beauty waiting to be experienced.&rdquo;</p>
+              <p className="ab-sus__quote-text">&ldquo;Every destination has a story. Every island has its own culture, energy and hidden beauty waiting to be experienced.</p>
+              <p className="ab-sus__quote-text">This wasn&rsquo;t built for scale. It was built for the moments — a slow morning at the reef, a story told in the back of a Land Cruiser, the first time you see the Serengeti go quiet at dusk.</p>
+              <p className="ab-sus__quote-text">We hope, in time, you&rsquo;ll have a story of your own to add.&rdquo;</p>
               <div className="ab-sus__quote-who">
-                <div className="ab-sus__quote-avatar">DP</div>
+                <img
+                  className="ab-sus__quote-avatar"
+                  src="/assets/images/aboutus/louis-peter-portrait-144.webp"
+                  alt="Louis Peter, founder of Destination Paradise"
+                  width="48"
+                  height="48"
+                  loading="lazy"
+                  decoding="async"
+                />
                 <div>
                   <strong>From our founding note</strong>
                   <span>Destination Paradise · 2026</span>
