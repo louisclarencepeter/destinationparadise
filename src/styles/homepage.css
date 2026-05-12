@@ -79,7 +79,7 @@ html, body {
   text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 82px;
-  overscroll-behavior-y: none;
+  overscroll-behavior-x: none;
   transition: background .4s ease, color .4s ease;
 }
 
