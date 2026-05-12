@@ -247,11 +247,11 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
             <li><Link to="/packages"><FooterIcon name="suitcase" />Packages</Link></li>
             <li><Link to="/trip-planner"><FooterIcon name="route" />Trip Planner</Link></li>
             <li><Link to="/explore"><FooterIcon name="map" />Explore</Link></li>
-            <li><Link to="/aboutus"><FooterIcon name="book" />About us</Link></li>
+            <li><Link to="/aboutus"><FooterIcon name="book" />About Us</Link></li>
           </ul>
         </div>
         <div className="footer__col">
-          <h4>About us</h4>
+          <h4>About Us</h4>
           <ul>
             <li><Link to="/aboutus#story"><FooterIcon name="book" />Our story</Link></li>
             <li><Link to="/aboutus#mission"><FooterIcon name="target" />Our mission</Link></li>

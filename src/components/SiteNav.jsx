@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { label: 'Packages', to: '/packages', icon: 'suitcase', hint: 'Safari, beach, honeymoon' },
   { label: 'Trip Planner', to: '/trip-planner', icon: 'route', hint: 'Shape a custom route' },
   { label: 'Explore', to: '/explore', icon: 'map', hint: 'Compare places and styles' },
-  { label: 'About', to: '/aboutus', icon: 'info', hint: 'Our story and mission' },
+  { label: 'About Us', to: '/aboutus', icon: 'info', hint: 'Our story and mission' },
   { label: 'Book Now', to: '/booking', icon: 'bag', hint: 'Send a booking request', mobileOnly: true },
 ];
 
@@ -64,7 +64,7 @@ const MM_ITEMS = [
   { label: 'Packages',     to: '/packages',     sub: 'Bush & Beach · 7–14 nights' },
   { label: 'Trip Planner', to: '/trip-planner', sub: 'Hand-built · 90 sec', badge: 'AI' },
   { label: 'Explore',      to: '/explore',      sub: 'Compare places & styles' },
-  { label: 'About',        to: '/aboutus',      sub: 'Our story · Mission · Destinations' },
+  { label: 'About Us',     to: '/aboutus',      sub: 'Our story · Mission · Destinations' },
 ];
 
 const MM_BGS = [

@@ -6,6 +6,7 @@ import '../styles/about.css';
 
 const HERO_IMAGE = '/assets/images/safaris/crowned-cranes-in-grass.webp';
 const STORY_IMAGE = '/assets/images/excursions/trips/dhow-heritage.webp';
+const CTA_IMAGE = '/assets/images/excursions/dream-dhow-sunset.webp';
 
 const TIMELINE = [
   {
@@ -154,9 +155,11 @@ export default function About() {
               </div>
             ))}
           </div>
-          <div className="ab-timeline__photo">
-            <ResponsiveImage src={STORY_IMAGE} alt="A traditional dhow on the Zanzibar coast" loading="lazy" />
-            <div className="ab-timeline__caption">From an idea on paper to a real company — Zanzibar, where it all began.</div>
+          <div className="ab-timeline__photo-wrap">
+            <div className="ab-timeline__photo">
+              <ResponsiveImage src={STORY_IMAGE} alt="A traditional dhow on the Zanzibar coast" loading="lazy" />
+              <div className="ab-timeline__caption">From an idea on paper to a real company — Zanzibar, where it all began.</div>
+            </div>
           </div>
         </div>
       </section>
@@ -229,6 +232,7 @@ export default function About() {
 
       {/* CTA */}
       <section className="ab-cta">
+        <div className="ab-cta__bg"><ResponsiveImage src={CTA_IMAGE} alt="" loading="lazy" /></div>
         <div className="ab-cta__inner">
           <span className="ab-story__eyebrow ab-cta__eyebrow">Karibu</span>
           <h2>Welcome to <em>Destination Paradise</em>.</h2>
