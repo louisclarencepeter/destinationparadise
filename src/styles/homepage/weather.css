@@ -38,12 +38,12 @@
 }
 .weather__temp sup {
   font-family: var(--dp-font-sans);
-  font-size: .28em;
+  font-size: .3em;
   font-weight: 600;
   color: var(--dp-accent);
   line-height: 1;
-  margin-left: .08em;
-  margin-top: .25em;
+  margin-left: .55em;
+  margin-top: .35em;
   vertical-align: top;
 }
 .weather__icon {
