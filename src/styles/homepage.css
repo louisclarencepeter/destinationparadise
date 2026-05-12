@@ -79,8 +79,25 @@ html, body {
   text-size-adjust: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 82px;
+  overscroll-behavior-y: none;
   transition: background .4s ease, color .4s ease;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.site-main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-main > * { width: 100%; }
+
+footer.footer { flex-shrink: 0; }
 
 img { max-width: 100%; display: block; }
 
