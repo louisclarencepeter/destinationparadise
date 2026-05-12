@@ -21,6 +21,12 @@
   pointer-events: auto;
 }
 
+@media (min-width: 961px) {
+  .mm-menu {
+    display: none;
+  }
+}
+
 .mm-menu__bg {
   position: absolute; inset: 0; z-index: 0;
   background-position: center; background-size: cover;
