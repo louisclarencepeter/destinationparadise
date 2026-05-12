@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
 import SiteNav from './SiteNav.jsx';
 import SiteFooter, { WhatsAppFab } from './SiteFooter.jsx';
 import PageScrollCue from './PageScrollCue.jsx';
@@ -15,6 +15,7 @@ import {
 
 export default function SiteLayout() {
   const location = useLocation();
+  const navigationType = useNavigationType();
   const [themeState, setThemeState] = useState(() => {
     const mode = readStoredThemeMode();
     return { mode, theme: resolveThemeForMode(mode) };
@@ -51,7 +52,9 @@ export default function SiteLayout() {
   useEffect(() => {
     const hash = location.hash?.replace('#', '');
     if (!hash) {
-      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      if (navigationType !== 'POP') {
+        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+      }
       return;
     }
 
@@ -69,7 +72,9 @@ export default function SiteLayout() {
   return (
     <>
       <SiteNav />
-      <Outlet />
+      <div className="site-main">
+        <Outlet />
+      </div>
       <SiteFooter theme={theme} themeMode={mode} onThemeModeChange={setThemeMode} />
       <PageScrollCue />
       <WhatsAppFab locationKey={`${location.pathname}${location.hash}`} />
