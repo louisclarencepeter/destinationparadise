@@ -161,7 +161,7 @@
 /* Footer */
 .mm-menu__foot {
   padding: 10px 16px calc(14px + env(safe-area-inset-bottom, 0px));
-  display: flex; gap: 10px;
+  display: flex; flex-wrap: wrap; gap: 10px;
 }
 .mm-menu__cta {
   flex: 1;
