@@ -17,7 +17,9 @@ export default function ExcursionCombinationDetail() {
   const minPrice = excursions.reduce((total, item) => total + (typeof item.price === 'number' ? item.price : 0), 0);
 
   useEffect(() => {
-    if (combo) document.title = `${combo.title} · Excursion Combination · Destination Paradise`;
+    document.title = combo
+      ? `${combo.title} · Excursion Combination · Destination Paradise`
+      : 'Excursion Combination Not Found · Destination Paradise';
   }, [combo]);
 
   if (!combo) {

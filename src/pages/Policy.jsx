@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { CONTACT_INFO } from '../constants/contactInfo.js';
 import '../styles/homepage.css';
@@ -143,6 +144,10 @@ function PolicySection({ title, items }) {
 
 export default function Policy({ section = 'privacy' }) {
   const policy = POLICIES[section] || POLICIES.privacy;
+
+  useEffect(() => {
+    document.title = `${policy.title} · Destination Paradise`;
+  }, [policy.title]);
 
   return (
     <main className="policy-page">

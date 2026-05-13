@@ -60,6 +60,10 @@ export default function Homepage() {
   const [tweaksGearVisible, setTweaksGearVisible] = useState(false);
   const [plannerPrompt, setPlannerPrompt] = useState(null);
 
+  useEffect(() => {
+    document.title = 'Destination Paradise · Zanzibar & Tanzania Tours';
+  }, []);
+
   // Persist design-preview tweaks. The active theme is managed globally.
   useEffect(() => {
     try { localStorage.setItem('dp_tweaks', JSON.stringify(tweaks)); } catch (e) { /* noop */ }

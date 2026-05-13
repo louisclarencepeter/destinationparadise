@@ -11,7 +11,9 @@ export default function PackageDetail() {
   const pkg = PACKAGES.find((item) => item.id === id);
 
   useEffect(() => {
-    if (pkg) document.title = `${pkg.title} · Destination Paradise`;
+    document.title = pkg
+      ? `${pkg.title} · Destination Paradise`
+      : 'Package Not Found · Destination Paradise';
   }, [pkg]);
 
   if (!pkg) {
