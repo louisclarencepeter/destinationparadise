@@ -10,6 +10,8 @@ const HERO_SLIDES = [
   '/assets/images/safaris/yellow-weaver-on-rail.webp',
 ];
 const HERO_SLIDE_INTERVAL_MS = 7000;
+const HERO_SLIDE_PRELOAD_DELAY_MS = 6500;
+const HERO_SLIDE_INTERACTION_EVENTS = ['pointerdown', 'touchstart', 'keydown'];
 
 const dateInputValue = (date) => {
   const year = date.getFullYear();
@@ -21,12 +23,14 @@ const dateInputValue = (date) => {
 export default function HeroSection({ tweaks, handleHeroSearch }) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [slidesReady, setSlidesReady] = useState(false);
   const defaultTripDate = useMemo(() => {
     const date = new Date();
     date.setDate(date.getDate() + 3);
     return dateInputValue(date);
   }, []);
   const earliestTripDate = useMemo(() => dateInputValue(new Date()), []);
+  const renderedSlides = slidesReady ? HERO_SLIDES : HERO_SLIDES.slice(0, 1);
 
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
@@ -45,19 +49,53 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
   }, []);
 
   useEffect(() => {
-    if (reduceMotion || HERO_SLIDES.length < 2) return undefined;
+    if (reduceMotion) {
+      setSlidesReady(false);
+      return undefined;
+    }
+
+    if (typeof window === 'undefined') return undefined;
+
+    const revealSlides = () => setSlidesReady(true);
+    let idleId;
+    const timeoutId = window.setTimeout(() => {
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(revealSlides, { timeout: 2500 });
+        return;
+      }
+
+      revealSlides();
+    }, HERO_SLIDE_PRELOAD_DELAY_MS);
+
+    HERO_SLIDE_INTERACTION_EVENTS.forEach((event) => {
+      window.addEventListener(event, revealSlides, { once: true, passive: true });
+    });
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (idleId !== undefined && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      HERO_SLIDE_INTERACTION_EVENTS.forEach((event) => {
+        window.removeEventListener(event, revealSlides);
+      });
+    };
+  }, [reduceMotion]);
+
+  useEffect(() => {
+    if (reduceMotion || !slidesReady || HERO_SLIDES.length < 2) return undefined;
 
     const intervalId = window.setInterval(() => {
       setActiveSlide((current) => (current + 1) % HERO_SLIDES.length);
     }, HERO_SLIDE_INTERVAL_MS);
 
     return () => window.clearInterval(intervalId);
-  }, [reduceMotion]);
+  }, [reduceMotion, slidesReady]);
 
   return (
     <section className={`hero hero--${tweaks.hero}`} id="hero">
       <div className="hero__bg" aria-hidden="true">
-        {HERO_SLIDES.map((slide, index) => (
+        {renderedSlides.map((slide, index) => (
           <ResponsiveImage
             key={slide}
             className={`hero__bg-slide${index === activeSlide ? ' is-active' : ''}`}

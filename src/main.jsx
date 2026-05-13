@@ -5,6 +5,7 @@ import App from './App.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
 import { applyTheme, readStoredTheme } from './utils/theme.js';
 import './styles/tokens.css';
+import './styles/site-shell.css';
 
 applyTheme(readStoredTheme());
 

@@ -305,6 +305,15 @@ html[data-theme="dark"] .hero__search {
   .hero__search-submit { padding: .9rem; }
 }
 
+.hero__eyebrow,
+.hero__title,
+.hero__motto,
+.hero__desc,
+.hero__cta-row,
+.hero__search {
+  animation: none;
+}
+
 /* Variant: split */
 .hero--split {
   min-height: 100svh;

@@ -197,9 +197,9 @@ export default function SiteNav() {
         role="dialog"
         aria-modal="true"
         aria-label="Site navigation"
-        {...(navOpen ? {} : { inert: '' })}
+        {...(navOpen ? {} : { inert: true })}
       >
-        <div className="mm-menu__bg" style={{ backgroundImage: `url('${MM_BGS[bgIndex]}')` }} />
+        <div className="mm-menu__bg" style={navOpen ? { backgroundImage: `url('${MM_BGS[bgIndex]}')` } : undefined} />
         <div className="mm-menu__scrim" />
 
         <div className="mm-menu__bar">

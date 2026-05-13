@@ -19,7 +19,7 @@ export default function ExcursionsSection({ tweaks, excursions }) {
         {excursions.map((t) => (
           <Link className="ex-card" key={t.id} to={`/excursions/${t.id}`} aria-label={`Explore ${t.title}`}>
             <div className="ex-card__img">
-              <ResponsiveImage src={t.image} alt={t.title} loading="lazy" decoding="async" sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 380px" />
+              <ResponsiveImage src={t.image} alt={t.title} loading="lazy" decoding="async" sizes="(max-width: 600px) 220px, (max-width: 1000px) 45vw, 360px" />
               <span className="ex-card__badge">{t.duration}</span>
               {typeof t.price === 'number' && (
                 <div className="ex-card__price">

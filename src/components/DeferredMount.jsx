@@ -15,7 +15,7 @@ export default function DeferredMount({
   rootMargin = '600px',
   minHeight = '400px',
   delayMs = 6000,
-  className,
+  className = '',
 }) {
   const ref = useRef(null);
   const [shouldMount, setShouldMount] = useState(false);

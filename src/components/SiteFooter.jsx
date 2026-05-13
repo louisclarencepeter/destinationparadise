@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/homepage.css';
 import { CONTACT_INFO, SOCIAL_LINKS } from '../constants/contactInfo.js';
 
 export const WHATSAPP_URL = CONTACT_INFO.whatsappUrl;

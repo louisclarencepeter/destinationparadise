@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 const ZANZIBAR_LAT = -6.222;
 const ZANZIBAR_LON = 39.224;
@@ -31,7 +31,7 @@ const describe = (code, isDay) => {
 };
 
 function WeatherIcon({ code, isDay }) {
-  const common = {
+  const common = /** @type {const} */ ({
     width: 90,
     height: 90,
     viewBox: '0 0 64 64',
@@ -40,7 +40,7 @@ function WeatherIcon({ code, isDay }) {
     strokeWidth: 1.5,
     strokeLinecap: 'round',
     strokeLinejoin: 'round',
-  };
+  });
   const fillSoft = 'rgba(255,111,97,.2)';
   const fillMoon = 'rgba(207, 225, 238, .25)';
 
@@ -132,10 +132,45 @@ const getZanzibarHour = () => Number(new Intl.DateTimeFormat('en-GB', {
 }).format(new Date()));
 
 export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
+  const sectionRef = useRef(null);
   const [weather, setWeather] = useState(FALLBACK);
   const [isLive, setIsLive] = useState(false);
+  const [shouldFetchWeather, setShouldFetchWeather] = useState(false);
 
   useEffect(() => {
+    if (shouldFetchWeather) return undefined;
+
+    const node = sectionRef.current;
+    if (node && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldFetchWeather(true);
+        }
+      }, { rootMargin: '900px 0px' });
+      observer.observe(node);
+      return () => observer.disconnect();
+    }
+
+    let idleId;
+    const timeoutId = window.setTimeout(() => {
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(() => setShouldFetchWeather(true), { timeout: 2500 });
+        return;
+      }
+      setShouldFetchWeather(true);
+    }, 5000);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (idleId !== undefined && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId);
+      }
+    };
+  }, [shouldFetchWeather]);
+
+  useEffect(() => {
+    if (!shouldFetchWeather) return undefined;
+
     let cancelled = false;
     const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${ZANZIBAR_LAT}&longitude=${ZANZIBAR_LON}&current=temperature_2m,relative_humidity_2m,weather_code,is_day&daily=sunrise,sunset&timezone=${encodeURIComponent(TIMEZONE)}`;
     const marineUrl = `https://marine-api.open-meteo.com/v1/marine?latitude=${ZANZIBAR_LAT}&longitude=${ZANZIBAR_LON}&hourly=sea_surface_temperature&timezone=${encodeURIComponent(TIMEZONE)}`;
@@ -172,10 +207,10 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [shouldFetchWeather]);
 
   return (
-    <section className="weather reveal" id="weather">
+    <section className="weather reveal" id="weather" ref={sectionRef}>
       <div className="weather-card">
         <div className="weather__hero">
           <div className="weather__place">
