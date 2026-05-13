@@ -169,7 +169,8 @@
 .hero__bg-slide:first-child { opacity: 1; }
 .hero__bg-slide.is-active {
   opacity: 1;
-  transform: scale(1);
+  transform: scale(1.05);
+  animation: heroImageReveal 1.4s var(--dp-ease-out) both;
 }
 .hero__bg::after {
   content: ""; position: absolute; inset: 0;
@@ -383,5 +384,5 @@ html[data-theme="dark"] .hero__search {
 @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero__bg-slide { transition: none; transform: none; }
+  .hero__bg-slide { transition: none; transform: none; animation: none; }
 }
