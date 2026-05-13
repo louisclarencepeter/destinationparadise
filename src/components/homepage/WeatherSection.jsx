@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-const STONE_TOWN_LAT = -6.165;
-const STONE_TOWN_LON = 39.199;
+const ZANZIBAR_LAT = -6.1357;
+const ZANZIBAR_LON = 39.3621;
 const TIMEZONE = 'Africa/Dar_es_Salaam';
 
 const FALLBACK = {
@@ -21,12 +21,12 @@ const describe = (code, isDay) => {
   if (code === 0) return isDay ? 'Clear skies and steady Indian Ocean breeze — ideal beach and snorkeling conditions.' : nightClear;
   if (code === 1) return isDay ? 'Mostly sunny with high cloud — reef visibility holds through the afternoon.' : 'Mostly clear night with high cloud — warm and calm.';
   if (code === 2) return isDay ? 'Partly cloudy with warm trade winds — comfortable beach and dhow conditions.' : 'Partly cloudy night — soft trade winds and warm air.';
-  if (code === 3) return isDay ? 'Overcast but warm — good light for Stone Town walks and spice tours.' : 'Overcast and warm tonight — calm seas expected by morning.';
+  if (code === 3) return isDay ? 'Overcast but warm — good light for island walks, spice farms, and culture stops.' : 'Overcast and warm tonight — calm seas expected by morning.';
   if (code === 45 || code === 48) return 'Coastal fog easing through the morning — clearer by midday.';
   if (code >= 51 && code <= 57) return 'Light drizzle drifting in from the channel — short, warm, and passing.';
   if (code >= 61 && code <= 67) return 'Rain showers passing through — typical of the long rains, mornings often clear.';
   if (code >= 80 && code <= 82) return 'Tropical showers between sunny spells — bring a light layer.';
-  if (code >= 95) return 'Thunderstorms expected — best to plan indoor time at Stone Town or the spa.';
+  if (code >= 95) return 'Thunderstorms expected — best to plan indoor time, a slower lunch, or a spa stop.';
   return FALLBACK.description;
 };
 
@@ -131,8 +131,8 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
 
   useEffect(() => {
     let cancelled = false;
-    const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${STONE_TOWN_LAT}&longitude=${STONE_TOWN_LON}&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,is_day&daily=sunrise,sunset&timezone=${encodeURIComponent(TIMEZONE)}`;
-    const marineUrl = `https://marine-api.open-meteo.com/v1/marine?latitude=${STONE_TOWN_LAT}&longitude=${STONE_TOWN_LON}&hourly=sea_surface_temperature&timezone=${encodeURIComponent(TIMEZONE)}`;
+    const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${ZANZIBAR_LAT}&longitude=${ZANZIBAR_LON}&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,is_day&daily=sunrise,sunset&timezone=${encodeURIComponent(TIMEZONE)}`;
+    const marineUrl = `https://marine-api.open-meteo.com/v1/marine?latitude=${ZANZIBAR_LAT}&longitude=${ZANZIBAR_LON}&hourly=sea_surface_temperature&timezone=${encodeURIComponent(TIMEZONE)}`;
 
     Promise.all([
       fetch(forecastUrl).then((r) => (r.ok ? r.json() : Promise.reject(new Error('forecast')))),
@@ -179,7 +179,7 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z" /><circle cx="12" cy="10" r="3" />
             </svg>
-            Stone Town, Zanzibar{isLive ? ' · Live' : ''}
+            Zanzibar{isLive ? ' · Live' : ''}
           </div>
           <div className="weather__row">
             <div className="weather__icon">
