@@ -191,6 +191,9 @@
   gap: clamp(.6rem, 1.05vh, 1rem);
   transform: none;
 }
+.hero__intro {
+  display: contents;
+}
 .hero__eyebrow {
   display: inline-flex; align-items: center; gap: .55rem;
   font-family: var(--dp-font-sans);

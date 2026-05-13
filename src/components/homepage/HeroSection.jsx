@@ -70,13 +70,15 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
         ))}
       </div>
       <div className="hero__content">
-  <span className="hero__eyebrow">15 packages · 29 safaris · 40+ excursions</span>
-        <h1 className="hero__title">Destination Paradise</h1>
-        <h2 className="hero__motto"><i>your next trip to paradise…</i></h2>
-  <p className="hero__desc">Plan Zanzibar and Tanzania in one place: complete safari-and-beach packages, island excursions, mainland safaris, and an AI planner that helps shape the right route.</p>
-        <div className="hero__cta-row">
-          <Link className="btn" to="/packages">Browse packages <ArrowIcon size={18} /></Link>
-          <Link className="btn btn--ghost" to="/explore">Explore Zanzibar &amp; Tanzania</Link>
+        <div className="hero__intro">
+          <span className="hero__eyebrow">15 packages · 29 safaris · 40+ excursions</span>
+          <h1 className="hero__title">Destination Paradise</h1>
+          <h2 className="hero__motto"><i>your next trip to paradise…</i></h2>
+          <p className="hero__desc">Plan Zanzibar and Tanzania in one place: complete safari-and-beach packages, island excursions, mainland safaris, and an AI planner that helps shape the right route.</p>
+          <div className="hero__cta-row">
+            <Link className="btn" to="/packages">Browse packages <ArrowIcon size={18} /></Link>
+            <Link className="btn btn--ghost" to="/explore">Explore Zanzibar &amp; Tanzania</Link>
+          </div>
         </div>
         <form className="hero__search" onSubmit={handleHeroSearch}>
           <div className="hero__search-field">
