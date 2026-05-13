@@ -239,6 +239,7 @@
   gap: 1.25rem;
   padding: clamp(1.45rem, 3vw, 2.25rem);
   border-radius: 18px;
+  scroll-margin-top: calc(var(--nav-height) + 1.25rem);
 }
 
 .booking-fieldset {
@@ -267,7 +268,8 @@
 }
 
 .booking-choice-grid,
-.booking-payment-grid {
+.booking-payment-grid,
+.booking-transfer-tier-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: .75rem;
@@ -583,6 +585,7 @@ html[data-theme="dark"] .booking-field textarea {
 
   .booking-choice-grid,
   .booking-payment-grid,
+  .booking-transfer-tier-grid,
   .booking-row,
   .booking-row--thirds {
     grid-template-columns: 1fr;

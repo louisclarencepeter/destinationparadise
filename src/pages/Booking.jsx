@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import { destinationParadisePackages } from '../data/destinationParadisePackages.js';
 import { destinationParadiseSafariPricing } from '../data/safariPricing.js';
+import { TRANSFER_PRODUCTS, TRANSFER_SERVICE_TIERS } from '../data/transferProducts.js';
 import { buildPlannerHandoff, clearPlannerHandoff, isPlannerHandoffMessage, readPlannerHandoff } from '../utils/plannerHandoff.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -13,6 +14,7 @@ const SERVICE_TYPES = [
   { value: 'package', label: 'Package', text: 'Safari + Zanzibar, honeymoon, family, culture, marine, or luxury route.' },
   { value: 'excursion', label: 'Excursion', text: 'Island day trips, dhow sailing, Stone Town, spice farms, snorkeling, and nature.' },
   { value: 'safari', label: 'Safari', text: 'Mainland wildlife routes, fly-in safaris, migration, southern parks, and custom circuits.' },
+  { value: 'transfer', label: 'Transfer', text: 'Private airport, hotel-to-hotel, group, premium SUV, or VIP concierge transfer.' },
   { value: 'custom', label: 'Custom plan', text: 'Not sure yet? Tell us the shape and we will build a route around you.' },
 ];
 
@@ -33,6 +35,11 @@ const DEFAULT_FORM = {
   startDate: '',
   endDate: '',
   guests: '2',
+  transferTier: 'standard-private',
+  pickupLocation: '',
+  dropoffLocation: '',
+  flightNumber: '',
+  transferTime: '',
   budget: '',
   accommodationLevel: 'Mid-range',
   paymentPreference: 'secure-link',
@@ -52,6 +59,9 @@ function priceLabel(item) {
   }
   if (item.type === 'excursion' && typeof item.raw.price === 'number') {
     return `From ${money(item.raw.price)} ${item.raw.priceSub || 'per person'}`;
+  }
+  if (item.type === 'transfer') {
+    return item.raw.priceSummary || 'Final transfer price after route confirmation';
   }
   return 'Final price after availability check';
 }
@@ -82,12 +92,21 @@ function useBookingProducts() {
       raw: item,
     }));
 
-    return { packages, excursions, safaris, all: [...packages, ...excursions, ...safaris] };
+    const transfers = TRANSFER_PRODUCTS.map((item) => ({
+      type: 'transfer',
+      value: `transfer:${item.slug}`,
+      label: item.title,
+      category: item.duration,
+      raw: item,
+    }));
+
+    return { packages, excursions, safaris, transfers, all: [...packages, ...excursions, ...safaris, ...transfers] };
   }, []);
 }
 
 export default function Booking() {
   const [searchParams] = useSearchParams();
+  const location = useLocation();
   const products = useBookingProducts();
   const [form, setForm] = useState(DEFAULT_FORM);
   const [plannerHandoff, setPlannerHandoff] = useState(null);
@@ -100,6 +119,16 @@ export default function Booking() {
   useEffect(() => {
     document.title = 'Booking Request · Destination Paradise';
   }, []);
+
+  useEffect(() => {
+    if (location.hash !== '#booking-details') return undefined;
+
+    const timeoutId = window.setTimeout(() => {
+      document.getElementById('booking-details')?.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }, 180);
+
+    return () => window.clearTimeout(timeoutId);
+  }, [location.hash, location.search]);
 
   useEffect(() => {
     const type = searchParams.get('type');
@@ -160,12 +189,20 @@ export default function Booking() {
     : products.all.filter((item) => item.type === form.serviceType);
   const selectedService = SERVICE_TYPES.find((item) => item.value === form.serviceType);
   const isExcursionRequest = form.serviceType === 'excursion';
-  const showDateRange = !isExcursionRequest;
-  const showTravelPreferences = !isExcursionRequest;
+  const isTransferRequest = form.serviceType === 'transfer';
+  const selectedTransferTier = TRANSFER_SERVICE_TIERS.find((item) => item.value === form.transferTier);
+  const showDateRange = !isExcursionRequest && !isTransferRequest;
+  const showTravelPreferences = !isExcursionRequest && !isTransferRequest;
   const dateSummary = showDateRange
     ? `${form.startDate || 'Flexible'}${form.endDate ? ` to ${form.endDate}` : ''}`
     : form.startDate || 'Flexible';
-  const messagePlaceholder = isExcursionRequest
+  const productLabel = isTransferRequest ? 'Transfer route' : 'Specific product';
+  const productPlaceholder = isTransferRequest
+    ? 'Choose a transfer route or leave flexible'
+    : `Choose from ${form.serviceType}s or leave flexible`;
+  const messagePlaceholder = isTransferRequest
+    ? 'Arrival notes, luggage count, child seats, hotel room name, VIP preferences, or timing details.'
+    : isExcursionRequest
     ? 'Preferred pickup area, hotel name, private/shared preference, kids ages, dietary needs, or timing notes.'
     : "Hotels you like, pace, special occasion, kids' ages, dietary needs, flight details, or what you want to avoid.";
 
@@ -233,8 +270,10 @@ export default function Booking() {
       ...(key === 'serviceType'
         ? {
           product: '',
-          endDate: value === 'excursion' ? '' : current.endDate,
-          budget: value === 'excursion' ? '' : current.budget,
+          endDate: value === 'excursion' || value === 'transfer' ? '' : current.endDate,
+          budget: value === 'excursion' || value === 'transfer' ? '' : current.budget,
+          accommodationLevel: value === 'excursion' || value === 'transfer' ? '' : current.accommodationLevel || 'Mid-range',
+          transferTier: value === 'transfer' ? current.transferTier || 'standard-private' : current.transferTier,
         }
         : {}),
     }));
@@ -250,6 +289,11 @@ export default function Booking() {
       endDate: showDateRange ? form.endDate : '',
       budget: showTravelPreferences ? form.budget : '',
       accommodationLevel: showTravelPreferences ? form.accommodationLevel : '',
+      transferTier: isTransferRequest ? selectedTransferTier?.label || form.transferTier : '',
+      pickupLocation: isTransferRequest ? form.pickupLocation : '',
+      dropoffLocation: isTransferRequest ? form.dropoffLocation : '',
+      flightNumber: isTransferRequest ? form.flightNumber : '',
+      transferTime: isTransferRequest ? form.transferTime : '',
       productLabel: selectedProduct?.label || 'Not selected',
       estimatedPrice: priceLabel(selectedProduct),
       source: plannerHandoff ? 'planner' : 'booking',
@@ -280,7 +324,7 @@ export default function Booking() {
         <div className="booking-hero__inner">
           <span className="booking-hero__eyebrow">Booking request</span>
           <h1>One form <em>for every trip.</em></h1>
-          <p>Packages, excursions, safaris, custom routes, and online payment requests all start here. Tell us the shape, and our team will confirm availability, timing, and the final price.</p>
+          <p>Packages, excursions, safaris, private transfers, custom routes, and online payment requests all start here. Tell us the shape, and our team will confirm availability, timing, and the final price.</p>
           <div className="booking-hero__actions">
             <a className="btn btn--lg" href="#booking-form">Start request</a>
             <Link className="btn btn--ghost btn--lg" to="/trip-planner">Plan with AI</Link>
@@ -297,12 +341,12 @@ export default function Booking() {
         <article>
           <span>01</span>
           <h2>Send the request</h2>
-          <p>Choose a package, excursion, safari, or custom route and share your dates.</p>
+          <p>Choose a package, excursion, safari, transfer, or custom route and share your dates.</p>
         </article>
         <article>
           <span>02</span>
           <h2>We confirm it</h2>
-          <p>Our team checks availability, transfers, guides, routes, and final pricing.</p>
+          <p>Our team checks availability, vehicles, transfers, guides, routes, and final pricing.</p>
         </article>
         <article>
           <span>03</span>
@@ -319,7 +363,7 @@ export default function Booking() {
         </div>
 
         <div className="booking-layout" ref={layoutRef}>
-          <form className="booking-form" onSubmit={submit}>
+          <form className="booking-form" id="booking-details" onSubmit={submit}>
 
             <fieldset className="booking-fieldset">
               <legend>What are you booking?</legend>
@@ -336,9 +380,9 @@ export default function Booking() {
 
             {form.serviceType !== 'custom' && (
               <label className="booking-field">
-                <span>Specific product</span>
+                <span>{productLabel}</span>
                 <select name="product" value={form.product} onChange={update('product')}>
-                  <option value="">Choose from {form.serviceType}s or leave flexible</option>
+                  <option value="">{productPlaceholder}</option>
                   {visibleProducts.map((item) => (
                     <option value={item.value} key={item.value}>{item.label}</option>
                   ))}
@@ -392,6 +436,41 @@ export default function Booking() {
                 </select>
               </label>
             </div>
+
+            {isTransferRequest && (
+              <fieldset className="booking-fieldset">
+                <legend>Transfer details</legend>
+                <div className="booking-transfer-tier-grid">
+                  {TRANSFER_SERVICE_TIERS.map((item) => (
+                    <label className={`booking-payment${form.transferTier === item.value ? ' is-selected' : ''}`} key={item.value}>
+                      <input type="radio" name="transferTier" value={item.value} checked={form.transferTier === item.value} onChange={update('transferTier')} />
+                      <span>{item.label}</span>
+                      <small>{item.text}</small>
+                    </label>
+                  ))}
+                </div>
+                <div className="booking-row">
+                  <label className="booking-field">
+                    <span>Pickup location</span>
+                    <input type="text" name="pickupLocation" value={form.pickupLocation} onChange={update('pickupLocation')} placeholder="ZNZ Airport, ferry port, hotel..." />
+                  </label>
+                  <label className="booking-field">
+                    <span>Drop-off location</span>
+                    <input type="text" name="dropoffLocation" value={form.dropoffLocation} onChange={update('dropoffLocation')} placeholder="Hotel, resort, airport..." />
+                  </label>
+                </div>
+                <div className="booking-row">
+                  <label className="booking-field">
+                    <span>Flight / ferry number</span>
+                    <input type="text" name="flightNumber" value={form.flightNumber} onChange={update('flightNumber')} placeholder="Optional, but useful for tracking" />
+                  </label>
+                  <label className="booking-field">
+                    <span>Pickup time</span>
+                    <input type="time" name="transferTime" value={form.transferTime} onChange={update('transferTime')} />
+                  </label>
+                </div>
+              </fieldset>
+            )}
 
             {showTravelPreferences && (
               <div className="booking-row">
@@ -463,6 +542,10 @@ export default function Booking() {
                 <dl>
                   <div><dt>Guests</dt><dd>{form.guests || 'Flexible'}</dd></div>
                   <div><dt>{showDateRange ? 'Dates' : 'Date'}</dt><dd>{dateSummary}</dd></div>
+                  {isTransferRequest && <div><dt>Tier</dt><dd>{selectedTransferTier?.label || 'Standard Private'}</dd></div>}
+                  {isTransferRequest && form.pickupLocation && <div><dt>Pickup</dt><dd>{form.pickupLocation}</dd></div>}
+                  {isTransferRequest && form.dropoffLocation && <div><dt>Drop-off</dt><dd>{form.dropoffLocation}</dd></div>}
+                  {isTransferRequest && form.transferTime && <div><dt>Time</dt><dd>{form.transferTime}</dd></div>}
                   {showTravelPreferences && <div><dt>Comfort</dt><dd>{form.accommodationLevel}</dd></div>}
                   <div><dt>Payment</dt><dd>{PAYMENT_OPTIONS.find((item) => item.value === form.paymentPreference)?.label}</dd></div>
                 </dl>

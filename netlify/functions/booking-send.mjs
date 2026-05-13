@@ -99,6 +99,11 @@ export default async (req) => {
   const startDate = trimField(body?.startDate, 40);
   const endDate = trimField(body?.endDate, 40);
   const guests = trimField(body?.guests, 40);
+  const transferTier = trimField(body?.transferTier, 80);
+  const pickupLocation = trimField(body?.pickupLocation, 160);
+  const dropoffLocation = trimField(body?.dropoffLocation, 160);
+  const flightNumber = trimField(body?.flightNumber, 80);
+  const transferTime = trimField(body?.transferTime, 40);
   const budget = trimField(body?.budget, 80);
   const accommodationLevel = trimField(body?.accommodationLevel, 80);
   const paymentPreference = trimField(body?.paymentPreference, 80);
@@ -125,6 +130,11 @@ export default async (req) => {
     row('Estimated price', estimatedPrice),
     row('Dates', datesLine),
     row('Guests', guests),
+    row('Transfer tier', transferTier),
+    row('Pickup', pickupLocation),
+    row('Drop-off', dropoffLocation),
+    row('Flight / ferry', flightNumber),
+    row('Pickup time', transferTime),
     row('Budget', budget),
     row('Comfort', accommodationLevel),
     row('Payment', paymentPreference),
@@ -173,6 +183,11 @@ export default async (req) => {
     estimatedPrice ? `Estimated price: ${estimatedPrice}` : '',
     `Dates: ${datesLine}`,
     guests ? `Guests: ${guests}` : '',
+    transferTier ? `Transfer tier: ${transferTier}` : '',
+    pickupLocation ? `Pickup: ${pickupLocation}` : '',
+    dropoffLocation ? `Drop-off: ${dropoffLocation}` : '',
+    flightNumber ? `Flight / ferry: ${flightNumber}` : '',
+    transferTime ? `Pickup time: ${transferTime}` : '',
     budget ? `Budget: ${budget}` : '',
     accommodationLevel ? `Comfort: ${accommodationLevel}` : '',
     paymentPreference ? `Payment: ${paymentPreference}` : '',
@@ -222,6 +237,11 @@ export default async (req) => {
     estimatedPrice ? `Estimated price: ${estimatedPrice}` : '',
     `Dates: ${datesLine}`,
     guests ? `Guests: ${guests}` : '',
+    transferTier ? `Transfer tier: ${transferTier}` : '',
+    pickupLocation ? `Pickup: ${pickupLocation}` : '',
+    dropoffLocation ? `Drop-off: ${dropoffLocation}` : '',
+    flightNumber ? `Flight / ferry: ${flightNumber}` : '',
+    transferTime ? `Pickup time: ${transferTime}` : '',
     budget ? `Budget: ${budget}` : '',
     accommodationLevel ? `Comfort: ${accommodationLevel}` : '',
     paymentPreference ? `Payment: ${paymentPreference}` : '',
