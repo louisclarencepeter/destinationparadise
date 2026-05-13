@@ -335,7 +335,10 @@ export default function Safaris() {
               <button
                 type="button"
                 className="btn btn--ghost btn--lg"
-                onClick={() => setVisibleCount(INITIAL_SAFARI_COUNT)}
+                onClick={() => {
+                  setVisibleCount(INITIAL_SAFARI_COUNT);
+                  document.getElementById('itineraries')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
               >
                 Show fewer safaris
               </button>

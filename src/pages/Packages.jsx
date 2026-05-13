@@ -236,7 +236,10 @@ export default function Packages() {
               <button
                 type="button"
                 className="btn btn--ghost btn--lg"
-                onClick={() => setVisibleCount(INITIAL_PACKAGE_COUNT)}
+                onClick={() => {
+                  setVisibleCount(INITIAL_PACKAGE_COUNT);
+                  document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
               >
                 Show fewer packages
               </button>
