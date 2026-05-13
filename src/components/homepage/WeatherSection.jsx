@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
-const ZANZIBAR_LAT = -6.1357;
-const ZANZIBAR_LON = 39.3621;
+const ZANZIBAR_LAT = -6.222;
+const ZANZIBAR_LON = 39.224;
 const TIMEZONE = 'Africa/Dar_es_Salaam';
 
 const FALLBACK = {
@@ -125,13 +125,19 @@ const formatTime = (iso) => {
   }).format(date);
 };
 
+const getZanzibarHour = () => Number(new Intl.DateTimeFormat('en-GB', {
+  hour: 'numeric',
+  hour12: false,
+  timeZone: TIMEZONE,
+}).format(new Date()));
+
 export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
   const [weather, setWeather] = useState(FALLBACK);
   const [isLive, setIsLive] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
-    const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${ZANZIBAR_LAT}&longitude=${ZANZIBAR_LON}&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code,is_day&daily=sunrise,sunset&timezone=${encodeURIComponent(TIMEZONE)}`;
+    const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${ZANZIBAR_LAT}&longitude=${ZANZIBAR_LON}&current=temperature_2m,relative_humidity_2m,weather_code,is_day&daily=sunrise,sunset&timezone=${encodeURIComponent(TIMEZONE)}`;
     const marineUrl = `https://marine-api.open-meteo.com/v1/marine?latitude=${ZANZIBAR_LAT}&longitude=${ZANZIBAR_LON}&hourly=sea_surface_temperature&timezone=${encodeURIComponent(TIMEZONE)}`;
 
     Promise.all([
@@ -142,16 +148,13 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
         if (cancelled || !forecast?.current) return;
         const current = forecast.current;
         const daily = forecast.daily || {};
-        const nowHour = new Date().getHours();
+        const nowHour = getZanzibarHour();
         const seaSeries = marine?.hourly?.sea_surface_temperature;
         const seaTempRaw = Array.isArray(seaSeries) ? seaSeries[nowHour] : null;
 
         const isDay = current.is_day === 1 ? 1 : 0;
-        const tempSource = typeof current.apparent_temperature === 'number'
-          ? current.apparent_temperature
-          : current.temperature_2m;
         setWeather({
-          temp: Math.round(tempSource),
+          temp: Math.round(current.temperature_2m),
           humidity: Math.round(current.relative_humidity_2m),
           seaTemp: typeof seaTempRaw === 'number' ? Math.round(seaTempRaw) : FALLBACK.seaTemp,
           sunrise: formatTime(daily.sunrise?.[0]) || FALLBACK.sunrise,
