@@ -133,7 +133,7 @@ export default function Packages() {
   }, [filter]);
 
   useEffect(() => {
-    document.title = 'Zanzibar Packages · Destination Paradise';
+    document.title = 'Zanzibar & Tanzania Packages · Destination Paradise';
   }, []);
 
   useEffect(() => {

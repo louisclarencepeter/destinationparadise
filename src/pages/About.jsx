@@ -78,7 +78,7 @@ export default function About() {
   const pageRef = useRef(null);
 
   useEffect(() => {
-    document.title = 'About · A new beginning · Destination Paradise';
+    document.title = 'About Us · Destination Paradise';
     const meta = document.querySelector('meta[name="description"]');
     const desc = "Destination Paradise was born from a dream — to share the beauty, culture and spirit of Tanzania. Now officially launching in Unguja, Zanzibar, with Pemba, Mafia Island and the mainland to come.";
     if (meta) {
