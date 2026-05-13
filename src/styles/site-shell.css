@@ -3,6 +3,7 @@
 @import "./homepage/buttons.css";
 @import "./homepage/footer.css";
 @import "./homepage/floating-chat.css";
+@import "./cookie-banner.css";
 
 *, *::before, *::after { box-sizing: border-box; }
 

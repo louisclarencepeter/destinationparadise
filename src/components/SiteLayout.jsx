@@ -4,6 +4,7 @@ import SiteNav from './SiteNav.jsx';
 import SiteFooter, { WhatsAppFab } from './SiteFooter.jsx';
 import PageScrollCue from './PageScrollCue.jsx';
 import FloatingBackButton from './FloatingBackButton.jsx';
+import CookieBanner from './CookieBanner.jsx';
 import {
   announceTheme,
   applyTheme,
@@ -80,6 +81,7 @@ export default function SiteLayout() {
       <PageScrollCue />
       <WhatsAppFab locationKey={`${location.pathname}${location.hash}`} />
       <FloatingBackButton />
+      <CookieBanner />
     </>
   );
 }
