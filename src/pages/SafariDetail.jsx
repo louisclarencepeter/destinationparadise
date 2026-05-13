@@ -22,7 +22,9 @@ export default function SafariDetail() {
 
   useEffect(() => {
     if (safari) {
-      document.title = `${safari.title} Safari · Destination Paradise`;
+      document.title = `${safari.title} · Destination Paradise`;
+    } else {
+      document.title = 'Safari Not Found · Destination Paradise';
     }
   }, [safari]);
 

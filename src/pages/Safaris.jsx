@@ -201,6 +201,10 @@ export default function Safaris() {
   const hasHiddenSafaris = visibleCount < filteredSafaris.length;
 
   useEffect(() => {
+    document.title = 'Tanzania Safaris · Destination Paradise';
+  }, []);
+
+  useEffect(() => {
     setVisibleCount(INITIAL_SAFARI_COUNT);
   }, [filter]);
 

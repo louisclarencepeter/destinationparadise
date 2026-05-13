@@ -13,6 +13,8 @@ export default function SafariTypeDetail() {
   useEffect(() => {
     if (type) {
       document.title = `${type.title} · Destination Paradise`;
+    } else {
+      document.title = 'Safari Type Not Found · Destination Paradise';
     }
   }, [type]);
 

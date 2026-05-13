@@ -26,6 +26,8 @@ export default function ExcursionDetail() {
   useEffect(() => {
     if (excursion) {
       document.title = `${excursion.title} · Destination Paradise`;
+    } else {
+      document.title = 'Excursion Not Found · Destination Paradise';
     }
   }, [excursion]);
 
