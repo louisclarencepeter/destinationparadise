@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { CONTACT_INFO } from '../constants/contactInfo';
+import SiteSearch, { SearchButton } from './SiteSearch.jsx';
 
 const NAV_ITEMS = [
   { label: 'Home', to: '/', end: true, icon: 'home', hint: 'Start at the island hub' },
@@ -79,13 +80,17 @@ const MOBILE_NAV_QUERY = '(max-width: 960px)';
 
 export default function SiteNav() {
   const [navOpen, setNavOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
   const [bgIndex, setBgIndex] = useState(() => Math.floor(Math.random() * MM_BGS.length));
   const navRef = useRef(null);
   const mmRef = useRef(null);
   const location = useLocation();
 
   // Close on route change
-  useEffect(() => { setNavOpen(false); }, [location.pathname]);
+  useEffect(() => {
+    setNavOpen(false);
+    setSearchOpen(false);
+  }, [location.pathname, location.search, location.hash]);
 
   // Rotate background each time the menu opens — pick a different image than last time
   useEffect(() => {
@@ -170,6 +175,7 @@ export default function SiteNav() {
           ))}
         </ul>
         <div className="nav__right">
+          <SearchButton className="nav__search" onClick={() => setSearchOpen(true)} label="Search" />
           <Link className="btn nav__cta" to="/booking" aria-label="Book now">
             <span className="nav__cta-text">Book Now</span> <BookingIcon size={16} />
           </Link>
@@ -247,6 +253,14 @@ export default function SiteNav() {
         </ul>
 
         <div className="mm-menu__foot">
+          <SearchButton
+            className="mm-menu__search"
+            onClick={() => {
+              setNavOpen(false);
+              setSearchOpen(true);
+            }}
+            label="Search the site"
+          />
           <Link to="/booking" className="mm-menu__cta">
             Book a trip <ChevronRight />
           </Link>
@@ -261,6 +275,7 @@ export default function SiteNav() {
           </a>
         </div>
       </div>
+      <SiteSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
     </nav>
   );
 }

@@ -24,7 +24,6 @@ const ThemeIcon = ({ theme }) => (
 );
 
 const THEME_MODES = [
-  { mode: 'auto', label: 'Auto' },
   { mode: 'light', label: 'Light' },
   { mode: 'dark', label: 'Dark' },
 ];
@@ -273,9 +272,7 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
       <div className="footer__theme-row">
         <div className="footer__theme-toggle" role="radiogroup" aria-label="Theme preference">
           {THEME_MODES.map((option) => {
-            const isActive = themeMode === option.mode;
-            const iconTheme = option.mode === 'auto' ? theme : option.mode;
-            const label = option.mode === 'auto' ? `Auto ${theme}` : option.label;
+            const isActive = themeMode === 'auto' ? theme === option.mode : themeMode === option.mode;
 
             return (
               <button
@@ -284,11 +281,11 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
                 type="button"
                 role="radio"
                 aria-checked={isActive}
-                aria-label={`${label} mode`}
+                aria-label={`${option.label} mode`}
                 onClick={() => onThemeModeChange?.(option.mode)}
               >
-                <ThemeIcon theme={iconTheme} />
-                <span>{label}</span>
+                <ThemeIcon theme={option.mode} />
+                <span>{option.label}</span>
               </button>
             );
           })}
