@@ -70,8 +70,7 @@
 .policy-meta a,
 .policy-section a {
   color: var(--dp-accent);
-  text-decoration-thickness: .08em;
-  text-underline-offset: .18em;
+  text-decoration: none;
 }
 
 .policy-content {
