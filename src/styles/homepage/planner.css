@@ -25,7 +25,7 @@
   height: 100%;
   object-fit: cover;
   transform: scale(1.05);
-  animation: tripHeroImage 1.4s var(--dp-ease-out) both;
+  animation: heroImageReveal 1.4s var(--dp-ease-out) both;
 }
 .trip-hero__bg::after {
   content: "";
@@ -122,19 +122,6 @@
   letter-spacing: .12em;
   text-transform: uppercase;
   opacity: .65;
-}
-
-@keyframes tripHeroImage {
-  from {
-    opacity: 0;
-    transform: scale(1.11);
-    filter: saturate(.82) blur(3px);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1.05);
-    filter: saturate(1) blur(0);
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

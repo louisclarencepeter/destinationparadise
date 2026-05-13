@@ -20,7 +20,13 @@
   isolation: isolate;
 }
 .exc-hero__bg { position: absolute; inset: 0; z-index: 0; }
-.exc-hero__bg img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.05); }
+.exc-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  animation: heroImageReveal 1.4s var(--dp-ease-out) both;
+}
 .exc-hero__bg::after {
   content: '';
   position: absolute; inset: 0;
@@ -141,6 +147,12 @@
   .exc-hero__title { font-size: clamp(2.35rem, 5.1vw, 4.2rem); }
   .exc-hero__lead { font-size: clamp(0.95rem, 1.15vw, 1.08rem); line-height: 1.52; }
   .exc-hero__meta strong { font-size: clamp(1.3rem, 2vw, 1.85rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .exc-hero__bg img {
+    animation: none;
+  }
 }
 
 /* ============ FILTER STRIP ============ */
