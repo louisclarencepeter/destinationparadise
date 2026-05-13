@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
+import { CONTACT_INFO } from '../constants/contactInfo.js';
 import '../styles/error-boundary.css';
 
 const isDev = import.meta.env.DEV;
+const formatPhone = (phone) => phone.replace(/^\+255(\d{3})(\d{3})(\d{3})$/, '+255 $1 $2 $3');
 
 function CompassIcon() {
   return (
@@ -34,6 +36,17 @@ export default function ErrorBoundaryPage({ error, onReset }) {
             Back to home
           </Link>
         </div>
+        <aside className="error-page__contact" aria-label="Destination Paradise contact details">
+          <p className="error-page__contact-intro">Need us directly? Reach the team here.</p>
+          <div className="error-page__contact-list">
+            <a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a>
+            {CONTACT_INFO.phones.map((phone) => (
+              <a key={phone} href={`tel:${phone}`}>{formatPhone(phone)}</a>
+            ))}
+            <a href={CONTACT_INFO.whatsappUrl} target="_blank" rel="noreferrer">WhatsApp</a>
+          </div>
+          <p className="error-page__contact-meta">{CONTACT_INFO.hours}</p>
+        </aside>
         {isDev && error ? (
           <details className="error-page__details">
             <summary>Error details</summary>
