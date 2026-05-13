@@ -37,6 +37,7 @@
   align-items: center;
   color: var(--text); text-decoration: none;
   font-size: 14px; font-weight: 500; letter-spacing: .02em;
+  white-space: nowrap;
   padding: .3rem 0; position: relative;
   transition: color .25s ease;
 }
@@ -68,6 +69,8 @@
   font-size: 13px;
   border-radius: 12px;
   gap: .45rem;
+  min-height: 42px;
+  white-space: nowrap;
 }
 .nav__cta svg { width: 14px; height: 14px; }
 
@@ -129,6 +132,86 @@
   cursor: default;
   z-index: 1;
 }
+
+@media (min-width: 961px) and (max-width: 1180px) {
+  .nav {
+    padding: .55rem clamp(.75rem, 1.8vw, 1.25rem);
+  }
+
+  .nav__inner {
+    width: 100%;
+    gap: clamp(.6rem, 1.2vw, 1rem);
+  }
+
+  .nav__logo {
+    flex: 0 1 auto;
+    gap: .45rem;
+    min-width: 0;
+  }
+
+  .nav__logo img {
+    height: 34px;
+  }
+
+  .nav__logo-text {
+    font-size: 1rem;
+  }
+
+  .nav__logo-text small {
+    font-size: 7px;
+    letter-spacing: .18em;
+  }
+
+  .nav__menu {
+    flex: 1 1 auto;
+    justify-content: center;
+    gap: clamp(.75rem, 1.55vw, 1.35rem);
+    min-width: 0;
+  }
+
+  .nav__item a {
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1.1;
+    letter-spacing: .01em;
+  }
+
+  .nav__right {
+    flex: 0 0 auto;
+    gap: .5rem;
+  }
+
+  .nav__cta {
+    min-height: 40px;
+    padding: .58rem .78rem;
+    border-radius: 10px;
+    font-size: 12px;
+  }
+
+  .nav__cta svg {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+@media (min-width: 961px) and (max-width: 1040px) {
+  .nav__logo-text small {
+    display: none;
+  }
+
+  .nav__menu {
+    gap: clamp(.55rem, 1.1vw, .9rem);
+  }
+
+  .nav__item a {
+    font-size: 12px;
+  }
+
+  .nav__cta {
+    padding-inline: .7rem;
+  }
+}
+
 @media (max-width: 960px) {
   .nav__backdrop { display: block; }
   .nav__cta { display: none; }
