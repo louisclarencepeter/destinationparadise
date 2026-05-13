@@ -68,7 +68,7 @@ export default function SiteLayout() {
 
     const timeoutId = window.setTimeout(scrollToHash, 0);
     return () => window.clearTimeout(timeoutId);
-  }, [location.pathname, location.hash]);
+  }, [location.pathname, location.hash, navigationType]);
 
   return (
     <>

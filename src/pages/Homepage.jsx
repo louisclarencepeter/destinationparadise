@@ -204,7 +204,9 @@ export default function Homepage() {
       <GallerySection />
       <TestimonialsSection />
       <ContactSection />
-      <NewsletterSection />
+      <DeferredMount minHeight="260px">
+        <NewsletterSection />
+      </DeferredMount>
 
       {/* ============ TWEAKS PANEL (claude.ai design preview only) ============ */}
       <button

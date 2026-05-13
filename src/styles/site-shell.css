@@ -1,0 +1,107 @@
+@import "./homepage/nav.css";
+@import "./homepage/nav-mm.css";
+@import "./homepage/buttons.css";
+@import "./homepage/footer.css";
+@import "./homepage/floating-chat.css";
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  --page-bg: var(--dp-bg-1);
+  --surface: #ffffff;
+  --surface-2: #ffffff;
+  --surface-raised: color-mix(in srgb, var(--surface) 94%, white 6%);
+  --surface-subtle: rgba(26,77,110,.04);
+  --text: var(--dp-fg-1);
+  --text-soft: var(--dp-fg-2);
+  --text-muted: var(--dp-fg-3);
+  --border: var(--dp-border);
+  --divider: rgba(26,77,110,.1);
+  --soft-tint: rgba(26,77,110,.08);
+  --nav-height: 66px;
+  --card-accent-opacity: 0.08;
+
+  --section-gap: clamp(4rem, 8vw, 7rem);
+  --section-pad-block: var(--section-gap);
+  --section-pad-inline: clamp(1.5rem, 7vw, 6rem);
+  --section-stack-gap: clamp(3rem, 6vw, 5rem);
+  --section-contained-width: min(95%, 1240px);
+  --section-contained-inline: clamp(1rem, 3vw, 2rem);
+  --section-transition-gap: clamp(.75rem, 1.5vw, 1.1rem);
+  --section-cue-overlap: clamp(.5rem, 1vw, .85rem);
+  --section-pad-block-mobile: clamp(3rem, 6vw, 4rem);
+  --section-pad-inline-mobile: 1rem;
+
+  --ink: var(--text);
+  --card-bg: var(--surface-2);
+  --accent: var(--dp-accent);
+}
+
+html[data-theme="dark"] {
+  --page-bg: #0B2030;
+  --surface: #112C3F;
+  --surface-2: #163449;
+  --surface-raised: color-mix(in srgb, var(--surface-2) 88%, white 4%);
+  --surface-subtle: rgba(255,255,255,.04);
+  --text: #E6EDF3;
+  --text-soft: #CFE1ED;
+  --text-muted: #8FAFC2;
+  --border: rgba(255,255,255,0.08);
+  --divider: rgba(255,255,255,.1);
+  --soft-tint: rgba(255,255,255,.08);
+  --card-accent-opacity: 0.18;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--page-bg);
+  font-family: var(--dp-font-display);
+  color: var(--text);
+  font-size: 18px;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: 82px;
+  overscroll-behavior-x: none;
+  transition: background .4s ease, color .4s ease;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+.site-main {
+  flex: 1 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-main > * { width: 100%; }
+
+footer.footer { flex-shrink: 0; }
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button { font: inherit; }
+
+a { color: inherit; }
+
+@keyframes heroImageReveal {
+  from {
+    opacity: 0;
+    transform: scale(1.11);
+    filter: saturate(.82) blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1.05);
+    filter: saturate(1) blur(0);
+  }
+}

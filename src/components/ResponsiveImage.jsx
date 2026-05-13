@@ -1,16 +1,23 @@
 import React from 'react';
 import imageManifest from '../data/imageManifest.json';
 
+const normalizeFetchPriority = (value) => (
+  value === 'high' || value === 'low' || value === 'auto' ? value : undefined
+);
+
 /**
  * @param {React.ImgHTMLAttributes<HTMLImageElement> & {
  *   src?: string;
  *   alt?: string;
  *   fetchpriority?: string;
+ *   fetchPriority?: 'high' | 'low' | 'auto';
  * }} props
  */
-export default function ResponsiveImage({ src, alt = '', fetchpriority, sizes, width, height, ...imageProps }) {
+export default function ResponsiveImage({ src, alt = '', fetchpriority, fetchPriority, sizes, width, height, ...imageProps }) {
+  const resolvedFetchPriority = fetchPriority ?? normalizeFetchPriority(fetchpriority);
+
   if (typeof src !== 'string' || !src.endsWith('.webp')) {
-    return <img {...imageProps} src={src} alt={alt} fetchpriority={fetchpriority} width={width} height={height} />;
+    return <img {...imageProps} src={src} alt={alt} fetchPriority={resolvedFetchPriority} width={width} height={height} />;
   }
 
   const meta = imageManifest[src];
@@ -33,7 +40,7 @@ export default function ResponsiveImage({ src, alt = '', fetchpriority, sizes, w
       {...imageProps}
       src={src}
       alt={alt}
-      fetchpriority={fetchpriority}
+      fetchPriority={resolvedFetchPriority}
       width={width ?? fullWidth}
       height={height ?? fullHeight}
       srcSet={srcSetParts.join(', ')}

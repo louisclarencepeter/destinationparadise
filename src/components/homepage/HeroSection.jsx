@@ -10,6 +10,8 @@ const HERO_SLIDES = [
   '/assets/images/safaris/yellow-weaver-on-rail.webp',
 ];
 const HERO_SLIDE_INTERVAL_MS = 7000;
+const HERO_SLIDE_PRELOAD_DELAY_MS = 6500;
+const HERO_SLIDE_INTERACTION_EVENTS = ['pointerdown', 'touchstart', 'keydown'];
 
 const dateInputValue = (date) => {
   const year = date.getFullYear();
@@ -54,22 +56,29 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
 
     if (typeof window === 'undefined') return undefined;
 
-    let idleId;
     const revealSlides = () => setSlidesReady(true);
+    let idleId;
     const timeoutId = window.setTimeout(() => {
       if ('requestIdleCallback' in window) {
-        idleId = window.requestIdleCallback(revealSlides, { timeout: 1600 });
+        idleId = window.requestIdleCallback(revealSlides, { timeout: 2500 });
         return;
       }
 
       revealSlides();
-    }, 1200);
+    }, HERO_SLIDE_PRELOAD_DELAY_MS);
+
+    HERO_SLIDE_INTERACTION_EVENTS.forEach((event) => {
+      window.addEventListener(event, revealSlides, { once: true, passive: true });
+    });
 
     return () => {
       window.clearTimeout(timeoutId);
       if (idleId !== undefined && 'cancelIdleCallback' in window) {
         window.cancelIdleCallback(idleId);
       }
+      HERO_SLIDE_INTERACTION_EVENTS.forEach((event) => {
+        window.removeEventListener(event, revealSlides);
+      });
     };
   }, [reduceMotion]);
 
