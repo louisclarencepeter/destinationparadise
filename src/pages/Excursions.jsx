@@ -227,7 +227,10 @@ export default function Excursions() {
               <button
                 type="button"
                 className="btn btn--ghost btn--lg"
-                onClick={() => setVisibleCount(INITIAL_EXCURSION_COUNT)}
+                onClick={() => {
+                  setVisibleCount(INITIAL_EXCURSION_COUNT);
+                  document.getElementById('list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }}
               >
                 Show fewer excursions
               </button>

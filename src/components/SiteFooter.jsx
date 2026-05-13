@@ -266,7 +266,7 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
             <li><a href={`tel:${CONTACT_INFO.phones[1]}`}><FooterIcon name="phone" />+255 748 352 657</a></li>
             <li><Link to="/#contact"><FooterIcon name="pin" />{CONTACT_INFO.location}</Link></li>
             <li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer"><FooterIcon name="message" />WhatsApp us</a></li>
-            <li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer"><FooterIcon name="plane" />Airport &amp; island transfers</a></li>
+            <li><Link to="/transfers"><FooterIcon name="plane" />Airport &amp; island transfers</Link></li>
           </ul>
         </div>
       </div>

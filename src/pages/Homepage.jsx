@@ -8,6 +8,7 @@ import HeroSection from '../components/homepage/HeroSection.jsx';
 import ExcursionsSection from '../components/homepage/ExcursionsSection.jsx';
 import SafarisSection from '../components/homepage/SafarisSection.jsx';
 import PackagesSection from '../components/homepage/PackagesSection.jsx';
+import TransfersSection from '../components/homepage/TransfersSection.jsx';
 import WhySection from '../components/homepage/WhySection.jsx';
 import WeatherSection from '../components/homepage/WeatherSection.jsx';
 import GallerySection from '../components/homepage/GallerySection.jsx';
@@ -180,6 +181,7 @@ export default function Homepage() {
       <ExcursionsSection tweaks={tweaks} excursions={bestSellingExcursions} />
       <SafarisSection />
       <PackagesSection />
+      <TransfersSection />
       <DeferredMount minHeight="640px">
         <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
           <PlannerSection initialPrompt={plannerPrompt} />

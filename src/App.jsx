@@ -34,6 +34,7 @@ const Explore = lazyWithRetry(() => import('./pages/Explore.jsx'));
 const About = lazyWithRetry(() => import('./pages/About.jsx'));
 const Booking = lazyWithRetry(() => import('./pages/Booking.jsx'));
 const Policy = lazyWithRetry(() => import('./pages/Policy.jsx'));
+const Transfers = lazyWithRetry(() => import('./pages/Transfers.jsx'));
 const NotFound = lazyWithRetry(() => import('./pages/NotFound.jsx'));
 
 export default function App() {
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="/book-now" element={<Booking />} />
           <Route path="/aboutus" element={<About />} />
           <Route path="/booking" element={<Booking />} />
+          <Route path="/transfers" element={<Transfers />} />
           <Route path="/cookies-policy" element={<Policy section="cookies" />} />
           <Route path="/privacy-policy" element={<Policy section="privacy" />} />
           <Route path="/terms-of-service" element={<Policy section="terms" />} />
