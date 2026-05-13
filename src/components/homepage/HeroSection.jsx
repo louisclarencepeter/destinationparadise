@@ -21,12 +21,14 @@ const dateInputValue = (date) => {
 export default function HeroSection({ tweaks, handleHeroSearch }) {
   const [activeSlide, setActiveSlide] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const [slidesReady, setSlidesReady] = useState(false);
   const defaultTripDate = useMemo(() => {
     const date = new Date();
     date.setDate(date.getDate() + 3);
     return dateInputValue(date);
   }, []);
   const earliestTripDate = useMemo(() => dateInputValue(new Date()), []);
+  const renderedSlides = slidesReady ? HERO_SLIDES : HERO_SLIDES.slice(0, 1);
 
   useEffect(() => {
     if (typeof window === 'undefined') return undefined;
@@ -45,19 +47,46 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
   }, []);
 
   useEffect(() => {
-    if (reduceMotion || HERO_SLIDES.length < 2) return undefined;
+    if (reduceMotion) {
+      setSlidesReady(false);
+      return undefined;
+    }
+
+    if (typeof window === 'undefined') return undefined;
+
+    let idleId;
+    const revealSlides = () => setSlidesReady(true);
+    const timeoutId = window.setTimeout(() => {
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(revealSlides, { timeout: 1600 });
+        return;
+      }
+
+      revealSlides();
+    }, 1200);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+      if (idleId !== undefined && 'cancelIdleCallback' in window) {
+        window.cancelIdleCallback(idleId);
+      }
+    };
+  }, [reduceMotion]);
+
+  useEffect(() => {
+    if (reduceMotion || !slidesReady || HERO_SLIDES.length < 2) return undefined;
 
     const intervalId = window.setInterval(() => {
       setActiveSlide((current) => (current + 1) % HERO_SLIDES.length);
     }, HERO_SLIDE_INTERVAL_MS);
 
     return () => window.clearInterval(intervalId);
-  }, [reduceMotion]);
+  }, [reduceMotion, slidesReady]);
 
   return (
     <section className={`hero hero--${tweaks.hero}`} id="hero">
       <div className="hero__bg" aria-hidden="true">
-        {HERO_SLIDES.map((slide, index) => (
+        {renderedSlides.map((slide, index) => (
           <ResponsiveImage
             key={slide}
             className={`hero__bg-slide${index === activeSlide ? ' is-active' : ''}`}
