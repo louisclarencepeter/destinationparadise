@@ -3,6 +3,7 @@ import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
 import SiteNav from './SiteNav.jsx';
 import SiteFooter, { WhatsAppFab } from './SiteFooter.jsx';
 import PageScrollCue from './PageScrollCue.jsx';
+import FloatingBackButton from './FloatingBackButton.jsx';
 import {
   announceTheme,
   applyTheme,
@@ -78,6 +79,7 @@ export default function SiteLayout() {
       <SiteFooter theme={theme} themeMode={mode} onThemeModeChange={setThemeMode} />
       <PageScrollCue />
       <WhatsAppFab locationKey={`${location.pathname}${location.hash}`} />
+      <FloatingBackButton />
     </>
   );
 }

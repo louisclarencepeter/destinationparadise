@@ -75,6 +75,8 @@ const MM_BGS = [
   '/assets/images/safaris/zebra-herd-on-track.webp',
 ];
 
+const MOBILE_NAV_QUERY = '(max-width: 960px)';
+
 export default function SiteNav() {
   const [navOpen, setNavOpen] = useState(false);
   const [bgIndex, setBgIndex] = useState(() => Math.floor(Math.random() * MM_BGS.length));
@@ -96,18 +98,29 @@ export default function SiteNav() {
   }, [navOpen]);
 
   useEffect(() => {
-    if (navOpen) {
+    const mediaQuery = window.matchMedia(MOBILE_NAV_QUERY);
+    let previousBodyOverflow;
+
+    const closeOnDesktop = () => {
+      if (!mediaQuery.matches) setNavOpen(false);
+    };
+
+    closeOnDesktop();
+    mediaQuery.addEventListener('change', closeOnDesktop);
+
+    if (navOpen && mediaQuery.matches) {
+      previousBodyOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
-      const scope = mmRef.current || navRef.current;
-      const focusable = scope ? scope.querySelectorAll(
-        'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-      ) : [];
 
       const handleKey = (e) => {
         if (e.key === 'Escape') {
           setNavOpen(false);
           return;
         }
+        const scope = mmRef.current || navRef.current;
+        const focusable = scope ? scope.querySelectorAll(
+          'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+        ) : [];
         if (e.key === 'Tab' && focusable.length > 0) {
           const first = focusable[0];
           const last = focusable[focusable.length - 1];
@@ -123,12 +136,15 @@ export default function SiteNav() {
 
       document.addEventListener('keydown', handleKey);
       return () => {
-        document.body.style.overflow = '';
+        document.body.style.overflow = previousBodyOverflow ?? '';
         document.removeEventListener('keydown', handleKey);
+        mediaQuery.removeEventListener('change', closeOnDesktop);
       };
     }
-    document.body.style.overflow = '';
-    return () => { document.body.style.overflow = ''; };
+
+    return () => {
+      mediaQuery.removeEventListener('change', closeOnDesktop);
+    };
   }, [navOpen]);
 
   const isCurrent = (to, end) => (end ? location.pathname === to : location.pathname.startsWith(to));
