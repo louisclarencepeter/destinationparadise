@@ -135,6 +135,18 @@ export default function SiteSearch({ open, onClose }) {
             placeholder="Search safaris, transfers, packages, Stone Town..."
             aria-label="Search query"
           />
+          {query && (
+            <button
+              type="button"
+              className="site-search__clear"
+              onClick={() => {
+                setQuery('');
+                inputRef.current?.focus();
+              }}
+            >
+              Clear
+            </button>
+          )}
           <button type="button" className="site-search__close" onClick={onClose}>Close</button>
         </div>
 
