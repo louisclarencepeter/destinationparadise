@@ -3,7 +3,9 @@ import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 import enCommon from '../locales/en/common.json';
+import enNav from '../locales/en/nav.json';
 import plCommon from '../locales/pl/common.json';
+import plNav from '../locales/pl/nav.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'pl'];
 export const DEFAULT_LANGUAGE = 'en';
@@ -14,12 +16,12 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: { common: enCommon },
-      pl: { common: plCommon },
+      en: { common: enCommon, nav: enNav },
+      pl: { common: plCommon, nav: plNav },
     },
     fallbackLng: DEFAULT_LANGUAGE,
     supportedLngs: SUPPORTED_LANGUAGES,
-    ns: ['common'],
+    ns: ['common', 'nav'],
     defaultNS: 'common',
     detection: {
       order: ['localStorage', 'navigator'],

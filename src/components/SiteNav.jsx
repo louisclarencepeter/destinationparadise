@@ -1,18 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Trans, useTranslation } from 'react-i18next';
 import { CONTACT_INFO } from '../constants/contactInfo';
 import SiteSearch, { SearchButton } from './SiteSearch.jsx';
 import LanguageSwitcher from './LanguageSwitcher.jsx';
 
 const NAV_ITEMS = [
-  { label: 'Home', to: '/', end: true, icon: 'home', hint: 'Start at the island hub' },
-  { label: 'Excursions', to: '/excursions', icon: 'compass', hint: 'Zanzibar day trips' },
-  { label: 'Safaris', to: '/safaris', icon: 'binoculars', hint: 'Mainland wildlife routes' },
-  { label: 'Packages', to: '/packages', icon: 'suitcase', hint: 'Safari, beach, honeymoon' },
-  { label: 'Trip Planner', to: '/trip-planner', icon: 'route', hint: 'Shape a custom route' },
-  { label: 'Explore', to: '/explore', icon: 'map', hint: 'Compare places and styles' },
-  { label: 'About Us', to: '/aboutus', icon: 'info', hint: 'Our story and mission' },
-  { label: 'Book Now', to: '/booking', icon: 'bag', hint: 'Send a booking request', mobileOnly: true },
+  { key: 'home', to: '/', end: true, icon: 'home' },
+  { key: 'excursions', to: '/excursions', icon: 'compass' },
+  { key: 'safaris', to: '/safaris', icon: 'binoculars' },
+  { key: 'packages', to: '/packages', icon: 'suitcase' },
+  { key: 'trip_planner', to: '/trip-planner', icon: 'route' },
+  { key: 'explore', to: '/explore', icon: 'map' },
+  { key: 'about', to: '/aboutus', icon: 'info' },
+  { key: 'book', to: '/booking', icon: 'bag', mobileOnly: true },
 ];
 
 const NAV_ICONS = {
@@ -58,15 +59,15 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-// V2 mobile menu rows — richer copy + per-item flourish (italic Safaris, AI badge, etc.)
+// V2 mobile menu rows — labels/subs read from i18n nav namespace
 const MM_ITEMS = [
-  { label: 'Home',         to: '/',             end: true, sub: 'Start at the island hub' },
-  { label: 'Excursions',   to: '/excursions',   sub: 'Stone Town · Reefs · Spice farms' },
-  { label: 'Safaris',      to: '/safaris',      sub: 'Serengeti · Ngorongoro · Selous' },
-  { label: 'Packages',     to: '/packages',     sub: 'Bush & Beach · 7–14 nights' },
-  { label: 'Trip Planner', to: '/trip-planner', sub: 'Hand-built · 90 sec', badge: 'AI' },
-  { label: 'Explore',      to: '/explore',      sub: 'Compare places & styles' },
-  { label: 'About Us',     to: '/aboutus',      sub: 'Our story · Mission · Destinations' },
+  { key: 'home',         to: '/',             end: true },
+  { key: 'excursions',   to: '/excursions'    },
+  { key: 'safaris',      to: '/safaris'       },
+  { key: 'packages',     to: '/packages'      },
+  { key: 'trip_planner', to: '/trip-planner', hasBadge: true },
+  { key: 'explore',      to: '/explore'       },
+  { key: 'about',        to: '/aboutus'       },
 ];
 
 const MM_BGS = [
@@ -80,6 +81,7 @@ const MM_BGS = [
 const MOBILE_NAV_QUERY = '(max-width: 960px)';
 
 export default function SiteNav() {
+  const { t } = useTranslation('nav');
   const [navOpen, setNavOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [bgIndex, setBgIndex] = useState(() => Math.floor(Math.random() * MM_BGS.length));
@@ -168,8 +170,8 @@ export default function SiteNav() {
               <NavLink to={item.to} end={item.end}>
                 <span className="nav__link-icon"><NavIcon name={item.icon} /></span>
                 <span className="nav__link-copy">
-                  <span className="nav__link-label">{item.label}</span>
-                  <span className="nav__link-hint">{item.hint}</span>
+                  <span className="nav__link-label">{t(`items.${item.key}.label`)}</span>
+                  <span className="nav__link-hint">{t(`items.${item.key}.hint`)}</span>
                 </span>
               </NavLink>
             </li>
@@ -177,14 +179,14 @@ export default function SiteNav() {
         </ul>
         <div className="nav__right">
           <LanguageSwitcher className="nav__lang" />
-          <SearchButton className="nav__search" onClick={() => setSearchOpen(true)} label="Search" />
-          <Link className="btn nav__cta" to="/booking" aria-label="Book now">
-            <span className="nav__cta-text">Book Now</span> <BookingIcon size={16} />
+          <SearchButton className="nav__search" onClick={() => setSearchOpen(true)} label={t('search.label_short')} />
+          <Link className="btn nav__cta" to="/booking" aria-label={t('cta.book_aria')}>
+            <span className="nav__cta-text">{t('cta.book_now')}</span> <BookingIcon size={16} />
           </Link>
           <button
             className={`nav__burger${navOpen ? ' nav__burger--open' : ''}`}
             type="button"
-            aria-label={navOpen ? 'Close menu' : 'Open menu'}
+            aria-label={navOpen ? t('menu.close') : t('menu.open')}
             aria-expanded={navOpen}
             aria-controls="mobileMenu"
             onClick={() => setNavOpen((v) => !v)}
@@ -204,7 +206,7 @@ export default function SiteNav() {
         className={`mm-menu${navOpen ? ' is-open' : ''}`}
         role="dialog"
         aria-modal="true"
-        aria-label="Site navigation"
+        aria-label={t('menu.site_nav_label')}
         {...(navOpen ? {} : { inert: true })}
       >
         <div className="mm-menu__bg" style={navOpen ? { backgroundImage: `url('${MM_BGS[bgIndex]}')` } : undefined} />
@@ -218,7 +220,7 @@ export default function SiteNav() {
           <button
             type="button"
             className="mm-menu__close"
-            aria-label="Close menu"
+            aria-label={t('menu.close')}
             onClick={() => setNavOpen(false)}
           >
             <CloseIcon />
@@ -226,13 +228,18 @@ export default function SiteNav() {
         </div>
 
         <div className="mm-menu__hero">
-          <span className="mm-menu__eyebrow">Karibu Tanzania</span>
-          <p className="mm-menu__head">Where would you like to <em>wander</em>?</p>
+          <span className="mm-menu__eyebrow">{t('menu.eyebrow')}</span>
+          <p className="mm-menu__head">
+            <Trans i18nKey="menu.headline" ns="nav" components={{ em: <em /> }} />
+          </p>
         </div>
 
         <ul className="mm-menu__list">
           {MM_ITEMS.map((item) => {
             const active = isCurrent(item.to, item.end);
+            const label = t(`items.${item.key}.label`);
+            const sub = t(`items.${item.key}.sub`, '');
+            const badge = item.hasBadge ? t(`items.${item.key}.badge`, '') : '';
             return (
               <li key={item.to}>
                 <Link
@@ -242,10 +249,10 @@ export default function SiteNav() {
                 >
                   <span className="mm-menu__row-main">
                     <span className="mm-menu__lbl">
-                      {active ? <em>{item.label}</em> : item.label}
-                      {item.badge && <span className="mm-menu__pill-inline">{item.badge}</span>}
+                      {active ? <em>{label}</em> : label}
+                      {badge && <span className="mm-menu__pill-inline">{badge}</span>}
                     </span>
-                    {item.sub && <span className="mm-menu__sub">{item.sub}</span>}
+                    {sub && <span className="mm-menu__sub">{sub}</span>}
                   </span>
                   <span className="mm-menu__arr"><ChevronRight /></span>
                 </Link>
@@ -261,17 +268,17 @@ export default function SiteNav() {
               setNavOpen(false);
               setSearchOpen(true);
             }}
-            label="Search the site"
+            label={t('search.label_long')}
           />
           <Link to="/booking" className="mm-menu__cta">
-            Book a trip <ChevronRight />
+            {t('cta.book_a_trip')} <ChevronRight />
           </Link>
           <a
             className="mm-menu__wa"
             href={CONTACT_INFO.whatsappUrl}
             target="_blank"
             rel="noreferrer noopener"
-            aria-label="Chat on WhatsApp"
+            aria-label={t('whatsapp.chat_aria')}
           >
             <WhatsAppIcon />
           </a>

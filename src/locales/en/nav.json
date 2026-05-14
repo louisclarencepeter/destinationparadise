@@ -1,0 +1,31 @@
+{
+  "items": {
+    "home":         { "label": "Home",         "hint": "Start at the island hub",  "sub": "Start at the island hub" },
+    "excursions":   { "label": "Excursions",   "hint": "Zanzibar day trips",        "sub": "Stone Town · Reefs · Spice farms" },
+    "safaris":      { "label": "Safaris",      "hint": "Mainland wildlife routes",  "sub": "Serengeti · Ngorongoro · Selous" },
+    "packages":     { "label": "Packages",     "hint": "Safari, beach, honeymoon",  "sub": "Bush & Beach · 7–14 nights" },
+    "trip_planner": { "label": "Trip Planner", "hint": "Shape a custom route",      "sub": "Hand-built · 90 sec", "badge": "AI" },
+    "explore":      { "label": "Explore",      "hint": "Compare places and styles", "sub": "Compare places & styles" },
+    "about":        { "label": "About Us",     "hint": "Our story and mission",     "sub": "Our story · Mission · Destinations" },
+    "book":         { "label": "Book Now",     "hint": "Send a booking request" }
+  },
+  "cta": {
+    "book_now": "Book Now",
+    "book_aria": "Book now",
+    "book_a_trip": "Book a trip"
+  },
+  "menu": {
+    "open": "Open menu",
+    "close": "Close menu",
+    "site_nav_label": "Site navigation",
+    "eyebrow": "Karibu Tanzania",
+    "headline": "Where would you like to <em>wander</em>?"
+  },
+  "search": {
+    "label_short": "Search",
+    "label_long": "Search the site"
+  },
+  "whatsapp": {
+    "chat_aria": "Chat on WhatsApp"
+  }
+}
