@@ -533,7 +533,7 @@ html, body { max-width: 100%; }
 @media (max-width: 720px) {
   .footer { padding: 2.25rem 1.25rem 1.25rem; }
   .footer__inner { gap: 1.5rem; }
-  .footer__col h4 { margin-bottom: .65rem; }
+  .footer__col h3 { margin-bottom: .65rem; }
   .footer__col ul { gap: .5rem; }
   .footer__theme-row { margin-top: 1.5rem; justify-content: center; }
   .footer__bottom {
