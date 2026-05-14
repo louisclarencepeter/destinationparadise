@@ -1,0 +1,61 @@
+{
+  "hero": {
+    "eyebrow": "15 pakietów · 29 safari · 40+ wycieczek",
+    "title": "Destination Paradise",
+    "motto": "twoja następna podróż do raju…",
+    "description": "Zaplanuj Zanzibar i Tanzanię w jednym miejscu: gotowe pakiety safari z plażą, wycieczki po wyspie, safari na kontynencie i planer AI, który pomaga dobrać właściwą trasę.",
+    "browse_packages": "Zobacz pakiety",
+    "explore_cta": "Odkrywaj Zanzibar i Tanzanię",
+    "search": {
+      "experience_label": "Doświadczenie",
+      "any_option": "Dowolny pakiet, wycieczka albo safari",
+      "popular_packages_group": "Popularne pakiety",
+      "popular_packages": [
+        "6 dni safari i odpoczynek na Zanzibarze",
+        "7 dni podróży poślubnej: safari i Zanzibar",
+        "10 dni klasycznego safari i Zanzibaru"
+      ],
+      "tanzania_safaris_group": "Safari w Tanzanii",
+      "tanzania_safaris": [
+        "2-dniowe safari samolotem z Zanzibaru",
+        "Safari Wielkiej Migracji w Serengeti",
+        "Ngorongoro & Tarangire",
+        "Nyerere (Selous) safari samolotem",
+        "Ruaha National Park"
+      ],
+      "zanzibar_excursions_group": "Wycieczki na Zanzibarze",
+      "zanzibar_excursions": [
+        "Safari Blue: dhow i snorkeling",
+        "Stone Town i kultura",
+        "Prison Island i gigantyczne żółwie",
+        "Wycieczka przyprawowa i lunch suahili",
+        "Las Jozani i gerezy rude",
+        "Blue Lagoon Snorkeling",
+        "Zachód słońca i restauracja The Rock"
+      ],
+      "date_label": "Data",
+      "guests_label": "Goście",
+      "guests_options": ["1 osoba", "2 osoby", "3 osoby", "4 osoby", "5+ osób"],
+      "guests_default": "2 osoby",
+      "submit": "Znajdź moją trasę"
+    }
+  },
+  "why": {
+    "eyebrow": "Dlaczego Destination Paradise",
+    "title": "Lokalnie, elastycznie i naprawdę po Twojemu",
+    "cards": {
+      "rooted": {
+        "title": "Lokalna wiedza",
+        "text": "Pracujemy z ludźmi, którzy znają Zanzibar i Tanzanię z codziennego życia, nie tylko z folderów. Podpowiedzą, gdzie dobrze zjeść, kiedy ruszyć na rafę i jak ułożyć dzień, żeby miał sens w realnych warunkach."
+      },
+      "group_or_private": {
+        "title": "Grupowo albo prywatnie",
+        "text": "Wspólne dni na dhow z nowymi znajomymi albo prywatna wycieczka, pakiet lub safari ułożone tylko dla Was. Ta sama troska, Twoje tempo."
+      },
+      "handled": {
+        "title": "Wszystko dopięte",
+        "text": "Odbiór z lotniska, transfery hotelowe, diety, zmiany w ostatniej chwili. Napisz do nas, a my się tym zajmiemy."
+      }
+    }
+  }
+}
