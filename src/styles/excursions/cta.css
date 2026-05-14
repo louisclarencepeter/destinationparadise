@@ -1,0 +1,25 @@
+/* ============ CTA ============ */
+.exc-cta {
+  position: relative;
+  padding: clamp(5rem, 9vw, 8rem) clamp(1.25rem, 5vw, 6rem);
+  overflow: hidden;
+  isolation: isolate;
+  color: #F5F1E8;
+  text-align: center;
+}
+.exc-cta__bg { position: absolute; inset: 0; z-index: -2; }
+.exc-cta__bg img { width: 100%; height: 100%; object-fit: cover; }
+.exc-cta__bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(8,30,46,.55) 0%, rgba(8,30,46,.85) 100%);
+}
+.exc-cta__inner { max-width: 720px; margin: 0 auto; }
+.exc-cta h2 {
+  font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.05;
+  margin: 0 0 1rem;
+}
+.exc-cta p { font-size: 1.05rem; line-height: 1.65; opacity: .85; margin: 0 0 2rem; }
+.exc-cta__btns { display: inline-flex; gap: .85rem; flex-wrap: wrap; justify-content: center; }

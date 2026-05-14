@@ -1,0 +1,48 @@
+/* ============ FILTER STRIP ============ */
+.exc-filter {
+  position: relative;
+  z-index: 5;
+  padding: 0;
+  display: flex; gap: .55rem; flex-wrap: wrap; align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+.exc-filter__label {
+  font-size: 10.5px; letter-spacing: .2em; text-transform: uppercase;
+  color: currentColor;
+  opacity: .55;
+  margin-right: .5rem;
+  font-weight: 600;
+}
+.exc-filter__btn {
+  font: inherit; cursor: pointer;
+  padding: .55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: currentColor;
+  font-size: 13px;
+  font-weight: 500;
+  opacity: .65;
+  transition: opacity .2s ease, background .2s ease, color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+  display: inline-flex; align-items: center; gap: .4rem;
+}
+.exc-filter__btn:hover {
+  opacity: 1;
+  background: color-mix(in srgb, currentColor 8%, transparent);
+  transform: translateY(-1px);
+}
+.exc-filter__btn.is-active {
+  opacity: 1;
+  background: var(--dp-accent, #FF6F61);
+  border-color: var(--dp-accent, #FF6F61);
+  color: #fff;
+  box-shadow: 0 8px 22px -8px rgba(255, 111, 97, 0.6);
+}
+.exc-filter__count {
+  font-size: 11px;
+  opacity: .7;
+  margin-left: .15rem;
+  font-variant-numeric: tabular-nums;
+}
+.exc-filter__btn.is-active .exc-filter__count { opacity: .9; color: rgba(255,255,255,.9); }

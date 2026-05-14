@@ -1,0 +1,9 @@
+/* Excursions page — bright, oceanic counterpart to safaris.css */
+
+.excursions-page {
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(102, 184, 220, 0.14), transparent 60%),
+    radial-gradient(900px 500px at 10% 20%, rgba(255, 159, 122, 0.1), transparent 58%),
+    var(--page-bg, #FFFCF5);
+  color: var(--text, #1a4d6e);
+}

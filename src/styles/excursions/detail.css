@@ -1,0 +1,16 @@
+/* ============ DETAIL PAGE ============ */
+.exc-detail__crumbs {
+  display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 5vw, 6rem) 0;
+  font-family: var(--dp-font-sans);
+  font-size: 12px;
+  letter-spacing: .04em;
+  color: color-mix(in srgb, currentColor 60%, transparent);
+}
+.exc-detail__crumbs a { color: color-mix(in srgb, currentColor 75%, transparent); text-decoration: none; transition: color .2s; }
+.exc-detail__crumbs a:hover { color: #FF6F61; }
+.exc-detail__crumbs span[aria-hidden="true"] { opacity: .5; }
+.exc-detail .exc-block--detail {
+  margin-top: clamp(1.75rem, 4vw, 3rem);
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
