@@ -1,120 +1,30 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useLocation, useSearchParams } from 'react-router-dom';
-import ResponsiveImage from '../components/ResponsiveImage.jsx';
-import { EXCURSIONS } from '../data/excursionsData.js';
-import { destinationParadisePackages } from '../data/destinationParadisePackages.js';
-import { destinationParadiseSafariPricing } from '../data/safariPricing.js';
-import { TRANSFER_PRODUCTS, TRANSFER_SERVICE_TIERS } from '../data/transferProducts.js';
+import { useEffect, useRef, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import BookingFlow from '../components/booking/BookingFlow.jsx';
+import BookingForm from '../components/booking/BookingForm.jsx';
+import BookingHero from '../components/booking/BookingHero.jsx';
+import BookingSummary from '../components/booking/BookingSummary.jsx';
+import BookingSupportCta from '../components/booking/BookingSupportCta.jsx';
+import { DEFAULT_BOOKING_FORM, SERVICE_TYPES, bookingPriceLabel } from '../data/bookingPageData.js';
+import { TRANSFER_SERVICE_TIERS } from '../data/transferProducts.js';
+import { useBookingProducts } from '../hooks/useBookingProducts.js';
+import { useFloatingBookingSummary } from '../hooks/useFloatingBookingSummary.js';
 import { buildPlannerHandoff, clearPlannerHandoff, isPlannerHandoffMessage, readPlannerHandoff } from '../utils/plannerHandoff.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/booking.css';
 
-const SERVICE_TYPES = [
-  { value: 'package', label: 'Package', text: 'Safari + Zanzibar, honeymoon, family, culture, marine, or luxury route.' },
-  { value: 'excursion', label: 'Excursion', text: 'Island day trips, dhow sailing, Stone Town, spice farms, snorkeling, and nature.' },
-  { value: 'safari', label: 'Safari', text: 'Mainland wildlife routes, fly-in safaris, migration, southern parks, and custom circuits.' },
-  { value: 'transfer', label: 'Transfer', text: 'Private airport, hotel-to-hotel, group, premium SUV, or VIP concierge transfer.' },
-  { value: 'custom', label: 'Custom plan', text: 'Not sure yet? Tell us the shape and we will build a route around you.' },
-];
-
-const PAYMENT_OPTIONS = [
-  { value: 'secure-link', label: 'Send secure online payment link', text: 'Best after we confirm availability and the final price.' },
-  { value: 'deposit', label: 'I want to pay a deposit online', text: 'We will confirm the deposit amount and send a payment link.' },
-  { value: 'full', label: 'I want to pay the full amount online', text: 'For confirmed trips where you want to settle everything by card/link.' },
-  { value: 'later', label: 'Quote first, payment later', text: 'We will price the trip first and discuss payment after.' },
-];
-
-const DEFAULT_FORM = {
-  serviceType: 'package',
-  product: '',
-  name: '',
-  email: '',
-  phone: '',
-  whatsapp: '',
-  startDate: '',
-  endDate: '',
-  guests: '2',
-  transferTier: 'standard-private',
-  pickupLocation: '',
-  dropoffLocation: '',
-  flightNumber: '',
-  transferTime: '',
-  budget: '',
-  accommodationLevel: 'Mid-range',
-  paymentPreference: 'secure-link',
-  message: '',
-};
-
-const money = (value) => `$${Number(value).toLocaleString()}`;
-
-function priceLabel(item) {
-  if (!item) return 'Final price after availability check';
-  if (item.type === 'package') {
-    const to = item.raw.pricing.to ? ` - ${money(item.raw.pricing.to)}` : '';
-    return `From ${money(item.raw.pricing.from)}${to} ${item.raw.pricing.unit || 'per person'}`;
-  }
-  if (item.type === 'safari') {
-    return `From ${money(item.raw.recommendedPublicPrice.lowSeason)} pp`;
-  }
-  if (item.type === 'excursion' && typeof item.raw.price === 'number') {
-    return `From ${money(item.raw.price)} ${item.raw.priceSub || 'per person'}`;
-  }
-  if (item.type === 'transfer') {
-    return item.raw.priceSummary || 'Final transfer price after route confirmation';
-  }
-  return 'Final price after availability check';
-}
-
-function useBookingProducts() {
-  return useMemo(() => {
-    const packages = destinationParadisePackages.map((item) => ({
-      type: 'package',
-      value: `package:${item.slug}`,
-      label: item.title,
-      category: item.category,
-      raw: item,
-    }));
-
-    const excursions = EXCURSIONS.map((item) => ({
-      type: 'excursion',
-      value: `excursion:${item.id}`,
-      label: item.title,
-      category: item.category,
-      raw: item,
-    }));
-
-    const safaris = destinationParadiseSafariPricing.map((item) => ({
-      type: 'safari',
-      value: `safari:${item.slug}`,
-      label: item.title,
-      category: item.positioning,
-      raw: item,
-    }));
-
-    const transfers = TRANSFER_PRODUCTS.map((item) => ({
-      type: 'transfer',
-      value: `transfer:${item.slug}`,
-      label: item.title,
-      category: item.duration,
-      raw: item,
-    }));
-
-    return { packages, excursions, safaris, transfers, all: [...packages, ...excursions, ...safaris, ...transfers] };
-  }, []);
-}
-
 export default function Booking() {
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const products = useBookingProducts();
-  const [form, setForm] = useState(DEFAULT_FORM);
+  const [form, setForm] = useState(DEFAULT_BOOKING_FORM);
   const [plannerHandoff, setPlannerHandoff] = useState(null);
   const [status, setStatus] = useState('idle');
   const layoutRef = useRef(null);
   const summarySlotRef = useRef(null);
   const summaryRef = useRef(null);
-  const [summaryFloat, setSummaryFloat] = useState({ mode: 'normal', left: 0, width: 0 });
+  const summaryFloat = useFloatingBookingSummary(layoutRef, summarySlotRef, summaryRef, form);
 
   useEffect(() => {
     document.title = 'Booking Request · Destination Paradise';
@@ -206,61 +116,6 @@ export default function Booking() {
     ? 'Preferred pickup area, hotel name, private/shared preference, kids ages, dietary needs, or timing notes.'
     : "Hotels you like, pace, special occasion, kids' ages, dietary needs, flight details, or what you want to avoid.";
 
-  useEffect(() => {
-    let frame = 0;
-
-    const updateSummaryFloat = () => {
-      window.cancelAnimationFrame(frame);
-      frame = window.requestAnimationFrame(() => {
-        const layout = layoutRef.current;
-        const slot = summarySlotRef.current;
-        const summary = summaryRef.current;
-
-        if (!layout || !slot || !summary || window.innerWidth < 820) {
-          setSummaryFloat((current) => (current.mode !== 'normal' ? { mode: 'normal', left: 0, width: 0 } : current));
-          return;
-        }
-
-        const rootStyles = window.getComputedStyle(document.documentElement);
-        const navHeight = Number.parseFloat(rootStyles.getPropertyValue('--nav-height')) || 66;
-        const topOffset = navHeight + 20;
-        const layoutRect = layout.getBoundingClientRect();
-        const slotRect = slot.getBoundingClientRect();
-        const summaryHeight = summary.offsetHeight;
-        const shouldFloat = layoutRect.top <= topOffset && layoutRect.bottom > topOffset + summaryHeight;
-        const shouldParkAtBottom = layoutRect.top <= topOffset && layoutRect.bottom <= topOffset + summaryHeight;
-
-        setSummaryFloat((current) => {
-          const next = {
-            mode: shouldFloat ? 'floating' : shouldParkAtBottom ? 'bottom' : 'normal',
-            left: shouldFloat ? slotRect.left : 0,
-            width: shouldFloat ? slotRect.width : 0,
-          };
-
-          if (
-            current.mode === next.mode &&
-            Math.abs(current.left - next.left) < 0.5 &&
-            Math.abs(current.width - next.width) < 0.5
-          ) {
-            return current;
-          }
-
-          return next;
-        });
-      });
-    };
-
-    updateSummaryFloat();
-    window.addEventListener('scroll', updateSummaryFloat, { passive: true });
-    window.addEventListener('resize', updateSummaryFloat);
-
-    return () => {
-      window.cancelAnimationFrame(frame);
-      window.removeEventListener('scroll', updateSummaryFloat);
-      window.removeEventListener('resize', updateSummaryFloat);
-    };
-  }, [form, selectedProduct]);
-
   const update = (key) => (event) => {
     const value = event.target.value;
     setStatus('idle');
@@ -295,7 +150,7 @@ export default function Booking() {
       flightNumber: isTransferRequest ? form.flightNumber : '',
       transferTime: isTransferRequest ? form.transferTime : '',
       productLabel: selectedProduct?.label || 'Not selected',
-      estimatedPrice: priceLabel(selectedProduct),
+      estimatedPrice: bookingPriceLabel(selectedProduct),
       source: plannerHandoff ? 'planner' : 'booking',
       plannerDraft: plannerHandoff?.transcript || '',
     };
@@ -309,7 +164,7 @@ export default function Booking() {
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data.ok) throw new Error(data.error || 'booking-request-failed');
       setStatus('sent');
-      setForm(DEFAULT_FORM);
+      setForm(DEFAULT_BOOKING_FORM);
       clearPlannerHandoff();
       setPlannerHandoff(null);
     } catch {
@@ -319,41 +174,8 @@ export default function Booking() {
 
   return (
     <main className="booking-page">
-      <section className="booking-hero">
-        <div className="booking-hero__bg"><ResponsiveImage src="/assets/images/home/mizingani-waterfront.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
-        <div className="booking-hero__inner">
-          <span className="booking-hero__eyebrow">Booking request</span>
-          <h1>One form <em>for every trip.</em></h1>
-          <p>Packages, excursions, safaris, private transfers, custom routes, and online payment requests all start here. Tell us the shape, and our team will confirm availability, timing, and the final price.</p>
-          <div className="booking-hero__actions">
-            <a className="btn btn--lg" href="#booking-form">Start request</a>
-            <Link className="btn btn--ghost btn--lg" to="/trip-planner">Plan with AI</Link>
-          </div>
-          <div className="booking-hero__stats" aria-label="Booking trust signals">
-            <div><strong>500+</strong><span>Trips planned</span></div>
-            <div><strong>1,200+</strong><span>Happy guests</span></div>
-            <div><strong>24h</strong><span>Request confirmed</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section className="booking-flow" aria-label="Booking process">
-        <article>
-          <span>01</span>
-          <h2>Send the request</h2>
-          <p>Choose a package, excursion, safari, transfer, or custom route and share your dates.</p>
-        </article>
-        <article>
-          <span>02</span>
-          <h2>We confirm it</h2>
-          <p>Our team checks availability, vehicles, transfers, guides, routes, and final pricing.</p>
-        </article>
-        <article>
-          <span>03</span>
-          <h2>Pay securely</h2>
-          <p>When everything is approved, we send a secure online payment link.</p>
-        </article>
-      </section>
+      <BookingHero />
+      <BookingFlow />
 
       <section className="booking-shell" id="booking-form">
         <div className="booking-intro">
@@ -363,224 +185,37 @@ export default function Booking() {
         </div>
 
         <div className="booking-layout" ref={layoutRef}>
-          <form className="booking-form" id="booking-details" onSubmit={submit}>
+          <BookingForm
+            form={form}
+            isTransferRequest={isTransferRequest}
+            messagePlaceholder={messagePlaceholder}
+            onSubmit={submit}
+            productLabel={productLabel}
+            productPlaceholder={productPlaceholder}
+            showDateRange={showDateRange}
+            showTravelPreferences={showTravelPreferences}
+            status={status}
+            update={update}
+            visibleProducts={visibleProducts}
+          />
 
-            <fieldset className="booking-fieldset">
-              <legend>What are you booking?</legend>
-              <div className="booking-choice-grid">
-                {SERVICE_TYPES.map((item) => (
-                  <label className={`booking-choice${form.serviceType === item.value ? ' is-selected' : ''}`} key={item.value}>
-                    <input type="radio" name="serviceType" value={item.value} checked={form.serviceType === item.value} onChange={update('serviceType')} />
-                    <span>{item.label}</span>
-                    <small>{item.text}</small>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-
-            {form.serviceType !== 'custom' && (
-              <label className="booking-field">
-                <span>{productLabel}</span>
-                <select name="product" value={form.product} onChange={update('product')}>
-                  <option value="">{productPlaceholder}</option>
-                  {visibleProducts.map((item) => (
-                    <option value={item.value} key={item.value}>{item.label}</option>
-                  ))}
-                </select>
-              </label>
-            )}
-
-            <div className="booking-row">
-              <label className="booking-field">
-                <span>Name</span>
-                <input type="text" name="name" value={form.name} onChange={update('name')} required />
-              </label>
-              <label className="booking-field">
-                <span>Email</span>
-                <input type="email" name="email" value={form.email} onChange={update('email')} required />
-              </label>
-            </div>
-
-            <div className="booking-row">
-              <label className="booking-field">
-                <span>Phone</span>
-                <input type="tel" name="phone" value={form.phone} onChange={update('phone')} placeholder="+255 / +49 / +1 ..." />
-              </label>
-              <label className="booking-field">
-                <span>WhatsApp</span>
-                <input type="tel" name="whatsapp" value={form.whatsapp} onChange={update('whatsapp')} placeholder="If different from phone" />
-              </label>
-            </div>
-
-            <div className={`booking-row${showDateRange ? ' booking-row--thirds' : ''}`}>
-              <label className="booking-field">
-                <span>{showDateRange ? 'Start date' : 'Date'}</span>
-                <input type="date" name="startDate" value={form.startDate} onChange={update('startDate')} />
-              </label>
-              {showDateRange && (
-                <label className="booking-field">
-                  <span>End date</span>
-                  <input type="date" name="endDate" value={form.endDate} onChange={update('endDate')} />
-                </label>
-              )}
-              <label className="booking-field">
-                <span>Guests</span>
-                <select name="guests" value={form.guests} onChange={update('guests')}>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6+</option>
-                  <option>10+</option>
-                </select>
-              </label>
-            </div>
-
-            {isTransferRequest && (
-              <fieldset className="booking-fieldset">
-                <legend>Transfer details</legend>
-                <div className="booking-transfer-tier-grid">
-                  {TRANSFER_SERVICE_TIERS.map((item) => (
-                    <label className={`booking-payment${form.transferTier === item.value ? ' is-selected' : ''}`} key={item.value}>
-                      <input type="radio" name="transferTier" value={item.value} checked={form.transferTier === item.value} onChange={update('transferTier')} />
-                      <span>{item.label}</span>
-                      <small>{item.text}</small>
-                    </label>
-                  ))}
-                </div>
-                <div className="booking-row">
-                  <label className="booking-field">
-                    <span>Pickup location</span>
-                    <input type="text" name="pickupLocation" value={form.pickupLocation} onChange={update('pickupLocation')} placeholder="ZNZ Airport, ferry port, hotel..." />
-                  </label>
-                  <label className="booking-field">
-                    <span>Drop-off location</span>
-                    <input type="text" name="dropoffLocation" value={form.dropoffLocation} onChange={update('dropoffLocation')} placeholder="Hotel, resort, airport..." />
-                  </label>
-                </div>
-                <div className="booking-row">
-                  <label className="booking-field">
-                    <span>Flight / ferry number</span>
-                    <input type="text" name="flightNumber" value={form.flightNumber} onChange={update('flightNumber')} placeholder="Optional, but useful for tracking" />
-                  </label>
-                  <label className="booking-field">
-                    <span>Pickup time</span>
-                    <input type="time" name="transferTime" value={form.transferTime} onChange={update('transferTime')} />
-                  </label>
-                </div>
-              </fieldset>
-            )}
-
-            {showTravelPreferences && (
-              <div className="booking-row">
-                <label className="booking-field">
-                  <span>Budget range</span>
-                  <select name="budget" value={form.budget} onChange={update('budget')}>
-                    <option value="">Not sure yet</option>
-                    <option>Under $1,000 pp</option>
-                    <option>$1,000 - $2,500 pp</option>
-                    <option>$2,500 - $5,000 pp</option>
-                    <option>$5,000 - $8,000 pp</option>
-                    <option>$8,000+ pp</option>
-                  </select>
-                </label>
-                <label className="booking-field">
-                  <span>Comfort level</span>
-                  <select name="accommodationLevel" value={form.accommodationLevel} onChange={update('accommodationLevel')}>
-                    <option>Budget</option>
-                    <option>Mid-range</option>
-                    <option>Luxury</option>
-                    <option>Ultra luxury</option>
-                    <option>Flexible</option>
-                  </select>
-                </label>
-              </div>
-            )}
-
-            <fieldset className="booking-fieldset">
-              <legend>Online payment</legend>
-              <div className="booking-payment-grid">
-                {PAYMENT_OPTIONS.map((item) => (
-                  <label className={`booking-payment${form.paymentPreference === item.value ? ' is-selected' : ''}`} key={item.value}>
-                    <input type="radio" name="paymentPreference" value={item.value} checked={form.paymentPreference === item.value} onChange={update('paymentPreference')} />
-                    <span>{item.label}</span>
-                    <small>{item.text}</small>
-                  </label>
-                ))}
-              </div>
-            </fieldset>
-
-            <label className="booking-field">
-              <span>Anything we should know?</span>
-              <textarea name="message" value={form.message} onChange={update('message')} rows={6} placeholder={messagePlaceholder} />
-            </label>
-
-            {status === 'sent' && (
-              <p className="booking-status booking-status--ok">Asante. We received your request and will come back with availability, a quote, and the payment next step.</p>
-            )}
-            {status === 'error' && (
-              <p className="booking-status booking-status--err">That did not go through. Please try again or message us on WhatsApp.</p>
-            )}
-
-            <button className="btn btn--lg booking-submit" type="submit" disabled={status === 'sending' || status === 'sent'}>
-              {status === 'sending' ? 'Sending request...' : status === 'sent' ? 'Request sent' : 'Send booking request'}
-            </button>
-          </form>
-
-          <aside className="booking-summary-slot" ref={summarySlotRef}>
-            <div
-              className={`booking-summary${summaryFloat.mode === 'floating' ? ' booking-summary--floating' : ''}${summaryFloat.mode === 'bottom' ? ' booking-summary--bottom' : ''}`}
-              ref={summaryRef}
-              style={summaryFloat.mode === 'floating' ? { left: summaryFloat.left, width: summaryFloat.width } : undefined}
-            >
-              <div className="booking-summary__card">
-                <span className="section-eyebrow">Your request</span>
-                <h3>{selectedProduct?.label || selectedService?.label || 'Custom plan'}</h3>
-                <p>{selectedProduct?.category || 'Flexible route'}</p>
-                <div className="booking-summary__price">{priceLabel(selectedProduct)}</div>
-                <dl>
-                  <div><dt>Guests</dt><dd>{form.guests || 'Flexible'}</dd></div>
-                  <div><dt>{showDateRange ? 'Dates' : 'Date'}</dt><dd>{dateSummary}</dd></div>
-                  {isTransferRequest && <div><dt>Tier</dt><dd>{selectedTransferTier?.label || 'Standard Private'}</dd></div>}
-                  {isTransferRequest && form.pickupLocation && <div><dt>Pickup</dt><dd>{form.pickupLocation}</dd></div>}
-                  {isTransferRequest && form.dropoffLocation && <div><dt>Drop-off</dt><dd>{form.dropoffLocation}</dd></div>}
-                  {isTransferRequest && form.transferTime && <div><dt>Time</dt><dd>{form.transferTime}</dd></div>}
-                  {showTravelPreferences && <div><dt>Comfort</dt><dd>{form.accommodationLevel}</dd></div>}
-                  <div><dt>Payment</dt><dd>{PAYMENT_OPTIONS.find((item) => item.value === form.paymentPreference)?.label}</dd></div>
-                </dl>
-              </div>
-
-              <div className="booking-summary__card booking-summary__card--dark">
-                <span>How payment works</span>
-                <ol>
-                  <li>We confirm availability and the final price.</li>
-                  <li>You approve the route, date, and terms.</li>
-                  <li>We send a secure online payment link for deposit or full balance.</li>
-                </ol>
-                <p>No card details are entered or stored on this website.</p>
-              </div>
-
-              <div className="booking-summary__mini">
-                <strong>Prefer to plan first?</strong>
-                <Link to="/trip-planner">Open the AI planner →</Link>
-              </div>
-            </div>
-          </aside>
+          <BookingSummary
+            dateSummary={dateSummary}
+            form={form}
+            isTransferRequest={isTransferRequest}
+            selectedProduct={selectedProduct}
+            selectedService={selectedService}
+            selectedTransferTier={selectedTransferTier}
+            showDateRange={showDateRange}
+            showTravelPreferences={showTravelPreferences}
+            summaryFloat={summaryFloat}
+            summaryRef={summaryRef}
+            summarySlotRef={summarySlotRef}
+          />
         </div>
       </section>
 
-      <section className="exc-cta">
-        <div className="exc-cta__bg"><ResponsiveImage src="/assets/images/excursions/stone-town-old-fort.webp" alt="" /></div>
-        <div className="exc-cta__inner">
-          <h2>Need help before you send it?</h2>
-          <p>Open the planner if you want to shape the route first, or explore the full map to choose the right beach, safari circuit, and island days.</p>
-          <div className="exc-cta__btns">
-            <Link className="btn btn--lg btn--accent" to="/trip-planner">Plan with AI</Link>
-            <Link className="btn btn--ghost-light btn--lg" to="/explore">Explore the map</Link>
-          </div>
-        </div>
-      </section>
+      <BookingSupportCta />
     </main>
   );
 }

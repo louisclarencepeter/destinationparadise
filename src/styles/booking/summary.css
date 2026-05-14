@@ -1,0 +1,162 @@
+.booking-summary-slot {
+  min-width: 0;
+  align-self: stretch;
+  position: relative;
+}
+
+.booking-summary {
+  display: grid;
+  gap: .9rem;
+}
+
+.booking-summary--floating {
+  position: fixed;
+  top: calc(var(--nav-height) + 1.25rem);
+  z-index: 20;
+}
+
+.booking-summary--bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.booking-summary__card,
+.booking-summary__mini {
+  border-radius: 16px;
+  padding: 1.2rem;
+}
+
+.booking-summary__card h3 {
+  margin: .45rem 0 .25rem;
+  color: var(--ink);
+  font-family: var(--dp-font-display);
+  font-size: 1.6rem;
+  line-height: 1.15;
+}
+
+.booking-summary__card p {
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+.booking-summary__price {
+  margin: 1rem 0;
+  padding: .8rem .9rem;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--dp-accent) 12%, transparent);
+  color: var(--dp-accent);
+  font-family: var(--dp-font-sans);
+  font-weight: 800;
+  font-size: .9rem;
+}
+
+.booking-summary dl {
+  display: grid;
+  gap: .75rem;
+  margin: 0;
+  padding-top: 1rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+}
+
+.booking-summary dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.booking-summary dt {
+  color: var(--text-muted);
+  font-family: var(--dp-font-sans);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.booking-summary dd {
+  margin: 0;
+  color: var(--ink);
+  text-align: right;
+  font-weight: 700;
+}
+
+.booking-summary__card--dark {
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--surface-raised) 96%, var(--dp-accent) 4%), var(--surface-raised));
+  color: var(--text);
+}
+
+.booking-summary__card--dark span {
+  display: block;
+  color: var(--dp-accent);
+  font-family: var(--dp-font-sans);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  margin-bottom: .8rem;
+}
+
+.booking-summary__card--dark ol {
+  margin: 0;
+  padding-left: 1.2rem;
+  display: grid;
+  gap: .55rem;
+  color: var(--text-soft);
+}
+
+.booking-summary__card--dark p {
+  margin-top: 1rem;
+  color: var(--text-muted);
+  font-size: .9rem;
+}
+
+html[data-theme="dark"] .booking-summary__card--dark {
+  background:
+    linear-gradient(135deg, rgba(8,30,46,.96), rgba(26,77,110,.86));
+  color: #F5F1E8;
+}
+
+html[data-theme="dark"] .booking-summary__card--dark ol {
+  color: rgba(245,241,232,.86);
+}
+
+html[data-theme="dark"] .booking-summary__card--dark p {
+  color: rgba(245,241,232,.68);
+}
+
+.booking-summary__mini {
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+
+.booking-summary__mini strong {
+  color: var(--ink);
+}
+
+.booking-summary__mini a {
+  color: var(--dp-accent);
+  text-decoration: none;
+  font-family: var(--dp-font-sans);
+  font-weight: 800;
+  font-size: .9rem;
+}
+
+html[data-theme="dark"] .booking-form,
+html[data-theme="dark"] .booking-summary__card,
+html[data-theme="dark"] .booking-summary__mini {
+  background: color-mix(in srgb, var(--surface-2) 92%, transparent);
+  border-color: rgba(255,255,255,.08);
+}
+
+html[data-theme="dark"] .booking-field input,
+html[data-theme="dark"] .booking-field select,
+html[data-theme="dark"] .booking-field textarea {
+  background: var(--surface);
+  border-color: rgba(255,255,255,.08);
+}
+

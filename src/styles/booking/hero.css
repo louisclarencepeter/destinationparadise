@@ -1,0 +1,156 @@
+.booking-hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: #F5F1E8;
+  text-align: center;
+  padding: clamp(5rem, 9vw, 7rem) clamp(1.25rem, 5vw, 6rem) clamp(3rem, 6vw, 5rem);
+}
+
+.booking-hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.booking-hero__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  animation: heroImageReveal 1.4s var(--dp-ease-out) both;
+}
+
+.booking-hero__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(8,30,46,.18), rgba(8,30,46,.7)),
+    linear-gradient(180deg, rgba(8,30,46,.34), rgba(8,30,46,.86));
+}
+
+.booking-hero__inner {
+  position: relative;
+  z-index: 1;
+  width: min(820px, 100%);
+  display: grid;
+  justify-items: center;
+  gap: clamp(.75rem, 1.4vh, 1.1rem);
+}
+
+.booking-hero__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--dp-font-sans);
+  font-size: 11px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  padding: .5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(10px);
+  animation: fadeInUp .9s var(--dp-ease-out) both;
+}
+
+.booking-hero__eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--dp-accent);
+  box-shadow: 0 0 0 3px rgba(255,111,97,.24);
+}
+
+.booking-hero h1 {
+  margin: 0;
+  max-width: 760px;
+  font-family: var(--dp-font-display);
+  font-size: clamp(3rem, 6.4vw, 5.6rem);
+  font-weight: 500;
+  line-height: 1.02;
+  letter-spacing: -.015em;
+  color: #fff;
+  text-shadow: 0 8px 40px rgba(0,0,0,.34);
+  animation: fadeInUp 1s var(--dp-ease-out) both;
+  animation-delay: .1s;
+}
+
+.booking-hero h1 em {
+  color: var(--dp-accent, #FF6F61);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.booking-hero p {
+  margin: 0;
+  max-width: 650px;
+  color: rgba(245,241,232,.86);
+  font-family: var(--dp-font-display);
+  font-size: clamp(1rem, 1.35vw, 1.2rem);
+  line-height: 1.65;
+  animation: fadeInUp 1s var(--dp-ease-out) both;
+  animation-delay: .3s;
+}
+
+.booking-hero__actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .85rem;
+  margin-top: .5rem;
+  animation: fadeInUp 1s var(--dp-ease-out) both;
+  animation-delay: .5s;
+}
+
+.booking-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 4vw, 3rem);
+  width: min(620px, 100%);
+  margin-top: clamp(.35rem, 1vh, .8rem);
+  padding-top: clamp(.95rem, 1.8vh, 1.35rem);
+  border-top: 1px solid rgba(255,255,255,.2);
+  animation: fadeInUp 1s var(--dp-ease-out) both;
+  animation-delay: .7s;
+}
+
+.booking-hero__stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.booking-hero__stats strong {
+  font-family: var(--dp-font-display);
+  font-size: clamp(1.45rem, 2.4vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1;
+  color: #fff;
+}
+
+.booking-hero__stats span {
+  font-family: var(--dp-font-sans);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: rgba(245,241,232,.68);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .booking-hero__bg img,
+  .booking-hero__eyebrow,
+  .booking-hero h1,
+  .booking-hero p,
+  .booking-hero__actions,
+  .booking-hero__stats {
+    animation: none;
+  }
+}
+
