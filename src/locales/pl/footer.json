@@ -1,0 +1,54 @@
+{
+  "brand": {
+    "tagline_kicker": "Zanzibar & Tanzania",
+    "description": "Mała, lokalna firma podróżnicza nad brzegiem Zanzibaru. Spokojne dni, tradycyjne łodzie i przewodnicy, którzy dorastali właśnie tutaj.",
+    "typed_tagline": "twoja następna podróż do raju..."
+  },
+  "columns": {
+    "pages": {
+      "heading": "Strony",
+      "home": "Start",
+      "excursions": "Wycieczki",
+      "safaris": "Safari",
+      "packages": "Pakiety",
+      "trip_planner": "Planer podróży",
+      "explore": "Odkrywaj",
+      "about": "O nas"
+    },
+    "about": {
+      "heading": "O nas",
+      "story": "Nasza historia",
+      "mission": "Nasza misja",
+      "community": "Społeczność",
+      "destinations": "Kierunki"
+    },
+    "contact": {
+      "heading": "Kontakt",
+      "whatsapp_link": "Napisz na WhatsApp",
+      "transfers": "Transfery z lotniska i po wyspie"
+    }
+  },
+  "socials": {
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "youtube": "YouTube",
+    "x": "X"
+  },
+  "theme": {
+    "group_label": "Wybór motywu",
+    "light_label": "Jasny",
+    "dark_label": "Ciemny",
+    "light_aria": "Tryb jasny",
+    "dark_aria": "Tryb ciemny"
+  },
+  "policy": {
+    "privacy": "Prywatność",
+    "terms": "Regulamin",
+    "cookies": "Cookies"
+  },
+  "fab": {
+    "aria": "Napisz do zespołu na WhatsApp",
+    "label": "Napisz do nas"
+  }
+}

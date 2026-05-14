@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { CONTACT_INFO, SOCIAL_LINKS } from '../constants/contactInfo.js';
 
 export const WHATSAPP_URL = CONTACT_INFO.whatsappUrl;
@@ -24,8 +25,8 @@ const ThemeIcon = ({ theme }) => (
 );
 
 const THEME_MODES = [
-  { mode: 'light', label: 'Light' },
-  { mode: 'dark', label: 'Dark' },
+  { mode: 'light', labelKey: 'theme.light_label', ariaKey: 'theme.light_aria' },
+  { mode: 'dark', labelKey: 'theme.dark_label', ariaKey: 'theme.dark_aria' },
 ];
 
 const FOOTER_ICONS = {
@@ -80,6 +81,7 @@ function getPageHero() {
 }
 
 export function WhatsAppFab({ locationKey }) {
+  const { t } = useTranslation('footer');
   const fabRef = useRef(null);
   const [placement, setPlacement] = useState({ isVisible: false, isParked: false, top: 0 });
 
@@ -149,32 +151,34 @@ export function WhatsAppFab({ locationKey }) {
       href={WHATSAPP_URL}
       target="_blank"
       rel="noreferrer"
-      aria-label="Chat with the team on WhatsApp"
+      aria-label={t('fab.aria')}
       style={placement.isParked ? { top: `${placement.top}px` } : undefined}
     >
       <WhatsAppIcon />
-      <span className="whatsapp-fab__label">Chat with the team</span>
+      <span className="whatsapp-fab__label">{t('fab.label')}</span>
     </a>
   );
 }
 
-const TYPED_TAGLINE = 'your next trip to paradise...';
-
 function TypedTagline() {
+  const { t } = useTranslation('footer');
+  const tagline = t('brand.typed_tagline');
   const [typed, setTyped] = useState('');
   const [done, setDone] = useState(false);
   const elRef = useRef(null);
 
   useEffect(() => {
+    setTyped('');
+    setDone(false);
     const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) {
-      setTyped(TYPED_TAGLINE);
+      setTyped(tagline);
       setDone(true);
       return undefined;
     }
     const el = elRef.current;
     if (!el || !('IntersectionObserver' in window)) {
-      setTyped(TYPED_TAGLINE);
+      setTyped(tagline);
       setDone(true);
       return undefined;
     }
@@ -186,12 +190,12 @@ function TypedTagline() {
         let i = 0;
         const tick = () => {
           i += 1;
-          setTyped(TYPED_TAGLINE.slice(0, i));
-          if (i >= TYPED_TAGLINE.length) {
+          setTyped(tagline.slice(0, i));
+          if (i >= tagline.length) {
             setDone(true);
             return;
           }
-          const pause = TYPED_TAGLINE[i - 1] === ' ' ? 80 : 48 + (i % 4) * 14;
+          const pause = tagline[i - 1] === ' ' ? 80 : 48 + (i % 4) * 14;
           timeoutId = window.setTimeout(tick, pause);
         };
         timeoutId = window.setTimeout(tick, 220);
@@ -203,14 +207,14 @@ function TypedTagline() {
       observer.disconnect();
       if (timeoutId) window.clearTimeout(timeoutId);
     };
-  }, []);
+  }, [tagline]);
 
   return (
     <p
       ref={elRef}
       className={`footer__script footer__script--typed${done ? ' is-done' : ''}`}
     >
-      <span className="visually-hidden">{TYPED_TAGLINE}</span>
+      <span className="visually-hidden">{tagline}</span>
       <span aria-hidden="true">{typed}</span>
       <span className="footer__script-cursor" aria-hidden="true" />
     </p>
@@ -218,15 +222,16 @@ function TypedTagline() {
 }
 
 export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThemeModeChange }) {
+  const { t } = useTranslation('footer');
   return (
     <footer className="footer">
       <div className="footer__inner">
         <div className="footer__brand">
           <div className="footer__logo">
             <img src="/assets/brand/destination-paradise-logo-96.webp" alt="Destination Paradise" width="48" height="48" loading="lazy" decoding="async" />
-            <span className="footer__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
+            <span className="footer__logo-text">Destination Paradise<small>{t('brand.tagline_kicker')}</small></span>
           </div>
-          <p>A small, local travel company on the shores of Zanzibar. Unhurried days, traditional boats, and guides who grew up here.</p>
+          <p>{t('brand.description')}</p>
           <TypedTagline />
           <div className="footer__socials">
             <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label="WhatsApp"><WhatsAppIcon /></a>
@@ -237,40 +242,40 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
           </div>
         </div>
         <div className="footer__col">
-          <h3>Pages</h3>
+          <h3>{t('columns.pages.heading')}</h3>
           <ul>
-            <li><Link to="/"><FooterIcon name="home" />Home</Link></li>
-            <li><Link to="/excursions"><FooterIcon name="compass" />Excursions</Link></li>
-            <li><Link to="/safaris"><FooterIcon name="binoculars" />Safaris</Link></li>
-            <li><Link to="/packages"><FooterIcon name="suitcase" />Packages</Link></li>
-            <li><Link to="/trip-planner"><FooterIcon name="route" />Trip Planner</Link></li>
-            <li><Link to="/explore"><FooterIcon name="map" />Explore</Link></li>
-            <li><Link to="/aboutus"><FooterIcon name="book" />About Us</Link></li>
+            <li><Link to="/"><FooterIcon name="home" />{t('columns.pages.home')}</Link></li>
+            <li><Link to="/excursions"><FooterIcon name="compass" />{t('columns.pages.excursions')}</Link></li>
+            <li><Link to="/safaris"><FooterIcon name="binoculars" />{t('columns.pages.safaris')}</Link></li>
+            <li><Link to="/packages"><FooterIcon name="suitcase" />{t('columns.pages.packages')}</Link></li>
+            <li><Link to="/trip-planner"><FooterIcon name="route" />{t('columns.pages.trip_planner')}</Link></li>
+            <li><Link to="/explore"><FooterIcon name="map" />{t('columns.pages.explore')}</Link></li>
+            <li><Link to="/aboutus"><FooterIcon name="book" />{t('columns.pages.about')}</Link></li>
           </ul>
         </div>
         <div className="footer__col">
-          <h3>About Us</h3>
+          <h3>{t('columns.about.heading')}</h3>
           <ul>
-            <li><Link to="/aboutus#story"><FooterIcon name="book" />Our story</Link></li>
-            <li><Link to="/aboutus#mission"><FooterIcon name="target" />Our mission</Link></li>
-            <li><Link to="/aboutus#community"><FooterIcon name="users" />Community</Link></li>
-            <li><Link to="/aboutus#destinations"><FooterIcon name="globe" />Destinations</Link></li>
+            <li><Link to="/aboutus#story"><FooterIcon name="book" />{t('columns.about.story')}</Link></li>
+            <li><Link to="/aboutus#mission"><FooterIcon name="target" />{t('columns.about.mission')}</Link></li>
+            <li><Link to="/aboutus#community"><FooterIcon name="users" />{t('columns.about.community')}</Link></li>
+            <li><Link to="/aboutus#destinations"><FooterIcon name="globe" />{t('columns.about.destinations')}</Link></li>
           </ul>
         </div>
         <div className="footer__col">
-          <h3>Get in touch</h3>
+          <h3>{t('columns.contact.heading')}</h3>
           <ul>
             <li><a href={`mailto:${CONTACT_INFO.email}`}><FooterIcon name="mail" />{CONTACT_INFO.email}</a></li>
             <li><a href={`tel:${CONTACT_INFO.phones[0]}`}><FooterIcon name="phone" />+255 768 779 517</a></li>
             <li><a href={`tel:${CONTACT_INFO.phones[1]}`}><FooterIcon name="phone" />+255 748 352 657</a></li>
             <li><Link to="/#contact"><FooterIcon name="pin" />{CONTACT_INFO.location}</Link></li>
-            <li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer"><FooterIcon name="message" />WhatsApp us</a></li>
-            <li><Link to="/transfers"><FooterIcon name="plane" />Airport &amp; island transfers</Link></li>
+            <li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer"><FooterIcon name="message" />{t('columns.contact.whatsapp_link')}</a></li>
+            <li><Link to="/transfers"><FooterIcon name="plane" />{t('columns.contact.transfers')}</Link></li>
           </ul>
         </div>
       </div>
       <div className="footer__theme-row">
-        <div className="footer__theme-toggle" role="radiogroup" aria-label="Theme preference">
+        <div className="footer__theme-toggle" role="radiogroup" aria-label={t('theme.group_label')}>
           {THEME_MODES.map((option) => {
             const isActive = themeMode === 'auto' ? theme === option.mode : themeMode === option.mode;
 
@@ -281,11 +286,11 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
                 type="button"
                 role="radio"
                 aria-checked={isActive}
-                aria-label={`${option.label} mode`}
+                aria-label={t(option.ariaKey)}
                 onClick={() => onThemeModeChange?.(option.mode)}
               >
                 <ThemeIcon theme={option.mode} />
-                <span>{option.label}</span>
+                <span>{t(option.labelKey)}</span>
               </button>
             );
           })}
@@ -293,7 +298,7 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
       </div>
       <div className="footer__bottom">
         <span className="footer__copyright">© {new Date().getFullYear()} Destination Paradise · Zanzibar, Tanzania</span>
-        <span className="footer__policy-links"><Link to="/privacy-policy">Privacy</Link> <Link to="/terms-of-service">Terms</Link> <Link to="/cookies-policy">Cookies</Link></span>
+        <span className="footer__policy-links"><Link to="/privacy-policy">{t('policy.privacy')}</Link> <Link to="/terms-of-service">{t('policy.terms')}</Link> <Link to="/cookies-policy">{t('policy.cookies')}</Link></span>
       </div>
     </footer>
   );

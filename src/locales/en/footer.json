@@ -1,0 +1,54 @@
+{
+  "brand": {
+    "tagline_kicker": "Zanzibar & Tanzania",
+    "description": "A small, local travel company on the shores of Zanzibar. Unhurried days, traditional boats, and guides who grew up here.",
+    "typed_tagline": "your next trip to paradise..."
+  },
+  "columns": {
+    "pages": {
+      "heading": "Pages",
+      "home": "Home",
+      "excursions": "Excursions",
+      "safaris": "Safaris",
+      "packages": "Packages",
+      "trip_planner": "Trip Planner",
+      "explore": "Explore",
+      "about": "About Us"
+    },
+    "about": {
+      "heading": "About Us",
+      "story": "Our story",
+      "mission": "Our mission",
+      "community": "Community",
+      "destinations": "Destinations"
+    },
+    "contact": {
+      "heading": "Get in touch",
+      "whatsapp_link": "WhatsApp us",
+      "transfers": "Airport & island transfers"
+    }
+  },
+  "socials": {
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "youtube": "YouTube",
+    "x": "X"
+  },
+  "theme": {
+    "group_label": "Theme preference",
+    "light_label": "Light",
+    "dark_label": "Dark",
+    "light_aria": "Light mode",
+    "dark_aria": "Dark mode"
+  },
+  "policy": {
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "cookies": "Cookies"
+  },
+  "fab": {
+    "aria": "Chat with the team on WhatsApp",
+    "label": "Chat with the team"
+  }
+}
