@@ -1,0 +1,7 @@
+/* About page — warm, narrative, editorial */
+
+.about-page {
+  background: var(--page-bg, #FFFCF5);
+  color: var(--text, #1a4d6e);
+}
+

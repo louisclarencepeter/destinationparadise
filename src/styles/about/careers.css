@@ -1,0 +1,112 @@
+/* ============ CAREERS ============ */
+.ab-careers {
+  position: relative;
+  isolation: isolate;
+  color: #F5F1E8;
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
+  overflow: hidden;
+}
+.ab-careers::before {
+  content: '';
+  position: absolute; inset: 0; z-index: -2;
+  background: url('/assets/images/safaris/lioness-and-cub-resting.webp') center/cover;
+}
+.ab-careers::after {
+  content: '';
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(rgba(20,12,8,.78), rgba(20,12,8,.86));
+}
+.ab-careers__inner { max-width: 1240px; margin: 0 auto; }
+.ab-careers__head {
+  display: grid; grid-template-columns: 1fr 1.2fr;
+  gap: clamp(2rem, 5vw, 4rem); align-items: end;
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+@media (max-width: 880px) { .ab-careers__head { grid-template-columns: 1fr; align-items: start; } }
+.ab-careers__head .ab-story__eyebrow { color: #FF6F61; }
+.ab-careers__head .ab-story__eyebrow::before { background: #FF6F61; }
+.ab-careers__head h2 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 500; line-height: 1.02; letter-spacing: -.02em;
+  margin: .5rem 0 0; color: #F5F1E8;
+  max-width: 13ch;
+}
+.ab-careers__head h2 em { font-style: italic; color: #FF6F61; }
+.ab-careers__head p { margin: 0; font-size: 1.05rem; line-height: 1.7; color: rgba(245,241,232,.78); max-width: 54ch; }
+
+.ab-jobs {
+  display: flex; flex-direction: column; gap: .6rem;
+  margin-bottom: clamp(2.5rem, 4vw, 3.5rem);
+}
+.ab-job {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.12);
+  backdrop-filter: blur(6px);
+  border-radius: 14px;
+  padding: 1.5rem 1.5rem;
+  display: grid;
+  grid-template-columns: minmax(220px, 1.4fr) 1fr 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  transition: background .35s var(--dp-ease-out), border-color .35s var(--dp-ease-out), transform .35s var(--dp-ease-out);
+}
+.ab-job:hover { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.22); transform: translateX(4px); }
+@media (max-width: 880px) { .ab-job { grid-template-columns: 1fr; gap: .75rem; padding: 1.25rem 1.4rem; } }
+
+.ab-job__title {
+  display: flex; flex-direction: column; gap: .25rem;
+}
+.ab-job__title h4 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.35rem; font-weight: 500;
+  margin: 0; color: #F5F1E8; line-height: 1.15;
+}
+.ab-job__type {
+  font-family: var(--dp-font-sans, 'Montserrat', sans-serif);
+  font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
+  color: #FF6F61; font-weight: 700;
+}
+.ab-job__meta {
+  font-family: var(--dp-font-sans, 'Montserrat', sans-serif);
+  font-size: 12px;
+  color: rgba(245,241,232,.7);
+  display: flex; align-items: center; gap: .55rem;
+  font-weight: 500;
+}
+.ab-job__meta svg { color: rgba(245,241,232,.55); flex-shrink: 0; }
+.ab-job__cta {
+  font-family: var(--dp-font-sans, 'Montserrat', sans-serif);
+  font-size: 12px; font-weight: 600; letter-spacing: .04em;
+  color: #FF6F61;
+  display: inline-flex; align-items: center; gap: .4rem;
+  text-decoration: none;
+}
+
+.ab-careers__values {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255,255,255,.18);
+}
+@media (max-width: 880px) { .ab-careers__values { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 480px) { .ab-careers__values { grid-template-columns: 1fr; } }
+.ab-val { display: flex; flex-direction: column; gap: .35rem; }
+.ab-val__num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: #FF6F61;
+}
+.ab-val h5 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 1.15rem; font-weight: 500;
+  margin: 0; color: #F5F1E8;
+}
+.ab-val p {
+  margin: 0;
+  font-size: .9rem; line-height: 1.55;
+  color: rgba(245,241,232,.72);
+}
+

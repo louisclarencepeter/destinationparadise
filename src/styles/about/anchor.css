@@ -1,0 +1,22 @@
+/* ============ ANCHOR NAV ============ */
+.ab-anchor {
+  position: sticky; top: var(--nav-height, 66px); z-index: 20;
+  background: var(--surface, #FFFCF5);
+  border-bottom: 1px solid rgba(8,30,46,.08);
+  padding: 1rem clamp(1.25rem, 5vw, 6rem);
+  display: flex; gap: .35rem; flex-wrap: wrap; align-items: center;
+  justify-content: center;
+  font-family: var(--dp-font-sans, 'Montserrat', sans-serif);
+}
+[data-theme="dark"] .ab-anchor { background: #0c2436; border-bottom-color: rgba(255,255,255,.08); }
+.ab-anchor a {
+  font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 600;
+  color: var(--text-muted, #5a6b78);
+  text-decoration: none;
+  padding: .55rem 1rem;
+  border-radius: 999px;
+  transition: color .25s var(--dp-ease-out), background .25s var(--dp-ease-out);
+}
+.ab-anchor a:hover { color: #b8541a; background: rgba(184,84,26,.08); }
+.ab-anchor a.is-active { background: #b8541a; color: #fff; }
+

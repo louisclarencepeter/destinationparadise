@@ -1,0 +1,93 @@
+/* ============ RESPONSIVE — match saf-/exc- breakpoints ============ */
+@media (max-width: 720px) {
+  .ab-hero {
+    min-height: auto;
+    align-items: center;
+    padding: calc(var(--nav-height, 66px) + 1.35rem) 1rem 2.25rem;
+  }
+  .ab-hero__inner { gap: .82rem; }
+  .ab-hero__eyebrow {
+    max-width: min(100%, 23rem);
+    display: inline-flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: .55rem .78rem;
+    border-radius: 8px;
+    font-size: 9px;
+    line-height: 1.4;
+    letter-spacing: .14em;
+  }
+  .ab-hero__title { font-size: clamp(2.45rem, 11vw, 3.6rem); line-height: 1; max-width: none; }
+  .ab-hero__lead { max-width: 24rem; font-size: 1rem; line-height: 1.5; }
+  .ab-hero__sig { width: 100%; padding-top: .95rem; gap: .75rem; }
+  .ab-hero__sig-name { font-size: 1.55rem; }
+  .ab-hero__stats {
+    max-width: 22rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .95rem 1.15rem;
+    padding-top: .95rem;
+  }
+  .ab-hero__stats strong { font-size: clamp(1.35rem, 7vw, 1.7rem); }
+  .ab-hero__stats span { font-size: 9px; letter-spacing: .1em; }
+
+
+  .ab-anchor {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: .75rem 1rem;
+    scrollbar-width: none;
+  }
+  .ab-anchor::-webkit-scrollbar { display: none; }
+  .ab-anchor a { flex: 0 0 auto; font-size: 11px; padding: .5rem .85rem; }
+
+  .ab-story,
+  .ab-guides,
+  .ab-sus,
+  .ab-press,
+  .ab-careers,
+  .ab-cta { padding: var(--section-pad-block-mobile, 3.25rem) var(--section-pad-inline-mobile, 1rem); }
+  .ab-numbers { padding: 2.5rem 1rem; }
+
+  .ab-story__title,
+  .ab-guides__head h2,
+  .ab-sus__head h2,
+  .ab-press__head h2,
+  .ab-careers__head h2,
+  .ab-cta h2 { font-size: clamp(2rem, 8vw, 2.6rem); max-width: none; }
+  .ab-story__lead p { font-size: 1.05rem; }
+
+  .ab-tl-item h4 { font-size: 1.2rem; }
+  .ab-tl-item p { font-size: .95rem; }
+
+  .ab-numbers__num { font-size: clamp(2rem, 9vw, 2.6rem); }
+
+  .ab-press__logo { min-height: 70px; padding: 1.1rem .85rem; font-size: 1rem; }
+  .ab-press__logo small { font-size: 8px; }
+
+  .ab-sus__badges { gap: 1rem 1.5rem; }
+  .ab-sus__badge { font-size: .9rem; }
+  .ab-sus__quote { padding: 1.5rem 1.25rem; }
+
+  .ab-careers__values { margin-top: 2rem; padding-top: 1.75rem; }
+}
+
+/* Short screens: trim hero so stats stay in view — same as saf-/exc-hero */
+@media (min-width: 721px) and (max-height: 860px) {
+  .ab-hero {
+    padding-top: clamp(4rem, 7vw, 5rem);
+    padding-bottom: 1.75rem;
+  }
+  .ab-hero__title { font-size: clamp(2.35rem, 5.1vw, 4.2rem); }
+  .ab-hero__lead { font-size: clamp(.95rem, 1.15vw, 1.08rem); line-height: 1.52; }
+  .ab-hero__stats strong { font-size: clamp(1.3rem, 2vw, 1.85rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ab-hero__bg img,
+  .ab-hero__eyebrow,
+  .ab-hero__title,
+  .ab-hero__lead,
+  .ab-hero__sig { animation: none; }
+  .about-page .reveal { opacity: 1; transform: none; transition: none; }
+}
