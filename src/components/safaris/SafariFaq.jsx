@@ -5,8 +5,8 @@ export default function SafariFaq() {
   return (
     <section className="saf-faq reveal" id="faq">
       <header className="saf-faq__head">
-        <span className="section-eyebrow">FAQs</span>
-        <h2 className="section-title">The questions everyone asks.</h2>
+        <span className="section-eyebrow">FAQ</span>
+        <h2 className="section-title">Pytania, które słyszymy najczęściej.</h2>
       </header>
       <div className="saf-faq__list">
         {FAQS.map((faq) => (
@@ -15,8 +15,8 @@ export default function SafariFaq() {
             <div className="saf-faq__body">
               {faq.extendLink ? (
                 <>
-                  Yes — and you should. We design every safari to flow into a beach stay. See our{' '}
-                  <Link to="/packages">Bush &amp; Beach package</Link> for a 10-night example.
+                  Tak, i to bardzo dobry pomysł. Projektujemy safari tak, żeby naturalnie przechodziło w pobyt na plaży. Zobacz nasz{' '}
+                  <Link to="/packages">pakiet Safari i plaża</Link> jako przykład 10 nocy.
                 </>
               ) : faq.a}
             </div>

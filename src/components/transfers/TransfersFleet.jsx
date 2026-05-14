@@ -1,8 +1,8 @@
 const FLEET = [
   {
-    type: 'Standard Private',
-    capacity: 'Reliable AC vehicle',
-    desc: 'Best for practical airport and hotel transfers with meet & greet, flight tracking, luggage help, and door-to-door service.',
+    type: 'Standard prywatny',
+    capacity: 'Pewny samochód z klimatyzacją',
+    desc: 'Najlepszy do praktycznych transferów z lotniska i hoteli: powitanie, śledzenie lotu, pomoc z bagażem i przejazd od drzwi do drzwi.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M5 17h14l-1.5-5.5A2 2 0 0 0 15.6 10H8.4a2 2 0 0 0-1.9 1.5L5 17Z" />
@@ -14,8 +14,8 @@ const FLEET = [
   },
   {
     type: 'Premium SUV',
-    capacity: 'Couples · families',
-    desc: 'A more spacious, elevated transfer for honeymooners, beach-resort guests, safari clients, and travellers with extra luggage.',
+    capacity: 'Pary · rodziny',
+    desc: 'Bardziej przestronny i wygodny transfer dla par poślubnych, gości resortów plażowych, klientów safari i osób z większym bagażem.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <path d="M3 16h18l-1.7-6.2A2.5 2.5 0 0 0 16.9 8H8.2a2.5 2.5 0 0 0-2.3 1.5L3 16Z" />
@@ -27,8 +27,8 @@ const FLEET = [
   },
   {
     type: 'VIP Concierge',
-    capacity: 'Luxury arrival',
-    desc: 'Fast-track support, private concierge handling, luxury vehicle, cold towels, refreshments, and a highly polished arrival.',
+    capacity: 'Luksusowy przyjazd',
+    desc: 'Fast-track, prywatna obsługa concierge, luksusowy pojazd, chłodne ręczniki, napoje i dopracowany przyjazd.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="3" y="7" width="18" height="10" rx="2" />
@@ -39,9 +39,9 @@ const FLEET = [
     ),
   },
   {
-    type: 'Group Transfer',
-    capacity: '5 – 25 guests',
-    desc: 'Minivans and coaster buses for families, wedding groups, corporate teams, and safari groups arriving together.',
+    type: 'Transfer dla grup',
+    capacity: '5-25 gości',
+    desc: 'Minivany i małe autobusy dla rodzin, grup weselnych, zespołów firmowych i grup safari przyjeżdżających razem.',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
         <rect x="4" y="4" width="16" height="13" rx="2" />
@@ -57,10 +57,10 @@ export default function TransfersFleet() {
   return (
     <section className="tr-fleet">
       <header className="tr-fleet__head">
-        <span className="section-eyebrow">Service tiers</span>
-        <h2 className="section-title">Standard, Premium, or VIP arrival.</h2>
+        <span className="section-eyebrow">Poziomy obsługi</span>
+        <h2 className="section-title">Przyjazd Standard, Premium albo VIP.</h2>
         <p className="section-lead">
-          Match the transfer to the guest: practical private comfort, upgraded arrival style, or full concierge handling.
+          Dopasuj transfer do gościa: praktyczny prywatny komfort, podniesiony standard przyjazdu albo pełna obsługa concierge.
         </p>
       </header>
       <div className="tr-fleet__grid">

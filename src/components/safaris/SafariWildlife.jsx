@@ -4,9 +4,9 @@ export default function SafariWildlife() {
   return (
     <section className="wildlife reveal" id="wildlife">
       <header className="wildlife__head">
-        <span className="section-eyebrow">From our last season</span>
-        <h2 className="section-title">What you might see.</h2>
-        <p className="section-lead">Real photos from real game drives, taken by our guides this past season — Ngorongoro and Serengeti, mostly. No stock library.</p>
+        <span className="section-eyebrow">Z ostatniego sezonu</span>
+        <h2 className="section-title">Co możesz zobaczyć.</h2>
+        <p className="section-lead">Prawdziwe zdjęcia z prawdziwych game drive, wykonane przez naszych przewodników w ostatnim sezonie, głównie w Ngorongoro i Serengeti. Bez biblioteki stockowej.</p>
       </header>
 
       {WILDLIFE_CATEGORIES.map((category) => (

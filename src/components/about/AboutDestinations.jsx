@@ -5,10 +5,10 @@ export default function AboutDestinations() {
     <section className="ab-press reveal" id="destinations">
       <div className="ab-press__head">
         <div>
-          <span className="ab-story__eyebrow">Where we go</span>
-          <h2>From Unguja, <em>outward</em>.</h2>
+          <span className="ab-story__eyebrow">Dokąd jedziemy</span>
+          <h2>Z Ungui, <em>dalej</em>.</h2>
         </div>
-        <p>We begin in Unguja, Zanzibar — the place this journey started — and across mainland Tanzania, where the wider story unfolds. Pemba and Mafia Island will follow, each in the time it deserves.</p>
+        <p>Zaczynamy w Ungui na Zanzibarze — miejscu, w którym ta podróż się zaczęła — oraz na kontynencie Tanzanii, gdzie opowieść rozciąga się szerzej. Pemba i Mafia Island dołączą w swoim właściwym czasie.</p>
       </div>
 
       <div className="ab-dest__grid">

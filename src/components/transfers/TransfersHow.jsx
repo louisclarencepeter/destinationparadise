@@ -4,8 +4,8 @@ export default function TransfersHow() {
   return (
     <section className="tr-how">
       <header className="tr-how__head">
-        <span className="section-eyebrow">How it works</span>
-        <h2 className="section-title">Three steps from landing to check-in.</h2>
+        <span className="section-eyebrow">Jak to działa</span>
+        <h2 className="section-title">Trzy kroki od lądowania do check-in.</h2>
       </header>
       <div className="tr-how__steps">
         {TRANSFERS_HOW_IT_WORKS.map((item) => (

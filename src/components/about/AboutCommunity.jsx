@@ -21,10 +21,10 @@ export default function AboutCommunity() {
       <div className="ab-sus__inner">
         <div className="ab-sus__head">
           <div>
-            <span className="ab-story__eyebrow ab-sus__eyebrow">Community</span>
-            <h2>Built as a <em>network</em>, not a closed system.</h2>
+            <span className="ab-story__eyebrow ab-sus__eyebrow">Społeczność</span>
+            <h2>Zbudowane jako <em>sieć</em>, nie zamknięty system.</h2>
           </div>
-          <p>Destination Paradise is not only about travel. We believe tourism should also create real opportunities for the people who host you. From day one we are working hand-in-hand with local drivers, guides, hotels, restaurants and service providers — building something the wider community grows with, not around.</p>
+          <p>Destination Paradise to nie tylko podróże. Wierzymy, że turystyka powinna tworzyć realne możliwości dla ludzi, którzy goszczą podróżnych. Od pierwszego dnia pracujemy ramię w ramię z lokalnymi kierowcami, przewodnikami, hotelami, restauracjami i usługodawcami — budując coś, z czym szersza społeczność rośnie razem, a nie obok.</p>
         </div>
 
         <div className="ab-sus__grid">
@@ -39,21 +39,21 @@ export default function AboutCommunity() {
           </div>
 
           <aside className="ab-sus__quote">
-            <p className="ab-sus__quote-text">&ldquo;Every destination has a story. Every island has its own culture, energy and hidden beauty waiting to be experienced.</p>
-            <p className="ab-sus__quote-text">This wasn&rsquo;t built for scale. It was built for the moments — a slow morning at the reef, a story told in the back of a Land Cruiser, the first time you see the Serengeti go quiet at dusk.</p>
-            <p className="ab-sus__quote-text">We hope, in time, you&rsquo;ll have a story of your own to add.&rdquo;</p>
+            <p className="ab-sus__quote-text">&ldquo;Każdy kierunek ma swoją historię. Każda wyspa ma własną kulturę, energię i ukryte piękno, które czeka, aż ktoś je przeżyje.</p>
+            <p className="ab-sus__quote-text">Nie zbudowaliśmy tego dla samej skali. Zbudowaliśmy to dla chwil: powolnego poranka przy rafie, historii opowiedzianej z tyłu Land Cruisera, pierwszego momentu, gdy Serengeti cichnie o zmierzchu.</p>
+            <p className="ab-sus__quote-text">Mamy nadzieję, że z czasem dodasz tu własną historię.&rdquo;</p>
             <div className="ab-sus__quote-who">
               <img
                 className="ab-sus__quote-avatar"
                 src="/assets/images/aboutus/louis-peter-portrait-144.webp"
-                alt="Louis Peter, founder of Destination Paradise"
+                alt="Louis Peter, założyciel Destination Paradise"
                 width="48"
                 height="48"
                 loading="lazy"
                 decoding="async"
               />
               <div>
-                <strong>From our founding note</strong>
+                <strong>Z naszej notatki założycielskiej</strong>
                 <span>Destination Paradise · 2026</span>
               </div>
             </div>

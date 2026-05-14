@@ -47,10 +47,10 @@ export default function TransfersTypes() {
   return (
     <section className="tr-types" id="transfer-types">
       <header className="tr-types__head">
-        <span className="section-eyebrow">Route pricing</span>
-        <h2 className="section-title">Private transfers, priced clearly by route.</h2>
+        <span className="section-eyebrow">Ceny tras</span>
+        <h2 className="section-title">Transfery prywatne z ceną ustalaną według trasy.</h2>
         <p className="section-lead">
-          Lead with a private vehicle, then upgrade to Premium SUV or VIP concierge when the arrival should feel part of the holiday.
+          Wybierz zwykły prywatny samochód, większy SUV albo obsługę VIP, jeśli chcesz zacząć wakacje naprawdę wygodnie.
         </p>
       </header>
       <div className="tr-types__grid">
@@ -81,7 +81,7 @@ export default function TransfersTypes() {
                 className="btn btn--accent"
                 to={`/booking?type=transfer&item=${type.slug}#booking-details`}
               >
-                Book this transfer
+                Zarezerwuj transfer
               </Link>
             </div>
           </article>

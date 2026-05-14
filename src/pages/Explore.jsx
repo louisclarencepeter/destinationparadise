@@ -13,8 +13,8 @@ import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
 
-const PAGE_TITLE = 'Explore Zanzibar & Tanzania · Destination Paradise';
-const PAGE_DESCRIPTION = 'Pick your path: full packages, day excursions, mainland safaris, or an AI trip planner. Browse Zanzibar and Tanzania destinations on the map and see how they fit together.';
+const PAGE_TITLE = 'Odkryj Zanzibar i Tanzanię · Destination Paradise';
+const PAGE_DESCRIPTION = 'Wybierz kierunek: pełne pakiety, wycieczki jednodniowe, safari na lądzie stałym albo planer AI. Zobacz miejsca na Zanzibarze i w Tanzanii na mapie.';
 
 export default function Explore() {
   const pageRef = useRef(null);
@@ -52,7 +52,7 @@ export default function Explore() {
         islandPins={islandPins}
         mainlandPins={mainlandPins}
         ctaHref={activeHubPlannerHref}
-        ctaLabel="Build this into a trip"
+        ctaLabel="Zbuduj z tego podróż"
       />
 
       <ExploreHub hub={activeHub} plannerHref={activeHubPlannerHref} />

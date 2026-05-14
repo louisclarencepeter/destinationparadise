@@ -27,7 +27,7 @@ export default function Booking() {
   const summaryFloat = useFloatingBookingSummary(layoutRef, summarySlotRef, summaryRef, form);
 
   useEffect(() => {
-    document.title = 'Booking Request · Destination Paradise';
+    document.title = 'Zapytanie rezerwacyjne · Destination Paradise';
   }, []);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function Booking() {
       setForm((current) => ({
         ...current,
         serviceType: SERVICE_TYPES.some((service) => service.value === type) ? type : 'custom',
-        message: title ? `I am interested in ${title}. ${current.message}`.trim() : current.message,
+        message: title ? `Interesuje mnie: ${title}. ${current.message}`.trim() : current.message,
       }));
     }
   }, [products.all, searchParams]);
@@ -104,17 +104,17 @@ export default function Booking() {
   const showDateRange = !isExcursionRequest && !isTransferRequest;
   const showTravelPreferences = !isExcursionRequest && !isTransferRequest;
   const dateSummary = showDateRange
-    ? `${form.startDate || 'Flexible'}${form.endDate ? ` to ${form.endDate}` : ''}`
-    : form.startDate || 'Flexible';
-  const productLabel = isTransferRequest ? 'Transfer route' : 'Specific product';
+    ? `${form.startDate || 'Elastycznie'}${form.endDate ? ` do ${form.endDate}` : ''}`
+    : form.startDate || 'Elastycznie';
+  const productLabel = isTransferRequest ? 'Trasa transferu' : 'Konkretny produkt';
   const productPlaceholder = isTransferRequest
-    ? 'Choose a transfer route or leave flexible'
-    : `Choose from ${form.serviceType}s or leave flexible`;
+    ? 'Wybierz trasę transferu albo zostaw elastycznie'
+    : 'Wybierz produkt albo zostaw elastycznie';
   const messagePlaceholder = isTransferRequest
-    ? 'Arrival notes, luggage count, child seats, hotel room name, VIP preferences, or timing details.'
+    ? 'Informacje o przylocie, liczba bagaży, foteliki dziecięce, nazwa hotelu, preferencje VIP albo szczegóły godzin.'
     : isExcursionRequest
-    ? 'Preferred pickup area, hotel name, private/shared preference, kids ages, dietary needs, or timing notes.'
-    : "Hotels you like, pace, special occasion, kids' ages, dietary needs, flight details, or what you want to avoid.";
+    ? 'Preferowana okolica odbioru, nazwa hotelu, prywatnie albo w grupie, wiek dzieci, dieta albo szczegóły godzin.'
+    : 'Hotele, które lubisz, tempo, specjalna okazja, wiek dzieci, dieta, loty albo to, czego chcesz uniknąć.';
 
   const update = (key) => (event) => {
     const value = event.target.value;
@@ -127,7 +127,7 @@ export default function Booking() {
           product: '',
           endDate: value === 'excursion' || value === 'transfer' ? '' : current.endDate,
           budget: value === 'excursion' || value === 'transfer' ? '' : current.budget,
-          accommodationLevel: value === 'excursion' || value === 'transfer' ? '' : current.accommodationLevel || 'Mid-range',
+          accommodationLevel: value === 'excursion' || value === 'transfer' ? '' : current.accommodationLevel || 'Średni standard',
           transferTier: value === 'transfer' ? current.transferTier || 'standard-private' : current.transferTier,
         }
         : {}),
@@ -149,7 +149,7 @@ export default function Booking() {
       dropoffLocation: isTransferRequest ? form.dropoffLocation : '',
       flightNumber: isTransferRequest ? form.flightNumber : '',
       transferTime: isTransferRequest ? form.transferTime : '',
-      productLabel: selectedProduct?.label || 'Not selected',
+      productLabel: selectedProduct?.label || 'Nie wybrano',
       estimatedPrice: bookingPriceLabel(selectedProduct),
       source: plannerHandoff ? 'planner' : 'booking',
       plannerDraft: plannerHandoff?.transcript || '',
@@ -179,9 +179,9 @@ export default function Booking() {
 
       <section className="booking-shell" id="booking-form">
         <div className="booking-intro">
-          <span className="section-eyebrow">Tell us what to build</span>
-          <h2 className="section-title">Request availability, quote, and payment link.</h2>
-          <p className="section-lead">We do not collect card details on this page. If you choose online payment, we will send a secure payment link after the route and price are confirmed.</p>
+          <span className="section-eyebrow">Powiedz, co mamy przygotować</span>
+          <h2 className="section-title">Poproś o dostępność, wycenę i link do płatności.</h2>
+          <p className="section-lead">Nie zbieramy danych karty na tej stronie. Jeśli wybierzesz płatność online, wyślemy bezpieczny link po potwierdzeniu trasy i ceny.</p>
         </div>
 
         <div className="booking-layout" ref={layoutRef}>

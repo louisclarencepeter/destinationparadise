@@ -7,11 +7,11 @@ export default function ExcursionsCta() {
     <section className="exc-cta">
       <div className="exc-cta__bg"><ResponsiveImage src={EXCURSIONS_CTA_IMAGE} alt="" /></div>
       <div className="exc-cta__inner">
-        <h2>Ready to lock a date?</h2>
-        <p>Tell us when you&apos;re here and which excursions caught your eye. We&apos;ll come back within 24 hours with available dates, pickup times and a final price — no commitment, no chatbot.</p>
+        <h2>Chcesz zarezerwować termin?</h2>
+        <p>Napisz, kiedy jesteś na miejscu i które wycieczki Cię interesują. Wrócimy w 24 godziny z dostępnymi datami, godziną odbioru i finalną ceną.</p>
         <div className="exc-cta__btns">
-          <Link className="btn btn--lg btn--accent" to="/booking">Get in touch →</Link>
-          <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Or chat with our AI planner</Link>
+          <Link className="btn btn--lg btn--accent" to="/booking">Napisz do nas →</Link>
+          <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Porozmawiaj z planerem AI</Link>
         </div>
       </div>
     </section>

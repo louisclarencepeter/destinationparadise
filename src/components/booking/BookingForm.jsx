@@ -18,7 +18,7 @@ export default function BookingForm({
     <form className="booking-form" id="booking-details" onSubmit={onSubmit}>
 
       <fieldset className="booking-fieldset">
-        <legend>What are you booking?</legend>
+        <legend>Co chcesz zarezerwować?</legend>
         <div className="booking-choice-grid">
           {SERVICE_TYPES.map((item) => (
             <label className={`booking-choice${form.serviceType === item.value ? ' is-selected' : ''}`} key={item.value}>
@@ -44,7 +44,7 @@ export default function BookingForm({
 
       <div className="booking-row">
         <label className="booking-field">
-          <span>Name</span>
+          <span>Imię i nazwisko</span>
           <input type="text" name="name" value={form.name} onChange={update('name')} required />
         </label>
         <label className="booking-field">
@@ -55,28 +55,28 @@ export default function BookingForm({
 
       <div className="booking-row">
         <label className="booking-field">
-          <span>Phone</span>
+          <span>Telefon</span>
           <input type="tel" name="phone" value={form.phone} onChange={update('phone')} placeholder="+255 / +49 / +1 ..." />
         </label>
         <label className="booking-field">
           <span>WhatsApp</span>
-          <input type="tel" name="whatsapp" value={form.whatsapp} onChange={update('whatsapp')} placeholder="If different from phone" />
+          <input type="tel" name="whatsapp" value={form.whatsapp} onChange={update('whatsapp')} placeholder="Jeśli inny niż telefon" />
         </label>
       </div>
 
       <div className={`booking-row${showDateRange ? ' booking-row--thirds' : ''}`}>
         <label className="booking-field">
-          <span>{showDateRange ? 'Start date' : 'Date'}</span>
+          <span>{showDateRange ? 'Data rozpoczęcia' : 'Data'}</span>
           <input type="date" name="startDate" value={form.startDate} onChange={update('startDate')} />
         </label>
         {showDateRange && (
           <label className="booking-field">
-            <span>End date</span>
+            <span>Data zakończenia</span>
             <input type="date" name="endDate" value={form.endDate} onChange={update('endDate')} />
           </label>
         )}
         <label className="booking-field">
-          <span>Guests</span>
+          <span>Goście</span>
           <select name="guests" value={form.guests} onChange={update('guests')}>
             <option>1</option>
             <option>2</option>
@@ -91,7 +91,7 @@ export default function BookingForm({
 
       {isTransferRequest && (
         <fieldset className="booking-fieldset">
-          <legend>Transfer details</legend>
+          <legend>Szczegóły transferu</legend>
           <div className="booking-transfer-tier-grid">
             {TRANSFER_SERVICE_TIERS.map((item) => (
               <label className={`booking-payment${form.transferTier === item.value ? ' is-selected' : ''}`} key={item.value}>
@@ -103,21 +103,21 @@ export default function BookingForm({
           </div>
           <div className="booking-row">
             <label className="booking-field">
-              <span>Pickup location</span>
-              <input type="text" name="pickupLocation" value={form.pickupLocation} onChange={update('pickupLocation')} placeholder="ZNZ Airport, ferry port, hotel..." />
+              <span>Miejsce odbioru</span>
+              <input type="text" name="pickupLocation" value={form.pickupLocation} onChange={update('pickupLocation')} placeholder="Lotnisko ZNZ, port promowy, hotel..." />
             </label>
             <label className="booking-field">
-              <span>Drop-off location</span>
-              <input type="text" name="dropoffLocation" value={form.dropoffLocation} onChange={update('dropoffLocation')} placeholder="Hotel, resort, airport..." />
+              <span>Miejsce docelowe</span>
+              <input type="text" name="dropoffLocation" value={form.dropoffLocation} onChange={update('dropoffLocation')} placeholder="Hotel, resort, lotnisko..." />
             </label>
           </div>
           <div className="booking-row">
             <label className="booking-field">
-              <span>Flight / ferry number</span>
-              <input type="text" name="flightNumber" value={form.flightNumber} onChange={update('flightNumber')} placeholder="Optional, but useful for tracking" />
+              <span>Numer lotu / promu</span>
+              <input type="text" name="flightNumber" value={form.flightNumber} onChange={update('flightNumber')} placeholder="Opcjonalnie, ale pomaga w śledzeniu" />
             </label>
             <label className="booking-field">
-              <span>Pickup time</span>
+              <span>Godzina odbioru</span>
               <input type="time" name="transferTime" value={form.transferTime} onChange={update('transferTime')} />
             </label>
           </div>
@@ -127,31 +127,31 @@ export default function BookingForm({
       {showTravelPreferences && (
         <div className="booking-row">
           <label className="booking-field">
-            <span>Budget range</span>
+            <span>Zakres budżetu</span>
             <select name="budget" value={form.budget} onChange={update('budget')}>
-              <option value="">Not sure yet</option>
-              <option>Under $1,000 pp</option>
-              <option>$1,000 - $2,500 pp</option>
-              <option>$2,500 - $5,000 pp</option>
-              <option>$5,000 - $8,000 pp</option>
-              <option>$8,000+ pp</option>
+              <option value="">Jeszcze nie wiem</option>
+              <option>Poniżej $1,000 za osobę</option>
+              <option>$1,000 - $2,500 za osobę</option>
+              <option>$2,500 - $5,000 za osobę</option>
+              <option>$5,000 - $8,000 za osobę</option>
+              <option>$8,000+ za osobę</option>
             </select>
           </label>
           <label className="booking-field">
-            <span>Comfort level</span>
+            <span>Standard komfortu</span>
             <select name="accommodationLevel" value={form.accommodationLevel} onChange={update('accommodationLevel')}>
-              <option>Budget</option>
-              <option>Mid-range</option>
-              <option>Luxury</option>
-              <option>Ultra luxury</option>
-              <option>Flexible</option>
+              <option>Budżet</option>
+              <option>Średni standard</option>
+              <option>Luksus</option>
+              <option>Ultra luksus</option>
+              <option>Elastycznie</option>
             </select>
           </label>
         </div>
       )}
 
       <fieldset className="booking-fieldset">
-        <legend>Online payment</legend>
+        <legend>Płatność online</legend>
         <div className="booking-payment-grid">
           {PAYMENT_OPTIONS.map((item) => (
             <label className={`booking-payment${form.paymentPreference === item.value ? ' is-selected' : ''}`} key={item.value}>
@@ -164,19 +164,19 @@ export default function BookingForm({
       </fieldset>
 
       <label className="booking-field">
-        <span>Anything we should know?</span>
+        <span>Co jeszcze powinniśmy wiedzieć?</span>
         <textarea name="message" value={form.message} onChange={update('message')} rows={6} placeholder={messagePlaceholder} />
       </label>
 
       {status === 'sent' && (
-        <p className="booking-status booking-status--ok">Asante. We received your request and will come back with availability, a quote, and the payment next step.</p>
+        <p className="booking-status booking-status--ok">Asante. Otrzymaliśmy zapytanie i wrócimy z dostępnością, wyceną oraz kolejnym krokiem płatności.</p>
       )}
       {status === 'error' && (
-        <p className="booking-status booking-status--err">That did not go through. Please try again or message us on WhatsApp.</p>
+        <p className="booking-status booking-status--err">Nie udało się wysłać. Spróbuj ponownie albo napisz do nas na WhatsApp.</p>
       )}
 
       <button className="btn btn--lg booking-submit" type="submit" disabled={status === 'sending' || status === 'sent'}>
-        {status === 'sending' ? 'Sending request...' : status === 'sent' ? 'Request sent' : 'Send booking request'}
+        {status === 'sending' ? 'Wysyłanie zapytania...' : status === 'sent' ? 'Zapytanie wysłane' : 'Wyślij zapytanie'}
       </button>
     </form>
   );

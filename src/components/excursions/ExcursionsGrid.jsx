@@ -18,13 +18,13 @@ export default function ExcursionsGrid({
   return (
     <section className="exc-grid-wrap" id="list">
       <header className="exc-list__head">
-        <span className="section-eyebrow">Handpicked excursions</span>
-        <h2 className="section-title">Excursions — pick a starting point.</h2>
-        <p className="section-lead">Every card opens into the full day plan, inclusions, pickup details, and booking notes. Filter by what you want from the island.</p>
+        <span className="section-eyebrow">Wybrane wycieczki</span>
+        <h2 className="section-title">Wycieczki - wybierz punkt startowy.</h2>
+        <p className="section-lead">Każda karta prowadzi do pełnego planu dnia, zakresu, odbioru i notatek rezerwacyjnych. Filtruj po tym, czego szukasz na wyspie.</p>
       </header>
 
       <div className="exc-filter">
-        <span className="exc-filter__label">Filter by</span>
+        <span className="exc-filter__label">Filtruj</span>
         {EXCURSION_FILTERS.map((f) => (
           <button
             key={f.cat}
@@ -46,12 +46,12 @@ export default function ExcursionsGrid({
             to={`/excursions/${e.id}`}
             className="exc-card reveal"
             data-cat={categoryToSlug(e.category)}
-            aria-label={`Explore ${e.title}`}
+            aria-label={`Zobacz ${e.title}`}
           >
             <div className={`exc-card__img${e.imageNeeded ? ' exc-card__img--placeholder' : ''}`} data-cat={categoryToSlug(e.category)}>
               <img src={e.image} alt={e.imageNeeded ? '' : e.alt || e.title} loading="lazy" />
-              <span className="exc-card__cat" data-cat={categoryToSlug(e.category)}>{e.category}</span>
-              {e.season && <span className="exc-card__season">Seasonal · {e.season}</span>}
+              <span className="exc-card__cat" data-cat={categoryToSlug(e.category)}>{e.categoryLabel || e.category}</span>
+              {e.season && <span className="exc-card__season">Sezonowo · {e.season}</span>}
             </div>
             <div className="exc-card__body">
               {e.eyebrow && <span className="exc-card__eyebrow">{e.eyebrow}</span>}
@@ -73,18 +73,18 @@ export default function ExcursionsGrid({
               </div>
               <div className="exc-card__foot">
                 {typeof e.price === 'number' ? (
-                  <span className="exc-card__price">From <strong>${e.price}</strong>{e.priceSub ? ` ${e.priceSub}` : ' pp'}</span>
+                  <span className="exc-card__price">Od <strong>${e.price}</strong>{e.priceSub ? ` ${e.priceSub}` : ' za osobę'}</span>
                 ) : (
-                  <span className="exc-card__price exc-card__price--tbd">Price on request</span>
+                  <span className="exc-card__price exc-card__price--tbd">Cena na zapytanie</span>
                 )}
-                <span className="exc-card__cta">Explore →</span>
+                <span className="exc-card__cta">Zobacz →</span>
               </div>
             </div>
           </Link>
         ))}
       </div>
       {visible.length === 0 && (
-        <p className="exc-grid__empty">No excursions in this category yet — check back soon, or filter by All.</p>
+        <p className="exc-grid__empty">Nie ma jeszcze wycieczek w tej kategorii. Spróbuj wybrać wszystkie.</p>
       )}
       {filteredExcursions.length > INITIAL_EXCURSION_COUNT && (
         <div className="exc-grid__actions">
@@ -94,7 +94,7 @@ export default function ExcursionsGrid({
               className="btn btn--ghost btn--lg"
               onClick={() => setVisibleCount((count) => Math.min(count + EXCURSION_BATCH_COUNT, filteredExcursions.length))}
             >
-              Show more excursions
+              Pokaż więcej wycieczek
             </button>
           ) : (
             <button
@@ -105,10 +105,10 @@ export default function ExcursionsGrid({
                 document.getElementById('list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
             >
-              Show fewer excursions
+              Pokaż mniej wycieczek
             </button>
           )}
-          <span>{Math.min(visibleCount, filteredExcursions.length)} of {filteredExcursions.length} shown</span>
+          <span>Pokazano {Math.min(visibleCount, filteredExcursions.length)} z {filteredExcursions.length}</span>
         </div>
       )}
     </section>

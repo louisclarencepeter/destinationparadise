@@ -9,11 +9,11 @@ export default function SafariCta() {
         <ResponsiveImage src={safariImg('lioness-and-cub-resting.webp')} alt="" />
       </div>
       <div className="saf-cta__inner">
-        <h2>Ready to plan?</h2>
-        <p>Tell us when you’re free, who’s coming, and what you’re hoping for. We’ll come back within 24 hours with a real itinerary and a real price.</p>
+        <h2>Gotowi zaplanować safari?</h2>
+        <p>Napisz, kiedy możesz lecieć, kto jedzie i jaki klimat podróży masz w głowie. Wrócimy w 24 godziny z realnym planem i realną ceną.</p>
         <div className="saf-cta__btns">
-          <Link className="btn btn--lg btn--accent" to="/booking">Get a quote →</Link>
-          <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Or chat with our AI planner</Link>
+          <Link className="btn btn--lg btn--accent" to="/booking">Poproś o wycenę →</Link>
+          <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Porozmawiaj z planerem AI</Link>
         </div>
       </div>
     </section>

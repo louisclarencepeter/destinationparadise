@@ -4,8 +4,8 @@ export default function SafariSeasons() {
   return (
     <section className="when reveal" id="when">
       <header className="when__head">
-        <span className="section-eyebrow">When to go</span>
-        <h2 className="section-title">There’s no bad time. Just different ones.</h2>
+        <span className="section-eyebrow">Kiedy jechać</span>
+        <h2 className="section-title">Nie ma jednego idealnego terminu. Są różne rytmy safari.</h2>
       </header>
       <div className="when__grid">
         {SEASONS.map((season) => (

@@ -12,18 +12,18 @@ export default function ExploreHero() {
         <ResponsiveImage src={EXPLORE_HERO_IMAGE} alt="" fetchpriority="high" loading="eager" decoding="sync" />
       </div>
       <div className="exc-hero__inner">
-        <span className="exc-hero__eyebrow">Explore Zanzibar &amp; Tanzania</span>
-        <h1 className="exc-hero__title">Start with the place, <em>or the kind of trip.</em></h1>
-        <p className="exc-hero__lead">Use this page as the map: packages if you want everything arranged, excursions if you&rsquo;re already on Zanzibar, safaris if wildlife is the goal, and the planner if you&rsquo;re not sure yet.</p>
+        <span className="exc-hero__eyebrow">Odkryj Zanzibar i Tanzanię</span>
+        <h1 className="exc-hero__title">Zacznij od miejsca <em>albo od stylu podróży.</em></h1>
+        <p className="exc-hero__lead">Potraktuj tę stronę jak mapę: pakiety, gdy chcesz mieć wszystko ułożone; wycieczki, gdy jesteś już na Zanzibarze; safari, gdy celem jest dzika przyroda; planer, gdy jeszcze się wahasz.</p>
         <div className="exc-hero__row">
-          <a className="btn btn--lg" href="#paths">Choose a path</a>
-          <Link className="btn btn--ghost btn--lg" to="/trip-planner">Plan with AI</Link>
+          <a className="btn btn--lg" href="#paths">Wybierz kierunek</a>
+          <Link className="btn btn--ghost btn--lg" to="/trip-planner">Zaplanuj z AI</Link>
         </div>
         <div className="exc-hero__meta">
-          <div><strong>{destinationParadisePackages.length}</strong><span>Packages</span></div>
-          <div><strong>{destinationParadiseSafariPricing.length}</strong><span>Core safaris</span></div>
-          <div><strong>{EXCURSIONS.length}</strong><span>Excursions</span></div>
-          <div><strong>${MIN_PACKAGE_PRICE.toLocaleString()}</strong><span>Package from</span></div>
+          <div><strong>{destinationParadisePackages.length}</strong><span>Pakietów</span></div>
+          <div><strong>{destinationParadiseSafariPricing.length}</strong><span>Głównych safari</span></div>
+          <div><strong>{EXCURSIONS.length}</strong><span>Wycieczek</span></div>
+          <div><strong>${MIN_PACKAGE_PRICE.toLocaleString()}</strong><span>Pakiet od</span></div>
         </div>
       </div>
     </section>

@@ -15,7 +15,7 @@ import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 
-const PAGE_TITLE = 'Zanzibar Excursions · Day Trips & Tours · Destination Paradise';
+const PAGE_TITLE = 'Wycieczki po Zanzibarze · Jednodniowe trasy · Destination Paradise';
 const PAGE_DESCRIPTION = `${EXCURSIONS.length} handpicked Zanzibar excursions — dhow sails, Stone Town walks, Mnemba snorkel, Jozani Forest, kitesurfing, festivals and more. Hotel pickup, small groups, local guides.`;
 
 export default function Excursions() {

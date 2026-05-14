@@ -11,8 +11,8 @@ export default function WhySection() {
           <span className="why-card__icon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
           </span>
-          <h3 className="why-card__title">Lokalne korzenie</h3>
-          <p className="why-card__text">Przewodnicy, którzy dorastali między zaułkami Zanzibaru a tanzańskim buszem. Każda rafa, przepis i ścieżka strażników ma historię, której nie znajdziesz w przewodniku.</p>
+          <h3 className="why-card__title">Lokalna wiedza</h3>
+          <p className="why-card__text">Pracujemy z ludźmi, którzy znają Zanzibar i Tanzanię z codziennego życia, nie tylko z folderów. Podpowiedzą, gdzie dobrze zjeść, kiedy ruszyć na rafę i jak ułożyć dzień, żeby miał sens w realnych warunkach.</p>
         </article>
         <article className="why-card">
           <span className="why-card__num">02</span>

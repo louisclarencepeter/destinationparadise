@@ -13,7 +13,7 @@ export default function PackageDetail() {
   useEffect(() => {
     document.title = pkg
       ? `${pkg.title} · Destination Paradise`
-      : 'Package Not Found · Destination Paradise';
+      : 'Pakiet nie znaleziony · Destination Paradise';
   }, [pkg]);
 
   if (!pkg) {
@@ -21,10 +21,10 @@ export default function PackageDetail() {
       <main className="excursions-page">
         <section className="exc-day" style={{ textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div>
-            <span className="section-eyebrow">Packages</span>
-            <h1 className="section-title">Package not found</h1>
-            <p className="section-lead">That package is not in our current list. Browse all packages below.</p>
-            <Link className="btn btn--ghost-dark" to="/packages" style={{ marginTop: '1.5rem' }}>Back to packages →</Link>
+            <span className="section-eyebrow">Pakiety</span>
+            <h1 className="section-title">Nie znaleziono pakietu</h1>
+            <p className="section-lead">Tego pakietu nie ma na aktualnej liście. Zobacz wszystkie pakiety poniżej.</p>
+            <Link className="btn btn--ghost-dark" to="/packages" style={{ marginTop: '1.5rem' }}>Wróć do pakietów →</Link>
           </div>
         </section>
       </main>
@@ -35,18 +35,18 @@ export default function PackageDetail() {
   const upsells = pkg.upsells || [];
   const routeItems = pkg.route || pkg.destinations || [];
   const contextItems = [
-    pkg.split && `Trip split: ${pkg.split}`,
-    pkg.focus && `Focus: ${pkg.focus}`,
-    pkg.season && `Season: ${pkg.season}`,
+    pkg.split && `Podział podróży: ${pkg.split}`,
+    pkg.focus && `Fokus: ${pkg.focus}`,
+    pkg.season && `Sezon: ${pkg.season}`,
     pkg.benchmark,
   ].filter(Boolean);
 
   return (
     <main className="excursions-page exc-detail package-detail">
       <nav className="exc-detail__crumbs" aria-label="Breadcrumb">
-        <Link to="/">Home</Link>
+        <Link to="/">Strona główna</Link>
         <span aria-hidden="true">→</span>
-        <Link to="/packages">Packages</Link>
+        <Link to="/packages">Pakiety</Link>
         <span aria-hidden="true">→</span>
         <span>{pkg.title}</span>
       </nav>
@@ -61,18 +61,18 @@ export default function PackageDetail() {
           <h1 className="exc-block__title">{pkg.title}</h1>
           <p className="exc-block__desc">{pkg.description}</p>
           <dl className="exc-block__facts">
-            <div><dt>Duration</dt><dd>{pkg.duration}<small>Flexible pacing</small></dd></div>
-            <div><dt>Category</dt><dd>{pkg.category}<small>Package style</small></dd></div>
-            <div><dt>Price</dt><dd>{pkg.priceLabel}<small>{pkg.priceSub}</small></dd></div>
-            <div><dt>Quote</dt><dd>24h<small>Custom proposal</small></dd></div>
+            <div><dt>Czas trwania</dt><dd>{pkg.duration}<small>Elastyczne tempo</small></dd></div>
+            <div><dt>Kategoria</dt><dd>{pkg.category}<small>Styl pakietu</small></dd></div>
+            <div><dt>Cena</dt><dd>{pkg.priceLabel}<small>{pkg.priceSub}</small></dd></div>
+            <div><dt>Wycena</dt><dd>24h<small>Indywidualna propozycja</small></dd></div>
           </dl>
           <div className="exc-block__cols">
             <div className="exc-block__col">
-              <h4>Included</h4>
+              <h4>W cenie</h4>
               <ul>{pkg.includes.map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
             <div className="exc-block__col">
-              <h4>{audience.length ? 'Ideal for' : 'Route notes'}</h4>
+              <h4>{audience.length ? 'Idealne dla' : 'Uwagi o trasie'}</h4>
               <ul>{(audience.length ? audience : routeItems).map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
           </div>
@@ -80,25 +80,25 @@ export default function PackageDetail() {
             <div className="exc-block__cols">
               {pkg.priceTiers && (
                 <div className="exc-block__col">
-                  <h4>Starting prices</h4>
+                  <h4>Ceny startowe</h4>
                   <ul>{pkg.priceTiers.map((tier) => <li key={tier.label}>{tier.label}: ${tier.price.toLocaleString()}{tier.suffix || ''}</li>)}</ul>
                 </div>
               )}
               {routeItems.length > 0 && audience.length > 0 && (
                 <div className="exc-block__col">
-                  <h4>{pkg.destinations ? 'Destination options' : 'Route'}</h4>
+                  <h4>{pkg.destinations ? 'Opcje miejsc' : 'Trasa'}</h4>
                   <ul>{routeItems.map((item) => <li key={item}>{item}</li>)}</ul>
                 </div>
               )}
               {contextItems.length > 0 && (
                 <div className="exc-block__col">
-                  <h4>Planning notes</h4>
+                  <h4>Uwagi planistyczne</h4>
                   <ul>{contextItems.map((item) => <li key={item}>{item}</li>)}</ul>
                 </div>
               )}
               {upsells.length > 0 && (
                 <div className="exc-block__col">
-                  <h4>Optional upgrades</h4>
+                  <h4>Opcjonalne ulepszenia</h4>
                   <ul>{upsells.map((item) => <li key={item}>{item}</li>)}</ul>
                 </div>
               )}
@@ -106,9 +106,9 @@ export default function PackageDetail() {
           )}
           <div className="exc-block__actions">
             <span className="exc-block__price">{pkg.priceLabel}<small>{pkg.priceSub}</small></span>
-            <span className="exc-block__price-note">Final package price depends on dates, hotel level, transfers, and availability.</span>
-            <Link className="btn" to={`/booking?type=package&item=${encodeURIComponent(pkg.slug)}`}>Build this package →</Link>
-            <Link className="btn btn--ghost-dark" to="/packages">All packages</Link>
+            <span className="exc-block__price-note">Finalna cena pakietu zależy od dat, poziomu hoteli, transferów i dostępności.</span>
+            <Link className="btn" to={`/booking?type=package&item=${encodeURIComponent(pkg.slug)}`}>Zbuduj ten pakiet →</Link>
+            <Link className="btn btn--ghost-dark" to="/packages">Wszystkie pakiety</Link>
           </div>
         </div>
       </article>
@@ -116,11 +116,11 @@ export default function PackageDetail() {
       <section className="exc-cta">
         <div className="exc-cta__bg"><ResponsiveImage src={pkg.image} alt="" /></div>
         <div className="exc-cta__inner">
-          <h2>Ready to plan {pkg.title}?</h2>
-          <p>Tell us your dates, guest count, and comfort level. We’ll shape the package and quote it properly.</p>
+          <h2>Gotowi zaplanować {pkg.title}?</h2>
+          <p>Podaj daty, liczbę gości i poziom komfortu. Dopasujemy pakiet i uczciwie go wycenimy.</p>
           <div className="exc-cta__btns">
-            <Link className="btn btn--lg btn--accent" to={`/booking?type=package&item=${encodeURIComponent(pkg.slug)}`}>Get a quote →</Link>
-            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Plan with AI</Link>
+            <Link className="btn btn--lg btn--accent" to={`/booking?type=package&item=${encodeURIComponent(pkg.slug)}`}>Poproś o wycenę →</Link>
+            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Zaplanuj z AI</Link>
           </div>
         </div>
       </section>

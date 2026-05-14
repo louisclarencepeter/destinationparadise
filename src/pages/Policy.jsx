@@ -4,125 +4,125 @@ import { CONTACT_INFO } from '../constants/contactInfo.js';
 import '../styles/homepage.css';
 import '../styles/policy.css';
 
-const LAST_UPDATED = 'May 13, 2026';
+const LAST_UPDATED = '13 maja 2026';
 
 const POLICIES = {
   privacy: {
-    eyebrow: 'Privacy',
-    title: 'Privacy Policy',
+    eyebrow: 'Prywatność',
+    title: 'Polityka prywatności',
     intro:
-      'This policy explains how Destination Paradise handles the details you share when you ask about trips, book experiences, or contact our team.',
+      'Ta polityka wyjaśnia, jak Destination Paradise przetwarza dane, które przekazujesz przy zapytaniach, rezerwacjach i kontakcie z naszym zespołem.',
     sections: [
       {
-        title: 'Information We Collect',
+        title: 'Jakie informacje zbieramy',
         items: [
-          'Contact details such as your name, email address, phone number, WhatsApp contact, and country.',
-          'Trip details such as preferred dates, group size, budget, interests, hotel or pickup location, and special requests.',
-          'Messages you send through our forms, WhatsApp, email, or social channels.',
-          'Basic technical information such as browser type, device information, pages visited, and approximate location from analytics tools.',
+          'Dane kontaktowe, takie jak imię i nazwisko, adres e-mail, numer telefonu, WhatsApp i kraj.',
+          'Szczegóły podróży, takie jak preferowane daty, liczba osób, budżet, zainteresowania, hotel lub miejsce odbioru oraz prośby specjalne.',
+          'Wiadomości wysyłane przez formularze, WhatsApp, e-mail lub kanały społecznościowe.',
+          'Podstawowe informacje techniczne, takie jak typ przeglądarki, urządzenie, odwiedzane strony i przybliżona lokalizacja z narzędzi analitycznych.',
         ],
       },
       {
-        title: 'How We Use Your Information',
+        title: 'Jak wykorzystujemy informacje',
         items: [
-          'To respond to enquiries and prepare trip suggestions, quotes, bookings, and itineraries.',
-          'To coordinate guides, drivers, accommodation partners, boat operators, safari providers, and other suppliers needed for your trip.',
-          'To improve our website, customer service, packages, excursions, and safari planning experience.',
-          'To send booking updates, service messages, and follow-up information connected to your request.',
+          'Aby odpowiadać na zapytania i przygotowywać propozycje podróży, wyceny, rezerwacje oraz plany.',
+          'Aby koordynować przewodników, kierowców, partnerów hotelowych, operatorów łodzi, dostawców safari i innych partnerów potrzebnych do podróży.',
+          'Aby ulepszać stronę, obsługę klienta, pakiety, wycieczki i doświadczenie planowania safari.',
+          'Aby wysyłać aktualizacje rezerwacji, wiadomości serwisowe i informacje powiązane z Twoim zapytaniem.',
         ],
       },
       {
-        title: 'Sharing Your Information',
+        title: 'Udostępnianie informacji',
         items: [
-          'We share only the details needed to arrange your trip with trusted local partners, payment providers, or service providers.',
-          'We may share information when required by law, safety requirements, border rules, or official travel procedures.',
-          'We do not sell your personal information.',
+          'Udostępniamy tylko te dane, które są potrzebne do organizacji podróży, zaufanym lokalnym partnerom, operatorom płatności lub dostawcom usług.',
+          'Możemy udostępnić informacje, gdy wymagają tego przepisy prawa, bezpieczeństwo, procedury graniczne lub oficjalne procedury podróży.',
+          'Nie sprzedajemy Twoich danych osobowych.',
         ],
       },
       {
-        title: 'Your Choices',
+        title: 'Twoje wybory',
         items: [
-          'You can ask us to correct, update, or delete your personal details when we no longer need them for booking, accounting, safety, or legal reasons.',
-          'You can choose not to provide optional details, although this may limit how accurately we can plan your trip.',
-          'You can unsubscribe from marketing messages at any time by contacting us.',
+          'Możesz poprosić o poprawienie, aktualizację lub usunięcie danych osobowych, gdy nie są już potrzebne do rezerwacji, rozliczeń, bezpieczeństwa lub obowiązków prawnych.',
+          'Możesz nie podawać danych opcjonalnych, choć może to ograniczyć precyzję planowania podróży.',
+          'Możesz w każdej chwili zrezygnować z wiadomości marketingowych, kontaktując się z nami.',
         ],
       },
     ],
   },
   terms: {
-    eyebrow: 'Terms',
-    title: 'Terms of Service',
+    eyebrow: 'Warunki',
+    title: 'Regulamin usług',
     intro:
-      'These terms describe how enquiries, bookings, payments, changes, and travel responsibilities work when you use Destination Paradise services.',
+      'Ten regulamin opisuje, jak działają zapytania, rezerwacje, płatności, zmiany i odpowiedzialność podróżna przy korzystaniu z usług Destination Paradise.',
     sections: [
       {
-        title: 'Using Our Website',
+        title: 'Korzystanie ze strony',
         items: [
-          'The website helps you explore Zanzibar and Tanzania trips, request quotes, and contact our team.',
-          'Content, prices, routes, availability, and inclusions may change as suppliers, seasons, park rules, fuel costs, and weather conditions change.',
-          'You agree not to misuse the website, submit false requests, or interfere with normal site operation.',
+          'Strona pomaga poznawać wyjazdy na Zanzibar i do Tanzanii, wysyłać zapytania o wycenę oraz kontaktować się z zespołem.',
+          'Treści, ceny, trasy, dostępność i zakres usług mogą się zmieniać wraz z dostawcami, sezonem, zasadami parków, kosztami paliwa i pogodą.',
+          'Zgadzasz się nie nadużywać strony, nie wysyłać fałszywych zapytań i nie zakłócać jej działania.',
         ],
       },
       {
-        title: 'Quotes And Bookings',
+        title: 'Wyceny i rezerwacje',
         items: [
-          'A booking is confirmed only after we confirm availability, agree the final itinerary with you, and receive the required payment or deposit.',
-          'Your quote will explain what is included, what is excluded, payment timing, cancellation rules, and any important supplier conditions.',
-          'You are responsible for checking names, dates, pickup details, passport information, dietary needs, medical considerations, and travel documents before confirmation.',
+          'Rezerwacja jest potwierdzona dopiero po sprawdzeniu dostępności, uzgodnieniu finalnego planu i otrzymaniu wymaganej płatności lub zaliczki.',
+          'Wycena wyjaśnia, co jest w cenie, co nie jest w cenie, terminy płatności, zasady anulacji i ważne warunki dostawców.',
+          'Przed potwierdzeniem odpowiadasz za sprawdzenie nazwisk, dat, miejsca odbioru, danych paszportowych, potrzeb dietetycznych, kwestii medycznych i dokumentów podróży.',
         ],
       },
       {
-        title: 'Changes, Cancellations, And Refunds',
+        title: 'Zmiany, anulacje i zwroty',
         items: [
-          'Change and cancellation rules depend on the specific hotel, park, airline, boat, guide, or third-party supplier used in your itinerary.',
-          'Refunds, partial refunds, or credits are handled according to the written terms shared with your booking confirmation.',
-          'Weather, sea conditions, park access, road conditions, government rules, or safety concerns may require changes to timing, route, supplier, or activity order.',
+          'Zasady zmian i anulacji zależą od konkretnego hotelu, parku, linii lotniczej, łodzi, przewodnika lub zewnętrznego dostawcy użytego w planie.',
+          'Zwroty, zwroty częściowe lub kredyty są realizowane zgodnie z pisemnymi warunkami przekazanymi przy potwierdzeniu rezerwacji.',
+          'Pogoda, stan morza, dostęp do parków, stan dróg, zasady rządowe lub względy bezpieczeństwa mogą wymagać zmiany czasu, trasy, dostawcy albo kolejności aktywności.',
         ],
       },
       {
-        title: 'Travel Responsibility',
+        title: 'Odpowiedzialność podróżna',
         items: [
-          'Travel always carries some risk. You are responsible for suitable travel insurance, health advice, visas, passports, and personal belongings.',
-          'We work carefully with local partners, but we are not responsible for delays or losses caused by events outside our reasonable control.',
-          'If something goes wrong during your trip, contact us quickly so we can help while there is still time to act.',
+          'Podróż zawsze wiąże się z pewnym ryzykiem. Odpowiadasz za odpowiednie ubezpieczenie, zalecenia zdrowotne, wizy, paszporty i rzeczy osobiste.',
+          'Starannie współpracujemy z lokalnymi partnerami, ale nie odpowiadamy za opóźnienia lub straty spowodowane zdarzeniami poza naszą rozsądną kontrolą.',
+          'Jeśli coś pójdzie nie tak w trakcie podróży, skontaktuj się z nami szybko, abyśmy mogli pomóc, gdy nadal jest czas na działanie.',
         ],
       },
     ],
   },
   cookies: {
-    eyebrow: 'Cookies',
-    title: 'Cookies Policy',
+    eyebrow: 'Cookie',
+    title: 'Polityka cookie',
     intro:
-      'This policy explains how cookies and similar technologies may be used to keep the website working, understand visits, and improve the planning experience.',
+      'Ta polityka wyjaśnia, jak pliki cookie i podobne technologie mogą być używane, aby strona działała, rozumieć odwiedziny i ulepszać planowanie podróży.',
     sections: [
       {
-        title: 'What Cookies Are',
+        title: 'Czym są cookie',
         items: [
-          'Cookies are small files stored on your device when you visit a website.',
-          'Similar technologies such as local storage, pixels, and analytics tags can help remember settings or measure how pages are used.',
+          'Cookie to małe pliki zapisywane na urządzeniu podczas odwiedzania strony.',
+          'Podobne technologie, takie jak local storage, piksele i tagi analityczne, mogą pomagać zapamiętywać ustawienia lub mierzyć użycie stron.',
         ],
       },
       {
-        title: 'How We Use Cookies',
+        title: 'Jak używamy cookie',
         items: [
-          'Essential cookies and storage help the website load, remember theme preferences, support forms, and keep the experience stable.',
-          'Analytics cookies may help us understand which pages are useful, where visitors find us, and how we can improve the site.',
-          'Marketing or social platform tools may be used when you interact with embedded content, social links, or campaign links.',
+          'Niezbędne cookie i zapis lokalny pomagają stronie się ładować, zapamiętywać motyw, obsługiwać formularze i działać stabilnie.',
+          'Cookie analityczne mogą pomagać nam rozumieć, które strony są przydatne, skąd trafiają odwiedzający i jak możemy ulepszyć stronę.',
+          'Narzędzia marketingowe lub społecznościowe mogą być używane, gdy korzystasz z osadzonych treści, linków społecznościowych lub linków kampanii.',
         ],
       },
       {
-        title: 'Managing Cookies',
+        title: 'Zarządzanie cookie',
         items: [
-          'You can block, delete, or limit cookies in your browser settings.',
-          'Some features may not work as expected if essential cookies or local storage are disabled.',
-          'Third-party services may provide their own privacy and cookie controls through their websites or account settings.',
+          'Możesz blokować, usuwać lub ograniczać cookie w ustawieniach przeglądarki.',
+          'Niektóre funkcje mogą nie działać poprawnie, jeśli wyłączysz niezbędne cookie lub local storage.',
+          'Usługi zewnętrzne mogą udostępniać własne ustawienia prywatności i cookie na swoich stronach lub w kontach użytkownika.',
         ],
       },
       {
-        title: 'Updates',
+        title: 'Aktualizacje',
         items: [
-          'We may update this policy when our website tools, analytics setup, or booking workflows change.',
-          'The latest version will be posted on this page with the updated date.',
+          'Możemy aktualizować tę politykę, gdy zmienią się narzędzia strony, konfiguracja analityki lub proces rezerwacji.',
+          'Najnowsza wersja będzie opublikowana na tej stronie z datą aktualizacji.',
         ],
       },
     ],
@@ -156,13 +156,13 @@ export default function Policy({ section = 'privacy' }) {
           <span className="section-eyebrow">{policy.eyebrow}</span>
           <h1>{policy.title}</h1>
           <p>{policy.intro}</p>
-          <dl className="policy-meta" aria-label="Policy details">
+          <dl className="policy-meta" aria-label="Szczegóły polityki">
             <div>
-              <dt>Last updated</dt>
+              <dt>Ostatnia aktualizacja</dt>
               <dd>{LAST_UPDATED}</dd>
             </div>
             <div>
-              <dt>Contact</dt>
+              <dt>Kontakt</dt>
               <dd><a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a></dd>
             </div>
           </dl>
@@ -175,14 +175,14 @@ export default function Policy({ section = 'privacy' }) {
         ))}
 
         <section className="policy-section policy-section--contact">
-          <h2>Contact Us</h2>
+          <h2>Kontakt</h2>
           <p>
-            For questions about this policy or your booking details, contact Destination Paradise at{' '}
-            <a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a> or message us on WhatsApp.
+            Jeśli masz pytania o tę politykę lub szczegóły rezerwacji, napisz do Destination Paradise na{' '}
+            <a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a> albo skontaktuj się przez WhatsApp.
           </p>
           <div className="policy-actions">
-            <a className="btn" href={`mailto:${CONTACT_INFO.email}`}>Email us</a>
-            <Link className="btn btn--ghost" to="/trip-planner">Plan a trip</Link>
+            <a className="btn" href={`mailto:${CONTACT_INFO.email}`}>Napisz e-mail</a>
+            <Link className="btn btn--ghost" to="/trip-planner">Zaplanuj podróż</Link>
           </div>
         </section>
       </section>

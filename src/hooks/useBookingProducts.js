@@ -10,7 +10,7 @@ export function useBookingProducts() {
       type: 'package',
       value: `package:${item.slug}`,
       label: item.title,
-      category: item.category,
+      category: item.categoryLabel || item.category,
       raw: item,
     }));
 

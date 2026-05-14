@@ -2,48 +2,48 @@ export const safariImg = (file) => `/assets/images/safaris/${file}`;
 
 export const WILDLIFE_CATEGORIES = [
   {
-    title: 'Big cats',
-    sub: 'Predators',
+    title: 'Wielkie koty',
+    sub: 'Drapieżniki',
     rowMod: 'cats',
     tiles: [
-      { src: 'male-lion-in-grass.webp', alt: 'Male lion lying in grass', cap: 'Male lion · Ngorongoro Crater', mod: 'wide' },
-      { src: 'serval-in-grass.webp', alt: 'Serval cat in grass', cap: 'Serval · rare daylight sighting' },
-      { src: 'lion-cub-in-grass.webp', alt: 'Lion cub in grass', cap: 'Cub · ten weeks old' },
-      { src: 'lioness-and-cub-resting.webp', alt: 'Lioness with cub resting', cap: 'Lioness & cub · evening rest', mod: 'wide' },
+      { src: 'male-lion-in-grass.webp', alt: 'Lew odpoczywający w trawie', cap: 'Lew · Krater Ngorongoro', mod: 'wide' },
+      { src: 'serval-in-grass.webp', alt: 'Serwal w trawie', cap: 'Serwal · rzadkie spotkanie za dnia' },
+      { src: 'lion-cub-in-grass.webp', alt: 'Lwiątko w trawie', cap: 'Lwiątko · około dziesięciu tygodni' },
+      { src: 'lioness-and-cub-resting.webp', alt: 'Lwica z młodym podczas odpoczynku', cap: 'Lwica z młodym · wieczorny spokój', mod: 'wide' },
     ],
   },
   {
-    title: 'Hooved giants',
-    sub: 'The grazers',
+    title: 'Kopytni giganci',
+    sub: 'Stada sawanny',
     rowMod: 'ungulates',
     tiles: [
-      { src: 'zebra-mare-and-foal.webp', alt: 'Zebra mare and foal', cap: 'Zebra · mare and foal', mod: 'tall' },
-      { src: 'zebra-herd-on-track.webp', alt: 'Zebra herd on track', cap: 'The herd, deciding', mod: 'wide' },
-      { src: 'wildebeest-grazing.webp', alt: 'Blue wildebeest grazing', cap: 'Blue wildebeest' },
-      { src: 'eland-grazing.webp', alt: 'Eland grazing', cap: 'Eland · the largest antelope' },
-      { src: 'eland-herd-plains.webp', alt: 'Eland herd', cap: 'Eland herd · Ngorongoro', mod: 'wide' },
-      { src: 'warthog-on-plains.webp', alt: 'Warthog', cap: 'Warthog · Pumbaa, in person' },
+      { src: 'zebra-mare-and-foal.webp', alt: 'Klacz zebry z młodym', cap: 'Zebra · mama z młodym', mod: 'tall' },
+      { src: 'zebra-herd-on-track.webp', alt: 'Stado zebr na drodze', cap: 'Stado przed decyzją', mod: 'wide' },
+      { src: 'wildebeest-grazing.webp', alt: 'Pasący się gnu pręgowany', cap: 'Gnu pręgowane' },
+      { src: 'eland-grazing.webp', alt: 'Pasący się eland', cap: 'Eland · największa antylopa' },
+      { src: 'eland-herd-plains.webp', alt: 'Stado elandów', cap: 'Stado elandów · Ngorongoro', mod: 'wide' },
+      { src: 'warthog-on-plains.webp', alt: 'Guziec na równinie', cap: 'Guziec · sawanna z bliska' },
     ],
   },
   {
-    title: 'Heavyweights',
-    sub: 'Big & rare',
+    title: 'Waga ciężka',
+    sub: 'Duże i rzadkie',
     rowMod: 'heavy',
     tiles: [
-      { src: 'buffalo-herd-close.webp', alt: 'Cape buffalo herd close-up', cap: 'Cape buffalo · the dagga boys', mod: 'wide' },
-      { src: 'buffalo-and-egret.webp', alt: 'Buffalo with cattle egret', cap: 'Buffalo & egret · partners', mod: 'wide' },
-      { src: 'rhino-on-plains.webp', alt: 'Black rhino on plains', cap: 'Black rhino · <30 left in the crater', mod: 'full' },
+      { src: 'buffalo-herd-close.webp', alt: 'Stado bawołów afrykańskich z bliska', cap: 'Bawoły afrykańskie · mocne charaktery', mod: 'wide' },
+      { src: 'buffalo-and-egret.webp', alt: 'Bawół z czaplą złotawą', cap: 'Bawół i czapla · dobrana para', mod: 'wide' },
+      { src: 'rhino-on-plains.webp', alt: 'Czarny nosorożec na równinie', cap: 'Czarny nosorożec · mniej niż 30 w kraterze', mod: 'full' },
     ],
   },
   {
-    title: 'Birds',
-    sub: '400+ species',
+    title: 'Ptaki',
+    sub: '400+ gatunków',
     rowMod: 'birds',
     tiles: [
-      { src: 'crowned-crane-close.webp', alt: 'Grey crowned crane close-up', cap: 'Grey crowned crane', mod: 'tall' },
-      { src: 'crowned-cranes-in-grass.webp', alt: 'Pair of crowned cranes', cap: 'The pair · always two' },
-      { src: 'yellow-weaver-on-rail.webp', alt: 'Yellow weaver on rail', cap: "Speke's weaver · lodge regular" },
-      { src: 'raptor-on-log.webp', alt: 'Lanner falcon on rock', cap: 'Lanner falcon · with prey', mod: 'wide' },
+      { src: 'crowned-crane-close.webp', alt: 'Koronnik szary z bliska', cap: 'Koronnik szary', mod: 'tall' },
+      { src: 'crowned-cranes-in-grass.webp', alt: 'Para koronników szarych', cap: 'Para · najczęściej razem' },
+      { src: 'yellow-weaver-on-rail.webp', alt: 'Żółty wikłacz na poręczy', cap: "Wikłacz Spekego · stały gość lodge'u" },
+      { src: 'raptor-on-log.webp', alt: 'Sokół skalny na skale', cap: 'Sokół skalny · z ofiarą', mod: 'wide' },
     ],
   },
 ];
@@ -52,120 +52,120 @@ export const SEASONS = [
   {
     mod: 'peak',
     months: 'Jun · Jul · Aug · Sep · Oct',
-    title: 'Dry & classic',
-    blurb: 'Animals cluster at waterholes. The Mara River crossings happen July–September. Cool, golden grass, picture-postcard. Books out 6+ months ahead.',
+    title: 'Sucho i klasycznie',
+    blurb: 'Zwierzęta trzymają się wodopojów, a przeprawy przez rzekę Mara zwykle wypadają od lipca do września. Złote trawy, chłodniejsze poranki i najbardziej pocztówkowy klimat. Rezerwacje znikają nawet 6+ miesięcy wcześniej.',
     rating: '★★★★★',
   },
   {
     mod: 'good',
     months: 'Dec · Jan · Feb',
-    title: 'Calving season',
-    blurb: 'Wildebeest drop half a million calves on the southern Serengeti plains in February. Predator action peaks. Hot, but lush. Quieter parks.',
+    title: 'Sezon narodzin',
+    blurb: 'W lutym na południowych równinach Serengeti rodzą się setki tysięcy młodych gnu. Drapieżniki są bardzo aktywne, krajobraz jest bujny, a parki spokojniejsze.',
     rating: '★★★★☆',
   },
   {
     mod: 'shoulder',
     months: 'Nov · Mar',
-    title: 'Green & cheap',
-    blurb: 'Short rains. Skies are dramatic, parks empty, prices drop 20–30%. Birding peaks in November. Some bush roads can muddy.',
+    title: 'Zielono i korzystniej',
+    blurb: 'Krótki sezon deszczowy daje dramatyczne niebo, mniej aut w parkach i ceny niższe o 20-30%. Listopad jest świetny na ptaki, choć część dróg potrafi być błotnista.',
     rating: '★★★☆☆',
   },
   {
     mod: 'avoid',
     months: 'Apr · May',
-    title: 'Long rains',
-    blurb: 'Many camps close. Roads flood. Bargain-hunters only — and even then, we usually steer guests elsewhere this season.',
+    title: 'Długie deszcze',
+    blurb: 'Wiele campów się zamyka, a drogi bywają zalane. To opcja głównie dla łowców okazji, choć w tym czasie często proponujemy gościom inne rozwiązania.',
     rating: '★★☆☆☆',
   },
 ];
 
 export const SAFARI_COMPARISON = [
-  { label: 'Best quick taste', pick: 'Tarangire Express Day Safari', slug: 'tarangire-day-trip', note: 'Lowest commitment, real mainland wildlife in one day.' },
-  { label: 'Best short safari', pick: 'Ngorongoro Overnight', slug: 'ngorongoro-overnight', note: 'One night, high wildlife density, crater at first light.' },
-  { label: 'Best first-timer route', pick: 'Ngorongoro & Tarangire', slug: 'ngorongoro-tarangire', note: 'Classic Big Five scenery plus elephants and baobabs.' },
-  { label: 'Best migration focus', pick: 'Serengeti Migration', slug: 'serengeti-migration', note: 'For river-crossing season and big open-plains drama.' },
-  { label: 'Best remote wilderness', pick: 'Nyerere, Ruaha, Katavi', slug: 'nyerere-selous', note: 'Fewer vehicles, wilder camps, stronger adventure feel.' },
-  { label: 'Best premium add-on', pick: 'Mahale Chimp & Lake Tanganyika', slug: 'mahale-chimp', note: 'Rare chimp trekking with a lakefront finish.' },
+  { label: 'Najlepszy krótki smak safari', pick: 'Tarangire Express Day Safari', slug: 'tarangire-day-trip', note: 'Najmniejsze zobowiązanie i prawdziwe zwierzęta lądu stałego w jeden dzień.' },
+  { label: 'Najlepsze krótkie safari', pick: 'Ngorongoro Overnight', slug: 'ngorongoro-overnight', note: 'Jedna noc, ogromne zagęszczenie zwierząt i krater o pierwszym świetle.' },
+  { label: 'Najlepsza trasa na pierwszy raz', pick: 'Ngorongoro & Tarangire', slug: 'ngorongoro-tarangire', note: 'Klasyczne krajobrazy Wielkiej Piątki, słonie i baobaby.' },
+  { label: 'Najlepsze na migrację', pick: 'Serengeti Migration', slug: 'serengeti-migration', note: 'Na sezon przepraw rzecznych i wielki spektakl otwartych równin.' },
+  { label: 'Najlepsza dzika odsłona', pick: 'Nyerere, Ruaha, Katavi', slug: 'nyerere-selous', note: 'Mniej samochodów, bardziej dzikie campy i mocniejszy smak przygody.' },
+  { label: 'Najlepszy dodatek premium', pick: 'Mahale Chimp & Lake Tanganyika', slug: 'mahale-chimp', note: 'Rzadki trekking do szympansów z odpoczynkiem nad jeziorem.' },
 ];
 
 export const BOOKING_STEPS = [
-  { step: '01', title: 'Choose a route', text: 'Start with a card, or send your dates and we’ll recommend the best safari for your budget.' },
-  { step: '02', title: 'We price the real trip', text: 'We check flights, camp availability, park fees, and seasonality before sending the final quote.' },
-  { step: '03', title: 'Deposit confirms it', text: 'Your deposit locks the flights, guide, camps, and transfers. The rest is paid before travel.' },
+  { step: '01', title: 'Wybierz trasę', text: 'Zacznij od jednej z propozycji albo wyślij daty, a my dobierzemy najlepsze safari do budżetu.' },
+  { step: '02', title: 'Liczymy realną podróż', text: 'Sprawdzamy loty, dostępność campów, opłaty parkowe i sezon, zanim wyślemy finalną wycenę.' },
+  { step: '03', title: 'Zaliczka potwierdza rezerwację', text: 'Zaliczka blokuje loty, przewodnika, campy i transfery. Resztę opłacasz przed podróżą.' },
 ];
 
 export const INITIAL_SAFARI_COUNT = 9;
 export const SAFARI_BATCH_COUNT = 9;
 
 export const SAFARI_FILTERS = [
-  { key: 'all', label: 'All', match: () => true },
+  { key: 'all', label: 'Wszystkie', match: () => true },
   {
     key: 'classic',
-    label: 'Classic routes',
+    label: 'Klasyczne trasy',
     match: (item) => ['Northern Circuit', 'Migration Safari', 'Last-minute Safari', 'Day Safari'].includes(item.category),
   },
   {
     key: 'southern',
-    label: 'Southern parks',
+    label: 'Parki południa',
     match: (item) => ['Southern Circuit', 'Quick Safari', 'Beach & Safari', 'Hiking & Nature'].includes(item.category),
   },
   {
     key: 'western',
-    label: 'Western & remote',
+    label: 'Zachód i odludne trasy',
     match: (item) => ['Western Circuit', 'Wildlife'].includes(item.category) || ['katavi-frontier', 'mahale-chimp', 'chimpanzee-trekking'].includes(item.id),
   },
   {
     key: 'short',
-    label: '1-3 day trips',
+    label: '1-3 dni',
     match: (item) => /1 Day|1 - 2 Days|1 - 3 Days|1 night|2 nights/i.test(item.duration),
   },
   {
     key: 'culture',
-    label: 'Culture & nature',
+    label: 'Kultura i natura',
     match: (item) => ['Culture', 'History & Safari', 'Nature & Culture', 'Nature & Adventure', 'Mountain Adventure'].includes(item.category),
   },
   {
     key: 'luxury',
-    label: 'Luxury & private',
+    label: 'Luksus i prywatnie',
     match: (item) => ['Luxury', 'Luxury & Wellness', 'Ultra Luxury'].includes(item.category),
   },
   {
     key: 'special',
-    label: 'Special interests',
+    label: 'Specjalne zainteresowania',
     match: (item) => ['Photography', 'Birding', 'Adventure', 'Migration', 'Family'].includes(item.category),
   },
   {
     key: 'combo',
-    label: 'Bush & beach',
+    label: 'Safari i plaża',
     match: (item) => ['Combo', 'Beach & Safari', 'Multi Country'].includes(item.category),
   },
 ];
 
 export const FAQS = [
   {
-    q: 'How many days do I need on safari?',
-    a: 'Three nights is the absolute minimum and only worth it if you fly between parks. Five nights is the sweet spot. Anything over seven and you’ll start to crave the beach — which is why most guests pair safari with Zanzibar.',
+    q: 'Ile dni warto przeznaczyć na safari?',
+    a: 'Trzy noce to absolutne minimum i ma sens głównie przy przelotach między parkami. Pięć nocy to najwygodniejszy balans. Powyżej siedmiu zwykle zaczyna się tęsknić za plażą, dlatego większość gości łączy safari z Zanzibarem.',
     open: true,
   },
   {
-    q: 'Is it safe to bring kids?',
-    a: 'Yes — most camps welcome children 7+. We pick "family" lodges with pools and flexible game drives. For kids under 7, we suggest Tarangire (shorter drives, big elephant sightings) over Serengeti.',
+    q: 'Czy można zabrać dzieci?',
+    a: 'Tak, wiele campów przyjmuje dzieci od 7. roku życia. Dobieramy rodzinne lodge z basenem i elastycznym planem przejazdów. Dla młodszych dzieci częściej polecamy Tarangire niż Serengeti: krótsze dystanse i świetne szanse na słonie.',
   },
   {
-    q: 'What about malaria?',
-    a: 'Tanzania is a malaria area. Speak to your travel doctor about prophylaxis. Camps provide repellent, mosquito nets, and most have screened tents.',
+    q: 'Co z malarią?',
+    a: 'Tanzania leży w strefie malarycznej. Przed wyjazdem porozmawiaj z lekarzem medycyny podróży o profilaktyce. Campy zapewniają repelenty, moskitiery, a wiele namiotów ma dodatkowe siatki.',
   },
   {
-    q: 'Big Five — guaranteed?',
-    a: 'In the Ngorongoro Crater, you’ll usually tick four of five in a single day. Leopard is the wildcard — sometimes the same morning, sometimes never. We don’t promise sightings; the bush isn’t a zoo. We do promise we’ll work hard to find them.',
+    q: 'Wielka Piątka jest gwarantowana?',
+    a: 'W kraterze Ngorongoro często udaje się zobaczyć cztery z pięciu gatunków jednego dnia. Lampart jest największą niewiadomą. Nie obiecujemy konkretnych spotkań, bo sawanna nie jest zoo. Obiecujemy za to, że przewodnik zrobi wszystko, żeby ich poszukać.',
   },
   {
-    q: 'What kind of camera should I bring?',
-    a: 'A 200mm zoom minimum if you want frame-fillers. Most of our guests now shoot phones with a small clip-on telephoto and they do great. Bring a dust-blower — every camp’s nightmare is sand on the sensor.',
+    q: 'Jaki aparat zabrać?',
+    a: 'Jeśli zależy Ci na bliskich kadrach, minimum to zoom 200 mm. Wielu gości robi dziś świetne zdjęcia telefonem z małym teleobiektywem. Warto zabrać gruszkę do czyszczenia: kurz na safari pojawia się błyskawicznie.',
   },
   {
-    q: 'Can I extend with Zanzibar?',
-    a: 'Yes — and you should. We design every safari to flow into a beach stay. See our Bush & Beach package for a 10-night example.',
+    q: 'Czy mogę połączyć safari z Zanzibarem?',
+    a: 'Tak, i to bardzo dobry pomysł. Projektujemy safari tak, żeby naturalnie przechodziło w pobyt na plaży. Zobacz pakiet Safari i plaża jako przykład 10 nocy.',
     extendLink: true,
   },
 ];

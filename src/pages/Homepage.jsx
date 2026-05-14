@@ -62,7 +62,7 @@ export default function Homepage() {
   const [plannerPrompt, setPlannerPrompt] = useState(null);
 
   useEffect(() => {
-    document.title = 'Destination Paradise · Zanzibar & Tanzania Tours';
+    document.title = 'Destination Paradise · Zanzibar i Tanzania';
   }, []);
 
   // Persist design-preview tweaks. The active theme is managed globally.
@@ -155,18 +155,18 @@ export default function Homepage() {
       return typeof value === 'string' && value.trim() ? value : fallback;
     };
 
-    const excursion = readStringField('excursion', 'Any package, excursion, or safari');
+    const excursion = readStringField('excursion', 'Dowolny pakiet, wycieczka albo safari');
     const date = readStringField('date', '');
-    const guests = readStringField('guests', '2 guests');
-    const genericSelections = new Set(['Any experience', 'Any trip or safari', 'Any package, excursion, or safari']);
+    const guests = readStringField('guests', '2 osoby');
+    const genericSelections = new Set(['Dowolne doświadczenie', 'Dowolna podróż albo safari', 'Dowolny pakiet, wycieczka albo safari', 'Any experience', 'Any trip or safari', 'Any package, excursion, or safari']);
     const experienceText = genericSelections.has(excursion)
-      ? 'a recommended Zanzibar package, excursion, or Tanzania safari'
+      ? 'polecany pakiet na Zanzibarze, wycieczkę albo safari w Tanzanii'
       : excursion;
-    const dateText = date ? ` on ${date}` : ' on flexible dates';
+    const dateText = date ? ` w terminie ${date}` : ' w elastycznym terminie';
 
     setPlannerPrompt({
       id: Date.now(),
-      text: `I'm looking for ${experienceText}${dateText} for ${guests}. Can you suggest the best fit and ask me anything else you need?`,
+      text: `Szukam: ${experienceText}${dateText} dla ${guests}. Zaproponuj najlepsze dopasowanie i zadaj pytania, jeśli czegoś brakuje.`,
     });
     const target = document.getElementById('planner-chat') || document.getElementById('planner');
     target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -198,7 +198,7 @@ export default function Homepage() {
             islandPins={islandPins}
             mainlandPins={mainlandPins}
             ctaHref="/explore"
-            ctaLabel="Explore the full map"
+            ctaLabel="Zobacz pełną mapę"
           />
         </Suspense>
       </DeferredMount>
@@ -213,15 +213,15 @@ export default function Homepage() {
       {/* ============ TWEAKS PANEL (claude.ai design preview only) ============ */}
       <button
         className="tweaks-gear"
-        aria-label="Open tweaks"
+        aria-label="Otwórz ustawienia wyglądu"
         onClick={() => setTweaksOpen((v) => !v)}
         style={{ display: tweaksGearVisible ? 'inline-flex' : 'none' }}
       >⚙</button>
-      <aside className={`tweaks${tweaksOpen ? ' tweaks--open' : ''}`} role="dialog" aria-label="Tweaks">
-        <h4>Tweaks</h4>
+      <aside className={`tweaks${tweaksOpen ? ' tweaks--open' : ''}`} role="dialog" aria-label="Ustawienia wyglądu">
+        <h4>Ustawienia</h4>
         {[
-          { key: 'hero', label: 'Hero variant', opts: [['photo', 'Photo'], ['split', 'Split'], ['video', 'Video']] },
-          { key: 'layout', label: 'Excursion layout', opts: [['3up', '3-up'], ['2up', 'Feature'], ['carousel', 'Carousel']] },
+          { key: 'hero', label: 'Wariant hero', opts: [['photo', 'Zdjęcie'], ['split', 'Split'], ['video', 'Wideo']] },
+          { key: 'layout', label: 'Układ wycieczek', opts: [['3up', '3-up'], ['2up', 'Wyróżnienie'], ['carousel', 'Karuzela']] },
         ].map((g) => (
           <div className="tweaks-group" key={g.key}>
             <label className="tweaks-group__label">{g.label}</label>

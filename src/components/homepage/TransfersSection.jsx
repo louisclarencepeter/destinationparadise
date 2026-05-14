@@ -23,10 +23,10 @@ export default function TransfersSection() {
   return (
     <section className="home-transfers reveal" id="transfers">
       <header className="home-transfers__head">
-        <span className="section-eyebrow">Prywatne transfery</span>
-        <h2 className="section-title">Przyjedź spokojnie, zanim podróż naprawdę się zacznie.</h2>
+        <span className="section-eyebrow">Transfery prywatne</span>
+        <h2 className="section-title">Wysiądź z samolotu i jedź prosto do hotelu.</h2>
         <p className="section-lead">
-          Powitanie na lotnisku, prywatne samochody z klimatyzacją, śledzenie lotu, pomoc z bagażem i opcje VIP na całym Zanzibarze.
+          Kierowca czeka na lotnisku, pomaga z bagażem i od razu zawozi Cię pod wskazany adres. Bez szukania taksówki po przylocie i bez negocjowania ceny na miejscu.
         </p>
       </header>
 

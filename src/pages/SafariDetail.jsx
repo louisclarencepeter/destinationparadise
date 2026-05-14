@@ -7,9 +7,9 @@ import '../styles/excursions.css';
 import '../styles/safaris.css';
 
 const PRACTICAL = [
-  { h: "What's always included", items: ['Bush flights & transfers', 'Park and conservation fees', 'Professional safari guide', 'Full board at camp or lodge'] },
-  { h: 'Not included', items: ['International flights', 'Travel insurance', 'Tips for guides and camp staff', 'Premium drinks unless stated'] },
-  { h: 'Booking & payment', items: ['Best booked 2-6 months ahead', 'Deposit confirms lodges and flights', 'Final balance before travel', 'USD, EUR, GBP, TZS accepted'] },
+  { h: 'Co zawsze jest w cenie', items: ['Bush flights i transfery', 'Opłaty parkowe i conservation fees', 'Profesjonalny przewodnik safari', 'Pełne wyżywienie w campie lub lodge'] },
+  { h: 'Poza ceną', items: ['Loty międzynarodowe', 'Ubezpieczenie podróżne', 'Napiwki dla przewodników i obsługi campu', 'Napoje premium, jeśli nie wskazano inaczej'] },
+  { h: 'Rezerwacja i płatność', items: ['Najlepiej rezerwować 2-6 miesięcy wcześniej', 'Zaliczka potwierdza lodge i loty', 'Saldo końcowe przed podróżą', 'Akceptujemy USD, EUR, GBP i TZS'] },
 ];
 
 function cleanInclude(item = '') {
@@ -24,7 +24,7 @@ export default function SafariDetail() {
     if (safari) {
       document.title = `${safari.title} · Destination Paradise`;
     } else {
-      document.title = 'Safari Not Found · Destination Paradise';
+      document.title = 'Safari nie znalezione · Destination Paradise';
     }
   }, [safari]);
 
@@ -33,10 +33,10 @@ export default function SafariDetail() {
       <main className="safaris-page">
         <section className="exc-day" style={{ textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div>
-            <span className="section-eyebrow">Safaris</span>
-            <h1 className="section-title">Safari not found</h1>
-            <p className="section-lead">That route is not in our current list. Browse all available safaris below.</p>
-            <Link className="btn btn--ghost-dark" to="/safaris" style={{ marginTop: '1.5rem' }}>Back to all safaris →</Link>
+            <span className="section-eyebrow">Safari</span>
+            <h1 className="section-title">Nie znaleziono safari</h1>
+            <p className="section-lead">Tej trasy nie ma na aktualnej liście. Zobacz dostępne safari poniżej.</p>
+            <Link className="btn btn--ghost-dark" to="/safaris" style={{ marginTop: '1.5rem' }}>Wróć do safari →</Link>
           </div>
         </section>
       </main>
@@ -50,9 +50,9 @@ export default function SafariDetail() {
   return (
     <main className="safaris-page exc-detail saf-detail">
       <nav className="exc-detail__crumbs" aria-label="Breadcrumb">
-        <Link to="/">Home</Link>
+        <Link to="/">Strona główna</Link>
         <span aria-hidden="true">→</span>
-        <Link to="/safaris">Safaris</Link>
+        <Link to="/safaris">Safari</Link>
         <span aria-hidden="true">→</span>
         <span>{safari.title}</span>
       </nav>
@@ -60,19 +60,19 @@ export default function SafariDetail() {
       <article id={safari.id} className="exc-block exc-block--detail">
         <div className="exc-block__img">
           <ResponsiveImage src={safari.image} alt={safari.alt || safari.title} />
-          <span className="exc-block__cat">{safari.category}</span>
-          {safari.feature && <span className="exc-block__season">Most popular</span>}
+          <span className="exc-block__cat">{safari.categoryLabel || safari.category}</span>
+          {safari.feature && <span className="exc-block__season">Najpopularniejsze</span>}
         </div>
         <div className="exc-block__body">
           <span className="exc-block__eyebrow">{safari.rib}</span>
           <h1 className="exc-block__title">{safari.title}</h1>
           <p className="exc-block__desc">{safari.intro}</p>
           <dl className="exc-block__facts">
-            <div><dt>Duration</dt><dd>{safari.duration}<small>Route length</small></dd></div>
-            <div><dt>Starts from</dt><dd>{safari.from}<small>Flights can be adjusted</small></dd></div>
-            <div><dt>Style</dt><dd>{safari.positioning || safari.category}<small>Safari type</small></dd></div>
+            <div><dt>Czas trwania</dt><dd>{safari.duration}<small>Długość trasy</small></dd></div>
+            <div><dt>Start</dt><dd>{safari.from}<small>Loty można dopasować</small></dd></div>
+            <div><dt>Styl</dt><dd>{safari.positioning || safari.categoryLabel || safari.category}<small>Typ safari</small></dd></div>
             <div>
-              <dt>Price</dt>
+              <dt>Cena</dt>
               <dd>
                 ${price ? price.lowSeason.toLocaleString() : safari.price.toLocaleString()}
                 {price && `-$${price.peakSeason.toLocaleString()}`}
@@ -82,18 +82,18 @@ export default function SafariDetail() {
           </dl>
           <div className="exc-block__cols">
             <div className="exc-block__col">
-              <h4>{safari.productType ? 'Highlights' : 'Included in this route'}</h4>
+              <h4>{safari.productType ? 'Najważniejsze punkty' : 'W cenie tej trasy'}</h4>
               <ul>{included.map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
             <div className="exc-block__col">
-              <h4>{safari.idealFor?.length ? 'Ideal for' : 'Typical safari inclusions'}</h4>
+              <h4>{safari.idealFor?.length ? 'Idealne dla' : 'Typowe elementy safari'}</h4>
               <ul>{(safari.idealFor?.length ? safari.idealFor : INCLUDED_LIST.slice(0, 4)).map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
           </div>
           {upsells.length > 0 && (
             <div className="exc-block__cols">
               <div className="exc-block__col">
-                <h4>Optional upgrades</h4>
+                <h4>Opcjonalne ulepszenia</h4>
                 <ul>{upsells.map((item) => <li key={item.name}>{item.name} · +${item.price.toLocaleString()}</li>)}</ul>
               </div>
             </div>
@@ -101,11 +101,11 @@ export default function SafariDetail() {
           <div className="exc-block__actions">
             <span className="exc-block__price">
               ${price ? price.lowSeason.toLocaleString() : safari.price.toLocaleString()}
-              <small>{price ? `low season · peak from $${price.peakSeason.toLocaleString()}` : safari.priceSub}</small>
+              <small>{price ? `niski sezon · wysoki od $${price.peakSeason.toLocaleString()}` : safari.priceSub}</small>
             </span>
-            <span className="exc-block__price-note">Final price depends on season, camp level, and flight availability.</span>
-            <Link className="btn" to={`/booking?type=safari&item=${encodeURIComponent(safari.id)}`}>Book this route →</Link>
-            <Link className="btn btn--ghost-dark" to="/safaris">All safaris</Link>
+            <span className="exc-block__price-note">Finalna cena zależy od sezonu, poziomu campu i dostępności lotów.</span>
+            <Link className="btn" to={`/booking?type=safari&item=${encodeURIComponent(safari.id)}`}>Zarezerwuj tę trasę →</Link>
+            <Link className="btn btn--ghost-dark" to="/safaris">Wszystkie safari</Link>
           </div>
         </div>
       </article>
@@ -113,9 +113,9 @@ export default function SafariDetail() {
       {safari.days?.length > 0 && (
         <section className="exc-day" id="route">
           <div className="exc-day__head">
-            <span className="section-eyebrow">Day by day</span>
-            <h2 className="section-title">A typical route</h2>
-            <p className="section-lead">This is the current route sketch. We adjust flights, camps, and pacing around your dates and travel style.</p>
+            <span className="section-eyebrow">Dzień po dniu</span>
+            <h2 className="section-title">Typowy przebieg trasy</h2>
+            <p className="section-lead">To aktualny szkic podróży. Loty, campy i tempo dopasowujemy do Twoich dat oraz stylu podróżowania.</p>
           </div>
           <div className="exc-day__timeline">
             {safari.days.map((day) => (
@@ -151,11 +151,11 @@ export default function SafariDetail() {
           <ResponsiveImage src={safari.image} alt="" />
         </div>
         <div className="saf-cta__inner">
-          <h2>Ready to plan {safari.title}?</h2>
-          <p>Tell us your dates, group size, and preferred comfort level. We’ll come back within 24 hours with a real itinerary and a real price.</p>
+          <h2>Gotowi zaplanować {safari.title}?</h2>
+          <p>Podaj daty, wielkość grupy i preferowany poziom komfortu. Wrócimy w 24 godziny z realnym planem i realną ceną.</p>
           <div className="saf-cta__btns">
-            <Link className="btn btn--lg btn--accent" to={`/booking?type=safari&item=${encodeURIComponent(safari.id)}`}>Get a quote →</Link>
-            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Or chat with our AI planner</Link>
+            <Link className="btn btn--lg btn--accent" to={`/booking?type=safari&item=${encodeURIComponent(safari.id)}`}>Poproś o wycenę →</Link>
+            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Porozmawiaj z planerem AI</Link>
           </div>
         </div>
       </section>

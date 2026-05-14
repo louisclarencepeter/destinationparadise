@@ -7,31 +7,31 @@ import '../styles/excursions.css';
 
 const PLANNER_PROMPTS = [
   {
-    label: 'Safari + beach',
-    title: 'Build a bush-to-beach route',
-    text: 'We are planning 8 to 10 nights. We want a short safari, Zanzibar beach time, good food, and a smooth route without too many hotel changes. Can you suggest a plan?',
+    label: 'Safari + plaża',
+    title: 'Ułóż trasę od buszu do plaży',
+    text: 'Planujemy 8-10 nocy. Chcemy krótkie safari, czas na plaży na Zanzibarze, dobre jedzenie i płynną trasę bez zbyt wielu zmian hoteli. Możesz zaproponować plan?',
   },
   {
-    label: 'Honeymoon',
-    title: 'Plan something romantic',
-    text: 'We are a honeymoon couple. We want 7 nights with a beautiful beach hotel, one private dinner, a dhow sunset, and maybe a short fly-in safari. Mid-range to luxury.',
+    label: 'Podróż poślubna',
+    title: 'Zaplanuj coś romantycznego',
+    text: 'Jesteśmy parą w podróży poślubnej. Chcemy 7 nocy, piękny hotel przy plaży, jedną prywatną kolację, dhow o zachodzie słońca i może krótkie safari z przelotem. Średni standard do luksusu.',
   },
   {
-    label: 'Family',
-    title: 'Make it easy with kids',
-    text: 'We are a family with children and want a relaxed Zanzibar trip with safe activities, wildlife or turtles, snorkeling if conditions are easy, and not too many early mornings.',
+    label: 'Rodzina',
+    title: 'Ułatw podróż z dziećmi',
+    text: 'Jesteśmy rodziną z dziećmi i chcemy spokojny Zanzibar: bezpieczne aktywności, przyroda albo żółwie, snorkeling przy łatwych warunkach i bez zbyt wielu wczesnych pobudek.',
   },
   {
-    label: 'Culture + ocean',
-    title: 'Mix local life and water',
-    text: 'I want Stone Town, spice farms, local food, a dhow day, snorkeling, and a beach area that still feels relaxed. Please suggest a balanced itinerary.',
+    label: 'Kultura + ocean',
+    title: 'Połącz lokalne życie i wodę',
+    text: 'Chcę Stone Town, farmy przypraw, lokalne jedzenie, dzień na dhow, snorkeling i plażę, która nadal jest spokojna. Zaproponuj zbalansowany plan.',
   },
 ];
 
 const PLANNER_STEPS = [
-  { step: '01', title: 'Tell it the shape', text: 'Dates, guests, budget, pace, and what you care about most.' },
-  { step: '02', title: 'Get a first draft', text: 'The planner sketches nights, regions, excursions, safaris, and daily rhythm.' },
-  { step: '03', title: 'Send it to us', text: 'Our team checks availability, prices it properly, and turns the draft into a bookable trip.' },
+  { step: '01', title: 'Opowiedz o kształcie podróży', text: 'Daty, liczba osób, budżet, tempo i to, co jest dla Ciebie najważniejsze.' },
+  { step: '02', title: 'Dostań pierwszy szkic', text: 'Planer układa noce, regiony, wycieczki, safari i rytm dnia.' },
+  { step: '03', title: 'Wyślij go do nas', text: 'Zespół sprawdza dostępność, wycenia plan i zmienia szkic w podróż gotową do rezerwacji.' },
 ];
 
 function buildPlacePrompt(searchParams) {
@@ -42,15 +42,15 @@ function buildPlacePrompt(searchParams) {
   const context = searchParams.get('context')?.trim();
   const bestFor = searchParams.get('bestFor')?.trim();
   const details = [
-    type ? `Trip angle: ${type}.` : '',
-    context ? `Context: ${context}` : '',
-    bestFor ? `Best for: ${bestFor}.` : '',
+    type ? `Kąt podróży: ${type}.` : '',
+    context ? `Kontekst: ${context}` : '',
+    bestFor ? `Najlepsze dla: ${bestFor}.` : '',
   ].filter(Boolean).join(' ');
 
   return {
     id: `place:${place}:${type || ''}:${bestFor || ''}`,
     label: place,
-    text: `I want to build a trip around ${place}. ${details} Please suggest the best route, how many nights to allow, what to combine it with, and ask me for any missing dates, group size, budget, and travel-style details.`,
+    text: `Chcę zbudować podróż wokół ${place}. ${details} Zaproponuj najlepszą trasę, liczbę nocy, dobre połączenia z innymi miejscami i zapytaj o brakujące daty, liczbę osób, budżet oraz styl podróży.`,
   };
 }
 
@@ -62,7 +62,7 @@ export default function TripPlannerPage() {
   const handledPlacePromptRef = useRef(null);
 
   useEffect(() => {
-    document.title = 'AI Trip Planner · Destination Paradise';
+    document.title = 'Planer podróży AI · Destination Paradise';
   }, []);
 
   useEffect(() => () => {
@@ -117,27 +117,27 @@ export default function TripPlannerPage() {
       <section className="trip-hero">
         <div className="trip-hero__bg"><ResponsiveImage src="/assets/images/safaris/lioness-and-cub-resting.webp" alt="" fetchpriority="high" loading="eager" decoding="sync" /></div>
         <div className="trip-hero__inner">
-          <span className="trip-hero__eyebrow">AI Trip Planner · human-reviewed before booking</span>
-          <h1 className="trip-hero__title">Sketch the trip <em>before you commit.</em></h1>
-          <p className="trip-hero__lead">Tell the planner what kind of Zanzibar, safari, honeymoon, family trip, or beach escape you want. It will ask the useful questions and shape a route our team can price properly.</p>
+          <span className="trip-hero__eyebrow">Planer podróży AI · sprawdzany przez człowieka przed rezerwacją</span>
+          <h1 className="trip-hero__title">Naszkicuj podróż <em>zanim się zdecydujesz.</em></h1>
+          <p className="trip-hero__lead">Powiedz planerowi, jakiego Zanzibaru, safari, podróży poślubnej, rodzinnego wyjazdu albo plażowego odpoczynku szukasz. Zada dobre pytania i ułoży trasę, którą zespół może rzetelnie wycenić.</p>
           <div className="trip-hero__actions">
-            <a className="btn btn--lg" href="#planner">Start planning</a>
-            <Link className="btn btn--ghost btn--lg" to="/packages">Browse packages</Link>
+            <a className="btn btn--lg" href="#planner">Zacznij planować</a>
+            <Link className="btn btn--ghost btn--lg" to="/packages">Zobacz pakiety</Link>
           </div>
           <div className="trip-hero__stats">
-            <div><strong>24h</strong><span>Human quote</span></div>
-            <div><strong>15</strong><span>Packages</span></div>
-            <div><strong>29</strong><span>Safaris</span></div>
-            <div><strong>40+</strong><span>Excursions</span></div>
+            <div><strong>24h</strong><span>Wycena od człowieka</span></div>
+            <div><strong>15</strong><span>Pakietów</span></div>
+            <div><strong>29</strong><span>Safari</span></div>
+            <div><strong>40+</strong><span>Wycieczek</span></div>
           </div>
         </div>
       </section>
 
       <section className="trip-prompts reveal">
         <header className="trip-prompts__head">
-          <span className="section-eyebrow">Start faster</span>
-          <h2 className="section-title">Choose a planning angle.</h2>
-          <p className="section-lead">Pick the closest starting point and the planner will open with that context already loaded.</p>
+          <span className="section-eyebrow">Zacznij szybciej</span>
+          <h2 className="section-title">Wybierz kierunek planowania.</h2>
+          <p className="section-lead">Wybierz najbliższy punkt startu, a planer otworzy się z gotowym kontekstem.</p>
         </header>
         <div className="trip-prompts__grid">
           {PLANNER_PROMPTS.map((prompt) => (
@@ -151,7 +151,7 @@ export default function TripPlannerPage() {
               <span>{prompt.label}</span>
               <h3>{prompt.title}</h3>
               <p>{prompt.text}</p>
-              <strong className="trip-prompt-card__action">{selectedPrompt === prompt.label ? 'Sent to planner' : 'Start with this'}</strong>
+              <strong className="trip-prompt-card__action">{selectedPrompt === prompt.label ? 'Wysłano do planera' : 'Zacznij od tego'}</strong>
             </button>
           ))}
         </div>
@@ -161,8 +161,8 @@ export default function TripPlannerPage() {
 
       <section className="trip-steps reveal">
         <header className="trip-steps__head">
-          <span className="section-eyebrow">How to use it</span>
-          <h2 className="section-title">From idea to bookable plan.</h2>
+          <span className="section-eyebrow">Jak używać</span>
+          <h2 className="section-title">Od pomysłu do planu gotowego do rezerwacji.</h2>
         </header>
         <div className="trip-steps__grid">
           {PLANNER_STEPS.map((item) => (
@@ -178,11 +178,11 @@ export default function TripPlannerPage() {
       <section className="exc-cta">
         <div className="exc-cta__bg"><ResponsiveImage src="/assets/images/safaris/crowned-cranes-in-grass.webp" alt="" /></div>
         <div className="exc-cta__inner">
-          <h2>Want us to turn the draft into a quote?</h2>
-          <p>Send the plan, dates, group size, and travel style. We’ll check availability and come back with a real route and a real price.</p>
+          <h2>Chcesz, żebyśmy zmienili szkic w wycenę?</h2>
+          <p>Wyślij plan, daty, liczbę osób i styl podróży. Sprawdzimy dostępność i wrócimy z realną trasą oraz realną ceną.</p>
           <div className="exc-cta__btns">
-            <Link className="btn btn--lg btn--accent" to="/booking">Get a quote →</Link>
-            <a className="btn btn--ghost-light btn--lg" href="#planner">Keep planning</a>
+            <Link className="btn btn--lg btn--accent" to="/booking">Poproś o wycenę →</Link>
+            <a className="btn btn--ghost-light btn--lg" href="#planner">Planuj dalej</a>
           </div>
         </div>
       </section>

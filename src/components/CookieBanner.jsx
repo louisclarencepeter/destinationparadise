@@ -27,7 +27,7 @@ function writeStoredConsent(choices) {
   try {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
   } catch {
-    /* Consent should still close even if storage is unavailable. */
+    /* Banner powinien się zamknąć nawet wtedy, gdy zapis jest niedostępny. */
   }
 
   window.dispatchEvent(new CustomEvent('dp-cookie-consent', { detail: payload }));
@@ -60,15 +60,15 @@ export default function CookieBanner() {
   if (!isReady || !isVisible) return null;
 
   return (
-    <aside className="cookie-banner" aria-label="Cookie consent" aria-live="polite">
+    <aside className="cookie-banner" aria-label="Zgoda na pliki cookie" aria-live="polite">
       <div className="cookie-banner__copy">
-        <span className="cookie-banner__eyebrow">Cookie preferences</span>
-        <h2>Choose how the site remembers your visit</h2>
+        <span className="cookie-banner__eyebrow">Ustawienia cookie</span>
+        <h2>Wybierz, co strona może zapamiętać</h2>
         <p>
-          We use essential storage for the website to work. With your permission, analytics
-          can help us understand visits and improve trip planning.
+          Używamy niezbędnego zapisu, żeby strona działała poprawnie. Za Twoją zgodą analityka
+          pomaga nam rozumieć odwiedziny i ulepszać planowanie podróży.
         </p>
-        <Link className="cookie-banner__link" to="/cookies-policy">Read the cookies policy</Link>
+        <Link className="cookie-banner__link" to="/cookies-policy">Przeczytaj politykę cookie</Link>
       </div>
 
       {isCustomizing && (
@@ -76,8 +76,8 @@ export default function CookieBanner() {
           <label className="cookie-choice cookie-choice--locked">
             <input type="checkbox" checked disabled />
             <span>
-              <strong>Essential</strong>
-              <small>Required for theme preferences, forms, and site stability.</small>
+              <strong>Niezbędne</strong>
+              <small>Potrzebne do preferencji motywu, formularzy i stabilności strony.</small>
             </span>
           </label>
           <label className="cookie-choice">
@@ -87,8 +87,8 @@ export default function CookieBanner() {
               onChange={(event) => setChoices((current) => ({ ...current, analytics: event.target.checked }))}
             />
             <span>
-              <strong>Analytics</strong>
-              <small>Helps us learn which pages are useful and where planning can improve.</small>
+              <strong>Analityka</strong>
+              <small>Pomaga nam sprawdzać, które strony są przydatne i gdzie możemy poprawić planowanie.</small>
             </span>
           </label>
         </div>
@@ -96,19 +96,19 @@ export default function CookieBanner() {
 
       <div className="cookie-banner__actions">
         <button className="cookie-banner__btn cookie-banner__btn--ghost" type="button" onClick={() => saveChoices(defaultChoices)}>
-          Essential only
+          Tylko niezbędne
         </button>
         {isCustomizing ? (
           <button className="cookie-banner__btn" type="button" onClick={() => saveChoices(choices)}>
-            Save choices
+            Zapisz wybór
           </button>
         ) : (
           <button className="cookie-banner__btn cookie-banner__btn--ghost" type="button" onClick={() => setIsCustomizing(true)}>
-            Customize
+            Dostosuj
           </button>
         )}
         <button className="cookie-banner__btn cookie-banner__btn--accent" type="button" onClick={() => saveChoices({ analytics: true })}>
-          Accept all
+          Akceptuję wszystko
         </button>
       </div>
     </aside>

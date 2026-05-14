@@ -22,35 +22,35 @@ export default function BookingSummary({
         style={summaryFloat.mode === 'floating' ? { left: summaryFloat.left, width: summaryFloat.width } : undefined}
       >
         <div className="booking-summary__card">
-          <span className="section-eyebrow">Your request</span>
-          <h3>{selectedProduct?.label || selectedService?.label || 'Custom plan'}</h3>
-          <p>{selectedProduct?.category || 'Flexible route'}</p>
+          <span className="section-eyebrow">Twoje zapytanie</span>
+          <h3>{selectedProduct?.label || selectedService?.label || 'Plan na miarę'}</h3>
+          <p>{selectedProduct?.category || 'Elastyczna trasa'}</p>
           <div className="booking-summary__price">{bookingPriceLabel(selectedProduct)}</div>
           <dl>
-            <div><dt>Guests</dt><dd>{form.guests || 'Flexible'}</dd></div>
-            <div><dt>{showDateRange ? 'Dates' : 'Date'}</dt><dd>{dateSummary}</dd></div>
-            {isTransferRequest && <div><dt>Tier</dt><dd>{selectedTransferTier?.label || 'Standard Private'}</dd></div>}
-            {isTransferRequest && form.pickupLocation && <div><dt>Pickup</dt><dd>{form.pickupLocation}</dd></div>}
-            {isTransferRequest && form.dropoffLocation && <div><dt>Drop-off</dt><dd>{form.dropoffLocation}</dd></div>}
-            {isTransferRequest && form.transferTime && <div><dt>Time</dt><dd>{form.transferTime}</dd></div>}
-            {showTravelPreferences && <div><dt>Comfort</dt><dd>{form.accommodationLevel}</dd></div>}
-            <div><dt>Payment</dt><dd>{PAYMENT_OPTIONS.find((item) => item.value === form.paymentPreference)?.label}</dd></div>
+            <div><dt>Goście</dt><dd>{form.guests || 'Elastycznie'}</dd></div>
+            <div><dt>{showDateRange ? 'Daty' : 'Data'}</dt><dd>{dateSummary}</dd></div>
+            {isTransferRequest && <div><dt>Poziom</dt><dd>{selectedTransferTier?.label || 'Standard prywatny'}</dd></div>}
+            {isTransferRequest && form.pickupLocation && <div><dt>Odbiór</dt><dd>{form.pickupLocation}</dd></div>}
+            {isTransferRequest && form.dropoffLocation && <div><dt>Cel</dt><dd>{form.dropoffLocation}</dd></div>}
+            {isTransferRequest && form.transferTime && <div><dt>Godzina</dt><dd>{form.transferTime}</dd></div>}
+            {showTravelPreferences && <div><dt>Komfort</dt><dd>{form.accommodationLevel}</dd></div>}
+            <div><dt>Płatność</dt><dd>{PAYMENT_OPTIONS.find((item) => item.value === form.paymentPreference)?.label}</dd></div>
           </dl>
         </div>
 
         <div className="booking-summary__card booking-summary__card--dark">
-          <span>How payment works</span>
+          <span>Jak działa płatność</span>
           <ol>
-            <li>We confirm availability and the final price.</li>
-            <li>You approve the route, date, and terms.</li>
-            <li>We send a secure online payment link for deposit or full balance.</li>
+            <li>Potwierdzamy dostępność i końcową cenę.</li>
+            <li>Akceptujesz trasę, datę i warunki.</li>
+            <li>Wysyłamy bezpieczny link online na zaliczkę albo pełną kwotę.</li>
           </ol>
-          <p>No card details are entered or stored on this website.</p>
+          <p>Na tej stronie nie wpisujesz i nie zapisujemy danych karty.</p>
         </div>
 
         <div className="booking-summary__mini">
-          <strong>Prefer to plan first?</strong>
-          <Link to="/trip-planner">Open the AI planner →</Link>
+          <strong>Wolisz najpierw zaplanować?</strong>
+          <Link to="/trip-planner">Otwórz planer AI →</Link>
         </div>
       </div>
     </aside>

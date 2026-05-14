@@ -5,13 +5,13 @@ export default function TransfersIncluded() {
     <section className="tr-included">
       <div className="tr-included__wrap">
         <div className="tr-included__copy">
-          <span className="section-eyebrow">What&apos;s included</span>
-          <h2 className="section-title">An arrival service, not just transport.</h2>
+          <span className="section-eyebrow">Co jest w cenie</span>
+          <h2 className="section-title">Obsługa przyjazdu, nie tylko transport.</h2>
           <p className="section-lead">
-            Guests are buying certainty: a driver who is already there, support if a flight changes, and a calm first impression of Zanzibar.
+            Goście kupują pewność: kierowcę, który już czeka, wsparcie przy zmianie lotu i spokojne pierwsze wrażenie z Zanzibaru.
           </p>
           <a className="btn btn--accent btn--lg" href="#transfer-types">
-            Choose a route →
+            Wybierz trasę →
           </a>
         </div>
         <ul className="tr-included__list">

@@ -14,13 +14,13 @@ export default function SafariItineraries({
   return (
     <section className="itineraries reveal" id="itineraries">
       <header className="itineraries__head">
-        <span className="section-eyebrow">Suggested routes</span>
-        <h2 className="section-title">Safaris — pick a starting point.</h2>
-        <p className="section-lead">Every card opens into the full route or specialty experience, inclusions, and booking details. Tell us your dates and we’ll re-plot the camps and flights around you.</p>
+        <span className="section-eyebrow">Proponowane trasy</span>
+        <h2 className="section-title">Safari - wybierz punkt startowy.</h2>
+        <p className="section-lead">Każda karta prowadzi do pełnej trasy albo doświadczenia tematycznego, z zakresem, ceną i szczegółami rezerwacji. Podaj daty, a dopasujemy campy i loty do Ciebie.</p>
       </header>
 
       <div className="exc-filter saf-filter">
-        <span className="exc-filter__label">Filter by</span>
+        <span className="exc-filter__label">Filtruj</span>
         {safariFilters.map((item) => (
           <button
             key={item.key}
@@ -40,12 +40,12 @@ export default function SafariItineraries({
             key={itinerary.id}
             to={`/safaris/${itinerary.id}`}
             className="exc-card saf-route-card reveal"
-            aria-label={`Explore ${itinerary.title}`}
+            aria-label={`Zobacz ${itinerary.title}`}
           >
             <div className="exc-card__img">
               <img src={itinerary.image} alt={itinerary.alt || itinerary.title} loading="lazy" />
-              <span className="exc-card__cat">{itinerary.category}</span>
-              {itinerary.feature && <span className="exc-card__season">Most popular</span>}
+              <span className="exc-card__cat">{itinerary.categoryLabel || itinerary.category}</span>
+              {itinerary.feature && <span className="exc-card__season">Najpopularniejsze</span>}
               {itinerary.productType && <span className="exc-card__season">{itinerary.productType}</span>}
             </div>
             <div className="exc-card__body">
@@ -63,15 +63,15 @@ export default function SafariItineraries({
                 </span>
               </div>
               <div className="exc-card__foot">
-                <span className="exc-card__price">From <strong>${itinerary.price.toLocaleString()}</strong> {itinerary.priceSub}</span>
-                <span className="exc-card__cta">Explore →</span>
+                <span className="exc-card__price">Od <strong>${itinerary.price.toLocaleString()}</strong> {itinerary.priceSub}</span>
+                <span className="exc-card__cta">Zobacz →</span>
               </div>
             </div>
           </Link>
         ))}
       </div>
       {visibleSafaris.length === 0 && (
-        <p className="exc-grid__empty">No safaris in this filter yet. Try All.</p>
+        <p className="exc-grid__empty">Nie ma jeszcze safari w tym filtrze. Spróbuj wybrać wszystkie.</p>
       )}
       {filteredSafaris.length > INITIAL_SAFARI_COUNT && (
         <div className="exc-grid__actions">
@@ -81,7 +81,7 @@ export default function SafariItineraries({
               className="btn btn--ghost btn--lg"
               onClick={() => setVisibleCount((count) => Math.min(count + SAFARI_BATCH_COUNT, filteredSafaris.length))}
             >
-              Show more safaris
+              Pokaż więcej safari
             </button>
           ) : (
             <button
@@ -92,10 +92,10 @@ export default function SafariItineraries({
                 document.getElementById('itineraries')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
             >
-              Show fewer safaris
+              Pokaż mniej safari
             </button>
           )}
-          <span>{Math.min(visibleCount, filteredSafaris.length)} of {filteredSafaris.length} shown</span>
+          <span>Pokazano {Math.min(visibleCount, filteredSafaris.length)} z {filteredSafaris.length}</span>
         </div>
       )}
     </section>

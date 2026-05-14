@@ -4,57 +4,57 @@ export const TRANSFERS_CTA_IMAGE = '/assets/images/home/stone-town-waterfront.we
 export const TRANSFERS_HOW_IT_WORKS = [
   {
     step: '01',
-    title: 'Tell us your details',
-    text: 'Share your flight number, arrival time, hotel name, and group size via WhatsApp or the booking form. We confirm within a few hours.',
+    title: 'Podaj szczegóły',
+    text: 'Wyślij numer lotu, godzinę przylotu, nazwę hotelu i liczbę osób przez WhatsApp albo formularz. Potwierdzimy w ciągu kilku godzin.',
   },
   {
     step: '02',
-    title: 'We track your flight',
-    text: "Our drivers monitor your flight in real time. If it's early or delayed, we adjust — no waiting charges, no missed pickups.",
+    title: 'Śledzimy Twój lot',
+    text: 'Kierowcy monitorują lot w czasie rzeczywistym. Jeśli przylot jest wcześniej lub opóźniony, dopasujemy odbiór bez opłat za czekanie.',
   },
   {
     step: '03',
-    title: 'Seamless arrival',
-    text: "Your driver meets you at arrivals with a name board. Luggage loaded, AC on, you're at your hotel in 20–45 minutes.",
+    title: 'Spokojny przyjazd',
+    text: 'Kierowca czeka w hali przylotów z tabliczką. Bagaż zapakowany, klimatyzacja włączona, a Ty jedziesz do hotelu.',
   },
 ];
 
 export const TRANSFERS_INCLUDED = [
-  'Private transfer pricing by route',
-  'Meet & greet with name board',
-  'Flight tracking & delay monitoring',
-  'Air-conditioned vehicle',
-  'Luggage handling',
-  'Bottled water on board for premium bookings',
-  'Tourist-safe licensed drivers',
-  'Hotel drop-off door-to-door',
-  'WhatsApp support before arrival',
+  'Cena dopasowana do trasy',
+  'Powitanie z tabliczką',
+  'Śledzenie lotu i opóźnień',
+  'Samochód z klimatyzacją',
+  'Pomoc z bagażem',
+  'Woda na pokładzie przy rezerwacjach premium',
+  'Sprawdzeni, licencjonowani kierowcy',
+  'Dojazd pod drzwi hotelu',
+  'Wsparcie WhatsApp przed przylotem',
 ];
 
 export const TRANSFERS_FAQS = [
   {
-    q: 'How much does an airport transfer cost?',
-    a: 'Private airport transfers start from $25 per vehicle to Stone Town, $45 per vehicle to Paje or Jambiani, and $50 per vehicle to Nungwi or Kendwa. Premium SUV, VIP concierge, group, and minivan rates are priced separately.',
+    q: 'Ile kosztuje transfer z lotniska?',
+    a: 'Ceny prywatnego transferu z lotniska zaczynają się od $25 za samochód do Stone Town, $45 do Paje lub Jambiani i $50 do Nungwi albo Kendwa. SUV premium, obsługę VIP oraz przejazdy dla większych grup wyceniamy indywidualnie.',
     open: true,
   },
   {
-    q: 'What if my flight is delayed?',
-    a: "We track your flight in real time using the flight number you give us. Your driver will wait at no extra charge for delays up to 2 hours. For longer delays we'll adjust your booking and keep in touch via WhatsApp.",
+    q: 'Co jeśli mój lot się opóźni?',
+    a: 'Śledzimy lot w czasie rzeczywistym na podstawie numeru, który nam podasz. Kierowca poczeka bez dopłaty przy opóźnieniach do 2 godzin. Przy dłuższych opóźnieniach dopasujemy rezerwację i będziemy w kontakcie przez WhatsApp.',
   },
   {
-    q: 'Can you pick me up from my hotel at 3am?',
-    a: 'Yes. We operate 24 hours, 7 days a week. Early morning and late-night pickups are common — just give us the time when you book.',
+    q: 'Czy możecie odebrać mnie z hotelu o 3:00?',
+    a: 'Tak. Działamy 24 godziny na dobę, 7 dni w tygodniu. Bardzo wczesne i późne odbiory są normalne — podaj godzinę przy rezerwacji.',
   },
   {
-    q: 'Do you cover the north coast (Nungwi, Kendwa)?',
-    a: 'Yes — we cover the entire island. Stone Town, Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje, Bwejuu, Jambiani, and everywhere in between.',
+    q: 'Czy obsługujecie północne wybrzeże (Nungwi, Kendwa)?',
+    a: 'Tak — obsługujemy całą wyspę. Stone Town, Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje, Bwejuu, Jambiani i wszystkie miejsca pomiędzy.',
   },
   {
-    q: 'Can you arrange transfers for a safari connection?',
-    a: "Absolutely. If you're connecting a Zanzibar stay with a mainland safari, we coordinate the ferry port or Dar airport pickup and can arrange onward road transfer to Arusha or other safari hubs.",
+    q: 'Czy możecie zorganizować transfer pod safari?',
+    a: 'Oczywiście. Jeśli łączysz pobyt na Zanzibarze z safari na kontynencie, koordynujemy odbiór z portu promowego albo lotniska w Dar i możemy zorganizować dalszy przejazd do Arushy lub innych baz safari.',
   },
   {
-    q: 'How do I pay?',
-    a: 'We accept USD, EUR, GBP, and TZS. Standard private transfers can usually be paid on the day. Premium, VIP, group, and long-distance bookings may require a deposit to secure the vehicle and driver.',
+    q: 'Jak zapłacić?',
+    a: 'Akceptujemy USD, EUR, GBP i TZS. Standardowy transfer prywatny zwykle można opłacić w dniu przejazdu. Przy rezerwacjach premium, VIP, dla grup i na dłuższych trasach możemy poprosić o zaliczkę, żeby zarezerwować odpowiedni samochód i kierowcę.',
   },
 ];

@@ -21,7 +21,7 @@ export const destinationParadisePackages = [
     category: 'Pakiety poślubne',
     duration: '7 dni',
     idealFor: ['Pary', 'Podróż poślubna'],
-    includes: ['Luksusowe lodge', 'Romantyczny resort przy plaży', 'Prywatne transfery', 'Rejs dhow o zachodzie słońca', 'Kolacja przy świecach na plaży', 'Śniadanie w buszu', 'Przejazdy safari', 'Loty krajowe', 'Profesjonalny przewodnik', 'Opcje spa'],
+    includes: ['Luksusowe lodge', 'Romantyczny resort przy plaży', 'Transfery prywatne', 'Rejs dhow o zachodzie słońca', 'Kolacja przy świecach na plaży', 'Śniadanie w buszu', 'Przejazdy safari', 'Loty krajowe', 'Profesjonalny przewodnik', 'Opcje spa'],
     pricing: { from: 3200, currency: 'USD', unit: 'za osobę' },
     priceTiers: [
       { label: 'Średni standard', price: 3200 },

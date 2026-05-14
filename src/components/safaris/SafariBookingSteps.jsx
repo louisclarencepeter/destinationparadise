@@ -4,8 +4,8 @@ export default function SafariBookingSteps() {
   return (
     <section className="saf-steps reveal" id="booking-steps">
       <header className="saf-steps__head">
-        <span className="section-eyebrow">How booking works</span>
-        <h2 className="section-title">Three steps from idea to confirmed safari.</h2>
+        <span className="section-eyebrow">Jak działa rezerwacja</span>
+        <h2 className="section-title">Trzy kroki od pomysłu do potwierdzonego safari.</h2>
       </header>
       <div className="saf-steps__grid">
         {BOOKING_STEPS.map((item) => (

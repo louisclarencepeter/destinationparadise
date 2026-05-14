@@ -29,5 +29,5 @@ export const EXCURSION_PRACTICAL = [
   { h: "What's always included", icon: 'check', items: ['Hotel pickup & drop-off', 'Licensed local guide', 'Bottled water all day', 'All park & entry fees', 'Equipment (masks, fins, life jackets)'] },
   { h: 'Not included', icon: 'x', items: ['Tips for guides & crew', 'Alcohol on certain trips ($15 add-on)', 'Travel insurance (please bring your own)', 'Spending money for markets/cafés'] },
   { h: 'Family-friendly', icon: 'check', items: ['Spice Tour, Prison Island, Jozani — all ages', 'Safari Blue — kids 8+', 'Dolphins — confident swimmers, 10+', 'Children under 5 free on most trips'] },
-  { h: 'Booking & payment', icon: 'clock', items: ['Book at least 48 hours ahead', '20% deposit, balance on the day', 'Free cancellation up to 24h before', 'USD, EUR, GBP, TZS — all accepted'] },
+  { h: 'Rezerwacja i płatność', icon: 'clock', items: ['Rezerwuj minimum 48 godzin wcześniej', '20% zaliczki, reszta w dniu wycieczki', 'Bezpłatna anulacja do 24 godzin przed', 'Akceptujemy USD, EUR, GBP i TZS'] },
 ];

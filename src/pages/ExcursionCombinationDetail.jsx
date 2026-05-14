@@ -18,8 +18,8 @@ export default function ExcursionCombinationDetail() {
 
   useEffect(() => {
     document.title = combo
-      ? `${combo.title} · Excursion Combination · Destination Paradise`
-      : 'Excursion Combination Not Found · Destination Paradise';
+      ? `${combo.title} · Kombinacja wycieczek · Destination Paradise`
+      : 'Kombinacja wycieczek nie znaleziona · Destination Paradise';
   }, [combo]);
 
   if (!combo) {
@@ -27,10 +27,10 @@ export default function ExcursionCombinationDetail() {
       <main className="excursions-page">
         <section className="exc-day" style={{ textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div>
-            <span className="section-eyebrow">Excursion combinations</span>
-            <h1 className="section-title">Combination not found</h1>
-            <p className="section-lead">That combination is not in our current list. Browse all excursions below.</p>
-            <Link className="btn" to="/excursions" style={{ marginTop: '1.5rem' }}>Back to excursions →</Link>
+            <span className="section-eyebrow">Kombinacje wycieczek</span>
+            <h1 className="section-title">Nie znaleziono kombinacji</h1>
+            <p className="section-lead">Tej kombinacji nie ma na aktualnej liście. Zobacz wszystkie wycieczki poniżej.</p>
+            <Link className="btn" to="/excursions" style={{ marginTop: '1.5rem' }}>Wróć do wycieczek →</Link>
           </div>
         </section>
       </main>
@@ -40,9 +40,9 @@ export default function ExcursionCombinationDetail() {
   return (
     <main className="excursions-page exc-detail">
       <nav className="exc-detail__crumbs" aria-label="Breadcrumb">
-        <Link to="/">Home</Link>
+        <Link to="/">Strona główna</Link>
         <span aria-hidden="true">→</span>
-        <Link to="/excursions">Excursions</Link>
+        <Link to="/excursions">Wycieczki</Link>
         <span aria-hidden="true">→</span>
         <span>{combo.title}</span>
       </nav>
@@ -50,31 +50,31 @@ export default function ExcursionCombinationDetail() {
       <article id={combo.id} className="exc-block exc-block--detail">
         <div className="exc-block__img">
           <ResponsiveImage src={heroImage} alt="" />
-          <span className="exc-block__cat">Combination</span>
+          <span className="exc-block__cat">Kombinacja</span>
         </div>
         <div className="exc-block__body">
           <span className="exc-block__eyebrow">{combo.combo.join(' + ')}</span>
           <h1 className="exc-block__title">{combo.title}</h1>
           <p className="exc-block__desc">{combo.desc}</p>
           <dl className="exc-block__facts">
-            <div><dt>Length</dt><dd>{combo.length}<small>Sequenced for one trip</small></dd></div>
-            <div><dt>Stops</dt><dd>{combo.combo.length}<small>{combo.combo.join(' + ')}</small></dd></div>
-            <div><dt>Style</dt><dd>Private plan<small>Best as a tailored day</small></dd></div>
-            <div><dt>Quote</dt><dd>24h<small>Final timing and price</small></dd></div>
+            <div><dt>Długość</dt><dd>{combo.length}<small>Ułożone jako jedna trasa</small></dd></div>
+            <div><dt>Przystanki</dt><dd>{combo.combo.length}<small>{combo.combo.join(' + ')}</small></dd></div>
+            <div><dt>Styl</dt><dd>Prywatny plan<small>Najlepiej jako dzień na miarę</small></dd></div>
+            <div><dt>Wycena</dt><dd>24h<small>Finalny czas i cena</small></dd></div>
           </dl>
           <div className="exc-block__cols">
             <div className="exc-block__col">
-              <h4>Included experiences</h4>
+              <h4>Doświadczenia w planie</h4>
               <ul>{combo.combo.map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
             <div className="exc-block__col">
-              <h4>Ideal for</h4>
+              <h4>Idealne dla</h4>
               <ul>{combo.idealFor.map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
           </div>
           <div className="exc-block__cols">
             <div className="exc-block__col">
-              <h4>Open each stop</h4>
+              <h4>Otwórz każdy przystanek</h4>
               <ul>
                 {excursions.map((item) => (
                   <li key={item.id}><Link to={`/excursions/${item.id}`}>{item.title}</Link></li>
@@ -82,32 +82,32 @@ export default function ExcursionCombinationDetail() {
               </ul>
             </div>
             <div className="exc-block__col">
-              <h4>Planning note</h4>
+              <h4>Uwagi planistyczne</h4>
               <ul>
-                <li>Pickup time depends on hotel location, tides, and daylight.</li>
-                <li>Some combinations work best privately so the pacing stays comfortable.</li>
-                <li>We confirm the final route, meals, guide, and transfers before booking.</li>
+                <li>Godzina odbioru zależy od lokalizacji hotelu, pływów i światła dziennego.</li>
+                <li>Część kombinacji najlepiej działa prywatnie, żeby tempo było wygodne.</li>
+                <li>Przed rezerwacją potwierdzamy finalną trasę, posiłki, przewodnika i transfery.</li>
               </ul>
             </div>
           </div>
           <div className="exc-block__actions">
             {minPrice > 0 ? (
-              <span className="exc-block__price">${minPrice}<small>estimated from listed stops</small></span>
+              <span className="exc-block__price">${minPrice}<small>szacunek z podanych przystanków</small></span>
             ) : (
-              <span className="exc-block__price-note">Price on request</span>
+              <span className="exc-block__price-note">Cena na zapytanie</span>
             )}
-            <span className="exc-block__price-note">Final combination price depends on transfers, private guide, meals, and pickup area.</span>
-            <Link className="btn" to={`/booking?type=custom&title=${encodeURIComponent(combo.title)}`}>Book this combination →</Link>
-            <Link className="btn btn--ghost-dark" to="/excursions">All excursions</Link>
+            <span className="exc-block__price-note">Finalna cena kombinacji zależy od transferów, prywatnego przewodnika, posiłków i miejsca odbioru.</span>
+            <Link className="btn" to={`/booking?type=custom&title=${encodeURIComponent(combo.title)}`}>Zarezerwuj tę kombinację →</Link>
+            <Link className="btn btn--ghost-dark" to="/excursions">Wszystkie wycieczki</Link>
           </div>
         </div>
       </article>
 
       <section className="exc-day" id="sequence">
         <div className="exc-day__head">
-          <span className="section-eyebrow">Suggested sequence</span>
-          <h2 className="section-title">How the day flows</h2>
-          <p className="section-lead">This is the cleanest order for the combination. We adjust the timing around your hotel, tide, and weather.</p>
+          <span className="section-eyebrow">Proponowana kolejność</span>
+          <h2 className="section-title">Jak płynie dzień</h2>
+          <p className="section-lead">To najczystsza kolejność dla tej kombinacji. Godziny dopasowujemy do hotelu, pływów i pogody.</p>
         </div>
         <div className="exc-day__timeline">
           {combo.rhythm.map(([time, title, text]) => (
@@ -122,11 +122,11 @@ export default function ExcursionCombinationDetail() {
       <section className="exc-cta">
         <div className="exc-cta__bg"><ResponsiveImage src={heroImage} alt="" /></div>
         <div className="exc-cta__inner">
-          <h2>Ready to book {combo.title}?</h2>
-          <p>Tell us your hotel, date, and group size. We’ll confirm the best timing, pickup, guide, and final combination price.</p>
+          <h2>Gotowi zarezerwować {combo.title}?</h2>
+          <p>Podaj hotel, datę i liczbę osób. Potwierdzimy najlepszą godzinę, odbiór, przewodnika i finalną cenę kombinacji.</p>
           <div className="exc-cta__btns">
-            <Link className="btn btn--lg" to={`/booking?type=custom&title=${encodeURIComponent(combo.title)}`}>Get in touch →</Link>
-            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Plan with AI</Link>
+            <Link className="btn btn--lg" to={`/booking?type=custom&title=${encodeURIComponent(combo.title)}`}>Napisz do nas →</Link>
+            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Zaplanuj z AI</Link>
           </div>
         </div>
       </section>

@@ -1241,4 +1241,404 @@ const EXCURSIONS_RAW = [
   },
 ];
 
-export const EXCURSIONS = EXCURSIONS_RAW;
+const EXCURSION_TRANSLATIONS = {
+  'spice-tour': {
+    title: 'Wycieczka przyprawowa',
+    eyebrow: 'Ulubiona rodzinna · dla każdego wieku',
+    description: 'Spacer z przewodnikiem przez plantacje goździków, cynamonu, gałki muszkatołowej, pieprzu, ziół i roślin leczniczych, zakończony aromatycznym lunchem suahili.',
+    highlights: ['Goździki, cynamon, gałka muszkatołowa i pieprz', 'Degustacje, zapachy i praktyczne odkrywanie', 'Lunch suahili z przyprawami'],
+  },
+  'stone-town': {
+    title: 'Historyczny spacer po Stone Town',
+    eyebrow: 'Dziedzictwo · lista UNESCO',
+    description: 'Kulturalny spacer przez historyczne Stone Town: House of Wonders, Palace Museum, Arab Fort, katedry, meczety, targi i rzeźbione drzwi w wąskich uliczkach.',
+    highlights: ['House of Wonders i Palace Museum', 'Arab Fort i Forodhani Gardens', 'Rzeźbione drzwi, targi, meczety i katedry'],
+  },
+  'prison-island': {
+    title: 'Rejs na Prison Island',
+    eyebrow: 'Krótka przeprawa · lekki dzień',
+    description: 'Rejs na Changuu: gigantyczne żółwie Aldabra, biała plaża, snorkeling przy rafie oraz historia więzienia i stacji kwarantanny.',
+    highlights: ['Sanktuarium żółwi Aldabra', 'Biała plaża i koralowe baseny', 'Ruiny więzienia i stacji kwarantanny'],
+  },
+  jozani: {
+    title: 'Las Jozani',
+    eyebrow: 'Gatunki endemiczne · łatwy spacer',
+    description: 'Spacer z przewodnikiem po jedynym parku narodowym Zanzibaru: gerezy rude, kameleony, leśne ptaki i kładka przez mangrowce.',
+    highlights: ['Tropienie endemicznych gerez rudych', 'Kameleony, leśne ptaki i dzika przyroda', 'Spacer po kładce przez mangrowce'],
+  },
+  dolphins: {
+    title: 'Wycieczka do delfinów',
+    eyebrow: 'Wczesny start · odpowiedzialna obserwacja',
+    description: 'Rejs z Kizimkazi, aby wypatrywać delfinów butlonosych i humbakowych, z możliwością wejścia do wody przy dobrych warunkach i zasadach przyjaznych delfinom.',
+    highlights: ['Stada delfinów butlonosych i humbakowych', 'Spokojna, odpowiedzialna obserwacja', 'Poranek na spokojnej wodzie'],
+  },
+  'sunset-rock': {
+    title: 'Zachód słońca i restauracja The Rock',
+    eyebrow: 'Wieczór · ikoniczna kolacja',
+    description: 'Wieczór na plaży Michamvi przy zachodzie słońca, z opcjonalną kolacją lub wizytą przy słynnej restauracji The Rock na skale w lagunie.',
+    priceNote: 'Zachód słońca przy The Rock',
+    highlights: ['Zachód słońca nad Oceanem Indyjskim', 'Czas na plaży Michamvi', 'Opcjonalna wizyta w The Rock Restaurant'],
+  },
+  'snorkeling-tour': {
+    title: 'Snorkeling · Blue Lagoon',
+    eyebrow: 'Rafa · spokojna woda',
+    description: 'Wycieczka snorkelingowa do Blue Lagoon: spokojna, przejrzysta woda, kolorowe rafy, tropikalne ryby i tradycyjny rejs dhow.',
+    priceNote: 'Cena zależna od liczby osób w grupie',
+    highlights: ['Spokojna, krystaliczna woda laguny', 'Kolorowa rafa i życie podwodne', 'Tradycyjny rejs dhow'],
+  },
+  'village-tour': {
+    title: 'Spacer po wiosce Bwejuu',
+    eyebrow: 'Lokalne życie · wizyta z szacunkiem',
+    description: 'Spacer z przewodnikiem przez Bwejuu: spotkania z mieszkańcami, domy, sklepiki, szkoła i autentyczny rytm wschodniego wybrzeża.',
+    priceNote: 'Doświadczenie kulturowe w wiosce',
+    highlights: ['Spotkania z mieszkańcami w domach i sklepach', 'Wizyta w lokalnej szkole', 'Plantacje alg i rybackie życie z bliska'],
+  },
+  mnemba: {
+    title: 'Snorkeling Mnemba i północ Zanzibaru',
+    eyebrow: 'Cały dzień · najczystsza woda',
+    description: 'Cały dzień łączący snorkeling przy koralowym pierścieniu Mnemba z relaksem na plaży Nungwi na północy Zanzibaru.',
+    priceNote: 'Dostępny prywatny czarter',
+    highlights: ['Miejsca snorkelingowe przy koralowym pierścieniu', 'Częste spotkania żółwi i delfinów', 'Popołudnie na plaży Nungwi'],
+  },
+  'safari-blue': {
+    title: 'Safari Blue',
+    eyebrow: 'Klasyk · najczęściej wybierane',
+    description: 'Całodniowa przygoda na tradycyjnej dhow w zatoce Menai: piknik na ławicy piasku, mangrowce, rafy snorkelingowe i lunch z owocami morza.',
+    highlights: ['Tradycyjny rejs dhow', 'Piknik z owocami morza na ławicy piasku', 'Kąpiel w mangrowcach i snorkeling'],
+  },
+  'fishing-kizimkazi': {
+    title: 'Wędkowanie w Kizimkazi',
+    eyebrow: 'Pełne morze · duże ryby',
+    description: 'Dzień połowów głębinowych przy szelfie Kizimkazi: tuńczyk, kingfish, marlin i dorado w bogatych wodach pelagicznych.',
+    priceNote: 'Połowy głębinowe za osobę',
+    highlights: ['Trolling na dużych głębokościach', 'Tuńczyk, kingfish, marlin i dorado', 'Sprzęt i przynęta w cenie'],
+  },
+  'local-fishing': {
+    title: 'Lokalne tradycyjne wędkowanie',
+    eyebrow: 'Tradycyjnie · z lokalnymi rybakami',
+    description: 'Poranek na drewnianej dhow z zanzibarskimi rybakami: proste narzędzia, ręczne żyłki i prawdziwy dzień na morzu.',
+    priceNote: 'Lokalne doświadczenie wędkarskie za osobę',
+    highlights: ['Rejs z lokalnymi rybakami na drewnianej dhow', 'Połowy ręczne przy rafach', 'Tuńczyk, barakuda, grouper i snapper'],
+  },
+  mangrove: {
+    title: 'Mangrowce w Chwaka Bay',
+    eyebrow: 'Natura · ptaki morskie · lunch',
+    description: 'Rejs po mangrowcach Chwaka Bay: kanały mangrowe, ptaki, snorkeling i lokalny lunch nad zatoką.',
+    priceNote: 'Doświadczenie ekosystemu mangrowego',
+    highlights: ['Lokalna łódź przez kanały mangrowe', 'Przystanek na snorkeling w zatoce', 'Lunch suahili w rybackiej wiosce'],
+  },
+  'sandbank-picnic': {
+    title: 'Piknik na ławicy Pange',
+    eyebrow: 'Połączenie · Prison Island + ławica piasku',
+    description: 'Spokojny całodniowy plan łączący Prison Island z czasem na Pange Sandbank: snorkeling, kąpiel i długi lunch na piasku.',
+    priceNote: 'Cena za osobę w grupie',
+    highlights: ['Poranek na Prison Island', 'Popołudnie na Pange Sandbank', 'Snorkeling, pływanie i lunch na plaży'],
+  },
+  cave: {
+    title: 'Kąpiel w Maalum Cave',
+    eyebrow: 'Słodka woda · malownicza jaskinia',
+    description: 'Półdniowa wizyta w naturalnej jaskini Maalum: słodkowodny basen pod otwartym niebem i jedno z najbardziej fotogenicznych miejsc Zanzibaru.',
+    priceNote: 'Kąpiel w jaskini i krótka eksploracja',
+    highlights: ['Naturalny słodkowodny basen', 'Chłodna, spokojna kąpiel w cieniu', 'Jedno z najbardziej fotogenicznych miejsc wyspy'],
+  },
+  'north-nungwi': {
+    title: 'Północ wyspy · Nungwi',
+    eyebrow: 'Dzień plażowy · północne wybrzeże',
+    description: 'Dzień zwiedzania północy wokół Nungwi: najlepsze plaże, budowniczowie dhow, akwarium żółwi i powolny lunch na piasku.',
+    priceNote: 'Doświadczenie północnego wybrzeża za osobę',
+    highlights: ['Najlepsze plaże do pływania na wyspie', 'Stocznia dhow przy porcie', 'Akwarium żółwi Mnarani'],
+  },
+  'cooking-coffee': {
+    title: 'Lekcja gotowania i kawa',
+    eyebrow: 'Praktycznie · od targu do talerza',
+    description: 'Wizyta na targu, spacer po farmie przypraw, lekcja gotowania suahili i ceremonia kawy na dachu w Stone Town.',
+    priceNote: 'Tradycyjne gotowanie i kawa',
+    highlights: ['Wizyta na lokalnym targu', 'Gotowanie posiłku suahili od podstaw', 'Ceremonia kawy na dachu'],
+  },
+  'street-food': {
+    title: 'Street food i nocny targ',
+    eyebrow: 'Wieczór · nocny targ',
+    description: 'Wieczór przez Forodhani Night Market i Darajani: pizza zanzibarska, urojo, mishkaki, świeże owoce morza i sok z trzciny.',
+    priceNote: 'Street food w Stone Town',
+    highlights: ['Degustacja na Forodhani Night Market', 'Zanzibar pizza, mishkaki i urojo', 'Darajani Market nocą'],
+  },
+  'healer-herbal': {
+    title: 'Tradycyjny uzdrowiciel i zioła',
+    eyebrow: 'Kultura · rośliny lecznicze',
+    description: 'Spotkanie z tradycyjnym uzdrowicielem suahili i opowieść o lokalnych roślinach, ziołowych recepturach i praktykach przekazywanych od pokoleń.',
+    priceNote: 'Tradycyjny uzdrowiciel i zioła',
+    highlights: ['Spotkanie z tradycyjnym uzdrowicielem', 'Rozpoznawanie lokalnych roślin leczniczych', 'Historie o uzdrawianiu suahili'],
+  },
+  'village-workshop': {
+    title: 'Wioska i warsztaty',
+    eyebrow: 'Praktycznie · z lokalnymi rodzinami',
+    description: 'Głębsze doświadczenie wioski: wyplatanie z kokosa, gotowanie, rolnictwo, ceramika i tradycyjne rzemiosło z lunchem u rodziny.',
+    priceNote: 'Warsztaty lokalnego rzemiosła',
+    highlights: ['Wyplatanie z kokosa i ceramika', 'Praktyczne rolnictwo i gotowanie', 'Lunch z lokalną rodziną'],
+  },
+  'private-sunset-dhow-dinner': {
+    title: 'Prywatny rejs dhow o zachodzie z kolacją',
+    eyebrow: 'Prywatnie · luksus · kolacja',
+    description: 'Prywatna luksusowa dhow o zachodzie słońca: kolacja z owocami morza, muzyka suahili, tropikalne napoje i światło świec pod gwiazdami.',
+    priceNote: 'Prywatna kolacja na dhow o zachodzie',
+    highlights: ['Prywatny czarter dhow', 'Kolacja z owocami morza i muzyka suahili', 'Świece i gwiazdy'],
+  },
+  nakupenda: {
+    title: 'Piknik na Nakupenda Sandbank',
+    eyebrow: 'Ławica piasku · turkusowa woda',
+    description: 'Spokojny półdzień na słynnej Nakupenda Sandbank: snorkeling, lunch z owocami morza, tropikalne owoce, opalanie i przejrzysta woda.',
+    priceNote: 'Cena za osobę w grupie',
+    highlights: ['Rejs na ławicę piasku', 'Snorkeling i kąpiel w czystej wodzie', 'Lunch z owocami morza na piasku'],
+  },
+  'mangrove-kayak': {
+    title: 'Kajaki wśród mangrowców',
+    eyebrow: 'Kajak · cicha natura',
+    description: 'Spływ kajakiem z przewodnikiem przez lasy mangrowe i ukryte kanały: spokojna natura, ptaki, lokalne wioski i opcjonalny zachód słońca.',
+    priceNote: 'Kajakowa przygoda w mangrowcach',
+    highlights: ['Kajaki przez kanały mangrowe', 'Ptaki i spokojna natura', 'Opcjonalny zachód słońca'],
+  },
+  chumbe: {
+    title: 'Chumbe Island Coral Park',
+    eyebrow: 'Eco · chroniona rafa',
+    description: 'Dzień w chronionym parku morskim Chumbe: snorkeling na jednej z najzdrowszych raf Afryki Wschodniej, spacer przyrodniczy i nauka o ochronie.',
+    priceNote: 'Dzień w parku morskim za osobę',
+    highlights: ['Dziewicza chroniona rafa', 'Leśny spacer przyrodniczy', 'Edukacja o ochronie przyrody'],
+  },
+  'seaweed-coop': {
+    title: 'Plantacje alg i kobieca kooperatywa',
+    eyebrow: 'Zrównoważenie · prowadzone przez kobiety',
+    description: 'Poranek na farmach alg z kobietami, które je prowadzą: zbiór, suszenie oraz produkty z alg, od mydeł po pielęgnację.',
+    priceNote: 'Wycieczka po kooperatywie alg',
+    highlights: ['Wizyta w kobiecej kooperatywie', 'Zbiory podczas odpływu', 'Produkty na bazie alg'],
+  },
+  'turtle-conservation': {
+    title: 'Centrum ochrony żółwi',
+    eyebrow: 'Ochrona przyrody · dla każdego wieku',
+    description: 'Wizyta w centrum ratowania i rehabilitacji żółwi: poznaj pracę zespołu, nakarm żółwie i opcjonalnie popływaj w naturalnej lagunie.',
+    priceNote: 'Doświadczenie ochrony żółwi',
+    highlights: ['Centrum ratowania i rehabilitacji żółwi', 'Sesja karmienia', 'Opcjonalna kąpiel w naturalnej lagunie'],
+  },
+  'butterfly-center': {
+    title: 'Centrum motyli i spacer przyrodniczy',
+    eyebrow: 'Rodzinnie · łatwy spacer',
+    description: 'Wycieczka po tropikalnych ogrodach motyli przy Jozani: ochrona gatunków, rozpoznawanie i bioróżnorodność lasu.',
+    priceNote: 'Wejście do centrum motyli',
+    highlights: ['Tropikalne ogrody motyli', 'Spacer z rozpoznawaniem gatunków', 'Często łączone z Jozani'],
+  },
+  stargazing: {
+    title: 'Nocne obserwowanie gwiazd na plaży',
+    eyebrow: 'Noc · astronomia',
+    description: 'Spokojny wieczór na plaży: teleskop, afrykańskie legendy nieba, małe ognisko i opcjonalna astrofotografia.',
+    priceNote: 'Obserwowanie gwiazd na plaży',
+    highlights: ['Teleskop i opowieści o niebie', 'Ognisko na plaży', 'Opcjonalna astrofotografia'],
+  },
+  'organic-spice': {
+    title: 'Organiczna farma przypraw i ziół',
+    eyebrow: 'Eco · zrównoważone rolnictwo',
+    description: 'Rozszerzona wycieczka przyprawowa skupiona na rolnictwie organicznym, ziołach leczniczych, zrównoważeniu i permakulturze.',
+    priceNote: 'Organiczna farma przypraw',
+    highlights: ['Farmy z certyfikacją organiczną', 'Ogród ziół leczniczych', 'Permakultura w praktyce'],
+  },
+  'turtle-nesting': {
+    title: 'Wolontariat przy gniazdach żółwi',
+    eyebrow: 'Ochrona · sezon lęgowy',
+    description: 'Sezonowe działanie ochronne: sprzątanie plaży, monitoring gniazd żółwi i edukacja ekologiczna z lokalnymi zespołami morskimi.',
+    priceNote: 'Obserwacja gniazdowania żółwi',
+    highlights: ['Monitoring gniazd z lokalnym zespołem', 'Udział w sprzątaniu plaży', 'Wprowadzenie ekologiczne'],
+  },
+  kitesurfing: {
+    title: 'Lekcje kitesurfingu i kite safari',
+    eyebrow: 'Kite · wszystkie poziomy',
+    description: 'Profesjonalny kitesurfing w Paje i Jambiani: lekcje dla początkujących, kliniki zaawansowane i downwind kite safari ze sprzętem.',
+    priceNote: 'Lekcja kitesurfingu za godzinę',
+    highlights: ['Instruktorzy z certyfikatem IKO', 'Wypożyczenie pełnego sprzętu', 'Downwind kite safari'],
+  },
+  'horse-riding': {
+    title: 'Jazda konna na plaży',
+    eyebrow: 'Plażowa przejażdżka · opcja zachodu',
+    description: 'Malownicza przejażdżka po plaży: łagodne trasy dla początkujących, opcje zachodu słońca i pływania z końmi oraz prywatne romantyczne przejazdy.',
+    priceNote: 'Jazda konna na plaży',
+    highlights: ['Przejażdżka plażą w dowolnym tempie', 'Zachód słońca i pływanie z końmi', 'Prywatna romantyczna opcja'],
+  },
+  'quad-bike': {
+    title: 'Przygoda na quadach',
+    eyebrow: 'ATV · off-road',
+    description: 'Off-roadowa trasa quadami przez wioski, plantacje i ukryte plaże, z krótkimi przystankami kulturowymi i degustacją owoców.',
+    priceNote: 'Przygoda quadem',
+    highlights: ['Trasa przez wioski i plantacje', 'Ukryte plaże', 'Przerwa na degustację owoców'],
+  },
+  'jet-ski': {
+    title: 'Jet ski na oceanie',
+    eyebrow: 'Prędkość · trasa po oceanie',
+    description: 'Szybka trasa wzdłuż wybrzeża: z przewodnikiem do ukrytych plaż i zatok albo freestyle na otwartej wodzie.',
+    priceNote: 'Cena startowa za wynajem jet ski',
+    highlights: ['Trasa wybrzeżem z przewodnikiem', 'Przystanki przy ukrytych plażach', 'Opcja freestyle'],
+  },
+  parasailing: {
+    title: 'Parasailing',
+    eyebrow: 'Z lotu ptaka · widoki na ocean',
+    description: 'Krótki, ekscytujący lot nad oceanem: widok z góry na wybrzeże i turkusową wodę, w opcji tandem lub solo.',
+    priceNote: 'Parasailing za osobę',
+    highlights: ['Lot tandem lub solo', 'Widoki z góry na wybrzeże', 'Opcja GoPro'],
+  },
+  skydive: {
+    title: 'Skydive Zanzibar',
+    eyebrow: 'Premium · skok tandemowy',
+    description: 'Skok tandemowy nad wybrzeżem Zanzibaru: widoki na otwarty ocean, lądowanie na plaży i wideo HD ze skoku.',
+    priceNote: 'Skok spadochronowy w tandemie',
+    highlights: ['Tandem z certyfikowanym instruktorem', 'Wideo HD ze skoku', 'Lądowanie na plaży'],
+  },
+  'dhow-building': {
+    title: 'Tradycyjna budowa dhow',
+    eyebrow: 'Praktycznie · dziedzictwo rzemiosła',
+    description: 'Doświadczenie kulturowe z lokalnymi rzemieślnikami dhow: obróbka drewna, pokaz tradycyjnej budowy łodzi, historie wioski i poczęstunek.',
+    priceNote: 'Grupa od $45 · prywatnie od $120 · warsztat premium od $180',
+    highlights: ['Lokalni rzemieślnicy dhow', 'Praktyczna praca z drewnem', 'Pokaz tradycyjnej budowy łodzi'],
+  },
+  'advanced-diving': {
+    title: 'Zaawansowane nurkowania',
+    eyebrow: 'Tylko certyfikowani nurkowie',
+    description: 'Nurkowania PADI w zaawansowanych miejscach: Leven Bank i Tumbatu, nurty, ogrody koralowe, żółwie, barakudy, tuńczyki i rekiny rafowe.',
+    priceNote: 'Pakiet nurkowy dla certyfikowanych',
+    highlights: ['Leven Bank i Tumbatu', 'Nurkowania dryfowe i ściany', 'Spotkania z dużymi rybami'],
+  },
+  'transparent-kayak-sup': {
+    title: 'Przezroczyste kajaki i SUP',
+    eyebrow: 'Szklane dno · łatwa woda',
+    description: 'Spokojne pływanie przezroczystymi kajakami i deskami SUP: pod Tobą życie rafy i małe stworzenia morskie.',
+    priceNote: 'Kajak i SUP za osobę',
+    highlights: ['Przezroczyste kajaki', 'Deski SUP', 'Spokojna trasa przy rafie'],
+  },
+  'ocean-sand-combo': {
+    title: 'Pakiet Ocean & Sand Adventure',
+    eyebrow: 'Premium · dzień wielu aktywności',
+    description: 'Pełny dzień aktywności: jet ski, parasailing, snorkeling, kajaki i rejs dhow o zachodzie słońca w jednym planie.',
+    priceNote: 'Pakiet przygód ocean i sandbank',
+    highlights: ['Jet ski + parasailing rano', 'Snorkeling i kajak w południe', 'Rejs dhow na zakończenie'],
+  },
+  'historical-ruins': {
+    title: 'Historyczne ruiny Zanzibaru',
+    eyebrow: 'Dziedzictwo · sułtani i handel niewolnikami',
+    description: 'Trasa dziedzictwa: Mtoni Palace, Maruhubi Palace, łaźnie perskie Kidichi, komory Mangapwani i mniej znane miejsca sułtanów.',
+    priceNote: 'Ruiny i dziedzictwo historyczne',
+    highlights: ['Pałace Mtoni i Maruhubi', 'Łaźnie perskie Kidichi', 'Komory niewolników Mangapwani'],
+  },
+  'hidden-alleys': {
+    title: 'Ukryte zaułki Stone Town',
+    eyebrow: 'Powoli · boczne uliczki',
+    description: 'Głębszy spacer przez ukryte zaułki Stone Town, sekretne dziedzińce, rzeźbione drzwi, pracownie artystyczne i dzielnice poza głównym szlakiem.',
+    priceNote: 'Ukryte Stone Town pieszo',
+    highlights: ['Ukryte zaułki i dziedzińce', 'Lokalne pracownie artystyczne', 'Autentyczne dzielnice suahili'],
+  },
+  'persian-baths-sultan': {
+    title: 'Łaźnie perskie i dziedzictwo sułtanów',
+    eyebrow: 'Królewskie dziedzictwo',
+    description: 'Perskie wpływy Zanzibaru: łaźnie Kidichi i Hamamni, ruiny pałaców i rodzinne historie sułtanatu Omanu.',
+    priceNote: 'Łaźnie perskie i historia sułtanów',
+    highlights: ['Łaźnie Kidichi i Hamamni', 'Ruiny pałaców', 'Historie sułtanatu'],
+  },
+  'mangapwani-cave': {
+    title: 'Jaskinia koralowa Mangapwani i komory',
+    eyebrow: 'Historia · jaskinia koralowa',
+    description: 'Przejazd zachodnim wybrzeżem do jaskini koralowej Mangapwani i podziemnych komór używanych po abolicji w nielegalnym handlu niewolnikami.',
+    priceNote: 'Mangapwani cave i komory',
+    highlights: ['Jaskinia koralowa Mangapwani', 'Podziemne komory niewolników', 'Spacer wybrzeżem i spokojna plaża'],
+  },
+  'dhow-heritage': {
+    title: 'Dziedzictwo dhow i morska historia',
+    eyebrow: 'Historia morska',
+    description: 'Wycieczka przez morskie dziedzictwo Zanzibaru: kultura dhow, tradycje budowy łodzi i handel Oceanu Indyjskiego.',
+    priceNote: 'Tradycyjne doświadczenie dhow',
+    highlights: ['Stocznie dhow i muzeum morskie', 'Historia handlu Oceanu Indyjskiego', 'Wizyta u budowniczego łodzi'],
+  },
+  'sauti-busara': {
+    title: 'Festiwal Sauti za Busara',
+    eyebrow: 'Festiwal · muzyka panafrykańska',
+    description: 'Największy afrykański festiwal muzyczny Zanzibaru: koncerty w Starym Forcie, parady w Stone Town, jedzenie i długie wieczory.',
+    priceNote: '4-dniowy karnet Sauti za Busara',
+    highlights: ['Koncerty w Starym Forcie', 'Parada uliczna', 'Panafrykańskie jedzenie i nocne życie'],
+  },
+  ziff: {
+    title: 'Zanzibar International Film Festival',
+    eyebrow: 'Festiwal · film i sztuka',
+    description: 'ZIFF: największy festiwal filmowy Afryki Wschodniej z pokazami, wystawami, warsztatami, muzyką i nocnym Stone Town.',
+    priceNote: 'Karnet festiwalowy ZIFF',
+    highlights: ['Pokazy pod gołym niebem', 'Wystawy i warsztaty', 'Muzyka i wydarzenia pop-up'],
+  },
+  'water-sports-festival': {
+    title: 'Zanzibar Beach & Water Sports Festival',
+    eyebrow: 'Festiwal · sporty wodne',
+    description: 'Sezonowy tydzień sportu i rozrywki: wyścigi dhow, kitesurfing, kajaki, gry plażowe, lokalne występy i zawody wodne.',
+    priceNote: 'Wejście na festiwal sportów wodnych',
+    highlights: ['Wyścigi dhow i zawody kite', 'Gry plażowe i konkursy', 'Lokalne występy'],
+  },
+  'private-vip-island': {
+    title: 'Prywatny dzień VIP na wyspie',
+    eyebrow: 'Premium · w pełni prywatnie',
+    description: 'W pełni prywatny dzień: premium dhow, prywatny szef kuchni, snorkeling, plażowa aranżacja, napoje, fotografia i osobisty plan od początku do końca.',
+    priceNote: 'Prywatna ucieczka VIP',
+    highlights: ['Prywatna dhow i szef kuchni', 'Plan szyty na miarę', 'Fotograf w cenie'],
+  },
+  'wellness-yoga': {
+    title: 'Wellness i joga na plaży',
+    eyebrow: 'Powoli · regenerująco',
+    description: 'Dzień wellness: joga na plaży, medytacja, zdrowa kuchnia suahili, masaż, sound healing i relaks nad oceanem.',
+    priceNote: 'Sesja wellness i joga na plaży',
+    highlights: ['Joga i medytacja na plaży', 'Sesja sound healing', 'Masaż i zdrowa kuchnia'],
+  },
+  'mafia-whale-shark': {
+    title: 'Mafia Island i rekiny wielorybie',
+    eyebrow: 'Sezonowo · pływanie z rekinami wielorybimi',
+    description: 'Sezonowa wyprawa z Zanzibaru na Mafia Island: pływanie z rekinami wielorybimi w czasie żerowania i jeden z najbogatszych ekosystemów morskich Tanzanii.',
+    priceNote: 'Snorkeling z rekinami wielorybimi',
+    highlights: ['Pływanie z rekinami wielorybimi', 'Snorkeling w Mafia Marine Park', 'Spokojny pobyt z niskim wpływem na naturę'],
+  },
+};
+
+const POLISH_FACTS = [
+  ['Czas', null, null],
+  ['Start', null, null],
+  ['Grupa', null, null],
+  ['Najlepsze dla', null, null],
+];
+
+const createPolishFacts = (item) => item.facts?.map((fact, index) => [
+  POLISH_FACTS[index]?.[0] || fact[0],
+  translateCommon(fact[1]),
+  translateCommon(fact[2]),
+]);
+
+const createPolishCols = (item, translation) => {
+  if (!item.cols && !translation.highlights) return item.cols;
+  return [
+    { h: 'Najważniejsze punkty', items: translation.highlights || item.highlights || [] },
+    { h: 'Warto zabrać', items: ['Ochronę przed słońcem', 'Strój dopasowany do wycieczki', 'Wodoodporną torbę lub pokrowiec', 'Trochę gotówki na drobne wydatki'] },
+  ];
+};
+
+const createPolishTimeline = (item) => item.timeline?.map(([time], index, arr) => {
+  if (index === 0) return [time, 'Odbiór z hotelu', 'Odbierzemy Cię o ustalonej godzinie i spokojnie rozpoczniemy dzień.'];
+  if (index === arr.length - 1) return [time, 'Powrót', 'Transfer z powrotem do hotelu lub ustalonego miejsca zakończenia.'];
+  if (index === 1) return [time, 'Start doświadczenia', 'Spotkanie z przewodnikiem, krótkie wprowadzenie i przygotowanie do głównej części wycieczki.'];
+  return [time, 'Czas na miejscu', 'Zwiedzanie, odpoczynek i aktywności dopasowane do pogody, pływów oraz tempa grupy.'];
+});
+
+export const EXCURSIONS = EXCURSIONS_RAW.map((item) => {
+  const translation = EXCURSION_TRANSLATIONS[item.id] || {};
+  const translatedDescription = translation.description || item.description;
+
+  return {
+    ...item,
+    ...translation,
+    categoryLabel: CATEGORY_LABELS[item.category] || item.category,
+    duration: translateCommon(item.duration),
+    group: translateCommon(item.group),
+    priceSub: translateCommon(translation.priceSub || item.priceSub),
+    description: translatedDescription,
+    intro: translation.intro || translatedDescription,
+    highlights: translation.highlights || item.highlights,
+    facts: createPolishFacts(item),
+    cols: createPolishCols(item, translation),
+    timeline: createPolishTimeline(item),
+  };
+});

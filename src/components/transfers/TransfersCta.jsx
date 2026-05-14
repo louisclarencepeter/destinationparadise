@@ -18,10 +18,10 @@ export default function TransfersCta() {
         <div className="tr-cta__overlay" />
       </div>
       <div className="tr-cta__inner">
-        <span className="section-eyebrow">Ready to book?</span>
-        <h2>Tell us your route. We&apos;ll match the right vehicle.</h2>
+        <span className="section-eyebrow">Gotowy do rezerwacji?</span>
+        <h2>Podaj trasę. Dobierzemy właściwy pojazd.</h2>
         <p>
-          Share your flight, hotel, guest count, and luggage needs on WhatsApp. We&apos;ll confirm the best private, premium, or VIP option.
+          Wyślij na WhatsApp lot, hotel, liczbę gości i potrzeby bagażowe. Potwierdzimy najlepszą opcję prywatną, premium albo VIP.
         </p>
         <div className="tr-cta__btns">
           <a
@@ -30,10 +30,10 @@ export default function TransfersCta() {
             target="_blank"
             rel="noreferrer"
           >
-            Book on WhatsApp →
+            Rezerwuj na WhatsApp →
           </a>
           <Link className="btn btn--ghost-light btn--lg" to="/booking?type=transfer#booking-details">
-            Use the booking form
+            Użyj formularza
           </Link>
         </div>
         <div className="tr-cta__contacts">

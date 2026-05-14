@@ -10,23 +10,23 @@ export default function ExcursionsHero() {
         <ResponsiveImage src={EXCURSIONS_HERO_IMAGE} alt="" fetchpriority="high" loading="eager" decoding="sync" />
       </div>
       <div className="exc-hero__inner">
-        <span className="exc-hero__eyebrow">Zanzibar &amp; the coast · handpicked day trips</span>
-        <h1 className="exc-hero__title">One island. <em>{EXCURSIONS.length}+ unforgettable journeys.</em></h1>
-        <p className="exc-hero__lead">Trade resort routines for real Zanzibar — sail a traditional dhow, wander Stone Town with a local guide, snorkel Mnemba reefs, kitesurf in Paje, or join a festival in Stone Town. Every trip is small-group, story-rich, and easy to book.</p>
-        <div className="exc-hero__tags" aria-label="Excursion highlights">
-          <span>Hotel pickup included</span>
-          <span>Private options available</span>
-          <span>Local expert guides</span>
+        <span className="exc-hero__eyebrow">Zanzibar i wybrzeże · wybrane wycieczki jednodniowe</span>
+        <h1 className="exc-hero__title">Jedna wyspa. <em>{EXCURSIONS.length}+ niezapomnianych tras.</em></h1>
+        <p className="exc-hero__lead">Zamień resortową rutynę na prawdziwy Zanzibar: popłyń tradycyjnym dhow, przejdź Stone Town z lokalnym przewodnikiem, zanurkuj przy rafach Mnemba, spróbuj kitesurfingu w Paje albo dołącz do festiwalu w Stone Town.</p>
+        <div className="exc-hero__tags" aria-label="Najważniejsze cechy wycieczek">
+          <span>Odbiór z hotelu w cenie</span>
+          <span>Dostępne opcje prywatne</span>
+          <span>Lokalni przewodnicy</span>
         </div>
         <div className="exc-hero__row">
-          <a className="btn btn--lg" href="#list">Browse all excursions</a>
-          <Link className="btn btn--ghost btn--lg" to="/trip-planner">Build my plan →</Link>
+          <a className="btn btn--lg" href="#list">Zobacz wycieczki</a>
+          <Link className="btn btn--ghost btn--lg" to="/trip-planner">Zbuduj mój plan →</Link>
         </div>
         <div className="exc-hero__meta">
-          <div><strong>{EXCURSIONS.length}</strong><span>Excursions</span></div>
-          {MIN_EXCURSION_PRICE !== null && <div><strong>${MIN_EXCURSION_PRICE}</strong><span>From, per person</span></div>}
-          <div><strong>{CATEGORIES.length}</strong><span>Categories</span></div>
-          <div><strong>Private</strong><span>Options available</span></div>
+          <div><strong>{EXCURSIONS.length}</strong><span>Wycieczek</span></div>
+          {MIN_EXCURSION_PRICE !== null && <div><strong>${MIN_EXCURSION_PRICE}</strong><span>Od, za osobę</span></div>}
+          <div><strong>{CATEGORIES.length}</strong><span>Kategorii</span></div>
+          <div><strong>Prywatne</strong><span>Opcje dostępne</span></div>
         </div>
       </div>
     </section>

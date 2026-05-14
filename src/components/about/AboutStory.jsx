@@ -6,12 +6,12 @@ export default function AboutStory() {
     <section className="ab-story reveal" id="story">
       <div className="ab-story__head">
         <div>
-          <span className="ab-story__eyebrow">Our Story</span>
-          <h2 className="ab-story__title">It started with a <em>dream</em>, far from home.</h2>
+          <span className="ab-story__eyebrow">Nasza historia</span>
+          <h2 className="ab-story__title">Zaczęło się od <em>marzenia</em>, daleko od domu.</h2>
         </div>
         <div className="ab-story__lead">
-          <p>Destination Paradise began as an idea on a piece of paper — and a quiet promise to a place that had given so much. Years ago, while working in a hotel on the east coast of Zanzibar, the first vision appeared. It would take many turns, and many years, before it could become something real.</p>
-          <p>What you see today is the result of patience, family, loss, learning and a refusal to let the idea go. We are a young company with a long story behind us — and we are only just getting started.</p>
+          <p>Destination Paradise zaczęło się jako pomysł na kartce i cicha obietnica złożona miejscu, które dało tak wiele. Lata temu, podczas pracy w hotelu na wschodnim wybrzeżu Zanzibaru, pojawiła się pierwsza wizja. Potrzebowała wielu zakrętów i wielu lat, zanim mogła stać się czymś prawdziwym.</p>
+          <p>To, co widzisz dzisiaj, jest wynikiem cierpliwości, rodziny, straty, nauki i decyzji, by nie puścić tej idei. Jesteśmy młodą firmą z długą historią za sobą — i dopiero zaczynamy.</p>
         </div>
       </div>
 
@@ -27,8 +27,8 @@ export default function AboutStory() {
         </div>
         <div className="ab-timeline__photo-wrap">
           <div className="ab-timeline__photo">
-            <ResponsiveImage src={ABOUT_STORY_IMAGE} alt="A traditional dhow on the Zanzibar coast" loading="lazy" />
-            <div className="ab-timeline__caption">From an idea on paper to a real company — Zanzibar, where it all began.</div>
+            <ResponsiveImage src={ABOUT_STORY_IMAGE} alt="Tradycyjna dhow na wybrzeżu Zanzibaru" loading="lazy" />
+            <div className="ab-timeline__caption">Od pomysłu na kartce do prawdziwej firmy — Zanzibar, gdzie wszystko się zaczęło.</div>
           </div>
         </div>
       </div>

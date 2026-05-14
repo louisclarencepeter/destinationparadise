@@ -4,8 +4,8 @@ export default function TransfersFaq() {
   return (
     <section className="tr-faq">
       <header className="tr-faq__head">
-        <span className="section-eyebrow">FAQs</span>
-        <h2 className="section-title">Before you book.</h2>
+        <span className="section-eyebrow">FAQ</span>
+        <h2 className="section-title">Przed rezerwacją.</h2>
       </header>
       <div className="tr-faq__list">
         {TRANSFERS_FAQS.map((faq) => (

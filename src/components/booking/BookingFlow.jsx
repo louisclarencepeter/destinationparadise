@@ -1,24 +1,24 @@
 const steps = [
   {
     number: '01',
-    title: 'Send the request',
-    text: 'Choose a package, excursion, safari, transfer, or custom route and share your dates.',
+    title: 'Wyślij zapytanie',
+    text: 'Wybierz pakiet, wycieczkę, safari, transfer albo trasę na miarę i podaj daty.',
   },
   {
     number: '02',
-    title: 'We confirm it',
-    text: 'Our team checks availability, vehicles, transfers, guides, routes, and final pricing.',
+    title: 'Potwierdzamy szczegóły',
+    text: 'Zespół sprawdza dostępność, pojazdy, transfery, przewodników, trasy i końcową cenę.',
   },
   {
     number: '03',
-    title: 'Pay securely',
-    text: 'When everything is approved, we send a secure online payment link.',
+    title: 'Płacisz bezpiecznie',
+    text: 'Gdy wszystko zaakceptujesz, wysyłamy bezpieczny link do płatności online.',
   },
 ];
 
 export default function BookingFlow() {
   return (
-    <section className="booking-flow" aria-label="Booking process">
+    <section className="booking-flow" aria-label="Proces rezerwacji">
       {steps.map((step) => (
         <article key={step.number}>
           <span>{step.number}</span>

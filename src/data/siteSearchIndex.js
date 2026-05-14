@@ -6,60 +6,60 @@ import { TRANSFER_PRODUCTS } from './transferProducts.js';
 
 const pageItems = [
   {
-    title: 'Home',
-    category: 'Page',
-    description: 'Start here for Zanzibar trips, safaris, packages, transfers, weather, gallery, and trip planning.',
+    title: 'Strona główna',
+    category: 'Strona',
+    description: 'Zacznij tutaj: Zanzibar, safari, pakiety, transfery, pogoda, galeria i planowanie podróży.',
     to: '/',
-    keywords: ['destination paradise', 'zanzibar', 'tanzania', 'home', 'main page'],
+    keywords: ['destination paradise', 'zanzibar', 'tanzania', 'home', 'strona główna'],
   },
   {
-    title: 'Excursions',
-    category: 'Page',
-    description: 'Browse Zanzibar day trips, dhow sailing, Stone Town, spice farms, snorkeling, dolphins, and nature tours.',
+    title: 'Wycieczki',
+    category: 'Strona',
+    description: 'Przeglądaj wycieczki po Zanzibarze: rejsy dhow, Stone Town, farmy przypraw, snorkeling, delfiny i natura.',
     to: '/excursions',
-    keywords: ['day trips', 'activities', 'tours', 'dhow', 'stone town', 'spice', 'mnemba', 'jozani'],
+    keywords: ['wycieczki', 'atrakcje', 'tours', 'dhow', 'stone town', 'przyprawy', 'mnemba', 'jozani'],
   },
   {
-    title: 'Safaris',
-    category: 'Page',
-    description: 'Mainland wildlife routes across Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha, and more.',
+    title: 'Safari',
+    category: 'Strona',
+    description: 'Trasy wildlife na lądzie stałym: Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha i więcej.',
     to: '/safaris',
-    keywords: ['wildlife', 'big five', 'serengeti', 'ngorongoro', 'tarangire', 'migration', 'game drive'],
+    keywords: ['wildlife', 'wielka piątka', 'serengeti', 'ngorongoro', 'tarangire', 'migracja', 'game drive'],
   },
   {
-    title: 'Packages',
-    category: 'Page',
-    description: 'Safari and Zanzibar packages for honeymoon, family, luxury, culture, migration, and beach holidays.',
+    title: 'Pakiety',
+    category: 'Strona',
+    description: 'Pakiety safari i Zanzibar: honeymoon, rodzina, luksus, kultura, migracja i wakacje na plaży.',
     to: '/packages',
-    keywords: ['holiday package', 'honeymoon', 'family', 'bush and beach', 'safari zanzibar'],
+    keywords: ['pakiet wakacyjny', 'honeymoon', 'rodzina', 'safari i plaża', 'safari zanzibar'],
   },
   {
-    title: 'Transfers',
-    category: 'Page',
-    description: 'Private airport transfers, hotel transfers, group transport, and VIP airport concierge service.',
+    title: 'Transfery',
+    category: 'Strona',
+    description: 'Transfery prywatne z lotniska i hoteli, przejazdy dla grup oraz obsługa VIP na lotnisku.',
     to: '/transfers',
-    keywords: ['airport pickup', 'taxi', 'private car', 'paje', 'nungwi', 'kendwa', 'stone town'],
+    keywords: ['odbiór z lotniska', 'taxi', 'prywatny samochód', 'paje', 'nungwi', 'kendwa', 'stone town'],
   },
   {
-    title: 'Trip Planner',
-    category: 'Page',
-    description: 'Build a custom itinerary around pace, dates, budget, beach time, safaris, and excursions.',
+    title: 'Planer podróży',
+    category: 'Strona',
+    description: 'Zbuduj indywidualny plan według tempa, dat, budżetu, plaży, safari i wycieczek.',
     to: '/trip-planner',
-    keywords: ['custom trip', 'itinerary', 'planner', 'ai planner', 'route'],
+    keywords: ['podróż na miarę', 'itinerary', 'planer', 'ai planner', 'trasa'],
   },
   {
-    title: 'Booking',
-    category: 'Page',
-    description: 'Send a booking request for a package, excursion, safari, transfer, or custom plan.',
+    title: 'Rezerwacja',
+    category: 'Strona',
+    description: 'Wyślij zapytanie o pakiet, wycieczkę, safari, transfer albo plan na miarę.',
     to: '/booking',
-    keywords: ['book now', 'request', 'payment', 'reserve', 'availability'],
+    keywords: ['rezerwuj', 'zapytanie', 'płatność', 'dostępność'],
   },
   {
-    title: 'About Us',
-    category: 'Page',
-    description: 'Learn about Destination Paradise, our mission, story, community, and local travel approach.',
+    title: 'O nas',
+    category: 'Strona',
+    description: 'Poznaj Destination Paradise, naszą misję, historię, społeczność i lokalne podejście do podróży.',
     to: '/aboutus',
-    keywords: ['company', 'team', 'mission', 'story', 'community', 'contact'],
+    keywords: ['firma', 'zespół', 'misja', 'historia', 'społeczność', 'kontakt'],
   },
 ];
 
@@ -67,12 +67,12 @@ const compactList = (items = []) => items.filter(Boolean).join(' · ');
 
 const priceLabel = (pricing) => {
   if (!pricing?.from) return '';
-  return `From $${pricing.from}${pricing.unit ? ` ${pricing.unit.toLowerCase()}` : ''}`;
+  return `Od $${pricing.from}${pricing.unit ? ` ${pricing.unit.toLowerCase()}` : ''}`;
 };
 
 const packageItems = destinationParadisePackages.map((item) => ({
   title: item.title,
-  category: 'Package',
+  category: 'Pakiet',
   description: compactList([item.duration, item.category, item.split, priceLabel(item.pricing)]),
   to: `/packages/${item.slug}`,
   keywords: [
@@ -88,10 +88,10 @@ const packageItems = destinationParadisePackages.map((item) => ({
 const safariItems = ALL_SAFARI_PRODUCTS.map((item) => ({
   title: item.title,
   category: item.productType || 'Safari',
-  description: compactList([item.duration, item.category || item.positioning, item.rib || (item.price ? `From $${item.price} ${item.priceSub || 'pp'}` : '')]),
+  description: compactList([item.duration, item.categoryLabel || item.category || item.positioning, item.rib || (item.price ? `Od $${item.price} ${item.priceSub || 'za osobę'}` : '')]),
   to: `/safaris/${item.id}`,
   keywords: [
-    item.category,
+    item.categoryLabel || item.category,
     item.positioning,
     item.duration,
     item.from,
@@ -104,7 +104,7 @@ const safariItems = ALL_SAFARI_PRODUCTS.map((item) => ({
 
 const safariTypeItems = SAFARI_TYPES.map((item) => ({
   title: item.title,
-  category: 'Safari style',
+  category: 'Styl safari',
   description: compactList([item.bestFor, item.desc]),
   to: `/safaris/types/${item.id}`,
   keywords: [item.bestFor, item.desc, ...(item.highlights || [])],
@@ -112,11 +112,11 @@ const safariTypeItems = SAFARI_TYPES.map((item) => ({
 
 const excursionItems = EXCURSIONS.map((item) => ({
   title: item.title,
-  category: 'Excursion',
-  description: compactList([item.duration, item.category, item.price ? `From $${item.price} ${item.priceSub || 'pp'}` : '', item.description]),
+  category: 'Wycieczka',
+  description: compactList([item.duration, item.categoryLabel || item.category, item.price ? `Od $${item.price} ${item.priceSub || 'za osobę'}` : '', item.description]),
   to: `/excursions/${item.id}`,
   keywords: [
-    item.category,
+    item.categoryLabel || item.category,
     item.eyebrow,
     item.duration,
     item.from,
@@ -129,7 +129,7 @@ const excursionItems = EXCURSIONS.map((item) => ({
 
 const combinationItems = EXCURSION_COMBINATIONS.map((item) => ({
   title: item.title,
-  category: 'Excursion combo',
+  category: 'Kombinacja wycieczek',
   description: compactList([item.length, item.combo?.join(' + '), item.desc]),
   to: `/excursions/combinations/${item.id}`,
   keywords: [item.length, item.desc, ...(item.combo || []), ...(item.idealFor || [])],
@@ -175,9 +175,9 @@ export const SITE_SEARCH_INDEX = [
 ].map(normalizeSearchItem);
 
 export const SITE_SEARCH_POPULAR = [
-  'Airport transfer',
+  'Transfer lotniskowy',
   'Safari Blue',
-  'Honeymoon package',
+  'Pakiet honeymoon',
   'Serengeti',
   'Stone Town',
   'Paje',

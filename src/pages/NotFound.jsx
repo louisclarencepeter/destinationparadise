@@ -3,8 +3,8 @@ import Placeholder from '../components/Placeholder.jsx';
 
 export default function NotFound() {
   useEffect(() => {
-    document.title = 'Page Not Found · Destination Paradise';
+    document.title = 'Nie znaleziono strony · Destination Paradise';
   }, []);
 
-  return <Placeholder eyebrow="404" title="Lost at sea" lead="That page isn't on the map. Head back to the homepage and pick a route." />;
+  return <Placeholder eyebrow="404" title="Zgubiliśmy kurs" lead="Tej strony nie ma na mapie. Wróć na stronę główną i wybierz trasę." />;
 }

@@ -16,8 +16,8 @@ export const TRANSFER_SERVICE_TIERS = [
   },
   {
     value: 'group-transfer',
-    label: 'Transfer grupowy',
-    text: 'Minivany i małe autobusy dla rodzin, grup weselnych, zespołów i grup safari.',
+    label: 'Transfer dla grup',
+    text: 'Minivany i małe autobusy dla rodzin, gości weselnych, zespołów firmowych i grup jadących na safari.',
   },
 ];
 
@@ -28,7 +28,7 @@ export const TRANSFER_PRODUCTS = [
     duration: '15 - 25 minut',
     icon: 'plane',
     description: 'Elegancki prywatny przyjazd do hoteli w Stone Town, na krótkie pobyty, podróże służbowe i dla gości, którzy chcą mieć lotnisko załatwione jeszcze przed lądowaniem.',
-    pricing: ['Prywatny samochód od $25 za pojazd', 'Premium SUV od $45', 'Transfer grupowy od $10 za osobę'],
+    pricing: ['Prywatny samochód od $25 za pojazd', 'Premium SUV od $45', 'Przejazd w grupie od $10 za osobę'],
     details: ['Powitanie w hali przylotów', 'Śledzenie lotu w cenie', 'Hotele w Stone Town', 'Wygodne przy krótkim pobycie'],
     priceSummary: 'Prywatnie od $25',
     category: 'Transfer lotniskowy',
@@ -68,14 +68,14 @@ export const TRANSFER_PRODUCTS = [
   },
   {
     slug: 'group-transfers',
-    title: 'Transfery grupowe i minivany',
+    title: 'Transfery dla grup i minivany',
     duration: 'Rodziny · wydarzenia · zespoły',
     icon: 'group',
     description: 'Skoordynowane przyjazdy dla rodzin, grup weselnych, zespołów firmowych i grup safari podróżujących razem z bagażem.',
     pricing: ['Minivan od $90', 'Mały autobus od $180', 'Indywidualna wycena dla dużych grup'],
     details: ['5 - 25 gości', 'Planowanie bagażu grupy', 'Kilka punktów odbioru', 'Koordynacja z lotniskiem lub hotelem'],
     priceSummary: 'Minivan od $90',
-    category: 'Transfer grupowy',
+    category: 'Transfer dla grup',
   },
   {
     slug: 'vip-airport-service',

@@ -4,8 +4,8 @@ export default function SafariParks() {
   return (
     <section className="parks reveal" id="parks">
       <header className="parks__head">
-        <span className="section-eyebrow">The Northern Circuit & beyond</span>
-        <h2 className="section-title">Five parks. Each its own world.</h2>
+        <span className="section-eyebrow">Północny szlak i dalej</span>
+        <h2 className="section-title">Pięć parków. Każdy jest osobnym światem.</h2>
       </header>
       <div className="parks__grid">
         {PARKS.map((park) => (
