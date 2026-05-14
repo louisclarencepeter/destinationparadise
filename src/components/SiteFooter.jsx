@@ -237,7 +237,7 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
           </div>
         </div>
         <div className="footer__col">
-          <h4>Pages</h4>
+          <h3>Pages</h3>
           <ul>
             <li><Link to="/"><FooterIcon name="home" />Home</Link></li>
             <li><Link to="/excursions"><FooterIcon name="compass" />Excursions</Link></li>
@@ -249,7 +249,7 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
           </ul>
         </div>
         <div className="footer__col">
-          <h4>About Us</h4>
+          <h3>About Us</h3>
           <ul>
             <li><Link to="/aboutus#story"><FooterIcon name="book" />Our story</Link></li>
             <li><Link to="/aboutus#mission"><FooterIcon name="target" />Our mission</Link></li>
@@ -258,7 +258,7 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
           </ul>
         </div>
         <div className="footer__col">
-          <h4>Get in touch</h4>
+          <h3>Get in touch</h3>
           <ul>
             <li><a href={`mailto:${CONTACT_INFO.email}`}><FooterIcon name="mail" />{CONTACT_INFO.email}</a></li>
             <li><a href={`tel:${CONTACT_INFO.phones[0]}`}><FooterIcon name="phone" />+255 768 779 517</a></li>

@@ -109,7 +109,7 @@
   display: flex;
   justify-content: center;
 }
-.footer__col h4 { font-family: var(--dp-font-sans); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-soft); margin: 0 0 1rem; font-weight: 700; }
+.footer__col h3 { font-family: var(--dp-font-sans); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--text-soft); margin: 0 0 1rem; font-weight: 700; }
 .footer__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .6rem; }
 .footer__col a {
   width: fit-content;
