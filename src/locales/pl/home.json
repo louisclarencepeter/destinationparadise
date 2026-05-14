@@ -57,5 +57,98 @@
         "text": "Odbiór z lotniska, transfery hotelowe, diety, zmiany w ostatniej chwili. Napisz do nas, a my się tym zajmiemy."
       }
     }
+  },
+  "excursions": {
+    "eyebrow": "Wycieczki po wyspie",
+    "title": "Wycieczki tworzone przez lokalnych ludzi",
+    "lead": "Dni na wyspie układane z sercem: tradycyjne łodzie, przejrzyste rafy, farmy przypraw i przewodnicy, którzy dorastali na tych brzegach.",
+    "modes": {
+      "ocean_tag": "Ocean",
+      "ocean_text": "Rejsy dhow, ławice piasku, snorkeling, delfiny i dni na rafie.",
+      "culture_tag": "Kultura",
+      "culture_text": "Stone Town, farmy przypraw, kuchnia suahili, budowa dhow i wizyty w wioskach.",
+      "nature_tag": "Natura",
+      "nature_text": "Las Jozani, żółwie, mangrowce i rodzinne spotkania z przyrodą."
+    },
+    "card": {
+      "explore_aria": "Odkryj: {{title}}",
+      "from": "Od",
+      "view_details": "Zobacz szczegóły"
+    },
+    "view_all": "Zobacz wszystkie wycieczki"
+  },
+  "safaris": {
+    "eyebrow": "Dzika przyroda kontynentu",
+    "title": "{{count}} pomysłów na safari",
+    "lead": "Wybierz klasyczną trasę północną, dzikie południe z przelotem, szybkie safari z Zanzibaru albo podróż tematyczną: fotografia, rodzina, kultura, luksus, ptaki, szympansy czy sezon migracji.",
+    "modes": {
+      "classic_tag": "Klasyczne trasy",
+      "classic_text": "Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha, Mahale i Katavi.",
+      "fly_in_tag": "Z przelotem",
+      "fly_in_text": "Krótkie safari z Zanzibaru dla gości, którzy są już na wyspie.",
+      "specialists_tag": "Specjalne style",
+      "specialists_text": "Podróż poślubna, rodzina, fotografia, piesze safari, ptaki i połączenie buszu z plażą."
+    },
+    "features": {
+      "tarangire-day-trip": {
+        "label": "Szybkie safari",
+        "text": "Przyleć na intensywny dzień z dziką przyrodą prosto z Zanzibaru: opłaty parkowe, lunch, przewodnik i game drive są po naszej stronie."
+      },
+      "serengeti-migration": {
+        "label": "Safari migracyjne",
+        "text": "Sprawdzona trasa przez Serengeti: równiny migracji, wielkie koty, obozy, posiłki i przejazdy safari z przewodnikiem."
+      },
+      "nyerere-selous": {
+        "label": "Południowy szlak",
+        "text": "Dziksza trasa z przelotem: safari łodzią, piesze safari, luksusowy obóz, przewodnik i loty krajowe."
+      }
+    },
+    "card": {
+      "from": "Od",
+      "pp_suffix": "za osobę",
+      "view_details": "Zobacz szczegóły"
+    },
+    "view_all": "Zobacz wszystkie safari"
+  },
+  "packages": {
+    "eyebrow": "Pełne portfolio podróży",
+    "title": "{{count}} pakietów: safari, Zanzibar, podróż poślubna, rodzina i kultura",
+    "lead": "Zacznij od sprawdzonego pakietu, a my dopasujemy trasę, standard hoteli, loty, wycieczki i tempo do Twoich dat.",
+    "ribbons": {
+      "best_entry": "Dobry początek",
+      "honeymoon": "Podróż poślubna",
+      "most_complete": "Najpełniejszy"
+    },
+    "tags": {
+      "romance": "Romantycznie",
+      "safari": "Safari",
+      "package": "Pakiet",
+      "stay": "Pobyt",
+      "included": "W cenie",
+      "experience": "Przeżycie"
+    },
+    "card": {
+      "from": "Od",
+      "per_person_default": "za osobę",
+      "view_package": "Zobacz pakiet"
+    },
+    "note": "Pełna strona pakietów obejmuje podróże poślubne, rodzinne, safari z przelotem, migrację, Kilimanjaro, ocean, kulturę, digital nomad i opcje luksusowe.",
+    "view_all": "Zobacz wszystkie pakiety"
+  },
+  "transfers": {
+    "eyebrow": "Transfery prywatne",
+    "title": "Wysiądź z samolotu i jedź prosto do hotelu.",
+    "lead": "Kierowca czeka na lotnisku, pomaga z bagażem i od razu zawozi Cię pod wskazany adres. Bez szukania taksówki po przylocie i bez negocjowania ceny na miejscu.",
+    "tags": {
+      "vip": "VIP",
+      "north_coast": "Północne wybrzeże",
+      "beach_resorts": "Resorty plażowe",
+      "transfer": "Transfer"
+    },
+    "card": {
+      "from": "Od",
+      "book_transfer": "Zarezerwuj transfer"
+    },
+    "view_all": "Zobacz wszystkie transfery"
   }
 }

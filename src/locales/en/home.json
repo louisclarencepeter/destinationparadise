@@ -57,5 +57,98 @@
         "text": "Airport pickup, hotel transfers, dietary needs, last-minute changes. Message us and it's already sorted."
       }
     }
+  },
+  "excursions": {
+    "eyebrow": "Roaming Retreats",
+    "title": "Excursions crafted by locals",
+    "lead": "Hand-built island days with traditional boats, clear reefs, spice farms, and guides who grew up on these shores.",
+    "modes": {
+      "ocean_tag": "Ocean",
+      "ocean_text": "Dhow sailing, sandbanks, snorkeling, dolphins, and reef days.",
+      "culture_tag": "Culture",
+      "culture_text": "Stone Town, spice farms, Swahili food, dhow-building, and village visits.",
+      "nature_tag": "Nature",
+      "nature_text": "Jozani forest, tortoises, mangroves, turtles, and family-friendly wildlife stops."
+    },
+    "card": {
+      "explore_aria": "Explore {{title}}",
+      "from": "From",
+      "view_details": "View details"
+    },
+    "view_all": "View all excursions"
+  },
+  "safaris": {
+    "eyebrow": "Mainland wildlife",
+    "title": "{{count}} safari starting points",
+    "lead": "Choose a classic northern route, a southern wilderness fly-in, a quick safari from Zanzibar, or a special-interest trip for photography, family, culture, luxury, birds, chimps, and migration seasons.",
+    "modes": {
+      "classic_tag": "Classic routes",
+      "classic_text": "Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha, Mahale and Katavi.",
+      "fly_in_tag": "Fly-in",
+      "fly_in_text": "Short safaris from Zanzibar for guests already on the island.",
+      "specialists_tag": "Specialists",
+      "specialists_text": "Honeymoon, family, photography, walking, birding, and bush-to-beach styles."
+    },
+    "features": {
+      "tarangire-day-trip": {
+        "label": "Quick safari",
+        "text": "Fly in for a fast wildlife day from Zanzibar, with park fees, lunch, guide, and game drive handled."
+      },
+      "serengeti-migration": {
+        "label": "Migration safari",
+        "text": "A strong-selling Serengeti route for migration plains, big cats, camps, meals, and guided game drives."
+      },
+      "nyerere-selous": {
+        "label": "Southern circuit",
+        "text": "A wilder fly-in route with boat safari, walking safari, luxury camp, guide, and domestic flights."
+      }
+    },
+    "card": {
+      "from": "From",
+      "pp_suffix": "pp",
+      "view_details": "View details"
+    },
+    "view_all": "View all safaris"
+  },
+  "packages": {
+    "eyebrow": "Complete trip portfolio",
+    "title": "{{count}} packages — safari, Zanzibar, honeymoon, family & culture",
+    "lead": "Start with a researched package, then let us adjust the route, hotel level, flights, excursions, and pace around your dates.",
+    "ribbons": {
+      "best_entry": "Best entry",
+      "honeymoon": "Honeymoon",
+      "most_complete": "Most complete"
+    },
+    "tags": {
+      "romance": "Romance",
+      "safari": "Safari",
+      "package": "Package",
+      "stay": "Stay",
+      "included": "Included",
+      "experience": "Experience"
+    },
+    "card": {
+      "from": "From",
+      "per_person_default": "per person",
+      "view_package": "View package"
+    },
+    "note": "The full package page includes honeymoon, family, fly-in safari, migration, Kilimanjaro, marine, culture, digital nomad, and luxury options.",
+    "view_all": "View all packages"
+  },
+  "transfers": {
+    "eyebrow": "Private transfers",
+    "title": "Arrive smoothly, before the trip even begins.",
+    "lead": "Airport meet & greet, private AC vehicles, flight tracking, luggage help, and VIP arrival options across Zanzibar.",
+    "tags": {
+      "vip": "VIP",
+      "north_coast": "North coast",
+      "beach_resorts": "Beach resorts",
+      "transfer": "Transfer"
+    },
+    "card": {
+      "from": "From",
+      "book_transfer": "Book transfer"
+    },
+    "view_all": "View all transfers"
   }
 }
