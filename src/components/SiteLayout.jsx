@@ -5,6 +5,7 @@ import SiteFooter, { WhatsAppFab } from './SiteFooter.jsx';
 import PageScrollCue from './PageScrollCue.jsx';
 import FloatingBackButton from './FloatingBackButton.jsx';
 import CookieBanner from './CookieBanner.jsx';
+import { loadGoogleAnalytics, trackPageView } from '../utils/analytics.js';
 import {
   announceTheme,
   applyTheme,
@@ -50,6 +51,26 @@ export default function SiteLayout() {
         : { mode: normalizedMode, theme: nextTheme }
     ));
   };
+
+  useEffect(() => {
+    loadGoogleAnalytics();
+  }, []);
+
+  useEffect(() => {
+    const path = `${location.pathname}${location.search}${location.hash}`;
+    trackPageView(path);
+  }, [location.pathname, location.search, location.hash]);
+
+  useEffect(() => {
+    const handleConsentChange = (event) => {
+      if (!event.detail?.choices?.analytics) return;
+      const path = `${location.pathname}${location.search}${location.hash}`;
+      trackPageView(path);
+    };
+
+    window.addEventListener('dp-cookie-consent', handleConsentChange);
+    return () => window.removeEventListener('dp-cookie-consent', handleConsentChange);
+  }, [location.pathname, location.search, location.hash]);
 
   useEffect(() => {
     const hash = location.hash?.replace('#', '');

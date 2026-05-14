@@ -524,15 +524,9 @@ html, body { max-width: 100%; }
   .newsletter__desc { font-size: .95rem; }
 }
 @media (max-width: 480px) {
-  .newsletter__form { flex-direction: column; background: transparent; box-shadow: none; gap: .55rem; }
-  .newsletter__input {
-    background: color-mix(in srgb, var(--surface) 94%, transparent);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: .85rem 1rem;
-    font-size: 16px;
-  }
-  .newsletter__submit { border-radius: 12px; padding: .9rem 1.2rem; justify-content: center; }
+  .newsletter__form { gap: .7rem; }
+  .newsletter__input { min-height: 56px; border-radius: 15px; }
+  .newsletter__submit { min-height: 52px; }
 }
 
 /* ---- Footer ---- */
