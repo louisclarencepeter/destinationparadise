@@ -1,0 +1,73 @@
+/* ============ NUMBERS STRIP ============ */
+.ab-numbers {
+  position: relative;
+  isolation: isolate;
+  color: #F5F1E8;
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.25rem, 5vw, 6rem);
+  overflow: hidden;
+}
+.ab-numbers::before {
+  content: '';
+  position: absolute; inset: 0; z-index: -2;
+  background: url('/assets/images/safaris/zebra-herd-on-track.webp') center/cover;
+}
+.ab-numbers::after {
+  content: '';
+  position: absolute; inset: 0; z-index: -1;
+  background: rgba(20,12,8,.78);
+}
+.ab-numbers__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
+  max-width: 1240px; margin: 0 auto;
+}
+@media (max-width: 720px) { .ab-numbers__grid { grid-template-columns: repeat(2, 1fr); } }
+.ab-numbers__item { display: flex; flex-direction: column; gap: .5rem; text-align: left; }
+.ab-numbers__num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2.4rem, 4.8vw, 3.6rem);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.01em;
+  color: #fff;
+}
+.ab-numbers__num em { font-style: italic; color: #FF6F61; font-weight: 400; }
+.ab-numbers__lbl {
+  font-family: var(--dp-font-sans, 'Montserrat', sans-serif);
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  color: rgba(245,241,232,.7); font-weight: 700;
+  margin-top: .25rem;
+}
+.ab-numbers__lbl small { display: block; font-size: 12px; letter-spacing: 0; text-transform: none; font-style: italic; font-family: 'Playfair Display', Georgia, serif; color: rgba(245,241,232,.55); margin-top: .35rem; font-weight: 400; }
+
+/* ============ MISSION (uses ab-numbers backdrop) ============ */
+.ab-mission .ab-mission__inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  gap: 1.1rem;
+  justify-items: center;
+}
+.ab-mission__eyebrow {
+  font-family: var(--dp-font-sans, 'Montserrat', sans-serif);
+  font-size: 11px; letter-spacing: .24em; text-transform: uppercase;
+  color: rgba(245,241,232,.72); font-weight: 700;
+}
+.ab-mission__statement {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 4.5vw, 3.4rem);
+  font-weight: 500; line-height: 1.1; letter-spacing: -.015em;
+  margin: 0; color: #fff;
+  max-width: 22ch;
+}
+.ab-mission__statement em { font-style: italic; color: #FF6F61; font-weight: 400; }
+.ab-mission__sub {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.4vw, 1.2rem); line-height: 1.55;
+  color: rgba(245,241,232,.85);
+  margin: 0; max-width: 56ch;
+}
+

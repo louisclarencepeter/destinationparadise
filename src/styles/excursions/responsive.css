@@ -1,0 +1,96 @@
+/* ============ RESPONSIVE ============ */
+@media (max-width: 860px) {
+  .exc-hero {
+    min-height: auto;
+    align-items: center;
+    padding: calc(var(--nav-height) + 1.35rem) 1rem 2.25rem;
+  }
+
+  .exc-hero__tags {
+    margin-top: .15rem;
+  }
+
+  .exc-hero__inner {
+    min-height: 0;
+    gap: .68rem;
+  }
+
+  .exc-hero__eyebrow {
+    max-width: min(100%, 23rem);
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: .55rem .78rem;
+    border-radius: 8px;
+    font-size: 9px;
+    line-height: 1.4;
+    letter-spacing: .14em;
+  }
+
+  .exc-hero__title {
+    font-size: clamp(2.45rem, 11vw, 3.55rem);
+    line-height: .98;
+  }
+
+  .exc-hero__lead {
+    max-width: 24rem;
+    font-size: .98rem;
+    line-height: 1.42;
+  }
+
+  .exc-hero__tags {
+    gap: .42rem;
+  }
+
+  .exc-hero__tags span {
+    padding: .32rem .52rem;
+    border-radius: 8px;
+    font-size: 8px;
+    line-height: 1.25;
+    letter-spacing: .1em;
+  }
+
+  .exc-hero__row {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    gap: .65rem;
+    margin-bottom: .25rem;
+  }
+
+  .exc-hero__row .btn {
+    width: min(100%, 20rem);
+    min-height: 46px;
+  }
+
+  .exc-hero__meta {
+    max-width: 22rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .72rem 1rem;
+    padding-top: .78rem;
+  }
+
+  .exc-hero__meta div {
+    min-width: 0;
+  }
+
+  .exc-hero__meta strong {
+    font-size: clamp(1.35rem, 7vw, 1.7rem);
+  }
+
+  .exc-hero__meta span {
+    font-size: 9px;
+    letter-spacing: .1em;
+  }
+
+  .exc-block,
+  .exc-block:nth-of-type(even) { grid-template-columns: 1fr; }
+  .exc-block:nth-of-type(even) .exc-block__img { order: 0; }
+  .exc-block__img { aspect-ratio: 4/3; max-height: 50vh; }
+  .exc-block { margin-bottom: 1rem; border-radius: 14px; }
+  .exc-block__facts { grid-template-columns: repeat(2, 1fr); }
+  .exc-block__cols { grid-template-columns: 1fr; gap: 1.25rem; }
+  .exc-filter { top: 56px; padding: .85rem 1rem; }
+  .exc-filter__label { display: none; }
+  .exc-day__timeline { padding-left: 2.5rem; }
+  .exc-day__row { grid-template-columns: 70px 1fr; gap: 1rem; }
+}

@@ -1,0 +1,11 @@
+/* ============================================================
+   TRANSFERS PAGE — transfers.css
+   ============================================================ */
+
+.transfers-page {
+  background:
+    radial-gradient(1000px 520px at 88% 5%, rgba(255,111,97,.1), transparent 58%),
+    radial-gradient(900px 520px at 10% 28%, rgba(102,184,220,.12), transparent 62%),
+    var(--page-bg);
+  color: var(--text);
+}

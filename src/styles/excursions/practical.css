@@ -1,0 +1,26 @@
+/* ============ PRACTICAL STRIP ============ */
+.exc-prac {
+  background: linear-gradient(180deg, var(--surface), var(--surface-subtle));
+  color: var(--text);
+  padding: clamp(4rem, 7vw, 6rem) clamp(1.25rem, 5vw, 6rem);
+}
+.exc-prac__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  max-width: 1240px; margin: 0 auto;
+}
+.exc-prac__col h4 {
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: #FF6F61;
+  margin: 0 0 1rem;
+  font-weight: 700;
+}
+.exc-prac__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .65rem; }
+.exc-prac__col li { font-size: .94rem; line-height: 1.55; opacity: .85; display: flex; gap: .55rem; align-items: flex-start; }
+.exc-prac__col li svg { flex-shrink: 0; color: #FF6F61; margin-top: 2px; }
+
+html[data-theme="dark"] .exc-prac {
+  background: #1a4d6e;
+  color: #F5F1E8;
+}

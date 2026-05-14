@@ -1,0 +1,155 @@
+/* ============ EXCURSION BLOCK ============ */
+.exc-list { padding: clamp(3.25rem, 6.5vw, 5.8rem) 0; }
+.exc-block {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: center;
+  padding: clamp(2rem, 4.5vw, 3rem) clamp(1.25rem, 5vw, 6rem);
+  max-width: 1240px;
+  margin: 0 auto 1.5rem;
+  border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
+  border-radius: 18px;
+  background: var(--surface-raised);
+  box-shadow: 0 22px 42px -36px rgba(0,0,0,.45);
+}
+.exc-block:nth-of-type(even) { grid-template-columns: 1fr 1.05fr; }
+.exc-block:nth-of-type(even) .exc-block__img { order: 2; }
+.exc-block { scroll-margin-top: 120px; }
+
+.exc-block__img {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  aspect-ratio: 4/4.35;
+  box-shadow: 0 24px 45px -26px rgba(0,0,0,.35);
+}
+.exc-block__img img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
+.exc-block:hover .exc-block__img img { transform: scale(1.04); }
+.exc-block__num {
+  position: absolute; top: 1.25rem; left: 1.25rem;
+  font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif);
+  font-style: italic;
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: .05em;
+  text-shadow: 0 2px 12px rgba(0,0,0,.4);
+}
+.exc-block__cat {
+  position: absolute; top: 1.25rem; right: 1.25rem;
+  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
+  background: rgba(255,255,255,.95); color: #1a4d6e;
+  padding: .4rem .85rem;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.exc-block__cat[data-cat="water-snorkeling"] { background: #c9e7f0; color: #0a3a55; }
+.exc-block__cat[data-cat="culture-heritage"] { background: #f5d9c0; color: #6e3010; }
+.exc-block__cat[data-cat="nature-wildlife"] { background: #d2e2c1; color: #2f4922; }
+.exc-block__cat[data-cat="adventure-sports"] { background: #fed7aa; color: #7c2d12; }
+.exc-block__cat[data-cat="wellness-luxury"] { background: #ddd6fe; color: #4c1d95; }
+.exc-block__cat[data-cat="festivals-seasonal"] { background: #fde68a; color: #78350f; }
+.exc-block__season {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  font-size: 10px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  background: #FF6F61;
+  color: #fff;
+  padding: .4rem .75rem;
+  border-radius: 999px;
+  font-weight: 700;
+  box-shadow: 0 4px 12px -4px rgba(255,111,97,.7);
+}
+
+.exc-block__eyebrow {
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: #FF6F61;
+  margin-bottom: 1rem;
+  display: block;
+  font-weight: 600;
+}
+.exc-block__title {
+  font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif);
+  font-size: clamp(2rem, 3.5vw, 2.85rem);
+  line-height: 1.05;
+  font-weight: 500;
+  letter-spacing: -.01em;
+  margin: 0 0 1.25rem;
+  color: var(--text, #1a4d6e);
+}
+.exc-block__desc {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--text, #1a4d6e);
+  opacity: .82;
+  margin: 0 0 1.75rem;
+  max-width: 56ch;
+}
+
+.exc-block__facts {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin: 0 0 2rem;
+  padding: 1.25rem;
+  background: color-mix(in srgb, currentColor 6%, transparent);
+  border-radius: 10px;
+  border-left: 3px solid #FF6F61;
+}
+.exc-block__facts > div { display: flex; flex-direction: column; gap: .15rem; min-width: 0; }
+.exc-block__facts dt {
+  font-size: 10px; letter-spacing: .15em; text-transform: uppercase;
+  color: color-mix(in srgb, currentColor 60%, transparent);
+  font-weight: 600;
+}
+.exc-block__facts dd {
+  margin: 0;
+  font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif);
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--text, #1a4d6e);
+}
+.exc-block__facts dd small {
+  display: block;
+  font-family: var(--dp-font-sans, 'Montserrat', system-ui, sans-serif);
+  font-size: 11px;
+  font-weight: 400;
+  opacity: .65;
+  margin-top: .15rem;
+}
+
+.exc-block__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 0 0 2rem; }
+.exc-block__col h4 {
+  font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
+  color: color-mix(in srgb, currentColor 65%, transparent);
+  margin: 0 0 .75rem;
+  font-weight: 700;
+}
+.exc-block__col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: .5rem; }
+.exc-block__col li {
+  font-size: .92rem; line-height: 1.5;
+  display: flex; gap: .55rem;
+  color: var(--text, #1a4d6e);
+  opacity: .82;
+}
+.exc-block__col li::before {
+  content: ''; flex-shrink: 0; width: 5px; height: 5px; border-radius: 50%;
+  background: #FF6F61;
+  margin-top: .55rem;
+}
+
+.exc-block__actions { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
+.exc-block__price { font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif); font-size: 1.3rem; color: #FF6F61; font-weight: 500; margin-right: .5rem; }
+.exc-block__price small { font-family: var(--dp-font-sans, 'Montserrat', sans-serif); font-size: 11px; opacity: .65; margin-left: .35rem; }
+.exc-block__price-note {
+  font-family: var(--dp-font-sans, 'Montserrat', sans-serif);
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, currentColor 60%, transparent);
+  margin-right: .25rem;
+}

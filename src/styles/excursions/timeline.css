@@ -1,0 +1,42 @@
+/* ============ DAY TIMELINE ============ */
+.exc-day { padding: clamp(4rem, 7vw, 6rem) clamp(1.25rem, 5vw, 6rem); }
+.exc-day__head { max-width: 720px; margin: 0 auto 3.5rem; text-align: center; }
+.exc-day__timeline {
+  max-width: 820px; margin: 0 auto;
+  position: relative;
+  padding-left: 3rem;
+}
+.exc-day__timeline::before {
+  content: ''; position: absolute; left: 1rem; top: .5rem; bottom: .5rem;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(255,111,97,.4), transparent);
+}
+.exc-day__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 1.5rem;
+  padding: 1rem 0;
+  align-items: start;
+}
+.exc-day__row::before {
+  content: ''; position: absolute; left: -2rem; top: 1.4rem;
+  width: 10px; height: 10px; border-radius: 50%;
+  background: #FF6F61;
+  box-shadow: 0 0 0 4px var(--surface, #FFFCF5);
+}
+.exc-day__time {
+  font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #FF6F61;
+  font-feature-settings: 'tnum';
+}
+.exc-day__what strong {
+  display: block;
+  font-size: 1.05rem;
+  margin-bottom: .35rem;
+  color: var(--text, #1a4d6e);
+  font-weight: 600;
+}
+.exc-day__what p { margin: 0; font-size: .92rem; line-height: 1.6; opacity: .8; }

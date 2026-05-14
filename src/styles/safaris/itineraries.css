@@ -1,0 +1,46 @@
+/* ============ ITINERARIES ============ */
+.itineraries {
+  padding: clamp(3rem, 6vw, 5rem) clamp(1.25rem, 5vw, 6rem) clamp(4rem, 7vw, 6rem);
+  background: var(--surface);
+}
+.itineraries__head {
+  max-width: 760px;
+  margin: 0 auto clamp(1.5rem, 2.8vw, 2.25rem);
+  text-align: center;
+}
+.itineraries__head .section-title {
+  margin-bottom: clamp(.75rem, 1.4vw, 1rem);
+}
+.itineraries__head .section-lead {
+  max-width: 680px;
+}
+.saf-filter {
+  max-width: 1240px;
+  margin: 0 auto clamp(1.2rem, 2vw, 1.75rem);
+  padding: 0;
+  justify-content: center;
+}
+
+@media (max-width: 720px) {
+  .itineraries {
+    padding: 3rem 1rem 3.25rem;
+  }
+
+  .itineraries__head {
+    margin-bottom: 1.15rem;
+  }
+
+  .saf-filter {
+    max-width: none;
+    margin: 0 0 1.25rem;
+    padding: .2rem 0 0;
+    justify-content: center;
+  }
+}
+.saf-route-grid {
+  align-items: stretch;
+}
+.saf-route-card {
+  min-height: 100%;
+}
+

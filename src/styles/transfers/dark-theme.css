@@ -1,0 +1,51 @@
+/* ------------ DARK THEME ------------ */
+html[data-theme="dark"] .tr-card {
+  background: var(--surface-raised);
+  border-color: rgba(255,255,255,.08);
+}
+html[data-theme="dark"] .tr-card--feature {
+  background: linear-gradient(180deg, color-mix(in srgb, var(--surface-raised) 84%, var(--dp-accent) 16%), var(--surface-raised));
+}
+html[data-theme="dark"] .tr-card__icon {
+  background: var(--soft-tint);
+  border-color: rgba(255,255,255,.1);
+  color: #cfe5f0;
+}
+html[data-theme="dark"] .tr-card__title { color: var(--text); }
+html[data-theme="dark"] .tr-card__desc,
+html[data-theme="dark"] .tr-card__details li { color: var(--text-muted); }
+html[data-theme="dark"] .tr-card__pricing {
+  border-color: rgba(255,255,255,.08);
+}
+html[data-theme="dark"] .tr-card__pricing li { color: var(--text); }
+html[data-theme="dark"] .tr-card__price { color: #cfe5f0; }
+html[data-theme="dark"] .tr-card__foot { border-top-color: rgba(255,255,255,.08); }
+
+html[data-theme="dark"] .tr-how,
+html[data-theme="dark"] .tr-fleet {
+  background: var(--surface-subtle);
+  border-color: rgba(255,255,255,.06);
+}
+html[data-theme="dark"] .tr-step h3 { color: var(--text); }
+html[data-theme="dark"] .tr-step p { color: var(--text-muted); }
+
+html[data-theme="dark"] .tr-included__list li { color: var(--text-muted); }
+
+html[data-theme="dark"] .tr-vehicle {
+  background: var(--surface-raised);
+  border-color: rgba(255,255,255,.08);
+}
+html[data-theme="dark"] .tr-vehicle__icon {
+  background: var(--soft-tint);
+  border-color: rgba(255,255,255,.1);
+  color: #cfe5f0;
+}
+html[data-theme="dark"] .tr-vehicle__type { color: var(--text); }
+html[data-theme="dark"] .tr-vehicle p { color: var(--text-muted); }
+
+html[data-theme="dark"] .tr-faq__item {
+  background: var(--surface-raised);
+  border-color: rgba(255,255,255,.08);
+}
+html[data-theme="dark"] .tr-faq__item summary { color: var(--text); }
+html[data-theme="dark"] .tr-faq__body { color: var(--text-muted); }

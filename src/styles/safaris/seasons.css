@@ -1,0 +1,54 @@
+/* ============ WHEN TO GO ============ */
+.when {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
+  background: var(--surface);
+}
+.when__head { max-width: 720px; margin: 0 auto clamp(2.5rem, 4vw, 3.5rem); text-align: center; }
+.when__grid {
+  max-width: 1240px; margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+.when-card {
+  background: var(--surface-2);
+  border: 1px solid var(--divider);
+  border-radius: 14px;
+  padding: 1.5rem 1.25rem 1.75rem;
+  display: flex; flex-direction: column; gap: .75rem;
+  position: relative;
+  border-top: 4px solid #ccc;
+}
+[data-theme="dark"] .when-card { background: rgba(255,255,255,.04); border-color: rgba(255,255,255,.08); }
+.when-card--peak     { border-top-color: #2e8b57; }
+.when-card--good     { border-top-color: var(--dp-primary); }
+.when-card--shoulder { border-top-color: #b8860b; }
+.when-card--avoid    { border-top-color: #999; opacity: .85; }
+.when-card__months {
+  font-family: var(--dp-font-display);
+  font-size: .95rem; font-style: italic;
+  color: var(--text-muted);
+}
+.when-card h4 {
+  margin: 0;
+  font-family: var(--dp-font-sans);
+  font-size: 1.25rem;
+  color: var(--ink);
+}
+.when-card p {
+  margin: 0;
+  font-family: var(--dp-font-display);
+  font-size: .9rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+  flex: 1;
+}
+.when-card__rating {
+  font-size: 14px;
+  letter-spacing: 2px;
+  color: var(--dp-accent);
+}
+
+@media (max-width: 1080px) { .when__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .when__grid { grid-template-columns: 1fr; } }
+

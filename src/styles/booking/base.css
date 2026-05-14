@@ -1,0 +1,8 @@
+.booking-page {
+  background:
+    radial-gradient(900px 420px at 88% 8%, rgba(255,111,97,.12), transparent 58%),
+    radial-gradient(900px 520px at 12% 22%, rgba(102,184,220,.12), transparent 62%),
+    var(--page-bg);
+  color: var(--text);
+}
+

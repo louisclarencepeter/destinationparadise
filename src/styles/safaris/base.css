@@ -1,0 +1,4 @@
+/* Safaris page — page-specific styles, layered on top of homepage tokens */
+
+.safaris-page { background: var(--page-bg); color: var(--text); }
+
