@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { CONTACT_INFO } from '../constants/contactInfo';
 import SiteSearch, { SearchButton } from './SiteSearch.jsx';
+import LanguageSwitcher from './LanguageSwitcher.jsx';
 
 const NAV_ITEMS = [
   { label: 'Home', to: '/', end: true, icon: 'home', hint: 'Start at the island hub' },
@@ -175,6 +176,7 @@ export default function SiteNav() {
           ))}
         </ul>
         <div className="nav__right">
+          <LanguageSwitcher className="nav__lang" />
           <SearchButton className="nav__search" onClick={() => setSearchOpen(true)} label="Search" />
           <Link className="btn nav__cta" to="/booking" aria-label="Book now">
             <span className="nav__cta-text">Book Now</span> <BookingIcon size={16} />
