@@ -208,5 +208,31 @@
     "submit_pending": "Wysyłanie…",
     "submit_done": "Wysłano",
     "error": "Nie udało się wysłać. Spróbuj ponownie za chwilę."
+  },
+  "contact": {
+    "eyebrow": "Kontakt",
+    "title": "Napisz do nas",
+    "lead": "Powiedz, czy chcesz pełny pakiet, kilka wycieczek po Zanzibarze, safari na kontynencie czy własne połączenie. Podaj liczbę osób, orientacyjne daty, budżet i tempo, a wrócimy w ciągu dnia z pomysłami, dostępnością i realną ceną.",
+    "details": {
+      "email": "Email",
+      "phone": "Telefon",
+      "whatsapp": "WhatsApp",
+      "whatsapp_action": "Napisz na WhatsApp",
+      "find_us": "Gdzie jesteśmy",
+      "hours": "Godziny"
+    },
+    "form": {
+      "name": "Twoje imię",
+      "email": "Email",
+      "subject": "Temat",
+      "subject_placeholder": "Daty podróży, liczba osób, coś konkretnego",
+      "message": "Wiadomość",
+      "submit": "Wyślij wiadomość",
+      "submit_pending": "Wysyłanie…",
+      "submit_done": "Wysłano",
+      "status_ok": "✓ Asante — mamy Twoją wiadomość. Odpowiemy w ciągu dnia.",
+      "status_err_prefix": "Pole sana — nie udało się wysłać. Napisz bezpośrednio na",
+      "status_err_suffix": "albo spróbuj ponownie."
+    }
   }
 }

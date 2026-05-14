@@ -208,5 +208,31 @@
     "submit_pending": "Sending…",
     "submit_done": "Sent",
     "error": "That did not go through. Please try again in a moment."
+  },
+  "contact": {
+    "eyebrow": "Get in touch",
+    "title": "Send us an email",
+    "lead": "Tell us whether you want a complete package, a few Zanzibar excursions, a mainland safari, or a custom mix. Send group size, rough dates, budget, and pace — we'll come back within a day with ideas, availability, and a real price.",
+    "details": {
+      "email": "Email",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "whatsapp_action": "Message us on WhatsApp",
+      "find_us": "Find us",
+      "hours": "Hours"
+    },
+    "form": {
+      "name": "Your name",
+      "email": "Email",
+      "subject": "Subject",
+      "subject_placeholder": "Trip dates, group size, anything specific",
+      "message": "Message",
+      "submit": "Send message",
+      "submit_pending": "Sending…",
+      "submit_done": "Sent",
+      "status_ok": "✓ Asante — we got it. We'll come back to you within a day.",
+      "status_err_prefix": "Pole sana — that didn't go through. Email us directly at",
+      "status_err_suffix": "or try again."
+    }
   }
 }
