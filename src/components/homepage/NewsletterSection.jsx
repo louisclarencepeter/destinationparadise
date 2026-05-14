@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import '../../styles/homepage/newsletter.css';
 
 const encodeForm = (data) =>
@@ -15,6 +16,7 @@ async function postNetlifyForm(formName, fields) {
 }
 
 export default function NewsletterSection() {
+  const { t } = useTranslation('home');
   const [email, setEmail] = useState('');
   const [done, setDone] = useState(false);
   const [pending, setPending] = useState(false);
@@ -40,9 +42,9 @@ export default function NewsletterSection() {
   return (
     <section className="newsletter reveal" id="newsletter">
       <div>
-        <span className="newsletter__eyebrow">Stay in the loop</span>
-        <h3 className="newsletter__title">Sea stories and sunsets, every month</h3>
-        <p className="newsletter__desc">Hand-written notes from the team — trip openings, shoulder-season deals, and the occasional spice recipe. One email a month. Never anything else.</p>
+        <span className="newsletter__eyebrow">{t('newsletter.eyebrow')}</span>
+        <h3 className="newsletter__title">{t('newsletter.title')}</h3>
+        <p className="newsletter__desc">{t('newsletter.description')}</p>
       </div>
       <form
         className="newsletter__form"
@@ -59,22 +61,22 @@ export default function NewsletterSection() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder={done ? "✓ You're on the list" : 'you@example.com'}
+          placeholder={done ? t('newsletter.email_placeholder_done') : t('newsletter.email_placeholder')}
           required={!done}
           disabled={done}
-          aria-label="Email address"
+          aria-label={t('newsletter.email_aria')}
           autoComplete="email"
         />
         <button type="submit" className="newsletter__submit" disabled={pending || done}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
             <path d="M4 4h16v16H4z" /><path d="M4 6l8 7 8-7" />
           </svg>
-          <span>{done ? 'Sent' : pending ? 'Sending…' : 'Subscribe'}</span>
+          <span>{done ? t('newsletter.submit_done') : pending ? t('newsletter.submit_pending') : t('newsletter.submit')}</span>
         </button>
       </form>
       {error && (
         <p className="newsletter__note newsletter__note--error" role="status">
-          That did not go through. Please try again in a moment.
+          {t('newsletter.error')}
         </p>
       )}
     </section>

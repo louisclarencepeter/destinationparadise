@@ -150,5 +150,63 @@
       "book_transfer": "Zarezerwuj transfer"
     },
     "view_all": "Zobacz wszystkie transfery"
+  },
+  "map": {
+    "eyebrow": "Region",
+    "title": "Zanzibar i Tanzania w skrócie",
+    "lead": "Jeden kraj, dwa światy. Wyspa daje dziedzictwo Stone Town, dhow na rafie, plaże, kulturę i dni nad oceanem. Kontynent otwiera północne ikony safari, dzikie południe, zachodnie trasy z szympansami, krótkie przeloty, górskie dni i spotkania z kulturą.",
+    "island_label": "Zanzibar",
+    "mainland_label": "Kontynent Tanzanii",
+    "cta_label": "Ułóż plan na miarę",
+    "cta_explore_full": "Odkryj pełną mapę"
+  },
+  "gallery": {
+    "eyebrow": "Z bliska",
+    "title": "Chwile od brzegu po safari",
+    "lead": "Szersze spojrzenie na Zanzibar i Tanzanię: dhow, stare uliczki, lasy, farmy przypraw, ławice piasku i dzika przyroda kontynentu.",
+    "captions": {
+      "mizingani-waterfront": "Nabrzeże Mizingani",
+      "zebra-mare-and-foal": "Zebry na safari",
+      "dolphin-snorkeling": "Snorkeling z delfinami",
+      "lioness-and-cub-resting": "Lwica z młodym",
+      "stone-town-old-fort": "Stary Fort w Stone Town",
+      "rhino-on-plains": "Nosorożec w Ngorongoro",
+      "safari-blue-sandbank": "Ławica piasku Safari Blue",
+      "crowned-cranes-in-grass": "Żurawie koroniaste",
+      "jozani-red-colobus": "Gereza ruda w Jozani",
+      "wildebeest-grazing": "Równiny migracji",
+      "spice-tour-nutmeg": "Detale farmy przypraw",
+      "male-lion-in-grass": "Lew w Serengeti"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Głosy z wybrzeża",
+    "title": "Co goście zabierają ze sobą",
+    "quotes": {
+      "isa": {
+        "quote": "Spacer przez mangrowce i najlepszy zachód słońca w życiu. Dziękujemy zespołowi: tyle ciepła i troski trudno opisać.",
+        "trip": "Mangrowce i zachód słońca"
+      },
+      "arturo": {
+        "quote": "Nasz przewodnik był świetnie przygotowany, pogodny i bardzo przyjazny. Dhow był piękny, laguna niezapomniana. Zarezerwowaliśmy kolejną wycieczkę jeszcze przed wyjazdem.",
+        "trip": "Safari Blue Dhow"
+      },
+      "coleman": {
+        "quote": "Wąchaliśmy każdą przyprawę, zadaliśmy chyba sto pytań, a zespół odpowiedział na wszystko z ogromnym zaangażowaniem. Najlepszy dzień naszej podróży.",
+        "trip": "Przyprawy i kultura"
+      }
+    }
+  },
+  "newsletter": {
+    "eyebrow": "Bądź na bieżąco",
+    "title": "Morskie historie i zachody słońca co miesiąc",
+    "description": "Osobiste wiadomości od zespołu: wolne terminy, oferty poza szczytem sezonu i czasem przepis z przyprawami. Jeden email miesięcznie. Nic więcej.",
+    "email_placeholder": "ty@example.com",
+    "email_placeholder_done": "✓ Jesteś na liście",
+    "email_aria": "Adres email",
+    "submit": "Zapisz się",
+    "submit_pending": "Wysyłanie…",
+    "submit_done": "Wysłano",
+    "error": "Nie udało się wysłać. Spróbuj ponownie za chwilę."
   }
 }

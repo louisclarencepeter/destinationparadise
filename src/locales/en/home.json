@@ -150,5 +150,63 @@
       "book_transfer": "Book transfer"
     },
     "view_all": "View all transfers"
+  },
+  "map": {
+    "eyebrow": "The Region",
+    "title": "Zanzibar & Tanzania at a glance",
+    "lead": "One country, two worlds. The island gives you Stone Town's heritage, dhows on the reef, beaches, culture, and ocean days. Cross to the mainland for northern icons, southern wilderness, western chimp routes, quick fly-ins, mountain days, and cultural stops.",
+    "island_label": "Zanzibar",
+    "mainland_label": "Mainland Tanzania",
+    "cta_label": "Build a custom itinerary",
+    "cta_explore_full": "Explore the full map"
+  },
+  "gallery": {
+    "eyebrow": "A Glimpse",
+    "title": "Moments from shore to safari",
+    "lead": "A wider look at Zanzibar and Tanzania: dhows, old streets, forest, spice farms, sandbanks, and mainland wildlife.",
+    "captions": {
+      "mizingani-waterfront": "Mizingani waterfront",
+      "zebra-mare-and-foal": "Zebra on safari",
+      "dolphin-snorkeling": "Dolphin snorkel",
+      "lioness-and-cub-resting": "Lioness and cub",
+      "stone-town-old-fort": "Stone Town Old Fort",
+      "rhino-on-plains": "Ngorongoro rhino",
+      "safari-blue-sandbank": "Safari Blue sandbank",
+      "crowned-cranes-in-grass": "Crowned cranes",
+      "jozani-red-colobus": "Jozani red colobus",
+      "wildebeest-grazing": "Migration plains",
+      "spice-tour-nutmeg": "Spice farm detail",
+      "male-lion-in-grass": "Serengeti lion"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Voices from the Shore",
+    "title": "What guests take home",
+    "quotes": {
+      "isa": {
+        "quote": "You can walk the mangroves and enjoy the best sunset ever. Thanks to the team — the warmth and care were unreal.",
+        "trip": "Mangroves & Sunset"
+      },
+      "arturo": {
+        "quote": "Our guide was knowledgeable, upbeat and friendly. The dhow was beautiful, the lagoon unforgettable. Booked again before leaving.",
+        "trip": "Safari Blue Dhow"
+      },
+      "coleman": {
+        "quote": "We smelled every spice, asked a hundred questions, and the team went above and beyond to answer them all. Best day of our trip.",
+        "trip": "Spice & Culture Tour"
+      }
+    }
+  },
+  "newsletter": {
+    "eyebrow": "Stay in the loop",
+    "title": "Sea stories and sunsets, every month",
+    "description": "Hand-written notes from the team — trip openings, shoulder-season deals, and the occasional spice recipe. One email a month. Never anything else.",
+    "email_placeholder": "you@example.com",
+    "email_placeholder_done": "✓ You're on the list",
+    "email_aria": "Email address",
+    "submit": "Subscribe",
+    "submit_pending": "Sending…",
+    "submit_done": "Sent",
+    "error": "That did not go through. Please try again in a moment."
   }
 }

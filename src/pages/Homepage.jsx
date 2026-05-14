@@ -1,5 +1,6 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import '../styles/homepage.css';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import { DESTINATION_MAP_PINS } from '../data/destinationMapPins.js';
@@ -55,6 +56,7 @@ function loadTweaks() {
 }
 
 export default function Homepage() {
+  const { t } = useTranslation('home');
   const [tweaks, setTweaks] = useState(loadTweaks);
   const [activePin, setActivePin] = useState('stone-town');
   const [tweaksOpen, setTweaksOpen] = useState(false);
@@ -198,7 +200,7 @@ export default function Homepage() {
             islandPins={islandPins}
             mainlandPins={mainlandPins}
             ctaHref="/explore"
-            ctaLabel="Explore the full map"
+            ctaLabel={t('map.cta_explore_full')}
           />
         </Suspense>
       </DeferredMount>
