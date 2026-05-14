@@ -1,0 +1,69 @@
+/* ------------ FLEET ------------ */
+.tr-fleet {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
+  background: linear-gradient(180deg, var(--surface), var(--surface-subtle));
+}
+.tr-fleet__head {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto clamp(2rem, 3.8vw, 3rem);
+}
+.tr-fleet__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1.5rem;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.tr-vehicle {
+  background: var(--surface-raised);
+  border: 1px solid var(--divider);
+  border-radius: 18px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: 0 18px 42px -34px rgba(0,0,0,.42);
+  transition: transform .25s var(--dp-ease-out), box-shadow .25s var(--dp-ease-out);
+}
+.tr-vehicle:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 24px 52px -34px rgba(0,0,0,.48);
+}
+.tr-vehicle__icon {
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  margin: 0 auto 1rem;
+  border: 1px solid var(--divider);
+  border-radius: 8px;
+  color: var(--ink);
+  background: var(--soft-tint);
+}
+.tr-vehicle__icon svg {
+  width: 30px;
+  height: 30px;
+}
+.tr-vehicle__type {
+  font-family: var(--dp-font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0 0 .35rem;
+}
+.tr-vehicle__cap {
+  display: inline-block;
+  font-family: var(--dp-font-sans);
+  font-size: var(--dp-fs-caption);
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--dp-accent);
+  margin-bottom: .75rem;
+}
+.tr-vehicle p {
+  font-family: var(--dp-font-sans);
+  font-size: var(--dp-fs-body-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0;
+}

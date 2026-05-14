@@ -1,0 +1,48 @@
+/* ------------ HOW IT WORKS ------------ */
+.tr-how {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
+  background: var(--page-bg);
+}
+.tr-how__head {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto clamp(2rem, 3.8vw, 3rem);
+}
+.tr-how__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.tr-step {
+  min-width: 0;
+  padding: clamp(1.15rem, 2.2vw, 1.6rem);
+  border: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+  border-radius: 18px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 95%, transparent), color-mix(in srgb, var(--surface) 82%, transparent));
+  box-shadow: 0 18px 42px -34px rgba(0,0,0,.42);
+}
+.tr-step__num {
+  display: inline-flex;
+  color: var(--dp-accent);
+  font-family: var(--dp-font-sans);
+  font-weight: 800;
+  font-size: 11px;
+  letter-spacing: .18em;
+  margin-bottom: .65rem;
+}
+.tr-step h3 {
+  font-family: var(--dp-font-display);
+  font-size: 1.35rem;
+  line-height: 1.2;
+  color: var(--ink);
+  margin: 0 0 .35rem;
+}
+.tr-step p {
+  font-size: .95rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin: 0;
+}

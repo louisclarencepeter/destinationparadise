@@ -1,0 +1,77 @@
+/* ------------ CTA ------------ */
+.tr-cta {
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.tr-cta__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.tr-cta__bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 40%;
+}
+.tr-cta__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, rgba(8,24,40,.82) 0%, rgba(26,77,110,.7) 100%);
+}
+.tr-cta__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+  color: #fff;
+  text-align: center;
+}
+.tr-cta__inner .section-eyebrow {
+  color: rgba(255,255,255,.7);
+}
+.tr-cta__inner h2 {
+  font-family: var(--dp-font-display);
+  font-size: clamp(2rem, 3vw + .5rem, 3.35rem);
+  font-weight: 500;
+  line-height: 1.05;
+  margin: .75rem 0 1.25rem;
+}
+.tr-cta__inner p {
+  font-family: var(--dp-font-display);
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.82);
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.65;
+}
+.tr-cta__btns {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.tr-cta__contacts {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.tr-cta__contacts a {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--dp-font-sans);
+  font-size: var(--dp-fs-body-sm);
+  color: rgba(255,255,255,.75);
+  text-decoration: none;
+  transition: color .2s ease;
+}
+.tr-cta__contacts a:hover {
+  color: #fff;
+}
