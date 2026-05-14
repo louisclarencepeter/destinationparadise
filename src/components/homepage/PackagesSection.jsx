@@ -13,25 +13,25 @@ const packageCards = FEATURED_PACKAGE_SLUGS
   .filter(Boolean);
 
 const getPackageRibbon = (slug) => {
-  if (slug === 'six-day-safari-zanzibar-escape') return 'Best entry';
-  if (slug === 'seven-day-honeymoon-safari-zanzibar') return 'Honeymoon';
-  if (slug === 'ten-day-classic-safari-zanzibar') return 'Most complete';
+  if (slug === 'six-day-safari-zanzibar-escape') return 'Dobry początek';
+  if (slug === 'seven-day-honeymoon-safari-zanzibar') return 'Podróż poślubna';
+  if (slug === 'ten-day-classic-safari-zanzibar') return 'Najpełniejszy';
   return null;
 };
 
 const getPackageSummary = (pkg) => pkg.split || pkg.idealFor?.slice(0, 3).join(' · ') || pkg.category;
 
 const getPackageItems = (pkg) => {
-  const categoryTag = pkg.category.includes('Honeymoon') ? 'Romance' : pkg.category.includes('Safari') ? 'Safari' : 'Package';
+  const categoryTag = pkg.category.includes('poślub') ? 'Romantycznie' : pkg.category.includes('safari') ? 'Safari' : 'Pakiet';
   return [
-    { tag: categoryTag, kind: pkg.category.includes('Honeymoon') ? 'inc' : 'saf', text: getPackageSummary(pkg) },
+    { tag: categoryTag, kind: pkg.category.includes('poślub') ? 'inc' : 'saf', text: getPackageSummary(pkg) },
     ...pkg.includes.slice(0, 4).map((text) => {
       const lower = text.toLowerCase();
       const kind = lower.includes('safari') || lower.includes('serengeti') || lower.includes('ngorongoro') || lower.includes('tarangire') ? 'saf'
         : lower.includes('beach') || lower.includes('hotel') || lower.includes('resort') || lower.includes('lodge') ? 'hotel'
           : lower.includes('flight') || lower.includes('transfer') || lower.includes('park') ? 'inc'
             : 'exc';
-      return { tag: kind === 'saf' ? 'Safari' : kind === 'hotel' ? 'Stay' : kind === 'inc' ? 'Included' : 'Experience', kind, text };
+      return { tag: kind === 'saf' ? 'Safari' : kind === 'hotel' ? 'Pobyt' : kind === 'inc' ? 'W cenie' : 'Przeżycie', kind, text };
     }),
   ];
 };
@@ -40,9 +40,9 @@ export default function PackagesSection() {
   return (
     <section className="packages reveal" id="packages">
       <header className="packages__head">
-        <span className="section-eyebrow">Complete trip portfolio</span>
-        <h2 className="section-title">{destinationParadisePackages.length} packages — safari, Zanzibar, honeymoon, family &amp; culture</h2>
-        <p className="section-lead">Start with a researched package, then let us adjust the route, hotel level, flights, excursions, and pace around your dates.</p>
+        <span className="section-eyebrow">Pełne portfolio podróży</span>
+        <h2 className="section-title">{destinationParadisePackages.length} pakietów: safari, Zanzibar, podróż poślubna, rodzina i kultura</h2>
+        <p className="section-lead">Zacznij od sprawdzonego pakietu, a my dopasujemy trasę, standard hoteli, loty, wycieczki i tempo do Twoich dat.</p>
       </header>
       <div className="packages__grid">
         {packageCards.map((pkg) => (
@@ -61,15 +61,15 @@ export default function PackagesSection() {
               ))}
             </ul>
             <div className="pkg-card__foot">
-              <div><span className="pkg-card__from">From</span><span className="pkg-card__price">${pkg.pricing.from.toLocaleString()}</span><span className="pkg-card__pp">{pkg.pricing.unit || 'per person'}</span></div>
-              <Link className="btn" to={`/packages/${pkg.slug}`}>View package <ArrowIcon size={14} /></Link>
+              <div><span className="pkg-card__from">Od</span><span className="pkg-card__price">${pkg.pricing.from.toLocaleString()}</span><span className="pkg-card__pp">{pkg.pricing.unit || 'za osobę'}</span></div>
+              <Link className="btn" to={`/packages/${pkg.slug}`}>Zobacz pakiet <ArrowIcon size={14} /></Link>
             </div>
           </article>
         ))}
       </div>
-      <div className="packages__note">The full package page includes honeymoon, family, fly-in safari, migration, Kilimanjaro, marine, culture, digital nomad, and luxury options.</div>
+      <div className="packages__note">Pełna strona pakietów obejmuje podróże poślubne, rodzinne, safari z przelotem, migrację, Kilimanjaro, ocean, kulturę, digital nomad i opcje luksusowe.</div>
       <div className="excursions__more">
-        <Link className="btn btn--on-light" to="/packages">View all packages <ArrowIcon size={16} /></Link>
+        <Link className="btn btn--on-light" to="/packages">Zobacz wszystkie pakiety <ArrowIcon size={16} /></Link>
       </div>
     </section>
   );

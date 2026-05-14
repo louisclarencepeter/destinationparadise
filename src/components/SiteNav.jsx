@@ -4,14 +4,14 @@ import { CONTACT_INFO } from '../constants/contactInfo';
 import SiteSearch, { SearchButton } from './SiteSearch.jsx';
 
 const NAV_ITEMS = [
-  { label: 'Home', to: '/', end: true, icon: 'home', hint: 'Start at the island hub' },
-  { label: 'Excursions', to: '/excursions', icon: 'compass', hint: 'Zanzibar day trips' },
-  { label: 'Safaris', to: '/safaris', icon: 'binoculars', hint: 'Mainland wildlife routes' },
-  { label: 'Packages', to: '/packages', icon: 'suitcase', hint: 'Safari, beach, honeymoon' },
-  { label: 'Trip Planner', to: '/trip-planner', icon: 'route', hint: 'Shape a custom route' },
-  { label: 'Explore', to: '/explore', icon: 'map', hint: 'Compare places and styles' },
-  { label: 'About Us', to: '/aboutus', icon: 'info', hint: 'Our story and mission' },
-  { label: 'Book Now', to: '/booking', icon: 'bag', hint: 'Send a booking request', mobileOnly: true },
+  { label: 'Start', to: '/', end: true, icon: 'home', hint: 'Zacznij od wyspy' },
+  { label: 'Wycieczki', to: '/excursions', icon: 'compass', hint: 'Jednodniowe wypady po Zanzibarze' },
+  { label: 'Safari', to: '/safaris', icon: 'binoculars', hint: 'Trasy z dziką przyrodą' },
+  { label: 'Pakiety', to: '/packages', icon: 'suitcase', hint: 'Safari, plaża, podróż poślubna' },
+  { label: 'Planer podróży', to: '/trip-planner', icon: 'route', hint: 'Ułóż trasę na miarę' },
+  { label: 'Odkrywaj', to: '/explore', icon: 'map', hint: 'Porównaj miejsca i style' },
+  { label: 'O nas', to: '/aboutus', icon: 'info', hint: 'Nasza historia i misja' },
+  { label: 'Rezerwuj', to: '/booking', icon: 'bag', hint: 'Wyślij zapytanie', mobileOnly: true },
 ];
 
 const NAV_ICONS = {
@@ -59,13 +59,13 @@ const WhatsAppIcon = () => (
 
 // V2 mobile menu rows — richer copy + per-item flourish (italic Safaris, AI badge, etc.)
 const MM_ITEMS = [
-  { label: 'Home',         to: '/',             end: true, sub: 'Start at the island hub' },
-  { label: 'Excursions',   to: '/excursions',   sub: 'Stone Town · Reefs · Spice farms' },
-  { label: 'Safaris',      to: '/safaris',      sub: 'Serengeti · Ngorongoro · Selous' },
-  { label: 'Packages',     to: '/packages',     sub: 'Bush & Beach · 7–14 nights' },
-  { label: 'Trip Planner', to: '/trip-planner', sub: 'Hand-built · 90 sec', badge: 'AI' },
-  { label: 'Explore',      to: '/explore',      sub: 'Compare places & styles' },
-  { label: 'About Us',     to: '/aboutus',      sub: 'Our story · Mission · Destinations' },
+  { label: 'Start',          to: '/',             end: true, sub: 'Zacznij od wyspy' },
+  { label: 'Wycieczki',      to: '/excursions',   sub: 'Stone Town · Rafy · Farmy przypraw' },
+  { label: 'Safari',         to: '/safaris',      sub: 'Serengeti · Ngorongoro · Selous' },
+  { label: 'Pakiety',        to: '/packages',     sub: 'Safari i plaża · 7-14 nocy' },
+  { label: 'Planer podróży', to: '/trip-planner', sub: 'Plan na miarę · 90 sek.', badge: 'AI' },
+  { label: 'Odkrywaj',       to: '/explore',      sub: 'Porównaj miejsca i style' },
+  { label: 'O nas',          to: '/aboutus',      sub: 'Historia · Misja · Kierunki' },
 ];
 
 const MM_BGS = [
@@ -175,14 +175,14 @@ export default function SiteNav() {
           ))}
         </ul>
         <div className="nav__right">
-          <SearchButton className="nav__search" onClick={() => setSearchOpen(true)} label="Search" />
-          <Link className="btn nav__cta" to="/booking" aria-label="Book now">
-            <span className="nav__cta-text">Book Now</span> <BookingIcon size={16} />
+          <SearchButton className="nav__search" onClick={() => setSearchOpen(true)} label="Szukaj" />
+          <Link className="btn nav__cta" to="/booking" aria-label="Zarezerwuj teraz">
+            <span className="nav__cta-text">Rezerwuj</span> <BookingIcon size={16} />
           </Link>
           <button
             className={`nav__burger${navOpen ? ' nav__burger--open' : ''}`}
             type="button"
-            aria-label={navOpen ? 'Close menu' : 'Open menu'}
+            aria-label={navOpen ? 'Zamknij menu' : 'Otwórz menu'}
             aria-expanded={navOpen}
             aria-controls="mobileMenu"
             onClick={() => setNavOpen((v) => !v)}
@@ -202,7 +202,7 @@ export default function SiteNav() {
         className={`mm-menu${navOpen ? ' is-open' : ''}`}
         role="dialog"
         aria-modal="true"
-        aria-label="Site navigation"
+        aria-label="Nawigacja strony"
         {...(navOpen ? {} : { inert: true })}
       >
         <div className="mm-menu__bg" style={navOpen ? { backgroundImage: `url('${MM_BGS[bgIndex]}')` } : undefined} />
@@ -216,7 +216,7 @@ export default function SiteNav() {
           <button
             type="button"
             className="mm-menu__close"
-            aria-label="Close menu"
+            aria-label="Zamknij menu"
             onClick={() => setNavOpen(false)}
           >
             <CloseIcon />
@@ -225,7 +225,7 @@ export default function SiteNav() {
 
         <div className="mm-menu__hero">
           <span className="mm-menu__eyebrow">Karibu Tanzania</span>
-          <p className="mm-menu__head">Where would you like to <em>wander</em>?</p>
+          <p className="mm-menu__head">Dokąd chcesz <em>wyruszyć</em>?</p>
         </div>
 
         <ul className="mm-menu__list">
@@ -259,17 +259,17 @@ export default function SiteNav() {
               setNavOpen(false);
               setSearchOpen(true);
             }}
-            label="Search the site"
+            label="Szukaj na stronie"
           />
           <Link to="/booking" className="mm-menu__cta">
-            Book a trip <ChevronRight />
+            Zarezerwuj podróż <ChevronRight />
           </Link>
           <a
             className="mm-menu__wa"
             href={CONTACT_INFO.whatsappUrl}
             target="_blank"
             rel="noreferrer noopener"
-            aria-label="Chat on WhatsApp"
+            aria-label="Napisz na WhatsApp"
           >
             <WhatsAppIcon />
           </a>

@@ -8,21 +8,21 @@ const SAFARI_FEATURES = [
   {
     slug: 'tarangire-day-trip',
     image: '/assets/images/safaris/buffalo-herd-close.webp',
-    label: 'Quick safari',
-    text: 'Fly in for a fast wildlife day from Zanzibar, with park fees, lunch, guide, and game drive handled.',
+    label: 'Szybkie safari',
+    text: 'Przyleć na intensywny dzień z dziką przyrodą prosto z Zanzibaru: opłaty parkowe, lunch, przewodnik i game drive są po naszej stronie.',
   },
   {
     slug: 'serengeti-migration',
     image: '/assets/images/safaris/serval-in-grass.webp',
-    label: 'Migration safari',
-    text: 'A strong-selling Serengeti route for migration plains, big cats, camps, meals, and guided game drives.',
+    label: 'Safari migracyjne',
+    text: 'Sprawdzona trasa przez Serengeti: równiny migracji, wielkie koty, obozy, posiłki i przejazdy safari z przewodnikiem.',
     featured: true,
   },
   {
     slug: 'nyerere-selous',
     image: '/assets/images/safaris/raptor-on-log.webp',
-    label: 'Southern circuit',
-    text: 'A wilder fly-in route with boat safari, walking safari, luxury camp, guide, and domestic flights.',
+    label: 'Południowy szlak',
+    text: 'Dziksza trasa z przelotem: safari łodzią, piesze safari, luksusowy obóz, przewodnik i loty krajowe.',
   },
 ];
 
@@ -41,13 +41,13 @@ export default function SafarisSection() {
   return (
     <section className="safaris reveal" id="safaris">
       <header className="safaris__head">
-        <span className="section-eyebrow">Mainland wildlife</span>
-        <h2 className="section-title">{totalSafaris} safari starting points</h2>
-        <p className="section-lead">Choose a classic northern route, a southern wilderness fly-in, a quick safari from Zanzibar, or a special-interest trip for photography, family, culture, luxury, birds, chimps, and migration seasons.</p>
+        <span className="section-eyebrow">Dzika przyroda kontynentu</span>
+        <h2 className="section-title">{totalSafaris} pomysłów na safari</h2>
+        <p className="section-lead">Wybierz klasyczną trasę północną, dzikie południe z przelotem, szybkie safari z Zanzibaru albo podróż tematyczną: fotografia, rodzina, kultura, luksus, ptaki, szympansy czy sezon migracji.</p>
         <ul className="safaris__modes">
-          <li><span className="safaris__mode-tag">Classic routes</span> Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha, Mahale and Katavi.</li>
-          <li><span className="safaris__mode-tag safaris__mode-tag--accent">Fly-in</span> Short safaris from Zanzibar for guests already on the island.</li>
-          <li><span className="safaris__mode-tag">Specialists</span> Honeymoon, family, photography, walking, birding, and bush-to-beach styles.</li>
+          <li><span className="safaris__mode-tag">Klasyczne trasy</span> Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha, Mahale i Katavi.</li>
+          <li><span className="safaris__mode-tag safaris__mode-tag--accent">Z przelotem</span> Krótkie safari z Zanzibaru dla gości, którzy są już na wyspie.</li>
+          <li><span className="safaris__mode-tag">Specjalne style</span> Podróż poślubna, rodzina, fotografia, piesze safari, ptaki i połączenie buszu z plażą.</li>
         </ul>
       </header>
       <div className="safaris__grid">
@@ -61,15 +61,15 @@ export default function SafarisSection() {
               <h3>{trip.title}</h3>
               <p>{trip.text}</p>
               <div className="safari-card__foot">
-                <span className="safari-card__from">From <strong>${trip.price.toLocaleString()}</strong> pp</span>
-                <Link className="ex-card__link" to={`/safaris/${trip.slug}`}>View details <ArrowIcon size={14} /></Link>
+                <span className="safari-card__from">Od <strong>${trip.price.toLocaleString()}</strong> za osobę</span>
+                <Link className="ex-card__link" to={`/safaris/${trip.slug}`}>Zobacz szczegóły <ArrowIcon size={14} /></Link>
               </div>
             </div>
           </article>
         ))}
       </div>
       <div className="excursions__more">
-        <Link className="btn btn--on-light" to="/safaris">View all safaris <ArrowIcon size={16} /></Link>
+        <Link className="btn btn--on-light" to="/safaris">Zobacz wszystkie safari <ArrowIcon size={16} /></Link>
       </div>
     </section>
   );

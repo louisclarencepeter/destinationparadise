@@ -13,20 +13,20 @@ const FALLBACK = {
   code: 1,
   isDay: 1,
   description:
-    'Mostly sunny with a soft Indian Ocean breeze. The long rains are easing — mornings are clear, and the reef visibility holds through early afternoon.',
+  'Przeważnie słonecznie, z lekką bryzą znad Oceanu Indyjskiego. Długie deszcze słabną, poranki są przejrzyste, a widoczność na rafie utrzymuje się do wczesnego popołudnia.',
 };
 
 const describe = (code, isDay) => {
-  const nightClear = 'Clear night over the channel — warm air, gentle breeze off the reef.';
-  if (code === 0) return isDay ? 'Clear skies and steady Indian Ocean breeze — ideal beach and snorkeling conditions.' : nightClear;
-  if (code === 1) return isDay ? 'Mostly sunny with high cloud — reef visibility holds through the afternoon.' : 'Mostly clear night with high cloud — warm and calm.';
-  if (code === 2) return isDay ? 'Partly cloudy with warm trade winds — comfortable beach and dhow conditions.' : 'Partly cloudy night — soft trade winds and warm air.';
-  if (code === 3) return isDay ? 'Overcast but warm — good light for island walks, spice farms, and culture stops.' : 'Overcast and warm tonight — calm seas expected by morning.';
-  if (code === 45 || code === 48) return 'Coastal fog easing through the morning — clearer by midday.';
-  if (code >= 51 && code <= 57) return 'Light drizzle drifting in from the channel — short, warm, and passing.';
-  if (code >= 61 && code <= 67) return 'Rain showers passing through — typical of the long rains, mornings often clear.';
-  if (code >= 80 && code <= 82) return 'Tropical showers between sunny spells — bring a light layer.';
-  if (code >= 95) return 'Thunderstorms expected — best to plan indoor time, a slower lunch, or a spa stop.';
+  const nightClear = 'Czysta noc nad kanałem: ciepłe powietrze i delikatna bryza znad rafy.';
+  if (code === 0) return isDay ? 'Czyste niebo i stała bryza znad Oceanu Indyjskiego: świetne warunki na plażę i snorkeling.' : nightClear;
+  if (code === 1) return isDay ? 'Przeważnie słonecznie z wysokimi chmurami: widoczność na rafie utrzymuje się do popołudnia.' : 'Przeważnie czysta noc z wysokimi chmurami: ciepło i spokojnie.';
+  if (code === 2) return isDay ? 'Częściowe zachmurzenie i ciepłe pasaty: wygodne warunki na plażę i rejs dhow.' : 'Częściowo pochmurna noc: lekkie pasaty i ciepłe powietrze.';
+  if (code === 3) return isDay ? 'Pochmurno, ale ciepło: dobre światło na spacery po wyspie, farmy przypraw i kulturę.' : 'Dziś nocą pochmurno i ciepło, rano morze powinno być spokojne.';
+  if (code === 45 || code === 48) return 'Nadmorska mgła ustępuje w ciągu poranka: około południa będzie jaśniej.';
+  if (code >= 51 && code <= 57) return 'Lekka mżawka znad kanału: krótka, ciepła i przelotna.';
+  if (code >= 61 && code <= 67) return 'Przelotne opady, typowe dla długich deszczy. Poranki często pozostają pogodne.';
+  if (code >= 80 && code <= 82) return 'Tropikalne przelotne deszcze między chwilami słońca. Warto mieć lekką warstwę.';
+  if (code >= 95) return 'Możliwe burze: najlepiej zaplanować czas pod dachem, spokojniejszy lunch albo spa.';
   return FALLBACK.description;
 };
 
@@ -234,7 +234,7 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
                   <path d="M2 18c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2" />
                   <path d="M2 10c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2" />
                 </svg>
-                <div className="weather-fact__label">Sea temp</div>
+                <div className="weather-fact__label">Temp. morza</div>
               </div>
               <div className="weather-fact__value">{weather.seaTemp}°C</div>
             </div>
@@ -243,7 +243,7 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
                 <svg className="weather-fact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
                 </svg>
-                <div className="weather-fact__label">Humidity</div>
+                <div className="weather-fact__label">Wilgotność</div>
               </div>
               <div className="weather-fact__value">{weather.humidity}%</div>
             </div>
@@ -259,7 +259,7 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
                   <line x1="23" y1="22" x2="1" y2="22" />
                   <polyline points="8 6 12 2 16 6" />
                 </svg>
-                <div className="weather-fact__label">Sunrise</div>
+                <div className="weather-fact__label">Wschód</div>
               </div>
               <div className="weather-fact__value">{weather.sunrise}</div>
             </div>
@@ -275,14 +275,14 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
                   <line x1="23" y1="22" x2="1" y2="22" />
                   <polyline points="16 5 12 9 8 5" />
                 </svg>
-                <div className="weather-fact__label">Sunset</div>
+                <div className="weather-fact__label">Zachód</div>
               </div>
               <div className="weather-fact__value">{weather.sunset}</div>
             </div>
           </div>
         </div>
         <div className="weather__side">
-          <div className="weather__side-title">Best time to visit</div>
+          <div className="weather__side-title">Najlepszy czas na podróż</div>
           <div className="weather__months">
             {MONTHS.map((m, i) => (
               <div key={m.m} className={`weather-month weather-month--${m.season}${i === NOW_MONTH ? ' is-now' : ''}`}>
@@ -292,17 +292,17 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
                 </span>
                 <span className="weather-month__bar"><span className="weather-month__bar-fill" style={{ width: `${SCORES[i]}%` }}></span></span>
                 <span className="weather-month__season">
-                  {m.season === 'peak' ? 'Peak' : m.season === 'high' ? 'High' : 'Low'}
+                  {m.season === 'peak' ? 'Szczyt' : m.season === 'high' ? 'Wysoki' : 'Niski'}
                 </span>
                 <span className="weather-month__score">{m.t}°</span>
               </div>
             ))}
           </div>
-          <div className="weather__legend" aria-label="Hotel season key">
-            <div className="weather__legend-title">Hotel season</div>
-            <span className="weather__legend-item"><span className="weather__legend-dot weather__legend-dot--peak"></span> <strong>Peak</strong> — festive &amp; European summer (Dec–Jan, Jul–Aug). Premium rates, book early.</span>
-            <span className="weather__legend-item"><span className="weather__legend-dot weather__legend-dot--high"></span> <strong>High</strong> — busy dry months (Feb, Jun, Sep–Oct). Standard high-season rates.</span>
-            <span className="weather__legend-item"><span className="weather__legend-dot weather__legend-dot--low"></span> <strong>Low</strong> — rainy season (Mar–May, Nov). Best deals; some hotels close in Apr–May.</span>
+          <div className="weather__legend" aria-label="Legenda sezonów hotelowych">
+            <div className="weather__legend-title">Sezon hotelowy</div>
+            <span className="weather__legend-item"><span className="weather__legend-dot weather__legend-dot--peak"></span> <strong>Szczyt</strong> — święta i europejskie lato (gru-sty, lip-sie). Ceny premium, rezerwuj wcześnie.</span>
+            <span className="weather__legend-item"><span className="weather__legend-dot weather__legend-dot--high"></span> <strong>Wysoki</strong> — popularne suche miesiące (lut, cze, wrz-paź). Standardowe ceny wysokiego sezonu.</span>
+            <span className="weather__legend-item"><span className="weather__legend-dot weather__legend-dot--low"></span> <strong>Niski</strong> — pora deszczowa (mar-maj, lis). Najlepsze okazje; część hoteli zamyka się w kwi-maj.</span>
           </div>
         </div>
       </div>

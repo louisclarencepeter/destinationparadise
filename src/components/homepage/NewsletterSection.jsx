@@ -40,9 +40,9 @@ export default function NewsletterSection() {
   return (
     <section className="newsletter reveal" id="newsletter">
       <div>
-        <span className="newsletter__eyebrow">Stay in the loop</span>
-        <h3 className="newsletter__title">Sea stories and sunsets, every month</h3>
-        <p className="newsletter__desc">Hand-written notes from the team — trip openings, shoulder-season deals, and the occasional spice recipe. One email a month. Never anything else.</p>
+        <span className="newsletter__eyebrow">Bądź na bieżąco</span>
+        <h3 className="newsletter__title">Morskie historie i zachody słońca co miesiąc</h3>
+        <p className="newsletter__desc">Osobiste wiadomości od zespołu: wolne terminy, oferty poza szczytem sezonu i czasem przepis z przyprawami. Jeden email miesięcznie. Nic więcej.</p>
       </div>
       <form
         className="newsletter__form"
@@ -59,22 +59,22 @@ export default function NewsletterSection() {
           type="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder={done ? "✓ You're on the list" : 'you@example.com'}
+          placeholder={done ? '✓ Jesteś na liście' : 'ty@example.com'}
           required={!done}
           disabled={done}
-          aria-label="Email address"
+          aria-label="Adres email"
           autoComplete="email"
         />
         <button type="submit" className="newsletter__submit" disabled={pending || done}>
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
             <path d="M4 4h16v16H4z" /><path d="M4 6l8 7 8-7" />
           </svg>
-          <span>{done ? 'Sent' : pending ? 'Sending…' : 'Subscribe'}</span>
+          <span>{done ? 'Wysłano' : pending ? 'Wysyłanie…' : 'Zapisz się'}</span>
         </button>
       </form>
       {error && (
         <p className="newsletter__note newsletter__note--error" role="status">
-          That did not go through. Please try again in a moment.
+          Nie udało się wysłać. Spróbuj ponownie za chwilę.
         </p>
       )}
     </section>

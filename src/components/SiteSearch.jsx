@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 
 const MAX_RESULTS = 8;
 const FALLBACK_POPULAR = [
-  'Airport transfer',
+  'Transfer z lotniska',
   'Safari Blue',
-  'Honeymoon package',
+  'Pakiet poślubny',
   'Serengeti',
   'Stone Town',
   'Paje',
@@ -49,9 +49,9 @@ const ArrowIcon = () => (
   </svg>
 );
 
-export function SearchButton({ className = '', onClick, label = 'Search' }) {
+export function SearchButton({ className = '', onClick, label = 'Szukaj' }) {
   return (
-    <button className={className} type="button" aria-label="Search the website" onClick={onClick}>
+    <button className={className} type="button" aria-label="Szukaj na stronie" onClick={onClick}>
       <SearchIcon />
       <span>{label}</span>
     </button>
@@ -70,7 +70,7 @@ export default function SiteSearch({ open, onClose }) {
     const terms = tokenize(query);
     if (!terms.length) {
       return searchIndex.filter((item) => (
-        ['Transfers', 'Packages', 'Safaris', 'Excursions', 'Booking', 'Trip Planner'].includes(item.title)
+        ['Transfery', 'Pakiety', 'Safari', 'Wycieczki', 'Rezerwacja', 'Planer podróży'].includes(item.title)
       ));
     }
 
@@ -122,8 +122,8 @@ export default function SiteSearch({ open, onClose }) {
   if (!open) return null;
 
   return (
-    <div className="site-search" role="dialog" aria-modal="true" aria-label="Search the website">
-      <button className="site-search__backdrop" type="button" aria-label="Close search" onClick={onClose} />
+    <div className="site-search" role="dialog" aria-modal="true" aria-label="Wyszukiwarka strony">
+      <button className="site-search__backdrop" type="button" aria-label="Zamknij wyszukiwanie" onClick={onClose} />
       <div className="site-search__panel">
         <div className="site-search__field">
           <SearchIcon size={22} />
@@ -132,8 +132,8 @@ export default function SiteSearch({ open, onClose }) {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             type="search"
-            placeholder="Search safaris, transfers, packages, Stone Town..."
-            aria-label="Search query"
+            placeholder="Szukaj safari, transferów, pakietów, Stone Town..."
+            aria-label="Wpisz szukaną frazę"
           />
           {query && (
             <button
@@ -144,14 +144,14 @@ export default function SiteSearch({ open, onClose }) {
                 inputRef.current?.focus();
               }}
             >
-              Clear
+              Wyczyść
             </button>
           )}
-          <button type="button" className="site-search__close" onClick={onClose}>Close</button>
+          <button type="button" className="site-search__close" onClick={onClose}>Zamknij</button>
         </div>
 
         {!query.trim() && (
-          <div className="site-search__chips" aria-label="Popular searches">
+          <div className="site-search__chips" aria-label="Popularne wyszukiwania">
             {popularSearches.map((term) => (
               <button type="button" key={term} onClick={() => setQuery(term)}>{term}</button>
             ))}
@@ -160,7 +160,7 @@ export default function SiteSearch({ open, onClose }) {
 
         <div className="site-search__results" role="list">
           {!searchIndex.length && (
-            <div className="site-search__loading">Preparing the site index...</div>
+            <div className="site-search__loading">Przygotowujemy indeks strony...</div>
           )}
 
           {results.map((item) => (
@@ -176,9 +176,9 @@ export default function SiteSearch({ open, onClose }) {
 
           {query.trim() && results.length === 0 && (
             <div className="site-search__empty">
-              <strong>No exact match yet.</strong>
-              <span>Try a destination, activity, package style, safari park, transfer route, or send us a custom request.</span>
-              <Link className="btn" to="/trip-planner" onClick={onClose}>Open trip planner</Link>
+              <strong>Nie znaleźliśmy dokładnego dopasowania.</strong>
+              <span>Spróbuj wpisać kierunek, aktywność, styl pakietu, park safari, trasę transferu albo wyślij nam zapytanie na miarę.</span>
+              <Link className="btn" to="/trip-planner" onClick={onClose}>Otwórz planer podróży</Link>
             </div>
           )}
         </div>

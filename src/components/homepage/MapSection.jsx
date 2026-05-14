@@ -3,7 +3,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { ArrowIcon } from './Icons.jsx';
 
-export default function MapSection({ tweaks, PINS, activePin, setActivePin, islandPins, mainlandPins, ctaHref = '#contact', ctaLabel = 'Build a custom itinerary' }) {
+export default function MapSection({ tweaks, PINS, activePin, setActivePin, islandPins, mainlandPins, ctaHref = '#contact', ctaLabel = 'Ułóż plan na miarę' }) {
   const mapElRef = useRef(null);
   const mapApiRef = useRef(null);
   const isDark = tweaks.theme === 'dark';
@@ -78,9 +78,9 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
     <section className="map-section reveal" id="map">
       <div className="map-wrap">
         <div className="map-copy">
-          <span className="section-eyebrow">The Region</span>
-          <h2 className="section-title">Zanzibar &amp; Tanzania at a glance</h2>
-          <p>One country, two worlds. The island gives you Stone Town's heritage, dhows on the reef, beaches, culture, and ocean days. Cross to the mainland for northern icons, southern wilderness, western chimp routes, quick fly-ins, mountain days, and cultural stops.</p>
+          <span className="section-eyebrow">Region</span>
+          <h2 className="section-title">Zanzibar i Tanzania w skrócie</h2>
+          <p>Jeden kraj, dwa światy. Wyspa daje dziedzictwo Stone Town, dhow na rafie, plaże, kulturę i dni nad oceanem. Kontynent otwiera północne ikony safari, dzikie południe, zachodnie trasy z szympansami, krótkie przeloty, górskie dni i spotkania z kulturą.</p>
           
           <div className="map-list-group">
             <div className="map-list-label">Zanzibar</div>
@@ -104,7 +104,7 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
               })}
             </ul>
 
-            <div className="map-list-label">Mainland Tanzania</div>
+            <div className="map-list-label">Kontynent Tanzanii</div>
             <ul className="map-list">
               {mainlandPins.map((p) => {
                 const i = PINS.findIndex((x) => x.id === p.id);

@@ -2,26 +2,26 @@ import ResponsiveImage from '../ResponsiveImage.jsx';
 
 export default function GallerySection() {
   const photos = [
-    { src: '/assets/images/home/mizingani-waterfront.webp', caption: 'Mizingani waterfront', className: 'gallery-tile gallery-tile--tall' },
-    { src: '/assets/images/safaris/zebra-mare-and-foal.webp', caption: 'Zebra on safari', className: 'gallery-tile gallery-tile--tall' },
-    { src: '/assets/images/excursions/dolphin-snorkeling.webp', caption: 'Dolphin snorkel', className: 'gallery-tile gallery-tile--wide' },
-    { src: '/assets/images/safaris/lioness-and-cub-resting.webp', caption: 'Lioness and cub', className: 'gallery-tile' },
-    { src: '/assets/images/excursions/stone-town-old-fort.webp', caption: 'Stone Town Old Fort', className: 'gallery-tile' },
-    { src: '/assets/images/safaris/rhino-on-plains.webp', caption: 'Ngorongoro rhino', className: 'gallery-tile' },
-    { src: '/assets/images/excursions/safari-blue-sandbank.webp', caption: 'Safari Blue sandbank', className: 'gallery-tile gallery-tile--tall' },
-    { src: '/assets/images/safaris/crowned-cranes-in-grass.webp', caption: 'Crowned cranes', className: 'gallery-tile gallery-tile--wide' },
-    { src: '/assets/images/excursions/jozani-red-colobus.webp', caption: 'Jozani red colobus', className: 'gallery-tile' },
-    { src: '/assets/images/safaris/wildebeest-grazing.webp', caption: 'Migration plains', className: 'gallery-tile' },
-    { src: '/assets/images/excursions/spice-tour-nutmeg.webp', caption: 'Spice farm detail', className: 'gallery-tile gallery-tile--wide' },
-    { src: '/assets/images/safaris/male-lion-in-grass.webp', caption: 'Serengeti lion', className: 'gallery-tile' },
+    { src: '/assets/images/home/mizingani-waterfront.webp', caption: 'Nabrzeże Mizingani', className: 'gallery-tile gallery-tile--tall' },
+    { src: '/assets/images/safaris/zebra-mare-and-foal.webp', caption: 'Zebry na safari', className: 'gallery-tile gallery-tile--tall' },
+    { src: '/assets/images/excursions/dolphin-snorkeling.webp', caption: 'Snorkeling z delfinami', className: 'gallery-tile gallery-tile--wide' },
+    { src: '/assets/images/safaris/lioness-and-cub-resting.webp', caption: 'Lwica z młodym', className: 'gallery-tile' },
+    { src: '/assets/images/excursions/stone-town-old-fort.webp', caption: 'Stary Fort w Stone Town', className: 'gallery-tile' },
+    { src: '/assets/images/safaris/rhino-on-plains.webp', caption: 'Nosorożec w Ngorongoro', className: 'gallery-tile' },
+    { src: '/assets/images/excursions/safari-blue-sandbank.webp', caption: 'Ławica piasku Safari Blue', className: 'gallery-tile gallery-tile--tall' },
+    { src: '/assets/images/safaris/crowned-cranes-in-grass.webp', caption: 'Żurawie koroniaste', className: 'gallery-tile gallery-tile--wide' },
+    { src: '/assets/images/excursions/jozani-red-colobus.webp', caption: 'Gereza ruda w Jozani', className: 'gallery-tile' },
+    { src: '/assets/images/safaris/wildebeest-grazing.webp', caption: 'Równiny migracji', className: 'gallery-tile' },
+    { src: '/assets/images/excursions/spice-tour-nutmeg.webp', caption: 'Detale farmy przypraw', className: 'gallery-tile gallery-tile--wide' },
+    { src: '/assets/images/safaris/male-lion-in-grass.webp', caption: 'Lew w Serengeti', className: 'gallery-tile' },
   ];
 
   return (
     <section className="gallery-section reveal" id="gallery">
       <div className="gallery-head">
-        <span className="section-eyebrow">A Glimpse</span>
-        <h2 className="section-title">Moments from shore to safari</h2>
-        <p className="section-lead">A wider look at Zanzibar and Tanzania: dhows, old streets, forest, spice farms, sandbanks, and mainland wildlife.</p>
+        <span className="section-eyebrow">Z bliska</span>
+        <h2 className="section-title">Chwile od brzegu po safari</h2>
+        <p className="section-lead">Szersze spojrzenie na Zanzibar i Tanzanię: dhow, stare uliczki, lasy, farmy przypraw, ławice piasku i dzika przyroda kontynentu.</p>
       </div>
       <div className="gallery-strip">
         {photos.map((photo) => (

@@ -3,18 +3,18 @@ import ReactMarkdown from 'react-markdown';
 import '../../styles/homepage/planner.css';
 import { extractContact } from '../../utils/plannerHandoff.js';
 
-const PLANNER_TITLE = 'Tell me about your dream trip';
+const PLANNER_TITLE = 'Opowiedz mi o swojej wymarzonej podróży';
 const QUICK_REPLIES = [
-  'Beach and chill',
+  'Plaża i spokój',
   'Safari + Zanzibar',
-  'Honeymoon trip',
-  'Family friendly',
+  'Podróż poślubna',
+  'Rodzinnie',
 ];
 const THINKING_MESSAGES = [
-  'Plotting a route',
-  'Checking the pace',
-  'Balancing beach and safari',
-  'Shaping the draft',
+  'Układam trasę',
+  'Sprawdzam tempo',
+  'Równoważę plażę i safari',
+  'Szkicuję plan',
 ];
 const HANDOFF_TOKEN = '[[PLANNER_HANDOFF_READY]]';
 const HANDOFF_TOKEN_REGEX = /\[\[\s*PLANNER_HANDOFF_READY\s*\]\]/g;
@@ -106,7 +106,7 @@ export default function PlannerSection({ initialPrompt }) {
     if (!contact.email) {
       handoffInflightRef.current = false;
       setHandoffState('error');
-      setHandoffError('Share your email in the chat first so we can reply.');
+      setHandoffError('Najpierw podaj email w czacie, żebyśmy mogli odpowiedzieć.');
       return;
     }
 
@@ -153,14 +153,14 @@ export default function PlannerSection({ initialPrompt }) {
         body: JSON.stringify({ history: next }),
       });
       const data = await res.json();
-      const rawReply = data.reply || "Hmm, I lost my train of thought. Could you say that again?";
+      const rawReply = data.reply || 'Hmm, zgubiłem wątek. Możesz napisać to jeszcze raz?';
       const ready = HANDOFF_TOKEN_REGEX.test(rawReply);
-      const cleaned = stripToken(rawReply) || "Asante! I've sent this draft to the team — they'll be in touch within a day.";
+      const cleaned = stripToken(rawReply) || 'Asante! Wysłałem szkic do zespołu. Odezwą się w ciągu dnia.';
       const updated = [...next, { role: 'assistant', content: cleaned }];
       setHistory(updated);
       if (ready) submitHandoff(updated);
     } catch (err) {
-      setHistory((h) => [...h, { role: 'assistant', content: "Pole sana — I couldn't reach the planner just now. Try again in a moment, or message the team directly via the WhatsApp button." }]);
+      setHistory((h) => [...h, { role: 'assistant', content: 'Pole sana — nie mogę teraz połączyć się z planerem. Spróbuj za chwilę albo napisz do zespołu przez WhatsApp.' }]);
     } finally {
       setSending(false);
       if (inputRef.current) inputRef.current.focus();
@@ -195,22 +195,22 @@ export default function PlannerSection({ initialPrompt }) {
     <section className="planner reveal" id="planner">
       <div className="planner__wrap">
         <div className="planner__intro">
-          <span className="section-eyebrow planner__eyebrow"><span className="planner__pulse"></span> AI Trip Planner</span>
+          <span className="section-eyebrow planner__eyebrow"><span className="planner__pulse"></span> Planer podróży AI</span>
           <h2 className="section-title planner__title" aria-label={PLANNER_TITLE}>
             <span className="planner__typing" aria-hidden="true">{typedTitle}</span>
             <span className={`planner__cursor${titleTyping ? ' planner__cursor--typing' : ''}`} aria-hidden="true"></span>
           </h2>
-          <p className="planner__lead">Chat with our AI planner — built on years of routes the team has walked. It'll ask the right questions, sketch a day-by-day itinerary, and send it straight to the team when you're ready.</p>
+          <p className="planner__lead">Porozmawiaj z naszym planerem AI, opartym na trasach, które zespół zna z praktyki. Zada właściwe pytania, naszkicuje plan dzień po dniu i wyśle go do zespołu, gdy będziesz gotowy.</p>
           <ul className="planner__bullets">
-            <li><span className="planner__bullet-icon">✦</span> <span><strong>Asks about you</strong> — pace, budget, water vs. wildlife, kids in tow, special dates.</span></li>
-            <li><span className="planner__bullet-icon">✦</span> <span><strong>Builds a draft</strong> — nights per place, recommended hotels, excursion pacing.</span></li>
-            <li><span className="planner__bullet-icon">✦</span> <span><strong>Sends it to the team</strong> — confirm in the chat and we'll email a copy and reply within a day.</span></li>
+            <li><span className="planner__bullet-icon">✦</span> <span><strong>Pyta o Ciebie</strong> — tempo, budżet, ocean czy dzika przyroda, dzieci, specjalne daty.</span></li>
+            <li><span className="planner__bullet-icon">✦</span> <span><strong>Buduje szkic</strong> — noce w każdym miejscu, rekomendowane hotele i rytm wycieczek.</span></li>
+            <li><span className="planner__bullet-icon">✦</span> <span><strong>Wysyła do zespołu</strong> — potwierdź w czacie, a wyślemy kopię emailem i odpowiemy w ciągu dnia.</span></li>
           </ul>
           <div className="planner__suggestions">
-            <span className="planner__suggestions-label">Try:</span>
-            <button className="planner__suggest" onClick={() => send("We're a couple, 8 nights in October. We want a mix of beach, dhow sailing, and one big experience. Mid-range hotels.")}>Couple, 8 nights, beach + dhow</button>
-            <button className="planner__suggest" onClick={() => send('Family of four with kids 9 and 12. Two weeks in July. We want a few days of safari then unwind on a beach. Budget around $4k pp.')}>Family with kids, safari + beach</button>
-            <button className="planner__suggest" onClick={() => send('Solo traveler, 5 nights in February. Love spice markets, history, snorkeling. Boutique hotel under $200/night.')}>Solo, history + snorkel</button>
+            <span className="planner__suggestions-label">Spróbuj:</span>
+            <button className="planner__suggest" onClick={() => send('Jesteśmy parą, 8 nocy w październiku. Chcemy połączyć plażę, rejs dhow i jedno większe przeżycie. Hotele w średnim standardzie.')}>Para, 8 nocy, plaża + dhow</button>
+            <button className="planner__suggest" onClick={() => send('Rodzina czteroosobowa, dzieci 9 i 12 lat. Dwa tygodnie w lipcu. Chcemy kilka dni safari, potem odpoczynek na plaży. Budżet około $4k za osobę.')}>Rodzina z dziećmi, safari + plaża</button>
+            <button className="planner__suggest" onClick={() => send('Podróżuję solo, 5 nocy w lutym. Lubię targi przypraw, historię i snorkeling. Hotel butikowy poniżej $200 za noc.')}>Solo, historia + snorkeling</button>
           </div>
         </div>
 
@@ -224,21 +224,21 @@ export default function PlannerSection({ initialPrompt }) {
             </div>
             <div className="planner__header-text">
               <strong>Paradise Planner</strong>
-              <span><span className="planner__online"></span> Powered by Claude · usually replies instantly</span>
+              <span><span className="planner__online"></span> Zasilany przez Claude · zwykle odpowiada od razu</span>
             </div>
             <button
               className="planner__reset"
-              title="Start over"
+              title="Zacznij od nowa"
               onClick={startOver}
             >↻</button>
           </header>
           <div className="planner__log" ref={logRef} role="log" aria-live="polite">
             <div className="planner__msg planner__msg--bot planner__msg--welcome">
               <div className="planner__bubble">
-                <p>Karibu! 👋 I'm the Destination Paradise planner — let's sketch your trip together.</p>
-                <p>To start, what kind of pace are you after? <em>Beach &amp; chill, mainland safari, deep cultural dive,</em> or a mix?</p>
+                <p>Karibu! Jestem planerem Destination Paradise. Naszkicujmy razem Twoją podróż.</p>
+                <p>Na początek: jakiego tempa szukasz? <em>Plaża i luz, safari na kontynencie, mocne zanurzenie w kulturze</em> czy miks?</p>
                 {history.length === 0 && !sending && (
-                  <div className="planner__quick-replies" aria-label="Quick replies">
+                  <div className="planner__quick-replies" aria-label="Szybkie odpowiedzi">
                     {QUICK_REPLIES.map((reply) => (
                       <button key={reply} type="button" onClick={() => send(reply)}>
                         {reply}
@@ -266,34 +266,34 @@ export default function PlannerSection({ initialPrompt }) {
             {handoffState === 'sending' && (
               <div className="planner__status planner__status--sending" role="status">
                 <span className="planner__status-dot"></span>
-                Sending your draft to the team…
+                Wysyłamy szkic do zespołu…
               </div>
             )}
             {handoffState === 'updating' && (
               <div className="planner__status planner__status--sending" role="status">
                 <span className="planner__status-dot"></span>
-                Sending your update to the team…
+                Wysyłamy aktualizację do zespołu…
               </div>
             )}
             {handoffState === 'sent' && (
               <div className="planner__status planner__status--sent" role="status">
-                <strong>Asante! ✓ Your draft is with the team.</strong>
-                <span>You'll get an email copy and a reply within a day. Need to change something? Just type below — I'll send the team an update. Or start a new plan:</span>
-                <button type="button" className="planner__status-action" onClick={startOver}>Start a new plan</button>
+                <strong>Asante! ✓ Twój szkic jest już u zespołu.</strong>
+                <span>Dostaniesz kopię emailem i odpowiedź w ciągu dnia. Chcesz coś zmienić? Napisz poniżej, a wyślę aktualizację. Możesz też zacząć nowy plan:</span>
+                <button type="button" className="planner__status-action" onClick={startOver}>Zacznij nowy plan</button>
               </div>
             )}
             {handoffState === 'updated' && (
               <div className="planner__status planner__status--sent" role="status">
-                <strong>✓ Update {updateCount} sent to the team.</strong>
-                <span>They'll see the revised plan. Type below to make another change, or start fresh:</span>
-                <button type="button" className="planner__status-action" onClick={startOver}>Start a new plan</button>
+                <strong>✓ Aktualizacja {updateCount} wysłana do zespołu.</strong>
+                <span>Zobaczą poprawiony plan. Napisz poniżej, aby dodać kolejną zmianę, albo zacznij od nowa:</span>
+                <button type="button" className="planner__status-action" onClick={startOver}>Zacznij nowy plan</button>
               </div>
             )}
             {handoffState === 'error' && (
               <div className="planner__status planner__status--error" role="status">
-                <strong>Pole sana — that didn't go through.</strong>
-                <span>{handoffError || 'Please try again, or message us on WhatsApp.'}</span>
-                <button type="button" className="planner__status-action" onClick={retryHandoff}>Try again</button>
+                <strong>Pole sana — nie udało się wysłać.</strong>
+                <span>{handoffError || 'Spróbuj ponownie albo napisz do nas na WhatsApp.'}</span>
+                <button type="button" className="planner__status-action" onClick={retryHandoff}>Spróbuj ponownie</button>
               </div>
             )}
           </div>
@@ -307,8 +307,8 @@ export default function PlannerSection({ initialPrompt }) {
               rows={1}
               placeholder={
                 handoffState === 'sent' || handoffState === 'updated'
-                  ? 'Type an update here…'
-                  : 'Tell me your dream trip…'
+                  ? 'Wpisz tutaj aktualizację…'
+                  : 'Opowiedz o wymarzonej podróży…'
               }
               value={input}
               onChange={(e) => {
@@ -325,7 +325,7 @@ export default function PlannerSection({ initialPrompt }) {
               disabled={isInputBusy}
               required={!isInputBusy}
             />
-            <button className="planner__send" type="submit" aria-label="Send" disabled={isInputBusy || !input.trim()}>
+            <button className="planner__send" type="submit" aria-label="Wyślij" disabled={isInputBusy || !input.trim()}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13" />
                 <polygon points="22 2 15 22 11 13 2 9 22 2" />
@@ -333,7 +333,7 @@ export default function PlannerSection({ initialPrompt }) {
             </button>
           </form>
           <footer className="planner__foot">
-            <span className="planner__foot-note">Itineraries are drafts. A human reviews and prices everything before you book.</span>
+            <span className="planner__foot-note">Plany są szkicami. Przed rezerwacją człowiek sprawdza i wycenia wszystko dokładnie.</span>
             <button
               type="button"
               className="planner__handoff"
@@ -345,8 +345,8 @@ export default function PlannerSection({ initialPrompt }) {
               }
             >
               {handoffState === 'sent' || handoffState === 'updated'
-                ? 'Sent to team ✓'
-                : 'Send to team'}
+                ? 'Wysłano do zespołu ✓'
+                : 'Wyślij do zespołu'}
             </button>
           </footer>
         </div>

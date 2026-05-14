@@ -1,16 +1,16 @@
 export const SERVICE_TYPES = [
-  { value: 'package', label: 'Package', text: 'Safari + Zanzibar, honeymoon, family, culture, marine, or luxury route.' },
-  { value: 'excursion', label: 'Excursion', text: 'Island day trips, dhow sailing, Stone Town, spice farms, snorkeling, and nature.' },
-  { value: 'safari', label: 'Safari', text: 'Mainland wildlife routes, fly-in safaris, migration, southern parks, and custom circuits.' },
-  { value: 'transfer', label: 'Transfer', text: 'Private airport, hotel-to-hotel, group, premium SUV, or VIP concierge transfer.' },
-  { value: 'custom', label: 'Custom plan', text: 'Not sure yet? Tell us the shape and we will build a route around you.' },
+  { value: 'package', label: 'Pakiet', text: 'Safari + Zanzibar, podróż poślubna, rodzina, kultura, ocean albo luksusowa trasa.' },
+  { value: 'excursion', label: 'Wycieczka', text: 'Jednodniowe wypady po wyspie, dhow, Stone Town, farmy przypraw, snorkeling i natura.' },
+  { value: 'safari', label: 'Safari', text: 'Trasy z dziką przyrodą na kontynencie, safari samolotem, migracja, parki południa i programy na miarę.' },
+  { value: 'transfer', label: 'Transfer', text: 'Prywatny transfer z lotniska, hotel-hotel, grupa, premium SUV albo VIP concierge.' },
+  { value: 'custom', label: 'Plan na miarę', text: 'Nie masz jeszcze pewności? Opowiedz nam, czego szukasz, a ułożymy trasę wokół Ciebie.' },
 ];
 
 export const PAYMENT_OPTIONS = [
-  { value: 'secure-link', label: 'Send secure online payment link', text: 'Best after we confirm availability and the final price.' },
-  { value: 'deposit', label: 'I want to pay a deposit online', text: 'We will confirm the deposit amount and send a payment link.' },
-  { value: 'full', label: 'I want to pay the full amount online', text: 'For confirmed trips where you want to settle everything by card/link.' },
-  { value: 'later', label: 'Quote first, payment later', text: 'We will price the trip first and discuss payment after.' },
+  { value: 'secure-link', label: 'Wyślij bezpieczny link do płatności online', text: 'Najlepsze rozwiązanie po potwierdzeniu dostępności i końcowej ceny.' },
+  { value: 'deposit', label: 'Chcę zapłacić zaliczkę online', text: 'Potwierdzimy kwotę zaliczki i wyślemy link do płatności.' },
+  { value: 'full', label: 'Chcę zapłacić całość online', text: 'Dla potwierdzonych podróży, które chcesz opłacić kartą lub linkiem.' },
+  { value: 'later', label: 'Najpierw wycena, płatność później', text: 'Najpierw wycenimy wyjazd, a potem omówimy płatność.' },
 ];
 
 export const DEFAULT_BOOKING_FORM = {
@@ -29,7 +29,7 @@ export const DEFAULT_BOOKING_FORM = {
   flightNumber: '',
   transferTime: '',
   budget: '',
-  accommodationLevel: 'Mid-range',
+  accommodationLevel: 'Średni standard',
   paymentPreference: 'secure-link',
   message: '',
 };
@@ -37,19 +37,19 @@ export const DEFAULT_BOOKING_FORM = {
 const money = (value) => `$${Number(value).toLocaleString()}`;
 
 export function bookingPriceLabel(item) {
-  if (!item) return 'Final price after availability check';
+  if (!item) return 'Końcowa cena po sprawdzeniu dostępności';
   if (item.type === 'package') {
     const to = item.raw.pricing.to ? ` - ${money(item.raw.pricing.to)}` : '';
-    return `From ${money(item.raw.pricing.from)}${to} ${item.raw.pricing.unit || 'per person'}`;
+    return `Od ${money(item.raw.pricing.from)}${to} ${item.raw.pricing.unit || 'za osobę'}`;
   }
   if (item.type === 'safari') {
-    return `From ${money(item.raw.recommendedPublicPrice.lowSeason)} pp`;
+    return `Od ${money(item.raw.recommendedPublicPrice.lowSeason)} za osobę`;
   }
   if (item.type === 'excursion' && typeof item.raw.price === 'number') {
-    return `From ${money(item.raw.price)} ${item.raw.priceSub || 'per person'}`;
+    return `Od ${money(item.raw.price)} ${item.raw.priceSub || 'za osobę'}`;
   }
   if (item.type === 'transfer') {
-    return item.raw.priceSummary || 'Final transfer price after route confirmation';
+    return item.raw.priceSummary || 'Końcowa cena transferu po potwierdzeniu trasy';
   }
-  return 'Final price after availability check';
+  return 'Końcowa cena po sprawdzeniu dostępności';
 }

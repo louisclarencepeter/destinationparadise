@@ -24,8 +24,8 @@ const ThemeIcon = ({ theme }) => (
 );
 
 const THEME_MODES = [
-  { mode: 'light', label: 'Light' },
-  { mode: 'dark', label: 'Dark' },
+  { mode: 'light', label: 'Jasny' },
+  { mode: 'dark', label: 'Ciemny' },
 ];
 
 const FOOTER_ICONS = {
@@ -149,16 +149,16 @@ export function WhatsAppFab({ locationKey }) {
       href={WHATSAPP_URL}
       target="_blank"
       rel="noreferrer"
-      aria-label="Chat with the team on WhatsApp"
+      aria-label="Napisz do zespołu na WhatsApp"
       style={placement.isParked ? { top: `${placement.top}px` } : undefined}
     >
       <WhatsAppIcon />
-      <span className="whatsapp-fab__label">Chat with the team</span>
+      <span className="whatsapp-fab__label">Napisz do nas</span>
     </a>
   );
 }
 
-const TYPED_TAGLINE = 'your next trip to paradise...';
+const TYPED_TAGLINE = 'twoja następna podróż do raju...';
 
 function TypedTagline() {
   const [typed, setTyped] = useState('');
@@ -226,7 +226,7 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
             <img src="/assets/brand/destination-paradise-logo-96.webp" alt="Destination Paradise" width="48" height="48" loading="lazy" decoding="async" />
             <span className="footer__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
           </div>
-          <p>A small, local travel company on the shores of Zanzibar. Unhurried days, traditional boats, and guides who grew up here.</p>
+          <p>Mała, lokalna firma podróżnicza nad brzegiem Zanzibaru. Spokojne dni, tradycyjne łodzie i przewodnicy, którzy dorastali właśnie tutaj.</p>
           <TypedTagline />
           <div className="footer__socials">
             <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label="WhatsApp"><WhatsAppIcon /></a>
@@ -237,40 +237,40 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
           </div>
         </div>
         <div className="footer__col">
-          <h3>Pages</h3>
+          <h3>Strony</h3>
           <ul>
-            <li><Link to="/"><FooterIcon name="home" />Home</Link></li>
-            <li><Link to="/excursions"><FooterIcon name="compass" />Excursions</Link></li>
-            <li><Link to="/safaris"><FooterIcon name="binoculars" />Safaris</Link></li>
-            <li><Link to="/packages"><FooterIcon name="suitcase" />Packages</Link></li>
-            <li><Link to="/trip-planner"><FooterIcon name="route" />Trip Planner</Link></li>
-            <li><Link to="/explore"><FooterIcon name="map" />Explore</Link></li>
-            <li><Link to="/aboutus"><FooterIcon name="book" />About Us</Link></li>
+            <li><Link to="/"><FooterIcon name="home" />Start</Link></li>
+            <li><Link to="/excursions"><FooterIcon name="compass" />Wycieczki</Link></li>
+            <li><Link to="/safaris"><FooterIcon name="binoculars" />Safari</Link></li>
+            <li><Link to="/packages"><FooterIcon name="suitcase" />Pakiety</Link></li>
+            <li><Link to="/trip-planner"><FooterIcon name="route" />Planer podróży</Link></li>
+            <li><Link to="/explore"><FooterIcon name="map" />Odkrywaj</Link></li>
+            <li><Link to="/aboutus"><FooterIcon name="book" />O nas</Link></li>
           </ul>
         </div>
         <div className="footer__col">
-          <h3>About Us</h3>
+          <h3>O nas</h3>
           <ul>
-            <li><Link to="/aboutus#story"><FooterIcon name="book" />Our story</Link></li>
-            <li><Link to="/aboutus#mission"><FooterIcon name="target" />Our mission</Link></li>
-            <li><Link to="/aboutus#community"><FooterIcon name="users" />Community</Link></li>
-            <li><Link to="/aboutus#destinations"><FooterIcon name="globe" />Destinations</Link></li>
+            <li><Link to="/aboutus#story"><FooterIcon name="book" />Nasza historia</Link></li>
+            <li><Link to="/aboutus#mission"><FooterIcon name="target" />Nasza misja</Link></li>
+            <li><Link to="/aboutus#community"><FooterIcon name="users" />Społeczność</Link></li>
+            <li><Link to="/aboutus#destinations"><FooterIcon name="globe" />Kierunki</Link></li>
           </ul>
         </div>
         <div className="footer__col">
-          <h3>Get in touch</h3>
+          <h3>Kontakt</h3>
           <ul>
             <li><a href={`mailto:${CONTACT_INFO.email}`}><FooterIcon name="mail" />{CONTACT_INFO.email}</a></li>
             <li><a href={`tel:${CONTACT_INFO.phones[0]}`}><FooterIcon name="phone" />+255 768 779 517</a></li>
             <li><a href={`tel:${CONTACT_INFO.phones[1]}`}><FooterIcon name="phone" />+255 748 352 657</a></li>
             <li><Link to="/#contact"><FooterIcon name="pin" />{CONTACT_INFO.location}</Link></li>
-            <li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer"><FooterIcon name="message" />WhatsApp us</a></li>
-            <li><Link to="/transfers"><FooterIcon name="plane" />Airport &amp; island transfers</Link></li>
+            <li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer"><FooterIcon name="message" />Napisz na WhatsApp</a></li>
+            <li><Link to="/transfers"><FooterIcon name="plane" />Transfery z lotniska i po wyspie</Link></li>
           </ul>
         </div>
       </div>
       <div className="footer__theme-row">
-        <div className="footer__theme-toggle" role="radiogroup" aria-label="Theme preference">
+        <div className="footer__theme-toggle" role="radiogroup" aria-label="Wybór motywu">
           {THEME_MODES.map((option) => {
             const isActive = themeMode === 'auto' ? theme === option.mode : themeMode === option.mode;
 
@@ -281,7 +281,7 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
                 type="button"
                 role="radio"
                 aria-checked={isActive}
-                aria-label={`${option.label} mode`}
+                aria-label={`Tryb ${option.label.toLowerCase()}`}
                 onClick={() => onThemeModeChange?.(option.mode)}
               >
                 <ThemeIcon theme={option.mode} />
@@ -293,7 +293,7 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
       </div>
       <div className="footer__bottom">
         <span className="footer__copyright">© {new Date().getFullYear()} Destination Paradise · Zanzibar, Tanzania</span>
-        <span className="footer__policy-links"><Link to="/privacy-policy">Privacy</Link> <Link to="/terms-of-service">Terms</Link> <Link to="/cookies-policy">Cookies</Link></span>
+        <span className="footer__policy-links"><Link to="/privacy-policy">Prywatność</Link> <Link to="/terms-of-service">Regulamin</Link> <Link to="/cookies-policy">Cookies</Link></span>
       </div>
     </footer>
   );

@@ -14,8 +14,8 @@ const transferCards = FEATURED_TRANSFER_SLUGS
 
 const getTransferTag = (transfer) => {
   if (transfer.slug === 'vip-airport-service') return 'VIP';
-  if (transfer.slug === 'airport-nungwi') return 'North coast';
-  if (transfer.slug === 'airport-paje') return 'Beach resorts';
+  if (transfer.slug === 'airport-nungwi') return 'Północne wybrzeże';
+  if (transfer.slug === 'airport-paje') return 'Resorty plażowe';
   return 'Transfer';
 };
 
@@ -23,10 +23,10 @@ export default function TransfersSection() {
   return (
     <section className="home-transfers reveal" id="transfers">
       <header className="home-transfers__head">
-        <span className="section-eyebrow">Private transfers</span>
-        <h2 className="section-title">Arrive smoothly, before the trip even begins.</h2>
+        <span className="section-eyebrow">Prywatne transfery</span>
+        <h2 className="section-title">Przyjedź spokojnie, zanim podróż naprawdę się zacznie.</h2>
         <p className="section-lead">
-          Airport meet &amp; greet, private AC vehicles, flight tracking, luggage help, and VIP arrival options across Zanzibar.
+          Powitanie na lotnisku, prywatne samochody z klimatyzacją, śledzenie lotu, pomoc z bagażem i opcje VIP na całym Zanzibarze.
         </p>
       </header>
 
@@ -48,12 +48,12 @@ export default function TransfersSection() {
 
             <div className="home-transfer-card__foot">
               <div>
-                <span className="home-transfer-card__from">From</span>
-                <span className="home-transfer-card__price">{transfer.priceSummary.replace(/^.* from /i, '')}</span>
+                <span className="home-transfer-card__from">Od</span>
+                <span className="home-transfer-card__price">{transfer.priceSummary.replace(/^.* od /i, '').replace(/^.* from /i, '')}</span>
                 <span className="home-transfer-card__pp">{transfer.duration}</span>
               </div>
               <Link className="btn" to={`/booking?type=transfer&item=${transfer.slug}#booking-details`}>
-                Book transfer <ArrowIcon size={14} />
+                Zarezerwuj transfer <ArrowIcon size={14} />
               </Link>
             </div>
           </article>
@@ -61,7 +61,7 @@ export default function TransfersSection() {
       </div>
 
       <div className="home-transfers__more">
-        <Link className="btn btn--on-light" to="/transfers">View all transfers <ArrowIcon size={16} /></Link>
+        <Link className="btn btn--on-light" to="/transfers">Zobacz wszystkie transfery <ArrowIcon size={16} /></Link>
       </div>
     </section>
   );

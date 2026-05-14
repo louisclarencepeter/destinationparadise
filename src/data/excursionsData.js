@@ -1,5 +1,43 @@
 const tripImg = (file) => `/assets/images/excursions/trips/${file}`;
 
+const CATEGORY_LABELS = {
+  'Water & Snorkeling': 'Ocean i snorkeling',
+  'Culture & Heritage': 'Kultura i dziedzictwo',
+  'Nature & Wildlife': 'Natura i dzika przyroda',
+  'Adventure & Sports': 'Przygoda i sport',
+  'Wellness & Luxury': 'Wellness i luksus',
+  'Festivals & Seasonal': 'Festiwale i sezonowe',
+};
+
+const DURATION_LABELS = {
+  'Half Day': 'Pół dnia',
+  'Full Day': 'Cały dzień',
+  Evening: 'Wieczór',
+  'Half / Full Day': 'Pół dnia / cały dzień',
+  '1 – 2 hours': '1-2 godziny',
+  '30 – 60 mins': '30-60 min',
+  '2 - 4 Hours': '2-4 godziny',
+  'Multi-day': 'Kilka dni',
+};
+
+const COMMON_LABELS = {
+  'per person': 'za osobę',
+  'per boat': 'za łódź',
+  'Up to 4 anglers': 'Do 4 wędkarzy',
+  'Up to 4': 'Do 4',
+  'Up to 6': 'Do 6',
+  'Up to 8': 'Do 8',
+  'Up to 10': 'Do 10',
+  'Up to 12': 'Do 12',
+  '2 – 12 guests': '2-12 gości',
+  '1 – 4': '1-4',
+  '1 – 6': '1-6',
+  '1 – 2': '1-2',
+  '1 (tandem)': '1 (tandem)',
+};
+
+const translateCommon = (value) => COMMON_LABELS[value] || DURATION_LABELS[value] || value;
+
 // Catalog notes:
 // - 16 "headline" excursions carry full editorial data (intro/facts/cols/timeline).
 // - 34 are lean: description, duration, price (often TBD), category, highlights.

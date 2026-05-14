@@ -10,9 +10,9 @@ function categoryToSlug(cat) {
 }
 
 const PRACTICAL = [
-  { h: "What's always included", items: ['Hotel pickup & drop-off', 'Licensed local guide', 'Bottled water all day', 'All park & entry fees', 'Equipment provided'] },
-  { h: 'Not included', items: ['Tips for guides & crew', 'Alcohol (where applicable)', 'Travel insurance', 'Spending money'] },
-  { h: 'Booking & payment', items: ['Book at least 48 hours ahead', '20% deposit, balance on the day', 'Free cancellation up to 24h before', 'USD, EUR, GBP, TZS — all accepted'] },
+  { h: 'Co zawsze jest w cenie', items: ['Odbiór z hotelu i powrót', 'Licencjonowany lokalny przewodnik', 'Woda butelkowana przez cały dzień', 'Wszystkie opłaty parkowe i wejściowe', 'Potrzebny sprzęt'] },
+  { h: 'Nie jest w cenie', items: ['Napiwki dla przewodników i załogi', 'Alkohol (tam, gdzie dotyczy)', 'Ubezpieczenie podróżne', 'Kieszonkowe'] },
+  { h: 'Rezerwacja i płatność', items: ['Rezerwuj co najmniej 48 godzin wcześniej', '20% zaliczki, reszta w dniu wycieczki', 'Bezpłatne anulowanie do 24 h wcześniej', 'Akceptujemy USD, EUR, GBP i TZS'] },
 ];
 
 function formatTierName(key) {
@@ -27,7 +27,7 @@ export default function ExcursionDetail() {
     if (excursion) {
       document.title = `${excursion.title} · Destination Paradise`;
     } else {
-      document.title = 'Excursion Not Found · Destination Paradise';
+      document.title = 'Nie znaleziono wycieczki · Destination Paradise';
     }
   }, [excursion]);
 
@@ -36,10 +36,10 @@ export default function ExcursionDetail() {
       <main className="excursions-page">
         <section className="exc-day" style={{ textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div>
-            <span className="section-eyebrow">Excursions</span>
-            <h1 className="section-title">Excursion not found</h1>
-            <p className="section-lead">That route is not in our current list. Browse all available excursions below.</p>
-            <Link className="btn" to="/excursions" style={{ marginTop: '1.5rem' }}>Back to all excursions →</Link>
+            <span className="section-eyebrow">Wycieczki</span>
+            <h1 className="section-title">Nie znaleziono wycieczki</h1>
+            <p className="section-lead">Tej trasy nie ma na naszej aktualnej liście. Zobacz wszystkie dostępne wycieczki poniżej.</p>
+            <Link className="btn" to="/excursions" style={{ marginTop: '1.5rem' }}>Wróć do wszystkich wycieczek →</Link>
           </div>
         </section>
       </main>
@@ -56,9 +56,9 @@ export default function ExcursionDetail() {
   return (
     <main className="excursions-page exc-detail">
       <nav className="exc-detail__crumbs" aria-label="Breadcrumb">
-        <Link to="/">Home</Link>
+        <Link to="/">Start</Link>
         <span aria-hidden="true">→</span>
-        <Link to="/excursions">Excursions</Link>
+        <Link to="/excursions">Wycieczki</Link>
         <span aria-hidden="true">→</span>
         <span>{e.title}</span>
       </nav>
@@ -66,8 +66,8 @@ export default function ExcursionDetail() {
       <article id={e.id} data-cat={categoryToSlug(e.category)} className="exc-block exc-block--detail">
         <div className="exc-block__img">
           <ResponsiveImage src={e.image} alt={e.imageNeeded ? '' : e.alt || e.title} />
-          <span className="exc-block__cat" data-cat={categoryToSlug(e.category)}>{e.category}</span>
-          {e.season && <span className="exc-block__season">Seasonal · {e.season}</span>}
+          <span className="exc-block__cat" data-cat={categoryToSlug(e.category)}>{e.categoryLabel || e.category}</span>
+          {e.season && <span className="exc-block__season">Sezonowo · {e.season}</span>}
         </div>
         <div className="exc-block__body">
           <span className="exc-block__eyebrow">{e.eyebrow}</span>
@@ -93,7 +93,7 @@ export default function ExcursionDetail() {
           {e.highlights && !e.cols && (
             <div className="exc-block__cols">
               <div className="exc-block__col">
-                <h4>Highlights</h4>
+                <h4>Najważniejsze punkty</h4>
                 <ul>{e.highlights.map((it) => <li key={it}>{it}</li>)}</ul>
               </div>
             </div>
@@ -101,20 +101,20 @@ export default function ExcursionDetail() {
           {pricingTiers.length > 0 && (
             <div className="exc-block__cols">
               <div className="exc-block__col">
-                <h4>Experience pricing</h4>
-                <ul>{pricingTiers.map((tier) => <li key={tier.label}>{tier.label}: from ${tier.price} {tier.currency}</li>)}</ul>
+                <h4>Ceny doświadczenia</h4>
+                <ul>{pricingTiers.map((tier) => <li key={tier.label}>{tier.label}: od ${tier.price} {tier.currency}</li>)}</ul>
               </div>
             </div>
           )}
           <div className="exc-block__actions">
             {typeof e.price === 'number' ? (
-              <span className="exc-block__price">${e.price}<small>{e.priceSub || 'per person'}</small></span>
+              <span className="exc-block__price">${e.price}<small>{e.priceSub || 'za osobę'}</small></span>
             ) : (
-              <span className="exc-block__price-note">Price on request</span>
+              <span className="exc-block__price-note">Cena na zapytanie</span>
             )}
             {e.priceNote && <span className="exc-block__price-note">{e.priceNote}</span>}
-            <Link className="btn" to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}`}>Book this →</Link>
-            <Link className="btn btn--ghost-dark" to="/excursions">All excursions</Link>
+            <Link className="btn" to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}`}>Zarezerwuj →</Link>
+            <Link className="btn btn--ghost-dark" to="/excursions">Wszystkie wycieczki</Link>
           </div>
         </div>
       </article>
@@ -122,9 +122,9 @@ export default function ExcursionDetail() {
       {e.timeline && e.timeline.length > 0 && (
         <section className="exc-day" id="day">
           <div className="exc-day__head">
-            <span className="section-eyebrow">Hour by hour</span>
-            <h2 className="section-title">A typical day</h2>
-            <p className="section-lead">Minute by minute, what you can expect. Times are a guide — we adapt to weather, tides, and the mood of the day.</p>
+            <span className="section-eyebrow">Godzina po godzinie</span>
+            <h2 className="section-title">Typowy dzień</h2>
+            <p className="section-lead">Zobacz, czego możesz się spodziewać. Godziny są orientacyjne — dopasowujemy się do pogody, pływów i rytmu dnia.</p>
           </div>
           <div className="exc-day__timeline">
             {e.timeline.map(([t, h, p]) => (
@@ -158,11 +158,11 @@ export default function ExcursionDetail() {
       <section className="exc-cta">
         <div className="exc-cta__bg"><ResponsiveImage src={e.imageNeeded ? '/assets/images/excursions/safari-blue-sandbank.webp' : e.image} alt="" /></div>
         <div className="exc-cta__inner">
-          <h2>Ready to book {e.title}?</h2>
-          <p>Tell us your dates and we'll come back within 24 hours with available pickup times and a final price — no commitment.</p>
+          <h2>Chcesz zarezerwować {e.title}?</h2>
+          <p>Podaj daty, a w ciągu 24 godzin wrócimy z dostępnymi godzinami odbioru i końcową ceną — bez zobowiązań.</p>
           <div className="exc-cta__btns">
-            <Link className="btn btn--lg" to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}`}>Get in touch →</Link>
-            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Or chat with our AI planner</Link>
+            <Link className="btn btn--lg" to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}`}>Napisz do nas →</Link>
+            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Albo porozmawiaj z planerem AI</Link>
           </div>
         </div>
       </section>

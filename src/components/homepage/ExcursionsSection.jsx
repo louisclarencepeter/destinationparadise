@@ -6,24 +6,24 @@ export default function ExcursionsSection({ tweaks, excursions }) {
   return (
     <section className="excursions reveal" id="excursions" data-layout={tweaks.layout}>
       <header className="excursions__head">
-        <span className="section-eyebrow">Roaming Retreats</span>
-        <h2 className="section-title">Excursions crafted by locals</h2>
-        <p className="section-lead">Hand-built island days with traditional boats, clear reefs, spice farms, and guides who grew up on these shores.</p>
+        <span className="section-eyebrow">Wycieczki po wyspie</span>
+        <h2 className="section-title">Wycieczki tworzone przez lokalnych ludzi</h2>
+        <p className="section-lead">Dni na wyspie układane z sercem: tradycyjne łodzie, przejrzyste rafy, farmy przypraw i przewodnicy, którzy dorastali na tych brzegach.</p>
         <ul className="excursions__modes">
-          <li><span className="excursions__mode-tag">Ocean</span> Dhow sailing, sandbanks, snorkeling, dolphins, and reef days.</li>
-          <li><span className="excursions__mode-tag excursions__mode-tag--accent">Culture</span> Stone Town, spice farms, Swahili food, dhow-building, and village visits.</li>
-          <li><span className="excursions__mode-tag">Nature</span> Jozani forest, tortoises, mangroves, turtles, and family-friendly wildlife stops.</li>
+          <li><span className="excursions__mode-tag">Ocean</span> Rejsy dhow, ławice piasku, snorkeling, delfiny i dni na rafie.</li>
+          <li><span className="excursions__mode-tag excursions__mode-tag--accent">Kultura</span> Stone Town, farmy przypraw, kuchnia suahili, budowa dhow i wizyty w wioskach.</li>
+          <li><span className="excursions__mode-tag">Natura</span> Las Jozani, żółwie, mangrowce i rodzinne spotkania z przyrodą.</li>
         </ul>
       </header>
       <div className="excursions__grid">
         {excursions.map((t) => (
-          <Link className="ex-card" key={t.id} to={`/excursions/${t.id}`} aria-label={`Explore ${t.title}`}>
+          <Link className="ex-card" key={t.id} to={`/excursions/${t.id}`} aria-label={`Odkryj: ${t.title}`}>
             <div className="ex-card__img">
               <ResponsiveImage src={t.image} alt={t.title} loading="lazy" decoding="async" sizes="(max-width: 600px) 220px, (max-width: 1000px) 45vw, 360px" />
               <span className="ex-card__badge">{t.duration}</span>
               {typeof t.price === 'number' && (
                 <div className="ex-card__price">
-                  <div className="ex-card__price-from">From</div>
+                  <div className="ex-card__price-from">Od</div>
                   <div className="ex-card__price-num">${t.price}</div>
                 </div>
               )}
@@ -44,13 +44,13 @@ export default function ExcursionsSection({ tweaks, excursions }) {
               </div>
               <h3 className="ex-card__title">{t.title}</h3>
               <p className="ex-card__text">{t.description}</p>
-              <span className="ex-card__link">View details <ArrowIcon size={15} /></span>
+              <span className="ex-card__link">Zobacz szczegóły <ArrowIcon size={15} /></span>
             </div>
           </Link>
         ))}
       </div>
       <div className="excursions__more">
-        <Link className="btn btn--on-light" to="/excursions">View all excursions <ArrowIcon size={16} /></Link>
+        <Link className="btn btn--on-light" to="/excursions">Zobacz wszystkie wycieczki <ArrowIcon size={16} /></Link>
       </div>
     </section>
   );

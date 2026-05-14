@@ -80,9 +80,9 @@ export default function ContactSection() {
   return (
     <section className="contact reveal" id="contact">
       <header className="contact__head">
-        <span className="section-eyebrow">Get in touch</span>
-        <h2 className="section-title">Send us an email</h2>
-        <p className="section-lead">Tell us whether you want a complete package, a few Zanzibar excursions, a mainland safari, or a custom mix. Send group size, rough dates, budget, and pace — we'll come back within a day with ideas, availability, and a real price.</p>
+        <span className="section-eyebrow">Kontakt</span>
+        <h2 className="section-title">Napisz do nas</h2>
+        <p className="section-lead">Powiedz, czy chcesz pełny pakiet, kilka wycieczek po Zanzibarze, safari na kontynencie czy własne połączenie. Podaj liczbę osób, orientacyjne daty, budżet i tempo, a wrócimy w ciągu dnia z pomysłami, dostępnością i realną ceną.</p>
       </header>
 
       <div className="contact__grid">
@@ -102,7 +102,7 @@ export default function ContactSection() {
               <svg className="contact__detail-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
               </svg>
-              Phone
+              Telefon
             </span>
             <a className="contact__detail-value" href={`tel:${CONTACT_INFO.phones[0]}`}>+255 768 779 517</a>
             <a className="contact__detail-value" href={`tel:${CONTACT_INFO.phones[1]}`}>+255 748 352 657</a>
@@ -114,7 +114,7 @@ export default function ContactSection() {
               </svg>
               WhatsApp
             </span>
-            <a className="contact__detail-value" href={CONTACT_INFO.whatsappUrl} target="_blank" rel="noreferrer">Message us on WhatsApp</a>
+            <a className="contact__detail-value" href={CONTACT_INFO.whatsappUrl} target="_blank" rel="noreferrer">Napisz na WhatsApp</a>
           </div>
           <div className="contact__detail">
             <span className="contact__detail-label">
@@ -122,7 +122,7 @@ export default function ContactSection() {
                 <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z" />
                 <circle cx="12" cy="10" r="3" />
               </svg>
-              Find us
+              Gdzie jesteśmy
             </span>
             <span className="contact__detail-value">{CONTACT_INFO.location}</span>
           </div>
@@ -132,7 +132,7 @@ export default function ContactSection() {
                 <circle cx="12" cy="12" r="10" />
                 <polyline points="12 6 12 12 16 14" />
               </svg>
-              Hours
+              Godziny
             </span>
             <span className="contact__detail-value">{CONTACT_INFO.hours}</span>
           </div>
@@ -142,7 +142,7 @@ export default function ContactSection() {
 
           <div className="contact__row">
             <label className="contact__field">
-              <span>Your name</span>
+              <span>Twoje imię</span>
               <input type="text" name="name" required value={form.name} onChange={update('name')} />
             </label>
             <label className="contact__field">
@@ -151,19 +151,19 @@ export default function ContactSection() {
             </label>
           </div>
           <label className="contact__field">
-            <span>Subject</span>
-            <input type="text" name="subject" placeholder="Trip dates, group size, anything specific" value={form.subject} onChange={update('subject')} />
+            <span>Temat</span>
+            <input type="text" name="subject" placeholder="Daty podróży, liczba osób, coś konkretnego" value={form.subject} onChange={update('subject')} />
           </label>
           <label className="contact__field">
-            <span>Message</span>
+            <span>Wiadomość</span>
             <textarea ref={messageRef} name="message" rows={5} required value={form.message} onChange={update('message')} />
           </label>
 
           {status === 'sent' && (
-            <p className="contact__status contact__status--ok">✓ Asante — we got it. We'll come back to you within a day.</p>
+            <p className="contact__status contact__status--ok">✓ Asante — mamy Twoją wiadomość. Odpowiemy w ciągu dnia.</p>
           )}
           {status === 'error' && (
-            <p className="contact__status contact__status--err">Pole sana — that didn't go through. Email us directly at {CONTACT_INFO.email} or try again.</p>
+            <p className="contact__status contact__status--err">Pole sana — nie udało się wysłać. Napisz bezpośrednio na {CONTACT_INFO.email} albo spróbuj ponownie.</p>
           )}
 
           <button
@@ -171,7 +171,7 @@ export default function ContactSection() {
             className="btn contact__submit"
             disabled={status === 'sending' || status === 'sent'}
           >
-            {status === 'sending' ? 'Sending…' : status === 'sent' ? 'Sent' : 'Send message'}
+            {status === 'sending' ? 'Wysyłanie…' : status === 'sent' ? 'Wysłano' : 'Wyślij wiadomość'}
             <ArrowIcon size={16} />
           </button>
         </form>

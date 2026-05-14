@@ -4,58 +4,58 @@ export const ABOUT_CTA_IMAGE = '/assets/images/excursions/dream-dhow-sunset.webp
 
 export const aboutTimeline = [
   {
-    year: 'Where it began',
-    title: 'A vision on the east coast of Zanzibar',
-    body: 'Years ago, while working in a hotel on the east coast of Zanzibar, the first idea appeared — to create something bigger than just tours or bookings. Something that would connect people to the beauty, culture and spirit of Tanzania. At the time it felt too big and too far away, but it never disappeared.',
+    year: 'Tam, gdzie wszystko się zaczęło',
+    title: 'Wizja na wschodnim wybrzeżu Zanzibaru',
+    body: 'Lata temu, podczas pracy w hotelu na wschodnim wybrzeżu Zanzibaru, pojawił się pierwszy pomysł: stworzyć coś większego niż same wycieczki czy rezerwacje. Coś, co łączy ludzi z pięknem, kulturą i duchem Tanzanii. Wtedy wydawało się to ogromne i odległe, ale nigdy nie zniknęło.',
   },
   {
-    year: 'The first steps',
-    title: 'Built together with family',
-    body: 'The company was registered together with family — the very first foundation of what would later become Destination Paradise. After a deep loss in those early days, everything slowed down. But the vision remained alive.',
+    year: 'Pierwsze kroki',
+    title: 'Budowane razem z rodziną',
+    body: 'Firma została zarejestrowana wspólnie z rodziną. To był pierwszy fundament tego, czym później stało się Destination Paradise. Po wielkiej stracie w tamtych pierwszych dniach wszystko zwolniło. Ale wizja pozostała żywa.',
   },
   {
-    year: 'The quiet years',
-    title: 'A dream that kept growing',
-    body: 'Through years of work, travel and other projects, the dream continued to grow little by little. What had once been written on a piece of paper kept asking to be built — patiently, in the background, waiting for its moment.',
+    year: 'Ciche lata',
+    title: 'Marzenie, które rosło dalej',
+    body: 'Przez lata pracy, podróży i innych projektów marzenie rosło krok po kroku. To, co kiedyś zapisano na kartce, wciąż prosiło, by je zbudować: cierpliwie, w tle, czekając na swój moment.',
   },
   {
-    year: 'A new chapter',
-    title: 'Building the platform from the ground up',
-    body: 'Moving to Germany opened a new chapter — learning coding, web development and media production, and gathering the technical skills needed to build the platform from the ground up. Slowly, an idea on paper became a real company with a real vision.',
+    year: 'Nowy rozdział',
+    title: 'Platforma budowana od podstaw',
+    body: 'Przeprowadzka do Niemiec otworzyła nowy rozdział: naukę programowania, tworzenia stron i produkcji mediów oraz zdobywanie umiejętności potrzebnych, by zbudować platformę od zera. Powoli pomysł z kartki stał się prawdziwą firmą z prawdziwą wizją.',
   },
   {
-    year: 'Today',
-    title: 'Officially launching from Unguja',
-    body: 'After years of preparation, Destination Paradise is officially launching. We begin our journey in Unguja, Zanzibar and across mainland Tanzania — with Pemba and Mafia Island to follow.',
+    year: 'Dzisiaj',
+    title: 'Oficjalny start z Ungui',
+    body: 'Po latach przygotowań Destination Paradise oficjalnie startuje. Zaczynamy w Ungui na Zanzibarze i na kontynencie Tanzanii, a Pemba i Mafia Island dołączą w swoim czasie.',
   },
 ];
 
 export const aboutPillars = [
   {
     icon: 'people',
-    title: 'Local drivers and guides',
-    body: 'We work hand-in-hand with drivers and guides from across the islands and mainland — the people who actually know the roads, the reefs and the stories.',
+    title: 'Lokalni kierowcy i przewodnicy',
+    body: 'Pracujemy ramię w ramię z kierowcami i przewodnikami z wysp i kontynentu. To ludzie, którzy naprawdę znają drogi, rafy i historie.',
   },
   {
     icon: 'home',
-    title: 'Local hotels and restaurants',
-    body: 'We partner with locally owned hotels and restaurants wherever we can. Travel money stays in the community that hosts you.',
+    title: 'Lokalne hotele i restauracje',
+    body: 'Kiedy tylko możemy, współpracujemy z hotelami i restauracjami prowadzonymi lokalnie. Pieniądze z podróży zostają w społeczności, która Cię gości.',
   },
   {
     icon: 'network',
-    title: 'A network, not a closed system',
-    body: 'Instead of building a closed operation, we are building a network — one that allows the wider community to grow together with us, step by step.',
+    title: 'Sieć, nie zamknięty system',
+    body: 'Nie budujemy zamkniętej struktury. Budujemy sieć, która pozwala szerszej społeczności rosnąć razem z nami, krok po kroku.',
   },
   {
     icon: 'layers',
-    title: 'Authentic, designed by hand',
-    body: 'Every excursion, safari and cultural experience is designed carefully — so travellers meet Tanzania in a more authentic and meaningful way.',
+    title: 'Autentyczne, tworzone ręcznie',
+    body: 'Każdą wycieczkę, safari i doświadczenie kulturowe projektujemy uważnie, aby podróżni spotkali Tanzanię w bardziej autentyczny i znaczący sposób.',
   },
 ];
 
 export const aboutDestinations = [
-  { tag: 'Available now', name: 'Unguja, Zanzibar', body: 'Where the journey begins. Excursions, cultural experiences and trips across the main island.' },
-  { tag: 'Available now', name: 'Mainland Tanzania', body: 'The Serengeti, Ngorongoro, Kilimanjaro and beyond — the wider story of Tanzania, ready to be explored.' },
-  { tag: 'Next', name: 'Pemba Island', body: "Zanzibar's quieter sister — untouched reefs, clove forests, and a slower pace just across the channel." },
-  { tag: 'Next', name: 'Mafia Island', body: 'A marine park with whale sharks, turtles and some of the most pristine waters on the East African coast.' },
+  { tag: 'Dostępne teraz', name: 'Unguja, Zanzibar', body: 'Tu zaczyna się podróż: wycieczki, doświadczenia kulturowe i trasy po głównej wyspie.' },
+  { tag: 'Dostępne teraz', name: 'Kontynent Tanzanii', body: 'Serengeti, Ngorongoro, Kilimanjaro i dalej: większa opowieść Tanzanii gotowa do odkrycia.' },
+  { tag: 'Wkrótce', name: 'Pemba Island', body: 'Spokojniejsza siostra Zanzibaru: nietknięte rafy, lasy goździkowe i wolniejsze tempo tuż za kanałem.' },
+  { tag: 'Wkrótce', name: 'Mafia Island', body: 'Park morski z rekinami wielorybimi, żółwiami i jednymi z najczystszych wód na wybrzeżu Afryki Wschodniej.' },
 ];
