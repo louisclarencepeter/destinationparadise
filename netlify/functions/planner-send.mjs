@@ -185,6 +185,84 @@ function renderHandoffPlain(handoff) {
   return lines.join('\n').trim();
 }
 
+function hasStructuredHandoff(handoff) {
+  return handoff.tripDetails.length > 0 || handoff.itineraryDays.length > 0 || Boolean(handoff.pricing);
+}
+
+function latestGuestMessage(messages) {
+  return [...messages].reverse().find((message) => message.role === 'user')?.content || '';
+}
+
+function sentenceCase(text) {
+  const cleaned = String(text || '').trim();
+  if (!cleaned) return '';
+  return cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+}
+
+function classifyGuestUpdate(message) {
+  const cleaned = String(message || '').replace(/\s+/g, ' ').trim();
+  const lower = cleaned.toLowerCase();
+
+  if (/\b(group|party|guest|guests|friend|friends|people|adults|kids|children|travellers|travelers)\b/.test(lower)) {
+    const partyMatch = cleaned.match(/\b(\d+)\s+(friends|people|guests|adults|kids|children|travellers|travelers)(\s+total)?\b/i);
+    return {
+      requested: partyMatch
+        ? `Update group size to ${partyMatch[1]} ${partyMatch[2].toLowerCase()}${partyMatch[3] ? ' total' : ''}.`
+        : `Update group or party details: ${cleaned}`,
+      action: 'Review availability and adjust pricing for the revised group size.',
+    };
+  }
+
+  if (/\b(date|dates|month|night|nights|january|february|march|april|may|june|july|august|september|october|november|december)\b/.test(lower)) {
+    return {
+      requested: `Update travel timing: ${cleaned}`,
+      action: 'Check availability for the revised dates and update the quote.',
+    };
+  }
+
+  if (/\b(budget|price|pricing|cost|cheaper|expensive|luxury|mid-range|midrange|hotel|lodge|comfort)\b/.test(lower)) {
+    return {
+      requested: `Update budget or comfort level: ${cleaned}`,
+      action: 'Rework the plan and pricing around the revised budget or comfort level.',
+    };
+  }
+
+  if (/\b(add|include|remove|drop|change|switch|instead|prefer|want|need)\b/.test(lower)) {
+    return {
+      requested: `Update trip preferences: ${cleaned}`,
+      action: 'Review the requested change, update the plan or pricing if needed, and reply with next steps.',
+    };
+  }
+
+  return {
+    requested: sentenceCase(cleaned),
+    action: 'Review the latest guest update, adjust the plan or pricing if needed, and reply with next steps.',
+  };
+}
+
+function renderUpdateSummaryHtml(updateCount, contact, messages) {
+  const message = latestGuestMessage(messages);
+  const update = classifyGuestUpdate(message);
+
+  return `
+    <div style="margin:0 0 18px 0;padding:14px 16px;background:#FFF6F4;border-left:3px solid #FF6F61;border-radius:0 8px 8px 0;">
+      <div style="margin:0 0 8px 0;font-size:12px;color:#1A4D6E;font-weight:800;letter-spacing:.08em;text-transform:uppercase;">Planner update #${updateCount} from ${escapeHtml(contact.name)}</div>
+      <p style="margin:0 0 8px 0;font-size:14px;color:#1a1a1a;line-height:1.55;"><strong style="color:#1A4D6E;">Guest requested:</strong> ${escapeHtml(update.requested || 'Review the latest planner update.')}</p>
+      <p style="margin:0;font-size:14px;color:#1a1a1a;line-height:1.55;"><strong style="color:#1A4D6E;">Action needed:</strong> ${escapeHtml(update.action)}</p>
+    </div>`;
+}
+
+function renderUpdateSummaryPlain(updateCount, contact, messages) {
+  const message = latestGuestMessage(messages);
+  const update = classifyGuestUpdate(message);
+
+  return [
+    `Planner update #${updateCount} from ${contact.name}`,
+    `Guest requested: ${update.requested || 'Review the latest planner update.'}`,
+    `Action needed: ${update.action}`,
+  ].join('\n');
+}
+
 function validateBody(body) {
   if (!body || typeof body !== 'object') return { ok: false, error: 'Invalid request body.' };
 
@@ -256,19 +334,24 @@ export default async (req) => {
   const validated = validateBody(body);
   if (!validated.ok) return errorResponse(validated.error);
 
-  const { contact, handoff } = validated;
+  const { contact, handoff, messages } = validated;
   const updateCount = Math.max(0, Math.min(20, Number(body?.updateCount) || 0));
   const isUpdate = updateCount > 0;
 
   const teamSubject = isUpdate
-    ? `Update #${updateCount} to planner draft from ${contact.name}`
+    ? `Planner update #${updateCount} from ${contact.name}`
     : `New planner draft from ${contact.name}`;
   const guestSubject = isUpdate
     ? `Your trip plan update — Destination Paradise`
     : `Your trip plan from Destination Paradise`;
-  const updateBannerHtml = isUpdate
-    ? `<div style="margin:0 0 18px 0;padding:10px 14px;background:#FFF6F4;border-left:3px solid #FF6F61;border-radius:0 6px 6px 0;font-size:13px;color:#1A4D6E;font-weight:700;letter-spacing:.04em;text-transform:uppercase;">Update #${updateCount} — revised plan below</div>`
-    : '';
+  const teamBodyHtml = isUpdate
+    ? `${renderUpdateSummaryHtml(updateCount, contact, messages)}${hasStructuredHandoff(handoff) ? renderHandoffHtml(handoff) : ''}`
+    : `${renderHandoffHtml(handoff)}
+       <p style="margin:18px 0 0 0;padding:12px 14px;background:#fafbfd;border-radius:8px;font-size:13px;color:#4a6c82;line-height:1.55;"><strong style="color:#1A4D6E;">Action needed:</strong> Review the draft and reply with availability, pricing, and next steps.</p>`;
+  const teamEyebrow = isUpdate ? 'AI Planner Update' : 'AI Planner Draft';
+  const teamHeadline = isUpdate
+    ? `Planner update #${updateCount} from ${contact.name}`
+    : `${contact.name} wants to plan a trip`;
 
   const contactRows = `<table cellpadding="0" cellspacing="0" style="width:100%;margin:0 0 6px 0;border-collapse:collapse;">
     <tr><td style="padding:6px 10px;font-size:12px;color:#4a6c82;width:90px;">Name</td><td style="padding:6px 10px;font-size:14px;color:#1a1a1a;">${escapeHtml(contact.name)}</td></tr>
@@ -279,26 +362,26 @@ export default async (req) => {
   const teamHtml = `<!doctype html><html><body style="margin:0;padding:24px;background:#f4f7fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
     <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(26,77,110,0.08);">
       <div style="padding:22px 24px;background:linear-gradient(120deg,#1A4D6E 0%,#FF6F61 100%);color:#fff;">
-        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">AI Planner Draft</div>
-        <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">${escapeHtml(contact.name)} wants to plan a trip</h1>
+        <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">${teamEyebrow}</div>
+        <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">${escapeHtml(teamHeadline)}</h1>
       </div>
       <div style="padding:24px;">
-        ${updateBannerHtml}
         ${contactRows}
-        ${renderHandoffHtml(handoff)}
+        ${teamBodyHtml}
         <p style="margin:24px 0 0 0;font-size:13px;color:#4a6c82;line-height:1.55;">Reply directly to this email and your message will go straight to the guest. A separate copy of this ${isUpdate ? 'update' : 'draft'} has already been sent to them.</p>
       </div>
     </div>
   </body></html>`;
 
   const teamText = [
-    `New planner draft from ${contact.name}`,
+    isUpdate ? renderUpdateSummaryPlain(updateCount, contact, messages) : `New planner draft from ${contact.name}`,
     '',
     `Name: ${contact.name}`,
     `Email: ${contact.email}`,
     contact.phone ? `Phone: ${contact.phone}` : '',
     '',
-    renderHandoffPlain(handoff),
+    !isUpdate || hasStructuredHandoff(handoff) ? renderHandoffPlain(handoff) : '',
+    !isUpdate ? 'Action needed: Review the draft and reply with availability, pricing, and next steps.' : '',
     '',
     'Reply directly to this email and your message will go straight to the guest.',
   ].filter(Boolean).join('\n');
