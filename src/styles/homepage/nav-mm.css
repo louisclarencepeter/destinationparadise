@@ -163,6 +163,30 @@
   padding: 10px 16px calc(14px + env(safe-area-inset-bottom, 0px));
   display: flex; flex-wrap: wrap; gap: 10px;
 }
+
+.mm-menu__language {
+  flex: 0 0 auto;
+  height: 44px;
+  border-color: rgba(245,241,232,.18);
+  background: rgba(255,255,255,.08);
+  box-shadow: none;
+}
+
+.mm-menu__language .language-switcher__btn {
+  color: rgba(245,241,232,.74);
+}
+
+.mm-menu__language .language-switcher__btn:hover,
+.mm-menu__language .language-switcher__btn:focus-visible {
+  color: #fff;
+  background: rgba(255,255,255,.12);
+}
+
+.mm-menu__language .language-switcher__btn.is-active {
+  color: #fff;
+  background: var(--dp-accent);
+}
+
 .mm-menu__cta {
   flex: 1;
   display: flex; align-items: center; justify-content: center; gap: 8px;

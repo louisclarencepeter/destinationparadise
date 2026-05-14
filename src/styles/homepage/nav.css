@@ -64,6 +64,69 @@
 
 .nav__right { display: flex; align-items: center; gap: 1rem; }
 
+.language-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  padding: 3px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--surface-raised) 88%, transparent);
+  box-shadow: 0 1px 0 rgba(26,77,110,.04);
+}
+
+.language-switcher__btn {
+  min-width: 32px;
+  height: 32px;
+  padding: 0 .45rem;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--text-muted);
+  font-family: var(--dp-font-sans);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .08em;
+  cursor: pointer;
+  transition: background .2s ease, color .2s ease, transform .2s ease;
+}
+
+.language-switcher__btn:hover,
+.language-switcher__btn:focus-visible {
+  color: var(--text);
+  background: color-mix(in srgb, var(--dp-accent) 10%, transparent);
+}
+
+.language-switcher__btn:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--dp-accent) 24%, transparent);
+  outline-offset: 2px;
+}
+
+.language-switcher__btn.is-active {
+  color: #fff;
+  background: var(--dp-accent);
+}
+
+.language-switcher__mount {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  pointer-events: none;
+}
+
+body > .skiptranslate,
+.goog-te-banner-frame,
+.goog-te-gadget {
+  display: none !important;
+}
+
+html,
+body {
+  top: 0 !important;
+}
+
 .nav__search {
   width: 42px;
   height: 42px;
@@ -204,6 +267,12 @@
   .nav__right {
     flex: 0 0 auto;
     gap: .5rem;
+  }
+
+  .language-switcher__btn {
+    min-width: 30px;
+    height: 30px;
+    font-size: 10px;
   }
 
   .nav__search {
