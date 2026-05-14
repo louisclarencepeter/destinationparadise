@@ -1,0 +1,81 @@
+/* ============ WILDLIFE GALLERY ============ */
+.wildlife {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
+  background: linear-gradient(180deg, var(--surface), #f4ede1 100%);
+}
+[data-theme="dark"] .wildlife { background: linear-gradient(180deg, var(--surface), #0a1d2a 100%); }
+.wildlife__head { max-width: 720px; margin: 0 auto clamp(2.5rem, 4vw, 3.5rem); text-align: center; }
+.wildlife__cat { max-width: 1240px; margin: 0 auto 3rem; }
+.wildlife__cat-title {
+  display: flex; align-items: baseline; gap: 1rem;
+  margin: 0 0 1rem;
+  padding-bottom: .65rem;
+  border-bottom: 1px solid rgba(26,77,110,.15);
+}
+.wildlife__cat-title span {
+  font-family: var(--dp-font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+.wildlife__cat-title em {
+  font-family: var(--dp-font-sans);
+  font-style: italic;
+  font-size: 13px;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--dp-accent);
+}
+.wildlife__row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: 220px;
+  gap: 8px;
+}
+.wildlife__tile {
+  position: relative;
+  margin: 0;
+  border-radius: 6px;
+  overflow: hidden;
+  grid-column: span 3;
+  grid-row: span 1;
+  cursor: zoom-in;
+}
+.wildlife__tile img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform .8s ease, filter .4s;
+}
+.wildlife__tile:hover img { transform: scale(1.06); }
+.wildlife__tile figcaption {
+  position: absolute; left: 0; right: 0; bottom: 0;
+  padding: .75rem 1rem;
+  font-family: var(--dp-font-display);
+  font-size: 12px; font-style: italic;
+  color: #F5F1E8;
+  background: linear-gradient(180deg, transparent 0%, rgba(8,30,46,.85) 100%);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .35s, transform .35s;
+}
+.wildlife__tile:hover figcaption { opacity: 1; transform: translateY(0); }
+.wildlife__tile--wide { grid-column: span 6; }
+.wildlife__tile--tall { grid-row: span 2; }
+.wildlife__tile--full { grid-column: span 12; grid-row: span 2; }
+
+.wildlife__row--cats { grid-auto-rows: 240px; }
+.wildlife__row--ungulates { grid-auto-rows: 200px; }
+.wildlife__row--heavy { grid-auto-rows: 220px; }
+.wildlife__row--birds { grid-auto-rows: 220px; }
+
+@media (max-width: 1080px) {
+  .wildlife__tile { grid-column: span 6; }
+  .wildlife__tile--wide { grid-column: span 6; }
+  .wildlife__tile--full { grid-column: span 12; }
+  .wildlife__tile--tall { grid-row: span 2; }
+}
+@media (max-width: 640px) {
+  .wildlife__tile { grid-column: span 12 !important; grid-row: span 1 !important; }
+  .wildlife__row { grid-auto-rows: 240px !important; }
+}
+

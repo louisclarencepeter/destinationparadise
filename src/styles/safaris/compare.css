@@ -1,0 +1,71 @@
+/* ============ CHOOSE ============ */
+.saf-compare {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
+  background: linear-gradient(180deg, var(--surface), var(--surface-subtle));
+}
+.saf-compare__head,
+.saf-steps__head {
+  max-width: 720px;
+  margin: 0 auto clamp(2rem, 4vw, 3rem);
+  text-align: center;
+}
+.saf-compare__grid,
+.saf-steps__grid {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.saf-compare__card,
+.saf-step {
+  background: var(--surface, #FFFCF5);
+  border: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+  border-radius: 14px;
+  padding: 1.25rem;
+  color: var(--text, #1a4d6e);
+  box-shadow: 0 14px 32px -28px rgba(0,0,0,.45);
+}
+.saf-compare__card {
+  display: block;
+  text-decoration: none;
+  transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+.saf-compare__card:hover {
+  transform: translateY(-4px);
+  border-color: color-mix(in srgb, var(--dp-accent) 50%, currentColor 18%);
+  box-shadow: 0 22px 44px -32px rgba(0,0,0,.55);
+}
+.saf-compare__card:focus-visible {
+  outline: 2px solid var(--dp-accent);
+  outline-offset: 4px;
+}
+.saf-compare__card span,
+.saf-step span {
+  display: inline-flex;
+  font-family: var(--dp-font-sans);
+  font-size: 10px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--dp-accent);
+  font-weight: 700;
+}
+.saf-compare__card h3,
+.saf-step h3 {
+  font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif);
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: var(--text, #1a4d6e);
+  font-weight: 500;
+  margin: .7rem 0 .45rem;
+}
+.saf-compare__card p,
+.saf-step p {
+  margin: 0;
+  font-family: var(--dp-font-display);
+  font-size: .9rem;
+  line-height: 1.55;
+  color: currentColor;
+  opacity: .78;
+}
+

@@ -1,0 +1,33 @@
+/* ============ CTA ============ */
+.saf-cta {
+  position: relative;
+  padding: clamp(5rem, 10vw, 8rem) clamp(1.25rem, 5vw, 6rem);
+  color: #F5F1E8;
+  overflow: hidden;
+  text-align: center;
+}
+.saf-cta__bg { position: absolute; inset: 0; z-index: 0; }
+.saf-cta__bg img { width: 100%; height: 100%; object-fit: cover; }
+.saf-cta__bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(8,30,46,.65) 0%, rgba(8,30,46,.92) 100%);
+}
+.saf-cta__inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+.saf-cta__inner h2 {
+  font-family: var(--dp-font-display);
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  margin: 0 0 1rem;
+  color: #fff;
+}
+.saf-cta__inner p {
+  font-family: var(--dp-font-display);
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: rgba(245,241,232,.85);
+  margin: 0 0 2rem;
+}
+.saf-cta__btns { display: flex; gap: .85rem; justify-content: center; flex-wrap: wrap; }
+

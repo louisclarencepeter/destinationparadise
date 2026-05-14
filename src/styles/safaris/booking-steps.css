@@ -1,0 +1,24 @@
+/* ============ BOOKING STEPS ============ */
+.saf-steps {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
+  background: var(--surface);
+}
+.saf-step span {
+  width: 2.25rem;
+  height: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255,111,97,.12);
+}
+
+@media (max-width: 920px) {
+  .saf-compare__grid,
+  .saf-steps__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 640px) {
+  .saf-compare__grid,
+  .saf-steps__grid { grid-template-columns: 1fr; }
+}
+

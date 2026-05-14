@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 
-export function useRevealOnScroll(rootRef, selector = '.reveal:not(.is-visible)') {
+export function useRevealOnScroll(rootRef, selector = '.reveal:not(.is-visible)', refreshKey = 0, threshold = 0.12) {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return undefined;
@@ -20,9 +20,9 @@ export function useRevealOnScroll(rootRef, selector = '.reveal:not(.is-visible)'
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold });
 
     items.forEach((item) => observer.observe(item));
     return () => observer.disconnect();
-  }, [rootRef, selector]);
+  }, [refreshKey, rootRef, selector, threshold]);
 }

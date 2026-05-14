@@ -1,0 +1,85 @@
+/* ============ INCLUDED ============ */
+.included {
+  padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
+  background: linear-gradient(180deg, var(--surface), var(--surface-subtle));
+  color: var(--text);
+}
+.included__wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+.included__copy .section-title { color: var(--text-soft); margin: .5rem 0 1rem; text-align: left; }
+.included__copy .section-eyebrow { color: var(--dp-accent); }
+.included__copy .section-lead { color: var(--text-muted); text-align: left; margin: 0; }
+.included__list {
+  list-style: none; padding: 0; margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: .75rem 2rem;
+  font-family: var(--dp-font-sans);
+}
+.included__list li {
+  display: flex; align-items: center; gap: .75rem;
+  padding: .65rem 0;
+  border-bottom: 1px solid var(--divider);
+  font-size: .95rem;
+}
+.included__list li span {
+  color: var(--dp-accent);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+html[data-theme="dark"] .included {
+  background: linear-gradient(135deg, var(--dp-primary), #143b56);
+  color: #F5F1E8;
+}
+
+html[data-theme="dark"] .included__copy .section-title {
+  color: #fff;
+}
+
+html[data-theme="dark"] .included__copy .section-lead {
+  color: rgba(245,241,232,.78);
+}
+
+html[data-theme="dark"] .included__list li {
+  border-bottom-color: rgba(255,255,255,.12);
+}
+
+html[data-theme="dark"] .itin--feature {
+  background: linear-gradient(180deg, var(--dp-primary) 0%, #143b56 100%);
+  color: #F5F1E8;
+  border-color: transparent;
+}
+
+html[data-theme="dark"] .itin--feature h3,
+html[data-theme="dark"] .itin--feature strong,
+html[data-theme="dark"] .itin--feature .itin__head h3 {
+  color: #fff;
+}
+
+html[data-theme="dark"] .itin--feature p,
+html[data-theme="dark"] .itin--feature .itin__includes,
+html[data-theme="dark"] .itin--feature .itin__days p {
+  color: rgba(245,241,232,.78);
+}
+
+html[data-theme="dark"] .itin--feature .itin__rib {
+  background: rgba(255,255,255,.12);
+  color: #F5F1E8;
+}
+
+html[data-theme="dark"] .itin--feature .itin__days li,
+html[data-theme="dark"] .itin--feature .itin__foot {
+  border-color: rgba(255,255,255,.15);
+}
+@media (max-width: 880px) {
+  .included__wrap { grid-template-columns: 1fr; }
+  .included__list { grid-template-columns: 1fr; }
+}
+
