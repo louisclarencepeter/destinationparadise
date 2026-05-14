@@ -209,6 +209,47 @@
     "submit_done": "Wysłano",
     "error": "Nie udało się wysłać. Spróbuj ponownie za chwilę."
   },
+  "weather": {
+    "live_suffix": " · Live",
+    "facts": {
+      "sea_temp": "Temp. morza",
+      "humidity": "Wilgotność",
+      "sunrise": "Wschód",
+      "sunset": "Zachód"
+    },
+    "side_title": "Najlepszy czas na podróż",
+    "seasons": {
+      "peak": "Szczyt",
+      "high": "Wysoki",
+      "low": "Niski"
+    },
+    "legend": {
+      "aria": "Legenda sezonów hotelowych",
+      "title": "Sezon hotelowy",
+      "peak_label": "Szczyt",
+      "peak_text": "święta i europejskie lato (gru-sty, lip-sie). Ceny premium, rezerwuj wcześnie.",
+      "high_label": "Wysoki",
+      "high_text": "popularne suche miesiące (lut, cze, wrz-paź). Standardowe ceny wysokiego sezonu.",
+      "low_label": "Niski",
+      "low_text": "pora deszczowa (mar-maj, lis). Najlepsze okazje; część hoteli zamyka się w kwi-maj."
+    },
+    "descriptions": {
+      "default": "Przeważnie słonecznie, z lekką bryzą znad Oceanu Indyjskiego. Długie deszcze słabną, poranki są przejrzyste, a widoczność na rafie utrzymuje się do wczesnego popołudnia.",
+      "clear_night": "Czysta noc nad kanałem: ciepłe powietrze i delikatna bryza znad rafy.",
+      "clear_day": "Czyste niebo i stała bryza znad Oceanu Indyjskiego: świetne warunki na plażę i snorkeling.",
+      "mostly_sunny_day": "Przeważnie słonecznie z wysokimi chmurami: widoczność na rafie utrzymuje się do popołudnia.",
+      "mostly_clear_night": "Przeważnie czysta noc z wysokimi chmurami: ciepło i spokojnie.",
+      "partly_cloudy_day": "Częściowe zachmurzenie i ciepłe pasaty: wygodne warunki na plażę i rejs dhow.",
+      "partly_cloudy_night": "Częściowo pochmurna noc: lekkie pasaty i ciepłe powietrze.",
+      "overcast_day": "Pochmurno, ale ciepło: dobre światło na spacery po wyspie, farmy przypraw i kulturę.",
+      "overcast_night": "Dziś nocą pochmurno i ciepło, rano morze powinno być spokojne.",
+      "fog": "Nadmorska mgła ustępuje w ciągu poranka: około południa będzie jaśniej.",
+      "drizzle": "Lekka mżawka znad kanału: krótka, ciepła i przelotna.",
+      "rain_long": "Przelotne opady, typowe dla długich deszczy. Poranki często pozostają pogodne.",
+      "tropical_showers": "Tropikalne przelotne deszcze między chwilami słońca. Warto mieć lekką warstwę.",
+      "thunderstorm": "Możliwe burze: najlepiej zaplanować czas pod dachem, spokojniejszy lunch albo spa."
+    }
+  },
   "contact": {
     "eyebrow": "Kontakt",
     "title": "Napisz do nas",

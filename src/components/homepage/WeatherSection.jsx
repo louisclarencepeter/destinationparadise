@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const ZANZIBAR_LAT = -6.222;
 const ZANZIBAR_LON = 39.224;
@@ -12,22 +13,20 @@ const FALLBACK = {
   sunset: '18:36',
   code: 1,
   isDay: 1,
-  description:
-    'Mostly sunny with a soft Indian Ocean breeze. The long rains are easing — mornings are clear, and the reef visibility holds through early afternoon.',
+  descKey: 'default',
 };
 
-const describe = (code, isDay) => {
-  const nightClear = 'Clear night over the channel — warm air, gentle breeze off the reef.';
-  if (code === 0) return isDay ? 'Clear skies and steady Indian Ocean breeze — ideal beach and snorkeling conditions.' : nightClear;
-  if (code === 1) return isDay ? 'Mostly sunny with high cloud — reef visibility holds through the afternoon.' : 'Mostly clear night with high cloud — warm and calm.';
-  if (code === 2) return isDay ? 'Partly cloudy with warm trade winds — comfortable beach and dhow conditions.' : 'Partly cloudy night — soft trade winds and warm air.';
-  if (code === 3) return isDay ? 'Overcast but warm — good light for island walks, spice farms, and culture stops.' : 'Overcast and warm tonight — calm seas expected by morning.';
-  if (code === 45 || code === 48) return 'Coastal fog easing through the morning — clearer by midday.';
-  if (code >= 51 && code <= 57) return 'Light drizzle drifting in from the channel — short, warm, and passing.';
-  if (code >= 61 && code <= 67) return 'Rain showers passing through — typical of the long rains, mornings often clear.';
-  if (code >= 80 && code <= 82) return 'Tropical showers between sunny spells — bring a light layer.';
-  if (code >= 95) return 'Thunderstorms expected — best to plan indoor time, a slower lunch, or a spa stop.';
-  return FALLBACK.description;
+const describeKey = (code, isDay) => {
+  if (code === 0) return isDay ? 'clear_day' : 'clear_night';
+  if (code === 1) return isDay ? 'mostly_sunny_day' : 'mostly_clear_night';
+  if (code === 2) return isDay ? 'partly_cloudy_day' : 'partly_cloudy_night';
+  if (code === 3) return isDay ? 'overcast_day' : 'overcast_night';
+  if (code === 45 || code === 48) return 'fog';
+  if (code >= 51 && code <= 57) return 'drizzle';
+  if (code >= 61 && code <= 67) return 'rain_long';
+  if (code >= 80 && code <= 82) return 'tropical_showers';
+  if (code >= 95) return 'thunderstorm';
+  return 'default';
 };
 
 function WeatherIcon({ code, isDay }) {
@@ -132,6 +131,7 @@ const getZanzibarHour = () => Number(new Intl.DateTimeFormat('en-GB', {
 }).format(new Date()));
 
 export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
+  const { t } = useTranslation('home');
   const sectionRef = useRef(null);
   const [weather, setWeather] = useState(FALLBACK);
   const [isLive, setIsLive] = useState(false);
@@ -196,7 +196,7 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
           sunset: formatTime(daily.sunset?.[0]) || FALLBACK.sunset,
           code: current.weather_code,
           isDay,
-          description: describe(current.weather_code, isDay),
+          descKey: describeKey(current.weather_code, isDay),
         });
         setIsLive(true);
       })
@@ -217,7 +217,7 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
               <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z" /><circle cx="12" cy="10" r="3" />
             </svg>
-            Zanzibar{isLive ? ' · Live' : ''}
+            Zanzibar{isLive ? t('weather.live_suffix') : ''}
           </div>
           <div className="weather__row">
             <div className="weather__icon">
@@ -225,7 +225,7 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
             </div>
             <div className="weather__temp">{weather.temp}<sup>°</sup></div>
           </div>
-          <p className="weather__desc">{weather.description}</p>
+          <p className="weather__desc">{t(`weather.descriptions.${weather.descKey}`)}</p>
           <div className="weather__facts">
             <div className="weather-fact">
               <div className="weather-fact__head">
@@ -234,7 +234,7 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
                   <path d="M2 18c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2" />
                   <path d="M2 10c2 0 2-2 4-2s2 2 4 2 2-2 4-2 2 2 4 2 2-2 4-2 2 2 4 2" />
                 </svg>
-                <div className="weather-fact__label">Sea temp</div>
+                <div className="weather-fact__label">{t('weather.facts.sea_temp')}</div>
               </div>
               <div className="weather-fact__value">{weather.seaTemp}°C</div>
             </div>
@@ -243,7 +243,7 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
                 <svg className="weather-fact__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
                 </svg>
-                <div className="weather-fact__label">Humidity</div>
+                <div className="weather-fact__label">{t('weather.facts.humidity')}</div>
               </div>
               <div className="weather-fact__value">{weather.humidity}%</div>
             </div>
@@ -259,7 +259,7 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
                   <line x1="23" y1="22" x2="1" y2="22" />
                   <polyline points="8 6 12 2 16 6" />
                 </svg>
-                <div className="weather-fact__label">Sunrise</div>
+                <div className="weather-fact__label">{t('weather.facts.sunrise')}</div>
               </div>
               <div className="weather-fact__value">{weather.sunrise}</div>
             </div>
@@ -275,14 +275,14 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
                   <line x1="23" y1="22" x2="1" y2="22" />
                   <polyline points="16 5 12 9 8 5" />
                 </svg>
-                <div className="weather-fact__label">Sunset</div>
+                <div className="weather-fact__label">{t('weather.facts.sunset')}</div>
               </div>
               <div className="weather-fact__value">{weather.sunset}</div>
             </div>
           </div>
         </div>
         <div className="weather__side">
-          <div className="weather__side-title">Best time to visit</div>
+          <div className="weather__side-title">{t('weather.side_title')}</div>
           <div className="weather__months">
             {MONTHS.map((m, i) => (
               <div key={m.m} className={`weather-month weather-month--${m.season}${i === NOW_MONTH ? ' is-now' : ''}`}>
@@ -292,17 +292,17 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
                 </span>
                 <span className="weather-month__bar"><span className="weather-month__bar-fill" style={{ width: `${SCORES[i]}%` }}></span></span>
                 <span className="weather-month__season">
-                  {m.season === 'peak' ? 'Peak' : m.season === 'high' ? 'High' : 'Low'}
+                  {t(`weather.seasons.${m.season}`)}
                 </span>
                 <span className="weather-month__score">{m.t}°</span>
               </div>
             ))}
           </div>
-          <div className="weather__legend" aria-label="Hotel season key">
-            <div className="weather__legend-title">Hotel season</div>
-            <span className="weather__legend-item"><span className="weather__legend-dot weather__legend-dot--peak"></span> <strong>Peak</strong> — festive &amp; European summer (Dec–Jan, Jul–Aug). Premium rates, book early.</span>
-            <span className="weather__legend-item"><span className="weather__legend-dot weather__legend-dot--high"></span> <strong>High</strong> — busy dry months (Feb, Jun, Sep–Oct). Standard high-season rates.</span>
-            <span className="weather__legend-item"><span className="weather__legend-dot weather__legend-dot--low"></span> <strong>Low</strong> — rainy season (Mar–May, Nov). Best deals; some hotels close in Apr–May.</span>
+          <div className="weather__legend" aria-label={t('weather.legend.aria')}>
+            <div className="weather__legend-title">{t('weather.legend.title')}</div>
+            <span className="weather__legend-item"><span className="weather__legend-dot weather__legend-dot--peak"></span> <strong>{t('weather.legend.peak_label')}</strong> — {t('weather.legend.peak_text')}</span>
+            <span className="weather__legend-item"><span className="weather__legend-dot weather__legend-dot--high"></span> <strong>{t('weather.legend.high_label')}</strong> — {t('weather.legend.high_text')}</span>
+            <span className="weather__legend-item"><span className="weather__legend-dot weather__legend-dot--low"></span> <strong>{t('weather.legend.low_label')}</strong> — {t('weather.legend.low_text')}</span>
           </div>
         </div>
       </div>

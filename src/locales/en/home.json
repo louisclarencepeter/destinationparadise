@@ -209,6 +209,47 @@
     "submit_done": "Sent",
     "error": "That did not go through. Please try again in a moment."
   },
+  "weather": {
+    "live_suffix": " · Live",
+    "facts": {
+      "sea_temp": "Sea temp",
+      "humidity": "Humidity",
+      "sunrise": "Sunrise",
+      "sunset": "Sunset"
+    },
+    "side_title": "Best time to visit",
+    "seasons": {
+      "peak": "Peak",
+      "high": "High",
+      "low": "Low"
+    },
+    "legend": {
+      "aria": "Hotel season key",
+      "title": "Hotel season",
+      "peak_label": "Peak",
+      "peak_text": "festive & European summer (Dec–Jan, Jul–Aug). Premium rates, book early.",
+      "high_label": "High",
+      "high_text": "busy dry months (Feb, Jun, Sep–Oct). Standard high-season rates.",
+      "low_label": "Low",
+      "low_text": "rainy season (Mar–May, Nov). Best deals; some hotels close in Apr–May."
+    },
+    "descriptions": {
+      "default": "Mostly sunny with a soft Indian Ocean breeze. The long rains are easing — mornings are clear, and the reef visibility holds through early afternoon.",
+      "clear_night": "Clear night over the channel — warm air, gentle breeze off the reef.",
+      "clear_day": "Clear skies and steady Indian Ocean breeze — ideal beach and snorkeling conditions.",
+      "mostly_sunny_day": "Mostly sunny with high cloud — reef visibility holds through the afternoon.",
+      "mostly_clear_night": "Mostly clear night with high cloud — warm and calm.",
+      "partly_cloudy_day": "Partly cloudy with warm trade winds — comfortable beach and dhow conditions.",
+      "partly_cloudy_night": "Partly cloudy night — soft trade winds and warm air.",
+      "overcast_day": "Overcast but warm — good light for island walks, spice farms, and culture stops.",
+      "overcast_night": "Overcast and warm tonight — calm seas expected by morning.",
+      "fog": "Coastal fog easing through the morning — clearer by midday.",
+      "drizzle": "Light drizzle drifting in from the channel — short, warm, and passing.",
+      "rain_long": "Rain showers passing through — typical of the long rains, mornings often clear.",
+      "tropical_showers": "Tropical showers between sunny spells — bring a light layer.",
+      "thunderstorm": "Thunderstorms expected — best to plan indoor time, a slower lunch, or a spa stop."
+    }
+  },
   "contact": {
     "eyebrow": "Get in touch",
     "title": "Send us an email",
