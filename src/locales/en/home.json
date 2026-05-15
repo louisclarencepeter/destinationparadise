@@ -209,6 +209,70 @@
     "submit_done": "Sent",
     "error": "That did not go through. Please try again in a moment."
   },
+  "planner": {
+    "eyebrow": "AI Trip Planner",
+    "title": "Tell me about your dream trip",
+    "lead": "Chat with our AI planner — built on years of routes the team has walked. It'll ask the right questions, sketch a day-by-day itinerary, and send it straight to the team when you're ready.",
+    "bullets": {
+      "asks_strong": "Asks about you",
+      "asks_text": " — pace, budget, water vs. wildlife, kids in tow, special dates.",
+      "builds_strong": "Builds a draft",
+      "builds_text": " — nights per place, recommended hotels, excursion pacing.",
+      "sends_strong": "Sends it to the team",
+      "sends_text": " — confirm in the chat and we'll email a copy and reply within a day."
+    },
+    "suggestions": {
+      "label": "Try:",
+      "couple_button": "Couple, 8 nights, beach + dhow",
+      "couple_prompt": "We're a couple, 8 nights in October. We want a mix of beach, dhow sailing, and one big experience. Mid-range hotels.",
+      "family_button": "Family with kids, safari + beach",
+      "family_prompt": "Family of four with kids 9 and 12. Two weeks in July. We want a few days of safari then unwind on a beach. Budget around $4k pp.",
+      "solo_button": "Solo, history + snorkel",
+      "solo_prompt": "Solo traveler, 5 nights in February. Love spice markets, history, snorkeling. Boutique hotel under $200/night."
+    },
+    "quick_replies": ["Beach and chill", "Safari + Zanzibar", "Honeymoon trip", "Family friendly"],
+    "thinking_messages": ["Plotting a route", "Checking the pace", "Balancing beach and safari", "Shaping the draft"],
+    "header": {
+      "name": "Paradise Planner",
+      "subtitle": "Powered by Claude · usually replies instantly",
+      "reset_title": "Start over"
+    },
+    "welcome": {
+      "p1": "Karibu! 👋 I'm the Destination Paradise planner — let's sketch your trip together.",
+      "p2_prefix": "To start, what kind of pace are you after? ",
+      "p2_em": "Beach & chill, mainland safari, deep cultural dive,",
+      "p2_suffix": " or a mix?",
+      "quick_replies_aria": "Quick replies"
+    },
+    "fallbacks": {
+      "reply_blank": "Hmm, I lost my train of thought. Could you say that again?",
+      "reply_after_token": "Asante! I've sent this draft to the team — they'll be in touch within a day.",
+      "network_error": "Pole sana — I couldn't reach the planner just now. Try again in a moment, or message the team directly via the WhatsApp button.",
+      "missing_email": "Share your email in the chat first so we can reply."
+    },
+    "status": {
+      "sending": "Sending your draft to the team…",
+      "updating": "Sending your update to the team…",
+      "sent_title": "Asante! ✓ Your draft is with the team.",
+      "sent_text": "You'll get an email copy and a reply within a day. Need to change something? Just type below — I'll send the team an update. Or start a new plan:",
+      "updated_title": "✓ Update {{count}} sent to the team.",
+      "updated_text": "They'll see the revised plan. Type below to make another change, or start fresh:",
+      "error_title": "Pole sana — that didn't go through.",
+      "error_text_default": "Please try again, or message us on WhatsApp.",
+      "start_new_plan": "Start a new plan",
+      "try_again": "Try again"
+    },
+    "form": {
+      "placeholder_idle": "Tell me your dream trip…",
+      "placeholder_done": "Type an update here…",
+      "send_aria": "Send"
+    },
+    "foot": {
+      "note": "Itineraries are drafts. A human reviews and prices everything before you book.",
+      "handoff_idle": "Send to team",
+      "handoff_done": "Sent to team ✓"
+    }
+  },
   "weather": {
     "live_suffix": " · Live",
     "facts": {

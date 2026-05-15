@@ -209,6 +209,70 @@
     "submit_done": "Wysłano",
     "error": "Nie udało się wysłać. Spróbuj ponownie za chwilę."
   },
+  "planner": {
+    "eyebrow": "Planer podróży AI",
+    "title": "Opowiedz mi o swojej wymarzonej podróży",
+    "lead": "Porozmawiaj z naszym planerem AI, opartym na trasach, które zespół zna z praktyki. Zada właściwe pytania, naszkicuje plan dzień po dniu i wyśle go do zespołu, gdy będziesz gotowy.",
+    "bullets": {
+      "asks_strong": "Pyta o Ciebie",
+      "asks_text": " — tempo, budżet, ocean czy dzika przyroda, dzieci, specjalne daty.",
+      "builds_strong": "Buduje szkic",
+      "builds_text": " — noce w każdym miejscu, rekomendowane hotele i rytm wycieczek.",
+      "sends_strong": "Wysyła do zespołu",
+      "sends_text": " — potwierdź w czacie, a wyślemy kopię emailem i odpowiemy w ciągu dnia."
+    },
+    "suggestions": {
+      "label": "Spróbuj:",
+      "couple_button": "Para, 8 nocy, plaża + dhow",
+      "couple_prompt": "Jesteśmy parą, 8 nocy w październiku. Chcemy połączyć plażę, rejs dhow i jedno większe przeżycie. Hotele w średnim standardzie.",
+      "family_button": "Rodzina z dziećmi, safari + plaża",
+      "family_prompt": "Rodzina czteroosobowa, dzieci 9 i 12 lat. Dwa tygodnie w lipcu. Chcemy kilka dni safari, potem odpoczynek na plaży. Budżet około $4k za osobę.",
+      "solo_button": "Solo, historia + snorkeling",
+      "solo_prompt": "Podróżuję solo, 5 nocy w lutym. Lubię targi przypraw, historię i snorkeling. Hotel butikowy poniżej $200 za noc."
+    },
+    "quick_replies": ["Plaża i spokój", "Safari + Zanzibar", "Podróż poślubna", "Rodzinnie"],
+    "thinking_messages": ["Układam trasę", "Sprawdzam tempo", "Równoważę plażę i safari", "Szkicuję plan"],
+    "header": {
+      "name": "Paradise Planner",
+      "subtitle": "Zasilany przez Claude · zwykle odpowiada od razu",
+      "reset_title": "Zacznij od nowa"
+    },
+    "welcome": {
+      "p1": "Karibu! 👋 Jestem planerem Destination Paradise. Naszkicujmy razem Twoją podróż.",
+      "p2_prefix": "Na początek: jakiego tempa szukasz? ",
+      "p2_em": "Plaża i luz, safari na kontynencie, mocne zanurzenie w kulturze",
+      "p2_suffix": " czy miks?",
+      "quick_replies_aria": "Szybkie odpowiedzi"
+    },
+    "fallbacks": {
+      "reply_blank": "Hmm, zgubiłem wątek. Możesz napisać to jeszcze raz?",
+      "reply_after_token": "Asante! Wysłałem szkic do zespołu. Odezwą się w ciągu dnia.",
+      "network_error": "Pole sana — nie mogę teraz połączyć się z planerem. Spróbuj za chwilę albo napisz do zespołu przez WhatsApp.",
+      "missing_email": "Najpierw podaj email w czacie, żebyśmy mogli odpowiedzieć."
+    },
+    "status": {
+      "sending": "Wysyłamy szkic do zespołu…",
+      "updating": "Wysyłamy aktualizację do zespołu…",
+      "sent_title": "Asante! ✓ Twój szkic jest już u zespołu.",
+      "sent_text": "Dostaniesz kopię emailem i odpowiedź w ciągu dnia. Chcesz coś zmienić? Napisz poniżej, a wyślę aktualizację. Możesz też zacząć nowy plan:",
+      "updated_title": "✓ Aktualizacja {{count}} wysłana do zespołu.",
+      "updated_text": "Zobaczą poprawiony plan. Napisz poniżej, aby dodać kolejną zmianę, albo zacznij od nowa:",
+      "error_title": "Pole sana — nie udało się wysłać.",
+      "error_text_default": "Spróbuj ponownie albo napisz do nas na WhatsApp.",
+      "start_new_plan": "Zacznij nowy plan",
+      "try_again": "Spróbuj ponownie"
+    },
+    "form": {
+      "placeholder_idle": "Opowiedz o wymarzonej podróży…",
+      "placeholder_done": "Wpisz tutaj aktualizację…",
+      "send_aria": "Wyślij"
+    },
+    "foot": {
+      "note": "Plany są szkicami. Przed rezerwacją człowiek sprawdza i wycenia wszystko dokładnie.",
+      "handoff_idle": "Wyślij do zespołu",
+      "handoff_done": "Wysłano do zespołu ✓"
+    }
+  },
   "weather": {
     "live_suffix": " · Live",
     "facts": {

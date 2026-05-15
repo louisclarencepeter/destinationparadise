@@ -1,27 +1,19 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
+import { useTranslation } from 'react-i18next';
 import '../../styles/homepage/planner.css';
 import { extractContact } from '../../utils/plannerHandoff.js';
 
-const PLANNER_TITLE = 'Tell me about your dream trip';
-const QUICK_REPLIES = [
-  'Beach and chill',
-  'Safari + Zanzibar',
-  'Honeymoon trip',
-  'Family friendly',
-];
-const THINKING_MESSAGES = [
-  'Plotting a route',
-  'Checking the pace',
-  'Balancing beach and safari',
-  'Shaping the draft',
-];
 const HANDOFF_TOKEN = '[[PLANNER_HANDOFF_READY]]';
 const HANDOFF_TOKEN_REGEX = /\[\[\s*PLANNER_HANDOFF_READY\s*\]\]/g;
 
 const stripToken = (text = '') => text.replace(HANDOFF_TOKEN_REGEX, '').trim();
 
 export default function PlannerSection({ initialPrompt }) {
+  const { t } = useTranslation('home');
+  const plannerTitle = t('planner.title');
+  const quickReplies = useMemo(() => t('planner.quick_replies', { returnObjects: true }), [t]);
+  const thinkingMessages = useMemo(() => t('planner.thinking_messages', { returnObjects: true }), [t]);
   const [history, setHistory] = useState(() => {
     try {
       const saved = localStorage.getItem('plannerHistory');
@@ -33,7 +25,7 @@ export default function PlannerSection({ initialPrompt }) {
   const [input, setInput] = useState('');
   const [sending, setSending] = useState(false);
   const [resetKey, setResetKey] = useState(0);
-  const [typedTitle, setTypedTitle] = useState(PLANNER_TITLE);
+  const [typedTitle, setTypedTitle] = useState(plannerTitle);
   const [titleTyping, setTitleTyping] = useState(false);
   const [thinkingIndex, setThinkingIndex] = useState(0);
   const [handoffState, setHandoffState] = useState('idle'); // idle | sending | sent | error | updated
@@ -60,16 +52,16 @@ export default function PlannerSection({ initialPrompt }) {
     }
 
     const intervalId = window.setInterval(() => {
-      setThinkingIndex((index) => (index + 1) % THINKING_MESSAGES.length);
+      setThinkingIndex((index) => (index + 1) % thinkingMessages.length);
     }, 1800);
 
     return () => window.clearInterval(intervalId);
-  }, [sending]);
+  }, [sending, thinkingMessages.length]);
 
   useEffect(() => {
     const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     if (reduceMotion) {
-      setTypedTitle(PLANNER_TITLE);
+      setTypedTitle(plannerTitle);
       setTitleTyping(false);
       return undefined;
     }
@@ -81,22 +73,22 @@ export default function PlannerSection({ initialPrompt }) {
 
     const typeNext = () => {
       index += 1;
-      setTypedTitle(PLANNER_TITLE.slice(0, index));
+      setTypedTitle(plannerTitle.slice(0, index));
 
-      if (index >= PLANNER_TITLE.length) {
+      if (index >= plannerTitle.length) {
         setTitleTyping(false);
         return;
       }
 
-      const char = PLANNER_TITLE[index - 1];
-      const nextChar = PLANNER_TITLE[index];
+      const char = plannerTitle[index - 1];
+      const nextChar = plannerTitle[index];
       const pause = char === ' ' || nextChar === ' ' ? 94 : 42 + ((index % 5) * 13);
       timeoutId = window.setTimeout(typeNext, pause);
     };
 
     timeoutId = window.setTimeout(typeNext, 360);
     return () => window.clearTimeout(timeoutId);
-  }, []);
+  }, [plannerTitle]);
 
   const submitHandoff = useCallback(async (finalHistory) => {
     if (handoffInflightRef.current) return;
@@ -106,7 +98,7 @@ export default function PlannerSection({ initialPrompt }) {
     if (!contact.email) {
       handoffInflightRef.current = false;
       setHandoffState('error');
-      setHandoffError('Share your email in the chat first so we can reply.');
+      setHandoffError(t('planner.fallbacks.missing_email'));
       return;
     }
 
@@ -137,7 +129,7 @@ export default function PlannerSection({ initialPrompt }) {
     } finally {
       handoffInflightRef.current = false;
     }
-  }, []);
+  }, [t]);
 
   const send = useCallback(async (text) => {
     if (!text || sending) return;
@@ -153,19 +145,19 @@ export default function PlannerSection({ initialPrompt }) {
         body: JSON.stringify({ history: next }),
       });
       const data = await res.json();
-      const rawReply = data.reply || "Hmm, I lost my train of thought. Could you say that again?";
+      const rawReply = data.reply || t('planner.fallbacks.reply_blank');
       const ready = HANDOFF_TOKEN_REGEX.test(rawReply);
-      const cleaned = stripToken(rawReply) || "Asante! I've sent this draft to the team — they'll be in touch within a day.";
+      const cleaned = stripToken(rawReply) || t('planner.fallbacks.reply_after_token');
       const updated = [...next, { role: 'assistant', content: cleaned }];
       setHistory(updated);
       if (ready) submitHandoff(updated);
     } catch (err) {
-      setHistory((h) => [...h, { role: 'assistant', content: "Pole sana — I couldn't reach the planner just now. Try again in a moment, or message the team directly via the WhatsApp button." }]);
+      setHistory((h) => [...h, { role: 'assistant', content: t('planner.fallbacks.network_error') }]);
     } finally {
       setSending(false);
       if (inputRef.current) inputRef.current.focus();
     }
-  }, [history, sending, submitHandoff]);
+  }, [history, sending, submitHandoff, t]);
 
   useEffect(() => {
     if (!initialPrompt || handledPromptRef.current === initialPrompt.id || sending) return;
@@ -195,22 +187,22 @@ export default function PlannerSection({ initialPrompt }) {
     <section className="planner reveal" id="planner">
       <div className="planner__wrap">
         <div className="planner__intro">
-          <span className="section-eyebrow planner__eyebrow"><span className="planner__pulse"></span> AI Trip Planner</span>
-          <h2 className="section-title planner__title" aria-label={PLANNER_TITLE}>
+          <span className="section-eyebrow planner__eyebrow"><span className="planner__pulse"></span> {t('planner.eyebrow')}</span>
+          <h2 className="section-title planner__title" aria-label={plannerTitle}>
             <span className="planner__typing" aria-hidden="true">{typedTitle}</span>
             <span className={`planner__cursor${titleTyping ? ' planner__cursor--typing' : ''}`} aria-hidden="true"></span>
           </h2>
-          <p className="planner__lead">Chat with our AI planner — built on years of routes the team has walked. It'll ask the right questions, sketch a day-by-day itinerary, and send it straight to the team when you're ready.</p>
+          <p className="planner__lead">{t('planner.lead')}</p>
           <ul className="planner__bullets">
-            <li><span className="planner__bullet-icon">✦</span> <span><strong>Asks about you</strong> — pace, budget, water vs. wildlife, kids in tow, special dates.</span></li>
-            <li><span className="planner__bullet-icon">✦</span> <span><strong>Builds a draft</strong> — nights per place, recommended hotels, excursion pacing.</span></li>
-            <li><span className="planner__bullet-icon">✦</span> <span><strong>Sends it to the team</strong> — confirm in the chat and we'll email a copy and reply within a day.</span></li>
+            <li><span className="planner__bullet-icon">✦</span> <span><strong>{t('planner.bullets.asks_strong')}</strong>{t('planner.bullets.asks_text')}</span></li>
+            <li><span className="planner__bullet-icon">✦</span> <span><strong>{t('planner.bullets.builds_strong')}</strong>{t('planner.bullets.builds_text')}</span></li>
+            <li><span className="planner__bullet-icon">✦</span> <span><strong>{t('planner.bullets.sends_strong')}</strong>{t('planner.bullets.sends_text')}</span></li>
           </ul>
           <div className="planner__suggestions">
-            <span className="planner__suggestions-label">Try:</span>
-            <button className="planner__suggest" onClick={() => send("We're a couple, 8 nights in October. We want a mix of beach, dhow sailing, and one big experience. Mid-range hotels.")}>Couple, 8 nights, beach + dhow</button>
-            <button className="planner__suggest" onClick={() => send('Family of four with kids 9 and 12. Two weeks in July. We want a few days of safari then unwind on a beach. Budget around $4k pp.')}>Family with kids, safari + beach</button>
-            <button className="planner__suggest" onClick={() => send('Solo traveler, 5 nights in February. Love spice markets, history, snorkeling. Boutique hotel under $200/night.')}>Solo, history + snorkel</button>
+            <span className="planner__suggestions-label">{t('planner.suggestions.label')}</span>
+            <button className="planner__suggest" onClick={() => send(t('planner.suggestions.couple_prompt'))}>{t('planner.suggestions.couple_button')}</button>
+            <button className="planner__suggest" onClick={() => send(t('planner.suggestions.family_prompt'))}>{t('planner.suggestions.family_button')}</button>
+            <button className="planner__suggest" onClick={() => send(t('planner.suggestions.solo_prompt'))}>{t('planner.suggestions.solo_button')}</button>
           </div>
         </div>
 
@@ -223,23 +215,23 @@ export default function PlannerSection({ initialPrompt }) {
               </svg>
             </div>
             <div className="planner__header-text">
-              <strong>Paradise Planner</strong>
-              <span><span className="planner__online"></span> Powered by Claude · usually replies instantly</span>
+              <strong>{t('planner.header.name')}</strong>
+              <span><span className="planner__online"></span> {t('planner.header.subtitle')}</span>
             </div>
             <button
               className="planner__reset"
-              title="Start over"
+              title={t('planner.header.reset_title')}
               onClick={startOver}
             >↻</button>
           </header>
           <div className="planner__log" ref={logRef} role="log" aria-live="polite">
             <div className="planner__msg planner__msg--bot planner__msg--welcome">
               <div className="planner__bubble">
-                <p>Karibu! 👋 I'm the Destination Paradise planner — let's sketch your trip together.</p>
-                <p>To start, what kind of pace are you after? <em>Beach &amp; chill, mainland safari, deep cultural dive,</em> or a mix?</p>
+                <p>{t('planner.welcome.p1')}</p>
+                <p>{t('planner.welcome.p2_prefix')}<em>{t('planner.welcome.p2_em')}</em>{t('planner.welcome.p2_suffix')}</p>
                 {history.length === 0 && !sending && (
-                  <div className="planner__quick-replies" aria-label="Quick replies">
-                    {QUICK_REPLIES.map((reply) => (
+                  <div className="planner__quick-replies" aria-label={t('planner.welcome.quick_replies_aria')}>
+                    {quickReplies.map((reply) => (
                       <button key={reply} type="button" onClick={() => send(reply)}>
                         {reply}
                       </button>
@@ -256,7 +248,7 @@ export default function PlannerSection({ initialPrompt }) {
             {sending && (
               <div className="planner__msg planner__msg--bot planner__msg--typing">
                 <div className="planner__bubble">
-                  <span className="planner__thinking-text">{THINKING_MESSAGES[thinkingIndex]}</span>
+                  <span className="planner__thinking-text">{thinkingMessages[thinkingIndex]}</span>
                   <span className="planner__dot"></span>
                   <span className="planner__dot"></span>
                   <span className="planner__dot"></span>
@@ -266,34 +258,34 @@ export default function PlannerSection({ initialPrompt }) {
             {handoffState === 'sending' && (
               <div className="planner__status planner__status--sending" role="status">
                 <span className="planner__status-dot"></span>
-                Sending your draft to the team…
+                {t('planner.status.sending')}
               </div>
             )}
             {handoffState === 'updating' && (
               <div className="planner__status planner__status--sending" role="status">
                 <span className="planner__status-dot"></span>
-                Sending your update to the team…
+                {t('planner.status.updating')}
               </div>
             )}
             {handoffState === 'sent' && (
               <div className="planner__status planner__status--sent" role="status">
-                <strong>Asante! ✓ Your draft is with the team.</strong>
-                <span>You'll get an email copy and a reply within a day. Need to change something? Just type below — I'll send the team an update. Or start a new plan:</span>
-                <button type="button" className="planner__status-action" onClick={startOver}>Start a new plan</button>
+                <strong>{t('planner.status.sent_title')}</strong>
+                <span>{t('planner.status.sent_text')}</span>
+                <button type="button" className="planner__status-action" onClick={startOver}>{t('planner.status.start_new_plan')}</button>
               </div>
             )}
             {handoffState === 'updated' && (
               <div className="planner__status planner__status--sent" role="status">
-                <strong>✓ Update {updateCount} sent to the team.</strong>
-                <span>They'll see the revised plan. Type below to make another change, or start fresh:</span>
-                <button type="button" className="planner__status-action" onClick={startOver}>Start a new plan</button>
+                <strong>{t('planner.status.updated_title', { count: updateCount })}</strong>
+                <span>{t('planner.status.updated_text')}</span>
+                <button type="button" className="planner__status-action" onClick={startOver}>{t('planner.status.start_new_plan')}</button>
               </div>
             )}
             {handoffState === 'error' && (
               <div className="planner__status planner__status--error" role="status">
-                <strong>Pole sana — that didn't go through.</strong>
-                <span>{handoffError || 'Please try again, or message us on WhatsApp.'}</span>
-                <button type="button" className="planner__status-action" onClick={retryHandoff}>Try again</button>
+                <strong>{t('planner.status.error_title')}</strong>
+                <span>{handoffError || t('planner.status.error_text_default')}</span>
+                <button type="button" className="planner__status-action" onClick={retryHandoff}>{t('planner.status.try_again')}</button>
               </div>
             )}
           </div>
@@ -307,8 +299,8 @@ export default function PlannerSection({ initialPrompt }) {
               rows={1}
               placeholder={
                 handoffState === 'sent' || handoffState === 'updated'
-                  ? 'Type an update here…'
-                  : 'Tell me your dream trip…'
+                  ? t('planner.form.placeholder_done')
+                  : t('planner.form.placeholder_idle')
               }
               value={input}
               onChange={(e) => {
@@ -325,7 +317,7 @@ export default function PlannerSection({ initialPrompt }) {
               disabled={isInputBusy}
               required={!isInputBusy}
             />
-            <button className="planner__send" type="submit" aria-label="Send" disabled={isInputBusy || !input.trim()}>
+            <button className="planner__send" type="submit" aria-label={t('planner.form.send_aria')} disabled={isInputBusy || !input.trim()}>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="22" y1="2" x2="11" y2="13" />
                 <polygon points="22 2 15 22 11 13 2 9 22 2" />
@@ -333,7 +325,7 @@ export default function PlannerSection({ initialPrompt }) {
             </button>
           </form>
           <footer className="planner__foot">
-            <span className="planner__foot-note">Itineraries are drafts. A human reviews and prices everything before you book.</span>
+            <span className="planner__foot-note">{t('planner.foot.note')}</span>
             <button
               type="button"
               className="planner__handoff"
@@ -345,8 +337,8 @@ export default function PlannerSection({ initialPrompt }) {
               }
             >
               {handoffState === 'sent' || handoffState === 'updated'
-                ? 'Sent to team ✓'
-                : 'Send to team'}
+                ? t('planner.foot.handoff_done')
+                : t('planner.foot.handoff_idle')}
             </button>
           </footer>
         </div>
