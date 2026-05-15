@@ -35,7 +35,13 @@
       ],
       "date_label": "Data",
       "guests_label": "Goście",
-      "guests_options": ["1 osoba", "2 osoby", "3 osoby", "4 osoby", "5+ osób"],
+      "guests_options": [
+        "1 osoba",
+        "2 osoby",
+        "3 osoby",
+        "4 osoby",
+        "5+ osób"
+      ],
       "guests_default": "2 osoby",
       "submit": "Znajdź moją trasę"
     }
@@ -75,7 +81,30 @@
       "from": "Od",
       "view_details": "Zobacz szczegóły"
     },
-    "view_all": "Zobacz wszystkie wycieczki"
+    "view_all": "Zobacz wszystkie wycieczki",
+    "featured": {
+      "safari-blue": {
+        "title": "Safari Blue",
+        "description": "Całodniowy rejs tradycyjną łodzią dhow po zatoce Menai: piknik na sandbanku, mangrowce, snorkeling przy rafie i lunch z owocami morza.",
+        "duration": "Cały dzień",
+        "from": "Fumba",
+        "group": "Do 8 osób"
+      },
+      "mnemba": {
+        "title": "Snorkeling przy Mnemba i wyjazd na północ",
+        "description": "Całodniowy plan łączący snorkeling przy rafie Mnemba z odpoczynkiem na plaży Nungwi na północy Zanzibaru.",
+        "duration": "Cały dzień",
+        "from": "Matemwe / Nungwi",
+        "group": "Do 8 osób"
+      },
+      "spice-tour": {
+        "title": "Wycieczka po plantacji przypraw",
+        "description": "Spacer z przewodnikiem po plantacji goździków, cynamonu, gałki muszkatołowej, pieprzu, ziół i roślin leczniczych, zakończony suahilijskim lunchem z przyprawami.",
+        "duration": "Pół dnia",
+        "from": "Stone Town",
+        "group": "Do 8 osób"
+      }
+    }
   },
   "safaris": {
     "eyebrow": "Dzika przyroda kontynentu",
@@ -230,8 +259,18 @@
       "solo_button": "Solo, historia + snorkeling",
       "solo_prompt": "Podróżuję solo, 5 nocy w lutym. Lubię targi przypraw, historię i snorkeling. Hotel butikowy poniżej $200 za noc."
     },
-    "quick_replies": ["Plaża i spokój", "Safari + Zanzibar", "Podróż poślubna", "Rodzinnie"],
-    "thinking_messages": ["Układam trasę", "Sprawdzam tempo", "Równoważę plażę i safari", "Szkicuję plan"],
+    "quick_replies": [
+      "Plaża i spokój",
+      "Safari + Zanzibar",
+      "Podróż poślubna",
+      "Rodzinnie"
+    ],
+    "thinking_messages": [
+      "Układam trasę",
+      "Sprawdzam tempo",
+      "Równoważę plażę i safari",
+      "Szkicuję plan"
+    ],
     "header": {
       "name": "Paradise Planner",
       "subtitle": "Zasilany przez Claude · zwykle odpowiada od razu",

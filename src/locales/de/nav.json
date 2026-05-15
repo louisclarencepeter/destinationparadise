@@ -1,0 +1,63 @@
+{
+  "items": {
+    "home": {
+      "label": "Start",
+      "hint": "Ankommen am Insel-Hub",
+      "sub": "Ankommen am Insel-Hub"
+    },
+    "excursions": {
+      "label": "Ausflüge",
+      "hint": "Tagesausflüge auf Sansibar",
+      "sub": "Stone Town · Riffe · Gewürzfarmen"
+    },
+    "safaris": {
+      "label": "Safari",
+      "hint": "Wildlife-Routen auf dem Festland",
+      "sub": "Serengeti · Ngorongoro · Selous"
+    },
+    "packages": {
+      "label": "Pakete",
+      "hint": "Safari, Strand, Honeymoon",
+      "sub": "Bush & Beach · 7–14 Nächte"
+    },
+    "trip_planner": {
+      "label": "Reiseplaner",
+      "hint": "Eine Route nach Maß formen",
+      "sub": "Persönlich geplant · 90 Sek.",
+      "badge": "KI"
+    },
+    "explore": {
+      "label": "Entdecken",
+      "hint": "Orte und Reisestile vergleichen",
+      "sub": "Orte & Reisestile vergleichen"
+    },
+    "about": {
+      "label": "Über uns",
+      "hint": "Unsere Geschichte und Mission",
+      "sub": "Geschichte · Mission · Ziele"
+    },
+    "book": {
+      "label": "Buchen",
+      "hint": "Buchungsanfrage senden"
+    }
+  },
+  "cta": {
+    "book_now": "Buchen",
+    "book_aria": "Jetzt buchen",
+    "book_a_trip": "Reise anfragen"
+  },
+  "menu": {
+    "open": "Menü öffnen",
+    "close": "Menü schließen",
+    "site_nav_label": "Seitennavigation",
+    "eyebrow": "Karibu Tanzania",
+    "headline": "Wohin möchtest du <em>aufbrechen</em>?"
+  },
+  "search": {
+    "label_short": "Suche",
+    "label_long": "Website durchsuchen"
+  },
+  "whatsapp": {
+    "chat_aria": "Auf WhatsApp schreiben"
+  }
+}

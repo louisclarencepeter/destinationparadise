@@ -1,0 +1,260 @@
+{
+  "page_title": "Airport & Island Transfers · Zanzibar · Destination Paradise",
+  "page_description": "Premium Zanzibar airport transfers, private hotel transfers, VIP concierge arrivals, and group transport from Destination Paradise. Meet & greet, flight tracking, AC vehicles, 24/7.",
+  "hero": {
+    "eyebrow": "Private airport · hotel · island transfers",
+    "title_prefix": "Your first and last",
+    "title_em": "impression of Zanzibar",
+    "title_suffix": "— done right.",
+    "lead": "Pre-booked private transfers with airport meet & greet, AC vehicles, luggage help, and WhatsApp support from the moment you land.",
+    "route_pricing": "See route pricing",
+    "whatsapp": "Book on WhatsApp →",
+    "stats": [
+      {
+        "value": "From $25",
+        "label": "Per vehicle"
+      },
+      {
+        "value": "Private",
+        "label": "Meet & greet"
+      },
+      {
+        "value": "3 tiers",
+        "label": "Standard · Premium · VIP"
+      },
+      {
+        "value": "24 / 7",
+        "label": "Flight tracking"
+      }
+    ]
+  },
+  "types": {
+    "eyebrow": "Route pricing",
+    "title": "Private transfers, priced clearly by route.",
+    "lead": "Lead with a private vehicle, then upgrade to Premium SUV or VIP concierge when the arrival should feel part of the holiday.",
+    "book": "Book this transfer"
+  },
+  "how": {
+    "eyebrow": "How it works",
+    "title": "Three steps from landing to check-in.",
+    "items": [
+      {
+        "step": "01",
+        "title": "Tell us your details",
+        "text": "Share your flight number, arrival time, hotel name, and group size via WhatsApp or the booking form. We confirm within a few hours."
+      },
+      {
+        "step": "02",
+        "title": "We track your flight",
+        "text": "Our drivers monitor your flight in real time. If it's early or delayed, we adjust — no waiting charges, no missed pickups."
+      },
+      {
+        "step": "03",
+        "title": "Seamless arrival",
+        "text": "Your driver meets you at arrivals with a name board. Luggage loaded, AC on, you're at your hotel in 20-45 minutes."
+      }
+    ]
+  },
+  "included": {
+    "eyebrow": "What's included",
+    "title": "An arrival service, not just transport.",
+    "lead": "Guests are buying certainty: a driver who is already there, support if a flight changes, and a calm first impression of Zanzibar.",
+    "choose_route": "Choose a route →",
+    "items": [
+      "Private transfer pricing by route",
+      "Meet & greet with name board",
+      "Flight tracking & delay monitoring",
+      "Air-conditioned vehicle",
+      "Luggage handling",
+      "Bottled water on board for premium bookings",
+      "Tourist-safe licensed drivers",
+      "Hotel drop-off door-to-door",
+      "WhatsApp support before arrival"
+    ]
+  },
+  "fleet": {
+    "eyebrow": "Service tiers",
+    "title": "Standard, Premium, or VIP arrival.",
+    "lead": "Match the transfer to the guest: practical private comfort, upgraded arrival style, or full concierge handling.",
+    "items": [
+      {
+        "key": "standard",
+        "type": "Standard Private",
+        "capacity": "Reliable AC vehicle",
+        "desc": "Best for practical airport and hotel transfers with meet & greet, flight tracking, luggage help, and door-to-door service."
+      },
+      {
+        "key": "premium",
+        "type": "Premium SUV",
+        "capacity": "Couples · families",
+        "desc": "A more spacious, elevated transfer for honeymooners, beach-resort guests, safari clients, and travellers with extra luggage."
+      },
+      {
+        "key": "vip",
+        "type": "VIP Concierge",
+        "capacity": "Luxury arrival",
+        "desc": "Fast-track support, private concierge handling, luxury vehicle, cold towels, refreshments, and a highly polished arrival."
+      },
+      {
+        "key": "group",
+        "type": "Group Transfer",
+        "capacity": "5-25 guests",
+        "desc": "Minivans and coaster buses for families, wedding groups, corporate teams, and safari groups arriving together."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQs",
+    "title": "Before you book.",
+    "items": [
+      {
+        "q": "How much does an airport transfer cost?",
+        "a": "Private airport transfers start from $25 per vehicle to Stone Town, $45 per vehicle to Paje or Jambiani, and $50 per vehicle to Nungwi or Kendwa. Premium SUV, VIP concierge, group, and minivan rates are priced separately.",
+        "open": true
+      },
+      {
+        "q": "What if my flight is delayed?",
+        "a": "We track your flight in real time using the flight number you give us. Your driver will wait at no extra charge for delays up to 2 hours. For longer delays we'll adjust your booking and keep in touch via WhatsApp."
+      },
+      {
+        "q": "Can you pick me up from my hotel at 3am?",
+        "a": "Yes. We operate 24 hours, 7 days a week. Early morning and late-night pickups are common — just give us the time when you book."
+      },
+      {
+        "q": "Do you cover the north coast (Nungwi, Kendwa)?",
+        "a": "Yes — we cover the entire island. Stone Town, Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje, Bwejuu, Jambiani, and everywhere in between."
+      },
+      {
+        "q": "Can you arrange transfers for a safari connection?",
+        "a": "Absolutely. If you're connecting a Zanzibar stay with a mainland safari, we coordinate the ferry port or Dar airport pickup and can arrange onward road transfer to Arusha or other safari hubs."
+      },
+      {
+        "q": "How do I pay?",
+        "a": "We accept USD, EUR, GBP, and TZS. Standard private transfers can usually be paid on the day. Premium, VIP, group, and long-distance bookings may require a deposit to secure the vehicle and driver."
+      }
+    ]
+  },
+  "cta": {
+    "eyebrow": "Ready to book?",
+    "title": "Tell us your route. We'll match the right vehicle.",
+    "text": "Share your flight, hotel, guest count, and luggage needs on WhatsApp. We'll confirm the best private, premium, or VIP option.",
+    "whatsapp": "Book on WhatsApp →",
+    "booking_form": "Use the booking form"
+  },
+  "products": {
+    "airport-stonetown": {
+      "title": "Airport ⇄ Stone Town",
+      "duration": "15 - 25 minutes",
+      "description": "A polished private arrival for Stone Town hotels, short stays, business travellers, and guests who want the airport handled before they land.",
+      "pricing": [
+        "Private car from $25 per vehicle",
+        "Premium SUV from $45",
+        "Group transfer from $10 per person"
+      ],
+      "details": [
+        "Meet & greet at arrivals",
+        "Flight tracking included",
+        "Stone Town hotels",
+        "Short-stay friendly"
+      ],
+      "priceSummary": "Private from $25",
+      "homePrice": "$25",
+      "category": "Airport transfer"
+    },
+    "airport-paje": {
+      "title": "Airport ⇄ Paje / Jambiani",
+      "duration": "1 - 1.5 hours",
+      "description": "Direct beach-resort transfers for the southeast coast, with room for luggage, kite gear, and a calm first hour on the island.",
+      "pricing": [
+        "Private car from $45 per vehicle",
+        "Premium SUV from $70",
+        "Luxury VIP from $120"
+      ],
+      "details": [
+        "Paje, Bwejuu & Jambiani",
+        "Couples and beach stays",
+        "Kitesurf luggage support",
+        "Door-to-door resort drop-off"
+      ],
+      "priceSummary": "Private from $45",
+      "homePrice": "$45",
+      "category": "Airport transfer"
+    },
+    "airport-nungwi": {
+      "title": "Airport ⇄ Nungwi / Kendwa",
+      "duration": "Around 1.5 hours",
+      "description": "Premium long-route transfers for north coast resorts, honeymoon stays, and guests who want comfort after a long international flight.",
+      "pricing": [
+        "Private car from $50 per vehicle",
+        "Premium SUV from $80",
+        "Luxury VIP from $140"
+      ],
+      "details": [
+        "Nungwi and Kendwa resorts",
+        "Honeymoon arrivals",
+        "Luxury beach holidays",
+        "Refreshment stop on request"
+      ],
+      "priceSummary": "Private from $50",
+      "homePrice": "$50",
+      "category": "Airport transfer"
+    },
+    "hotel-hotel": {
+      "title": "Hotel ⇄ Hotel Transfers",
+      "duration": "Island-wide",
+      "description": "Switching from Stone Town to the beach, or combining multiple resorts? We manage the timing, pickup point, luggage, and route.",
+      "pricing": [
+        "Private transfer from $35 per vehicle",
+        "Premium transfer from $60",
+        "North coast routes priced by distance"
+      ],
+      "details": [
+        "All areas on the island",
+        "Stone Town ⇄ Nungwi",
+        "Paje ⇄ Kendwa & more",
+        "Flexible pickup times"
+      ],
+      "priceSummary": "Private from $35",
+      "homePrice": "$35",
+      "category": "Island transfer"
+    },
+    "group-transfers": {
+      "title": "Group & Minivan Transfers",
+      "duration": "Families · events · teams",
+      "description": "Coordinated arrivals for families, wedding groups, corporate teams, and safari parties travelling together with luggage.",
+      "pricing": [
+        "Minivan from $90",
+        "Coaster bus from $180",
+        "Custom quote for large groups"
+      ],
+      "details": [
+        "5 - 25 guests",
+        "Group luggage planning",
+        "Multiple pickup points",
+        "Airport or hotel coordination"
+      ],
+      "priceSummary": "Minivan from $90",
+      "homePrice": "$90",
+      "category": "Group transfer"
+    },
+    "vip-airport-service": {
+      "title": "VIP Airport Concierge",
+      "duration": "Luxury arrival service",
+      "description": "A high-touch arrival experience for premium guests, honeymooners, executives, and safari clients who want every detail handled.",
+      "pricing": [
+        "VIP concierge from $150",
+        "Luxury vehicle included",
+        "Fast-track assistance on request"
+      ],
+      "details": [
+        "Private concierge",
+        "Meet & greet",
+        "Cold towels & refreshments",
+        "WhatsApp support"
+      ],
+      "priceSummary": "VIP from $150",
+      "homePrice": "$150",
+      "category": "VIP transfer"
+    }
+  }
+}

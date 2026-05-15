@@ -1,4 +1,5 @@
 import { EXCURSIONS } from './excursionsData.js';
+import { DESTINATION_MAP_PINS } from './destinationMapPins.js';
 import { destinationParadisePackages } from './destinationParadisePackages.js';
 import { destinationParadiseSafariPricing } from './safariPricing.js';
 
@@ -353,6 +354,38 @@ export const DESTINATION_HUBS = {
 export const MIN_PACKAGE_PRICE = Math.min(...destinationParadisePackages.map((item) => item.pricing.from));
 export const MIN_SAFARI_PRICE = Math.min(...destinationParadiseSafariPricing.map((item) => item.recommendedPublicPrice.lowSeason));
 export const MIN_EXPLORE_EXCURSION_PRICE = Math.min(...EXCURSIONS.map((item) => item.price).filter((price) => typeof price === 'number'));
+
+const objectFromTranslation = (value) => (
+  value && typeof value === 'object' && !Array.isArray(value) ? value : {}
+);
+
+export function buildLocalizedExploreContent(t) {
+  const translatedPins = objectFromTranslation(t('pins', { returnObjects: true, defaultValue: {} }));
+  const translatedHubs = objectFromTranslation(t('hubs', { returnObjects: true, defaultValue: {} }));
+  const translatedPaths = t('paths.items', { returnObjects: true, defaultValue: EXPLORE_PATHS });
+
+  const pins = DESTINATION_MAP_PINS.map((pin) => ({
+    ...pin,
+    ...objectFromTranslation(translatedPins[pin.id]),
+  }));
+
+  const hubs = Object.fromEntries(Object.entries(DESTINATION_HUBS).map(([id, hub]) => {
+    const translated = objectFromTranslation(translatedHubs[id]);
+    return [
+      id,
+      {
+        ...hub,
+        ...translated,
+        bestFor: translated.bestFor || hub.bestFor,
+        excursions: translated.excursions || hub.excursions,
+        safaris: translated.safaris || hub.safaris,
+        packages: translated.packages || hub.packages,
+      },
+    ];
+  }));
+
+  return { pins, hubs, paths: translatedPaths };
+}
 
 export function plannerHrefForHub(hub) {
   const params = new URLSearchParams({

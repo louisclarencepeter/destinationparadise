@@ -1,0 +1,382 @@
+{
+  "hero": {
+    "eyebrow": "15 Pakete · 29 Safaris · 40+ Ausflüge",
+    "title": "Destination Paradise",
+    "motto": "deine nächste Reise ins Paradies…",
+    "description": "Plane Sansibar und Tansania an einem Ort: komplette Safari-und-Strand-Pakete, Insel-Ausflüge, Festland-Safaris und ein KI-Planer, der die passende Route mitformt.",
+    "browse_packages": "Pakete ansehen",
+    "explore_cta": "Sansibar & Tansania entdecken",
+    "search": {
+      "experience_label": "Erlebnis",
+      "any_option": "Paket, Ausflug oder Safari",
+      "popular_packages_group": "Beliebte Pakete",
+      "popular_packages": [
+        "6 Tage Safari & Sansibar-Auszeit",
+        "7 Tage Honeymoon-Safari & Sansibar",
+        "10 Tage klassische Safari & Sansibar"
+      ],
+      "tanzania_safaris_group": "Tansania-Safaris",
+      "tanzania_safaris": [
+        "2 Tage Fly-in-Safari ab Sansibar",
+        "Serengeti-Migrationssafari",
+        "Ngorongoro & Tarangire",
+        "Nyerere (Selous) Fly-in-Safari",
+        "Ruaha Nationalpark"
+      ],
+      "zanzibar_excursions_group": "Sansibar-Ausflüge",
+      "zanzibar_excursions": [
+        "Safari Blue Dhow & Schnorcheln",
+        "Stone Town & Kulturtour",
+        "Prison Island Riesenschildkröten",
+        "Gewürztour & Swahili-Lunch",
+        "Jozani Forest Rote Colobus",
+        "Blue Lagoon Schnorcheln",
+        "Sonnenuntergang & The Rock Restaurant"
+      ],
+      "date_label": "Datum",
+      "guests_label": "Gäste",
+      "guests_options": [
+        "1 Gast",
+        "2 Gäste",
+        "3 Gäste",
+        "4 Gäste",
+        "5+ Gäste"
+      ],
+      "guests_default": "2 Gäste",
+      "submit": "Meine Route finden"
+    }
+  },
+  "why": {
+    "eyebrow": "Warum Destination Paradise",
+    "title": "Lokal, flexibel und wirklich deine Reise",
+    "cards": {
+      "rooted": {
+        "title": "Lokal verwurzelt",
+        "text": "Guides, die zwischen Sansibars Gassen und dem tansanischen Busch aufgewachsen sind. Jedes Riff, jedes Rezept und jede Ranger-Spur kommt mit einer Geschichte, die in keinem Reiseführer steht."
+      },
+      "group_or_private": {
+        "title": "Gruppe oder privat",
+        "text": "Geteilte Dhow-Tage mit neuen Bekanntschaften oder eine private Tour, ein Paket oder eine Safari nur für eure Gruppe. Gleiche Sorgfalt, dein Tempo."
+      },
+      "handled": {
+        "title": "Alles organisiert",
+        "text": "Flughafenabholung, Hoteltransfers, Ernährungswünsche, kurzfristige Änderungen. Schreib uns und wir kümmern uns darum."
+      }
+    }
+  },
+  "excursions": {
+    "eyebrow": "Ausflüge mit Seele",
+    "title": "Ausflüge, von Locals gestaltet",
+    "lead": "Von Hand geplante Inseltage mit traditionellen Booten, klaren Riffen, Gewürzfarmen und Guides, die an diesen Küsten aufgewachsen sind.",
+    "modes": {
+      "ocean_tag": "Meer",
+      "ocean_text": "Dhow-Segeln, Sandbänke, Schnorcheln, Delfine und Rifftage.",
+      "culture_tag": "Kultur",
+      "culture_text": "Stone Town, Gewürzfarmen, Swahili-Küche, Dhow-Bau und Dorfbesuche.",
+      "nature_tag": "Natur",
+      "nature_text": "Jozani Forest, Riesenschildkröten, Mangroven, Schildkröten und familienfreundliche Wildlife-Stopps."
+    },
+    "card": {
+      "explore_aria": "{{title}} entdecken",
+      "from": "Ab",
+      "view_details": "Details ansehen"
+    },
+    "view_all": "Alle Ausflüge ansehen",
+    "featured": {
+      "safari-blue": {
+        "title": "Safari Blue",
+        "description": "Ein ganztägiger Dhow-Segeltörn in der Menai Bay mit Sandbank-Picknick, Mangroven, Schnorchelriffen und Seafood-Lunch.",
+        "duration": "Ganzer Tag",
+        "from": "Fumba",
+        "group": "Bis 8 Personen"
+      },
+      "mnemba": {
+        "title": "Mnemba-Schnorcheln & Ausflug in den Norden",
+        "description": "Ein ganzer Tag mit Schnorcheln am Mnemba-Korallenring und entspannter Strandzeit in Nungwi im Norden Sansibars.",
+        "duration": "Ganzer Tag",
+        "from": "Matemwe / Nungwi",
+        "group": "Bis 8 Personen"
+      },
+      "spice-tour": {
+        "title": "Gewürztour",
+        "description": "Ein geführter Spaziergang durch Plantagen mit Nelken, Zimt, Muskat, Pfeffer, Kräutern und Heilpflanzen, danach ein suahilisches Gewürz-Lunch.",
+        "duration": "Halber Tag",
+        "from": "Stone Town",
+        "group": "Bis 8 Personen"
+      }
+    }
+  },
+  "safaris": {
+    "eyebrow": "Wildlife auf dem Festland",
+    "title": "{{count}} Safari-Einstiege",
+    "lead": "Wähle eine klassische Nordroute, eine Fly-in-Safari in die Wildnis des Südens, eine kurze Safari ab Sansibar oder eine Spezialreise für Fotografie, Familie, Kultur, Luxus, Vögel, Schimpansen und Migrationszeiten.",
+    "modes": {
+      "classic_tag": "Klassische Routen",
+      "classic_text": "Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha, Mahale und Katavi.",
+      "fly_in_tag": "Fly-in",
+      "fly_in_text": "Kurze Safaris ab Sansibar für Gäste, die schon auf der Insel sind.",
+      "specialists_tag": "Spezialreisen",
+      "specialists_text": "Honeymoon, Familie, Fotografie, Walking, Birding und Bush-to-Beach."
+    },
+    "features": {
+      "tarangire-day-trip": {
+        "label": "Kurze Safari",
+        "text": "Für einen intensiven Wildlife-Tag ab Sansibar einfliegen, inklusive Parkgebühren, Lunch, Guide und Game Drive."
+      },
+      "serengeti-migration": {
+        "label": "Migrationssafari",
+        "text": "Eine starke Serengeti-Route für Migrationsebenen, Großkatzen, Camps, Mahlzeiten und geführte Game Drives."
+      },
+      "nyerere-selous": {
+        "label": "Südlicher Circuit",
+        "text": "Eine wildere Fly-in-Route mit Bootssafari, Walking Safari, Luxury Camp, Guide und Inlandsflügen."
+      }
+    },
+    "card": {
+      "from": "Ab",
+      "pp_suffix": "p. P.",
+      "view_details": "Details ansehen"
+    },
+    "view_all": "Alle Safaris ansehen"
+  },
+  "packages": {
+    "eyebrow": "Komplettes Reiseportfolio",
+    "title": "{{count}} Pakete — Safari, Sansibar, Honeymoon, Familie & Kultur",
+    "lead": "Starte mit einem recherchierten Paket. Danach passen wir Route, Hotelniveau, Flüge, Ausflüge und Tempo an deine Daten an.",
+    "ribbons": {
+      "best_entry": "Bester Einstieg",
+      "honeymoon": "Honeymoon",
+      "most_complete": "Am umfassendsten"
+    },
+    "tags": {
+      "romance": "Romantik",
+      "safari": "Safari",
+      "package": "Paket",
+      "stay": "Aufenthalt",
+      "included": "Inklusive",
+      "experience": "Erlebnis"
+    },
+    "card": {
+      "from": "Ab",
+      "per_person_default": "pro Person",
+      "view_package": "Paket ansehen"
+    },
+    "note": "Die vollständige Paket-Seite enthält Honeymoon, Familie, Fly-in-Safari, Migration, Kilimanjaro, Meer, Kultur, Digital Nomad und Luxusoptionen.",
+    "view_all": "Alle Pakete ansehen"
+  },
+  "transfers": {
+    "eyebrow": "Private Transfers",
+    "title": "Entspannt ankommen, bevor die Reise richtig beginnt.",
+    "lead": "Meet & Greet am Flughafen, private Fahrzeuge mit Klimaanlage, Flugtracking, Gepäckhilfe und VIP-Ankunftsoptionen auf Sansibar.",
+    "tags": {
+      "vip": "VIP",
+      "north_coast": "Nordküste",
+      "beach_resorts": "Strandresorts",
+      "transfer": "Transfer"
+    },
+    "card": {
+      "from": "Ab",
+      "book_transfer": "Transfer buchen"
+    },
+    "view_all": "Alle Transfers ansehen"
+  },
+  "map": {
+    "eyebrow": "Die Region",
+    "title": "Sansibar & Tansania auf einen Blick",
+    "lead": "Ein Land, zwei Welten. Die Insel schenkt dir Stone-Town-Geschichte, Dhows am Riff, Strände, Kultur und Tage am Meer. Auf dem Festland warten Ikonen des Nordens, Wildnis im Süden, Schimpansenrouten im Westen, schnelle Fly-ins, Berge und kulturelle Stopps.",
+    "island_label": "Sansibar",
+    "mainland_label": "Tansanisches Festland",
+    "cta_label": "Route nach Maß bauen",
+    "cta_explore_full": "Die ganze Karte entdecken"
+  },
+  "gallery": {
+    "eyebrow": "Ein Vorgeschmack",
+    "title": "Momente von Küste bis Safari",
+    "lead": "Ein weiter Blick auf Sansibar und Tansania: Dhows, alte Gassen, Wald, Gewürzfarmen, Sandbänke und Wildlife auf dem Festland.",
+    "captions": {
+      "mizingani-waterfront": "Mizingani waterfront",
+      "zebra-mare-and-foal": "Zebra on safari",
+      "dolphin-snorkeling": "Dolphin snorkel",
+      "lioness-and-cub-resting": "Lioness and cub",
+      "stone-town-old-fort": "Stone Town Old Fort",
+      "rhino-on-plains": "Ngorongoro rhino",
+      "safari-blue-sandbank": "Safari Blue sandbank",
+      "crowned-cranes-in-grass": "Crowned cranes",
+      "jozani-red-colobus": "Jozani red colobus",
+      "wildebeest-grazing": "Migration plains",
+      "spice-tour-nutmeg": "Spice farm detail",
+      "male-lion-in-grass": "Serengeti lion"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Stimmen von der Küste",
+    "title": "Was Gäste mit nach Hause nehmen",
+    "quotes": {
+      "isa": {
+        "quote": "Du kannst durch die Mangroven laufen und den schönsten Sonnenuntergang erleben. Danke an das Team — diese Wärme und Fürsorge waren unglaublich.",
+        "trip": "Mangroven & Sonnenuntergang"
+      },
+      "arturo": {
+        "quote": "Unser Guide war kompetent, gut gelaunt und herzlich. Die Dhow war wunderschön, die Lagune unvergesslich. Noch vor der Abreise haben wir wieder gebucht.",
+        "trip": "Safari Blue Dhow"
+      },
+      "coleman": {
+        "quote": "Wir haben jedes Gewürz gerochen, hundert Fragen gestellt, und das Team hat alles geduldig beantwortet. Der beste Tag unserer Reise.",
+        "trip": "Gewürz- & Kulturtour"
+      }
+    }
+  },
+  "newsletter": {
+    "eyebrow": "Dranbleiben",
+    "title": "Meergeschichten und Sonnenuntergänge, einmal im Monat",
+    "description": "Persönliche Notizen vom Team — freie Reisetermine, Angebote in der Nebensaison und manchmal ein Gewürzrezept. Eine Mail im Monat. Mehr nicht.",
+    "email_placeholder": "du@example.com",
+    "email_placeholder_done": "✓ Du bist auf der Liste",
+    "email_aria": "E-Mail-Adresse",
+    "submit": "Abonnieren",
+    "submit_pending": "Wird gesendet…",
+    "submit_done": "Gesendet",
+    "error": "Das hat nicht geklappt. Bitte versuch es gleich noch einmal."
+  },
+  "planner": {
+    "eyebrow": "KI-Reiseplaner",
+    "title": "Erzähl mir von deiner Traumreise",
+    "lead": "Chatte mit unserem KI-Planer, gebaut auf Routen, die unser Team seit Jahren kennt. Er stellt die richtigen Fragen, skizziert Tag für Tag eine Route und schickt sie ans Team, wenn du bereit bist.",
+    "bullets": {
+      "asks_strong": "Fragt nach dir",
+      "asks_text": " — Reisetempo, Budget, Wasser oder Wildlife, Kinder dabei, besondere Daten.",
+      "builds_strong": "Erstellt einen Entwurf",
+      "builds_text": " — Nächte pro Ort, passende Hotels und ein sinnvolles Tempo für Ausflüge.",
+      "sends_strong": "Schickt es ans Team",
+      "sends_text": " — bestätige im Chat, dann senden wir eine Kopie per E-Mail und antworten innerhalb eines Tages."
+    },
+    "suggestions": {
+      "label": "Ausprobieren:",
+      "couple_button": "Couple, 8 nights, beach + dhow",
+      "couple_prompt": "We're a couple, 8 nights in October. We want a mix of beach, dhow sailing, and one big experience. Mid-range hotels.",
+      "family_button": "Family with kids, safari + beach",
+      "family_prompt": "Family of four with kids 9 and 12. Two weeks in July. We want a few days of safari then unwind on a beach. Budget around $4k pp.",
+      "solo_button": "Solo, history + snorkel",
+      "solo_prompt": "Solo traveler, 5 nights in February. Love spice markets, history, snorkeling. Boutique hotel under $200/night."
+    },
+    "quick_replies": [
+      "Strand und Ruhe",
+      "Safari + Sansibar",
+      "Honeymoon-Reise",
+      "Familienfreundlich"
+    ],
+    "thinking_messages": [
+      "Route skizzieren",
+      "Tempo prüfen",
+      "Strand und Safari ausbalancieren",
+      "Entwurf formen"
+    ],
+    "header": {
+      "name": "Paradise Planner",
+      "subtitle": "Powered by Claude · antwortet meist sofort",
+      "reset_title": "Neu anfangen"
+    },
+    "welcome": {
+      "p1": "Karibu! 👋 Ich bin der Destination Paradise Planer — lass uns deine Reise skizzieren.",
+      "p2_prefix": "Womit möchtest du starten? ",
+      "p2_em": "Strand & Ruhe, Festland-Safari, tiefe Kultur,",
+      "p2_suffix": " oder eine Mischung?",
+      "quick_replies_aria": "Schnellantworten"
+    },
+    "fallbacks": {
+      "reply_blank": "Hmm, I lost my train of thought. Could you say that again?",
+      "reply_after_token": "Asante! I've sent this draft to the team — they'll be in touch within a day.",
+      "network_error": "Pole sana — I couldn't reach the planner just now. Try again in a moment, or message the team directly via the WhatsApp button.",
+      "missing_email": "Share your email in the chat first so we can reply."
+    },
+    "status": {
+      "sending": "Dein Entwurf wird ans Team gesendet…",
+      "updating": "Dein Update wird ans Team gesendet…",
+      "sent_title": "Asante! ✓ Dein Entwurf ist beim Team.",
+      "sent_text": "Du bekommst eine Kopie per E-Mail und innerhalb eines Tages eine Antwort. Willst du etwas ändern? Schreib einfach unten, ich sende ein Update ans Team. Oder starte neu:",
+      "updated_title": "✓ Update {{count}} ans Team gesendet.",
+      "updated_text": "Das Team sieht den überarbeiteten Plan. Schreib unten für eine weitere Änderung oder starte neu:",
+      "error_title": "Pole sana — das hat nicht geklappt.",
+      "error_text_default": "Bitte versuch es noch einmal oder schreib uns auf WhatsApp.",
+      "start_new_plan": "Neuen Plan starten",
+      "try_again": "Noch einmal versuchen"
+    },
+    "form": {
+      "placeholder_idle": "Erzähl mir von deiner Traumreise…",
+      "placeholder_done": "Schreib hier ein Update…",
+      "send_aria": "Senden"
+    },
+    "foot": {
+      "note": "Reiserouten sind Entwürfe. Vor der Buchung prüft und kalkuliert ein Mensch alles.",
+      "handoff_idle": "Ans Team senden",
+      "handoff_done": "Ans Team gesendet ✓"
+    }
+  },
+  "weather": {
+    "live_suffix": " · Live",
+    "facts": {
+      "sea_temp": "Meerestemperatur",
+      "humidity": "Luftfeuchtigkeit",
+      "sunrise": "Sonnenaufgang",
+      "sunset": "Sonnenuntergang"
+    },
+    "side_title": "Beste Reisezeit",
+    "seasons": {
+      "peak": "Peak",
+      "high": "Hochsaison",
+      "low": "Nebensaison"
+    },
+    "legend": {
+      "aria": "Hotel-Saisonlegende",
+      "title": "Hotelsaison",
+      "peak_label": "Peak",
+      "peak_text": "Festtage & europäischer Sommer (Dez–Jan, Jul–Aug). Höhere Preise, früh buchen.",
+      "high_label": "Hoch",
+      "high_text": "Beliebte trockene Monate (Feb, Jun, Sep–Okt). Normale Hochsaisonpreise.",
+      "low_label": "Niedrig",
+      "low_text": "Regenzeit (Mär–Mai, Nov). Beste Deals; einige Hotels schließen im Apr–Mai."
+    },
+    "descriptions": {
+      "default": "Mostly sunny with a soft Indian Ocean breeze. The long rains are easing — mornings are clear, and the reef visibility holds through early afternoon.",
+      "clear_night": "Clear night over the channel — warm air, gentle breeze off the reef.",
+      "clear_day": "Clear skies and steady Indian Ocean breeze — ideal beach and snorkeling conditions.",
+      "mostly_sunny_day": "Mostly sunny with high cloud — reef visibility holds through the afternoon.",
+      "mostly_clear_night": "Mostly clear night with high cloud — warm and calm.",
+      "partly_cloudy_day": "Partly cloudy with warm trade winds — comfortable beach and dhow conditions.",
+      "partly_cloudy_night": "Partly cloudy night — soft trade winds and warm air.",
+      "overcast_day": "Overcast but warm — good light for island walks, spice farms, and culture stops.",
+      "overcast_night": "Overcast and warm tonight — calm seas expected by morning.",
+      "fog": "Coastal fog easing through the morning — clearer by midday.",
+      "drizzle": "Light drizzle drifting in from the channel — short, warm, and passing.",
+      "rain_long": "Rain showers passing through — typical of the long rains, mornings often clear.",
+      "tropical_showers": "Tropical showers between sunny spells — bring a light layer.",
+      "thunderstorm": "Thunderstorms expected — best to plan indoor time, a slower lunch, or a spa stop."
+    }
+  },
+  "contact": {
+    "eyebrow": "Kontakt",
+    "title": "Schreib uns eine E-Mail",
+    "lead": "Sag uns, ob du ein komplettes Paket, ein paar Sansibar-Ausflüge, eine Festland-Safari oder eine individuelle Mischung suchst. Schick Gruppengröße, grobe Daten, Budget und Tempo. Wir melden uns innerhalb eines Tages mit Ideen, Verfügbarkeit und echtem Preis.",
+    "details": {
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "whatsapp": "WhatsApp",
+      "whatsapp_action": "Auf WhatsApp schreiben",
+      "find_us": "Hier findest du uns",
+      "hours": "Zeiten"
+    },
+    "form": {
+      "name": "Dein Name",
+      "email": "E-Mail",
+      "subject": "Betreff",
+      "subject_placeholder": "Reisedaten, Gruppengröße, besondere Wünsche",
+      "message": "Nachricht",
+      "submit": "Nachricht senden",
+      "submit_pending": "Wird gesendet…",
+      "submit_done": "Gesendet",
+      "status_ok": "✓ Asante — wir haben deine Nachricht. Wir melden uns innerhalb eines Tages.",
+      "status_err_prefix": "Pole sana — das hat nicht geklappt. Schreib uns direkt an",
+      "status_err_suffix": "oder versuch es erneut."
+    }
+  }
+}

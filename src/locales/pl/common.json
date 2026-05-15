@@ -3,7 +3,9 @@
     "switcher_label": "Język",
     "english": "English",
     "polish": "Polski",
+    "german": "Deutsch",
     "switch_to_english": "Zmień język na angielski",
-    "switch_to_polish": "Zmień język na polski"
+    "switch_to_polish": "Zmień język na polski",
+    "switch_to_german": "Zmień język na niemiecki"
   }
 }

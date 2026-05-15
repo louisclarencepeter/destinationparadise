@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowIcon } from './Icons.jsx';
+import { buildLocalizedPackages } from '../../data/packagePresentation.js';
 import { destinationParadisePackages } from '../../data/destinationParadisePackages.js';
 
 const FEATURED_PACKAGE_SLUGS = [
@@ -9,10 +11,6 @@ const FEATURED_PACKAGE_SLUGS = [
   'ten-day-classic-safari-zanzibar',
 ];
 
-const packageCards = FEATURED_PACKAGE_SLUGS
-  .map((slug) => destinationParadisePackages.find((item) => item.slug === slug))
-  .filter(Boolean);
-
 const getPackageRibbonKey = (slug) => {
   if (slug === 'six-day-safari-zanzibar-escape') return 'best_entry';
   if (slug === 'seven-day-honeymoon-safari-zanzibar') return 'honeymoon';
@@ -20,27 +18,44 @@ const getPackageRibbonKey = (slug) => {
   return null;
 };
 
+const FEATURED_ITEM_KIND_KEYS = {
+  'six-day-safari-zanzibar-escape': ['safari', 'included', 'safari', 'safari', 'safari'],
+  'seven-day-honeymoon-safari-zanzibar': ['romance', 'stay', 'stay', 'included', 'experience'],
+  'ten-day-classic-safari-zanzibar': ['safari', 'stay', 'included', 'safari', 'stay'],
+};
+
+const KIND_CLASS = {
+  safari: 'saf',
+  romance: 'inc',
+  stay: 'hotel',
+  included: 'inc',
+  experience: 'exc',
+  package: 'inc',
+};
+
 const getPackageSummary = (pkg) => pkg.split || pkg.idealFor?.slice(0, 3).join(' · ') || pkg.category;
 
 const getPackageItems = (pkg) => {
-  const categoryKind = pkg.category.includes('Honeymoon') ? 'romance' : pkg.category.includes('Safari') ? 'safari' : 'package';
-  const categoryClass = pkg.category.includes('Honeymoon') ? 'inc' : 'saf';
+  const kindKeys = FEATURED_ITEM_KIND_KEYS[pkg.id] || ['package'];
   return [
-    { kindKey: categoryKind, kind: categoryClass, text: getPackageSummary(pkg) },
-    ...pkg.includes.slice(0, 4).map((text) => {
-      const lower = text.toLowerCase();
-      const kind = lower.includes('safari') || lower.includes('serengeti') || lower.includes('ngorongoro') || lower.includes('tarangire') ? 'saf'
-        : lower.includes('beach') || lower.includes('hotel') || lower.includes('resort') || lower.includes('lodge') ? 'hotel'
-          : lower.includes('flight') || lower.includes('transfer') || lower.includes('park') ? 'inc'
-            : 'exc';
-      const kindKey = kind === 'saf' ? 'safari' : kind === 'hotel' ? 'stay' : kind === 'inc' ? 'included' : 'experience';
-      return { kindKey, kind, text };
+    { kindKey: kindKeys[0], kind: KIND_CLASS[kindKeys[0]] || 'inc', text: getPackageSummary(pkg) },
+    ...pkg.includes.slice(0, 4).map((text, index) => {
+      const kindKey = kindKeys[index + 1] || 'experience';
+      return { kindKey, kind: KIND_CLASS[kindKey] || 'exc', text };
     }),
   ];
 };
 
 export default function PackagesSection() {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation(['home', 'packages']);
+  const packageCards = useMemo(() => {
+    const packageT = (key, options) => t(`packages:${key}`, options);
+    const packages = buildLocalizedPackages(packageT);
+    return FEATURED_PACKAGE_SLUGS
+      .map((slug) => packages.find((item) => item.id === slug))
+      .filter(Boolean);
+  }, [t]);
+
   return (
     <section className="packages reveal" id="packages">
       <header className="packages__head">

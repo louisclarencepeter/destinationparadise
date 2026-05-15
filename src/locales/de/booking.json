@@ -1,0 +1,623 @@
+{
+  "page_title": "Buchungsanfrage · Destination Paradise",
+  "common": {
+    "flexible": "Flexibel",
+    "date_to": "bis",
+    "not_selected": "Nicht ausgewählt"
+  },
+  "hero": {
+    "eyebrow": "Buchungsanfrage",
+    "title_prefix": "Ein Formular",
+    "title_em": "für jede Reise.",
+    "lead": "Pakete, Ausflüge, Safaris, private Transfers, individuelle Routen und Online-Zahlungswünsche starten hier. Erzähl uns, was du suchst, und unser Team bestätigt Verfügbarkeit, Timing und Endpreis.",
+    "start_request": "Anfrage starten",
+    "plan_with_ai": "Mit KI planen",
+    "stats_aria": "Vertrauenssignale zur Buchung",
+    "stats": [
+      {
+        "value": "500+",
+        "label": "Reisen geplant"
+      },
+      {
+        "value": "1.200+",
+        "label": "Glückliche Gäste"
+      },
+      {
+        "value": "24h",
+        "label": "Anfrage bestätigt"
+      }
+    ]
+  },
+  "flow": {
+    "aria": "Buchungsprozess",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Anfrage senden",
+        "text": "Wähle Paket, Ausflug, Safari, Transfer oder Maßroute und teile deine Daten."
+      },
+      {
+        "number": "02",
+        "title": "Wir prüfen alles",
+        "text": "Unser Team checkt Verfügbarkeit, Fahrzeuge, Transfers, Guides, Routen und finalen Preis."
+      },
+      {
+        "number": "03",
+        "title": "Sicher bezahlen",
+        "text": "Wenn alles passt, senden wir einen sicheren Online-Zahlungslink."
+      }
+    ]
+  },
+  "intro": {
+    "eyebrow": "Sag uns, was wir bauen sollen",
+    "title": "Frage Verfügbarkeit, Angebot und Zahlungslink an.",
+    "lead": "Wir erfassen auf dieser Seite keine Kartendaten. Wenn du Online-Zahlung wählst, senden wir nach Bestätigung von Route und Preis einen sicheren Zahlungslink."
+  },
+  "service_types": [
+    {
+      "value": "package",
+      "label": "Paket",
+      "text": "Safari + Sansibar, Honeymoon, Familie, Kultur, Meer oder Luxusroute."
+    },
+    {
+      "value": "excursion",
+      "label": "Ausflug",
+      "text": "Inseltage, Dhow-Segeln, Stone Town, Gewürzfarmen, Schnorcheln und Natur."
+    },
+    {
+      "value": "safari",
+      "label": "Safari",
+      "text": "Wildlife-Routen auf dem Festland, Fly-in-Safaris, Migration, südliche Parks und Maßrouten."
+    },
+    {
+      "value": "transfer",
+      "label": "Transfer",
+      "text": "Privater Flughafen-, Hotel-zu-Hotel-, Gruppen-, Premium-SUV- oder VIP-Concierge-Transfer."
+    },
+    {
+      "value": "custom",
+      "label": "Plan nach Maß",
+      "text": "Noch unsicher? Erzähl uns die Form der Reise, wir bauen die Route darum herum."
+    }
+  ],
+  "payment_options": [
+    {
+      "value": "secure-link",
+      "label": "Sicheren Online-Zahlungslink senden",
+      "text": "Am besten, nachdem Verfügbarkeit und Endpreis bestätigt sind."
+    },
+    {
+      "value": "deposit",
+      "label": "Ich möchte online anzahlen",
+      "text": "Wir bestätigen den Anzahlungsbetrag und senden einen Zahlungslink."
+    },
+    {
+      "value": "full",
+      "label": "Ich möchte den Gesamtbetrag online zahlen",
+      "text": "Für bestätigte Reisen, die du vollständig per Karte/Link bezahlen möchtest."
+    },
+    {
+      "value": "later",
+      "label": "Erst Angebot, Zahlung später",
+      "text": "Wir kalkulieren zuerst und besprechen die Zahlung danach."
+    }
+  ],
+  "transfer_tiers": [
+    {
+      "value": "standard-private",
+      "label": "Standard Privat",
+      "text": "Zuverlässiges Fahrzeug mit Klimaanlage, Meet & Greet, Flugtracking, Gepäckhilfe und Tür-zu-Tür-Service."
+    },
+    {
+      "value": "premium-suv",
+      "label": "Premium SUV",
+      "text": "Mehr Platz und eine angenehmere Ankunft für Paare, Familien, Safari-Gäste und zusätzliches Gepäck."
+    },
+    {
+      "value": "vip-concierge",
+      "label": "VIP Concierge",
+      "text": "Luxusfahrzeug, private Concierge-Betreuung, kühle Tücher, Erfrischungen und Fast-Track-Support auf Wunsch."
+    },
+    {
+      "value": "group-transfer",
+      "label": "Gruppentransfer",
+      "text": "Minivans und kleine Busse für Familien, Hochzeitsgruppen, Teams und Safari-Gruppen."
+    }
+  ],
+  "form": {
+    "booking_legend": "Was möchtest du buchen?",
+    "product_label_transfer": "Transferroute",
+    "product_label_default": "Konkretes Produkt",
+    "product_placeholder_transfer": "Transferroute wählen oder flexibel lassen",
+    "product_placeholder_default": "Produkt wählen oder flexibel lassen",
+    "product_placeholder_generic": "Produkt wählen oder flexibel lassen",
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "phone_placeholder": "+255 / +49 / +1 ...",
+    "whatsapp": "WhatsApp",
+    "whatsapp_placeholder": "Falls anders als Telefon",
+    "start_date": "Startdatum",
+    "date": "Datum",
+    "end_date": "Enddatum",
+    "guests": "Gäste",
+    "transfer_legend": "Transferdetails",
+    "pickup_location": "Abholort",
+    "pickup_placeholder": "ZNZ Flughafen, Fährhafen, Hotel...",
+    "dropoff_location": "Zielort",
+    "dropoff_placeholder": "Hotel, Resort, Flughafen...",
+    "flight_number": "Flug- / Fährnummer",
+    "flight_placeholder": "Optional, aber hilfreich fürs Tracking",
+    "pickup_time": "Abholzeit",
+    "budget_range": "Budgetrahmen",
+    "comfort_level": "Komfortniveau",
+    "online_payment": "Online-Zahlung",
+    "message_label": "Was sollten wir noch wissen?",
+    "status_sent": "Asante. Wir haben deine Anfrage erhalten und melden uns mit Verfügbarkeit, Angebot und nächstem Zahlungsschritt.",
+    "status_error": "Das hat nicht geklappt. Bitte versuch es noch einmal oder schreib uns auf WhatsApp.",
+    "submit_sending": "Anfrage wird gesendet...",
+    "submit_sent": "Anfrage gesendet",
+    "submit_idle": "Buchungsanfrage senden",
+    "message_placeholder_transfer": "Ankunftshinweise, Gepäckanzahl, Kindersitze, Hotelname, VIP-Wünsche oder Uhrzeitdetails.",
+    "message_placeholder_excursion": "Gewünschter Abholbereich, Hotelname, privat/geteilt, Alter der Kinder, Ernährung oder Zeitwünsche.",
+    "message_placeholder_default": "Hotels, die du magst, Tempo, besonderer Anlass, Alter der Kinder, Ernährung, Flugdaten oder was du vermeiden möchtest.",
+    "unmatched_message": "Ich interessiere mich für {{title}}. {{message}}"
+  },
+  "budget_options": [
+    {
+      "value": "",
+      "label": "Noch nicht sicher"
+    },
+    {
+      "value": "Under $1,000 pp",
+      "label": "Unter $1.000 p. P."
+    },
+    {
+      "value": "$1,000 - $2,500 pp",
+      "label": "$1.000 - $2.500 p. P."
+    },
+    {
+      "value": "$2,500 - $5,000 pp",
+      "label": "$2.500 - $5.000 p. P."
+    },
+    {
+      "value": "$5,000 - $8,000 pp",
+      "label": "$5.000 - $8.000 p. P."
+    },
+    {
+      "value": "$8,000+ pp",
+      "label": "$8.000+ p. P."
+    }
+  ],
+  "comfort_options": [
+    {
+      "value": "Budget",
+      "label": "Budget"
+    },
+    {
+      "value": "Mid-range",
+      "label": "Mittelklasse"
+    },
+    {
+      "value": "Luxury",
+      "label": "Luxus"
+    },
+    {
+      "value": "Ultra luxury",
+      "label": "Ultra-Luxus"
+    },
+    {
+      "value": "Flexible",
+      "label": "Flexibel"
+    }
+  ],
+  "summary": {
+    "eyebrow": "Deine Anfrage",
+    "custom_plan": "Plan nach Maß",
+    "flexible_route": "Flexible Route",
+    "guests": "Gäste",
+    "dates": "Daten",
+    "date": "Datum",
+    "tier": "Kategorie",
+    "default_tier": "Standard Privat",
+    "pickup": "Abholung",
+    "dropoff": "Ziel",
+    "time": "Zeit",
+    "comfort": "Komfort",
+    "payment": "Zahlung",
+    "payment_title": "So funktioniert die Zahlung",
+    "payment_steps": [
+      "Wir bestätigen Verfügbarkeit und Endpreis.",
+      "Du bestätigst Route, Datum und Bedingungen.",
+      "Wir senden einen sicheren Zahlungslink für Anzahlung oder Gesamtbetrag."
+    ],
+    "payment_note": "Auf dieser Website werden keine Kartendaten eingegeben oder gespeichert.",
+    "mini_title": "Lieber zuerst planen?",
+    "mini_link": "KI-Planer öffnen →"
+  },
+  "price": {
+    "final_after_availability": "Endpreis nach Verfügbarkeitsprüfung",
+    "final_transfer_after_route": "Endpreis für Transfer nach Routenbestätigung",
+    "from": "Ab",
+    "per_person": "pro Person",
+    "pp": "p. P."
+  },
+  "support_cta": {
+    "title": "Brauchst du Hilfe vor dem Absenden?",
+    "text": "Öffne den Planer, wenn du zuerst die Route formen möchtest, oder entdecke die Karte, um Strand, Safari-Circuit und Inseltage auszuwählen.",
+    "planner": "Mit KI planen",
+    "explore": "Karte entdecken"
+  },
+  "products": {
+    "package": {
+      "six-day-safari-zanzibar-escape": {
+        "label": "6 Tage Safari & Sansibar-Auszeit",
+        "category": "Safari-Pakete",
+        "unit": "pro Person"
+      },
+      "seven-day-honeymoon-safari-zanzibar": {
+        "label": "7 Tage Honeymoon-Safari & Sansibar",
+        "category": "Honeymoon-Pakete",
+        "unit": "pro Person"
+      },
+      "eight-day-tanzania-parks-zanzibar": {
+        "label": "8 Tage Tansania-Parks & Sansibar",
+        "category": "Safari-Pakete",
+        "unit": "pro Person"
+      },
+      "nine-day-safari-zanzibar-culture": {
+        "label": "9 Tage Safari, Sansibar & Kultur",
+        "category": "Kulturreisen",
+        "unit": "pro Person"
+      },
+      "ten-day-classic-safari-zanzibar": {
+        "label": "10 Tage klassische Safari & Sansibar",
+        "category": "Safari-Pakete",
+        "unit": "pro Person"
+      },
+      "twelve-day-serengeti-zanzibar": {
+        "label": "12 Tage Serengeti & Sansibar",
+        "category": "Luxuserlebnisse",
+        "unit": "pro Person"
+      },
+      "fourteen-day-ultimate-tanzania-zanzibar": {
+        "label": "14 Tage ultimatives Tansania & Sansibar",
+        "category": "Luxuserlebnisse",
+        "unit": "pro Person"
+      },
+      "two-day-fly-in-safari-zanzibar": {
+        "label": "2 Tage Fly-in-Safari ab Sansibar",
+        "category": "Fly-in-Safaris",
+        "unit": "pro Person"
+      },
+      "three-day-serengeti-fly-in-safari": {
+        "label": "3 Tage Serengeti Fly-in-Safari",
+        "category": "Fly-in-Safaris",
+        "unit": "pro Person"
+      },
+      "kilimanjaro-safari-zanzibar-expedition": {
+        "label": "Kilimanjaro + Safari + Sansibar Expedition",
+        "category": "Kilimanjaro-Abenteuer",
+        "unit": "pro Person"
+      },
+      "luxury-family-safari-zanzibar": {
+        "label": "Luxus-Familiensafari & Sansibar",
+        "category": "Familienpakete",
+        "unit": "pro Person"
+      },
+      "great-migration-luxury-package": {
+        "label": "Luxuspaket Große Migration",
+        "category": "Luxuserlebnisse",
+        "unit": "pro Person"
+      },
+      "zanzibar-adventure-marine-package": {
+        "label": "Sansibar Abenteuer & Meer Paket",
+        "category": "Meeres- & Taucherlebnisse",
+        "unit": "pro Person"
+      },
+      "stone-town-culture-experience": {
+        "label": "Stone Town & Kulturerlebnis",
+        "category": "Kulturreisen",
+        "unit": "pro Person"
+      },
+      "digital-nomad-zanzibar-stay": {
+        "label": "Digital-Nomad-Aufenthalt auf Sansibar",
+        "category": "Pakete nach Maß",
+        "unit": "pro Person"
+      }
+    },
+    "excursion": {
+      "spice-tour": {
+        "label": "Gewürztour",
+        "category": "Kultur & Geschichte",
+        "priceSub": "pro Person"
+      },
+      "stone-town": {
+        "label": "Historische Stone-Town-Tour",
+        "category": "Kultur & Geschichte",
+        "priceSub": "pro Person"
+      },
+      "prison-island": {
+        "label": "Bootsausflug nach Prison Island",
+        "category": "Natur & Wildlife",
+        "priceSub": "pro Person"
+      },
+      "jozani": {
+        "label": "Jozani-Forest-Tour",
+        "category": "Natur & Wildlife",
+        "priceSub": "pro Person"
+      },
+      "dolphins": {
+        "label": "Delfintour",
+        "category": "Wasser & Schnorcheln",
+        "priceSub": "pro Person"
+      },
+      "sunset-rock": {
+        "label": "Sonnenuntergang & The Rock Restaurant",
+        "category": "Wellness & Luxus",
+        "priceSub": "pro Person"
+      },
+      "snorkeling-tour": {
+        "label": "Schnorcheltour · Blue Lagoon",
+        "category": "Wasser & Schnorcheln",
+        "priceSub": "pro Person"
+      },
+      "village-tour": {
+        "label": "Dorftour · Bwejuu",
+        "category": "Kultur & Geschichte",
+        "priceSub": "pro Person"
+      },
+      "mnemba": {
+        "label": "Mnemba-Schnorcheln & Ausflug in den Norden",
+        "category": "Wasser & Schnorcheln",
+        "priceSub": "pro Person"
+      },
+      "safari-blue": {
+        "label": "Safari Blue",
+        "category": "Wasser & Schnorcheln",
+        "priceSub": "pro Person"
+      },
+      "fishing-kizimkazi": {
+        "label": "Angeln in Kizimkazi",
+        "category": "Abenteuer & Sport",
+        "priceSub": "pro Boot"
+      },
+      "local-fishing": {
+        "label": "Lokales Game Fishing",
+        "category": "Abenteuer & Sport",
+        "priceSub": "pro Person"
+      },
+      "mangrove": {
+        "label": "Mangroventour · Chwaka Bay",
+        "category": "Natur & Wildlife",
+        "priceSub": "pro Person"
+      },
+      "sandbank-picnic": {
+        "label": "Sandbank-Picknick · Pange",
+        "category": "Wasser & Schnorcheln",
+        "priceSub": "pro Person"
+      },
+      "cave": {
+        "label": "Schwimmen in der Maalum Cave",
+        "category": "Natur & Wildlife",
+        "priceSub": "pro Person"
+      },
+      "north-nungwi": {
+        "label": "Ausflug in den Norden · Nungwi",
+        "category": "Wasser & Schnorcheln",
+        "priceSub": "pro Person"
+      },
+      "cooking-coffee": {
+        "label": "Kochkurs & Kaffee-Erlebnis",
+        "category": "Kultur & Geschichte"
+      },
+      "street-food": {
+        "label": "Street-Food- & Nachtmarkt-Tour",
+        "category": "Kultur & Geschichte"
+      },
+      "healer-herbal": {
+        "label": "Traditionelle Heiler & Kräutermedizin",
+        "category": "Kultur & Geschichte"
+      },
+      "village-workshop": {
+        "label": "Dorfleben & Workshop",
+        "category": "Kultur & Geschichte"
+      },
+      "private-sunset-dhow-dinner": {
+        "label": "Private Dhow-Sunset-Cruise mit Dinner",
+        "category": "Wellness & Luxus"
+      },
+      "nakupenda": {
+        "label": "Nakupenda-Sandbank-Picknick",
+        "category": "Wasser & Schnorcheln"
+      },
+      "mangrove-kayak": {
+        "label": "Kajak-Abenteuer in den Mangroven",
+        "category": "Abenteuer & Sport"
+      },
+      "chumbe": {
+        "label": "Chumbe Island Coral Park",
+        "category": "Wasser & Schnorcheln"
+      },
+      "seaweed-coop": {
+        "label": "Seealgenfarm & Frauenkooperative",
+        "category": "Kultur & Geschichte"
+      },
+      "turtle-conservation": {
+        "label": "Schildkröten-Schutzprojekt",
+        "category": "Natur & Wildlife"
+      },
+      "butterfly-center": {
+        "label": "Schmetterlingszentrum & Naturspaziergang",
+        "category": "Natur & Wildlife"
+      },
+      "stargazing": {
+        "label": "Sternenhimmel am Strand",
+        "category": "Wellness & Luxus"
+      },
+      "organic-spice": {
+        "label": "Bio-Gewürz- & Kräuterfarm",
+        "category": "Kultur & Geschichte"
+      },
+      "turtle-nesting": {
+        "label": "Freiwilligenerlebnis Schildkrötennester",
+        "category": "Festivals & Saisonales"
+      },
+      "kitesurfing": {
+        "label": "Kitesurf-Unterricht & Safaris",
+        "category": "Abenteuer & Sport"
+      },
+      "horse-riding": {
+        "label": "Reiten am Strand",
+        "category": "Abenteuer & Sport"
+      },
+      "quad-bike": {
+        "label": "Quad-Bike-Safari-Abenteuer",
+        "category": "Abenteuer & Sport"
+      },
+      "jet-ski": {
+        "label": "Jet-Ski-Abenteuer",
+        "category": "Abenteuer & Sport"
+      },
+      "parasailing": {
+        "label": "Parasailing-Erlebnis",
+        "category": "Abenteuer & Sport"
+      },
+      "skydive": {
+        "label": "Skydive Zanzibar",
+        "category": "Abenteuer & Sport"
+      },
+      "dhow-building": {
+        "label": "Traditioneller Dhow-Bau",
+        "category": "Kultur & Geschichte",
+        "priceSub": "pro Person"
+      },
+      "advanced-diving": {
+        "label": "Fortgeschrittene Tauchausflüge",
+        "category": "Abenteuer & Sport"
+      },
+      "transparent-kayak-sup": {
+        "label": "Transparente Kajaks & SUP",
+        "category": "Wasser & Schnorcheln"
+      },
+      "ocean-sand-combo": {
+        "label": "Ocean & Sand Abenteuer-Kombi",
+        "category": "Abenteuer & Sport"
+      },
+      "historical-ruins": {
+        "label": "Historische Ruinen von Sansibar",
+        "category": "Kultur & Geschichte"
+      },
+      "hidden-alleys": {
+        "label": "Versteckte Gassen in Stone Town",
+        "category": "Kultur & Geschichte"
+      },
+      "persian-baths-sultan": {
+        "label": "Persische Bäder & Sultanserbe",
+        "category": "Kultur & Geschichte"
+      },
+      "mangapwani-cave": {
+        "label": "Mangapwani-Korallenhöhle & Sklavenkammern",
+        "category": "Kultur & Geschichte"
+      },
+      "dhow-heritage": {
+        "label": "Dhow-Erbe & maritime Geschichte",
+        "category": "Kultur & Geschichte"
+      },
+      "sauti-busara": {
+        "label": "Sauti za Busara Festival",
+        "category": "Festivals & Saisonales"
+      },
+      "ziff": {
+        "label": "Zanzibar International Film Festival",
+        "category": "Festivals & Saisonales"
+      },
+      "water-sports-festival": {
+        "label": "Zanzibar Beach & Water Sports Festival",
+        "category": "Festivals & Saisonales"
+      },
+      "private-vip-island": {
+        "label": "Privater VIP-Inseltag",
+        "category": "Wellness & Luxus"
+      },
+      "wellness-yoga": {
+        "label": "Wellness- & Yoga-Retreat",
+        "category": "Wellness & Luxus"
+      },
+      "mafia-whale-shark": {
+        "label": "Mafia Island Walhai-Erlebnis",
+        "category": "Festivals & Saisonales"
+      }
+    },
+    "safari": {
+      "ngorongoro-tarangire": {
+        "label": "Ngorongoro & Tarangire",
+        "category": "Premium-Mittelklasse"
+      },
+      "serengeti-migration": {
+        "label": "Serengeti Migration",
+        "category": "Sehr beliebt"
+      },
+      "tarangire-ngorongoro-short": {
+        "label": "Tarangire + Ngorongoro Short Circuit",
+        "category": "Beste kurze Safari"
+      },
+      "ngorongoro-overnight": {
+        "label": "Ngorongoro Overnight",
+        "category": "Kurzer Luxusausflug"
+      },
+      "tarangire-day-trip": {
+        "label": "Tarangire Express Day Safari",
+        "category": "Starker Bestseller"
+      },
+      "nyerere-selous": {
+        "label": "Nyerere (Selous) Wild",
+        "category": "Premium-Wildnis-Safari"
+      },
+      "ruaha-big-cat": {
+        "label": "Ruaha Big-Cat Trail",
+        "category": "Exklusive Raubtiersafari"
+      },
+      "mahale-chimp": {
+        "label": "Mahale Chimp & Lake Tanganyika",
+        "category": "Ultra-Premium-Expedition"
+      },
+      "katavi-frontier": {
+        "label": "Katavi Remote Frontier",
+        "category": "Elite-Wildnis-Expedition"
+      }
+    },
+    "transfer": {
+      "airport-stonetown": {
+        "label": "Flughafen ⇄ Stone Town",
+        "category": "15–25 Minuten",
+        "priceSummary": "Privat ab $25"
+      },
+      "airport-paje": {
+        "label": "Flughafen ⇄ Paje / Jambiani",
+        "category": "1–1,5 Stunden",
+        "priceSummary": "Privat ab $45"
+      },
+      "airport-nungwi": {
+        "label": "Flughafen ⇄ Nungwi / Kendwa",
+        "category": "Etwa 1,5 Stunden",
+        "priceSummary": "Privat ab $50"
+      },
+      "hotel-hotel": {
+        "label": "Hotel ⇄ Hotel Transfers",
+        "category": "Inselweit",
+        "priceSummary": "Privat ab $35"
+      },
+      "group-transfers": {
+        "label": "Gruppen- & Minivan-Transfers",
+        "category": "Familien · Events · Teams",
+        "priceSummary": "Minivan ab $90"
+      },
+      "vip-airport-service": {
+        "label": "VIP Flughafen-Concierge",
+        "category": "Luxuriöser Ankunftsservice",
+        "priceSummary": "VIP ab $150"
+      }
+    }
+  }
+}

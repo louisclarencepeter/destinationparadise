@@ -1,0 +1,81 @@
+{
+  "page_title": "Planer podróży AI · Destination Paradise",
+  "place_prompt": {
+    "trip_angle": "Kąt podróży: {{value}}.",
+    "context": "Kontekst: {{value}}",
+    "best_for": "Najlepsze dla: {{value}}.",
+    "text": "Chcę zbudować podróż wokół {{place}}. {{details}} Zaproponuj najlepszą trasę, liczbę nocy, dobre połączenia z innymi miejscami i zapytaj o brakujące daty, liczbę osób, budżet oraz styl podróży."
+  },
+  "hero": {
+    "eyebrow": "Planer podróży AI · sprawdzany przez człowieka przed rezerwacją",
+    "title_prefix": "Naszkicuj podróż",
+    "title_em": "zanim się zdecydujesz.",
+    "lead": "Powiedz planerowi, jakiego Zanzibaru, safari, podróży poślubnej, rodzinnego wyjazdu albo plażowego odpoczynku szukasz. Zada dobre pytania i ułoży trasę, którą zespół może rzetelnie wycenić.",
+    "start_planning": "Zacznij planować",
+    "browse_packages": "Zobacz pakiety",
+    "stat_human_quote": "Wycena od człowieka",
+    "stat_packages": "Pakietów",
+    "stat_safaris": "Safari",
+    "stat_excursions": "Wycieczek"
+  },
+  "prompts": {
+    "eyebrow": "Zacznij szybciej",
+    "title": "Wybierz kierunek planowania.",
+    "lead": "Wybierz najbliższy punkt startu, a planer otworzy się z gotowym kontekstem.",
+    "sent": "Wysłano do planera",
+    "start_with_this": "Zacznij od tego",
+    "items": [
+      {
+        "key": "safari-beach",
+        "label": "Safari + plaża",
+        "title": "Ułóż trasę od buszu do plaży",
+        "text": "Planujemy 8-10 nocy. Chcemy krótkie safari, czas na plaży na Zanzibarze, dobre jedzenie i płynną trasę bez zbyt wielu zmian hoteli. Możesz zaproponować plan?"
+      },
+      {
+        "key": "honeymoon",
+        "label": "Podróż poślubna",
+        "title": "Zaplanuj coś romantycznego",
+        "text": "Jesteśmy parą w podróży poślubnej. Chcemy 7 nocy, piękny hotel przy plaży, jedną prywatną kolację, dhow o zachodzie słońca i może krótkie safari z przelotem. Średni standard do luksusu."
+      },
+      {
+        "key": "family",
+        "label": "Rodzina",
+        "title": "Ułatw podróż z dziećmi",
+        "text": "Jesteśmy rodziną z dziećmi i chcemy spokojny Zanzibar: bezpieczne aktywności, przyroda albo żółwie, snorkeling przy łatwych warunkach i bez zbyt wielu wczesnych pobudek."
+      },
+      {
+        "key": "culture-ocean",
+        "label": "Kultura + ocean",
+        "title": "Połącz lokalne życie i wodę",
+        "text": "Chcę Stone Town, farmy przypraw, lokalne jedzenie, dzień na dhow, snorkeling i plażę, która nadal jest spokojna. Zaproponuj zbalansowany plan."
+      }
+    ]
+  },
+  "steps": {
+    "eyebrow": "Jak używać",
+    "title": "Od pomysłu do planu gotowego do rezerwacji.",
+    "items": [
+      {
+        "step": "01",
+        "title": "Opowiedz o kształcie podróży",
+        "text": "Daty, liczba osób, budżet, tempo i to, co jest dla Ciebie najważniejsze."
+      },
+      {
+        "step": "02",
+        "title": "Dostań pierwszy szkic",
+        "text": "Planer układa noce, regiony, wycieczki, safari i rytm dnia."
+      },
+      {
+        "step": "03",
+        "title": "Wyślij go do nas",
+        "text": "Zespół sprawdza dostępność, wycenia plan i zmienia szkic w podróż gotową do rezerwacji."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Chcesz, żebyśmy zmienili szkic w wycenę?",
+    "text": "Wyślij plan, daty, liczbę osób i styl podróży. Sprawdzimy dostępność i wrócimy z realną trasą oraz realną ceną.",
+    "get_quote": "Poproś o wycenę →",
+    "keep_planning": "Planuj dalej"
+  }
+}

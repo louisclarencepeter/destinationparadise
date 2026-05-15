@@ -4,6 +4,13 @@ import { SUPPORTED_LANGUAGES } from '../i18n/index.js';
 const LABELS = {
   en: { short: 'EN', long: 'English' },
   pl: { short: 'PL', long: 'Polski' },
+  de: { short: 'DE', long: 'Deutsch' },
+};
+
+const ARIA_KEYS = {
+  en: 'language.switch_to_english',
+  pl: 'language.switch_to_polish',
+  de: 'language.switch_to_german',
 };
 
 export default function LanguageSwitcher({ className = '' }) {
@@ -32,7 +39,7 @@ export default function LanguageSwitcher({ className = '' }) {
             className={`lang-switcher__btn${isActive ? ' is-active' : ''}`}
             onClick={() => choose(lang)}
             aria-pressed={isActive}
-            aria-label={t(lang === 'en' ? 'language.switch_to_english' : 'language.switch_to_polish')}
+            aria-label={t(ARIA_KEYS[lang])}
             lang={lang}
           >
             {LABELS[lang].short}

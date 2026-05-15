@@ -1,0 +1,123 @@
+{
+  "page_title": "About Us · Destination Paradise",
+  "meta_description": "Destination Paradise was born from a dream — to share the beauty, culture and spirit of Tanzania. Now officially launching in Unguja, Zanzibar, with Pemba, Mafia Island and the mainland to come.",
+  "hero": {
+    "image_alt": "Crowned cranes in long grass at dawn",
+    "eyebrow": "About Destination Paradise",
+    "title_prefix": "A vision,",
+    "title_em": "finally",
+    "title_suffix": "taking its first journey.",
+    "lead": "Destination Paradise was born from a dream — to connect people to the beauty, culture and spirit of Tanzania. After years of preparation, we are officially launching from Unguja, Zanzibar.",
+    "stats": [
+      { "value": "Now", "label": "Unguja", "em": true },
+      { "value": "Now", "label": "Mainland", "em": true },
+      { "value": "Next", "label": "Pemba" },
+      { "value": "Next", "label": "Mafia Island" }
+    ]
+  },
+  "story": {
+    "eyebrow": "Our Story",
+    "title_prefix": "It started with a",
+    "title_em": "dream",
+    "title_suffix": "far from home.",
+    "lead": [
+      "Destination Paradise began as an idea on a piece of paper — and a quiet promise to a place that had given so much. Years ago, while working in a hotel on the east coast of Zanzibar, the first vision appeared. It would take many turns, and many years, before it could become something real.",
+      "What you see today is the result of patience, family, loss, learning and a refusal to let the idea go. We are a young company with a long story behind us — and we are only just getting started."
+    ],
+    "image_alt": "A traditional dhow on the Zanzibar coast",
+    "caption": "From an idea on paper to a real company — Zanzibar, where it all began.",
+    "timeline": [
+      {
+        "year": "Where it began",
+        "title": "A vision on the east coast of Zanzibar",
+        "body": "Years ago, while working in a hotel on the east coast of Zanzibar, the first idea appeared — to create something bigger than just tours or bookings. Something that would connect people to the beauty, culture and spirit of Tanzania. At the time it felt too big and too far away, but it never disappeared."
+      },
+      {
+        "year": "The first steps",
+        "title": "Built together with family",
+        "body": "The company was registered together with family — the very first foundation of what would later become Destination Paradise. After a deep loss in those early days, everything slowed down. But the vision remained alive."
+      },
+      {
+        "year": "The quiet years",
+        "title": "A dream that kept growing",
+        "body": "Through years of work, travel and other projects, the dream continued to grow little by little. What had once been written on a piece of paper kept asking to be built — patiently, in the background, waiting for its moment."
+      },
+      {
+        "year": "A new chapter",
+        "title": "Building the platform from the ground up",
+        "body": "Moving to Germany opened a new chapter — learning coding, web development and media production, and gathering the technical skills needed to build the platform from the ground up. Slowly, an idea on paper became a real company with a real vision."
+      },
+      {
+        "year": "Today",
+        "title": "Officially launching from Unguja",
+        "body": "After years of preparation, Destination Paradise is officially launching. We begin our journey in Unguja, Zanzibar and across mainland Tanzania — with Pemba and Mafia Island to follow."
+      }
+    ]
+  },
+  "mission": {
+    "eyebrow": "Our Mission",
+    "title_prefix": "To show the world how beautiful",
+    "title_em": "Tanzania",
+    "title_suffix": "truly is.",
+    "sub": "Simple, and the same as it was on that first piece of paper — every island, every coast, every corner of the mainland has a story worth meeting in person."
+  },
+  "community": {
+    "eyebrow": "Community",
+    "title_prefix": "Built as a",
+    "title_em": "network",
+    "title_suffix": "not a closed system.",
+    "lead": "Destination Paradise is not only about travel. We believe tourism should also create real opportunities for the people who host you. From day one we are working hand-in-hand with local drivers, guides, hotels, restaurants and service providers — building something the wider community grows with, not around.",
+    "pillars": [
+      {
+        "icon": "people",
+        "title": "Local drivers and guides",
+        "body": "We work hand-in-hand with drivers and guides from across the islands and mainland — the people who actually know the roads, the reefs and the stories."
+      },
+      {
+        "icon": "home",
+        "title": "Local hotels and restaurants",
+        "body": "We partner with locally owned hotels and restaurants wherever we can. Travel money stays in the community that hosts you."
+      },
+      {
+        "icon": "network",
+        "title": "A network, not a closed system",
+        "body": "Instead of building a closed operation, we are building a network — one that allows the wider community to grow together with us, step by step."
+      },
+      {
+        "icon": "layers",
+        "title": "Authentic, designed by hand",
+        "body": "Every excursion, safari and cultural experience is designed carefully — so travellers meet Tanzania in a more authentic and meaningful way."
+      }
+    ],
+    "quote": [
+      "“Every destination has a story. Every island has its own culture, energy and hidden beauty waiting to be experienced.",
+      "This wasn’t built for scale. It was built for the moments — a slow morning at the reef, a story told in the back of a Land Cruiser, the first time you see the Serengeti go quiet at dusk.",
+      "We hope, in time, you’ll have a story of your own to add.”"
+    ],
+    "avatar_alt": "Louis Peter, founder of Destination Paradise",
+    "quote_byline": "From our founding note",
+    "quote_meta": "Destination Paradise · 2026"
+  },
+  "destinations": {
+    "eyebrow": "Where we go",
+    "title_prefix": "From Unguja,",
+    "title_em": "outward",
+    "title_suffix": ".",
+    "lead": "We begin in Unguja, Zanzibar — the place this journey started — and across mainland Tanzania, where the wider story unfolds. Pemba and Mafia Island will follow, each in the time it deserves.",
+    "items": [
+      { "tag": "Available now", "name": "Unguja, Zanzibar", "body": "Where the journey begins. Excursions, cultural experiences and trips across the main island." },
+      { "tag": "Available now", "name": "Mainland Tanzania", "body": "The Serengeti, Ngorongoro, Kilimanjaro and beyond — the wider story of Tanzania, ready to be explored." },
+      { "tag": "Next", "name": "Pemba Island", "body": "Zanzibar's quieter sister — untouched reefs, clove forests, and a slower pace just across the channel." },
+      { "tag": "Next", "name": "Mafia Island", "body": "A marine park with whale sharks, turtles and some of the most pristine waters on the East African coast." }
+    ]
+  },
+  "cta": {
+    "eyebrow": "Karibu",
+    "title_prefix": "Welcome to",
+    "title_em": "Destination Paradise",
+    "title_suffix": ".",
+    "text": "To everyone who supported this journey from the beginning — thank you. And to everyone joining us now: the vision is big, the journey is long, and we are so glad you are here at the start.",
+    "booking": "Plan your journey →",
+    "excursions": "See our excursions"
+  }
+}

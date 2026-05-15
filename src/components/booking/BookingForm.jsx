@@ -1,26 +1,32 @@
-import { PAYMENT_OPTIONS, SERVICE_TYPES } from '../../data/bookingPageData.js';
-import { TRANSFER_SERVICE_TIERS } from '../../data/transferProducts.js';
+import { useTranslation } from 'react-i18next';
 
 export default function BookingForm({
+  budgetOptions,
+  comfortOptions,
   form,
   isTransferRequest,
   messagePlaceholder,
   onSubmit,
+  paymentOptions,
   productLabel,
   productPlaceholder,
+  serviceTypes,
   showDateRange,
   showTravelPreferences,
   status,
+  transferTiers,
   update,
   visibleProducts,
 }) {
+  const { t } = useTranslation('booking');
+
   return (
     <form className="booking-form" id="booking-details" onSubmit={onSubmit}>
 
       <fieldset className="booking-fieldset">
-        <legend>What are you booking?</legend>
+        <legend>{t('form.booking_legend', { defaultValue: 'What are you booking?' })}</legend>
         <div className="booking-choice-grid">
-          {SERVICE_TYPES.map((item) => (
+          {serviceTypes.map((item) => (
             <label className={`booking-choice${form.serviceType === item.value ? ' is-selected' : ''}`} key={item.value}>
               <input type="radio" name="serviceType" value={item.value} checked={form.serviceType === item.value} onChange={update('serviceType')} />
               <span>{item.label}</span>
@@ -44,39 +50,39 @@ export default function BookingForm({
 
       <div className="booking-row">
         <label className="booking-field">
-          <span>Name</span>
+          <span>{t('form.name', { defaultValue: 'Name' })}</span>
           <input type="text" name="name" value={form.name} onChange={update('name')} required />
         </label>
         <label className="booking-field">
-          <span>Email</span>
+          <span>{t('form.email', { defaultValue: 'Email' })}</span>
           <input type="email" name="email" value={form.email} onChange={update('email')} required />
         </label>
       </div>
 
       <div className="booking-row">
         <label className="booking-field">
-          <span>Phone</span>
-          <input type="tel" name="phone" value={form.phone} onChange={update('phone')} placeholder="+255 / +49 / +1 ..." />
+          <span>{t('form.phone', { defaultValue: 'Phone' })}</span>
+          <input type="tel" name="phone" value={form.phone} onChange={update('phone')} placeholder={t('form.phone_placeholder', { defaultValue: '+255 / +49 / +1 ...' })} />
         </label>
         <label className="booking-field">
-          <span>WhatsApp</span>
-          <input type="tel" name="whatsapp" value={form.whatsapp} onChange={update('whatsapp')} placeholder="If different from phone" />
+          <span>{t('form.whatsapp', { defaultValue: 'WhatsApp' })}</span>
+          <input type="tel" name="whatsapp" value={form.whatsapp} onChange={update('whatsapp')} placeholder={t('form.whatsapp_placeholder', { defaultValue: 'If different from phone' })} />
         </label>
       </div>
 
       <div className={`booking-row${showDateRange ? ' booking-row--thirds' : ''}`}>
         <label className="booking-field">
-          <span>{showDateRange ? 'Start date' : 'Date'}</span>
+          <span>{showDateRange ? t('form.start_date', { defaultValue: 'Start date' }) : t('form.date', { defaultValue: 'Date' })}</span>
           <input type="date" name="startDate" value={form.startDate} onChange={update('startDate')} />
         </label>
         {showDateRange && (
           <label className="booking-field">
-            <span>End date</span>
+            <span>{t('form.end_date', { defaultValue: 'End date' })}</span>
             <input type="date" name="endDate" value={form.endDate} onChange={update('endDate')} />
           </label>
         )}
         <label className="booking-field">
-          <span>Guests</span>
+          <span>{t('form.guests', { defaultValue: 'Guests' })}</span>
           <select name="guests" value={form.guests} onChange={update('guests')}>
             <option>1</option>
             <option>2</option>
@@ -91,9 +97,9 @@ export default function BookingForm({
 
       {isTransferRequest && (
         <fieldset className="booking-fieldset">
-          <legend>Transfer details</legend>
+          <legend>{t('form.transfer_legend', { defaultValue: 'Transfer details' })}</legend>
           <div className="booking-transfer-tier-grid">
-            {TRANSFER_SERVICE_TIERS.map((item) => (
+            {transferTiers.map((item) => (
               <label className={`booking-payment${form.transferTier === item.value ? ' is-selected' : ''}`} key={item.value}>
                 <input type="radio" name="transferTier" value={item.value} checked={form.transferTier === item.value} onChange={update('transferTier')} />
                 <span>{item.label}</span>
@@ -103,21 +109,21 @@ export default function BookingForm({
           </div>
           <div className="booking-row">
             <label className="booking-field">
-              <span>Pickup location</span>
-              <input type="text" name="pickupLocation" value={form.pickupLocation} onChange={update('pickupLocation')} placeholder="ZNZ Airport, ferry port, hotel..." />
+              <span>{t('form.pickup_location', { defaultValue: 'Pickup location' })}</span>
+              <input type="text" name="pickupLocation" value={form.pickupLocation} onChange={update('pickupLocation')} placeholder={t('form.pickup_placeholder', { defaultValue: 'ZNZ Airport, ferry port, hotel...' })} />
             </label>
             <label className="booking-field">
-              <span>Drop-off location</span>
-              <input type="text" name="dropoffLocation" value={form.dropoffLocation} onChange={update('dropoffLocation')} placeholder="Hotel, resort, airport..." />
+              <span>{t('form.dropoff_location', { defaultValue: 'Drop-off location' })}</span>
+              <input type="text" name="dropoffLocation" value={form.dropoffLocation} onChange={update('dropoffLocation')} placeholder={t('form.dropoff_placeholder', { defaultValue: 'Hotel, resort, airport...' })} />
             </label>
           </div>
           <div className="booking-row">
             <label className="booking-field">
-              <span>Flight / ferry number</span>
-              <input type="text" name="flightNumber" value={form.flightNumber} onChange={update('flightNumber')} placeholder="Optional, but useful for tracking" />
+              <span>{t('form.flight_number', { defaultValue: 'Flight / ferry number' })}</span>
+              <input type="text" name="flightNumber" value={form.flightNumber} onChange={update('flightNumber')} placeholder={t('form.flight_placeholder', { defaultValue: 'Optional, but useful for tracking' })} />
             </label>
             <label className="booking-field">
-              <span>Pickup time</span>
+              <span>{t('form.pickup_time', { defaultValue: 'Pickup time' })}</span>
               <input type="time" name="transferTime" value={form.transferTime} onChange={update('transferTime')} />
             </label>
           </div>
@@ -127,33 +133,28 @@ export default function BookingForm({
       {showTravelPreferences && (
         <div className="booking-row">
           <label className="booking-field">
-            <span>Budget range</span>
+            <span>{t('form.budget_range', { defaultValue: 'Budget range' })}</span>
             <select name="budget" value={form.budget} onChange={update('budget')}>
-              <option value="">Not sure yet</option>
-              <option>Under $1,000 pp</option>
-              <option>$1,000 - $2,500 pp</option>
-              <option>$2,500 - $5,000 pp</option>
-              <option>$5,000 - $8,000 pp</option>
-              <option>$8,000+ pp</option>
+              {budgetOptions.map((item) => (
+                <option value={item.value} key={item.value || 'empty'}>{item.label}</option>
+              ))}
             </select>
           </label>
           <label className="booking-field">
-            <span>Comfort level</span>
+            <span>{t('form.comfort_level', { defaultValue: 'Comfort level' })}</span>
             <select name="accommodationLevel" value={form.accommodationLevel} onChange={update('accommodationLevel')}>
-              <option>Budget</option>
-              <option>Mid-range</option>
-              <option>Luxury</option>
-              <option>Ultra luxury</option>
-              <option>Flexible</option>
+              {comfortOptions.map((item) => (
+                <option value={item.value} key={item.value}>{item.label}</option>
+              ))}
             </select>
           </label>
         </div>
       )}
 
       <fieldset className="booking-fieldset">
-        <legend>Online payment</legend>
+        <legend>{t('form.online_payment', { defaultValue: 'Online payment' })}</legend>
         <div className="booking-payment-grid">
-          {PAYMENT_OPTIONS.map((item) => (
+          {paymentOptions.map((item) => (
             <label className={`booking-payment${form.paymentPreference === item.value ? ' is-selected' : ''}`} key={item.value}>
               <input type="radio" name="paymentPreference" value={item.value} checked={form.paymentPreference === item.value} onChange={update('paymentPreference')} />
               <span>{item.label}</span>
@@ -164,19 +165,23 @@ export default function BookingForm({
       </fieldset>
 
       <label className="booking-field">
-        <span>Anything we should know?</span>
+        <span>{t('form.message_label', { defaultValue: 'Anything we should know?' })}</span>
         <textarea name="message" value={form.message} onChange={update('message')} rows={6} placeholder={messagePlaceholder} />
       </label>
 
       {status === 'sent' && (
-        <p className="booking-status booking-status--ok">Asante. We received your request and will come back with availability, a quote, and the payment next step.</p>
+        <p className="booking-status booking-status--ok">{t('form.status_sent', { defaultValue: 'Asante. We received your request and will come back with availability, a quote, and the payment next step.' })}</p>
       )}
       {status === 'error' && (
-        <p className="booking-status booking-status--err">That did not go through. Please try again or message us on WhatsApp.</p>
+        <p className="booking-status booking-status--err">{t('form.status_error', { defaultValue: 'That did not go through. Please try again or message us on WhatsApp.' })}</p>
       )}
 
       <button className="btn btn--lg booking-submit" type="submit" disabled={status === 'sending' || status === 'sent'}>
-        {status === 'sending' ? 'Sending request...' : status === 'sent' ? 'Request sent' : 'Send booking request'}
+        {status === 'sending'
+          ? t('form.submit_sending', { defaultValue: 'Sending request...' })
+          : status === 'sent'
+          ? t('form.submit_sent', { defaultValue: 'Request sent' })
+          : t('form.submit_idle', { defaultValue: 'Send booking request' })}
       </button>
     </form>
   );

@@ -1,11 +1,21 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import BookingFlow from '../components/booking/BookingFlow.jsx';
 import BookingForm from '../components/booking/BookingForm.jsx';
 import BookingHero from '../components/booking/BookingHero.jsx';
 import BookingSummary from '../components/booking/BookingSummary.jsx';
 import BookingSupportCta from '../components/booking/BookingSupportCta.jsx';
-import { DEFAULT_BOOKING_FORM, SERVICE_TYPES, bookingPriceLabel } from '../data/bookingPageData.js';
+import {
+  BUDGET_OPTIONS,
+  COMFORT_OPTIONS,
+  DEFAULT_BOOKING_FORM,
+  PAYMENT_OPTIONS,
+  SERVICE_TYPES,
+  bookingPriceLabel,
+  translatedLabel,
+  translatedList,
+} from '../data/bookingPageData.js';
 import { TRANSFER_SERVICE_TIERS } from '../data/transferProducts.js';
 import { useBookingProducts } from '../hooks/useBookingProducts.js';
 import { useFloatingBookingSummary } from '../hooks/useFloatingBookingSummary.js';
@@ -15,9 +25,10 @@ import '../styles/excursions.css';
 import '../styles/booking.css';
 
 export default function Booking() {
+  const { t } = useTranslation('booking');
   const [searchParams] = useSearchParams();
   const location = useLocation();
-  const products = useBookingProducts();
+  const products = useBookingProducts(t);
   const [form, setForm] = useState(DEFAULT_BOOKING_FORM);
   const [plannerHandoff, setPlannerHandoff] = useState(null);
   const [status, setStatus] = useState('idle');
@@ -25,10 +36,15 @@ export default function Booking() {
   const summarySlotRef = useRef(null);
   const summaryRef = useRef(null);
   const summaryFloat = useFloatingBookingSummary(layoutRef, summarySlotRef, summaryRef, form);
+  const serviceTypes = useMemo(() => translatedList(t, 'service_types', SERVICE_TYPES), [t]);
+  const paymentOptions = useMemo(() => translatedList(t, 'payment_options', PAYMENT_OPTIONS), [t]);
+  const transferTiers = useMemo(() => translatedList(t, 'transfer_tiers', TRANSFER_SERVICE_TIERS), [t]);
+  const budgetOptions = useMemo(() => translatedList(t, 'budget_options', BUDGET_OPTIONS), [t]);
+  const comfortOptions = useMemo(() => translatedList(t, 'comfort_options', COMFORT_OPTIONS), [t]);
 
   useEffect(() => {
-    document.title = 'Booking Request · Destination Paradise';
-  }, []);
+    document.title = t('page_title', { defaultValue: 'Booking Request · Destination Paradise' });
+  }, [t]);
 
   useEffect(() => {
     if (location.hash !== '#booking-details') return undefined;
@@ -60,11 +76,17 @@ export default function Booking() {
       const title = searchParams.get('title');
       setForm((current) => ({
         ...current,
-        serviceType: SERVICE_TYPES.some((service) => service.value === type) ? type : 'custom',
-        message: title ? `I am interested in ${title}. ${current.message}`.trim() : current.message,
+        serviceType: serviceTypes.some((service) => service.value === type) ? type : 'custom',
+        message: title
+          ? t('form.unmatched_message', {
+            title,
+            message: current.message,
+            defaultValue: 'I am interested in {{title}}. {{message}}',
+          }).trim()
+          : current.message,
       }));
     }
-  }, [products.all, searchParams]);
+  }, [products.all, searchParams, serviceTypes, t]);
 
   useEffect(() => {
     if (searchParams.get('source') !== 'planner') return undefined;
@@ -97,24 +119,31 @@ export default function Booking() {
   const visibleProducts = form.serviceType === 'custom'
     ? []
     : products.all.filter((item) => item.type === form.serviceType);
-  const selectedService = SERVICE_TYPES.find((item) => item.value === form.serviceType);
+  const selectedService = serviceTypes.find((item) => item.value === form.serviceType);
   const isExcursionRequest = form.serviceType === 'excursion';
   const isTransferRequest = form.serviceType === 'transfer';
-  const selectedTransferTier = TRANSFER_SERVICE_TIERS.find((item) => item.value === form.transferTier);
+  const selectedTransferTier = transferTiers.find((item) => item.value === form.transferTier);
   const showDateRange = !isExcursionRequest && !isTransferRequest;
   const showTravelPreferences = !isExcursionRequest && !isTransferRequest;
   const dateSummary = showDateRange
-    ? `${form.startDate || 'Flexible'}${form.endDate ? ` to ${form.endDate}` : ''}`
-    : form.startDate || 'Flexible';
-  const productLabel = isTransferRequest ? 'Transfer route' : 'Specific product';
+    ? `${form.startDate || t('common.flexible', { defaultValue: 'Flexible' })}${form.endDate ? ` ${t('common.date_to', { defaultValue: 'to' })} ${form.endDate}` : ''}`
+    : form.startDate || t('common.flexible', { defaultValue: 'Flexible' });
+  const productLabel = isTransferRequest
+    ? t('form.product_label_transfer', { defaultValue: 'Transfer route' })
+    : t('form.product_label_default', { defaultValue: 'Specific product' });
   const productPlaceholder = isTransferRequest
-    ? 'Choose a transfer route or leave flexible'
-    : `Choose from ${form.serviceType}s or leave flexible`;
+    ? t('form.product_placeholder_transfer', { defaultValue: 'Choose a transfer route or leave flexible' })
+    : t('form.product_placeholder_default', {
+      serviceType: form.serviceType,
+      defaultValue: 'Choose from {{serviceType}}s or leave flexible',
+    });
   const messagePlaceholder = isTransferRequest
-    ? 'Arrival notes, luggage count, child seats, hotel room name, VIP preferences, or timing details.'
+    ? t('form.message_placeholder_transfer', { defaultValue: 'Arrival notes, luggage count, child seats, hotel room name, VIP preferences, or timing details.' })
     : isExcursionRequest
-    ? 'Preferred pickup area, hotel name, private/shared preference, kids ages, dietary needs, or timing notes.'
-    : "Hotels you like, pace, special occasion, kids' ages, dietary needs, flight details, or what you want to avoid.";
+    ? t('form.message_placeholder_excursion', { defaultValue: 'Preferred pickup area, hotel name, private/shared preference, kids ages, dietary needs, or timing notes.' })
+    : t('form.message_placeholder_default', { defaultValue: "Hotels you like, pace, special occasion, kids' ages, dietary needs, flight details, or what you want to avoid." });
+  const accommodationLabel = translatedLabel(comfortOptions, form.accommodationLevel, form.accommodationLevel);
+  const budgetLabel = translatedLabel(budgetOptions, form.budget, form.budget);
 
   const update = (key) => (event) => {
     const value = event.target.value;
@@ -143,14 +172,15 @@ export default function Booking() {
       ...form,
       endDate: showDateRange ? form.endDate : '',
       budget: showTravelPreferences ? form.budget : '',
-      accommodationLevel: showTravelPreferences ? form.accommodationLevel : '',
+      budgetLabel: showTravelPreferences ? budgetLabel : '',
+      accommodationLevel: showTravelPreferences ? accommodationLabel : '',
       transferTier: isTransferRequest ? selectedTransferTier?.label || form.transferTier : '',
       pickupLocation: isTransferRequest ? form.pickupLocation : '',
       dropoffLocation: isTransferRequest ? form.dropoffLocation : '',
       flightNumber: isTransferRequest ? form.flightNumber : '',
       transferTime: isTransferRequest ? form.transferTime : '',
-      productLabel: selectedProduct?.label || 'Not selected',
-      estimatedPrice: bookingPriceLabel(selectedProduct),
+      productLabel: selectedProduct?.label || t('common.not_selected', { defaultValue: 'Not selected' }),
+      estimatedPrice: bookingPriceLabel(selectedProduct, t),
       source: plannerHandoff ? 'planner' : 'booking',
       plannerDraft: plannerHandoff?.transcript || '',
     };
@@ -179,30 +209,37 @@ export default function Booking() {
 
       <section className="booking-shell" id="booking-form">
         <div className="booking-intro">
-          <span className="section-eyebrow">Tell us what to build</span>
-          <h2 className="section-title">Request availability, quote, and payment link.</h2>
-          <p className="section-lead">We do not collect card details on this page. If you choose online payment, we will send a secure payment link after the route and price are confirmed.</p>
+          <span className="section-eyebrow">{t('intro.eyebrow', { defaultValue: 'Tell us what to build' })}</span>
+          <h2 className="section-title">{t('intro.title', { defaultValue: 'Request availability, quote, and payment link.' })}</h2>
+          <p className="section-lead">{t('intro.lead', { defaultValue: 'We do not collect card details on this page. If you choose online payment, we will send a secure payment link after the route and price are confirmed.' })}</p>
         </div>
 
         <div className="booking-layout" ref={layoutRef}>
           <BookingForm
+            budgetOptions={budgetOptions}
+            comfortOptions={comfortOptions}
             form={form}
             isTransferRequest={isTransferRequest}
             messagePlaceholder={messagePlaceholder}
             onSubmit={submit}
+            paymentOptions={paymentOptions}
             productLabel={productLabel}
             productPlaceholder={productPlaceholder}
+            serviceTypes={serviceTypes}
             showDateRange={showDateRange}
             showTravelPreferences={showTravelPreferences}
             status={status}
+            transferTiers={transferTiers}
             update={update}
             visibleProducts={visibleProducts}
           />
 
           <BookingSummary
+            accommodationLabel={accommodationLabel}
             dateSummary={dateSummary}
             form={form}
             isTransferRequest={isTransferRequest}
+            paymentOptions={paymentOptions}
             selectedProduct={selectedProduct}
             selectedService={selectedService}
             selectedTransferTier={selectedTransferTier}

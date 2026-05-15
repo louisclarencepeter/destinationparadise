@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import AboutCommunity from '../components/about/AboutCommunity.jsx';
 import AboutCta from '../components/about/AboutCta.jsx';
 import AboutDestinations from '../components/about/AboutDestinations.jsx';
@@ -11,13 +12,15 @@ import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import '../styles/homepage.css';
 import '../styles/about.css';
 
-const ABOUT_META_DESCRIPTION = 'Destination Paradise was born from a dream — to share the beauty, culture and spirit of Tanzania. Now officially launching in Unguja, Zanzibar, with Pemba, Mafia Island and the mainland to come.';
-
 export default function About() {
+  const { i18n, ready, t } = useTranslation('about');
   const pageRef = useRef(null);
 
-  usePageMeta('About Us · Destination Paradise', ABOUT_META_DESCRIPTION);
-  useRevealOnScroll(pageRef);
+  usePageMeta(
+    t('page_title', { defaultValue: 'About Us · Destination Paradise' }),
+    t('meta_description', { defaultValue: 'Destination Paradise was born from a dream — to share the beauty, culture and spirit of Tanzania. Now officially launching in Unguja, Zanzibar, with Pemba, Mafia Island and the mainland to come.' }),
+  );
+  useRevealOnScroll(pageRef, '.reveal:not(.is-visible)', ready ? i18n.resolvedLanguage : 'loading');
   usePinnedTimelinePhoto(pageRef);
 
   return (

@@ -1,17 +1,14 @@
 import { Link } from 'react-router-dom';
+import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { ArrowIcon } from './Icons.jsx';
-import { TRANSFER_PRODUCTS } from '../../data/transferProducts.js';
+import { buildLocalizedTransferProducts } from '../../data/transferProducts.js';
 
 const FEATURED_TRANSFER_SLUGS = [
   'airport-paje',
   'airport-nungwi',
   'vip-airport-service',
 ];
-
-const transferCards = FEATURED_TRANSFER_SLUGS
-  .map((slug) => TRANSFER_PRODUCTS.find((item) => item.slug === slug))
-  .filter(Boolean);
 
 const getTransferTagKey = (transfer) => {
   if (transfer.slug === 'vip-airport-service') return 'vip';
@@ -21,7 +18,15 @@ const getTransferTagKey = (transfer) => {
 };
 
 export default function TransfersSection() {
-  const { t } = useTranslation('home');
+  const { t } = useTranslation(['home', 'transfers']);
+  const transferCards = useMemo(() => {
+    const transferT = (key, options) => t(`transfers:${key}`, options);
+    const products = buildLocalizedTransferProducts(transferT);
+    return FEATURED_TRANSFER_SLUGS
+      .map((slug) => products.find((item) => item.slug === slug))
+      .filter(Boolean);
+  }, [t]);
+
   return (
     <section className="home-transfers reveal" id="transfers">
       <header className="home-transfers__head">
@@ -49,7 +54,7 @@ export default function TransfersSection() {
             <div className="home-transfer-card__foot">
               <div>
                 <span className="home-transfer-card__from">{t('transfers.card.from')}</span>
-                <span className="home-transfer-card__price">{transfer.priceSummary.replace(/^.* from /i, '')}</span>
+                <span className="home-transfer-card__price">{transfer.homePrice || transfer.priceSummary.replace(/^.* from /i, '')}</span>
                 <span className="home-transfer-card__pp">{transfer.duration}</span>
               </div>
               <Link className="btn" to={`/booking?type=transfer&item=${transfer.slug}#booking-details`}>

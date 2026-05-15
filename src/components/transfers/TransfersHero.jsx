@@ -1,7 +1,11 @@
+import { useTranslation } from 'react-i18next';
 import { CONTACT_INFO } from '../../constants/contactInfo.js';
 import { TRANSFERS_HERO_IMAGE } from '../../data/transfersPageContent.js';
 
 export default function TransfersHero() {
+  const { t } = useTranslation('transfers');
+  const stats = t('hero.stats', { returnObjects: true });
+
   return (
     <section className="tr-hero">
       <div className="tr-hero__bg">
@@ -14,24 +18,21 @@ export default function TransfersHero() {
         />
       </div>
       <div className="tr-hero__inner">
-        <span className="tr-hero__eyebrow">Private airport · hotel · island transfers</span>
+        <span className="tr-hero__eyebrow">{t('hero.eyebrow')}</span>
         <h1 className="tr-hero__title">
-          Your first and last <em>impression of Zanzibar</em> — done right.
+          {t('hero.title_prefix')} <em>{t('hero.title_em')}</em> {t('hero.title_suffix')}
         </h1>
-        <p className="tr-hero__lead">
-          Pre-booked private transfers with airport meet &amp; greet, AC vehicles, luggage help, and WhatsApp support from the moment you land.
-        </p>
+        <p className="tr-hero__lead">{t('hero.lead')}</p>
         <div className="tr-hero__cta">
-          <a className="btn btn--lg" href="#transfer-types">See route pricing</a>
+          <a className="btn btn--lg" href="#transfer-types">{t('hero.route_pricing')}</a>
           <a className="btn btn--ghost btn--lg" href={CONTACT_INFO.whatsappUrl} target="_blank" rel="noreferrer">
-            Book on WhatsApp →
+            {t('hero.whatsapp')}
           </a>
         </div>
         <div className="tr-hero__stats">
-          <div><strong>From $25</strong><span>Per vehicle</span></div>
-          <div><strong>Private</strong><span>Meet &amp; greet</span></div>
-          <div><strong>3 tiers</strong><span>Standard · Premium · VIP</span></div>
-          <div><strong>24 / 7</strong><span>Flight tracking</span></div>
+          {Array.isArray(stats) && stats.map((item) => (
+            <div key={item.label}><strong>{item.value}</strong><span>{item.label}</span></div>
+          ))}
         </div>
       </div>
     </section>

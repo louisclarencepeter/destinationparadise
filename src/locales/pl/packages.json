@@ -1,0 +1,354 @@
+{
+  "page_title": "Pakiety Zanzibar i Tanzania · Destination Paradise",
+  "hero": {
+    "eyebrow": "Hotele · safari · wycieczki · wyjątkowe momenty",
+    "title_prefix": "Pakiety na podróż,",
+    "title_em": "której naprawdę chcesz.",
+    "lead": "Połączenia safari i Zanzibaru, podróże poślubne, safari z przelotem, Kilimandżaro, rodzinne wakacje, oceaniczne doświadczenia i pobyty z kulturą wyspy w centrum.",
+    "browse": "Zobacz pakiety",
+    "build_plan": "Zbuduj mój plan →",
+    "stat_packages": "Pakietów",
+    "stat_from": "Od",
+    "stat_styles": "Stylów",
+    "stat_quote_time": "Na wycenę"
+  },
+  "grid": {
+    "eyebrow": "Wybrane pakiety",
+    "title": "Pakiety - wybierz punkt startowy.",
+    "lead": "Każdy pakiet pokazuje zakres, dla kogo pasuje, cenę i pomysły na upgrade. Wszystko dopasowujemy do dat i poziomu komfortu.",
+    "filter_label": "Filtruj",
+    "explore_aria": "Zobacz {{title}}",
+    "from": "Od",
+    "explore_cta": "Zobacz →",
+    "show_more": "Pokaż więcej pakietów",
+    "show_fewer": "Pokaż mniej pakietów",
+    "showing_count": "Pokazano {{visible}} z {{total}}"
+  },
+  "filters": {
+    "all": "Wszystkie",
+    "safari": "Safari + plaża",
+    "honeymoon": "Podróż poślubna",
+    "fly-in": "Safari fly-in",
+    "luxury": "Luksus",
+    "family": "Rodzina",
+    "kilimanjaro": "Kilimandżaro",
+    "culture": "Kultura",
+    "marine": "Ocean",
+    "tailor": "Szyte na miarę"
+  },
+  "matches": {
+    "eyebrow": "Jeszcze nie wiesz?",
+    "title": "Wybierz według stylu podróży.",
+    "lead": "Zacznij od tego, o co najczęściej pytają goście: safari i plaża, honeymoon, krótkie fly-in safari, luksusowa migracja, rodzina, Kilimandżaro, ocean albo kultura.",
+    "explore_aria": "Zobacz {{pick}}",
+    "items": [
+      {
+        "label": "Najlepszy pakiet na start",
+        "pick": "6 dni safari i Zanzibar",
+        "slug": "six-day-safari-zanzibar-escape",
+        "note": "Najprostszy sposób, by połączyć prawdziwe safari na lądzie z czasem na plaży."
+      },
+      {
+        "label": "Najlepszy honeymoon",
+        "pick": "7 dni: safari poślubne i Zanzibar",
+        "slug": "seven-day-honeymoon-safari-zanzibar",
+        "note": "Romantyczne lodge, resort przy plaży, rejs dhow, kolacja przy świecach i dni safari."
+      },
+      {
+        "label": "Najpełniejsza klasyka",
+        "pick": "10 dni klasycznego safari i Zanzibaru",
+        "slug": "ten-day-classic-safari-zanzibar",
+        "note": "Arusha, Tarangire, Serengeti, Ngorongoro i finał na plaży Zanzibaru."
+      },
+      {
+        "label": "Najlepsze szybkie safari",
+        "pick": "2 dni fly-in safari z Zanzibaru",
+        "slug": "two-day-fly-in-safari-zanzibar",
+        "note": "Kompaktowa trasa z przelotem dla gości, którzy są już na wyspie."
+      },
+      {
+        "label": "Najlepsze wildlife premium",
+        "pick": "Luksusowy pakiet Wielkiej Migracji",
+        "slug": "great-migration-luxury-package",
+        "note": "Sezonowe śledzenie migracji, luksusowe campy, opcje fotograficzne i Zanzibar."
+      },
+      {
+        "label": "Najlepszy pobyt wyspowy bez safari",
+        "pick": "Pakiet przygoda i ocean na Zanzibarze",
+        "slug": "zanzibar-adventure-marine-package",
+        "note": "Ocean, sandbank, rejs dhow, Jozani i czas w resorcie przy plaży."
+      }
+    ]
+  },
+  "market": {
+    "eyebrow": "Zakres operatora",
+    "title": "Pełne portfolio Tanzanii i Zanzibaru.",
+    "lead": "Te kategorie pokazują Destination Paradise jako pełnego operatora premium, nie tylko firmę od wycieczek jednodniowych.",
+    "items": [
+      "Pakiety safari",
+      "Wakacje plażowe na Zanzibarze",
+      "Pakiety honeymoon",
+      "Pakiety rodzinne",
+      "Doświadczenia luksusowe",
+      "Safari fly-in",
+      "Przygody pod Kilimandżaro",
+      "Wycieczki kulturowe",
+      "Ocean i nurkowanie",
+      "Pakiety szyte na miarę"
+    ]
+  },
+  "included": {
+    "eyebrow": "Co jest w cenie",
+    "title": "Jeden plan. Mniej ruchomych części.",
+    "lead": "Pakiety zdejmują z Ciebie koordynację: hotele, transfery, wycieczki, specjalne aranżacje i dodatki safari układamy w jeden spójny plan.",
+    "items": [
+      "Skoordynowane transfery lotniskowe",
+      "Dobór hotelu lub willi",
+      "Wycieczki i dodatki safari",
+      "Indywidualna wycena w 24 godziny",
+      "Wsparcie concierge na WhatsApp",
+      "Opcje upgrade przed potwierdzeniem",
+      "Tempo dopasowane do grupy",
+      "Lokalny zespół na miejscu"
+    ]
+  },
+  "steps": {
+    "eyebrow": "Jak działa rezerwacja",
+    "title": "Trzy kroki do potwierdzonego pakietu.",
+    "items": [
+      {
+        "step": "01",
+        "title": "Wybierz pakiet",
+        "text": "Zacznij od najbliższego dopasowania: safari i plaża, honeymoon, fly-in, rodzina, luksus, Kilimandżaro, kultura albo ocean."
+      },
+      {
+        "step": "02",
+        "title": "Dopasowujemy szczegóły",
+        "text": "Hotele, loty, trasa safari, plaże, wycieczki, posiłki i upgrade’y ustawiamy pod Twoje daty oraz budżet."
+      },
+      {
+        "step": "03",
+        "title": "Potwierdzasz i odpoczywasz",
+        "text": "Zaliczka blokuje plan. My koordynujemy ruchome części i informujemy Cię na WhatsApp."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Chcesz, żebyśmy zbudowali pakiet wokół Ciebie?",
+    "text": "Wyślij daty, wielkość grupy i styl, który lubisz. Wrócimy z realnym pakietem i realną ceną.",
+    "get_quote": "Poproś o wycenę →",
+    "ai_planner": "Zaplanuj z AI"
+  },
+  "detail": {
+    "not_found_page_title": "Pakiet nie znaleziony · Destination Paradise",
+    "not_found_eyebrow": "Pakiety",
+    "not_found_title": "Nie znaleziono pakietu",
+    "not_found_text": "Tego pakietu nie ma na aktualnej liście. Zobacz wszystkie pakiety poniżej.",
+    "back_to_packages": "Wróć do pakietów →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Strona główna",
+    "breadcrumb_packages": "Pakiety",
+    "facts": {
+      "duration": "Czas trwania",
+      "flexible_pacing": "Elastyczne tempo",
+      "category": "Kategoria",
+      "package_style": "Styl pakietu",
+      "price": "Cena",
+      "quote": "Wycena",
+      "custom_proposal": "Indywidualna propozycja"
+    },
+    "included": "W cenie",
+    "ideal_for": "Idealne dla",
+    "route_notes": "Uwagi o trasie",
+    "starting_prices": "Ceny startowe",
+    "destination_options": "Opcje miejsc",
+    "route": "Trasa",
+    "planning_notes": "Uwagi planistyczne",
+    "optional_upgrades": "Opcjonalne ulepszenia",
+    "price_note": "Finalna cena pakietu zależy od dat, poziomu hoteli, transferów i dostępności.",
+    "build_package": "Zbuduj ten pakiet →",
+    "all_packages": "Wszystkie pakiety",
+    "context": {
+      "trip_split": "Podział podróży: {{value}}",
+      "focus": "Fokus: {{value}}",
+      "season": "Sezon: {{value}}"
+    },
+    "cta": {
+      "title": "Gotowi zaplanować {{title}}?",
+      "text": "Podaj daty, liczbę gości i poziom komfortu. Dopasujemy pakiet i uczciwie go wycenimy."
+    }
+  },
+  "price_units": {
+    "Per Person": "za osobę",
+    "per person": "za osobę",
+    "per couple": "za parę"
+  },
+  "catalog": {
+    "six-day-safari-zanzibar-escape": {
+      "title": "6 dni safari i wypoczynek na Zanzibarze",
+      "category": "Pakiety safari",
+      "duration": "6 dni",
+      "idealFor": ["Podróżujący budżetowo", "Pary", "Pierwsza podróż do Tanzanii"],
+      "split": "3 dni safari · 3 dni Zanzibar",
+      "includes": ["Odbiór z lotniska i transfery", "Safari w Tarangire, Ngorongoro albo Serengeti", "Profesjonalny przewodnik safari", "Samochód safari 4x4", "Zakwaterowanie", "Lot krajowy na Zanzibar", "Hotel przy plaży", "Śniadania, lunche i kolacje podczas safari", "Wybrane posiłki na plaży", "Opłaty parkowe"],
+      "pricing": { "unit": "za osobę" },
+      "priceTiers": [
+        { "label": "Budżet", "price": 1500 },
+        { "label": "Średni standard", "price": 2100 },
+        { "label": "Luksus", "price": 3200 }
+      ],
+      "benchmark": "Podobne pakiety zaczynają się obecnie od około $1,500."
+    },
+    "seven-day-honeymoon-safari-zanzibar": {
+      "title": "7 dni podróży poślubnej: safari i Zanzibar",
+      "category": "Pakiety poślubne",
+      "duration": "7 dni",
+      "idealFor": ["Pary", "Podróż poślubna"],
+      "includes": ["Luksusowe lodge", "Romantyczny resort przy plaży", "Transfery prywatne", "Rejs dhow o zachodzie słońca", "Kolacja przy świecach na plaży", "Śniadanie w buszu", "Przejazdy safari", "Loty krajowe", "Profesjonalny przewodnik", "Opcje spa"],
+      "pricing": { "unit": "za osobę" },
+      "priceTiers": [
+        { "label": "Średni standard", "price": 3200 },
+        { "label": "Luksus", "price": 4800, "suffix": "+" }
+      ],
+      "benchmark": "Pakiety poślubne zaczynają się od około $3,200."
+    },
+    "eight-day-tanzania-parks-zanzibar": {
+      "title": "8 dni: parki Tanzanii i Zanzibar",
+      "category": "Pakiety safari",
+      "duration": "8 dni",
+      "idealFor": ["Miłośnicy przygód", "Osoby kochające plażę", "Pierwsza podróż do Tanzanii"],
+      "split": "4 dni safari · 4 dni Zanzibar",
+      "includes": ["Serengeti", "Krater Ngorongoro", "Tarangire", "Pobyt przy plaży na Zanzibarze", "Transfery lotniskowe", "Jeep safari", "Zakwaterowanie", "Lot krajowy", "Pełne wyżywienie podczas safari"],
+      "pricing": { "unit": "za osobę" },
+      "priceTiers": [
+        { "label": "Budżet", "price": 2000 },
+        { "label": "Średni standard", "price": 2800 },
+        { "label": "Luksus", "price": 4200 }
+      ],
+      "benchmark": "Podobne oferty zaczynają się obecnie od około $2,000."
+    },
+    "nine-day-safari-zanzibar-culture": {
+      "title": "9 dni safari, Zanzibaru i kultury",
+      "category": "Wycieczki kulturowe",
+      "duration": "9 dni",
+      "idealFor": ["Miłośnicy kultury", "Goście safari", "Osoby planujące plażę"],
+      "includes": ["Zwiedzanie Stone Town", "Wycieczka na farmę przypraw", "Safari w parkach Tanzanii", "Zakwaterowanie przy plaży na Zanzibarze", "Loty krajowe", "Przewodnik", "Opłaty parkowe", "Doświadczenia kulturowe"],
+      "pricing": { "unit": "za osobę" },
+      "priceTiers": [
+        { "label": "Budżet", "price": 2300 },
+        { "label": "Średni standard", "price": 3000 },
+        { "label": "Luksus", "price": 4700 }
+      ],
+      "benchmark": "Podobne pakiety kosztują około $2,300."
+    },
+    "ten-day-classic-safari-zanzibar": {
+      "title": "10 dni klasycznego safari i Zanzibaru",
+      "category": "Pakiety safari",
+      "duration": "10 dni",
+      "idealFor": ["Najpopularniejsza pełna podróż po Tanzanii", "Pary", "Rodziny"],
+      "route": ["Arusha", "Tarangire", "Serengeti", "Ngorongoro", "Nungwi, Kendwa, or Paje"],
+      "includes": ["Luksusowe lodge", "Loty wewnętrzne", "Prywatny samochód safari", "Resort przy plaży", "Zwiedzanie Stone Town", "Transfery lotniskowe", "Pełne wyżywienie podczas safari"],
+      "pricing": { "unit": "za osobę" },
+      "priceTiers": [
+        { "label": "Średni standard", "price": 3800 },
+        { "label": "Luksus", "price": 5500, "suffix": "+" }
+      ],
+      "benchmark": "Klasyczne pakiety safari i Zanzibaru w średnim standardzie zaczynają się od około $3,800."
+    },
+    "twelve-day-serengeti-zanzibar": {
+      "title": "12 dni Serengeti i Zanzibaru",
+      "category": "Luksusowe doświadczenia",
+      "duration": "12 dni",
+      "idealFor": ["Spokojna podróż w luksusowym stylu", "Miłośnicy dzikiej przyrody", "Plażowicze"],
+      "includes": ["Dłuższe safari w Serengeti", "Ngorongoro", "Luksusowy pobyt na Zanzibarze", "Opcjonalne nurkowanie", "Opcjonalny kitesurfing", "Elastyczny plan", "Loty krajowe", "Wycieczki plażowe"],
+      "pricing": { "unit": "za osobę" },
+      "priceTiers": [
+        { "label": "Średni standard", "price": 3000 },
+        { "label": "Luksus", "price": 5800 }
+      ],
+      "benchmark": "Podobne pakiety kosztują około $3,000."
+    },
+    "fourteen-day-ultimate-tanzania-zanzibar": {
+      "title": "14 dni: najlepsze z Tanzanii i Zanzibaru",
+      "category": "Luksusowe doświadczenia",
+      "duration": "14 dni",
+      "idealFor": ["Klienci premium", "Luksusowe safari", "Podróże z okazji ważnych chwil"],
+      "includes": ["Safari Wielkiej Migracji", "Safari z przelotami", "Luksusowe eco lodge", "Willa przy plaży w Kendwa", "Transfery lotniskowe VIP", "Wycieczki kulturowe", "Resorty plażowe premium"],
+      "pricing": { "unit": "za osobę" },
+      "priceTiers": [{ "label": "Luksus", "price": 7500, "suffix": "+" }],
+      "benchmark": "Luksusowe trasy zaczynają się od około $7,500."
+    },
+    "two-day-fly-in-safari-zanzibar": {
+      "title": "2 dni safari samolotem z Zanzibaru",
+      "category": "Safari z przelotem",
+      "duration": "2 dni",
+      "destinations": ["Mikumi", "Nyerere National Park (Selous)"],
+      "idealFor": ["Krótki pobyt", "Goście Zanzibaru", "Pierwsze safari"],
+      "includes": ["Loty w obie strony", "Przejazdy safari", "Pobyt w lodge", "Posiłki", "Opłaty parkowe", "Przewodnik"],
+      "pricing": { "unit": "za osobę" },
+      "benchmark": "Safari z Zanzibaru z przelotem najczęściej mieści się w tym przedziale."
+    },
+    "three-day-serengeti-fly-in-safari": {
+      "title": "3 dni safari samolotem do Serengeti",
+      "category": "Safari z przelotem",
+      "duration": "3 dni",
+      "idealFor": ["Krótka podróż w wyższym standardzie", "Miłośnicy dzikiej przyrody", "Goście Zanzibaru"],
+      "includes": ["Lot powrotny z Zanzibaru", "Lodge w Serengeti", "Pełne przejazdy safari", "Przewodnik safari", "Posiłki", "Transfery"],
+      "pricing": { "unit": "za osobę" },
+      "benchmark": "Podobne pakiety kosztują obecnie około $2,303."
+    },
+    "kilimanjaro-safari-zanzibar-expedition": {
+      "title": "Kilimanjaro + safari + Zanzibar",
+      "category": "Przygody na Kilimanjaro",
+      "duration": "14 dni",
+      "idealFor": ["Miłośnicy przygód", "Wspinacze", "Podróże z listy marzeń"],
+      "includes": ["Wejście trasą Machame", "Profesjonalna ekipa górska", "Sprzęt campingowy", "Safari", "Pobyt plażowy na Zanzibarze", "Loty krajowe", "Transfery"],
+      "pricing": { "unit": "za osobę" },
+      "benchmark": "Porównywalne wycieczki kosztują około $4,350."
+    },
+    "luxury-family-safari-zanzibar": {
+      "title": "Luksusowe rodzinne safari i Zanzibar",
+      "category": "Pakiety rodzinne",
+      "duration": "Czas na miarę",
+      "idealFor": ["Rodziny z dziećmi", "Rodzinne podróże premium", "Wyjazdy wielopokoleniowe"],
+      "includes": ["Apartamenty rodzinne", "Safari przyjazne dzieciom", "Prywatny przewodnik rodzinny", "Resort plażowy na Zanzibarze", "Posiłki gourmet", "Elastyczne tempo safari", "Loty krajowe"],
+      "pricing": { "unit": "za osobę" },
+      "priceTiers": [{ "label": "Luksus", "price": 9000 }],
+      "benchmark": "Pakiety rodzinne premium kosztują około $9,000."
+    },
+    "great-migration-luxury-package": {
+      "title": "Luksusowy pakiet Wielkiej Migracji",
+      "category": "Luksusowe doświadczenia",
+      "duration": "Sezonowo",
+      "season": "Czerwiec - październik",
+      "idealFor": ["Fotografia dzikiej przyrody premium", "Podróż luksusowa", "Goście nastawieni na migrację"],
+      "includes": ["Śledzenie migracji", "Safari z przelotami", "Luksusowe obozy namiotowe", "Opcja przewodnika fotografa", "Opcja safari balonem", "Luksusowy resort na Zanzibarze"],
+      "pricing": { "unit": "za osobę" }
+    },
+    "zanzibar-adventure-marine-package": {
+      "title": "Zanzibar: przygoda i ocean",
+      "category": "Ocean i nurkowanie",
+      "duration": "Elastycznie",
+      "focus": "Tylko aktywności oceaniczne",
+      "idealFor": ["Miłośnicy oceanu", "Nurkowie", "Aktywny wypoczynek na plaży"],
+      "includes": ["Snorkeling", "Nurkowanie", "Wycieczka na Mnemba Island", "Delfiny", "Rejs dhow o zachodzie słońca", "Las Jozani", "Piknik na ławicy piasku", "Resort plażowy"],
+      "pricing": { "unit": "za osobę" }
+    },
+    "stone-town-culture-experience": {
+      "title": "Stone Town i doświadczenie kulturowe",
+      "category": "Wycieczki kulturowe",
+      "duration": "Elastycznie",
+      "idealFor": ["Miłośnicy kultury", "Miłośnicy jedzenia", "Osoby zainteresowane historią"],
+      "includes": ["Zwiedzanie Stone Town", "Farma przypraw", "Prison Island", "Lokalne jedzenie", "Lekcja gotowania suahili", "Hotel butikowy"],
+      "pricing": { "unit": "za osobę" }
+    },
+    "digital-nomad-zanzibar-stay": {
+      "title": "Pobyt digital nomad na Zanzibarze",
+      "category": "Pakiety szyte na miarę",
+      "duration": "14 - 30 dni",
+      "idealFor": ["Praca zdalna", "Dłuższe pobyty", "Elastyczni podróżnicy"],
+      "includes": ["Zakwaterowanie długoterminowe", "Odbiór z lotniska", "Rekomendacje coworkingu", "Pomoc z kartą SIM", "Lokalne wsparcie", "Weekendowe wycieczki"],
+      "pricing": { "unit": "za osobę" }
+    }
+  }
+}

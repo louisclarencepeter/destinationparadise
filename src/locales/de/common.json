@@ -1,0 +1,11 @@
+{
+  "language": {
+    "switcher_label": "Sprache",
+    "english": "English",
+    "polish": "Polski",
+    "german": "Deutsch",
+    "switch_to_english": "Sprache auf Englisch umstellen",
+    "switch_to_polish": "Sprache auf Polnisch umstellen",
+    "switch_to_german": "Sprache auf Deutsch umstellen"
+  }
+}

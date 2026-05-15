@@ -18,11 +18,19 @@ export default function ExcursionsSection({ tweaks, excursions }) {
         </ul>
       </header>
       <div className="excursions__grid">
-        {excursions.map((tr) => (
-          <Link className="ex-card" key={tr.id} to={`/excursions/${tr.id}`} aria-label={t('excursions.card.explore_aria', { title: tr.title })}>
+        {excursions.map((tr) => {
+          const localized = t(`excursions.featured.${tr.id}`, { returnObjects: true, defaultValue: {} });
+          const title = localized.title || tr.title;
+          const description = localized.description || tr.description;
+          const duration = localized.duration || tr.duration;
+          const from = localized.from || tr.from;
+          const group = localized.group || tr.group;
+
+          return (
+          <Link className="ex-card" key={tr.id} to={`/excursions/${tr.id}`} aria-label={t('excursions.card.explore_aria', { title })}>
             <div className="ex-card__img">
-              <ResponsiveImage src={tr.image} alt={tr.title} loading="lazy" decoding="async" sizes="(max-width: 600px) 220px, (max-width: 1000px) 45vw, 360px" />
-              <span className="ex-card__badge">{tr.duration}</span>
+              <ResponsiveImage src={tr.image} alt={title} loading="lazy" decoding="async" sizes="(max-width: 600px) 220px, (max-width: 1000px) 45vw, 360px" />
+              <span className="ex-card__badge">{duration}</span>
               {typeof tr.price === 'number' && (
                 <div className="ex-card__price">
                   <div className="ex-card__price-from">{t('excursions.card.from')}</div>
@@ -35,21 +43,22 @@ export default function ExcursionsSection({ tweaks, excursions }) {
                 <span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
                     <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z" /><circle cx="12" cy="10" r="3" />
-                  </svg> {tr.from}
+                  </svg> {from}
                 </span>
                 <span className="dot"></span>
                 <span>
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75">
                     <path d="M17 20v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 20v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
-                  </svg> {tr.group}
+                  </svg> {group}
                 </span>
               </div>
-              <h3 className="ex-card__title">{tr.title}</h3>
-              <p className="ex-card__text">{tr.description}</p>
+              <h3 className="ex-card__title">{title}</h3>
+              <p className="ex-card__text">{description}</p>
               <span className="ex-card__link">{t('excursions.card.view_details')} <ArrowIcon size={15} /></span>
             </div>
           </Link>
-        ))}
+          );
+        })}
       </div>
       <div className="excursions__more">
         <Link className="btn btn--on-light" to="/excursions">{t('excursions.view_all')} <ArrowIcon size={16} /></Link>

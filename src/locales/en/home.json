@@ -35,7 +35,13 @@
       ],
       "date_label": "Date",
       "guests_label": "Guests",
-      "guests_options": ["1 guest", "2 guests", "3 guests", "4 guests", "5+ guests"],
+      "guests_options": [
+        "1 guest",
+        "2 guests",
+        "3 guests",
+        "4 guests",
+        "5+ guests"
+      ],
       "guests_default": "2 guests",
       "submit": "Find my route"
     }
@@ -75,7 +81,30 @@
       "from": "From",
       "view_details": "View details"
     },
-    "view_all": "View all excursions"
+    "view_all": "View all excursions",
+    "featured": {
+      "safari-blue": {
+        "title": "Safari Blue",
+        "description": "A full-day dhow sailing adventure in Menai Bay — sandbank picnics, mangrove swims, snorkel reefs and seafood lunch.",
+        "duration": "Full day",
+        "from": "Fumba",
+        "group": "Up to 8"
+      },
+      "mnemba": {
+        "title": "Mnemba Snorkeling & Trip to the North",
+        "description": "A full-day combining snorkeling around the Mnemba coral ring with relaxation on Nungwi Beach in northern Zanzibar.",
+        "duration": "Full day",
+        "from": "Matemwe / Nungwi",
+        "group": "Up to 8"
+      },
+      "spice-tour": {
+        "title": "Spice Tour",
+        "description": "A guided plantation walk through cloves, cinnamon, nutmeg, pepper, herbs and medicinal plants — followed by a spice-infused Swahili lunch.",
+        "duration": "Half day",
+        "from": "Stone Town",
+        "group": "Up to 8"
+      }
+    }
   },
   "safaris": {
     "eyebrow": "Mainland wildlife",
@@ -230,8 +259,18 @@
       "solo_button": "Solo, history + snorkel",
       "solo_prompt": "Solo traveler, 5 nights in February. Love spice markets, history, snorkeling. Boutique hotel under $200/night."
     },
-    "quick_replies": ["Beach and chill", "Safari + Zanzibar", "Honeymoon trip", "Family friendly"],
-    "thinking_messages": ["Plotting a route", "Checking the pace", "Balancing beach and safari", "Shaping the draft"],
+    "quick_replies": [
+      "Beach and chill",
+      "Safari + Zanzibar",
+      "Honeymoon trip",
+      "Family friendly"
+    ],
+    "thinking_messages": [
+      "Plotting a route",
+      "Checking the pace",
+      "Balancing beach and safari",
+      "Shaping the draft"
+    ],
     "header": {
       "name": "Paradise Planner",
       "subtitle": "Powered by Claude · usually replies instantly",

@@ -1,0 +1,623 @@
+{
+  "page_title": "Booking Request · Destination Paradise",
+  "common": {
+    "flexible": "Flexible",
+    "date_to": "to",
+    "not_selected": "Not selected"
+  },
+  "hero": {
+    "eyebrow": "Booking request",
+    "title_prefix": "One form",
+    "title_em": "for every trip.",
+    "lead": "Packages, excursions, safaris, private transfers, custom routes, and online payment requests all start here. Tell us the shape, and our team will confirm availability, timing, and the final price.",
+    "start_request": "Start request",
+    "plan_with_ai": "Plan with AI",
+    "stats_aria": "Booking trust signals",
+    "stats": [
+      {
+        "value": "500+",
+        "label": "Trips planned"
+      },
+      {
+        "value": "1,200+",
+        "label": "Happy guests"
+      },
+      {
+        "value": "24h",
+        "label": "Request confirmed"
+      }
+    ]
+  },
+  "flow": {
+    "aria": "Booking process",
+    "steps": [
+      {
+        "number": "01",
+        "title": "Send the request",
+        "text": "Choose a package, excursion, safari, transfer, or custom route and share your dates."
+      },
+      {
+        "number": "02",
+        "title": "We confirm it",
+        "text": "Our team checks availability, vehicles, transfers, guides, routes, and final pricing."
+      },
+      {
+        "number": "03",
+        "title": "Pay securely",
+        "text": "When everything is approved, we send a secure online payment link."
+      }
+    ]
+  },
+  "intro": {
+    "eyebrow": "Tell us what to build",
+    "title": "Request availability, quote, and payment link.",
+    "lead": "We do not collect card details on this page. If you choose online payment, we will send a secure payment link after the route and price are confirmed."
+  },
+  "service_types": [
+    {
+      "value": "package",
+      "label": "Package",
+      "text": "Safari + Zanzibar, honeymoon, family, culture, marine, or luxury route."
+    },
+    {
+      "value": "excursion",
+      "label": "Excursion",
+      "text": "Island day trips, dhow sailing, Stone Town, spice farms, snorkeling, and nature."
+    },
+    {
+      "value": "safari",
+      "label": "Safari",
+      "text": "Mainland wildlife routes, fly-in safaris, migration, southern parks, and custom circuits."
+    },
+    {
+      "value": "transfer",
+      "label": "Transfer",
+      "text": "Private airport, hotel-to-hotel, group, premium SUV, or VIP concierge transfer."
+    },
+    {
+      "value": "custom",
+      "label": "Custom plan",
+      "text": "Not sure yet? Tell us the shape and we will build a route around you."
+    }
+  ],
+  "payment_options": [
+    {
+      "value": "secure-link",
+      "label": "Send secure online payment link",
+      "text": "Best after we confirm availability and the final price."
+    },
+    {
+      "value": "deposit",
+      "label": "I want to pay a deposit online",
+      "text": "We will confirm the deposit amount and send a payment link."
+    },
+    {
+      "value": "full",
+      "label": "I want to pay the full amount online",
+      "text": "For confirmed trips where you want to settle everything by card/link."
+    },
+    {
+      "value": "later",
+      "label": "Quote first, payment later",
+      "text": "We will price the trip first and discuss payment after."
+    }
+  ],
+  "transfer_tiers": [
+    {
+      "value": "standard-private",
+      "label": "Standard Private",
+      "text": "Reliable AC vehicle, meet & greet, flight tracking, luggage help, and door-to-door service."
+    },
+    {
+      "value": "premium-suv",
+      "label": "Premium SUV",
+      "text": "More space and a more elevated arrival for couples, families, safari clients, and extra luggage."
+    },
+    {
+      "value": "vip-concierge",
+      "label": "VIP Concierge",
+      "text": "Luxury vehicle, private concierge handling, cold towels, refreshments, and fast-track support on request."
+    },
+    {
+      "value": "group-transfer",
+      "label": "Group Transfer",
+      "text": "Minivans and coaster buses for families, wedding groups, teams, and safari parties."
+    }
+  ],
+  "form": {
+    "booking_legend": "What are you booking?",
+    "product_label_transfer": "Transfer route",
+    "product_label_default": "Specific product",
+    "product_placeholder_transfer": "Choose a transfer route or leave flexible",
+    "product_placeholder_default": "Choose from {{serviceType}}s or leave flexible",
+    "product_placeholder_generic": "Choose a product or leave flexible",
+    "name": "Name",
+    "email": "Email",
+    "phone": "Phone",
+    "phone_placeholder": "+255 / +49 / +1 ...",
+    "whatsapp": "WhatsApp",
+    "whatsapp_placeholder": "If different from phone",
+    "start_date": "Start date",
+    "date": "Date",
+    "end_date": "End date",
+    "guests": "Guests",
+    "transfer_legend": "Transfer details",
+    "pickup_location": "Pickup location",
+    "pickup_placeholder": "ZNZ Airport, ferry port, hotel...",
+    "dropoff_location": "Drop-off location",
+    "dropoff_placeholder": "Hotel, resort, airport...",
+    "flight_number": "Flight / ferry number",
+    "flight_placeholder": "Optional, but useful for tracking",
+    "pickup_time": "Pickup time",
+    "budget_range": "Budget range",
+    "comfort_level": "Comfort level",
+    "online_payment": "Online payment",
+    "message_label": "Anything we should know?",
+    "status_sent": "Asante. We received your request and will come back with availability, a quote, and the payment next step.",
+    "status_error": "That did not go through. Please try again or message us on WhatsApp.",
+    "submit_sending": "Sending request...",
+    "submit_sent": "Request sent",
+    "submit_idle": "Send booking request",
+    "message_placeholder_transfer": "Arrival notes, luggage count, child seats, hotel room name, VIP preferences, or timing details.",
+    "message_placeholder_excursion": "Preferred pickup area, hotel name, private/shared preference, kids ages, dietary needs, or timing notes.",
+    "message_placeholder_default": "Hotels you like, pace, special occasion, kids' ages, dietary needs, flight details, or what you want to avoid.",
+    "unmatched_message": "I am interested in {{title}}. {{message}}"
+  },
+  "budget_options": [
+    {
+      "value": "",
+      "label": "Not sure yet"
+    },
+    {
+      "value": "Under $1,000 pp",
+      "label": "Under $1,000 pp"
+    },
+    {
+      "value": "$1,000 - $2,500 pp",
+      "label": "$1,000 - $2,500 pp"
+    },
+    {
+      "value": "$2,500 - $5,000 pp",
+      "label": "$2,500 - $5,000 pp"
+    },
+    {
+      "value": "$5,000 - $8,000 pp",
+      "label": "$5,000 - $8,000 pp"
+    },
+    {
+      "value": "$8,000+ pp",
+      "label": "$8,000+ pp"
+    }
+  ],
+  "comfort_options": [
+    {
+      "value": "Budget",
+      "label": "Budget"
+    },
+    {
+      "value": "Mid-range",
+      "label": "Mid-range"
+    },
+    {
+      "value": "Luxury",
+      "label": "Luxury"
+    },
+    {
+      "value": "Ultra luxury",
+      "label": "Ultra luxury"
+    },
+    {
+      "value": "Flexible",
+      "label": "Flexible"
+    }
+  ],
+  "summary": {
+    "eyebrow": "Your request",
+    "custom_plan": "Custom plan",
+    "flexible_route": "Flexible route",
+    "guests": "Guests",
+    "dates": "Dates",
+    "date": "Date",
+    "tier": "Tier",
+    "default_tier": "Standard Private",
+    "pickup": "Pickup",
+    "dropoff": "Drop-off",
+    "time": "Time",
+    "comfort": "Comfort",
+    "payment": "Payment",
+    "payment_title": "How payment works",
+    "payment_steps": [
+      "We confirm availability and the final price.",
+      "You approve the route, date, and terms.",
+      "We send a secure online payment link for deposit or full balance."
+    ],
+    "payment_note": "No card details are entered or stored on this website.",
+    "mini_title": "Prefer to plan first?",
+    "mini_link": "Open the AI planner →"
+  },
+  "price": {
+    "final_after_availability": "Final price after availability check",
+    "final_transfer_after_route": "Final transfer price after route confirmation",
+    "from": "From",
+    "per_person": "per person",
+    "pp": "pp"
+  },
+  "support_cta": {
+    "title": "Need help before you send it?",
+    "text": "Open the planner if you want to shape the route first, or explore the full map to choose the right beach, safari circuit, and island days.",
+    "planner": "Plan with AI",
+    "explore": "Explore the map"
+  },
+  "products": {
+    "package": {
+      "six-day-safari-zanzibar-escape": {
+        "label": "6 Days Safari & Zanzibar Escape",
+        "category": "Safari Packages",
+        "unit": "Per Person"
+      },
+      "seven-day-honeymoon-safari-zanzibar": {
+        "label": "7 Days Honeymoon Safari & Zanzibar",
+        "category": "Honeymoon Packages",
+        "unit": "Per Person"
+      },
+      "eight-day-tanzania-parks-zanzibar": {
+        "label": "8 Days Tanzania Parks & Zanzibar",
+        "category": "Safari Packages",
+        "unit": "Per Person"
+      },
+      "nine-day-safari-zanzibar-culture": {
+        "label": "9 Days Safari, Zanzibar & Culture",
+        "category": "Cultural Tours",
+        "unit": "Per Person"
+      },
+      "ten-day-classic-safari-zanzibar": {
+        "label": "10 Days Classic Safari & Zanzibar",
+        "category": "Safari Packages",
+        "unit": "Per Person"
+      },
+      "twelve-day-serengeti-zanzibar": {
+        "label": "12 Days Serengeti & Zanzibar",
+        "category": "Luxury Experiences",
+        "unit": "Per Person"
+      },
+      "fourteen-day-ultimate-tanzania-zanzibar": {
+        "label": "14 Days Ultimate Tanzania & Zanzibar",
+        "category": "Luxury Experiences",
+        "unit": "Per Person"
+      },
+      "two-day-fly-in-safari-zanzibar": {
+        "label": "2 Days Fly-In Safari From Zanzibar",
+        "category": "Fly-In Safaris",
+        "unit": "Per Person"
+      },
+      "three-day-serengeti-fly-in-safari": {
+        "label": "3 Days Serengeti Fly-In Safari",
+        "category": "Fly-In Safaris",
+        "unit": "Per Person"
+      },
+      "kilimanjaro-safari-zanzibar-expedition": {
+        "label": "Kilimanjaro + Safari + Zanzibar Expedition",
+        "category": "Kilimanjaro Adventures",
+        "unit": "Per Person"
+      },
+      "luxury-family-safari-zanzibar": {
+        "label": "Luxury Family Safari & Zanzibar",
+        "category": "Family Packages",
+        "unit": "Per Person"
+      },
+      "great-migration-luxury-package": {
+        "label": "Great Migration Luxury Package",
+        "category": "Luxury Experiences",
+        "unit": "Per Person"
+      },
+      "zanzibar-adventure-marine-package": {
+        "label": "Zanzibar Adventure & Marine Package",
+        "category": "Marine & Diving Experiences",
+        "unit": "Per Person"
+      },
+      "stone-town-culture-experience": {
+        "label": "Stone Town & Culture Experience",
+        "category": "Cultural Tours",
+        "unit": "Per Person"
+      },
+      "digital-nomad-zanzibar-stay": {
+        "label": "Digital Nomad Zanzibar Stay",
+        "category": "Tailor-Made Packages",
+        "unit": "Per Person"
+      }
+    },
+    "excursion": {
+      "spice-tour": {
+        "label": "Spice Tour",
+        "category": "Culture & Heritage",
+        "priceSub": "per person"
+      },
+      "stone-town": {
+        "label": "Historical City Tour",
+        "category": "Culture & Heritage",
+        "priceSub": "per person"
+      },
+      "prison-island": {
+        "label": "Prison Island Boat Trip",
+        "category": "Nature & Wildlife",
+        "priceSub": "per person"
+      },
+      "jozani": {
+        "label": "Jozani Forest Tour",
+        "category": "Nature & Wildlife",
+        "priceSub": "per person"
+      },
+      "dolphins": {
+        "label": "Dolphin Tour",
+        "category": "Water & Snorkeling",
+        "priceSub": "per person"
+      },
+      "sunset-rock": {
+        "label": "Sunset Trip & The Rock Restaurant",
+        "category": "Wellness & Luxury",
+        "priceSub": "per person"
+      },
+      "snorkeling-tour": {
+        "label": "Snorkeling Tour · Blue Lagoon",
+        "category": "Water & Snorkeling",
+        "priceSub": "per person"
+      },
+      "village-tour": {
+        "label": "Village Tour · Bwejuu",
+        "category": "Culture & Heritage",
+        "priceSub": "per person"
+      },
+      "mnemba": {
+        "label": "Mnemba Snorkeling & Trip to the North",
+        "category": "Water & Snorkeling",
+        "priceSub": "per person"
+      },
+      "safari-blue": {
+        "label": "Safari Blue",
+        "category": "Water & Snorkeling",
+        "priceSub": "per person"
+      },
+      "fishing-kizimkazi": {
+        "label": "Fishing in Kizimkazi",
+        "category": "Adventure & Sports",
+        "priceSub": "per boat"
+      },
+      "local-fishing": {
+        "label": "Local Game Fishing",
+        "category": "Adventure & Sports",
+        "priceSub": "per person"
+      },
+      "mangrove": {
+        "label": "Mangrove Tour · Chwaka Bay",
+        "category": "Nature & Wildlife",
+        "priceSub": "per person"
+      },
+      "sandbank-picnic": {
+        "label": "Sandbank Picnic · Pange",
+        "category": "Water & Snorkeling",
+        "priceSub": "per person"
+      },
+      "cave": {
+        "label": "Swimming in Maalum Cave",
+        "category": "Nature & Wildlife",
+        "priceSub": "per person"
+      },
+      "north-nungwi": {
+        "label": "Trip to the North · Nungwi",
+        "category": "Water & Snorkeling",
+        "priceSub": "per person"
+      },
+      "cooking-coffee": {
+        "label": "Cooking Class & Coffee Experience",
+        "category": "Culture & Heritage"
+      },
+      "street-food": {
+        "label": "Street Food & Night Market Tour",
+        "category": "Culture & Heritage"
+      },
+      "healer-herbal": {
+        "label": "Traditional Healer & Herbal Medicine",
+        "category": "Culture & Heritage"
+      },
+      "village-workshop": {
+        "label": "Village Immersion & Workshop",
+        "category": "Culture & Heritage"
+      },
+      "private-sunset-dhow-dinner": {
+        "label": "Private Sunset Dhow Cruise with Dinner",
+        "category": "Wellness & Luxury"
+      },
+      "nakupenda": {
+        "label": "Nakupenda Sandbank Picnic",
+        "category": "Water & Snorkeling"
+      },
+      "mangrove-kayak": {
+        "label": "Mangrove Kayak Adventure",
+        "category": "Adventure & Sports"
+      },
+      "chumbe": {
+        "label": "Chumbe Island Coral Park",
+        "category": "Water & Snorkeling"
+      },
+      "seaweed-coop": {
+        "label": "Seaweed Farming & Women's Cooperative",
+        "category": "Culture & Heritage"
+      },
+      "turtle-conservation": {
+        "label": "Turtle Conservation Tour",
+        "category": "Nature & Wildlife"
+      },
+      "butterfly-center": {
+        "label": "Butterfly Center & Nature Walk",
+        "category": "Nature & Wildlife"
+      },
+      "stargazing": {
+        "label": "Stargazing Beach Experience",
+        "category": "Wellness & Luxury"
+      },
+      "organic-spice": {
+        "label": "Organic Spice & Herbal Farm Tour",
+        "category": "Culture & Heritage"
+      },
+      "turtle-nesting": {
+        "label": "Turtle Nesting Volunteer Experience",
+        "category": "Festivals & Seasonal"
+      },
+      "kitesurfing": {
+        "label": "Kitesurfing Lessons & Safaris",
+        "category": "Adventure & Sports"
+      },
+      "horse-riding": {
+        "label": "Horse Riding on the Beach",
+        "category": "Adventure & Sports"
+      },
+      "quad-bike": {
+        "label": "Quad Bike Safari Adventure",
+        "category": "Adventure & Sports"
+      },
+      "jet-ski": {
+        "label": "Jet Ski Adventure",
+        "category": "Adventure & Sports"
+      },
+      "parasailing": {
+        "label": "Parasailing Experience",
+        "category": "Adventure & Sports"
+      },
+      "skydive": {
+        "label": "Skydive Zanzibar",
+        "category": "Adventure & Sports"
+      },
+      "dhow-building": {
+        "label": "Traditional Dhow Building Experience",
+        "category": "Culture & Heritage",
+        "priceSub": "per person"
+      },
+      "advanced-diving": {
+        "label": "Advanced Diving Excursions",
+        "category": "Adventure & Sports"
+      },
+      "transparent-kayak-sup": {
+        "label": "Transparent Kayak & Paddleboarding",
+        "category": "Water & Snorkeling"
+      },
+      "ocean-sand-combo": {
+        "label": "Ocean & Sand Adventure Combo",
+        "category": "Adventure & Sports"
+      },
+      "historical-ruins": {
+        "label": "Zanzibar Historical Ruins Tour",
+        "category": "Culture & Heritage"
+      },
+      "hidden-alleys": {
+        "label": "Stone Town Hidden Alleys Tour",
+        "category": "Culture & Heritage"
+      },
+      "persian-baths-sultan": {
+        "label": "Persian Baths & Sultan Heritage",
+        "category": "Culture & Heritage"
+      },
+      "mangapwani-cave": {
+        "label": "Mangapwani Coral Cave & Slave Chambers",
+        "category": "Culture & Heritage"
+      },
+      "dhow-heritage": {
+        "label": "Dhow Heritage & Maritime Tour",
+        "category": "Culture & Heritage"
+      },
+      "sauti-busara": {
+        "label": "Sauti za Busara Festival",
+        "category": "Festivals & Seasonal"
+      },
+      "ziff": {
+        "label": "Zanzibar International Film Festival",
+        "category": "Festivals & Seasonal"
+      },
+      "water-sports-festival": {
+        "label": "Zanzibar Beach & Water Sports Festival",
+        "category": "Festivals & Seasonal"
+      },
+      "private-vip-island": {
+        "label": "Private VIP Island Day",
+        "category": "Wellness & Luxury"
+      },
+      "wellness-yoga": {
+        "label": "Wellness & Yoga Retreat Experience",
+        "category": "Wellness & Luxury"
+      },
+      "mafia-whale-shark": {
+        "label": "Mafia Island Whale Shark Experience",
+        "category": "Festivals & Seasonal"
+      }
+    },
+    "safari": {
+      "ngorongoro-tarangire": {
+        "label": "Ngorongoro & Tarangire",
+        "category": "Premium Mid-Range"
+      },
+      "serengeti-migration": {
+        "label": "Serengeti Migration",
+        "category": "Strong Seller"
+      },
+      "tarangire-ngorongoro-short": {
+        "label": "Tarangire + Ngorongoro Short Circuit",
+        "category": "Best Short Safari"
+      },
+      "ngorongoro-overnight": {
+        "label": "Ngorongoro Overnight",
+        "category": "Quick Luxury Escape"
+      },
+      "tarangire-day-trip": {
+        "label": "Tarangire Express Day Safari",
+        "category": "High Conversion Product"
+      },
+      "nyerere-selous": {
+        "label": "Nyerere (Selous) Wild",
+        "category": "Premium Wilderness Safari"
+      },
+      "ruaha-big-cat": {
+        "label": "Ruaha Big-Cat Trail",
+        "category": "Exclusive Predator Safari"
+      },
+      "mahale-chimp": {
+        "label": "Mahale Chimp & Lake Tanganyika",
+        "category": "Ultra Premium Expedition"
+      },
+      "katavi-frontier": {
+        "label": "Katavi Remote Frontier",
+        "category": "Elite Wilderness Expedition"
+      }
+    },
+    "transfer": {
+      "airport-stonetown": {
+        "label": "Airport ⇄ Stone Town",
+        "category": "15 - 25 minutes",
+        "priceSummary": "Private from $25"
+      },
+      "airport-paje": {
+        "label": "Airport ⇄ Paje / Jambiani",
+        "category": "1 - 1.5 hours",
+        "priceSummary": "Private from $45"
+      },
+      "airport-nungwi": {
+        "label": "Airport ⇄ Nungwi / Kendwa",
+        "category": "Around 1.5 hours",
+        "priceSummary": "Private from $50"
+      },
+      "hotel-hotel": {
+        "label": "Hotel ⇄ Hotel Transfers",
+        "category": "Island-wide",
+        "priceSummary": "Private from $35"
+      },
+      "group-transfers": {
+        "label": "Group & Minivan Transfers",
+        "category": "Families · events · teams",
+        "priceSummary": "Minivan from $90"
+      },
+      "vip-airport-service": {
+        "label": "VIP Airport Concierge",
+        "category": "Luxury arrival service",
+        "priceSummary": "VIP from $150"
+      }
+    }
+  }
+}
