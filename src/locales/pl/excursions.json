@@ -1,0 +1,146 @@
+{
+  "hero": {
+    "eyebrow": "Zanzibar i wybrzeże · wybrane wycieczki jednodniowe",
+    "title_prefix": "Jedna wyspa.",
+    "title_em": "{{count}}+ niezapomnianych tras.",
+    "lead": "Zamień resortową rutynę na prawdziwy Zanzibar: popłyń tradycyjnym dhow, przejdź Stone Town z lokalnym przewodnikiem, zanurkuj przy rafach Mnemba, spróbuj kitesurfingu w Paje albo dołącz do festiwalu w Stone Town.",
+    "tags_aria": "Najważniejsze cechy wycieczek",
+    "tag_hotel_pickup": "Odbiór z hotelu w cenie",
+    "tag_private": "Dostępne opcje prywatne",
+    "tag_local_guides": "Lokalni przewodnicy",
+    "browse_all": "Zobacz wycieczki",
+    "build_plan": "Zbuduj mój plan →",
+    "meta_excursions": "Wycieczek",
+    "meta_from_per_person": "Od, za osobę",
+    "meta_categories": "Kategorii",
+    "meta_private_label": "Prywatne",
+    "meta_private_text": "Opcje dostępne"
+  },
+  "grid": {
+    "eyebrow": "Wybrane wycieczki",
+    "title": "Wycieczki – wybierz punkt startowy.",
+    "lead": "Każda karta prowadzi do pełnego planu dnia, zakresu, odbioru i notatek rezerwacyjnych. Filtruj po tym, czego szukasz na wyspie.",
+    "filter_label": "Filtruj",
+    "filter_all": "Wszystkie",
+    "explore_aria": "Zobacz: {{title}}",
+    "season_prefix": "Sezonowo",
+    "from": "Od",
+    "per_person_default": "za osobę",
+    "price_on_request": "Cena na zapytanie",
+    "explore_cta": "Zobacz →",
+    "empty": "Nie ma jeszcze wycieczek w tej kategorii. Spróbuj wybrać Wszystkie.",
+    "show_more": "Pokaż więcej wycieczek",
+    "show_fewer": "Pokaż mniej wycieczek",
+    "showing_count": "Pokazano {{visible}} z {{total}}"
+  },
+  "pairings": {
+    "eyebrow": "Wybory lokalnych",
+    "title": "Kombinacje, które mają sens",
+    "lead": "Niektóre wycieczki pięknie łączą się w jeden lub dwa dni. Tak ułożylibyśmy ich kolejność.",
+    "explore_aria": "Zobacz: {{title}}",
+    "on_request": "Na zapytanie"
+  },
+  "practical": {
+    "columns": {
+      "included": {
+        "heading": "Co zawsze w cenie",
+        "items": [
+          "Odbiór i odwóz do hotelu",
+          "Licencjonowany lokalny przewodnik",
+          "Woda butelkowana przez cały dzień",
+          "Wszystkie opłaty parkowe i wstępy",
+          "Sprzęt (maski, płetwy, kamizelki)"
+        ]
+      },
+      "not_included": {
+        "heading": "Nie obejmuje",
+        "items": [
+          "Napiwki dla przewodników i załogi",
+          "Alkohol na wybranych wycieczkach (dopłata $15)",
+          "Ubezpieczenie podróżne (zabierz własne)",
+          "Kieszonkowe na targi i kawiarnie"
+        ]
+      },
+      "family": {
+        "heading": "Z myślą o rodzinach",
+        "items": [
+          "Spice Tour, Prison Island, Jozani – każdy wiek",
+          "Safari Blue – dzieci 8+",
+          "Delfiny – pewni pływacy, 10+",
+          "Dzieci do 5 lat za darmo na większości wycieczek"
+        ]
+      },
+      "booking": {
+        "heading": "Rezerwacja i płatność",
+        "items": [
+          "Rezerwuj minimum 48 godzin wcześniej",
+          "20% zaliczki, reszta w dniu wycieczki",
+          "Bezpłatna anulacja do 24 godzin przed",
+          "Akceptujemy USD, EUR, GBP i TZS"
+        ]
+      }
+    }
+  },
+  "cta": {
+    "title": "Chcesz zarezerwować termin?",
+    "text": "Napisz, kiedy jesteś na miejscu i które wycieczki Cię interesują. Wrócimy w 24 godziny z dostępnymi datami, godziną odbioru i finalną ceną – bez zobowiązań i bez chatbota.",
+    "get_in_touch": "Napisz do nas →",
+    "ai_planner": "Albo porozmawiaj z planerem AI"
+  },
+  "faq": {
+    "eyebrow": "Częste pytania",
+    "title": "Zanim zarezerwujesz",
+    "items": {
+      "private": {
+        "q": "Czy są wersje prywatne?",
+        "a": "Tak – niemal każdą wycieczkę można zorganizować prywatnie dla Twojej grupy. Cena rośnie wraz z opcją prywatną (Dream Dhow prywatnie od $320, Safari Blue prywatnie od $640). Wystarczy zapytać przy rezerwacji."
+      },
+      "rain": {
+        "q": "A jeśli pada?",
+        "a": "Pływamy w słońcu i w deszczu – tropikalny deszcz jest zwykle ciepły i krótki. Jeśli warunki są niebezpieczne (silny wiatr, burza), przekładamy termin albo zwracamy pełną kwotę. Decyzja należy do Ciebie."
+      },
+      "pickup": {
+        "q": "Czy odbieracie z północy i wschodu wyspy?",
+        "a": "Tak – odbiór z Nungwi, Kendwy, Matemwe, Kiwengwy, Pongwe, Paje i Bwejuu jest w cenie. Doliczaj 30–60 minut w jedną stronę."
+      },
+      "ramadan": {
+        "q": "Czy w Ramadanie wszystko działa?",
+        "a": "Tak – wszystkie wycieczki odbywają się normalnie. W mieście poranki bywają spokojniejsze, a wiele kawiarni jest zamkniętych w ciągu dnia. Na wodzie życie toczy się dalej. Pamiętaj o szacunku: nie jedz i nie pij publicznie w godzinach postu."
+      },
+      "safari": {
+        "q": "Czy mogę połączyć to z safari?",
+        "a_prefix": "Tak – większość gości to robi. Zobacz nasz ",
+        "a_packages_link": "pakiet Bush & Beach",
+        "a_middle": " albo otwórz ",
+        "a_planner_link": "Planer podróży AI",
+        "a_suffix": ", żeby ułożyć trasę łączącą kontynent i wyspę."
+      },
+      "tipping": {
+        "q": "Jak wygląda etykieta napiwków?",
+        "a": "Napiwki są mile widziane, ale nigdy obowiązkowe. Orientacyjnie: $5–10 od gościa za pół dnia, $10–20 za cały dzień. Dzielone między przewodnika i załogę."
+      }
+    }
+  },
+  "categories": {
+    "Water & Snorkeling": "Ocean i snorkeling",
+    "Culture & Heritage": "Kultura i dziedzictwo",
+    "Nature & Wildlife": "Natura i dzika przyroda",
+    "Adventure & Sports": "Przygoda i sport",
+    "Wellness & Luxury": "Wellness i luksus",
+    "Festivals & Seasonal": "Festiwale i sezonowe"
+  },
+  "durations": {
+    "Half Day": "Pół dnia",
+    "Full Day": "Cały dzień",
+    "Evening": "Wieczór",
+    "Half / Full Day": "Pół dnia / cały dzień",
+    "1 – 2 hours": "1–2 godziny",
+    "30 – 60 mins": "30–60 min",
+    "2 - 4 Hours": "2–4 godziny",
+    "Multi-day": "Kilka dni"
+  },
+  "price_units": {
+    "per person": "za osobę",
+    "per boat": "za łódź"
+  }
+}

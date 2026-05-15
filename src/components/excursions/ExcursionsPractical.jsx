@@ -1,4 +1,11 @@
-import { EXCURSION_PRACTICAL } from '../../data/excursionsPageContent.js';
+import { useTranslation } from 'react-i18next';
+
+const PRACTICAL_COLUMNS = [
+  { key: 'included', icon: 'check' },
+  { key: 'not_included', icon: 'x' },
+  { key: 'family', icon: 'check' },
+  { key: 'booking', icon: 'clock' },
+];
 
 function Icon({ kind }) {
   if (kind === 'check') {
@@ -11,19 +18,23 @@ function Icon({ kind }) {
 }
 
 export default function ExcursionsPractical() {
+  const { t } = useTranslation('excursions');
   return (
     <section className="exc-prac">
       <div className="exc-prac__grid">
-        {EXCURSION_PRACTICAL.map((col) => (
-          <div className="exc-prac__col" key={col.h}>
-            <h4>{col.h}</h4>
-            <ul>
-              {col.items.map((it) => (
-                <li key={it}><Icon kind={col.icon} />{it}</li>
-              ))}
-            </ul>
-          </div>
-        ))}
+        {PRACTICAL_COLUMNS.map((col) => {
+          const items = t(`practical.columns.${col.key}.items`, { returnObjects: true });
+          return (
+            <div className="exc-prac__col" key={col.key}>
+              <h4>{t(`practical.columns.${col.key}.heading`)}</h4>
+              <ul>
+                {items.map((it) => (
+                  <li key={it}><Icon kind={col.icon} />{it}</li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

@@ -1,33 +1,45 @@
 import { Link } from 'react-router-dom';
-
-const FAQS = [
-  { q: 'Can you do private versions?', a: 'Yes — almost every excursion can run privately for your group. Pricing scales (Dream Dhow private from $320, Safari Blue private from $640). Just ask at booking.', open: true },
-  { q: 'What if it rains?', a: 'We sail rain or shine — Indian Ocean rain is usually warm and brief. If conditions are unsafe (high winds, lightning), we postpone or refund in full. Your call.' },
-  { q: 'Do you pick up from the north / east coast?', a: 'Yes — pickup from Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje and Bwejuu is included. Add 30–60 minutes each way to the day.' },
-  { q: 'Is it OK during Ramadan?', a: 'Absolutely — all excursions run as normal. You may notice quieter mornings in town and many cafés closed during the day. Out on the water, life carries on. Be respectful with eating/drinking in public during fasting hours.' },
-  {
-    q: 'Can I combine these with a safari?',
-    a: (
-      <>Yes — most guests do. See our <Link to="/packages">Bush &amp; Beach package</Link> or open the <Link to="/trip-planner">AI Trip Planner</Link> for a custom mainland-and-island itinerary.</>
-    ),
-  },
-  { q: "What's the tipping etiquette?", a: 'Tips are appreciated but never expected. As a guide: $5–10 per guest for a half-day excursion, $10–20 for a full day. Split between guide and crew.' },
-];
+import { useTranslation } from 'react-i18next';
 
 export default function ExcursionsFaq() {
+  const { t } = useTranslation('excursions');
   return (
     <section className="exc-faq reveal">
       <div className="exc-faq__head">
-        <span className="section-eyebrow">Common questions</span>
-        <h2 className="section-title">Before you book</h2>
+        <span className="section-eyebrow">{t('faq.eyebrow')}</span>
+        <h2 className="section-title">{t('faq.title')}</h2>
       </div>
       <div className="exc-faq__list">
-        {FAQS.map((f) => (
-          <details className="exc-faq__item" key={f.q} {...(f.open ? { open: true } : {})}>
-            <summary>{f.q}</summary>
-            <div className="exc-faq__body">{f.a}</div>
-          </details>
-        ))}
+        <details className="exc-faq__item" open>
+          <summary>{t('faq.items.private.q')}</summary>
+          <div className="exc-faq__body">{t('faq.items.private.a')}</div>
+        </details>
+        <details className="exc-faq__item">
+          <summary>{t('faq.items.rain.q')}</summary>
+          <div className="exc-faq__body">{t('faq.items.rain.a')}</div>
+        </details>
+        <details className="exc-faq__item">
+          <summary>{t('faq.items.pickup.q')}</summary>
+          <div className="exc-faq__body">{t('faq.items.pickup.a')}</div>
+        </details>
+        <details className="exc-faq__item">
+          <summary>{t('faq.items.ramadan.q')}</summary>
+          <div className="exc-faq__body">{t('faq.items.ramadan.a')}</div>
+        </details>
+        <details className="exc-faq__item">
+          <summary>{t('faq.items.safari.q')}</summary>
+          <div className="exc-faq__body">
+            {t('faq.items.safari.a_prefix')}
+            <Link to="/packages">{t('faq.items.safari.a_packages_link')}</Link>
+            {t('faq.items.safari.a_middle')}
+            <Link to="/trip-planner">{t('faq.items.safari.a_planner_link')}</Link>
+            {t('faq.items.safari.a_suffix')}
+          </div>
+        </details>
+        <details className="exc-faq__item">
+          <summary>{t('faq.items.tipping.q')}</summary>
+          <div className="exc-faq__body">{t('faq.items.tipping.a')}</div>
+        </details>
       </div>
     </section>
   );

@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import {
   EXCURSION_BATCH_COUNT,
   EXCURSION_FILTERS,
@@ -15,16 +16,19 @@ export default function ExcursionsGrid({
   setVisibleCount,
   hasHiddenExcursions,
 }) {
+  const { t } = useTranslation('excursions');
+  const filterLabel = (cat) => (cat === 'all' ? t('grid.filter_all') : t(`categories.${cat}`, cat));
+  const priceUnit = (sub) => (sub ? t(`price_units.${sub}`, sub) : t('grid.per_person_default'));
   return (
     <section className="exc-grid-wrap" id="list">
       <header className="exc-list__head">
-        <span className="section-eyebrow">Handpicked excursions</span>
-        <h2 className="section-title">Excursions — pick a starting point.</h2>
-        <p className="section-lead">Every card opens into the full day plan, inclusions, pickup details, and booking notes. Filter by what you want from the island.</p>
+        <span className="section-eyebrow">{t('grid.eyebrow')}</span>
+        <h2 className="section-title">{t('grid.title')}</h2>
+        <p className="section-lead">{t('grid.lead')}</p>
       </header>
 
       <div className="exc-filter">
-        <span className="exc-filter__label">Filter by</span>
+        <span className="exc-filter__label">{t('grid.filter_label')}</span>
         {EXCURSION_FILTERS.map((f) => (
           <button
             key={f.cat}
@@ -34,7 +38,7 @@ export default function ExcursionsGrid({
             onClick={() => setFilter(f.cat)}
             aria-pressed={filter === f.cat}
           >
-            {f.label} <span className="exc-filter__count">{f.count}</span>
+            {filterLabel(f.cat)} <span className="exc-filter__count">{f.count}</span>
           </button>
         ))}
       </div>
@@ -46,12 +50,12 @@ export default function ExcursionsGrid({
             to={`/excursions/${e.id}`}
             className="exc-card reveal"
             data-cat={categoryToSlug(e.category)}
-            aria-label={`Explore ${e.title}`}
+            aria-label={t('grid.explore_aria', { title: e.title })}
           >
             <div className={`exc-card__img${e.imageNeeded ? ' exc-card__img--placeholder' : ''}`} data-cat={categoryToSlug(e.category)}>
               <img src={e.image} alt={e.imageNeeded ? '' : e.alt || e.title} loading="lazy" />
-              <span className="exc-card__cat" data-cat={categoryToSlug(e.category)}>{e.category}</span>
-              {e.season && <span className="exc-card__season">Seasonal · {e.season}</span>}
+              <span className="exc-card__cat" data-cat={categoryToSlug(e.category)}>{t(`categories.${e.category}`, e.category)}</span>
+              {e.season && <span className="exc-card__season">{t('grid.season_prefix')} · {e.season}</span>}
             </div>
             <div className="exc-card__body">
               {e.eyebrow && <span className="exc-card__eyebrow">{e.eyebrow}</span>}
@@ -61,7 +65,7 @@ export default function ExcursionsGrid({
                 {e.duration && (
                   <span>
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                    {e.duration}
+                    {t(`durations.${e.duration}`, e.duration)}
                   </span>
                 )}
                 {e.from && (
@@ -73,18 +77,18 @@ export default function ExcursionsGrid({
               </div>
               <div className="exc-card__foot">
                 {typeof e.price === 'number' ? (
-                  <span className="exc-card__price">From <strong>${e.price}</strong>{e.priceSub ? ` ${e.priceSub}` : ' pp'}</span>
+                  <span className="exc-card__price">{t('grid.from')} <strong>${e.price}</strong>{` ${priceUnit(e.priceSub)}`}</span>
                 ) : (
-                  <span className="exc-card__price exc-card__price--tbd">Price on request</span>
+                  <span className="exc-card__price exc-card__price--tbd">{t('grid.price_on_request')}</span>
                 )}
-                <span className="exc-card__cta">Explore →</span>
+                <span className="exc-card__cta">{t('grid.explore_cta')}</span>
               </div>
             </div>
           </Link>
         ))}
       </div>
       {visible.length === 0 && (
-        <p className="exc-grid__empty">No excursions in this category yet — check back soon, or filter by All.</p>
+        <p className="exc-grid__empty">{t('grid.empty')}</p>
       )}
       {filteredExcursions.length > INITIAL_EXCURSION_COUNT && (
         <div className="exc-grid__actions">
@@ -94,7 +98,7 @@ export default function ExcursionsGrid({
               className="btn btn--ghost btn--lg"
               onClick={() => setVisibleCount((count) => Math.min(count + EXCURSION_BATCH_COUNT, filteredExcursions.length))}
             >
-              Show more excursions
+              {t('grid.show_more')}
             </button>
           ) : (
             <button
@@ -105,10 +109,10 @@ export default function ExcursionsGrid({
                 document.getElementById('list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
             >
-              Show fewer excursions
+              {t('grid.show_fewer')}
             </button>
           )}
-          <span>{Math.min(visibleCount, filteredExcursions.length)} of {filteredExcursions.length} shown</span>
+          <span>{t('grid.showing_count', { visible: Math.min(visibleCount, filteredExcursions.length), total: filteredExcursions.length })}</span>
         </div>
       )}
     </section>

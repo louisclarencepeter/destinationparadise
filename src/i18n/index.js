@@ -6,10 +6,12 @@ import enCommon from '../locales/en/common.json';
 import enNav from '../locales/en/nav.json';
 import enFooter from '../locales/en/footer.json';
 import enHome from '../locales/en/home.json';
+import enExcursions from '../locales/en/excursions.json';
 import plCommon from '../locales/pl/common.json';
 import plNav from '../locales/pl/nav.json';
 import plFooter from '../locales/pl/footer.json';
 import plHome from '../locales/pl/home.json';
+import plExcursions from '../locales/pl/excursions.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'pl'];
 export const DEFAULT_LANGUAGE = 'en';
@@ -20,12 +22,12 @@ i18n
   .use(initReactI18next)
   .init({
     resources: {
-      en: { common: enCommon, nav: enNav, footer: enFooter, home: enHome },
-      pl: { common: plCommon, nav: plNav, footer: plFooter, home: plHome },
+      en: { common: enCommon, nav: enNav, footer: enFooter, home: enHome, excursions: enExcursions },
+      pl: { common: plCommon, nav: plNav, footer: plFooter, home: plHome, excursions: plExcursions },
     },
     fallbackLng: DEFAULT_LANGUAGE,
     supportedLngs: SUPPORTED_LANGUAGES,
-    ns: ['common', 'nav', 'footer', 'home'],
+    ns: ['common', 'nav', 'footer', 'home', 'excursions'],
     defaultNS: 'common',
     detection: {
       order: ['localStorage', 'navigator'],
