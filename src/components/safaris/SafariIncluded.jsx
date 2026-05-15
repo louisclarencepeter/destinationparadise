@@ -1,16 +1,18 @@
-import { INCLUDED_LIST } from '../../data/safariPageData.js';
+import { useTranslation } from 'react-i18next';
 
 export default function SafariIncluded() {
+  const { t } = useTranslation('safaris');
+  const items = t('included.items', { returnObjects: true });
   return (
     <section className="included reveal">
       <div className="included__wrap">
         <div className="included__copy">
-          <span className="section-eyebrow">What’s included</span>
-          <h2 className="section-title">One price. Nothing surprise-charged.</h2>
-          <p className="section-lead">We learnt a long time ago that "from $X" with twelve add-ons makes guests miserable. Our quotes include everything below.</p>
+          <span className="section-eyebrow">{t('included.eyebrow')}</span>
+          <h2 className="section-title">{t('included.title')}</h2>
+          <p className="section-lead">{t('included.lead')}</p>
         </div>
         <ul className="included__list">
-          {INCLUDED_LIST.map((item) => (
+          {items.map((item) => (
             <li key={item}><span>✓</span> {item}</li>
           ))}
         </ul>

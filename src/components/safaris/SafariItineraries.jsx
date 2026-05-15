@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { INITIAL_SAFARI_COUNT, SAFARI_BATCH_COUNT } from '../../data/safarisPageContent.js';
 
 export default function SafariItineraries({
@@ -11,16 +12,19 @@ export default function SafariItineraries({
   visibleCount,
   visibleSafaris,
 }) {
+  const { t } = useTranslation('safaris');
+  const filterLabel = (item) => t(`filters.${item.key}`, item.label);
+  const priceUnit = (sub) => (sub ? t(`price_units.${sub}`, sub) : '');
   return (
     <section className="itineraries reveal" id="itineraries">
       <header className="itineraries__head">
-        <span className="section-eyebrow">Suggested routes</span>
-        <h2 className="section-title">Safaris — pick a starting point.</h2>
-        <p className="section-lead">Every card opens into the full route or specialty experience, inclusions, and booking details. Tell us your dates and we’ll re-plot the camps and flights around you.</p>
+        <span className="section-eyebrow">{t('itineraries.eyebrow')}</span>
+        <h2 className="section-title">{t('itineraries.title')}</h2>
+        <p className="section-lead">{t('itineraries.lead')}</p>
       </header>
 
       <div className="exc-filter saf-filter">
-        <span className="exc-filter__label">Filter by</span>
+        <span className="exc-filter__label">{t('itineraries.filter_label')}</span>
         {safariFilters.map((item) => (
           <button
             key={item.key}
@@ -29,7 +33,7 @@ export default function SafariItineraries({
             onClick={() => setFilter(item.key)}
             aria-pressed={filter === item.key}
           >
-            {item.label} <span className="exc-filter__count">{item.count}</span>
+            {filterLabel(item)} <span className="exc-filter__count">{item.count}</span>
           </button>
         ))}
       </div>
@@ -40,12 +44,12 @@ export default function SafariItineraries({
             key={itinerary.id}
             to={`/safaris/${itinerary.id}`}
             className="exc-card saf-route-card reveal"
-            aria-label={`Explore ${itinerary.title}`}
+            aria-label={t('itineraries.explore_aria', { title: itinerary.title })}
           >
             <div className="exc-card__img">
               <img src={itinerary.image} alt={itinerary.alt || itinerary.title} loading="lazy" />
-              <span className="exc-card__cat">{itinerary.category}</span>
-              {itinerary.feature && <span className="exc-card__season">Most popular</span>}
+              <span className="exc-card__cat">{t(`categories.${itinerary.category}`, itinerary.category)}</span>
+              {itinerary.feature && <span className="exc-card__season">{t('itineraries.most_popular')}</span>}
               {itinerary.productType && <span className="exc-card__season">{itinerary.productType}</span>}
             </div>
             <div className="exc-card__body">
@@ -63,15 +67,15 @@ export default function SafariItineraries({
                 </span>
               </div>
               <div className="exc-card__foot">
-                <span className="exc-card__price">From <strong>${itinerary.price.toLocaleString()}</strong> {itinerary.priceSub}</span>
-                <span className="exc-card__cta">Explore →</span>
+                <span className="exc-card__price">{t('itineraries.card.from')} <strong>${itinerary.price.toLocaleString()}</strong> {priceUnit(itinerary.priceSub)}</span>
+                <span className="exc-card__cta">{t('itineraries.card.explore_cta')}</span>
               </div>
             </div>
           </Link>
         ))}
       </div>
       {visibleSafaris.length === 0 && (
-        <p className="exc-grid__empty">No safaris in this filter yet. Try All.</p>
+        <p className="exc-grid__empty">{t('itineraries.empty')}</p>
       )}
       {filteredSafaris.length > INITIAL_SAFARI_COUNT && (
         <div className="exc-grid__actions">
@@ -81,7 +85,7 @@ export default function SafariItineraries({
               className="btn btn--ghost btn--lg"
               onClick={() => setVisibleCount((count) => Math.min(count + SAFARI_BATCH_COUNT, filteredSafaris.length))}
             >
-              Show more safaris
+              {t('itineraries.show_more')}
             </button>
           ) : (
             <button
@@ -92,10 +96,10 @@ export default function SafariItineraries({
                 document.getElementById('itineraries')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
               }}
             >
-              Show fewer safaris
+              {t('itineraries.show_fewer')}
             </button>
           )}
-          <span>{Math.min(visibleCount, filteredSafaris.length)} of {filteredSafaris.length} shown</span>
+          <span>{t('itineraries.showing_count', { visible: Math.min(visibleCount, filteredSafaris.length), total: filteredSafaris.length })}</span>
         </div>
       )}
     </section>

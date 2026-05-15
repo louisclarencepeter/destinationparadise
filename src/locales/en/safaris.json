@@ -1,0 +1,347 @@
+{
+  "hero": {
+    "eyebrow": "Mainland Tanzania · the heart of what we do",
+    "title_prefix": "Where the wild things",
+    "title_em": "still",
+    "title_suffix": "are.",
+    "lead": "From the Serengeti's rolling plains to the Ngorongoro Crater's lost world, we run small-group safaris with the rangers, pilots, and lodge owners we've known for years. No bus tours. No half-truths. Just the bush, well done.",
+    "browse_all": "Browse all safaris",
+    "plan_ai": "Plan with AI →",
+    "stat_safaris": "Safaris",
+    "stat_wildebeest": "Wildebeest",
+    "stat_from": "From, per person",
+    "stat_circuits": "Safari circuits"
+  },
+  "intro": {
+    "eyebrow": "Our approach",
+    "title": "Tanzania-bred guides who know the bush — and the islands.",
+    "lead": "We run the northern circuit — Serengeti, Ngorongoro, Tarangire — with bush flights so you spend more time on game drives and less in a Land Cruiser. Pair with a few days on Zanzibar's coast, or stay pure bush. Every camp is hand-picked. Every guide is Silver-level certified or higher.",
+    "bullets": {
+      "vehicles_title": "Small vehicles",
+      "vehicles_text": "Max 4 guests per Land Cruiser, every seat a window seat. No mini-buses.",
+      "flights_title": "Bush flights",
+      "flights_text": "Skip the 8-hour drive. Cessnas connect parks in under an hour.",
+      "fees_title": "Conservation fees built in",
+      "fees_text": "Park fees, ranger fees, community levies — never tacked on later."
+    }
+  },
+  "types": {
+    "eyebrow": "Ways to travel",
+    "title": "Different safari styles for different travellers.",
+    "lead": "From classic game drives and fly-in circuits to walking, boat, family, and bush-beach combinations — we tailor each route to your travel style.",
+    "modes": {
+      "dedicated_tag": "Dedicated safari",
+      "dedicated_text": "Safari-only booking: arrive in Arusha and we'll pick you up for the northern or southern circuit.",
+      "last_minute_tag": "Last-minute",
+      "last_minute_text": "Already on Zanzibar? We can run 1 day, 1 night, 2 nights, or longer safari options — fast.",
+      "package_tag": "In a package",
+      "package_text": "Combined with hotels and excursions in one seamless itinerary."
+    },
+    "card": {
+      "explore_aria": "Explore {{title}}",
+      "best_for": "Best for: {{audience}}",
+      "explore_cta": "Explore →"
+    },
+    "items": {
+      "classic-game-drive": {
+        "title": "Classic game-drive safaris",
+        "desc": "Private or small-group Land Cruiser drives across Serengeti, Ngorongoro, Tarangire, and Lake Manyara with expert local guides.",
+        "best_for": "First-time safari travellers"
+      },
+      "fly-in": {
+        "title": "Fly-in safaris",
+        "desc": "Skip long road transfers and connect key parks by bush flight from Zanzibar, Arusha, or Dar es Salaam.",
+        "best_for": "Limited time, maximum game time"
+      },
+      "walking": {
+        "title": "Walking safaris",
+        "desc": "Guided bush walks with armed rangers in wilderness areas like Nyerere and Ruaha for a close-to-nature experience.",
+        "best_for": "Adventure and tracking lovers"
+      },
+      "boat": {
+        "title": "Boat safaris",
+        "desc": "River and lake safaris in Nyerere (Selous) and western circuits where wildlife is viewed from the water.",
+        "best_for": "Unique wildlife angles and birding"
+      },
+      "family": {
+        "title": "Family safaris",
+        "desc": "Family-friendly itineraries with shorter drives, flexible pacing, and lodges suited for children and multi-gen travel.",
+        "best_for": "Families with kids"
+      },
+      "luxury-lodge-tented": {
+        "title": "Luxury lodge & tented safaris",
+        "desc": "High-comfort stays, premium camps, and curated service while staying close to migration routes and big-cat territory.",
+        "best_for": "Honeymoons and premium trips"
+      },
+      "budget-camping": {
+        "title": "Budget camping safaris",
+        "desc": "Value-focused routes using well-run camps and essential comforts without compromising guiding quality.",
+        "best_for": "Backpackers and budget-conscious travellers"
+      },
+      "bush-beach": {
+        "title": "Bush + beach combinations",
+        "desc": "Seamless Tanzania mainland safari paired with Zanzibar beach stays, with all flights and transfers coordinated.",
+        "best_for": "Safari + relaxation in one trip"
+      }
+    }
+  },
+  "parks": {
+    "eyebrow": "The Northern Circuit & beyond",
+    "title": "Five parks. Each its own world.",
+    "items": {
+      "serengeti": {
+        "name": "Serengeti National Park",
+        "blurb": "The endless plains. Home to the great migration — 1.5 million wildebeest and 250,000 zebra moving in lockstep with the rains.",
+        "tags": ["Migration", "Big Five", "Hot-air balloon"]
+      },
+      "ngorongoro": {
+        "name": "Ngorongoro Crater",
+        "blurb": "A collapsed volcano, now a self-contained ecosystem with the densest concentration of predators in Africa. Black rhino still roam.",
+        "tags": ["Black rhino", "Big Five", "Crater rim lodges"]
+      },
+      "tarangire": {
+        "name": "Tarangire National Park",
+        "blurb": "Elephant capital. Ancient baobabs and a year-round river that draws giant herds in the dry season. Wildly underrated.",
+        "tags": ["Elephants", "Baobabs", "Quiet roads"]
+      },
+      "nyerere": {
+        "name": "Nyerere (Selous)",
+        "blurb": "Africa's largest game reserve. Boat safaris on the Rufiji, walking with armed rangers, fly-camping under impossible stars.",
+        "tags": ["Boat safari", "Walking safari", "Wild dog"]
+      },
+      "manyara": {
+        "name": "Lake Manyara",
+        "blurb": "Tree-climbing lions, alkaline flats stained pink with flamingos, and one of East Africa's great birding spots — 400+ species.",
+        "tags": ["Tree-climbing lions", "Flamingos", "Birding"]
+      }
+    }
+  },
+  "seasons": {
+    "eyebrow": "When to go",
+    "title": "There's no bad time. Just different ones.",
+    "items": {
+      "peak": {
+        "title": "Dry & classic",
+        "blurb": "Animals cluster at waterholes. The Mara River crossings happen July–September. Cool, golden grass, picture-postcard. Books out 6+ months ahead."
+      },
+      "good": {
+        "title": "Calving season",
+        "blurb": "Wildebeest drop half a million calves on the southern Serengeti plains in February. Predator action peaks. Hot, but lush. Quieter parks."
+      },
+      "shoulder": {
+        "title": "Green & cheap",
+        "blurb": "Short rains. Skies are dramatic, parks empty, prices drop 20–30%. Birding peaks in November. Some bush roads can muddy."
+      },
+      "avoid": {
+        "title": "Long rains",
+        "blurb": "Many camps close. Roads flood. Bargain-hunters only — and even then, we usually steer guests elsewhere this season."
+      }
+    }
+  },
+  "wildlife": {
+    "eyebrow": "From our last season",
+    "title": "What you might see.",
+    "lead": "Real photos from real game drives, taken by our guides this past season — Ngorongoro and Serengeti, mostly. No stock library.",
+    "categories": {
+      "cats": {
+        "title": "Big cats",
+        "sub": "Predators",
+        "tiles": {
+          "male-lion-in-grass.webp": { "alt": "Male lion lying in grass", "cap": "Male lion · Ngorongoro Crater" },
+          "serval-in-grass.webp": { "alt": "Serval cat in grass", "cap": "Serval · rare daylight sighting" },
+          "lion-cub-in-grass.webp": { "alt": "Lion cub in grass", "cap": "Cub · ten weeks old" },
+          "lioness-and-cub-resting.webp": { "alt": "Lioness with cub resting", "cap": "Lioness & cub · evening rest" }
+        }
+      },
+      "ungulates": {
+        "title": "Hooved giants",
+        "sub": "The grazers",
+        "tiles": {
+          "zebra-mare-and-foal.webp": { "alt": "Zebra mare and foal", "cap": "Zebra · mare and foal" },
+          "zebra-herd-on-track.webp": { "alt": "Zebra herd on track", "cap": "The herd, deciding" },
+          "wildebeest-grazing.webp": { "alt": "Blue wildebeest grazing", "cap": "Blue wildebeest" },
+          "eland-grazing.webp": { "alt": "Eland grazing", "cap": "Eland · the largest antelope" },
+          "eland-herd-plains.webp": { "alt": "Eland herd", "cap": "Eland herd · Ngorongoro" },
+          "warthog-on-plains.webp": { "alt": "Warthog", "cap": "Warthog · Pumbaa, in person" }
+        }
+      },
+      "heavy": {
+        "title": "Heavyweights",
+        "sub": "Big & rare",
+        "tiles": {
+          "buffalo-herd-close.webp": { "alt": "Cape buffalo herd close-up", "cap": "Cape buffalo · the dagga boys" },
+          "buffalo-and-egret.webp": { "alt": "Buffalo with cattle egret", "cap": "Buffalo & egret · partners" },
+          "rhino-on-plains.webp": { "alt": "Black rhino on plains", "cap": "Black rhino · <30 left in the crater" }
+        }
+      },
+      "birds": {
+        "title": "Birds",
+        "sub": "400+ species",
+        "tiles": {
+          "crowned-crane-close.webp": { "alt": "Grey crowned crane close-up", "cap": "Grey crowned crane" },
+          "crowned-cranes-in-grass.webp": { "alt": "Pair of crowned cranes", "cap": "The pair · always two" },
+          "yellow-weaver-on-rail.webp": { "alt": "Yellow weaver on rail", "cap": "Speke's weaver · lodge regular" },
+          "raptor-on-log.webp": { "alt": "Lanner falcon on rock", "cap": "Lanner falcon · with prey" }
+        }
+      }
+    }
+  },
+  "compare": {
+    "eyebrow": "Not sure yet?",
+    "title": "Choose by what you want most.",
+    "lead": "Most guests do not know the park names yet. Start with the outcome, then open the route that fits.",
+    "explore_aria": "Explore {{pick}}",
+    "items": {
+      "tarangire-day-trip": {
+        "label": "Best quick taste",
+        "pick": "Tarangire Express Day Safari",
+        "note": "Lowest commitment, real mainland wildlife in one day."
+      },
+      "ngorongoro-overnight": {
+        "label": "Best short safari",
+        "pick": "Ngorongoro Overnight",
+        "note": "One night, high wildlife density, crater at first light."
+      },
+      "ngorongoro-tarangire": {
+        "label": "Best first-timer route",
+        "pick": "Ngorongoro & Tarangire",
+        "note": "Classic Big Five scenery plus elephants and baobabs."
+      },
+      "serengeti-migration": {
+        "label": "Best migration focus",
+        "pick": "Serengeti Migration",
+        "note": "For river-crossing season and big open-plains drama."
+      },
+      "nyerere-selous": {
+        "label": "Best remote wilderness",
+        "pick": "Nyerere, Ruaha, Katavi",
+        "note": "Fewer vehicles, wilder camps, stronger adventure feel."
+      },
+      "mahale-chimp": {
+        "label": "Best premium add-on",
+        "pick": "Mahale Chimp & Lake Tanganyika",
+        "note": "Rare chimp trekking with a lakefront finish."
+      }
+    }
+  },
+  "steps": {
+    "eyebrow": "How booking works",
+    "title": "Three steps from idea to confirmed safari.",
+    "items": {
+      "01": { "title": "Choose a route", "text": "Start with a card, or send your dates and we'll recommend the best safari for your budget." },
+      "02": { "title": "We price the real trip", "text": "We check flights, camp availability, park fees, and seasonality before sending the final quote." },
+      "03": { "title": "Deposit confirms it", "text": "Your deposit locks the flights, guide, camps, and transfers. The rest is paid before travel." }
+    }
+  },
+  "included": {
+    "eyebrow": "What's included",
+    "title": "One price. Nothing surprise-charged.",
+    "lead": "We learnt a long time ago that \"from $X\" with twelve add-ons makes guests miserable. Our quotes include everything below.",
+    "items": [
+      "Bush flights between parks (Cessna)",
+      "All park & conservation fees",
+      "Silver-level certified guide",
+      "Full board at every camp",
+      "Sundowners & bush picnics",
+      "Airport pickups in Zanzibar & Arusha",
+      "Bottled water & drinks at lodge",
+      "24/7 concierge on WhatsApp"
+    ]
+  },
+  "cta": {
+    "title": "Ready to plan?",
+    "text": "Tell us when you're free, who's coming, and what you're hoping for. We'll come back within 24 hours with a real itinerary and a real price.",
+    "get_quote": "Get a quote →",
+    "ai_planner": "Or chat with our AI planner"
+  },
+  "faq": {
+    "eyebrow": "FAQs",
+    "title": "The questions everyone asks.",
+    "items": {
+      "days": {
+        "q": "How many days do I need on safari?",
+        "a": "Three nights is the absolute minimum and only worth it if you fly between parks. Five nights is the sweet spot. Anything over seven and you'll start to crave the beach — which is why most guests pair safari with Zanzibar."
+      },
+      "kids": {
+        "q": "Is it safe to bring kids?",
+        "a": "Yes — most camps welcome children 7+. We pick \"family\" lodges with pools and flexible game drives. For kids under 7, we suggest Tarangire (shorter drives, big elephant sightings) over Serengeti."
+      },
+      "malaria": {
+        "q": "What about malaria?",
+        "a": "Tanzania is a malaria area. Speak to your travel doctor about prophylaxis. Camps provide repellent, mosquito nets, and most have screened tents."
+      },
+      "big_five": {
+        "q": "Big Five — guaranteed?",
+        "a": "In the Ngorongoro Crater, you'll usually tick four of five in a single day. Leopard is the wildcard — sometimes the same morning, sometimes never. We don't promise sightings; the bush isn't a zoo. We do promise we'll work hard to find them."
+      },
+      "camera": {
+        "q": "What kind of camera should I bring?",
+        "a": "A 200mm zoom minimum if you want frame-fillers. Most of our guests now shoot phones with a small clip-on telephoto and they do great. Bring a dust-blower — every camp's nightmare is sand on the sensor."
+      },
+      "extend": {
+        "q": "Can I extend with Zanzibar?",
+        "a_prefix": "Yes — and you should. We design every safari to flow into a beach stay. See our ",
+        "a_link": "Bush & Beach package",
+        "a_suffix": " for a 10-night example."
+      }
+    }
+  },
+  "itineraries": {
+    "eyebrow": "Suggested routes",
+    "title": "Safaris — pick a starting point.",
+    "lead": "Every card opens into the full route or specialty experience, inclusions, and booking details. Tell us your dates and we'll re-plot the camps and flights around you.",
+    "filter_label": "Filter by",
+    "explore_aria": "Explore {{title}}",
+    "most_popular": "Most popular",
+    "card": {
+      "from": "From",
+      "pp": "pp",
+      "explore_cta": "Explore →"
+    },
+    "empty": "No safaris in this filter yet. Try All.",
+    "show_more": "Show more safaris",
+    "show_fewer": "Show fewer safaris",
+    "showing_count": "{{visible}} of {{total}} shown"
+  },
+  "filters": {
+    "all": "All",
+    "classic": "Classic routes",
+    "southern": "Southern parks",
+    "western": "Western & remote",
+    "short": "1-3 day trips",
+    "culture": "Culture & nature",
+    "luxury": "Luxury & private",
+    "special": "Special interests",
+    "combo": "Bush & beach"
+  },
+  "categories": {
+    "Northern Circuit": "Northern Circuit",
+    "Migration Safari": "Migration Safari",
+    "Southern Circuit": "Southern Circuit",
+    "Western Circuit": "Western Circuit",
+    "Last-minute Safari": "Last-minute Safari",
+    "Day Safari": "Day Safari",
+    "Nature & Adventure": "Nature & Adventure",
+    "History & Safari": "History & Safari",
+    "Culture": "Culture",
+    "Nature & Culture": "Nature & Culture",
+    "Mountain Adventure": "Mountain Adventure",
+    "Luxury": "Luxury",
+    "Photography": "Photography",
+    "Luxury & Wellness": "Luxury & Wellness",
+    "Family": "Family",
+    "Quick Safari": "Quick Safari",
+    "Beach & Safari": "Beach & Safari",
+    "Hiking & Nature": "Hiking & Nature",
+    "Ultra Luxury": "Ultra Luxury",
+    "Wildlife": "Wildlife",
+    "Birding": "Birding",
+    "Adventure": "Adventure",
+    "Migration": "Migration",
+    "Combo": "Combo",
+    "Multi Country": "Multi Country"
+  },
+  "price_units": {
+    "pp": "pp"
+  }
+}
