@@ -12,7 +12,11 @@ export default function SafariHero({ safariCount, minSafariPrice }) {
       </div>
       <div className="saf-hero__inner">
         <span className="saf-hero__eyebrow">{t('hero.eyebrow')}</span>
-        <h1 className="saf-hero__title">{t('hero.title_prefix')} <em>{t('hero.title_em')}</em> {t('hero.title_suffix')}</h1>
+        <h1 className="saf-hero__title">
+          {t('hero.title_prefix')}{' '}
+          <em>{t('hero.title_em')}</em>{' '}
+          <span className="saf-hero__title-tail">{t('hero.title_suffix')}</span>
+        </h1>
         <p className="saf-hero__lead">
           {t('hero.lead')}
         </p>

@@ -353,6 +353,22 @@
       "thunderstorm": "Możliwe burze: najlepiej zaplanować czas pod dachem, spokojniejszy lunch albo spa."
     }
   },
+  "about": {
+    "eyebrow": "O nas",
+    "image_alt": "Korony żurawi w wysokiej trawie o świcie",
+    "signature_role": "Zanzibar i Tanzania · Zrodzone z marzenia",
+    "title_prefix": "Wizja, która",
+    "title_em": "wreszcie",
+    "title_suffix": "rusza w pierwszą podróż.",
+    "lead": "Destination Paradise narodziło się z marzenia — by łączyć ludzi z pięknem, kulturą i duchem Tanzanii. Po latach przygotowań oficjalnie startujemy z Ungui na Zanzibarze.",
+    "highlights": [
+      { "value": "Teraz", "label": "Unguja", "em": true },
+      { "value": "Teraz", "label": "Kontynent", "em": true },
+      { "value": "Wkrótce", "label": "Pemba" },
+      { "value": "Wkrótce", "label": "Mafia Island" }
+    ],
+    "cta": "Poznaj naszą historię"
+  },
   "contact": {
     "eyebrow": "Kontakt",
     "title": "Napisz do nas",

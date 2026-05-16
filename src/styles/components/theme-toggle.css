@@ -1,0 +1,52 @@
+/* ------------ THEME TOGGLE ------------
+   Single circular button with two stacked SVGs.
+   Visibility crossfades based on html[data-theme]. */
+
+.theme-toggle {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: color-mix(in srgb, var(--surface-raised) 88%, transparent);
+  color: var(--text);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+  transition: color .25s ease, border-color .25s ease, background .25s ease, transform .35s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--dp-accent);
+  border-color: color-mix(in srgb, var(--dp-accent) 38%, var(--border));
+  background: color-mix(in srgb, var(--dp-accent) 8%, var(--surface-raised));
+  transform: rotate(15deg);
+}
+
+.theme-toggle:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--dp-accent) 60%, transparent);
+  outline-offset: 2px;
+}
+
+.theme-toggle__sun,
+.theme-toggle__moon {
+  position: absolute;
+  transition: opacity .25s ease, transform .35s ease;
+}
+
+/* Light mode → show moon (clicking goes dark) */
+html[data-theme="light"] .theme-toggle__sun  { opacity: 0; transform: rotate(-90deg) scale(.6); }
+html[data-theme="light"] .theme-toggle__moon { opacity: 1; transform: rotate(0) scale(1); }
+
+/* Dark mode → show sun (clicking goes light) */
+html[data-theme="dark"]  .theme-toggle__sun  { opacity: 1; transform: rotate(0) scale(1); }
+html[data-theme="dark"]  .theme-toggle__moon { opacity: 0; transform: rotate(90deg) scale(.6); }
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-toggle__sun,
+  .theme-toggle__moon { transition: opacity .15s ease; transform: none; }
+  .theme-toggle:hover { transform: none; }
+}

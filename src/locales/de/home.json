@@ -337,21 +337,37 @@
       "low_text": "Regenzeit (Mär–Mai, Nov). Beste Deals; einige Hotels schließen im Apr–Mai."
     },
     "descriptions": {
-      "default": "Mostly sunny with a soft Indian Ocean breeze. The long rains are easing — mornings are clear, and the reef visibility holds through early afternoon.",
-      "clear_night": "Clear night over the channel — warm air, gentle breeze off the reef.",
-      "clear_day": "Clear skies and steady Indian Ocean breeze — ideal beach and snorkeling conditions.",
-      "mostly_sunny_day": "Mostly sunny with high cloud — reef visibility holds through the afternoon.",
-      "mostly_clear_night": "Mostly clear night with high cloud — warm and calm.",
-      "partly_cloudy_day": "Partly cloudy with warm trade winds — comfortable beach and dhow conditions.",
-      "partly_cloudy_night": "Partly cloudy night — soft trade winds and warm air.",
-      "overcast_day": "Overcast but warm — good light for island walks, spice farms, and culture stops.",
-      "overcast_night": "Overcast and warm tonight — calm seas expected by morning.",
-      "fog": "Coastal fog easing through the morning — clearer by midday.",
-      "drizzle": "Light drizzle drifting in from the channel — short, warm, and passing.",
-      "rain_long": "Rain showers passing through — typical of the long rains, mornings often clear.",
-      "tropical_showers": "Tropical showers between sunny spells — bring a light layer.",
-      "thunderstorm": "Thunderstorms expected — best to plan indoor time, a slower lunch, or a spa stop."
+      "default": "Meist sonnig mit einer sanften Brise vom Indischen Ozean. Die langen Regenfälle lassen nach — die Morgen sind klar und die Riffsicht hält bis in den frühen Nachmittag.",
+      "clear_night": "Klare Nacht über dem Kanal — warme Luft, leichte Brise vom Riff.",
+      "clear_day": "Klarer Himmel und stetige Brise vom Indischen Ozean — ideale Bedingungen für Strand und Schnorcheln.",
+      "mostly_sunny_day": "Meist sonnig mit hohen Wolken — die Riffsicht hält den Nachmittag über.",
+      "mostly_clear_night": "Größtenteils klare Nacht mit hohen Wolken — warm und ruhig.",
+      "partly_cloudy_day": "Teilweise bewölkt mit warmen Passatwinden — angenehme Bedingungen für Strand und Dhau.",
+      "partly_cloudy_night": "Teilweise bewölkte Nacht — sanfte Passatwinde und warme Luft.",
+      "overcast_day": "Bedeckt, aber warm — gutes Licht für Inselspaziergänge, Gewürzfarmen und Kulturstopps.",
+      "overcast_night": "Bedeckt und warm heute Nacht — ruhige See wird zum Morgen erwartet.",
+      "fog": "Küstennebel lockert sich im Laufe des Morgens — bis Mittag klarer.",
+      "drizzle": "Leichter Nieselregen zieht vom Kanal her — kurz, warm und vorübergehend.",
+      "rain_long": "Regenschauer ziehen durch — typisch für die langen Regenfälle, Morgen sind oft klar.",
+      "tropical_showers": "Tropische Schauer zwischen sonnigen Abschnitten — leichte Jacke mitnehmen.",
+      "thunderstorm": "Gewitter erwartet — am besten Zeit drinnen einplanen, ein längeres Mittagessen oder einen Spa-Stopp."
     }
+  },
+  "about": {
+    "eyebrow": "Über uns",
+    "image_alt": "Kronenkraniche im hohen Gras bei Sonnenaufgang",
+    "signature_role": "Sansibar & Tansania · Aus einem Traum geboren",
+    "title_prefix": "Eine Vision,",
+    "title_em": "endlich",
+    "title_suffix": "auf ihrer ersten Reise.",
+    "lead": "Destination Paradise wurde aus einem Traum geboren — Menschen mit der Schönheit, Kultur und Seele Tansanias zu verbinden. Nach Jahren der Vorbereitung starten wir offiziell auf Unguja, Sansibar.",
+    "highlights": [
+      { "value": "Jetzt", "label": "Unguja", "em": true },
+      { "value": "Jetzt", "label": "Festland", "em": true },
+      { "value": "Bald", "label": "Pemba" },
+      { "value": "Bald", "label": "Mafia Island" }
+    ],
+    "cta": "Unsere Geschichte lesen"
   },
   "contact": {
     "eyebrow": "Kontakt",

@@ -11,23 +11,6 @@ export const WhatsAppIcon = ({ size = 20 }) => (
   </svg>
 );
 
-const ThemeIcon = ({ theme }) => (
-  theme === 'dark' ? (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="12" r="4" />
-      <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
-    </svg>
-  ) : (
-    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-    </svg>
-  )
-);
-
-const THEME_MODES = [
-  { mode: 'light', labelKey: 'theme.light_label', ariaKey: 'theme.light_aria' },
-  { mode: 'dark', labelKey: 'theme.dark_label', ariaKey: 'theme.dark_aria' },
-];
 
 const FOOTER_ICONS = {
   home: ['M3 10.5 12 3l9 7.5', 'M5 9.5V21h5v-6h4v6h5V9.5'],
@@ -221,7 +204,7 @@ function TypedTagline() {
   );
 }
 
-export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThemeModeChange }) {
+export default function SiteFooter() {
   const { t } = useTranslation('footer');
   return (
     <footer className="footer">
@@ -272,28 +255,6 @@ export default function SiteFooter({ theme = 'light', themeMode = 'auto', onThem
             <li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer"><FooterIcon name="message" />{t('columns.contact.whatsapp_link')}</a></li>
             <li><Link to="/transfers"><FooterIcon name="plane" />{t('columns.contact.transfers')}</Link></li>
           </ul>
-        </div>
-      </div>
-      <div className="footer__theme-row">
-        <div className="footer__theme-toggle" role="radiogroup" aria-label={t('theme.group_label')}>
-          {THEME_MODES.map((option) => {
-            const isActive = themeMode === 'auto' ? theme === option.mode : themeMode === option.mode;
-
-            return (
-              <button
-                key={option.mode}
-                className={`footer__theme-option${isActive ? ' is-active' : ''}`}
-                type="button"
-                role="radio"
-                aria-checked={isActive}
-                aria-label={t(option.ariaKey)}
-                onClick={() => onThemeModeChange?.(option.mode)}
-              >
-                <ThemeIcon theme={option.mode} />
-                <span>{t(option.labelKey)}</span>
-              </button>
-            );
-          })}
         </div>
       </div>
       <div className="footer__bottom">

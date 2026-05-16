@@ -20,7 +20,9 @@ export default function TransfersHero() {
       <div className="tr-hero__inner">
         <span className="tr-hero__eyebrow">{t('hero.eyebrow')}</span>
         <h1 className="tr-hero__title">
-          {t('hero.title_prefix')} <em>{t('hero.title_em')}</em> {t('hero.title_suffix')}
+          {t('hero.title_prefix')}{' '}
+          <em className="tr-hero__title-em">{t('hero.title_em')}</em>{' '}
+          <span className="tr-hero__title-tail">{t('hero.title_suffix')}</span>
         </h1>
         <p className="tr-hero__lead">{t('hero.lead')}</p>
         <div className="tr-hero__cta">

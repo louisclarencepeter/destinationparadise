@@ -54,13 +54,14 @@
 }
 .ab-hero__title {
   font-family: var(--dp-font-display);
-  font-size: clamp(2.75rem, 6.5vw, 5.25rem);
-  line-height: 1.02;
+  font-size: clamp(2.25rem, 5.4vw, 4.4rem);
+  line-height: 1.05;
   font-weight: 500;
   letter-spacing: -.015em;
   margin: 0;
   color: #fff;
-  max-width: 22ch;
+  max-width: 100%;
+  text-wrap: balance;
   animation: fadeInUp 1s var(--dp-ease-out) both;
   animation-delay: .1s;
 }
@@ -98,11 +99,14 @@
   color: rgba(245,241,232,.7); font-weight: 600;
 }
 .ab-hero__sig-role strong { color: #F5F1E8; display: block; font-weight: 600; margin-bottom: 3px; letter-spacing: .14em; }
+/* Suffix is a regular trailing phrase (no em-dash), so we let it wrap with
+   the rest of the title and rely on text-wrap: balance for the line break. */
+.ab-hero__title-tail { white-space: normal; }
 .ab-hero__stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-  max-width: 640px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem 1.5rem;
+  max-width: 880px;
   width: 100%;
   padding-top: clamp(.9rem, 1.7vh, 1.3rem);
   border-top: 1px solid rgba(255,255,255,.18);
@@ -110,16 +114,32 @@
   animation: fadeInUp 1s var(--dp-ease-out) both;
   animation-delay: .7s;
 }
-.ab-hero__stats div { display: flex; flex-direction: column; gap: 4px; text-align: center; align-items: center; }
+.ab-hero__stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: center;
+  align-items: center;
+  min-width: 0;
+}
 .ab-hero__stats strong {
   font-family: var(--dp-font-display);
-  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+  font-size: clamp(1.35rem, 2.1vw, 2rem);
   font-weight: 500;
-  line-height: 1;
+  line-height: 1.05;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .ab-hero__stats strong em { font-style: italic; color: var(--dp-accent, #FF6F61); font-weight: 400; }
 .ab-hero__stats span {
   font-family: var(--dp-font-sans);
-  font-size: 11px; letter-spacing: .12em; text-transform: uppercase; opacity: .65;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .65;
+  line-height: 1.35;
+  text-wrap: balance;
 }
 

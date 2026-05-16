@@ -8,6 +8,7 @@ import './i18n/index.js';
 import './styles/tokens.css';
 import './styles/site-shell.css';
 import './styles/components/lang-switcher.css';
+import './styles/components/theme-toggle.css';
 
 applyTheme(readStoredTheme());
 

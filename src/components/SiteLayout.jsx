@@ -94,11 +94,11 @@ export default function SiteLayout() {
 
   return (
     <>
-      <SiteNav />
+      <SiteNav theme={theme} themeMode={mode} onThemeModeChange={setThemeMode} />
       <div className="site-main">
         <Outlet />
       </div>
-      <SiteFooter theme={theme} themeMode={mode} onThemeModeChange={setThemeMode} />
+      <SiteFooter />
       <PageScrollCue />
       <WhatsAppFab locationKey={`${location.pathname}${location.hash}`} />
       <FloatingBackButton />

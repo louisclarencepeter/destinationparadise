@@ -6,6 +6,7 @@ import { EXCURSIONS } from '../data/excursionsData.js';
 import { DESTINATION_MAP_PINS } from '../data/destinationMapPins.js';
 import DeferredMount from '../components/DeferredMount.jsx';
 import HeroSection from '../components/homepage/HeroSection.jsx';
+import HeroSearchSection from '../components/homepage/HeroSearchSection.jsx';
 import ExcursionsSection from '../components/homepage/ExcursionsSection.jsx';
 import SafarisSection from '../components/homepage/SafarisSection.jsx';
 import PackagesSection from '../components/homepage/PackagesSection.jsx';
@@ -14,6 +15,7 @@ import WhySection from '../components/homepage/WhySection.jsx';
 import WeatherSection from '../components/homepage/WeatherSection.jsx';
 import GallerySection from '../components/homepage/GallerySection.jsx';
 import TestimonialsSection from '../components/homepage/TestimonialsSection.jsx';
+import AboutSection from '../components/homepage/AboutSection.jsx';
 
 const MapSection = lazy(() => import('../components/homepage/MapSection.jsx'));
 const PlannerSection = lazy(() => import('../components/homepage/PlannerSection.jsx'));
@@ -179,7 +181,8 @@ export default function Homepage() {
 
   return (
     <>
-      <HeroSection tweaks={tweaks} handleHeroSearch={handleHeroSearch} />
+      <HeroSection tweaks={tweaks} />
+      <HeroSearchSection handleHeroSearch={handleHeroSearch} />
       <ExcursionsSection tweaks={tweaks} excursions={bestSellingExcursions} />
       <SafarisSection />
       <PackagesSection />
@@ -207,6 +210,7 @@ export default function Homepage() {
       <WeatherSection MONTHS={MONTHS} SCORES={SCORES} NOW_MONTH={NOW_MONTH} />
       <GallerySection />
       <TestimonialsSection />
+      <AboutSection />
       <ContactSection />
       <DeferredMount minHeight="260px">
         <NewsletterSection />

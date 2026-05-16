@@ -163,6 +163,23 @@
   padding: 10px 16px calc(14px + env(safe-area-inset-bottom, 0px));
   display: flex; flex-wrap: wrap; gap: 10px;
 }
+.mm-menu__utility {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+}
+/* Language dropdown opens upward inside the mm-menu */
+.mm-menu__utility .lang-switcher__menu {
+  top: auto;
+  bottom: calc(100% + 8px);
+  left: 0;
+  right: auto;
+}
 .mm-menu__cta {
   flex: 1;
   display: flex; align-items: center; justify-content: center; gap: 8px;

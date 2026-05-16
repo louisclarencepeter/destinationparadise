@@ -21,7 +21,11 @@ export default function AboutHero() {
       </div>
       <div className="ab-hero__inner">
         <span className="ab-hero__eyebrow">{t('hero.eyebrow', { defaultValue: 'About Destination Paradise' })}</span>
-        <h1 className="ab-hero__title">{t('hero.title_prefix', { defaultValue: 'A vision,' })} <em>{t('hero.title_em', { defaultValue: 'finally' })}</em> {t('hero.title_suffix', { defaultValue: 'taking its first journey.' })}</h1>
+        <h1 className="ab-hero__title">
+          {t('hero.title_prefix', { defaultValue: 'A vision,' })}{' '}
+          <em>{t('hero.title_em', { defaultValue: 'finally' })}</em>{' '}
+          <span className="ab-hero__title-tail">{t('hero.title_suffix', { defaultValue: 'taking its first journey.' })}</span>
+        </h1>
         <p className="ab-hero__lead">{t('hero.lead', { defaultValue: 'Destination Paradise was born from a dream — to connect people to the beauty, culture and spirit of Tanzania. After years of preparation, we are officially launching from Unguja, Zanzibar.' })}</p>
         <div className="ab-hero__stats">
           {Array.isArray(stats) && stats.map((item) => (

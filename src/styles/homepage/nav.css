@@ -61,8 +61,32 @@
   transform: scaleX(1);
 }
 .nav__item--mobile-only { display: none; }
+.nav__item--desktop-hide { display: none; }
 
-.nav__right { display: flex; align-items: center; gap: 1rem; }
+/* AI badge next to "Trip Planner" label */
+.nav__link-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: .45rem;
+  padding: .12rem .42rem;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #ff8a73 0%, #ff6f61 100%);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: .06em;
+  line-height: 1;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px -6px rgba(255, 111, 97, .8);
+  vertical-align: middle;
+  translate: 0 -1px;
+}
+
+.nav__right { display: flex; align-items: center; gap: .75rem; }
+
+/* Theme toggle — single circular button with crossfading sun/moon icons.
+   Shared .theme-toggle styles live in styles/components/theme-toggle.css */
 
 .nav__search {
   width: 42px;
@@ -326,5 +350,9 @@
     box-shadow: 0 10px 22px -14px rgba(255, 111, 97, .9);
   }
   .nav__item--mobile-only { display: list-item; }
+  .nav__item--desktop-hide { display: flex; }
   .nav__burger { display: inline-flex; }
+  /* On mobile, language + theme switchers live inside the mm-menu footer */
+  .nav__right .lang-switcher,
+  .nav__right .theme-toggle { display: none; }
 }

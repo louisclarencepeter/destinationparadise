@@ -353,6 +353,22 @@
       "thunderstorm": "Thunderstorms expected — best to plan indoor time, a slower lunch, or a spa stop."
     }
   },
+  "about": {
+    "eyebrow": "About us",
+    "image_alt": "Crowned cranes in long grass at dawn",
+    "signature_role": "Zanzibar & Tanzania · Born from a dream",
+    "title_prefix": "A vision,",
+    "title_em": "finally",
+    "title_suffix": "taking its first journey.",
+    "lead": "Destination Paradise was born from a dream — to connect people to the beauty, culture and spirit of Tanzania. After years of preparation, we are officially launching from Unguja, Zanzibar.",
+    "highlights": [
+      { "value": "Now", "label": "Unguja", "em": true },
+      { "value": "Now", "label": "Mainland", "em": true },
+      { "value": "Next", "label": "Pemba" },
+      { "value": "Next", "label": "Mafia Island" }
+    ],
+    "cta": "Read our story"
+  },
   "contact": {
     "eyebrow": "Get in touch",
     "title": "Send us an email",

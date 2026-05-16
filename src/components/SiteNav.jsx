@@ -6,13 +6,13 @@ import SiteSearch, { SearchButton } from './SiteSearch.jsx';
 import LanguageSwitcher from './LanguageSwitcher.jsx';
 
 const NAV_ITEMS = [
-  { key: 'home', to: '/', end: true, icon: 'home' },
+  { key: 'home', to: '/', end: true, icon: 'home', desktopHidden: true },
   { key: 'excursions', to: '/excursions', icon: 'compass' },
   { key: 'safaris', to: '/safaris', icon: 'binoculars' },
   { key: 'packages', to: '/packages', icon: 'suitcase' },
-  { key: 'trip_planner', to: '/trip-planner', icon: 'route' },
+  { key: 'trip_planner', to: '/trip-planner', icon: 'route', hasBadge: true },
   { key: 'explore', to: '/explore', icon: 'map' },
-  { key: 'about', to: '/aboutus', icon: 'info' },
+  { key: 'about', to: '/aboutus', icon: 'info', desktopHidden: true },
   { key: 'book', to: '/booking', icon: 'bag', mobileOnly: true },
 ];
 
@@ -41,6 +41,26 @@ const BookingIcon = (p) => (
   </svg>
 );
 
+const ArrowRight = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M5 12h14" />
+    <path d="M13 5l7 7-7 7" />
+  </svg>
+);
+
+const SunIcon = ({ className }) => (
+  <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+  </svg>
+);
+
+const MoonIcon = ({ className }) => (
+  <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+);
+
 const CloseIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M6 6l12 12M18 6L6 18" />
@@ -61,13 +81,11 @@ const WhatsAppIcon = () => (
 
 // V2 mobile menu rows — labels/subs read from i18n nav namespace
 const MM_ITEMS = [
-  { key: 'home',         to: '/',             end: true },
   { key: 'excursions',   to: '/excursions'    },
   { key: 'safaris',      to: '/safaris'       },
   { key: 'packages',     to: '/packages'      },
   { key: 'trip_planner', to: '/trip-planner', hasBadge: true },
   { key: 'explore',      to: '/explore'       },
-  { key: 'about',        to: '/aboutus'       },
 ];
 
 const MM_BGS = [
@@ -80,8 +98,9 @@ const MM_BGS = [
 
 const MOBILE_NAV_QUERY = '(max-width: 960px)';
 
-export default function SiteNav() {
+export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeModeChange }) {
   const { t } = useTranslation('nav');
+  const { t: tFooter } = useTranslation('footer');
   const [navOpen, setNavOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [bgIndex, setBgIndex] = useState(() => Math.floor(Math.random() * MM_BGS.length));
@@ -165,23 +184,43 @@ export default function SiteNav() {
           <span className="nav__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
         </Link>
         <ul className="nav__menu" id="navMenu">
-          {NAV_ITEMS.map((item) => (
-            <li className={`nav__item${item.mobileOnly ? ' nav__item--mobile-only' : ''}`} key={item.to}>
-              <NavLink to={item.to} end={item.end}>
-                <span className="nav__link-icon"><NavIcon name={item.icon} /></span>
-                <span className="nav__link-copy">
-                  <span className="nav__link-label">{t(`items.${item.key}.label`)}</span>
-                  <span className="nav__link-hint">{t(`items.${item.key}.hint`)}</span>
-                </span>
-              </NavLink>
-            </li>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const modifiers = [
+              item.mobileOnly ? 'nav__item--mobile-only' : '',
+              item.desktopHidden ? 'nav__item--desktop-hide' : '',
+            ].filter(Boolean).join(' ');
+            const badge = item.hasBadge ? t(`items.${item.key}.badge`, '') : '';
+            return (
+              <li className={`nav__item${modifiers ? ' ' + modifiers : ''}`} key={item.to}>
+                <NavLink to={item.to} end={item.end}>
+                  <span className="nav__link-icon"><NavIcon name={item.icon} /></span>
+                  <span className="nav__link-copy">
+                    <span className="nav__link-label">
+                      {t(`items.${item.key}.label`)}
+                      {badge && <span className="nav__link-badge">{badge}</span>}
+                    </span>
+                    <span className="nav__link-hint">{t(`items.${item.key}.hint`)}</span>
+                  </span>
+                </NavLink>
+              </li>
+            );
+          })}
         </ul>
         <div className="nav__right">
           <LanguageSwitcher className="nav__lang" />
+          <button
+            type="button"
+            className="theme-toggle nav__theme-toggle"
+            aria-label={tFooter('theme.group_label')}
+            aria-pressed={theme === 'dark'}
+            onClick={() => onThemeModeChange?.(theme === 'dark' ? 'light' : 'dark')}
+          >
+            <SunIcon className="theme-toggle__sun" />
+            <MoonIcon className="theme-toggle__moon" />
+          </button>
           <SearchButton className="nav__search" onClick={() => setSearchOpen(true)} label={t('search.label_short')} />
           <Link className="btn nav__cta" to="/booking" aria-label={t('cta.book_aria')}>
-            <span className="nav__cta-text">{t('cta.book_now')}</span> <BookingIcon size={16} />
+            <span className="nav__cta-text">{t('cta.book_now')}</span> <ArrowRight size={16} />
           </Link>
           <button
             className={`nav__burger${navOpen ? ' nav__burger--open' : ''}`}
@@ -282,6 +321,19 @@ export default function SiteNav() {
           >
             <WhatsAppIcon />
           </a>
+          <div className="mm-menu__utility">
+            <LanguageSwitcher className="mm-menu__lang" />
+            <button
+              type="button"
+              className="theme-toggle mm-menu__theme"
+              aria-label={tFooter('theme.group_label')}
+              aria-pressed={theme === 'dark'}
+              onClick={() => onThemeModeChange?.(theme === 'dark' ? 'light' : 'dark')}
+            >
+              <SunIcon className="theme-toggle__sun" />
+              <MoonIcon className="theme-toggle__moon" />
+            </button>
+          </div>
         </div>
       </div>
       <SiteSearch open={searchOpen} onClose={() => setSearchOpen(false)} />
