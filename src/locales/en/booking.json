@@ -129,7 +129,7 @@
     "product_label_transfer": "Transfer route",
     "product_label_default": "Specific product",
     "product_placeholder_transfer": "Choose a transfer route or leave flexible",
-    "product_placeholder_default": "Choose from {{serviceType}}s or leave flexible",
+    "product_placeholder_default": "Choose {{serviceType}} or leave flexible",
     "product_placeholder_generic": "Choose a product or leave flexible",
     "name": "Name",
     "email": "Email",
