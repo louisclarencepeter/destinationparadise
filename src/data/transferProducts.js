@@ -90,3 +90,22 @@ export const TRANSFER_PRODUCTS = [
     featured: true,
   },
 ];
+
+const objectFromTranslation = (value) => (
+  value && typeof value === 'object' && !Array.isArray(value) ? value : {}
+);
+
+export function buildLocalizedTransferProducts(t) {
+  const products = objectFromTranslation(t('products', { returnObjects: true, defaultValue: {} }));
+
+  return TRANSFER_PRODUCTS.map((product) => {
+    const translated = objectFromTranslation(products[product.slug]);
+
+    return {
+      ...product,
+      ...translated,
+      pricing: translated.pricing || product.pricing,
+      details: translated.details || product.details,
+    };
+  });
+}

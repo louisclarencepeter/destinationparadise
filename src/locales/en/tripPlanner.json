@@ -1,0 +1,81 @@
+{
+  "page_title": "AI Trip Planner · Destination Paradise",
+  "place_prompt": {
+    "trip_angle": "Trip angle: {{value}}.",
+    "context": "Context: {{value}}",
+    "best_for": "Best for: {{value}}.",
+    "text": "I want to build a trip around {{place}}. {{details}} Please suggest the best route, how many nights to allow, what to combine it with, and ask me for any missing dates, group size, budget, and travel-style details."
+  },
+  "hero": {
+    "eyebrow": "AI Trip Planner · human-reviewed before booking",
+    "title_prefix": "Sketch the trip",
+    "title_em": "before you commit.",
+    "lead": "Tell the planner what kind of Zanzibar, safari, honeymoon, family trip, or beach escape you want. It will ask the useful questions and shape a route our team can price properly.",
+    "start_planning": "Start planning",
+    "browse_packages": "Browse packages",
+    "stat_human_quote": "Human quote",
+    "stat_packages": "Packages",
+    "stat_safaris": "Safaris",
+    "stat_excursions": "Excursions"
+  },
+  "prompts": {
+    "eyebrow": "Start faster",
+    "title": "Choose a planning angle.",
+    "lead": "Pick the closest starting point and the planner will open with that context already loaded.",
+    "sent": "Sent to planner",
+    "start_with_this": "Start with this",
+    "items": [
+      {
+        "key": "safari-beach",
+        "label": "Safari + beach",
+        "title": "Build a bush-to-beach route",
+        "text": "We are planning 8 to 10 nights. We want a short safari, Zanzibar beach time, good food, and a smooth route without too many hotel changes. Can you suggest a plan?"
+      },
+      {
+        "key": "honeymoon",
+        "label": "Honeymoon",
+        "title": "Plan something romantic",
+        "text": "We are a honeymoon couple. We want 7 nights with a beautiful beach hotel, one private dinner, a dhow sunset, and maybe a short fly-in safari. Mid-range to luxury."
+      },
+      {
+        "key": "family",
+        "label": "Family",
+        "title": "Make it easy with kids",
+        "text": "We are a family with children and want a relaxed Zanzibar trip with safe activities, wildlife or turtles, snorkeling if conditions are easy, and not too many early mornings."
+      },
+      {
+        "key": "culture-ocean",
+        "label": "Culture + ocean",
+        "title": "Mix local life and water",
+        "text": "I want Stone Town, spice farms, local food, a dhow day, snorkeling, and a beach area that still feels relaxed. Please suggest a balanced itinerary."
+      }
+    ]
+  },
+  "steps": {
+    "eyebrow": "How to use it",
+    "title": "From idea to bookable plan.",
+    "items": [
+      {
+        "step": "01",
+        "title": "Tell it the shape",
+        "text": "Dates, guests, budget, pace, and what you care about most."
+      },
+      {
+        "step": "02",
+        "title": "Get a first draft",
+        "text": "The planner sketches nights, regions, excursions, safaris, and daily rhythm."
+      },
+      {
+        "step": "03",
+        "title": "Send it to us",
+        "text": "Our team checks availability, prices it properly, and turns the draft into a bookable trip."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Want us to turn the draft into a quote?",
+    "text": "Send the plan, dates, group size, and travel style. We'll check availability and come back with a real route and a real price.",
+    "get_quote": "Get a quote →",
+    "keep_planning": "Keep planning"
+  }
+}

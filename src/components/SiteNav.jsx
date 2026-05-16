@@ -1,17 +1,19 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { Trans, useTranslation } from 'react-i18next';
 import { CONTACT_INFO } from '../constants/contactInfo';
 import SiteSearch, { SearchButton } from './SiteSearch.jsx';
+import LanguageSwitcher from './LanguageSwitcher.jsx';
 
 const NAV_ITEMS = [
-  { label: 'Home', to: '/', end: true, icon: 'home', hint: 'Start at the island hub' },
-  { label: 'Excursions', to: '/excursions', icon: 'compass', hint: 'Zanzibar day trips' },
-  { label: 'Safaris', to: '/safaris', icon: 'binoculars', hint: 'Mainland wildlife routes' },
-  { label: 'Packages', to: '/packages', icon: 'suitcase', hint: 'Safari, beach, honeymoon' },
-  { label: 'Trip Planner', to: '/trip-planner', icon: 'route', hint: 'Shape a custom route' },
-  { label: 'Explore', to: '/explore', icon: 'map', hint: 'Compare places and styles' },
-  { label: 'About Us', to: '/aboutus', icon: 'info', hint: 'Our story and mission' },
-  { label: 'Book Now', to: '/booking', icon: 'bag', hint: 'Send a booking request', mobileOnly: true },
+  { key: 'home', to: '/', end: true, icon: 'home', desktopHidden: true },
+  { key: 'excursions', to: '/excursions', icon: 'compass' },
+  { key: 'safaris', to: '/safaris', icon: 'binoculars' },
+  { key: 'packages', to: '/packages', icon: 'suitcase' },
+  { key: 'trip_planner', to: '/trip-planner', icon: 'route', hasBadge: true },
+  { key: 'explore', to: '/explore', icon: 'map' },
+  { key: 'about', to: '/aboutus', icon: 'info', desktopHidden: true },
+  { key: 'book', to: '/booking', icon: 'bag', mobileOnly: true },
 ];
 
 const NAV_ICONS = {
@@ -39,6 +41,26 @@ const BookingIcon = (p) => (
   </svg>
 );
 
+const ArrowRight = ({ size = 16 }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M5 12h14" />
+    <path d="M13 5l7 7-7 7" />
+  </svg>
+);
+
+const SunIcon = ({ className }) => (
+  <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <circle cx="12" cy="12" r="4" />
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+  </svg>
+);
+
+const MoonIcon = ({ className }) => (
+  <svg className={className} width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+  </svg>
+);
+
 const CloseIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M6 6l12 12M18 6L6 18" />
@@ -57,15 +79,13 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-// V2 mobile menu rows — richer copy + per-item flourish (italic Safaris, AI badge, etc.)
+// V2 mobile menu rows — labels/subs read from i18n nav namespace
 const MM_ITEMS = [
-  { label: 'Home',         to: '/',             end: true, sub: 'Start at the island hub' },
-  { label: 'Excursions',   to: '/excursions',   sub: 'Stone Town · Reefs · Spice farms' },
-  { label: 'Safaris',      to: '/safaris',      sub: 'Serengeti · Ngorongoro · Selous' },
-  { label: 'Packages',     to: '/packages',     sub: 'Bush & Beach · 7–14 nights' },
-  { label: 'Trip Planner', to: '/trip-planner', sub: 'Hand-built · 90 sec', badge: 'AI' },
-  { label: 'Explore',      to: '/explore',      sub: 'Compare places & styles' },
-  { label: 'About Us',     to: '/aboutus',      sub: 'Our story · Mission · Destinations' },
+  { key: 'excursions',   to: '/excursions'    },
+  { key: 'safaris',      to: '/safaris'       },
+  { key: 'packages',     to: '/packages'      },
+  { key: 'trip_planner', to: '/trip-planner', hasBadge: true },
+  { key: 'explore',      to: '/explore'       },
 ];
 
 const MM_BGS = [
@@ -78,7 +98,9 @@ const MM_BGS = [
 
 const MOBILE_NAV_QUERY = '(max-width: 960px)';
 
-export default function SiteNav() {
+export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeModeChange }) {
+  const { t } = useTranslation('nav');
+  const { t: tFooter } = useTranslation('footer');
   const [navOpen, setNavOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [bgIndex, setBgIndex] = useState(() => Math.floor(Math.random() * MM_BGS.length));
@@ -162,27 +184,48 @@ export default function SiteNav() {
           <span className="nav__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
         </Link>
         <ul className="nav__menu" id="navMenu">
-          {NAV_ITEMS.map((item) => (
-            <li className={`nav__item${item.mobileOnly ? ' nav__item--mobile-only' : ''}`} key={item.to}>
-              <NavLink to={item.to} end={item.end}>
-                <span className="nav__link-icon"><NavIcon name={item.icon} /></span>
-                <span className="nav__link-copy">
-                  <span className="nav__link-label">{item.label}</span>
-                  <span className="nav__link-hint">{item.hint}</span>
-                </span>
-              </NavLink>
-            </li>
-          ))}
+          {NAV_ITEMS.map((item) => {
+            const modifiers = [
+              item.mobileOnly ? 'nav__item--mobile-only' : '',
+              item.desktopHidden ? 'nav__item--desktop-hide' : '',
+            ].filter(Boolean).join(' ');
+            const badge = item.hasBadge ? t(`items.${item.key}.badge`, '') : '';
+            return (
+              <li className={`nav__item${modifiers ? ' ' + modifiers : ''}`} key={item.to}>
+                <NavLink to={item.to} end={item.end}>
+                  <span className="nav__link-icon"><NavIcon name={item.icon} /></span>
+                  <span className="nav__link-copy">
+                    <span className="nav__link-label">
+                      {t(`items.${item.key}.label`)}
+                      {badge && <span className="nav__link-badge">{badge}</span>}
+                    </span>
+                    <span className="nav__link-hint">{t(`items.${item.key}.hint`)}</span>
+                  </span>
+                </NavLink>
+              </li>
+            );
+          })}
         </ul>
         <div className="nav__right">
-          <SearchButton className="nav__search" onClick={() => setSearchOpen(true)} label="Search" />
-          <Link className="btn nav__cta" to="/booking" aria-label="Book now">
-            <span className="nav__cta-text">Book Now</span> <BookingIcon size={16} />
+          <LanguageSwitcher className="nav__lang" />
+          <button
+            type="button"
+            className="theme-toggle nav__theme-toggle"
+            aria-label={tFooter('theme.group_label')}
+            aria-pressed={theme === 'dark'}
+            onClick={() => onThemeModeChange?.(theme === 'dark' ? 'light' : 'dark')}
+          >
+            <SunIcon className="theme-toggle__sun" />
+            <MoonIcon className="theme-toggle__moon" />
+          </button>
+          <SearchButton className="nav__search" onClick={() => setSearchOpen(true)} label={t('search.label_short')} />
+          <Link className="btn nav__cta" to="/booking" aria-label={t('cta.book_aria')}>
+            <span className="nav__cta-text">{t('cta.book_now')}</span> <ArrowRight size={16} />
           </Link>
           <button
             className={`nav__burger${navOpen ? ' nav__burger--open' : ''}`}
             type="button"
-            aria-label={navOpen ? 'Close menu' : 'Open menu'}
+            aria-label={navOpen ? t('menu.close') : t('menu.open')}
             aria-expanded={navOpen}
             aria-controls="mobileMenu"
             onClick={() => setNavOpen((v) => !v)}
@@ -202,7 +245,7 @@ export default function SiteNav() {
         className={`mm-menu${navOpen ? ' is-open' : ''}`}
         role="dialog"
         aria-modal="true"
-        aria-label="Site navigation"
+        aria-label={t('menu.site_nav_label')}
         {...(navOpen ? {} : { inert: true })}
       >
         <div className="mm-menu__bg" style={navOpen ? { backgroundImage: `url('${MM_BGS[bgIndex]}')` } : undefined} />
@@ -216,7 +259,7 @@ export default function SiteNav() {
           <button
             type="button"
             className="mm-menu__close"
-            aria-label="Close menu"
+            aria-label={t('menu.close')}
             onClick={() => setNavOpen(false)}
           >
             <CloseIcon />
@@ -224,13 +267,18 @@ export default function SiteNav() {
         </div>
 
         <div className="mm-menu__hero">
-          <span className="mm-menu__eyebrow">Karibu Tanzania</span>
-          <p className="mm-menu__head">Where would you like to <em>wander</em>?</p>
+          <span className="mm-menu__eyebrow">{t('menu.eyebrow')}</span>
+          <p className="mm-menu__head">
+            <Trans i18nKey="menu.headline" ns="nav" components={{ em: <em /> }} />
+          </p>
         </div>
 
         <ul className="mm-menu__list">
           {MM_ITEMS.map((item) => {
             const active = isCurrent(item.to, item.end);
+            const label = t(`items.${item.key}.label`);
+            const sub = t(`items.${item.key}.sub`, '');
+            const badge = item.hasBadge ? t(`items.${item.key}.badge`, '') : '';
             return (
               <li key={item.to}>
                 <Link
@@ -240,10 +288,10 @@ export default function SiteNav() {
                 >
                   <span className="mm-menu__row-main">
                     <span className="mm-menu__lbl">
-                      {active ? <em>{item.label}</em> : item.label}
-                      {item.badge && <span className="mm-menu__pill-inline">{item.badge}</span>}
+                      {active ? <em>{label}</em> : label}
+                      {badge && <span className="mm-menu__pill-inline">{badge}</span>}
                     </span>
-                    {item.sub && <span className="mm-menu__sub">{item.sub}</span>}
+                    {sub && <span className="mm-menu__sub">{sub}</span>}
                   </span>
                   <span className="mm-menu__arr"><ChevronRight /></span>
                 </Link>
@@ -259,20 +307,33 @@ export default function SiteNav() {
               setNavOpen(false);
               setSearchOpen(true);
             }}
-            label="Search the site"
+            label={t('search.label_long')}
           />
           <Link to="/booking" className="mm-menu__cta">
-            Book a trip <ChevronRight />
+            {t('cta.book_a_trip')} <ChevronRight />
           </Link>
           <a
             className="mm-menu__wa"
             href={CONTACT_INFO.whatsappUrl}
             target="_blank"
             rel="noreferrer noopener"
-            aria-label="Chat on WhatsApp"
+            aria-label={t('whatsapp.chat_aria')}
           >
             <WhatsAppIcon />
           </a>
+          <div className="mm-menu__utility">
+            <LanguageSwitcher className="mm-menu__lang" />
+            <button
+              type="button"
+              className="theme-toggle mm-menu__theme"
+              aria-label={tFooter('theme.group_label')}
+              aria-pressed={theme === 'dark'}
+              onClick={() => onThemeModeChange?.(theme === 'dark' ? 'light' : 'dark')}
+            >
+              <SunIcon className="theme-toggle__sun" />
+              <MoonIcon className="theme-toggle__moon" />
+            </button>
+          </div>
         </div>
       </div>
       <SiteSearch open={searchOpen} onClose={() => setSearchOpen(false)} />

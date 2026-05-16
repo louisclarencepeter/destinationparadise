@@ -1,0 +1,123 @@
+{
+  "page_title": "O nas · Destination Paradise",
+  "meta_description": "Destination Paradise narodziło się z marzenia: łączyć ludzi z pięknem, kulturą i duchem Tanzanii. Po latach przygotowań oficjalnie startujemy z Ungui na Zanzibarze.",
+  "hero": {
+    "image_alt": "Żurawie koroniaste w wysokiej trawie o świcie",
+    "eyebrow": "O Destination Paradise",
+    "title_prefix": "Wizja, która",
+    "title_em": "wreszcie",
+    "title_suffix": "rusza w pierwszą podróż.",
+    "lead": "Destination Paradise narodziło się z marzenia: łączyć ludzi z pięknem, kulturą i duchem Tanzanii. Po latach przygotowań oficjalnie startujemy z Ungui na Zanzibarze.",
+    "stats": [
+      { "value": "Teraz", "label": "Unguja", "em": true },
+      { "value": "Teraz", "label": "Kontynent", "em": true },
+      { "value": "Wkrótce", "label": "Pemba" },
+      { "value": "Wkrótce", "label": "Mafia Island" }
+    ]
+  },
+  "story": {
+    "eyebrow": "Nasza historia",
+    "title_prefix": "Zaczęło się od",
+    "title_em": "marzenia",
+    "title_suffix": "daleko od domu.",
+    "lead": [
+      "Destination Paradise zaczęło się jako pomysł na kartce i cicha obietnica złożona miejscu, które dało tak wiele. Lata temu, podczas pracy w hotelu na wschodnim wybrzeżu Zanzibaru, pojawiła się pierwsza wizja. Potrzebowała wielu zakrętów i wielu lat, zanim mogła stać się czymś prawdziwym.",
+      "To, co widzisz dzisiaj, jest wynikiem cierpliwości, rodziny, straty, nauki i decyzji, by nie puścić tej idei. Jesteśmy młodą firmą z długą historią za sobą — i dopiero zaczynamy."
+    ],
+    "image_alt": "Tradycyjna dhow na wybrzeżu Zanzibaru",
+    "caption": "Od pomysłu na kartce do prawdziwej firmy — Zanzibar, gdzie wszystko się zaczęło.",
+    "timeline": [
+      {
+        "year": "Tam, gdzie wszystko się zaczęło",
+        "title": "Wizja na wschodnim wybrzeżu Zanzibaru",
+        "body": "Lata temu, podczas pracy w hotelu na wschodnim wybrzeżu Zanzibaru, pojawił się pierwszy pomysł: stworzyć coś większego niż same wycieczki czy rezerwacje. Coś, co łączy ludzi z pięknem, kulturą i duchem Tanzanii. Wtedy wydawało się to ogromne i odległe, ale nigdy nie zniknęło."
+      },
+      {
+        "year": "Pierwsze kroki",
+        "title": "Budowane razem z rodziną",
+        "body": "Firma została zarejestrowana wspólnie z rodziną. To był pierwszy fundament tego, czym później stało się Destination Paradise. Po wielkiej stracie w tamtych pierwszych dniach wszystko zwolniło. Ale wizja pozostała żywa."
+      },
+      {
+        "year": "Ciche lata",
+        "title": "Marzenie, które rosło dalej",
+        "body": "Przez lata pracy, podróży i innych projektów marzenie rosło krok po kroku. To, co kiedyś zapisano na kartce, wciąż prosiło, by je zbudować: cierpliwie, w tle, czekając na swój moment."
+      },
+      {
+        "year": "Nowy rozdział",
+        "title": "Platforma budowana od podstaw",
+        "body": "Przeprowadzka do Niemiec otworzyła nowy rozdział: naukę programowania, tworzenia stron i produkcji mediów oraz zdobywanie umiejętności potrzebnych, by zbudować platformę od zera. Powoli pomysł z kartki stał się prawdziwą firmą z prawdziwą wizją."
+      },
+      {
+        "year": "Dzisiaj",
+        "title": "Oficjalny start z Ungui",
+        "body": "Po latach przygotowań Destination Paradise oficjalnie startuje. Zaczynamy w Ungui na Zanzibarze i na kontynencie Tanzanii, a Pemba i Mafia Island dołączą w swoim czasie."
+      }
+    ]
+  },
+  "mission": {
+    "eyebrow": "Nasza misja",
+    "title_prefix": "Pokazać światu, jak piękna naprawdę jest",
+    "title_em": "Tanzania",
+    "title_suffix": ".",
+    "sub": "Proste — tak samo jak na pierwszej kartce z pomysłem. Każda wyspa, każde wybrzeże i każdy zakątek kontynentu ma historię, którą warto poznać osobiście."
+  },
+  "community": {
+    "eyebrow": "Społeczność",
+    "title_prefix": "Zbudowane jako",
+    "title_em": "sieć",
+    "title_suffix": "nie zamknięty system.",
+    "lead": "Destination Paradise to nie tylko podróże. Wierzymy, że turystyka powinna tworzyć realne możliwości dla ludzi, którzy goszczą podróżnych. Od pierwszego dnia pracujemy ramię w ramię z lokalnymi kierowcami, przewodnikami, hotelami, restauracjami i usługodawcami — budując coś, z czym szersza społeczność rośnie razem, a nie obok.",
+    "pillars": [
+      {
+        "icon": "people",
+        "title": "Lokalni kierowcy i przewodnicy",
+        "body": "Pracujemy ramię w ramię z kierowcami i przewodnikami z wysp i kontynentu. To ludzie, którzy naprawdę znają drogi, rafy i historie."
+      },
+      {
+        "icon": "home",
+        "title": "Lokalne hotele i restauracje",
+        "body": "Kiedy tylko możemy, współpracujemy z hotelami i restauracjami prowadzonymi lokalnie. Pieniądze z podróży zostają w społeczności, która Cię gości."
+      },
+      {
+        "icon": "network",
+        "title": "Sieć, nie zamknięty system",
+        "body": "Nie budujemy zamkniętej struktury. Budujemy sieć, która pozwala szerszej społeczności rosnąć razem z nami, krok po kroku."
+      },
+      {
+        "icon": "layers",
+        "title": "Autentyczne, tworzone ręcznie",
+        "body": "Każdą wycieczkę, safari i doświadczenie kulturowe projektujemy uważnie, aby podróżni spotkali Tanzanię w bardziej autentyczny i znaczący sposób."
+      }
+    ],
+    "quote": [
+      "“Każdy kierunek ma swoją historię. Każda wyspa ma własną kulturę, energię i ukryte piękno, które czeka, aż ktoś je przeżyje.",
+      "Nie zbudowaliśmy tego dla samej skali. Zbudowaliśmy to dla chwil: powolnego poranka przy rafie, historii opowiedzianej z tyłu Land Cruisera, pierwszego momentu, gdy Serengeti cichnie o zmierzchu.",
+      "Mamy nadzieję, że z czasem dodasz tu własną historię.”"
+    ],
+    "avatar_alt": "Louis Peter, założyciel Destination Paradise",
+    "quote_byline": "Z naszej notatki założycielskiej",
+    "quote_meta": "Destination Paradise · 2026"
+  },
+  "destinations": {
+    "eyebrow": "Dokąd jedziemy",
+    "title_prefix": "Z Ungui,",
+    "title_em": "dalej",
+    "title_suffix": ".",
+    "lead": "Zaczynamy w Ungui na Zanzibarze — miejscu, w którym ta podróż się zaczęła — oraz na kontynencie Tanzanii, gdzie opowieść rozciąga się szerzej. Pemba i Mafia Island dołączą w swoim właściwym czasie.",
+    "items": [
+      { "tag": "Dostępne teraz", "name": "Unguja, Zanzibar", "body": "Tu zaczyna się podróż: wycieczki, doświadczenia kulturowe i trasy po głównej wyspie." },
+      { "tag": "Dostępne teraz", "name": "Kontynent Tanzanii", "body": "Serengeti, Ngorongoro, Kilimanjaro i dalej: większa opowieść Tanzanii gotowa do odkrycia." },
+      { "tag": "Wkrótce", "name": "Pemba Island", "body": "Spokojniejsza siostra Zanzibaru: nietknięte rafy, lasy goździkowe i wolniejsze tempo tuż za kanałem." },
+      { "tag": "Wkrótce", "name": "Mafia Island", "body": "Park morski z rekinami wielorybimi, żółwiami i jednymi z najczystszych wód na wybrzeżu Afryki Wschodniej." }
+    ]
+  },
+  "cta": {
+    "eyebrow": "Karibu",
+    "title_prefix": "Witamy w",
+    "title_em": "Destination Paradise",
+    "title_suffix": ".",
+    "text": "Wszystkim, którzy wspierali tę podróż od początku — dziękujemy. A wszystkim, którzy dołączają teraz: wizja jest duża, droga długa, i bardzo się cieszymy, że jesteś z nami na starcie.",
+    "booking": "Zaplanuj podróż →",
+    "excursions": "Zobacz wycieczki"
+  }
+}

@@ -1,5 +1,6 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import '../styles/homepage.css';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import { DESTINATION_MAP_PINS } from '../data/destinationMapPins.js';
@@ -13,6 +14,7 @@ import WhySection from '../components/homepage/WhySection.jsx';
 import WeatherSection from '../components/homepage/WeatherSection.jsx';
 import GallerySection from '../components/homepage/GallerySection.jsx';
 import TestimonialsSection from '../components/homepage/TestimonialsSection.jsx';
+import AboutSection from '../components/homepage/AboutSection.jsx';
 
 const MapSection = lazy(() => import('../components/homepage/MapSection.jsx'));
 const PlannerSection = lazy(() => import('../components/homepage/PlannerSection.jsx'));
@@ -55,6 +57,7 @@ function loadTweaks() {
 }
 
 export default function Homepage() {
+  const { t } = useTranslation('home');
   const [tweaks, setTweaks] = useState(loadTweaks);
   const [activePin, setActivePin] = useState('stone-town');
   const [tweaksOpen, setTweaksOpen] = useState(false);
@@ -198,13 +201,14 @@ export default function Homepage() {
             islandPins={islandPins}
             mainlandPins={mainlandPins}
             ctaHref="/explore"
-            ctaLabel="Explore the full map"
+            ctaLabel={t('map.cta_explore_full')}
           />
         </Suspense>
       </DeferredMount>
       <WeatherSection MONTHS={MONTHS} SCORES={SCORES} NOW_MONTH={NOW_MONTH} />
       <GallerySection />
       <TestimonialsSection />
+      <AboutSection />
       <ContactSection />
       <DeferredMount minHeight="260px">
         <NewsletterSection />

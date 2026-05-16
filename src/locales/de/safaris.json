@@ -1,0 +1,427 @@
+{
+  "hero": {
+    "eyebrow": "Festland Tansania · das Herz unserer Arbeit",
+    "title_prefix": "Wo die Wildnis",
+    "title_em": "noch",
+    "title_suffix": "wild ist.",
+    "lead": "Von den weiten Ebenen der Serengeti bis zur verlorenen Welt des Ngorongoro-Kraters organisieren wir kleine Safaris mit Rangern, Piloten und Lodge-Besitzern, die wir seit Jahren kennen. Keine Bustouren. Keine halben Wahrheiten. Nur Bush, gut gemacht.",
+    "browse_all": "Alle Safaris ansehen",
+    "plan_ai": "Mit KI planen →",
+    "stat_safaris": "Safaris",
+    "stat_wildebeest": "Gnus",
+    "stat_from": "Ab, pro Person",
+    "stat_circuits": "Safari-Circuits"
+  },
+  "intro": {
+    "eyebrow": "Unser Ansatz",
+    "title": "Guides aus Tansania, die den Bush kennen — und die Inseln.",
+    "lead": "Wir fahren den Northern Circuit — Serengeti, Ngorongoro, Tarangire — mit Bush-Flügen, damit du mehr Zeit auf Game Drives und weniger im Land Cruiser verbringst. Kombiniere es mit ein paar Tagen an Sansibars Küste oder bleib ganz im Bush. Jedes Camp ist handverlesen. Jeder Guide ist mindestens Silver-Level zertifiziert.",
+    "bullets": {
+      "vehicles_title": "Kleine Fahrzeuge",
+      "vehicles_text": "Maximal 4 Gäste pro Land Cruiser, jeder Sitz ein Fensterplatz. Keine Minibusse.",
+      "flights_title": "Bush-Flüge",
+      "flights_text": "Überspring die 8-Stunden-Fahrt. Cessnas verbinden Parks in unter einer Stunde.",
+      "fees_title": "Naturschutzgebühren inklusive",
+      "fees_text": "Parkgebühren, Rangergebühren, Community-Abgaben — nichts wird später versteckt addiert."
+    }
+  },
+  "types": {
+    "eyebrow": "Arten zu reisen",
+    "title": "Verschiedene Safari-Stile für verschiedene Reisende.",
+    "lead": "Von klassischen Game Drives und Fly-in-Routen bis Walking, Boot, Familie und Bush-Beach-Kombinationen: Wir passen jede Route an deinen Reisestil an.",
+    "modes": {
+      "dedicated_tag": "Reine Safari",
+      "dedicated_text": "Safari-only: Ankunft in Arusha und wir holen dich für den nördlichen oder südlichen Circuit ab.",
+      "last_minute_tag": "Kurzfristig",
+      "last_minute_text": "Schon auf Sansibar? Wir können 1 Tag, 1 Nacht, 2 Nächte oder längere Optionen schnell organisieren.",
+      "package_tag": "Im Paket",
+      "package_text": "Mit Hotels und Ausflügen in einer nahtlosen Route kombiniert."
+    },
+    "card": {
+      "explore_aria": "{{title}} entdecken",
+      "best_for": "Ideal für: {{audience}}",
+      "explore_cta": "Entdecken →"
+    },
+    "items": {
+      "classic-game-drive": {
+        "title": "Klassische Game-Drive-Safaris",
+        "desc": "Private oder kleine Land-Cruiser-Safaris durch Serengeti, Ngorongoro, Tarangire und Lake Manyara mit erfahrenen lokalen Guides.",
+        "best_for": "Safari-Neulinge"
+      },
+      "fly-in": {
+        "title": "Fly-in-Safaris",
+        "desc": "Lange Straßentransfers überspringen und zentrale Parks per Bush-Flug ab Sansibar, Arusha oder Dar es Salaam verbinden.",
+        "best_for": "Wenig Zeit, maximale Safari-Zeit"
+      },
+      "walking": {
+        "title": "Walking Safaris",
+        "desc": "Geführte Bush-Walks mit bewaffneten Rangern in Wildnisgebieten wie Nyerere und Ruaha, nah an der Natur.",
+        "best_for": "Abenteuer- und Tracking-Fans"
+      },
+      "boat": {
+        "title": "Bootssafaris",
+        "desc": "Fluss- und Seesafaris in Nyerere (Selous) und westlichen Circuits, wo Wildlife vom Wasser aus erlebt wird.",
+        "best_for": "Besondere Wildlife-Perspektiven und Birding"
+      },
+      "family": {
+        "title": "Familiensafaris",
+        "desc": "Familienfreundliche Routen mit kürzeren Fahrten, flexiblem Tempo und Lodges, die gut zu Kindern und Mehrgenerationenreisen passen.",
+        "best_for": "Familien mit Kindern"
+      },
+      "luxury-lodge-tented": {
+        "title": "Luxus-Lodge- & Tented-Safaris",
+        "desc": "Komfortable Aufenthalte, Premium-Camps und kuratierter Service nah an Migrationsrouten und Großkatzengebiet.",
+        "best_for": "Honeymoons und Premiumreisen"
+      },
+      "budget-camping": {
+        "title": "Budget-Camping-Safaris",
+        "desc": "Preisbewusste Routen mit gut geführten Camps und essenziellem Komfort, ohne bei der Guide-Qualität zu sparen.",
+        "best_for": "Backpacker und budgetbewusste Reisende"
+      },
+      "bush-beach": {
+        "title": "Bush + Beach Kombinationen",
+        "desc": "Nahtlose Festland-Safari in Tansania kombiniert mit Strandtagen auf Sansibar, inklusive koordinierter Flüge und Transfers.",
+        "best_for": "Safari + Entspannung in einer Reise"
+      }
+    }
+  },
+  "parks": {
+    "eyebrow": "Northern Circuit & darüber hinaus",
+    "title": "Fünf Parks. Jeder eine eigene Welt.",
+    "items": {
+      "serengeti": {
+        "name": "Serengeti Nationalpark",
+        "blurb": "Die endlosen Ebenen. Heimat der großen Migration — 1,5 Millionen Gnus und 250.000 Zebras ziehen im Rhythmus des Regens.",
+        "tags": [
+          "Migration",
+          "Big Five",
+          "Heißluftballon"
+        ]
+      },
+      "ngorongoro": {
+        "name": "Ngorongoro-Krater",
+        "blurb": "Ein eingestürzter Vulkan, heute ein eigenes Ökosystem mit einer der höchsten Raubtierdichten Afrikas. Spitzmaulnashörner streifen noch immer umher.",
+        "tags": [
+          "Spitzmaulnashorn",
+          "Big Five",
+          "Lodges am Kraterrand"
+        ]
+      },
+      "tarangire": {
+        "name": "Tarangire Nationalpark",
+        "blurb": "Elefantenland. Alte Baobabs und ein ganzjähriger Fluss ziehen in der Trockenzeit riesige Herden an. Wild unterschätzt.",
+        "tags": [
+          "Elefanten",
+          "Baobabs",
+          "Ruhige Pisten"
+        ]
+      },
+      "nyerere": {
+        "name": "Nyerere (Selous)",
+        "blurb": "Afrikas größtes Wildreservat. Bootssafaris auf dem Rufiji, Walking Safaris mit bewaffneten Rangern und Fly-Camping unter unmöglichen Sternen.",
+        "tags": [
+          "Bootssafari",
+          "Walking Safari",
+          "Wildhund"
+        ]
+      },
+      "manyara": {
+        "name": "Lake Manyara",
+        "blurb": "Baumkletternde Löwen, pink gefärbte alkalische Flächen voller Flamingos und eines der großen Birding-Gebiete Ostafrikas — 400+ Arten.",
+        "tags": [
+          "Baumkletternde Löwen",
+          "Flamingos",
+          "Birding"
+        ]
+      }
+    }
+  },
+  "seasons": {
+    "eyebrow": "Beste Reisezeit",
+    "title": "Es gibt keine schlechte Zeit. Nur unterschiedliche.",
+    "items": {
+      "peak": {
+        "title": "Trocken & klassisch",
+        "blurb": "Tiere sammeln sich an Wasserstellen. Die Mara-Flussüberquerungen passieren Juli bis September. Kühl, goldenes Gras, Postkartenlicht. 6+ Monate vorher ausgebucht."
+      },
+      "good": {
+        "title": "Kalbungszeit",
+        "blurb": "Im Februar bringen Gnus auf den südlichen Serengeti-Ebenen eine halbe Million Kälber zur Welt. Raubtieraction ist hoch. Heiß, aber üppig. Ruhigere Parks."
+      },
+      "shoulder": {
+        "title": "Grün & günstiger",
+        "blurb": "Kurze Regen. Dramatische Himmel, leere Parks, Preise 20–30% niedriger. Birding ist im November stark. Manche Bush-Straßen werden matschig."
+      },
+      "avoid": {
+        "title": "Lange Regenzeit",
+        "blurb": "Viele Camps schließen, Straßen überfluten. Nur für Schnäppchenjäger — und selbst dann empfehlen wir oft eine andere Saison."
+      }
+    }
+  },
+  "wildlife": {
+    "eyebrow": "Aus unserer letzten Saison",
+    "title": "Was du sehen könntest.",
+    "lead": "Echte Fotos von echten Game Drives, aufgenommen von unseren Guides in der letzten Saison — vor allem Ngorongoro und Serengeti. Keine Stock-Bibliothek.",
+    "categories": {
+      "cats": {
+        "title": "Großkatzen",
+        "sub": "Raubtiere",
+        "tiles": {
+          "male-lion-in-grass.webp": {
+            "alt": "Male lion lying in grass",
+            "cap": "Male lion · Ngorongoro Crater"
+          },
+          "serval-in-grass.webp": {
+            "alt": "Serval cat in grass",
+            "cap": "Serval · rare daylight sighting"
+          },
+          "lion-cub-in-grass.webp": {
+            "alt": "Lion cub in grass",
+            "cap": "Cub · ten weeks old"
+          },
+          "lioness-and-cub-resting.webp": {
+            "alt": "Lioness with cub resting",
+            "cap": "Lioness & cub · evening rest"
+          }
+        }
+      },
+      "ungulates": {
+        "title": "Hufige Riesen",
+        "sub": "Die Grasfresser",
+        "tiles": {
+          "zebra-mare-and-foal.webp": {
+            "alt": "Zebra mare and foal",
+            "cap": "Zebra · mare and foal"
+          },
+          "zebra-herd-on-track.webp": {
+            "alt": "Zebra herd on track",
+            "cap": "The herd, deciding"
+          },
+          "wildebeest-grazing.webp": {
+            "alt": "Blue wildebeest grazing",
+            "cap": "Blue wildebeest"
+          },
+          "eland-grazing.webp": {
+            "alt": "Eland grazing",
+            "cap": "Eland · the largest antelope"
+          },
+          "eland-herd-plains.webp": {
+            "alt": "Eland herd",
+            "cap": "Eland herd · Ngorongoro"
+          },
+          "warthog-on-plains.webp": {
+            "alt": "Warthog",
+            "cap": "Warthog · Pumbaa, in person"
+          }
+        }
+      },
+      "heavy": {
+        "title": "Schwergewichte",
+        "sub": "Groß & selten",
+        "tiles": {
+          "buffalo-herd-close.webp": {
+            "alt": "Cape buffalo herd close-up",
+            "cap": "Cape buffalo · the dagga boys"
+          },
+          "buffalo-and-egret.webp": {
+            "alt": "Buffalo with cattle egret",
+            "cap": "Buffalo & egret · partners"
+          },
+          "rhino-on-plains.webp": {
+            "alt": "Black rhino on plains",
+            "cap": "Black rhino · <30 left in the crater"
+          }
+        }
+      },
+      "birds": {
+        "title": "Vögel",
+        "sub": "400+ Arten",
+        "tiles": {
+          "crowned-crane-close.webp": {
+            "alt": "Grey crowned crane close-up",
+            "cap": "Grey crowned crane"
+          },
+          "crowned-cranes-in-grass.webp": {
+            "alt": "Pair of crowned cranes",
+            "cap": "The pair · always two"
+          },
+          "yellow-weaver-on-rail.webp": {
+            "alt": "Yellow weaver on rail",
+            "cap": "Speke's weaver · lodge regular"
+          },
+          "raptor-on-log.webp": {
+            "alt": "Lanner falcon on rock",
+            "cap": "Lanner falcon · with prey"
+          }
+        }
+      }
+    }
+  },
+  "compare": {
+    "eyebrow": "Noch unsicher?",
+    "title": "Wähle nach dem, was du am meisten willst.",
+    "lead": "Die meisten Gäste kennen die Parknamen noch nicht. Starte mit dem Wunschgefühl und öffne dann die Route, die dazu passt.",
+    "explore_aria": "{{pick}} entdecken",
+    "items": {
+      "tarangire-day-trip": {
+        "label": "Bester kurzer Vorgeschmack",
+        "pick": "Tarangire Express Day Safari",
+        "note": "Wenig Aufwand, echte Festland-Wildlife an einem Tag."
+      },
+      "ngorongoro-overnight": {
+        "label": "Beste kurze Safari",
+        "pick": "Ngorongoro Overnight",
+        "note": "Eine Nacht, hohe Tierdichte, Krater im ersten Licht."
+      },
+      "ngorongoro-tarangire": {
+        "label": "Beste Route für Einsteiger",
+        "pick": "Ngorongoro & Tarangire",
+        "note": "Klassische Big-Five-Landschaft plus Elefanten und Baobabs."
+      },
+      "serengeti-migration": {
+        "label": "Bester Migrationsfokus",
+        "pick": "Serengeti Migration",
+        "note": "Für Flussüberquerungen und großes Drama in offenen Ebenen."
+      },
+      "nyerere-selous": {
+        "label": "Beste abgelegene Wildnis",
+        "pick": "Nyerere, Ruaha, Katavi",
+        "note": "Weniger Fahrzeuge, wildere Camps, stärkeres Abenteuergefühl."
+      },
+      "mahale-chimp": {
+        "label": "Bestes Premium-Add-on",
+        "pick": "Mahale Chimp & Lake Tanganyika",
+        "note": "Seltenes Schimpansen-Trekking mit Abschluss am See."
+      }
+    }
+  },
+  "steps": {
+    "eyebrow": "So funktioniert die Buchung",
+    "title": "Drei Schritte von der Idee zur bestätigten Safari.",
+    "items": {
+      "01": {
+        "title": "Route wählen",
+        "text": "Starte mit einer Karte oder sende deine Daten, und wir empfehlen die beste Safari für dein Budget."
+      },
+      "02": {
+        "title": "Wir kalkulieren die echte Reise",
+        "text": "Wir prüfen Flüge, Camp-Verfügbarkeit, Parkgebühren und Saison, bevor das finale Angebot kommt."
+      },
+      "03": {
+        "title": "Anzahlung bestätigt",
+        "text": "Deine Anzahlung sichert Flüge, Guide, Camps und Transfers. Der Rest wird vor der Reise bezahlt."
+      }
+    }
+  },
+  "included": {
+    "eyebrow": "Was inklusive ist",
+    "title": "Ein Preis. Keine Überraschungen.",
+    "lead": "Wir haben früh gelernt, dass „ab $X“ mit zwölf Add-ons Gäste unglücklich macht. Unsere Angebote enthalten alles unten.",
+    "items": [
+      "Bush-Flüge zwischen Parks (Cessna)",
+      "Alle Park- & Naturschutzgebühren",
+      "Silver-Level zertifizierter Guide",
+      "Vollpension in jedem Camp",
+      "Sundowner & Bush-Picknicks",
+      "Flughafenabholung in Sansibar & Arusha",
+      "Wasser & Getränke in der Lodge",
+      "24/7 Concierge auf WhatsApp"
+    ]
+  },
+  "cta": {
+    "title": "Bereit zu planen?",
+    "text": "Sag uns, wann du Zeit hast, wer mitkommt und worauf du hoffst. Wir melden uns innerhalb von 24 Stunden mit echter Route und echtem Preis.",
+    "get_quote": "Angebot anfragen →",
+    "ai_planner": "Oder mit unserem KI-Planer chatten"
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Fragen, die fast alle stellen.",
+    "items": {
+      "days": {
+        "q": "Wie viele Tage brauche ich für eine Safari?",
+        "a": "Drei Nächte sind das absolute Minimum und lohnen sich vor allem, wenn du zwischen Parks fliegst. Fünf Nächte sind der Sweet Spot. Ab mehr als sieben sehnt man sich oft nach Strand — deshalb kombinieren viele Gäste Safari mit Sansibar."
+      },
+      "kids": {
+        "q": "Ist eine Safari mit Kindern sicher?",
+        "a": "Ja — viele Camps heißen Kinder ab 7 willkommen. Wir wählen Familien-Lodges mit Pool und flexiblen Game Drives. Für Kinder unter 7 empfehlen wir eher Tarangire (kürzere Fahrten, viele Elefanten) als die Serengeti."
+      },
+      "malaria": {
+        "q": "Was ist mit Malaria?",
+        "a": "Tansania ist Malariagebiet. Sprich vor der Reise mit deinem Reisemediziner über Prophylaxe. Camps stellen Repellent, Moskitonetze und meist geschützte Zelte bereit."
+      },
+      "big_five": {
+        "q": "Big Five — garantiert?",
+        "a": "Im Ngorongoro-Krater sieht man oft vier von fünf an einem Tag. Der Leopard ist die Wildcard. Wir versprechen keine Sichtungen; der Bush ist kein Zoo. Wir versprechen, hart danach zu suchen."
+      },
+      "camera": {
+        "q": "Welche Kamera sollte ich mitbringen?",
+        "a": "Mindestens ein 200-mm-Zoom, wenn du Tiere formatfüllend fotografieren möchtest. Viele Gäste fotografieren inzwischen auch stark mit dem Smartphone — für Landschaften und Camps reicht das oft wunderbar."
+      },
+      "extend": {
+        "q": "Kann ich die Safari mit Sansibar verlängern?",
+        "a_prefix": "Ja, und genau das empfehlen wir oft. Wir planen jede Safari so, dass sie nahtlos in einen Strandaufenthalt übergeht. Sieh dir unser ",
+        "a_link": "Bush & Beach Paket",
+        "a_suffix": " als Beispiel für 10 Nächte an."
+      }
+    }
+  },
+  "itineraries": {
+    "eyebrow": "Vorgeschlagene Routen",
+    "title": "Safaris — wähle deinen Startpunkt.",
+    "lead": "Jede Karte öffnet die vollständige Route oder Spezialreise, Inklusivleistungen und Buchungsdetails. Sag uns deine Daten und wir planen Camps und Flüge passend neu.",
+    "filter_label": "Filtern nach",
+    "explore_aria": "{{title}} entdecken",
+    "most_popular": "Am beliebtesten",
+    "card": {
+      "from": "Ab",
+      "pp": "p. P.",
+      "explore_cta": "Entdecken →"
+    },
+    "empty": "In diesem Filter gibt es noch keine Safaris. Versuch Alle.",
+    "show_more": "Mehr Safaris anzeigen",
+    "show_fewer": "Weniger anzeigen",
+    "showing_count": "{{visible}} von {{total}} angezeigt"
+  },
+  "filters": {
+    "all": "Alle",
+    "classic": "Klassische Routen",
+    "southern": "Südliche Parks",
+    "western": "Westen & abgelegen",
+    "short": "1–3-Tage-Trips",
+    "culture": "Kultur & Natur",
+    "luxury": "Luxus & privat",
+    "special": "Spezialinteressen",
+    "combo": "Bush & Beach"
+  },
+  "categories": {
+    "Northern Circuit": "Northern Circuit",
+    "Migration Safari": "Migrationssafari",
+    "Southern Circuit": "Southern Circuit",
+    "Western Circuit": "Western Circuit",
+    "Last-minute Safari": "Last-Minute-Safari",
+    "Day Safari": "Tagessafari",
+    "Nature & Adventure": "Natur & Abenteuer",
+    "History & Safari": "Geschichte & Safari",
+    "Culture": "Kultur",
+    "Nature & Culture": "Natur & Kultur",
+    "Mountain Adventure": "Bergabenteuer",
+    "Luxury": "Luxus",
+    "Photography": "Fotografie",
+    "Luxury & Wellness": "Luxus & Wellness",
+    "Family": "Familie",
+    "Quick Safari": "Kurze Safari",
+    "Beach & Safari": "Strand & Safari",
+    "Hiking & Nature": "Wandern & Natur",
+    "Ultra Luxury": "Ultra-Luxus",
+    "Wildlife": "Wildlife",
+    "Birding": "Birding",
+    "Adventure": "Abenteuer",
+    "Migration": "Migration",
+    "Combo": "Kombi",
+    "Multi Country": "Mehrere Länder"
+  },
+  "price_units": {
+    "pp": "p. P."
+  }
+}

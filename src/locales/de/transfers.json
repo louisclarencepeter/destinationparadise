@@ -1,0 +1,260 @@
+{
+  "page_title": "Flughafen- & Inseltransfers · Sansibar · Destination Paradise",
+  "page_description": "Premium-Flughafentransfers auf Sansibar, private Hoteltransfers, VIP-Ankunftsservice und Gruppentransport von Destination Paradise. Meet & greet, Flugüberwachung, klimatisierte Fahrzeuge, 24/7.",
+  "hero": {
+    "eyebrow": "Private Flughafen- · Hotel- · Inseltransfers",
+    "title_prefix": "Der erste und letzte",
+    "title_em": "Eindruck von Sansibar",
+    "title_suffix": "— richtig gut geplant.",
+    "lead": "Vorab gebuchte private Transfers mit Meet & greet am Flughafen, klimatisierten Fahrzeugen, Gepäckhilfe und WhatsApp-Support ab dem Moment deiner Landung.",
+    "route_pricing": "Routenpreise ansehen",
+    "whatsapp": "Auf WhatsApp buchen →",
+    "stats": [
+      {
+        "value": "Ab $25",
+        "label": "pro Fahrzeug"
+      },
+      {
+        "value": "Privat",
+        "label": "Meet & greet"
+      },
+      {
+        "value": "3 Stufen",
+        "label": "Standard · Premium · VIP"
+      },
+      {
+        "value": "24 / 7",
+        "label": "Flugüberwachung"
+      }
+    ]
+  },
+  "types": {
+    "eyebrow": "Routenpreise",
+    "title": "Private Transfers mit klaren Preisen nach Route.",
+    "lead": "Starte mit einem privaten Fahrzeug und upgrade auf Premium-SUV oder VIP-Concierge, wenn die Ankunft schon Teil des Urlaubs sein soll.",
+    "book": "Diesen Transfer buchen"
+  },
+  "how": {
+    "eyebrow": "So funktioniert es",
+    "title": "Drei Schritte von der Landung bis zum Check-in.",
+    "items": [
+      {
+        "step": "01",
+        "title": "Du sendest die Details",
+        "text": "Teile Flugnummer, Ankunftszeit, Hotelname und Gruppengröße per WhatsApp oder über das Buchungsformular. Wir bestätigen innerhalb weniger Stunden."
+      },
+      {
+        "step": "02",
+        "title": "Wir verfolgen deinen Flug",
+        "text": "Unsere Fahrer verfolgen deinen Flug in Echtzeit. Kommt er früher oder später, passen wir die Abholung an, ohne Wartegebühren und ohne verpassten Pickup."
+      },
+      {
+        "step": "03",
+        "title": "Entspannt ankommen",
+        "text": "Dein Fahrer wartet am Ankunftsbereich mit Namensschild. Gepäck rein, Klimaanlage an, und in 20-45 Minuten bist du im Hotel."
+      }
+    ]
+  },
+  "included": {
+    "eyebrow": "Inklusive",
+    "title": "Ein Ankunftsservice, nicht nur Transport.",
+    "lead": "Gäste buchen Sicherheit: ein Fahrer, der schon wartet, Support bei Flugänderungen und einen ruhigen ersten Eindruck von Sansibar.",
+    "choose_route": "Route auswählen →",
+    "items": [
+      "Private Transferpreise nach Route",
+      "Meet & greet mit Namensschild",
+      "Flugüberwachung und Verspätungsmonitoring",
+      "Klimatisiertes Fahrzeug",
+      "Hilfe mit dem Gepäck",
+      "Wasser an Bord bei Premium-Buchungen",
+      "Lizenzierte, tourismuserfahrene Fahrer",
+      "Hotel-Drop-off bis zur Tür",
+      "WhatsApp-Support vor der Ankunft"
+    ]
+  },
+  "fleet": {
+    "eyebrow": "Service-Stufen",
+    "title": "Standard, Premium oder VIP-Ankunft.",
+    "lead": "Passe den Transfer an den Gast an: praktischer privater Komfort, stilvolleres Ankommen oder vollständige Concierge-Betreuung.",
+    "items": [
+      {
+        "key": "standard",
+        "type": "Standard Private",
+        "capacity": "Zuverlässiges Fahrzeug mit AC",
+        "desc": "Ideal für praktische Flughafen- und Hoteltransfers mit Meet & greet, Flugüberwachung, Gepäckhilfe und Tür-zu-Tür-Service."
+      },
+      {
+        "key": "premium",
+        "type": "Premium-SUV",
+        "capacity": "Paare · Familien",
+        "desc": "Mehr Platz und ein hochwertigeres Ankommen für Honeymooner, Resortgäste, Safarikunden und Reisende mit zusätzlichem Gepäck."
+      },
+      {
+        "key": "vip",
+        "type": "VIP Concierge",
+        "capacity": "Luxuriös ankommen",
+        "desc": "Fast-Track-Support, private Concierge-Betreuung, Luxusfahrzeug, kalte Tücher, Erfrischungen und ein besonders gepflegter Empfang."
+      },
+      {
+        "key": "group",
+        "type": "Gruppentransfer",
+        "capacity": "5-25 Gäste",
+        "desc": "Minivans und Coaster-Busse für Familien, Hochzeitsgruppen, Teams und Safarigruppen, die gemeinsam mit Gepäck anreisen."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Bevor du buchst.",
+    "items": [
+      {
+        "q": "Was kostet ein Flughafentransfer?",
+        "a": "Private Flughafentransfers starten bei $25 pro Fahrzeug nach Stone Town, $45 nach Paje oder Jambiani und $50 nach Nungwi oder Kendwa. Premium-SUV, VIP-Concierge, Gruppen und Minivans werden separat kalkuliert.",
+        "open": true
+      },
+      {
+        "q": "Was passiert, wenn mein Flug verspätet ist?",
+        "a": "Wir verfolgen deinen Flug in Echtzeit über die Flugnummer, die du uns gibst. Der Fahrer wartet bei Verspätungen bis zu 2 Stunden ohne Aufpreis. Bei längeren Verzögerungen passen wir die Buchung an und bleiben per WhatsApp in Kontakt."
+      },
+      {
+        "q": "Könnt ihr mich um 3 Uhr morgens vom Hotel abholen?",
+        "a": "Ja. Wir fahren 24 Stunden am Tag, 7 Tage die Woche. Frühe Morgen- und späte Nachtfahrten sind normal, gib uns einfach die Uhrzeit bei der Buchung."
+      },
+      {
+        "q": "Fahrt ihr auch an die Nordküste, nach Nungwi und Kendwa?",
+        "a": "Ja, wir decken die ganze Insel ab: Stone Town, Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje, Bwejuu, Jambiani und alles dazwischen."
+      },
+      {
+        "q": "Könnt ihr Transfers für eine Safari-Verbindung organisieren?",
+        "a": "Absolut. Wenn du Sansibar mit einer Festland-Safari kombinierst, koordinieren wir die Abholung am Fährhafen oder Flughafen Dar es Salaam und können den Weitertransfer nach Arusha oder zu anderen Safari-Hubs arrangieren."
+      },
+      {
+        "q": "Wie bezahle ich?",
+        "a": "Wir akzeptieren USD, EUR, GBP und TZS. Standard-Privattransfers können meist am Tag selbst bezahlt werden. Premium-, VIP-, Gruppen- und Langstreckenbuchungen können eine Anzahlung zur Sicherung von Fahrzeug und Fahrer erfordern."
+      }
+    ]
+  },
+  "cta": {
+    "eyebrow": "Bereit zu buchen?",
+    "title": "Sag uns deine Route. Wir wählen das passende Fahrzeug.",
+    "text": "Teile Flug, Hotel, Gästezahl und Gepäckbedarf per WhatsApp. Wir bestätigen die beste private, Premium- oder VIP-Option.",
+    "whatsapp": "Auf WhatsApp buchen →",
+    "booking_form": "Buchungsformular nutzen"
+  },
+  "products": {
+    "airport-stonetown": {
+      "title": "Flughafen ⇄ Stone Town",
+      "duration": "15 - 25 Minuten",
+      "description": "Ein gepflegtes privates Ankommen für Hotels in Stone Town, Kurzaufenthalte, Geschäftsreisende und Gäste, die den Flughafen erledigt wissen wollen, bevor sie landen.",
+      "pricing": [
+        "Privates Auto ab $25 pro Fahrzeug",
+        "Premium-SUV ab $45",
+        "Gruppentransfer ab $10 pro Person"
+      ],
+      "details": [
+        "Meet & greet am Ankunftsbereich",
+        "Flugüberwachung inklusive",
+        "Hotels in Stone Town",
+        "Ideal für kurze Aufenthalte"
+      ],
+      "priceSummary": "Privat ab $25",
+      "homePrice": "$25",
+      "category": "Flughafentransfer"
+    },
+    "airport-paje": {
+      "title": "Flughafen ⇄ Paje / Jambiani",
+      "duration": "1 - 1,5 Stunden",
+      "description": "Direkte Transfers zu den Beach-Resorts an der Südostküste, mit Platz für Gepäck, Kite-Ausrüstung und eine ruhige erste Stunde auf der Insel.",
+      "pricing": [
+        "Privates Auto ab $45 pro Fahrzeug",
+        "Premium-SUV ab $70",
+        "Luxury VIP ab $120"
+      ],
+      "details": [
+        "Paje, Bwejuu & Jambiani",
+        "Paare und Strandaufenthalte",
+        "Support für Kitesurf-Gepäck",
+        "Drop-off direkt am Resort"
+      ],
+      "priceSummary": "Privat ab $45",
+      "homePrice": "$45",
+      "category": "Flughafentransfer"
+    },
+    "airport-nungwi": {
+      "title": "Flughafen ⇄ Nungwi / Kendwa",
+      "duration": "Etwa 1,5 Stunden",
+      "description": "Komfortable Langstrecken-Transfers zu Resorts an der Nordküste, für Honeymoon-Aufenthalte und Gäste, die nach einem langen internationalen Flug bequem ankommen wollen.",
+      "pricing": [
+        "Privates Auto ab $50 pro Fahrzeug",
+        "Premium-SUV ab $80",
+        "Luxury VIP ab $140"
+      ],
+      "details": [
+        "Resorts in Nungwi und Kendwa",
+        "Honeymoon-Ankünfte",
+        "Luxuriöse Strandurlaube",
+        "Erfrischungsstopp auf Anfrage"
+      ],
+      "priceSummary": "Privat ab $50",
+      "homePrice": "$50",
+      "category": "Flughafentransfer"
+    },
+    "hotel-hotel": {
+      "title": "Hotel ⇄ Hotel Transfers",
+      "duration": "Inselweit",
+      "description": "Wechselst du von Stone Town an den Strand oder kombinierst mehrere Resorts? Wir planen Timing, Abholpunkt, Gepäck und Route.",
+      "pricing": [
+        "Privater Transfer ab $35 pro Fahrzeug",
+        "Premium-Transfer ab $60",
+        "Nordküstenrouten nach Distanz kalkuliert"
+      ],
+      "details": [
+        "Alle Regionen der Insel",
+        "Stone Town ⇄ Nungwi",
+        "Paje ⇄ Kendwa und mehr",
+        "Flexible Abholzeiten"
+      ],
+      "priceSummary": "Privat ab $35",
+      "homePrice": "$35",
+      "category": "Inseltransfer"
+    },
+    "group-transfers": {
+      "title": "Gruppen- & Minivan-Transfers",
+      "duration": "Familien · Events · Teams",
+      "description": "Koordinierte Ankünfte für Familien, Hochzeitsgruppen, Unternehmensteams und Safarigruppen, die gemeinsam mit Gepäck reisen.",
+      "pricing": [
+        "Minivan ab $90",
+        "Coaster-Bus ab $180",
+        "Individuelles Angebot für große Gruppen"
+      ],
+      "details": [
+        "5 - 25 Gäste",
+        "Gepäckplanung für Gruppen",
+        "Mehrere Abholpunkte",
+        "Flughafen- oder Hotelkoordination"
+      ],
+      "priceSummary": "Minivan ab $90",
+      "homePrice": "$90",
+      "category": "Gruppentransfer"
+    },
+    "vip-airport-service": {
+      "title": "VIP Airport Concierge",
+      "duration": "Luxuriöser Ankunftsservice",
+      "description": "Ein High-Touch-Ankunftserlebnis für Premiumgäste, Honeymooner, Executives und Safarikunden, die jedes Detail betreut wissen möchten.",
+      "pricing": [
+        "VIP-Concierge ab $150",
+        "Luxusfahrzeug inklusive",
+        "Fast-Track-Assistenz auf Anfrage"
+      ],
+      "details": [
+        "Privater Concierge",
+        "Meet & greet",
+        "Kalte Tücher & Erfrischungen",
+        "WhatsApp-Support"
+      ],
+      "priceSummary": "VIP ab $150",
+      "homePrice": "$150",
+      "category": "VIP-Transfer"
+    }
+  }
+}

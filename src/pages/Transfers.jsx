@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import TransfersCta from '../components/transfers/TransfersCta.jsx';
 import TransfersFaq from '../components/transfers/TransfersFaq.jsx';
 import TransfersFleet from '../components/transfers/TransfersFleet.jsx';
@@ -9,11 +10,9 @@ import { usePageMeta } from '../hooks/usePageMeta.js';
 import '../styles/homepage.css';
 import '../styles/transfers.css';
 
-const PAGE_TITLE = 'Airport & Island Transfers · Zanzibar · Destination Paradise';
-const PAGE_DESCRIPTION = 'Premium Zanzibar airport transfers, private hotel transfers, VIP concierge arrivals, and group transport from Destination Paradise. Meet & greet, flight tracking, AC vehicles, 24/7.';
-
 export default function Transfers() {
-  usePageMeta(PAGE_TITLE, PAGE_DESCRIPTION);
+  const { t } = useTranslation('transfers');
+  usePageMeta(t('page_title'), t('page_description'));
 
   return (
     <main className="transfers-page">

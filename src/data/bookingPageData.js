@@ -13,6 +13,23 @@ export const PAYMENT_OPTIONS = [
   { value: 'later', label: 'Quote first, payment later', text: 'We will price the trip first and discuss payment after.' },
 ];
 
+export const BUDGET_OPTIONS = [
+  { value: '', label: 'Not sure yet' },
+  { value: 'Under $1,000 pp', label: 'Under $1,000 pp' },
+  { value: '$1,000 - $2,500 pp', label: '$1,000 - $2,500 pp' },
+  { value: '$2,500 - $5,000 pp', label: '$2,500 - $5,000 pp' },
+  { value: '$5,000 - $8,000 pp', label: '$5,000 - $8,000 pp' },
+  { value: '$8,000+ pp', label: '$8,000+ pp' },
+];
+
+export const COMFORT_OPTIONS = [
+  { value: 'Budget', label: 'Budget' },
+  { value: 'Mid-range', label: 'Mid-range' },
+  { value: 'Luxury', label: 'Luxury' },
+  { value: 'Ultra luxury', label: 'Ultra luxury' },
+  { value: 'Flexible', label: 'Flexible' },
+];
+
 export const DEFAULT_BOOKING_FORM = {
   serviceType: 'package',
   product: '',
@@ -36,20 +53,31 @@ export const DEFAULT_BOOKING_FORM = {
 
 const money = (value) => `$${Number(value).toLocaleString()}`;
 
-export function bookingPriceLabel(item) {
-  if (!item) return 'Final price after availability check';
+export const translatedList = (t, key, fallback) => {
+  const translated = t?.(key, { returnObjects: true, defaultValue: fallback });
+  return Array.isArray(translated) ? translated : fallback;
+};
+
+export const translatedLabel = (items, value, fallback = value) => (
+  items.find((item) => item.value === value)?.label || fallback
+);
+
+export function bookingPriceLabel(item, t) {
+  const translate = (key, fallback) => t?.(key, { defaultValue: fallback }) || fallback;
+
+  if (!item) return translate('price.final_after_availability', 'Final price after availability check');
   if (item.type === 'package') {
     const to = item.raw.pricing.to ? ` - ${money(item.raw.pricing.to)}` : '';
-    return `From ${money(item.raw.pricing.from)}${to} ${item.raw.pricing.unit || 'per person'}`;
+    return `${translate('price.from', 'From')} ${money(item.raw.pricing.from)}${to} ${item.unit || item.raw.pricing.unit || translate('price.per_person', 'per person')}`;
   }
   if (item.type === 'safari') {
-    return `From ${money(item.raw.recommendedPublicPrice.lowSeason)} pp`;
+    return `${translate('price.from', 'From')} ${money(item.raw.recommendedPublicPrice.lowSeason)} ${translate('price.pp', 'pp')}`;
   }
   if (item.type === 'excursion' && typeof item.raw.price === 'number') {
-    return `From ${money(item.raw.price)} ${item.raw.priceSub || 'per person'}`;
+    return `${translate('price.from', 'From')} ${money(item.raw.price)} ${item.priceSub || item.raw.priceSub || translate('price.per_person', 'per person')}`;
   }
   if (item.type === 'transfer') {
-    return item.raw.priceSummary || 'Final transfer price after route confirmation';
+    return item.priceSummary || item.raw.priceSummary || translate('price.final_transfer_after_route', 'Final transfer price after route confirmation');
   }
-  return 'Final price after availability check';
+  return translate('price.final_after_availability', 'Final price after availability check');
 }

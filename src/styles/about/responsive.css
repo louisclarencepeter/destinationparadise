@@ -1,7 +1,7 @@
 /* ============ RESPONSIVE — match saf-/exc- breakpoints ============ */
 @media (max-width: 720px) {
   .ab-hero {
-    min-height: auto;
+    min-height: 100svh;
     align-items: center;
     padding: calc(var(--nav-height, 66px) + 1.35rem) 1rem 2.25rem;
   }

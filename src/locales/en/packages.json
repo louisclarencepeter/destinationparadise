@@ -1,0 +1,354 @@
+{
+  "page_title": "Zanzibar & Tanzania Packages · Destination Paradise",
+  "hero": {
+    "eyebrow": "Hotels · safaris · excursions · special moments",
+    "title_prefix": "Packages for the trip",
+    "title_em": "you actually want.",
+    "lead": "Safari and Zanzibar combos, honeymoon trips, fly-in safaris, Kilimanjaro adventures, family holidays, marine experiences, and culture-led island stays.",
+    "browse": "Browse packages",
+    "build_plan": "Build my plan →",
+    "stat_packages": "Packages",
+    "stat_from": "From",
+    "stat_styles": "Styles",
+    "stat_quote_time": "Quote time"
+  },
+  "grid": {
+    "eyebrow": "Curated packages",
+    "title": "Packages — pick a starting point.",
+    "lead": "Each package opens into inclusions, audience fit, price, and upgrade ideas. We tailor every package around your dates and comfort level.",
+    "filter_label": "Filter by",
+    "explore_aria": "Explore {{title}}",
+    "from": "From",
+    "explore_cta": "Explore →",
+    "show_more": "Show more packages",
+    "show_fewer": "Show fewer packages",
+    "showing_count": "{{visible}} of {{total}} shown"
+  },
+  "filters": {
+    "all": "All",
+    "safari": "Safari + beach",
+    "honeymoon": "Honeymoon",
+    "fly-in": "Fly-in safaris",
+    "luxury": "Luxury",
+    "family": "Family",
+    "kilimanjaro": "Kilimanjaro",
+    "culture": "Culture",
+    "marine": "Marine",
+    "tailor": "Tailor-made"
+  },
+  "matches": {
+    "eyebrow": "Not sure yet?",
+    "title": "Choose by travel style.",
+    "lead": "Start with the strongest 2026 travel demand: safari and beach, honeymoon, short fly-in safaris, luxury migration, family, Kilimanjaro, marine, or culture.",
+    "explore_aria": "Explore {{pick}}",
+    "items": [
+      {
+        "label": "Best entry package",
+        "pick": "6 Days Safari & Zanzibar Escape",
+        "slug": "six-day-safari-zanzibar-escape",
+        "note": "The most accessible way to combine a real mainland safari with beach time."
+      },
+      {
+        "label": "Best honeymoon",
+        "pick": "7 Days Honeymoon Safari & Zanzibar",
+        "slug": "seven-day-honeymoon-safari-zanzibar",
+        "note": "Romantic lodges, beach resort, dhow cruise, candlelight dinner, and safari days."
+      },
+      {
+        "label": "Most complete classic",
+        "pick": "10 Days Classic Safari & Zanzibar",
+        "slug": "ten-day-classic-safari-zanzibar",
+        "note": "Arusha, Tarangire, Serengeti, Ngorongoro, and a Zanzibar beach finish."
+      },
+      {
+        "label": "Best quick safari",
+        "pick": "2 Days Fly-In Safari From Zanzibar",
+        "slug": "two-day-fly-in-safari-zanzibar",
+        "note": "A compact fly-in route for guests already staying on the island."
+      },
+      {
+        "label": "Best premium wildlife",
+        "pick": "Great Migration Luxury Package",
+        "slug": "great-migration-luxury-package",
+        "note": "Seasonal migration tracking, luxury camps, photographer options, and Zanzibar."
+      },
+      {
+        "label": "Best non-safari island stay",
+        "pick": "Zanzibar Adventure & Marine Package",
+        "slug": "zanzibar-adventure-marine-package",
+        "note": "Ocean activities, sandbank picnic, dhow cruise, Jozani, and beach resort time."
+      }
+    ]
+  },
+  "market": {
+    "eyebrow": "Operator positioning",
+    "title": "A complete Tanzania and Zanzibar portfolio.",
+    "lead": "These categories make Destination Paradise feel like a full-scale premium tour operator, not only an excursions company.",
+    "items": [
+      "Safari Packages",
+      "Zanzibar Beach Holidays",
+      "Honeymoon Packages",
+      "Family Packages",
+      "Luxury Experiences",
+      "Fly-In Safaris",
+      "Kilimanjaro Adventures",
+      "Cultural Tours",
+      "Marine & Diving Experiences",
+      "Tailor-Made Packages"
+    ]
+  },
+  "included": {
+    "eyebrow": "What's included",
+    "title": "One plan. Fewer moving parts.",
+    "lead": "Packages are built to remove the back-and-forth: hotels, transfers, excursions, special setups, and safari add-ons arranged together.",
+    "items": [
+      "Airport transfers coordinated",
+      "Hotel or villa matching",
+      "Excursions and safari add-ons",
+      "Custom quote within 24 hours",
+      "WhatsApp concierge support",
+      "Upgrade options before confirmation",
+      "Flexible pacing for your group",
+      "Local team on the ground"
+    ]
+  },
+  "steps": {
+    "eyebrow": "How booking works",
+    "title": "Three steps to a confirmed package.",
+    "items": [
+      {
+        "step": "01",
+        "title": "Choose a package",
+        "text": "Start from the closest match: safari and beach, honeymoon, fly-in, family, luxury, Kilimanjaro, culture, or marine."
+      },
+      {
+        "step": "02",
+        "title": "We tailor the details",
+        "text": "Hotels, flights, safari routing, beach areas, excursions, meals, and upgrades are adjusted to your dates and budget."
+      },
+      {
+        "step": "03",
+        "title": "Confirm and relax",
+        "text": "Your deposit locks the plan. We coordinate the moving parts and keep you updated on WhatsApp."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Want us to build it around you?",
+    "text": "Send dates, group size, and the style you like. We'll come back with a real package and a real price.",
+    "get_quote": "Get a quote →",
+    "ai_planner": "Plan with AI"
+  },
+  "detail": {
+    "not_found_page_title": "Package Not Found · Destination Paradise",
+    "not_found_eyebrow": "Packages",
+    "not_found_title": "Package not found",
+    "not_found_text": "That package is not in our current list. Browse all packages below.",
+    "back_to_packages": "Back to packages →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Home",
+    "breadcrumb_packages": "Packages",
+    "facts": {
+      "duration": "Duration",
+      "flexible_pacing": "Flexible pacing",
+      "category": "Category",
+      "package_style": "Package style",
+      "price": "Price",
+      "quote": "Quote",
+      "custom_proposal": "Custom proposal"
+    },
+    "included": "Included",
+    "ideal_for": "Ideal for",
+    "route_notes": "Route notes",
+    "starting_prices": "Starting prices",
+    "destination_options": "Destination options",
+    "route": "Route",
+    "planning_notes": "Planning notes",
+    "optional_upgrades": "Optional upgrades",
+    "price_note": "Final package price depends on dates, hotel level, transfers, and availability.",
+    "build_package": "Build this package →",
+    "all_packages": "All packages",
+    "context": {
+      "trip_split": "Trip split: {{value}}",
+      "focus": "Focus: {{value}}",
+      "season": "Season: {{value}}"
+    },
+    "cta": {
+      "title": "Ready to plan {{title}}?",
+      "text": "Tell us your dates, guest count, and comfort level. We'll shape the package and quote it properly."
+    }
+  },
+  "price_units": {
+    "Per Person": "Per Person",
+    "per person": "per person",
+    "per couple": "per couple"
+  },
+  "catalog": {
+    "six-day-safari-zanzibar-escape": {
+      "title": "6 Days Safari & Zanzibar Escape",
+      "category": "Safari Packages",
+      "duration": "6 Days",
+      "idealFor": ["Budget travelers", "Couples", "First-time visitors"],
+      "split": "3 days safari · 3 days Zanzibar",
+      "includes": ["Airport pickup & transfers", "Safari in Tarangire, Ngorongoro, or Serengeti", "Professional safari guide", "4x4 safari vehicle", "Accommodation", "Domestic flight to Zanzibar", "Beach hotel", "Breakfast, lunch & dinner during safari", "Selected beach meals", "Park fees"],
+      "pricing": { "unit": "Per Person" },
+      "priceTiers": [
+        { "label": "Budget", "price": 1500 },
+        { "label": "Mid-range", "price": 2100 },
+        { "label": "Luxury", "price": 3200 }
+      ],
+      "benchmark": "Similar packages currently start around $1,500."
+    },
+    "seven-day-honeymoon-safari-zanzibar": {
+      "title": "7 Days Honeymoon Safari & Zanzibar",
+      "category": "Honeymoon Packages",
+      "duration": "7 Days",
+      "idealFor": ["Couples", "Honeymooners"],
+      "includes": ["Luxury lodges", "Romantic beach resort", "Private transfers", "Sunset dhow cruise", "Candlelight dinner on the beach", "Bush breakfast", "Safari game drives", "Domestic flights", "Professional guide", "Spa options"],
+      "pricing": { "unit": "Per Person" },
+      "priceTiers": [
+        { "label": "Mid-range", "price": 3200 },
+        { "label": "Luxury", "price": 4800, "suffix": "+" }
+      ],
+      "benchmark": "Honeymoon packages start around $3,200."
+    },
+    "eight-day-tanzania-parks-zanzibar": {
+      "title": "8 Days Tanzania Parks & Zanzibar",
+      "category": "Safari Packages",
+      "duration": "8 Days",
+      "idealFor": ["Adventure travelers", "Beach lovers", "First-time Tanzania guests"],
+      "split": "4 days safari · 4 days Zanzibar",
+      "includes": ["Serengeti", "Ngorongoro Crater", "Tarangire", "Zanzibar beach stay", "Airport transfers", "Safari jeep", "Accommodation", "Domestic flight", "Full board safari meals"],
+      "pricing": { "unit": "Per Person" },
+      "priceTiers": [
+        { "label": "Budget", "price": 2000 },
+        { "label": "Mid-range", "price": 2800 },
+        { "label": "Luxury", "price": 4200 }
+      ],
+      "benchmark": "Similar offers currently start around $2,000."
+    },
+    "nine-day-safari-zanzibar-culture": {
+      "title": "9 Days Safari, Zanzibar & Culture",
+      "category": "Cultural Tours",
+      "duration": "9 Days",
+      "idealFor": ["Cultural travelers", "Safari guests", "Beach travelers"],
+      "includes": ["Stone Town tour", "Spice farm tour", "Safari in Tanzania parks", "Zanzibar beach accommodation", "Domestic flights", "Guide", "Park fees", "Cultural experiences"],
+      "pricing": { "unit": "Per Person" },
+      "priceTiers": [
+        { "label": "Budget", "price": 2300 },
+        { "label": "Mid-range", "price": 3000 },
+        { "label": "Luxury", "price": 4700 }
+      ],
+      "benchmark": "Similar packages are around $2,300."
+    },
+    "ten-day-classic-safari-zanzibar": {
+      "title": "10 Days Classic Safari & Zanzibar",
+      "category": "Safari Packages",
+      "duration": "10 Days",
+      "idealFor": ["Most popular complete Tanzania experience", "Couples", "Families"],
+      "route": ["Arusha", "Tarangire", "Serengeti", "Ngorongoro", "Nungwi, Kendwa, or Paje"],
+      "includes": ["Luxury lodges", "Internal flights", "Private safari vehicle", "Beach resort", "Stone Town tour", "Airport transfers", "Full board safari meals"],
+      "pricing": { "unit": "Per Person" },
+      "priceTiers": [
+        { "label": "Mid-range", "price": 3800 },
+        { "label": "Luxury", "price": 5500, "suffix": "+" }
+      ],
+      "benchmark": "Mid-range classic safari and Zanzibar packages start around $3,800."
+    },
+    "twelve-day-serengeti-zanzibar": {
+      "title": "12 Days Serengeti & Zanzibar",
+      "category": "Luxury Experiences",
+      "duration": "12 Days",
+      "idealFor": ["Slow luxury travelers", "Wildlife lovers", "Beach travelers"],
+      "includes": ["Extended Serengeti safari", "Ngorongoro", "Luxury Zanzibar stay", "Optional diving", "Optional kitesurfing", "Flexible itinerary", "Domestic flights", "Beach excursions"],
+      "pricing": { "unit": "Per Person" },
+      "priceTiers": [
+        { "label": "Mid-range", "price": 3000 },
+        { "label": "Luxury", "price": 5800 }
+      ],
+      "benchmark": "Similar packages are around $3,000."
+    },
+    "fourteen-day-ultimate-tanzania-zanzibar": {
+      "title": "14 Days Ultimate Tanzania & Zanzibar",
+      "category": "Luxury Experiences",
+      "duration": "14 Days",
+      "idealFor": ["Premium clients", "Luxury safari travelers", "Celebration trips"],
+      "includes": ["Great Migration safari", "Fly-in safari experience", "Luxury eco lodges", "Kendwa beach villa", "VIP airport transfers", "Cultural tours", "Premium beach resorts"],
+      "pricing": { "unit": "Per Person" },
+      "priceTiers": [{ "label": "Luxury", "price": 7500, "suffix": "+" }],
+      "benchmark": "Luxury itineraries start around $7,500."
+    },
+    "two-day-fly-in-safari-zanzibar": {
+      "title": "2 Days Fly-In Safari From Zanzibar",
+      "category": "Fly-In Safaris",
+      "duration": "2 Days",
+      "destinations": ["Mikumi", "Nyerere National Park (Selous)"],
+      "idealFor": ["Short-stay travelers", "Zanzibar guests", "First safari experience"],
+      "includes": ["Return flights", "Game drives", "Lodge stay", "Meals", "Park fees", "Guide"],
+      "pricing": { "unit": "Per Person" },
+      "benchmark": "Zanzibar fly-in safaris are commonly sold within this range."
+    },
+    "three-day-serengeti-fly-in-safari": {
+      "title": "3 Days Serengeti Fly-In Safari",
+      "category": "Fly-In Safaris",
+      "duration": "3 Days",
+      "idealFor": ["Luxury short trips", "Wildlife lovers", "Zanzibar guests"],
+      "includes": ["Return flight from Zanzibar", "Serengeti lodge", "Full game drives", "Safari guide", "Meals", "Transfers"],
+      "pricing": { "unit": "Per Person" },
+      "benchmark": "Similar packages are currently around $2,303."
+    },
+    "kilimanjaro-safari-zanzibar-expedition": {
+      "title": "Kilimanjaro + Safari + Zanzibar Expedition",
+      "category": "Kilimanjaro Adventures",
+      "duration": "14 Days",
+      "idealFor": ["Adventure travelers", "Climbers", "Bucket-list trips"],
+      "includes": ["Machame Route climb", "Professional mountain crew", "Camping equipment", "Safari", "Zanzibar beach stay", "Domestic flights", "Transfers"],
+      "pricing": { "unit": "Per Person" },
+      "benchmark": "Comparable tours are priced around $4,350."
+    },
+    "luxury-family-safari-zanzibar": {
+      "title": "Luxury Family Safari & Zanzibar",
+      "category": "Family Packages",
+      "duration": "Custom Duration",
+      "idealFor": ["Families with children", "Premium family travel", "Multi-generation trips"],
+      "includes": ["Family suites", "Child-friendly safari", "Private family guide", "Zanzibar beach resort", "Gourmet meals", "Flexible safari pace", "Domestic flights"],
+      "pricing": { "unit": "Per Person" },
+      "priceTiers": [{ "label": "Luxury", "price": 9000 }],
+      "benchmark": "Premium family packages are around $9,000."
+    },
+    "great-migration-luxury-package": {
+      "title": "Great Migration Luxury Package",
+      "category": "Luxury Experiences",
+      "duration": "Seasonal",
+      "season": "June - October",
+      "idealFor": ["High-end wildlife photography", "Luxury travelers", "Migration-focused guests"],
+      "includes": ["Migration tracking", "Fly-in safari", "Luxury tented camps", "Photographer guide option", "Balloon safari option", "Zanzibar luxury resort"],
+      "pricing": { "unit": "Per Person" }
+    },
+    "zanzibar-adventure-marine-package": {
+      "title": "Zanzibar Adventure & Marine Package",
+      "category": "Marine & Diving Experiences",
+      "duration": "Flexible",
+      "focus": "Ocean activities only",
+      "idealFor": ["Ocean lovers", "Divers", "Active beach travelers"],
+      "includes": ["Snorkeling", "Diving", "Mnemba Island trip", "Dolphin tour", "Dhow sunset cruise", "Jozani Forest", "Sandbank picnic", "Beach resort"],
+      "pricing": { "unit": "Per Person" }
+    },
+    "stone-town-culture-experience": {
+      "title": "Stone Town & Culture Experience",
+      "category": "Cultural Tours",
+      "duration": "Flexible",
+      "idealFor": ["Cultural travelers", "Food lovers", "History-focused guests"],
+      "includes": ["Stone Town tour", "Spice farm", "Prison Island", "Local food experience", "Swahili cooking class", "Boutique hotel"],
+      "pricing": { "unit": "Per Person" }
+    },
+    "digital-nomad-zanzibar-stay": {
+      "title": "Digital Nomad Zanzibar Stay",
+      "category": "Tailor-Made Packages",
+      "duration": "14 - 30 Days",
+      "idealFor": ["Remote workers", "Long-stay guests", "Flexible travelers"],
+      "includes": ["Long-term accommodation", "Airport pickup", "Coworking recommendations", "SIM card setup", "Local support", "Weekend excursions"],
+      "pricing": { "unit": "Per Person" }
+    }
+  }
+}

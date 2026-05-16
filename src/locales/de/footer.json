@@ -1,0 +1,54 @@
+{
+  "brand": {
+    "tagline_kicker": "Sansibar & Tansania",
+    "description": "Ein kleines lokales Reiseunternehmen an Sansibars Küste. Ruhige Tage, traditionelle Boote und Guides, die hier aufgewachsen sind.",
+    "typed_tagline": "deine nächste Reise ins Paradies..."
+  },
+  "columns": {
+    "pages": {
+      "heading": "Seiten",
+      "home": "Start",
+      "excursions": "Ausflüge",
+      "safaris": "Safari",
+      "packages": "Pakete",
+      "trip_planner": "Reiseplaner",
+      "explore": "Entdecken",
+      "about": "Über uns"
+    },
+    "about": {
+      "heading": "Über uns",
+      "story": "Unsere Geschichte",
+      "mission": "Unsere Mission",
+      "community": "Community",
+      "destinations": "Reiseziele"
+    },
+    "contact": {
+      "heading": "Kontakt",
+      "whatsapp_link": "Schreib uns auf WhatsApp",
+      "transfers": "Flughafen- & Inseltransfers"
+    }
+  },
+  "socials": {
+    "whatsapp": "WhatsApp",
+    "instagram": "Instagram",
+    "facebook": "Facebook",
+    "youtube": "YouTube",
+    "x": "X"
+  },
+  "theme": {
+    "group_label": "Darstellung",
+    "light_label": "Hell",
+    "dark_label": "Dunkel",
+    "light_aria": "Heller Modus",
+    "dark_aria": "Dunkler Modus"
+  },
+  "policy": {
+    "privacy": "Datenschutz",
+    "terms": "AGB",
+    "cookies": "Cookies"
+  },
+  "fab": {
+    "aria": "Mit dem Team auf WhatsApp chatten",
+    "label": "Schreib uns"
+  }
+}

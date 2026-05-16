@@ -1,0 +1,146 @@
+{
+  "hero": {
+    "eyebrow": "Sansibar & Küste · handverlesene Tagesausflüge",
+    "title_prefix": "Eine Insel.",
+    "title_em": "{{count}}+ unvergessliche Wege.",
+    "lead": "Tausch Resort-Routine gegen echtes Sansibar: Segle mit einer traditionellen Dhow, streife mit lokalem Guide durch Stone Town, schnorchle an Mnemba-Riffen, kitesurfe in Paje oder erlebe ein Festival in Stone Town. Jede Tour ist klein, voller Geschichten und leicht zu buchen.",
+    "tags_aria": "Ausflugs-Highlights",
+    "tag_hotel_pickup": "Hotelabholung inklusive",
+    "tag_private": "Private Optionen verfügbar",
+    "tag_local_guides": "Lokale Experten-Guides",
+    "browse_all": "Alle Ausflüge ansehen",
+    "build_plan": "Meinen Plan bauen →",
+    "meta_excursions": "Ausflüge",
+    "meta_from_per_person": "Ab, pro Person",
+    "meta_categories": "Kategorien",
+    "meta_private_label": "Privat",
+    "meta_private_text": "Optionen verfügbar"
+  },
+  "grid": {
+    "eyebrow": "Handverlesene Ausflüge",
+    "title": "Ausflüge — wähle deinen Startpunkt.",
+    "lead": "Jede Karte führt zum Tagesplan, den Inklusivleistungen, Abholdetails und Buchungshinweisen. Filtere nach dem, was du von der Insel möchtest.",
+    "filter_label": "Filtern nach",
+    "filter_all": "Alle",
+    "explore_aria": "{{title}} entdecken",
+    "season_prefix": "Saisonal",
+    "from": "Ab",
+    "per_person_default": "p. P.",
+    "price_on_request": "Preis auf Anfrage",
+    "explore_cta": "Entdecken →",
+    "empty": "In dieser Kategorie gibt es noch keine Ausflüge — schau bald wieder vorbei oder filtere nach Alle.",
+    "show_more": "Mehr Ausflüge anzeigen",
+    "show_fewer": "Weniger anzeigen",
+    "showing_count": "{{visible}} von {{total}} angezeigt"
+  },
+  "pairings": {
+    "eyebrow": "Tipps von Locals",
+    "title": "Kombinationen, die gut funktionieren",
+    "lead": "Manche Ausflüge lassen sich wunderbar über einen oder zwei Tage kombinieren. So würden wir sie legen.",
+    "explore_aria": "{{title}} entdecken",
+    "on_request": "Auf Anfrage"
+  },
+  "practical": {
+    "columns": {
+      "included": {
+        "heading": "Immer inklusive",
+        "items": [
+          "Hotelabholung & Rücktransfer",
+          "Lizenzierter lokaler Guide",
+          "Wasser den ganzen Tag",
+          "Alle Park- & Eintrittsgebühren",
+          "Ausrüstung (Masken, Flossen, Schwimmwesten)"
+        ]
+      },
+      "not_included": {
+        "heading": "Nicht inklusive",
+        "items": [
+          "Trinkgeld für Guides & Crew",
+          "Alkohol auf bestimmten Touren ($15 Add-on)",
+          "Reiseversicherung (bitte selbst mitbringen)",
+          "Taschengeld für Märkte/Cafés"
+        ]
+      },
+      "family": {
+        "heading": "Familienfreundlich",
+        "items": [
+          "Spice Tour, Prison Island, Jozani — jedes Alter",
+          "Safari Blue — Kinder ab 8",
+          "Delfine — sichere Schwimmer, 10+",
+          "Kinder unter 5 auf den meisten Touren frei"
+        ]
+      },
+      "booking": {
+        "heading": "Buchung & Zahlung",
+        "items": [
+          "Mindestens 48 Stunden vorher buchen",
+          "20% Anzahlung, Rest am Ausflugstag",
+          "Kostenfreie Stornierung bis 24h vorher",
+          "USD, EUR, GBP, TZS — alles akzeptiert"
+        ]
+      }
+    }
+  },
+  "cta": {
+    "title": "Bereit, ein Datum festzumachen?",
+    "text": "Sag uns, wann du da bist und welche Ausflüge dich interessieren. Wir melden uns innerhalb von 24 Stunden mit verfügbaren Daten, Abholzeiten und Endpreis — ohne Verpflichtung, ohne Chatbot.",
+    "get_in_touch": "Anfragen →",
+    "ai_planner": "Oder mit dem KI-Planer chatten"
+  },
+  "faq": {
+    "eyebrow": "Häufige Fragen",
+    "title": "Bevor du buchst",
+    "items": {
+      "private": {
+        "q": "Könnt ihr Ausflüge privat durchführen?",
+        "a": "Ja, fast jeder Ausflug kann privat nur für eure Gruppe stattfinden. Der Preis richtet sich nach Gruppengröße und Setup, zum Beispiel Dream Dhow privat ab $320 und Safari Blue privat ab $640. Frag einfach bei der Buchung danach."
+      },
+      "rain": {
+        "q": "Was passiert, wenn es regnet?",
+        "a": "Wir fahren auch bei Regen, denn Regen am Indischen Ozean ist meist warm und kurz. Wenn die Bedingungen unsicher sind, etwa bei starkem Wind oder Gewitter, verschieben wir den Ausflug oder erstatten vollständig. Du entscheidest mit."
+      },
+      "pickup": {
+        "q": "Holt ihr auch im Norden oder an der Ostküste ab?",
+        "a": "Ja, Abholung in Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje und Bwejuu ist inklusive. Plane je nach Ort 30 bis 60 Minuten pro Strecke zusätzlich ein."
+      },
+      "ramadan": {
+        "q": "Ist ein Ausflug während Ramadan in Ordnung?",
+        "a": "Ja, die Ausflüge laufen normal. In der Stadt kann es morgens ruhiger sein und manche Cafés bleiben tagsüber geschlossen. Auf dem Wasser geht das Leben weiter. Bitte iss und trink während der Fastenzeit in der Öffentlichkeit respektvoll diskret."
+      },
+      "safari": {
+        "q": "Kann ich Ausflüge mit einer Safari kombinieren?",
+        "a_prefix": "Ja, das machen die meisten Gäste. Schau dir unser ",
+        "a_packages_link": "Bush & Beach Paket",
+        "a_middle": " an oder öffne den ",
+        "a_planner_link": "KI-Reiseplaner",
+        "a_suffix": " für eine individuelle Route mit Festland und Insel."
+      },
+      "tipping": {
+        "q": "Wie läuft das mit Trinkgeld?",
+        "a": "Trinkgeld wird geschätzt, ist aber nie Pflicht. Als Orientierung: $5-10 pro Gast für einen halben Tag, $10-20 für einen ganzen Tag, aufgeteilt zwischen Guide und Crew."
+      }
+    }
+  },
+  "categories": {
+    "Water & Snorkeling": "Wasser & Schnorcheln",
+    "Culture & Heritage": "Kultur & Geschichte",
+    "Nature & Wildlife": "Natur & Wildlife",
+    "Adventure & Sports": "Abenteuer & Sport",
+    "Wellness & Luxury": "Wellness & Luxus",
+    "Festivals & Seasonal": "Festivals & Saisonales"
+  },
+  "durations": {
+    "Half Day": "Halber Tag",
+    "Full Day": "Ganzer Tag",
+    "Evening": "Abend",
+    "Half / Full Day": "Halber / ganzer Tag",
+    "1 – 2 hours": "1–2 Stunden",
+    "30 – 60 mins": "30–60 Min.",
+    "2 - 4 Hours": "2–4 Stunden",
+    "Multi-day": "Mehrere Tage"
+  },
+  "price_units": {
+    "per person": "pro Person",
+    "per boat": "pro Boot"
+  }
+}

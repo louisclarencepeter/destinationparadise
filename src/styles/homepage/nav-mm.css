@@ -161,28 +161,125 @@
 /* Footer */
 .mm-menu__foot {
   padding: 10px 16px calc(14px + env(safe-area-inset-bottom, 0px));
-  display: flex; flex-wrap: wrap; gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
 }
+.mm-menu__utility {
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 6px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, .12);
+}
+/* Language dropdown opens upward inside the mm-menu */
+.mm-menu__utility .lang-switcher__menu {
+  top: auto;
+  bottom: calc(100% + 8px);
+  left: 0;
+  right: auto;
+}
+/* Match the app-wide .btn style: navy→coral gradient pill. */
 .mm-menu__cta {
   flex: 1;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 13px; border-radius: 13px;
-  background: var(--dp-accent); color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .6rem;
+  padding: .95rem 1.4rem;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(26,77,110,.74) 0%, rgba(255,111,97,.84) 100%);
+  color: #fff;
   font-family: var(--dp-font-sans);
-  font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .02em;
   text-decoration: none;
-  box-shadow: 0 8px 22px rgba(255,111,97,.35);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 16px 32px -24px rgba(0, 0, 0, .45);
+  transition: transform .3s ease, box-shadow .3s ease, background .3s ease, border-color .3s ease, color .3s ease;
 }
-.mm-menu__cta:hover { background: var(--dp-hover); }
+.mm-menu__cta:hover {
+  background: linear-gradient(135deg, rgba(26,77,110,.86) 0%, rgba(255,111,97,.95) 100%);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 22px 42px -26px rgba(0, 0, 0, .55);
+}
+/* Mirrors the floating .whatsapp-fab styling but as a compact icon-only
+   square so it pairs with the booking CTA in the mm-menu footer. */
 .mm-menu__wa {
-  width: 44px; height: 44px; border-radius: 13px;
-  background: #25D366; color: #fff;
-  display: inline-flex; align-items: center; justify-content: center;
-  text-decoration: none;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  box-shadow: 0 8px 22px rgba(37, 211, 102, .35);
+  text-decoration: none;
+  /* Light theme default */
+  background: linear-gradient(135deg, #ffffff, #eef4f9);
+  color: var(--dp-primary);
+  border: 1px solid rgba(26, 77, 110, .18);
+  box-shadow: 0 8px 28px rgba(26, 77, 110, .14), 0 2px 6px rgba(26, 77, 110, .08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease, background .25s ease, color .25s ease;
 }
-.mm-menu__wa:hover { background: #1ebe5d; }
+.mm-menu__wa:hover,
+.mm-menu__wa:focus-visible {
+  background: linear-gradient(135deg, #ffffff, #d6edf9);
+  color: var(--dp-accent);
+  border-color: rgba(37, 211, 102, .45);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(26, 77, 110, .18), 0 2px 8px rgba(26, 77, 110, .1);
+}
+.mm-menu__wa:focus-visible {
+  outline: 3px solid rgba(37, 211, 102, .28);
+  outline-offset: 3px;
+}
+html[data-theme="dark"] .mm-menu__wa {
+  background: linear-gradient(135deg, rgba(8,30,46,.84), rgba(26,77,110,.74));
+  color: #F5F1E8;
+  border-color: rgba(255, 255, 255, .16);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, .22);
+}
+html[data-theme="dark"] .mm-menu__wa:hover,
+html[data-theme="dark"] .mm-menu__wa:focus-visible {
+  background: linear-gradient(135deg, rgba(8,30,46,.9), rgba(255,111,97,.78));
+  color: #fff;
+  border-color: rgba(37, 211, 102, .5);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, .28);
+}
+.mm-menu__wa::before,
+.mm-menu__wa::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid rgba(37, 211, 102, .55);
+  pointer-events: none;
+  animation: whatsapp-fab-pulse 2.6s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+.mm-menu__wa::after {
+  animation-delay: 1.3s;
+}
+.mm-menu__wa:hover::before,
+.mm-menu__wa:hover::after,
+.mm-menu__wa:focus-visible::before,
+.mm-menu__wa:focus-visible::after {
+  animation-play-state: paused;
+  opacity: 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  .mm-menu__wa::before,
+  .mm-menu__wa::after { animation: none; opacity: 0; }
+}
 
 /* Mobile-only — desktop suppresses the V2 overlay; the existing inline nav__menu remains */
 @media (min-width: 961px) {

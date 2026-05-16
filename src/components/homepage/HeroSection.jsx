@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { ArrowIcon } from './Icons.jsx';
 import ResponsiveImage from '../ResponsiveImage.jsx';
 
@@ -21,6 +22,13 @@ const dateInputValue = (date) => {
 };
 
 export default function HeroSection({ tweaks, handleHeroSearch }) {
+  const { t } = useTranslation('home');
+  const popularPackages = t('hero.search.popular_packages', { returnObjects: true });
+  const tanzaniaSafaris = t('hero.search.tanzania_safaris', { returnObjects: true });
+  const zanzibarExcursions = t('hero.search.zanzibar_excursions', { returnObjects: true });
+  const guestsOptions = t('hero.search.guests_options', { returnObjects: true });
+  const guestsDefault = t('hero.search.guests_default');
+  const anyOption = t('hero.search.any_option');
   const [activeSlide, setActiveSlide] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(false);
   const [slidesReady, setSlidesReady] = useState(false);
@@ -109,55 +117,39 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
       </div>
       <div className="hero__content">
         <div className="hero__intro">
-          <span className="hero__eyebrow">15 packages · 29 safaris · 40+ excursions</span>
-          <h1 className="hero__title">Destination Paradise</h1>
-          <h2 className="hero__motto"><i>your next trip to paradise…</i></h2>
-          <p className="hero__desc">Plan Zanzibar and Tanzania in one place: complete safari-and-beach packages, island excursions, mainland safaris, and an AI planner that helps shape the right route.</p>
+          <span className="hero__eyebrow">{t('hero.eyebrow')}</span>
+          <h1 className="hero__title">{t('hero.title')}</h1>
+          <h2 className="hero__motto"><i>{t('hero.motto')}</i></h2>
+          <p className="hero__desc">{t('hero.description')}</p>
           <div className="hero__cta-row">
-            <Link className="btn" to="/packages">Browse packages <ArrowIcon size={18} /></Link>
-            <Link className="btn btn--ghost" to="/explore">Explore Zanzibar &amp; Tanzania</Link>
+            <Link className="btn" to="/packages">{t('hero.browse_packages')} <ArrowIcon size={18} /></Link>
+            <Link className="btn btn--ghost" to="/explore">{t('hero.explore_cta')}</Link>
           </div>
         </div>
         <form className="hero__search" onSubmit={handleHeroSearch}>
           <div className="hero__search-field">
-            <label htmlFor="hero-experience">Experience</label>
-            <select id="hero-experience" name="excursion" defaultValue="Any package, excursion, or safari" autoComplete="off">
-              <option>Any package, excursion, or safari</option>
-              <optgroup label="Popular Packages">
-                <option>6 Days Safari &amp; Zanzibar Escape</option>
-                <option>7 Days Honeymoon Safari &amp; Zanzibar</option>
-                <option>10 Days Classic Safari &amp; Zanzibar</option>
+            <label htmlFor="hero-experience">{t('hero.search.experience_label')}</label>
+            <select id="hero-experience" name="excursion" defaultValue={anyOption} autoComplete="off">
+              <option>{anyOption}</option>
+              <optgroup label={t('hero.search.popular_packages_group')}>
+                {popularPackages.map((opt) => <option key={opt}>{opt}</option>)}
               </optgroup>
-              <optgroup label="Tanzania Safaris">
-                <option>2 Days Fly-In Safari From Zanzibar</option>
-                <option>Serengeti Migration Safari</option>
-                <option>Ngorongoro &amp; Tarangire</option>
-                <option>Nyerere (Selous) Fly-In Safari</option>
-                <option>Ruaha National Park</option>
+              <optgroup label={t('hero.search.tanzania_safaris_group')}>
+                {tanzaniaSafaris.map((opt) => <option key={opt}>{opt}</option>)}
               </optgroup>
-              <optgroup label="Zanzibar Excursions">
-                <option>Safari Blue Dhow &amp; Snorkel</option>
-                <option>Stone Town &amp; Culture Tour</option>
-                <option>Prison Island Giant Tortoises</option>
-                <option>Spice Tour &amp; Swahili Lunch</option>
-                <option>Jozani Forest Red Colobus</option>
-                <option>Blue Lagoon Snorkeling</option>
-                <option>Sunset Trip &amp; The Rock Restaurant</option>
+              <optgroup label={t('hero.search.zanzibar_excursions_group')}>
+                {zanzibarExcursions.map((opt) => <option key={opt}>{opt}</option>)}
               </optgroup>
             </select>
           </div>
           <div className="hero__search-field">
-            <label htmlFor="hero-date">Date</label>
+            <label htmlFor="hero-date">{t('hero.search.date_label')}</label>
             <input id="hero-date" type="date" name="date" defaultValue={defaultTripDate} min={earliestTripDate} autoComplete="off" />
           </div>
           <div className="hero__search-field">
-            <label htmlFor="hero-guests">Guests</label>
-            <select id="hero-guests" name="guests" defaultValue="2 guests" autoComplete="off">
-              <option>1 guest</option>
-              <option>2 guests</option>
-              <option>3 guests</option>
-              <option>4 guests</option>
-              <option>5+ guests</option>
+            <label htmlFor="hero-guests">{t('hero.search.guests_label')}</label>
+            <select id="hero-guests" name="guests" defaultValue={guestsDefault} autoComplete="off">
+              {guestsOptions.map((opt) => <option key={opt}>{opt}</option>)}
             </select>
           </div>
           <button className="hero__search-submit" type="submit">
@@ -165,7 +157,7 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
               <circle cx="11" cy="11" r="8" />
               <path d="M21 21l-4.35-4.35" />
             </svg>
-            Find my route
+            {t('hero.search.submit')}
           </button>
         </form>
       </div>

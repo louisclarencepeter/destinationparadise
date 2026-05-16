@@ -23,6 +23,25 @@ export function useRevealOnScroll(rootRef, selector = '.reveal:not(.is-visible)'
     }, { threshold });
 
     items.forEach((item) => observer.observe(item));
-    return () => observer.disconnect();
+
+    const revealAlreadyVisible = () => {
+      items.forEach((item) => {
+        if (item.classList.contains('is-visible')) return;
+        const rect = item.getBoundingClientRect();
+        if (rect.top < window.innerHeight * (1 - threshold) && rect.bottom > 0) {
+          item.classList.add('is-visible');
+          observer.unobserve(item);
+        }
+      });
+    };
+
+    const frame = window.requestAnimationFrame(revealAlreadyVisible);
+    const timeout = window.setTimeout(revealAlreadyVisible, 120);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timeout);
+      observer.disconnect();
+    };
   }, [refreshKey, rootRef, selector, threshold]);
 }

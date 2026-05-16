@@ -4,8 +4,11 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
 import { applyTheme, readStoredTheme } from './utils/theme.js';
+import './i18n/index.js';
 import './styles/tokens.css';
 import './styles/site-shell.css';
+import './styles/components/lang-switcher.css';
+import './styles/components/theme-toggle.css';
 
 applyTheme(readStoredTheme());
 

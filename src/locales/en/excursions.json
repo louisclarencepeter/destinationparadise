@@ -1,0 +1,146 @@
+{
+  "hero": {
+    "eyebrow": "Zanzibar & the coast · handpicked day trips",
+    "title_prefix": "One island.",
+    "title_em": "{{count}}+ unforgettable journeys.",
+    "lead": "Trade resort routines for real Zanzibar — sail a traditional dhow, wander Stone Town with a local guide, snorkel Mnemba reefs, kitesurf in Paje, or join a festival in Stone Town. Every trip is small-group, story-rich, and easy to book.",
+    "tags_aria": "Excursion highlights",
+    "tag_hotel_pickup": "Hotel pickup included",
+    "tag_private": "Private options available",
+    "tag_local_guides": "Local expert guides",
+    "browse_all": "Browse all excursions",
+    "build_plan": "Build my plan →",
+    "meta_excursions": "Excursions",
+    "meta_from_per_person": "From, per person",
+    "meta_categories": "Categories",
+    "meta_private_label": "Private",
+    "meta_private_text": "Options available"
+  },
+  "grid": {
+    "eyebrow": "Handpicked excursions",
+    "title": "Excursions — pick a starting point.",
+    "lead": "Every card opens into the full day plan, inclusions, pickup details, and booking notes. Filter by what you want from the island.",
+    "filter_label": "Filter by",
+    "filter_all": "All",
+    "explore_aria": "Explore {{title}}",
+    "season_prefix": "Seasonal",
+    "from": "From",
+    "per_person_default": "pp",
+    "price_on_request": "Price on request",
+    "explore_cta": "Explore →",
+    "empty": "No excursions in this category yet — check back soon, or filter by All.",
+    "show_more": "Show more excursions",
+    "show_fewer": "Show fewer excursions",
+    "showing_count": "{{visible}} of {{total}} shown"
+  },
+  "pairings": {
+    "eyebrow": "Locals' picks",
+    "title": "Combinations that work",
+    "lead": "Some excursions pair beautifully across one or two days. Here's how we'd sequence them.",
+    "explore_aria": "Explore {{title}}",
+    "on_request": "On request"
+  },
+  "practical": {
+    "columns": {
+      "included": {
+        "heading": "What's always included",
+        "items": [
+          "Hotel pickup & drop-off",
+          "Licensed local guide",
+          "Bottled water all day",
+          "All park & entry fees",
+          "Equipment (masks, fins, life jackets)"
+        ]
+      },
+      "not_included": {
+        "heading": "Not included",
+        "items": [
+          "Tips for guides & crew",
+          "Alcohol on certain trips ($15 add-on)",
+          "Travel insurance (please bring your own)",
+          "Spending money for markets/cafés"
+        ]
+      },
+      "family": {
+        "heading": "Family-friendly",
+        "items": [
+          "Spice Tour, Prison Island, Jozani — all ages",
+          "Safari Blue — kids 8+",
+          "Dolphins — confident swimmers, 10+",
+          "Children under 5 free on most trips"
+        ]
+      },
+      "booking": {
+        "heading": "Booking & payment",
+        "items": [
+          "Book at least 48 hours ahead",
+          "20% deposit, balance on the day",
+          "Free cancellation up to 24h before",
+          "USD, EUR, GBP, TZS — all accepted"
+        ]
+      }
+    }
+  },
+  "cta": {
+    "title": "Ready to lock a date?",
+    "text": "Tell us when you're here and which excursions caught your eye. We'll come back within 24 hours with available dates, pickup times and a final price — no commitment, no chatbot.",
+    "get_in_touch": "Get in touch →",
+    "ai_planner": "Or chat with our AI planner"
+  },
+  "faq": {
+    "eyebrow": "Common questions",
+    "title": "Before you book",
+    "items": {
+      "private": {
+        "q": "Can you do private versions?",
+        "a": "Yes — almost every excursion can run privately for your group. Pricing scales (Dream Dhow private from $320, Safari Blue private from $640). Just ask at booking."
+      },
+      "rain": {
+        "q": "What if it rains?",
+        "a": "We sail rain or shine — Indian Ocean rain is usually warm and brief. If conditions are unsafe (high winds, lightning), we postpone or refund in full. Your call."
+      },
+      "pickup": {
+        "q": "Do you pick up from the north / east coast?",
+        "a": "Yes — pickup from Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje and Bwejuu is included. Add 30–60 minutes each way to the day."
+      },
+      "ramadan": {
+        "q": "Is it OK during Ramadan?",
+        "a": "Absolutely — all excursions run as normal. You may notice quieter mornings in town and many cafés closed during the day. Out on the water, life carries on. Be respectful with eating/drinking in public during fasting hours."
+      },
+      "safari": {
+        "q": "Can I combine these with a safari?",
+        "a_prefix": "Yes — most guests do. See our ",
+        "a_packages_link": "Bush & Beach package",
+        "a_middle": " or open the ",
+        "a_planner_link": "AI Trip Planner",
+        "a_suffix": " for a custom mainland-and-island itinerary."
+      },
+      "tipping": {
+        "q": "What's the tipping etiquette?",
+        "a": "Tips are appreciated but never expected. As a guide: $5–10 per guest for a half-day excursion, $10–20 for a full day. Split between guide and crew."
+      }
+    }
+  },
+  "categories": {
+    "Water & Snorkeling": "Water & Snorkeling",
+    "Culture & Heritage": "Culture & Heritage",
+    "Nature & Wildlife": "Nature & Wildlife",
+    "Adventure & Sports": "Adventure & Sports",
+    "Wellness & Luxury": "Wellness & Luxury",
+    "Festivals & Seasonal": "Festivals & Seasonal"
+  },
+  "durations": {
+    "Half Day": "Half Day",
+    "Full Day": "Full Day",
+    "Evening": "Evening",
+    "Half / Full Day": "Half / Full Day",
+    "1 – 2 hours": "1 – 2 hours",
+    "30 – 60 mins": "30 – 60 mins",
+    "2 - 4 Hours": "2 - 4 Hours",
+    "Multi-day": "Multi-day"
+  },
+  "price_units": {
+    "per person": "per person",
+    "per boat": "per boat"
+  }
+}

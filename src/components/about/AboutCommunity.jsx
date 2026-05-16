@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { aboutPillars } from '../../data/aboutPageData.js';
 
 const pillarIcons = {
@@ -16,21 +17,32 @@ const pillarIcons = {
 };
 
 export default function AboutCommunity() {
+  const { t } = useTranslation('about');
+  const pillars = t('community.pillars', { returnObjects: true, defaultValue: aboutPillars });
+  const quote = t('community.quote', {
+    returnObjects: true,
+    defaultValue: [
+      '“Every destination has a story. Every island has its own culture, energy and hidden beauty waiting to be experienced.',
+      'This wasn’t built for scale. It was built for the moments — a slow morning at the reef, a story told in the back of a Land Cruiser, the first time you see the Serengeti go quiet at dusk.',
+      'We hope, in time, you’ll have a story of your own to add.”',
+    ],
+  });
+
   return (
     <section className="ab-sus reveal" id="community">
       <div className="ab-sus__inner">
         <div className="ab-sus__head">
           <div>
-            <span className="ab-story__eyebrow ab-sus__eyebrow">Community</span>
-            <h2>Built as a <em>network</em>, not a closed system.</h2>
+            <span className="ab-story__eyebrow ab-sus__eyebrow">{t('community.eyebrow', { defaultValue: 'Community' })}</span>
+            <h2>{t('community.title_prefix', { defaultValue: 'Built as a' })} <em>{t('community.title_em', { defaultValue: 'network' })}</em>, {t('community.title_suffix', { defaultValue: 'not a closed system.' })}</h2>
           </div>
-          <p>Destination Paradise is not only about travel. We believe tourism should also create real opportunities for the people who host you. From day one we are working hand-in-hand with local drivers, guides, hotels, restaurants and service providers — building something the wider community grows with, not around.</p>
+          <p>{t('community.lead', { defaultValue: 'Destination Paradise is not only about travel. We believe tourism should also create real opportunities for the people who host you. From day one we are working hand-in-hand with local drivers, guides, hotels, restaurants and service providers — building something the wider community grows with, not around.' })}</p>
         </div>
 
         <div className="ab-sus__grid">
           <div className="ab-sus__pillars">
-            {aboutPillars.map((pillar, index) => (
-              <div className="ab-pillar reveal" key={pillar.title} style={{ transitionDelay: `${index * 90}ms` }}>
+            {Array.isArray(pillars) && pillars.map((pillar, index) => (
+              <div className="ab-pillar reveal" key={pillar.icon || `pillar-${index}`} style={{ transitionDelay: `${index * 90}ms` }}>
                 <div className="ab-pillar__icon">{pillarIcons[pillar.icon]}</div>
                 <h4>{pillar.title}</h4>
                 <p>{pillar.body}</p>
@@ -39,22 +51,22 @@ export default function AboutCommunity() {
           </div>
 
           <aside className="ab-sus__quote">
-            <p className="ab-sus__quote-text">&ldquo;Every destination has a story. Every island has its own culture, energy and hidden beauty waiting to be experienced.</p>
-            <p className="ab-sus__quote-text">This wasn&rsquo;t built for scale. It was built for the moments — a slow morning at the reef, a story told in the back of a Land Cruiser, the first time you see the Serengeti go quiet at dusk.</p>
-            <p className="ab-sus__quote-text">We hope, in time, you&rsquo;ll have a story of your own to add.&rdquo;</p>
+            {Array.isArray(quote) && quote.map((paragraph) => (
+              <p className="ab-sus__quote-text" key={paragraph}>{paragraph}</p>
+            ))}
             <div className="ab-sus__quote-who">
               <img
                 className="ab-sus__quote-avatar"
                 src="/assets/images/aboutus/louis-peter-portrait-144.webp"
-                alt="Louis Peter, founder of Destination Paradise"
+                alt={t('community.avatar_alt', { defaultValue: 'Louis Peter, founder of Destination Paradise' })}
                 width="48"
                 height="48"
                 loading="lazy"
                 decoding="async"
               />
               <div>
-                <strong>From our founding note</strong>
-                <span>Destination Paradise · 2026</span>
+                <strong>{t('community.quote_byline', { defaultValue: 'From our founding note' })}</strong>
+                <span>{t('community.quote_meta', { defaultValue: 'Destination Paradise · 2026' })}</span>
               </div>
             </div>
           </aside>

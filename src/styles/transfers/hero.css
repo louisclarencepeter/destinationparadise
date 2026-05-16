@@ -70,6 +70,15 @@
   color: var(--dp-accent);
   font-weight: 400;
 }
+/* Keep the closing fragment ("— done right.") together so the em-dash
+   never gets stranded at the end of a line. */
+.tr-hero__title-tail {
+  white-space: nowrap;
+}
+@media (max-width: 480px) {
+  /* On very narrow viewports allow the tail to wrap if it really must. */
+  .tr-hero__title-tail { white-space: normal; }
+}
 .tr-hero__lead {
   font-family: var(--dp-font-display);
   font-size: clamp(1rem, 1.4vw, 1.2rem);
@@ -88,25 +97,39 @@
 }
 .tr-hero__stats {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-  max-width: 640px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem 1.5rem;
+  max-width: 880px;
   width: 100%;
   padding-top: clamp(.9rem, 1.7vh, 1.3rem);
   border-top: 1px solid rgba(255,255,255,.18);
   animation: fadeInUp 1s var(--dp-ease-out) both;
   animation-delay: .7s;
 }
-.tr-hero__stats div { display: flex; flex-direction: column; gap: 4px; }
+.tr-hero__stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
 .tr-hero__stats strong {
   font-family: var(--dp-font-display);
-  font-size: clamp(1.5rem, 2.4vw, 2.2rem);
+  font-size: clamp(1.35rem, 2.1vw, 2rem);
   font-weight: 500;
-  line-height: 1;
+  line-height: 1.05;
+  /* Keep the value on a single line — let it shrink instead of breaking. */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .tr-hero__stats span {
   font-family: var(--dp-font-sans);
-  font-size: 11px; letter-spacing: .12em; text-transform: uppercase; opacity: .65;
+  font-size: 11px;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .65;
+  line-height: 1.35;
+  text-wrap: balance;
 }
 
 @media (max-width: 720px) {

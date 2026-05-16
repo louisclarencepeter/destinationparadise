@@ -1,0 +1,635 @@
+{
+  "page_title": "Pakete für Sansibar & Tansania · Destination Paradise",
+  "hero": {
+    "eyebrow": "Hotels · Safari · Ausflüge · besondere Momente",
+    "title_prefix": "Reisepakete für die Reise,",
+    "title_em": "die du wirklich willst.",
+    "lead": "Kombinationen aus Safari und Sansibar, Honeymoon, Fly-in-Safaris, Kilimanjaro, Familienurlaub, Meereserlebnisse und Aufenthalte mit Inselkultur im Mittelpunkt.",
+    "browse": "Pakete ansehen",
+    "build_plan": "Meinen Plan bauen →",
+    "stat_packages": "Pakete",
+    "stat_from": "Ab",
+    "stat_styles": "Stile",
+    "stat_quote_time": "bis zum Angebot"
+  },
+  "grid": {
+    "eyebrow": "Ausgewählte Pakete",
+    "title": "Pakete — wähle deinen Startpunkt.",
+    "lead": "Jedes Paket zeigt Umfang, Zielgruppe, Preis und Upgrade-Ideen. Alles wird an deine Daten und deinen Komfortstil angepasst.",
+    "filter_label": "Filtern",
+    "explore_aria": "{{title}} ansehen",
+    "from": "Ab",
+    "explore_cta": "Ansehen →",
+    "show_more": "Mehr Pakete anzeigen",
+    "show_fewer": "Weniger anzeigen",
+    "showing_count": "{{visible}} von {{total}} angezeigt"
+  },
+  "filters": {
+    "all": "Alle",
+    "safari": "Safari + Strand",
+    "honeymoon": "Honeymoon",
+    "fly-in": "Fly-in-Safari",
+    "luxury": "Luxus",
+    "family": "Familie",
+    "kilimanjaro": "Kilimandscharo",
+    "culture": "Kultur",
+    "marine": "Meer",
+    "tailor": "Maßgeschneidert"
+  },
+  "matches": {
+    "eyebrow": "Noch unsicher?",
+    "title": "Wähle nach Reisestil.",
+    "lead": "Starte mit dem, wonach Gäste am häufigsten fragen: Safari und Strand, Honeymoon, kurze Fly-in-Safari, luxuriöse Migration, Familie, Kilimanjaro, Meer oder Kultur.",
+    "explore_aria": "{{pick}} ansehen",
+    "items": [
+      {
+        "label": "Best entry package",
+        "pick": "6 Days Safari & Zanzibar Escape",
+        "slug": "six-day-safari-zanzibar-escape",
+        "note": "The most accessible way to combine a real mainland safari with beach time."
+      },
+      {
+        "label": "Best honeymoon",
+        "pick": "7 Days Honeymoon Safari & Zanzibar",
+        "slug": "seven-day-honeymoon-safari-zanzibar",
+        "note": "Romantic lodges, beach resort, dhow cruise, candlelight dinner, and safari days."
+      },
+      {
+        "label": "Most complete classic",
+        "pick": "10 Days Classic Safari & Zanzibar",
+        "slug": "ten-day-classic-safari-zanzibar",
+        "note": "Arusha, Tarangire, Serengeti, Ngorongoro, and a Zanzibar beach finish."
+      },
+      {
+        "label": "Best quick safari",
+        "pick": "2 Days Fly-In Safari From Zanzibar",
+        "slug": "two-day-fly-in-safari-zanzibar",
+        "note": "A compact fly-in route for guests already staying on the island."
+      },
+      {
+        "label": "Best premium wildlife",
+        "pick": "Great Migration Luxury Package",
+        "slug": "great-migration-luxury-package",
+        "note": "Seasonal migration tracking, luxury camps, photographer options, and Zanzibar."
+      },
+      {
+        "label": "Best non-safari island stay",
+        "pick": "Zanzibar Adventure & Marine Package",
+        "slug": "zanzibar-adventure-marine-package",
+        "note": "Ocean activities, sandbank picnic, dhow cruise, Jozani, and beach resort time."
+      }
+    ]
+  },
+  "market": {
+    "eyebrow": "Operator-Portfolio",
+    "title": "Das volle Tansania- und Sansibar-Portfolio.",
+    "lead": "Diese Kategorien zeigen Destination Paradise als vollständigen Premium-Operator, nicht nur als Anbieter einzelner Tagesausflüge.",
+    "items": [
+      "Safari Packages",
+      "Zanzibar Beach Holidays",
+      "Honeymoon Packages",
+      "Family Packages",
+      "Luxury Experiences",
+      "Fly-In Safaris",
+      "Kilimanjaro Adventures",
+      "Cultural Tours",
+      "Marine & Diving Experiences",
+      "Tailor-Made Packages"
+    ]
+  },
+  "included": {
+    "eyebrow": "Was wir bündeln",
+    "title": "Alles, was aus einer Idee eine echte Reise macht.",
+    "lead": "Unsere Pakete nehmen dir das Hin und Her ab: Hotels, Transfers, Ausflüge, besondere Setups und Safari-Erweiterungen werden gemeinsam geplant.",
+    "items": [
+      "Airport transfers coordinated",
+      "Hotel or villa matching",
+      "Excursions and safari add-ons",
+      "Custom quote within 24 hours",
+      "WhatsApp concierge support",
+      "Upgrade options before confirmation",
+      "Flexible pacing for your group",
+      "Local team on the ground"
+    ]
+  },
+  "steps": {
+    "eyebrow": "So läuft es",
+    "title": "Von Paketidee zu bestätigter Reise.",
+    "items": [
+      {
+        "step": "01",
+        "title": "Choose a package",
+        "text": "Start from the closest match: safari and beach, honeymoon, fly-in, family, luxury, Kilimanjaro, culture, or marine."
+      },
+      {
+        "step": "02",
+        "title": "We tailor the details",
+        "text": "Hotels, flights, safari routing, beach areas, excursions, meals, and upgrades are adjusted to your dates and budget."
+      },
+      {
+        "step": "03",
+        "title": "Confirm and relax",
+        "text": "Your deposit locks the plan. We coordinate the moving parts and keep you updated on WhatsApp."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Möchtest du ein Paket anpassen?",
+    "text": "Sag uns Daten, Gruppengröße, Budget und Reisestil. Wir passen Route, Hotels, Flüge und Ausflüge an.",
+    "get_quote": "Angebot anfragen →",
+    "ai_planner": "Oder mit dem KI-Planer starten"
+  },
+  "detail": {
+    "not_found_page_title": "Paket nicht gefunden · Destination Paradise",
+    "not_found_eyebrow": "Pakete",
+    "not_found_title": "Paket nicht gefunden",
+    "not_found_text": "Dieses Paket ist nicht mehr verfügbar oder wurde verschoben.",
+    "back_to_packages": "Zurück zu allen Paketen →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Start",
+    "breadcrumb_packages": "Pakete",
+    "facts": {
+      "duration": "Dauer",
+      "flexible_pacing": "Flexibles Tempo",
+      "category": "Kategorie",
+      "package_style": "Reisestil",
+      "price": "Preis",
+      "quote": "Angebot",
+      "custom_proposal": "Individuelles Angebot"
+    },
+    "included": "Inklusive",
+    "ideal_for": "Ideal für",
+    "route_notes": "Routenhinweise",
+    "starting_prices": "Startpreise",
+    "destination_options": "Mögliche Ziele",
+    "route": "Route",
+    "planning_notes": "Planungshinweise",
+    "optional_upgrades": "Optionale Upgrades",
+    "price_note": "Der endgültige Paketpreis hängt von Reisedaten, Hotelniveau, Transfers und Verfügbarkeit ab.",
+    "build_package": "Dieses Paket planen →",
+    "all_packages": "Alle Pakete",
+    "context": {
+      "trip_split": "Trip split: {{value}}",
+      "focus": "Focus: {{value}}",
+      "season": "Season: {{value}}"
+    },
+    "cta": {
+      "title": "Bereit, {{title}} zu planen?",
+      "text": "Nenn uns deine Reisedaten, die Gästezahl und dein gewünschtes Komfortniveau. Wir formen daraus ein passendes Paket und kalkulieren es sauber."
+    }
+  },
+  "price_units": {
+    "Per Person": "pro Person",
+    "per person": "pro Person",
+    "per couple": "per couple"
+  },
+  "catalog": {
+    "six-day-safari-zanzibar-escape": {
+      "title": "6 Tage Safari & Sansibar-Auszeit",
+      "category": "Safari-Pakete",
+      "duration": "6 Tage",
+      "idealFor": [
+        "Budgetbewusste Reisende",
+        "Paare",
+        "Erste Tansania-Reise"
+      ],
+      "split": "3 Tage Safari · 3 Tage Sansibar",
+      "includes": [
+        "Flughafenabholung und Transfers",
+        "Safari in Tarangire, Ngorongoro oder Serengeti",
+        "Professioneller Safari-Guide",
+        "4x4-Safarifahrzeug",
+        "Unterkunft",
+        "Inlandsflug nach Sansibar",
+        "Strandhotel",
+        "Frühstück, Lunch und Dinner während der Safari",
+        "Ausgewählte Mahlzeiten am Strand",
+        "Parkgebühren"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      },
+      "priceTiers": [
+        {
+          "label": "Budget",
+          "price": 1500
+        },
+        {
+          "label": "Mittelklasse",
+          "price": 2100
+        },
+        {
+          "label": "Luxus",
+          "price": 3200
+        }
+      ],
+      "benchmark": "Ähnliche Pakete starten aktuell bei etwa $1,500."
+    },
+    "seven-day-honeymoon-safari-zanzibar": {
+      "title": "7 Tage Honeymoon-Safari & Sansibar",
+      "category": "Honeymoon-Pakete",
+      "duration": "7 Tage",
+      "idealFor": [
+        "Paare",
+        "Honeymooner"
+      ],
+      "includes": [
+        "Luxus-Lodges",
+        "Romantisches Strandresort",
+        "Private Transfers",
+        "Sunset-Dhow-Cruise",
+        "Romantisches Dinner",
+        "Blumendekoration",
+        "Safari-Guide",
+        "Inlandsflüge"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      },
+      "priceTiers": [
+        {
+          "label": "Mittelklasse",
+          "price": 3200
+        },
+        {
+          "label": "Luxus",
+          "price": 4800,
+          "suffix": "+"
+        }
+      ],
+      "benchmark": "Hochwertige Honeymoon-Kombinationen starten üblicherweise bei etwa $3,200."
+    },
+    "eight-day-tanzania-parks-zanzibar": {
+      "title": "8 Tage Tansania-Parks & Sansibar",
+      "category": "Safari-Pakete",
+      "duration": "8 Tage",
+      "idealFor": [
+        "Adventure travelers",
+        "Beach lovers",
+        "First-time Tanzania guests"
+      ],
+      "split": "4 Tage Safari · 4 Tage Sansibar",
+      "includes": [
+        "Serengeti",
+        "Ngorongoro Crater",
+        "Tarangire",
+        "Zanzibar beach stay",
+        "Airport transfers",
+        "Safari jeep",
+        "Accommodation",
+        "Domestic flight",
+        "Full board safari meals"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      },
+      "priceTiers": [
+        {
+          "label": "Budget",
+          "price": 2000
+        },
+        {
+          "label": "Mid-range",
+          "price": 2800
+        },
+        {
+          "label": "Luxury",
+          "price": 4200
+        }
+      ],
+      "benchmark": "Similar offers currently start around $2,000."
+    },
+    "nine-day-safari-zanzibar-culture": {
+      "title": "9 Tage Safari, Sansibar & Kultur",
+      "category": "Kulturreisen",
+      "duration": "9 Tage",
+      "idealFor": [
+        "Cultural travelers",
+        "Safari guests",
+        "Beach travelers"
+      ],
+      "includes": [
+        "Stone Town tour",
+        "Spice farm tour",
+        "Safari in Tanzania parks",
+        "Zanzibar beach accommodation",
+        "Domestic flights",
+        "Guide",
+        "Park fees",
+        "Cultural experiences"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      },
+      "priceTiers": [
+        {
+          "label": "Budget",
+          "price": 2300
+        },
+        {
+          "label": "Mid-range",
+          "price": 3000
+        },
+        {
+          "label": "Luxury",
+          "price": 4700
+        }
+      ],
+      "benchmark": "Similar packages are around $2,300."
+    },
+    "ten-day-classic-safari-zanzibar": {
+      "title": "10 Tage klassische Safari & Sansibar",
+      "category": "Safari-Pakete",
+      "duration": "10 Tage",
+      "idealFor": [
+        "Beliebteste komplette Tansania-Erfahrung",
+        "Paare",
+        "Familien"
+      ],
+      "route": [
+        "Arusha",
+        "Tarangire",
+        "Serengeti",
+        "Ngorongoro",
+        "Nungwi, Kendwa, or Paje"
+      ],
+      "includes": [
+        "Luxus-Lodges",
+        "Inlandsflüge",
+        "Privates Safarifahrzeug",
+        "Strandresort",
+        "Professioneller Safari-Guide",
+        "Parkgebühren",
+        "Private Transfers",
+        "Ausgewählte Mahlzeiten"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      },
+      "priceTiers": [
+        {
+          "label": "Mittelklasse",
+          "price": 3800
+        },
+        {
+          "label": "Luxus",
+          "price": 5500,
+          "suffix": "+"
+        }
+      ],
+      "benchmark": "Klassische Safari- und Sansibar-Routen starten bei etwa $3,800."
+    },
+    "twelve-day-serengeti-zanzibar": {
+      "title": "12 Tage Serengeti & Sansibar",
+      "category": "Luxuserlebnisse",
+      "duration": "12 Tage",
+      "idealFor": [
+        "Slow luxury travelers",
+        "Wildlife lovers",
+        "Beach travelers"
+      ],
+      "includes": [
+        "Extended Serengeti safari",
+        "Ngorongoro",
+        "Luxury Zanzibar stay",
+        "Optional diving",
+        "Optional kitesurfing",
+        "Flexible itinerary",
+        "Domestic flights",
+        "Beach excursions"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      },
+      "priceTiers": [
+        {
+          "label": "Mid-range",
+          "price": 3000
+        },
+        {
+          "label": "Luxury",
+          "price": 5800
+        }
+      ],
+      "benchmark": "Similar packages are around $3,000."
+    },
+    "fourteen-day-ultimate-tanzania-zanzibar": {
+      "title": "14 Tage ultimatives Tansania & Sansibar",
+      "category": "Luxuserlebnisse",
+      "duration": "14 Tage",
+      "idealFor": [
+        "Premium clients",
+        "Luxury safari travelers",
+        "Celebration trips"
+      ],
+      "includes": [
+        "Great Migration safari",
+        "Fly-in safari experience",
+        "Luxury eco lodges",
+        "Kendwa beach villa",
+        "VIP airport transfers",
+        "Cultural tours",
+        "Premium beach resorts"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      },
+      "priceTiers": [
+        {
+          "label": "Luxury",
+          "price": 7500,
+          "suffix": "+"
+        }
+      ],
+      "benchmark": "Luxury itineraries start around $7,500."
+    },
+    "two-day-fly-in-safari-zanzibar": {
+      "title": "2 Tage Fly-in-Safari ab Sansibar",
+      "category": "Fly-in-Safaris",
+      "duration": "2 Tage",
+      "destinations": [
+        "Mikumi",
+        "Nyerere National Park (Selous)"
+      ],
+      "idealFor": [
+        "Short-stay travelers",
+        "Zanzibar guests",
+        "First safari experience"
+      ],
+      "includes": [
+        "Return flights",
+        "Game drives",
+        "Lodge stay",
+        "Meals",
+        "Park fees",
+        "Guide"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      },
+      "benchmark": "Zanzibar fly-in safaris are commonly sold within this range."
+    },
+    "three-day-serengeti-fly-in-safari": {
+      "title": "3 Tage Serengeti Fly-in-Safari",
+      "category": "Fly-in-Safaris",
+      "duration": "3 Tage",
+      "idealFor": [
+        "Luxury short trips",
+        "Wildlife lovers",
+        "Zanzibar guests"
+      ],
+      "includes": [
+        "Return flight from Zanzibar",
+        "Serengeti lodge",
+        "Full game drives",
+        "Safari guide",
+        "Meals",
+        "Transfers"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      },
+      "benchmark": "Similar packages are currently around $2,303."
+    },
+    "kilimanjaro-safari-zanzibar-expedition": {
+      "title": "Kilimanjaro + Safari + Sansibar Expedition",
+      "category": "Kilimanjaro-Abenteuer",
+      "duration": "14 Days",
+      "idealFor": [
+        "Adventure travelers",
+        "Climbers",
+        "Bucket-list trips"
+      ],
+      "includes": [
+        "Machame Route climb",
+        "Professional mountain crew",
+        "Camping equipment",
+        "Safari",
+        "Zanzibar beach stay",
+        "Domestic flights",
+        "Transfers"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      },
+      "benchmark": "Comparable tours are priced around $4,350."
+    },
+    "luxury-family-safari-zanzibar": {
+      "title": "Luxus-Familiensafari & Sansibar",
+      "category": "Familienpakete",
+      "duration": "Custom Duration",
+      "idealFor": [
+        "Families with children",
+        "Premium family travel",
+        "Multi-generation trips"
+      ],
+      "includes": [
+        "Family suites",
+        "Child-friendly safari",
+        "Private family guide",
+        "Zanzibar beach resort",
+        "Gourmet meals",
+        "Flexible safari pace",
+        "Domestic flights"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      },
+      "priceTiers": [
+        {
+          "label": "Luxury",
+          "price": 9000
+        }
+      ],
+      "benchmark": "Premium family packages are around $9,000."
+    },
+    "great-migration-luxury-package": {
+      "title": "Luxuspaket Große Migration",
+      "category": "Luxuserlebnisse",
+      "duration": "Seasonal",
+      "season": "June - October",
+      "idealFor": [
+        "High-end wildlife photography",
+        "Luxury travelers",
+        "Migration-focused guests"
+      ],
+      "includes": [
+        "Migration tracking",
+        "Fly-in safari",
+        "Luxury tented camps",
+        "Photographer guide option",
+        "Balloon safari option",
+        "Zanzibar luxury resort"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      }
+    },
+    "zanzibar-adventure-marine-package": {
+      "title": "Sansibar Abenteuer & Meer Paket",
+      "category": "Meeres- & Taucherlebnisse",
+      "duration": "Flexible",
+      "focus": "Ocean activities only",
+      "idealFor": [
+        "Ocean lovers",
+        "Divers",
+        "Active beach travelers"
+      ],
+      "includes": [
+        "Snorkeling",
+        "Diving",
+        "Mnemba Island trip",
+        "Dolphin tour",
+        "Dhow sunset cruise",
+        "Jozani Forest",
+        "Sandbank picnic",
+        "Beach resort"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      }
+    },
+    "stone-town-culture-experience": {
+      "title": "Stone Town & Kulturerlebnis",
+      "category": "Kulturreisen",
+      "duration": "Flexible",
+      "idealFor": [
+        "Cultural travelers",
+        "Food lovers",
+        "History-focused guests"
+      ],
+      "includes": [
+        "Stone Town tour",
+        "Spice farm",
+        "Prison Island",
+        "Local food experience",
+        "Swahili cooking class",
+        "Boutique hotel"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      }
+    },
+    "digital-nomad-zanzibar-stay": {
+      "title": "Digital-Nomad-Aufenthalt auf Sansibar",
+      "category": "Pakete nach Maß",
+      "duration": "14 - 30 Days",
+      "idealFor": [
+        "Remote workers",
+        "Long-stay guests",
+        "Flexible travelers"
+      ],
+      "includes": [
+        "Long-term accommodation",
+        "Airport pickup",
+        "Coworking recommendations",
+        "SIM card setup",
+        "Local support",
+        "Weekend excursions"
+      ],
+      "pricing": {
+        "unit": "pro Person"
+      }
+    }
+  }
+}

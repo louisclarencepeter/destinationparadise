@@ -1,0 +1,398 @@
+{
+  "hero": {
+    "eyebrow": "15 pakietów · 29 safari · 40+ wycieczek",
+    "title": "Destination Paradise",
+    "motto": "twoja następna podróż do raju…",
+    "description": "Zaplanuj Zanzibar i Tanzanię w jednym miejscu: gotowe pakiety safari z plażą, wycieczki po wyspie, safari na kontynencie i planer AI, który pomaga dobrać właściwą trasę.",
+    "browse_packages": "Zobacz pakiety",
+    "explore_cta": "Odkrywaj Zanzibar i Tanzanię",
+    "search": {
+      "experience_label": "Doświadczenie",
+      "any_option": "Dowolny pakiet, wycieczka albo safari",
+      "popular_packages_group": "Popularne pakiety",
+      "popular_packages": [
+        "6 dni safari i odpoczynek na Zanzibarze",
+        "7 dni podróży poślubnej: safari i Zanzibar",
+        "10 dni klasycznego safari i Zanzibaru"
+      ],
+      "tanzania_safaris_group": "Safari w Tanzanii",
+      "tanzania_safaris": [
+        "2-dniowe safari samolotem z Zanzibaru",
+        "Safari Wielkiej Migracji w Serengeti",
+        "Ngorongoro & Tarangire",
+        "Nyerere (Selous) safari samolotem",
+        "Ruaha National Park"
+      ],
+      "zanzibar_excursions_group": "Wycieczki na Zanzibarze",
+      "zanzibar_excursions": [
+        "Safari Blue: dhow i snorkeling",
+        "Stone Town i kultura",
+        "Prison Island i gigantyczne żółwie",
+        "Wycieczka przyprawowa i lunch suahili",
+        "Las Jozani i gerezy rude",
+        "Blue Lagoon Snorkeling",
+        "Zachód słońca i restauracja The Rock"
+      ],
+      "date_label": "Data",
+      "guests_label": "Goście",
+      "guests_options": [
+        "1 osoba",
+        "2 osoby",
+        "3 osoby",
+        "4 osoby",
+        "5+ osób"
+      ],
+      "guests_default": "2 osoby",
+      "submit": "Znajdź moją trasę"
+    }
+  },
+  "why": {
+    "eyebrow": "Dlaczego Destination Paradise",
+    "title": "Lokalnie, elastycznie i naprawdę po Twojemu",
+    "cards": {
+      "rooted": {
+        "title": "Lokalna wiedza",
+        "text": "Pracujemy z ludźmi, którzy znają Zanzibar i Tanzanię z codziennego życia, nie tylko z folderów. Podpowiedzą, gdzie dobrze zjeść, kiedy ruszyć na rafę i jak ułożyć dzień, żeby miał sens w realnych warunkach."
+      },
+      "group_or_private": {
+        "title": "Grupowo albo prywatnie",
+        "text": "Wspólne dni na dhow z nowymi znajomymi albo prywatna wycieczka, pakiet lub safari ułożone tylko dla Was. Ta sama troska, Twoje tempo."
+      },
+      "handled": {
+        "title": "Wszystko dopięte",
+        "text": "Odbiór z lotniska, transfery hotelowe, diety, zmiany w ostatniej chwili. Napisz do nas, a my się tym zajmiemy."
+      }
+    }
+  },
+  "excursions": {
+    "eyebrow": "Wycieczki po wyspie",
+    "title": "Wycieczki tworzone przez lokalnych ludzi",
+    "lead": "Dni na wyspie układane z sercem: tradycyjne łodzie, przejrzyste rafy, farmy przypraw i przewodnicy, którzy dorastali na tych brzegach.",
+    "modes": {
+      "ocean_tag": "Ocean",
+      "ocean_text": "Rejsy dhow, ławice piasku, snorkeling, delfiny i dni na rafie.",
+      "culture_tag": "Kultura",
+      "culture_text": "Stone Town, farmy przypraw, kuchnia suahili, budowa dhow i wizyty w wioskach.",
+      "nature_tag": "Natura",
+      "nature_text": "Las Jozani, żółwie, mangrowce i rodzinne spotkania z przyrodą."
+    },
+    "card": {
+      "explore_aria": "Odkryj: {{title}}",
+      "from": "Od",
+      "view_details": "Zobacz szczegóły"
+    },
+    "view_all": "Zobacz wszystkie wycieczki",
+    "featured": {
+      "safari-blue": {
+        "title": "Safari Blue",
+        "description": "Całodniowy rejs tradycyjną łodzią dhow po zatoce Menai: piknik na sandbanku, mangrowce, snorkeling przy rafie i lunch z owocami morza.",
+        "duration": "Cały dzień",
+        "from": "Fumba",
+        "group": "Do 8 osób"
+      },
+      "mnemba": {
+        "title": "Snorkeling przy Mnemba i wyjazd na północ",
+        "description": "Całodniowy plan łączący snorkeling przy rafie Mnemba z odpoczynkiem na plaży Nungwi na północy Zanzibaru.",
+        "duration": "Cały dzień",
+        "from": "Matemwe / Nungwi",
+        "group": "Do 8 osób"
+      },
+      "spice-tour": {
+        "title": "Wycieczka po plantacji przypraw",
+        "description": "Spacer z przewodnikiem po plantacji goździków, cynamonu, gałki muszkatołowej, pieprzu, ziół i roślin leczniczych, zakończony suahilijskim lunchem z przyprawami.",
+        "duration": "Pół dnia",
+        "from": "Stone Town",
+        "group": "Do 8 osób"
+      }
+    }
+  },
+  "safaris": {
+    "eyebrow": "Dzika przyroda kontynentu",
+    "title": "{{count}} pomysłów na safari",
+    "lead": "Wybierz klasyczną trasę północną, dzikie południe z przelotem, szybkie safari z Zanzibaru albo podróż tematyczną: fotografia, rodzina, kultura, luksus, ptaki, szympansy czy sezon migracji.",
+    "modes": {
+      "classic_tag": "Klasyczne trasy",
+      "classic_text": "Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha, Mahale i Katavi.",
+      "fly_in_tag": "Z przelotem",
+      "fly_in_text": "Krótkie safari z Zanzibaru dla gości, którzy są już na wyspie.",
+      "specialists_tag": "Specjalne style",
+      "specialists_text": "Podróż poślubna, rodzina, fotografia, piesze safari, ptaki i połączenie buszu z plażą."
+    },
+    "features": {
+      "tarangire-day-trip": {
+        "label": "Szybkie safari",
+        "text": "Przyleć na intensywny dzień z dziką przyrodą prosto z Zanzibaru: opłaty parkowe, lunch, przewodnik i game drive są po naszej stronie."
+      },
+      "serengeti-migration": {
+        "label": "Safari migracyjne",
+        "text": "Sprawdzona trasa przez Serengeti: równiny migracji, wielkie koty, obozy, posiłki i przejazdy safari z przewodnikiem."
+      },
+      "nyerere-selous": {
+        "label": "Południowy szlak",
+        "text": "Dziksza trasa z przelotem: safari łodzią, piesze safari, luksusowy obóz, przewodnik i loty krajowe."
+      }
+    },
+    "card": {
+      "from": "Od",
+      "pp_suffix": "za osobę",
+      "view_details": "Zobacz szczegóły"
+    },
+    "view_all": "Zobacz wszystkie safari"
+  },
+  "packages": {
+    "eyebrow": "Pełne portfolio podróży",
+    "title": "{{count}} pakietów: safari, Zanzibar, podróż poślubna, rodzina i kultura",
+    "lead": "Zacznij od sprawdzonego pakietu, a my dopasujemy trasę, standard hoteli, loty, wycieczki i tempo do Twoich dat.",
+    "ribbons": {
+      "best_entry": "Dobry początek",
+      "honeymoon": "Podróż poślubna",
+      "most_complete": "Najpełniejszy"
+    },
+    "tags": {
+      "romance": "Romantycznie",
+      "safari": "Safari",
+      "package": "Pakiet",
+      "stay": "Pobyt",
+      "included": "W cenie",
+      "experience": "Przeżycie"
+    },
+    "card": {
+      "from": "Od",
+      "per_person_default": "za osobę",
+      "view_package": "Zobacz pakiet"
+    },
+    "note": "Pełna strona pakietów obejmuje podróże poślubne, rodzinne, safari z przelotem, migrację, Kilimanjaro, ocean, kulturę, digital nomad i opcje luksusowe.",
+    "view_all": "Zobacz wszystkie pakiety"
+  },
+  "transfers": {
+    "eyebrow": "Transfery prywatne",
+    "title": "Wysiądź z samolotu i jedź prosto do hotelu.",
+    "lead": "Kierowca czeka na lotnisku, pomaga z bagażem i od razu zawozi Cię pod wskazany adres. Bez szukania taksówki po przylocie i bez negocjowania ceny na miejscu.",
+    "tags": {
+      "vip": "VIP",
+      "north_coast": "Północne wybrzeże",
+      "beach_resorts": "Resorty plażowe",
+      "transfer": "Transfer"
+    },
+    "card": {
+      "from": "Od",
+      "book_transfer": "Zarezerwuj transfer"
+    },
+    "view_all": "Zobacz wszystkie transfery"
+  },
+  "map": {
+    "eyebrow": "Region",
+    "title": "Zanzibar i Tanzania w skrócie",
+    "lead": "Jeden kraj, dwa światy. Wyspa daje dziedzictwo Stone Town, dhow na rafie, plaże, kulturę i dni nad oceanem. Kontynent otwiera północne ikony safari, dzikie południe, zachodnie trasy z szympansami, krótkie przeloty, górskie dni i spotkania z kulturą.",
+    "island_label": "Zanzibar",
+    "mainland_label": "Kontynent Tanzanii",
+    "cta_label": "Ułóż plan na miarę",
+    "cta_explore_full": "Odkryj pełną mapę"
+  },
+  "gallery": {
+    "eyebrow": "Z bliska",
+    "title": "Chwile od brzegu po safari",
+    "lead": "Szersze spojrzenie na Zanzibar i Tanzanię: dhow, stare uliczki, lasy, farmy przypraw, ławice piasku i dzika przyroda kontynentu.",
+    "captions": {
+      "mizingani-waterfront": "Nabrzeże Mizingani",
+      "zebra-mare-and-foal": "Zebry na safari",
+      "dolphin-snorkeling": "Snorkeling z delfinami",
+      "lioness-and-cub-resting": "Lwica z młodym",
+      "stone-town-old-fort": "Stary Fort w Stone Town",
+      "rhino-on-plains": "Nosorożec w Ngorongoro",
+      "safari-blue-sandbank": "Ławica piasku Safari Blue",
+      "crowned-cranes-in-grass": "Żurawie koroniaste",
+      "jozani-red-colobus": "Gereza ruda w Jozani",
+      "wildebeest-grazing": "Równiny migracji",
+      "spice-tour-nutmeg": "Detale farmy przypraw",
+      "male-lion-in-grass": "Lew w Serengeti"
+    }
+  },
+  "testimonials": {
+    "eyebrow": "Głosy z wybrzeża",
+    "title": "Co goście zabierają ze sobą",
+    "quotes": {
+      "isa": {
+        "quote": "Spacer przez mangrowce i najlepszy zachód słońca w życiu. Dziękujemy zespołowi: tyle ciepła i troski trudno opisać.",
+        "trip": "Mangrowce i zachód słońca"
+      },
+      "arturo": {
+        "quote": "Nasz przewodnik był świetnie przygotowany, pogodny i bardzo przyjazny. Dhow był piękny, laguna niezapomniana. Zarezerwowaliśmy kolejną wycieczkę jeszcze przed wyjazdem.",
+        "trip": "Safari Blue Dhow"
+      },
+      "coleman": {
+        "quote": "Wąchaliśmy każdą przyprawę, zadaliśmy chyba sto pytań, a zespół odpowiedział na wszystko z ogromnym zaangażowaniem. Najlepszy dzień naszej podróży.",
+        "trip": "Przyprawy i kultura"
+      }
+    }
+  },
+  "newsletter": {
+    "eyebrow": "Bądź na bieżąco",
+    "title": "Morskie historie i zachody słońca co miesiąc",
+    "description": "Osobiste wiadomości od zespołu: wolne terminy, oferty poza szczytem sezonu i czasem przepis z przyprawami. Jeden email miesięcznie. Nic więcej.",
+    "email_placeholder": "ty@example.com",
+    "email_placeholder_done": "✓ Jesteś na liście",
+    "email_aria": "Adres email",
+    "submit": "Zapisz się",
+    "submit_pending": "Wysyłanie…",
+    "submit_done": "Wysłano",
+    "error": "Nie udało się wysłać. Spróbuj ponownie za chwilę."
+  },
+  "planner": {
+    "eyebrow": "Planer podróży AI",
+    "title": "Opowiedz mi o swojej wymarzonej podróży",
+    "lead": "Porozmawiaj z naszym planerem AI, opartym na trasach, które zespół zna z praktyki. Zada właściwe pytania, naszkicuje plan dzień po dniu i wyśle go do zespołu, gdy będziesz gotowy.",
+    "bullets": {
+      "asks_strong": "Pyta o Ciebie",
+      "asks_text": " — tempo, budżet, ocean czy dzika przyroda, dzieci, specjalne daty.",
+      "builds_strong": "Buduje szkic",
+      "builds_text": " — noce w każdym miejscu, rekomendowane hotele i rytm wycieczek.",
+      "sends_strong": "Wysyła do zespołu",
+      "sends_text": " — potwierdź w czacie, a wyślemy kopię emailem i odpowiemy w ciągu dnia."
+    },
+    "suggestions": {
+      "label": "Spróbuj:",
+      "couple_button": "Para, 8 nocy, plaża + dhow",
+      "couple_prompt": "Jesteśmy parą, 8 nocy w październiku. Chcemy połączyć plażę, rejs dhow i jedno większe przeżycie. Hotele w średnim standardzie.",
+      "family_button": "Rodzina z dziećmi, safari + plaża",
+      "family_prompt": "Rodzina czteroosobowa, dzieci 9 i 12 lat. Dwa tygodnie w lipcu. Chcemy kilka dni safari, potem odpoczynek na plaży. Budżet około $4k za osobę.",
+      "solo_button": "Solo, historia + snorkeling",
+      "solo_prompt": "Podróżuję solo, 5 nocy w lutym. Lubię targi przypraw, historię i snorkeling. Hotel butikowy poniżej $200 za noc."
+    },
+    "quick_replies": [
+      "Plaża i spokój",
+      "Safari + Zanzibar",
+      "Podróż poślubna",
+      "Rodzinnie"
+    ],
+    "thinking_messages": [
+      "Układam trasę",
+      "Sprawdzam tempo",
+      "Równoważę plażę i safari",
+      "Szkicuję plan"
+    ],
+    "header": {
+      "name": "Paradise Planner",
+      "subtitle": "Zasilany przez Claude · zwykle odpowiada od razu",
+      "reset_title": "Zacznij od nowa"
+    },
+    "welcome": {
+      "p1": "Karibu! 👋 Jestem planerem Destination Paradise. Naszkicujmy razem Twoją podróż.",
+      "p2_prefix": "Na początek: jakiego tempa szukasz? ",
+      "p2_em": "Plaża i luz, safari na kontynencie, mocne zanurzenie w kulturze",
+      "p2_suffix": " czy miks?",
+      "quick_replies_aria": "Szybkie odpowiedzi"
+    },
+    "fallbacks": {
+      "reply_blank": "Hmm, zgubiłem wątek. Możesz napisać to jeszcze raz?",
+      "reply_after_token": "Asante! Wysłałem szkic do zespołu. Odezwą się w ciągu dnia.",
+      "network_error": "Pole sana — nie mogę teraz połączyć się z planerem. Spróbuj za chwilę albo napisz do zespołu przez WhatsApp.",
+      "missing_email": "Najpierw podaj email w czacie, żebyśmy mogli odpowiedzieć."
+    },
+    "status": {
+      "sending": "Wysyłamy szkic do zespołu…",
+      "updating": "Wysyłamy aktualizację do zespołu…",
+      "sent_title": "Asante! ✓ Twój szkic jest już u zespołu.",
+      "sent_text": "Dostaniesz kopię emailem i odpowiedź w ciągu dnia. Chcesz coś zmienić? Napisz poniżej, a wyślę aktualizację. Możesz też zacząć nowy plan:",
+      "updated_title": "✓ Aktualizacja {{count}} wysłana do zespołu.",
+      "updated_text": "Zobaczą poprawiony plan. Napisz poniżej, aby dodać kolejną zmianę, albo zacznij od nowa:",
+      "error_title": "Pole sana — nie udało się wysłać.",
+      "error_text_default": "Spróbuj ponownie albo napisz do nas na WhatsApp.",
+      "start_new_plan": "Zacznij nowy plan",
+      "try_again": "Spróbuj ponownie"
+    },
+    "form": {
+      "placeholder_idle": "Opowiedz o wymarzonej podróży…",
+      "placeholder_done": "Wpisz tutaj aktualizację…",
+      "send_aria": "Wyślij"
+    },
+    "foot": {
+      "note": "Plany są szkicami. Przed rezerwacją człowiek sprawdza i wycenia wszystko dokładnie.",
+      "handoff_idle": "Wyślij do zespołu",
+      "handoff_done": "Wysłano do zespołu ✓"
+    }
+  },
+  "weather": {
+    "live_suffix": " · Live",
+    "facts": {
+      "sea_temp": "Temp. morza",
+      "humidity": "Wilgotność",
+      "sunrise": "Wschód",
+      "sunset": "Zachód"
+    },
+    "side_title": "Najlepszy czas na podróż",
+    "seasons": {
+      "peak": "Szczyt",
+      "high": "Wysoki",
+      "low": "Niski"
+    },
+    "legend": {
+      "aria": "Legenda sezonów hotelowych",
+      "title": "Sezon hotelowy",
+      "peak_label": "Szczyt",
+      "peak_text": "święta i europejskie lato (gru-sty, lip-sie). Ceny premium, rezerwuj wcześnie.",
+      "high_label": "Wysoki",
+      "high_text": "popularne suche miesiące (lut, cze, wrz-paź). Standardowe ceny wysokiego sezonu.",
+      "low_label": "Niski",
+      "low_text": "pora deszczowa (mar-maj, lis). Najlepsze okazje; część hoteli zamyka się w kwi-maj."
+    },
+    "descriptions": {
+      "default": "Przeważnie słonecznie, z lekką bryzą znad Oceanu Indyjskiego. Długie deszcze słabną, poranki są przejrzyste, a widoczność na rafie utrzymuje się do wczesnego popołudnia.",
+      "clear_night": "Czysta noc nad kanałem: ciepłe powietrze i delikatna bryza znad rafy.",
+      "clear_day": "Czyste niebo i stała bryza znad Oceanu Indyjskiego: świetne warunki na plażę i snorkeling.",
+      "mostly_sunny_day": "Przeważnie słonecznie z wysokimi chmurami: widoczność na rafie utrzymuje się do popołudnia.",
+      "mostly_clear_night": "Przeważnie czysta noc z wysokimi chmurami: ciepło i spokojnie.",
+      "partly_cloudy_day": "Częściowe zachmurzenie i ciepłe pasaty: wygodne warunki na plażę i rejs dhow.",
+      "partly_cloudy_night": "Częściowo pochmurna noc: lekkie pasaty i ciepłe powietrze.",
+      "overcast_day": "Pochmurno, ale ciepło: dobre światło na spacery po wyspie, farmy przypraw i kulturę.",
+      "overcast_night": "Dziś nocą pochmurno i ciepło, rano morze powinno być spokojne.",
+      "fog": "Nadmorska mgła ustępuje w ciągu poranka: około południa będzie jaśniej.",
+      "drizzle": "Lekka mżawka znad kanału: krótka, ciepła i przelotna.",
+      "rain_long": "Przelotne opady, typowe dla długich deszczy. Poranki często pozostają pogodne.",
+      "tropical_showers": "Tropikalne przelotne deszcze między chwilami słońca. Warto mieć lekką warstwę.",
+      "thunderstorm": "Możliwe burze: najlepiej zaplanować czas pod dachem, spokojniejszy lunch albo spa."
+    }
+  },
+  "about": {
+    "eyebrow": "O nas",
+    "image_alt": "Korony żurawi w wysokiej trawie o świcie",
+    "signature_role": "Zanzibar i Tanzania · Zrodzone z marzenia",
+    "title_prefix": "Wizja, która",
+    "title_em": "wreszcie",
+    "title_suffix": "rusza w pierwszą podróż.",
+    "lead": "Destination Paradise narodziło się z marzenia — by łączyć ludzi z pięknem, kulturą i duchem Tanzanii. Po latach przygotowań oficjalnie startujemy z Ungui na Zanzibarze.",
+    "highlights": [
+      { "value": "Teraz", "label": "Unguja", "em": true },
+      { "value": "Teraz", "label": "Kontynent", "em": true },
+      { "value": "Wkrótce", "label": "Pemba" },
+      { "value": "Wkrótce", "label": "Mafia Island" }
+    ],
+    "cta": "Poznaj naszą historię"
+  },
+  "contact": {
+    "eyebrow": "Kontakt",
+    "title": "Napisz do nas",
+    "lead": "Powiedz, czy chcesz pełny pakiet, kilka wycieczek po Zanzibarze, safari na kontynencie czy własne połączenie. Podaj liczbę osób, orientacyjne daty, budżet i tempo, a wrócimy w ciągu dnia z pomysłami, dostępnością i realną ceną.",
+    "details": {
+      "email": "Email",
+      "phone": "Telefon",
+      "whatsapp": "WhatsApp",
+      "whatsapp_action": "Napisz na WhatsApp",
+      "find_us": "Gdzie jesteśmy",
+      "hours": "Godziny"
+    },
+    "form": {
+      "name": "Twoje imię",
+      "email": "Email",
+      "subject": "Temat",
+      "subject_placeholder": "Daty podróży, liczba osób, coś konkretnego",
+      "message": "Wiadomość",
+      "submit": "Wyślij wiadomość",
+      "submit_pending": "Wysyłanie…",
+      "submit_done": "Wysłano",
+      "status_ok": "✓ Asante — mamy Twoją wiadomość. Odpowiemy w ciągu dnia.",
+      "status_err_prefix": "Pole sana — nie udało się wysłać. Napisz bezpośrednio na",
+      "status_err_suffix": "albo spróbuj ponownie."
+    }
+  }
+}

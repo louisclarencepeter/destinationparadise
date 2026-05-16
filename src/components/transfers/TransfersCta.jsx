@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { CONTACT_INFO } from '../../constants/contactInfo.js';
 import { TRANSFERS_CTA_IMAGE } from '../../data/transfersPageContent.js';
 
@@ -11,6 +12,8 @@ function PhoneIcon() {
 }
 
 export default function TransfersCta() {
+  const { t } = useTranslation('transfers');
+
   return (
     <section className="tr-cta">
       <div className="tr-cta__bg">
@@ -18,11 +21,9 @@ export default function TransfersCta() {
         <div className="tr-cta__overlay" />
       </div>
       <div className="tr-cta__inner">
-        <span className="section-eyebrow">Ready to book?</span>
-        <h2>Tell us your route. We&apos;ll match the right vehicle.</h2>
-        <p>
-          Share your flight, hotel, guest count, and luggage needs on WhatsApp. We&apos;ll confirm the best private, premium, or VIP option.
-        </p>
+        <span className="section-eyebrow">{t('cta.eyebrow')}</span>
+        <h2>{t('cta.title')}</h2>
+        <p>{t('cta.text')}</p>
         <div className="tr-cta__btns">
           <a
             className="btn btn--lg btn--accent"
@@ -30,10 +31,10 @@ export default function TransfersCta() {
             target="_blank"
             rel="noreferrer"
           >
-            Book on WhatsApp →
+            {t('cta.whatsapp')}
           </a>
           <Link className="btn btn--ghost-light btn--lg" to="/booking?type=transfer#booking-details">
-            Use the booking form
+            {t('cta.booking_form')}
           </Link>
         </div>
         <div className="tr-cta__contacts">

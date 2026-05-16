@@ -1,0 +1,153 @@
+{
+  "page_title": "Über uns · Destination Paradise",
+  "meta_description": "Destination Paradise entstand aus einem Traum: Menschen mit der Schönheit, Kultur und Seele Tansanias zu verbinden. Nach Jahren der Vorbereitung starten wir offiziell auf Unguja, Sansibar.",
+  "hero": {
+    "image_alt": "Kronenkraniche im hohen Gras bei Sonnenaufgang",
+    "eyebrow": "Über Destination Paradise",
+    "title_prefix": "Eine Vision,",
+    "title_em": "die endlich",
+    "title_suffix": "ihre erste Reise beginnt.",
+    "lead": "Destination Paradise entstand aus einem Traum: Menschen mit der Schönheit, Kultur und Seele Tansanias zu verbinden. Nach Jahren der Vorbereitung starten wir offiziell auf Unguja, Sansibar.",
+    "stats": [
+      {
+        "value": "Jetzt",
+        "label": "Unguja",
+        "em": true
+      },
+      {
+        "value": "Jetzt",
+        "label": "Festland",
+        "em": true
+      },
+      {
+        "value": "Bald",
+        "label": "Pemba"
+      },
+      {
+        "value": "Bald",
+        "label": "Mafia Island"
+      }
+    ]
+  },
+  "story": {
+    "eyebrow": "Unsere Geschichte",
+    "title_prefix": "Alles begann mit einem",
+    "title_em": "Traum",
+    "title_suffix": "weit weg von zuhause.",
+    "lead": [
+      "Destination Paradise begann als Idee auf einem Blatt Papier und als stilles Versprechen an einen Ort, der so viel gegeben hat. Vor Jahren, während der Arbeit in einem Hotel an Sansibars Ostküste, tauchte die erste Vision auf. Es brauchte viele Umwege und viele Jahre, bis daraus etwas Reales werden konnte.",
+      "Was du heute siehst, ist das Ergebnis von Geduld, Familie, Verlust, Lernen und der Entscheidung, diese Idee nicht loszulassen. Wir sind ein junges Unternehmen mit einer langen Geschichte im Rücken und wir fangen gerade erst an."
+    ],
+    "image_alt": "Eine traditionelle Dhow an der Küste Sansibars",
+    "caption": "Von der Idee auf Papier zu einem echten Unternehmen — Sansibar, wo alles begann.",
+    "timeline": [
+      {
+        "year": "Wo alles begann",
+        "title": "Eine Vision an Sansibars Ostküste",
+        "body": "Vor Jahren, während der Arbeit in einem Hotel an Sansibars Ostküste, entstand die erste Idee: etwas zu schaffen, das größer ist als einzelne Touren oder Buchungen. Etwas, das Menschen mit der Schönheit, Kultur und Seele Tansanias verbindet. Damals fühlte es sich zu groß und zu weit weg an, aber verschwunden ist es nie."
+      },
+      {
+        "year": "Die ersten Schritte",
+        "title": "Gemeinsam mit der Familie aufgebaut",
+        "body": "Das Unternehmen wurde zusammen mit der Familie registriert. Es war das erste Fundament dessen, was später Destination Paradise werden sollte. Nach einem schweren Verlust in diesen frühen Tagen wurde alles langsamer. Doch die Vision blieb lebendig."
+      },
+      {
+        "year": "Die stillen Jahre",
+        "title": "Ein Traum, der weiter wuchs",
+        "body": "Über Jahre voller Arbeit, Reisen und anderer Projekte wuchs der Traum Stück für Stück weiter. Was einmal auf Papier stand, wollte gebaut werden: geduldig, im Hintergrund, bis der richtige Moment kam."
+      },
+      {
+        "year": "Ein neues Kapitel",
+        "title": "Die Plattform von Grund auf bauen",
+        "body": "Der Umzug nach Deutschland öffnete ein neues Kapitel: Programmieren lernen, Webentwicklung, Medienproduktion und die Fähigkeiten sammeln, um die Plattform von Grund auf aufzubauen. Langsam wurde aus einer Idee auf Papier ein echtes Unternehmen mit echter Vision."
+      },
+      {
+        "year": "Heute",
+        "title": "Offizieller Start auf Unguja",
+        "body": "Nach Jahren der Vorbereitung startet Destination Paradise offiziell. Wir beginnen auf Unguja, Sansibar, und auf dem tansanischen Festland. Pemba und Mafia Island folgen, wenn ihre Zeit gekommen ist."
+      }
+    ]
+  },
+  "mission": {
+    "eyebrow": "Unsere Mission",
+    "title_prefix": "Der Welt zeigen, wie schön",
+    "title_em": "Tansania",
+    "title_suffix": "wirklich ist.",
+    "sub": "Einfach und genau wie auf dem ersten Blatt Papier: Jede Insel, jede Küste und jeder Winkel des Festlands hat eine Geschichte, die man persönlich erleben sollte."
+  },
+  "community": {
+    "eyebrow": "Community",
+    "title_prefix": "Gebaut als",
+    "title_em": "Netzwerk",
+    "title_suffix": "nicht als geschlossenes System.",
+    "lead": "Destination Paradise ist mehr als Reisen. Wir glauben, dass Tourismus echte Chancen für die Menschen schaffen sollte, die Gäste willkommen heißen. Vom ersten Tag an arbeiten wir Hand in Hand mit lokalen Fahrern, Guides, Hotels, Restaurants und Dienstleistern und bauen etwas, an dem die größere Community mitwächst.",
+    "pillars": [
+      {
+        "icon": "people",
+        "title": "Lokale Fahrer und Guides",
+        "body": "Wir arbeiten Hand in Hand mit Fahrern und Guides von den Inseln und vom Festland. Sie kennen die Straßen, Riffe und Geschichten wirklich."
+      },
+      {
+        "icon": "home",
+        "title": "Lokale Hotels und Restaurants",
+        "body": "Wo immer möglich, arbeiten wir mit lokal geführten Hotels und Restaurants. So bleibt Reisewert in der Community, die dich willkommen heißt."
+      },
+      {
+        "icon": "network",
+        "title": "Ein Netzwerk, kein geschlossenes System",
+        "body": "Wir bauen keine abgeschlossene Struktur. Wir bauen ein Netzwerk, das der größeren Community erlaubt, Schritt für Schritt mit uns zu wachsen."
+      },
+      {
+        "icon": "layers",
+        "title": "Authentisch und von Hand gestaltet",
+        "body": "Jeder Ausflug, jede Safari und jede kulturelle Erfahrung wird bewusst gestaltet, damit Reisende Tansania echter und bedeutungsvoller begegnen."
+      }
+    ],
+    "quote": [
+      "“Jedes Reiseziel hat eine Geschichte. Jede Insel hat ihre eigene Kultur, Energie und verborgene Schönheit, die darauf wartet, erlebt zu werden.",
+      "Das hier wurde nicht nur für Wachstum gebaut. Es wurde für Momente gebaut: einen langsamen Morgen am Riff, eine Geschichte auf der Rückbank eines Land Cruisers, den ersten Augenblick, in dem die Serengeti in der Dämmerung still wird.",
+      "Wir hoffen, dass du mit der Zeit deine eigene Geschichte hinzufügst.”"
+    ],
+    "avatar_alt": "Louis Peter, Gründer von Destination Paradise",
+    "quote_byline": "Aus unserer Gründungsnotiz",
+    "quote_meta": "Destination Paradise · 2026"
+  },
+  "destinations": {
+    "eyebrow": "Wohin wir reisen",
+    "title_prefix": "Von Unguja",
+    "title_em": "weiter hinaus",
+    "title_suffix": ".",
+    "lead": "Wir beginnen auf Unguja, Sansibar, dem Ort, an dem diese Reise ihren Anfang nahm, und auf dem tansanischen Festland, wo sich die größere Geschichte entfaltet. Pemba und Mafia Island folgen in ihrem eigenen Tempo.",
+    "items": [
+      {
+        "tag": "Jetzt verfügbar",
+        "name": "Unguja, Sansibar",
+        "body": "Hier beginnt die Reise: Ausflüge, kulturelle Erlebnisse und Touren über die Hauptinsel."
+      },
+      {
+        "tag": "Jetzt verfügbar",
+        "name": "Tansanisches Festland",
+        "body": "Serengeti, Ngorongoro, Kilimanjaro und weiter: die große Geschichte Tansanias, bereit zum Entdecken."
+      },
+      {
+        "tag": "Bald",
+        "name": "Pemba Island",
+        "body": "Sansibars ruhigere Schwester: unberührte Riffe, Nelkenwälder und ein langsameres Tempo direkt über dem Kanal."
+      },
+      {
+        "tag": "Bald",
+        "name": "Mafia Island",
+        "body": "Ein Meerespark mit Walhaien, Schildkröten und einigen der klarsten Gewässer an der ostafrikanischen Küste."
+      }
+    ]
+  },
+  "cta": {
+    "eyebrow": "Karibu",
+    "title_prefix": "Willkommen bei",
+    "title_em": "Destination Paradise",
+    "title_suffix": ".",
+    "text": "Allen, die diese Reise von Anfang an unterstützt haben: Danke. Und allen, die jetzt dazukommen: Die Vision ist groß, der Weg ist lang, und wir freuen uns sehr, dass du von Anfang an dabei bist.",
+    "booking": "Reise planen →",
+    "excursions": "Ausflüge ansehen"
+  }
+}

@@ -182,11 +182,12 @@
 .hero__content {
   position: relative;
   z-index: 2;
-  width: min(780px, 100%);
-  max-width: 780px;
+  width: min(1100px, 100%);
+  max-width: 1100px;
   margin: 0 auto;
   color: #fff;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   justify-items: center;
   gap: clamp(.6rem, 1.05vh, 1rem);
   transform: none;
@@ -216,6 +217,8 @@
   color: #fff;
   margin: 0;
   line-height: .94;
+  max-width: min(100%, 780px);
+  text-wrap: balance;
   text-shadow: 0 8px 40px rgba(0,0,0,.35);
   animation: fadeInUp 1s var(--dp-ease-out) both;
   animation-delay: .1s;
@@ -226,6 +229,8 @@
   font-weight: 400;
   color: var(--dp-accent);
   margin: 0;
+  max-width: min(100%, 780px);
+  text-wrap: balance;
   text-shadow: 0 2px 18px rgba(0,0,0,.4);
   animation: fadeInUp 1s var(--dp-ease-out) both;
   animation-delay: .3s;
@@ -263,14 +268,15 @@
 .hero__search {
   position: relative; z-index: 3;
   margin: 0 auto;
-  max-width: 880px;
+  width: min(100%, 1100px);
+  max-width: 1100px;
   background: color-mix(in srgb, var(--surface) 92%, transparent);
   backdrop-filter: blur(14px);
   border-radius: 18px;
   padding: 0.6rem;
   box-shadow: 0 30px 60px rgba(26,77,110,.35);
   display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr auto;
+  grid-template-columns: 1.6fr 1fr 1fr minmax(180px, auto);
   gap: 2px;
   animation: fadeInUp 1s var(--dp-ease-out) both;
   animation-delay: .9s;
@@ -295,7 +301,8 @@ html[data-theme="dark"] .hero__search {
   background-image: var(--dp-gradient-button);
   color: #fff; border: none; border-radius: 14px;
   padding: 0 1.6rem; cursor: pointer; font-family: var(--dp-font-sans); font-weight: 600;
-  font-size: 14px; display: inline-flex; align-items: center; gap: .5rem;
+  font-size: 14px; display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  white-space: nowrap;
   transition: all .3s ease;
 }
 .hero__search-submit:hover { background-image: var(--dp-gradient-button-hover); transform: translateY(-1px); }

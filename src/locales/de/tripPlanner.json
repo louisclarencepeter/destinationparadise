@@ -1,0 +1,81 @@
+{
+  "page_title": "KI-Reiseplaner · Destination Paradise",
+  "place_prompt": {
+    "trip_angle": "Reiseidee: {{value}}.",
+    "context": "Kontext: {{value}}",
+    "best_for": "Am besten für: {{value}}.",
+    "text": "Ich möchte eine Reise rund um {{place}} planen. {{details}} Bitte schlage die beste Route vor, wie viele Nächte sinnvoll sind, womit man es kombinieren kann, und frag mich nach fehlenden Angaben zu Daten, Gruppengröße, Budget und Reisestil."
+  },
+  "hero": {
+    "eyebrow": "KI-Reiseplaner · vor der Buchung von Menschen geprüft",
+    "title_prefix": "Skizziere die Reise,",
+    "title_em": "bevor du dich festlegst.",
+    "lead": "Sag dem Planer, welche Art von Sansibar, Safari, Honeymoon, Familienreise oder Strandpause du suchst. Er stellt die richtigen Fragen und formt eine Route, die unser Team sauber kalkulieren kann.",
+    "start_planning": "Planung starten",
+    "browse_packages": "Pakete ansehen",
+    "stat_human_quote": "Persönliches Angebot",
+    "stat_packages": "Pakete",
+    "stat_safaris": "Safaris",
+    "stat_excursions": "Ausflüge"
+  },
+  "prompts": {
+    "eyebrow": "Schneller starten",
+    "title": "Wähle deinen Planungsansatz.",
+    "lead": "Nimm den Einstieg, der am besten passt. Der Planer startet dann direkt mit diesem Kontext.",
+    "sent": "An den Planer gesendet",
+    "start_with_this": "Damit starten",
+    "items": [
+      {
+        "key": "safari-beach",
+        "label": "Safari + Strand",
+        "title": "Eine Bush-to-Beach-Route bauen",
+        "text": "Wir planen 8 bis 10 Nächte. Wir möchten eine kurze Safari, Strandzeit auf Sansibar, gutes Essen und eine entspannte Route ohne zu viele Hotelwechsel. Kannst du einen Plan vorschlagen?"
+      },
+      {
+        "key": "honeymoon",
+        "label": "Honeymoon",
+        "title": "Etwas Romantisches planen",
+        "text": "Wir sind ein Honeymoon-Paar. Wir möchten 7 Nächte mit schönem Strandhotel, einem privaten Dinner, einem Dhow-Sonnenuntergang und vielleicht einer kurzen Fly-in-Safari. Mittelklasse bis Luxus."
+      },
+      {
+        "key": "family",
+        "label": "Familie",
+        "title": "Mit Kindern einfach machen",
+        "text": "Wir reisen als Familie mit Kindern und wünschen uns eine entspannte Sansibar-Reise mit sicheren Aktivitäten, Wildlife oder Schildkröten, Schnorcheln bei einfachen Bedingungen und nicht zu vielen frühen Starts."
+      },
+      {
+        "key": "culture-ocean",
+        "label": "Kultur + Meer",
+        "title": "Lokales Leben und Wasser kombinieren",
+        "text": "Ich möchte Stone Town, Gewürzfarmen, lokales Essen, einen Dhow-Tag, Schnorcheln und einen Strandort, der ruhig bleibt. Bitte schlage eine ausgewogene Route vor."
+      }
+    ]
+  },
+  "steps": {
+    "eyebrow": "So funktioniert es",
+    "title": "Von der Idee zum buchbaren Plan.",
+    "items": [
+      {
+        "step": "01",
+        "title": "Beschreib die Reise",
+        "text": "Daten, Gäste, Budget, Tempo und was dir am wichtigsten ist."
+      },
+      {
+        "step": "02",
+        "title": "Erhalte einen ersten Entwurf",
+        "text": "Der Planer skizziert Nächte, Regionen, Ausflüge, Safaris und den Rhythmus der Tage."
+      },
+      {
+        "step": "03",
+        "title": "Schick ihn an uns",
+        "text": "Unser Team prüft Verfügbarkeit, kalkuliert sauber und macht aus dem Entwurf eine buchbare Reise."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Sollen wir aus dem Entwurf ein Angebot machen?",
+    "text": "Schick uns Plan, Daten, Gruppengröße und Reisestil. Wir prüfen Verfügbarkeit und melden uns mit echter Route und echtem Preis.",
+    "get_quote": "Angebot anfragen →",
+    "keep_planning": "Weiter planen"
+  }
+}

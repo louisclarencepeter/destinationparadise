@@ -1,0 +1,260 @@
+{
+  "page_title": "Transfery lotniskowe i wyspowe · Zanzibar · Destination Paradise",
+  "page_description": "Prywatne transfery lotniskowe na Zanzibarze, transfery hotelowe, obsługa VIP po przylocie i transport grupowy Destination Paradise. Meet & greet, monitoring lotu, klimatyzowane auta, 24/7.",
+  "hero": {
+    "eyebrow": "Prywatne transfery z lotniska · hotelu · po wyspie",
+    "title_prefix": "Pierwsze i ostatnie",
+    "title_em": "wrażenie z Zanzibaru",
+    "title_suffix": "— dopracowane.",
+    "lead": "Zarezerwowane wcześniej prywatne transfery z powitaniem na lotnisku, klimatyzowanymi samochodami, pomocą z bagażem i wsparciem na WhatsApp od chwili lądowania.",
+    "route_pricing": "Zobacz ceny tras",
+    "whatsapp": "Zarezerwuj na WhatsApp →",
+    "stats": [
+      {
+        "value": "Od $25",
+        "label": "za pojazd"
+      },
+      {
+        "value": "Prywatnie",
+        "label": "Meet & greet"
+      },
+      {
+        "value": "3 poziomy",
+        "label": "Standard · Premium · VIP"
+      },
+      {
+        "value": "24 / 7",
+        "label": "Monitoring lotu"
+      }
+    ]
+  },
+  "types": {
+    "eyebrow": "Ceny tras",
+    "title": "Prywatne transfery z jasną ceną według trasy.",
+    "lead": "Zacznij od prywatnego samochodu, a jeśli przyjazd ma być częścią wakacyjnego doświadczenia, wybierz Premium SUV albo obsługę VIP concierge.",
+    "book": "Zarezerwuj transfer"
+  },
+  "how": {
+    "eyebrow": "Jak to działa",
+    "title": "Trzy kroki od lądowania do zameldowania.",
+    "items": [
+      {
+        "step": "01",
+        "title": "Podajesz szczegóły",
+        "text": "Wyślij numer lotu, godzinę przylotu, nazwę hotelu i liczbę osób przez WhatsApp albo formularz rezerwacji. Potwierdzamy zwykle w kilka godzin."
+      },
+      {
+        "step": "02",
+        "title": "Śledzimy Twój lot",
+        "text": "Kierowcy monitorują lot w czasie rzeczywistym. Jeśli samolot przyleci wcześniej albo się opóźni, dopasujemy odbiór bez opłat za oczekiwanie."
+      },
+      {
+        "step": "03",
+        "title": "Spokojny przyjazd",
+        "text": "Kierowca czeka przy przylotach z tabliczką. Bagaż trafia do auta, klimatyzacja jest włączona, a Ty jedziesz prosto do hotelu."
+      }
+    ]
+  },
+  "included": {
+    "eyebrow": "W cenie",
+    "title": "Obsługa przylotu, nie tylko transport.",
+    "lead": "Goście kupują pewność: kierowcę, który już czeka, wsparcie przy zmianie lotu i spokojne pierwsze wrażenie z Zanzibaru.",
+    "choose_route": "Wybierz trasę →",
+    "items": [
+      "Cena prywatnego transferu według trasy",
+      "Powitanie z tabliczką z imieniem",
+      "Monitoring lotu i opóźnień",
+      "Klimatyzowany pojazd",
+      "Pomoc z bagażem",
+      "Woda na pokładzie przy rezerwacjach premium",
+      "Licencjonowani kierowcy obsługujący turystów",
+      "Dowóz pod drzwi hotelu",
+      "Wsparcie na WhatsApp przed przylotem"
+    ]
+  },
+  "fleet": {
+    "eyebrow": "Poziomy obsługi",
+    "title": "Standard, Premium albo przylot VIP.",
+    "lead": "Dopasuj transfer do gości: praktyczny prywatny komfort, bardziej elegancki przyjazd albo pełna obsługa concierge.",
+    "items": [
+      {
+        "key": "standard",
+        "type": "Standard Private",
+        "capacity": "Sprawdzony samochód z AC",
+        "desc": "Najlepszy wybór na praktyczne transfery lotniskowe i hotelowe z powitaniem, monitoringiem lotu, pomocą z bagażem i usługą od drzwi do drzwi."
+      },
+      {
+        "key": "premium",
+        "type": "Premium SUV",
+        "capacity": "Pary · rodziny",
+        "desc": "Więcej przestrzeni i bardziej komfortowy przyjazd dla par w podróży poślubnej, gości resortów, klientów safari i osób z większym bagażem."
+      },
+      {
+        "key": "vip",
+        "type": "VIP Concierge",
+        "capacity": "Luksusowy przylot",
+        "desc": "Wsparcie fast-track, prywatna obsługa concierge, luksusowy pojazd, zimne ręczniki, napoje i dopracowany przyjazd."
+      },
+      {
+        "key": "group",
+        "type": "Transfer grupowy",
+        "capacity": "5-25 osób",
+        "desc": "Minivany i autobusy coaster dla rodzin, grup weselnych, zespołów firmowych i grup safari przylatujących razem."
+      }
+    ]
+  },
+  "faq": {
+    "eyebrow": "FAQ",
+    "title": "Zanim zarezerwujesz.",
+    "items": [
+      {
+        "q": "Ile kosztuje transfer z lotniska?",
+        "a": "Prywatne transfery z lotniska zaczynają się od $25 za pojazd do Stone Town, $45 do Paje lub Jambiani i $50 do Nungwi lub Kendwa. Premium SUV, VIP concierge, grupy i minivany wyceniamy osobno.",
+        "open": true
+      },
+      {
+        "q": "Co jeśli mój lot będzie opóźniony?",
+        "a": "Śledzimy lot w czasie rzeczywistym na podstawie numeru, który nam podasz. Kierowca czeka bez dopłaty przy opóźnieniu do 2 godzin. Przy dłuższych zmianach dopasujemy rezerwację i będziemy w kontakcie na WhatsApp."
+      },
+      {
+        "q": "Czy możecie odebrać mnie z hotelu o 3 rano?",
+        "a": "Tak. Działamy 24 godziny na dobę, 7 dni w tygodniu. Wczesne poranki i późne noce są normalne, wystarczy podać godzinę przy rezerwacji."
+      },
+      {
+        "q": "Czy obsługujecie północne wybrzeże, Nungwi i Kendwa?",
+        "a": "Tak, obsługujemy całą wyspę: Stone Town, Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje, Bwejuu, Jambiani i miejsca pomiędzy."
+      },
+      {
+        "q": "Czy możecie zorganizować transfer pod safari?",
+        "a": "Oczywiście. Jeśli łączysz pobyt na Zanzibarze z safari na kontynencie, koordynujemy odbiór z portu promowego albo lotniska w Dar es Salaam i możemy zorganizować dalszy przejazd do Arushy lub innych baz safari."
+      },
+      {
+        "q": "Jak mogę zapłacić?",
+        "a": "Akceptujemy USD, EUR, GBP i TZS. Standardowe prywatne transfery zwykle można opłacić w dniu przejazdu. Rezerwacje premium, VIP, grupowe i długodystansowe mogą wymagać depozytu."
+      }
+    ]
+  },
+  "cta": {
+    "eyebrow": "Gotowe do rezerwacji?",
+    "title": "Podaj trasę. Dobierzemy właściwy pojazd.",
+    "text": "Wyślij na WhatsApp dane lotu, hotel, liczbę gości i bagażu. Potwierdzimy najlepszą opcję prywatną, premium albo VIP.",
+    "whatsapp": "Zarezerwuj na WhatsApp →",
+    "booking_form": "Użyj formularza rezerwacji"
+  },
+  "products": {
+    "airport-stonetown": {
+      "title": "Lotnisko ⇄ Stone Town",
+      "duration": "15 - 25 minut",
+      "description": "Dopracowany prywatny przyjazd dla hoteli w Stone Town, krótkich pobytów, podróży biznesowych i gości, którzy chcą mieć lotnisko załatwione zanim wylądują.",
+      "pricing": [
+        "Prywatny samochód od $25 za pojazd",
+        "Premium SUV od $45",
+        "Transfer grupowy od $10 za osobę"
+      ],
+      "details": [
+        "Powitanie przy przylotach",
+        "Monitoring lotu w cenie",
+        "Hotele w Stone Town",
+        "Dobre przy krótkim pobycie"
+      ],
+      "priceSummary": "Prywatnie od $25",
+      "homePrice": "$25",
+      "category": "Transfer lotniskowy"
+    },
+    "airport-paje": {
+      "title": "Lotnisko ⇄ Paje / Jambiani",
+      "duration": "1 - 1,5 godziny",
+      "description": "Bezpośredni transfer do resortów na południowo-wschodnim wybrzeżu, z miejscem na bagaż, sprzęt kite i spokojną pierwszą godziną na wyspie.",
+      "pricing": [
+        "Prywatny samochód od $45 za pojazd",
+        "Premium SUV od $70",
+        "Luksusowy VIP od $120"
+      ],
+      "details": [
+        "Paje, Bwejuu i Jambiani",
+        "Pary i pobyty plażowe",
+        "Wsparcie przy bagażu kitesurfingowym",
+        "Dowóz pod drzwi resortu"
+      ],
+      "priceSummary": "Prywatnie od $45",
+      "homePrice": "$45",
+      "category": "Transfer lotniskowy"
+    },
+    "airport-nungwi": {
+      "title": "Lotnisko ⇄ Nungwi / Kendwa",
+      "duration": "Około 1,5 godziny",
+      "description": "Komfortowe transfery na dłuższej trasie do resortów północnego wybrzeża, dla podróży poślubnych i gości po długim locie.",
+      "pricing": [
+        "Prywatny samochód od $50 za pojazd",
+        "Premium SUV od $80",
+        "Luksusowy VIP od $140"
+      ],
+      "details": [
+        "Resorty Nungwi i Kendwa",
+        "Przyloty poślubne",
+        "Luksusowe wakacje plażowe",
+        "Przystanek na napoje na życzenie"
+      ],
+      "priceSummary": "Prywatnie od $50",
+      "homePrice": "$50",
+      "category": "Transfer lotniskowy"
+    },
+    "hotel-hotel": {
+      "title": "Transfery hotel ⇄ hotel",
+      "duration": "Cała wyspa",
+      "description": "Przenosisz się ze Stone Town na plażę albo łączysz kilka resortów? Zarządzimy godziną, miejscem odbioru, bagażem i trasą.",
+      "pricing": [
+        "Prywatny transfer od $35 za pojazd",
+        "Transfer premium od $60",
+        "Trasy na północ wyceniane według dystansu"
+      ],
+      "details": [
+        "Wszystkie rejony wyspy",
+        "Stone Town ⇄ Nungwi",
+        "Paje ⇄ Kendwa i inne",
+        "Elastyczne godziny odbioru"
+      ],
+      "priceSummary": "Prywatnie od $35",
+      "homePrice": "$35",
+      "category": "Transfer po wyspie"
+    },
+    "group-transfers": {
+      "title": "Transfery grupowe i minivany",
+      "duration": "Rodziny · eventy · zespoły",
+      "description": "Skoordynowane przyjazdy dla rodzin, grup weselnych, zespołów firmowych i grup safari podróżujących razem z bagażem.",
+      "pricing": [
+        "Minivan od $90",
+        "Autobus coaster od $180",
+        "Indywidualna wycena dużych grup"
+      ],
+      "details": [
+        "5 - 25 osób",
+        "Planowanie bagażu grupy",
+        "Kilka punktów odbioru",
+        "Koordynacja lotniska lub hotelu"
+      ],
+      "priceSummary": "Minivan od $90",
+      "homePrice": "$90",
+      "category": "Transfer grupowy"
+    },
+    "vip-airport-service": {
+      "title": "VIP Airport Concierge",
+      "duration": "Luksusowa obsługa przylotu",
+      "description": "Obsługa high-touch dla gości premium, par w podróży poślubnej, kadry zarządzającej i klientów safari, którzy chcą mieć dopracowany każdy detal.",
+      "pricing": [
+        "VIP concierge od $150",
+        "Luksusowy pojazd w cenie",
+        "Pomoc fast-track na życzenie"
+      ],
+      "details": [
+        "Prywatny concierge",
+        "Meet & greet",
+        "Zimne ręczniki i napoje",
+        "Wsparcie WhatsApp"
+      ],
+      "priceSummary": "VIP od $150",
+      "homePrice": "$150",
+      "category": "Transfer VIP"
+    }
+  }
+}
