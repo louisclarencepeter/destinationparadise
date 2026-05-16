@@ -6,7 +6,6 @@ import { EXCURSIONS } from '../data/excursionsData.js';
 import { DESTINATION_MAP_PINS } from '../data/destinationMapPins.js';
 import DeferredMount from '../components/DeferredMount.jsx';
 import HeroSection from '../components/homepage/HeroSection.jsx';
-import HeroSearchSection from '../components/homepage/HeroSearchSection.jsx';
 import ExcursionsSection from '../components/homepage/ExcursionsSection.jsx';
 import SafarisSection from '../components/homepage/SafarisSection.jsx';
 import PackagesSection from '../components/homepage/PackagesSection.jsx';
@@ -181,8 +180,7 @@ export default function Homepage() {
 
   return (
     <>
-      <HeroSection tweaks={tweaks} />
-      <HeroSearchSection handleHeroSearch={handleHeroSearch} />
+      <HeroSection tweaks={tweaks} handleHeroSearch={handleHeroSearch} />
       <ExcursionsSection tweaks={tweaks} excursions={bestSellingExcursions} />
       <SafarisSection />
       <PackagesSection />
