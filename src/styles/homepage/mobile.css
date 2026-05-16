@@ -239,10 +239,29 @@ html, body { max-width: 100%; }
 
 /* Hero search — cleaner stacked touch targets */
 @media (max-width: 780px) {
-  .hero__search { margin-top: 1.25rem; padding: .35rem; border-radius: 14px; }
-  .hero__search-field { padding: .65rem .9rem; }
+  .hero__search {
+    margin-top: 1.25rem;
+    padding: .35rem;
+    border-radius: 14px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  .hero__search-field {
+    padding: .65rem .9rem;
+    min-width: 0;
+    overflow: hidden;
+  }
   .hero__search-field label { font-size: 9px; }
-  .hero__search-field select, .hero__search-field input { font-size: 16px; /* prevents iOS zoom */ }
+  .hero__search-field select,
+  .hero__search-field input {
+    font-size: 16px; /* prevents iOS zoom */
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+  }
   .hero__search-submit { padding: .95rem; justify-content: center; min-height: 48px; border-radius: 10px; }
 }
 
