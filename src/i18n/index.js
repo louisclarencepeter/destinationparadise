@@ -86,4 +86,28 @@ if (typeof document !== 'undefined') {
   document.documentElement.lang = i18n.resolvedLanguage || DEFAULT_LANGUAGE;
 }
 
+const COUNTRY_TO_LANG = { DE: 'de', PL: 'pl' };
+
+async function applyGeoLanguage() {
+  if (typeof window === 'undefined') return;
+  try {
+    if (window.localStorage.getItem(STORAGE_KEY)) return;
+  } catch {
+    return;
+  }
+  try {
+    const res = await fetch('/api/geo', { credentials: 'omit' });
+    if (!res.ok) return;
+    const { country } = await res.json();
+    const lang = COUNTRY_TO_LANG[country];
+    if (lang && lang !== i18n.resolvedLanguage) {
+      await i18n.changeLanguage(lang);
+    }
+  } catch {
+    // ignore – fall back to whatever the detector chose
+  }
+}
+
+applyGeoLanguage();
+
 export default i18n;

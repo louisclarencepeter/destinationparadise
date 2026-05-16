@@ -457,7 +457,7 @@ html, body { max-width: 100%; }
 @media (max-width: 720px) {
   .map-section { padding: 0 1rem; }
   .map-stage { min-height: 360px; border-radius: 22px; }
-  .map-list__button { padding: .6rem .65rem; font-size: 13px; gap: .65rem; }
+  .map-list__button { padding: .6rem 3rem .6rem .65rem; font-size: 13px; gap: .65rem; }
   .map-list__button > span:last-child { font-size: 11px !important; }
   .map-list .num { width: 24px; height: 24px; font-size: 10px; }
   .map-list-label { font-size: 9px; }

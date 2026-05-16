@@ -129,7 +129,7 @@
     "product_label_transfer": "Trasa transferu",
     "product_label_default": "Konkretny produkt",
     "product_placeholder_transfer": "Wybierz trasę transferu albo zostaw elastycznie",
-    "product_placeholder_default": "Wybierz produkt albo zostaw elastycznie",
+    "product_placeholder_default": "Wybierz {{serviceType}} albo elastycznie",
     "product_placeholder_generic": "Wybierz produkt albo zostaw elastycznie",
     "name": "Imię i nazwisko",
     "email": "Email",
