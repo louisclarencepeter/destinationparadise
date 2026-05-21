@@ -1,0 +1,137 @@
+{
+  "page_title": "{{title}} · Destination Paradise",
+  "meta": {
+    "aria_label": "Szczegoly zasad",
+    "last_updated": "Ostatnia aktualizacja",
+    "last_updated_value": "13 maja 2026",
+    "contact": "Kontakt"
+  },
+  "policies": {
+    "privacy": {
+      "eyebrow": "Prywatnosc",
+      "title": "Polityka prywatnosci",
+      "intro": "Ta polityka wyjasnia, jak Destination Paradise obchodzi sie z danymi, ktore przekazujesz, gdy pytasz o wyjazdy, rezerwujesz atrakcje lub kontaktujesz sie z naszym zespolem.",
+      "sections": [
+        {
+          "title": "Jakie Informacje Zbieramy",
+          "items": [
+            "Dane kontaktowe, takie jak imie i nazwisko, adres e-mail, numer telefonu, kontakt WhatsApp i kraj.",
+            "Szczegoly podrozy, takie jak preferowane daty, wielkosc grupy, budzet, zainteresowania, hotel lub miejsce odbioru oraz specjalne prosby.",
+            "Wiadomosci wysylane przez formularze, WhatsApp, e-mail lub kanaly spolecznosciowe.",
+            "Podstawowe informacje techniczne, takie jak typ przegladarki, informacje o urzadzeniu, odwiedzone strony i przyblizona lokalizacja z narzedzi analitycznych."
+          ]
+        },
+        {
+          "title": "Jak Wykorzystujemy Twoje Informacje",
+          "items": [
+            "Aby odpowiadac na zapytania oraz przygotowywac propozycje podrozy, wyceny, rezerwacje i plany wyjazdu.",
+            "Aby koordynowac przewodnikow, kierowcow, partnerow noclegowych, operatorow lodzi, dostawcow safari i innych partnerow potrzebnych do realizacji wyjazdu.",
+            "Aby ulepszac nasza strone, obsluge klienta, pakiety, wycieczki i planowanie safari.",
+            "Aby wysylac aktualizacje rezerwacji, wiadomosci serwisowe i informacje powiazane z Twoja prosba."
+          ]
+        },
+        {
+          "title": "Udostepnianie Informacji",
+          "items": [
+            "Udostepniamy tylko te dane, ktore sa potrzebne do zorganizowania podrozy z zaufanymi lokalnymi partnerami, dostawcami platnosci lub uslug.",
+            "Mozemy udostepnic informacje, gdy wymagaja tego przepisy, zasady bezpieczenstwa, procedury graniczne lub oficjalne procedury podrozne.",
+            "Nie sprzedajemy Twoich danych osobowych."
+          ]
+        },
+        {
+          "title": "Twoje Mozliwosci",
+          "items": [
+            "Mozesz poprosic nas o poprawienie, zaktualizowanie lub usuniecie danych osobowych, gdy nie sa juz potrzebne do rezerwacji, ksiegowosci, bezpieczenstwa lub z powodow prawnych.",
+            "Mozesz nie podawac opcjonalnych danych, chociaz moze to ograniczyc dokladnosc planowania Twojej podrozy.",
+            "Mozesz w kazdej chwili zrezygnowac z wiadomosci marketingowych, kontaktujac sie z nami."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "eyebrow": "Regulamin",
+      "title": "Regulamin uslug",
+      "intro": "Ten regulamin opisuje, jak dzialaja zapytania, rezerwacje, platnosci, zmiany i odpowiedzialnosc za podroz podczas korzystania z uslug Destination Paradise.",
+      "sections": [
+        {
+          "title": "Korzystanie Z Naszej Strony",
+          "items": [
+            "Strona pomaga odkrywac wyjazdy na Zanzibar i do Tanzanii, prosic o wyceny i kontaktowac sie z naszym zespolem.",
+            "Tresci, ceny, trasy, dostepnosc i elementy oferty moga sie zmieniac wraz ze zmianami u dostawcow, sezonow, zasad parkow, kosztow paliwa i warunkow pogodowych.",
+            "Zgadzasz sie nie naduzywac strony, nie wysylac falszywych zapytan i nie zaklocac normalnego dzialania strony."
+          ]
+        },
+        {
+          "title": "Wyceny I Rezerwacje",
+          "items": [
+            "Rezerwacja jest potwierdzona dopiero po potwierdzeniu dostepnosci, uzgodnieniu finalnego planu wyjazdu i otrzymaniu wymaganej platnosci lub zaliczki.",
+            "Wycena wyjasni, co jest wliczone, co nie jest wliczone, terminy platnosci, zasady anulowania i wazne warunki dostawcow.",
+            "Odpowiadasz za sprawdzenie nazwisk, dat, szczegolow odbioru, informacji paszportowych, potrzeb dietetycznych, kwestii medycznych i dokumentow podroznych przed potwierdzeniem."
+          ]
+        },
+        {
+          "title": "Zmiany, Anulacje I Zwroty",
+          "items": [
+            "Zasady zmian i anulacji zaleza od konkretnego hotelu, parku, linii lotniczej, lodzi, przewodnika lub zewnetrznego dostawcy w Twoim planie.",
+            "Zwroty, czesciowe zwroty lub kredyty sa obslugiwane zgodnie z pisemnymi warunkami przekazanymi wraz z potwierdzeniem rezerwacji.",
+            "Pogoda, warunki na morzu, dostep do parku, stan drog, przepisy rzadowe lub wzgledy bezpieczenstwa moga wymagac zmian czasu, trasy, dostawcy lub kolejnosci atrakcji."
+          ]
+        },
+        {
+          "title": "Odpowiedzialnosc Za Podroz",
+          "items": [
+            "Podroz zawsze wiaze sie z pewnym ryzykiem. Odpowiadasz za odpowiednie ubezpieczenie, porady zdrowotne, wizy, paszporty i rzeczy osobiste.",
+            "Starannie wspolpracujemy z lokalnymi partnerami, ale nie odpowiadamy za opoznienia lub straty spowodowane zdarzeniami poza nasza rozsadna kontrola.",
+            "Jesli cos pojdzie nie tak podczas wyjazdu, skontaktuj sie z nami szybko, abysmy mogli pomoc, gdy jest jeszcze czas na dzialanie."
+          ]
+        }
+      ]
+    },
+    "cookies": {
+      "eyebrow": "Cookies",
+      "title": "Polityka cookies",
+      "intro": "Ta polityka wyjasnia, jak cookies i podobne technologie moga byc uzywane, aby strona dzialala, aby rozumiec wizyty i ulepszac planowanie podrozy.",
+      "sections": [
+        {
+          "title": "Czym Sa Cookies",
+          "items": [
+            "Cookies to male pliki zapisywane na Twoim urzadzeniu podczas odwiedzania strony internetowej.",
+            "Podobne technologie, takie jak pamiec lokalna, piksele i tagi analityczne, moga pomagac zapamietywac ustawienia lub mierzyc sposob korzystania ze stron."
+          ]
+        },
+        {
+          "title": "Jak Uzywamy Cookies",
+          "items": [
+            "Niezbedne cookies i pamiec pomagaja stronie sie ladowac, zapamietywac preferencje motywu, obslugiwac formularze i utrzymywac stabilne dzialanie.",
+            "Cookies analityczne moga pomoc nam zrozumiec, ktore strony sa przydatne, skad trafiaja odwiedzajacy i jak mozemy ulepszyc strone.",
+            "Narzedzia marketingowe lub platform spolecznosciowych moga byc uzywane, gdy korzystasz z tresci osadzonych, linkow spolecznosciowych lub linkow kampanii."
+          ]
+        },
+        {
+          "title": "Zarzadzanie Cookies",
+          "items": [
+            "Mozesz blokowac, usuwac lub ograniczac cookies w ustawieniach przegladarki.",
+            "Niektore funkcje moga nie dzialac zgodnie z oczekiwaniami, jesli niezbedne cookies lub pamiec lokalna sa wylaczone.",
+            "Uslugi zewnetrzne moga udostepniac wlasne ustawienia prywatnosci i cookies na swoich stronach lub w ustawieniach konta."
+          ]
+        },
+        {
+          "title": "Aktualizacje",
+          "items": [
+            "Mozemy aktualizowac te polityke, gdy zmieniaja sie narzedzia strony, konfiguracja analityki lub procesy rezerwacji.",
+            "Najnowsza wersja bedzie opublikowana na tej stronie z data aktualizacji."
+          ]
+        }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "copy_prefix": "W sprawach dotyczacych tej polityki lub szczegolow rezerwacji skontaktuj sie z Destination Paradise pod adresem",
+    "copy_suffix": "albo napisz do nas na WhatsApp.",
+    "actions": {
+      "email": "Napisz e-mail",
+      "plan": "Zaplanuj podroz"
+    }
+  }
+}

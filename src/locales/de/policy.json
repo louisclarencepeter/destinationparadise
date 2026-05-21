@@ -1,0 +1,137 @@
+{
+  "page_title": "{{title}} · Destination Paradise",
+  "meta": {
+    "aria_label": "Richtliniendetails",
+    "last_updated": "Zuletzt aktualisiert",
+    "last_updated_value": "13. Mai 2026",
+    "contact": "Kontakt"
+  },
+  "policies": {
+    "privacy": {
+      "eyebrow": "Datenschutz",
+      "title": "Datenschutzerklärung",
+      "intro": "Diese Datenschutzerklärung erklärt, wie Destination Paradise mit den Angaben umgeht, die du teilst, wenn du Reisen anfragst, Erlebnisse buchst oder unser Team kontaktierst.",
+      "sections": [
+        {
+          "title": "Welche Informationen Wir Erheben",
+          "items": [
+            "Kontaktdaten wie Name, E-Mail-Adresse, Telefonnummer, WhatsApp-Kontakt und Land.",
+            "Reisedetails wie Wunschdaten, Gruppengröße, Budget, Interessen, Hotel oder Abholort und besondere Wünsche.",
+            "Nachrichten, die du über unsere Formulare, WhatsApp, E-Mail oder Social-Media-Kanäle sendest.",
+            "Grundlegende technische Informationen wie Browsertyp, Geräteinformationen, besuchte Seiten und ungefährer Standort aus Analyse-Tools."
+          ]
+        },
+        {
+          "title": "Wie Wir Deine Informationen Nutzen",
+          "items": [
+            "Um Anfragen zu beantworten und Reisevorschläge, Angebote, Buchungen und Reisepläne vorzubereiten.",
+            "Um Guides, Fahrer, Unterkunftspartner, Bootsbetreiber, Safari-Anbieter und andere Partner zu koordinieren, die für deine Reise gebraucht werden.",
+            "Um unsere Website, den Kundenservice, Pakete, Ausflüge und die Safari-Planung zu verbessern.",
+            "Um Buchungsupdates, Service-Nachrichten und Folgeinformationen zu deiner Anfrage zu senden."
+          ]
+        },
+        {
+          "title": "Weitergabe Deiner Informationen",
+          "items": [
+            "Wir teilen nur die Angaben, die nötig sind, um deine Reise mit vertrauenswürdigen lokalen Partnern, Zahlungsanbietern oder Dienstleistern zu organisieren.",
+            "Wir können Informationen weitergeben, wenn dies durch Gesetze, Sicherheitsanforderungen, Grenzbestimmungen oder offizielle Reiseverfahren erforderlich ist.",
+            "Wir verkaufen deine persönlichen Informationen nicht."
+          ]
+        },
+        {
+          "title": "Deine Wahlmöglichkeiten",
+          "items": [
+            "Du kannst uns bitten, deine persönlichen Angaben zu korrigieren, zu aktualisieren oder zu löschen, wenn wir sie nicht mehr für Buchung, Buchhaltung, Sicherheit oder rechtliche Gründe benötigen.",
+            "Du kannst optionale Angaben weglassen, auch wenn dies einschränken kann, wie genau wir deine Reise planen können.",
+            "Du kannst Marketing-Nachrichten jederzeit abbestellen, indem du uns kontaktierst."
+          ]
+        }
+      ]
+    },
+    "terms": {
+      "eyebrow": "AGB",
+      "title": "Allgemeine Geschäftsbedingungen",
+      "intro": "Diese Bedingungen beschreiben, wie Anfragen, Buchungen, Zahlungen, Änderungen und Reiseverantwortung funktionieren, wenn du Leistungen von Destination Paradise nutzt.",
+      "sections": [
+        {
+          "title": "Nutzung Unserer Website",
+          "items": [
+            "Die Website hilft dir, Reisen in Sansibar und Tansania zu entdecken, Angebote anzufragen und unser Team zu kontaktieren.",
+            "Inhalte, Preise, Routen, Verfügbarkeit und Leistungen können sich ändern, wenn sich Partner, Saisons, Parkregeln, Treibstoffkosten oder Wetterbedingungen ändern.",
+            "Du stimmst zu, die Website nicht zu missbrauchen, keine falschen Anfragen zu senden und den normalen Betrieb der Website nicht zu stören."
+          ]
+        },
+        {
+          "title": "Angebote Und Buchungen",
+          "items": [
+            "Eine Buchung ist erst bestätigt, nachdem wir die Verfügbarkeit bestätigt, den finalen Reiseplan mit dir abgestimmt und die erforderliche Zahlung oder Anzahlung erhalten haben.",
+            "Dein Angebot erklärt, was enthalten ist, was nicht enthalten ist, wann Zahlungen fällig sind, welche Stornoregeln gelten und welche wichtigen Partnerbedingungen zu beachten sind.",
+            "Du bist dafür verantwortlich, Namen, Daten, Abholdetails, Passinformationen, Ernährungswünsche, medizinische Hinweise und Reisedokumente vor der Bestätigung zu prüfen."
+          ]
+        },
+        {
+          "title": "Änderungen, Stornierungen Und Rückerstattungen",
+          "items": [
+            "Änderungs- und Stornoregeln hängen vom jeweiligen Hotel, Park, der Airline, dem Boot, Guide oder Drittanbieter in deinem Reiseplan ab.",
+            "Rückerstattungen, Teilrückerstattungen oder Gutschriften richten sich nach den schriftlichen Bedingungen, die du mit deiner Buchungsbestätigung erhältst.",
+            "Wetter, Seegang, Parkzugang, Straßenzustand, staatliche Regeln oder Sicherheitsbedenken können Änderungen bei Uhrzeit, Route, Anbieter oder Reihenfolge der Aktivitäten erforderlich machen."
+          ]
+        },
+        {
+          "title": "Reiseverantwortung",
+          "items": [
+            "Reisen sind immer mit gewissen Risiken verbunden. Du bist verantwortlich für passende Reiseversicherung, Gesundheitsberatung, Visa, Reisepässe und persönliche Gegenstände.",
+            "Wir arbeiten sorgfältig mit lokalen Partnern, sind jedoch nicht verantwortlich für Verzögerungen oder Verluste durch Ereignisse außerhalb unseres angemessenen Einflussbereichs.",
+            "Wenn während deiner Reise etwas schiefläuft, kontaktiere uns schnell, damit wir helfen können, solange noch Zeit zum Handeln ist."
+          ]
+        }
+      ]
+    },
+    "cookies": {
+      "eyebrow": "Cookies",
+      "title": "Cookie-Richtlinie",
+      "intro": "Diese Richtlinie erklärt, wie Cookies und ähnliche Technologien genutzt werden können, damit die Website funktioniert, Besuche verstanden werden und die Reiseplanung verbessert wird.",
+      "sections": [
+        {
+          "title": "Was Cookies Sind",
+          "items": [
+            "Cookies sind kleine Dateien, die auf deinem Gerät gespeichert werden, wenn du eine Website besuchst.",
+            "Ähnliche Technologien wie lokaler Speicher, Pixel und Analyse-Tags können helfen, Einstellungen zu merken oder zu messen, wie Seiten genutzt werden."
+          ]
+        },
+        {
+          "title": "Wie Wir Cookies Nutzen",
+          "items": [
+            "Notwendige Cookies und Speicher helfen der Website beim Laden, merken Design-Einstellungen, unterstützen Formulare und halten die Nutzung stabil.",
+            "Analyse-Cookies können uns helfen zu verstehen, welche Seiten nützlich sind, wo Besucher uns finden und wie wir die Website verbessern können.",
+            "Marketing- oder Social-Plattform-Tools können genutzt werden, wenn du mit eingebetteten Inhalten, Social Links oder Kampagnenlinks interagierst."
+          ]
+        },
+        {
+          "title": "Cookies Verwalten",
+          "items": [
+            "Du kannst Cookies in deinen Browser-Einstellungen blockieren, löschen oder einschränken.",
+            "Einige Funktionen funktionieren eventuell nicht wie erwartet, wenn notwendige Cookies oder lokaler Speicher deaktiviert sind.",
+            "Drittanbieter können eigene Datenschutz- und Cookie-Einstellungen über ihre Websites oder Kontoeinstellungen anbieten."
+          ]
+        },
+        {
+          "title": "Aktualisierungen",
+          "items": [
+            "Wir können diese Richtlinie aktualisieren, wenn sich Website-Tools, Analyse-Einstellungen oder Buchungsabläufe ändern.",
+            "Die aktuelle Version wird mit dem aktualisierten Datum auf dieser Seite veröffentlicht."
+          ]
+        }
+      ]
+    }
+  },
+  "contact": {
+    "title": "Kontakt",
+    "copy_prefix": "Bei Fragen zu dieser Richtlinie oder zu deinen Buchungsdetails kontaktiere Destination Paradise unter",
+    "copy_suffix": "oder schreibe uns auf WhatsApp.",
+    "actions": {
+      "email": "E-Mail senden",
+      "plan": "Reise planen"
+    }
+  }
+}
