@@ -1,133 +1,10 @@
-import { useEffect } from 'react';
+import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { CONTACT_INFO } from '../constants/contactInfo.js';
+import { usePageMeta } from '../hooks/usePageMeta.js';
 import '../styles/homepage.css';
 import '../styles/policy.css';
-
-const LAST_UPDATED = 'May 13, 2026';
-
-const POLICIES = {
-  privacy: {
-    eyebrow: 'Privacy',
-    title: 'Privacy Policy',
-    intro:
-      'This policy explains how Destination Paradise handles the details you share when you ask about trips, book experiences, or contact our team.',
-    sections: [
-      {
-        title: 'Information We Collect',
-        items: [
-          'Contact details such as your name, email address, phone number, WhatsApp contact, and country.',
-          'Trip details such as preferred dates, group size, budget, interests, hotel or pickup location, and special requests.',
-          'Messages you send through our forms, WhatsApp, email, or social channels.',
-          'Basic technical information such as browser type, device information, pages visited, and approximate location from analytics tools.',
-        ],
-      },
-      {
-        title: 'How We Use Your Information',
-        items: [
-          'To respond to enquiries and prepare trip suggestions, quotes, bookings, and itineraries.',
-          'To coordinate guides, drivers, accommodation partners, boat operators, safari providers, and other suppliers needed for your trip.',
-          'To improve our website, customer service, packages, excursions, and safari planning experience.',
-          'To send booking updates, service messages, and follow-up information connected to your request.',
-        ],
-      },
-      {
-        title: 'Sharing Your Information',
-        items: [
-          'We share only the details needed to arrange your trip with trusted local partners, payment providers, or service providers.',
-          'We may share information when required by law, safety requirements, border rules, or official travel procedures.',
-          'We do not sell your personal information.',
-        ],
-      },
-      {
-        title: 'Your Choices',
-        items: [
-          'You can ask us to correct, update, or delete your personal details when we no longer need them for booking, accounting, safety, or legal reasons.',
-          'You can choose not to provide optional details, although this may limit how accurately we can plan your trip.',
-          'You can unsubscribe from marketing messages at any time by contacting us.',
-        ],
-      },
-    ],
-  },
-  terms: {
-    eyebrow: 'Terms',
-    title: 'Terms of Service',
-    intro:
-      'These terms describe how enquiries, bookings, payments, changes, and travel responsibilities work when you use Destination Paradise services.',
-    sections: [
-      {
-        title: 'Using Our Website',
-        items: [
-          'The website helps you explore Zanzibar and Tanzania trips, request quotes, and contact our team.',
-          'Content, prices, routes, availability, and inclusions may change as suppliers, seasons, park rules, fuel costs, and weather conditions change.',
-          'You agree not to misuse the website, submit false requests, or interfere with normal site operation.',
-        ],
-      },
-      {
-        title: 'Quotes And Bookings',
-        items: [
-          'A booking is confirmed only after we confirm availability, agree the final itinerary with you, and receive the required payment or deposit.',
-          'Your quote will explain what is included, what is excluded, payment timing, cancellation rules, and any important supplier conditions.',
-          'You are responsible for checking names, dates, pickup details, passport information, dietary needs, medical considerations, and travel documents before confirmation.',
-        ],
-      },
-      {
-        title: 'Changes, Cancellations, And Refunds',
-        items: [
-          'Change and cancellation rules depend on the specific hotel, park, airline, boat, guide, or third-party supplier used in your itinerary.',
-          'Refunds, partial refunds, or credits are handled according to the written terms shared with your booking confirmation.',
-          'Weather, sea conditions, park access, road conditions, government rules, or safety concerns may require changes to timing, route, supplier, or activity order.',
-        ],
-      },
-      {
-        title: 'Travel Responsibility',
-        items: [
-          'Travel always carries some risk. You are responsible for suitable travel insurance, health advice, visas, passports, and personal belongings.',
-          'We work carefully with local partners, but we are not responsible for delays or losses caused by events outside our reasonable control.',
-          'If something goes wrong during your trip, contact us quickly so we can help while there is still time to act.',
-        ],
-      },
-    ],
-  },
-  cookies: {
-    eyebrow: 'Cookies',
-    title: 'Cookies Policy',
-    intro:
-      'This policy explains how cookies and similar technologies may be used to keep the website working, understand visits, and improve the planning experience.',
-    sections: [
-      {
-        title: 'What Cookies Are',
-        items: [
-          'Cookies are small files stored on your device when you visit a website.',
-          'Similar technologies such as local storage, pixels, and analytics tags can help remember settings or measure how pages are used.',
-        ],
-      },
-      {
-        title: 'How We Use Cookies',
-        items: [
-          'Essential cookies and storage help the website load, remember theme preferences, support forms, and keep the experience stable.',
-          'Analytics cookies may help us understand which pages are useful, where visitors find us, and how we can improve the site.',
-          'Marketing or social platform tools may be used when you interact with embedded content, social links, or campaign links.',
-        ],
-      },
-      {
-        title: 'Managing Cookies',
-        items: [
-          'You can block, delete, or limit cookies in your browser settings.',
-          'Some features may not work as expected if essential cookies or local storage are disabled.',
-          'Third-party services may provide their own privacy and cookie controls through their websites or account settings.',
-        ],
-      },
-      {
-        title: 'Updates',
-        items: [
-          'We may update this policy when our website tools, analytics setup, or booking workflows change.',
-          'The latest version will be posted on this page with the updated date.',
-        ],
-      },
-    ],
-  },
-};
 
 function PolicySection({ title, items }) {
   return (
@@ -143,11 +20,19 @@ function PolicySection({ title, items }) {
 }
 
 export default function Policy({ section = 'privacy' }) {
-  const policy = POLICIES[section] || POLICIES.privacy;
+  const { t } = useTranslation('policy');
+  const policies = t('policies', { returnObjects: true });
+  const policy = policies?.[section] || policies?.privacy;
+  const actions = t('contact.actions', { returnObjects: true });
+  const meta = t('meta', { returnObjects: true });
+  const contact = t('contact', { returnObjects: true });
 
-  useEffect(() => {
-    document.title = `${policy.title} · Destination Paradise`;
-  }, [policy.title]);
+  const pageTitle = useMemo(
+    () => t('page_title', { title: policy.title }),
+    [policy.title, t],
+  );
+
+  usePageMeta(pageTitle, policy.intro);
 
   return (
     <main className="policy-page">
@@ -156,13 +41,13 @@ export default function Policy({ section = 'privacy' }) {
           <span className="section-eyebrow">{policy.eyebrow}</span>
           <h1>{policy.title}</h1>
           <p>{policy.intro}</p>
-          <dl className="policy-meta" aria-label="Policy details">
+          <dl className="policy-meta" aria-label={meta.aria_label}>
             <div>
-              <dt>Last updated</dt>
-              <dd>{LAST_UPDATED}</dd>
+              <dt>{meta.last_updated}</dt>
+              <dd>{meta.last_updated_value}</dd>
             </div>
             <div>
-              <dt>Contact</dt>
+              <dt>{meta.contact}</dt>
               <dd><a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a></dd>
             </div>
           </dl>
@@ -175,14 +60,15 @@ export default function Policy({ section = 'privacy' }) {
         ))}
 
         <section className="policy-section policy-section--contact">
-          <h2>Contact Us</h2>
+          <h2>{contact.title}</h2>
           <p>
-            For questions about this policy or your booking details, contact Destination Paradise at{' '}
-            <a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a> or message us on WhatsApp.
+            {contact.copy_prefix}{' '}
+            <a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a>
+            {' '}{contact.copy_suffix}
           </p>
           <div className="policy-actions">
-            <a className="btn" href={`mailto:${CONTACT_INFO.email}`}>Email us</a>
-            <Link className="btn btn--ghost" to="/trip-planner">Plan a trip</Link>
+            <a className="btn" href={`mailto:${CONTACT_INFO.email}`}>{actions.email}</a>
+            <Link className="btn btn--ghost" to="/trip-planner">{actions.plan}</Link>
           </div>
         </section>
       </section>
