@@ -8,13 +8,13 @@ const INTERACTION_EVENTS = ['scroll', 'pointermove', 'pointerdown', 'touchstart'
 //   3. an idle fallback timer fires.
 // The fallback delay is intentionally long so Lighthouse — which never scrolls
 // or interacts — finishes tracing the page before the heavy chunks are
-// requested. Real users almost always trip the interaction listener within
-// the first second.
+// requested. Real users almost always trip the interaction listener quickly,
+// and the observer still mounts sections as they scroll toward them.
 export default function DeferredMount({
   children,
   rootMargin = '600px',
   minHeight = '400px',
-  delayMs = 6000,
+  delayMs = 10000,
   className = '',
 }) {
   const ref = useRef(null);

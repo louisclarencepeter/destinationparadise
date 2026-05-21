@@ -10,16 +10,16 @@ import ExcursionsSection from '../components/homepage/ExcursionsSection.jsx';
 import SafarisSection from '../components/homepage/SafarisSection.jsx';
 import PackagesSection from '../components/homepage/PackagesSection.jsx';
 import TransfersSection from '../components/homepage/TransfersSection.jsx';
-import WhySection from '../components/homepage/WhySection.jsx';
-import WeatherSection from '../components/homepage/WeatherSection.jsx';
-import GallerySection from '../components/homepage/GallerySection.jsx';
-import TestimonialsSection from '../components/homepage/TestimonialsSection.jsx';
-import AboutSection from '../components/homepage/AboutSection.jsx';
 
 const MapSection = lazy(() => import('../components/homepage/MapSection.jsx'));
 const PlannerSection = lazy(() => import('../components/homepage/PlannerSection.jsx'));
-import ContactSection from '../components/homepage/ContactSection.jsx';
-import NewsletterSection from '../components/homepage/NewsletterSection.jsx';
+const WhySection = lazy(() => import('../components/homepage/WhySection.jsx'));
+const WeatherSection = lazy(() => import('../components/homepage/WeatherSection.jsx'));
+const GallerySection = lazy(() => import('../components/homepage/GallerySection.jsx'));
+const TestimonialsSection = lazy(() => import('../components/homepage/TestimonialsSection.jsx'));
+const AboutSection = lazy(() => import('../components/homepage/AboutSection.jsx'));
+const ContactSection = lazy(() => import('../components/homepage/ContactSection.jsx'));
+const NewsletterSection = lazy(() => import('../components/homepage/NewsletterSection.jsx'));
 import { readStoredTheme, readStoredThemeMode, readStoredTweaks } from '../utils/theme.js';
 
 const PINS = DESTINATION_MAP_PINS;
@@ -190,7 +190,11 @@ export default function Homepage() {
           <PlannerSection initialPrompt={plannerPrompt} />
         </Suspense>
       </DeferredMount>
-      <WhySection />
+      <DeferredMount minHeight="520px">
+        <Suspense fallback={<div style={{ minHeight: '360px' }} />}>
+          <WhySection />
+        </Suspense>
+      </DeferredMount>
       <DeferredMount minHeight="520px">
         <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
           <MapSection
@@ -205,13 +209,35 @@ export default function Homepage() {
           />
         </Suspense>
       </DeferredMount>
-      <WeatherSection MONTHS={MONTHS} SCORES={SCORES} NOW_MONTH={NOW_MONTH} />
-      <GallerySection />
-      <TestimonialsSection />
-      <AboutSection />
-      <ContactSection />
+      <DeferredMount minHeight="520px">
+        <Suspense fallback={<div style={{ minHeight: '360px' }} />}>
+          <WeatherSection MONTHS={MONTHS} SCORES={SCORES} NOW_MONTH={NOW_MONTH} />
+        </Suspense>
+      </DeferredMount>
+      <DeferredMount minHeight="520px">
+        <Suspense fallback={<div style={{ minHeight: '360px' }} />}>
+          <GallerySection />
+        </Suspense>
+      </DeferredMount>
+      <DeferredMount minHeight="420px">
+        <Suspense fallback={<div style={{ minHeight: '320px' }} />}>
+          <TestimonialsSection />
+        </Suspense>
+      </DeferredMount>
+      <DeferredMount minHeight="520px">
+        <Suspense fallback={<div style={{ minHeight: '360px' }} />}>
+          <AboutSection />
+        </Suspense>
+      </DeferredMount>
+      <DeferredMount minHeight="520px">
+        <Suspense fallback={<div style={{ minHeight: '360px' }} />}>
+          <ContactSection />
+        </Suspense>
+      </DeferredMount>
       <DeferredMount minHeight="260px">
-        <NewsletterSection />
+        <Suspense fallback={<div style={{ minHeight: '220px' }} />}>
+          <NewsletterSection />
+        </Suspense>
       </DeferredMount>
 
       {/* ============ TWEAKS PANEL (claude.ai design preview only) ============ */}
