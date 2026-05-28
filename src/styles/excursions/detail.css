@@ -1,7 +1,7 @@
 /* ============ DETAIL PAGE ============ */
 .exc-detail__crumbs {
   display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
-  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.25rem, 5vw, 6rem) 0;
+  padding: clamp(5.5rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem) 0;
   font-family: var(--dp-font-sans);
   font-size: 12px;
   letter-spacing: .04em;
@@ -13,4 +13,8 @@
 .exc-detail .exc-block--detail {
   margin-top: clamp(1.75rem, 4vw, 3rem);
   margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+.exc-detail .exc-block--detail .exc-block__facts {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .85rem 1.25rem;
 }

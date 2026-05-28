@@ -109,9 +109,11 @@
 .exc-block__facts dd {
   margin: 0;
   font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif);
-  font-size: 1.15rem;
+  font-size: clamp(.95rem, 1.05vw, 1.1rem);
   font-weight: 500;
   color: var(--text, #1a4d6e);
+  line-height: 1.2;
+  text-wrap: balance;
 }
 .exc-block__facts dd small {
   display: block;
