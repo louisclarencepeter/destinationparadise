@@ -13,6 +13,7 @@ export default defineConfig(({ mode }) => {
       react(),
       VitePWA({
         registerType: 'autoUpdate',
+        injectRegister: 'script-defer',
         devOptions: {
           enabled: false
         },
