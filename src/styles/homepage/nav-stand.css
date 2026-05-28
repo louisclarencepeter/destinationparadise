@@ -235,6 +235,20 @@
   animation: fadeInUp 1s var(--dp-ease-out) both;
   animation-delay: .3s;
 }
+.hero__motto-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  background: currentColor;
+  vertical-align: text-bottom;
+  animation: hero-motto-blink 1.05s steps(1) infinite;
+}
+.hero__motto--typed.is-done .hero__motto-cursor { opacity: .55; }
+@keyframes hero-motto-blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
 .hero__desc {
   font-family: var(--dp-font-display);
   color: #fff;
