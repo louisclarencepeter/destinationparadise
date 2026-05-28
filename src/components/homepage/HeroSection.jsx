@@ -21,6 +21,48 @@ const dateInputValue = (date) => {
   return `${year}-${month}-${day}`;
 };
 
+function HeroMotto() {
+  const { t } = useTranslation('home');
+  const motto = t('hero.motto');
+  const [typed, setTyped] = useState('');
+  const [done, setDone] = useState(false);
+
+  useEffect(() => {
+    setTyped('');
+    setDone(false);
+    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion) {
+      setTyped(motto);
+      setDone(true);
+      return undefined;
+    }
+    let timeoutId;
+    let i = 0;
+    const tick = () => {
+      i += 1;
+      setTyped(motto.slice(0, i));
+      if (i >= motto.length) {
+        setDone(true);
+        return;
+      }
+      const pause = motto[i - 1] === ' ' ? 80 : 48 + (i % 4) * 14;
+      timeoutId = window.setTimeout(tick, pause);
+    };
+    timeoutId = window.setTimeout(tick, 600);
+    return () => {
+      if (timeoutId) window.clearTimeout(timeoutId);
+    };
+  }, [motto]);
+
+  return (
+    <h2 className={`hero__motto hero__motto--typed${done ? ' is-done' : ''}`}>
+      <span className="visually-hidden">{motto}</span>
+      <i aria-hidden="true">{typed}</i>
+      <span className="hero__motto-cursor" aria-hidden="true" />
+    </h2>
+  );
+}
+
 export default function HeroSection({ tweaks, handleHeroSearch }) {
   const { t } = useTranslation('home');
   const popularPackages = t('hero.search.popular_packages', { returnObjects: true });
@@ -119,7 +161,7 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
         <div className="hero__intro">
           <span className="hero__eyebrow">{t('hero.eyebrow')}</span>
           <h1 className="hero__title">{t('hero.title')}</h1>
-          <h2 className="hero__motto"><i>{t('hero.motto')}</i></h2>
+          <HeroMotto />
           <p className="hero__desc">{t('hero.description')}</p>
           <div className="hero__cta-row">
             <Link className="btn" to="/packages">{t('hero.browse_packages')} <ArrowIcon size={18} /></Link>
