@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { EXCURSION_COMBINATIONS } from '../../data/excursionCombinations.js';
+import { useCurrency } from '../../context/useCurrency.js';
 
 export default function ExcursionsPairings() {
   const { t } = useTranslation('excursions');
+  const { format } = useCurrency();
   return (
     <section className="exc-pair reveal">
       <div className="exc-pair__head">
@@ -21,7 +23,7 @@ export default function ExcursionsPairings() {
             </div>
             <h3 className="exc-pair__title">{p.title}</h3>
             <p className="exc-pair__desc">{p.desc}</p>
-            <div className="exc-pair__foot"><span>{p.length}</span><strong>{p.price || t('pairings.on_request')}</strong></div>
+            <div className="exc-pair__foot"><span>{p.length}</span><strong>{typeof p.price === 'number' ? format(p.price) : t('pairings.on_request')}</strong></div>
           </Link>
         ))}
       </div>

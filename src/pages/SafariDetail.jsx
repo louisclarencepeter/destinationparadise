@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { ALL_SAFARI_PRODUCTS, INCLUDED_LIST } from '../data/safariPageData.js';
+import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
@@ -18,6 +19,7 @@ function cleanInclude(item = '') {
 
 export default function SafariDetail() {
   const { id } = useParams();
+  const { format } = useCurrency();
   const safari = ALL_SAFARI_PRODUCTS.find((item) => item.id === id);
 
   useEffect(() => {
@@ -74,8 +76,8 @@ export default function SafariDetail() {
             <div>
               <dt>Price</dt>
               <dd>
-                ${price ? price.lowSeason.toLocaleString() : safari.price.toLocaleString()}
-                {price && `-$${price.peakSeason.toLocaleString()}`}
+                {format(price ? price.lowSeason : safari.price)}
+                {price && `–${format(price.peakSeason)}`}
                 <small>{price?.unit || safari.priceSub}</small>
               </dd>
             </div>
@@ -94,14 +96,14 @@ export default function SafariDetail() {
             <div className="exc-block__cols">
               <div className="exc-block__col">
                 <h4>Optional upgrades</h4>
-                <ul>{upsells.map((item) => <li key={item.name}>{item.name} · +${item.price.toLocaleString()}</li>)}</ul>
+                <ul>{upsells.map((item) => <li key={item.name}>{item.name} · +{format(item.price)}</li>)}</ul>
               </div>
             </div>
           )}
           <div className="exc-block__actions">
             <span className="exc-block__price">
-              ${price ? price.lowSeason.toLocaleString() : safari.price.toLocaleString()}
-              <small>{price ? `low season · peak from $${price.peakSeason.toLocaleString()}` : safari.priceSub}</small>
+              {format(price ? price.lowSeason : safari.price)}
+              <small>{price ? `low season · peak from ${format(price.peakSeason)}` : safari.priceSub}</small>
             </span>
             <span className="exc-block__price-note">Final price depends on season, camp level, and flight availability.</span>
             <Link className="btn" to={`/booking?type=safari&item=${encodeURIComponent(safari.id)}`}>Book this route →</Link>

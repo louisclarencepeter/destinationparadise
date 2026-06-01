@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { EXCURSIONS } from '../data/excursionsData.js';
+import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 
@@ -21,6 +22,7 @@ function formatTierName(key) {
 
 export default function ExcursionDetail() {
   const { id } = useParams();
+  const { format } = useCurrency();
   const excursion = EXCURSIONS.find((item) => item.id === id);
 
   useEffect(() => {
@@ -102,13 +104,13 @@ export default function ExcursionDetail() {
             <div className="exc-block__cols">
               <div className="exc-block__col">
                 <h4>Experience pricing</h4>
-                <ul>{pricingTiers.map((tier) => <li key={tier.label}>{tier.label}: from ${tier.price} {tier.currency}</li>)}</ul>
+                <ul>{pricingTiers.map((tier) => <li key={tier.label}>{tier.label}: from {format(tier.price)}</li>)}</ul>
               </div>
             </div>
           )}
           <div className="exc-block__actions">
             {typeof e.price === 'number' ? (
-              <span className="exc-block__price">${e.price}<small>{e.priceSub || 'per person'}</small></span>
+              <span className="exc-block__price">{format(e.price)}<small>{e.priceSub || 'per person'}</small></span>
             ) : (
               <span className="exc-block__price-note">Price on request</span>
             )}

@@ -3,9 +3,11 @@ import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../ResponsiveImage.jsx';
 import { CATEGORIES, EXCURSIONS } from '../../data/excursionsData.js';
 import { EXCURSIONS_HERO_IMAGE, MIN_EXCURSION_PRICE } from '../../data/excursionsPageContent.js';
+import { useCurrency } from '../../context/useCurrency.js';
 
 export default function ExcursionsHero() {
   const { t } = useTranslation('excursions');
+  const { format } = useCurrency();
   return (
     <section className="exc-hero">
       <div className="exc-hero__bg">
@@ -26,7 +28,7 @@ export default function ExcursionsHero() {
         </div>
         <div className="exc-hero__meta">
           <div><strong>{EXCURSIONS.length}</strong><span>{t('hero.meta_excursions')}</span></div>
-          {MIN_EXCURSION_PRICE !== null && <div><strong>${MIN_EXCURSION_PRICE}</strong><span>{t('hero.meta_from_per_person')}</span></div>}
+          {MIN_EXCURSION_PRICE !== null && <div><strong>{format(MIN_EXCURSION_PRICE)}</strong><span>{t('hero.meta_from_per_person')}</span></div>}
           <div><strong>{CATEGORIES.length}</strong><span>{t('hero.meta_categories')}</span></div>
           <div><strong>{t('hero.meta_private_label')}</strong><span>{t('hero.meta_private_text')}</span></div>
         </div>

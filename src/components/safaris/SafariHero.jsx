@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../ResponsiveImage.jsx';
 import { safariImg } from '../../data/safarisPageContent.js';
+import { useCurrency } from '../../context/useCurrency.js';
 
 export default function SafariHero({ safariCount, minSafariPrice }) {
   const { t } = useTranslation('safaris');
+  const { format } = useCurrency();
   return (
     <section className="saf-hero">
       <div className="saf-hero__bg">
@@ -27,7 +29,7 @@ export default function SafariHero({ safariCount, minSafariPrice }) {
         <div className="saf-hero__stats">
           <div><strong>{safariCount}</strong><span>{t('hero.stat_safaris')}</span></div>
           <div><strong>2.0M</strong><span>{t('hero.stat_wildebeest')}</span></div>
-          <div><strong>${minSafariPrice.toLocaleString()}</strong><span>{t('hero.stat_from')}</span></div>
+          <div><strong>{format(minSafariPrice)}</strong><span>{t('hero.stat_from')}</span></div>
           <div><strong>3</strong><span>{t('hero.stat_circuits')}</span></div>
         </div>
       </div>

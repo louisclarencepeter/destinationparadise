@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowIcon } from './Icons.jsx';
 import { buildLocalizedPackages } from '../../data/packagePresentation.js';
 import { destinationParadisePackages } from '../../data/destinationParadisePackages.js';
+import { useCurrency } from '../../context/useCurrency.js';
 
 const FEATURED_PACKAGE_SLUGS = [
   'six-day-safari-zanzibar-escape',
@@ -48,6 +49,7 @@ const getPackageItems = (pkg) => {
 
 export default function PackagesSection() {
   const { t } = useTranslation(['home', 'packages']);
+  const { format } = useCurrency();
   const packageCards = useMemo(() => {
     const packageT = (key, options) => t(`packages:${key}`, options);
     const packages = buildLocalizedPackages(packageT);
@@ -82,7 +84,7 @@ export default function PackagesSection() {
                 ))}
               </ul>
               <div className="pkg-card__foot">
-                <div><span className="pkg-card__from">{t('packages.card.from')}</span><span className="pkg-card__price">${pkg.pricing.from.toLocaleString()}</span><span className="pkg-card__pp">{pkg.pricing.unit || t('packages.card.per_person_default')}</span></div>
+                <div><span className="pkg-card__from">{t('packages.card.from')}</span><span className="pkg-card__price">{format(pkg.pricing.from)}</span><span className="pkg-card__pp">{pkg.pricing.unit || t('packages.card.per_person_default')}</span></div>
                 <Link className="btn" to={`/packages/${pkg.slug}`}>{t('packages.card.view_package')} <ArrowIcon size={14} /></Link>
               </div>
             </article>

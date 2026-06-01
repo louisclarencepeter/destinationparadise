@@ -4,6 +4,7 @@
     "excursions":   { "label": "Wycieczki",      "hint": "Jednodniowe wypady po Zanzibarze", "sub": "Stone Town · Rafy · Farmy przypraw" },
     "safaris":      { "label": "Safari",         "hint": "Trasy z dziką przyrodą",           "sub": "Serengeti · Ngorongoro · Selous" },
     "packages":     { "label": "Pakiety",        "hint": "Safari, plaża, podróż poślubna",   "sub": "Safari i plaża · 7–14 nocy" },
+    "retreats":     { "label": "Retreaty",       "hint": "Joga, spa, medytacja",             "sub": "Joga · Spa · Uzdrawianie" },
     "trip_planner": { "label": "Planer podróży", "hint": "Ułóż trasę na miarę",              "sub": "Plan na miarę · 90 sek.", "badge": "AI" },
     "explore":      { "label": "Odkrywaj",       "hint": "Porównaj miejsca i style",         "sub": "Porównaj miejsca i style" },
     "about":        { "label": "O nas",          "hint": "Nasza historia i misja",           "sub": "Historia · Misja · Kierunki" },

@@ -2,12 +2,14 @@ import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { ALL_SAFARI_PRODUCTS, SAFARI_TYPES } from '../data/safariPageData.js';
+import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
 
 export default function SafariTypeDetail() {
   const { typeId } = useParams();
+  const { format } = useCurrency();
   const type = SAFARI_TYPES.find((item) => item.id === typeId);
 
   useEffect(() => {
@@ -94,7 +96,7 @@ export default function SafariTypeDetail() {
                   <span>{route.from}</span>
                 </div>
                 <div className="exc-card__foot">
-                  <span className="exc-card__price">From <strong>${route.price.toLocaleString()}</strong> {route.priceSub}</span>
+                  <span className="exc-card__price">From <strong>{format(route.price)}</strong> {route.priceSub}</span>
                   <span className="exc-card__cta">Explore →</span>
                 </div>
               </div>

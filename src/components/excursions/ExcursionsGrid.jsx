@@ -6,6 +6,7 @@ import {
   INITIAL_EXCURSION_COUNT,
   categoryToSlug,
 } from '../../data/excursionsPageContent.js';
+import { useCurrency } from '../../context/useCurrency.js';
 
 export default function ExcursionsGrid({
   filter,
@@ -17,6 +18,7 @@ export default function ExcursionsGrid({
   hasHiddenExcursions,
 }) {
   const { t } = useTranslation('excursions');
+  const { format } = useCurrency();
   const filterLabel = (cat) => (cat === 'all' ? t('grid.filter_all') : t(`categories.${cat}`, cat));
   const priceUnit = (sub) => (sub ? t(`price_units.${sub}`, sub) : t('grid.per_person_default'));
   return (
@@ -77,7 +79,7 @@ export default function ExcursionsGrid({
               </div>
               <div className="exc-card__foot">
                 {typeof e.price === 'number' ? (
-                  <span className="exc-card__price">{t('grid.from')} <strong>${e.price}</strong>{` ${priceUnit(e.priceSub)}`}</span>
+                  <span className="exc-card__price">{t('grid.from')} <strong>{format(e.price)}</strong>{` ${priceUnit(e.priceSub)}`}</span>
                 ) : (
                   <span className="exc-card__price exc-card__price--tbd">{t('grid.price_on_request')}</span>
                 )}

@@ -301,6 +301,91 @@
     "h": 800,
     "smallW": 600
   },
+  "/assets/images/retreats/alpine-tree-pose.webp": {
+    "w": 1800,
+    "h": 1199,
+    "smallW": 600
+  },
+  "/assets/images/retreats/assisted-beach-stretch.webp": {
+    "w": 1350,
+    "h": 1800,
+    "smallW": 450
+  },
+  "/assets/images/retreats/beach-class-plank.webp": {
+    "w": 1350,
+    "h": 1800,
+    "smallW": 450
+  },
+  "/assets/images/retreats/coastal-handstand-sunset.webp": {
+    "w": 1200,
+    "h": 1800,
+    "smallW": 400
+  },
+  "/assets/images/retreats/mountain-star-pose.webp": {
+    "w": 1600,
+    "h": 1066,
+    "smallW": 600
+  },
+  "/assets/images/retreats/red-rock-tree-pose.webp": {
+    "w": 1800,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/retreats/red-rock-wild-thing.webp": {
+    "w": 1800,
+    "h": 1200,
+    "smallW": 600
+  },
+  "/assets/images/retreats/studio-warrior-circle.webp": {
+    "w": 1350,
+    "h": 1800,
+    "smallW": 450
+  },
+  "/assets/images/retreats/teacher-garden-sun-portrait.webp": {
+    "w": 1350,
+    "h": 1800,
+    "smallW": 450
+  },
+  "/assets/images/retreats/teacher-portrait-garden.webp": {
+    "w": 1200,
+    "h": 1600,
+    "smallW": 450
+  },
+  "/assets/images/retreats/terrace-balance-pose.webp": {
+    "w": 1800,
+    "h": 1350,
+    "smallW": 600
+  },
+  "/assets/images/retreats/terrace-wheel-pose.webp": {
+    "w": 1350,
+    "h": 1800,
+    "smallW": 450
+  },
+  "/assets/images/retreats/yoga-clifftop-ocean-view.webp": {
+    "w": 1067,
+    "h": 1600,
+    "smallW": 400
+  },
+  "/assets/images/retreats/yoga-plank-sunset-coast.webp": {
+    "w": 1067,
+    "h": 1600,
+    "smallW": 400
+  },
+  "/assets/images/retreats/yoga-side-bend-beach.webp": {
+    "w": 1600,
+    "h": 1067,
+    "smallW": 600
+  },
+  "/assets/images/retreats/yoga-tree-pose-beach.webp": {
+    "w": 1600,
+    "h": 1067,
+    "smallW": 600
+  },
+  "/assets/images/retreats/zanzibar-tree-pose-view.webp": {
+    "w": 1200,
+    "h": 1800,
+    "smallW": 400
+  },
   "/assets/images/safaris/buffalo-and-egret.webp": {
     "w": 1200,
     "h": 675,

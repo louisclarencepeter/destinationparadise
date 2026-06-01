@@ -1,0 +1,124 @@
+{
+  "page_title": "14-tägiges Yoga- & Safari-Retreat · Sansibar · Destination Paradise",
+  "hero": {
+    "eyebrow": "14 Tage · Yoga-Retreat · 5-tägige Safari inklusive",
+    "title_prefix": "Mehr als nur",
+    "title_em": "Bewegung.",
+    "subtitle": "Vierzehn Tage Yoga, Atem, Stille und Safari.",
+    "lead": "Eine einzige, intime Reise mit Nina — Vinyasa bei Sonnenaufgang, ruhige Yin-Abende, Meditation, lange, entschleunigte Tage an der Gewürzküste und eine fünftägige Tansania-Safari als fester Teil des Erlebnisses.",
+    "see_week": "Die Woche ansehen",
+    "reserve": "Platz reservieren →",
+    "stat_nights_value": "14",
+    "stat_nights": "Tage",
+    "stat_guests_value": "5",
+    "stat_guests": "Safari-Tage",
+    "stat_practices_value": "2",
+    "stat_practices": "Praktiken täglich",
+    "stat_levels_value": "12",
+    "stat_levels": "Gäste max."
+  },
+  "intention": {
+    "eyebrow": "Die Intention",
+    "text": "Yoga ist viel mehr als eine körperliche Praxis. Es ist ein Weg, Achtsamkeit zu kultivieren, innere Ruhe zu finden und sich wieder mit Dankbarkeit zu verbinden — zu lernen, <em>langsamer zu werden, zuzuhören und Balance zu schaffen</em> in Körper und Geist."
+  },
+  "teacher": {
+    "kicker": "Nina · Lehrerin & Gastgeberin",
+    "eyebrow": "Lerne Nina kennen",
+    "title": "Eine Praxis, geboren aus Heilung.",
+    "p1": "Meine Reise mit Yoga begann in einer der schwierigsten Phasen meines Lebens. Nach einer schweren Knieverletzung, fünf Operationen und scheinbar wenig Hoffnung auf Genesung wurde Yoga zu einem Weg zurück zu Stabilität, Kraft und Frieden — es heilte mich nicht nur körperlich, sondern auch mental und emotional und veränderte die Art, wie ich den Herausforderungen des Lebens begegnete.",
+    "p2": "Meine Ausbildung zur Yogalehrerin absolvierte ich in Portugal, wo ich mein Verständnis sowohl der Praxis als auch der Philosophie des Yoga vertiefte. Dabei hatte ich das Privileg, inspirierende Lehrer zu treffen, die meine Sichtweise tiefgreifend prägten, und seither habe ich in Studios in Marokko und Deutschland unterrichtet und diese Praxis mit Menschen aus allen Lebensbereichen geteilt.",
+    "p3": "Jede Begegnung, jede Lektion und jede Erfahrung ist Teil meines Unterrichtsstils geworden — authentisch, achtsam und verwurzelt in einer echten Leidenschaft für das, was Yoga wirklich bedeutet.",
+    "signoff": "— mit Liebe, Nina"
+  },
+  "quote": {
+    "text": "Mein größter Wunsch ist, dass alle leichter, stärker, geerdeter und tief <em>mit sich selbst verbunden</em> nach Hause gehen — und diese Balance in den Alltag tragen."
+  },
+  "practice": {
+    "eyebrow": "Die Praxis",
+    "title": "Harmonie zwischen Bewegung und Stille.",
+    "lead": "Jede Stunde richtet sich nach den Menschen im Raum — einen Morgen ein energetisierender Flow, am nächsten eine sanfte, regenerative Praxis. Auch Musik gehört dazu: sorgfältig gewählte Klänge, die das Bewusstsein vertiefen und die Atmosphäre schaffen.",
+    "items": [
+      { "step": "01", "title": "Vinyasa Flow", "text": "Dynamische, energetisierende Sequenzen, die Kraft, Beweglichkeit und Fokus aufbauen — Atem verbunden mit Bewegung, während die Sonne aufgeht." },
+      { "step": "02", "title": "Hatha Yoga", "text": "Achtsame Ausrichtung, bewusstes Atmen und die Kultivierung innerer Stabilität und Achtsamkeit. Eine langsamere, bewusste Praxis." },
+      { "step": "03", "title": "Yin Yoga", "text": "Lang gehaltene Haltungen und tiefes Loslassen, mit Raum für Meditation, Philosophie und Selbstreflexion. Tiefe Entspannung." },
+      { "step": "04", "title": "Meditation & Atem", "text": "Bewusstes Dehnen, Pranayama und geführte Meditation, um Spannungen zu lösen, den Geist zu beruhigen und Balance wiederherzustellen." }
+    ]
+  },
+  "day": {
+    "eyebrow": "Ein Tag im Retreat",
+    "title": "Kein Wecker außer den Vögeln.",
+    "lead": "Ein typischer Yogatag an der Küste, bevor die Reise in fünf Safari-Tage übergeht. Alles nach dem Frühstück ist ganz unverbindlich — das sicherste Zeichen, dass du wirklich ausruhst.",
+    "items": [
+      { "time": "6:15", "title": "Meditation im Morgengrauen", "text": "Ein optionales Sitzen auf dem Deck, während sich der Himmel färbt. Tee, kein Reden." },
+      { "time": "7:00", "title": "Vinyasa bei Sonnenaufgang", "text": "90 Minuten Flow, solange es noch kühl ist, Atem verbunden mit Bewegung." },
+      { "time": "9:00", "title": "Langes Frühstück", "text": "Früchte der Gewürzküste, frischer Saft, guter Kaffee. Nirgendwo Eile." },
+      { "time": "10:30", "title": "Offener Nachmittag", "text": "Strand, Riff, ein Workshop oder eine Hängematte. Ganz dir überlassen." },
+      { "time": "13:00", "title": "Gemeinsames Mittagessen", "text": "Pflanzenbetont, im Familienstil, unter den Palmen." },
+      { "time": "17:30", "title": "Yin & Regeneration", "text": "Langsam, bei Kerzenlicht, atemgeführt. Die sanfte Landung des Tages." },
+      { "time": "19:30", "title": "Abendessen & Sterne", "text": "Eine lange Tafel, frischer Fisch und ein Himmel ohne Stadt darin." }
+    ]
+  },
+  "gallery": {
+    "eyebrow": "Aus der Praxis",
+    "title": "Momente von der Matte.",
+    "lead": "Ein Einblick in die Praxis — aufgenommen entlang der Küste des Indischen Ozeans. Derselbe Atem, wo immer du deine Matte ausrollst.",
+    "items": [
+      { "caption": "Plank am Morgen · Praxis am Strand" },
+      { "caption": "Kriegerkreis · gemeinsamer Atem" },
+      { "caption": "Wild Thing · goldene Stunde" },
+      { "caption": "Sanftes Loslassen · weiche Landung" },
+      { "caption": "Rückbeuge · offener Himmel" },
+      { "caption": "Balancearbeit · Terrassenlicht" },
+      { "caption": "Vrksasana · Bergluft" },
+      { "caption": "Wurzeln schlagen · warmer Stein" }
+    ]
+  },
+  "included": {
+    "eyebrow": "Inklusive",
+    "title": "Ein Preis. Alles, was zählt.",
+    "lead": "Flüge ausgenommen, deckt der Preis die 14-tägige Yoga- und Safari-Reise ab — Praxis, Mahlzeiten, Unterkünfte, Safari-Planung und die kleinen Details, die sich von Anfang bis Ende umsorgt anfühlen.",
+    "items": [
+      "14-tägiges Yoga- und Safari-Programm",
+      "5-tägige Tansania-Safari inklusive",
+      "Zwei tägliche Praktiken mit Nina an Retreat-Tagen",
+      "Alle Mahlzeiten & kaltgepresste Säfte",
+      "Matte, Hilfsmittel & gesamte Ausrüstung",
+      "Eine Signature-Spa-Behandlung",
+      "Klangbad- & Meditationsabende",
+      "Safari-Transport, Parkplanung & lokale Guides",
+      "Flughafentransfers & 24/7-Concierge"
+    ]
+  },
+  "faqs": {
+    "eyebrow": "FAQs",
+    "title": "Die Fragen, die alle stellen.",
+    "items": [
+      {
+        "q": "Ich bin absolute Anfängerin — ist das in Ordnung?",
+        "a": "Mehr als in Ordnung. Jede Stunde wird mit Feingefühl für die anwesenden Menschen gestaltet, und mit maximal zwölf Gästen kann Nina dich genau dort abholen, wo du stehst — ob der Tag nach einem energetisierenden Flow oder einer sanfteren, regenerativen Praxis verlangt."
+      },
+      {
+        "q": "Kann ich allein kommen?",
+        "a": "Absolut — die meisten unserer Gäste reisen allein an. Eine kleine Gruppe von zwölf macht es leicht, bei gemeinsamen Mahlzeiten und der Praxis in Kontakt zu kommen, während du so viel Ruhezeit behältst, wie du möchtest. Zimmer gibt es als Einzel- oder Doppelbelegung."
+      },
+      {
+        "q": "Welchen Yogastil werden wir praktizieren?",
+        "a": "Eine Mischung: energetisierendes Vinyasa am Morgen, langsameres Hatha und tief regeneratives Yin am Abend, dazu Meditation und Atemarbeit. Jeder Tag richtet sich nach der Gruppe, sodass sich die Balance danach verschiebt, wie sich alle fühlen."
+      },
+      {
+        "q": "Wie sieht es mit Essen und Ernährungswünschen aus?",
+        "a": "Alle Mahlzeiten sind inklusive — pflanzenbetont, regional und im Familienstil serviert. Wir gehen gern auf vegetarische, vegane, glutenfreie und die meisten Allergien ein; sag uns einfach bei der Buchung Bescheid."
+      },
+      {
+        "q": "Ist die Safari im Retreat enthalten?",
+        "a": "Ja. Das Retreat ist jetzt als 14-tägige Reise mit einer fünftägigen Tansania-Safari inklusive aufgebaut, du musst sie also nicht separat hinzufügen. Sag uns einfach, wenn du vor oder nachher zusätzliche Strandnächte möchtest, und wir gestalten die ganze Route."
+      }
+    ]
+  },
+  "cta": {
+    "title": "Finde zu dir selbst zurück.",
+    "text": "Sag uns, wann du Zeit hast, und wir halten dir einen Platz für Ninas 14-tägige Yoga- und Safari-Reise frei. Kleine Gruppen sind schnell ausgebucht — je früher wir von dir hören, desto besser das Zimmer.",
+    "reserve": "Platz reservieren →",
+    "ai_planner": "Oder chatte mit unserem KI-Planer"
+  }
+}
