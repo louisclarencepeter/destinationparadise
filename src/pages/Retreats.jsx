@@ -171,9 +171,9 @@ export default function Retreats() {
         </header>
         <div className="ret-gallery__grid">
           {galleryItems.map((item, i) => (
-            <figure className={`ret-gallery__cell ret-gallery__cell--${i + 1} reveal`} key={item.caption} style={{ '--ret-reveal-index': i }}>
-              <ResponsiveImage src={GALLERY_IMAGES[i % GALLERY_IMAGES.length]} alt="" sizes="(max-width: 900px) 100vw, 50vw" />
-              <figcaption>{item.caption}</figcaption>
+            <figure className={`ret-gallery__cell ret-gallery__cell--${i + 1} reveal`} key={`gallery-${i}`} style={{ '--ret-reveal-index': i }}>
+              <ResponsiveImage src={GALLERY_IMAGES[i % GALLERY_IMAGES.length]} alt={item.caption} sizes="(max-width: 900px) 100vw, 50vw" />
+              <figcaption aria-hidden="true">{item.caption}</figcaption>
             </figure>
           ))}
         </div>
@@ -188,7 +188,7 @@ export default function Retreats() {
         </div>
         <ul className="ret-included__list">
           {included.map((item, i) => (
-            <li className="reveal" key={item} style={{ '--ret-reveal-index': i }}><span className="ret-check" aria-hidden="true">✓</span> {item}</li>
+            <li className="reveal" key={`included-${i}`} style={{ '--ret-reveal-index': i }}><span className="ret-check" aria-hidden="true">✓</span> {item}</li>
           ))}
         </ul>
       </section>
@@ -202,18 +202,24 @@ export default function Retreats() {
         <div className="ret-faq__list">
           {faqs.map((item, i) => {
             const open = openFaq === i;
+            const qId = `ret-faq-q-${i}`;
+            const aId = `ret-faq-a-${i}`;
+            // Open state lives on data-open, not className, so the scroll-reveal
+            // observer's imperatively-added `is-visible` class survives re-renders.
             return (
-              <div className={`ret-faq__item reveal${open ? ' is-open' : ''}`} key={item.q} style={{ '--ret-reveal-index': i }}>
+              <div className="ret-faq__item reveal" data-open={open || undefined} key={`faq-${i}`} style={{ '--ret-reveal-index': i }}>
                 <button
                   type="button"
+                  id={qId}
                   className="ret-faq__q"
                   aria-expanded={open}
+                  aria-controls={aId}
                   onClick={() => setOpenFaq(open ? -1 : i)}
                 >
                   <span>{item.q}</span>
                   <span className="ret-faq__icon" aria-hidden="true">{open ? '×' : '+'}</span>
                 </button>
-                {open && <p className="ret-faq__a">{item.a}</p>}
+                {open && <p className="ret-faq__a" id={aId} role="region" aria-labelledby={qId}>{item.a}</p>}
               </div>
             );
           })}

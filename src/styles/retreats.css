@@ -442,7 +442,7 @@ html[data-theme="dark"] .retreat-page {
     border-color 0.3s ease,
     box-shadow 0.3s ease;
 }
-.ret-faq__item.is-open {
+.ret-faq__item[data-open] {
   background: var(--ret-panel-hover);
   box-shadow: 0 18px 44px rgba(14, 36, 56, 0.1);
 }
@@ -468,7 +468,7 @@ html[data-theme="dark"] .retreat-page {
   line-height: 1;
   transition: transform 0.25s var(--dp-ease-out);
 }
-.ret-faq__item.is-open .ret-faq__icon { transform: rotate(90deg); }
+.ret-faq__item[data-open] .ret-faq__icon { transform: rotate(90deg); }
 .ret-faq__a {
   margin: 0;
   padding: 0 1.4rem 1.3rem;
