@@ -20,12 +20,14 @@ import { TRANSFER_SERVICE_TIERS } from '../data/transferProducts.js';
 import { useBookingProducts } from '../hooks/useBookingProducts.js';
 import { useFloatingBookingSummary } from '../hooks/useFloatingBookingSummary.js';
 import { buildPlannerHandoff, clearPlannerHandoff, isPlannerHandoffMessage, readPlannerHandoff } from '../utils/plannerHandoff.js';
+import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/booking.css';
 
 export default function Booking() {
   const { t } = useTranslation('booking');
+  const { format } = useCurrency();
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const products = useBookingProducts(t);
@@ -180,7 +182,7 @@ export default function Booking() {
       flightNumber: isTransferRequest ? form.flightNumber : '',
       transferTime: isTransferRequest ? form.transferTime : '',
       productLabel: selectedProduct?.label || t('common.not_selected', { defaultValue: 'Not selected' }),
-      estimatedPrice: bookingPriceLabel(selectedProduct, t),
+      estimatedPrice: bookingPriceLabel(selectedProduct, t, format),
       source: plannerHandoff ? 'planner' : 'booking',
       plannerDraft: plannerHandoff?.transcript || '',
     };

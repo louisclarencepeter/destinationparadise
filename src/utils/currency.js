@@ -28,6 +28,16 @@ export const FALLBACK_RATES = { USD: 1, EUR: 0.92, PLN: 4.0 };
 const RATES_ENDPOINT = 'https://open.er-api.com/v6/latest/USD';
 const RATES_CACHE_KEY = 'dp_fx_rates';
 const RATES_TTL = 24 * 60 * 60 * 1000; // 24h
+const RATES_FETCH_TIMEOUT = 8000; // abort a hung FX request after 8s
+
+// A live rate must be positive and within a sane multiple of our fallback,
+// so a malformed-but-numeric response (e.g. 0, or a wildly off value) can't
+// produce nonsense prices.
+function isSaneRate(value, currency) {
+  const ref = FALLBACK_RATES[currency];
+  return typeof value === 'number' && Number.isFinite(value) && value > 0
+    && value >= ref / 4 && value <= ref * 4;
+}
 
 export function currencyForLang(lang) {
   const base = (lang || '').split('-')[0];
@@ -101,11 +111,18 @@ function cacheRates(rates) {
 }
 
 export async function fetchRates() {
-  const res = await fetch(RATES_ENDPOINT);
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), RATES_FETCH_TIMEOUT);
+  let res;
+  try {
+    res = await fetch(RATES_ENDPOINT, { signal: controller.signal });
+  } finally {
+    clearTimeout(timer);
+  }
   if (!res.ok) throw new Error(`FX request failed: ${res.status}`);
   const data = await res.json();
   const r = data && data.rates;
-  if (!r || typeof r.EUR !== 'number' || typeof r.PLN !== 'number') {
+  if (!r || !isSaneRate(r.EUR, 'EUR') || !isSaneRate(r.PLN, 'PLN')) {
     throw new Error('FX response malformed');
   }
   const rates = { USD: 1, EUR: r.EUR, PLN: r.PLN };
