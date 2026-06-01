@@ -4,6 +4,7 @@ export const SERVICE_TYPES = [
   { value: 'safari', label: 'Safari', text: 'Mainland wildlife routes, fly-in safaris, migration, southern parks, and custom circuits.' },
   { value: 'transfer', label: 'Transfer', text: 'Private airport, hotel-to-hotel, group, premium SUV, or VIP concierge transfer.' },
   { value: 'custom', label: 'Custom plan', text: 'Not sure yet? Tell us the shape and we will build a route around you.' },
+  { value: 'retreat', label: 'Retreat', text: '14-day yoga & safari retreat on Zanzibar — sunrise vinyasa, yin evenings, meditation, and a mainland safari.' },
 ];
 
 export const PAYMENT_OPTIONS = [
@@ -80,5 +81,7 @@ export function bookingPriceLabel(item, t, format) {
   if (item.type === 'transfer') {
     return item.priceSummary || item.raw.priceSummary || translate('price.final_transfer_after_route', 'Final transfer price after route confirmation');
   }
+  // Retreat deliberately shows the soft "final price after availability" copy in
+  // the booking summary — the "from" price lives on the retreat page instead.
   return translate('price.final_after_availability', 'Final price after availability check');
 }

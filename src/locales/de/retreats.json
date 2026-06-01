@@ -77,6 +77,8 @@
     "eyebrow": "Inklusive",
     "title": "Ein Preis. Alles, was zählt.",
     "lead": "Flüge ausgenommen, deckt der Preis die 14-tägige Yoga- und Safari-Reise ab — Praxis, Mahlzeiten, Unterkünfte, Safari-Planung und die kleinen Details, die sich von Anfang bis Ende umsorgt anfühlen.",
+    "price_from": "Ab",
+    "price_unit": "pro Person",
     "items": [
       "14-tägiges Yoga- und Safari-Programm",
       "5-tägige Tansania-Safari inklusive",

@@ -77,6 +77,8 @@
     "eyebrow": "W cenie",
     "title": "Jedna cena. Wszystko, co istotne.",
     "lead": "Poza lotami stawka obejmuje 14-dniową podróż jogi i safari — praktykę, posiłki, pobyty, planowanie safari i drobne akcenty, dzięki którym całość jest dopracowana od początku do końca.",
+    "price_from": "Od",
+    "price_unit": "od osoby",
     "items": [
       "14-dniowy program jogi i safari",
       "5-dniowe safari w Tanzanii w cenie",

@@ -77,6 +77,8 @@
     "eyebrow": "What's included",
     "title": "One price. Everything that matters.",
     "lead": "Flights aside, the rate covers the 14-day yoga and safari journey — practice, meals, stays, safari planning, and the small touches that make it feel cared for end to end.",
+    "price_from": "From",
+    "price_unit": "per person",
     "items": [
       "14-day yoga and safari program",
       "5-day Tanzania safari included",

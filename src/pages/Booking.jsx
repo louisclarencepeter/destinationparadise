@@ -26,7 +26,7 @@ import '../styles/excursions.css';
 import '../styles/booking.css';
 
 export default function Booking() {
-  const { t } = useTranslation('booking');
+  const { t, i18n } = useTranslation('booking');
   const { format } = useCurrency();
   const [searchParams] = useSearchParams();
   const location = useLocation();
@@ -124,7 +124,27 @@ export default function Booking() {
   const selectedService = serviceTypes.find((item) => item.value === form.serviceType);
   const isExcursionRequest = form.serviceType === 'excursion';
   const isTransferRequest = form.serviceType === 'transfer';
+  const isRetreatRequest = form.serviceType === 'retreat';
   const selectedTransferTier = transferTiers.find((item) => item.value === form.transferTier);
+  const retreatDepartures = useMemo(() => {
+    const departures = products.retreats?.[0]?.raw.departures || [];
+    const formatter = new Intl.DateTimeFormat(i18n.resolvedLanguage || 'en', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+    return departures.map((dep) => ({
+      ...dep,
+      // Noon avoids the UTC-midnight off-by-one day shift in negative offsets.
+      label: formatter.formatRange(new Date(`${dep.start}T12:00:00`), new Date(`${dep.end}T12:00:00`)),
+    }));
+  }, [products.retreats, i18n.resolvedLanguage]);
+  const onDepartureChange = (event) => {
+    const start = event.target.value;
+    const departure = retreatDepartures.find((dep) => dep.start === start);
+    setStatus('idle');
+    setForm((current) => ({ ...current, startDate: start, endDate: departure?.end || '' }));
+  };
   const showDateRange = !isExcursionRequest && !isTransferRequest;
   const showTravelPreferences = !isExcursionRequest && !isTransferRequest;
   const dateSummary = showDateRange
@@ -156,7 +176,10 @@ export default function Booking() {
       ...(key === 'serviceType'
         ? {
           product: '',
-          endDate: value === 'excursion' || value === 'transfer' ? '' : current.endDate,
+          // Retreat uses fixed departures; clear any free-form dates so the
+          // departure dropdown starts unselected rather than showing a stale date.
+          startDate: value === 'retreat' ? '' : current.startDate,
+          endDate: value === 'excursion' || value === 'transfer' || value === 'retreat' ? '' : current.endDate,
           budget: value === 'excursion' || value === 'transfer' ? '' : current.budget,
           accommodationLevel: value === 'excursion' || value === 'transfer' ? '' : current.accommodationLevel || 'Mid-range',
           transferTier: value === 'transfer' ? current.transferTier || 'standard-private' : current.transferTier,
@@ -221,9 +244,12 @@ export default function Booking() {
             budgetOptions={budgetOptions}
             comfortOptions={comfortOptions}
             form={form}
+            isRetreatRequest={isRetreatRequest}
             isTransferRequest={isTransferRequest}
             messagePlaceholder={messagePlaceholder}
+            onDepartureChange={onDepartureChange}
             onSubmit={submit}
+            retreatDepartures={retreatDepartures}
             paymentOptions={paymentOptions}
             productLabel={productLabel}
             productPlaceholder={productPlaceholder}

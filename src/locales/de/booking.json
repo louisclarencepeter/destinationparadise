@@ -78,6 +78,11 @@
       "value": "custom",
       "label": "Plan nach Maß",
       "text": "Noch unsicher? Erzähl uns die Form der Reise, wir bauen die Route darum herum."
+    },
+    {
+      "value": "retreat",
+      "label": "Retreat",
+      "text": "14-tägiges Yoga- & Safari-Retreat auf Sansibar — Vinyasa bei Sonnenaufgang, Yin am Abend, Meditation und eine Safari auf dem Festland."
     }
   ],
   "payment_options": [
@@ -140,6 +145,8 @@
     "start_date": "Startdatum",
     "date": "Datum",
     "end_date": "Enddatum",
+    "retreat_departure": "Retreat-Termin",
+    "retreat_departure_placeholder": "Termin wählen",
     "guests": "Gäste",
     "transfer_legend": "Transferdetails",
     "pickup_location": "Abholort",
@@ -617,6 +624,12 @@
         "label": "VIP Flughafen-Concierge",
         "category": "Luxuriöser Ankunftsservice",
         "priceSummary": "VIP ab $150"
+      }
+    },
+    "retreat": {
+      "yoga-safari-retreat": {
+        "label": "Yoga- & Safari-Retreat",
+        "category": "14 Tage · Sansibar"
       }
     }
   }

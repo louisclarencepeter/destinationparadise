@@ -2,8 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
+import { useCurrency } from '../context/useCurrency.js';
+import { RETREAT_PRODUCTS } from '../data/retreatProducts.js';
 import '../styles/excursions/hero.css';
 import '../styles/retreats.css';
+
+// Single source of truth for the retreat's "from" price (shared with booking).
+const RETREAT_PRICE = RETREAT_PRODUCTS[0].price;
 
 const IMG = {
   hero: '/assets/images/retreats/zanzibar-tree-pose-view.webp',
@@ -28,6 +33,7 @@ const arrayFromTranslation = (value) => (Array.isArray(value) ? value : []);
 
 export default function Retreats() {
   const { t, ready } = useTranslation('retreats');
+  const { format } = useCurrency();
   const pageRef = useRef(null);
   const [openFaq, setOpenFaq] = useState(0);
 
@@ -81,7 +87,7 @@ export default function Retreats() {
           <p className="exc-hero__lead">{t('hero.subtitle')}</p>
           <div className="exc-hero__row">
             <a className="btn btn--lg" href="#practice">{t('hero.see_week')}</a>
-            <Link className="btn btn--ghost btn--lg" to="/booking">{t('hero.reserve')}</Link>
+            <Link className="btn btn--ghost btn--lg" to="/booking?type=retreat&item=yoga-safari-retreat">{t('hero.reserve')}</Link>
           </div>
           <div className="exc-hero__meta">
             <div><strong>{t('hero.stat_nights_value')}</strong><span>{t('hero.stat_nights')}</span></div>
@@ -185,6 +191,9 @@ export default function Retreats() {
           <span className="ret-eyebrow ret-eyebrow--light">{t('included.eyebrow')}</span>
           <h2 className="ret-title ret-title--script">{t('included.title')}</h2>
           <p className="ret-dark__lead">{t('included.lead')}</p>
+          <p className="ret-included__price">
+            {t('included.price_from')} <strong>{format(RETREAT_PRICE)}</strong> <span>{t('included.price_unit')}</span>
+          </p>
         </div>
         <ul className="ret-included__list">
           {included.map((item, i) => (
@@ -233,7 +242,7 @@ export default function Retreats() {
           <h2 className="ret-title ret-title--light">{t('cta.title')}</h2>
           <p>{t('cta.text')}</p>
           <div className="ret-cta__btns">
-            <Link className="btn btn--lg btn--accent" to="/booking">{t('cta.reserve')}</Link>
+            <Link className="btn btn--lg btn--accent" to="/booking?type=retreat&item=yoga-safari-retreat">{t('cta.reserve')}</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">{t('cta.ai_planner')}</Link>
           </div>
         </div>

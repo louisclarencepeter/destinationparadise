@@ -3,6 +3,7 @@ import { EXCURSIONS } from '../data/excursionsData.js';
 import { destinationParadisePackages } from '../data/destinationParadisePackages.js';
 import { destinationParadiseSafariPricing } from '../data/safariPricing.js';
 import { TRANSFER_PRODUCTS } from '../data/transferProducts.js';
+import { RETREAT_PRODUCTS } from '../data/retreatProducts.js';
 
 const objectFromTranslation = (value) => (
   value && typeof value === 'object' && !Array.isArray(value) ? value : {}
@@ -49,6 +50,14 @@ export function useBookingProducts(t) {
       raw: item,
     }));
 
-    return { packages, excursions, safaris, transfers, all: [...packages, ...excursions, ...safaris, ...transfers] };
+    const retreats = RETREAT_PRODUCTS.map((item) => ({
+      type: 'retreat',
+      value: `retreat:${item.slug}`,
+      label: productTranslation(translatedProducts, 'retreat', item.slug).label || item.title,
+      category: productTranslation(translatedProducts, 'retreat', item.slug).category || item.duration,
+      raw: item,
+    }));
+
+    return { packages, excursions, safaris, transfers, retreats, all: [...packages, ...excursions, ...safaris, ...transfers, ...retreats] };
   }, [t]);
 }
