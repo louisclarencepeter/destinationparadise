@@ -63,14 +63,14 @@
     "title": "Momente von der Matte.",
     "lead": "Ein Einblick in die Praxis — aufgenommen entlang der Küste des Indischen Ozeans. Derselbe Atem, wo immer du deine Matte ausrollst.",
     "items": [
-      { "caption": "Plank am Morgen · Praxis am Strand" },
+      { "caption": "Rückbeuge · offener Himmel" },
+      { "caption": "Wurzeln schlagen · warmer Stein" },
+      { "caption": "Balancearbeit · Terrassenlicht" },
       { "caption": "Kriegerkreis · gemeinsamer Atem" },
       { "caption": "Wild Thing · goldene Stunde" },
-      { "caption": "Sanftes Loslassen · weiche Landung" },
-      { "caption": "Rückbeuge · offener Himmel" },
-      { "caption": "Balancearbeit · Terrassenlicht" },
+      { "caption": "Plank am Morgen · Praxis am Strand" },
       { "caption": "Vrksasana · Bergluft" },
-      { "caption": "Wurzeln schlagen · warmer Stein" }
+      { "caption": "Sanftes Loslassen · weiche Landung" }
     ]
   },
   "included": {

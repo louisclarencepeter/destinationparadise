@@ -14,14 +14,14 @@ const IMG = {
 
 // Bento gallery — paired with the localized captions (gallery.items), in order.
 const GALLERY_IMAGES = [
-  '/assets/images/retreats/beach-class-plank.webp',
+  '/assets/images/retreats/terrace-wheel-pose.webp',
+  '/assets/images/retreats/red-rock-tree-pose.webp',
+  '/assets/images/retreats/terrace-balance-pose.webp',
   '/assets/images/retreats/studio-warrior-circle.webp',
   '/assets/images/retreats/red-rock-wild-thing.webp',
-  '/assets/images/retreats/assisted-beach-stretch.webp',
-  '/assets/images/retreats/terrace-wheel-pose.webp',
-  '/assets/images/retreats/terrace-balance-pose.webp',
+  '/assets/images/retreats/beach-class-plank.webp',
   '/assets/images/retreats/alpine-tree-pose.webp',
-  '/assets/images/retreats/red-rock-tree-pose.webp',
+  '/assets/images/retreats/assisted-beach-stretch.webp',
 ];
 
 const arrayFromTranslation = (value) => (Array.isArray(value) ? value : []);
@@ -40,6 +40,11 @@ export default function Retreats() {
   useEffect(() => {
     document.title = t('page_title');
   }, [t]);
+
+  useEffect(() => {
+    document.body.classList.add('has-retreat-page');
+    return () => document.body.classList.remove('has-retreat-page');
+  }, []);
 
   useEffect(() => {
     const root = pageRef.current;
@@ -126,8 +131,8 @@ export default function Retreats() {
           <p className="ret-dark__lead">{t('practice.lead')}</p>
         </header>
         <div className="ret-practice__grid">
-          {practices.map((item) => (
-            <article className="ret-practice__card reveal" key={item.step}>
+          {practices.map((item, i) => (
+            <article className="ret-practice__card reveal" key={item.step} style={{ '--ret-reveal-index': i }}>
               <span className="ret-practice__num">{item.step}</span>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -144,8 +149,8 @@ export default function Retreats() {
           <p className="ret-dark__lead">{t('day.lead')}</p>
         </header>
         <ol className="ret-timeline">
-          {daySchedule.map((item) => (
-            <li className="ret-timeline__item reveal" key={item.time}>
+          {daySchedule.map((item, i) => (
+            <li className="ret-timeline__item reveal" key={item.time} style={{ '--ret-reveal-index': i }}>
               <span className="ret-timeline__dot" aria-hidden="true" />
               <span className="ret-timeline__time">{item.time}</span>
               <div className="ret-timeline__body">
@@ -164,9 +169,9 @@ export default function Retreats() {
           <h2 className="ret-title ret-title--script">{t('gallery.title')}</h2>
           <p className="ret-dark__lead">{t('gallery.lead')}</p>
         </header>
-        <div className="ret-gallery__grid reveal">
+        <div className="ret-gallery__grid">
           {galleryItems.map((item, i) => (
-            <figure className={`ret-gallery__cell ret-gallery__cell--${i + 1}`} key={item.caption}>
+            <figure className={`ret-gallery__cell ret-gallery__cell--${i + 1} reveal`} key={item.caption} style={{ '--ret-reveal-index': i }}>
               <ResponsiveImage src={GALLERY_IMAGES[i % GALLERY_IMAGES.length]} alt="" sizes="(max-width: 900px) 100vw, 50vw" />
               <figcaption>{item.caption}</figcaption>
             </figure>
@@ -181,9 +186,9 @@ export default function Retreats() {
           <h2 className="ret-title ret-title--script">{t('included.title')}</h2>
           <p className="ret-dark__lead">{t('included.lead')}</p>
         </div>
-        <ul className="ret-included__list reveal">
-          {included.map((item) => (
-            <li key={item}><span className="ret-check" aria-hidden="true">✓</span> {item}</li>
+        <ul className="ret-included__list">
+          {included.map((item, i) => (
+            <li className="reveal" key={item} style={{ '--ret-reveal-index': i }}><span className="ret-check" aria-hidden="true">✓</span> {item}</li>
           ))}
         </ul>
       </section>
@@ -194,11 +199,11 @@ export default function Retreats() {
           <span className="ret-eyebrow ret-eyebrow--light">{t('faqs.eyebrow')}</span>
           <h2 className="ret-title ret-title--script">{t('faqs.title')}</h2>
         </header>
-        <div className="ret-faq__list reveal">
+        <div className="ret-faq__list">
           {faqs.map((item, i) => {
             const open = openFaq === i;
             return (
-              <div className={`ret-faq__item${open ? ' is-open' : ''}`} key={item.q}>
+              <div className={`ret-faq__item reveal${open ? ' is-open' : ''}`} key={item.q} style={{ '--ret-reveal-index': i }}>
                 <button
                   type="button"
                   className="ret-faq__q"
@@ -216,7 +221,7 @@ export default function Retreats() {
       </section>
 
       {/* CTA */}
-      <section className="ret-cta">
+      <section className="ret-cta reveal">
         <div className="ret-cta__bg"><ResponsiveImage src={IMG.cta} alt="" sizes="100vw" /></div>
         <div className="ret-cta__inner">
           <h2 className="ret-title ret-title--light">{t('cta.title')}</h2>
