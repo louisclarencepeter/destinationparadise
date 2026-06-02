@@ -147,9 +147,26 @@ export default function Booking() {
   };
   const showDateRange = !isExcursionRequest && !isTransferRequest;
   const showTravelPreferences = !isExcursionRequest && !isTransferRequest;
-  const dateSummary = showDateRange
-    ? `${form.startDate || t('common.flexible', { defaultValue: 'Flexible' })}${form.endDate ? ` ${t('common.date_to', { defaultValue: 'to' })} ${form.endDate}` : ''}`
-    : form.startDate || t('common.flexible', { defaultValue: 'Flexible' });
+  // Pretty, locale-aware date summary (e.g. "Sep 5 – 18, 2026"). Noon avoids
+  // the UTC-midnight off-by-one day shift in negative offsets.
+  const toSummaryDate = (iso) => {
+    if (!iso) return null;
+    const parsed = new Date(`${iso}T12:00:00`);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+  };
+  const summaryDateFormat = new Intl.DateTimeFormat(i18n.resolvedLanguage || 'en', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+  const startSummaryDate = toSummaryDate(form.startDate);
+  const endSummaryDate = showDateRange ? toSummaryDate(form.endDate) : null;
+  const flexibleLabel = t('common.flexible', { defaultValue: 'Flexible' });
+  const dateSummary = startSummaryDate && endSummaryDate
+    ? summaryDateFormat.formatRange(startSummaryDate, endSummaryDate)
+    : startSummaryDate
+      ? summaryDateFormat.format(startSummaryDate)
+      : flexibleLabel;
   const productLabel = isTransferRequest
     ? t('form.product_label_transfer', { defaultValue: 'Transfer route' })
     : t('form.product_label_default', { defaultValue: 'Specific product' });

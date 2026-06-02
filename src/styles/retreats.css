@@ -100,6 +100,12 @@ html[data-theme="dark"] .retreat-page {
   from { transform: scale(1.02) translate3d(0, 0, 0); }
   to { transform: scale(1.08) translate3d(-1.2%, -1%, 0); }
 }
+/* Hero drift starts exactly where heroImageReveal ends (scale 1.05) so the
+   entrance hands off to the drift with no snap. */
+@keyframes retHeroDrift {
+  from { transform: scale(1.05) translate3d(0, 0, 0); }
+  to { transform: scale(1.11) translate3d(-1.2%, -1%, 0); }
+}
 @keyframes retSoftPulse {
   50% { box-shadow: 0 0 0 8px rgba(255, 111, 97, 0.1); }
 }
@@ -109,7 +115,7 @@ html[data-theme="dark"] .retreat-page {
 }
 
 .retreat-page .exc-hero__bg img {
-  animation: heroImageReveal 1.4s var(--dp-ease-out) both, retImageDrift 18s ease-in-out 1.4s infinite alternate;
+  animation: heroImageReveal 1.4s var(--dp-ease-out) both, retHeroDrift 18s ease-in-out 1.4s infinite alternate;
 }
 .retreat-page .exc-hero__meta div {
   transition: transform 0.3s var(--dp-ease-out), background 0.3s ease, border-color 0.3s ease;

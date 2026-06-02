@@ -86,7 +86,7 @@ export default function Retreats() {
           <h1 className="exc-hero__title">{t('hero.title_prefix')} <em>{t('hero.title_em')}</em></h1>
           <p className="exc-hero__lead">{t('hero.subtitle')}</p>
           <div className="exc-hero__row">
-            <a className="btn btn--lg" href="#practice">{t('hero.see_week')}</a>
+            <a className="btn btn--lg" href="#day">{t('hero.see_day')}</a>
             <Link className="btn btn--ghost btn--lg" to="/booking?type=retreat&item=yoga-safari-retreat">{t('hero.reserve')}</Link>
           </div>
           <div className="exc-hero__meta">
@@ -148,7 +148,7 @@ export default function Retreats() {
       </section>
 
       {/* A day in the life */}
-      <section className="ret-dark ret-day">
+      <section className="ret-dark ret-day" id="day">
         <header className="ret-dark__head reveal">
           <span className="ret-eyebrow ret-eyebrow--light">{t('day.eyebrow')}</span>
           <h2 className="ret-title ret-title--script">{t('day.title')}</h2>

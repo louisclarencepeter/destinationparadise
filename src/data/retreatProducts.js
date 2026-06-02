@@ -6,7 +6,7 @@ export const RETREAT_PRODUCTS = [
   {
     slug: 'yoga-safari-retreat',
     title: 'Yoga & Safari Retreat',
-    duration: '14 days · Zanzibar',
+    duration: '14 days · Zanzibar + safari',
     price: 4890,
     priceSub: 'per person',
     departures: [
