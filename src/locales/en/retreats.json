@@ -44,6 +44,18 @@
       { "step": "04", "title": "Meditation & Breath", "text": "Conscious stretching, pranayama, and guided meditation to release tension, calm the mind, and restore balance." }
     ]
   },
+  "journey": {
+    "eyebrow": "The journey",
+    "title": "Fourteen days, unhurried.",
+    "lead": "Days of practice on the Zanzibar coast, a five-day safari inland, then back to the ocean to close — the wild heart of it right in the middle.",
+    "items": [
+      { "days": "Days 1–2", "title": "Arrive on the coast", "text": "Land on the Zanzibar coast, breathe out, and ease in with an opening evening practice." },
+      { "days": "Days 3–6", "title": "Practice & the spice coast", "text": "Sunrise vinyasa, yin evenings, long breakfasts, and open afternoons by the ocean." },
+      { "days": "Days 7–11", "title": "Fly inland to safari", "text": "Fly to Arusha — flights included — for five days of Tanzania wildlife: game drives, wide skies, and nights under the stars." },
+      { "days": "Days 12–14", "title": "Back to the coast", "text": "Fly back to Zanzibar for closing days of practice and rest, and an unhurried goodbye." }
+    ],
+    "note": "Our first retreat departs <strong>early December 2026</strong> — warm, quiet, and just before peak season."
+  },
   "day": {
     "eyebrow": "A day in the life",
     "title": "No alarms but the birds.",

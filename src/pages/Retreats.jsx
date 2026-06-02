@@ -38,6 +38,7 @@ export default function Retreats() {
   const [openFaq, setOpenFaq] = useState(0);
 
   const practices = arrayFromTranslation(t('practice.items', { returnObjects: true }));
+  const journey = arrayFromTranslation(t('journey.items', { returnObjects: true }));
   const daySchedule = arrayFromTranslation(t('day.items', { returnObjects: true }));
   const galleryItems = arrayFromTranslation(t('gallery.items', { returnObjects: true }));
   const included = arrayFromTranslation(t('included.items', { returnObjects: true }));
@@ -145,6 +146,27 @@ export default function Retreats() {
             </article>
           ))}
         </div>
+      </section>
+
+      {/* The journey — high-level 14-day itinerary */}
+      <section className="ret-dark ret-journey">
+        <header className="ret-dark__head reveal">
+          <span className="ret-eyebrow ret-eyebrow--light">{t('journey.eyebrow')}</span>
+          <h2 className="ret-title ret-title--script">{t('journey.title')}</h2>
+          <p className="ret-dark__lead">{t('journey.lead')}</p>
+        </header>
+        <div className="ret-journey__grid">
+          {journey.map((item, i) => (
+            <article className="ret-practice__card reveal" key={item.days} style={{ '--ret-reveal-index': i }}>
+              <span className="ret-practice__num">{item.days}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <p className="ret-journey__note reveal">
+          <Trans i18nKey="journey.note" ns="retreats" components={{ strong: <strong /> }} />
+        </p>
       </section>
 
       {/* A day in the life */}

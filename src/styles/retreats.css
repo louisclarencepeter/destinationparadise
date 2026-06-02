@@ -106,6 +106,11 @@ html[data-theme="dark"] .retreat-page {
   from { transform: scale(1.05) translate3d(0, 0, 0); }
   to { transform: scale(1.11) translate3d(-1.2%, -1%, 0); }
 }
+/* CTA drifts from the framed zoom (scale 1.5) so the figure stays the focus. */
+@keyframes retCtaDrift {
+  from { transform: scale(1.5) translate3d(0, 0, 0); }
+  to { transform: scale(1.56) translate3d(-0.8%, -0.6%, 0); }
+}
 @keyframes retSoftPulse {
   50% { box-shadow: 0 0 0 8px rgba(255, 111, 97, 0.1); }
 }
@@ -286,6 +291,27 @@ html[data-theme="dark"] .retreat-page {
   line-height: 1.6;
   color: var(--ret-section-muted);
   margin: 0;
+}
+
+/* Journey / itinerary (reuses .ret-practice__card styling) */
+.ret-journey__grid {
+  width: min(var(--dp-container-lg), 92%);
+  margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.4rem;
+}
+.ret-journey__note {
+  width: min(var(--dp-container-md), 90%);
+  margin: clamp(1.6rem, 3vw, 2.2rem) auto 0;
+  text-align: center;
+  font-size: var(--dp-fs-body-sm);
+  line-height: 1.6;
+  color: var(--ret-section-muted);
+}
+.ret-journey__note strong {
+  color: var(--dp-hover);
+  font-weight: 600;
 }
 
 /* Day timeline */
@@ -525,8 +551,14 @@ html[data-theme="dark"] .retreat-page {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 72%;
-  animation: retImageDrift 22s ease-in-out infinite alternate;
+  object-position: center 70%;
+  /* Zoom into the figure so she reads as the focus. Origin at the base means
+     the scale lifts her up into the frame and keeps the photographer's
+     bottom-corner watermark cropped out. The static scale also serves as the
+     reduced-motion fallback (when the drift animation is disabled). */
+  transform-origin: 57% 100%;
+  transform: scale(1.5);
+  animation: retCtaDrift 22s ease-in-out infinite alternate;
 }
 .ret-cta::after {
   content: "";
@@ -604,6 +636,7 @@ body.has-retreat-page .footer {
   .ret-hero { min-height: 92vh; }
   .ret-hero__stats { gap: 1.6rem 2.4rem; }
   .ret-practice__grid { grid-template-columns: 1fr; }
+  .ret-journey__grid { grid-template-columns: 1fr; }
   .ret-gallery__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
   .ret-gallery__cell--1 { grid-row: span 1; }
   .ret-gallery__cell--2,

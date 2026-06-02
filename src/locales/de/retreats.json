@@ -44,6 +44,18 @@
       { "step": "04", "title": "Meditation & Atem", "text": "Bewusstes Dehnen, Pranayama und geführte Meditation, um Spannungen zu lösen, den Geist zu beruhigen und Balance wiederherzustellen." }
     ]
   },
+  "journey": {
+    "eyebrow": "Die Reise",
+    "title": "Vierzehn Tage, ganz ohne Eile.",
+    "lead": "Tage der Praxis an der Küste Sansibars, eine fünftägige Safari im Landesinneren und dann zurück ans Meer zum Ausklang — das Wilde liegt genau in der Mitte.",
+    "items": [
+      { "days": "Tag 1–2", "title": "Ankunft an der Küste", "text": "An der Küste Sansibars landen, durchatmen und mit einer Abendpraxis sanft beginnen." },
+      { "days": "Tag 3–6", "title": "Praxis & Gewürzküste", "text": "Vinyasa bei Sonnenaufgang, Yin am Abend, lange Frühstücke und freie Nachmittage am Meer." },
+      { "days": "Tag 7–11", "title": "Flug zur Safari", "text": "Flug nach Arusha — Flüge inklusive — für fünf Tage Tierwelt in Tansania: Pirschfahrten, weiter Himmel und Nächte unter Sternen." },
+      { "days": "Tag 12–14", "title": "Zurück an die Küste", "text": "Rückflug nach Sansibar für abschließende Tage voller Praxis und Ruhe und einen uneiligen Abschied." }
+    ],
+    "note": "Unser erstes Retreat startet <strong>Anfang Dezember 2026</strong> — warm, ruhig und kurz vor der Hochsaison."
+  },
   "day": {
     "eyebrow": "Ein Tag im Retreat",
     "title": "Kein Wecker außer den Vögeln.",

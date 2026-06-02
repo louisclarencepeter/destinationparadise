@@ -44,6 +44,18 @@
       { "step": "04", "title": "Medytacja i oddech", "text": "Świadome rozciąganie, pranajama i medytacja prowadzona, by uwolnić napięcie, wyciszyć umysł i przywrócić równowagę." }
     ]
   },
+  "journey": {
+    "eyebrow": "Podróż",
+    "title": "Czternaście dni bez pośpiechu.",
+    "lead": "Dni praktyki na wybrzeżu Zanzibaru, pięciodniowe safari w głębi lądu, a potem powrót nad ocean na zakończenie — to, co dzikie, leży dokładnie pośrodku.",
+    "items": [
+      { "days": "Dni 1–2", "title": "Przyjazd na wybrzeże", "text": "Ląduj na wybrzeżu Zanzibaru, odetchnij i wejdź w rytm wieczorną praktyką." },
+      { "days": "Dni 3–6", "title": "Praktyka i korzenne wybrzeże", "text": "Poranna vinyasa, wieczorny yin, długie śniadania i wolne popołudnia nad oceanem." },
+      { "days": "Dni 7–11", "title": "Lot na safari", "text": "Lot do Arushy — przeloty wliczone — na pięć dni tanzańskiej przyrody: przejażdżki, szerokie niebo i noce pod gwiazdami." },
+      { "days": "Dni 12–14", "title": "Powrót na wybrzeże", "text": "Powrót samolotem na Zanzibar na ostatnie dni praktyki i odpoczynku oraz niespieszne pożegnanie." }
+    ],
+    "note": "Nasz pierwszy retreat startuje <strong>na początku grudnia 2026</strong> — ciepło, spokojnie i tuż przed szczytem sezonu."
+  },
   "day": {
     "eyebrow": "Dzień na retreacie",
     "title": "Żadnych budzików prócz ptaków.",

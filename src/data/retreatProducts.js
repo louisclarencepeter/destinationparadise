@@ -9,13 +9,14 @@ export const RETREAT_PRODUCTS = [
     duration: '14 days · Zanzibar + safari',
     price: 4890,
     priceSub: 'per person',
+    // First (inaugural) retreat departs early December 2026, just before peak
+    // season; subsequent departures spread across 2027.
     departures: [
-      { start: '2026-07-04', end: '2026-07-17' },
-      { start: '2026-09-05', end: '2026-09-18' },
-      { start: '2026-10-03', end: '2026-10-16' },
-      { start: '2027-02-06', end: '2027-02-19' },
+      { start: '2026-12-01', end: '2026-12-14' },
+      { start: '2027-02-07', end: '2027-02-20' },
       { start: '2027-06-05', end: '2027-06-18' },
       { start: '2027-09-04', end: '2027-09-17' },
+      { start: '2027-12-01', end: '2027-12-14' },
     ],
   },
 ];
