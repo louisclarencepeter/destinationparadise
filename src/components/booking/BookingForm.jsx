@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 export default function BookingForm({
   budgetOptions,
   comfortOptions,
+  errorMessage,
   form,
   isRetreatRequest,
   isTransferRequest,
@@ -190,7 +191,9 @@ export default function BookingForm({
         <p className="booking-status booking-status--ok">{t('form.status_sent', { defaultValue: 'Asante. We received your request and will come back with availability, a quote, and the payment next step.' })}</p>
       )}
       {status === 'error' && (
-        <p className="booking-status booking-status--err">{t('form.status_error', { defaultValue: 'That did not go through. Please try again or message us on WhatsApp.' })}</p>
+        <p className="booking-status booking-status--err">
+          {errorMessage || t('form.status_error', { defaultValue: 'That did not go through. Please try again or message us on WhatsApp.' })}
+        </p>
       )}
 
       <button className="btn btn--lg booking-submit" type="submit" disabled={status === 'sending' || status === 'sent'}>

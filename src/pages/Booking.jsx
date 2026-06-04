@@ -34,6 +34,7 @@ export default function Booking() {
   const [form, setForm] = useState(DEFAULT_BOOKING_FORM);
   const [plannerHandoff, setPlannerHandoff] = useState(null);
   const [status, setStatus] = useState('idle');
+  const [errorMessage, setErrorMessage] = useState('');
   const layoutRef = useRef(null);
   const summarySlotRef = useRef(null);
   const summaryRef = useRef(null);
@@ -187,6 +188,7 @@ export default function Booking() {
   const update = (key) => (event) => {
     const value = event.target.value;
     setStatus('idle');
+    setErrorMessage('');
     setForm((current) => ({
       ...current,
       [key]: value,
@@ -209,6 +211,7 @@ export default function Booking() {
     event.preventDefault();
     if (status === 'sending' || status === 'sent') return;
     setStatus('sending');
+    setErrorMessage('');
 
     const payload = {
       ...form,
@@ -239,8 +242,9 @@ export default function Booking() {
       setForm(DEFAULT_BOOKING_FORM);
       clearPlannerHandoff();
       setPlannerHandoff(null);
-    } catch {
+    } catch (err) {
       setStatus('error');
+      setErrorMessage(err?.message && err.message !== 'booking-request-failed' ? err.message : '');
     }
   };
 
@@ -260,6 +264,7 @@ export default function Booking() {
           <BookingForm
             budgetOptions={budgetOptions}
             comfortOptions={comfortOptions}
+            errorMessage={errorMessage}
             form={form}
             isRetreatRequest={isRetreatRequest}
             isTransferRequest={isTransferRequest}
