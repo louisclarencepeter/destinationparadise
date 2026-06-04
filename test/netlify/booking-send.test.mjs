@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest';
-import { validateEmailAddress } from './booking-send.mjs';
+import { validateEmailAddress } from '../../netlify/functions/booking-send.mjs';
 
 function dnsError(code) {
   return Object.assign(new Error(code), { code });
