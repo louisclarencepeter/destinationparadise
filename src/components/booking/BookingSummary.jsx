@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { bookingPriceLabel } from '../../data/bookingPageData.js';
+import { useCurrency } from '../../context/useCurrency.js';
 
 export default function BookingSummary({
   accommodationLabel,
@@ -18,6 +19,7 @@ export default function BookingSummary({
   summarySlotRef,
 }) {
   const { t } = useTranslation('booking');
+  const { format } = useCurrency();
   const paymentSteps = t('summary.payment_steps', {
     returnObjects: true,
     defaultValue: [
@@ -38,7 +40,7 @@ export default function BookingSummary({
           <span className="section-eyebrow">{t('summary.eyebrow', { defaultValue: 'Your request' })}</span>
           <h3>{selectedProduct?.label || selectedService?.label || t('summary.custom_plan', { defaultValue: 'Custom plan' })}</h3>
           <p>{selectedProduct?.category || t('summary.flexible_route', { defaultValue: 'Flexible route' })}</p>
-          <div className="booking-summary__price">{bookingPriceLabel(selectedProduct, t)}</div>
+          <div className="booking-summary__price">{bookingPriceLabel(selectedProduct, t, format)}</div>
           <dl>
             <div><dt>{t('summary.guests', { defaultValue: 'Guests' })}</dt><dd>{form.guests || t('common.flexible', { defaultValue: 'Flexible' })}</dd></div>
             <div><dt>{showDateRange ? t('summary.dates', { defaultValue: 'Dates' }) : t('summary.date', { defaultValue: 'Date' })}</dt><dd>{dateSummary}</dd></div>

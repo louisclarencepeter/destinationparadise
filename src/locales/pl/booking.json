@@ -78,6 +78,11 @@
       "value": "custom",
       "label": "Plan na miarę",
       "text": "Nie masz jeszcze pewności? Opowiedz nam, czego szukasz, a ułożymy trasę wokół Ciebie."
+    },
+    {
+      "value": "retreat",
+      "label": "Retreat",
+      "text": "14-dniowy retreat jogi i safari na Zanzibarze — poranna vinyasa, wieczorny yin, medytacja i safari na kontynencie."
     }
   ],
   "payment_options": [
@@ -140,6 +145,8 @@
     "start_date": "Data rozpoczęcia",
     "date": "Data",
     "end_date": "Data zakończenia",
+    "retreat_departure": "Termin retreatu",
+    "retreat_departure_placeholder": "Wybierz termin",
     "guests": "Goście",
     "transfer_legend": "Szczegóły transferu",
     "pickup_location": "Miejsce odbioru",
@@ -617,6 +624,12 @@
         "label": "VIP Airport Concierge",
         "category": "Luksusowa obsługa przyjazdu",
         "priceSummary": "VIP od $150"
+      }
+    },
+    "retreat": {
+      "yoga-safari-retreat": {
+        "label": "Retreat jogi i safari",
+        "category": "14 dni · Zanzibar + safari"
       }
     }
   }

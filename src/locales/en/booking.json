@@ -78,6 +78,11 @@
       "value": "custom",
       "label": "Custom plan",
       "text": "Not sure yet? Tell us the shape and we will build a route around you."
+    },
+    {
+      "value": "retreat",
+      "label": "Retreat",
+      "text": "14-day yoga & safari retreat on Zanzibar — sunrise vinyasa, yin evenings, meditation, and a mainland safari."
     }
   ],
   "payment_options": [
@@ -140,6 +145,8 @@
     "start_date": "Start date",
     "date": "Date",
     "end_date": "End date",
+    "retreat_departure": "Retreat departure",
+    "retreat_departure_placeholder": "Choose a departure",
     "guests": "Guests",
     "transfer_legend": "Transfer details",
     "pickup_location": "Pickup location",
@@ -617,6 +624,12 @@
         "label": "VIP Airport Concierge",
         "category": "Luxury arrival service",
         "priceSummary": "VIP from $150"
+      }
+    },
+    "retreat": {
+      "yoga-safari-retreat": {
+        "label": "Yoga & Safari Retreat",
+        "category": "14 days · Zanzibar + safari"
       }
     }
   }

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { INITIAL_SAFARI_COUNT, SAFARI_BATCH_COUNT } from '../../data/safarisPageContent.js';
+import { useCurrency } from '../../context/useCurrency.js';
 
 export default function SafariItineraries({
   filteredSafaris,
@@ -13,6 +14,7 @@ export default function SafariItineraries({
   visibleSafaris,
 }) {
   const { t } = useTranslation('safaris');
+  const { format } = useCurrency();
   const filterLabel = (item) => t(`filters.${item.key}`, item.label);
   const priceUnit = (sub) => (sub ? t(`price_units.${sub}`, sub) : '');
   return (
@@ -67,7 +69,7 @@ export default function SafariItineraries({
                 </span>
               </div>
               <div className="exc-card__foot">
-                <span className="exc-card__price">{t('itineraries.card.from')} <strong>${itinerary.price.toLocaleString()}</strong> {priceUnit(itinerary.priceSub)}</span>
+                <span className="exc-card__price">{t('itineraries.card.from')} <strong>{format(itinerary.price)}</strong> {priceUnit(itinerary.priceSub)}</span>
                 <span className="exc-card__cta">{t('itineraries.card.explore_cta')}</span>
               </div>
             </div>

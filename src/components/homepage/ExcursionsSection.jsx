@@ -2,9 +2,11 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowIcon } from './Icons.jsx';
 import ResponsiveImage from '../ResponsiveImage.jsx';
+import { useCurrency } from '../../context/useCurrency.js';
 
 export default function ExcursionsSection({ tweaks, excursions }) {
   const { t } = useTranslation('home');
+  const { format } = useCurrency();
   return (
     <section className="excursions reveal" id="excursions" data-layout={tweaks.layout}>
       <header className="excursions__head">
@@ -34,7 +36,7 @@ export default function ExcursionsSection({ tweaks, excursions }) {
               {typeof tr.price === 'number' && (
                 <div className="ex-card__price">
                   <div className="ex-card__price-from">{t('excursions.card.from')}</div>
-                  <div className="ex-card__price-num">${tr.price}</div>
+                  <div className="ex-card__price-num">{format(tr.price)}</div>
                 </div>
               )}
             </div>

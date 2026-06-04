@@ -33,6 +33,7 @@ const localeLoaders = {
   ...import.meta.glob('../locales/*/booking.json'),
   ...import.meta.glob('../locales/*/explore.json'),
   ...import.meta.glob('../locales/*/packages.json'),
+  ...import.meta.glob('../locales/*/retreats.json'),
   ...import.meta.glob('../locales/*/transfers.json'),
   ...import.meta.glob('../locales/*/tripPlanner.json'),
 };

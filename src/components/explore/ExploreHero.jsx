@@ -5,9 +5,11 @@ import { EXCURSIONS } from '../../data/excursionsData.js';
 import { destinationParadisePackages } from '../../data/destinationParadisePackages.js';
 import { destinationParadiseSafariPricing } from '../../data/safariPricing.js';
 import { EXPLORE_HERO_IMAGE, MIN_PACKAGE_PRICE } from '../../data/explorePageContent.js';
+import { useCurrency } from '../../context/useCurrency.js';
 
 export default function ExploreHero() {
   const { t } = useTranslation('explore');
+  const { format } = useCurrency();
   return (
     <section className="exc-hero explore-hero">
       <div className="exc-hero__bg">
@@ -25,7 +27,7 @@ export default function ExploreHero() {
           <div><strong>{destinationParadisePackages.length}</strong><span>{t('hero.stat_packages')}</span></div>
           <div><strong>{destinationParadiseSafariPricing.length}</strong><span>{t('hero.stat_core_safaris')}</span></div>
           <div><strong>{EXCURSIONS.length}</strong><span>{t('hero.stat_excursions')}</span></div>
-          <div><strong>${MIN_PACKAGE_PRICE.toLocaleString()}</strong><span>{t('hero.stat_package_from')}</span></div>
+          <div><strong>{format(MIN_PACKAGE_PRICE)}</strong><span>{t('hero.stat_package_from')}</span></div>
         </div>
       </div>
     </section>

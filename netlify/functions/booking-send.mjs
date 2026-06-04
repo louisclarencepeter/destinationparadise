@@ -1,5 +1,8 @@
 // Booking send — booking request form, delivered via Resend.
 
+import { resolve4, resolve6, resolveMx } from 'node:dns/promises';
+import { domainToASCII } from 'node:url';
+
 const TEAM_TO = process.env.TEAM_EMAIL_BOOKING || 'info@yournexttriptoparadise.com';
 const FROM_ADDRESS = process.env.RESEND_FROM_BOOKING || 'Destination Paradise <booking@yournexttriptoparadise.com>';
 const TEAM_REPLY_TO = process.env.TEAM_REPLY_TO || 'info@yournexttriptoparadise.com';
@@ -9,7 +12,20 @@ const MAX_FIELD = 400;
 const MAX_MESSAGE = 8_000;
 const MAX_DRAFT = 8_000;
 
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+const EMAIL_SYNTAX_MESSAGE = 'That email does not look right. Could you double-check it?';
+const EMAIL_DOMAIN_MESSAGE = 'That email domain does not appear to receive mail. Please check for typos or use another address.';
+const EMAIL_DOMAIN_VERIFY_MESSAGE = 'We could not verify that email domain just now. Please try again in a moment or use another address.';
+const EMAIL_DOMAIN_CACHE_TTL_MS = 30 * 60_000;
+const PERMANENT_DNS_CODES = new Set(['ENODATA', 'ENOTFOUND', 'ENONAME', 'ENODOMAIN', 'ENOENT', 'NOTFOUND']);
+const TEMPORARY_DNS_CODES = new Set(['EAI_AGAIN', 'ETIMEOUT', 'ESERVFAIL', 'SERVFAIL', 'ECONNREFUSED']);
+const emailDomainCache = new Map();
+
+const defaultDnsResolver = {
+  resolveMx,
+  resolve4,
+  resolve6,
+};
 
 const RATE_LIMIT_WINDOW_MS = 10 * 60_000;
 const RATE_LIMIT_MAX_REQUESTS = 4;
@@ -46,6 +62,113 @@ const trimField = (value, max = MAX_FIELD) => String(value || '').trim().slice(0
 const errorResponse = (message, status = 400) =>
   Response.json({ ok: false, error: message }, { status });
 
+function isValidDnsLabel(label) {
+  return (
+    label.length > 0 &&
+    label.length <= 63 &&
+    /^[a-z0-9](?:[a-z0-9-]*[a-z0-9])?$/i.test(label)
+  );
+}
+
+function normalizeEmailAddress(email) {
+  if (!EMAIL_REGEX.test(email) || email.length > 254) return null;
+
+  const atIndex = email.lastIndexOf('@');
+  const local = email.slice(0, atIndex);
+  const domain = domainToASCII(email.slice(atIndex + 1).toLowerCase());
+  const labels = domain.split('.');
+  const tld = labels.at(-1);
+
+  if (
+    !local ||
+    local.length > 64 ||
+    local.startsWith('.') ||
+    local.endsWith('.') ||
+    local.includes('..') ||
+    !domain ||
+    domain.length > 253 ||
+    labels.length < 2 ||
+    labels.some((label) => !isValidDnsLabel(label)) ||
+    !/^[a-z]{2,63}$/i.test(tld)
+  ) {
+    return null;
+  }
+
+  return {
+    email: `${local}@${domain}`,
+    domain,
+  };
+}
+
+function dnsCode(err) {
+  return err?.code || err?.cause?.code || '';
+}
+
+function isPermanentDnsError(err) {
+  return PERMANENT_DNS_CODES.has(dnsCode(err));
+}
+
+function isTemporaryDnsError(err) {
+  return TEMPORARY_DNS_CODES.has(dnsCode(err));
+}
+
+async function lookupRecords(lookup) {
+  try {
+    const records = await lookup();
+    return { records: Array.isArray(records) ? records : [] };
+  } catch (err) {
+    return { error: err };
+  }
+}
+
+async function domainAcceptsMail(domain, resolver = defaultDnsResolver) {
+  const cached = emailDomainCache.get(domain);
+  if (cached && Date.now() - cached.createdAt < EMAIL_DOMAIN_CACHE_TTL_MS) return cached.result;
+
+  const mx = await lookupRecords(() => resolver.resolveMx(domain));
+  const mxRecords = mx.records || [];
+  if (mxRecords.some((record) => record.exchange && record.exchange !== '.')) {
+    const result = { ok: true };
+    emailDomainCache.set(domain, { result, createdAt: Date.now() });
+    return result;
+  }
+  if (mxRecords.some((record) => record.exchange === '.')) {
+    const result = { ok: false, status: 400, message: EMAIL_DOMAIN_MESSAGE };
+    emailDomainCache.set(domain, { result, createdAt: Date.now() });
+    return result;
+  }
+
+  const [a, aaaa] = await Promise.all([
+    lookupRecords(() => resolver.resolve4(domain)),
+    lookupRecords(() => resolver.resolve6(domain)),
+  ]);
+
+  if ((a.records || []).length > 0 || (aaaa.records || []).length > 0) {
+    const result = { ok: true };
+    emailDomainCache.set(domain, { result, createdAt: Date.now() });
+    return result;
+  }
+
+  const errors = [mx.error, a.error, aaaa.error].filter(Boolean);
+  if (errors.some(isTemporaryDnsError) && !errors.every(isPermanentDnsError)) {
+    return { ok: false, status: 503, message: EMAIL_DOMAIN_VERIFY_MESSAGE };
+  }
+
+  const result = { ok: false, status: 400, message: EMAIL_DOMAIN_MESSAGE };
+  emailDomainCache.set(domain, { result, createdAt: Date.now() });
+  return result;
+}
+
+export async function validateEmailAddress(email, resolver = defaultDnsResolver) {
+  const normalized = normalizeEmailAddress(email);
+  if (!normalized) return { ok: false, status: 400, message: EMAIL_SYNTAX_MESSAGE };
+
+  const domainResult = await domainAcceptsMail(normalized.domain, resolver);
+  if (!domainResult.ok) return domainResult;
+
+  return { ok: true, email: normalized.email, domain: normalized.domain };
+}
+
 function row(label, value) {
   if (!value) return '';
   return `<tr>
@@ -71,12 +194,6 @@ export default async (req) => {
     );
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error('booking-send: missing RESEND_API_KEY');
-    return errorResponse('The mailer is not configured yet. Please email us directly, or message us on WhatsApp.', 503);
-  }
-
   let body;
   try {
     body = await req.json();
@@ -89,7 +206,7 @@ export default async (req) => {
   }
 
   const name = trimField(body?.name, 120);
-  const email = trimField(body?.email, 200);
+  let email = trimField(body?.email, 200);
   const phone = trimField(body?.phone, 60);
   const whatsapp = trimField(body?.whatsapp, 60);
   const serviceType = trimField(body?.serviceType, 40);
@@ -112,7 +229,15 @@ export default async (req) => {
   const plannerDraft = String(body?.plannerDraft || '').trim().slice(0, MAX_DRAFT);
 
   if (!name) return errorResponse('Please share your name.');
-  if (!EMAIL_REGEX.test(email)) return errorResponse('That email does not look right. Could you double-check it?');
+  const emailValidation = await validateEmailAddress(email);
+  if (!emailValidation.ok) return errorResponse(emailValidation.message, emailValidation.status);
+  email = emailValidation.email;
+
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error('booking-send: missing RESEND_API_KEY');
+    return errorResponse('The mailer is not configured yet. Please email us directly, or message us on WhatsApp.', 503);
+  }
 
   const productLine = productLabel && productLabel !== 'Not selected'
     ? productLabel

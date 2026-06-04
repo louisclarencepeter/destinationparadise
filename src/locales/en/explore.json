@@ -32,17 +32,17 @@
       {
         "step": "01",
         "title": "Packages",
-        "text": "Best when you want one quote and the whole trip joined up. From ${{price}} pp."
+        "text": "Best when you want one quote and the whole trip joined up. From {{price}} pp."
       },
       {
         "step": "02",
         "title": "Excursions",
-        "text": "Best when your hotel is booked and you need day trips. From ${{price}} pp."
+        "text": "Best when your hotel is booked and you need day trips. From {{price}} pp."
       },
       {
         "step": "03",
         "title": "Safaris",
-        "text": "Best when mainland wildlife is the anchor. Core routes from ${{price}} pp."
+        "text": "Best when mainland wildlife is the anchor. Core routes from {{price}} pp."
       }
     ]
   },

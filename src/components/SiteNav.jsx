@@ -10,6 +10,7 @@ const NAV_ITEMS = [
   { key: 'excursions', to: '/excursions', icon: 'compass' },
   { key: 'safaris', to: '/safaris', icon: 'binoculars' },
   { key: 'packages', to: '/packages', icon: 'suitcase' },
+  { key: 'retreats', to: '/retreats', icon: 'lotus' },
   { key: 'trip_planner', to: '/trip-planner', icon: 'route', hasBadge: true },
   { key: 'explore', to: '/explore', icon: 'map' },
   { key: 'about', to: '/aboutus', icon: 'info', desktopHidden: true },
@@ -21,6 +22,7 @@ const NAV_ICONS = {
   compass: ['M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z', 'm15.5 8.5-2 5-5 2 2-5 5-2Z'],
   binoculars: ['M7 6h3l2 8H7L5 9a3 3 0 0 1 2-3Z', 'M17 6h-3l-2 8h5l2-5a3 3 0 0 0-2-3Z', 'M7 14a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z', 'M17 14a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z'],
   suitcase: ['M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2', 'M5 7h14a2 2 0 0 1 2 2v9a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V9a2 2 0 0 1 2-2Z', 'M3 13h18'],
+  lotus: ['M12 21c-3 0-5.6-1.8-6.9-4.6C7.1 15.8 10 17 12 21c2-4 4.9-5.2 6.9-4.6C17.6 19.2 15 21 12 21Z', 'M12 21c-1.7-2.6-1.7-5.6 0-8.2 1.7 2.6 1.7 5.6 0 8.2Z', 'M12 21c.4-3.1 2.5-5.4 5.2-6.2-.3 3.1-2.5 5.4-5.2 6.2Z', 'M12 21c-.4-3.1-2.5-5.4-5.2-6.2.3 3.1 2.5 5.4 5.2 6.2Z'],
   route: ['M5 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z', 'M19 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z', 'M7 16h4a4 4 0 0 0 0-8h6'],
   map: ['M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z', 'M9 3v15', 'M15 6v15'],
   bag: ['M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z', 'M3 6h18', 'M16 10a4 4 0 0 1-8 0'],
@@ -84,6 +86,7 @@ const MM_ITEMS = [
   { key: 'excursions',   to: '/excursions'    },
   { key: 'safaris',      to: '/safaris'       },
   { key: 'packages',     to: '/packages'      },
+  { key: 'retreats',     to: '/retreats'      },
   { key: 'trip_planner', to: '/trip-planner', hasBadge: true },
   { key: 'explore',      to: '/explore'       },
 ];

@@ -3,12 +3,15 @@ import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { buildLocalizedPackages } from '../data/packagePresentation.js';
+import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
 
 export default function PackageDetail() {
   const { t, ready } = useTranslation('packages');
+  const { format } = useCurrency();
+  const priceText = (pricing) => (pricing.to ? `${format(pricing.from)} – ${format(pricing.to)}` : format(pricing.from));
   const { id } = useParams();
   const packages = useMemo(() => buildLocalizedPackages(t), [t]);
   const pkg = packages.find((item) => item.id === id);
@@ -68,7 +71,7 @@ export default function PackageDetail() {
           <dl className="exc-block__facts">
             <div><dt>{t('detail.facts.duration')}</dt><dd>{pkg.duration}<small>{t('detail.facts.flexible_pacing')}</small></dd></div>
             <div><dt>{t('detail.facts.category')}</dt><dd>{pkg.category}<small>{t('detail.facts.package_style')}</small></dd></div>
-            <div><dt>{t('detail.facts.price')}</dt><dd>{pkg.priceLabel}<small>{pkg.priceSub}</small></dd></div>
+            <div><dt>{t('detail.facts.price')}</dt><dd>{priceText(pkg.pricing)}<small>{pkg.priceSub}</small></dd></div>
             <div><dt>{t('detail.facts.quote')}</dt><dd>24h<small>{t('detail.facts.custom_proposal')}</small></dd></div>
           </dl>
           <div className="exc-block__cols">
@@ -86,7 +89,7 @@ export default function PackageDetail() {
               {pkg.priceTiers && (
                 <div className="exc-block__col">
                   <h4>{t('detail.starting_prices')}</h4>
-                  <ul>{pkg.priceTiers.map((tier) => <li key={tier.label}>{tier.label}: ${tier.price.toLocaleString()}{tier.suffix || ''}</li>)}</ul>
+                  <ul>{pkg.priceTiers.map((tier) => <li key={tier.label}>{tier.label}: {format(tier.price)}{tier.suffix || ''}</li>)}</ul>
                 </div>
               )}
               {routeItems.length > 0 && audience.length > 0 && (
@@ -110,7 +113,7 @@ export default function PackageDetail() {
             </div>
           )}
           <div className="exc-block__actions">
-            <span className="exc-block__price">{pkg.priceLabel}<small>{pkg.priceSub}</small></span>
+            <span className="exc-block__price">{priceText(pkg.pricing)}<small>{pkg.priceSub}</small></span>
             <span className="exc-block__price-note">{t('detail.price_note')}</span>
             <Link className="btn" to={`/booking?type=package&item=${encodeURIComponent(pkg.slug)}`}>{t('detail.build_package')}</Link>
             <Link className="btn btn--ghost-dark" to="/packages">{t('detail.all_packages')}</Link>

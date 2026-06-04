@@ -4,6 +4,7 @@ export const SERVICE_TYPES = [
   { value: 'safari', label: 'Safari', text: 'Mainland wildlife routes, fly-in safaris, migration, southern parks, and custom circuits.' },
   { value: 'transfer', label: 'Transfer', text: 'Private airport, hotel-to-hotel, group, premium SUV, or VIP concierge transfer.' },
   { value: 'custom', label: 'Custom plan', text: 'Not sure yet? Tell us the shape and we will build a route around you.' },
+  { value: 'retreat', label: 'Retreat', text: '14-day yoga & safari retreat on Zanzibar — sunrise vinyasa, yin evenings, meditation, and a mainland safari.' },
 ];
 
 export const PAYMENT_OPTIONS = [
@@ -62,22 +63,25 @@ export const translatedLabel = (items, value, fallback = value) => (
   items.find((item) => item.value === value)?.label || fallback
 );
 
-export function bookingPriceLabel(item, t) {
+export function bookingPriceLabel(item, t, format) {
   const translate = (key, fallback) => t?.(key, { defaultValue: fallback }) || fallback;
+  const fmt = typeof format === 'function' ? format : money;
 
   if (!item) return translate('price.final_after_availability', 'Final price after availability check');
   if (item.type === 'package') {
-    const to = item.raw.pricing.to ? ` - ${money(item.raw.pricing.to)}` : '';
-    return `${translate('price.from', 'From')} ${money(item.raw.pricing.from)}${to} ${item.unit || item.raw.pricing.unit || translate('price.per_person', 'per person')}`;
+    const to = item.raw.pricing.to ? ` - ${fmt(item.raw.pricing.to)}` : '';
+    return `${translate('price.from', 'From')} ${fmt(item.raw.pricing.from)}${to} ${item.unit || item.raw.pricing.unit || translate('price.per_person', 'per person')}`;
   }
   if (item.type === 'safari') {
-    return `${translate('price.from', 'From')} ${money(item.raw.recommendedPublicPrice.lowSeason)} ${translate('price.pp', 'pp')}`;
+    return `${translate('price.from', 'From')} ${fmt(item.raw.recommendedPublicPrice.lowSeason)} ${translate('price.pp', 'pp')}`;
   }
   if (item.type === 'excursion' && typeof item.raw.price === 'number') {
-    return `${translate('price.from', 'From')} ${money(item.raw.price)} ${item.priceSub || item.raw.priceSub || translate('price.per_person', 'per person')}`;
+    return `${translate('price.from', 'From')} ${fmt(item.raw.price)} ${item.priceSub || item.raw.priceSub || translate('price.per_person', 'per person')}`;
   }
   if (item.type === 'transfer') {
     return item.priceSummary || item.raw.priceSummary || translate('price.final_transfer_after_route', 'Final transfer price after route confirmation');
   }
+  // Retreat deliberately shows the soft "final price after availability" copy in
+  // the booking summary — the "from" price lives on the retreat page instead.
   return translate('price.final_after_availability', 'Final price after availability check');
 }

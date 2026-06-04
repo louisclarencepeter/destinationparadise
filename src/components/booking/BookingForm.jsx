@@ -3,13 +3,17 @@ import { useTranslation } from 'react-i18next';
 export default function BookingForm({
   budgetOptions,
   comfortOptions,
+  errorMessage,
   form,
+  isRetreatRequest,
   isTransferRequest,
   messagePlaceholder,
+  onDepartureChange,
   onSubmit,
   paymentOptions,
   productLabel,
   productPlaceholder,
+  retreatDepartures,
   serviceTypes,
   showDateRange,
   showTravelPreferences,
@@ -70,16 +74,30 @@ export default function BookingForm({
         </label>
       </div>
 
-      <div className={`booking-row${showDateRange ? ' booking-row--thirds' : ''}`}>
-        <label className="booking-field">
-          <span>{showDateRange ? t('form.start_date', { defaultValue: 'Start date' }) : t('form.date', { defaultValue: 'Date' })}</span>
-          <input type="date" name="startDate" value={form.startDate} onChange={update('startDate')} />
-        </label>
-        {showDateRange && (
+      <div className={`booking-row${showDateRange && !isRetreatRequest ? ' booking-row--thirds' : ''}`}>
+        {isRetreatRequest ? (
           <label className="booking-field">
-            <span>{t('form.end_date', { defaultValue: 'End date' })}</span>
-            <input type="date" name="endDate" value={form.endDate} onChange={update('endDate')} />
+            <span>{t('form.retreat_departure', { defaultValue: 'Retreat departure' })}</span>
+            <select name="retreatDeparture" value={form.startDate} onChange={onDepartureChange}>
+              <option value="">{t('form.retreat_departure_placeholder', { defaultValue: 'Choose a departure' })}</option>
+              {retreatDepartures.map((departure) => (
+                <option value={departure.start} key={departure.start}>{departure.label}</option>
+              ))}
+            </select>
           </label>
+        ) : (
+          <>
+            <label className="booking-field">
+              <span>{showDateRange ? t('form.start_date', { defaultValue: 'Start date' }) : t('form.date', { defaultValue: 'Date' })}</span>
+              <input type="date" name="startDate" value={form.startDate} onChange={update('startDate')} />
+            </label>
+            {showDateRange && (
+              <label className="booking-field">
+                <span>{t('form.end_date', { defaultValue: 'End date' })}</span>
+                <input type="date" name="endDate" value={form.endDate} onChange={update('endDate')} />
+              </label>
+            )}
+          </>
         )}
         <label className="booking-field">
           <span>{t('form.guests', { defaultValue: 'Guests' })}</span>
@@ -173,7 +191,9 @@ export default function BookingForm({
         <p className="booking-status booking-status--ok">{t('form.status_sent', { defaultValue: 'Asante. We received your request and will come back with availability, a quote, and the payment next step.' })}</p>
       )}
       {status === 'error' && (
-        <p className="booking-status booking-status--err">{t('form.status_error', { defaultValue: 'That did not go through. Please try again or message us on WhatsApp.' })}</p>
+        <p className="booking-status booking-status--err">
+          {errorMessage || t('form.status_error', { defaultValue: 'That did not go through. Please try again or message us on WhatsApp.' })}
+        </p>
       )}
 
       <button className="btn btn--lg booking-submit" type="submit" disabled={status === 'sending' || status === 'sent'}>

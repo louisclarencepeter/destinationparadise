@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { buildLocalizedPackages, categoryText } from '../data/packagePresentation.js';
+import { useCurrency } from '../context/useCurrency.js';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -25,6 +26,8 @@ const PACKAGE_BATCH_COUNT = 6;
 
 export default function Packages() {
   const { t, ready } = useTranslation('packages');
+  const { format } = useCurrency();
+  const priceText = (pricing) => (pricing.to ? `${format(pricing.from)} – ${format(pricing.to)}` : format(pricing.from));
   const pageRef = useRef(null);
   const [filter, setFilter] = useState('all');
   const [visibleCount, setVisibleCount] = useState(INITIAL_PACKAGE_COUNT);
@@ -91,7 +94,7 @@ export default function Packages() {
           </div>
           <div className="exc-hero__meta">
             <div><strong>{packages.length}</strong><span>{t('hero.stat_packages')}</span></div>
-            <div><strong>${minPackagePrice.toLocaleString()}</strong><span>{t('hero.stat_from')}</span></div>
+            <div><strong>{format(minPackagePrice)}</strong><span>{t('hero.stat_from')}</span></div>
             <div><strong>10</strong><span>{t('hero.stat_styles')}</span></div>
             <div><strong>24h</strong><span>{t('hero.stat_quote_time')}</span></div>
           </div>
@@ -136,7 +139,7 @@ export default function Packages() {
                   <span>{pkg.category}</span>
                 </div>
                 <div className="exc-card__foot">
-                  <span className="exc-card__price">{t('grid.from')} <strong>{pkg.priceLabel}</strong> {pkg.priceSub}</span>
+                  <span className="exc-card__price">{t('grid.from')} <strong>{priceText(pkg.pricing)}</strong> {pkg.priceSub}</span>
                   <span className="exc-card__cta">{t('grid.explore_cta')}</span>
                 </div>
               </div>

@@ -34,6 +34,13 @@ const pageItems = [
     keywords: ['holiday package', 'honeymoon', 'family', 'bush and beach', 'safari zanzibar'],
   },
   {
+    title: 'Yoga Retreat',
+    category: 'Page',
+    description: 'A 7-night small-group yoga retreat on the Zanzibar coast — sunrise vinyasa, yin evenings, meditation, breathwork, and spa.',
+    to: '/retreats',
+    keywords: ['wellness', 'yoga', 'meditation', 'vinyasa', 'yin', 'hatha', 'spa', 'breathwork', 'mindfulness', 'retreat'],
+  },
+  {
     title: 'Transfers',
     category: 'Page',
     description: 'Private airport transfers, hotel transfers, group transport, and VIP airport concierge service.',

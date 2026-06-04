@@ -20,18 +20,21 @@ import { TRANSFER_SERVICE_TIERS } from '../data/transferProducts.js';
 import { useBookingProducts } from '../hooks/useBookingProducts.js';
 import { useFloatingBookingSummary } from '../hooks/useFloatingBookingSummary.js';
 import { buildPlannerHandoff, clearPlannerHandoff, isPlannerHandoffMessage, readPlannerHandoff } from '../utils/plannerHandoff.js';
+import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/booking.css';
 
 export default function Booking() {
-  const { t } = useTranslation('booking');
+  const { t, i18n } = useTranslation('booking');
+  const { format } = useCurrency();
   const [searchParams] = useSearchParams();
   const location = useLocation();
   const products = useBookingProducts(t);
   const [form, setForm] = useState(DEFAULT_BOOKING_FORM);
   const [plannerHandoff, setPlannerHandoff] = useState(null);
   const [status, setStatus] = useState('idle');
+  const [errorMessage, setErrorMessage] = useState('');
   const layoutRef = useRef(null);
   const summarySlotRef = useRef(null);
   const summaryRef = useRef(null);
@@ -122,12 +125,49 @@ export default function Booking() {
   const selectedService = serviceTypes.find((item) => item.value === form.serviceType);
   const isExcursionRequest = form.serviceType === 'excursion';
   const isTransferRequest = form.serviceType === 'transfer';
+  const isRetreatRequest = form.serviceType === 'retreat';
   const selectedTransferTier = transferTiers.find((item) => item.value === form.transferTier);
+  const retreatDepartures = useMemo(() => {
+    const departures = products.retreats?.[0]?.raw.departures || [];
+    const formatter = new Intl.DateTimeFormat(i18n.resolvedLanguage || 'en', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    });
+    return departures.map((dep) => ({
+      ...dep,
+      // Noon avoids the UTC-midnight off-by-one day shift in negative offsets.
+      label: formatter.formatRange(new Date(`${dep.start}T12:00:00`), new Date(`${dep.end}T12:00:00`)),
+    }));
+  }, [products.retreats, i18n.resolvedLanguage]);
+  const onDepartureChange = (event) => {
+    const start = event.target.value;
+    const departure = retreatDepartures.find((dep) => dep.start === start);
+    setStatus('idle');
+    setForm((current) => ({ ...current, startDate: start, endDate: departure?.end || '' }));
+  };
   const showDateRange = !isExcursionRequest && !isTransferRequest;
   const showTravelPreferences = !isExcursionRequest && !isTransferRequest;
-  const dateSummary = showDateRange
-    ? `${form.startDate || t('common.flexible', { defaultValue: 'Flexible' })}${form.endDate ? ` ${t('common.date_to', { defaultValue: 'to' })} ${form.endDate}` : ''}`
-    : form.startDate || t('common.flexible', { defaultValue: 'Flexible' });
+  // Pretty, locale-aware date summary (e.g. "Sep 5 – 18, 2026"). Noon avoids
+  // the UTC-midnight off-by-one day shift in negative offsets.
+  const toSummaryDate = (iso) => {
+    if (!iso) return null;
+    const parsed = new Date(`${iso}T12:00:00`);
+    return Number.isNaN(parsed.getTime()) ? null : parsed;
+  };
+  const summaryDateFormat = new Intl.DateTimeFormat(i18n.resolvedLanguage || 'en', {
+    day: 'numeric',
+    month: 'short',
+    year: 'numeric',
+  });
+  const startSummaryDate = toSummaryDate(form.startDate);
+  const endSummaryDate = showDateRange ? toSummaryDate(form.endDate) : null;
+  const flexibleLabel = t('common.flexible', { defaultValue: 'Flexible' });
+  const dateSummary = startSummaryDate && endSummaryDate
+    ? summaryDateFormat.formatRange(startSummaryDate, endSummaryDate)
+    : startSummaryDate
+      ? summaryDateFormat.format(startSummaryDate)
+      : flexibleLabel;
   const productLabel = isTransferRequest
     ? t('form.product_label_transfer', { defaultValue: 'Transfer route' })
     : t('form.product_label_default', { defaultValue: 'Specific product' });
@@ -148,13 +188,17 @@ export default function Booking() {
   const update = (key) => (event) => {
     const value = event.target.value;
     setStatus('idle');
+    setErrorMessage('');
     setForm((current) => ({
       ...current,
       [key]: value,
       ...(key === 'serviceType'
         ? {
           product: '',
-          endDate: value === 'excursion' || value === 'transfer' ? '' : current.endDate,
+          // Retreat uses fixed departures; clear any free-form dates so the
+          // departure dropdown starts unselected rather than showing a stale date.
+          startDate: value === 'retreat' ? '' : current.startDate,
+          endDate: value === 'excursion' || value === 'transfer' || value === 'retreat' ? '' : current.endDate,
           budget: value === 'excursion' || value === 'transfer' ? '' : current.budget,
           accommodationLevel: value === 'excursion' || value === 'transfer' ? '' : current.accommodationLevel || 'Mid-range',
           transferTier: value === 'transfer' ? current.transferTier || 'standard-private' : current.transferTier,
@@ -167,6 +211,7 @@ export default function Booking() {
     event.preventDefault();
     if (status === 'sending' || status === 'sent') return;
     setStatus('sending');
+    setErrorMessage('');
 
     const payload = {
       ...form,
@@ -180,7 +225,7 @@ export default function Booking() {
       flightNumber: isTransferRequest ? form.flightNumber : '',
       transferTime: isTransferRequest ? form.transferTime : '',
       productLabel: selectedProduct?.label || t('common.not_selected', { defaultValue: 'Not selected' }),
-      estimatedPrice: bookingPriceLabel(selectedProduct, t),
+      estimatedPrice: bookingPriceLabel(selectedProduct, t, format),
       source: plannerHandoff ? 'planner' : 'booking',
       plannerDraft: plannerHandoff?.transcript || '',
     };
@@ -197,8 +242,9 @@ export default function Booking() {
       setForm(DEFAULT_BOOKING_FORM);
       clearPlannerHandoff();
       setPlannerHandoff(null);
-    } catch {
+    } catch (err) {
       setStatus('error');
+      setErrorMessage(err?.message && err.message !== 'booking-request-failed' ? err.message : '');
     }
   };
 
@@ -218,10 +264,14 @@ export default function Booking() {
           <BookingForm
             budgetOptions={budgetOptions}
             comfortOptions={comfortOptions}
+            errorMessage={errorMessage}
             form={form}
+            isRetreatRequest={isRetreatRequest}
             isTransferRequest={isTransferRequest}
             messagePlaceholder={messagePlaceholder}
+            onDepartureChange={onDepartureChange}
             onSubmit={submit}
+            retreatDepartures={retreatDepartures}
             paymentOptions={paymentOptions}
             productLabel={productLabel}
             productPlaceholder={productPlaceholder}

@@ -4,13 +4,15 @@ import {
   MIN_PACKAGE_PRICE,
   MIN_SAFARI_PRICE,
 } from '../../data/explorePageContent.js';
+import { useCurrency } from '../../context/useCurrency.js';
 
 export default function ExploreDoorways() {
   const { t } = useTranslation('explore');
+  const { format } = useCurrency();
   const prices = [
-    MIN_PACKAGE_PRICE.toLocaleString(),
-    MIN_EXPLORE_EXCURSION_PRICE.toLocaleString(),
-    MIN_SAFARI_PRICE.toLocaleString(),
+    format(MIN_PACKAGE_PRICE),
+    format(MIN_EXPLORE_EXCURSION_PRICE),
+    format(MIN_SAFARI_PRICE),
   ];
   const items = t('doorways.items', { returnObjects: true });
 

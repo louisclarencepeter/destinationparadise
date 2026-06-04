@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import { EXCURSION_COMBINATIONS } from '../data/excursionCombinations.js';
+import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 
@@ -10,6 +11,7 @@ const fallbackImage = '/assets/images/excursions/safari-blue-sandbank.webp';
 
 export default function ExcursionCombinationDetail() {
   const { id } = useParams();
+  const { format } = useCurrency();
   const combo = EXCURSION_COMBINATIONS.find((item) => item.id === id);
   const excursions = combo ? combo.excursionIds.map((excursionId) => EXCURSIONS.find((item) => item.id === excursionId)).filter(Boolean) : [];
   const heroExcursion = excursions.find((item) => !item.imageTBD) || excursions[0];
@@ -92,7 +94,7 @@ export default function ExcursionCombinationDetail() {
           </div>
           <div className="exc-block__actions">
             {minPrice > 0 ? (
-              <span className="exc-block__price">${minPrice}<small>estimated from listed stops</small></span>
+              <span className="exc-block__price">{format(minPrice)}<small>estimated from listed stops</small></span>
             ) : (
               <span className="exc-block__price-note">Price on request</span>
             )}

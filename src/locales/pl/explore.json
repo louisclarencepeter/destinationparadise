@@ -32,17 +32,17 @@
       {
         "step": "01",
         "title": "Pakiety",
-        "text": "Najlepsze, gdy chcesz jedną wycenę i całą podróż spiętą w plan. Od ${{price}} za osobę."
+        "text": "Najlepsze, gdy chcesz jedną wycenę i całą podróż spiętą w plan. Od {{price}} za osobę."
       },
       {
         "step": "02",
         "title": "Wycieczki",
-        "text": "Najlepsze, gdy hotel jest już wybrany, a potrzebujesz dni z atrakcjami. Od ${{price}} za osobę."
+        "text": "Najlepsze, gdy hotel jest już wybrany, a potrzebujesz dni z atrakcjami. Od {{price}} za osobę."
       },
       {
         "step": "03",
         "title": "Safari",
-        "text": "Najlepsze, gdy dzika Tanzania ma być głównym punktem podróży. Główne trasy od ${{price}} za osobę."
+        "text": "Najlepsze, gdy dzika Tanzania ma być głównym punktem podróży. Główne trasy od {{price}} za osobę."
       }
     ]
   },

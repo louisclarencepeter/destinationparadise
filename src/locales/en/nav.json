@@ -4,6 +4,7 @@
     "excursions":   { "label": "Excursions",   "hint": "Zanzibar day trips",        "sub": "Stone Town · Reefs · Spice farms" },
     "safaris":      { "label": "Safaris",      "hint": "Mainland wildlife routes",  "sub": "Serengeti · Ngorongoro · Selous" },
     "packages":     { "label": "Packages",     "hint": "Safari, beach, honeymoon",  "sub": "Bush & Beach · 7–14 nights" },
+    "retreats":     { "label": "Retreats",     "hint": "Yoga, spa, meditation",     "sub": "Yoga · Spa · Healing" },
     "trip_planner": { "label": "Trip Planner", "hint": "Shape a custom route",      "sub": "Hand-built · 90 sec", "badge": "AI" },
     "explore":      { "label": "Explore",      "hint": "Compare places and styles", "sub": "Compare places & styles" },
     "about":        { "label": "About Us",     "hint": "Our story and mission",     "sub": "Our story · Mission · Destinations" },

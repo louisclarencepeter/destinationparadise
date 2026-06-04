@@ -4,6 +4,7 @@ import { ArrowIcon } from './Icons.jsx';
 import ResponsiveImage from '../ResponsiveImage.jsx';
 import { destinationParadiseSafariPricing } from '../../data/safariPricing.js';
 import { nextLevelSafariProducts } from '../../data/nextLevelSafariProducts.js';
+import { useCurrency } from '../../context/useCurrency.js';
 
 const SAFARI_FEATURES = [
   {
@@ -32,6 +33,7 @@ const safariCards = SAFARI_FEATURES.map((feature) => {
 
 export default function SafarisSection() {
   const { t } = useTranslation('home');
+  const { format } = useCurrency();
   const totalSafaris = destinationParadiseSafariPricing.length + nextLevelSafariProducts.length;
 
   return (
@@ -57,7 +59,7 @@ export default function SafarisSection() {
               <h3>{trip.title}</h3>
               <p>{t(`safaris.features.${trip.slug}.text`)}</p>
               <div className="safari-card__foot">
-                <span className="safari-card__from">{t('safaris.card.from')} <strong>${trip.price.toLocaleString()}</strong> {t('safaris.card.pp_suffix')}</span>
+                <span className="safari-card__from">{t('safaris.card.from')} <strong>{format(trip.price)}</strong> {t('safaris.card.pp_suffix')}</span>
                 <Link className="ex-card__link" to={`/safaris/${trip.slug}`}>{t('safaris.card.view_details')} <ArrowIcon size={14} /></Link>
               </div>
             </div>
