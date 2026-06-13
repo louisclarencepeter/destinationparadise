@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { buildLocalizedPackages, categoryText } from '../data/packagePresentation.js';
 import { useCurrency } from '../context/useCurrency.js';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
+import { arrayFromTranslation } from '../utils/translationValues.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
@@ -38,10 +39,10 @@ export default function Packages() {
     count: packages.filter(filterItem.match).length,
   })), [packages, t]);
   const minPackagePrice = useMemo(() => Math.min(...packages.map((pkg) => pkg.price)), [packages]);
-  const packageMatches = t('matches.items', { returnObjects: true });
-  const marketCategories = t('market.items', { returnObjects: true });
-  const packageIncluded = t('included.items', { returnObjects: true });
-  const packageSteps = t('steps.items', { returnObjects: true });
+  const packageMatches = arrayFromTranslation(t('matches.items', { returnObjects: true }));
+  const marketCategories = arrayFromTranslation(t('market.items', { returnObjects: true }));
+  const packageIncluded = arrayFromTranslation(t('included.items', { returnObjects: true }));
+  const packageSteps = arrayFromTranslation(t('steps.items', { returnObjects: true }));
   const activeFilter = packageFilters.find((item) => item.key === filter) || packageFilters[0];
   const filteredPackages = useMemo(() => packages.filter(activeFilter.match), [packages, activeFilter]);
   const visible = useMemo(

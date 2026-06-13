@@ -12,7 +12,7 @@ export default function TransfersHero() {
         <img
           src={TRANSFERS_HERO_IMAGE}
           alt=""
-          fetchpriority="high"
+          fetchPriority="high"
           loading="eager"
           decoding="sync"
         />

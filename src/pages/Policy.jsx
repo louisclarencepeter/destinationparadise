@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { CONTACT_INFO } from '../constants/contactInfo.js';
 import { usePageMeta } from '../hooks/usePageMeta.js';
+import { objectFromTranslation } from '../utils/translationValues.js';
 import '../styles/homepage.css';
 import '../styles/policy.css';
 
@@ -21,11 +22,11 @@ function PolicySection({ title, items }) {
 
 export default function Policy({ section = 'privacy' }) {
   const { t } = useTranslation('policy');
-  const policies = t('policies', { returnObjects: true });
+  const policies = objectFromTranslation(t('policies', { returnObjects: true }), {});
   const policy = policies?.[section] || policies?.privacy;
-  const actions = t('contact.actions', { returnObjects: true });
-  const meta = t('meta', { returnObjects: true });
-  const contact = t('contact', { returnObjects: true });
+  const actions = objectFromTranslation(t('contact.actions', { returnObjects: true }), {});
+  const meta = objectFromTranslation(t('meta', { returnObjects: true }), {});
+  const contact = objectFromTranslation(t('contact', { returnObjects: true }), {});
 
   const pageTitle = useMemo(
     () => t('page_title', { title: policy.title }),

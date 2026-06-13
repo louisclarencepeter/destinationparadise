@@ -7,6 +7,7 @@ import {
   categoryToSlug,
 } from '../../data/excursionsPageContent.js';
 import { useCurrency } from '../../context/useCurrency.js';
+import { textFromTranslation } from '../../utils/translationValues.js';
 
 export default function ExcursionsGrid({
   filter,
@@ -19,8 +20,8 @@ export default function ExcursionsGrid({
 }) {
   const { t } = useTranslation('excursions');
   const { format } = useCurrency();
-  const filterLabel = (cat) => (cat === 'all' ? t('grid.filter_all') : t(`categories.${cat}`, cat));
-  const priceUnit = (sub) => (sub ? t(`price_units.${sub}`, sub) : t('grid.per_person_default'));
+  const filterLabel = (cat) => (cat === 'all' ? t('grid.filter_all') : textFromTranslation(t(`categories.${cat}`, { defaultValue: cat }), cat));
+  const priceUnit = (sub) => (sub ? textFromTranslation(t(`price_units.${sub}`, { defaultValue: sub }), sub) : t('grid.per_person_default'));
   return (
     <section className="exc-grid-wrap" id="list">
       <header className="exc-list__head">
@@ -56,7 +57,7 @@ export default function ExcursionsGrid({
           >
             <div className={`exc-card__img${e.imageNeeded ? ' exc-card__img--placeholder' : ''}`} data-cat={categoryToSlug(e.category)}>
               <img src={e.image} alt={e.imageNeeded ? '' : e.alt || e.title} loading="lazy" />
-              <span className="exc-card__cat" data-cat={categoryToSlug(e.category)}>{t(`categories.${e.category}`, e.category)}</span>
+              <span className="exc-card__cat" data-cat={categoryToSlug(e.category)}>{textFromTranslation(t(`categories.${e.category}`, { defaultValue: e.category }), e.category)}</span>
               {e.season && <span className="exc-card__season">{t('grid.season_prefix')} · {e.season}</span>}
             </div>
             <div className="exc-card__body">
@@ -67,7 +68,7 @@ export default function ExcursionsGrid({
                 {e.duration && (
                   <span>
                     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                    {t(`durations.${e.duration}`, e.duration)}
+                    {textFromTranslation(t(`durations.${e.duration}`, { defaultValue: e.duration }), e.duration)}
                   </span>
                 )}
                 {e.from && (

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { INITIAL_SAFARI_COUNT, SAFARI_BATCH_COUNT } from '../../data/safarisPageContent.js';
 import { useCurrency } from '../../context/useCurrency.js';
+import { textFromTranslation } from '../../utils/translationValues.js';
 
 export default function SafariItineraries({
   filteredSafaris,
@@ -15,8 +16,8 @@ export default function SafariItineraries({
 }) {
   const { t } = useTranslation('safaris');
   const { format } = useCurrency();
-  const filterLabel = (item) => t(`filters.${item.key}`, item.label);
-  const priceUnit = (sub) => (sub ? t(`price_units.${sub}`, sub) : '');
+  const filterLabel = (item) => textFromTranslation(t(`filters.${item.key}`, { defaultValue: item.label }), item.label);
+  const priceUnit = (sub) => (sub ? textFromTranslation(t(`price_units.${sub}`, { defaultValue: sub }), sub) : '');
   return (
     <section className="itineraries reveal" id="itineraries">
       <header className="itineraries__head">
@@ -50,7 +51,7 @@ export default function SafariItineraries({
           >
             <div className="exc-card__img">
               <img src={itinerary.image} alt={itinerary.alt || itinerary.title} loading="lazy" />
-              <span className="exc-card__cat">{t(`categories.${itinerary.category}`, itinerary.category)}</span>
+              <span className="exc-card__cat">{textFromTranslation(t(`categories.${itinerary.category}`, { defaultValue: itinerary.category }), itinerary.category)}</span>
               {itinerary.feature && <span className="exc-card__season">{t('itineraries.most_popular')}</span>}
               {itinerary.productType && <span className="exc-card__season">{itinerary.productType}</span>}
             </div>

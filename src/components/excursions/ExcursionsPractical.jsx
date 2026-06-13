@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { arrayFromTranslation } from '../../utils/translationValues.js';
 
 const PRACTICAL_COLUMNS = [
   { key: 'included', icon: 'check' },
@@ -23,7 +24,7 @@ export default function ExcursionsPractical() {
     <section className="exc-prac">
       <div className="exc-prac__grid">
         {PRACTICAL_COLUMNS.map((col) => {
-          const items = t(`practical.columns.${col.key}.items`, { returnObjects: true });
+          const items = arrayFromTranslation(t(`practical.columns.${col.key}.items`, { returnObjects: true }));
           return (
             <div className="exc-prac__col" key={col.key}>
               <h4>{t(`practical.columns.${col.key}.heading`)}</h4>

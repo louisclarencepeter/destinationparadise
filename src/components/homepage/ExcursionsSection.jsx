@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { ArrowIcon } from './Icons.jsx';
 import ResponsiveImage from '../ResponsiveImage.jsx';
 import { useCurrency } from '../../context/useCurrency.js';
+import { objectFromTranslation } from '../../utils/translationValues.js';
 
 export default function ExcursionsSection({ tweaks, excursions }) {
   const { t } = useTranslation('home');
@@ -21,7 +22,7 @@ export default function ExcursionsSection({ tweaks, excursions }) {
       </header>
       <div className="excursions__grid">
         {excursions.map((tr) => {
-          const localized = t(`excursions.featured.${tr.id}`, { returnObjects: true, defaultValue: {} });
+          const localized = objectFromTranslation(t(`excursions.featured.${tr.id}`, { returnObjects: true, defaultValue: {} }), {});
           const title = localized.title || tr.title;
           const description = localized.description || tr.description;
           const duration = localized.duration || tr.duration;

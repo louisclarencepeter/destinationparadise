@@ -1,5 +1,11 @@
 import { useEffect } from 'react';
 
+/**
+ * @param {React.RefObject<Element | null>} rootRef
+ * @param {string} [selector]
+ * @param {unknown} [refreshKey]
+ * @param {number} [threshold]
+ */
 export function useRevealOnScroll(rootRef, selector = '.reveal:not(.is-visible)', refreshKey = 0, threshold = 0.12) {
   useEffect(() => {
     const root = rootRef.current;
