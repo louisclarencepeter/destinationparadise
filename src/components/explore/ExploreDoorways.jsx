@@ -5,6 +5,7 @@ import {
   MIN_SAFARI_PRICE,
 } from '../../data/explorePageContent.js';
 import { useCurrency } from '../../context/useCurrency.js';
+import { arrayFromTranslation } from '../../utils/translationValues.js';
 
 export default function ExploreDoorways() {
   const { t } = useTranslation('explore');
@@ -14,7 +15,7 @@ export default function ExploreDoorways() {
     format(MIN_EXPLORE_EXCURSION_PRICE),
     format(MIN_SAFARI_PRICE),
   ];
-  const items = t('doorways.items', { returnObjects: true });
+  const items = arrayFromTranslation(t('doorways.items', { returnObjects: true }));
 
   return (
     <section className="saf-steps reveal">

@@ -1,8 +1,9 @@
 import { useTranslation } from 'react-i18next';
+import { arrayFromTranslation } from '../../utils/translationValues.js';
 
 export default function SafariIncluded() {
   const { t } = useTranslation('safaris');
-  const items = t('included.items', { returnObjects: true });
+  const items = arrayFromTranslation(t('included.items', { returnObjects: true }));
   return (
     <section className="included reveal">
       <div className="included__wrap">

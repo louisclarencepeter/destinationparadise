@@ -17,7 +17,7 @@ export default function ResponsiveImage({ src, alt = '', fetchpriority, fetchPri
   const resolvedFetchPriority = fetchPriority ?? normalizeFetchPriority(fetchpriority);
 
   if (typeof src !== 'string' || !src.endsWith('.webp')) {
-    return <img {...imageProps} src={src} alt={alt} fetchpriority={resolvedFetchPriority} width={width} height={height} />;
+    return <img {...imageProps} src={src} alt={alt} fetchPriority={resolvedFetchPriority} width={width} height={height} />;
   }
 
   const meta = imageManifest[src];
@@ -40,7 +40,7 @@ export default function ResponsiveImage({ src, alt = '', fetchpriority, fetchPri
       {...imageProps}
       src={src}
       alt={alt}
-      fetchpriority={resolvedFetchPriority}
+      fetchPriority={resolvedFetchPriority}
       width={width ?? fullWidth}
       height={height ?? fullHeight}
       srcSet={srcSetParts.join(', ')}

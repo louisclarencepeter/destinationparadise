@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { ArrowIcon } from './Icons.jsx';
 import ResponsiveImage from '../ResponsiveImage.jsx';
+import { arrayFromTranslation } from '../../utils/translationValues.js';
 
 const HERO_SLIDES = [
   '/assets/images/home/aerial-boats-turquoise-water.webp',
@@ -65,10 +66,10 @@ function HeroMotto() {
 
 export default function HeroSection({ tweaks, handleHeroSearch }) {
   const { t } = useTranslation('home');
-  const popularPackages = t('hero.search.popular_packages', { returnObjects: true });
-  const tanzaniaSafaris = t('hero.search.tanzania_safaris', { returnObjects: true });
-  const zanzibarExcursions = t('hero.search.zanzibar_excursions', { returnObjects: true });
-  const guestsOptions = t('hero.search.guests_options', { returnObjects: true });
+  const popularPackages = arrayFromTranslation(t('hero.search.popular_packages', { returnObjects: true }));
+  const tanzaniaSafaris = arrayFromTranslation(t('hero.search.tanzania_safaris', { returnObjects: true }));
+  const zanzibarExcursions = arrayFromTranslation(t('hero.search.zanzibar_excursions', { returnObjects: true }));
+  const guestsOptions = arrayFromTranslation(t('hero.search.guests_options', { returnObjects: true }));
   const guestsDefault = t('hero.search.guests_default');
   const anyOption = t('hero.search.any_option');
   const [activeSlide, setActiveSlide] = useState(0);
@@ -153,7 +154,7 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
             alt=""
             loading={index === 0 ? 'eager' : 'lazy'}
             decoding={index === 0 ? 'sync' : 'async'}
-            fetchpriority={index === 0 ? 'high' : 'auto'}
+            fetchPriority={index === 0 ? 'high' : 'auto'}
           />
         ))}
       </div>

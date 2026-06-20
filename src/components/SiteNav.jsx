@@ -249,7 +249,7 @@ export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeMo
         role="dialog"
         aria-modal="true"
         aria-label={t('menu.site_nav_label')}
-        {...(navOpen ? {} : { inert: '' })}
+        {...(navOpen ? {} : { inert: true })}
       >
         <div className="mm-menu__bg" style={navOpen ? { backgroundImage: `url('${MM_BGS[bgIndex]}')` } : undefined} />
         <div className="mm-menu__scrim" />

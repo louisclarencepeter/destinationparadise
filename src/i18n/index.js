@@ -50,14 +50,17 @@ const localeBackend = {
     }
 
     loader()
-      .then((module) => callback(null, module.default || module))
+      .then((module) => {
+        const loaded = /** @type {{ default?: unknown }} */ (module);
+        callback(null, loaded.default || module);
+      })
       .catch((error) => callback(error, false));
   },
 };
 
 i18n
   .use(LanguageDetector)
-  .use(localeBackend)
+  .use(/** @type {import('i18next').BackendModule} */ (localeBackend))
   .use(initReactI18next)
   .init({
     resources: {

@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { PARKS } from '../../data/safariPageData.js';
+import { arrayFromTranslation, textFromTranslation } from '../../utils/translationValues.js';
 
 const PARK_KEYS = {
   'Serengeti National Park': 'serengeti',
@@ -20,9 +21,9 @@ export default function SafariParks() {
       <div className="parks__grid">
         {PARKS.map((park) => {
           const key = PARK_KEYS[park.name];
-          const name = key ? t(`parks.items.${key}.name`, park.name) : park.name;
-          const blurb = key ? t(`parks.items.${key}.blurb`, park.blurb) : park.blurb;
-          const tags = key ? t(`parks.items.${key}.tags`, { returnObjects: true, defaultValue: park.tags }) : park.tags;
+          const name = key ? textFromTranslation(t(`parks.items.${key}.name`, { defaultValue: park.name }), park.name) : park.name;
+          const blurb = key ? textFromTranslation(t(`parks.items.${key}.blurb`, { defaultValue: park.blurb }), park.blurb) : park.blurb;
+          const tags = key ? arrayFromTranslation(t(`parks.items.${key}.tags`, { returnObjects: true, defaultValue: park.tags }), park.tags) : park.tags;
           return (
             <article className={`park-card${park.size === 'lg' ? ' park-card--lg' : ''}`} key={park.name}>
               <div className="park-card__img"><img src={park.image} alt="" loading="lazy" /></div>

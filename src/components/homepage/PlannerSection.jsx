@@ -3,6 +3,7 @@ import ReactMarkdown from 'react-markdown';
 import { useTranslation } from 'react-i18next';
 import '../../styles/homepage/planner.css';
 import { extractContact } from '../../utils/plannerHandoff.js';
+import { arrayFromTranslation } from '../../utils/translationValues.js';
 
 const HANDOFF_TOKEN = '[[PLANNER_HANDOFF_READY]]';
 const HANDOFF_TOKEN_REGEX = /\[\[\s*PLANNER_HANDOFF_READY\s*\]\]/g;
@@ -12,8 +13,8 @@ const stripToken = (text = '') => text.replace(HANDOFF_TOKEN_REGEX, '').trim();
 export default function PlannerSection({ initialPrompt }) {
   const { t } = useTranslation('home');
   const plannerTitle = t('planner.title');
-  const quickReplies = useMemo(() => t('planner.quick_replies', { returnObjects: true }), [t]);
-  const thinkingMessages = useMemo(() => t('planner.thinking_messages', { returnObjects: true }), [t]);
+  const quickReplies = useMemo(() => arrayFromTranslation(t('planner.quick_replies', { returnObjects: true })), [t]);
+  const thinkingMessages = useMemo(() => arrayFromTranslation(t('planner.thinking_messages', { returnObjects: true })), [t]);
   const [history, setHistory] = useState(() => {
     try {
       const saved = localStorage.getItem('plannerHistory');

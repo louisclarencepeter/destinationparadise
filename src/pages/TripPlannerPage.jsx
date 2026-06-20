@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PlannerSection from '../components/homepage/PlannerSection.jsx';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
+import { arrayFromTranslation } from '../utils/translationValues.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 
@@ -33,8 +34,8 @@ export default function TripPlannerPage() {
   const [selectedPrompt, setSelectedPrompt] = useState(null);
   const scrollTimeoutRef = useRef(null);
   const handledPlacePromptRef = useRef(null);
-  const plannerPrompts = useMemo(() => t('prompts.items', { returnObjects: true }), [t]);
-  const plannerSteps = useMemo(() => t('steps.items', { returnObjects: true }), [t]);
+  const plannerPrompts = useMemo(() => arrayFromTranslation(t('prompts.items', { returnObjects: true })), [t]);
+  const plannerSteps = useMemo(() => arrayFromTranslation(t('steps.items', { returnObjects: true })), [t]);
 
   useEffect(() => {
     document.title = t('page_title');
