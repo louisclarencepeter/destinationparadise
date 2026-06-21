@@ -161,11 +161,13 @@ export default function ContactSection() {
             <textarea ref={messageRef} name="message" rows={5} required value={form.message} onChange={update('message')} />
           </label>
 
-          {status === 'sent' && (
-            <p className="contact__status contact__status--ok">{t('contact.form.status_ok')}</p>
-          )}
+          <div className="contact__status-region" role="status" aria-live="polite">
+            {status === 'sent' && (
+              <p className="contact__status contact__status--ok">{t('contact.form.status_ok')}</p>
+            )}
+          </div>
           {status === 'error' && (
-            <p className="contact__status contact__status--err">{t('contact.form.status_err_prefix')} {CONTACT_INFO.email} {t('contact.form.status_err_suffix')}</p>
+            <p className="contact__status contact__status--err" role="alert">{t('contact.form.status_err_prefix')} {CONTACT_INFO.email} {t('contact.form.status_err_suffix')}</p>
           )}
 
           <button

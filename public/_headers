@@ -1,7 +1,10 @@
 /*
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
-  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https://*.basemaps.cartocdn.com https://www.google-analytics.com https://www.googletagmanager.com; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://api.open-meteo.com https://marine-api.open-meteo.com https://open.er-api.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; worker-src 'self'
 
 /assets/*
   Cache-Control: public, max-age=31536000, immutable

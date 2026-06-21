@@ -1,8 +1,9 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { buildLocalizedPackages } from '../data/packagePresentation.js';
+import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
 import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -16,11 +17,17 @@ export default function PackageDetail() {
   const packages = useMemo(() => buildLocalizedPackages(t), [t]);
   const pkg = packages.find((item) => item.id === id);
 
-  useEffect(() => {
-    document.title = pkg
-      ? `${pkg.title} · Destination Paradise`
-      : t('detail.not_found_page_title');
-  }, [pkg, t]);
+  usePageMeta(
+    pkg
+      ? {
+          title: `${pkg.title} · Destination Paradise`,
+          description: clampDescription(
+            pkg.description ||
+              `${pkg.title} — a complete Zanzibar & Tanzania travel package with safaris, beaches, and seamless transfers.`,
+          ),
+        }
+      : { title: t('detail.not_found_page_title'), noindex: true },
+  );
 
   if (!ready) return null;
 

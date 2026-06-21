@@ -19,6 +19,7 @@ import {
 import { TRANSFER_SERVICE_TIERS } from '../data/transferProducts.js';
 import { useBookingProducts } from '../hooks/useBookingProducts.js';
 import { useFloatingBookingSummary } from '../hooks/useFloatingBookingSummary.js';
+import usePageMeta from '../hooks/usePageMeta.js';
 import { buildPlannerHandoff, clearPlannerHandoff, isPlannerHandoffMessage, readPlannerHandoff } from '../utils/plannerHandoff.js';
 import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
@@ -38,16 +39,26 @@ export default function Booking() {
   const layoutRef = useRef(null);
   const summarySlotRef = useRef(null);
   const summaryRef = useRef(null);
-  const summaryFloat = useFloatingBookingSummary(layoutRef, summarySlotRef, summaryRef, form);
+  const prefillKeyRef = useRef(null);
+  // Only the fields that change the summary's rendered height/content drive a
+  // re-measure — keying on the whole `form` would re-subscribe the scroll/resize
+  // listeners on every keystroke.
+  const summaryRefreshKey = `${form.serviceType}|${form.product}|${form.paymentPreference}|${form.transferTier}`;
+  const summaryFloat = useFloatingBookingSummary(layoutRef, summarySlotRef, summaryRef, summaryRefreshKey);
   const serviceTypes = useMemo(() => translatedList(t, 'service_types', SERVICE_TYPES), [t]);
   const paymentOptions = useMemo(() => translatedList(t, 'payment_options', PAYMENT_OPTIONS), [t]);
   const transferTiers = useMemo(() => translatedList(t, 'transfer_tiers', TRANSFER_SERVICE_TIERS), [t]);
   const budgetOptions = useMemo(() => translatedList(t, 'budget_options', BUDGET_OPTIONS), [t]);
   const comfortOptions = useMemo(() => translatedList(t, 'comfort_options', COMFORT_OPTIONS), [t]);
 
-  useEffect(() => {
-    document.title = t('page_title', { defaultValue: 'Booking Request · Destination Paradise' });
-  }, [t]);
+  usePageMeta({
+    title: t('page_title', { defaultValue: 'Booking Request · Destination Paradise' }),
+    description: t('meta_description', {
+      defaultValue:
+        'Request a booking or custom quote for Zanzibar & Tanzania — excursions, safaris, packages, retreats and transfers. Fast replies and secure payment links.',
+    }),
+    canonical: '/book-now',
+  });
 
   useEffect(() => {
     if (location.hash !== '#booking-details') return undefined;
@@ -64,18 +75,29 @@ export default function Booking() {
     const item = searchParams.get('item') || searchParams.get('product');
     if (!type && !item) return;
 
+    // Prefill once per unique deep link. `t` / `products` / `serviceTypes` change
+    // identity when the booking namespace lazy-loads or the language switches;
+    // without this guard the unmatched branch re-prepends its message and can
+    // clobber text the guest typed in between.
+    const linkKey = searchParams.toString();
+    if (prefillKeyRef.current === linkKey) return;
+
     const matched = products.all.find((product) => (
       (type ? product.type === type : true) &&
       (product.raw.slug === item || product.raw.id === item || product.value === item)
     ));
 
     if (matched) {
+      prefillKeyRef.current = linkKey;
       setForm((current) => ({
         ...current,
         serviceType: matched.type,
         product: matched.value,
       }));
-    } else if (type || item) {
+    } else if (products.all.length > 0) {
+      // Products are loaded and nothing matched — a genuine unmatched deep link.
+      // Prefill the interested-in message exactly once.
+      prefillKeyRef.current = linkKey;
       const title = searchParams.get('title');
       setForm((current) => ({
         ...current,
@@ -89,6 +111,8 @@ export default function Booking() {
           : current.message,
       }));
     }
+    // If products.all is still empty (namespace loading), do nothing and let the
+    // effect re-run after load without locking the guard.
   }, [products.all, searchParams, serviceTypes, t]);
 
   useEffect(() => {

@@ -298,6 +298,7 @@ export default function PlannerSection({ initialPrompt }) {
               ref={inputRef}
               className="planner__input"
               rows={1}
+              aria-label={t('planner.form.input_aria')}
               placeholder={
                 handoffState === 'sent' || handoffState === 'updated'
                   ? t('planner.form.placeholder_done')

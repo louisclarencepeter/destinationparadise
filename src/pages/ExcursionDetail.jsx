@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { EXCURSIONS } from '../data/excursionsData.js';
+import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
 import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -25,13 +25,18 @@ export default function ExcursionDetail() {
   const { format } = useCurrency();
   const excursion = EXCURSIONS.find((item) => item.id === id);
 
-  useEffect(() => {
-    if (excursion) {
-      document.title = `${excursion.title} · Destination Paradise`;
-    } else {
-      document.title = 'Excursion Not Found · Destination Paradise';
-    }
-  }, [excursion]);
+  usePageMeta(
+    excursion
+      ? {
+          title: `${excursion.title} · Destination Paradise`,
+          description: clampDescription(
+            excursion.description ||
+              excursion.intro ||
+              `${excursion.title} — a guided Zanzibar excursion with hotel pickup, small groups, and local guides.`,
+          ),
+        }
+      : { title: 'Excursion Not Found · Destination Paradise', noindex: true },
+  );
 
   if (!excursion) {
     return (

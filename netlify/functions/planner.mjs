@@ -7,6 +7,7 @@ import { EXCURSIONS } from '../../src/data/excursionsData.js';
 import { destinationParadisePackages } from '../../src/data/destinationParadisePackages.js';
 import { nextLevelSafariProducts } from '../../src/data/nextLevelSafariProducts.js';
 import { destinationParadiseSafariPricing } from '../../src/data/safariPricing.js';
+import { createRateLimiter, rateLimitKey } from './_shared.mjs';
 
 const PLANNER_MODEL = 'claude-haiku-4-5-20251001';
 const MAX_REQUEST_BYTES = 20_000;
@@ -16,34 +17,9 @@ const MAX_TOTAL_CHARS = 6_000;
 
 // Per-IP rate limit. In-memory: resets on cold start and isn't shared across
 // concurrent function instances, so it's a defense against burst abuse from a
-// single IP, not a hard quota. Pair with an Anthropic billing alert.
-const RATE_LIMIT_WINDOW_MS = 60_000;
-const RATE_LIMIT_MAX_REQUESTS = 12;
-const rateLimitBuckets = new Map();
-
-function rateLimitKey(req) {
-  const forwarded = req.headers.get('x-forwarded-for') || '';
-  const ip = forwarded.split(',')[0].trim() || req.headers.get('x-nf-client-connection-ip') || 'unknown';
-  return ip;
-}
-
-function checkRateLimit(key) {
-  const now = Date.now();
-  const bucket = rateLimitBuckets.get(key);
-
-  if (!bucket || now - bucket.start > RATE_LIMIT_WINDOW_MS) {
-    rateLimitBuckets.set(key, { start: now, count: 1 });
-    return { ok: true };
-  }
-
-  if (bucket.count >= RATE_LIMIT_MAX_REQUESTS) {
-    const retryAfter = Math.max(1, Math.ceil((RATE_LIMIT_WINDOW_MS - (now - bucket.start)) / 1000));
-    return { ok: false, retryAfter };
-  }
-
-  bucket.count += 1;
-  return { ok: true };
-}
+// single IP, not a hard quota. The real guardrail on aggregate cost for this
+// paid endpoint is an Anthropic billing/spend cap — keep one configured.
+const checkRateLimit = createRateLimiter({ windowMs: 60_000, max: 12 });
 
 const formatMoney = (value) => `$${Number(value).toLocaleString()}`;
 
@@ -162,7 +138,7 @@ Use the listed products as starting points when they fit. Never invent specific 
 const plannerError = (reply, status = 400) =>
   Response.json({ reply }, { status });
 
-function validateHistory(rawHistory) {
+export function validateHistory(rawHistory) {
   if (!Array.isArray(rawHistory)) {
     return { ok: false, reply: 'Please send the planner history as a list of messages.' };
   }

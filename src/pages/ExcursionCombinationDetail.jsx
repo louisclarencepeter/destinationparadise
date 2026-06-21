@@ -1,8 +1,8 @@
-import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import { EXCURSION_COMBINATIONS } from '../data/excursionCombinations.js';
+import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
 import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -18,11 +18,17 @@ export default function ExcursionCombinationDetail() {
   const heroImage = heroExcursion && !heroExcursion.imageTBD ? heroExcursion.image : fallbackImage;
   const minPrice = excursions.reduce((total, item) => total + (typeof item.price === 'number' ? item.price : 0), 0);
 
-  useEffect(() => {
-    document.title = combo
-      ? `${combo.title} · Excursion Combination · Destination Paradise`
-      : 'Excursion Combination Not Found · Destination Paradise';
-  }, [combo]);
+  usePageMeta(
+    combo
+      ? {
+          title: `${combo.title} · Excursion Combination · Destination Paradise`,
+          description: clampDescription(
+            combo.desc ||
+              `${combo.title} — a combined Zanzibar day pairing ${combo.combo ? combo.combo.join(' and ') : 'two excursions'}, with hotel pickup and local guides.`,
+          ),
+        }
+      : { title: 'Excursion Combination Not Found · Destination Paradise', noindex: true },
+  );
 
   if (!combo) {
     return (

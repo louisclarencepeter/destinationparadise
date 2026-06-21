@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { ALL_SAFARI_PRODUCTS, SAFARI_TYPES } from '../data/safariPageData.js';
+import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
 import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -12,13 +12,18 @@ export default function SafariTypeDetail() {
   const { format } = useCurrency();
   const type = SAFARI_TYPES.find((item) => item.id === typeId);
 
-  useEffect(() => {
-    if (type) {
-      document.title = `${type.title} · Destination Paradise`;
-    } else {
-      document.title = 'Safari Type Not Found · Destination Paradise';
-    }
-  }, [type]);
+  usePageMeta(
+    type
+      ? {
+          title: `${type.title} · Destination Paradise`,
+          description: clampDescription(
+            type.blurb ||
+              type.intro ||
+              `${type.title} safaris across Tanzania — handpicked routes, expert guides, and tailored itineraries.`,
+          ),
+        }
+      : { title: 'Safari Type Not Found · Destination Paradise', noindex: true },
+  );
 
   if (!type) {
     return (

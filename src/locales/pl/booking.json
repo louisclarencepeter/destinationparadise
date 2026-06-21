@@ -596,17 +596,17 @@
     },
     "transfer": {
       "airport-stonetown": {
-        "label": "Airport ⇄ Stone Town",
+        "label": "Lotnisko ⇄ Stone Town",
         "category": "15 - 25 minut",
         "priceSummary": "Prywatnie od $25"
       },
       "airport-paje": {
-        "label": "Airport ⇄ Paje / Jambiani",
+        "label": "Lotnisko ⇄ Paje / Jambiani",
         "category": "1 - 1,5 godziny",
         "priceSummary": "Prywatnie od $45"
       },
       "airport-nungwi": {
-        "label": "Airport ⇄ Nungwi / Kendwa",
+        "label": "Lotnisko ⇄ Nungwi / Kendwa",
         "category": "Około 1,5 godziny",
         "priceSummary": "Prywatnie od $50"
       },
@@ -621,7 +621,7 @@
         "priceSummary": "Minivan od $90"
       },
       "vip-airport-service": {
-        "label": "VIP Airport Concierge",
+        "label": "VIP concierge lotniskowy",
         "category": "Luksusowa obsługa przyjazdu",
         "priceSummary": "VIP od $150"
       }

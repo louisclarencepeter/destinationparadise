@@ -52,6 +52,8 @@ html[data-theme="dark"] {
   --divider: rgba(255,255,255,.1);
   --soft-tint: rgba(255,255,255,.08);
   --card-accent-opacity: 0.18;
+  /* On dark surfaces the bright coral already clears AA, so accent text reverts to it. */
+  --dp-accent-text: #FF8A7A;
 }
 
 html, body {
@@ -80,6 +82,33 @@ html, body {
   flex: 1 0 auto;
   display: flex;
   flex-direction: column;
+}
+.site-main:focus { outline: none; }
+
+/* Skip-to-content link: visually hidden until focused (WCAG 2.4.1 Bypass Blocks). */
+.skip-link {
+  position: absolute;
+  left: 8px;
+  top: -48px;
+  z-index: 2000;
+  padding: .65rem 1.1rem;
+  background: var(--dp-primary, #1A4D6E);
+  color: #fff;
+  border-radius: 0 0 10px 10px;
+  font-family: var(--dp-font-sans);
+  font-weight: 700;
+  text-decoration: none;
+  transition: top .2s ease;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+/* Honor reduced-motion for the global smooth scroll (anchors, hash nav). */
+@media (prefers-reduced-motion: reduce) {
+  html, body { scroll-behavior: auto; }
 }
 
 .site-main > * { width: 100%; }

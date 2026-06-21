@@ -24,7 +24,7 @@
 .cookie-banner__eyebrow {
   display: inline-flex;
   margin-bottom: .35rem;
-  color: var(--dp-accent);
+  color: var(--dp-accent-text);
   font-family: var(--dp-font-sans);
   font-size: .65rem;
   font-weight: 800;

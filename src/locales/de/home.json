@@ -194,18 +194,18 @@
     "title": "Momente von Küste bis Safari",
     "lead": "Ein weiter Blick auf Sansibar und Tansania: Dhows, alte Gassen, Wald, Gewürzfarmen, Sandbänke und Wildlife auf dem Festland.",
     "captions": {
-      "mizingani-waterfront": "Mizingani waterfront",
-      "zebra-mare-and-foal": "Zebra on safari",
-      "dolphin-snorkeling": "Dolphin snorkel",
-      "lioness-and-cub-resting": "Lioness and cub",
-      "stone-town-old-fort": "Stone Town Old Fort",
-      "rhino-on-plains": "Ngorongoro rhino",
-      "safari-blue-sandbank": "Safari Blue sandbank",
-      "crowned-cranes-in-grass": "Crowned cranes",
-      "jozani-red-colobus": "Jozani red colobus",
-      "wildebeest-grazing": "Migration plains",
-      "spice-tour-nutmeg": "Spice farm detail",
-      "male-lion-in-grass": "Serengeti lion"
+      "mizingani-waterfront": "Mizingani-Uferpromenade",
+      "zebra-mare-and-foal": "Zebra auf Safari",
+      "dolphin-snorkeling": "Schnorcheln mit Delfinen",
+      "lioness-and-cub-resting": "Löwin und Junges",
+      "stone-town-old-fort": "Old Fort in Stone Town",
+      "rhino-on-plains": "Nashorn im Ngorongoro",
+      "safari-blue-sandbank": "Safari-Blue-Sandbank",
+      "crowned-cranes-in-grass": "Kronenkraniche",
+      "jozani-red-colobus": "Roter Colobus im Jozani",
+      "wildebeest-grazing": "Migrationsebenen",
+      "spice-tour-nutmeg": "Detail einer Gewürzfarm",
+      "male-lion-in-grass": "Löwe in der Serengeti"
     }
   },
   "testimonials": {
@@ -252,12 +252,12 @@
     },
     "suggestions": {
       "label": "Ausprobieren:",
-      "couple_button": "Couple, 8 nights, beach + dhow",
-      "couple_prompt": "We're a couple, 8 nights in October. We want a mix of beach, dhow sailing, and one big experience. Mid-range hotels.",
-      "family_button": "Family with kids, safari + beach",
-      "family_prompt": "Family of four with kids 9 and 12. Two weeks in July. We want a few days of safari then unwind on a beach. Budget around $4k pp.",
-      "solo_button": "Solo, history + snorkel",
-      "solo_prompt": "Solo traveler, 5 nights in February. Love spice markets, history, snorkeling. Boutique hotel under $200/night."
+      "couple_button": "Paar, 8 Nächte, Strand + Dhow",
+      "couple_prompt": "Wir sind ein Paar, 8 Nächte im Oktober. Wir möchten eine Mischung aus Strand, Dhow-Segeln und einem großen Erlebnis. Mittelklassehotels.",
+      "family_button": "Familie mit Kindern, Safari + Strand",
+      "family_prompt": "Vierköpfige Familie mit Kindern, 9 und 12 Jahre. Zwei Wochen im Juli. Wir möchten ein paar Tage Safari und danach am Strand entspannen. Budget etwa $4.000 p. P.",
+      "solo_button": "Solo, Geschichte + Schnorcheln",
+      "solo_prompt": "Alleinreisende, 5 Nächte im Februar. Liebe Gewürzmärkte, Geschichte und Schnorcheln. Boutique-Hotel unter $200/Nacht."
     },
     "quick_replies": [
       "Strand und Ruhe",
@@ -284,10 +284,10 @@
       "quick_replies_aria": "Schnellantworten"
     },
     "fallbacks": {
-      "reply_blank": "Hmm, I lost my train of thought. Could you say that again?",
-      "reply_after_token": "Asante! I've sent this draft to the team — they'll be in touch within a day.",
-      "network_error": "Pole sana — I couldn't reach the planner just now. Try again in a moment, or message the team directly via the WhatsApp button.",
-      "missing_email": "Share your email in the chat first so we can reply."
+      "reply_blank": "Hmm, ich habe den Faden verloren. Kannst du das noch einmal sagen?",
+      "reply_after_token": "Asante! Ich habe diesen Entwurf ans Team geschickt — sie melden sich innerhalb eines Tages.",
+      "network_error": "Pole sana — ich konnte den Planer gerade nicht erreichen. Versuch es gleich noch einmal oder schreib dem Team direkt über den WhatsApp-Button.",
+      "missing_email": "Teile zuerst deine E-Mail-Adresse im Chat, damit wir antworten können."
     },
     "status": {
       "sending": "Dein Entwurf wird ans Team gesendet…",
@@ -304,7 +304,8 @@
     "form": {
       "placeholder_idle": "Erzähl mir von deiner Traumreise…",
       "placeholder_done": "Schreib hier ein Update…",
-      "send_aria": "Senden"
+      "send_aria": "Senden",
+      "input_aria": "Beschreiben Sie Ihre Reise"
     },
     "foot": {
       "note": "Reiserouten sind Entwürfe. Vor der Buchung prüft und kalkuliert ein Mensch alles.",

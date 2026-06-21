@@ -7,5 +7,42 @@
     "switch_to_english": "Zmień język na angielski",
     "switch_to_polish": "Zmień język na polski",
     "switch_to_german": "Zmień język na niemiecki"
+  },
+  "a11y": {
+    "skip_to_content": "Przejdź do treści"
+  },
+  "back_button": {
+    "label": "Wstecz",
+    "aria": "Wróć do poprzedniej strony"
+  },
+  "cookies": {
+    "aria_label": "Zgoda na pliki cookie",
+    "eyebrow": "Preferencje plików cookie",
+    "title": "Wybierz, jak strona zapamięta Twoją wizytę",
+    "body": "Używamy niezbędnego magazynu, aby strona działała. Za Twoją zgodą analityka pomaga nam zrozumieć wizyty i ulepszać planowanie podróży.",
+    "policy_link": "Przeczytaj politykę plików cookie",
+    "essential_title": "Niezbędne",
+    "essential_desc": "Wymagane dla preferencji motywu, formularzy i stabilności strony.",
+    "analytics_title": "Analityka",
+    "analytics_desc": "Pomaga nam ustalić, które strony są przydatne i gdzie można ulepszyć planowanie.",
+    "essential_only": "Tylko niezbędne",
+    "save": "Zapisz wybór",
+    "customize": "Dostosuj",
+    "accept_all": "Akceptuj wszystkie"
+  },
+  "search": {
+    "button_aria": "Przeszukaj stronę",
+    "dialog_label": "Przeszukaj stronę",
+    "close_backdrop": "Zamknij wyszukiwanie",
+    "query_label": "Zapytanie wyszukiwania",
+    "placeholder": "Szukaj safari, transferów, pakietów, Stone Town...",
+    "clear": "Wyczyść",
+    "close": "Zamknij",
+    "popular_label": "Popularne wyszukiwania",
+    "results_label": "Wyniki wyszukiwania",
+    "loading": "Przygotowywanie indeksu strony...",
+    "empty_title": "Brak dokładnego dopasowania.",
+    "empty_body": "Wypróbuj miejsce, aktywność, typ pakietu, park safari lub trasę transferu – albo wyślij nam indywidualne zapytanie.",
+    "open_planner": "Otwórz plan podróży"
   }
 }

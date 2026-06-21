@@ -109,6 +109,7 @@ export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeMo
   const [bgIndex, setBgIndex] = useState(() => Math.floor(Math.random() * MM_BGS.length));
   const navRef = useRef(null);
   const mmRef = useRef(null);
+  const closeBtnRef = useRef(null);
   const location = useLocation();
 
   // Close on route change
@@ -142,6 +143,12 @@ export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeMo
       previousBodyOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
 
+      // Move focus into the dialog on open; restore it to the trigger on close.
+      const trigger = document.activeElement;
+      const focusTimer = window.requestAnimationFrame(() => {
+        closeBtnRef.current?.focus();
+      });
+
       const handleKey = (e) => {
         if (e.key === 'Escape') {
           setNavOpen(false);
@@ -166,9 +173,11 @@ export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeMo
 
       document.addEventListener('keydown', handleKey);
       return () => {
+        window.cancelAnimationFrame(focusTimer);
         document.body.style.overflow = previousBodyOverflow ?? '';
         document.removeEventListener('keydown', handleKey);
         mediaQuery.removeEventListener('change', closeOnDesktop);
+        if (trigger instanceof HTMLElement) trigger.focus();
       };
     }
 
@@ -262,6 +271,7 @@ export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeMo
           <button
             type="button"
             className="mm-menu__close"
+            ref={closeBtnRef}
             aria-label={t('menu.close')}
             onClick={() => setNavOpen(false)}
           >

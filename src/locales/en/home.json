@@ -304,7 +304,8 @@
     "form": {
       "placeholder_idle": "Tell me your dream trip…",
       "placeholder_done": "Type an update here…",
-      "send_aria": "Send"
+      "send_aria": "Send",
+      "input_aria": "Describe your trip"
     },
     "foot": {
       "note": "Itineraries are drafts. A human reviews and prices everything before you book.",

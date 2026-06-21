@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import SiteNav from './SiteNav.jsx';
 import SiteFooter, { WhatsAppFab } from './SiteFooter.jsx';
 import PageScrollCue from './PageScrollCue.jsx';
@@ -19,6 +20,7 @@ import {
 export default function SiteLayout() {
   const location = useLocation();
   const navigationType = useNavigationType();
+  const { t } = useTranslation('common');
   const [themeState, setThemeState] = useState(() => {
     const mode = readStoredThemeMode();
     return { mode, theme: resolveThemeForMode(mode) };
@@ -94,8 +96,9 @@ export default function SiteLayout() {
 
   return (
     <>
+      <a className="skip-link" href="#main-content">{t('a11y.skip_to_content')}</a>
       <SiteNav theme={theme} themeMode={mode} onThemeModeChange={setThemeMode} />
-      <div className="site-main">
+      <div className="site-main" id="main-content" tabIndex={-1}>
         <Outlet />
       </div>
       <SiteFooter />

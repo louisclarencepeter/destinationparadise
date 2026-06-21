@@ -54,11 +54,12 @@ Set this on Netlify:
 
 - `ANTHROPIC_API_KEY` — required for the AI Trip Planner. Without it, the planner returns a friendly fallback message and points guests to WhatsApp.
 
-The planner endpoint is configured in `netlify.toml`:
+The planner endpoint registers its own route:
 
 - Frontend calls `/api/planner`
-- Netlify rewrites that to `/.netlify/functions/planner`
-- Function file: `netlify/functions/planner.mjs`
+- `netlify/functions/planner.mjs` declares `export const config = { path: '/api/planner' }`,
+  which Netlify routes ahead of the SPA catch-all — no `netlify.toml` rewrite needed.
+- The other functions (`booking-send`, `contact-send`, `planner-send`) work the same way.
 
 ## Routes
 
@@ -177,7 +178,7 @@ Netlify build settings:
   publish = "dist"
 ```
 
-SPA fallback and the planner API rewrite are defined in `netlify.toml`.
+The SPA fallback is defined in `netlify.toml`; `/api/*` routes are owned by each function's own `config.path`.
 
 ## Notes
 

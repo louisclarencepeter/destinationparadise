@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { ALL_SAFARI_PRODUCTS, INCLUDED_LIST } from '../data/safariPageData.js';
+import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
 import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -22,13 +22,18 @@ export default function SafariDetail() {
   const { format } = useCurrency();
   const safari = ALL_SAFARI_PRODUCTS.find((item) => item.id === id);
 
-  useEffect(() => {
-    if (safari) {
-      document.title = `${safari.title} · Destination Paradise`;
-    } else {
-      document.title = 'Safari Not Found · Destination Paradise';
-    }
-  }, [safari]);
+  usePageMeta(
+    safari
+      ? {
+          title: `${safari.title} · Destination Paradise`,
+          description: clampDescription(
+            safari.blurb ||
+              safari.intro ||
+              `${safari.title} — a guided Tanzania safari with park fees, professional guide, and full-board lodging.`,
+          ),
+        }
+      : { title: 'Safari Not Found · Destination Paradise', noindex: true },
+  );
 
   if (!safari) {
     return (

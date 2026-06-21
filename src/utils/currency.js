@@ -58,7 +58,10 @@ function roundNice(value) {
 }
 
 export function convert(usdValue, currency, rates) {
-  const rate = (rates && rates[currency]) ?? FALLBACK_RATES[currency] ?? 1;
+  const candidate = rates && rates[currency];
+  const rate = Number.isFinite(candidate) && candidate > 0
+    ? candidate
+    : (FALLBACK_RATES[currency] ?? 1);
   return Number(usdValue) * rate;
 }
 
@@ -84,6 +87,9 @@ export function getCachedRates() {
     if (!raw) return null;
     const parsed = JSON.parse(raw);
     if (!parsed || !parsed.rates) return null;
+    // Guard against a corrupted cache (e.g. a zero or wildly-off rate) so the
+    // provider falls back to FALLBACK_RATES rather than rendering nonsense prices.
+    if (!isSaneRate(parsed.rates.EUR, 'EUR') || !isSaneRate(parsed.rates.PLN, 'PLN')) return null;
     // Return cached rates even if slightly stale; freshness is best-effort.
     return parsed.rates;
   } catch {
