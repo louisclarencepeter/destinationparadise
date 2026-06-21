@@ -28,16 +28,16 @@ export default function TransfersSection() {
   }, [t]);
 
   return (
-    <section className="home-transfers reveal" id="transfers">
+    <section className="home-transfers" id="transfers">
       <header className="home-transfers__head">
-        <span className="section-eyebrow">{t('transfers.eyebrow')}</span>
-        <h2 className="section-title">{t('transfers.title')}</h2>
-        <p className="section-lead">{t('transfers.lead')}</p>
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('transfers.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('transfers.title')}</h2>
+        <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('transfers.lead')}</p>
       </header>
 
       <div className="home-transfers__grid">
-        {transferCards.map((transfer) => (
-          <article className={`home-transfer-card${transfer.featured ? ' home-transfer-card--feature' : ''}`} key={transfer.slug}>
+        {transferCards.map((transfer, i) => (
+          <article className={`home-transfer-card reveal dp-lift${transfer.featured ? ' home-transfer-card--feature' : ''}`} style={{ '--reveal-index': i }} key={transfer.slug}>
             {transfer.featured && <span className="home-transfer-card__rib">{t('transfers.tags.vip')}</span>}
             <div className="home-transfer-card__head">
               <span className="home-transfer-card__tag">{t(`transfers.tags.${getTransferTagKey(transfer)}`)}</span>
@@ -66,7 +66,7 @@ export default function TransfersSection() {
       </div>
 
       <div className="home-transfers__more">
-        <Link className="btn btn--on-light" to="/transfers">{t('transfers.view_all')} <ArrowIcon size={16} /></Link>
+        <Link className="btn btn--on-light reveal" style={{ '--reveal-index': 0 }} to="/transfers">{t('transfers.view_all')} <ArrowIcon size={16} /></Link>
       </div>
     </section>
   );

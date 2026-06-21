@@ -20,15 +20,15 @@ export default function GallerySection() {
   const { t } = useTranslation('home');
 
   return (
-    <section className="gallery-section reveal" id="gallery">
+    <section className="gallery-section" id="gallery">
       <div className="gallery-head">
-        <span className="section-eyebrow">{t('gallery.eyebrow')}</span>
-        <h2 className="section-title">{t('gallery.title')}</h2>
-        <p className="section-lead">{t('gallery.lead')}</p>
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('gallery.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('gallery.title')}</h2>
+        <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('gallery.lead')}</p>
       </div>
       <div className="gallery-strip">
-        {PHOTOS.map((photo) => (
-          <figure className={photo.className} key={photo.src}>
+        {PHOTOS.map((photo, i) => (
+          <figure className={`${photo.className} reveal`} style={{ '--reveal-index': i }} key={photo.src}>
             <ResponsiveImage src={photo.src} alt="" loading="lazy" decoding="async" sizes="(max-width: 600px) 50vw, (max-width: 1000px) 33vw, 320px" />
             <figcaption className="gallery-tile__caption">{t(`gallery.captions.${photo.key}`)}</figcaption>
           </figure>

@@ -17,14 +17,14 @@ export default function TransfersCta() {
   return (
     <section className="tr-cta">
       <div className="tr-cta__bg">
-        <img src={TRANSFERS_CTA_IMAGE} alt="" loading="lazy" />
+        <img className="dp-drift" src={TRANSFERS_CTA_IMAGE} alt="" loading="lazy" />
         <div className="tr-cta__overlay" />
       </div>
       <div className="tr-cta__inner">
-        <span className="section-eyebrow">{t('cta.eyebrow')}</span>
-        <h2>{t('cta.title')}</h2>
-        <p>{t('cta.text')}</p>
-        <div className="tr-cta__btns">
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('cta.eyebrow')}</span>
+        <h2 className="reveal" style={{ '--reveal-index': 1 }}>{t('cta.title')}</h2>
+        <p className="reveal" style={{ '--reveal-index': 2 }}>{t('cta.text')}</p>
+        <div className="tr-cta__btns reveal" style={{ '--reveal-index': 3 }}>
           <a
             className="btn btn--lg btn--accent"
             href={CONTACT_INFO.whatsappUrl}
@@ -37,7 +37,7 @@ export default function TransfersCta() {
             {t('cta.booking_form')}
           </Link>
         </div>
-        <div className="tr-cta__contacts">
+        <div className="tr-cta__contacts reveal" style={{ '--reveal-index': 4 }}>
           <a href={`tel:${CONTACT_INFO.phones[0]}`}>
             <PhoneIcon />
             +255 768 779 517

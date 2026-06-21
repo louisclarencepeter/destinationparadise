@@ -1,0 +1,119 @@
+/* Site-wide animation system.
+   Promotes the retreat page's polished motion vocabulary to a single global
+   layer so every page shares one look. Imported once from main.jsx (after
+   site-shell.css) so the unscoped selectors apply everywhere.
+
+   Vocabulary:
+   - .reveal / .is-visible  scroll-in entrance (fade + rise + scale + de-blur).
+                            Stagger sequential items with `style={{ '--reveal-index': i }}`.
+   - .dp-lift               hover lift for cards/tiles (pairs with .reveal).
+   - .dp-zoom               media wrapper; its <img> zooms + saturates on hover.
+   - .dp-drift              slow ambient pan/zoom for hero & banner backgrounds.
+
+   The page must run a reveal observer (useRevealOnScroll, or the inline
+   IntersectionObserver on Homepage/Packages/etc.) so `.reveal` elements gain
+   `.is-visible`. Without it `.reveal` content stays hidden by design.
+
+   IMPORTANT: the entrance is an `animation`, not a `transition`. Many cards
+   define their own `transition` (for hover lift/zoom); a transition-based
+   reveal would be clobbered by those (losing the stagger and the opacity/blur
+   fade). Using `animation` keeps the entrance independent of `transition`, so
+   the cascade works on every element and hover transitions keep working. */
+
+/* ---------- Scroll reveal ---------- */
+/* Hidden state carries NO transform — only opacity — so it never establishes a
+   containing block for position:fixed/sticky descendants while at rest. The
+   transform/blur live in the keyframes and exist only during the entrance. */
+.reveal {
+  opacity: 0;
+}
+.reveal.is-visible {
+  opacity: 1;
+  animation: dpRevealIn 0.7s var(--dp-ease-out) calc(var(--reveal-index, 0) * 55ms) backwards;
+}
+@keyframes dpRevealIn {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.99);
+    filter: blur(4px);
+  }
+}
+/* The retreat page has its own scoped, transition-based reveal (with
+   --ret-reveal-index). Neutralise the global animation there so it stays
+   exactly as designed. */
+.retreat-page .reveal.is-visible {
+  animation: none;
+}
+
+/* ---------- Hover lift (cards, tiles, stat chips) ---------- */
+.dp-lift {
+  transition:
+    transform 0.3s var(--dp-ease-out),
+    box-shadow 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease;
+}
+.dp-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 44px rgba(14, 36, 56, 0.12);
+}
+[data-theme="dark"] .dp-lift:hover {
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- Media zoom on hover ---------- */
+.dp-zoom {
+  overflow: hidden;
+}
+.dp-zoom img {
+  transition:
+    transform 0.8s var(--dp-ease-out),
+    filter 0.8s var(--dp-ease-out);
+}
+.dp-zoom:hover img,
+a:hover > .dp-zoom img {
+  transform: scale(1.07);
+  filter: saturate(1.08);
+}
+
+/* ---------- Ambient background drift ---------- */
+@keyframes dpDrift {
+  from { transform: scale(1.04) translate3d(0, 0, 0); }
+  to   { transform: scale(1.1) translate3d(-1.2%, -1%, 0); }
+}
+.dp-drift {
+  animation: dpDrift 22s ease-in-out infinite alternate;
+  will-change: transform;
+}
+/* When a hero plays the shared heroImageReveal entrance first, this variant
+   starts the drift afterwards from the resting scale (1.05) with no snap. */
+@keyframes dpHeroDrift {
+  from { transform: scale(1.05) translate3d(0, 0, 0); }
+  to   { transform: scale(1.11) translate3d(-1.2%, -1%, 0); }
+}
+.dp-hero-drift {
+  animation: heroImageReveal 1.4s var(--dp-ease-out) both,
+             dpHeroDrift 20s ease-in-out 1.4s infinite alternate;
+  will-change: transform, opacity;
+}
+
+/* ---------- Respect reduced motion everywhere ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible {
+    opacity: 1;
+    animation: none;
+  }
+  .dp-lift,
+  .dp-lift:hover,
+  .dp-zoom img,
+  .dp-zoom:hover img {
+    transition: none;
+    transform: none;
+    filter: none;
+  }
+  .dp-drift,
+  .dp-hero-drift {
+    animation: none;
+  }
+}

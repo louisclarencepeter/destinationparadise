@@ -19,11 +19,11 @@ export default function SafariItineraries({
   const filterLabel = (item) => textFromTranslation(t(`filters.${item.key}`, { defaultValue: item.label }), item.label);
   const priceUnit = (sub) => (sub ? textFromTranslation(t(`price_units.${sub}`, { defaultValue: sub }), sub) : '');
   return (
-    <section className="itineraries reveal" id="itineraries">
+    <section className="itineraries" id="itineraries">
       <header className="itineraries__head">
-        <span className="section-eyebrow">{t('itineraries.eyebrow')}</span>
-        <h2 className="section-title">{t('itineraries.title')}</h2>
-        <p className="section-lead">{t('itineraries.lead')}</p>
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('itineraries.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('itineraries.title')}</h2>
+        <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('itineraries.lead')}</p>
       </header>
 
       <div className="exc-filter saf-filter">
@@ -42,11 +42,12 @@ export default function SafariItineraries({
       </div>
 
       <div className="exc-grid saf-route-grid">
-        {visibleSafaris.map((itinerary) => (
+        {visibleSafaris.map((itinerary, i) => (
           <Link
             key={itinerary.id}
             to={`/safaris/${itinerary.id}`}
             className="exc-card saf-route-card reveal"
+            style={{ '--reveal-index': i }}
             aria-label={t('itineraries.explore_aria', { title: itinerary.title })}
           >
             <div className="exc-card__img">

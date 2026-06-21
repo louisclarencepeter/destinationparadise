@@ -13,19 +13,19 @@ const PARK_KEYS = {
 export default function SafariParks() {
   const { t } = useTranslation('safaris');
   return (
-    <section className="parks reveal" id="parks">
+    <section className="parks" id="parks">
       <header className="parks__head">
-        <span className="section-eyebrow">{t('parks.eyebrow')}</span>
-        <h2 className="section-title">{t('parks.title')}</h2>
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('parks.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('parks.title')}</h2>
       </header>
       <div className="parks__grid">
-        {PARKS.map((park) => {
+        {PARKS.map((park, i) => {
           const key = PARK_KEYS[park.name];
           const name = key ? textFromTranslation(t(`parks.items.${key}.name`, { defaultValue: park.name }), park.name) : park.name;
           const blurb = key ? textFromTranslation(t(`parks.items.${key}.blurb`, { defaultValue: park.blurb }), park.blurb) : park.blurb;
           const tags = key ? arrayFromTranslation(t(`parks.items.${key}.tags`, { returnObjects: true, defaultValue: park.tags }), park.tags) : park.tags;
           return (
-            <article className={`park-card${park.size === 'lg' ? ' park-card--lg' : ''}`} key={park.name}>
+            <article className={`park-card reveal${park.size === 'lg' ? ' park-card--lg' : ''}`} style={{ '--reveal-index': i }} key={park.name}>
               <div className="park-card__img"><img src={park.image} alt="" loading="lazy" /></div>
               <div className="park-card__body">
                 <div className="park-card__meta"><span>{park.label}</span><span>{park.area}</span></div>

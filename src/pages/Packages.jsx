@@ -109,9 +109,9 @@ export default function Packages() {
 
       <section className="exc-grid-wrap" id="packages">
         <header className="exc-list__head">
-          <span className="section-eyebrow">{t('grid.eyebrow')}</span>
-          <h2 className="section-title">{t('grid.title')}</h2>
-          <p className="section-lead">{t('grid.lead')}</p>
+          <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('grid.eyebrow')}</span>
+          <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('grid.title')}</h2>
+          <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('grid.lead')}</p>
         </header>
 
         <div className="exc-filter">
@@ -130,8 +130,8 @@ export default function Packages() {
         </div>
 
         <div className="exc-grid">
-          {visible.map((pkg) => (
-            <Link key={pkg.id} to={`/packages/${pkg.id}`} className="exc-card reveal" aria-label={t('grid.explore_aria', { title: pkg.title })}>
+          {visible.map((pkg, i) => (
+            <Link key={pkg.id} to={`/packages/${pkg.id}`} className="exc-card reveal" style={{ '--reveal-index': i }} aria-label={t('grid.explore_aria', { title: pkg.title })}>
               <div className="exc-card__img">
                 <img src={pkg.image} alt="" loading="lazy" />
                 <span className="exc-card__cat">{pkg.category}</span>
@@ -179,15 +179,15 @@ export default function Packages() {
         )}
       </section>
 
-      <section className="saf-compare reveal">
+      <section className="saf-compare">
         <header className="saf-compare__head">
-          <span className="section-eyebrow">{t('matches.eyebrow')}</span>
-          <h2 className="section-title">{t('matches.title')}</h2>
-          <p className="section-lead">{t('matches.lead')}</p>
+          <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('matches.eyebrow')}</span>
+          <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('matches.title')}</h2>
+          <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('matches.lead')}</p>
         </header>
         <div className="saf-compare__grid">
-          {packageMatches.map((item) => (
-            <Link className="saf-compare__card" key={item.slug} to={`/packages/${item.slug}`} aria-label={t('matches.explore_aria', { pick: item.pick })}>
+          {packageMatches.map((item, i) => (
+            <Link className="saf-compare__card reveal" style={{ '--reveal-index': i }} key={item.slug} to={`/packages/${item.slug}`} aria-label={t('matches.explore_aria', { pick: item.pick })}>
               <span>{item.label}</span>
               <h3>{item.pick}</h3>
               <p>{item.note}</p>
@@ -196,44 +196,44 @@ export default function Packages() {
         </div>
       </section>
 
-      <section className="included reveal">
+      <section className="included">
         <div className="included__wrap">
           <div className="included__copy">
-            <span className="section-eyebrow">{t('market.eyebrow')}</span>
-            <h2 className="section-title">{t('market.title')}</h2>
-            <p className="section-lead">{t('market.lead')}</p>
+            <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('market.eyebrow')}</span>
+            <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('market.title')}</h2>
+            <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('market.lead')}</p>
           </div>
           <ul className="included__list">
-            {marketCategories.map((item) => (
-              <li key={item}><span>✓</span> {item}</li>
+            {marketCategories.map((item, i) => (
+              <li className="reveal" style={{ '--reveal-index': i }} key={item}><span>✓</span> {item}</li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="included reveal">
+      <section className="included">
         <div className="included__wrap">
           <div className="included__copy">
-            <span className="section-eyebrow">{t('included.eyebrow')}</span>
-            <h2 className="section-title">{t('included.title')}</h2>
-            <p className="section-lead">{t('included.lead')}</p>
+            <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('included.eyebrow')}</span>
+            <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('included.title')}</h2>
+            <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('included.lead')}</p>
           </div>
           <ul className="included__list">
-            {packageIncluded.map((item) => (
-              <li key={item}><span>✓</span> {item}</li>
+            {packageIncluded.map((item, i) => (
+              <li className="reveal" style={{ '--reveal-index': i }} key={item}><span>✓</span> {item}</li>
             ))}
           </ul>
         </div>
       </section>
 
-      <section className="saf-steps reveal">
+      <section className="saf-steps">
         <header className="saf-steps__head">
-          <span className="section-eyebrow">{t('steps.eyebrow')}</span>
-          <h2 className="section-title">{t('steps.title')}</h2>
+          <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('steps.eyebrow')}</span>
+          <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('steps.title')}</h2>
         </header>
         <div className="saf-steps__grid">
-          {packageSteps.map((item) => (
-            <article className="saf-step" key={item.step}>
+          {packageSteps.map((item, i) => (
+            <article className="saf-step reveal" style={{ '--reveal-index': i }} key={item.step}>
               <span>{item.step}</span>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -243,11 +243,11 @@ export default function Packages() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><ResponsiveImage src="/assets/images/excursions/prison-island-tortoise.webp" alt="" /></div>
+        <div className="exc-cta__bg"><ResponsiveImage className="dp-drift" src="/assets/images/excursions/prison-island-tortoise.webp" alt="" /></div>
         <div className="exc-cta__inner">
-          <h2>{t('cta.title')}</h2>
-          <p>{t('cta.text')}</p>
-          <div className="exc-cta__btns">
+          <h2 className="reveal" style={{ '--reveal-index': 0 }}>{t('cta.title')}</h2>
+          <p className="reveal" style={{ '--reveal-index': 1 }}>{t('cta.text')}</p>
+          <div className="exc-cta__btns reveal" style={{ '--reveal-index': 2 }}>
             <Link className="btn btn--lg btn--accent" to="/booking">{t('cta.get_quote')}</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">{t('cta.ai_planner')}</Link>
           </div>

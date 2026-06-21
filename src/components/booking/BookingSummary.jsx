@@ -36,7 +36,7 @@ export default function BookingSummary({
         ref={summaryRef}
         style={summaryFloat.mode === 'floating' ? { left: summaryFloat.left, width: summaryFloat.width } : undefined}
       >
-        <div className="booking-summary__card">
+        <div className="booking-summary__card reveal" style={{ '--reveal-index': 0 }}>
           <span className="section-eyebrow">{t('summary.eyebrow', { defaultValue: 'Your request' })}</span>
           <h3>{selectedProduct?.label || selectedService?.label || t('summary.custom_plan', { defaultValue: 'Custom plan' })}</h3>
           <p>{selectedProduct?.category || t('summary.flexible_route', { defaultValue: 'Flexible route' })}</p>
@@ -53,7 +53,7 @@ export default function BookingSummary({
           </dl>
         </div>
 
-        <div className="booking-summary__card booking-summary__card--dark">
+        <div className="booking-summary__card booking-summary__card--dark reveal" style={{ '--reveal-index': 1 }}>
           <span>{t('summary.payment_title', { defaultValue: 'How payment works' })}</span>
           <ol>
             {Array.isArray(paymentSteps) && paymentSteps.map((step) => (
@@ -63,7 +63,7 @@ export default function BookingSummary({
           <p>{t('summary.payment_note', { defaultValue: 'No card details are entered or stored on this website.' })}</p>
         </div>
 
-        <div className="booking-summary__mini">
+        <div className="booking-summary__mini reveal" style={{ '--reveal-index': 2 }}>
           <strong>{t('summary.mini_title', { defaultValue: 'Prefer to plan first?' })}</strong>
           <Link to="/trip-planner">{t('summary.mini_link', { defaultValue: 'Open the AI planner →' })}</Link>
         </div>

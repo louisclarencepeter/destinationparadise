@@ -9,14 +9,14 @@ const TESTIMONIALS = [
 export default function TestimonialsSection() {
   const { t } = useTranslation('home');
   return (
-    <section className="testimonials reveal" id="reviews">
+    <section className="testimonials" id="reviews">
       <div className="testimonials__head">
-        <span className="section-eyebrow">{t('testimonials.eyebrow')}</span>
-        <h2 className="section-title">{t('testimonials.title')}</h2>
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('testimonials.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('testimonials.title')}</h2>
       </div>
       <div className="testimonials__grid">
-        {TESTIMONIALS.map((tm) => (
-          <figure className="tm" key={tm.key}>
+        {TESTIMONIALS.map((tm, i) => (
+          <figure className="tm reveal" style={{ '--reveal-index': i }} key={tm.key}>
             <div className="tm__mark">"</div>
             <blockquote className="tm__quote">{t(`testimonials.quotes.${tm.key}.quote`)}</blockquote>
             <div className="tm__foot">

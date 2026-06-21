@@ -40,11 +40,11 @@ export default function NewsletterSection() {
   };
 
   return (
-    <section className="newsletter reveal" id="newsletter">
+    <section className="newsletter" id="newsletter">
       <div>
-        <span className="newsletter__eyebrow">{t('newsletter.eyebrow')}</span>
-        <h3 className="newsletter__title">{t('newsletter.title')}</h3>
-        <p className="newsletter__desc">{t('newsletter.description')}</p>
+        <span className="newsletter__eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('newsletter.eyebrow')}</span>
+        <h3 className="newsletter__title reveal" style={{ '--reveal-index': 1 }}>{t('newsletter.title')}</h3>
+        <p className="newsletter__desc reveal" style={{ '--reveal-index': 2 }}>{t('newsletter.description')}</p>
       </div>
       <form
         className="newsletter__form"

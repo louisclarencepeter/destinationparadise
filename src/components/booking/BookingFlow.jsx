@@ -25,8 +25,8 @@ export default function BookingFlow() {
 
   return (
     <section className="booking-flow" aria-label={t('flow.aria', { defaultValue: 'Booking process' })}>
-      {Array.isArray(steps) && steps.map((step) => (
-        <article key={step.number}>
+      {Array.isArray(steps) && steps.map((step, i) => (
+        <article className="reveal dp-lift" key={step.number} style={{ '--reveal-index': i }}>
           <span>{step.number}</span>
           <h2>{step.title}</h2>
           <p>{step.text}</p>

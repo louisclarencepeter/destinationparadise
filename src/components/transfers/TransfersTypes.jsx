@@ -51,13 +51,13 @@ export default function TransfersTypes() {
   return (
     <section className="tr-types" id="transfer-types">
       <header className="tr-types__head">
-        <span className="section-eyebrow">{t('types.eyebrow')}</span>
-        <h2 className="section-title">{t('types.title')}</h2>
-        <p className="section-lead">{t('types.lead')}</p>
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('types.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('types.title')}</h2>
+        <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('types.lead')}</p>
       </header>
       <div className="tr-types__grid">
-        {transferProducts.map((type) => (
-          <article className={`tr-card ${type.featured ? 'tr-card--feature' : ''}`} key={type.slug} id={type.slug}>
+        {transferProducts.map((type, i) => (
+          <article className={`tr-card reveal ${type.featured ? 'tr-card--feature' : ''}`} key={type.slug} id={type.slug} style={{ '--reveal-index': i }}>
             <div className="tr-card__icon">{TRANSFER_ICONS[type.icon]}</div>
             <div className="tr-card__body">
               <span className="tr-card__sub">{type.duration}</span>
