@@ -25,9 +25,9 @@ export default function ExcursionsGrid({
   return (
     <section className="exc-grid-wrap" id="list">
       <header className="exc-list__head">
-        <span className="section-eyebrow">{t('grid.eyebrow')}</span>
-        <h2 className="section-title">{t('grid.title')}</h2>
-        <p className="section-lead">{t('grid.lead')}</p>
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('grid.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('grid.title')}</h2>
+        <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('grid.lead')}</p>
       </header>
 
       <div className="exc-filter">
@@ -47,11 +47,12 @@ export default function ExcursionsGrid({
       </div>
 
       <div className="exc-grid">
-        {visible.map((e) => (
+        {visible.map((e, i) => (
           <Link
             key={e.id}
             to={`/excursions/${e.id}`}
             className="exc-card reveal"
+            style={{ '--reveal-index': i }}
             data-cat={categoryToSlug(e.category)}
             aria-label={t('grid.explore_aria', { title: e.title })}
           >

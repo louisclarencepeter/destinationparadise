@@ -59,17 +59,17 @@ export default function PackagesSection() {
   }, [t]);
 
   return (
-    <section className="packages reveal" id="packages">
+    <section className="packages" id="packages">
       <header className="packages__head">
-        <span className="section-eyebrow">{t('packages.eyebrow')}</span>
-        <h2 className="section-title">{t('packages.title', { count: destinationParadisePackages.length })}</h2>
-        <p className="section-lead">{t('packages.lead')}</p>
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('packages.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('packages.title', { count: destinationParadisePackages.length })}</h2>
+        <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('packages.lead')}</p>
       </header>
       <div className="packages__grid">
-        {packageCards.map((pkg) => {
+        {packageCards.map((pkg, i) => {
           const ribbonKey = getPackageRibbonKey(pkg.slug);
           return (
-            <article className={`pkg-card${pkg.slug === 'ten-day-classic-safari-zanzibar' ? ' pkg-card--feature' : ''}`} key={pkg.slug}>
+            <article className={`pkg-card reveal${pkg.slug === 'ten-day-classic-safari-zanzibar' ? ' pkg-card--feature' : ''}`} style={{ '--reveal-index': i }} key={pkg.slug}>
               {ribbonKey && (
                 <div className={`pkg-card__rib${pkg.slug === 'ten-day-classic-safari-zanzibar' ? ' pkg-card__rib--gold' : ''}`}>{t(`packages.ribbons.${ribbonKey}`)}</div>
               )}
@@ -91,9 +91,9 @@ export default function PackagesSection() {
           );
         })}
       </div>
-      <div className="packages__note">{t('packages.note')}</div>
+      <div className="packages__note reveal" style={{ '--reveal-index': 0 }}>{t('packages.note')}</div>
       <div className="excursions__more">
-        <Link className="btn btn--on-light" to="/packages">{t('packages.view_all')} <ArrowIcon size={16} /></Link>
+        <Link className="btn btn--on-light reveal" style={{ '--reveal-index': 1 }} to="/packages">{t('packages.view_all')} <ArrowIcon size={16} /></Link>
       </div>
     </section>
   );

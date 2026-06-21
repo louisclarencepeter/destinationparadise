@@ -82,11 +82,11 @@ export default function ContactSection() {
   };
 
   return (
-    <section className="contact reveal" id="contact">
+    <section className="contact" id="contact">
       <header className="contact__head">
-        <span className="section-eyebrow">{t('contact.eyebrow')}</span>
-        <h2 className="section-title">{t('contact.title')}</h2>
-        <p className="section-lead">{t('contact.lead')}</p>
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('contact.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('contact.title')}</h2>
+        <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('contact.lead')}</p>
       </header>
 
       <div className="contact__grid">

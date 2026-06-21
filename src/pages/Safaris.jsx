@@ -50,7 +50,7 @@ export default function Safaris() {
     setVisibleCount(INITIAL_SAFARI_COUNT);
   }, [filter]);
 
-  useRevealOnScroll(pageRef, '.reveal', visibleSafaris, 0.08);
+  useRevealOnScroll(pageRef, '.reveal:not(.is-visible)', visibleSafaris, 0.08);
 
   return (
     <main className="safaris-page" ref={pageRef}>

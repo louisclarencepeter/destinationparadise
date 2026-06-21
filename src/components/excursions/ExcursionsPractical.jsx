@@ -23,10 +23,10 @@ export default function ExcursionsPractical() {
   return (
     <section className="exc-prac">
       <div className="exc-prac__grid">
-        {PRACTICAL_COLUMNS.map((col) => {
+        {PRACTICAL_COLUMNS.map((col, i) => {
           const items = arrayFromTranslation(t(`practical.columns.${col.key}.items`, { returnObjects: true }));
           return (
-            <div className="exc-prac__col" key={col.key}>
+            <div className="exc-prac__col reveal" style={{ '--reveal-index': i }} key={col.key}>
               <h4>{t(`practical.columns.${col.key}.heading`)}</h4>
               <ul>
                 {items.map((it) => (

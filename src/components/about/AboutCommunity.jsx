@@ -29,20 +29,20 @@ export default function AboutCommunity() {
   });
 
   return (
-    <section className="ab-sus reveal" id="community">
+    <section className="ab-sus" id="community">
       <div className="ab-sus__inner">
         <div className="ab-sus__head">
           <div>
-            <span className="ab-story__eyebrow ab-sus__eyebrow">{t('community.eyebrow', { defaultValue: 'Community' })}</span>
-            <h2>{t('community.title_prefix', { defaultValue: 'Built as a' })} <em>{t('community.title_em', { defaultValue: 'network' })}</em>, {t('community.title_suffix', { defaultValue: 'not a closed system.' })}</h2>
+            <span className="ab-story__eyebrow ab-sus__eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('community.eyebrow', { defaultValue: 'Community' })}</span>
+            <h2 className="reveal" style={{ '--reveal-index': 1 }}>{t('community.title_prefix', { defaultValue: 'Built as a' })} <em>{t('community.title_em', { defaultValue: 'network' })}</em>, {t('community.title_suffix', { defaultValue: 'not a closed system.' })}</h2>
           </div>
-          <p>{t('community.lead', { defaultValue: 'Destination Paradise is not only about travel. We believe tourism should also create real opportunities for the people who host you. From day one we are working hand-in-hand with local drivers, guides, hotels, restaurants and service providers — building something the wider community grows with, not around.' })}</p>
+          <p className="reveal" style={{ '--reveal-index': 2 }}>{t('community.lead', { defaultValue: 'Destination Paradise is not only about travel. We believe tourism should also create real opportunities for the people who host you. From day one we are working hand-in-hand with local drivers, guides, hotels, restaurants and service providers — building something the wider community grows with, not around.' })}</p>
         </div>
 
         <div className="ab-sus__grid">
           <div className="ab-sus__pillars">
             {Array.isArray(pillars) && pillars.map((pillar, index) => (
-              <div className="ab-pillar reveal" key={pillar.icon || `pillar-${index}`} style={{ transitionDelay: `${index * 90}ms` }}>
+              <div className="ab-pillar reveal" key={pillar.icon || `pillar-${index}`} style={{ '--reveal-index': index }}>
                 <div className="ab-pillar__icon">{pillarIcons[pillar.icon]}</div>
                 <h4>{pillar.title}</h4>
                 <p>{pillar.body}</p>
@@ -50,7 +50,7 @@ export default function AboutCommunity() {
             ))}
           </div>
 
-          <aside className="ab-sus__quote">
+          <aside className="ab-sus__quote reveal" style={{ '--reveal-index': 0 }}>
             {Array.isArray(quote) && quote.map((paragraph) => (
               <p className="ab-sus__quote-text" key={paragraph}>{paragraph}</p>
             ))}

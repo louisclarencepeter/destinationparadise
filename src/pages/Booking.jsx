@@ -19,6 +19,7 @@ import {
 import { TRANSFER_SERVICE_TIERS } from '../data/transferProducts.js';
 import { useBookingProducts } from '../hooks/useBookingProducts.js';
 import { useFloatingBookingSummary } from '../hooks/useFloatingBookingSummary.js';
+import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import usePageMeta from '../hooks/usePageMeta.js';
 import { buildPlannerHandoff, clearPlannerHandoff, isPlannerHandoffMessage, readPlannerHandoff } from '../utils/plannerHandoff.js';
 import { useCurrency } from '../context/useCurrency.js';
@@ -27,7 +28,7 @@ import '../styles/excursions.css';
 import '../styles/booking.css';
 
 export default function Booking() {
-  const { t, i18n } = useTranslation('booking');
+  const { t, i18n, ready } = useTranslation('booking');
   const { format } = useCurrency();
   const [searchParams] = useSearchParams();
   const location = useLocation();
@@ -38,10 +39,12 @@ export default function Booking() {
   );
   const [status, setStatus] = useState('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const pageRef = useRef(null);
   const layoutRef = useRef(null);
   const summarySlotRef = useRef(null);
   const summaryRef = useRef(null);
   const prefillKeyRef = useRef(/** @type {string | null} */ (null));
+  useRevealOnScroll(pageRef, '.reveal:not(.is-visible)', ready ? i18n.resolvedLanguage : 'loading');
   // Only the fields that change the summary's rendered height/content drive a
   // re-measure — keying on the whole `form` would re-subscribe the scroll/resize
   // listeners on every keystroke.
@@ -275,15 +278,15 @@ export default function Booking() {
   };
 
   return (
-    <main className="booking-page">
+    <main className="booking-page" ref={pageRef}>
       <BookingHero />
       <BookingFlow />
 
       <section className="booking-shell" id="booking-form">
         <div className="booking-intro">
-          <span className="section-eyebrow">{t('intro.eyebrow', { defaultValue: 'Tell us what to build' })}</span>
-          <h2 className="section-title">{t('intro.title', { defaultValue: 'Request availability, quote, and payment link.' })}</h2>
-          <p className="section-lead">{t('intro.lead', { defaultValue: 'We do not collect card details on this page. If you choose online payment, we will send a secure payment link after the route and price are confirmed.' })}</p>
+          <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('intro.eyebrow', { defaultValue: 'Tell us what to build' })}</span>
+          <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('intro.title', { defaultValue: 'Request availability, quote, and payment link.' })}</h2>
+          <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('intro.lead', { defaultValue: 'We do not collect card details on this page. If you choose online payment, we will send a secure payment link after the route and price are confirmed.' })}</p>
         </div>
 
         <div className="booking-layout" ref={layoutRef}>

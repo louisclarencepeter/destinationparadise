@@ -9,9 +9,9 @@ export default function AboutSection() {
   const highlights = t('about.highlights', { returnObjects: true, defaultValue: [] });
 
   return (
-    <section className="home-about reveal" id="about-intro">
+    <section className="home-about" id="about-intro">
       <div className="home-about__inner">
-        <figure className="home-about__media">
+        <figure className="home-about__media reveal" style={{ '--reveal-index': 0 }}>
           <ResponsiveImage
             src={ABOUT_HERO_IMAGE}
             alt={t('about.image_alt', { defaultValue: 'Crowned cranes in long grass at dawn' })}
@@ -25,13 +25,13 @@ export default function AboutSection() {
         </figure>
 
         <div className="home-about__copy">
-          <span className="section-eyebrow">{t('about.eyebrow', { defaultValue: 'About us' })}</span>
-          <h2 className="home-about__title">
+          <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('about.eyebrow', { defaultValue: 'About us' })}</span>
+          <h2 className="home-about__title reveal" style={{ '--reveal-index': 1 }}>
             {t('about.title_prefix', { defaultValue: 'A vision,' })}{' '}
             <em>{t('about.title_em', { defaultValue: 'finally' })}</em>{' '}
             <span className="home-about__title-tail">{t('about.title_suffix', { defaultValue: 'taking its first journey.' })}</span>
           </h2>
-          <p className="home-about__lead">
+          <p className="home-about__lead reveal" style={{ '--reveal-index': 2 }}>
             {t('about.lead', {
               defaultValue: 'Destination Paradise was born from a dream — to connect people to the beauty, culture and spirit of Tanzania. After years of preparation, we are officially launching from Unguja, Zanzibar.',
             })}
@@ -39,8 +39,8 @@ export default function AboutSection() {
 
           {Array.isArray(highlights) && highlights.length > 0 && (
             <ul className="home-about__highlights">
-              {highlights.map((item) => (
-                <li key={`${item.value}-${item.label}`}>
+              {highlights.map((item, i) => (
+                <li className="reveal" style={{ '--reveal-index': i }} key={`${item.value}-${item.label}`}>
                   <strong>{item.em ? <em>{item.value}</em> : item.value}</strong>
                   <span>{item.label}</span>
                 </li>
@@ -49,7 +49,7 @@ export default function AboutSection() {
           )}
 
           <div className="home-about__cta">
-            <Link className="btn" to="/aboutus">
+            <Link className="btn reveal" style={{ '--reveal-index': 0 }} to="/aboutus">
               {t('about.cta', { defaultValue: 'Read our story' })} <ArrowIcon size={14} />
             </Link>
           </div>

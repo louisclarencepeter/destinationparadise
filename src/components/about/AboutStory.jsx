@@ -14,15 +14,15 @@ export default function AboutStory() {
   const timeline = t('story.timeline', { returnObjects: true, defaultValue: aboutTimeline });
 
   return (
-    <section className="ab-story reveal" id="story">
+    <section className="ab-story" id="story">
       <div className="ab-story__head">
         <div>
-          <span className="ab-story__eyebrow">{t('story.eyebrow', { defaultValue: 'Our Story' })}</span>
-          <h2 className="ab-story__title">{t('story.title_prefix', { defaultValue: 'It started with a' })} <em>{t('story.title_em', { defaultValue: 'dream' })}</em>, {t('story.title_suffix', { defaultValue: 'far from home.' })}</h2>
+          <span className="ab-story__eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('story.eyebrow', { defaultValue: 'Our Story' })}</span>
+          <h2 className="ab-story__title reveal" style={{ '--reveal-index': 1 }}>{t('story.title_prefix', { defaultValue: 'It started with a' })} <em>{t('story.title_em', { defaultValue: 'dream' })}</em>, {t('story.title_suffix', { defaultValue: 'far from home.' })}</h2>
         </div>
         <div className="ab-story__lead">
-          {Array.isArray(lead) && lead.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+          {Array.isArray(lead) && lead.map((paragraph, index) => (
+            <p className="reveal" style={{ '--reveal-index': index + 2 }} key={paragraph}>{paragraph}</p>
           ))}
         </div>
       </div>
@@ -30,7 +30,7 @@ export default function AboutStory() {
       <div className="ab-timeline">
         <div className="ab-timeline__rail">
           {Array.isArray(timeline) && timeline.map((item, index) => (
-            <div className="ab-tl-item reveal" key={`timeline-${index}`} style={{ transitionDelay: `${index * 80}ms` }}>
+            <div className="ab-tl-item reveal" key={`timeline-${index}`} style={{ '--reveal-index': index }}>
               <div className="ab-tl-item__year">{item.year}</div>
               <h4>{item.title}</h4>
               <p>{item.body}</p>
@@ -38,7 +38,7 @@ export default function AboutStory() {
           ))}
         </div>
         <div className="ab-timeline__photo-wrap">
-          <div className="ab-timeline__photo">
+          <div className="ab-timeline__photo reveal" style={{ '--reveal-index': 0 }}>
             <ResponsiveImage src={ABOUT_STORY_IMAGE} alt={t('story.image_alt', { defaultValue: 'A traditional dhow on the Zanzibar coast' })} loading="lazy" />
             <div className="ab-timeline__caption">{t('story.caption', { defaultValue: 'From an idea on paper to a real company — Zanzibar, where it all began.' })}</div>
           </div>

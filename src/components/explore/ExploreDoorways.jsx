@@ -18,14 +18,14 @@ export default function ExploreDoorways() {
   const items = arrayFromTranslation(t('doorways.items', { returnObjects: true }));
 
   return (
-    <section className="saf-steps reveal">
+    <section className="saf-steps">
       <header className="saf-steps__head">
-        <span className="section-eyebrow">{t('doorways.eyebrow')}</span>
-        <h2 className="section-title">{t('doorways.title')}</h2>
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('doorways.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('doorways.title')}</h2>
       </header>
       <div className="saf-steps__grid">
         {items.map((item, index) => (
-          <article className="saf-step" key={item.step}>
+          <article className="saf-step reveal" style={{ '--reveal-index': index }} key={item.step}>
             <span>{item.step}</span>
             <h3>{item.title}</h3>
             <p>{t(`doorways.items.${index}.text`, { price: prices[index] })}</p>

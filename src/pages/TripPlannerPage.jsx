@@ -121,18 +121,19 @@ export default function TripPlannerPage() {
         </div>
       </section>
 
-      <section className="trip-prompts reveal">
+      <section className="trip-prompts">
         <header className="trip-prompts__head">
-          <span className="section-eyebrow">{t('prompts.eyebrow')}</span>
-          <h2 className="section-title">{t('prompts.title')}</h2>
-          <p className="section-lead">{t('prompts.lead')}</p>
+          <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('prompts.eyebrow')}</span>
+          <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('prompts.title')}</h2>
+          <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('prompts.lead')}</p>
         </header>
         <div className="trip-prompts__grid">
-          {plannerPrompts.map((prompt) => (
+          {plannerPrompts.map((prompt, i) => (
             <button
-              className={`trip-prompt-card${selectedPrompt === prompt.key ? ' is-selected' : ''}`}
+              className={`trip-prompt-card reveal${selectedPrompt === prompt.key ? ' is-selected' : ''}`}
               key={prompt.key}
               type="button"
+              style={{ '--reveal-index': i }}
               onClick={() => startPrompt(prompt)}
               aria-pressed={selectedPrompt === prompt.key}
             >
@@ -147,14 +148,14 @@ export default function TripPlannerPage() {
 
       <PlannerSection initialPrompt={initialPrompt} />
 
-      <section className="trip-steps reveal">
+      <section className="trip-steps">
         <header className="trip-steps__head">
-          <span className="section-eyebrow">{t('steps.eyebrow')}</span>
-          <h2 className="section-title">{t('steps.title')}</h2>
+          <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('steps.eyebrow')}</span>
+          <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('steps.title')}</h2>
         </header>
         <div className="trip-steps__grid">
-          {plannerSteps.map((item) => (
-            <article className="trip-step" key={item.step}>
+          {plannerSteps.map((item, i) => (
+            <article className="trip-step reveal dp-lift" key={item.step} style={{ '--reveal-index': i }}>
               <span>{item.step}</span>
               <h3>{item.title}</h3>
               <p>{item.text}</p>
@@ -164,11 +165,11 @@ export default function TripPlannerPage() {
       </section>
 
       <section className="exc-cta">
-        <div className="exc-cta__bg"><ResponsiveImage src="/assets/images/safaris/crowned-cranes-in-grass.webp" alt="" /></div>
+        <div className="exc-cta__bg"><ResponsiveImage src="/assets/images/safaris/crowned-cranes-in-grass.webp" alt="" className="dp-drift" /></div>
         <div className="exc-cta__inner">
-          <h2>{t('cta.title')}</h2>
-          <p>{t('cta.text')}</p>
-          <div className="exc-cta__btns">
+          <h2 className="reveal" style={{ '--reveal-index': 0 }}>{t('cta.title')}</h2>
+          <p className="reveal" style={{ '--reveal-index': 1 }}>{t('cta.text')}</p>
+          <div className="exc-cta__btns reveal" style={{ '--reveal-index': 2 }}>
             <Link className="btn btn--lg btn--accent" to="/booking">{t('cta.get_quote')}</Link>
             <a className="btn btn--ghost-light btn--lg" href="#planner">{t('cta.keep_planning')}</a>
           </div>

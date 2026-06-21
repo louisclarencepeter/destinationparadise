@@ -1,7 +1,9 @@
+import { useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { ALL_SAFARI_PRODUCTS, SAFARI_TYPES } from '../data/safariPageData.js';
+import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
 import { touristTripJsonLd } from '../utils/productJsonLd.js';
 import { useCurrency } from '../context/useCurrency.js';
@@ -10,10 +12,16 @@ import '../styles/excursions.css';
 import '../styles/safaris.css';
 
 export default function SafariTypeDetail() {
-  const { t, ready } = useTranslation('safaris');
+  const { t, i18n, ready } = useTranslation('safaris');
   const { typeId } = useParams();
   const { format } = useCurrency();
   const type = SAFARI_TYPES.find((item) => item.id === typeId);
+  const pageRef = useRef(null);
+
+  // Key on the route param too: the route reuses one component instance across
+  // :typeId changes, so without it the observer wouldn't re-scan the new type's
+  // reveal elements and they'd stay hidden.
+  useRevealOnScroll(pageRef, '.reveal:not(.is-visible)', ready ? `${i18n.resolvedLanguage}-${typeId}` : 'loading');
 
   usePageMeta(
     type
@@ -54,8 +62,8 @@ export default function SafariTypeDetail() {
   const routes = ALL_SAFARI_PRODUCTS.filter((route) => type.routeIds.includes(route.id));
 
   return (
-    <main className="safaris-page exc-detail saf-type-detail">
-      <nav className="exc-detail__crumbs" aria-label={t('type_detail.breadcrumb_aria')}>
+    <main className="safaris-page exc-detail saf-type-detail" ref={pageRef}>
+      <nav className="exc-detail__crumbs reveal" aria-label={t('type_detail.breadcrumb_aria')}>
         <Link to="/">{t('type_detail.breadcrumb_home')}</Link>
         <span aria-hidden="true">→</span>
         <Link to="/safaris">{t('type_detail.breadcrumb_safaris')}</Link>
@@ -64,40 +72,40 @@ export default function SafariTypeDetail() {
       </nav>
 
       <article className="exc-block exc-block--detail">
-        <div className="exc-block__img">
+        <div className="exc-block__img reveal">
           <ResponsiveImage src={type.image} alt={type.alt || type.title} />
           <span className="exc-block__cat">{t('type_detail.cat')}</span>
         </div>
         <div className="exc-block__body">
-          <span className="exc-block__eyebrow">{t('type_detail.best_for', { audience: type.bestFor })}</span>
-          <h1 className="exc-block__title">{type.title}</h1>
-          <p className="exc-block__desc">{type.desc}</p>
+          <span className="exc-block__eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('type_detail.best_for', { audience: type.bestFor })}</span>
+          <h1 className="exc-block__title reveal" style={{ '--reveal-index': 1 }}>{type.title}</h1>
+          <p className="exc-block__desc reveal" style={{ '--reveal-index': 2 }}>{type.desc}</p>
           <div className="exc-block__cols">
-            <div className="exc-block__col">
+            <div className="exc-block__col reveal" style={{ '--reveal-index': 0 }}>
               <h4>{t('type_detail.why_choose')}</h4>
               <ul>{type.highlights.map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
-            <div className="exc-block__col">
+            <div className="exc-block__col reveal" style={{ '--reveal-index': 1 }}>
               <h4>{t('type_detail.matching_routes')}</h4>
               <ul>{routes.map((route) => <li key={route.id}>{route.title}</li>)}</ul>
             </div>
           </div>
           <div className="exc-block__actions">
-            <Link className="btn btn--ghost-dark" to={`/booking?type=custom&title=${encodeURIComponent(type.title)}`}>{t('cta.get_quote')}</Link>
-            <Link className="btn btn--ghost-dark" to="/safaris">{t('type_detail.all_safaris')}</Link>
+            <Link className="btn btn--ghost-dark reveal" style={{ '--reveal-index': 0 }} to={`/booking?type=custom&title=${encodeURIComponent(type.title)}`}>{t('cta.get_quote')}</Link>
+            <Link className="btn btn--ghost-dark reveal" style={{ '--reveal-index': 1 }} to="/safaris">{t('type_detail.all_safaris')}</Link>
           </div>
         </div>
       </article>
 
-      <section className="itineraries reveal">
+      <section className="itineraries">
         <header className="itineraries__head">
-          <span className="section-eyebrow">{t('type_detail.routes.eyebrow')}</span>
-          <h2 className="section-title">{t('type_detail.routes.title')}</h2>
-          <p className="section-lead">{t('type_detail.routes.lead')}</p>
+          <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('type_detail.routes.eyebrow')}</span>
+          <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('type_detail.routes.title')}</h2>
+          <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('type_detail.routes.lead')}</p>
         </header>
         <div className="exc-grid saf-route-grid">
-          {routes.map((route) => (
-            <Link key={route.id} to={`/safaris/${route.id}`} className="exc-card saf-route-card" aria-label={t('itineraries.explore_aria', { title: route.title })}>
+          {routes.map((route, i) => (
+            <Link key={route.id} to={`/safaris/${route.id}`} className="exc-card saf-route-card reveal" style={{ '--reveal-index': i }} aria-label={t('itineraries.explore_aria', { title: route.title })}>
               <div className="exc-card__img">
                 <img src={route.image} alt={route.alt || route.title} loading="lazy" />
                 <span className="exc-card__cat">{route.category}</span>
@@ -123,12 +131,12 @@ export default function SafariTypeDetail() {
 
       <section className="saf-cta">
         <div className="saf-cta__bg">
-          <ResponsiveImage src={type.image} alt="" />
+          <ResponsiveImage src={type.image} alt="" className="dp-drift" />
         </div>
         <div className="saf-cta__inner">
-          <h2>{t('type_detail.cta.title')}</h2>
-          <p>{t('type_detail.cta.text')}</p>
-          <div className="saf-cta__btns">
+          <h2 className="reveal" style={{ '--reveal-index': 0 }}>{t('type_detail.cta.title')}</h2>
+          <p className="reveal" style={{ '--reveal-index': 1 }}>{t('type_detail.cta.text')}</p>
+          <div className="saf-cta__btns reveal" style={{ '--reveal-index': 2 }}>
             <Link className="btn btn--lg btn--accent" to={`/booking?type=custom&title=${encodeURIComponent(type.title)}`}>{t('cta.get_quote')}</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">{t('type_detail.cta.plan_ai')}</Link>
           </div>

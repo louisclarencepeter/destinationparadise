@@ -37,20 +37,20 @@ export default function SafarisSection() {
   const totalSafaris = destinationParadiseSafariPricing.length + nextLevelSafariProducts.length;
 
   return (
-    <section className="safaris reveal" id="safaris">
+    <section className="safaris" id="safaris">
       <header className="safaris__head">
-        <span className="section-eyebrow">{t('safaris.eyebrow')}</span>
-        <h2 className="section-title">{t('safaris.title', { count: totalSafaris })}</h2>
-        <p className="section-lead">{t('safaris.lead')}</p>
-        <ul className="safaris__modes">
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('safaris.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('safaris.title', { count: totalSafaris })}</h2>
+        <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('safaris.lead')}</p>
+        <ul className="safaris__modes reveal" style={{ '--reveal-index': 3 }}>
           <li><span className="safaris__mode-tag">{t('safaris.modes.classic_tag')}</span> {t('safaris.modes.classic_text')}</li>
           <li><span className="safaris__mode-tag safaris__mode-tag--accent">{t('safaris.modes.fly_in_tag')}</span> {t('safaris.modes.fly_in_text')}</li>
           <li><span className="safaris__mode-tag">{t('safaris.modes.specialists_tag')}</span> {t('safaris.modes.specialists_text')}</li>
         </ul>
       </header>
       <div className="safaris__grid">
-        {safariCards.map((trip) => (
-          <article className={`safari-card${trip.featured ? ' safari-card--feature' : ''}`} key={trip.slug}>
+        {safariCards.map((trip, i) => (
+          <article className={`safari-card reveal${trip.featured ? ' safari-card--feature' : ''}`} style={{ '--reveal-index': i }} key={trip.slug}>
             <div className="safari-card__img">
               <ResponsiveImage src={trip.image} alt="" loading="lazy" decoding="async" sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 380px" />
               <span className="safari-card__nights">{t(`safaris.features.${trip.slug}.label`)}</span>
@@ -67,7 +67,7 @@ export default function SafarisSection() {
         ))}
       </div>
       <div className="excursions__more">
-        <Link className="btn btn--on-light" to="/safaris">{t('safaris.view_all')} <ArrowIcon size={16} /></Link>
+        <Link className="btn btn--on-light reveal" style={{ '--reveal-index': 0 }} to="/safaris">{t('safaris.view_all')} <ArrowIcon size={16} /></Link>
       </div>
     </section>
   );

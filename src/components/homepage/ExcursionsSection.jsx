@@ -9,19 +9,19 @@ export default function ExcursionsSection({ tweaks, excursions }) {
   const { t } = useTranslation('home');
   const { format } = useCurrency();
   return (
-    <section className="excursions reveal" id="excursions" data-layout={tweaks.layout}>
+    <section className="excursions" id="excursions" data-layout={tweaks.layout}>
       <header className="excursions__head">
-        <span className="section-eyebrow">{t('excursions.eyebrow')}</span>
-        <h2 className="section-title">{t('excursions.title')}</h2>
-        <p className="section-lead">{t('excursions.lead')}</p>
-        <ul className="excursions__modes">
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('excursions.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('excursions.title')}</h2>
+        <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('excursions.lead')}</p>
+        <ul className="excursions__modes reveal" style={{ '--reveal-index': 3 }}>
           <li><span className="excursions__mode-tag">{t('excursions.modes.ocean_tag')}</span> {t('excursions.modes.ocean_text')}</li>
           <li><span className="excursions__mode-tag excursions__mode-tag--accent">{t('excursions.modes.culture_tag')}</span> {t('excursions.modes.culture_text')}</li>
           <li><span className="excursions__mode-tag">{t('excursions.modes.nature_tag')}</span> {t('excursions.modes.nature_text')}</li>
         </ul>
       </header>
       <div className="excursions__grid">
-        {excursions.map((tr) => {
+        {excursions.map((tr, i) => {
           const localized = objectFromTranslation(t(`excursions.featured.${tr.id}`, { returnObjects: true, defaultValue: {} }), {});
           const title = localized.title || tr.title;
           const description = localized.description || tr.description;
@@ -30,7 +30,7 @@ export default function ExcursionsSection({ tweaks, excursions }) {
           const group = localized.group || tr.group;
 
           return (
-          <Link className="ex-card" key={tr.id} to={`/excursions/${tr.id}`} aria-label={t('excursions.card.explore_aria', { title })}>
+          <Link className="ex-card reveal" style={{ '--reveal-index': i }} key={tr.id} to={`/excursions/${tr.id}`} aria-label={t('excursions.card.explore_aria', { title })}>
             <div className="ex-card__img">
               <ResponsiveImage src={tr.image} alt={title} loading="lazy" decoding="async" sizes="(max-width: 600px) 220px, (max-width: 1000px) 45vw, 360px" />
               <span className="ex-card__badge">{duration}</span>
@@ -64,7 +64,7 @@ export default function ExcursionsSection({ tweaks, excursions }) {
         })}
       </div>
       <div className="excursions__more">
-        <Link className="btn btn--on-light" to="/excursions">{t('excursions.view_all')} <ArrowIcon size={16} /></Link>
+        <Link className="btn btn--on-light reveal" style={{ '--reveal-index': 0 }} to="/excursions">{t('excursions.view_all')} <ArrowIcon size={16} /></Link>
       </div>
     </section>
   );

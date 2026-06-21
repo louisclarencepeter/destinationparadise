@@ -69,13 +69,13 @@ export default function TransfersFleet() {
   return (
     <section className="tr-fleet">
       <header className="tr-fleet__head">
-        <span className="section-eyebrow">{t('fleet.eyebrow')}</span>
-        <h2 className="section-title">{t('fleet.title')}</h2>
-        <p className="section-lead">{t('fleet.lead')}</p>
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('fleet.eyebrow')}</span>
+        <h2 className="section-title reveal" style={{ '--reveal-index': 1 }}>{t('fleet.title')}</h2>
+        <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('fleet.lead')}</p>
       </header>
       <div className="tr-fleet__grid">
-        {Array.isArray(fleet) && fleet.map((v) => (
-          <article className="tr-vehicle" key={v.type}>
+        {Array.isArray(fleet) && fleet.map((v, i) => (
+          <article className="tr-vehicle reveal" key={v.type} style={{ '--reveal-index': i }}>
             <span className="tr-vehicle__icon">{FLEET_ICONS[v.key]}</span>
             <h3 className="tr-vehicle__type">{v.type}</h3>
             <span className="tr-vehicle__cap">{v.capacity}</span>
