@@ -1,13 +1,16 @@
 import { Link, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { ALL_SAFARI_PRODUCTS, SAFARI_TYPES } from '../data/safariPageData.js';
 import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
+import { touristTripJsonLd } from '../utils/productJsonLd.js';
 import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
 
 export default function SafariTypeDetail() {
+  const { t, ready } = useTranslation('safaris');
   const { typeId } = useParams();
   const { format } = useCurrency();
   const type = SAFARI_TYPES.find((item) => item.id === typeId);
@@ -21,19 +24,27 @@ export default function SafariTypeDetail() {
               type.intro ||
               `${type.title} safaris across Tanzania — handpicked routes, expert guides, and tailored itineraries.`,
           ),
+          jsonLd: touristTripJsonLd({
+            name: type.title,
+            description: type.blurb || type.intro || type.desc,
+            path: `/safaris/types/${type.id}`,
+            image: type.image,
+          }),
         }
-      : { title: 'Safari Type Not Found · Destination Paradise', noindex: true },
+      : { title: t('type_detail.not_found_page_title'), noindex: true },
   );
+
+  if (!ready) return null;
 
   if (!type) {
     return (
       <main className="safaris-page">
         <section className="exc-day" style={{ textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div>
-            <span className="section-eyebrow">Safari styles</span>
-            <h1 className="section-title">Safari type not found</h1>
-            <p className="section-lead">That style is not in our current list. Browse all safari styles below.</p>
-            <Link className="btn btn--ghost-dark" to="/safaris#safari-types" style={{ marginTop: '1.5rem' }}>Back to safari styles →</Link>
+            <span className="section-eyebrow">{t('type_detail.not_found_eyebrow')}</span>
+            <h1 className="section-title">{t('type_detail.not_found_title')}</h1>
+            <p className="section-lead">{t('type_detail.not_found_text')}</p>
+            <Link className="btn btn--ghost-dark" to="/safaris#safari-types" style={{ marginTop: '1.5rem' }}>{t('type_detail.back_to_styles')}</Link>
           </div>
         </section>
       </main>
@@ -44,10 +55,10 @@ export default function SafariTypeDetail() {
 
   return (
     <main className="safaris-page exc-detail saf-type-detail">
-      <nav className="exc-detail__crumbs" aria-label="Breadcrumb">
-        <Link to="/">Home</Link>
+      <nav className="exc-detail__crumbs" aria-label={t('type_detail.breadcrumb_aria')}>
+        <Link to="/">{t('type_detail.breadcrumb_home')}</Link>
         <span aria-hidden="true">→</span>
-        <Link to="/safaris">Safaris</Link>
+        <Link to="/safaris">{t('type_detail.breadcrumb_safaris')}</Link>
         <span aria-hidden="true">→</span>
         <span>{type.title}</span>
       </nav>
@@ -55,42 +66,42 @@ export default function SafariTypeDetail() {
       <article className="exc-block exc-block--detail">
         <div className="exc-block__img">
           <ResponsiveImage src={type.image} alt={type.alt || type.title} />
-          <span className="exc-block__cat">Safari style</span>
+          <span className="exc-block__cat">{t('type_detail.cat')}</span>
         </div>
         <div className="exc-block__body">
-          <span className="exc-block__eyebrow">Best for: {type.bestFor}</span>
+          <span className="exc-block__eyebrow">{t('type_detail.best_for', { audience: type.bestFor })}</span>
           <h1 className="exc-block__title">{type.title}</h1>
           <p className="exc-block__desc">{type.desc}</p>
           <div className="exc-block__cols">
             <div className="exc-block__col">
-              <h4>Why choose this style</h4>
+              <h4>{t('type_detail.why_choose')}</h4>
               <ul>{type.highlights.map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
             <div className="exc-block__col">
-              <h4>Best matching routes</h4>
+              <h4>{t('type_detail.matching_routes')}</h4>
               <ul>{routes.map((route) => <li key={route.id}>{route.title}</li>)}</ul>
             </div>
           </div>
           <div className="exc-block__actions">
-            <Link className="btn btn--ghost-dark" to={`/booking?type=custom&title=${encodeURIComponent(type.title)}`}>Get a quote →</Link>
-            <Link className="btn btn--ghost-dark" to="/safaris">All safaris</Link>
+            <Link className="btn btn--ghost-dark" to={`/booking?type=custom&title=${encodeURIComponent(type.title)}`}>{t('cta.get_quote')}</Link>
+            <Link className="btn btn--ghost-dark" to="/safaris">{t('type_detail.all_safaris')}</Link>
           </div>
         </div>
       </article>
 
       <section className="itineraries reveal">
         <header className="itineraries__head">
-          <span className="section-eyebrow">Recommended routes</span>
-          <h2 className="section-title">Start with one of these safaris.</h2>
-          <p className="section-lead">These routes are the closest match for this safari style. Each one opens into full details and day-by-day pacing.</p>
+          <span className="section-eyebrow">{t('type_detail.routes.eyebrow')}</span>
+          <h2 className="section-title">{t('type_detail.routes.title')}</h2>
+          <p className="section-lead">{t('type_detail.routes.lead')}</p>
         </header>
         <div className="exc-grid saf-route-grid">
           {routes.map((route) => (
-            <Link key={route.id} to={`/safaris/${route.id}`} className="exc-card saf-route-card" aria-label={`Explore ${route.title}`}>
+            <Link key={route.id} to={`/safaris/${route.id}`} className="exc-card saf-route-card" aria-label={t('itineraries.explore_aria', { title: route.title })}>
               <div className="exc-card__img">
                 <img src={route.image} alt={route.alt || route.title} loading="lazy" />
                 <span className="exc-card__cat">{route.category}</span>
-                {route.feature && <span className="exc-card__season">Most popular</span>}
+                {route.feature && <span className="exc-card__season">{t('itineraries.most_popular')}</span>}
               </div>
               <div className="exc-card__body">
                 <span className="exc-card__eyebrow">{route.rib}</span>
@@ -101,8 +112,8 @@ export default function SafariTypeDetail() {
                   <span>{route.from}</span>
                 </div>
                 <div className="exc-card__foot">
-                  <span className="exc-card__price">From <strong>{format(route.price)}</strong> {route.priceSub}</span>
-                  <span className="exc-card__cta">Explore →</span>
+                  <span className="exc-card__price">{t('itineraries.card.from')} <strong>{format(route.price)}</strong> {route.priceSub}</span>
+                  <span className="exc-card__cta">{t('itineraries.card.explore_cta')}</span>
                 </div>
               </div>
             </Link>
@@ -115,11 +126,11 @@ export default function SafariTypeDetail() {
           <ResponsiveImage src={type.image} alt="" />
         </div>
         <div className="saf-cta__inner">
-          <h2>Want this safari style?</h2>
-          <p>Tell us your dates, budget, and group size. We’ll match the right parks, camps, and flights within 24 hours.</p>
+          <h2>{t('type_detail.cta.title')}</h2>
+          <p>{t('type_detail.cta.text')}</p>
           <div className="saf-cta__btns">
-            <Link className="btn btn--lg btn--accent" to={`/booking?type=custom&title=${encodeURIComponent(type.title)}`}>Get a quote →</Link>
-            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Plan with AI</Link>
+            <Link className="btn btn--lg btn--accent" to={`/booking?type=custom&title=${encodeURIComponent(type.title)}`}>{t('cta.get_quote')}</Link>
+            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">{t('type_detail.cta.plan_ai')}</Link>
           </div>
         </div>
       </section>

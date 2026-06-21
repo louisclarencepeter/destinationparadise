@@ -107,9 +107,9 @@ export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeMo
   const [navOpen, setNavOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [bgIndex, setBgIndex] = useState(() => Math.floor(Math.random() * MM_BGS.length));
-  const navRef = useRef(null);
-  const mmRef = useRef(null);
-  const closeBtnRef = useRef(null);
+  const navRef = useRef(/** @type {HTMLElement | null} */ (null));
+  const mmRef = useRef(/** @type {HTMLDivElement | null} */ (null));
+  const closeBtnRef = useRef(/** @type {HTMLButtonElement | null} */ (null));
   const location = useLocation();
 
   // Close on route change
@@ -155,9 +155,11 @@ export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeMo
           return;
         }
         const scope = mmRef.current || navRef.current;
-        const focusable = scope ? scope.querySelectorAll(
-          'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-        ) : [];
+        const focusable = scope
+          ? /** @type {NodeListOf<HTMLElement>} */ (scope.querySelectorAll(
+              'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+            ))
+          : [];
         if (e.key === 'Tab' && focusable.length > 0) {
           const first = focusable[0];
           const last = focusable[focusable.length - 1];

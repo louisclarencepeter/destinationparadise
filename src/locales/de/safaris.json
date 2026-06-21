@@ -328,6 +328,83 @@
       "24/7 Concierge auf WhatsApp"
     ]
   },
+  "detail": {
+    "not_found_page_title": "Safari nicht gefunden · Destination Paradise",
+    "not_found_eyebrow": "Safaris",
+    "not_found_title": "Safari nicht gefunden",
+    "not_found_text": "Diese Route ist nicht auf unserer aktuellen Liste. Sieh dir unten alle verfügbaren Safaris an.",
+    "back_to_safaris": "Zurück zu allen Safaris →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Start",
+    "breadcrumb_safaris": "Safaris",
+    "most_popular": "Am beliebtesten",
+    "facts": {
+      "duration": "Dauer",
+      "duration_sub": "Routenlänge",
+      "starts_from": "Ab",
+      "starts_from_sub": "Flüge anpassbar",
+      "style": "Stil",
+      "style_sub": "Safari-Typ",
+      "price": "Preis"
+    },
+    "highlights": "Highlights",
+    "included_in_route": "In dieser Route enthalten",
+    "ideal_for": "Ideal für",
+    "typical_inclusions": "Typische Safari-Leistungen",
+    "optional_upgrades": "Optionale Upgrades",
+    "price_low_peak": "Nebensaison · Hauptsaison ab {{price}}",
+    "price_note": "Der endgültige Preis hängt von Saison, Camp-Niveau und Flugverfügbarkeit ab.",
+    "book_route": "Diese Route buchen →",
+    "all_safaris": "Alle Safaris",
+    "route": {
+      "eyebrow": "Tag für Tag",
+      "title": "Eine typische Route",
+      "lead": "Das ist die aktuelle Routenskizze. Wir passen Flüge, Camps und Tempo an deine Reisedaten und deinen Reisestil an."
+    },
+    "practical": {
+      "included": {
+        "heading": "Immer inklusive",
+        "items": ["Bush-Flüge & Transfers", "Park- und Naturschutzgebühren", "Professioneller Safari-Guide", "Vollpension im Camp oder in der Lodge"]
+      },
+      "not_included": {
+        "heading": "Nicht inklusive",
+        "items": ["Internationale Flüge", "Reiseversicherung", "Trinkgeld für Guides und Camp-Personal", "Premium-Getränke, sofern nicht angegeben"]
+      },
+      "booking": {
+        "heading": "Buchung & Zahlung",
+        "items": ["Am besten 2-6 Monate im Voraus buchen", "Anzahlung sichert Lodges und Flüge", "Restzahlung vor der Reise", "USD, EUR, GBP, TZS akzeptiert"]
+      }
+    },
+    "cta": {
+      "title": "Bereit, {{title}} zu planen?",
+      "text": "Nenn uns deine Reisedaten, die Gruppengröße und dein gewünschtes Komfortniveau. Wir melden uns innerhalb von 24 Stunden mit einer echten Route und einem echten Preis."
+    }
+  },
+  "type_detail": {
+    "not_found_page_title": "Safari-Typ nicht gefunden · Destination Paradise",
+    "not_found_eyebrow": "Safari-Stile",
+    "not_found_title": "Safari-Typ nicht gefunden",
+    "not_found_text": "Dieser Stil ist nicht auf unserer aktuellen Liste. Sieh dir unten alle Safari-Stile an.",
+    "back_to_styles": "Zurück zu den Safari-Stilen →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Start",
+    "breadcrumb_safaris": "Safaris",
+    "cat": "Safari-Stil",
+    "best_for": "Am besten für: {{audience}}",
+    "why_choose": "Warum dieser Stil",
+    "matching_routes": "Am besten passende Routen",
+    "all_safaris": "Alle Safaris",
+    "routes": {
+      "eyebrow": "Empfohlene Routen",
+      "title": "Starte mit einer dieser Safaris.",
+      "lead": "Diese Routen passen am besten zu diesem Safari-Stil. Jede führt zu allen Details und der Tag-für-Tag-Planung."
+    },
+    "cta": {
+      "title": "Möchtest du diesen Safari-Stil?",
+      "text": "Nenn uns deine Reisedaten, dein Budget und die Gruppengröße. Wir wählen die passenden Parks, Camps und Flüge innerhalb von 24 Stunden.",
+      "plan_ai": "Mit KI planen"
+    }
+  },
   "cta": {
     "title": "Bereit zu planen?",
     "text": "Sag uns, wann du Zeit hast, wer mitkommt und worauf du hoffst. Wir melden uns innerhalb von 24 Stunden mit echter Route und echtem Preis.",

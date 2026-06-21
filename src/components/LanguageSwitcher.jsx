@@ -23,11 +23,10 @@ const Chevron = () => (
 export default function LanguageSwitcher({ className = '' }) {
   const { i18n, t } = useTranslation();
   const [open, setOpen] = useState(false);
-  const rootRef = useRef(null);
+  const rootRef = useRef(/** @type {HTMLDivElement | null} */ (null));
 
-  const active = SUPPORTED_LANGUAGES.includes(i18n.resolvedLanguage)
-    ? i18n.resolvedLanguage
-    : 'en';
+  const resolvedLanguage = i18n.resolvedLanguage ?? 'en';
+  const active = SUPPORTED_LANGUAGES.includes(resolvedLanguage) ? resolvedLanguage : 'en';
 
   const choose = (lang) => {
     setOpen(false);

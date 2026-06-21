@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { isPrerender } from '../utils/prerender.js';
 
 export const SITE_URL = 'https://destinationparadisezanzibar.netlify.app';
 export const SITE_NAME = 'Destination Paradise';
@@ -18,6 +19,26 @@ function upsertMeta(attr, key, content) {
     document.head.appendChild(el);
   }
   el.setAttribute('content', content);
+}
+
+/**
+ * Upsert a single per-page JSON-LD `<script>` (marked with data-dp-jsonld so it
+ * never collides with the static Organization markup baked into index.html).
+ * Passing an empty string removes it, keeping client-side navigation clean.
+ */
+function upsertJsonLd(jsonString) {
+  let el = document.head.querySelector('script[data-dp-jsonld]');
+  if (!jsonString) {
+    if (el) el.remove();
+    return;
+  }
+  if (!el) {
+    el = document.createElement('script');
+    el.setAttribute('type', 'application/ld+json');
+    el.setAttribute('data-dp-jsonld', '');
+    document.head.appendChild(el);
+  }
+  el.textContent = jsonString;
 }
 
 function upsertLink(rel, href) {
@@ -61,14 +82,18 @@ export function clampDescription(text, max = 160) {
  * and keeps in-app navigation / browser tabs correct. Non-JS social scrapers read the
  * static defaults baked into index.html. Per-route social cards require prerendering/SSR.
  *
- * @param {object|string} options - { title, description, image, type, canonical, noindex }.
+ * @param {object|string} options - { title, description, image, type, canonical, noindex, jsonLd }.
  *   A string first arg is treated as the title (legacy `usePageMeta(title, description)`).
+ *   `jsonLd` is an object/array serialized into a per-page schema.org `<script>`.
  * @param {string} [legacyDescription] - description when called in legacy positional form.
  */
 export function usePageMeta(options = {}, legacyDescription) {
   const opts =
     typeof options === 'string' ? { title: options, description: legacyDescription } : options || {};
-  const { title, description, image, type = 'website', canonical, noindex = false } = opts;
+  const { title, description, image, type = 'website', canonical, noindex = false, jsonLd } = opts;
+  // Serialize once so the effect's dependency is a stable primitive (object/array
+  // literals are referentially unstable across renders).
+  const jsonLdString = jsonLd ? JSON.stringify(jsonLd) : '';
 
   useEffect(() => {
     const desc = description || DEFAULT_DESCRIPTION;
@@ -98,7 +123,16 @@ export function usePageMeta(options = {}, legacyDescription) {
     upsertMeta('name', 'twitter:image', img);
 
     upsertMeta('name', 'robots', noindex ? 'noindex, follow' : 'index, follow');
-  }, [title, description, image, type, canonical, noindex]);
+
+    upsertJsonLd(jsonLdString);
+
+    // Signal the build-time prerender crawler that this route's head (meta, OG,
+    // canonical, JSON-LD) is fully applied and safe to capture.
+    if (isPrerender()) {
+      const w = /** @type {any} */ (window);
+      w.__DP_META_APPLIED__ = (w.__DP_META_APPLIED__ || 0) + 1;
+    }
+  }, [title, description, image, type, canonical, noindex, jsonLdString]);
 }
 
 export default usePageMeta;

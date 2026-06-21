@@ -35,7 +35,7 @@ const arrayFromTranslation = (value) => (Array.isArray(value) ? value : []);
 export default function Retreats() {
   const { t, ready } = useTranslation('retreats');
   const { format } = useCurrency();
-  const pageRef = useRef(null);
+  const pageRef = useRef(/** @type {HTMLElement | null} */ (null));
   const [openFaq, setOpenFaq] = useState(0);
 
   const practices = arrayFromTranslation(t('practice.items', { returnObjects: true }));

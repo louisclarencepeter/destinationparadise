@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { isPrerender } from '../utils/prerender.js';
 
 import enCommon from '../locales/en/common.json';
 import enNav from '../locales/en/nav.json';
@@ -58,8 +59,12 @@ const localeBackend = {
   },
 };
 
-i18n
-  .use(LanguageDetector)
+// During the build-time prerender crawl we want deterministic English HTML, so
+// we skip the browser language detector and pin the language to the default.
+const prerendering = isPrerender();
+const i18nChain = prerendering ? i18n : i18n.use(LanguageDetector);
+
+i18nChain
   .use(/** @type {import('i18next').BackendModule} */ (localeBackend))
   .use(initReactI18next)
   .init({
@@ -69,6 +74,7 @@ i18n
       de: { common: deCommon, nav: deNav, footer: deFooter, home: deHome, excursions: deExcursions, safaris: deSafaris, policy: dePolicy },
     },
     partialBundledLanguages: true,
+    ...(prerendering ? { lng: DEFAULT_LANGUAGE } : {}),
     fallbackLng: DEFAULT_LANGUAGE,
     supportedLngs: SUPPORTED_LANGUAGES,
     ns: ['common', 'nav', 'footer', 'home', 'excursions', 'safaris', 'policy'],
@@ -96,7 +102,7 @@ if (typeof document !== 'undefined') {
 const COUNTRY_TO_LANG = { DE: 'de', PL: 'pl' };
 
 async function applyGeoLanguage() {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined' || isPrerender()) return;
   try {
     if (window.localStorage.getItem(STORAGE_KEY)) return;
   } catch {

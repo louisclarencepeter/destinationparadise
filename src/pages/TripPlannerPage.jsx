@@ -31,10 +31,12 @@ function buildPlacePrompt(searchParams, t) {
 export default function TripPlannerPage() {
   const { t, ready } = useTranslation('tripPlanner');
   const [searchParams] = useSearchParams();
-  const [initialPrompt, setInitialPrompt] = useState(null);
-  const [selectedPrompt, setSelectedPrompt] = useState(null);
-  const scrollTimeoutRef = useRef(null);
-  const handledPlacePromptRef = useRef(null);
+  const [initialPrompt, setInitialPrompt] = useState(
+    /** @type {{ id: string | number, label?: string, text: string } | null} */ (null),
+  );
+  const [selectedPrompt, setSelectedPrompt] = useState(/** @type {string | null} */ (null));
+  const scrollTimeoutRef = useRef(/** @type {number | null} */ (null));
+  const handledPlacePromptRef = useRef(/** @type {string | null} */ (null));
   const plannerPrompts = useMemo(() => arrayFromTranslation(t('prompts.items', { returnObjects: true })), [t]);
   const plannerSteps = useMemo(() => arrayFromTranslation(t('steps.items', { returnObjects: true })), [t]);
 

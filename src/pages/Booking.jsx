@@ -33,13 +33,15 @@ export default function Booking() {
   const location = useLocation();
   const products = useBookingProducts(t);
   const [form, setForm] = useState(DEFAULT_BOOKING_FORM);
-  const [plannerHandoff, setPlannerHandoff] = useState(null);
+  const [plannerHandoff, setPlannerHandoff] = useState(
+    /** @type {import('../utils/plannerHandoff.js').PlannerHandoff | null} */ (null),
+  );
   const [status, setStatus] = useState('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const layoutRef = useRef(null);
   const summarySlotRef = useRef(null);
   const summaryRef = useRef(null);
-  const prefillKeyRef = useRef(null);
+  const prefillKeyRef = useRef(/** @type {string | null} */ (null));
   // Only the fields that change the summary's rendered height/content drive a
   // re-measure — keying on the whole `form` would re-subscribe the scroll/resize
   // listeners on every keystroke.
@@ -101,7 +103,7 @@ export default function Booking() {
       const title = searchParams.get('title');
       setForm((current) => ({
         ...current,
-        serviceType: serviceTypes.some((service) => service.value === type) ? type : 'custom',
+        serviceType: type && serviceTypes.some((service) => service.value === type) ? type : 'custom',
         message: title
           ? t('form.unmatched_message', {
             title,

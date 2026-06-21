@@ -20,9 +20,9 @@ export function hasAnalyticsConsent() {
 export function loadGoogleAnalytics() {
   if (typeof window === 'undefined' || analyticsReady || !hasAnalyticsConsent()) return false;
 
-  window.dataLayer = window.dataLayer || [];
+  const dataLayer = (window.dataLayer = window.dataLayer || []);
   window.gtag = window.gtag || function gtag() {
-    window.dataLayer.push(arguments);
+    dataLayer.push(arguments);
   };
 
   if (!document.querySelector(`script[src*="googletagmanager.com/gtag/js?id=${GOOGLE_ANALYTICS_ID}"]`)) {

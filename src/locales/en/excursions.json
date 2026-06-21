@@ -81,6 +81,92 @@
       }
     }
   },
+  "detail": {
+    "not_found_page_title": "Excursion Not Found · Destination Paradise",
+    "not_found_eyebrow": "Excursions",
+    "not_found_title": "Excursion not found",
+    "not_found_text": "That route is not in our current list. Browse all available excursions below.",
+    "back_to_excursions": "Back to all excursions →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Home",
+    "breadcrumb_excursions": "Excursions",
+    "season_prefix": "Seasonal",
+    "highlights": "Highlights",
+    "experience_pricing": "Experience pricing",
+    "from": "from",
+    "per_person": "per person",
+    "price_on_request": "Price on request",
+    "book_this": "Book this →",
+    "all_excursions": "All excursions",
+    "timeline": {
+      "eyebrow": "Hour by hour",
+      "title": "A typical day",
+      "lead": "Minute by minute, what you can expect. Times are a guide — we adapt to weather, tides, and the mood of the day."
+    },
+    "practical": {
+      "included": {
+        "heading": "What's always included",
+        "items": ["Hotel pickup & drop-off", "Licensed local guide", "Bottled water all day", "All park & entry fees", "Equipment provided"]
+      },
+      "not_included": {
+        "heading": "Not included",
+        "items": ["Tips for guides & crew", "Alcohol (where applicable)", "Travel insurance", "Spending money"]
+      },
+      "booking": {
+        "heading": "Booking & payment",
+        "items": ["Book at least 48 hours ahead", "20% deposit, balance on the day", "Free cancellation up to 24h before", "USD, EUR, GBP, TZS — all accepted"]
+      }
+    },
+    "cta": {
+      "title": "Ready to book {{title}}?",
+      "text": "Tell us your dates and we'll come back within 24 hours with available pickup times and a final price — no commitment."
+    }
+  },
+  "combination": {
+    "not_found_page_title": "Excursion Combination Not Found · Destination Paradise",
+    "not_found_eyebrow": "Excursion combinations",
+    "not_found_title": "Combination not found",
+    "not_found_text": "That combination is not in our current list. Browse all excursions below.",
+    "back_to_excursions": "Back to excursions →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Home",
+    "breadcrumb_excursions": "Excursions",
+    "category": "Combination",
+    "facts": {
+      "length": "Length",
+      "length_sub": "Sequenced for one trip",
+      "stops": "Stops",
+      "style": "Style",
+      "style_value": "Private plan",
+      "style_sub": "Best as a tailored day",
+      "quote": "Quote",
+      "quote_sub": "Final timing and price"
+    },
+    "included_experiences": "Included experiences",
+    "ideal_for": "Ideal for",
+    "open_each_stop": "Open each stop",
+    "planning_note": "Planning note",
+    "planning_note_items": [
+      "Pickup time depends on hotel location, tides, and daylight.",
+      "Some combinations work best privately so the pacing stays comfortable.",
+      "We confirm the final route, meals, guide, and transfers before booking."
+    ],
+    "price_estimated": "estimated from listed stops",
+    "price_on_request": "Price on request",
+    "price_note": "Final combination price depends on transfers, private guide, meals, and pickup area.",
+    "book_this": "Book this combination →",
+    "all_excursions": "All excursions",
+    "sequence": {
+      "eyebrow": "Suggested sequence",
+      "title": "How the day flows",
+      "lead": "This is the cleanest order for the combination. We adjust the timing around your hotel, tide, and weather."
+    },
+    "cta": {
+      "title": "Ready to book {{title}}?",
+      "text": "Tell us your hotel, date, and group size. We'll confirm the best timing, pickup, guide, and final combination price.",
+      "plan_ai": "Plan with AI"
+    }
+  },
   "cta": {
     "title": "Ready to lock a date?",
     "text": "Tell us when you're here and which excursions caught your eye. We'll come back within 24 hours with available dates, pickup times and a final price — no commitment, no chatbot.",

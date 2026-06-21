@@ -248,6 +248,83 @@
       "Concierge 24/7 na WhatsApp"
     ]
   },
+  "detail": {
+    "not_found_page_title": "Nie znaleziono safari · Destination Paradise",
+    "not_found_eyebrow": "Safari",
+    "not_found_title": "Nie znaleziono safari",
+    "not_found_text": "Tej trasy nie ma na aktualnej liście. Zobacz wszystkie dostępne safari poniżej.",
+    "back_to_safaris": "Wróć do wszystkich safari →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Strona główna",
+    "breadcrumb_safaris": "Safari",
+    "most_popular": "Najpopularniejsze",
+    "facts": {
+      "duration": "Czas trwania",
+      "duration_sub": "Długość trasy",
+      "starts_from": "Od",
+      "starts_from_sub": "Loty można dostosować",
+      "style": "Styl",
+      "style_sub": "Typ safari",
+      "price": "Cena"
+    },
+    "highlights": "Najważniejsze punkty",
+    "included_in_route": "W cenie tej trasy",
+    "ideal_for": "Idealne dla",
+    "typical_inclusions": "Typowe świadczenia safari",
+    "optional_upgrades": "Opcjonalne ulepszenia",
+    "price_low_peak": "niski sezon · szczyt sezonu od {{price}}",
+    "price_note": "Finalna cena zależy od sezonu, poziomu obozu i dostępności lotów.",
+    "book_route": "Zarezerwuj tę trasę →",
+    "all_safaris": "Wszystkie safari",
+    "route": {
+      "eyebrow": "Dzień po dniu",
+      "title": "Typowa trasa",
+      "lead": "To aktualny szkic trasy. Dopasowujemy loty, obozy i tempo do Twoich dat i stylu podróży."
+    },
+    "practical": {
+      "included": {
+        "heading": "Zawsze w cenie",
+        "items": ["Loty bushowe i transfery", "Opłaty parkowe i za ochronę przyrody", "Profesjonalny przewodnik safari", "Pełne wyżywienie w obozie lub lodge"]
+      },
+      "not_included": {
+        "heading": "Nie wliczono",
+        "items": ["Loty międzynarodowe", "Ubezpieczenie podróżne", "Napiwki dla przewodników i personelu obozu", "Napoje premium, o ile nie zaznaczono"]
+      },
+      "booking": {
+        "heading": "Rezerwacja i płatność",
+        "items": ["Najlepiej rezerwować 2-6 miesięcy wcześniej", "Zaliczka potwierdza lodge i loty", "Pozostała kwota przed podróżą", "USD, EUR, GBP, TZS akceptowane"]
+      }
+    },
+    "cta": {
+      "title": "Gotowi zaplanować {{title}}?",
+      "text": "Podaj daty, wielkość grupy i preferowany poziom komfortu. Wrócimy w 24 godziny z realnym planem i realną ceną."
+    }
+  },
+  "type_detail": {
+    "not_found_page_title": "Nie znaleziono typu safari · Destination Paradise",
+    "not_found_eyebrow": "Style safari",
+    "not_found_title": "Nie znaleziono typu safari",
+    "not_found_text": "Tego stylu nie ma na aktualnej liście. Zobacz wszystkie style safari poniżej.",
+    "back_to_styles": "Wróć do stylów safari →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Strona główna",
+    "breadcrumb_safaris": "Safari",
+    "cat": "Styl safari",
+    "best_for": "Najlepsze dla: {{audience}}",
+    "why_choose": "Dlaczego ten styl",
+    "matching_routes": "Najlepiej pasujące trasy",
+    "all_safaris": "Wszystkie safari",
+    "routes": {
+      "eyebrow": "Polecane trasy",
+      "title": "Zacznij od jednego z tych safari.",
+      "lead": "Te trasy najlepiej pasują do tego stylu safari. Każda otwiera pełne szczegóły i plan dzień po dniu."
+    },
+    "cta": {
+      "title": "Chcesz ten styl safari?",
+      "text": "Podaj daty, budżet i wielkość grupy. Dobierzemy odpowiednie parki, obozy i loty w 24 godziny.",
+      "plan_ai": "Zaplanuj z AI"
+    }
+  },
   "cta": {
     "title": "Gotowi zaplanować safari?",
     "text": "Napisz, kiedy możesz lecieć, kto jedzie i jaki klimat podróży masz w głowie. Wrócimy w 24 godziny z realnym planem i realną ceną.",

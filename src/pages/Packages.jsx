@@ -30,7 +30,7 @@ export default function Packages() {
   const { t, ready } = useTranslation('packages');
   const { format } = useCurrency();
   const priceText = (pricing) => (pricing.to ? `${format(pricing.from)} – ${format(pricing.to)}` : format(pricing.from));
-  const pageRef = useRef(null);
+  const pageRef = useRef(/** @type {HTMLElement | null} */ (null));
   const [filter, setFilter] = useState('all');
   const [visibleCount, setVisibleCount] = useState(INITIAL_PACKAGE_COUNT);
   const packages = useMemo(() => buildLocalizedPackages(t), [t]);

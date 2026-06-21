@@ -72,6 +72,29 @@ export function isPlannerHandoffMessage(message = '') {
   return typeof message === 'string' && message.startsWith(PLANNER_MESSAGE_PREFIX);
 }
 
+/**
+ * @typedef {Object} PlannerContact
+ * @property {string} name
+ * @property {string} email
+ * @property {string} phone
+ */
+
+/**
+ * @typedef {Object} PlannerHandoff
+ * @property {string} createdAt
+ * @property {number} messageCount
+ * @property {string} sourcePath
+ * @property {string} subject
+ * @property {string} transcript
+ * @property {string} message
+ * @property {PlannerContact} contact
+ */
+
+/**
+ * @param {unknown} history
+ * @param {string} [sourcePath]
+ * @returns {PlannerHandoff}
+ */
 export function buildPlannerHandoff(history, sourcePath = '') {
   const messages = cleanHistory(history);
   const createdAt = new Date().toISOString();
@@ -133,6 +156,9 @@ export function savePlannerHandoff(history, sourcePath = '') {
   return handoff;
 }
 
+/**
+ * @returns {PlannerHandoff | null}
+ */
 export function readPlannerHandoff() {
   try {
     if (typeof window === 'undefined') return null;

@@ -32,8 +32,8 @@ export default function PlannerSection({ initialPrompt }) {
   const [handoffState, setHandoffState] = useState('idle'); // idle | sending | sent | error | updated
   const [handoffError, setHandoffError] = useState('');
   const [updateCount, setUpdateCount] = useState(0);
-  const logRef = useRef(null);
-  const inputRef = useRef(null);
+  const logRef = useRef(/** @type {HTMLDivElement | null} */ (null));
+  const inputRef = useRef(/** @type {HTMLTextAreaElement | null} */ (null));
   const handledPromptRef = useRef(null);
   const handoffInflightRef = useRef(false);
   const handoffSentCountRef = useRef(0);

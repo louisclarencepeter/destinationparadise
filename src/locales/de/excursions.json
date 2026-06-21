@@ -81,6 +81,92 @@
       }
     }
   },
+  "detail": {
+    "not_found_page_title": "Ausflug nicht gefunden · Destination Paradise",
+    "not_found_eyebrow": "Ausflüge",
+    "not_found_title": "Ausflug nicht gefunden",
+    "not_found_text": "Diese Route ist nicht auf unserer aktuellen Liste. Sieh dir unten alle verfügbaren Ausflüge an.",
+    "back_to_excursions": "Zurück zu allen Ausflügen →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Start",
+    "breadcrumb_excursions": "Ausflüge",
+    "season_prefix": "Saisonal",
+    "highlights": "Highlights",
+    "experience_pricing": "Preisübersicht",
+    "from": "ab",
+    "per_person": "pro Person",
+    "price_on_request": "Preis auf Anfrage",
+    "book_this": "Diesen Ausflug buchen →",
+    "all_excursions": "Alle Ausflüge",
+    "timeline": {
+      "eyebrow": "Stunde für Stunde",
+      "title": "Ein typischer Tag",
+      "lead": "Minute für Minute, was dich erwartet. Die Zeiten sind ein Richtwert — wir passen uns an Wetter, Gezeiten und die Stimmung des Tages an."
+    },
+    "practical": {
+      "included": {
+        "heading": "Immer inklusive",
+        "items": ["Hotelabholung & Rücktransfer", "Lizenzierter lokaler Guide", "Wasser in Flaschen den ganzen Tag", "Alle Park- & Eintrittsgebühren", "Ausrüstung gestellt"]
+      },
+      "not_included": {
+        "heading": "Nicht inklusive",
+        "items": ["Trinkgeld für Guides & Crew", "Alkohol (wo zutreffend)", "Reiseversicherung", "Taschengeld"]
+      },
+      "booking": {
+        "heading": "Buchung & Zahlung",
+        "items": ["Mindestens 48 Stunden im Voraus buchen", "20 % Anzahlung, Rest am Tag", "Kostenlose Stornierung bis 24 Std. vorher", "USD, EUR, GBP, TZS — alle akzeptiert"]
+      }
+    },
+    "cta": {
+      "title": "Bereit, {{title}} zu buchen?",
+      "text": "Nenn uns deine Reisedaten und wir melden uns innerhalb von 24 Stunden mit verfügbaren Abholzeiten und einem Endpreis — unverbindlich."
+    }
+  },
+  "combination": {
+    "not_found_page_title": "Ausflugskombination nicht gefunden · Destination Paradise",
+    "not_found_eyebrow": "Ausflugskombinationen",
+    "not_found_title": "Kombination nicht gefunden",
+    "not_found_text": "Diese Kombination ist nicht auf unserer aktuellen Liste. Sieh dir unten alle Ausflüge an.",
+    "back_to_excursions": "Zurück zu den Ausflügen →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Start",
+    "breadcrumb_excursions": "Ausflüge",
+    "category": "Kombination",
+    "facts": {
+      "length": "Dauer",
+      "length_sub": "Auf eine Reise abgestimmt",
+      "stops": "Stopps",
+      "style": "Stil",
+      "style_value": "Privater Plan",
+      "style_sub": "Am besten als maßgeschneiderter Tag",
+      "quote": "Angebot",
+      "quote_sub": "Finale Zeiten und Preis"
+    },
+    "included_experiences": "Enthaltene Erlebnisse",
+    "ideal_for": "Ideal für",
+    "open_each_stop": "Jeden Stopp öffnen",
+    "planning_note": "Planungshinweis",
+    "planning_note_items": [
+      "Die Abholzeit hängt von Hotellage, Gezeiten und Tageslicht ab.",
+      "Manche Kombinationen funktionieren privat am besten, damit das Tempo angenehm bleibt.",
+      "Wir bestätigen Route, Mahlzeiten, Guide und Transfers final vor der Buchung."
+    ],
+    "price_estimated": "geschätzt aus den gelisteten Stopps",
+    "price_on_request": "Preis auf Anfrage",
+    "price_note": "Der endgültige Kombinationspreis hängt von Transfers, privatem Guide, Mahlzeiten und Abholgebiet ab.",
+    "book_this": "Diese Kombination buchen →",
+    "all_excursions": "Alle Ausflüge",
+    "sequence": {
+      "eyebrow": "Vorgeschlagene Reihenfolge",
+      "title": "So läuft der Tag ab",
+      "lead": "Das ist die sauberste Reihenfolge für die Kombination. Wir passen die Zeiten an dein Hotel, die Gezeiten und das Wetter an."
+    },
+    "cta": {
+      "title": "Bereit, {{title}} zu buchen?",
+      "text": "Nenn uns dein Hotel, das Datum und die Gruppengröße. Wir bestätigen die beste Zeitplanung, die Abholung, den Guide und den finalen Kombinationspreis.",
+      "plan_ai": "Mit KI planen"
+    }
+  },
   "cta": {
     "title": "Bereit, ein Datum festzumachen?",
     "text": "Sag uns, wann du da bist und welche Ausflüge dich interessieren. Wir melden uns innerhalb von 24 Stunden mit verfügbaren Daten, Abholzeiten und Endpreis — ohne Verpflichtung, ohne Chatbot.",

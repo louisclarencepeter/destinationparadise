@@ -8,9 +8,11 @@ import { clearPlannerHandoff, isPlannerHandoffMessage, PLANNER_HANDOFF_EVENT, re
 export default function ContactSection() {
   const { t } = useTranslation('home');
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
-  const [plannerHandoff, setPlannerHandoff] = useState(null);
+  const [plannerHandoff, setPlannerHandoff] = useState(
+    /** @type {import('../../utils/plannerHandoff.js').PlannerHandoff | null} */ (null),
+  );
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
-  const messageRef = useRef(null);
+  const messageRef = useRef(/** @type {HTMLTextAreaElement | null} */ (null));
   const update = (k) => (e) => {
     setStatus('idle');
     setForm((s) => ({ ...s, [k]: e.target.value }));

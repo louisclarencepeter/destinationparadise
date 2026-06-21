@@ -2,6 +2,7 @@ import { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useTranslation } from 'react-i18next';
+import { isPrerender } from '../../utils/prerender.js';
 import { ArrowIcon } from './Icons.jsx';
 
 const TILE_URLS = {
@@ -14,8 +15,10 @@ const TILE_ATTRIBUTION =
 export default function MapSection({ tweaks, PINS, activePin, setActivePin, islandPins, mainlandPins, ctaHref = '#contact', ctaLabel }) {
   const { t } = useTranslation('home');
   const resolvedCtaLabel = ctaLabel ?? t('map.cta_label');
-  const mapElRef = useRef(null);
-  const mapApiRef = useRef(null);
+  const mapElRef = useRef(/** @type {HTMLDivElement | null} */ (null));
+  const mapApiRef = useRef(
+    /** @type {{ map: any, markers: Record<string, any>, tileLayer: any } | null} */ (null),
+  );
   const isDark = tweaks.theme === 'dark';
   const isDarkRef = useRef(isDark);
   isDarkRef.current = isDark;
@@ -25,12 +28,17 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
   useEffect(() => {
     const el = mapElRef.current;
     if (!el) return;
+    // Skip live Leaflet during the build-time prerender crawl: a real map would
+    // bake non-deterministic tile/marker DOM into the captured HTML and fire
+    // CARTO tile requests. The static section markup (copy + pin list) still renders.
+    if (isPrerender()) return undefined;
 
     if (mapApiRef.current) {
       try { mapApiRef.current.map.remove(); } catch { /* noop */ }
       mapApiRef.current = null;
     }
-    if (el._leaflet_id != null) delete el._leaflet_id;
+    const leafletEl = /** @type {{ _leaflet_id?: number }} */ (el);
+    if (leafletEl._leaflet_id != null) delete leafletEl._leaflet_id;
 
     const map = L.map(el, {
       center: [-5.5, 37.0],

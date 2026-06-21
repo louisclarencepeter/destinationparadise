@@ -1,23 +1,23 @@
 import { Link, useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { ALL_SAFARI_PRODUCTS, INCLUDED_LIST } from '../data/safariPageData.js';
 import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
+import { touristTripJsonLd } from '../utils/productJsonLd.js';
 import { useCurrency } from '../context/useCurrency.js';
+import { arrayFromTranslation } from '../utils/translationValues.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
 
-const PRACTICAL = [
-  { h: "What's always included", items: ['Bush flights & transfers', 'Park and conservation fees', 'Professional safari guide', 'Full board at camp or lodge'] },
-  { h: 'Not included', items: ['International flights', 'Travel insurance', 'Tips for guides and camp staff', 'Premium drinks unless stated'] },
-  { h: 'Booking & payment', items: ['Best booked 2-6 months ahead', 'Deposit confirms lodges and flights', 'Final balance before travel', 'USD, EUR, GBP, TZS accepted'] },
-];
+const PRACTICAL_COLUMNS = ['included', 'not_included', 'booking'];
 
 function cleanInclude(item = '') {
   return item.replace(/^✓\s*/, '').trim();
 }
 
 export default function SafariDetail() {
+  const { t, ready } = useTranslation('safaris');
   const { id } = useParams();
   const { format } = useCurrency();
   const safari = ALL_SAFARI_PRODUCTS.find((item) => item.id === id);
@@ -31,19 +31,28 @@ export default function SafariDetail() {
               safari.intro ||
               `${safari.title} — a guided Tanzania safari with park fees, professional guide, and full-board lodging.`,
           ),
+          jsonLd: touristTripJsonLd({
+            name: safari.title,
+            description: safari.blurb || safari.intro,
+            path: `/safaris/${safari.id}`,
+            image: safari.image,
+            price: safari.publicPrice?.lowSeason ?? (typeof safari.price === 'number' ? safari.price : undefined),
+          }),
         }
-      : { title: 'Safari Not Found · Destination Paradise', noindex: true },
+      : { title: t('detail.not_found_page_title'), noindex: true },
   );
+
+  if (!ready) return null;
 
   if (!safari) {
     return (
       <main className="safaris-page">
         <section className="exc-day" style={{ textAlign: 'center', minHeight: '60vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div>
-            <span className="section-eyebrow">Safaris</span>
-            <h1 className="section-title">Safari not found</h1>
-            <p className="section-lead">That route is not in our current list. Browse all available safaris below.</p>
-            <Link className="btn btn--ghost-dark" to="/safaris" style={{ marginTop: '1.5rem' }}>Back to all safaris →</Link>
+            <span className="section-eyebrow">{t('detail.not_found_eyebrow')}</span>
+            <h1 className="section-title">{t('detail.not_found_title')}</h1>
+            <p className="section-lead">{t('detail.not_found_text')}</p>
+            <Link className="btn btn--ghost-dark" to="/safaris" style={{ marginTop: '1.5rem' }}>{t('detail.back_to_safaris')}</Link>
           </div>
         </section>
       </main>
@@ -56,10 +65,10 @@ export default function SafariDetail() {
 
   return (
     <main className="safaris-page exc-detail saf-detail">
-      <nav className="exc-detail__crumbs" aria-label="Breadcrumb">
-        <Link to="/">Home</Link>
+      <nav className="exc-detail__crumbs" aria-label={t('detail.breadcrumb_aria')}>
+        <Link to="/">{t('detail.breadcrumb_home')}</Link>
         <span aria-hidden="true">→</span>
-        <Link to="/safaris">Safaris</Link>
+        <Link to="/safaris">{t('detail.breadcrumb_safaris')}</Link>
         <span aria-hidden="true">→</span>
         <span>{safari.title}</span>
       </nav>
@@ -68,18 +77,18 @@ export default function SafariDetail() {
         <div className="exc-block__img">
           <ResponsiveImage src={safari.image} alt={safari.alt || safari.title} />
           <span className="exc-block__cat">{safari.category}</span>
-          {safari.feature && <span className="exc-block__season">Most popular</span>}
+          {safari.feature && <span className="exc-block__season">{t('detail.most_popular')}</span>}
         </div>
         <div className="exc-block__body">
           <span className="exc-block__eyebrow">{safari.rib}</span>
           <h1 className="exc-block__title">{safari.title}</h1>
           <p className="exc-block__desc">{safari.intro}</p>
           <dl className="exc-block__facts">
-            <div><dt>Duration</dt><dd>{safari.duration}<small>Route length</small></dd></div>
-            <div><dt>Starts from</dt><dd>{safari.from}<small>Flights can be adjusted</small></dd></div>
-            <div><dt>Style</dt><dd>{safari.positioning || safari.category}<small>Safari type</small></dd></div>
+            <div><dt>{t('detail.facts.duration')}</dt><dd>{safari.duration}<small>{t('detail.facts.duration_sub')}</small></dd></div>
+            <div><dt>{t('detail.facts.starts_from')}</dt><dd>{safari.from}<small>{t('detail.facts.starts_from_sub')}</small></dd></div>
+            <div><dt>{t('detail.facts.style')}</dt><dd>{safari.positioning || safari.category}<small>{t('detail.facts.style_sub')}</small></dd></div>
             <div>
-              <dt>Price</dt>
+              <dt>{t('detail.facts.price')}</dt>
               <dd>
                 {format(price ? price.lowSeason : safari.price)}
                 {price && `–${format(price.peakSeason)}`}
@@ -89,18 +98,18 @@ export default function SafariDetail() {
           </dl>
           <div className="exc-block__cols">
             <div className="exc-block__col">
-              <h4>{safari.productType ? 'Highlights' : 'Included in this route'}</h4>
+              <h4>{safari.productType ? t('detail.highlights') : t('detail.included_in_route')}</h4>
               <ul>{included.map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
             <div className="exc-block__col">
-              <h4>{safari.idealFor?.length ? 'Ideal for' : 'Typical safari inclusions'}</h4>
+              <h4>{safari.idealFor?.length ? t('detail.ideal_for') : t('detail.typical_inclusions')}</h4>
               <ul>{(safari.idealFor?.length ? safari.idealFor : INCLUDED_LIST.slice(0, 4)).map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
           </div>
           {upsells.length > 0 && (
             <div className="exc-block__cols">
               <div className="exc-block__col">
-                <h4>Optional upgrades</h4>
+                <h4>{t('detail.optional_upgrades')}</h4>
                 <ul>{upsells.map((item) => <li key={item.name}>{item.name} · +{format(item.price)}</li>)}</ul>
               </div>
             </div>
@@ -108,11 +117,11 @@ export default function SafariDetail() {
           <div className="exc-block__actions">
             <span className="exc-block__price">
               {format(price ? price.lowSeason : safari.price)}
-              <small>{price ? `low season · peak from ${format(price.peakSeason)}` : safari.priceSub}</small>
+              <small>{price ? t('detail.price_low_peak', { price: format(price.peakSeason) }) : safari.priceSub}</small>
             </span>
-            <span className="exc-block__price-note">Final price depends on season, camp level, and flight availability.</span>
-            <Link className="btn" to={`/booking?type=safari&item=${encodeURIComponent(safari.id)}`}>Book this route →</Link>
-            <Link className="btn btn--ghost-dark" to="/safaris">All safaris</Link>
+            <span className="exc-block__price-note">{t('detail.price_note')}</span>
+            <Link className="btn" to={`/booking?type=safari&item=${encodeURIComponent(safari.id)}`}>{t('detail.book_route')}</Link>
+            <Link className="btn btn--ghost-dark" to="/safaris">{t('detail.all_safaris')}</Link>
           </div>
         </div>
       </article>
@@ -120,9 +129,9 @@ export default function SafariDetail() {
       {safari.days?.length > 0 && (
         <section className="exc-day" id="route">
           <div className="exc-day__head">
-            <span className="section-eyebrow">Day by day</span>
-            <h2 className="section-title">A typical route</h2>
-            <p className="section-lead">This is the current route sketch. We adjust flights, camps, and pacing around your dates and travel style.</p>
+            <span className="section-eyebrow">{t('detail.route.eyebrow')}</span>
+            <h2 className="section-title">{t('detail.route.title')}</h2>
+            <p className="section-lead">{t('detail.route.lead')}</p>
           </div>
           <div className="exc-day__timeline">
             {safari.days.map((day) => (
@@ -137,11 +146,11 @@ export default function SafariDetail() {
 
       <section className="exc-prac">
         <div className="exc-prac__grid">
-          {PRACTICAL.map((col) => (
-            <div className="exc-prac__col" key={col.h}>
-              <h4>{col.h}</h4>
+          {PRACTICAL_COLUMNS.map((key) => (
+            <div className="exc-prac__col" key={key}>
+              <h4>{t(`detail.practical.${key}.heading`)}</h4>
               <ul>
-                {col.items.map((item) => (
+                {arrayFromTranslation(t(`detail.practical.${key}.items`, { returnObjects: true })).map((item) => (
                   <li key={item}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                     {item}
@@ -158,11 +167,11 @@ export default function SafariDetail() {
           <ResponsiveImage src={safari.image} alt="" />
         </div>
         <div className="saf-cta__inner">
-          <h2>Ready to plan {safari.title}?</h2>
-          <p>Tell us your dates, group size, and preferred comfort level. We’ll come back within 24 hours with a real itinerary and a real price.</p>
+          <h2>{t('detail.cta.title', { title: safari.title })}</h2>
+          <p>{t('detail.cta.text')}</p>
           <div className="saf-cta__btns">
-            <Link className="btn btn--lg btn--accent" to={`/booking?type=safari&item=${encodeURIComponent(safari.id)}`}>Get a quote →</Link>
-            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">Or chat with our AI planner</Link>
+            <Link className="btn btn--lg btn--accent" to={`/booking?type=safari&item=${encodeURIComponent(safari.id)}`}>{t('cta.get_quote')}</Link>
+            <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">{t('cta.ai_planner')}</Link>
           </div>
         </div>
       </section>

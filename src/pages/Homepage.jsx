@@ -63,7 +63,9 @@ export default function Homepage() {
   const [activePin, setActivePin] = useState('stone-town');
   const [tweaksOpen, setTweaksOpen] = useState(false);
   const [tweaksGearVisible, setTweaksGearVisible] = useState(false);
-  const [plannerPrompt, setPlannerPrompt] = useState(null);
+  const [plannerPrompt, setPlannerPrompt] = useState(
+    /** @type {{ id: number, text: string } | null} */ (null),
+  );
 
   usePageMeta({
     title: 'Destination Paradise · Zanzibar & Tanzania Tours',

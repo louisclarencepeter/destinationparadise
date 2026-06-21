@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { buildLocalizedPackages } from '../data/packagePresentation.js';
 import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
+import { touristTripJsonLd } from '../utils/productJsonLd.js';
 import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -25,6 +26,13 @@ export default function PackageDetail() {
             pkg.description ||
               `${pkg.title} — a complete Zanzibar & Tanzania travel package with safaris, beaches, and seamless transfers.`,
           ),
+          jsonLd: touristTripJsonLd({
+            name: pkg.title,
+            description: pkg.description,
+            path: `/packages/${pkg.slug}`,
+            image: pkg.image,
+            price: pkg.pricing?.from,
+          }),
         }
       : { title: t('detail.not_found_page_title'), noindex: true },
   );

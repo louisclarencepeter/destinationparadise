@@ -63,9 +63,9 @@ export function SearchButton({ className = '', onClick, label = 'Search' }) {
 export default function SiteSearch({ open, onClose }) {
   const { t } = useTranslation('common');
   const [query, setQuery] = useState('');
-  const [searchIndex, setSearchIndex] = useState([]);
+  const [searchIndex, setSearchIndex] = useState(/** @type {any[]} */ ([]));
   const [popularSearches, setPopularSearches] = useState(FALLBACK_POPULAR);
-  const inputRef = useRef(null);
+  const inputRef = useRef(/** @type {HTMLInputElement | null} */ (null));
 
   const results = useMemo(() => {
     if (!searchIndex.length) return [];
