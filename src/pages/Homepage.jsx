@@ -5,6 +5,7 @@ import '../styles/homepage.css';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import { DESTINATION_MAP_PINS } from '../data/destinationMapPins.js';
 import DeferredMount from '../components/DeferredMount.jsx';
+import usePageMeta from '../hooks/usePageMeta.js';
 import HeroSection from '../components/homepage/HeroSection.jsx';
 import ExcursionsSection from '../components/homepage/ExcursionsSection.jsx';
 import SafarisSection from '../components/homepage/SafarisSection.jsx';
@@ -62,11 +63,15 @@ export default function Homepage() {
   const [activePin, setActivePin] = useState('stone-town');
   const [tweaksOpen, setTweaksOpen] = useState(false);
   const [tweaksGearVisible, setTweaksGearVisible] = useState(false);
-  const [plannerPrompt, setPlannerPrompt] = useState(null);
+  const [plannerPrompt, setPlannerPrompt] = useState(
+    /** @type {{ id: number, text: string } | null} */ (null),
+  );
 
-  useEffect(() => {
-    document.title = 'Destination Paradise · Zanzibar & Tanzania Tours';
-  }, []);
+  usePageMeta({
+    title: 'Destination Paradise · Zanzibar & Tanzania Tours',
+    description:
+      'Bespoke Zanzibar excursions, luxury Tanzania safaris, and complete travel packages — plus an AI trip planner and door-to-door transfers. Plan your trip to paradise.',
+  });
 
   // Persist design-preview tweaks. The active theme is managed globally.
   useEffect(() => {
@@ -180,6 +185,7 @@ export default function Homepage() {
 
   return (
     <>
+      <main>
       <HeroSection tweaks={tweaks} handleHeroSearch={handleHeroSearch} />
       <ExcursionsSection tweaks={tweaks} excursions={bestSellingExcursions} />
       <SafarisSection />
@@ -239,6 +245,7 @@ export default function Homepage() {
           <NewsletterSection />
         </Suspense>
       </DeferredMount>
+      </main>
 
       {/* ============ TWEAKS PANEL (claude.ai design preview only) ============ */}
       <button

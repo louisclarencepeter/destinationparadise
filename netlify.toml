@@ -3,11 +3,12 @@
   publish = "dist"
   functions = "netlify/functions"
 
-[[redirects]]
-  from = "/api/planner"
-  to = "/.netlify/functions/planner"
-  status = 200
+# Note: /api/* routes are registered by each function's own `export const config`
+# (e.g. planner.mjs -> path: '/api/planner'), which takes precedence over the SPA
+# catch-all below — no per-function rewrite is needed here.
 
+# SPA fallback. Static files in dist/ (sitemap.xml, robots.txt, assets) are served
+# ahead of this catch-all, so only unmatched app routes fall through to index.html.
 [[redirects]]
   from = "/*"
   to = "/index.html"

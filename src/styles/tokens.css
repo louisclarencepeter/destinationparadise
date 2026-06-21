@@ -29,6 +29,10 @@
   --dp-primary:        #1A4D6E;
   --dp-secondary:      #215A7C;
   --dp-accent:         #FF6F61;
+  /* Darker accent for normal-size text/links on light surfaces — #FF6F61 only
+     reaches ~2.5:1 on white; this hits ~4.9:1 for WCAG AA 1.4.3. Use --dp-accent
+     for backgrounds, icons, and large display text where 3:1 suffices. */
+  --dp-accent-text:    #C8442F;
   --dp-hover:          #FF926B;
   --dp-background:     #FAFBFD;
   --dp-background-lt:  #ffffff;

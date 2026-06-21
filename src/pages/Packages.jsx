@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { buildLocalizedPackages, categoryText } from '../data/packagePresentation.js';
 import { useCurrency } from '../context/useCurrency.js';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
+import usePageMeta from '../hooks/usePageMeta.js';
 import { arrayFromTranslation } from '../utils/translationValues.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -29,7 +30,7 @@ export default function Packages() {
   const { t, ready } = useTranslation('packages');
   const { format } = useCurrency();
   const priceText = (pricing) => (pricing.to ? `${format(pricing.from)} – ${format(pricing.to)}` : format(pricing.from));
-  const pageRef = useRef(null);
+  const pageRef = useRef(/** @type {HTMLElement | null} */ (null));
   const [filter, setFilter] = useState('all');
   const [visibleCount, setVisibleCount] = useState(INITIAL_PACKAGE_COUNT);
   const packages = useMemo(() => buildLocalizedPackages(t), [t]);
@@ -55,9 +56,13 @@ export default function Packages() {
     setVisibleCount(INITIAL_PACKAGE_COUNT);
   }, [filter]);
 
-  useEffect(() => {
-    document.title = t('page_title');
-  }, [t]);
+  usePageMeta({
+    title: t('page_title'),
+    description: t('page_description', {
+      defaultValue:
+        'Complete Zanzibar & Tanzania travel packages — safari + beach, honeymoon, family, fly-in, Kilimanjaro, luxury and long-stay itineraries, managed end to end.',
+    }),
+  });
 
   useEffect(() => {
     const root = pageRef.current;

@@ -2,24 +2,43 @@ import { useEffect, useRef } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useTranslation } from 'react-i18next';
+import { isPrerender } from '../../utils/prerender.js';
 import { ArrowIcon } from './Icons.jsx';
+
+const TILE_URLS = {
+  dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+  light: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+};
+const TILE_ATTRIBUTION =
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
 export default function MapSection({ tweaks, PINS, activePin, setActivePin, islandPins, mainlandPins, ctaHref = '#contact', ctaLabel }) {
   const { t } = useTranslation('home');
   const resolvedCtaLabel = ctaLabel ?? t('map.cta_label');
-  const mapElRef = useRef(null);
-  const mapApiRef = useRef(null);
+  const mapElRef = useRef(/** @type {HTMLDivElement | null} */ (null));
+  const mapApiRef = useRef(
+    /** @type {{ map: any, markers: Record<string, any>, tileLayer: any } | null} */ (null),
+  );
   const isDark = tweaks.theme === 'dark';
+  const isDarkRef = useRef(isDark);
+  isDarkRef.current = isDark;
 
+  // Build the map and markers once. Theme changes swap only the tile layer
+  // (separate effect below) rather than tearing down and recreating the map.
   useEffect(() => {
     const el = mapElRef.current;
     if (!el) return;
+    // Skip live Leaflet during the build-time prerender crawl: a real map would
+    // bake non-deterministic tile/marker DOM into the captured HTML and fire
+    // CARTO tile requests. The static section markup (copy + pin list) still renders.
+    if (isPrerender()) return undefined;
 
     if (mapApiRef.current) {
       try { mapApiRef.current.map.remove(); } catch { /* noop */ }
       mapApiRef.current = null;
     }
-    if (el._leaflet_id != null) delete el._leaflet_id;
+    const leafletEl = /** @type {{ _leaflet_id?: number }} */ (el);
+    if (leafletEl._leaflet_id != null) delete leafletEl._leaflet_id;
 
     const map = L.map(el, {
       center: [-5.5, 37.0],
@@ -29,11 +48,8 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
       attributionControl: true,
     });
 
-    const tileUrl = isDark
-      ? 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png'
-      : 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-    L.tileLayer(tileUrl, {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    const tileLayer = L.tileLayer(TILE_URLS[isDarkRef.current ? 'dark' : 'light'], {
+      attribution: TILE_ATTRIBUTION,
       maxZoom: 14,
     }).addTo(map);
 
@@ -55,17 +71,33 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
       markers[p.id] = m;
     });
 
-    mapApiRef.current = { map, markers };
+    mapApiRef.current = { map, markers, tileLayer };
 
-    const t = setTimeout(() => map.invalidateSize(), 200);
+    const invalidateTimer = setTimeout(() => map.invalidateSize(), 200);
     return () => {
-      clearTimeout(t);
+      clearTimeout(invalidateTimer);
       try { map.remove(); } catch { /* noop */ }
       if (mapApiRef.current && mapApiRef.current.map === map) {
         mapApiRef.current = null;
       }
     };
-  }, [isDark, PINS, setActivePin]);
+  }, [PINS, setActivePin]);
+
+  // Swap the tile layer in place when the theme toggles — no full rebuild/refetch.
+  useEffect(() => {
+    const api = mapApiRef.current;
+    if (!api) return undefined;
+    const next = L.tileLayer(TILE_URLS[isDark ? 'dark' : 'light'], {
+      attribution: TILE_ATTRIBUTION,
+      maxZoom: 14,
+    }).addTo(api.map);
+    const previous = api.tileLayer;
+    api.tileLayer = next;
+    if (previous) {
+      try { api.map.removeLayer(previous); } catch { /* noop */ }
+    }
+    return undefined;
+  }, [isDark]);
 
   useEffect(() => {
     const r = mapApiRef.current;

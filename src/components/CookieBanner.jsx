@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const STORAGE_KEY = 'dp_cookie_consent_v1';
 
@@ -35,6 +36,7 @@ function writeStoredConsent(choices) {
 }
 
 export default function CookieBanner() {
+  const { t } = useTranslation('common');
   const [isReady, setIsReady] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
   const [isCustomizing, setIsCustomizing] = useState(false);
@@ -60,15 +62,12 @@ export default function CookieBanner() {
   if (!isReady || !isVisible) return null;
 
   return (
-    <aside className="cookie-banner" aria-label="Cookie consent" aria-live="polite">
+    <aside className="cookie-banner" aria-label={t('cookies.aria_label')} aria-live="polite">
       <div className="cookie-banner__copy">
-        <span className="cookie-banner__eyebrow">Cookie preferences</span>
-        <h2>Choose how the site remembers your visit</h2>
-        <p>
-          We use essential storage for the website to work. With your permission, analytics
-          can help us understand visits and improve trip planning.
-        </p>
-        <Link className="cookie-banner__link" to="/cookies-policy">Read the cookies policy</Link>
+        <span className="cookie-banner__eyebrow">{t('cookies.eyebrow')}</span>
+        <h2>{t('cookies.title')}</h2>
+        <p>{t('cookies.body')}</p>
+        <Link className="cookie-banner__link" to="/cookies-policy">{t('cookies.policy_link')}</Link>
       </div>
 
       {isCustomizing && (
@@ -76,8 +75,8 @@ export default function CookieBanner() {
           <label className="cookie-choice cookie-choice--locked">
             <input type="checkbox" checked disabled />
             <span>
-              <strong>Essential</strong>
-              <small>Required for theme preferences, forms, and site stability.</small>
+              <strong>{t('cookies.essential_title')}</strong>
+              <small>{t('cookies.essential_desc')}</small>
             </span>
           </label>
           <label className="cookie-choice">
@@ -87,8 +86,8 @@ export default function CookieBanner() {
               onChange={(event) => setChoices((current) => ({ ...current, analytics: event.target.checked }))}
             />
             <span>
-              <strong>Analytics</strong>
-              <small>Helps us learn which pages are useful and where planning can improve.</small>
+              <strong>{t('cookies.analytics_title')}</strong>
+              <small>{t('cookies.analytics_desc')}</small>
             </span>
           </label>
         </div>
@@ -96,19 +95,19 @@ export default function CookieBanner() {
 
       <div className="cookie-banner__actions">
         <button className="cookie-banner__btn cookie-banner__btn--ghost" type="button" onClick={() => saveChoices(defaultChoices)}>
-          Essential only
+          {t('cookies.essential_only')}
         </button>
         {isCustomizing ? (
           <button className="cookie-banner__btn" type="button" onClick={() => saveChoices(choices)}>
-            Save choices
+            {t('cookies.save')}
           </button>
         ) : (
           <button className="cookie-banner__btn cookie-banner__btn--ghost" type="button" onClick={() => setIsCustomizing(true)}>
-            Customize
+            {t('cookies.customize')}
           </button>
         )}
         <button className="cookie-banner__btn cookie-banner__btn--accent" type="button" onClick={() => saveChoices({ analytics: true })}>
-          Accept all
+          {t('cookies.accept_all')}
         </button>
       </div>
     </aside>

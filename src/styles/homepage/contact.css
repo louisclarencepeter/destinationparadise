@@ -29,7 +29,7 @@
   font-family: var(--dp-font-sans);
   font-size: 10px; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
-  color: var(--dp-accent);
+  color: var(--dp-accent-text);
   display: inline-flex; align-items: center; gap: .5rem;
 }
 .contact__detail-icon { flex-shrink: 0; }

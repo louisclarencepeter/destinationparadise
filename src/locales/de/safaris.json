@@ -168,20 +168,20 @@
         "sub": "Raubtiere",
         "tiles": {
           "male-lion-in-grass.webp": {
-            "alt": "Male lion lying in grass",
-            "cap": "Male lion · Ngorongoro Crater"
+            "alt": "Löwe liegt im Gras",
+            "cap": "Löwe · Ngorongoro-Krater"
           },
           "serval-in-grass.webp": {
-            "alt": "Serval cat in grass",
-            "cap": "Serval · rare daylight sighting"
+            "alt": "Serval im Gras",
+            "cap": "Serval · seltene Sichtung bei Tag"
           },
           "lion-cub-in-grass.webp": {
-            "alt": "Lion cub in grass",
-            "cap": "Cub · ten weeks old"
+            "alt": "Löwenjunges im Gras",
+            "cap": "Junges · zehn Wochen alt"
           },
           "lioness-and-cub-resting.webp": {
-            "alt": "Lioness with cub resting",
-            "cap": "Lioness & cub · evening rest"
+            "alt": "Löwin mit Jungem beim Ausruhen",
+            "cap": "Löwin & Junges · Ruhe am Abend"
           }
         }
       },
@@ -190,28 +190,28 @@
         "sub": "Die Grasfresser",
         "tiles": {
           "zebra-mare-and-foal.webp": {
-            "alt": "Zebra mare and foal",
-            "cap": "Zebra · mare and foal"
+            "alt": "Zebrastute mit Fohlen",
+            "cap": "Zebra · Stute und Fohlen"
           },
           "zebra-herd-on-track.webp": {
-            "alt": "Zebra herd on track",
-            "cap": "The herd, deciding"
+            "alt": "Zebraherde auf der Piste",
+            "cap": "Die Herde, unentschlossen"
           },
           "wildebeest-grazing.webp": {
-            "alt": "Blue wildebeest grazing",
-            "cap": "Blue wildebeest"
+            "alt": "Streifengnu beim Grasen",
+            "cap": "Streifengnu"
           },
           "eland-grazing.webp": {
-            "alt": "Eland grazing",
-            "cap": "Eland · the largest antelope"
+            "alt": "Elenantilope beim Grasen",
+            "cap": "Elenantilope · die größte Antilope"
           },
           "eland-herd-plains.webp": {
-            "alt": "Eland herd",
-            "cap": "Eland herd · Ngorongoro"
+            "alt": "Herde von Elenantilopen",
+            "cap": "Elenantilopen-Herde · Ngorongoro"
           },
           "warthog-on-plains.webp": {
-            "alt": "Warthog",
-            "cap": "Warthog · Pumbaa, in person"
+            "alt": "Warzenschwein",
+            "cap": "Warzenschwein · Pumbaa persönlich"
           }
         }
       },
@@ -220,16 +220,16 @@
         "sub": "Groß & selten",
         "tiles": {
           "buffalo-herd-close.webp": {
-            "alt": "Cape buffalo herd close-up",
-            "cap": "Cape buffalo · the dagga boys"
+            "alt": "Kaffernbüffelherde aus der Nähe",
+            "cap": "Kaffernbüffel · die alten Bullen"
           },
           "buffalo-and-egret.webp": {
-            "alt": "Buffalo with cattle egret",
-            "cap": "Buffalo & egret · partners"
+            "alt": "Büffel mit Kuhreiher",
+            "cap": "Büffel & Kuhreiher · Partner"
           },
           "rhino-on-plains.webp": {
-            "alt": "Black rhino on plains",
-            "cap": "Black rhino · <30 left in the crater"
+            "alt": "Spitzmaulnashorn in der Ebene",
+            "cap": "Spitzmaulnashorn · <30 im Krater übrig"
           }
         }
       },
@@ -238,20 +238,20 @@
         "sub": "400+ Arten",
         "tiles": {
           "crowned-crane-close.webp": {
-            "alt": "Grey crowned crane close-up",
-            "cap": "Grey crowned crane"
+            "alt": "Südafrika-Kronenkranich aus der Nähe",
+            "cap": "Südafrika-Kronenkranich"
           },
           "crowned-cranes-in-grass.webp": {
-            "alt": "Pair of crowned cranes",
-            "cap": "The pair · always two"
+            "alt": "Paar Kronenkraniche",
+            "cap": "Das Paar · immer zu zweit"
           },
           "yellow-weaver-on-rail.webp": {
-            "alt": "Yellow weaver on rail",
-            "cap": "Speke's weaver · lodge regular"
+            "alt": "Gelber Webervogel auf einem Geländer",
+            "cap": "Speke-Webervogel · Stammgast der Lodge"
           },
           "raptor-on-log.webp": {
-            "alt": "Lanner falcon on rock",
-            "cap": "Lanner falcon · with prey"
+            "alt": "Lannerfalke auf einem Felsen",
+            "cap": "Lannerfalke · mit Beute"
           }
         }
       }
@@ -327,6 +327,83 @@
       "Wasser & Getränke in der Lodge",
       "24/7 Concierge auf WhatsApp"
     ]
+  },
+  "detail": {
+    "not_found_page_title": "Safari nicht gefunden · Destination Paradise",
+    "not_found_eyebrow": "Safaris",
+    "not_found_title": "Safari nicht gefunden",
+    "not_found_text": "Diese Route ist nicht auf unserer aktuellen Liste. Sieh dir unten alle verfügbaren Safaris an.",
+    "back_to_safaris": "Zurück zu allen Safaris →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Start",
+    "breadcrumb_safaris": "Safaris",
+    "most_popular": "Am beliebtesten",
+    "facts": {
+      "duration": "Dauer",
+      "duration_sub": "Routenlänge",
+      "starts_from": "Ab",
+      "starts_from_sub": "Flüge anpassbar",
+      "style": "Stil",
+      "style_sub": "Safari-Typ",
+      "price": "Preis"
+    },
+    "highlights": "Highlights",
+    "included_in_route": "In dieser Route enthalten",
+    "ideal_for": "Ideal für",
+    "typical_inclusions": "Typische Safari-Leistungen",
+    "optional_upgrades": "Optionale Upgrades",
+    "price_low_peak": "Nebensaison · Hauptsaison ab {{price}}",
+    "price_note": "Der endgültige Preis hängt von Saison, Camp-Niveau und Flugverfügbarkeit ab.",
+    "book_route": "Diese Route buchen →",
+    "all_safaris": "Alle Safaris",
+    "route": {
+      "eyebrow": "Tag für Tag",
+      "title": "Eine typische Route",
+      "lead": "Das ist die aktuelle Routenskizze. Wir passen Flüge, Camps und Tempo an deine Reisedaten und deinen Reisestil an."
+    },
+    "practical": {
+      "included": {
+        "heading": "Immer inklusive",
+        "items": ["Bush-Flüge & Transfers", "Park- und Naturschutzgebühren", "Professioneller Safari-Guide", "Vollpension im Camp oder in der Lodge"]
+      },
+      "not_included": {
+        "heading": "Nicht inklusive",
+        "items": ["Internationale Flüge", "Reiseversicherung", "Trinkgeld für Guides und Camp-Personal", "Premium-Getränke, sofern nicht angegeben"]
+      },
+      "booking": {
+        "heading": "Buchung & Zahlung",
+        "items": ["Am besten 2-6 Monate im Voraus buchen", "Anzahlung sichert Lodges und Flüge", "Restzahlung vor der Reise", "USD, EUR, GBP, TZS akzeptiert"]
+      }
+    },
+    "cta": {
+      "title": "Bereit, {{title}} zu planen?",
+      "text": "Nenn uns deine Reisedaten, die Gruppengröße und dein gewünschtes Komfortniveau. Wir melden uns innerhalb von 24 Stunden mit einer echten Route und einem echten Preis."
+    }
+  },
+  "type_detail": {
+    "not_found_page_title": "Safari-Typ nicht gefunden · Destination Paradise",
+    "not_found_eyebrow": "Safari-Stile",
+    "not_found_title": "Safari-Typ nicht gefunden",
+    "not_found_text": "Dieser Stil ist nicht auf unserer aktuellen Liste. Sieh dir unten alle Safari-Stile an.",
+    "back_to_styles": "Zurück zu den Safari-Stilen →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Start",
+    "breadcrumb_safaris": "Safaris",
+    "cat": "Safari-Stil",
+    "best_for": "Am besten für: {{audience}}",
+    "why_choose": "Warum dieser Stil",
+    "matching_routes": "Am besten passende Routen",
+    "all_safaris": "Alle Safaris",
+    "routes": {
+      "eyebrow": "Empfohlene Routen",
+      "title": "Starte mit einer dieser Safaris.",
+      "lead": "Diese Routen passen am besten zu diesem Safari-Stil. Jede führt zu allen Details und der Tag-für-Tag-Planung."
+    },
+    "cta": {
+      "title": "Möchtest du diesen Safari-Stil?",
+      "text": "Nenn uns deine Reisedaten, dein Budget und die Gruppengröße. Wir wählen die passenden Parks, Camps und Flüge innerhalb von 24 Stunden.",
+      "plan_ai": "Mit KI planen"
+    }
   },
   "cta": {
     "title": "Bereit zu planen?",

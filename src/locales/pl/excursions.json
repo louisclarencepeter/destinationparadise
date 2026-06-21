@@ -81,6 +81,92 @@
       }
     }
   },
+  "detail": {
+    "not_found_page_title": "Nie znaleziono wycieczki · Destination Paradise",
+    "not_found_eyebrow": "Wycieczki",
+    "not_found_title": "Nie znaleziono wycieczki",
+    "not_found_text": "Tej trasy nie ma na aktualnej liście. Zobacz wszystkie dostępne wycieczki poniżej.",
+    "back_to_excursions": "Wróć do wszystkich wycieczek →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Strona główna",
+    "breadcrumb_excursions": "Wycieczki",
+    "season_prefix": "Sezonowo",
+    "highlights": "Najważniejsze punkty",
+    "experience_pricing": "Cennik",
+    "from": "od",
+    "per_person": "za osobę",
+    "price_on_request": "Cena na zapytanie",
+    "book_this": "Zarezerwuj tę wycieczkę →",
+    "all_excursions": "Wszystkie wycieczki",
+    "timeline": {
+      "eyebrow": "Godzina po godzinie",
+      "title": "Typowy dzień",
+      "lead": "Minuta po minucie, czego możesz się spodziewać. Godziny są orientacyjne — dostosowujemy się do pogody, pływów i nastroju dnia."
+    },
+    "practical": {
+      "included": {
+        "heading": "Zawsze w cenie",
+        "items": ["Odbiór i dowóz z hotelu", "Licencjonowany lokalny przewodnik", "Woda butelkowana przez cały dzień", "Wszystkie opłaty parkowe i wstępu", "Sprzęt zapewniony"]
+      },
+      "not_included": {
+        "heading": "Nie wliczono",
+        "items": ["Napiwki dla przewodników i załogi", "Alkohol (gdzie dotyczy)", "Ubezpieczenie podróżne", "Pieniądze na wydatki"]
+      },
+      "booking": {
+        "heading": "Rezerwacja i płatność",
+        "items": ["Rezerwuj co najmniej 48 godzin wcześniej", "20% zaliczki, reszta w dniu wycieczki", "Bezpłatna anulacja do 24 godz. przed", "USD, EUR, GBP, TZS — wszystkie akceptowane"]
+      }
+    },
+    "cta": {
+      "title": "Gotowi zarezerwować {{title}}?",
+      "text": "Podaj daty, a my wrócimy w 24 godziny z dostępnymi godzinami odbioru i finalną ceną — bez zobowiązań."
+    }
+  },
+  "combination": {
+    "not_found_page_title": "Nie znaleziono kombinacji wycieczek · Destination Paradise",
+    "not_found_eyebrow": "Kombinacje wycieczek",
+    "not_found_title": "Nie znaleziono kombinacji",
+    "not_found_text": "Tej kombinacji nie ma na aktualnej liście. Zobacz wszystkie wycieczki poniżej.",
+    "back_to_excursions": "Wróć do wycieczek →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Strona główna",
+    "breadcrumb_excursions": "Wycieczki",
+    "category": "Kombinacja",
+    "facts": {
+      "length": "Czas trwania",
+      "length_sub": "Ułożone w jedną podróż",
+      "stops": "Przystanki",
+      "style": "Styl",
+      "style_value": "Plan prywatny",
+      "style_sub": "Najlepiej jako dzień szyty na miarę",
+      "quote": "Wycena",
+      "quote_sub": "Finalny harmonogram i cena"
+    },
+    "included_experiences": "Doświadczenia w pakiecie",
+    "ideal_for": "Idealne dla",
+    "open_each_stop": "Otwórz każdy przystanek",
+    "planning_note": "Uwaga planistyczna",
+    "planning_note_items": [
+      "Godzina odbioru zależy od lokalizacji hotelu, pływów i światła dziennego.",
+      "Niektóre kombinacje najlepiej działają prywatnie, by tempo pozostało komfortowe.",
+      "Przed rezerwacją potwierdzamy ostateczną trasę, posiłki, przewodnika i transfery."
+    ],
+    "price_estimated": "szacunkowo z wymienionych przystanków",
+    "price_on_request": "Cena na zapytanie",
+    "price_note": "Finalna cena kombinacji zależy od transferów, prywatnego przewodnika, posiłków i obszaru odbioru.",
+    "book_this": "Zarezerwuj tę kombinację →",
+    "all_excursions": "Wszystkie wycieczki",
+    "sequence": {
+      "eyebrow": "Sugerowana kolejność",
+      "title": "Jak płynie dzień",
+      "lead": "To najczystsza kolejność dla tej kombinacji. Dopasowujemy harmonogram do Twojego hotelu, pływów i pogody."
+    },
+    "cta": {
+      "title": "Gotowi zarezerwować {{title}}?",
+      "text": "Podaj hotel, datę i wielkość grupy. Potwierdzimy najlepszy harmonogram, odbiór, przewodnika i finalną cenę kombinacji.",
+      "plan_ai": "Zaplanuj z AI"
+    }
+  },
   "cta": {
     "title": "Chcesz zarezerwować termin?",
     "text": "Napisz, kiedy jesteś na miejscu i które wycieczki Cię interesują. Wrócimy w 24 godziny z dostępnymi datami, godziną odbioru i finalną ceną – bez zobowiązań i bez chatbota.",

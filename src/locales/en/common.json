@@ -7,5 +7,42 @@
     "switch_to_english": "Switch language to English",
     "switch_to_polish": "Switch language to Polish",
     "switch_to_german": "Switch language to German"
+  },
+  "a11y": {
+    "skip_to_content": "Skip to content"
+  },
+  "back_button": {
+    "label": "Back",
+    "aria": "Go back to previous page"
+  },
+  "cookies": {
+    "aria_label": "Cookie consent",
+    "eyebrow": "Cookie preferences",
+    "title": "Choose how the site remembers your visit",
+    "body": "We use essential storage for the website to work. With your permission, analytics can help us understand visits and improve trip planning.",
+    "policy_link": "Read the cookies policy",
+    "essential_title": "Essential",
+    "essential_desc": "Required for theme preferences, forms, and site stability.",
+    "analytics_title": "Analytics",
+    "analytics_desc": "Helps us learn which pages are useful and where planning can improve.",
+    "essential_only": "Essential only",
+    "save": "Save choices",
+    "customize": "Customize",
+    "accept_all": "Accept all"
+  },
+  "search": {
+    "button_aria": "Search the website",
+    "dialog_label": "Search the website",
+    "close_backdrop": "Close search",
+    "query_label": "Search query",
+    "placeholder": "Search safaris, transfers, packages, Stone Town...",
+    "clear": "Clear",
+    "close": "Close",
+    "popular_label": "Popular searches",
+    "results_label": "Search results",
+    "loading": "Preparing the site index...",
+    "empty_title": "No exact match yet.",
+    "empty_body": "Try a destination, activity, package style, safari park, transfer route, or send us a custom request.",
+    "open_planner": "Open trip planner"
   }
 }

@@ -3,6 +3,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import PlannerSection from '../components/homepage/PlannerSection.jsx';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
+import usePageMeta from '../hooks/usePageMeta.js';
 import { arrayFromTranslation } from '../utils/translationValues.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -30,16 +31,22 @@ function buildPlacePrompt(searchParams, t) {
 export default function TripPlannerPage() {
   const { t, ready } = useTranslation('tripPlanner');
   const [searchParams] = useSearchParams();
-  const [initialPrompt, setInitialPrompt] = useState(null);
-  const [selectedPrompt, setSelectedPrompt] = useState(null);
-  const scrollTimeoutRef = useRef(null);
-  const handledPlacePromptRef = useRef(null);
+  const [initialPrompt, setInitialPrompt] = useState(
+    /** @type {{ id: string | number, label?: string, text: string } | null} */ (null),
+  );
+  const [selectedPrompt, setSelectedPrompt] = useState(/** @type {string | null} */ (null));
+  const scrollTimeoutRef = useRef(/** @type {number | null} */ (null));
+  const handledPlacePromptRef = useRef(/** @type {string | null} */ (null));
   const plannerPrompts = useMemo(() => arrayFromTranslation(t('prompts.items', { returnObjects: true })), [t]);
   const plannerSteps = useMemo(() => arrayFromTranslation(t('steps.items', { returnObjects: true })), [t]);
 
-  useEffect(() => {
-    document.title = t('page_title');
-  }, [t]);
+  usePageMeta({
+    title: t('page_title'),
+    description: t('meta_description', {
+      defaultValue:
+        'Plan your Zanzibar & Tanzania trip with an AI travel concierge — describe your dates, budget and style, and get a tailored safari-and-beach itinerary in minutes.',
+    }),
+  });
 
   useEffect(() => () => {
     if (scrollTimeoutRef.current) window.clearTimeout(scrollTimeoutRef.current);

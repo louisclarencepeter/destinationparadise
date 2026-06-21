@@ -13,6 +13,7 @@ import SafariTypes from '../components/safaris/SafariTypes.jsx';
 import SafariWildlife from '../components/safaris/SafariWildlife.jsx';
 import { ALL_SAFARI_PRODUCTS } from '../data/safariPageData.js';
 import { INITIAL_SAFARI_COUNT, SAFARI_FILTERS } from '../data/safarisPageContent.js';
+import usePageMeta from '../hooks/usePageMeta.js';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -40,9 +41,10 @@ export default function Safaris() {
   );
   const hasHiddenSafaris = visibleCount < filteredSafaris.length;
 
-  useEffect(() => {
-    document.title = 'Tanzania Safaris · Destination Paradise';
-  }, []);
+  usePageMeta({
+    title: 'Tanzania Safaris · Destination Paradise',
+    description: `Tanzania safari routes and styles — Serengeti, Ngorongoro, Tarangire and beyond. ${ALL_SAFARI_PRODUCTS.length}+ itineraries from camping to luxury, with park fees, guides and full board.`,
+  });
 
   useEffect(() => {
     setVisibleCount(INITIAL_SAFARI_COUNT);

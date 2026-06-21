@@ -9,6 +9,7 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "strict": false,
+    "strictNullChecks": true,
     "noEmit": true,
     "types": ["vite/client"]
   },

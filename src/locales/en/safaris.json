@@ -248,6 +248,83 @@
       "24/7 concierge on WhatsApp"
     ]
   },
+  "detail": {
+    "not_found_page_title": "Safari Not Found · Destination Paradise",
+    "not_found_eyebrow": "Safaris",
+    "not_found_title": "Safari not found",
+    "not_found_text": "That route is not in our current list. Browse all available safaris below.",
+    "back_to_safaris": "Back to all safaris →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Home",
+    "breadcrumb_safaris": "Safaris",
+    "most_popular": "Most popular",
+    "facts": {
+      "duration": "Duration",
+      "duration_sub": "Route length",
+      "starts_from": "Starts from",
+      "starts_from_sub": "Flights can be adjusted",
+      "style": "Style",
+      "style_sub": "Safari type",
+      "price": "Price"
+    },
+    "highlights": "Highlights",
+    "included_in_route": "Included in this route",
+    "ideal_for": "Ideal for",
+    "typical_inclusions": "Typical safari inclusions",
+    "optional_upgrades": "Optional upgrades",
+    "price_low_peak": "low season · peak from {{price}}",
+    "price_note": "Final price depends on season, camp level, and flight availability.",
+    "book_route": "Book this route →",
+    "all_safaris": "All safaris",
+    "route": {
+      "eyebrow": "Day by day",
+      "title": "A typical route",
+      "lead": "This is the current route sketch. We adjust flights, camps, and pacing around your dates and travel style."
+    },
+    "practical": {
+      "included": {
+        "heading": "What's always included",
+        "items": ["Bush flights & transfers", "Park and conservation fees", "Professional safari guide", "Full board at camp or lodge"]
+      },
+      "not_included": {
+        "heading": "Not included",
+        "items": ["International flights", "Travel insurance", "Tips for guides and camp staff", "Premium drinks unless stated"]
+      },
+      "booking": {
+        "heading": "Booking & payment",
+        "items": ["Best booked 2-6 months ahead", "Deposit confirms lodges and flights", "Final balance before travel", "USD, EUR, GBP, TZS accepted"]
+      }
+    },
+    "cta": {
+      "title": "Ready to plan {{title}}?",
+      "text": "Tell us your dates, group size, and preferred comfort level. We'll come back within 24 hours with a real itinerary and a real price."
+    }
+  },
+  "type_detail": {
+    "not_found_page_title": "Safari Type Not Found · Destination Paradise",
+    "not_found_eyebrow": "Safari styles",
+    "not_found_title": "Safari type not found",
+    "not_found_text": "That style is not in our current list. Browse all safari styles below.",
+    "back_to_styles": "Back to safari styles →",
+    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_home": "Home",
+    "breadcrumb_safaris": "Safaris",
+    "cat": "Safari style",
+    "best_for": "Best for: {{audience}}",
+    "why_choose": "Why choose this style",
+    "matching_routes": "Best matching routes",
+    "all_safaris": "All safaris",
+    "routes": {
+      "eyebrow": "Recommended routes",
+      "title": "Start with one of these safaris.",
+      "lead": "These routes are the closest match for this safari style. Each one opens into full details and day-by-day pacing."
+    },
+    "cta": {
+      "title": "Want this safari style?",
+      "text": "Tell us your dates, budget, and group size. We'll match the right parks, camps, and flights within 24 hours.",
+      "plan_ai": "Plan with AI"
+    }
+  },
   "cta": {
     "title": "Ready to plan?",
     "text": "Tell us when you're free, who's coming, and what you're hoping for. We'll come back within 24 hours with a real itinerary and a real price.",

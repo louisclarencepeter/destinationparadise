@@ -107,8 +107,9 @@ export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeMo
   const [navOpen, setNavOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [bgIndex, setBgIndex] = useState(() => Math.floor(Math.random() * MM_BGS.length));
-  const navRef = useRef(null);
-  const mmRef = useRef(null);
+  const navRef = useRef(/** @type {HTMLElement | null} */ (null));
+  const mmRef = useRef(/** @type {HTMLDivElement | null} */ (null));
+  const closeBtnRef = useRef(/** @type {HTMLButtonElement | null} */ (null));
   const location = useLocation();
 
   // Close on route change
@@ -142,15 +143,23 @@ export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeMo
       previousBodyOverflow = document.body.style.overflow;
       document.body.style.overflow = 'hidden';
 
+      // Move focus into the dialog on open; restore it to the trigger on close.
+      const trigger = document.activeElement;
+      const focusTimer = window.requestAnimationFrame(() => {
+        closeBtnRef.current?.focus();
+      });
+
       const handleKey = (e) => {
         if (e.key === 'Escape') {
           setNavOpen(false);
           return;
         }
         const scope = mmRef.current || navRef.current;
-        const focusable = scope ? scope.querySelectorAll(
-          'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
-        ) : [];
+        const focusable = scope
+          ? /** @type {NodeListOf<HTMLElement>} */ (scope.querySelectorAll(
+              'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+            ))
+          : [];
         if (e.key === 'Tab' && focusable.length > 0) {
           const first = focusable[0];
           const last = focusable[focusable.length - 1];
@@ -166,9 +175,11 @@ export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeMo
 
       document.addEventListener('keydown', handleKey);
       return () => {
+        window.cancelAnimationFrame(focusTimer);
         document.body.style.overflow = previousBodyOverflow ?? '';
         document.removeEventListener('keydown', handleKey);
         mediaQuery.removeEventListener('change', closeOnDesktop);
+        if (trigger instanceof HTMLElement) trigger.focus();
       };
     }
 
@@ -262,6 +273,7 @@ export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeMo
           <button
             type="button"
             className="mm-menu__close"
+            ref={closeBtnRef}
             aria-label={t('menu.close')}
             onClick={() => setNavOpen(false)}
           >

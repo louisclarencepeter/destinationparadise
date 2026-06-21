@@ -8,9 +8,11 @@ import { clearPlannerHandoff, isPlannerHandoffMessage, PLANNER_HANDOFF_EVENT, re
 export default function ContactSection() {
   const { t } = useTranslation('home');
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
-  const [plannerHandoff, setPlannerHandoff] = useState(null);
+  const [plannerHandoff, setPlannerHandoff] = useState(
+    /** @type {import('../../utils/plannerHandoff.js').PlannerHandoff | null} */ (null),
+  );
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
-  const messageRef = useRef(null);
+  const messageRef = useRef(/** @type {HTMLTextAreaElement | null} */ (null));
   const update = (k) => (e) => {
     setStatus('idle');
     setForm((s) => ({ ...s, [k]: e.target.value }));
@@ -161,11 +163,13 @@ export default function ContactSection() {
             <textarea ref={messageRef} name="message" rows={5} required value={form.message} onChange={update('message')} />
           </label>
 
-          {status === 'sent' && (
-            <p className="contact__status contact__status--ok">{t('contact.form.status_ok')}</p>
-          )}
+          <div className="contact__status-region" role="status" aria-live="polite">
+            {status === 'sent' && (
+              <p className="contact__status contact__status--ok">{t('contact.form.status_ok')}</p>
+            )}
+          </div>
           {status === 'error' && (
-            <p className="contact__status contact__status--err">{t('contact.form.status_err_prefix')} {CONTACT_INFO.email} {t('contact.form.status_err_suffix')}</p>
+            <p className="contact__status contact__status--err" role="alert">{t('contact.form.status_err_prefix')} {CONTACT_INFO.email} {t('contact.form.status_err_suffix')}</p>
           )}
 
           <button

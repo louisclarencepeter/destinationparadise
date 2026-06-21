@@ -17,7 +17,7 @@
     "cta_label": "Route hier starten"
   },
   "hub": {
-    "plan_around": "Plan around {{title}}",
+    "plan_around": "Rund um {{title}} planen",
     "matches": {
       "excursions": "Ausflüge",
       "safaris": "Safaris",
@@ -31,18 +31,18 @@
     "items": [
       {
         "step": "01",
-        "title": "Packages",
-        "text": "Best when you want one quote and the whole trip joined up. From {{price}} pp."
+        "title": "Pakete",
+        "text": "Ideal, wenn du ein Angebot und die ganze Reise aus einer Hand willst. Ab {{price}} p. P."
       },
       {
         "step": "02",
-        "title": "Excursions",
-        "text": "Best when your hotel is booked and you need day trips. From {{price}} pp."
+        "title": "Ausflüge",
+        "text": "Ideal, wenn dein Hotel gebucht ist und du Tagesausflüge brauchst. Ab {{price}} p. P."
       },
       {
         "step": "03",
         "title": "Safaris",
-        "text": "Best when mainland wildlife is the anchor. Core routes from {{price}} pp."
+        "text": "Ideal, wenn Wildlife auf dem Festland im Mittelpunkt steht. Klassische Routen ab {{price}} p. P."
       }
     ]
   },
@@ -52,30 +52,30 @@
     "lead": "Einige Kombinationen funktionieren besonders gut. Starte hier und passe danach Hotels, Tempo und Budget an.",
     "items": [
       {
-        "eyebrow": "Packages",
-        "title": "I want the full trip arranged",
-        "text": "Hotels, safaris, excursions, transfers, and special moments packaged into one plan.",
+        "eyebrow": "Pakete",
+        "title": "Ich möchte die ganze Reise organisiert haben",
+        "text": "Hotels, Safaris, Ausflüge, Transfers und besondere Momente, gebündelt in einem Plan.",
         "to": "/packages",
         "image": "/assets/images/safaris/zebra-herd-on-track.webp"
       },
       {
-        "eyebrow": "Excursions",
-        "title": "I am already on the island",
-        "text": "Day trips, dhow sails, Stone Town, spice farms, Jozani, snorkeling, culture, and ocean days.",
+        "eyebrow": "Ausflüge",
+        "title": "Ich bin schon auf der Insel",
+        "text": "Tagesausflüge, Dhau-Fahrten, Stone Town, Gewürzfarmen, Jozani, Schnorcheln, Kultur und Tage am Meer.",
         "to": "/excursions",
         "image": "/assets/images/excursions/safari-blue-sandbank.webp"
       },
       {
         "eyebrow": "Safaris",
-        "title": "I want mainland wildlife",
-        "text": "Northern icons, southern wilderness, western chimp routes, quick fly-ins, Kilimanjaro, and cultural stops.",
+        "title": "Ich möchte Wildlife auf dem Festland",
+        "text": "Klassiker im Norden, Wildnis im Süden, Schimpansen-Routen im Westen, schnelle Fly-ins, Kilimanjaro und kulturelle Stopps.",
         "to": "/safaris",
         "image": "/assets/images/safaris/male-lion-in-grass.webp"
       },
       {
-        "eyebrow": "Trip Planner",
-        "title": "I need help choosing",
-        "text": "Tell the AI planner your dates, pace, budget, and travel style. We turn the draft into a quote.",
+        "eyebrow": "Reiseplaner",
+        "title": "Ich brauche Hilfe bei der Auswahl",
+        "text": "Nenne dem KI-Planer deine Reisedaten, dein Tempo, dein Budget und deinen Reisestil. Aus dem Entwurf machen wir ein Angebot.",
         "to": "/trip-planner",
         "image": "/assets/images/safaris/crowned-crane-close.webp"
       }
@@ -114,27 +114,27 @@
     },
     "paje": {
       "name": "Paje",
-      "desc": "Kitesurf lagoon"
+      "desc": "Kitesurf-Lagune"
     },
     "arusha": {
       "name": "Arusha",
-      "desc": "Safari gateway"
+      "desc": "Safari-Tor"
     },
     "serengeti": {
       "name": "Serengeti",
-      "desc": "Migration safari"
+      "desc": "Migrations-Safari"
     },
     "ngorongoro": {
       "name": "Ngorongoro",
-      "desc": "Crater wildlife"
+      "desc": "Wildlife im Krater"
     },
     "tarangire": {
       "name": "Tarangire",
-      "desc": "Elephants"
+      "desc": "Elefanten"
     },
     "manyara": {
       "name": "Lake Manyara",
-      "desc": "Birds + lions"
+      "desc": "Vögel + Löwen"
     },
     "lake-natron": {
       "name": "Lake Natron",
@@ -142,152 +142,152 @@
     },
     "olduvai": {
       "name": "Olduvai Gorge",
-      "desc": "Human origins"
+      "desc": "Ursprünge der Menschheit"
     },
     "maasai": {
       "name": "Maasai Villages",
-      "desc": "Culture"
+      "desc": "Kultur"
     },
     "kilimanjaro": {
       "name": "Kilimanjaro",
-      "desc": "Mountain"
+      "desc": "Berg"
     },
     "materuni": {
       "name": "Materuni",
-      "desc": "Waterfall + coffee"
+      "desc": "Wasserfall + Kaffee"
     },
     "mikumi": {
       "name": "Mikumi",
-      "desc": "Quick fly-in"
+      "desc": "Schneller Fly-in"
     },
     "selous": {
       "name": "Nyerere",
-      "desc": "Boat safaris"
+      "desc": "Bootssafaris"
     },
     "saadani": {
       "name": "Saadani",
-      "desc": "Beach safari"
+      "desc": "Strand-Safari"
     },
     "udzungwa": {
       "name": "Udzungwa",
-      "desc": "Hiking"
+      "desc": "Wandern"
     },
     "ruaha": {
       "name": "Ruaha",
-      "desc": "Big cats"
+      "desc": "Großkatzen"
     },
     "mahale": {
       "name": "Mahale",
-      "desc": "Chimps + lake"
+      "desc": "Schimpansen + See"
     },
     "katavi": {
       "name": "Katavi",
-      "desc": "Remote frontier"
+      "desc": "Abgelegene Wildnis"
     }
   },
   "hubs": {
     "stone-town": {
       "title": "Stone Town",
-      "type": "Culture hub",
-      "text": "Best for guests who want history, food, carved doors, markets, rooftops, spice routes, and an easy first day on Zanzibar.",
+      "type": "Kultur-Hub",
+      "text": "Ideal für Gäste, die Geschichte, Kulinarik, geschnitzte Türen, Märkte, Dachterrassen, Gewürzrouten und einen entspannten ersten Tag auf Sansibar wollen.",
       "bestFor": [
-        "Culture",
-        "Food",
-        "First day",
-        "Rainy-day friendly"
+        "Kultur",
+        "Kulinarik",
+        "Erster Tag",
+        "Auch bei Regen"
       ],
       "excursions": [
         {
-          "label": "Historical City Tour",
+          "label": "Historische Stadtführung",
           "to": "/excursions/stone-town"
         },
         {
-          "label": "Spice Tour",
+          "label": "Gewürztour",
           "to": "/excursions/spice-tour"
         },
         {
-          "label": "Stone Town & Prison Island combo",
+          "label": "Stone Town & Prison Island Kombi",
           "to": "/excursions/combinations/tortoises-alleys"
         }
       ],
       "packages": [
         {
-          "label": "9 Days Safari, Zanzibar & Culture",
+          "label": "9 Tage Safari, Sansibar & Kultur",
           "to": "/packages/nine-day-safari-zanzibar-culture"
         },
         {
-          "label": "Stone Town & Culture Experience",
+          "label": "Stone Town & Kulturerlebnis",
           "to": "/packages/stone-town-culture-experience"
         }
       ]
     },
     "fumba": {
       "title": "Fumba",
-      "type": "Ocean hub",
-      "text": "The classic launch point for dhow sailing, sandbanks, snorkeling, seafood lunches, and slow Menai Bay days.",
+      "type": "Meeres-Hub",
+      "text": "Der klassische Ausgangspunkt für Dhau-Segeln, Sandbänke, Schnorcheln, Seafood-Lunches und entspannte Tage in der Menai Bay.",
       "bestFor": [
-        "Dhow sailing",
-        "Sandbank picnic",
-        "Snorkeling",
-        "Couples"
+        "Dhau-Segeln",
+        "Sandbank-Picknick",
+        "Schnorcheln",
+        "Paare"
       ],
       "excursions": [
         {
-          "label": "Safari Blue Dhow & Snorkel",
+          "label": "Safari Blue Dhau & Schnorcheln",
           "to": "/excursions/safari-blue"
         },
         {
-          "label": "Reef & mangrove combo",
+          "label": "Riff & Mangroven Kombi",
           "to": "/excursions/combinations/reef-mangrove"
         }
       ],
       "packages": [
         {
-          "label": "Zanzibar Adventure & Marine Package",
+          "label": "Sansibar Abenteuer & Meer Paket",
           "to": "/packages/zanzibar-adventure-marine-package"
         },
         {
-          "label": "6 Days Safari & Zanzibar Escape",
+          "label": "6 Tage Safari & Sansibar-Auszeit",
           "to": "/packages/six-day-safari-zanzibar-escape"
         }
       ]
     },
     "kizimkazi": {
       "title": "Kizimkazi",
-      "type": "South coast",
-      "text": "Best for early-morning dolphin trips and a quieter south-coast rhythm, often paired with Jozani or a beach lunch.",
+      "type": "Südküste",
+      "text": "Ideal für Delfintouren am frühen Morgen und einen ruhigeren Rhythmus an der Südküste, oft kombiniert mit Jozani oder einem Strand-Lunch.",
       "bestFor": [
-        "Dolphins",
-        "Early starts",
-        "Nature",
-        "South coast"
+        "Delfine",
+        "Früher Start",
+        "Natur",
+        "Südküste"
       ],
       "excursions": [
         {
-          "label": "Dolphin Tour",
+          "label": "Delfintour",
           "to": "/excursions/dolphins"
         },
         {
-          "label": "South-coast nature combo",
+          "label": "Südküsten-Natur Kombi",
           "to": "/excursions/combinations/south-coast-nature"
         }
       ],
       "packages": [
         {
-          "label": "Zanzibar Adventure & Marine Package",
+          "label": "Sansibar Abenteuer & Meer Paket",
           "to": "/packages/zanzibar-adventure-marine-package"
         }
       ]
     },
     "jozani": {
       "title": "Jozani Forest",
-      "type": "Nature stop",
-      "text": "A gentle nature stop for red colobus monkeys, mangrove boardwalks, and forest time between beach or culture days.",
+      "type": "Naturstopp",
+      "text": "Ein sanfter Naturstopp für Rote Colobusaffen, Mangroven-Stege und Zeit im Wald zwischen Strand- oder Kulturtagen.",
       "bestFor": [
-        "Families",
-        "Nature",
+        "Familien",
+        "Natur",
         "Wildlife",
-        "Half day"
+        "Halbtag"
       ],
       "excursions": [
         {
@@ -295,127 +295,127 @@
           "to": "/excursions/jozani"
         },
         {
-          "label": "Forest & spice combo",
+          "label": "Wald & Gewürze Kombi",
           "to": "/excursions/combinations/forest-spice"
         }
       ],
       "packages": [
         {
-          "label": "Zanzibar Adventure & Marine Package",
+          "label": "Sansibar Abenteuer & Meer Paket",
           "to": "/packages/zanzibar-adventure-marine-package"
         },
         {
-          "label": "9 Days Safari, Zanzibar & Culture",
+          "label": "9 Tage Safari, Sansibar & Kultur",
           "to": "/packages/nine-day-safari-zanzibar-culture"
         }
       ]
     },
     "nungwi": {
       "title": "Nungwi",
-      "type": "North beach",
-      "text": "The easiest north-coast base for wide beaches, sunsets, turtle stops, dhow yards, and Mnemba snorkeling days.",
+      "type": "Nordstrand",
+      "text": "Die einfachste Basis an der Nordküste für weite Strände, Sonnenuntergänge, Schildkrötenstopps, Dhau-Werften und Schnorcheltage bei Mnemba.",
       "bestFor": [
-        "Beach",
-        "Sunset",
-        "Snorkeling",
+        "Strand",
+        "Sonnenuntergang",
+        "Schnorcheln",
         "Honeymoon"
       ],
       "excursions": [
         {
-          "label": "Trip to the North · Nungwi",
+          "label": "Ausflug in den Norden · Nungwi",
           "to": "/excursions/north-nungwi"
         },
         {
-          "label": "Mnemba Snorkeling & Trip to the North",
+          "label": "Mnemba-Schnorcheln & Ausflug in den Norden",
           "to": "/excursions/mnemba"
         },
         {
-          "label": "North-coast all-day combo",
+          "label": "Nordküsten-Tagestour Kombi",
           "to": "/excursions/combinations/north-coast-all-day"
         }
       ],
       "packages": [
         {
-          "label": "7 Days Honeymoon Safari & Zanzibar",
+          "label": "7 Tage Honeymoon-Safari & Sansibar",
           "to": "/packages/seven-day-honeymoon-safari-zanzibar"
         },
         {
-          "label": "10 Days Classic Safari & Zanzibar",
+          "label": "10 Tage klassische Safari & Sansibar",
           "to": "/packages/ten-day-classic-safari-zanzibar"
         }
       ]
     },
     "matemwe": {
       "title": "Matemwe",
-      "type": "Reef coast",
-      "text": "A quieter northeast-coast base for reef days, Mnemba snorkeling, slower boutique stays, and ocean time without the busiest beach rhythm.",
+      "type": "Riffküste",
+      "text": "Eine ruhigere Basis an der Nordostküste für Riff-Tage, Schnorcheln bei Mnemba, entspannte Boutique-Aufenthalte und Zeit am Meer fernab des trubeligsten Strandrhythmus.",
       "bestFor": [
-        "Snorkeling",
-        "Quiet beach",
-        "Reef days",
-        "Couples"
+        "Schnorcheln",
+        "Ruhiger Strand",
+        "Riff-Tage",
+        "Paare"
       ],
       "excursions": [
         {
-          "label": "Mnemba Snorkeling & Trip to the North",
+          "label": "Mnemba-Schnorcheln & Ausflug in den Norden",
           "to": "/excursions/mnemba"
         },
         {
-          "label": "North-coast all-day combo",
+          "label": "Nordküsten-Tagestour Kombi",
           "to": "/excursions/combinations/north-coast-all-day"
         }
       ],
       "packages": [
         {
-          "label": "7 Days Honeymoon Safari & Zanzibar",
+          "label": "7 Tage Honeymoon-Safari & Sansibar",
           "to": "/packages/seven-day-honeymoon-safari-zanzibar"
         },
         {
-          "label": "Zanzibar Adventure & Marine Package",
+          "label": "Sansibar Abenteuer & Meer Paket",
           "to": "/packages/zanzibar-adventure-marine-package"
         }
       ]
     },
     "paje": {
       "title": "Paje",
-      "type": "East coast",
-      "text": "A breezy east-coast base for kitesurfing, lagoon walks, casual beach stays, and active ocean days.",
+      "type": "Ostküste",
+      "text": "Eine luftige Basis an der Ostküste für Kitesurfen, Spaziergänge an der Lagune, unkomplizierte Strandaufenthalte und aktive Tage am Meer.",
       "bestFor": [
-        "Kitesurfing",
-        "Beach",
-        "Adventure",
-        "Long stays"
+        "Kitesurfen",
+        "Strand",
+        "Abenteuer",
+        "Lange Aufenthalte"
       ],
       "excursions": [
         {
-          "label": "Kitesurfing Lessons",
+          "label": "Kitesurf-Kurse",
           "to": "/excursions/kitesurfing"
         },
         {
-          "label": "Zanzibar Adventure & Marine Package",
+          "label": "Sansibar Abenteuer & Meer Paket",
           "to": "/packages/zanzibar-adventure-marine-package"
         }
       ],
       "packages": [
         {
-          "label": "Digital Nomad Zanzibar Stay",
+          "label": "Digital-Nomad-Aufenthalt auf Sansibar",
           "to": "/packages/digital-nomad-zanzibar-stay"
         },
         {
-          "label": "Zanzibar Adventure & Marine Package",
+          "label": "Sansibar Abenteuer & Meer Paket",
           "to": "/packages/zanzibar-adventure-marine-package"
         }
       ]
     },
     "arusha": {
       "title": "Arusha",
-      "type": "Safari gateway",
-      "text": "The main launch point for northern Tanzania safaris, Kilimanjaro add-ons, and smooth connections into Tarangire, Manyara, Ngorongoro, and Serengeti.",
+      "type": "Safari-Tor",
+      "text": "Der wichtigste Ausgangspunkt für Safaris im Norden Tansanias, Kilimanjaro-Erweiterungen und reibungslose Verbindungen nach Tarangire, Manyara, Ngorongoro und Serengeti.",
       "bestFor": [
-        "Safari start",
-        "Airport access",
-        "Northern circuit",
-        "Kilimanjaro add-on"
+        "Safari-Start",
+        "Flughafennähe",
+        "Nördlicher Circuit",
+        "Kilimanjaro-Erweiterung"
       ],
       "safaris": [
         {
@@ -423,69 +423,69 @@
           "to": "/safaris/ngorongoro-tarangire"
         },
         {
-          "label": "Serengeti Migration",
+          "label": "Serengeti-Migration",
           "to": "/safaris/serengeti-migration"
         },
         {
-          "label": "Mount Kilimanjaro Day Experience",
+          "label": "Kilimanjaro Tageserlebnis",
           "to": "/safaris/kilimanjaro-day-hike"
         }
       ],
       "packages": [
         {
-          "label": "10 Days Classic Safari & Zanzibar",
+          "label": "10 Tage klassische Safari & Sansibar",
           "to": "/packages/ten-day-classic-safari-zanzibar"
         },
         {
-          "label": "Kilimanjaro + Safari + Zanzibar Expedition",
+          "label": "Kilimanjaro + Safari + Sansibar Expedition",
           "to": "/packages/kilimanjaro-safari-zanzibar-expedition"
         }
       ]
     },
     "serengeti": {
       "title": "Serengeti",
-      "type": "Safari circuit",
-      "text": "The big-name safari anchor: migration plains, predators, balloon options, and fly-in routes from Zanzibar.",
+      "type": "Safari-Circuit",
+      "text": "Der große Name unter den Safari-Zielen: Migrationsebenen, Raubtiere, Ballonoptionen und Fly-in-Routen ab Sansibar.",
       "bestFor": [
         "Migration",
-        "Big cats",
-        "Photography",
-        "Luxury camps"
+        "Großkatzen",
+        "Fotografie",
+        "Luxuscamps"
       ],
       "safaris": [
         {
-          "label": "Serengeti Migration",
+          "label": "Serengeti-Migration",
           "to": "/safaris/serengeti-migration"
         },
         {
-          "label": "3 Days Serengeti Fly-In Safari",
+          "label": "3 Tage Serengeti Fly-in-Safari",
           "to": "/packages/three-day-serengeti-fly-in-safari"
         }
       ],
       "packages": [
         {
-          "label": "Great Migration Luxury Package",
+          "label": "Luxuspaket Große Migration",
           "to": "/packages/great-migration-luxury-package"
         },
         {
-          "label": "12 Days Serengeti & Zanzibar",
+          "label": "12 Tage Serengeti & Sansibar",
           "to": "/packages/twelve-day-serengeti-zanzibar"
         }
       ]
     },
     "ngorongoro": {
       "title": "Ngorongoro",
-      "type": "Crater safari",
-      "text": "High-density wildlife, crater landscapes, black rhino chances, and a strong fit for short Tanzania safari routes.",
+      "type": "Krater-Safari",
+      "text": "Hohe Wildtierdichte, Kraterlandschaften, Chancen auf Spitzmaulnashörner und eine starke Wahl für kurze Safari-Routen in Tansania.",
       "bestFor": [
         "Big Five",
         "Kurze Safari",
-        "First timers",
-        "Crater views"
+        "Einsteiger",
+        "Kraterblick"
       ],
       "safaris": [
         {
-          "label": "Ngorongoro Overnight",
+          "label": "Ngorongoro mit Übernachtung",
           "to": "/safaris/ngorongoro-overnight"
         },
         {
@@ -495,55 +495,55 @@
       ],
       "packages": [
         {
-          "label": "8 Days Tanzania Parks & Zanzibar",
+          "label": "8 Tage Tansania-Parks & Sansibar",
           "to": "/packages/eight-day-tanzania-parks-zanzibar"
         },
         {
-          "label": "10 Days Classic Safari & Zanzibar",
+          "label": "10 Tage klassische Safari & Sansibar",
           "to": "/packages/ten-day-classic-safari-zanzibar"
         }
       ]
     },
     "tarangire": {
       "title": "Tarangire",
-      "type": "Elephant country",
-      "text": "A strong short-safari choice for elephants, baobabs, and easier routing with Ngorongoro.",
+      "type": "Elefantenland",
+      "text": "Eine starke Wahl für kurze Safaris mit Elefanten, Baobabs und einfacher Routenführung in Kombination mit Ngorongoro.",
       "bestFor": [
-        "Elephants",
+        "Elefanten",
         "Baobabs",
         "Kurze Safari",
-        "Value"
+        "Preis-Leistung"
       ],
       "safaris": [
         {
-          "label": "Tarangire Express Day Safari",
+          "label": "Tarangire Express Tagessafari",
           "to": "/safaris/tarangire-day-trip"
         },
         {
-          "label": "Tarangire + Ngorongoro Short Circuit",
+          "label": "Tarangire + Ngorongoro Kurzroute",
           "to": "/safaris/tarangire-ngorongoro-short"
         }
       ],
       "packages": [
         {
-          "label": "6 Days Safari & Zanzibar Escape",
+          "label": "6 Tage Safari & Sansibar-Auszeit",
           "to": "/packages/six-day-safari-zanzibar-escape"
         },
         {
-          "label": "8 Days Tanzania Parks & Zanzibar",
+          "label": "8 Tage Tansania-Parks & Sansibar",
           "to": "/packages/eight-day-tanzania-parks-zanzibar"
         }
       ]
     },
     "manyara": {
       "title": "Lake Manyara",
-      "type": "Northern lake park",
-      "text": "A compact northern-circuit stop for lake views, birdlife, forest, and a gentle wildlife day between Tarangire and Ngorongoro.",
+      "type": "Nördlicher See-Park",
+      "text": "Ein kompakter Stopp im nördlichen Circuit für Seeblicke, Vogelwelt, Wald und einen entspannten Wildtiertag zwischen Tarangire und Ngorongoro.",
       "bestFor": [
-        "Birding",
-        "Families",
-        "Short game drive",
-        "Northern circuit"
+        "Vogelbeobachtung",
+        "Familien",
+        "Kurze Pirschfahrt",
+        "Nördlicher Circuit"
       ],
       "safaris": [
         {
@@ -551,51 +551,51 @@
           "to": "/safaris/ngorongoro-tarangire"
         },
         {
-          "label": "Tarangire + Ngorongoro Short Circuit",
+          "label": "Tarangire + Ngorongoro Kurzroute",
           "to": "/safaris/tarangire-ngorongoro-short"
         }
       ],
       "packages": [
         {
-          "label": "10 Days Classic Safari & Zanzibar",
+          "label": "10 Tage klassische Safari & Sansibar",
           "to": "/packages/ten-day-classic-safari-zanzibar"
         }
       ]
     },
     "lake-natron": {
       "title": "Lake Natron",
-      "type": "Adventure lake",
-      "text": "Remote soda-lake landscapes, flamingo breeding grounds, hot springs, Maasai villages, and volcanic scenery near Ol Doinyo Lengai.",
+      "type": "Abenteuersee",
+      "text": "Abgelegene Sodaseen-Landschaften, Flamingo-Brutgebiete, heiße Quellen, Maasai-Dörfer und vulkanische Szenerie nahe dem Ol Doinyo Lengai.",
       "bestFor": [
         "Flamingos",
-        "Remote landscapes",
-        "Photography",
-        "Adventure"
+        "Abgelegene Landschaften",
+        "Fotografie",
+        "Abenteuer"
       ],
       "safaris": [
         {
-          "label": "Lake Natron Flamingo Expedition",
+          "label": "Lake Natron Flamingo-Expedition",
           "to": "/safaris/lake-natron-expedition"
         },
         {
-          "label": "Authentic Maasai Cultural Safari",
+          "label": "Authentische Maasai-Kultursafari",
           "to": "/safaris/maasai-cultural-expedition"
         }
       ]
     },
     "olduvai": {
       "title": "Olduvai Gorge",
-      "type": "History stop",
-      "text": "A human-origins stop between Ngorongoro and Serengeti, good for guests who want archaeology and context alongside wildlife.",
+      "type": "Geschichtsstopp",
+      "text": "Ein Stopp zu den Ursprüngen der Menschheit zwischen Ngorongoro und Serengeti, ideal für Gäste, die Archäologie und Kontext neben der Tierwelt wollen.",
       "bestFor": [
-        "Human origins",
-        "History",
-        "Ngorongoro add-on",
-        "Culture"
+        "Ursprünge der Menschheit",
+        "Geschichte",
+        "Ngorongoro-Erweiterung",
+        "Kultur"
       ],
       "safaris": [
         {
-          "label": "Olduvai Gorge Human Origins Safari",
+          "label": "Olduvai Gorge Menschheitsursprünge-Safari",
           "to": "/safaris/olduvai-gorge"
         },
         {
@@ -605,128 +605,128 @@
       ],
       "packages": [
         {
-          "label": "9 Days Safari, Zanzibar & Culture",
+          "label": "9 Tage Safari, Sansibar & Kultur",
           "to": "/packages/nine-day-safari-zanzibar-culture"
         }
       ]
     },
     "maasai": {
       "title": "Maasai Villages",
-      "type": "Cultural safari",
-      "text": "A cultural layer for guests who want village time, Maasai traditions, local cooking, and a more human story around the northern circuit.",
+      "type": "Kultursafari",
+      "text": "Eine kulturelle Ebene für Gäste, die Zeit im Dorf, Maasai-Traditionen, lokale Küche und eine menschlichere Geschichte rund um den nördlichen Circuit suchen.",
       "bestFor": [
-        "Culture",
-        "Families",
-        "Photography",
-        "Northern add-on"
+        "Kultur",
+        "Familien",
+        "Fotografie",
+        "Nördliche Erweiterung"
       ],
       "safaris": [
         {
-          "label": "Authentic Maasai Cultural Safari",
+          "label": "Authentische Maasai-Kultursafari",
           "to": "/safaris/maasai-cultural-expedition"
         },
         {
-          "label": "Lake Natron Flamingo Expedition",
+          "label": "Lake Natron Flamingo-Expedition",
           "to": "/safaris/lake-natron-expedition"
         }
       ],
       "packages": [
         {
-          "label": "9 Days Safari, Zanzibar & Culture",
+          "label": "9 Tage Safari, Sansibar & Kultur",
           "to": "/packages/nine-day-safari-zanzibar-culture"
         }
       ]
     },
     "kilimanjaro": {
       "title": "Mount Kilimanjaro",
-      "type": "Mountain adventure",
-      "text": "Tanzania’s mountain icon, available as a day experience or as the anchor for a longer climb, safari, and Zanzibar combination.",
+      "type": "Bergabenteuer",
+      "text": "Tansanias Bergikone, erlebbar als Tagesausflug oder als Mittelpunkt einer längeren Kombination aus Besteigung, Safari und Sansibar.",
       "bestFor": [
-        "Mountain views",
-        "Hiking",
-        "Bucket list",
-        "Adventure"
+        "Bergblicke",
+        "Wandern",
+        "Bucket List",
+        "Abenteuer"
       ],
       "safaris": [
         {
-          "label": "Mount Kilimanjaro Day Experience",
+          "label": "Kilimanjaro Tageserlebnis",
           "to": "/safaris/kilimanjaro-day-hike"
         },
         {
-          "label": "Materuni Waterfalls & Coffee Experience",
+          "label": "Materuni-Wasserfälle & Kaffee-Erlebnis",
           "to": "/safaris/materuni-waterfalls-coffee"
         }
       ],
       "packages": [
         {
-          "label": "Kilimanjaro + Safari + Zanzibar Expedition",
+          "label": "Kilimanjaro + Safari + Sansibar Expedition",
           "to": "/packages/kilimanjaro-safari-zanzibar-expedition"
         }
       ]
     },
     "materuni": {
       "title": "Materuni",
-      "type": "Mountain village",
-      "text": "A softer Kilimanjaro foothills day with waterfall hiking, coffee farms, Chagga culture, and mountain scenery.",
+      "type": "Bergdorf",
+      "text": "Ein sanfterer Tag in den Ausläufern des Kilimanjaro mit Wasserfall-Wanderung, Kaffeefarmen, Chagga-Kultur und Bergpanorama.",
       "bestFor": [
-        "Waterfall",
-        "Coffee",
-        "Culture",
-        "Soft adventure"
+        "Wasserfall",
+        "Kaffee",
+        "Kultur",
+        "Sanftes Abenteuer"
       ],
       "safaris": [
         {
-          "label": "Materuni Waterfalls & Coffee Experience",
+          "label": "Materuni-Wasserfälle & Kaffee-Erlebnis",
           "to": "/safaris/materuni-waterfalls-coffee"
         },
         {
-          "label": "Mount Kilimanjaro Day Experience",
+          "label": "Kilimanjaro Tageserlebnis",
           "to": "/safaris/kilimanjaro-day-hike"
         }
       ],
       "packages": [
         {
-          "label": "Kilimanjaro + Safari + Zanzibar Expedition",
+          "label": "Kilimanjaro + Safari + Sansibar Expedition",
           "to": "/packages/kilimanjaro-safari-zanzibar-expedition"
         }
       ]
     },
     "mikumi": {
       "title": "Mikumi National Park",
-      "type": "Quick fly-in safari",
-      "text": "One of the fastest mainland safari choices from Zanzibar, with lions, giraffes, buffalo, zebra, and simpler logistics for short stays.",
+      "type": "Schnelle Fly-in-Safari",
+      "text": "Eine der schnellsten Festland-Safarioptionen ab Sansibar, mit Löwen, Giraffen, Büffeln, Zebras und einfacherer Logistik für kurze Aufenthalte.",
       "bestFor": [
-        "Short stays",
-        "Value",
-        "First safari",
-        "Zanzibar guests"
+        "Kurze Aufenthalte",
+        "Preis-Leistung",
+        "Erste Safari",
+        "Sansibar-Gäste"
       ],
       "safaris": [
         {
-          "label": "Mikumi Fly-In Safari From Zanzibar",
+          "label": "Mikumi Fly-in-Safari ab Sansibar",
           "to": "/safaris/mikumi-flyin"
         },
         {
-          "label": "2 Days Fly-In Safari From Zanzibar",
+          "label": "2 Tage Fly-in-Safari ab Sansibar",
           "to": "/packages/two-day-fly-in-safari-zanzibar"
         }
       ],
       "packages": [
         {
-          "label": "2 Days Fly-In Safari From Zanzibar",
+          "label": "2 Tage Fly-in-Safari ab Sansibar",
           "to": "/packages/two-day-fly-in-safari-zanzibar"
         }
       ]
     },
     "selous": {
       "title": "Nyerere National Park",
-      "type": "Southern safari",
-      "text": "A wilder southern choice for boat safaris, walking safaris, fewer vehicles, and quick fly-in options from Zanzibar.",
+      "type": "Südliche Safari",
+      "text": "Eine wildere Wahl im Süden für Bootssafaris, Wandersafaris, weniger Fahrzeuge und schnelle Fly-in-Optionen ab Sansibar.",
       "bestFor": [
-        "Boat safari",
-        "Walking safari",
+        "Bootssafari",
+        "Wandersafari",
         "Fly-in",
-        "Wilderness"
+        "Wildnis"
       ],
       "safaris": [
         {
@@ -734,34 +734,34 @@
           "to": "/safaris/nyerere-selous"
         },
         {
-          "label": "2 Days Fly-In Safari From Zanzibar",
+          "label": "2 Tage Fly-in-Safari ab Sansibar",
           "to": "/packages/two-day-fly-in-safari-zanzibar"
         }
       ],
       "packages": [
         {
-          "label": "2 Days Fly-In Safari From Zanzibar",
+          "label": "2 Tage Fly-in-Safari ab Sansibar",
           "to": "/packages/two-day-fly-in-safari-zanzibar"
         },
         {
-          "label": "14 Days Ultimate Tanzania & Zanzibar",
+          "label": "14 Tage ultimatives Tansania & Sansibar",
           "to": "/packages/fourteen-day-ultimate-tanzania-zanzibar"
         }
       ]
     },
     "saadani": {
       "title": "Saadani National Park",
-      "type": "Beach safari",
-      "text": "A rare Indian Ocean safari setting where beach, river, and bush meet, best for guests who want a different coastal wilderness feel.",
+      "type": "Strand-Safari",
+      "text": "Eine seltene Safari-Kulisse am Indischen Ozean, wo Strand, Fluss und Busch aufeinandertreffen – ideal für Gäste, die ein anderes Küstenwildnis-Gefühl suchen.",
       "bestFor": [
         "Strand + Busch",
-        "Boat safari",
-        "Turtles",
-        "Unusual routes"
+        "Bootssafari",
+        "Schildkröten",
+        "Ungewöhnliche Routen"
       ],
       "safaris": [
         {
-          "label": "Saadani Beach & Safari Experience",
+          "label": "Saadani Strand- & Safari-Erlebnis",
           "to": "/safaris/saadani-beach-safari"
         },
         {
@@ -772,38 +772,38 @@
     },
     "udzungwa": {
       "title": "Udzungwa Mountains",
-      "type": "Hiking wilderness",
-      "text": "Rainforest hikes, waterfalls, rare primates, and a nature-heavy mountain counterpoint to Mikumi or southern safari routes.",
+      "type": "Wanderwildnis",
+      "text": "Regenwald-Wanderungen, Wasserfälle, seltene Primaten und ein naturreicher Bergkontrast zu Mikumi oder den südlichen Safari-Routen.",
       "bestFor": [
-        "Hiking",
-        "Waterfalls",
-        "Rare primates",
-        "Nature"
+        "Wandern",
+        "Wasserfälle",
+        "Seltene Primaten",
+        "Natur"
       ],
       "safaris": [
         {
-          "label": "Udzungwa Mountains Hiking Safari",
+          "label": "Udzungwa Mountains Wandersafari",
           "to": "/safaris/udzungwa-hiking-safari"
         },
         {
-          "label": "Mikumi Fly-In Safari From Zanzibar",
+          "label": "Mikumi Fly-in-Safari ab Sansibar",
           "to": "/safaris/mikumi-flyin"
         }
       ]
     },
     "ruaha": {
       "title": "Ruaha National Park",
-      "type": "Southern big-cat safari",
-      "text": "A remote southern park known for big-cat country, baobab valleys, fewer vehicles, and a stronger wilderness feel than the classic north.",
+      "type": "Südliche Großkatzen-Safari",
+      "text": "Ein abgelegener südlicher Park, bekannt für Großkatzenland, Baobab-Täler, weniger Fahrzeuge und ein stärkeres Wildnisgefühl als der klassische Norden.",
       "bestFor": [
-        "Big cats",
-        "Remote safari",
-        "Repeat guests",
-        "Photography"
+        "Großkatzen",
+        "Abgelegene Safari",
+        "Stammgäste",
+        "Fotografie"
       ],
       "safaris": [
         {
-          "label": "Ruaha Big-Cat Trail",
+          "label": "Ruaha Großkatzen-Trail",
           "to": "/safaris/ruaha-big-cat"
         },
         {
@@ -813,49 +813,49 @@
       ],
       "packages": [
         {
-          "label": "14 Days Ultimate Tanzania & Zanzibar",
+          "label": "14 Tage ultimatives Tansania & Sansibar",
           "to": "/packages/fourteen-day-ultimate-tanzania-zanzibar"
         }
       ]
     },
     "mahale": {
       "title": "Mahale Mountains & Lake Tanganyika",
-      "type": "Western chimp route",
-      "text": "A premium western circuit for wild chimpanzee trekking, remote lakefront lodges, forest walks, and Lake Tanganyika downtime.",
+      "type": "Westliche Schimpansen-Route",
+      "text": "Ein hochwertiger westlicher Circuit für wildes Schimpansen-Trekking, abgelegene Lodges am See, Waldwanderungen und Erholung am Lake Tanganyika.",
       "bestFor": [
-        "Chimpanzees",
+        "Schimpansen",
         "Lake Tanganyika",
-        "Remote luxury",
-        "Adventure"
+        "Abgelegener Luxus",
+        "Abenteuer"
       ],
       "safaris": [
         {
-          "label": "Mahale Chimp & Lake Tanganyika",
+          "label": "Mahale Schimpansen & Lake Tanganyika",
           "to": "/safaris/mahale-chimp"
         },
         {
-          "label": "Chimpanzee Trekking Expedition",
+          "label": "Schimpansen-Trekking-Expedition",
           "to": "/safaris/chimpanzee-trekking"
         }
       ]
     },
     "katavi": {
       "title": "Katavi National Park",
-      "type": "Remote frontier",
-      "text": "A far-west wilderness for serious safari travellers, dry-season floodplain herds, lion coalitions, hippo pools, and very few vehicles.",
+      "type": "Abgelegene Grenzregion",
+      "text": "Eine Wildnis im äußersten Westen für erfahrene Safari-Reisende, mit Herden in den Überschwemmungsebenen der Trockenzeit, Löwenkoalitionen, Flusspferd-Pools und sehr wenigen Fahrzeugen.",
       "bestFor": [
         "Abgelegene Wildnis",
-        "Buffalo herds",
-        "Experienced safari",
+        "Büffelherden",
+        "Erfahrene Safari",
         "Fly-in"
       ],
       "safaris": [
         {
-          "label": "Katavi Remote Frontier",
+          "label": "Katavi Abgelegene Grenzregion",
           "to": "/safaris/katavi-frontier"
         },
         {
-          "label": "Mahale Chimp & Lake Tanganyika",
+          "label": "Mahale Schimpansen & Lake Tanganyika",
           "to": "/safaris/mahale-chimp"
         }
       ]

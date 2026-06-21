@@ -304,7 +304,8 @@
     "form": {
       "placeholder_idle": "Opowiedz o wymarzonej podróży…",
       "placeholder_done": "Wpisz tutaj aktualizację…",
-      "send_aria": "Wyślij"
+      "send_aria": "Wyślij",
+      "input_aria": "Opisz swoją podróż"
     },
     "foot": {
       "note": "Plany są szkicami. Przed rezerwacją człowiek sprawdza i wycenia wszystko dokładnie.",

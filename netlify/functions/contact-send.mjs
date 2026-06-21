@@ -1,5 +1,14 @@
 // Contact send — homepage contact form, delivered via Resend.
 
+import {
+  createRateLimiter,
+  createResendSender,
+  errorResponse,
+  escapeHtml,
+  rateLimitKey,
+  validateEmailAddress,
+} from './_shared.mjs';
+
 const TEAM_TO = process.env.TEAM_EMAIL_CONTACT || 'info@yournexttriptoparadise.com';
 const FROM_ADDRESS = process.env.RESEND_FROM_CONTACT || 'Destination Paradise <booking@yournexttriptoparadise.com>';
 const TEAM_REPLY_TO = process.env.TEAM_REPLY_TO || 'info@yournexttriptoparadise.com';
@@ -10,40 +19,7 @@ const MAX_EMAIL = 200;
 const MAX_SUBJECT = 200;
 const MAX_MESSAGE = 8_000;
 
-const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-const RATE_LIMIT_WINDOW_MS = 10 * 60_000;
-const RATE_LIMIT_MAX_REQUESTS = 4;
-const rateLimitBuckets = new Map();
-
-function rateLimitKey(req) {
-  const forwarded = req.headers.get('x-forwarded-for') || '';
-  return forwarded.split(',')[0].trim() || req.headers.get('x-nf-client-connection-ip') || 'unknown';
-}
-
-function checkRateLimit(key) {
-  const now = Date.now();
-  const bucket = rateLimitBuckets.get(key);
-  if (!bucket || now - bucket.start > RATE_LIMIT_WINDOW_MS) {
-    rateLimitBuckets.set(key, { start: now, count: 1 });
-    return { ok: true };
-  }
-  if (bucket.count >= RATE_LIMIT_MAX_REQUESTS) {
-    return { ok: false, retryAfter: Math.ceil((RATE_LIMIT_WINDOW_MS - (now - bucket.start)) / 1000) };
-  }
-  bucket.count += 1;
-  return { ok: true };
-}
-
-const escapeHtml = (text) => String(text || '')
-  .replace(/&/g, '&amp;')
-  .replace(/</g, '&lt;')
-  .replace(/>/g, '&gt;')
-  .replace(/"/g, '&quot;')
-  .replace(/'/g, '&#39;');
-
-const errorResponse = (message, status = 400) =>
-  Response.json({ ok: false, error: message }, { status });
+const checkRateLimit = createRateLimiter({ windowMs: 10 * 60_000, max: 4 });
 
 export default async (req) => {
   if (req.method !== 'POST') return new Response('Method Not Allowed', { status: 405 });
@@ -80,13 +56,15 @@ export default async (req) => {
   }
 
   const name = String(body?.name || '').trim().slice(0, MAX_NAME);
-  const email = String(body?.email || '').trim().slice(0, MAX_EMAIL);
+  let email = String(body?.email || '').trim().slice(0, MAX_EMAIL);
   const subject = String(body?.subject || '').trim().slice(0, MAX_SUBJECT);
   const message = String(body?.message || '').trim().slice(0, MAX_MESSAGE);
 
   if (!name) return errorResponse('Please share your name.');
-  if (!EMAIL_REGEX.test(email)) return errorResponse('That email does not look right. Could you double-check it?');
   if (!message) return errorResponse('Please add a short message so the team knows what you need.');
+  const emailValidation = await validateEmailAddress(email);
+  if (!emailValidation.ok) return errorResponse(emailValidation.message, emailValidation.status);
+  email = emailValidation.email;
 
   const teamSubject = subject ? `Contact form — ${subject}` : `Contact form — message from ${name}`;
   const guestSubject = `We got your message — Destination Paradise`;
@@ -158,11 +136,7 @@ export default async (req) => {
     'Email: info@yournexttriptoparadise.com',
   ].filter(Boolean).join('\n');
 
-  const sendEmail = (payload) => fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { 'authorization': `Bearer ${apiKey}`, 'content-type': 'application/json' },
-    body: JSON.stringify(payload),
-  });
+  const sendEmail = createResendSender(apiKey);
 
   try {
     const teamRes = await sendEmail({

@@ -1,8 +1,10 @@
 node_modules
 dist
 dev-dist
+# Ignore all env files (secrets) except the intentionally-shared, non-secret dev config.
 .env
-.env.local
+.env.*
+!.env.development
 .netlify
 .DS_Store
 *.log

@@ -187,11 +187,13 @@ export default function BookingForm({
         <textarea name="message" value={form.message} onChange={update('message')} rows={6} placeholder={messagePlaceholder} />
       </label>
 
-      {status === 'sent' && (
-        <p className="booking-status booking-status--ok">{t('form.status_sent', { defaultValue: 'Asante. We received your request and will come back with availability, a quote, and the payment next step.' })}</p>
-      )}
+      <div className="booking-status-region" role="status" aria-live="polite">
+        {status === 'sent' && (
+          <p className="booking-status booking-status--ok">{t('form.status_sent', { defaultValue: 'Asante. We received your request and will come back with availability, a quote, and the payment next step.' })}</p>
+        )}
+      </div>
       {status === 'error' && (
-        <p className="booking-status booking-status--err">
+        <p className="booking-status booking-status--err" role="alert">
           {errorMessage || t('form.status_error', { defaultValue: 'That did not go through. Please try again or message us on WhatsApp.' })}
         </p>
       )}

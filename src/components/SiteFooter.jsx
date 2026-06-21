@@ -65,7 +65,7 @@ function getPageHero() {
 
 export function WhatsAppFab({ locationKey }) {
   const { t } = useTranslation('footer');
-  const fabRef = useRef(null);
+  const fabRef = useRef(/** @type {HTMLAnchorElement | null} */ (null));
   const [placement, setPlacement] = useState({ isVisible: false, isParked: false, top: 0 });
 
   useEffect(() => {

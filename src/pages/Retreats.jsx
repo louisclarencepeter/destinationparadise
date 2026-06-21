@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { useCurrency } from '../context/useCurrency.js';
+import usePageMeta from '../hooks/usePageMeta.js';
 import { RETREAT_PRODUCTS } from '../data/retreatProducts.js';
 import '../styles/excursions/hero.css';
 import '../styles/retreats.css';
@@ -34,7 +35,7 @@ const arrayFromTranslation = (value) => (Array.isArray(value) ? value : []);
 export default function Retreats() {
   const { t, ready } = useTranslation('retreats');
   const { format } = useCurrency();
-  const pageRef = useRef(null);
+  const pageRef = useRef(/** @type {HTMLElement | null} */ (null));
   const [openFaq, setOpenFaq] = useState(0);
 
   const practices = arrayFromTranslation(t('practice.items', { returnObjects: true }));
@@ -44,9 +45,13 @@ export default function Retreats() {
   const included = arrayFromTranslation(t('included.items', { returnObjects: true }));
   const faqs = arrayFromTranslation(t('faqs.items', { returnObjects: true }));
 
-  useEffect(() => {
-    document.title = t('page_title');
-  }, [t]);
+  usePageMeta({
+    title: t('page_title'),
+    description: t('meta_description', {
+      defaultValue:
+        'A yoga & wellness retreat in Zanzibar — guided practice, ocean-view sessions, Swahili cuisine, and curated island excursions. Fixed departures with limited spots.',
+    }),
+  });
 
   useEffect(() => {
     document.body.classList.add('has-retreat-page');
