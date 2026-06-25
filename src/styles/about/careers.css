@@ -16,7 +16,7 @@
   position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(rgba(20,12,8,.78), rgba(20,12,8,.86));
 }
-.ab-careers__inner { max-width: 1240px; margin: 0 auto; }
+.ab-careers__inner { max-width: var(--site-max-width); margin: 0 auto; }
 .ab-careers__head {
   display: grid; grid-template-columns: 1fr 1.2fr;
   gap: clamp(2rem, 5vw, 4rem); align-items: end;

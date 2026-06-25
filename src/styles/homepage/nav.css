@@ -16,19 +16,20 @@
   pointer-events: none;
 }
 .nav__inner {
-  width: min(100%, 1200px);
+  width: min(100%, var(--site-max-width));
   margin: 0 auto;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  justify-content: space-between;
   gap: clamp(1rem, 2vw, 2rem);
 }
-.nav__logo { display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--text); }
+.nav__logo { justify-self: start; display: flex; align-items: center; gap: .6rem; text-decoration: none; color: var(--text); }
 .nav__logo img { height: 38px; width: auto; }
 .nav__logo-text { font-family: var(--dp-font-script); font-size: 1.1rem; color: var(--text); line-height: 1; }
 .nav__logo-text small { display: block; font-family: var(--dp-font-sans); font-size: 9px; letter-spacing: .24em; text-transform: uppercase; color: var(--text-muted); margin-top: 3px; font-weight: 600; }
 
 .nav__menu {
+  justify-self: center;
   display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0;
   font-family: var(--dp-font-sans);
 }
@@ -83,7 +84,7 @@
   translate: 0 -1px;
 }
 
-.nav__right { display: flex; align-items: center; gap: .75rem; }
+.nav__right { justify-self: end; display: flex; align-items: center; gap: .75rem; }
 
 /* Theme toggle — single circular button with crossfading sun/moon icons.
    Shared .theme-toggle styles live in styles/components/theme-toggle.css */
@@ -188,6 +189,8 @@
   }
 
   .nav__inner {
+    display: flex;
+    justify-content: space-between;
     width: 100%;
     gap: clamp(.6rem, 1.2vw, 1rem);
   }
@@ -269,6 +272,7 @@
 
 @media (max-width: 960px) {
   .nav__backdrop { display: block; }
+  .nav__inner { display: flex; justify-content: space-between; }
   .nav__cta { display: none; }
   .nav__logo, .nav__right { position: relative; z-index: 3; }
   .nav__menu {

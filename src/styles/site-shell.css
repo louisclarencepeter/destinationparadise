@@ -27,7 +27,8 @@
   --section-pad-block: var(--section-gap);
   --section-pad-inline: clamp(1.5rem, 7vw, 6rem);
   --section-stack-gap: clamp(3rem, 6vw, 5rem);
-  --section-contained-width: min(95%, 1240px);
+  --site-max-width: 1400px;
+  --section-contained-width: min(95%, var(--site-max-width));
   --section-contained-inline: clamp(1rem, 3vw, 2rem);
   --section-transition-gap: clamp(.75rem, 1.5vw, 1.1rem);
   --section-cue-overlap: clamp(.5rem, 1vw, .85rem);

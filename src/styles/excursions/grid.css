@@ -12,7 +12,7 @@
   max-width: 680px;
 }
 .exc-grid-wrap > .exc-filter {
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto clamp(1.2rem, 2vw, 1.75rem);
 }
 .exc-grid {
@@ -20,7 +20,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: clamp(1.25rem, 2vw, 1.75rem);
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
 }
 .exc-grid .exc-card {
@@ -88,7 +88,7 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: .9rem 1.15rem;
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: clamp(1.5rem, 3vw, 2.25rem) auto 0;
   color: color-mix(in srgb, currentColor 62%, transparent);
   font-size: .92rem;

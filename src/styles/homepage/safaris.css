@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 1.25rem;
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
 }
 .safari-card {

@@ -1,7 +1,7 @@
 /* ============ STORY ============ */
 .ab-story {
   padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
 }
 .ab-story__head {

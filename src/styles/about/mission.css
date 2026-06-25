@@ -20,7 +20,7 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: clamp(1.5rem, 3vw, 3rem);
-  max-width: 1240px; margin: 0 auto;
+  max-width: var(--site-max-width); margin: 0 auto;
 }
 @media (max-width: 720px) { .ab-numbers__grid { grid-template-columns: repeat(2, 1fr); } }
 .ab-numbers__item { display: flex; flex-direction: column; gap: .5rem; text-align: left; }

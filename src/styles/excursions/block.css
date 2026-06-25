@@ -6,7 +6,7 @@
   gap: clamp(2rem, 6vw, 6rem);
   align-items: center;
   padding: clamp(2rem, 4.5vw, 3rem) clamp(1.25rem, 5vw, 6rem);
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto 1.5rem;
   border: 1px solid color-mix(in srgb, currentColor 10%, transparent);
   border-radius: 18px;

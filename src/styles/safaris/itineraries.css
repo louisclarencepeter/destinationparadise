@@ -15,7 +15,7 @@
   max-width: 680px;
 }
 .saf-filter {
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto clamp(1.2rem, 2vw, 1.75rem);
   padding: 0;
   justify-content: center;

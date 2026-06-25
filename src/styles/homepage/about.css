@@ -5,7 +5,7 @@
 }
 
 .home-about__inner {
-  max-width: 1180px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);

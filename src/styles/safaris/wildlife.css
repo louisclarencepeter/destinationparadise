@@ -5,7 +5,7 @@
 }
 [data-theme="dark"] .wildlife { background: linear-gradient(180deg, var(--surface), #0a1d2a 100%); }
 .wildlife__head { max-width: 720px; margin: 0 auto clamp(2.5rem, 4vw, 3.5rem); text-align: center; }
-.wildlife__cat { max-width: 1240px; margin: 0 auto 3rem; }
+.wildlife__cat { max-width: var(--site-max-width); margin: 0 auto 3rem; }
 .wildlife__cat-title {
   display: flex; align-items: baseline; gap: 1rem;
   margin: 0 0 1rem;

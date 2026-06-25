@@ -5,7 +5,7 @@
 }
 .parks__head { max-width: 720px; margin: 0 auto clamp(2.5rem, 4vw, 3.5rem); text-align: center; }
 .parks__grid {
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
