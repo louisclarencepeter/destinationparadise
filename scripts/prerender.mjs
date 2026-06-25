@@ -23,6 +23,26 @@ import { getPrerenderPaths } from './routes.mjs';
 const here = dirname(fileURLToPath(import.meta.url));
 const distDir = resolve(here, '../dist');
 
+// On Netlify/CI, puppeteer's bundled Chromium usually can't launch (it's skipped
+// from download and/or the build image lacks the system libs it needs). There we
+// drive @sparticuz/chromium — a self-contained Chromium built for serverless/CI —
+// instead. Locally we keep using puppeteer's own Chromium (fast, already cached).
+const ON_CI = !!(process.env.NETLIFY || process.env.CI);
+
+// Use @sparticuz/chromium when on CI (override with PRERENDER_CHROMIUM=sparticuz|bundled).
+const USE_SPARTICUZ = process.env.PRERENDER_CHROMIUM
+  ? process.env.PRERENDER_CHROMIUM === 'sparticuz'
+  : ON_CI;
+
+// Strict mode fails the build instead of silently shipping a bare SPA shell when
+// prerendering can't run — so missing SEO HTML can't regress unnoticed. On by
+// default in CI; disable with PRERENDER_STRICT=false (or skip with PRERENDER=false).
+const STRICT = process.env.PRERENDER_STRICT
+  ? !['false', '0', 'no'].includes(process.env.PRERENDER_STRICT.toLowerCase())
+  : ON_CI;
+
+const BASE_ARGS = ['--no-sandbox', '--disable-setuid-sandbox'];
+
 const MIME = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
@@ -117,6 +137,55 @@ async function renderRoute(browser, port, path) {
   }
 }
 
+// Launch Chromium, trying each viable strategy in order so a single broken
+// environment doesn't silently skip the whole crawl. Returns a browser or throws
+// the last error (the caller decides whether that's fatal — see STRICT).
+async function launchBrowser(puppeteer) {
+  const strategies = [];
+
+  const explicit = process.env.PUPPETEER_EXECUTABLE_PATH;
+  if (explicit) {
+    strategies.push({
+      name: `executablePath (${explicit})`,
+      opts: async () => ({ headless: true, executablePath: explicit, args: BASE_ARGS }),
+    });
+  }
+
+  if (USE_SPARTICUZ) {
+    strategies.push({
+      name: '@sparticuz/chromium',
+      opts: async () => {
+        const { default: chromium } = await import('@sparticuz/chromium');
+        return {
+          headless: chromium.headless ?? true,
+          args: [...chromium.args, ...BASE_ARGS],
+          executablePath: await chromium.executablePath(),
+          defaultViewport: chromium.defaultViewport,
+        };
+      },
+    });
+  }
+
+  // puppeteer's own bundled Chromium — primary path locally, last-resort on CI.
+  strategies.push({
+    name: 'puppeteer bundled Chromium',
+    opts: async () => ({ headless: true, args: BASE_ARGS }),
+  });
+
+  let lastErr;
+  for (const s of strategies) {
+    try {
+      const browser = await puppeteer.launch(await s.opts());
+      console.log(`[prerender] launched Chromium via ${s.name}.`);
+      return browser;
+    } catch (err) {
+      lastErr = err;
+      console.warn(`[prerender] launch via ${s.name} failed: ${err.message}`);
+    }
+  }
+  throw lastErr || new Error('no Chromium launch strategy available');
+}
+
 async function main() {
   if (process.env.PRERENDER === 'false') {
     console.log('[prerender] PRERENDER=false — skipping.');
@@ -145,16 +214,17 @@ async function main() {
 
   let browser;
   try {
-    browser = await puppeteer.launch({
-      headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'],
-    });
+    browser = await launchBrowser(puppeteer);
   } catch (err) {
-    console.warn(
-      `\n[prerender] ⚠ Could not launch Chromium — skipping prerender. ` +
-        `SPA ships with client-side meta only.\n  ${err.message}\n`,
-    );
     server.close();
+    const msg = `Could not launch Chromium for prerender — ${err.message}`;
+    if (STRICT) {
+      throw new Error(
+        `${msg}\n  Set PRERENDER=false to ship the SPA without prerendered SEO, ` +
+          `or PRERENDER_STRICT=false to warn instead of failing.`,
+      );
+    }
+    console.warn(`\n[prerender] ⚠ ${msg} — skipping. SPA ships with client-side meta only.\n`);
     return;
   }
 
@@ -193,9 +263,20 @@ async function main() {
   console.log(
     `[prerender] wrote ${results.length}/${paths.length} routes${failed ? ` (${failed} failed)` : ''}.`,
   );
+
+  // Chromium launched but every route failed — the build would ship a bare shell.
+  // Treat that like a launch failure so it can't silently regress SEO.
+  if (STRICT && results.length === 0 && paths.length > 0) {
+    throw new Error(`prerendered 0/${paths.length} routes — refusing to ship a bare SPA shell.`);
+  }
 }
 
 main().catch((err) => {
-  // Never fail the production build because of prerendering.
+  if (STRICT) {
+    // Fail the build loudly so missing prerendered HTML can't ship unnoticed.
+    console.error(`\n[prerender] ✖ ${err?.message || err}\n`);
+    process.exitCode = 1;
+    return;
+  }
   console.warn(`[prerender] ⚠ Unexpected error — skipping. ${err?.stack || err}`);
 });
