@@ -3,6 +3,15 @@
   publish = "dist"
   functions = "netlify/functions"
 
+[build.environment]
+  # Pin Node so the build is reproducible (Vite 8 needs >= 20.19).
+  NODE_VERSION = "22"
+  # Don't download puppeteer's bundled Chromium during install — it can't launch
+  # on the Netlify build image. The post-build prerender crawl (scripts/prerender.mjs)
+  # uses @sparticuz/chromium instead. Prerender failures fail the build (PRERENDER_STRICT
+  # defaults on in CI) so missing SEO HTML can't ship unnoticed.
+  PUPPETEER_SKIP_DOWNLOAD = "true"
+
 # Note: /api/* routes are registered by each function's own `export const config`
 # (e.g. planner.mjs -> path: '/api/planner'), which takes precedence over the SPA
 # catch-all below — no per-function rewrite is needed here.
