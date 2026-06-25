@@ -4,7 +4,7 @@
   color: var(--text);
 }
 .explore-path-grid {
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -70,7 +70,7 @@
   background: var(--page-bg);
 }
 .explore-hub__inner {
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(260px, .85fr) minmax(0, 1.4fr);

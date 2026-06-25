@@ -3,7 +3,7 @@
   background: linear-gradient(180deg, rgba(184,84,26,.06) 0%, transparent 100%);
   padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
 }
-.ab-sus__inner { max-width: 1240px; margin: 0 auto; }
+.ab-sus__inner { max-width: var(--site-max-width); margin: 0 auto; }
 .ab-sus__head {
   display: grid; grid-template-columns: 1fr 1.2fr;
   gap: clamp(2rem, 5vw, 4rem);

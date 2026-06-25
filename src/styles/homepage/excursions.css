@@ -13,7 +13,7 @@
 .excursions__grid {
   display: grid;
   gap: 1.5rem;
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
 }
 

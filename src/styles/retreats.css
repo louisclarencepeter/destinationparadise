@@ -148,7 +148,7 @@ html[data-theme="dark"] .retreat-page {
 
 /* ---------- Teacher ---------- */
 .ret-teacher {
-  width: min(var(--dp-container-lg), 92%);
+  width: min(var(--site-max-width), 92%);
   margin: 0 auto;
   padding: 0 0 clamp(4rem, 8vw, 7rem);
   display: grid;
@@ -249,7 +249,7 @@ html[data-theme="dark"] .retreat-page {
 
 /* Practice cards */
 .ret-practice__grid {
-  width: min(var(--dp-container-lg), 92%);
+  width: min(var(--site-max-width), 92%);
   margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -295,7 +295,7 @@ html[data-theme="dark"] .retreat-page {
 
 /* Journey / itinerary (reuses .ret-practice__card styling) */
 .ret-journey__grid {
-  width: min(var(--dp-container-lg), 92%);
+  width: min(var(--site-max-width), 92%);
   margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -372,7 +372,7 @@ html[data-theme="dark"] .retreat-page {
 
 /* Gallery — bento */
 .ret-gallery__grid {
-  width: min(var(--dp-container-lg), 92%);
+  width: min(var(--site-max-width), 92%);
   margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -421,8 +421,8 @@ html[data-theme="dark"] .retreat-page {
   width: 100%;
   box-sizing: border-box;
   margin: 0;
-  padding-left: max(4%, calc((100% - var(--dp-container-lg)) / 2));
-  padding-right: max(4%, calc((100% - var(--dp-container-lg)) / 2));
+  padding-left: max(4%, calc((100% - var(--site-max-width)) / 2));
+  padding-right: max(4%, calc((100% - var(--site-max-width)) / 2));
 }
 .ret-included__price {
   margin: 1.6rem 0 0;

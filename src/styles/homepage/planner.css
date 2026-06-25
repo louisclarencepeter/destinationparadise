@@ -148,7 +148,7 @@
 }
 .trip-prompts__grid,
 .trip-steps__grid {
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -253,7 +253,7 @@
   overflow: hidden;
 }
 .planner__wrap {
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1.05fr;

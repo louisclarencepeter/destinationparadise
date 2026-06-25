@@ -1,7 +1,7 @@
 /* ============ PRESS ============ */
 .ab-press {
   padding: clamp(4rem, 8vw, 7rem) clamp(1.25rem, 5vw, 6rem);
-  max-width: 1240px; margin: 0 auto;
+  max-width: var(--site-max-width); margin: 0 auto;
 }
 .ab-press__head {
   display: grid; grid-template-columns: 1fr 1.2fr;

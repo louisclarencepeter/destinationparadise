@@ -1,6 +1,6 @@
 /* ------------ MAP ------------ */
 .map-section {
-  width: min(95%, 1240px);
+  width: var(--section-contained-width);
   margin: clamp(3rem, 6vw, 5rem) auto;
   padding: 0 clamp(1rem, 3vw, 2rem);
 }

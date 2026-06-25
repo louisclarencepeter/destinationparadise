@@ -59,7 +59,7 @@
 }
 
 .saf-types__grid {
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -160,7 +160,8 @@
   transform: scale(1.05);
 }
 
-@media (max-width: 1240px) {
+/* Literal breakpoint — media query conditions can't read var(); mirrors --site-max-width (1400px). */
+@media (max-width: 1400px) {
   .saf-types__grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 

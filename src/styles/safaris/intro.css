@@ -4,7 +4,7 @@
   background: var(--surface);
 }
 .saf-intro__grid {
-  max-width: 1240px;
+  max-width: var(--site-max-width);
   margin: 0 auto;
   display: grid;
   grid-template-columns: 1fr 1fr;
