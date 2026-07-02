@@ -1,6 +1,9 @@
 import { lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes as RouterRoutes } from 'react-router-dom';
 import SiteLayout from './components/SiteLayout.jsx';
+import { SentryRoutes } from './utils/sentry.js';
+
+const Routes = SentryRoutes(RouterRoutes);
 
 function lazyWithRetry(factory) {
   return lazy(async () => {

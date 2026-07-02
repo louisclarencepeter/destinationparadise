@@ -10,6 +10,9 @@ import {
   rateLimitKey,
   validateEmailAddress,
 } from './_shared.mjs';
+import { captureFunctionException, captureFunctionMessage } from './_sentry.mjs';
+
+const FUNCTION_NAME = 'planner-send';
 
 const TEAM_TO = process.env.TEAM_EMAIL_PLANNER || 'info@yournexttriptoparadise.com';
 const FROM_ADDRESS = process.env.RESEND_FROM_PLANNER || 'Destination Paradise Planner <booking@yournexttriptoparadise.com>';
@@ -417,6 +420,11 @@ export default async (req) => {
     if (!teamRes.ok) {
       const errText = await teamRes.text().catch(() => '');
       console.error('Resend team error', teamRes.status, errText);
+      await captureFunctionMessage('Resend team email failed', {
+        functionName: FUNCTION_NAME,
+        req,
+        extra: { stage: 'team-email', status: teamRes.status, errorBody: errText },
+      });
       return errorResponse('We could not send the draft just now. Please try again in a moment, or message us on WhatsApp.', 502);
     }
 
@@ -433,14 +441,29 @@ export default async (req) => {
       if (!guestRes.ok) {
         const errText = await guestRes.text().catch(() => '');
         console.error('Resend guest copy failed', guestRes.status, errText);
+        await captureFunctionMessage('Resend guest copy failed', {
+          functionName: FUNCTION_NAME,
+          req,
+          extra: { stage: 'guest-copy', status: guestRes.status, errorBody: errText },
+        });
       }
     } catch (err) {
       console.error('Guest copy send failure', err);
+      await captureFunctionException(err, {
+        functionName: FUNCTION_NAME,
+        req,
+        extra: { stage: 'guest-copy' },
+      });
     }
 
     return Response.json({ ok: true });
   } catch (err) {
     console.error('planner-send failure', err);
+    await captureFunctionException(err, {
+      functionName: FUNCTION_NAME,
+      req,
+      extra: { stage: 'send-email' },
+    });
     return errorResponse('We could not send the draft just now. Please try again in a moment.', 502);
   }
 };

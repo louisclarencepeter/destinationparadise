@@ -9,9 +9,12 @@ import {
   trimField,
   validateEmailAddress,
 } from './_shared.mjs';
+import { captureFunctionException, captureFunctionMessage } from './_sentry.mjs';
 
 // Re-exported for unit tests (test/netlify/booking-send.test.mjs).
 export { validateEmailAddress };
+
+const FUNCTION_NAME = 'booking-send';
 
 const TEAM_TO = process.env.TEAM_EMAIL_BOOKING || 'info@yournexttriptoparadise.com';
 const FROM_ADDRESS = process.env.RESEND_FROM_BOOKING || 'Destination Paradise <booking@yournexttriptoparadise.com>';
@@ -90,6 +93,11 @@ export default async (req) => {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.error('booking-send: missing RESEND_API_KEY');
+    await captureFunctionMessage('Missing RESEND_API_KEY', {
+      functionName: FUNCTION_NAME,
+      req,
+      level: 'warning',
+    });
     return errorResponse('The mailer is not configured yet. Please email us directly, or message us on WhatsApp.', 503);
   }
 
@@ -247,6 +255,11 @@ export default async (req) => {
     if (!teamRes.ok) {
       const errText = await teamRes.text().catch(() => '');
       console.error('Resend team error', teamRes.status, errText);
+      await captureFunctionMessage('Resend team email failed', {
+        functionName: FUNCTION_NAME,
+        req,
+        extra: { stage: 'team-email', status: teamRes.status, errorBody: errText },
+      });
       return errorResponse('We could not send your booking request just now. Please try again in a moment, or message us on WhatsApp.', 502);
     }
 
@@ -262,14 +275,29 @@ export default async (req) => {
       if (!guestRes.ok) {
         const errText = await guestRes.text().catch(() => '');
         console.error('Resend guest copy failed', guestRes.status, errText);
+        await captureFunctionMessage('Resend guest copy failed', {
+          functionName: FUNCTION_NAME,
+          req,
+          extra: { stage: 'guest-copy', status: guestRes.status, errorBody: errText },
+        });
       }
     } catch (err) {
       console.error('Guest copy send failure', err);
+      await captureFunctionException(err, {
+        functionName: FUNCTION_NAME,
+        req,
+        extra: { stage: 'guest-copy' },
+      });
     }
 
     return Response.json({ ok: true });
   } catch (err) {
     console.error('booking-send failure', err);
+    await captureFunctionException(err, {
+      functionName: FUNCTION_NAME,
+      req,
+      extra: { stage: 'send-email' },
+    });
     return errorResponse('We could not send your booking request just now. Please try again.', 502);
   }
 };

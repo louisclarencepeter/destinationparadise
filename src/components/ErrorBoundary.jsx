@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { useLocation } from 'react-router-dom';
 import ErrorBoundaryPage from '../pages/ErrorBoundaryPage.jsx';
+import { captureSentryException } from '../utils/sentry.js';
 
 const RELOAD_FLAG = 'dp-chunk-reload';
 
@@ -44,6 +45,16 @@ class ErrorBoundaryFrame extends Component {
 
   componentDidCatch(error, errorInfo) {
     console.error('Destination Paradise error boundary caught an error:', error, errorInfo);
+    captureSentryException(error, {
+      contexts: {
+        react: {
+          componentStack: errorInfo?.componentStack,
+        },
+      },
+      tags: {
+        errorBoundary: 'root',
+      },
+    });
     tryAutoRecover(error);
   }
 
