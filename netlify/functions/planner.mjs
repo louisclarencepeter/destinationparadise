@@ -8,7 +8,9 @@ import { destinationParadisePackages } from '../../src/data/destinationParadiseP
 import { nextLevelSafariProducts } from '../../src/data/nextLevelSafariProducts.js';
 import { destinationParadiseSafariPricing } from '../../src/data/safariPricing.js';
 import { createRateLimiter, rateLimitKey } from './_shared.mjs';
+import { captureFunctionException, captureFunctionMessage } from './_sentry.mjs';
 
+const FUNCTION_NAME = 'planner';
 const PLANNER_MODEL = 'claude-haiku-4-5-20251001';
 const MAX_REQUEST_BYTES = 20_000;
 const MAX_HISTORY_MESSAGES = 16;
@@ -201,6 +203,11 @@ export default async (req) => {
 
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if (!apiKey) {
+    await captureFunctionMessage('Missing ANTHROPIC_API_KEY', {
+      functionName: FUNCTION_NAME,
+      req,
+      level: 'warning',
+    });
     return Response.json({
       reply: "The planner isn't configured yet — set ANTHROPIC_API_KEY on Netlify and I'll start chatting. In the meantime, message the team on WhatsApp.",
     }, { status: 200 });
@@ -243,6 +250,11 @@ export default async (req) => {
     if (!r.ok) {
       const errText = await r.text().catch(() => '');
       console.error('Anthropic error', r.status, errText);
+      await captureFunctionMessage('Anthropic planner request failed', {
+        functionName: FUNCTION_NAME,
+        req,
+        extra: { stage: 'anthropic-request', status: r.status, errorBody: errText },
+      });
       return Response.json({
         reply: "Pole sana — I couldn't reach the planner just now. Try again in a moment, or message the team directly.",
       }, { status: 200 });
@@ -258,6 +270,11 @@ export default async (req) => {
     return Response.json({ reply }, { status: 200 });
   } catch (err) {
     console.error('planner function error', err);
+    await captureFunctionException(err, {
+      functionName: FUNCTION_NAME,
+      req,
+      extra: { stage: 'planner-request' },
+    });
     return Response.json({
       reply: "Pole sana — something went wrong on my end. Try again in a moment.",
     }, { status: 200 });

@@ -53,6 +53,10 @@ npm run test       # Vitest tests
 Set this on Netlify:
 
 - `ANTHROPIC_API_KEY` — required for the AI Trip Planner. Without it, the planner returns a friendly fallback message and points guests to WhatsApp.
+- `VITE_SENTRY_DSN` — optional browser Sentry DSN for React errors and performance traces. Without it, Sentry is disabled.
+- `SENTRY_DSN` — optional server-side Sentry DSN for Netlify Function errors. This can be the same Sentry project DSN as the browser, or a separate Node project DSN.
+- `SENTRY_ENVIRONMENT` / `VITE_SENTRY_ENVIRONMENT` — optional environment labels. Netlify's deploy context is used for functions when this is omitted.
+- `SENTRY_TRACES_SAMPLE_RATE` / `VITE_SENTRY_TRACES_SAMPLE_RATE` — optional tracing sample rates from `0` to `1`; production defaults to `0.1`.
 
 The planner endpoint registers its own route:
 
