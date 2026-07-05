@@ -121,6 +121,16 @@ export default function SiteNav({ theme = 'light', themeMode: _themeMode = 'auto
   }, [navOpen]);
 
   useEffect(() => {
+    const menu = mmRef.current;
+    if (!menu) return;
+    if (navOpen) {
+      menu.removeAttribute('inert');
+    } else {
+      menu.setAttribute('inert', '');
+    }
+  }, [navOpen]);
+
+  useEffect(() => {
     const mediaQuery = window.matchMedia(MOBILE_NAV_QUERY);
     let previousBodyOverflow;
 
@@ -252,7 +262,6 @@ export default function SiteNav({ theme = 'light', themeMode: _themeMode = 'auto
         role="dialog"
         aria-modal="true"
         aria-label={t('menu.site_nav_label')}
-        {...(navOpen ? {} : { inert: true })}
       >
         <div className="mm-menu__bg" style={navOpen ? { backgroundImage: `url('${MM_BGS[bgIndex]}')` } : undefined} />
         <div className="mm-menu__scrim" />

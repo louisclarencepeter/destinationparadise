@@ -8,15 +8,33 @@ import { RETREAT_PRODUCTS } from '../data/retreatProducts.js';
 import '../styles/excursions/hero.css';
 import '../styles/retreats.css';
 
-// Single source of truth for the retreat's "from" price (shared with booking).
-const RETREAT_PRICE = RETREAT_PRODUCTS[0].price;
+// Single source of truth for the retreat collection's "from" price.
+const RETREAT_PRICE = Math.min(...RETREAT_PRODUCTS.map((product) => product.price));
 
 const IMG = {
-  hero: '/assets/images/retreats/zanzibar-tree-pose-view.webp',
-  teacher: '/assets/images/retreats/teacher-garden-sun-portrait.webp',
   quote: '/assets/images/retreats/coastal-handstand-sunset.webp',
   cta: '/assets/images/retreats/mountain-star-pose.webp',
 };
+
+const HERO_IMAGES = [
+  '/assets/images/retreats/zanzibar-tree-pose-view.webp',
+  '/assets/images/retreats/studio-warrior-circle.webp',
+  '/assets/images/retreats/assisted-beach-stretch.webp',
+  '/assets/images/retreats/yoga-side-bend-beach.webp',
+  '/assets/images/retreats/yoga-plank-sunset-coast.webp',
+];
+
+const RETREAT_TYPE_IMAGES = [
+  '/assets/images/retreats/yoga-clifftop-ocean-view.webp',
+  '/assets/images/retreats/yoga-side-bend-beach.webp',
+  '/assets/images/retreats/assisted-beach-stretch.webp',
+];
+
+const TEACHER_IMAGES = [
+  '/assets/images/retreats/studio-warrior-circle.webp',
+  '/assets/images/retreats/assisted-beach-stretch.webp',
+  '/assets/images/retreats/beach-class-plank.webp',
+];
 
 // Bento gallery — paired with the localized captions (gallery.items), in order.
 const GALLERY_IMAGES = [
@@ -37,8 +55,11 @@ export default function Retreats() {
   const { format } = useCurrency();
   const pageRef = useRef(/** @type {HTMLElement | null} */ (null));
   const [openFaq, setOpenFaq] = useState(0);
+  const [heroSlide, setHeroSlide] = useState(0);
 
   const practices = arrayFromTranslation(t('practice.items', { returnObjects: true }));
+  const retreatTypes = arrayFromTranslation(t('retreat_types.items', { returnObjects: true }));
+  const teachers = arrayFromTranslation(t('teachers.items', { returnObjects: true }));
   const journey = arrayFromTranslation(t('journey.items', { returnObjects: true }));
   const daySchedule = arrayFromTranslation(t('day.items', { returnObjects: true }));
   const galleryItems = arrayFromTranslation(t('gallery.items', { returnObjects: true }));
@@ -56,6 +77,15 @@ export default function Retreats() {
   useEffect(() => {
     document.body.classList.add('has-retreat-page');
     return () => document.body.classList.remove('has-retreat-page');
+  }, []);
+
+  useEffect(() => {
+    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (reduceMotion || HERO_IMAGES.length < 2) return undefined;
+    const timer = window.setInterval(() => {
+      setHeroSlide((index) => (index + 1) % HERO_IMAGES.length);
+    }, 5200);
+    return () => window.clearInterval(timer);
   }, []);
 
   useEffect(() => {
@@ -84,16 +114,31 @@ export default function Retreats() {
     <main className="retreat-page" ref={pageRef}>
       {/* Hero — shared site hero pattern (mirrors excursions/safaris/packages) */}
       <section className="exc-hero">
-        <div className="exc-hero__bg">
-          <ResponsiveImage src={IMG.hero} alt="" fetchpriority="high" loading="eager" decoding="sync" sizes="100vw" />
+        <div className="exc-hero__bg ret-hero-slideshow">
+          {HERO_IMAGES.map((image, index) => (
+            <div
+              className={`ret-hero-slide${index === heroSlide ? ' is-active' : ''}`}
+              key={image}
+              aria-hidden="true"
+            >
+              <ResponsiveImage
+                src={image}
+                alt=""
+                fetchpriority={index === 0 ? 'high' : 'auto'}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                decoding={index === 0 ? 'sync' : 'async'}
+                sizes="100vw"
+              />
+            </div>
+          ))}
         </div>
         <div className="exc-hero__inner">
           <span className="exc-hero__eyebrow">{t('hero.eyebrow')}</span>
           <h1 className="exc-hero__title">{t('hero.title_prefix')} <em>{t('hero.title_em')}</em></h1>
           <p className="exc-hero__lead">{t('hero.subtitle')}</p>
           <div className="exc-hero__row">
-            <a className="btn btn--lg" href="#day">{t('hero.see_day')}</a>
-            <Link className="btn btn--ghost btn--lg" to="/booking?type=retreat&item=yoga-safari-retreat">{t('hero.reserve')}</Link>
+            <a className="btn btn--lg" href="#retreat-types">{t('hero.see_day')}</a>
+            <Link className="btn btn--ghost btn--lg" to="/booking?type=retreat">{t('hero.reserve')}</Link>
           </div>
           <div className="exc-hero__meta">
             <div><strong>{t('hero.stat_nights_value')}</strong><span>{t('hero.stat_nights')}</span></div>
@@ -112,18 +157,68 @@ export default function Retreats() {
         </p>
       </section>
 
-      {/* Teacher */}
-      <section className="ret-teacher reveal">
-        <div className="ret-teacher__media">
-          <ResponsiveImage src={IMG.teacher} alt="Nina, your yoga teacher and retreat host" sizes="(max-width: 900px) 100vw, 42vw" />
+      {/* Retreat styles */}
+      <section className="ret-dark ret-types" id="retreat-types">
+        <header className="ret-dark__head reveal">
+          <span className="ret-eyebrow ret-eyebrow--light">{t('retreat_types.eyebrow')}</span>
+          <h2 className="ret-title ret-title--script">{t('retreat_types.title')}</h2>
+          <p className="ret-dark__lead">{t('retreat_types.lead')}</p>
+        </header>
+        <div className="ret-types__grid">
+          {retreatTypes.map((item, i) => {
+            const product = RETREAT_PRODUCTS.find((entry) => entry.slug === item.slug);
+            return (
+              <article className="ret-type-card reveal" key={item.slug} style={{ '--ret-reveal-index': i }}>
+                <div className="ret-type-card__media">
+                  <ResponsiveImage src={RETREAT_TYPE_IMAGES[i % RETREAT_TYPE_IMAGES.length]} alt={item.image_alt} sizes="(max-width: 900px) 100vw, 33vw" />
+                </div>
+                <div className="ret-type-card__copy">
+                  <span>{item.duration}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                  <ul>
+                    {arrayFromTranslation(item.highlights).map((highlight) => (
+                      <li key={highlight}>{highlight}</li>
+                    ))}
+                  </ul>
+                  <div className="ret-type-card__footer">
+                    {product && (
+                      <p>{t('retreat_types.price_from')} <strong>{format(product.price)}</strong></p>
+                    )}
+                    <Link to={`/booking?type=retreat&item=${item.slug}`}>{item.cta}</Link>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
-        <div className="ret-teacher__copy">
-          <span className="ret-eyebrow">{t('teacher.eyebrow')}</span>
-          <h2 className="ret-title">{t('teacher.title')}</h2>
-          <p className="ret-teacher__lead"><span className="ret-dropcap">{t('teacher.p1').charAt(0)}</span>{t('teacher.p1').slice(1)}</p>
-          <p>{t('teacher.p2')}</p>
-          <p>{t('teacher.p3')}</p>
-          <p className="ret-teacher__signoff">{t('teacher.signoff')}</p>
+      </section>
+
+      {/* Teachers */}
+      <section className="ret-teachers reveal" id="teachers">
+        <header className="ret-teachers__head">
+          <span className="ret-eyebrow">{t('teachers.eyebrow')}</span>
+          <h2 className="ret-title">{t('teachers.title')}</h2>
+          <p>{t('teachers.lead')}</p>
+        </header>
+        <div className="ret-teachers__grid">
+          {teachers.map((teacher, i) => (
+            <article className="ret-teacher-card reveal" key={teacher.name} style={{ '--ret-reveal-index': i }}>
+              <div className="ret-teacher-card__media">
+                <ResponsiveImage src={TEACHER_IMAGES[i % TEACHER_IMAGES.length]} alt={teacher.image_alt} sizes="(max-width: 900px) 100vw, 45vw" />
+              </div>
+              <div className="ret-teacher-card__copy">
+                <span>{teacher.role}</span>
+                <h3>{teacher.name}</h3>
+                <p>{teacher.text}</p>
+                <ul>
+                  {arrayFromTranslation(teacher.specialties).map((specialty) => (
+                    <li key={specialty}>{specialty}</li>
+                  ))}
+                </ul>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
@@ -269,7 +364,7 @@ export default function Retreats() {
           <h2 className="ret-title ret-title--light">{t('cta.title')}</h2>
           <p>{t('cta.text')}</p>
           <div className="ret-cta__btns">
-            <Link className="btn btn--lg btn--accent" to="/booking?type=retreat&item=yoga-safari-retreat">{t('cta.reserve')}</Link>
+            <Link className="btn btn--lg btn--accent" to="/booking?type=retreat">{t('cta.reserve')}</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">{t('cta.ai_planner')}</Link>
           </div>
         </div>

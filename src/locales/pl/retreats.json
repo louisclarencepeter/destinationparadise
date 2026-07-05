@@ -1,79 +1,134 @@
 {
-  "page_title": "14-dniowy retreat jogi i safari · Zanzibar · Destination Paradise",
+  "page_title": "Retreaty jogi i wellness · Zanzibar · Destination Paradise",
+  "meta_description": "Retreaty jogi, bodyworku, coastal reset i jogi z safari na Zanzibarze z Destination Paradise.",
   "hero": {
-    "eyebrow": "14 dni · retreat jogi · 5-dniowe safari w cenie",
-    "title_prefix": "Coś więcej niż",
-    "title_em": "ruch.",
-    "subtitle": "Czternaście dni jogi, oddechu, ciszy i safari.",
-    "lead": "Jedna kameralna podróż z Niną — poranne vinyasy, spokojne wieczory yin, medytacja, długie niespieszne dni na korzennym wybrzeżu oraz pięciodniowe safari w Tanzanii wplecione w całe doświadczenie.",
-    "see_day": "Zobacz dzień",
-    "reserve": "Zarezerwuj miejsce →",
-    "stat_nights_value": "14",
-    "stat_nights": "Dni",
-    "stat_guests_value": "5",
-    "stat_guests": "Dni safari",
-    "stat_practices_value": "2",
-    "stat_practices": "Praktyki dziennie",
-    "stat_levels_value": "12",
-    "stat_levels": "Maks. gości"
+    "eyebrow": "Retreaty wellness na Zanzibarze",
+    "title_prefix": "Retreaty dla każdego",
+    "title_em": "ciała i każdej podróży.",
+    "subtitle": "Joga prowadzona przez nauczycieli, Thaivedic bodywork, tygodnie coastal reset i podróże z safari.",
+    "lead": "Wybierz gotowy retreat grupowy albo pozwól nam ułożyć prywatny program pod Twoje daty, tempo i praktykę.",
+    "see_day": "Zobacz retreaty",
+    "reserve": "Zaplanuj retreat →",
+    "stat_nights_value": "3",
+    "stat_nights": "Typy retreatów",
+    "stat_guests_value": "Zespół",
+    "stat_guests": "Mix nauczycieli",
+    "stat_practices_value": "Codziennie",
+    "stat_practices": "Rytm praktyki",
+    "stat_levels_value": "Wszystkie",
+    "stat_levels": "Poziomy mile widziane"
   },
   "intention": {
     "eyebrow": "Intencja",
-    "text": "Joga to znacznie więcej niż praktyka fizyczna. To sposób na pielęgnowanie uważności, odnajdywanie wewnętrznego spokoju i ponowne łączenie się z wdzięcznością — nauka, by <em>zwolnić, słuchać i tworzyć równowagę</em> zarówno w ciele, jak i w umyśle."
+    "text": "Retreat może być resetem, głębokim tygodniem praktyki, miękkim lądowaniem po safari albo sercem dłuższej podróży po Zanzibarze. Każdy program budujemy wokół <em>prawdziwych nauczycieli, dużej ilości czasu i dni na wyspie, które pozwalają znowu odetchnąć</em>."
   },
-  "teacher": {
-    "kicker": "Nina · nauczycielka i gospodyni",
-    "eyebrow": "Poznaj Ninę",
-    "title": "Praktyka zrodzona z uzdrawiania.",
-    "p1": "Moja przygoda z jogą zaczęła się w jednym z najtrudniejszych okresów mojego życia. Po poważnej kontuzji kolana, pięciu operacjach i pozornie znikomej nadziei na powrót do zdrowia joga stała się drogą powrotu do stabilności, siły i spokoju — uzdrawiając mnie nie tylko fizycznie, ale i psychicznie oraz emocjonalnie, i zmieniając sposób, w jaki podchodziłam do życiowych wyzwań.",
-    "p2": "Szkolenie nauczycielskie ukończyłam w Portugalii, gdzie pogłębiłam zrozumienie zarówno praktyki, jak i filozofii jogi. Po drodze miałam przywilej spotkać inspirujących nauczycieli, którzy głęboko ukształtowali moją perspektywę, a od tamtej pory uczyłam w studiach w Maroku i w Niemczech, dzieląc się tą praktyką z ludźmi z różnych środowisk.",
-    "p3": "Każde spotkanie, lekcja i doświadczenie stały się częścią mojego stylu nauczania — autentycznego, uważnego i zakorzenionego w prawdziwej pasji do tego, czym naprawdę jest joga.",
-    "signoff": "— z miłością, Nina"
+  "retreat_types": {
+    "eyebrow": "Typy retreatów",
+    "title": "Wybierz rytm, który pasuje.",
+    "lead": "Zacznij od jednego z gotowych formatów, a potem dopasujemy daty, nauczycieli, wycieczki, pokoje i przedłużenie safari do Twojej grupy.",
+    "price_from": "Od",
+    "items": [
+      {
+        "slug": "yoga-safari-retreat",
+        "title": "Podróż joga i safari",
+        "duration": "14 dni · stałe terminy",
+        "text": "Pełna podróż z Zanzibaru na ląd: praktyka o wschodzie słońca, spokojne dni na wybrzeżu i pięciodniowe safari w Tanzanii w środku programu.",
+        "highlights": ["Vinyasa, yin, medytacja", "5-dniowe safari w cenie", "Kameralne terminy grupowe"],
+        "cta": "Zarezerwuj tę podróż",
+        "image_alt": "Praktyka jogi nad wybrzeżem Zanzibaru"
+      },
+      {
+        "slug": "coastal-reset-week",
+        "title": "Coastal Reset Week",
+        "duration": "7 dni · wybrzeże Zanzibaru",
+        "text": "Lżejszy tydzień wellness dla osób, które chcą codziennej praktyki, czasu nad oceanem, bodyworku, odżywczych posiłków i opcjonalnych wycieczek po wyspie.",
+        "highlights": ["Codzienna praktyka nad morzem", "Opcjonalne sesje bodyworku", "Plaża, rafa i Stone Town jako dodatki"],
+        "cta": "Zapytaj o terminy resetu",
+        "image_alt": "Pozycja jogi w skłonie bocznym na ciepłym tarasie przy wybrzeżu"
+      },
+      {
+        "slug": "private-teacher-led-retreat",
+        "title": "Prywatny retreat z nauczycielem",
+        "duration": "3 - 10 dni · własne daty",
+        "text": "Retreat szyty na miarę dla par, przyjaciół, firm albo nauczycieli, którzy przywożą własną grupę na Zanzibar.",
+        "highlights": ["Prowadzenie praktyki dobrane do grupy", "Prywatna willa albo butikowy hotel", "Elastyczny plan praktyki i wycieczek"],
+        "cta": "Stwórz prywatny retreat",
+        "image_alt": "Sesja hands-on bodywork blisko oceanu"
+      }
+    ]
+  },
+  "teachers": {
+    "eyebrow": "Faculty i zespół retreatu",
+    "title": "Mix nauczycieli dopasowany do retreatu.",
+    "lead": "Najpierw jest program. Do każdego retreatu dobieramy prowadzącego praktykę, wsparcie bodywork, gościnnych praktyków i lokalnych hostów, zamiast opierać całe doświadczenie na jednej osobie.",
+    "items": [
+      {
+        "name": "Mindful flow i cisza",
+        "role": "Nina · vinyasa, yin, praca z oddechem",
+        "text": "Nina prowadzi ciepłe, uważne praktyki, ukształtowane przez szkolenie w Portugalii oraz doświadczenie w Maroku i Niemczech. Jej sesje wnoszą ruch, oddech, muzykę, filozofię i cichą integrację w rytm retreatu.",
+        "specialties": ["Vinyasa flow", "Hatha i yin", "Medytacja i praca z oddechem"],
+        "image_alt": "Grupowa praktyka jogi prowadzona przez nauczyciela"
+      },
+      {
+        "name": "Vinyasa dla wszystkich i bodywork",
+        "role": "Awham Mohamed Al-Obaidy · @shela_yogi",
+        "text": "Urodzony i wychowany w Lamu, Awham jest międzynarodowym ekspertem jogi i Thaivedic, twórcą treści oraz opowiada historię stylu życia wellness i hospitality. Do retreatów wnosi vinyasę, hathę i hands-on bodywork z oceaniczną wrażliwością.",
+        "specialties": ["Vinyasa dla wszystkich poziomów", "Hatha joga", "Thaivedic bodywork", "Styl życia wellness z Lamu"],
+        "image_alt": "Sesja hands-on bodywork reprezentująca praktykę Thaivedic Awham Yoga"
+      },
+      {
+        "name": "Gościnni praktycy i lokalni hostowie",
+        "role": "Dźwięk, medytacja, masaż, kultura",
+        "text": "W zależności od retreatu zespół może obejmować lokalnych praktyków wellness, przewodników, kucharzy, masażystów, planistów safari i hostów wyspy, którzy utrzymują podróż praktyczną, ugruntowaną i związaną z miejscem.",
+        "specialties": ["Dźwięk i medytacja", "Masaż i regeneracja", "Wsparcie na wyspie i safari"],
+        "image_alt": "Mała grupa praktykująca jogę przy plaży"
+      }
+    ]
   },
   "quote": {
-    "text": "Moim największym pragnieniem jest, by każdy wyjechał lżejszy, silniejszy, bardziej ugruntowany i głęboko <em>połączony z samym sobą</em> — niosąc tę równowagę w codzienność."
+    "text": "Najlepszy retreat nie wymaga, by wszyscy poruszali się tak samo. Daje wystarczająco struktury, by czuć się zaopiekowanym, i wystarczająco przestrzeni, by <em>wrócić do siebie</em>."
   },
   "practice": {
-    "eyebrow": "Praktyka",
-    "title": "Harmonia między ruchem a bezruchem.",
-    "lead": "Każde zajęcia kształtują się wokół osób na sali — jednego ranka energetyzujący flow, następnego łagodna praktyka regeneracyjna. Muzyka też jest częścią całości: starannie dobrane dźwięki, które pogłębiają świadomość i tworzą atmosferę.",
+    "eyebrow": "Menu praktyki",
+    "title": "Ruch, cisza i bodywork.",
+    "lead": "Program retreatu może być bardziej energetyczny, regeneracyjny, terapeutyczny albo podróżniczy — zależnie od nauczyciela i grupy.",
     "items": [
-      { "step": "01", "title": "Vinyasa Flow", "text": "Dynamiczne, energetyzujące sekwencje budujące siłę, mobilność i skupienie — oddech połączony z ruchem, gdy wschodzi słońce." },
-      { "step": "02", "title": "Hatha Joga", "text": "Uważne ustawienie, świadomy oddech oraz budowanie wewnętrznej stabilności i świadomości. Wolniejsza, rozważna praktyka." },
-      { "step": "03", "title": "Yin Joga", "text": "Długo utrzymywane pozycje i głębokie rozluźnienie, z przestrzenią na medytację, filozofię i autorefleksję. Głęboki relaks." },
-      { "step": "04", "title": "Medytacja i oddech", "text": "Świadome rozciąganie, pranajama i medytacja prowadzona, by uwolnić napięcie, wyciszyć umysł i przywrócić równowagę." }
+      { "step": "01", "title": "Vinyasa dla wszystkich poziomów", "text": "Dynamiczne sekwencje prowadzone oddechem, z opcjami dla początkujących, wracających do praktyki i zaawansowanych." },
+      { "step": "02", "title": "Hatha joga", "text": "Uważne ustawienie, świadomy oddech i stabilna praktyka, która buduje świadomość bez pośpiechu." },
+      { "step": "03", "title": "Yin i regeneracyjne wieczory", "text": "Długo utrzymywane pozycje, miękkie akcesoria, medytacja i głębokie rozluźnienie po dniach nad oceanem lub safari." },
+      { "step": "04", "title": "Thaivedic bodywork", "text": "Terapeutyczne sesje hands-on wspierające regenerację, odpoczynek układu nerwowego i bardziej ugruntowane doświadczenie retreatu." }
     ]
   },
   "journey": {
-    "eyebrow": "Podróż",
-    "title": "Czternaście dni bez pośpiechu.",
-    "lead": "Dni praktyki na wybrzeżu Zanzibaru, pięciodniowe safari w głębi lądu, a potem powrót nad ocean na zakończenie — to, co dzikie, leży dokładnie pośrodku.",
+    "eyebrow": "Możliwy rytm",
+    "title": "Od tygodnia po pełną podróż.",
+    "lead": "Potraktuj te formaty jako punkt wyjścia. Możemy utrzymać retreat prosto i nad wybrzeżem, zbudować go wokół safari albo stworzyć prywatny program na Twoje daty.",
     "items": [
-      { "days": "Dni 1–2", "title": "Przyjazd na wybrzeże", "text": "Ląduj na wybrzeżu Zanzibaru, odetchnij i wejdź w rytm wieczorną praktyką." },
-      { "days": "Dni 3–6", "title": "Praktyka i korzenne wybrzeże", "text": "Poranna vinyasa, wieczorny yin, długie śniadania i wolne popołudnia nad oceanem." },
-      { "days": "Dni 7–11", "title": "Lot na safari", "text": "Lot do Arushy — przeloty wliczone — na pięć dni tanzańskiej przyrody: przejażdżki, szerokie niebo i noce pod gwiazdami." },
-      { "days": "Dni 12–14", "title": "Powrót na wybrzeże", "text": "Powrót samolotem na Zanzibar na ostatnie dni praktyki i odpoczynku oraz niespieszne pożegnanie." }
+      { "days": "3-4 dni", "title": "Prywatny coastal reset", "text": "Krótki program z poranną praktyką, bodyworkiem, odżywczymi posiłkami i powolnymi popołudniami nad morzem." },
+      { "days": "7 dni", "title": "Tydzień resetu", "text": "Codzienna praktyka, jeden lub dwa warsztaty, opcjonalne wycieczki i wystarczająco wolnej przestrzeni, by naprawdę odpocząć." },
+      { "days": "10 dni", "title": "Praktyka i zanurzenie w wyspie", "text": "Głębszy tydzień ze Stone Town, farmami przypraw, dniami na rafie albo doświadczeniami w wioskach, delikatnie wplecionymi w rytm." },
+      { "days": "14 dni", "title": "Podróż joga i safari", "text": "Flagowa trasa: dni praktyki na Zanzibarze, pięć dni safari w Tanzanii, potem powrót nad ocean na zamknięcie." }
     ],
-    "note": "Nasz pierwszy retreat startuje <strong>na początku grudnia 2026</strong> — ciepło, spokojnie i tuż przed szczytem sezonu."
+    "note": "Nasza pierwsza flagowa Podróż Joga i Safari rusza <strong>na początku grudnia 2026</strong>, a prywatne i coastal reset formaty możemy ułożyć wokół Twoich dat."
   },
   "day": {
     "eyebrow": "Dzień na retreacie",
-    "title": "Żadnych budzików prócz ptaków.",
-    "lead": "Typowy dzień jogi na wybrzeżu, zanim podróż przejdzie w pięć dni safari. Wszystko po śniadaniu jest całkowicie opcjonalne — najpewniejszy znak, że naprawdę odpoczywasz.",
+    "title": "Struktura, która trzyma, i przestrzeń, która oddycha.",
+    "lead": "Typowy dzień retreatu na wybrzeżu. Dni safari i prywatne programy zmieniają rytm, ale równowaga pozostaje: praktyka, odżywienie i niespieszny czas.",
     "items": [
-      { "time": "6:15", "title": "Medytacja o świcie", "text": "Opcjonalne siedzenie na tarasie, gdy niebo zmienia barwy. Herbata, bez rozmów." },
-      { "time": "7:00", "title": "Vinyasa o wschodzie słońca", "text": "90 minut flow, póki jeszcze chłodno, oddech połączony z ruchem." },
-      { "time": "9:00", "title": "Długie śniadanie", "text": "Owoce korzennego wybrzeża, świeży sok, dobra kawa. Nigdzie się nie spieszymy." },
-      { "time": "10:30", "title": "Otwarte popołudnie", "text": "Plaża, rafa, warsztat albo hamak. W całości Twoje." },
-      { "time": "13:00", "title": "Wspólny obiad", "text": "Roślinnie, w stylu rodzinnym, pod palmami." },
-      { "time": "17:30", "title": "Yin i regeneracja", "text": "Powoli, przy świecach, prowadzone oddechem. Łagodne lądowanie dnia." },
-      { "time": "19:30", "title": "Kolacja i gwiazdy", "text": "Długi stół, świeża ryba i niebo bez miasta w tle." }
+      { "time": "6:15", "title": "Poranna cisza", "text": "Opcjonalna medytacja, herbata albo spokojny spacer, zanim wyspa się obudzi." },
+      { "time": "7:00", "title": "Poranna praktyka", "text": "Vinyasa, hatha albo ruch prowadzony oddechem, póki powietrze jest jeszcze chłodne." },
+      { "time": "9:00", "title": "Długie śniadanie", "text": "Owoce, świeży sok, dobra kawa i czas, by wejść w dzień." },
+      { "time": "10:30", "title": "Bodywork albo warsztat", "text": "Thaivedic bodywork, alignment, journaling, filozofia albo prowadzona wycieczka." },
+      { "time": "13:00", "title": "Wspólny obiad", "text": "Roślinnie, lokalnie i łatwo do dopasowania do diet." },
+      { "time": "15:00", "title": "Godziny oceanu", "text": "Plaża, rafa, hamak, masaż albo po prostu robienie mniej." },
+      { "time": "17:30", "title": "Wieczorne lądowanie", "text": "Yin, medytacja, dźwięk albo łagodniejsza praktyka na zamknięcie dnia." }
     ]
   },
   "gallery": {
     "eyebrow": "Z praktyki",
     "title": "Chwile z maty.",
-    "lead": "Spojrzenie na praktykę — uchwycone wzdłuż wybrzeża Oceanu Indyjskiego. Ten sam oddech, gdziekolwiek rozłożysz matę.",
+    "lead": "Spojrzenie na praktykę — wybrzeże, tarasy, ciepły kamień, wsparcie hands-on i cisza po ruchu.",
     "items": [
       { "caption": "Wygięcie · otwarte niebo" },
       { "caption": "Zapuszczanie korzeni · ciepły kamień" },
@@ -87,20 +142,20 @@
   },
   "included": {
     "eyebrow": "W cenie",
-    "title": "Jedna cena. Wszystko, co istotne.",
-    "lead": "Poza lotami stawka obejmuje 14-dniową podróż jogi i safari — praktykę, posiłki, pobyty, planowanie safari i drobne akcenty, dzięki którym całość jest dopracowana od początku do końca.",
+    "title": "Zbuduj retreat wokół ludzi, którzy przyjeżdżają.",
+    "lead": "Każda wycena retreatu zależy od zespołu nauczycieli, wielkości grupy, standardu pokoi, posiłków, wycieczek i tego, czy safari jest częścią trasy.",
     "price_from": "Od",
     "price_unit": "od osoby",
     "items": [
-      "14-dniowy program jogi i safari",
-      "5-dniowe safari w Tanzanii w cenie",
-      "Dwie praktyki dziennie z Niną w dni retreatowe",
-      "Wszystkie posiłki i soki tłoczone na zimno",
-      "Mata, akcesoria i cały sprzęt",
-      "Jeden charakterystyczny zabieg spa",
-      "Kąpiele dźwiękiem i wieczory medytacyjne",
-      "Transport safari, planowanie parków i lokalni przewodnicy",
-      "Transfery z lotniska i concierge 24/7"
+      "Program jogi lub bodyworku prowadzony przez nauczyciela",
+      "Vinyasa, hatha, yin, medytacja albo Thaivedic bodywork",
+      "Dobór butikowego hotelu, willi albo bazy przy plaży",
+      "Plan posiłków z obsługą diet",
+      "Maty, akcesoria i koordynacja setupu",
+      "Opcjonalne wycieczki do Stone Town, na rafę, przyprawy albo do wiosek",
+      "Opcjonalne przedłużenie o safari w Tanzanii",
+      "Transfery z lotniska i lokalne przejazdy",
+      "Planowanie Destination Paradise i wsparcie na wyspie"
     ]
   },
   "faqs": {
@@ -108,31 +163,31 @@
     "title": "Pytania, które zadają wszyscy.",
     "items": [
       {
-        "q": "Jestem zupełnie początkująca — czy to w porządku?",
-        "a": "Jak najbardziej. Każde zajęcia projektujemy z wyczuciem na obecne osoby, a przy maksymalnie dwunastu gościach Nina może spotkać Cię dokładnie tam, gdzie jesteś — czy dzień woła o energetyzujący flow, czy o łagodniejszą praktykę regeneracyjną."
+        "q": "Czy to nadal jeden retreat, czy kilka?",
+        "a": "Kilka. Flagowym programem jest 14-dniowa Podróż Joga i Safari, ale teraz tworzymy też tygodnie coastal reset i prywatne retreaty z nauczycielem na własne daty."
       },
       {
-        "q": "Czy mogę przyjechać sama?",
-        "a": "Oczywiście — większość naszych gości przyjeżdża w pojedynkę. Mała grupa dwunastu osób ułatwia nawiązanie kontaktu przy wspólnych posiłkach i praktyce, a jednocześnie zachowujesz tyle ciszy, ile chcesz. Pokoje dostępne są jako jednoosobowe lub do współdzielenia."
+        "q": "Czy początkujący mogą dołączyć?",
+        "a": "Tak. Awham wyraźnie uczy vinyasy dla wszystkich poziomów, a programy Niny można dopasować w stronę łagodnej hathy, yin i pracy z oddechem, jeśli grupa potrzebuje spokojniejszego rytmu."
       },
       {
-        "q": "W jakim stylu jogi będziemy praktykować?",
-        "a": "Mieszanka: energetyzująca vinyasa rano, wolniejsza hatha i głęboko regeneracyjny yin wieczorem, a do tego medytacja i praca z oddechem. Każdy dzień kształtuje się wokół grupy, więc równowaga zmienia się zależnie od samopoczucia wszystkich."
+        "q": "Czy możemy wybrać nauczyciela?",
+        "a": "W prywatnych retreatach tak. Powiedz nam, jakiego stylu praktyki szukasz, a zaproponujemy najlepszy miks nauczycieli, także co-teaching albo gościnnych praktyków, jeśli to ma sens. Stałe terminy pokazują zespół prowadzący przed rezerwacją."
       },
       {
-        "q": "A co z jedzeniem i potrzebami dietetycznymi?",
-        "a": "Wszystkie posiłki są w cenie — roślinne, z lokalnych składników, serwowane w stylu rodzinnym. Chętnie uwzględnimy diety wegetariańskie, wegańskie, bezglutenowe i większość alergii; wystarczy dać nam znać przy rezerwacji."
+        "q": "Czy safari można dodać do każdego retreatu?",
+        "a": "Tak. Safari jest częścią 14-dniowej flagowej podróży, a przy większości prywatnych lub coastal retreatów można je dodać przed albo po programie."
       },
       {
-        "q": "Czy safari jest wliczone w retreat?",
-        "a": "Tak. Retreat jest teraz zaplanowany jako 14-dniowa podróż z pięciodniowym safari w Tanzanii w cenie, więc nie musisz dodawać go osobno. Powiedz nam, jeśli chcesz dodatkowe noce na plaży przed lub po, a ułożymy całą trasę."
+        "q": "Czy musimy mieć własne zdjęcia albo nauczyciela?",
+        "a": "Nie. Możemy zapewnić lokalnych nauczycieli i materiały wizualne retreatu albo koordynować program z nauczycielem, który przywozi własną grupę i materiały marki."
       }
     ]
   },
   "cta": {
-    "title": "Wróć do siebie.",
-    "text": "Daj nam znać, kiedy masz wolne, a zarezerwujemy Ci miejsce na 14-dniową podróż jogi i safari z Niną. Małe grupy szybko się zapełniają — im wcześniej się odezwiesz, tym lepszy pokój.",
-    "reserve": "Zarezerwuj miejsce →",
+    "title": "Powiedz nam, jakiego rytmu chcesz.",
+    "text": "Wybierz typ retreatu, podaj daty, a my ułożymy zespół nauczycieli, pokoje, posiłki, wycieczki i opcjonalne safari wokół Twojej grupy.",
+    "reserve": "Rozpocznij zapytanie o retreat →",
     "ai_planner": "Albo porozmawiaj z naszym planerem AI"
   }
 }

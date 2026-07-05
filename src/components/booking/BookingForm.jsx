@@ -76,7 +76,7 @@ export default function BookingForm({
       </div>
 
       <div className={`booking-row${showDateRange && !isRetreatRequest ? ' booking-row--thirds' : ''}`}>
-        {isRetreatRequest ? (
+        {isRetreatRequest && retreatDepartures.length > 0 ? (
           <label className="booking-field">
             <span>{t('form.retreat_departure', { defaultValue: 'Retreat departure' })}</span>
             <select name="retreatDeparture" value={form.startDate} onChange={onDepartureChange}>

@@ -157,8 +157,9 @@ export default function Booking() {
   const isTransferRequest = form.serviceType === 'transfer';
   const isRetreatRequest = form.serviceType === 'retreat';
   const selectedTransferTier = transferTiers.find((item) => item.value === form.transferTier);
+  const selectedRetreatProduct = selectedProduct?.type === 'retreat' ? selectedProduct : null;
   const retreatDepartures = useMemo(() => {
-    const departures = products.retreats?.[0]?.raw.departures || [];
+    const departures = selectedRetreatProduct?.raw.departures || [];
     const formatter = new Intl.DateTimeFormat(i18n.resolvedLanguage || 'en', {
       day: 'numeric',
       month: 'short',
@@ -169,7 +170,7 @@ export default function Booking() {
       // Noon avoids the UTC-midnight off-by-one day shift in negative offsets.
       label: formatter.formatRange(new Date(`${dep.start}T12:00:00`), new Date(`${dep.end}T12:00:00`)),
     }));
-  }, [products.retreats, i18n.resolvedLanguage]);
+  }, [selectedRetreatProduct, i18n.resolvedLanguage]);
   const onDepartureChange = (event) => {
     const start = event.target.value;
     const departure = retreatDepartures.find((dep) => dep.start === start);
@@ -234,6 +235,12 @@ export default function Booking() {
           transferTier: value === 'transfer' ? current.transferTier || 'standard-private' : current.transferTier,
         }
         : {}),
+      ...(key === 'product' && current.serviceType === 'retreat'
+        ? {
+          startDate: '',
+          endDate: '',
+        }
+        : {}),
     }));
   };
 
@@ -245,7 +252,7 @@ export default function Booking() {
 
     const payload = {
       ...form,
-      endDate: showDateRange ? form.endDate : '',
+      endDate: showDateRange || isRetreatRequest ? form.endDate : '',
       budget: showTravelPreferences ? form.budget : '',
       budgetLabel: showTravelPreferences ? budgetLabel : '',
       accommodationLevel: showTravelPreferences ? accommodationLabel : '',
