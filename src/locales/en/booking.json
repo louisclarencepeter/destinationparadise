@@ -82,7 +82,7 @@
     {
       "value": "retreat",
       "label": "Retreat",
-      "text": "14-day yoga & safari retreat on Zanzibar — sunrise vinyasa, yin evenings, meditation, and a mainland safari."
+      "text": "Yoga, bodywork, coastal reset weeks, private teacher-led retreats, and safari journeys."
     }
   ],
   "payment_options": [
@@ -631,8 +631,16 @@
     },
     "retreat": {
       "yoga-safari-retreat": {
-        "label": "Yoga & Safari Retreat",
+        "label": "Yoga & Safari Journey",
         "category": "14 days · Zanzibar + safari"
+      },
+      "coastal-reset-week": {
+        "label": "Coastal Reset Week",
+        "category": "7 days · Zanzibar coast"
+      },
+      "private-teacher-led-retreat": {
+        "label": "Private Teacher-Led Retreat",
+        "category": "3 - 10 days · custom dates"
       }
     }
   }

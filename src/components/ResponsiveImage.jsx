@@ -14,9 +14,10 @@ const normalizeFetchPriority = (value) => (
  */
 export default function ResponsiveImage({ src, alt = '', fetchpriority, fetchPriority, sizes, width, height, ...imageProps }) {
   const resolvedFetchPriority = fetchPriority ?? normalizeFetchPriority(fetchpriority);
+  const fetchPriorityAttr = resolvedFetchPriority ? { fetchpriority: resolvedFetchPriority } : {};
 
   if (typeof src !== 'string' || !src.endsWith('.webp')) {
-    return <img {...imageProps} src={src} alt={alt} fetchPriority={resolvedFetchPriority} width={width} height={height} />;
+    return <img {...imageProps} {...fetchPriorityAttr} src={src} alt={alt} width={width} height={height} />;
   }
 
   const meta = imageManifest[src];
@@ -37,9 +38,9 @@ export default function ResponsiveImage({ src, alt = '', fetchpriority, fetchPri
   return (
     <img
       {...imageProps}
+      {...fetchPriorityAttr}
       src={src}
       alt={alt}
-      fetchPriority={resolvedFetchPriority}
       width={width ?? fullWidth}
       height={height ?? fullHeight}
       srcSet={srcSetParts.join(', ')}

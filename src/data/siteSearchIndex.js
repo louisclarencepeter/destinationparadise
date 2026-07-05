@@ -34,11 +34,11 @@ const pageItems = [
     keywords: ['holiday package', 'honeymoon', 'family', 'bush and beach', 'safari zanzibar'],
   },
   {
-    title: 'Yoga Retreat',
+    title: 'Yoga & Wellness Retreats',
     category: 'Page',
-    description: 'A 7-night small-group yoga retreat on the Zanzibar coast — sunrise vinyasa, yin evenings, meditation, breathwork, and spa.',
+    description: 'Teacher-led yoga, bodywork, coastal reset weeks, private retreats, and yoga safari journeys on Zanzibar.',
     to: '/retreats',
-    keywords: ['wellness', 'yoga', 'meditation', 'vinyasa', 'yin', 'hatha', 'spa', 'breathwork', 'mindfulness', 'retreat'],
+    keywords: ['wellness', 'yoga', 'meditation', 'vinyasa', 'yin', 'hatha', 'bodywork', 'thaivedic', 'mindfulness', 'retreat'],
   },
   {
     title: 'Transfers',

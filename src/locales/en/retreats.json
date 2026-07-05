@@ -1,79 +1,134 @@
 {
-  "page_title": "14-Day Yoga & Safari Retreat · Zanzibar · Destination Paradise",
+  "page_title": "Yoga & Wellness Retreats · Zanzibar · Destination Paradise",
+  "meta_description": "Teacher-led yoga, bodywork, coastal reset weeks, and yoga safari retreats in Zanzibar with Destination Paradise.",
   "hero": {
-    "eyebrow": "14 days · yoga retreat · 5-day safari included",
-    "title_prefix": "More than just",
-    "title_em": "movement.",
-    "subtitle": "Fourteen days of yoga, breath, stillness, and safari.",
-    "lead": "A single, intimate journey with Nina — sunrise vinyasa, slow yin evenings, meditation, long unhurried days on the spice coast, and a five-day Tanzania safari woven into the experience.",
-    "see_day": "See a day",
-    "reserve": "Reserve a place →",
-    "stat_nights_value": "14",
-    "stat_nights": "Days",
-    "stat_guests_value": "5",
-    "stat_guests": "Safari days",
-    "stat_practices_value": "2",
-    "stat_practices": "Daily practices",
-    "stat_levels_value": "12",
-    "stat_levels": "Guests max"
+    "eyebrow": "Zanzibar wellness retreats",
+    "title_prefix": "Retreats for every",
+    "title_em": "body and journey.",
+    "subtitle": "Teacher-led yoga, Thaivedic bodywork, coastal reset weeks, and safari journeys.",
+    "lead": "Choose a fixed group retreat or ask us to shape a private teacher-led program around your dates, pace, and practice.",
+    "see_day": "Explore retreats",
+    "reserve": "Plan my retreat →",
+    "stat_nights_value": "3",
+    "stat_nights": "Retreat styles",
+    "stat_guests_value": "Team",
+    "stat_guests": "Teacher mix",
+    "stat_practices_value": "Daily",
+    "stat_practices": "Practice rhythm",
+    "stat_levels_value": "All",
+    "stat_levels": "Levels welcome"
   },
   "intention": {
     "eyebrow": "The intention",
-    "text": "Yoga is much more than a physical practice. It's a way of cultivating mindfulness, finding inner calm, and reconnecting with gratitude — learning to <em>slow down, listen, and create balance</em> in both body and mind."
+    "text": "A retreat can be a reset, a deep practice week, a softer landing after safari, or the heart of a longer Zanzibar journey. We build each one around <em>real teachers, generous time, and the kind of island days that let people breathe again</em>."
   },
-  "teacher": {
-    "kicker": "Nina · teacher & host",
-    "eyebrow": "Meet Nina",
-    "title": "A practice born from healing.",
-    "p1": "My journey with yoga began during one of the most challenging periods of my life. After a severe knee injury, five surgeries, and what seemed like little hope for recovery, yoga became a path back to stability, strength, and peace — healing me not only physically, but mentally and emotionally, and transforming the way I approached life's challenges.",
-    "p2": "I completed my teacher training in Portugal, where I deepened my understanding of both the practice and the philosophy of yoga. Along the way I had the privilege of meeting inspiring teachers who profoundly shaped my perspective, and I've since taught in studios in Morocco and Germany, sharing this practice with people from all walks of life.",
-    "p3": "Every encounter, lesson, and experience has become part of my teaching style — authentic, mindful, and rooted in a genuine passion for what yoga truly represents.",
-    "signoff": "— with love, Nina"
+  "retreat_types": {
+    "eyebrow": "Retreat styles",
+    "title": "Choose the rhythm that fits.",
+    "lead": "Start with one of our ready-made retreat formats, then let us tune the dates, teacher mix, excursions, rooms, and safari extensions around your group.",
+    "price_from": "From",
+    "items": [
+      {
+        "slug": "yoga-safari-retreat",
+        "title": "Yoga & Safari Journey",
+        "duration": "14 days · fixed departures",
+        "text": "The full Zanzibar-to-mainland journey: sunrise practice, slow coastal days, and a five-day Tanzania safari woven into the middle.",
+        "highlights": ["Vinyasa, yin, meditation", "5-day safari included", "Small group departures"],
+        "cta": "Reserve this journey",
+        "image_alt": "Yoga practice above the Zanzibar coastline"
+      },
+      {
+        "slug": "coastal-reset-week",
+        "title": "Coastal Reset Week",
+        "duration": "7 days · Zanzibar coast",
+        "text": "A lighter wellness week for travelers who want daily practice, ocean time, bodywork, nourishing meals, and optional island excursions.",
+        "highlights": ["Daily practice by the sea", "Optional bodywork sessions", "Beach, reef, and Stone Town add-ons"],
+        "cta": "Ask for reset dates",
+        "image_alt": "Side-bend yoga pose on a warm coastal terrace"
+      },
+      {
+        "slug": "private-teacher-led-retreat",
+        "title": "Private Teacher-Led Retreat",
+        "duration": "3 - 10 days · custom dates",
+        "text": "A tailor-made retreat for couples, friends, companies, or teachers bringing their own group to Zanzibar.",
+        "highlights": ["Practice lead matched to the group", "Private villa or boutique hotel base", "Flexible practice and excursion plan"],
+        "cta": "Build a private retreat",
+        "image_alt": "Hands-on bodywork session near the ocean"
+      }
+    ]
+  },
+  "teachers": {
+    "eyebrow": "Faculty & retreat team",
+    "title": "A teacher mix matched to the retreat.",
+    "lead": "The program comes first. We match each retreat to the right practice lead, bodywork support, guest practitioners, and local hosts instead of making the whole experience depend on one person.",
+    "items": [
+      {
+        "name": "Mindful flow & stillness",
+        "role": "Nina · vinyasa, yin, breathwork",
+        "text": "Nina leads warm, mindful practices shaped by teacher training in Portugal and teaching experience in Morocco and Germany. Her sessions bring movement, breath, music, philosophy, and quiet integration into the retreat rhythm.",
+        "specialties": ["Vinyasa flow", "Hatha and yin", "Meditation and breathwork"],
+        "image_alt": "Group yoga practice with a teacher leading the room"
+      },
+      {
+        "name": "All-level vinyasa & bodywork",
+        "role": "Awham Mohamed Al-Obaidy · @shela_yogi",
+        "text": "Lamu born and raised, Awham is an international yoga and Thaivedic expert, content creator, and wellness-hospitality storyteller. He brings vinyasa, hatha, and hands-on bodywork into retreat programs with an ocean-life sensibility.",
+        "specialties": ["Vinyasa for all levels", "Hatha yoga", "Thaivedic bodywork", "Lamu wellness lifestyle"],
+        "image_alt": "Hands-on bodywork session representing Awham Yoga's Thaivedic practice"
+      },
+      {
+        "name": "Guest practitioners & island hosts",
+        "role": "Sound, meditation, massage, culture",
+        "text": "Depending on the retreat, the team can include local wellness practitioners, guides, chefs, massage therapists, safari planners, and island hosts who keep the journey grounded, practical, and connected to place.",
+        "specialties": ["Sound and meditation", "Massage and recovery", "Island and safari support"],
+        "image_alt": "Small group practicing yoga by the beach"
+      }
+    ]
   },
   "quote": {
-    "text": "My greatest wish is for everyone to leave feeling lighter, stronger, more grounded, and deeply <em>connected to themselves</em> — carrying that balance into everyday life."
+    "text": "The best retreat does not ask everyone to move the same way. It creates enough structure to feel held, and enough space to <em>return to yourself</em>."
   },
   "practice": {
-    "eyebrow": "The practice",
-    "title": "Harmony between movement and stillness.",
-    "lead": "Every class is shaped around the people in the room — an energizing flow one morning, a gentle restorative practice the next. Music is part of it too: carefully chosen sounds that deepen awareness and create the atmosphere.",
+    "eyebrow": "Practice menu",
+    "title": "Movement, stillness, and bodywork.",
+    "lead": "The retreat program can lean energetic, restorative, therapeutic, or expedition-led depending on the teacher and the group.",
     "items": [
-      { "step": "01", "title": "Vinyasa Flow", "text": "Dynamic, energizing sequences that build strength, mobility, and focus — breath linked to movement as the sun comes up." },
-      { "step": "02", "title": "Hatha Yoga", "text": "Mindful alignment, conscious breathing, and the cultivation of inner stability and awareness. A slower, deliberate practice." },
-      { "step": "03", "title": "Yin Yoga", "text": "Long-held postures and deep release, with space for meditation, philosophy, and self-reflection. Profound relaxation." },
-      { "step": "04", "title": "Meditation & Breath", "text": "Conscious stretching, pranayama, and guided meditation to release tension, calm the mind, and restore balance." }
+      { "step": "01", "title": "Vinyasa for all levels", "text": "Dynamic, breath-led sequences with options for beginners, returning students, and experienced practitioners." },
+      { "step": "02", "title": "Hatha Yoga", "text": "Mindful alignment, conscious breathing, and steady practice that builds awareness without rushing the body." },
+      { "step": "03", "title": "Yin & restorative evenings", "text": "Long-held postures, soft props, meditation, and deep release after ocean days or safari travel." },
+      { "step": "04", "title": "Thaivedic bodywork", "text": "Hands-on therapeutic sessions that support recovery, nervous-system rest, and a more grounded retreat experience." }
     ]
   },
   "journey": {
-    "eyebrow": "The journey",
-    "title": "Fourteen days, unhurried.",
-    "lead": "Days of practice on the Zanzibar coast, a five-day safari inland, then back to the ocean to close — the wild heart of it right in the middle.",
+    "eyebrow": "How it can flow",
+    "title": "From one week to a full journey.",
+    "lead": "Use these as starting points. We can keep the retreat simple and coastal, build it around safari, or create a private program for your dates.",
     "items": [
-      { "days": "Days 1–2", "title": "Arrive on the coast", "text": "Land on the Zanzibar coast, breathe out, and ease in with an opening evening practice." },
-      { "days": "Days 3–6", "title": "Practice & the spice coast", "text": "Sunrise vinyasa, yin evenings, long breakfasts, and open afternoons by the ocean." },
-      { "days": "Days 7–11", "title": "Fly inland to safari", "text": "Fly to Arusha — flights included — for five days of Tanzania wildlife: game drives, wide skies, and nights under the stars." },
-      { "days": "Days 12–14", "title": "Back to the coast", "text": "Fly back to Zanzibar for closing days of practice and rest, and an unhurried goodbye." }
+      { "days": "3-4 days", "title": "Private coastal reset", "text": "A compact program with morning practice, bodywork, nourishing meals, and slow afternoons by the sea." },
+      { "days": "7 days", "title": "Reset week", "text": "Daily practice, one or two workshops, optional excursions, and enough empty space to actually rest." },
+      { "days": "10 days", "title": "Practice + island immersion", "text": "A deeper week with Stone Town, spice farms, reef days, or village experiences folded gently into the rhythm." },
+      { "days": "14 days", "title": "Yoga & safari journey", "text": "The flagship route: Zanzibar practice days, five days of Tanzania safari, then back to the ocean to close." }
     ],
-    "note": "Our first retreat departs <strong>early December 2026</strong> — warm, quiet, and just before peak season."
+    "note": "Our first flagship Yoga & Safari Journey departs <strong>early December 2026</strong>, while private and coastal reset formats can be shaped around your dates."
   },
   "day": {
     "eyebrow": "A day in the life",
-    "title": "No alarms but the birds.",
-    "lead": "A typical yoga day on the coast, before the journey opens into five safari days. Everything past breakfast is gently optional — the surest sign you're actually resting.",
+    "title": "Held structure, open space.",
+    "lead": "A typical coastal retreat day. Safari days and private programs shift the rhythm, but the balance stays the same: practice, nourishment, and unhurried time.",
     "items": [
-      { "time": "6:15", "title": "Dawn meditation", "text": "An optional sit on the deck as the sky turns. Tea, no talking." },
-      { "time": "7:00", "title": "Sunrise vinyasa", "text": "90 minutes of flow while it's still cool, breath linked to movement." },
-      { "time": "9:00", "title": "Long breakfast", "text": "Spice-coast fruit, fresh juice, good coffee. No rush anywhere." },
-      { "time": "10:30", "title": "Open afternoon", "text": "Beach, reef, a workshop, or a hammock. Entirely yours." },
-      { "time": "13:00", "title": "Shared lunch", "text": "Plant-forward, family style, under the palms." },
-      { "time": "17:30", "title": "Yin & restore", "text": "Slow, candlelit, breath-led. The day's gentle landing." },
-      { "time": "19:30", "title": "Dinner & stars", "text": "A long table, fresh fish, and a sky with no city in it." }
+      { "time": "6:15", "title": "Dawn quiet", "text": "Optional meditation, tea, or a silent walk before the island wakes." },
+      { "time": "7:00", "title": "Morning practice", "text": "Vinyasa, hatha, or breath-led movement while the air is still cool." },
+      { "time": "9:00", "title": "Long breakfast", "text": "Fruit, fresh juice, good coffee, and time to settle into the day." },
+      { "time": "10:30", "title": "Bodywork or workshop", "text": "Thaivedic bodywork, alignment, journaling, philosophy, or a guided excursion." },
+      { "time": "13:00", "title": "Shared lunch", "text": "Plant-forward, local, and easy to adapt for dietary needs." },
+      { "time": "15:00", "title": "Ocean hours", "text": "Beach, reef, hammock, massage, or simply doing less." },
+      { "time": "17:30", "title": "Evening landing", "text": "Yin, meditation, sound, or a softer practice to close the day." }
     ]
   },
   "gallery": {
     "eyebrow": "From the practice",
     "title": "Moments from the mat.",
-    "lead": "A glimpse of the practice — taken along the Indian Ocean coast. The same breath, wherever you unroll the mat.",
+    "lead": "A glimpse of the practice — coast, terraces, warm stone, hands-on support, and the quiet after movement.",
     "items": [
       { "caption": "Backbend · open sky" },
       { "caption": "Rooting down · warm stone" },
@@ -87,20 +142,20 @@
   },
   "included": {
     "eyebrow": "What's included",
-    "title": "One price. Everything that matters.",
-    "lead": "Flights aside, the rate covers the 14-day yoga and safari journey — practice, meals, stays, safari planning, and the small touches that make it feel cared for end to end.",
+    "title": "Build the retreat around the people coming.",
+    "lead": "Every retreat quote is shaped around the teacher team, group size, room standard, meals, excursions, and whether safari is part of the route.",
     "price_from": "From",
     "price_unit": "per person",
     "items": [
-      "14-day yoga and safari program",
-      "5-day Tanzania safari included",
-      "Two daily practices with Nina on retreat days",
-      "All meals & cold-pressed juices",
-      "Mat, props & all equipment",
-      "One signature spa treatment",
-      "Sound bath & meditation evenings",
-      "Safari transport, park planning & local guides",
-      "Airport pickups & 24/7 concierge"
+      "Teacher-led yoga or bodywork program",
+      "Vinyasa, hatha, yin, meditation, or Thaivedic bodywork",
+      "Boutique hotel, villa, or beach base sourcing",
+      "Meal planning with dietary support",
+      "Mat, props, and setup coordination",
+      "Optional Stone Town, reef, spice, or village excursions",
+      "Optional Tanzania safari extension",
+      "Airport pickups and local transfers",
+      "Destination Paradise planning and on-island support"
     ]
   },
   "faqs": {
@@ -108,31 +163,31 @@
     "title": "The questions everyone asks.",
     "items": [
       {
-        "q": "I'm a total beginner — is that okay?",
-        "a": "More than okay. Every class is designed with sensitivity to the people present, and with twelve guests max Nina can meet you exactly where you are — whether the day calls for an energizing flow or a gentler, restorative practice."
+        "q": "Is this still one retreat, or several?",
+        "a": "Several. The flagship is the 14-day Yoga & Safari Journey, but we now also shape coastal reset weeks and private teacher-led retreats for custom dates."
       },
       {
-        "q": "Can I come solo?",
-        "a": "Absolutely — most of our guests arrive on their own. A small group of twelve makes it easy to connect over shared meals and practice, while you keep as much quiet time as you like. Rooms are available as singles or to share."
+        "q": "Can beginners join?",
+        "a": "Yes. Awham explicitly teaches vinyasa for all levels, and Nina's programs can be adapted toward gentle hatha, yin, and breathwork when the group needs a softer rhythm."
       },
       {
-        "q": "What style of yoga will we practice?",
-        "a": "A blend: energizing vinyasa in the mornings, slower hatha and deeply restorative yin in the evenings, plus meditation and breathwork. Each day is shaped around the group, so the balance shifts to suit how everyone is feeling."
+        "q": "Can we choose the teacher?",
+        "a": "For private retreats, yes. Tell us the practice style you want and we will suggest the best teacher mix, including co-led programs or guest practitioners when helpful. Fixed departures list the lead team before booking."
       },
       {
-        "q": "What about food and dietary needs?",
-        "a": "All meals are included — plant-forward, locally sourced, and served family style. We happily cater for vegetarian, vegan, gluten-free, and most allergies; just let us know when you book."
+        "q": "Can safari be added to any retreat?",
+        "a": "Yes. Safari is built into the 14-day flagship journey, and it can be added before or after most private or coastal retreat formats."
       },
       {
-        "q": "Is the safari included in the retreat?",
-        "a": "Yes. The retreat is now built as a 14-day journey with a five-day Tanzania safari included, so you do not need to add it separately. Tell us if you want extra beach nights before or after and we'll shape the full route."
+        "q": "Do we need to bring our own photos or teacher?",
+        "a": "No. We can provide local teachers and retreat visuals, or coordinate with a teacher bringing their own group and brand material."
       }
     ]
   },
   "cta": {
-    "title": "Come back to yourself.",
-    "text": "Tell us when you're free and we'll hold you a place for Nina's 14-day yoga and safari journey. Small groups fill quickly — the sooner we hear from you, the better the room.",
-    "reserve": "Reserve your place →",
+    "title": "Tell us the rhythm you want.",
+    "text": "Choose a retreat style, share your dates, and we will shape the teacher team, rooms, meals, excursions, and optional safari around your group.",
+    "reserve": "Start a retreat request →",
     "ai_planner": "Or chat with our AI planner"
   }
 }

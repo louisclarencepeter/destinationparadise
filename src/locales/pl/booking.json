@@ -82,7 +82,7 @@
     {
       "value": "retreat",
       "label": "Retreat",
-      "text": "14-dniowy retreat jogi i safari na Zanzibarze — poranna vinyasa, wieczorny yin, medytacja i safari na kontynencie."
+      "text": "Joga, bodywork, tygodnie coastal reset, prywatne retreaty z nauczycielem i podróże z safari."
     }
   ],
   "payment_options": [
@@ -631,8 +631,16 @@
     },
     "retreat": {
       "yoga-safari-retreat": {
-        "label": "Retreat jogi i safari",
+        "label": "Podróż joga i safari",
         "category": "14 dni · Zanzibar + safari"
+      },
+      "coastal-reset-week": {
+        "label": "Coastal Reset Week",
+        "category": "7 dni · wybrzeże Zanzibaru"
+      },
+      "private-teacher-led-retreat": {
+        "label": "Prywatny retreat z nauczycielem",
+        "category": "3 - 10 dni · własne daty"
       }
     }
   }

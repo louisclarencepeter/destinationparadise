@@ -4,7 +4,7 @@ export const SERVICE_TYPES = [
   { value: 'safari', label: 'Safari', text: 'Mainland wildlife routes, fly-in safaris, migration, southern parks, and custom circuits.' },
   { value: 'transfer', label: 'Transfer', text: 'Private airport, hotel-to-hotel, group, premium SUV, or VIP concierge transfer.' },
   { value: 'custom', label: 'Custom plan', text: 'Not sure yet? Tell us the shape and we will build a route around you.' },
-  { value: 'retreat', label: 'Retreat', text: '14-day yoga & safari retreat on Zanzibar — sunrise vinyasa, yin evenings, meditation, and a mainland safari.' },
+  { value: 'retreat', label: 'Retreat', text: 'Yoga, bodywork, coastal reset weeks, private teacher-led retreats, and safari journeys.' },
 ];
 
 export const PAYMENT_OPTIONS = [

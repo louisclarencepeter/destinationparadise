@@ -1,4 +1,4 @@
-/* Retreats — single Yoga Retreat detail page.
+/* Retreats — yoga and wellness retreat hub.
    Self-contained styles built on the Destination Paradise tokens
    (tokens.css). Shared .btn and .btn--* come from site-shell.css. */
 
@@ -119,8 +119,28 @@ html[data-theme="dark"] .retreat-page {
   to { opacity: 1; transform: none; }
 }
 
-.retreat-page .exc-hero__bg img {
+.retreat-page .ret-hero-slideshow {
+  background: #0c2739;
+}
+.retreat-page .ret-hero-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1.35s ease;
+  will-change: opacity;
+}
+.retreat-page .ret-hero-slide.is-active {
+  opacity: 1;
+}
+.retreat-page .ret-hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   animation: heroImageReveal 1.4s var(--dp-ease-out) both, retHeroDrift 18s ease-in-out 1.4s infinite alternate;
+}
+.retreat-page .exc-hero {
+  min-height: 100svh;
 }
 .retreat-page .exc-hero__meta div {
   transition: transform 0.3s var(--dp-ease-out), background 0.3s ease, border-color 0.3s ease;
@@ -145,6 +165,238 @@ html[data-theme="dark"] .retreat-page {
   color: var(--text);
 }
 .ret-intention__text em { font-style: italic; color: var(--dp-accent); }
+
+/* ---------- Retreat styles ---------- */
+.ret-types {
+  padding-top: clamp(4rem, 8vw, 6.5rem);
+}
+.ret-types__grid {
+  width: min(var(--site-max-width), 92%);
+  margin: clamp(2.5rem, 5vw, 3.5rem) auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+.ret-type-card {
+  min-height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  overflow: hidden;
+  border: 1px solid var(--ret-panel-border);
+  border-radius: 8px;
+  background: var(--ret-panel);
+  box-shadow: 0 16px 38px rgba(14, 36, 56, 0.1);
+  transition:
+    opacity 0.7s var(--dp-ease-out),
+    transform 0.7s var(--dp-ease-out),
+    filter 0.7s var(--dp-ease-out),
+    background 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.ret-type-card.is-visible:hover {
+  transform: translateY(-6px);
+  background: var(--ret-panel-hover);
+  box-shadow: 0 22px 54px rgba(14, 36, 56, 0.16);
+}
+.ret-type-card__media {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.ret-type-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--dp-ease-out), filter 0.9s var(--dp-ease-out);
+}
+.ret-type-card.is-visible:hover .ret-type-card__media img {
+  transform: scale(1.06);
+  filter: saturate(1.06);
+}
+.ret-type-card__copy {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.25rem, 2vw, 1.7rem);
+}
+.ret-type-card__copy > span {
+  font-size: var(--dp-fs-caption);
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dp-hover);
+  font-weight: 700;
+}
+.ret-type-card__copy h3 {
+  margin: 0.55rem 0 0;
+  font-family: var(--dp-font-display);
+  font-size: clamp(1.35rem, 1.2vw + 1rem, 1.9rem);
+  line-height: 1.1;
+  color: var(--ret-section-text);
+}
+.ret-type-card__copy p {
+  margin: 0.85rem 0 0;
+  font-size: var(--dp-fs-body-sm);
+  line-height: 1.58;
+  color: var(--ret-section-muted);
+}
+.ret-type-card__copy ul {
+  list-style: none;
+  margin: 1rem 0 0;
+  padding: 0;
+  display: grid;
+  gap: 0.55rem;
+}
+.ret-type-card__copy li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: var(--dp-fs-caption);
+  line-height: 1.45;
+  color: var(--ret-section-text);
+}
+.ret-type-card__copy li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: var(--dp-accent);
+}
+.ret-type-card__footer {
+  margin-top: auto;
+  padding-top: 1.2rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.ret-type-card__footer p {
+  margin: 0;
+  color: var(--ret-section-muted);
+}
+.ret-type-card__footer strong {
+  font-family: var(--dp-font-display);
+  font-size: 1.3rem;
+  color: var(--ret-section-text);
+}
+.ret-type-card__footer a {
+  color: var(--dp-hover);
+  font-weight: 800;
+  font-size: var(--dp-fs-caption);
+  text-decoration: none;
+}
+.ret-type-card__footer a:hover {
+  color: var(--dp-accent);
+}
+
+/* ---------- Teachers ---------- */
+.ret-teachers {
+  width: min(var(--site-max-width), 92%);
+  margin: 0 auto;
+  padding: clamp(4rem, 8vw, 7rem) 0;
+}
+.ret-teachers__head {
+  max-width: 840px;
+}
+.ret-teachers__head p {
+  max-width: 62ch;
+  margin: 1rem 0 0;
+  color: var(--text-muted);
+  font-size: var(--dp-fs-body);
+  line-height: 1.65;
+}
+.ret-teachers__grid {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(0.85rem, 1.6vw, 1.25rem);
+}
+.ret-teacher-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: hidden;
+  border: 1px solid var(--ret-panel-border);
+  border-radius: 8px;
+  background: var(--ret-panel);
+  box-shadow: 0 18px 42px rgba(14, 36, 56, 0.11);
+  transition:
+    opacity 0.7s var(--dp-ease-out),
+    transform 0.7s var(--dp-ease-out),
+    filter 0.7s var(--dp-ease-out),
+    background 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.ret-teacher-card.is-visible:hover {
+  transform: translateY(-5px);
+  background: var(--ret-panel-hover);
+  box-shadow: 0 24px 58px rgba(14, 36, 56, 0.16);
+}
+.ret-teacher-card__media {
+  aspect-ratio: 4 / 3;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--surface-2);
+}
+.ret-teacher-card__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s var(--dp-ease-out), filter 0.9s var(--dp-ease-out);
+}
+.ret-teacher-card.is-visible:hover .ret-teacher-card__media img {
+  transform: scale(1.05);
+  filter: saturate(1.06);
+}
+.ret-teacher-card__copy {
+  padding: clamp(1.35rem, 2.2vw, 2rem);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.ret-teacher-card__copy > span {
+  color: var(--dp-hover);
+  font-size: var(--dp-fs-caption);
+  line-height: 1.35;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+.ret-teacher-card__copy h3 {
+  margin: 0.55rem 0 0;
+  color: var(--text);
+  font-family: var(--dp-font-display);
+  font-size: clamp(1.35rem, 1vw + 1rem, 1.85rem);
+  line-height: 1.08;
+}
+.ret-teacher-card__copy p {
+  margin: 0.95rem 0 0;
+  color: var(--text-muted);
+  font-size: var(--dp-fs-body-sm);
+  line-height: 1.62;
+}
+.ret-teacher-card__copy ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: auto 0 0;
+  padding: 1.25rem 0 0;
+}
+.ret-teacher-card__copy li {
+  border: 1px solid var(--ret-panel-border);
+  border-radius: 999px;
+  padding: 0.42rem 0.72rem;
+  color: var(--text);
+  font-size: var(--dp-fs-caption);
+  line-height: 1.2;
+  background: rgba(255, 255, 255, 0.46);
+}
+html[data-theme="dark"] .ret-teacher-card__copy li {
+  background: rgba(255, 255, 255, 0.05);
+}
 
 /* ---------- Teacher ---------- */
 .ret-teacher {
@@ -607,10 +859,15 @@ body.has-retreat-page .footer {
 @media (prefers-reduced-motion: reduce) {
   .retreat-page .reveal,
   .retreat-page .reveal.is-visible,
+  .ret-type-card,
   .ret-practice__card,
   .ret-faq__item,
   .ret-gallery__cell figcaption,
   .ret-gallery__cell img,
+  .ret-type-card__media img,
+  .ret-teacher-card,
+  .ret-teacher-card__media img,
+  .ret-hero-slide,
   .ret-teacher__media img,
   .retreat-page .exc-hero__meta div {
     transition: none;
@@ -630,11 +887,14 @@ body.has-retreat-page .footer {
 @media (max-width: 900px) {
   .ret-teacher { grid-template-columns: 1fr; }
   .ret-teacher__media { max-width: 460px; }
+  .ret-types__grid { grid-template-columns: 1fr; }
+  .ret-teachers__grid { grid-template-columns: 1fr; }
   .ret-included { grid-template-columns: 1fr; }
 }
 @media (max-width: 720px) {
   .ret-hero { min-height: 92vh; }
   .ret-hero__stats { gap: 1.6rem 2.4rem; }
+  .ret-teacher-card__media { aspect-ratio: 4 / 3; }
   .ret-practice__grid { grid-template-columns: 1fr; }
   .ret-journey__grid { grid-template-columns: 1fr; }
   .ret-gallery__grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
