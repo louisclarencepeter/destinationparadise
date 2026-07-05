@@ -22,6 +22,18 @@ const HERO_IMAGES = [
   '/assets/images/retreats/assisted-beach-stretch.webp',
   '/assets/images/retreats/yoga-side-bend-beach.webp',
   '/assets/images/retreats/yoga-plank-sunset-coast.webp',
+  '/assets/images/retreats/terrace-wheel-pose.webp',
+  '/assets/images/retreats/red-rock-tree-pose.webp',
+  '/assets/images/retreats/terrace-balance-pose.webp',
+  '/assets/images/retreats/red-rock-wild-thing.webp',
+  '/assets/images/retreats/beach-class-plank.webp',
+  '/assets/images/retreats/alpine-tree-pose.webp',
+  '/assets/images/retreats/yoga-clifftop-ocean-view.webp',
+  '/assets/images/retreats/yoga-tree-pose-beach.webp',
+  '/assets/images/retreats/coastal-handstand-sunset.webp',
+  '/assets/images/retreats/mountain-star-pose.webp',
+  '/assets/images/retreats/teacher-garden-sun-portrait.webp',
+  '/assets/images/retreats/teacher-portrait-garden.webp',
 ];
 
 const RETREAT_TYPE_IMAGES = [

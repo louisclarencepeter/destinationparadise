@@ -121,10 +121,13 @@ html[data-theme="dark"] .retreat-page {
 
 .retreat-page .ret-hero-slideshow {
   background: #0c2739;
+  contain: paint;
+  overflow: hidden;
 }
 .retreat-page .ret-hero-slide {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   opacity: 0;
   pointer-events: none;
   transition: opacity 1.35s ease;
@@ -854,6 +857,10 @@ body.has-retreat-page .footer {
   z-index: 1;
   margin-top: -2px;
   border-top: 0;
+}
+
+body.has-retreat-page {
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
