@@ -40,6 +40,7 @@ const USE_SPARTICUZ = process.env.PRERENDER_CHROMIUM
 const STRICT = process.env.PRERENDER_STRICT
   ? !['false', '0', 'no'].includes(process.env.PRERENDER_STRICT.toLowerCase())
   : ON_CI;
+const ROUTE_RETRIES = Math.max(0, Number(process.env.PRERENDER_ROUTE_RETRIES || 1));
 
 const BASE_ARGS = ['--no-sandbox', '--disable-setuid-sandbox'];
 
@@ -135,6 +136,23 @@ async function renderRoute(browser, port, path) {
   } finally {
     await page.close().catch(() => {});
   }
+}
+
+async function renderRouteWithRetry(browser, port, path) {
+  let lastErr;
+
+  for (let attempt = 0; attempt <= ROUTE_RETRIES; attempt += 1) {
+    try {
+      return await renderRoute(browser, port, path);
+    } catch (err) {
+      lastErr = err;
+      if (attempt < ROUTE_RETRIES) {
+        console.warn(`[prerender] retry ${attempt + 1}/${ROUTE_RETRIES} ${path} — ${err.message}`);
+      }
+    }
+  }
+
+  throw lastErr || new Error(`failed to prerender ${path}`);
 }
 
 // Launch Chromium, trying each viable strategy in order so a single broken
@@ -238,7 +256,7 @@ async function main() {
     while (next < paths.length) {
       const path = paths[next++];
       try {
-        const html = await renderRoute(browser, port, path);
+        const html = await renderRouteWithRetry(browser, port, path);
         results.push({ path, html });
         console.log(`[prerender] ✓ ${path}`);
       } catch (err) {
@@ -248,6 +266,15 @@ async function main() {
     }
   };
   await Promise.all(Array.from({ length: Math.min(concurrency, paths.length) }, worker));
+
+  let notFoundHtml = '';
+  try {
+    notFoundHtml = await renderRouteWithRetry(browser, port, '/404');
+    console.log('[prerender] ✓ /404');
+  } catch (err) {
+    failed += 1;
+    console.warn(`[prerender] ✗ /404 — ${err.message}`);
+  }
 
   await browser.close().catch(() => {});
   server.close();
@@ -259,6 +286,9 @@ async function main() {
     await mkdir(outDir, { recursive: true });
     await writeFile(join(outDir, 'index.html'), html, 'utf8');
   }
+  if (notFoundHtml) {
+    await writeFile(join(distDir, '404.html'), notFoundHtml, 'utf8');
+  }
 
   console.log(
     `[prerender] wrote ${results.length}/${paths.length} routes${failed ? ` (${failed} failed)` : ''}.`,
@@ -268,6 +298,12 @@ async function main() {
   // Treat that like a launch failure so it can't silently regress SEO.
   if (STRICT && results.length === 0 && paths.length > 0) {
     throw new Error(`prerendered 0/${paths.length} routes — refusing to ship a bare SPA shell.`);
+  }
+  if (STRICT && failed > 0) {
+    throw new Error(`prerender failed for ${failed} route${failed === 1 ? '' : 's'} — refusing to ship partial SEO output.`);
+  }
+  if (STRICT && !notFoundHtml) {
+    throw new Error('could not prerender 404.html — refusing to ship soft 404 fallback.');
   }
 }
 

@@ -15,6 +15,14 @@
     "label": "Wstecz",
     "aria": "Wróć do poprzedniej strony"
   },
+  "not_found": {
+    "meta_title": "Nie znaleziono strony · Destination Paradise",
+    "meta_description": "Tej strony nie ma na mapie. Wróć na stronę główną i wybierz trasę przez Zanzibar i Tanzanię.",
+    "eyebrow": "404",
+    "title": "Zgubieni na morzu",
+    "body": "Tej strony nie ma na mapie. Wróć na stronę główną i wybierz trasę.",
+    "cta": "← Wróć na stronę główną"
+  },
   "cookies": {
     "aria_label": "Zgoda na pliki cookie",
     "eyebrow": "Preferencje plików cookie",
@@ -40,6 +48,7 @@
     "close": "Zamknij",
     "popular_label": "Popularne wyszukiwania",
     "results_label": "Wyniki wyszukiwania",
+    "results_count": "{{count}} wyników wyszukiwania",
     "loading": "Przygotowywanie indeksu strony...",
     "empty_title": "Brak dokładnego dopasowania.",
     "empty_body": "Wypróbuj miejsce, aktywność, typ pakietu, park safari lub trasę transferu – albo wyślij nam indywidualne zapytanie.",

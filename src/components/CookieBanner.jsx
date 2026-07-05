@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const STORAGE_KEY = 'dp_cookie_consent_v1';
+export const COOKIE_SETTINGS_EVENT = 'dp-cookie-settings';
 
 const defaultChoices = {
   essential: true,
@@ -53,6 +54,19 @@ export default function CookieBanner() {
     setIsReady(true);
   }, []);
 
+  useEffect(() => {
+    const openSettings = () => {
+      const stored = readStoredConsent();
+      setChoices(stored?.choices ? { ...defaultChoices, ...stored.choices, essential: true } : defaultChoices);
+      setIsCustomizing(true);
+      setIsVisible(true);
+      setIsReady(true);
+    };
+
+    window.addEventListener(COOKIE_SETTINGS_EVENT, openSettings);
+    return () => window.removeEventListener(COOKIE_SETTINGS_EVENT, openSettings);
+  }, []);
+
   const saveChoices = (nextChoices) => {
     const saved = writeStoredConsent(nextChoices);
     setChoices(saved.choices);
@@ -73,7 +87,7 @@ export default function CookieBanner() {
       {isCustomizing && (
         <div className="cookie-banner__choices">
           <label className="cookie-choice cookie-choice--locked">
-            <input type="checkbox" checked disabled />
+            <input type="checkbox" aria-label={t('cookies.essential_title')} checked disabled />
             <span>
               <strong>{t('cookies.essential_title')}</strong>
               <small>{t('cookies.essential_desc')}</small>
@@ -82,6 +96,7 @@ export default function CookieBanner() {
           <label className="cookie-choice">
             <input
               type="checkbox"
+              aria-label={t('cookies.analytics_title')}
               checked={choices.analytics}
               onChange={(event) => setChoices((current) => ({ ...current, analytics: event.target.checked }))}
             />

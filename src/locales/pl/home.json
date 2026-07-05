@@ -236,7 +236,10 @@
     "submit": "Zapisz się",
     "submit_pending": "Wysyłanie…",
     "submit_done": "Wysłano",
-    "error": "Nie udało się wysłać. Spróbuj ponownie za chwilę."
+    "error": "Nie udało się wysłać. Spróbuj ponownie za chwilę.",
+    "privacy_prefix": "Zapisując się, zgadzasz się, że możemy przechowywać Twój email na potrzeby aktualizacji Destination Paradise. Szczegóły znajdziesz w naszej",
+    "privacy_link": "Polityce prywatności",
+    "privacy_suffix": "."
   },
   "planner": {
     "eyebrow": "Planer podróży AI",
@@ -310,7 +313,10 @@
     "foot": {
       "note": "Plany są szkicami. Przed rezerwacją człowiek sprawdza i wycenia wszystko dokładnie.",
       "handoff_idle": "Wyślij do zespołu",
-      "handoff_done": "Wysłano do zespołu ✓"
+      "handoff_done": "Wysłano do zespołu ✓",
+      "privacy_prefix": "Wiadomości planera mogą być przetwarzane przez Anthropic i wysyłane e-mailem przez Resend, gdy przekazujesz szkic. Szczegóły znajdziesz w naszej",
+      "privacy_link": "Polityce prywatności",
+      "privacy_suffix": "."
     }
   },
   "weather": {
@@ -363,10 +369,24 @@
     "title_suffix": "rusza w pierwszą podróż.",
     "lead": "Destination Paradise narodziło się z marzenia — by łączyć ludzi z pięknem, kulturą i duchem Tanzanii. Po latach przygotowań oficjalnie startujemy z Ungui na Zanzibarze.",
     "highlights": [
-      { "value": "Teraz", "label": "Unguja", "em": true },
-      { "value": "Teraz", "label": "Kontynent", "em": true },
-      { "value": "Wkrótce", "label": "Pemba" },
-      { "value": "Wkrótce", "label": "Mafia Island" }
+      {
+        "value": "Teraz",
+        "label": "Unguja",
+        "em": true
+      },
+      {
+        "value": "Teraz",
+        "label": "Kontynent",
+        "em": true
+      },
+      {
+        "value": "Wkrótce",
+        "label": "Pemba"
+      },
+      {
+        "value": "Wkrótce",
+        "label": "Mafia Island"
+      }
     ],
     "cta": "Poznaj naszą historię"
   },
@@ -393,7 +413,10 @@
       "submit_done": "Wysłano",
       "status_ok": "✓ Asante — mamy Twoją wiadomość. Odpowiemy w ciągu dnia.",
       "status_err_prefix": "Pole sana — nie udało się wysłać. Napisz bezpośrednio na",
-      "status_err_suffix": "albo spróbuj ponownie."
+      "status_err_suffix": "albo spróbuj ponownie.",
+      "privacy_prefix": "Używamy tych danych, aby odpowiedzieć na Twoje zapytanie. Szczegóły znajdziesz w naszej",
+      "privacy_link": "Polityce prywatności",
+      "privacy_suffix": "."
     }
   }
 }

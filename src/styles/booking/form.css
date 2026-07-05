@@ -147,6 +147,20 @@
   margin-top: .25rem;
 }
 
+.booking-privacy {
+  margin: -.25rem 0 0;
+  color: var(--text-muted);
+  font-family: var(--dp-font-sans);
+  font-size: .8rem;
+  line-height: 1.5;
+}
+.booking-privacy a {
+  color: var(--dp-accent-text);
+  font-weight: 800;
+  text-decoration: none;
+}
+.booking-privacy a:hover { text-decoration: underline; }
+
 .booking-status {
   margin: 0;
   padding: .75rem .9rem;
@@ -164,4 +178,3 @@
   color: var(--dp-error);
   background: var(--dp-error-bg);
 }
-

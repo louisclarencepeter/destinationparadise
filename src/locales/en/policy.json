@@ -3,14 +3,14 @@
   "meta": {
     "aria_label": "Policy details",
     "last_updated": "Last updated",
-    "last_updated_value": "May 13, 2026",
+    "last_updated_value": "July 5, 2026",
     "contact": "Contact"
   },
   "policies": {
     "privacy": {
       "eyebrow": "Privacy",
       "title": "Privacy Policy",
-      "intro": "This policy explains how Destination Paradise handles the details you share when you ask about trips, book experiences, or contact our team.",
+      "intro": "This policy explains how Destination Paradise handles the details you share when you browse the site, ask about trips, use the AI planner, book experiences, or contact our team.",
       "sections": [
         {
           "title": "Information We Collect",
@@ -18,7 +18,8 @@
             "Contact details such as your name, email address, phone number, WhatsApp contact, and country.",
             "Trip details such as preferred dates, group size, budget, interests, hotel or pickup location, and special requests.",
             "Messages you send through our forms, WhatsApp, email, or social channels.",
-            "Basic technical information such as browser type, device information, pages visited, and approximate location from analytics tools."
+            "Planner chat history and handoff details when you use the AI trip planner or ask us to send a draft to the team.",
+            "Basic technical information such as browser type, device information, pages visited, language choice, cookie choice, and approximate location from analytics tools when you consent."
           ]
         },
         {
@@ -26,16 +27,32 @@
           "items": [
             "To respond to enquiries and prepare trip suggestions, quotes, bookings, and itineraries.",
             "To coordinate guides, drivers, accommodation partners, boat operators, safari providers, and other suppliers needed for your trip.",
+            "To run the AI planner, remember your draft locally, and email the team when you choose to hand off a plan.",
             "To improve our website, customer service, packages, excursions, and safari planning experience.",
             "To send booking updates, service messages, and follow-up information connected to your request."
           ]
         },
         {
-          "title": "Sharing Your Information",
+          "title": "Service Providers And Data Sharing",
           "items": [
-            "We share only the details needed to arrange your trip with trusted local partners, payment providers, or service providers.",
+            "Netlify hosts the website and Netlify Functions that receive contact, booking, planner, and newsletter submissions.",
+            "Resend sends team notification emails and guest confirmation emails from the contact, booking, and planner workflows.",
+            "Anthropic powers the AI trip planner when you chat with it. Planner prompts and recent chat history are sent to Anthropic only for that feature.",
+            "Google Analytics measures page visits only after you accept analytics cookies. Google may set _ga cookies for measurement.",
+            "Sentry collects technical error reports so we can diagnose broken pages and failed functions.",
+            "Open-Meteo, CARTO map tiles, and open.er-api.com provide weather, map, and currency-rate data used by public site features.",
+            "We share only the details needed to arrange your trip with trusted local guides, drivers, accommodation partners, boat operators, safari providers, payment providers, or official authorities when required.",
             "We may share information when required by law, safety requirements, border rules, or official travel procedures.",
             "We do not sell your personal information."
+          ]
+        },
+        {
+          "title": "Storage, Retention, And Security",
+          "items": [
+            "We keep enquiries and booking details only as long as needed to reply, arrange the trip, handle accounting or legal duties, and improve service quality.",
+            "Local browser storage may hold your language, theme, cookie choice, currency-rate cache, planner history, and planner handoff draft so the site works smoothly.",
+            "We use reasonable technical safeguards such as HTTPS, provider access controls, request size limits, validation, rate limiting, and error monitoring.",
+            "No website or email system is perfectly secure, so avoid sending passport scans, payment card details, or highly sensitive health information through open text fields."
           ]
         },
         {
@@ -43,6 +60,8 @@
           "items": [
             "You can ask us to correct, update, or delete your personal details when we no longer need them for booking, accounting, safety, or legal reasons.",
             "You can choose not to provide optional details, although this may limit how accurately we can plan your trip.",
+            "You can reopen Cookie settings in the footer at any time to withdraw analytics consent. When analytics is turned off, we disable Google Analytics and remove its analytics cookies from this browser.",
+            "You can clear local browser storage such as planner history, language, theme, and cached currency rates in your browser settings.",
             "You can unsubscribe from marketing messages at any time by contacting us."
           ]
         }
@@ -90,29 +109,39 @@
     "cookies": {
       "eyebrow": "Cookies",
       "title": "Cookies Policy",
-      "intro": "This policy explains how cookies and similar technologies may be used to keep the website working, understand visits, and improve the planning experience.",
+      "intro": "This policy explains the cookies, local storage, and similar technologies used by Destination Paradise.",
       "sections": [
         {
-          "title": "What Cookies Are",
+          "title": "Essential Storage",
           "items": [
-            "Cookies are small files stored on your device when you visit a website.",
-            "Similar technologies such as local storage, pixels, and analytics tags can help remember settings or measure how pages are used."
+            "dp_cookie_consent_v1 stores your cookie choice so we know whether analytics is allowed.",
+            "dp_tweaks stores theme and display preferences such as light or dark mode.",
+            "dp_lang stores your language choice, and dp_fx_rates may cache currency rates for price display.",
+            "plannerHistory and dp_planner_handoff store AI planner chat and handoff drafts in your browser so you can continue or send a plan."
           ]
         },
         {
-          "title": "How We Use Cookies",
+          "title": "Analytics Cookies",
           "items": [
-            "Essential cookies and storage help the website load, remember theme preferences, support forms, and keep the experience stable.",
-            "Analytics cookies may help us understand which pages are useful, where visitors find us, and how we can improve the site.",
-            "Marketing or social platform tools may be used when you interact with embedded content, social links, or campaign links."
+            "Google Analytics loads only after you accept analytics in the cookie banner or Cookie settings.",
+            "Analytics helps us understand which pages are useful, where visitors find us, and where trip planning can improve.",
+            "Google Analytics may set _ga and related cookies. If you later turn analytics off, the site disables analytics and attempts to delete those cookies from this browser."
           ]
         },
         {
-          "title": "Managing Cookies",
+          "title": "Third-Party Requests",
           "items": [
-            "You can block, delete, or limit cookies in your browser settings.",
-            "Some features may not work as expected if essential cookies or local storage are disabled.",
-            "Third-party services may provide their own privacy and cookie controls through their websites or account settings."
+            "Sentry may receive technical error data when a page or function fails.",
+            "Open-Meteo, CARTO map tiles, and open.er-api.com may receive basic request data when weather, maps, or currency rates load.",
+            "Resend and Anthropic receive data only when you submit a form, booking request, or AI planner message that uses those services."
+          ]
+        },
+        {
+          "title": "Managing Your Choice",
+          "items": [
+            "You can reopen Cookie settings from the footer at any time and switch analytics on or off.",
+            "You can also block, delete, or limit cookies and local storage in your browser settings.",
+            "Some features may not work as expected if essential local storage is disabled."
           ]
         },
         {

@@ -6,8 +6,10 @@ import {
   createResendSender,
   errorResponse,
   escapeHtml,
+  normalizeLanguage,
   normalizeEmailAddress,
   rateLimitKey,
+  sanitizeHeaderLine,
   validateEmailAddress,
 } from './_shared.mjs';
 import { captureFunctionException, captureFunctionMessage } from './_sentry.mjs';
@@ -23,6 +25,39 @@ const MAX_HISTORY_MESSAGES = 40;
 const MAX_MESSAGE_CHARS = 4_000;
 
 const checkRateLimit = createRateLimiter({ windowMs: 10 * 60_000, max: 4 });
+
+const PLANNER_GUEST_COPY = {
+  en: {
+    draftSubject: 'Your trip plan from Destination Paradise',
+    updateSubject: 'Your trip plan update — Destination Paradise',
+    draftHeading: (firstName) => `Karibu, ${firstName} — your draft is in!`,
+    updateHeading: (firstName) => `Got the update, ${firstName}!`,
+    draftIntro: "Asante for using our AI planner. Here's a copy of the draft you built with us — keep it handy for reference.",
+    updateIntro: "We've sent your revised plan to the team. Here's the latest version for your records.",
+    reviewLine: "Our team is reviewing it now and will reply within a day with real availability and a final price. If you'd like to add anything in the meantime, just reply to this email.",
+    needSooner: 'Need us sooner?',
+  },
+  de: {
+    draftSubject: 'Dein Reiseplan von Destination Paradise',
+    updateSubject: 'Aktualisierung deines Reiseplans — Destination Paradise',
+    draftHeading: (firstName) => `Karibu, ${firstName} — dein Entwurf ist angekommen!`,
+    updateHeading: (firstName) => `Update erhalten, ${firstName}!`,
+    draftIntro: 'Asante, dass du unseren KI-Planer genutzt hast. Hier ist eine Kopie deines Entwurfs für deine Unterlagen.',
+    updateIntro: 'Wir haben deinen aktualisierten Plan ans Team geschickt. Hier ist die neueste Version für deine Unterlagen.',
+    reviewLine: 'Unser Team prüft ihn jetzt und antwortet innerhalb eines Tages mit echter Verfügbarkeit und finalem Preis. Wenn du in der Zwischenzeit etwas ergänzen möchtest, antworte einfach auf diese E-Mail.',
+    needSooner: 'Soll es schneller gehen?',
+  },
+  pl: {
+    draftSubject: 'Twój plan podróży od Destination Paradise',
+    updateSubject: 'Aktualizacja Twojego planu podróży — Destination Paradise',
+    draftHeading: (firstName) => `Karibu, ${firstName} — Twój szkic jest gotowy!`,
+    updateHeading: (firstName) => `Mamy aktualizację, ${firstName}!`,
+    draftIntro: 'Asante za skorzystanie z naszego planera AI. Poniżej znajdziesz kopię szkicu przygotowanego z nami.',
+    updateIntro: 'Wysłaliśmy zaktualizowany plan do zespołu. Oto najnowsza wersja do Twoich zapisów.',
+    reviewLine: 'Nasz zespół teraz go sprawdza i odpowie w ciągu jednego dnia z realną dostępnością oraz finalną ceną. Jeśli chcesz coś dodać, po prostu odpowiedz na ten e-mail.',
+    needSooner: 'Potrzebujesz nas szybciej?',
+  },
+};
 
 function stripMarkdown(text) {
   return text
@@ -250,9 +285,9 @@ function validateBody(body) {
   if (!body || typeof body !== 'object') return { ok: false, error: 'Invalid request body.' };
 
   const rawContact = (body.contact && typeof body.contact === 'object') ? body.contact : {};
-  let name = (rawContact.name || '').toString().trim().slice(0, 120);
+  let name = sanitizeHeaderLine(rawContact.name, 120);
   let email = (rawContact.email || '').toString().trim().slice(0, 200);
-  let phone = (rawContact.phone || '').toString().trim().slice(0, 60);
+  let phone = sanitizeHeaderLine(rawContact.phone, 60);
 
   if (!Array.isArray(body.history)) return { ok: false, error: 'Missing chat history.' };
 
@@ -301,6 +336,11 @@ export default async (req) => {
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
     console.error('planner-send: missing RESEND_API_KEY');
+    await captureFunctionMessage('Missing RESEND_API_KEY', {
+      functionName: FUNCTION_NAME,
+      req,
+      level: 'warning',
+    });
     return errorResponse('The team mailer is not configured yet. Please try the contact form, or message us on WhatsApp.', 503);
   }
 
@@ -311,6 +351,12 @@ export default async (req) => {
     return errorResponse('Could not read request body.');
   }
 
+  if (body && typeof body === 'object' && body.botField) {
+    return Response.json({ ok: true });
+  }
+
+  const lang = normalizeLanguage(body?.lang);
+  const guestCopy = PLANNER_GUEST_COPY[lang];
   const validated = validateBody(body);
   if (!validated.ok) return errorResponse(validated.error);
 
@@ -327,9 +373,7 @@ export default async (req) => {
   const teamSubject = isUpdate
     ? `Planner update #${updateCount} from ${contact.name}`
     : `New planner draft from ${contact.name}`;
-  const guestSubject = isUpdate
-    ? `Your trip plan update — Destination Paradise`
-    : `Your trip plan from Destination Paradise`;
+  const guestSubject = isUpdate ? guestCopy.updateSubject : guestCopy.draftSubject;
   const teamBodyHtml = isUpdate
     ? `${renderUpdateSummaryHtml(updateCount, contact, messages)}${hasStructuredHandoff(handoff) ? renderHandoffHtml(handoff) : ''}`
     : `${renderHandoffHtml(handoff)}
@@ -376,14 +420,14 @@ export default async (req) => {
     <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(26,77,110,0.08);">
       <div style="padding:22px 24px;background:linear-gradient(120deg,#1A4D6E 0%,#FF6F61 100%);color:#fff;">
         <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">Destination Paradise</div>
-        <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">${isUpdate ? `Got the update, ${escapeHtml(contact.name.split(' ')[0])}!` : `Karibu, ${escapeHtml(contact.name.split(' ')[0])} — your draft is in!`}</h1>
+        <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">${escapeHtml(isUpdate ? guestCopy.updateHeading(contact.name.split(' ')[0]) : guestCopy.draftHeading(contact.name.split(' ')[0]))}</h1>
       </div>
       <div style="padding:24px;">
-        <p style="margin:0 0 14px 0;font-size:15px;color:#1a1a1a;line-height:1.6;">${isUpdate ? "We've sent your revised plan to the team. Here's the latest version for your records." : "Asante for using our AI planner. Here's a copy of the draft you built with us — keep it handy for reference."}</p>
-        <p style="margin:0 0 18px 0;font-size:14px;color:#4a6c82;line-height:1.6;">Our team is reviewing it now and will reply within a day with real availability and a final price. If you'd like to add anything in the meantime, just reply to this email.</p>
+        <p style="margin:0 0 14px 0;font-size:15px;color:#1a1a1a;line-height:1.6;">${escapeHtml(isUpdate ? guestCopy.updateIntro : guestCopy.draftIntro)}</p>
+        <p style="margin:0 0 18px 0;font-size:14px;color:#4a6c82;line-height:1.6;">${escapeHtml(guestCopy.reviewLine)}</p>
         ${renderHandoffHtml(handoff)}
         <div style="margin:28px 0 0 0;padding:16px 18px;background:#fafbfd;border-radius:10px;font-size:13px;color:#4a6c82;line-height:1.6;">
-          <strong style="color:#1A4D6E;">Need us sooner?</strong><br>
+          <strong style="color:#1A4D6E;">${escapeHtml(guestCopy.needSooner)}</strong><br>
           WhatsApp: <a href="https://wa.me/255768779517" style="color:#1A4D6E;">+255 768 779 517</a><br>
           Email: info@yournexttriptoparadise.com
         </div>
@@ -392,15 +436,14 @@ export default async (req) => {
   </body></html>`;
 
   const guestText = [
-    `Karibu, ${contact.name.split(' ')[0]} — your trip draft is in!`,
+    isUpdate ? guestCopy.updateHeading(contact.name.split(' ')[0]) : guestCopy.draftHeading(contact.name.split(' ')[0]),
     '',
-    "Asante for using our AI planner. Here's a copy of the draft you built with us.",
-    "Our team is reviewing it now and will reply within a day with real availability and a final price.",
-    'If you want to add anything in the meantime, just reply to this email.',
+    isUpdate ? guestCopy.updateIntro : guestCopy.draftIntro,
+    guestCopy.reviewLine,
     '',
     renderHandoffPlain(handoff),
     '',
-    'Need us sooner?',
+    guestCopy.needSooner,
     'WhatsApp: +255 768 779 517',
     'Email: info@yournexttriptoparadise.com',
   ].filter(Boolean).join('\n');

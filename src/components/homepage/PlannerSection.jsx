@@ -1,17 +1,18 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import { useTranslation } from 'react-i18next';
 import '../../styles/homepage/planner.css';
 import { extractContact } from '../../utils/plannerHandoff.js';
 import { arrayFromTranslation } from '../../utils/translationValues.js';
 
-const HANDOFF_TOKEN = '[[PLANNER_HANDOFF_READY]]';
 const HANDOFF_TOKEN_REGEX = /\[\[\s*PLANNER_HANDOFF_READY\s*\]\]/g;
 
 const stripToken = (text = '') => text.replace(HANDOFF_TOKEN_REGEX, '').trim();
 
 export default function PlannerSection({ initialPrompt }) {
-  const { t } = useTranslation('home');
+  const { t, i18n } = useTranslation('home');
+  const activeLanguage = i18n.resolvedLanguage || i18n.language || 'en';
   const plannerTitle = t('planner.title');
   const quickReplies = useMemo(() => arrayFromTranslation(t('planner.quick_replies', { returnObjects: true })), [t]);
   const thinkingMessages = useMemo(() => arrayFromTranslation(t('planner.thinking_messages', { returnObjects: true })), [t]);
@@ -111,7 +112,12 @@ export default function PlannerSection({ initialPrompt }) {
       const res = await fetch('/api/planner-send', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ history: finalHistory, contact, updateCount: updateIndex }),
+        body: JSON.stringify({
+          history: finalHistory,
+          contact,
+          updateCount: updateIndex,
+          lang: activeLanguage,
+        }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.ok) {
@@ -130,7 +136,7 @@ export default function PlannerSection({ initialPrompt }) {
     } finally {
       handoffInflightRef.current = false;
     }
-  }, [t]);
+  }, [activeLanguage, t]);
 
   const send = useCallback(async (text) => {
     if (!text || sending) return;
@@ -143,7 +149,7 @@ export default function PlannerSection({ initialPrompt }) {
       const res = await fetch('/api/planner', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ history: next }),
+        body: JSON.stringify({ history: next, lang: activeLanguage }),
       });
       const data = await res.json();
       const rawReply = data.reply || t('planner.fallbacks.reply_blank');
@@ -152,13 +158,13 @@ export default function PlannerSection({ initialPrompt }) {
       const updated = [...next, { role: 'assistant', content: cleaned }];
       setHistory(updated);
       if (ready) submitHandoff(updated);
-    } catch (err) {
+    } catch {
       setHistory((h) => [...h, { role: 'assistant', content: t('planner.fallbacks.network_error') }]);
     } finally {
       setSending(false);
       if (inputRef.current) inputRef.current.focus();
     }
-  }, [history, sending, submitHandoff, t]);
+  }, [activeLanguage, history, sending, submitHandoff, t]);
 
   useEffect(() => {
     if (!initialPrompt || handledPromptRef.current === initialPrompt.id || sending) return;
@@ -328,6 +334,11 @@ export default function PlannerSection({ initialPrompt }) {
           </form>
           <footer className="planner__foot">
             <span className="planner__foot-note">{t('planner.foot.note')}</span>
+            <span className="planner__privacy">
+              {t('planner.foot.privacy_prefix')}{' '}
+              <Link to="/privacy-policy">{t('planner.foot.privacy_link')}</Link>
+              {t('planner.foot.privacy_suffix')}
+            </span>
             <button
               type="button"
               className="planner__handoff"

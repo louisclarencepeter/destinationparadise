@@ -236,7 +236,10 @@
     "submit": "Subscribe",
     "submit_pending": "Sending…",
     "submit_done": "Sent",
-    "error": "That did not go through. Please try again in a moment."
+    "error": "That did not go through. Please try again in a moment.",
+    "privacy_prefix": "By subscribing, you agree that we may store your email for Destination Paradise updates. See our",
+    "privacy_link": "Privacy Policy",
+    "privacy_suffix": "for details."
   },
   "planner": {
     "eyebrow": "AI Trip Planner",
@@ -310,7 +313,10 @@
     "foot": {
       "note": "Itineraries are drafts. A human reviews and prices everything before you book.",
       "handoff_idle": "Send to team",
-      "handoff_done": "Sent to team ✓"
+      "handoff_done": "Sent to team ✓",
+      "privacy_prefix": "Planner messages may be processed by Anthropic and emailed via Resend when you send a draft. See our",
+      "privacy_link": "Privacy Policy",
+      "privacy_suffix": "."
     }
   },
   "weather": {
@@ -363,10 +369,24 @@
     "title_suffix": "taking its first journey.",
     "lead": "Destination Paradise was born from a dream — to connect people to the beauty, culture and spirit of Tanzania. After years of preparation, we are officially launching from Unguja, Zanzibar.",
     "highlights": [
-      { "value": "Now", "label": "Unguja", "em": true },
-      { "value": "Now", "label": "Mainland", "em": true },
-      { "value": "Next", "label": "Pemba" },
-      { "value": "Next", "label": "Mafia Island" }
+      {
+        "value": "Now",
+        "label": "Unguja",
+        "em": true
+      },
+      {
+        "value": "Now",
+        "label": "Mainland",
+        "em": true
+      },
+      {
+        "value": "Next",
+        "label": "Pemba"
+      },
+      {
+        "value": "Next",
+        "label": "Mafia Island"
+      }
     ],
     "cta": "Read our story"
   },
@@ -393,7 +413,10 @@
       "submit_done": "Sent",
       "status_ok": "✓ Asante — we got it. We'll come back to you within a day.",
       "status_err_prefix": "Pole sana — that didn't go through. Email us directly at",
-      "status_err_suffix": "or try again."
+      "status_err_suffix": "or try again.",
+      "privacy_prefix": "We use these details to reply to your request. See our",
+      "privacy_link": "Privacy Policy",
+      "privacy_suffix": "for details."
     }
   }
 }

@@ -5,6 +5,7 @@ import PlannerSection from '../components/homepage/PlannerSection.jsx';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import usePageMeta from '../hooks/usePageMeta.js';
 import { arrayFromTranslation } from '../utils/translationValues.js';
+import { preferredScrollBehavior } from '../utils/motion.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 
@@ -85,7 +86,7 @@ export default function TripPlannerPage() {
 
     if (scrollTimeoutRef.current) window.clearTimeout(scrollTimeoutRef.current);
     scrollTimeoutRef.current = window.setTimeout(() => {
-      document.getElementById('planner')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('planner')?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
     }, 140);
   }, [ready, searchParams, t]);
 
@@ -94,7 +95,7 @@ export default function TripPlannerPage() {
     setInitialPrompt({ id: Date.now(), text: prompt.text });
     if (scrollTimeoutRef.current) window.clearTimeout(scrollTimeoutRef.current);
     scrollTimeoutRef.current = window.setTimeout(() => {
-      document.getElementById('planner')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('planner')?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
     }, 80);
   };
 

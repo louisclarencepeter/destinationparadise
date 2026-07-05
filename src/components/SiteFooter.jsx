@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { CONTACT_INFO, SOCIAL_LINKS } from '../constants/contactInfo.js';
+import { COOKIE_SETTINGS_EVENT } from './CookieBanner.jsx';
 
 export const WHATSAPP_URL = CONTACT_INFO.whatsappUrl;
 
@@ -206,6 +207,9 @@ function TypedTagline() {
 
 export default function SiteFooter() {
   const { t } = useTranslation('footer');
+  const openCookieSettings = () => {
+    window.dispatchEvent(new Event(COOKIE_SETTINGS_EVENT));
+  };
   return (
     <footer className="footer">
       <div className="footer__inner">
@@ -259,7 +263,12 @@ export default function SiteFooter() {
       </div>
       <div className="footer__bottom">
         <span className="footer__copyright">© {new Date().getFullYear()} Destination Paradise · Zanzibar, Tanzania</span>
-        <span className="footer__policy-links"><Link to="/privacy-policy">{t('policy.privacy')}</Link> <Link to="/terms-of-service">{t('policy.terms')}</Link> <Link to="/cookies-policy">{t('policy.cookies')}</Link></span>
+        <span className="footer__policy-links">
+          <Link to="/privacy-policy">{t('policy.privacy')}</Link>
+          <Link to="/terms-of-service">{t('policy.terms')}</Link>
+          <Link to="/cookies-policy">{t('policy.cookies')}</Link>
+          <button type="button" onClick={openCookieSettings}>{t('policy.cookie_settings')}</button>
+        </span>
       </div>
     </footer>
   );

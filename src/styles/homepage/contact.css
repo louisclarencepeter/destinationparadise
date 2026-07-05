@@ -80,6 +80,20 @@ a.contact__detail-value:hover { color: var(--dp-accent); }
 .contact__field textarea { resize: vertical; min-height: 120px; line-height: 1.55; }
 .contact__submit { align-self: flex-start; margin-top: .25rem; }
 
+.contact__privacy {
+  margin: -.15rem 0 0;
+  color: var(--text-muted);
+  font-family: var(--dp-font-sans);
+  font-size: .78rem;
+  line-height: 1.5;
+}
+.contact__privacy a {
+  color: var(--dp-accent-text);
+  font-weight: 800;
+  text-decoration: none;
+}
+.contact__privacy a:hover { text-decoration: underline; }
+
 .contact__status {
   font-family: var(--dp-font-sans);
   font-size: 13px;

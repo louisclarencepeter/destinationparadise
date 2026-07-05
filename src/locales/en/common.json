@@ -15,6 +15,14 @@
     "label": "Back",
     "aria": "Go back to previous page"
   },
+  "not_found": {
+    "meta_title": "Page Not Found · Destination Paradise",
+    "meta_description": "That page isn't on the map. Head back to the homepage and pick a route through Zanzibar and Tanzania.",
+    "eyebrow": "404",
+    "title": "Lost at sea",
+    "body": "That page isn't on the map. Head back to the homepage and pick a route.",
+    "cta": "← Back to home"
+  },
   "cookies": {
     "aria_label": "Cookie consent",
     "eyebrow": "Cookie preferences",
@@ -40,6 +48,7 @@
     "close": "Close",
     "popular_label": "Popular searches",
     "results_label": "Search results",
+    "results_count": "{{count}} search results",
     "loading": "Preparing the site index...",
     "empty_title": "No exact match yet.",
     "empty_body": "Try a destination, activity, package style, safari park, transfer route, or send us a custom request.",

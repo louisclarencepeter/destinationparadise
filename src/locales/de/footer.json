@@ -45,7 +45,8 @@
   "policy": {
     "privacy": "Datenschutz",
     "terms": "AGB",
-    "cookies": "Cookies"
+    "cookies": "Cookies",
+    "cookie_settings": "Cookie-Einstellungen"
   },
   "fab": {
     "aria": "Mit dem Team auf WhatsApp chatten",

@@ -6,7 +6,8 @@ import SiteFooter, { WhatsAppFab } from './SiteFooter.jsx';
 import PageScrollCue from './PageScrollCue.jsx';
 import FloatingBackButton from './FloatingBackButton.jsx';
 import CookieBanner from './CookieBanner.jsx';
-import { loadGoogleAnalytics, trackPageView } from '../utils/analytics.js';
+import { loadGoogleAnalytics, revokeGoogleAnalytics, trackPageView } from '../utils/analytics.js';
+import { preferredScrollBehavior } from '../utils/motion.js';
 import {
   announceTheme,
   applyTheme,
@@ -65,7 +66,10 @@ export default function SiteLayout() {
 
   useEffect(() => {
     const handleConsentChange = (event) => {
-      if (!event.detail?.choices?.analytics) return;
+      if (!event.detail?.choices?.analytics) {
+        revokeGoogleAnalytics();
+        return;
+      }
       const path = `${location.pathname}${location.search}${location.hash}`;
       trackPageView(path);
     };
@@ -86,7 +90,7 @@ export default function SiteLayout() {
     const scrollToHash = () => {
       const target = document.getElementById(hash);
       if (target) {
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        target.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
       }
     };
 

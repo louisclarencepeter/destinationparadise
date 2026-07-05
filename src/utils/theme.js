@@ -19,7 +19,7 @@ export function readStoredTweaks() {
   try {
     const saved = JSON.parse(localStorage.getItem(THEME_STORAGE_KEY) || 'null');
     return saved && typeof saved === 'object' ? saved : null;
-  } catch (e) {
+  } catch {
     return null;
   }
 }
@@ -44,7 +44,7 @@ export function persistThemeMode(mode, theme = resolveThemeForMode(mode)) {
   try {
     const saved = readStoredTweaks() || {};
     localStorage.setItem(THEME_STORAGE_KEY, JSON.stringify({ ...saved, themeMode: nextMode, theme: nextTheme }));
-  } catch (e) {
+  } catch {
     /* noop */
   }
 
@@ -55,7 +55,7 @@ function getThemeQuery(query) {
   if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') return null;
   try {
     return window.matchMedia(query);
-  } catch (e) {
+  } catch {
     return null;
   }
 }

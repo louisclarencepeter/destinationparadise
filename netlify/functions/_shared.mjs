@@ -16,6 +16,14 @@ export const escapeHtml = (text) =>
 
 export const trimField = (value, max = 400) => String(value || '').trim().slice(0, max);
 
+export function normalizeLanguage(value) {
+  const lang = String(value || '').slice(0, 2).toLowerCase();
+  return ['de', 'pl'].includes(lang) ? lang : 'en';
+}
+
+export const sanitizeHeaderLine = (value, max = 400) =>
+  trimField(value, max).replace(/[\r\n]+/g, ' ').replace(/\s{2,}/g, ' ');
+
 export const errorResponse = (message, status = 400) =>
   Response.json({ ok: false, error: message }, { status });
 
@@ -53,13 +61,22 @@ export function createRateLimiter({ windowMs, max }) {
 }
 
 // ---- Resend ----
-export function createResendSender(apiKey) {
+export function fetchWithTimeout(url, options = {}, timeoutMs = 10_000) {
+  const timeoutSignal = AbortSignal.timeout(timeoutMs);
+  const signal = options.signal
+    ? AbortSignal.any([options.signal, timeoutSignal])
+    : timeoutSignal;
+
+  return fetch(url, { ...options, signal });
+}
+
+export function createResendSender(apiKey, timeoutMs = 10_000) {
   return (payload) =>
-    fetch('https://api.resend.com/emails', {
+    fetchWithTimeout('https://api.resend.com/emails', {
       method: 'POST',
       headers: { authorization: `Bearer ${apiKey}`, 'content-type': 'application/json' },
       body: JSON.stringify(payload),
-    });
+    }, timeoutMs);
 }
 
 // ---- Email validation (syntax + DNS deliverability) ----

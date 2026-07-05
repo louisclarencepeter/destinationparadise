@@ -5,7 +5,9 @@ import {
   createResendSender,
   errorResponse,
   escapeHtml,
+  normalizeLanguage,
   rateLimitKey,
+  sanitizeHeaderLine,
   validateEmailAddress,
 } from './_shared.mjs';
 import { captureFunctionException, captureFunctionMessage } from './_sentry.mjs';
@@ -23,6 +25,30 @@ const MAX_SUBJECT = 200;
 const MAX_MESSAGE = 8_000;
 
 const checkRateLimit = createRateLimiter({ windowMs: 10 * 60_000, max: 4 });
+
+const CONTACT_GUEST_COPY = {
+  en: {
+    subject: 'We got your message — Destination Paradise',
+    heading: (firstName) => `Asante, ${firstName} — we got your message.`,
+    intro: 'Our team will read it and reply within a day. Below is the copy of what you sent us, just for your records.',
+    subjectLabel: 'Subject',
+    needSooner: 'Need us sooner?',
+  },
+  de: {
+    subject: 'Wir haben deine Nachricht erhalten — Destination Paradise',
+    heading: (firstName) => `Asante, ${firstName} — wir haben deine Nachricht erhalten.`,
+    intro: 'Unser Team liest sie und antwortet innerhalb eines Tages. Unten findest du eine Kopie deiner Nachricht für deine Unterlagen.',
+    subjectLabel: 'Betreff',
+    needSooner: 'Soll es schneller gehen?',
+  },
+  pl: {
+    subject: 'Otrzymaliśmy Twoją wiadomość — Destination Paradise',
+    heading: (firstName) => `Asante, ${firstName} — mamy Twoją wiadomość.`,
+    intro: 'Nasz zespół ją przeczyta i odpowie w ciągu jednego dnia. Poniżej znajdziesz kopię swojej wiadomości.',
+    subjectLabel: 'Temat',
+    needSooner: 'Potrzebujesz nas szybciej?',
+  },
+};
 
 export default async (req) => {
   if (req.method !== 'POST') return new Response('Method Not Allowed', { status: 405 });
@@ -63,10 +89,13 @@ export default async (req) => {
     return Response.json({ ok: true });
   }
 
-  const name = String(body?.name || '').trim().slice(0, MAX_NAME);
+  const name = sanitizeHeaderLine(body?.name, MAX_NAME);
   let email = String(body?.email || '').trim().slice(0, MAX_EMAIL);
-  const subject = String(body?.subject || '').trim().slice(0, MAX_SUBJECT);
+  const subject = sanitizeHeaderLine(body?.subject, MAX_SUBJECT);
   const message = String(body?.message || '').trim().slice(0, MAX_MESSAGE);
+  const lang = normalizeLanguage(body?.lang);
+  const guestCopy = CONTACT_GUEST_COPY[lang];
+  const firstName = name.split(' ')[0];
 
   if (!name) return errorResponse('Please share your name.');
   if (!message) return errorResponse('Please add a short message so the team knows what you need.');
@@ -75,7 +104,7 @@ export default async (req) => {
   email = emailValidation.email;
 
   const teamSubject = subject ? `Contact form — ${subject}` : `Contact form — message from ${name}`;
-  const guestSubject = `We got your message — Destination Paradise`;
+  const guestSubject = guestCopy.subject;
   const messageBlockHtml = `<div style="padding:14px 16px;background:#fafbfd;border-left:3px solid #1A4D6E;border-radius:6px;font-size:14px;line-height:1.55;color:#1a1a1a;white-space:pre-wrap;">${escapeHtml(message)}</div>`;
 
   const teamHtml = `<!doctype html><html><body style="margin:0;padding:24px;background:#f4f7fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
@@ -115,14 +144,14 @@ export default async (req) => {
     <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(26,77,110,0.08);">
       <div style="padding:22px 24px;background:linear-gradient(120deg,#1A4D6E 0%,#215A7C 100%);color:#fff;">
         <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">Destination Paradise</div>
-        <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">Asante, ${escapeHtml(name.split(' ')[0])} — we got your message.</h1>
+        <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">${escapeHtml(guestCopy.heading(firstName))}</h1>
       </div>
       <div style="padding:24px;">
-        <p style="margin:0 0 14px 0;font-size:15px;color:#1a1a1a;line-height:1.6;">Our team will read it and reply within a day. Below is the copy of what you sent us, just for your records.</p>
-        ${subject ? `<p style="margin:0 0 12px 0;font-size:13px;color:#4a6c82;"><strong style="color:#1A4D6E;">Subject:</strong> ${escapeHtml(subject)}</p>` : ''}
+        <p style="margin:0 0 14px 0;font-size:15px;color:#1a1a1a;line-height:1.6;">${escapeHtml(guestCopy.intro)}</p>
+        ${subject ? `<p style="margin:0 0 12px 0;font-size:13px;color:#4a6c82;"><strong style="color:#1A4D6E;">${escapeHtml(guestCopy.subjectLabel)}:</strong> ${escapeHtml(subject)}</p>` : ''}
         ${messageBlockHtml}
         <div style="margin:28px 0 0 0;padding:16px 18px;background:#fafbfd;border-radius:10px;font-size:13px;color:#4a6c82;line-height:1.6;">
-          <strong style="color:#1A4D6E;">Need us sooner?</strong><br>
+          <strong style="color:#1A4D6E;">${escapeHtml(guestCopy.needSooner)}</strong><br>
           WhatsApp: <a href="https://wa.me/255768779517" style="color:#1A4D6E;">+255 768 779 517</a><br>
           Email: info@yournexttriptoparadise.com
         </div>
@@ -131,15 +160,15 @@ export default async (req) => {
   </body></html>`;
 
   const guestText = [
-    `Asante, ${name.split(' ')[0]} — we got your message.`,
+    guestCopy.heading(firstName),
     '',
-    'Our team will read it and reply within a day. Below is the copy of what you sent us.',
+    guestCopy.intro,
     '',
-    subject ? `Subject: ${subject}` : '',
+    subject ? `${guestCopy.subjectLabel}: ${subject}` : '',
     '',
     message,
     '',
-    'Need us sooner?',
+    guestCopy.needSooner,
     'WhatsApp: +255 768 779 517',
     'Email: info@yournexttriptoparadise.com',
   ].filter(Boolean).join('\n');

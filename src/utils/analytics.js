@@ -19,6 +19,7 @@ export function hasAnalyticsConsent() {
 
 export function loadGoogleAnalytics() {
   if (typeof window === 'undefined' || analyticsReady || !hasAnalyticsConsent()) return false;
+  window[`ga-disable-${GOOGLE_ANALYTICS_ID}`] = false;
 
   const dataLayer = (window.dataLayer = window.dataLayer || []);
   window.gtag = window.gtag || function gtag() {
@@ -36,6 +37,39 @@ export function loadGoogleAnalytics() {
   window.gtag('config', GOOGLE_ANALYTICS_ID, { send_page_view: false });
   analyticsReady = true;
   return true;
+}
+
+function deleteCookie(name, domain) {
+  const domainPart = domain ? `; domain=${domain}` : '';
+  document.cookie = `${name}=; Max-Age=0; path=/${domainPart}; SameSite=Lax`;
+}
+
+function deleteAnalyticsCookies() {
+  const hostParts = window.location.hostname.split('.');
+  const domains = new Set(['']);
+
+  for (let index = 0; index < hostParts.length - 1; index += 1) {
+    domains.add(`.${hostParts.slice(index).join('.')}`);
+  }
+
+  const cookieNames = document.cookie
+    .split(';')
+    .map((cookie) => cookie.trim().split('=')[0])
+    .filter((name) => name === '_ga' || name.startsWith('_ga_') || name === '_gid' || name === '_gat');
+
+  cookieNames.forEach((name) => {
+    domains.forEach((domain) => deleteCookie(name, domain));
+  });
+}
+
+export function revokeGoogleAnalytics() {
+  if (typeof window === 'undefined') return;
+  window[`ga-disable-${GOOGLE_ANALYTICS_ID}`] = true;
+  analyticsReady = false;
+  if (typeof window.gtag === 'function') {
+    window.gtag('consent', 'update', { analytics_storage: 'denied' });
+  }
+  deleteAnalyticsCookies();
 }
 
 export function trackPageView(path) {

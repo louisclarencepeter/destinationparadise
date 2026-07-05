@@ -43,7 +43,7 @@
 }
 /* Visible keyboard focus for the borderless search input (WCAG 2.4.7). */
 .site-search__field:focus-within {
-  outline: 2px solid var(--dp-accent);
+  outline: 2px solid var(--dp-focus-ring);
   outline-offset: 2px;
   border-radius: 6px;
 }

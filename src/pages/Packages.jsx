@@ -6,6 +6,7 @@ import { useCurrency } from '../context/useCurrency.js';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import usePageMeta from '../hooks/usePageMeta.js';
 import { arrayFromTranslation } from '../utils/translationValues.js';
+import { preferredScrollBehavior } from '../utils/motion.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/safaris.css';
@@ -168,7 +169,7 @@ export default function Packages() {
                 className="btn btn--ghost btn--lg"
                 onClick={() => {
                   setVisibleCount(INITIAL_PACKAGE_COUNT);
-                  document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  document.getElementById('packages')?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
                 }}
               >
                 {t('grid.show_fewer')}

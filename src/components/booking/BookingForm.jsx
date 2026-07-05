@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 export default function BookingForm({
   budgetOptions,
@@ -197,6 +198,12 @@ export default function BookingForm({
           {errorMessage || t('form.status_error', { defaultValue: 'That did not go through. Please try again or message us on WhatsApp.' })}
         </p>
       )}
+
+      <p className="booking-privacy">
+        {t('form.privacy_prefix')}{' '}
+        <Link to="/privacy-policy">{t('form.privacy_link')}</Link>{' '}
+        {t('form.privacy_suffix')}
+      </p>
 
       <button className="btn btn--lg booking-submit" type="submit" disabled={status === 'sending' || status === 'sent'}>
         {status === 'sending'

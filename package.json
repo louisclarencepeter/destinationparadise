@@ -3,6 +3,9 @@
   "private": true,
   "version": "3.2.0",
   "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "vite",
     "build": "node scripts/build-image-manifest.mjs && node scripts/build-sitemap.mjs && vite build && node scripts/prerender.mjs",

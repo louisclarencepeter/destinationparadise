@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { INITIAL_SAFARI_COUNT, SAFARI_BATCH_COUNT } from '../../data/safarisPageContent.js';
 import { useCurrency } from '../../context/useCurrency.js';
 import { textFromTranslation } from '../../utils/translationValues.js';
+import { preferredScrollBehavior } from '../../utils/motion.js';
 
 export default function SafariItineraries({
   filteredSafaris,
@@ -97,7 +98,7 @@ export default function SafariItineraries({
               className="btn btn--ghost btn--lg"
               onClick={() => {
                 setVisibleCount(INITIAL_SAFARI_COUNT);
-                document.getElementById('itineraries')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.getElementById('itineraries')?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
               }}
             >
               {t('itineraries.show_fewer')}

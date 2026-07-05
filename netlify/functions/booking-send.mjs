@@ -5,7 +5,9 @@ import {
   createResendSender,
   errorResponse,
   escapeHtml,
+  normalizeLanguage,
   rateLimitKey,
+  sanitizeHeaderLine,
   trimField,
   validateEmailAddress,
 } from './_shared.mjs';
@@ -25,6 +27,87 @@ const MAX_MESSAGE = 8_000;
 const MAX_DRAFT = 8_000;
 
 const checkRateLimit = createRateLimiter({ windowMs: 10 * 60_000, max: 4 });
+
+const BOOKING_GUEST_COPY = {
+  en: {
+    subject: 'We got your booking request — Destination Paradise',
+    heading: (firstName) => `Asante, ${firstName} — your request is in!`,
+    intro: "We got your booking request and our team is on it. You'll hear back within a day with availability, a final price, and (if you asked for it) a secure online payment link.",
+    copyNote: "Here's a copy of what you sent us, just for your records.",
+    tripRequest: 'Trip request',
+    noteHeading: 'Your note',
+    draftHeading: 'AI planner draft',
+    needSooner: 'Need us sooner? Just reply to this email,',
+    reachUs: 'or reach us on:',
+    labels: {
+      service: 'Service',
+      product: 'Product',
+      estimatedPrice: 'Estimated price',
+      dates: 'Dates',
+      guests: 'Guests',
+      transferTier: 'Transfer tier',
+      pickup: 'Pickup',
+      dropoff: 'Drop-off',
+      flight: 'Flight / ferry',
+      pickupTime: 'Pickup time',
+      budget: 'Budget',
+      comfort: 'Comfort',
+      payment: 'Payment',
+    },
+  },
+  de: {
+    subject: 'Wir haben deine Buchungsanfrage erhalten — Destination Paradise',
+    heading: (firstName) => `Asante, ${firstName} — deine Anfrage ist angekommen!`,
+    intro: 'Wir haben deine Buchungsanfrage erhalten und unser Team kümmert sich darum. Du hörst innerhalb eines Tages von uns mit Verfügbarkeit, finalem Preis und, falls gewünscht, einem sicheren Zahlungslink.',
+    copyNote: 'Hier ist eine Kopie deiner Angaben für deine Unterlagen.',
+    tripRequest: 'Reiseanfrage',
+    noteHeading: 'Deine Nachricht',
+    draftHeading: 'KI-Planer-Entwurf',
+    needSooner: 'Soll es schneller gehen? Antworte einfach auf diese E-Mail,',
+    reachUs: 'oder kontaktiere uns über:',
+    labels: {
+      service: 'Leistung',
+      product: 'Produkt',
+      estimatedPrice: 'Geschätzter Preis',
+      dates: 'Daten',
+      guests: 'Gäste',
+      transferTier: 'Transferklasse',
+      pickup: 'Abholung',
+      dropoff: 'Ziel',
+      flight: 'Flug / Fähre',
+      pickupTime: 'Abholzeit',
+      budget: 'Budget',
+      comfort: 'Komfort',
+      payment: 'Zahlung',
+    },
+  },
+  pl: {
+    subject: 'Otrzymaliśmy Twoje zapytanie rezerwacyjne — Destination Paradise',
+    heading: (firstName) => `Asante, ${firstName} — Twoje zapytanie jest u nas!`,
+    intro: 'Otrzymaliśmy Twoje zapytanie rezerwacyjne i nasz zespół już się nim zajmuje. Odpowiemy w ciągu jednego dnia z dostępnością, finalną ceną oraz, jeśli prosisz o płatność online, bezpiecznym linkiem.',
+    copyNote: 'Poniżej znajdziesz kopię przesłanych informacji.',
+    tripRequest: 'Zapytanie o podróż',
+    noteHeading: 'Twoja wiadomość',
+    draftHeading: 'Szkic z planera AI',
+    needSooner: 'Potrzebujesz nas szybciej? Po prostu odpowiedz na ten e-mail,',
+    reachUs: 'albo skontaktuj się z nami przez:',
+    labels: {
+      service: 'Usługa',
+      product: 'Produkt',
+      estimatedPrice: 'Szacowana cena',
+      dates: 'Daty',
+      guests: 'Goście',
+      transferTier: 'Klasa transferu',
+      pickup: 'Odbiór',
+      dropoff: 'Miejsce docelowe',
+      flight: 'Lot / prom',
+      pickupTime: 'Godzina odbioru',
+      budget: 'Budżet',
+      comfort: 'Komfort',
+      payment: 'Płatność',
+    },
+  },
+};
 
 function row(label, value) {
   if (!value) return '';
@@ -62,14 +145,14 @@ export default async (req) => {
     return Response.json({ ok: true });
   }
 
-  const name = trimField(body?.name, 120);
+  const name = sanitizeHeaderLine(body?.name, 120);
   let email = trimField(body?.email, 200);
   const phone = trimField(body?.phone, 60);
   const whatsapp = trimField(body?.whatsapp, 60);
-  const serviceType = trimField(body?.serviceType, 40);
-  const product = trimField(body?.product, 200);
-  const productLabel = trimField(body?.productLabel, 200);
-  const estimatedPrice = trimField(body?.estimatedPrice, 200);
+  const serviceType = sanitizeHeaderLine(body?.serviceType, 40);
+  const product = sanitizeHeaderLine(body?.product, 200);
+  const productLabel = sanitizeHeaderLine(body?.productLabel, 200);
+  const estimatedPrice = sanitizeHeaderLine(body?.estimatedPrice, 200);
   const startDate = trimField(body?.startDate, 40);
   const endDate = trimField(body?.endDate, 40);
   const guests = trimField(body?.guests, 40);
@@ -84,6 +167,9 @@ export default async (req) => {
   const message = String(body?.message || '').trim().slice(0, MAX_MESSAGE);
   const source = trimField(body?.source, 40) || 'booking';
   const plannerDraft = String(body?.plannerDraft || '').trim().slice(0, MAX_DRAFT);
+  const lang = normalizeLanguage(body?.lang);
+  const guestCopy = BOOKING_GUEST_COPY[lang];
+  const firstName = name.split(' ')[0];
 
   if (!name) return errorResponse('Please share your name.');
   const emailValidation = await validateEmailAddress(email);
@@ -127,6 +213,22 @@ export default async (req) => {
     row('Payment', paymentPreference),
   ].join('');
 
+  const guestSummaryRows = [
+    row(guestCopy.labels.service, serviceType),
+    row(guestCopy.labels.product, productLine),
+    row(guestCopy.labels.estimatedPrice, estimatedPrice),
+    row(guestCopy.labels.dates, datesLine),
+    row(guestCopy.labels.guests, guests),
+    row(guestCopy.labels.transferTier, transferTier),
+    row(guestCopy.labels.pickup, pickupLocation),
+    row(guestCopy.labels.dropoff, dropoffLocation),
+    row(guestCopy.labels.flight, flightNumber),
+    row(guestCopy.labels.pickupTime, transferTime),
+    row(guestCopy.labels.budget, budget),
+    row(guestCopy.labels.comfort, accommodationLevel),
+    row(guestCopy.labels.payment, paymentPreference),
+  ].join('');
+
   const contactRows = [
     row('Name', name),
     row('Email', email),
@@ -141,6 +243,14 @@ export default async (req) => {
 
   const draftBlock = plannerDraft
     ? `<h2 style="margin:24px 0 10px 0;font-size:13px;color:#4a6c82;font-weight:700;letter-spacing:.06em;text-transform:uppercase;">AI planner draft</h2>
+       <div style="padding:14px 16px;background:#FFF6F4;border-left:3px solid #FF6F61;border-radius:0 6px 6px 0;font-size:13px;line-height:1.6;color:#1a1a1a;white-space:pre-wrap;">${escapeHtml(plannerDraft)}</div>`
+    : '';
+  const guestMessageBlock = message
+    ? `<h2 style="margin:24px 0 10px 0;font-size:13px;color:#4a6c82;font-weight:700;letter-spacing:.06em;text-transform:uppercase;">${escapeHtml(guestCopy.noteHeading)}</h2>
+       <div style="padding:14px 16px;background:#fafbfd;border-left:3px solid #1A4D6E;border-radius:0 6px 6px 0;font-size:14px;line-height:1.55;color:#1a1a1a;white-space:pre-wrap;">${escapeHtml(message)}</div>`
+    : '';
+  const guestDraftBlock = plannerDraft
+    ? `<h2 style="margin:24px 0 10px 0;font-size:13px;color:#4a6c82;font-weight:700;letter-spacing:.06em;text-transform:uppercase;">${escapeHtml(guestCopy.draftHeading)}</h2>
        <div style="padding:14px 16px;background:#FFF6F4;border-left:3px solid #FF6F61;border-radius:0 6px 6px 0;font-size:13px;line-height:1.6;color:#1a1a1a;white-space:pre-wrap;">${escapeHtml(plannerDraft)}</div>`
     : '';
 
@@ -190,22 +300,22 @@ export default async (req) => {
     'Reply directly to this email to reach the guest.',
   ].filter(Boolean).join('\n');
 
-  const guestSubject = `We got your booking request — Destination Paradise`;
+  const guestSubject = guestCopy.subject;
   const guestHtml = `<!doctype html><html><body style="margin:0;padding:24px;background:#f4f7fa;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
     <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:14px;overflow:hidden;box-shadow:0 4px 14px rgba(26,77,110,0.08);">
       <div style="padding:22px 24px;background:linear-gradient(120deg,#1A4D6E 0%,#FF6F61 100%);color:#fff;">
         <div style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;opacity:.85;">Destination Paradise</div>
-        <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">Asante, ${escapeHtml(name.split(' ')[0])} — your request is in!</h1>
+        <h1 style="margin:6px 0 0 0;font-size:22px;font-weight:700;">${escapeHtml(guestCopy.heading(firstName))}</h1>
       </div>
       <div style="padding:24px;">
-        <p style="margin:0 0 14px 0;font-size:15px;color:#1a1a1a;line-height:1.6;">We got your booking request and our team is on it. You'll hear back within a day with availability, a final price, and (if you asked for it) a secure online payment link.</p>
-        <p style="margin:0 0 18px 0;font-size:14px;color:#4a6c82;line-height:1.6;">Here's a copy of what you sent us, just for your records.</p>
-        <h2 style="margin:18px 0 10px 0;font-size:13px;color:#4a6c82;font-weight:700;letter-spacing:.06em;text-transform:uppercase;">Trip request</h2>
-        <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background:#fafbfd;border-radius:8px;overflow:hidden;margin-bottom:18px;">${summaryRows}</table>
-        ${messageBlock}
-        ${draftBlock}
+        <p style="margin:0 0 14px 0;font-size:15px;color:#1a1a1a;line-height:1.6;">${escapeHtml(guestCopy.intro)}</p>
+        <p style="margin:0 0 18px 0;font-size:14px;color:#4a6c82;line-height:1.6;">${escapeHtml(guestCopy.copyNote)}</p>
+        <h2 style="margin:18px 0 10px 0;font-size:13px;color:#4a6c82;font-weight:700;letter-spacing:.06em;text-transform:uppercase;">${escapeHtml(guestCopy.tripRequest)}</h2>
+        <table cellpadding="0" cellspacing="0" style="width:100%;border-collapse:collapse;background:#fafbfd;border-radius:8px;overflow:hidden;margin-bottom:18px;">${guestSummaryRows}</table>
+        ${guestMessageBlock}
+        ${guestDraftBlock}
         <div style="margin:28px 0 0 0;padding:16px 18px;background:#fafbfd;border-radius:10px;font-size:13px;color:#4a6c82;line-height:1.6;">
-          <strong style="color:#1A4D6E;">Need us sooner? Just reply to this email,</strong> or reach us on:<br>
+          <strong style="color:#1A4D6E;">${escapeHtml(guestCopy.needSooner)}</strong> ${escapeHtml(guestCopy.reachUs)}<br>
           WhatsApp: <a href="https://wa.me/255768779517" style="color:#1A4D6E;">+255 768 779 517</a><br>
           Email: info@yournexttriptoparadise.com
         </div>
@@ -214,28 +324,28 @@ export default async (req) => {
   </body></html>`;
 
   const guestText = [
-    `Asante, ${name.split(' ')[0]} — your booking request is in.`,
+    guestCopy.heading(firstName),
     '',
-    "We got it and our team is on it. You'll hear back within a day with availability, a final price, and (if requested) a secure payment link.",
+    guestCopy.intro,
     '',
-    'Here is a copy of your request:',
-    `Service: ${serviceType}`,
-    `Product: ${productLine}`,
-    estimatedPrice ? `Estimated price: ${estimatedPrice}` : '',
-    `Dates: ${datesLine}`,
-    guests ? `Guests: ${guests}` : '',
-    transferTier ? `Transfer tier: ${transferTier}` : '',
-    pickupLocation ? `Pickup: ${pickupLocation}` : '',
-    dropoffLocation ? `Drop-off: ${dropoffLocation}` : '',
-    flightNumber ? `Flight / ferry: ${flightNumber}` : '',
-    transferTime ? `Pickup time: ${transferTime}` : '',
-    budget ? `Budget: ${budget}` : '',
-    accommodationLevel ? `Comfort: ${accommodationLevel}` : '',
-    paymentPreference ? `Payment: ${paymentPreference}` : '',
+    guestCopy.copyNote,
+    `${guestCopy.labels.service}: ${serviceType}`,
+    `${guestCopy.labels.product}: ${productLine}`,
+    estimatedPrice ? `${guestCopy.labels.estimatedPrice}: ${estimatedPrice}` : '',
+    `${guestCopy.labels.dates}: ${datesLine}`,
+    guests ? `${guestCopy.labels.guests}: ${guests}` : '',
+    transferTier ? `${guestCopy.labels.transferTier}: ${transferTier}` : '',
+    pickupLocation ? `${guestCopy.labels.pickup}: ${pickupLocation}` : '',
+    dropoffLocation ? `${guestCopy.labels.dropoff}: ${dropoffLocation}` : '',
+    flightNumber ? `${guestCopy.labels.flight}: ${flightNumber}` : '',
+    transferTime ? `${guestCopy.labels.pickupTime}: ${transferTime}` : '',
+    budget ? `${guestCopy.labels.budget}: ${budget}` : '',
+    accommodationLevel ? `${guestCopy.labels.comfort}: ${accommodationLevel}` : '',
+    paymentPreference ? `${guestCopy.labels.payment}: ${paymentPreference}` : '',
     '',
-    message ? `Your note:\n${message}` : '',
+    message ? `${guestCopy.noteHeading}:\n${message}` : '',
     '',
-    'Need us sooner? Just reply to this email, or:',
+    `${guestCopy.needSooner} ${guestCopy.reachUs}`,
     'WhatsApp: +255 768 779 517',
     'Email: info@yournexttriptoparadise.com',
   ].filter(Boolean).join('\n');

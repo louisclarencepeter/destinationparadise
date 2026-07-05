@@ -6,17 +6,18 @@ import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import { getAllRoutes } from './routes.mjs';
 
-const SITE_URL = 'https://destinationparadisezanzibar.netlify.app';
+const SITE_URL = 'https://yournexttriptoparadise.com';
 const here = dirname(fileURLToPath(import.meta.url));
 
 const routes = await getAllRoutes();
 const lastmod = new Date().toISOString().slice(0, 10);
+const sitemapPath = (path) => (path === '/' ? '/' : `${path.replace(/\/+$/, '')}/`);
 
 const body = routes
   .map(
     (r) =>
       `  <url>\n` +
-      `    <loc>${SITE_URL}${r.path}</loc>\n` +
+      `    <loc>${SITE_URL}${sitemapPath(r.path)}</loc>\n` +
       `    <lastmod>${lastmod}</lastmod>\n` +
       `    <changefreq>${r.changefreq}</changefreq>\n` +
       `    <priority>${r.priority}</priority>\n` +

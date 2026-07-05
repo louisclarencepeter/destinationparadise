@@ -58,8 +58,9 @@
   --dp-bg-2: var(--dp-background-lt);
   --dp-bg-3: var(--dp-background-dk);
 
-  --dp-gradient-button: linear-gradient(120deg, rgba(26, 77, 110, 0.8) 0%, rgba(255, 111, 97, 0.8) 100%);
-  --dp-gradient-button-hover: linear-gradient(120deg, rgba(19, 58, 83, 0.8) 0%, rgba(255, 79, 62, 0.8) 100%);
+  --dp-gradient-button: linear-gradient(120deg, #16445F 0%, #B43A2A 100%);
+  --dp-gradient-button-hover: linear-gradient(120deg, #11364B 0%, #942B1F 100%);
+  --dp-focus-ring: #9F341F;
   --dp-gradient-accent-bar: linear-gradient(90deg, var(--dp-accent), #2B6F93);
   --dp-gradient-hero-scrim: linear-gradient(180deg, transparent 40%, rgba(26, 77, 110, 0.28));
 

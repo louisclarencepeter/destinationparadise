@@ -3,47 +3,66 @@
   "meta": {
     "aria_label": "Szczegoly zasad",
     "last_updated": "Ostatnia aktualizacja",
-    "last_updated_value": "13 maja 2026",
+    "last_updated_value": "5 lipca 2026",
     "contact": "Kontakt"
   },
   "policies": {
     "privacy": {
-      "eyebrow": "Prywatnosc",
-      "title": "Polityka prywatnosci",
-      "intro": "Ta polityka wyjasnia, jak Destination Paradise obchodzi sie z danymi, ktore przekazujesz, gdy pytasz o wyjazdy, rezerwujesz atrakcje lub kontaktujesz sie z naszym zespolem.",
+      "eyebrow": "Prywatność",
+      "title": "Polityka prywatności",
+      "intro": "Ta polityka wyjaśnia, jak Destination Paradise przetwarza dane udostępniane podczas korzystania ze strony, wysyłania zapytań, używania planera AI, rezerwacji lub kontaktu z zespołem.",
       "sections": [
         {
           "title": "Jakie Informacje Zbieramy",
           "items": [
-            "Dane kontaktowe, takie jak imie i nazwisko, adres e-mail, numer telefonu, kontakt WhatsApp i kraj.",
-            "Szczegoly podrozy, takie jak preferowane daty, wielkosc grupy, budzet, zainteresowania, hotel lub miejsce odbioru oraz specjalne prosby.",
-            "Wiadomosci wysylane przez formularze, WhatsApp, e-mail lub kanaly spolecznosciowe.",
-            "Podstawowe informacje techniczne, takie jak typ przegladarki, informacje o urzadzeniu, odwiedzone strony i przyblizona lokalizacja z narzedzi analitycznych."
+            "Dane kontaktowe, takie jak imię i nazwisko, adres e-mail, numer telefonu, kontakt WhatsApp i kraj.",
+            "Szczegóły podróży, takie jak preferowane daty, liczba osób, budżet, zainteresowania, hotel lub miejsce odbioru oraz specjalne prośby.",
+            "Wiadomości wysyłane przez formularze, WhatsApp, e-mail lub kanały społecznościowe.",
+            "Historię czatu i szczegóły przekazania z planera AI, gdy używasz planera lub prosisz o wysłanie szkicu do zespołu.",
+            "Podstawowe dane techniczne, takie jak typ przeglądarki, informacje o urządzeniu, odwiedzane strony, wybór języka, wybór cookie oraz przybliżona lokalizacja z narzędzi analitycznych, jeśli wyrazisz zgodę."
           ]
         },
         {
-          "title": "Jak Wykorzystujemy Twoje Informacje",
+          "title": "Jak Używamy Informacji",
           "items": [
-            "Aby odpowiadac na zapytania oraz przygotowywac propozycje podrozy, wyceny, rezerwacje i plany wyjazdu.",
-            "Aby koordynowac przewodnikow, kierowcow, partnerow noclegowych, operatorow lodzi, dostawcow safari i innych partnerow potrzebnych do realizacji wyjazdu.",
-            "Aby ulepszac nasza strone, obsluge klienta, pakiety, wycieczki i planowanie safari.",
-            "Aby wysylac aktualizacje rezerwacji, wiadomosci serwisowe i informacje powiazane z Twoja prosba."
+            "Aby odpowiadać na zapytania oraz przygotowywać propozycje podróży, wyceny, rezerwacje i plany.",
+            "Aby koordynować przewodników, kierowców, partnerów noclegowych, operatorów łodzi, dostawców safari i innych partnerów potrzebnych do realizacji podróży.",
+            "Aby obsługiwać planer AI, zapamiętać szkic lokalnie i wysłać wiadomość do zespołu, gdy wybierzesz przekazanie planu.",
+            "Aby ulepszać stronę, obsługę klienta, pakiety, wycieczki i doświadczenie planowania safari.",
+            "Aby wysyłać aktualizacje rezerwacji, wiadomości serwisowe i informacje związane z Twoim zapytaniem."
           ]
         },
         {
-          "title": "Udostepnianie Informacji",
+          "title": "Usługodawcy I Udostępnianie Danych",
           "items": [
-            "Udostepniamy tylko te dane, ktore sa potrzebne do zorganizowania podrozy z zaufanymi lokalnymi partnerami, dostawcami platnosci lub uslug.",
-            "Mozemy udostepnic informacje, gdy wymagaja tego przepisy, zasady bezpieczenstwa, procedury graniczne lub oficjalne procedury podrozne.",
+            "Netlify hostuje stronę oraz Netlify Functions, które odbierają formularze kontaktowe, rezerwacyjne, planera i newslettera.",
+            "Resend wysyła powiadomienia do zespołu oraz potwierdzenia do gości z przepływów kontaktu, rezerwacji i planera.",
+            "Anthropic obsługuje planer podróży AI. Prompty i ostatnia historia czatu są wysyłane do Anthropic wyłącznie dla tej funkcji.",
+            "Google Analytics mierzy wizyty na stronach dopiero po zaakceptowaniu cookie analitycznych. Google może ustawiać cookie _ga do pomiaru.",
+            "Sentry zbiera techniczne raporty błędów, abyśmy mogli diagnozować uszkodzone strony i funkcje.",
+            "Open-Meteo, kafelki map CARTO i open.er-api.com dostarczają dane pogodowe, mapowe i kursów walut dla publicznych funkcji strony.",
+            "Udostępniamy tylko dane potrzebne do organizacji podróży zaufanym lokalnym przewodnikom, kierowcom, partnerom noclegowym, operatorom łodzi, dostawcom safari, dostawcom płatności lub urzędom, jeśli jest to wymagane.",
+            "Możemy udostępniać informacje, gdy wymagają tego przepisy prawa, bezpieczeństwo, zasady graniczne lub oficjalne procedury podróży.",
             "Nie sprzedajemy Twoich danych osobowych."
           ]
         },
         {
-          "title": "Twoje Mozliwosci",
+          "title": "Przechowywanie, Retencja I Bezpieczeństwo",
           "items": [
-            "Mozesz poprosic nas o poprawienie, zaktualizowanie lub usuniecie danych osobowych, gdy nie sa juz potrzebne do rezerwacji, ksiegowosci, bezpieczenstwa lub z powodow prawnych.",
-            "Mozesz nie podawac opcjonalnych danych, chociaz moze to ograniczyc dokladnosc planowania Twojej podrozy.",
-            "Mozesz w kazdej chwili zrezygnowac z wiadomosci marketingowych, kontaktujac sie z nami."
+            "Przechowujemy zapytania i dane rezerwacyjne tylko tak długo, jak jest to potrzebne do odpowiedzi, organizacji podróży, księgowości, obowiązków prawnych i poprawy jakości usług.",
+            "Lokalna pamięć przeglądarki może przechowywać język, motyw, wybór cookie, cache kursów walut, historię planera i szkic przekazania, aby strona działała sprawnie.",
+            "Stosujemy rozsądne zabezpieczenia techniczne, takie jak HTTPS, kontrole dostępu u dostawców, limity rozmiaru zapytań, walidację, rate limiting i monitorowanie błędów.",
+            "Żadna strona ani system e-mail nie są idealnie bezpieczne, dlatego nie wysyłaj skanów paszportu, danych kart płatniczych ani bardzo wrażliwych danych zdrowotnych przez otwarte pola tekstowe."
+          ]
+        },
+        {
+          "title": "Twoje Wybory",
+          "items": [
+            "Możesz poprosić nas o poprawienie, aktualizację lub usunięcie danych osobowych, gdy nie są już potrzebne do rezerwacji, księgowości, bezpieczeństwa lub celów prawnych.",
+            "Możesz nie podawać danych opcjonalnych, choć może to ograniczyć dokładność przygotowania planu podróży.",
+            "Możesz w każdej chwili otworzyć Ustawienia cookie w stopce i wycofać zgodę analityczną. Po wyłączeniu analityki wyłączamy Google Analytics i usuwamy jego cookie analityczne z tej przeglądarki.",
+            "Możesz wyczyścić lokalną pamięć przeglądarki, taką jak historia planera, język, motyw i cache kursów walut, w ustawieniach przeglądarki.",
+            "Możesz w każdej chwili zrezygnować z wiadomości marketingowych, kontaktując się z nami."
           ]
         }
       ]
@@ -89,37 +108,47 @@
     },
     "cookies": {
       "eyebrow": "Cookies",
-      "title": "Polityka cookies",
-      "intro": "Ta polityka wyjasnia, jak cookies i podobne technologie moga byc uzywane, aby strona dzialala, aby rozumiec wizyty i ulepszac planowanie podrozy.",
+      "title": "Polityka cookie",
+      "intro": "Ta polityka wyjaśnia, jakich cookie, pamięci lokalnej i podobnych technologii używa Destination Paradise.",
       "sections": [
         {
-          "title": "Czym Sa Cookies",
+          "title": "Niezbędna Pamięć",
           "items": [
-            "Cookies to male pliki zapisywane na Twoim urzadzeniu podczas odwiedzania strony internetowej.",
-            "Podobne technologie, takie jak pamiec lokalna, piksele i tagi analityczne, moga pomagac zapamietywac ustawienia lub mierzyc sposob korzystania ze stron."
+            "dp_cookie_consent_v1 zapisuje wybór cookie, abyśmy wiedzieli, czy analityka jest dozwolona.",
+            "dp_tweaks zapisuje preferencje motywu i wyglądu, takie jak tryb jasny lub ciemny.",
+            "dp_lang zapisuje wybór języka, a dp_fx_rates może przechowywać kursy walut do wyświetlania cen.",
+            "plannerHistory i dp_planner_handoff zapisują czat planera AI oraz szkice przekazania w przeglądarce, aby można było kontynuować lub wysłać plan."
           ]
         },
         {
-          "title": "Jak Uzywamy Cookies",
+          "title": "Cookie Analityczne",
           "items": [
-            "Niezbedne cookies i pamiec pomagaja stronie sie ladowac, zapamietywac preferencje motywu, obslugiwac formularze i utrzymywac stabilne dzialanie.",
-            "Cookies analityczne moga pomoc nam zrozumiec, ktore strony sa przydatne, skad trafiaja odwiedzajacy i jak mozemy ulepszyc strone.",
-            "Narzedzia marketingowe lub platform spolecznosciowych moga byc uzywane, gdy korzystasz z tresci osadzonych, linkow spolecznosciowych lub linkow kampanii."
+            "Google Analytics ładuje się dopiero po zaakceptowaniu analityki w banerze cookie lub Ustawieniach cookie.",
+            "Analityka pomaga nam zrozumieć, które strony są przydatne, skąd trafiają odwiedzający i gdzie można ulepszyć planowanie podróży.",
+            "Google Analytics może ustawiać _ga i powiązane cookie. Jeśli później wyłączysz analitykę, strona wyłączy analitykę i spróbuje usunąć te cookie z tej przeglądarki."
           ]
         },
         {
-          "title": "Zarzadzanie Cookies",
+          "title": "Żądania Do Usług Zewnętrznych",
           "items": [
-            "Mozesz blokowac, usuwac lub ograniczac cookies w ustawieniach przegladarki.",
-            "Niektore funkcje moga nie dzialac zgodnie z oczekiwaniami, jesli niezbedne cookies lub pamiec lokalna sa wylaczone.",
-            "Uslugi zewnetrzne moga udostepniac wlasne ustawienia prywatnosci i cookies na swoich stronach lub w ustawieniach konta."
+            "Sentry może otrzymywać techniczne dane błędów, gdy strona lub funkcja nie działa poprawnie.",
+            "Open-Meteo, kafelki map CARTO i open.er-api.com mogą otrzymywać podstawowe dane zapytań, gdy ładowana jest pogoda, mapy lub kursy walut.",
+            "Resend i Anthropic otrzymują dane tylko wtedy, gdy wysyłasz formularz, zapytanie rezerwacyjne lub wiadomość planera AI korzystającą z tych usług."
+          ]
+        },
+        {
+          "title": "Zarządzanie Wyborem",
+          "items": [
+            "Możesz w każdej chwili otworzyć Ustawienia cookie w stopce i włączyć lub wyłączyć analitykę.",
+            "Możesz też blokować, usuwać lub ograniczać cookie i pamięć lokalną w ustawieniach przeglądarki.",
+            "Niektóre funkcje mogą nie działać zgodnie z oczekiwaniami, jeśli niezbędna pamięć lokalna jest wyłączona."
           ]
         },
         {
           "title": "Aktualizacje",
           "items": [
-            "Mozemy aktualizowac te polityke, gdy zmieniaja sie narzedzia strony, konfiguracja analityki lub procesy rezerwacji.",
-            "Najnowsza wersja bedzie opublikowana na tej stronie z data aktualizacji."
+            "Możemy aktualizować tę politykę, gdy zmienią się narzędzia strony, konfiguracja analityki lub procesy rezerwacji.",
+            "Najnowsza wersja będzie opublikowana na tej stronie z aktualną datą."
           ]
         }
       ]

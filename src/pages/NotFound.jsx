@@ -1,16 +1,18 @@
 import { useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import usePageMeta from '../hooks/usePageMeta.js';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import '../styles/homepage.css';
 
 export default function NotFound() {
+  const { t } = useTranslation('common');
   const pageRef = useRef(null);
   useRevealOnScroll(pageRef, '.reveal:not(.is-visible)', 1);
 
   usePageMeta({
-    title: 'Page Not Found · Destination Paradise',
-    description: "That page isn't on the map. Head back to the homepage and pick a route through Zanzibar and Tanzania.",
+    title: t('not_found.meta_title'),
+    description: t('not_found.meta_description'),
     noindex: true,
   });
 
@@ -27,12 +29,12 @@ export default function NotFound() {
       }}
     >
       <div style={{ maxWidth: 640, textAlign: 'center' }}>
-        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>404</span>
-        <h1 className="section-title reveal" style={{ marginTop: '1rem', '--reveal-index': 1 }}>Lost at sea</h1>
+        <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('not_found.eyebrow')}</span>
+        <h1 className="section-title reveal" style={{ marginTop: '1rem', '--reveal-index': 1 }}>{t('not_found.title')}</h1>
         <p className="section-lead reveal" style={{ marginBottom: '2rem', '--reveal-index': 2 }}>
-          That page isn&apos;t on the map. Head back to the homepage and pick a route.
+          {t('not_found.body')}
         </p>
-        <Link className="btn reveal" to="/" style={{ '--reveal-index': 3 }}>← Back to home</Link>
+        <Link className="btn reveal" to="/" style={{ '--reveal-index': 3 }}>{t('not_found.cta')}</Link>
       </div>
     </main>
   );
