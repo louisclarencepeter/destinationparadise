@@ -103,5 +103,25 @@
 }
 .footer__copyright { min-width: 0; }
 .footer__policy-links { min-width: 0; }
-.footer__bottom a { color: var(--text-soft); text-decoration: none; margin-left: 1rem; }
-.footer__bottom a:hover { color: var(--dp-accent); }
+.footer__bottom a,
+.footer__bottom button {
+  color: var(--text-soft);
+  text-decoration: none;
+  margin-left: 1rem;
+}
+.footer__bottom button {
+  appearance: none;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+}
+.footer__bottom a:hover,
+.footer__bottom button:hover {
+  color: var(--dp-accent-text);
+}
+.footer__bottom button:focus-visible {
+  outline: 2px solid var(--dp-accent-text);
+  outline-offset: 3px;
+}

@@ -35,14 +35,6 @@ const NavIcon = ({ name }) => (
   </svg>
 );
 
-const BookingIcon = (p) => (
-  <svg width={p.size || 16} height={p.size || 16} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z" />
-    <line x1="3" y1="6" x2="21" y2="6" />
-    <path d="M16 10a4 4 0 0 1-8 0" />
-  </svg>
-);
-
 const ArrowRight = ({ size = 16 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
     <path d="M5 12h14" />
@@ -101,7 +93,7 @@ const MM_BGS = [
 
 const MOBILE_NAV_QUERY = '(max-width: 960px)';
 
-export default function SiteNav({ theme = 'light', themeMode = 'auto', onThemeModeChange }) {
+export default function SiteNav({ theme = 'light', themeMode: _themeMode = 'auto', onThemeModeChange }) {
   const { t } = useTranslation('nav');
   const { t: tFooter } = useTranslation('footer');
   const [navOpen, setNavOpen] = useState(false);

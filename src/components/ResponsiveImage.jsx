@@ -1,4 +1,3 @@
-import React from 'react';
 import imageManifest from '../data/imageManifest.json';
 
 const normalizeFetchPriority = (value) => (

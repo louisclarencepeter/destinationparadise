@@ -15,6 +15,14 @@
     "label": "Zurück",
     "aria": "Zurück zur vorherigen Seite"
   },
+  "not_found": {
+    "meta_title": "Seite nicht gefunden · Destination Paradise",
+    "meta_description": "Diese Seite liegt nicht auf der Karte. Kehre zur Startseite zurück und wähle eine Route durch Sansibar und Tansania.",
+    "eyebrow": "404",
+    "title": "Auf See verirrt",
+    "body": "Diese Seite liegt nicht auf der Karte. Kehre zur Startseite zurück und wähle eine Route.",
+    "cta": "← Zurück zur Startseite"
+  },
   "cookies": {
     "aria_label": "Cookie-Einwilligung",
     "eyebrow": "Cookie-Einstellungen",
@@ -40,6 +48,7 @@
     "close": "Schließen",
     "popular_label": "Beliebte Suchen",
     "results_label": "Suchergebnisse",
+    "results_count": "{{count}} Suchergebnisse",
     "loading": "Seitenindex wird vorbereitet...",
     "empty_title": "Noch kein genauer Treffer.",
     "empty_body": "Versuchen Sie ein Reiseziel, eine Aktivität, einen Pakettyp, einen Safari-Park oder eine Transferstrecke – oder senden Sie uns eine individuelle Anfrage.",

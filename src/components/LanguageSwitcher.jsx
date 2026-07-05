@@ -24,12 +24,14 @@ export default function LanguageSwitcher({ className = '' }) {
   const { i18n, t } = useTranslation();
   const [open, setOpen] = useState(false);
   const rootRef = useRef(/** @type {HTMLDivElement | null} */ (null));
+  const toggleRef = useRef(/** @type {HTMLButtonElement | null} */ (null));
 
   const resolvedLanguage = i18n.resolvedLanguage ?? 'en';
   const active = SUPPORTED_LANGUAGES.includes(resolvedLanguage) ? resolvedLanguage : 'en';
 
   const choose = (lang) => {
     setOpen(false);
+    window.requestAnimationFrame(() => toggleRef.current?.focus());
     if (lang === active) return;
     i18n.changeLanguage(lang);
   };
@@ -37,11 +39,15 @@ export default function LanguageSwitcher({ className = '' }) {
   // Close on outside click or Escape
   useEffect(() => {
     if (!open) return undefined;
+    const closeAndRestore = () => {
+      setOpen(false);
+      window.requestAnimationFrame(() => toggleRef.current?.focus());
+    };
     const handlePointer = (e) => {
-      if (rootRef.current && !rootRef.current.contains(e.target)) setOpen(false);
+      if (rootRef.current && !rootRef.current.contains(e.target)) closeAndRestore();
     };
     const handleKey = (e) => {
-      if (e.key === 'Escape') setOpen(false);
+      if (e.key === 'Escape') closeAndRestore();
     };
     document.addEventListener('mousedown', handlePointer);
     document.addEventListener('keydown', handleKey);
@@ -57,6 +63,7 @@ export default function LanguageSwitcher({ className = '' }) {
       className={`lang-switcher${open ? ' is-open' : ''}${className ? ` ${className}` : ''}`}
     >
       <button
+        ref={toggleRef}
         type="button"
         className="lang-switcher__toggle"
         aria-haspopup="listbox"

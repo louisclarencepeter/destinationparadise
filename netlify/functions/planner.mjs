@@ -7,7 +7,7 @@ import { EXCURSIONS } from '../../src/data/excursionsData.js';
 import { destinationParadisePackages } from '../../src/data/destinationParadisePackages.js';
 import { nextLevelSafariProducts } from '../../src/data/nextLevelSafariProducts.js';
 import { destinationParadiseSafariPricing } from '../../src/data/safariPricing.js';
-import { createRateLimiter, rateLimitKey } from './_shared.mjs';
+import { createRateLimiter, fetchWithTimeout, rateLimitKey } from './_shared.mjs';
 import { captureFunctionException, captureFunctionMessage } from './_sentry.mjs';
 
 const FUNCTION_NAME = 'planner';
@@ -16,6 +16,11 @@ const MAX_REQUEST_BYTES = 20_000;
 const MAX_HISTORY_MESSAGES = 16;
 const MAX_MESSAGE_CHARS = 1_200;
 const MAX_TOTAL_CHARS = 6_000;
+const LANGUAGE_NAMES = {
+  de: 'German',
+  en: 'English',
+  pl: 'Polish',
+};
 
 // Per-IP rate limit. In-memory: resets on cold start and isn't shared across
 // concurrent function instances, so it's a defense against burst abuse from a
@@ -140,6 +145,12 @@ Use the listed products as starting points when they fit. Never invent specific 
 const plannerError = (reply, status = 400) =>
   Response.json({ reply }, { status });
 
+function languageInstruction(rawLang) {
+  const lang = String(rawLang || '').slice(0, 2).toLowerCase();
+  const language = LANGUAGE_NAMES[lang] || LANGUAGE_NAMES.en;
+  return `Language:\n- Reply in ${language}, unless the guest clearly writes in another language. Keep the final handoff labels exactly as specified so the email parser can read them.`;
+}
+
 export function validateHistory(rawHistory) {
   if (!Array.isArray(rawHistory)) {
     return { ok: false, reply: 'Please send the planner history as a list of messages.' };
@@ -230,9 +241,10 @@ export default async (req) => {
   if (messages.length === 0 || messages[messages.length - 1].role !== 'user') {
     return Response.json({ reply: 'Tell me a bit about the trip you have in mind?' }, { status: 200 });
   }
+  const system = `${PLANNER_SYSTEM}\n\n${languageInstruction(body.lang)}`;
 
   try {
-    const r = await fetch('https://api.anthropic.com/v1/messages', {
+    const r = await fetchWithTimeout('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
@@ -242,10 +254,10 @@ export default async (req) => {
       body: JSON.stringify({
         model: PLANNER_MODEL,
         max_tokens: 800,
-        system: PLANNER_SYSTEM,
+        system,
         messages,
       }),
-    });
+    }, 12_000);
 
     if (!r.ok) {
       const errText = await r.text().catch(() => '');

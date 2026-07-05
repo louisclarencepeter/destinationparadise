@@ -3,47 +3,66 @@
   "meta": {
     "aria_label": "Richtliniendetails",
     "last_updated": "Zuletzt aktualisiert",
-    "last_updated_value": "13. Mai 2026",
+    "last_updated_value": "5. Juli 2026",
     "contact": "Kontakt"
   },
   "policies": {
     "privacy": {
       "eyebrow": "Datenschutz",
       "title": "Datenschutzerklärung",
-      "intro": "Diese Datenschutzerklärung erklärt, wie Destination Paradise mit den Angaben umgeht, die du teilst, wenn du Reisen anfragst, Erlebnisse buchst oder unser Team kontaktierst.",
+      "intro": "Diese Erklärung beschreibt, wie Destination Paradise Daten verarbeitet, die du beim Besuch der Website, bei Anfragen, im KI-Reiseplaner, bei Buchungen oder im Kontakt mit unserem Team teilst.",
       "sections": [
         {
-          "title": "Welche Informationen Wir Erheben",
+          "title": "Welche Informationen Wir Erfassen",
           "items": [
             "Kontaktdaten wie Name, E-Mail-Adresse, Telefonnummer, WhatsApp-Kontakt und Land.",
-            "Reisedetails wie Wunschdaten, Gruppengröße, Budget, Interessen, Hotel oder Abholort und besondere Wünsche.",
-            "Nachrichten, die du über unsere Formulare, WhatsApp, E-Mail oder Social-Media-Kanäle sendest.",
-            "Grundlegende technische Informationen wie Browsertyp, Geräteinformationen, besuchte Seiten und ungefährer Standort aus Analyse-Tools."
+            "Reisedaten wie gewünschte Termine, Gruppengröße, Budget, Interessen, Hotel oder Abholort und besondere Wünsche.",
+            "Nachrichten, die du über Formulare, WhatsApp, E-Mail oder Social-Media-Kanäle sendest.",
+            "Chatverlauf und Übergabedetails aus dem KI-Reiseplaner, wenn du einen Entwurf an unser Team senden lässt.",
+            "Technische Basisdaten wie Browsertyp, Geräteinformationen, besuchte Seiten, Spracheinstellung, Cookie-Auswahl und ungefähre Standortdaten aus Analyse-Tools, wenn du einwilligst."
           ]
         },
         {
           "title": "Wie Wir Deine Informationen Nutzen",
           "items": [
-            "Um Anfragen zu beantworten und Reisevorschläge, Angebote, Buchungen und Reisepläne vorzubereiten.",
-            "Um Guides, Fahrer, Unterkunftspartner, Bootsbetreiber, Safari-Anbieter und andere Partner zu koordinieren, die für deine Reise gebraucht werden.",
-            "Um unsere Website, den Kundenservice, Pakete, Ausflüge und die Safari-Planung zu verbessern.",
-            "Um Buchungsupdates, Service-Nachrichten und Folgeinformationen zu deiner Anfrage zu senden."
+            "Um Anfragen zu beantworten und Reisevorschläge, Angebote, Buchungen und Reiserouten vorzubereiten.",
+            "Um Guides, Fahrer, Unterkünfte, Bootsbetreiber, Safari-Anbieter und andere Partner zu koordinieren, die für deine Reise nötig sind.",
+            "Um den KI-Reiseplaner zu betreiben, deinen Entwurf lokal zu speichern und das Team per E-Mail zu informieren, wenn du eine Übergabe wünschst.",
+            "Um Website, Service, Pakete, Ausflüge und Safari-Planung zu verbessern.",
+            "Um Buchungsupdates, Servicenachrichten und Folgeinformationen zu deiner Anfrage zu senden."
           ]
         },
         {
-          "title": "Weitergabe Deiner Informationen",
+          "title": "Dienstleister Und Weitergabe",
           "items": [
-            "Wir teilen nur die Angaben, die nötig sind, um deine Reise mit vertrauenswürdigen lokalen Partnern, Zahlungsanbietern oder Dienstleistern zu organisieren.",
-            "Wir können Informationen weitergeben, wenn dies durch Gesetze, Sicherheitsanforderungen, Grenzbestimmungen oder offizielle Reiseverfahren erforderlich ist.",
-            "Wir verkaufen deine persönlichen Informationen nicht."
+            "Netlify hostet die Website und Netlify Functions, die Kontakt-, Buchungs-, Planer- und Newsletter-Anfragen empfangen.",
+            "Resend versendet Team-Benachrichtigungen und Bestätigungen an Gäste aus Kontakt-, Buchungs- und Planer-Workflows.",
+            "Anthropic betreibt den KI-Reiseplaner. Prompts und aktuelle Chatverläufe werden nur für diese Funktion an Anthropic gesendet.",
+            "Google Analytics misst Seitenbesuche erst, nachdem du Analyse-Cookies akzeptiert hast. Google kann dafür _ga-Cookies setzen.",
+            "Sentry sammelt technische Fehlerberichte, damit wir defekte Seiten und fehlerhafte Funktionen diagnostizieren können.",
+            "Open-Meteo, CARTO-Kartenkacheln und open.er-api.com liefern Wetter-, Karten- und Wechselkursdaten für öffentliche Website-Funktionen.",
+            "Wir teilen nur die Details, die zur Organisation deiner Reise nötig sind, mit vertrauenswürdigen lokalen Guides, Fahrern, Unterkünften, Bootsbetreibern, Safari-Anbietern, Zahlungsdienstleistern oder offiziellen Stellen, wenn es erforderlich ist.",
+            "Wir können Informationen weitergeben, wenn Gesetze, Sicherheitsanforderungen, Grenzregeln oder offizielle Reiseprozesse dies verlangen.",
+            "Wir verkaufen deine personenbezogenen Daten nicht."
+          ]
+        },
+        {
+          "title": "Speicherung, Aufbewahrung Und Sicherheit",
+          "items": [
+            "Wir behalten Anfragen und Buchungsdaten nur so lange, wie es für Antwort, Reiseorganisation, Buchhaltung, rechtliche Pflichten und Servicequalität nötig ist.",
+            "Lokaler Browserspeicher kann Sprache, Design, Cookie-Auswahl, Wechselkurs-Cache, Planerverlauf und Planer-Übergabe speichern, damit die Website reibungslos funktioniert.",
+            "Wir nutzen angemessene technische Schutzmaßnahmen wie HTTPS, Anbieter-Zugriffskontrollen, Größenlimits, Validierung, Rate-Limiting und Fehlerüberwachung.",
+            "Keine Website und kein E-Mail-System ist perfekt sicher. Bitte sende keine Passkopien, Kartendaten oder besonders sensiblen Gesundheitsdaten über offene Textfelder."
           ]
         },
         {
           "title": "Deine Wahlmöglichkeiten",
           "items": [
-            "Du kannst uns bitten, deine persönlichen Angaben zu korrigieren, zu aktualisieren oder zu löschen, wenn wir sie nicht mehr für Buchung, Buchhaltung, Sicherheit oder rechtliche Gründe benötigen.",
-            "Du kannst optionale Angaben weglassen, auch wenn dies einschränken kann, wie genau wir deine Reise planen können.",
-            "Du kannst Marketing-Nachrichten jederzeit abbestellen, indem du uns kontaktierst."
+            "Du kannst uns bitten, personenbezogene Daten zu korrigieren, zu aktualisieren oder zu löschen, wenn wir sie nicht mehr für Buchung, Buchhaltung, Sicherheit oder rechtliche Gründe benötigen.",
+            "Du kannst optionale Angaben weglassen; dadurch können wir deine Reise eventuell weniger genau planen.",
+            "Du kannst Cookie-Einstellungen im Footer jederzeit öffnen und deine Analyse-Einwilligung widerrufen. Wenn Analyse deaktiviert wird, schalten wir Google Analytics ab und entfernen dessen Analyse-Cookies aus diesem Browser.",
+            "Du kannst lokalen Browserspeicher wie Planerverlauf, Sprache, Design und gecachte Wechselkurse in deinen Browser-Einstellungen löschen.",
+            "Du kannst Marketingnachrichten jederzeit abbestellen, indem du uns kontaktierst."
           ]
         }
       ]
@@ -90,36 +109,46 @@
     "cookies": {
       "eyebrow": "Cookies",
       "title": "Cookie-Richtlinie",
-      "intro": "Diese Richtlinie erklärt, wie Cookies und ähnliche Technologien genutzt werden können, damit die Website funktioniert, Besuche verstanden werden und die Reiseplanung verbessert wird.",
+      "intro": "Diese Richtlinie erklärt, welche Cookies, lokalen Speicher und ähnlichen Technologien Destination Paradise verwendet.",
       "sections": [
         {
-          "title": "Was Cookies Sind",
+          "title": "Essenzielle Speicherung",
           "items": [
-            "Cookies sind kleine Dateien, die auf deinem Gerät gespeichert werden, wenn du eine Website besuchst.",
-            "Ähnliche Technologien wie lokaler Speicher, Pixel und Analyse-Tags können helfen, Einstellungen zu merken oder zu messen, wie Seiten genutzt werden."
+            "dp_cookie_consent_v1 speichert deine Cookie-Auswahl, damit wir wissen, ob Analyse erlaubt ist.",
+            "dp_tweaks speichert Design- und Anzeigeeinstellungen wie hellen oder dunklen Modus.",
+            "dp_lang speichert deine Sprache, und dp_fx_rates kann Wechselkurse für Preisangaben zwischenspeichern.",
+            "plannerHistory und dp_planner_handoff speichern KI-Planer-Chat und Übergabeentwürfe in deinem Browser, damit du einen Plan fortsetzen oder senden kannst."
           ]
         },
         {
-          "title": "Wie Wir Cookies Nutzen",
+          "title": "Analyse-Cookies",
           "items": [
-            "Notwendige Cookies und Speicher helfen der Website beim Laden, merken Design-Einstellungen, unterstützen Formulare und halten die Nutzung stabil.",
-            "Analyse-Cookies können uns helfen zu verstehen, welche Seiten nützlich sind, wo Besucher uns finden und wie wir die Website verbessern können.",
-            "Marketing- oder Social-Plattform-Tools können genutzt werden, wenn du mit eingebetteten Inhalten, Social Links oder Kampagnenlinks interagierst."
+            "Google Analytics lädt erst, nachdem du Analyse im Cookie-Banner oder in den Cookie-Einstellungen akzeptiert hast.",
+            "Analyse hilft uns zu verstehen, welche Seiten nützlich sind, wo Besucher uns finden und wo die Reiseplanung besser werden kann.",
+            "Google Analytics kann _ga und verwandte Cookies setzen. Wenn du Analyse später ausschaltest, deaktiviert die Website Analyse und versucht, diese Cookies aus diesem Browser zu löschen."
           ]
         },
         {
-          "title": "Cookies Verwalten",
+          "title": "Anfragen An Dritte",
           "items": [
-            "Du kannst Cookies in deinen Browser-Einstellungen blockieren, löschen oder einschränken.",
-            "Einige Funktionen funktionieren eventuell nicht wie erwartet, wenn notwendige Cookies oder lokaler Speicher deaktiviert sind.",
-            "Drittanbieter können eigene Datenschutz- und Cookie-Einstellungen über ihre Websites oder Kontoeinstellungen anbieten."
+            "Sentry kann technische Fehlerdaten erhalten, wenn eine Seite oder Funktion ausfällt.",
+            "Open-Meteo, CARTO-Kartenkacheln und open.er-api.com können Basis-Anfragedaten erhalten, wenn Wetter, Karten oder Wechselkurse geladen werden.",
+            "Resend und Anthropic erhalten Daten nur, wenn du ein Formular, eine Buchungsanfrage oder eine KI-Planer-Nachricht sendest, die diese Dienste nutzt."
+          ]
+        },
+        {
+          "title": "Auswahl Verwalten",
+          "items": [
+            "Du kannst Cookie-Einstellungen jederzeit im Footer öffnen und Analyse ein- oder ausschalten.",
+            "Du kannst Cookies und lokalen Speicher auch in deinen Browser-Einstellungen blockieren, löschen oder einschränken.",
+            "Einige Funktionen funktionieren eventuell nicht wie erwartet, wenn essenzieller lokaler Speicher deaktiviert ist."
           ]
         },
         {
           "title": "Aktualisierungen",
           "items": [
-            "Wir können diese Richtlinie aktualisieren, wenn sich Website-Tools, Analyse-Einstellungen oder Buchungsabläufe ändern.",
-            "Die aktuelle Version wird mit dem aktualisierten Datum auf dieser Seite veröffentlicht."
+            "Wir können diese Richtlinie aktualisieren, wenn sich Website-Tools, Analyse-Setup oder Buchungsabläufe ändern.",
+            "Die neueste Version wird mit aktualisiertem Datum auf dieser Seite veröffentlicht."
           ]
         }
       ]

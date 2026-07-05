@@ -6,6 +6,7 @@ import ResponsiveImage from '../ResponsiveImage.jsx';
 import { arrayFromTranslation } from '../../utils/translationValues.js';
 
 const HERO_SLIDES = [
+  '/assets/images/home/stone-town-waterfront.webp',
   '/assets/images/home/aerial-boats-turquoise-water.webp',
   '/assets/images/safaris/lion-cub-in-grass.webp',
   '/assets/images/safaris/crowned-crane-close.webp',

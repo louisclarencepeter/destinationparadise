@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../../styles/homepage/contact.css';
 import { CONTACT_INFO } from '../../constants/contactInfo.js';
@@ -6,7 +7,7 @@ import { ArrowIcon } from './Icons.jsx';
 import { clearPlannerHandoff, isPlannerHandoffMessage, PLANNER_HANDOFF_EVENT, readPlannerHandoff } from '../../utils/plannerHandoff.js';
 
 export default function ContactSection() {
-  const { t } = useTranslation('home');
+  const { t, i18n } = useTranslation('home');
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
   const [plannerHandoff, setPlannerHandoff] = useState(
     /** @type {import('../../utils/plannerHandoff.js').PlannerHandoff | null} */ (null),
@@ -66,6 +67,7 @@ export default function ContactSection() {
         headers: { 'content-type': 'application/json' },
         body: JSON.stringify({
           ...form,
+          lang: i18n.resolvedLanguage || i18n.language || 'en',
           source: plannerHandoff ? 'planner' : 'contact',
           plannerDraft: plannerHandoff?.transcript || '',
         }),
@@ -171,6 +173,12 @@ export default function ContactSection() {
           {status === 'error' && (
             <p className="contact__status contact__status--err" role="alert">{t('contact.form.status_err_prefix')} {CONTACT_INFO.email} {t('contact.form.status_err_suffix')}</p>
           )}
+
+          <p className="contact__privacy">
+            {t('contact.form.privacy_prefix')}{' '}
+            <Link to="/privacy-policy">{t('contact.form.privacy_link')}</Link>{' '}
+            {t('contact.form.privacy_suffix')}
+          </p>
 
           <button
             type="submit"

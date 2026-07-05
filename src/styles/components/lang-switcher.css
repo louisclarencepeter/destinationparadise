@@ -39,7 +39,7 @@
 }
 
 .lang-switcher__toggle:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--dp-accent) 50%, transparent);
+  outline: 2px solid var(--dp-focus-ring);
   outline-offset: 2px;
 }
 
@@ -84,7 +84,7 @@
 }
 
 .lang-switcher__option:focus-visible {
-  outline: 2px solid color-mix(in srgb, var(--dp-accent) 50%, transparent);
+  outline: 2px solid var(--dp-focus-ring);
   outline-offset: -2px;
 }
 

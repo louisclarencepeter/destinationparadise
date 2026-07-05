@@ -14,6 +14,10 @@ export default defineConfig(({ mode }) => {
       VitePWA({
         registerType: 'autoUpdate',
         injectRegister: 'script-defer',
+        workbox: {
+          clientsClaim: true,
+          skipWaiting: true,
+        },
         devOptions: {
           enabled: false
         },

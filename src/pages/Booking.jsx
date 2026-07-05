@@ -22,6 +22,7 @@ import { useFloatingBookingSummary } from '../hooks/useFloatingBookingSummary.js
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import usePageMeta from '../hooks/usePageMeta.js';
 import { buildPlannerHandoff, clearPlannerHandoff, isPlannerHandoffMessage, readPlannerHandoff } from '../utils/plannerHandoff.js';
+import { preferredScrollBehavior } from '../utils/motion.js';
 import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -141,7 +142,7 @@ export default function Booking() {
     }));
 
     const timeoutId = window.setTimeout(() => {
-      document.getElementById('booking-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('booking-form')?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
     }, 120);
 
     return () => window.clearTimeout(timeoutId);
@@ -255,6 +256,7 @@ export default function Booking() {
       transferTime: isTransferRequest ? form.transferTime : '',
       productLabel: selectedProduct?.label || t('common.not_selected', { defaultValue: 'Not selected' }),
       estimatedPrice: bookingPriceLabel(selectedProduct, t, format),
+      lang: i18n.resolvedLanguage || i18n.language || 'en',
       source: plannerHandoff ? 'planner' : 'booking',
       plannerDraft: plannerHandoff?.transcript || '',
     };

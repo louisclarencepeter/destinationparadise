@@ -1,5 +1,4 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../styles/homepage.css';
 import { EXCURSIONS } from '../data/excursionsData.js';
@@ -22,6 +21,7 @@ const AboutSection = lazy(() => import('../components/homepage/AboutSection.jsx'
 const ContactSection = lazy(() => import('../components/homepage/ContactSection.jsx'));
 const NewsletterSection = lazy(() => import('../components/homepage/NewsletterSection.jsx'));
 import { readStoredTheme, readStoredThemeMode, readStoredTweaks } from '../utils/theme.js';
+import { preferredScrollBehavior } from '../utils/motion.js';
 
 const PINS = DESTINATION_MAP_PINS;
 
@@ -75,7 +75,7 @@ export default function Homepage() {
 
   // Persist design-preview tweaks. The active theme is managed globally.
   useEffect(() => {
-    try { localStorage.setItem('dp_tweaks', JSON.stringify(tweaks)); } catch (e) { /* noop */ }
+    try { localStorage.setItem('dp_tweaks', JSON.stringify(tweaks)); } catch { /* noop */ }
   }, [tweaks]);
 
   useEffect(() => {
@@ -145,7 +145,7 @@ export default function Homepage() {
       }
     };
     window.addEventListener('message', onMsg);
-    try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch (e) { /* noop */ }
+    try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch { /* noop */ }
     return () => window.removeEventListener('message', onMsg);
   }, []);
 
@@ -177,7 +177,7 @@ export default function Homepage() {
       text: `I'm looking for ${experienceText}${dateText} for ${guests}. Can you suggest the best fit and ask me anything else you need?`,
     });
     const target = document.getElementById('planner-chat') || document.getElementById('planner');
-    target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    target?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
   };
 
   const islandPins = PINS.filter((p) => p.region === 'Zanzibar');

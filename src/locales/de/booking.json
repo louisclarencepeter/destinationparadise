@@ -168,7 +168,10 @@
     "message_placeholder_transfer": "Ankunftshinweise, Gepäckanzahl, Kindersitze, Hotelname, VIP-Wünsche oder Uhrzeitdetails.",
     "message_placeholder_excursion": "Gewünschter Abholbereich, Hotelname, privat/geteilt, Alter der Kinder, Ernährung oder Zeitwünsche.",
     "message_placeholder_default": "Hotels, die du magst, Tempo, besonderer Anlass, Alter der Kinder, Ernährung, Flugdaten oder was du vermeiden möchtest.",
-    "unmatched_message": "Ich interessiere mich für {{title}}. {{message}}"
+    "unmatched_message": "Ich interessiere mich für {{title}}. {{message}}",
+    "privacy_prefix": "Wir nutzen deine Buchungsdaten, um Verfügbarkeit, Preis und nächste Zahlungsschritte vorzubereiten. Details stehen in unserer",
+    "privacy_link": "Datenschutzerklärung",
+    "privacy_suffix": "."
   },
   "budget_options": [
     {

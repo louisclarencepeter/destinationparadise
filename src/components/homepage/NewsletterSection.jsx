@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../../styles/homepage/newsletter.css';
 
@@ -79,6 +80,11 @@ export default function NewsletterSection() {
           {t('newsletter.error')}
         </p>
       )}
+      <p className="newsletter__note newsletter__privacy">
+        {t('newsletter.privacy_prefix')}{' '}
+        <Link to="/privacy-policy">{t('newsletter.privacy_link')}</Link>{' '}
+        {t('newsletter.privacy_suffix')}
+      </p>
     </section>
   );
 }

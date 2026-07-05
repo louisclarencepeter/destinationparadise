@@ -8,6 +8,7 @@ import {
 } from '../../data/excursionsPageContent.js';
 import { useCurrency } from '../../context/useCurrency.js';
 import { textFromTranslation } from '../../utils/translationValues.js';
+import { preferredScrollBehavior } from '../../utils/motion.js';
 
 export default function ExcursionsGrid({
   filter,
@@ -110,7 +111,7 @@ export default function ExcursionsGrid({
               className="btn btn--ghost btn--lg"
               onClick={() => {
                 setVisibleCount(INITIAL_EXCURSION_COUNT);
-                document.getElementById('list')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.getElementById('list')?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
               }}
             >
               {t('grid.show_fewer')}

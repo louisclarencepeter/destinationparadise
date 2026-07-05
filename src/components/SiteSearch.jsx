@@ -66,6 +66,8 @@ export default function SiteSearch({ open, onClose }) {
   const [searchIndex, setSearchIndex] = useState(/** @type {any[]} */ ([]));
   const [popularSearches, setPopularSearches] = useState(FALLBACK_POPULAR);
   const inputRef = useRef(/** @type {HTMLInputElement | null} */ (null));
+  const panelRef = useRef(/** @type {HTMLDivElement | null} */ (null));
+  const restoreFocusRef = useRef(/** @type {Element | null} */ (null));
 
   const results = useMemo(() => {
     if (!searchIndex.length) return [];
@@ -89,17 +91,40 @@ export default function SiteSearch({ open, onClose }) {
     if (!open) return undefined;
 
     const previousBodyOverflow = document.body.style.overflow;
+    restoreFocusRef.current = document.activeElement;
     document.body.style.overflow = 'hidden';
     window.setTimeout(() => inputRef.current?.focus(), 30);
 
     const handleKey = (event) => {
-      if (event.key === 'Escape') onClose?.();
+      if (event.key === 'Escape') {
+        onClose?.();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+      const focusable = Array.from(
+        panelRef.current?.querySelectorAll('a[href], button:not(:disabled), input:not(:disabled), textarea:not(:disabled), select:not(:disabled), [tabindex]:not([tabindex="-1"])') || [],
+      ).filter((element) => element instanceof HTMLElement && element.offsetParent !== null);
+
+      if (!focusable.length) return;
+      const first = /** @type {HTMLElement} */ (focusable[0]);
+      const last = /** @type {HTMLElement} */ (focusable[focusable.length - 1]);
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
 
     document.addEventListener('keydown', handleKey);
     return () => {
       document.body.style.overflow = previousBodyOverflow;
       document.removeEventListener('keydown', handleKey);
+      if (restoreFocusRef.current instanceof HTMLElement) {
+        restoreFocusRef.current.focus();
+      }
     };
   }, [open, onClose]);
 
@@ -127,7 +152,7 @@ export default function SiteSearch({ open, onClose }) {
   return (
     <div className="site-search" role="dialog" aria-modal="true" aria-label={t('search.dialog_label')}>
       <button className="site-search__backdrop" type="button" aria-label={t('search.close_backdrop')} onClick={onClose} />
-      <div className="site-search__panel">
+      <div className="site-search__panel" ref={panelRef}>
         <div className="site-search__field">
           <SearchIcon size={22} />
           <input
@@ -162,6 +187,11 @@ export default function SiteSearch({ open, onClose }) {
         )}
 
         <div className="site-search__results" aria-label={t('search.results_label')}>
+          <div className="visually-hidden" role="status" aria-live="polite">
+            {query.trim()
+              ? t('search.results_count', { count: results.length, defaultValue: `${results.length} search results` })
+              : ''}
+          </div>
           {!searchIndex.length && (
             <div className="site-search__loading">{t('search.loading')}</div>
           )}

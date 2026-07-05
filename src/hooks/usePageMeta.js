@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { isPrerender } from '../utils/prerender.js';
 
-export const SITE_URL = 'https://destinationparadisezanzibar.netlify.app';
+export const SITE_URL = 'https://yournexttriptoparadise.com';
 export const SITE_NAME = 'Destination Paradise';
 const DEFAULT_DESCRIPTION =
   'Destination Paradise offers bespoke excursions, luxury safaris, and unforgettable packages in Zanzibar & Tanzania.';
@@ -57,8 +57,7 @@ function upsertLink(rel, href) {
 
 function canonicalFor(pathname) {
   let path = pathname || '/';
-  // Drop trailing slashes (keep root) so /booking and /booking/ canonicalize together.
-  if (path.length > 1) path = path.replace(/\/+$/, '');
+  if (path.length > 1) path = `${path.replace(/\/+$/, '')}/`;
   return `${SITE_URL}${path}`;
 }
 
@@ -101,7 +100,7 @@ export function usePageMeta(options = {}, legacyDescription) {
     const url = canonical
       ? /^https?:\/\//.test(canonical)
         ? canonical
-        : `${SITE_URL}${canonical}`
+        : canonicalFor(canonical)
       : canonicalFor(window.location.pathname);
     const ogTitle = title || `${SITE_NAME} — your next trip to paradise`;
 

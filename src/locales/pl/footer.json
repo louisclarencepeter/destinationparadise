@@ -45,7 +45,8 @@
   "policy": {
     "privacy": "Prywatność",
     "terms": "Regulamin",
-    "cookies": "Cookies"
+    "cookies": "Cookies",
+    "cookie_settings": "Ustawienia cookie"
   },
   "fab": {
     "aria": "Napisz do zespołu na WhatsApp",

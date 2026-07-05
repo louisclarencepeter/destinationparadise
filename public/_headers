@@ -6,5 +6,21 @@
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https://*.basemaps.cartocdn.com https://www.google-analytics.com https://www.googletagmanager.com; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://api.open-meteo.com https://marine-api.open-meteo.com https://open.er-api.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; worker-src 'self'
 
-/assets/*
+# Non-overlapping cache rules (Netlify merges headers from every matching rule,
+# so a broad /assets/* rule would double up Cache-Control on the overrides below).
+# :file matches a single path segment — i.e. Vite's hashed build output directly
+# under /assets/ — which is the only content that is safe to cache forever.
+/assets/:file
+  Cache-Control: public, max-age=31536000, immutable
+
+# Unhashed static files (replaced in place, e.g. optimized re-exports): short
+# max-age + stale-while-revalidate so returning visitors pick up replacements.
+/assets/images/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+/assets/brand/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+
+# Font files are effectively versioned by filename; safe to pin.
+/assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable

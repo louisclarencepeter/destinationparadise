@@ -554,6 +554,7 @@
 .planner__foot {
   padding: .85rem 1rem;
   display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap;
   gap: 1rem;
   font-size: .86rem;
   line-height: 1.45;
@@ -561,6 +562,7 @@
   border-top: 1px solid var(--divider);
 }
 [data-theme="dark"] .planner__foot { border-top-color: rgba(255,255,255,.16); }
+[data-theme="dark"] .planner__privacy a { color: #ffb1a8; }
 .planner__foot--simple {
   justify-content: center;
   text-align: center;
@@ -569,6 +571,19 @@
   flex: 1 1 auto;
   min-width: 0;
 }
+.planner__privacy {
+  flex: 1 1 100%;
+  margin-top: -.45rem;
+  color: var(--text-muted);
+  font-size: .74rem;
+  line-height: 1.45;
+}
+.planner__privacy a {
+  color: var(--dp-accent-text);
+  font-weight: 800;
+  text-decoration: none;
+}
+.planner__privacy a:hover { text-decoration: underline; }
 .planner__handoff {
   flex-shrink: 0;
   display: inline-flex;

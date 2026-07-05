@@ -236,7 +236,10 @@
     "submit": "Abonnieren",
     "submit_pending": "Wird gesendet…",
     "submit_done": "Gesendet",
-    "error": "Das hat nicht geklappt. Bitte versuch es gleich noch einmal."
+    "error": "Das hat nicht geklappt. Bitte versuch es gleich noch einmal.",
+    "privacy_prefix": "Mit dem Abonnieren erlaubst du uns, deine E-Mail für Updates von Destination Paradise zu speichern. Details stehen in unserer",
+    "privacy_link": "Datenschutzerklärung",
+    "privacy_suffix": "."
   },
   "planner": {
     "eyebrow": "KI-Reiseplaner",
@@ -310,7 +313,10 @@
     "foot": {
       "note": "Reiserouten sind Entwürfe. Vor der Buchung prüft und kalkuliert ein Mensch alles.",
       "handoff_idle": "Ans Team senden",
-      "handoff_done": "Ans Team gesendet ✓"
+      "handoff_done": "Ans Team gesendet ✓",
+      "privacy_prefix": "Planer-Nachrichten können von Anthropic verarbeitet und beim Senden eines Entwurfs über Resend per E-Mail verschickt werden. Details stehen in unserer",
+      "privacy_link": "Datenschutzerklärung",
+      "privacy_suffix": "."
     }
   },
   "weather": {
@@ -363,10 +369,24 @@
     "title_suffix": "auf ihrer ersten Reise.",
     "lead": "Destination Paradise wurde aus einem Traum geboren — Menschen mit der Schönheit, Kultur und Seele Tansanias zu verbinden. Nach Jahren der Vorbereitung starten wir offiziell auf Unguja, Sansibar.",
     "highlights": [
-      { "value": "Jetzt", "label": "Unguja", "em": true },
-      { "value": "Jetzt", "label": "Festland", "em": true },
-      { "value": "Bald", "label": "Pemba" },
-      { "value": "Bald", "label": "Mafia Island" }
+      {
+        "value": "Jetzt",
+        "label": "Unguja",
+        "em": true
+      },
+      {
+        "value": "Jetzt",
+        "label": "Festland",
+        "em": true
+      },
+      {
+        "value": "Bald",
+        "label": "Pemba"
+      },
+      {
+        "value": "Bald",
+        "label": "Mafia Island"
+      }
     ],
     "cta": "Unsere Geschichte lesen"
   },
@@ -393,7 +413,10 @@
       "submit_done": "Gesendet",
       "status_ok": "✓ Asante — wir haben deine Nachricht. Wir melden uns innerhalb eines Tages.",
       "status_err_prefix": "Pole sana — das hat nicht geklappt. Schreib uns direkt an",
-      "status_err_suffix": "oder versuch es erneut."
+      "status_err_suffix": "oder versuch es erneut.",
+      "privacy_prefix": "Wir nutzen diese Angaben, um deine Anfrage zu beantworten. Details stehen in unserer",
+      "privacy_link": "Datenschutzerklärung",
+      "privacy_suffix": "."
     }
   }
 }
