@@ -1,6 +1,7 @@
 .cookie-banner {
   position: fixed;
-  right: clamp(1rem, 3vw, 2rem);
+  left: 50%;
+  transform: translateX(-50%);
   bottom: clamp(1rem, 3vw, 2rem);
   z-index: 1200;
   display: grid;
@@ -148,6 +149,7 @@ html[data-theme="dark"] .cookie-banner {
     left: 1rem;
     right: 1rem;
     bottom: 1rem;
+    transform: none;
     grid-template-columns: 1fr;
   }
 
