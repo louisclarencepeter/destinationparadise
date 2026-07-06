@@ -42,6 +42,7 @@ const BOOKING_GUEST_COPY = {
     labels: {
       service: 'Service',
       product: 'Product',
+      retreatOption: 'Retreat option',
       estimatedPrice: 'Estimated price',
       dates: 'Dates',
       guests: 'Guests',
@@ -68,6 +69,7 @@ const BOOKING_GUEST_COPY = {
     labels: {
       service: 'Leistung',
       product: 'Produkt',
+      retreatOption: 'Retreat-Option',
       estimatedPrice: 'Geschätzter Preis',
       dates: 'Daten',
       guests: 'Gäste',
@@ -94,6 +96,7 @@ const BOOKING_GUEST_COPY = {
     labels: {
       service: 'Usługa',
       product: 'Produkt',
+      retreatOption: 'Opcja retreatu',
       estimatedPrice: 'Szacowana cena',
       dates: 'Daty',
       guests: 'Goście',
@@ -152,6 +155,7 @@ export default async (req) => {
   const serviceType = sanitizeHeaderLine(body?.serviceType, 40);
   const product = sanitizeHeaderLine(body?.product, 200);
   const productLabel = sanitizeHeaderLine(body?.productLabel, 200);
+  const retreatOptionLabel = sanitizeHeaderLine(body?.retreatOptionLabel, 120);
   const estimatedPrice = sanitizeHeaderLine(body?.estimatedPrice, 200);
   const startDate = trimField(body?.startDate, 40);
   const endDate = trimField(body?.endDate, 40);
@@ -200,6 +204,7 @@ export default async (req) => {
   const summaryRows = [
     row('Service', serviceType),
     row('Product', productLine),
+    row('Retreat option', retreatOptionLabel),
     row('Estimated price', estimatedPrice),
     row('Dates', datesLine),
     row('Guests', guests),
@@ -216,6 +221,7 @@ export default async (req) => {
   const guestSummaryRows = [
     row(guestCopy.labels.service, serviceType),
     row(guestCopy.labels.product, productLine),
+    row(guestCopy.labels.retreatOption, retreatOptionLabel),
     row(guestCopy.labels.estimatedPrice, estimatedPrice),
     row(guestCopy.labels.dates, datesLine),
     row(guestCopy.labels.guests, guests),
@@ -277,6 +283,7 @@ export default async (req) => {
     '',
     `Service: ${serviceType}`,
     `Product: ${productLine}`,
+    retreatOptionLabel ? `Retreat option: ${retreatOptionLabel}` : '',
     estimatedPrice ? `Estimated price: ${estimatedPrice}` : '',
     `Dates: ${datesLine}`,
     guests ? `Guests: ${guests}` : '',
@@ -331,6 +338,7 @@ export default async (req) => {
     guestCopy.copyNote,
     `${guestCopy.labels.service}: ${serviceType}`,
     `${guestCopy.labels.product}: ${productLine}`,
+    retreatOptionLabel ? `${guestCopy.labels.retreatOption}: ${retreatOptionLabel}` : '',
     estimatedPrice ? `${guestCopy.labels.estimatedPrice}: ${estimatedPrice}` : '',
     `${guestCopy.labels.dates}: ${datesLine}`,
     guests ? `${guestCopy.labels.guests}: ${guests}` : '',

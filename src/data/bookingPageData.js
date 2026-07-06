@@ -49,6 +49,7 @@ export const DEFAULT_BOOKING_FORM = {
   budget: '',
   accommodationLevel: 'Mid-range',
   paymentPreference: 'secure-link',
+  retreatOption: '',
   message: '',
 };
 
@@ -63,7 +64,12 @@ export const translatedLabel = (items, value, fallback = value) => (
   items.find((item) => item.value === value)?.label || fallback
 );
 
-export function bookingPriceLabel(item, t, format) {
+export function bookingPriceLabel(
+  item,
+  t,
+  format,
+  retreatOption = /** @type {{ price?: number, priceSub?: string } | null} */ (null),
+) {
   const translate = (key, fallback) => t?.(key, { defaultValue: fallback }) || fallback;
   const fmt = typeof format === 'function' ? format : money;
 
@@ -81,7 +87,10 @@ export function bookingPriceLabel(item, t, format) {
   if (item.type === 'transfer') {
     return item.priceSummary || item.raw.priceSummary || translate('price.final_transfer_after_route', 'Final transfer price after route confirmation');
   }
-  // Retreat deliberately shows the soft "final price after availability" copy in
-  // the booking summary — the "from" price lives on the retreat page instead.
+  if (item.type === 'retreat' && retreatOption?.price) {
+    return `${translate('price.from', 'From')} ${fmt(retreatOption.price)} ${retreatOption.priceSub || translate('price.per_person', 'per person')}`;
+  }
+  // Flexible retreat requests deliberately show the soft availability copy; fixed
+  // retreat options show their authored "from" price above.
   return translate('price.final_after_availability', 'Final price after availability check');
 }

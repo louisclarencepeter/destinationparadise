@@ -147,6 +147,7 @@
     "end_date": "Enddatum",
     "retreat_departure": "Retreat-Termin",
     "retreat_departure_placeholder": "Termin wählen",
+    "retreat_option": "Retreat-Option",
     "guests": "Gäste",
     "transfer_legend": "Transferdetails",
     "pickup_location": "Abholort",
@@ -233,6 +234,7 @@
     "pickup": "Abholung",
     "dropoff": "Ziel",
     "time": "Zeit",
+    "retreat_option": "Retreat-Option",
     "comfort": "Komfort",
     "payment": "Zahlung",
     "payment_title": "So funktioniert die Zahlung",
@@ -632,11 +634,32 @@
     "retreat": {
       "yoga-safari-retreat": {
         "label": "Yoga- & Safari-Reise",
-        "category": "14 Tage · Sansibar + Safari"
+        "category": "Volles Retreat, nur Sansibar oder nur Safari",
+        "options": {
+          "full-retreat": {
+            "label": "Volles Retreat",
+            "duration": "14 Tage · Sansibar + Safari",
+            "priceSub": "pro Person"
+          },
+          "zanzibar-only": {
+            "label": "Nur Sansibar",
+            "duration": "9 Tage · Sansibar-Küste",
+            "priceSub": "pro Person"
+          },
+          "safari-only": {
+            "label": "Nur Safari",
+            "duration": "5 Tage · Safari-Block auf dem Festland",
+            "priceSub": "pro Person"
+          }
+        }
       },
       "coastal-reset-week": {
         "label": "Coastal Reset Week",
         "category": "7 Tage · Sansibar-Küste"
+      },
+      "awham-thaivedic-flow-retreat": {
+        "label": "Awham Thaivedic Flow Retreat",
+        "category": "6 Tage · Awham-geführtes Küstenretreat"
       },
       "private-teacher-led-retreat": {
         "label": "Privates lehrergeführtes Retreat",

@@ -1,5 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { useCurrency } from '../../context/useCurrency.js';
+
+/** @typedef {{ slug: string, label?: string, duration?: string, price?: number, priceSub?: string }} RetreatOption */
 
 export default function BookingForm({
   budgetOptions,
@@ -14,6 +17,7 @@ export default function BookingForm({
   paymentOptions,
   productLabel,
   productPlaceholder,
+  retreatOptions = /** @type {RetreatOption[]} */ ([]),
   retreatDepartures,
   serviceTypes,
   showDateRange,
@@ -24,6 +28,7 @@ export default function BookingForm({
   visibleProducts,
 }) {
   const { t } = useTranslation('booking');
+  const { format } = useCurrency();
 
   return (
     <form className="booking-form" id="booking-details" onSubmit={onSubmit}>
@@ -51,6 +56,21 @@ export default function BookingForm({
             ))}
           </select>
         </label>
+      )}
+
+      {isRetreatRequest && retreatOptions.length > 0 && (
+        <fieldset className="booking-fieldset">
+          <legend>{t('form.retreat_option', { defaultValue: 'Retreat option' })}</legend>
+          <div className="booking-payment-grid">
+            {retreatOptions.map((item) => (
+              <label className={`booking-payment${form.retreatOption === item.slug ? ' is-selected' : ''}`} key={item.slug}>
+                <input type="radio" name="retreatOption" value={item.slug} checked={form.retreatOption === item.slug} onChange={update('retreatOption')} />
+                <span>{item.label}</span>
+                <small>{item.duration} · {format(item.price)} {item.priceSub}</small>
+              </label>
+            ))}
+          </div>
+        </fieldset>
       )}
 
       <div className="booking-row">

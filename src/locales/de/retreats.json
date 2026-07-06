@@ -8,8 +8,9 @@
     "subtitle": "Lehrergeführtes Yoga, Thaivedic Bodywork, Coastal-Reset-Wochen und Reisen mit Safari.",
     "lead": "Wähle ein festes Gruppenretreat oder lass uns ein privates Programm rund um deine Daten, dein Tempo und deine Praxis gestalten.",
     "see_day": "Retreats entdecken",
+    "meet_teachers": "Lehrer kennenlernen",
     "reserve": "Retreat planen →",
-    "stat_nights_value": "3",
+    "stat_nights_value": "4",
     "stat_nights": "Retreat-Arten",
     "stat_guests_value": "Team",
     "stat_guests": "Lehrer-Mix",
@@ -32,8 +33,28 @@
         "slug": "yoga-safari-retreat",
         "title": "Yoga- & Safari-Reise",
         "duration": "14 Tage · feste Termine",
-        "text": "Die komplette Reise von Sansibar aufs Festland: Praxis bei Sonnenaufgang, ruhige Küstentage und eine fünftägige Tansania-Safari in der Mitte.",
-        "highlights": ["Vinyasa, Yin, Meditation", "5-tägige Safari inklusive", "Kleine Gruppentermine"],
+        "text": "Eine gemeinsame Retreat-Reise mit drei Möglichkeiten: die vollständige Sansibar- und Safari-Erfahrung, nur die Praxistage auf Sansibar oder nur der Safari-Block auf dem Festland.",
+        "highlights": ["Vinyasa, Yin, Meditation", "Optionen nur Sansibar und nur Safari", "Kleine Gruppentermine"],
+        "options": [
+          {
+            "slug": "full-retreat",
+            "label": "Volles Retreat",
+            "text": "14 Tage · Sansibar + Safari",
+            "cta": "Volles Retreat reservieren"
+          },
+          {
+            "slug": "zanzibar-only",
+            "label": "Nur Sansibar",
+            "text": "9 Tage · Praxisrhythmus an der Küste",
+            "cta": "Nur-Sansibar-Option reservieren"
+          },
+          {
+            "slug": "safari-only",
+            "label": "Nur Safari",
+            "text": "5 Tage · Safari-Block auf dem Festland",
+            "cta": "Nur-Safari-Option reservieren"
+          }
+        ],
         "cta": "Diese Reise reservieren",
         "image_alt": "Yoga-Praxis über der Küste Sansibars"
       },
@@ -44,7 +65,16 @@
         "text": "Eine leichtere Wellnesswoche für Reisende, die tägliche Praxis, Meerzeit, Bodywork, nährende Mahlzeiten und optionale Insel-Erlebnisse möchten.",
         "highlights": ["Tägliche Praxis am Meer", "Optionale Bodywork-Sessions", "Strand, Riff und Stone Town als Add-ons"],
         "cta": "Reset-Termine anfragen",
-        "image_alt": "Seitbeuge in einer Yoga-Pose auf einer warmen Küstenterrasse"
+        "image_alt": "Awham führt eine unterstützte Beindehnung an einem Pool auf Lamu"
+      },
+      {
+        "slug": "awham-thaivedic-flow-retreat",
+        "title": "Awham Thaivedic Flow Retreat",
+        "duration": "6 Tage · Awham-geführtes Küstenretreat",
+        "text": "Ein von Lamu inspiriertes Retreat rund um Awhams Vinyasa für alle Level, Hatha, Thaivedic Bodywork, Hands-on-Korrekturen und langsame Regeneration an der Küste.",
+        "highlights": ["Vinyasa und Hatha mit Awham", "Thaivedic-Bodywork-Sessions", "Kleingruppen-Coaching und Regeneration"],
+        "cta": "Awham-Termine anfragen",
+        "image_alt": "Awham führt Thaivedic Bodywork auf einer Yogamatte"
       },
       {
         "slug": "private-teacher-led-retreat",
@@ -53,34 +83,70 @@
         "text": "Ein maßgeschneidertes Retreat für Paare, Freundesgruppen, Unternehmen oder Lehrer, die ihre eigene Gruppe nach Sansibar bringen.",
         "highlights": ["Praxisleitung passend zur Gruppe", "Private Villa oder Boutique-Hotel", "Flexibler Praxis- und Ausflugsplan"],
         "cta": "Privates Retreat bauen",
-        "image_alt": "Hands-on Bodywork-Session in Meeresnähe"
+        "image_alt": "Awham korrigiert eine Schülerin in einer privaten Studio-Session"
       }
     ]
   },
   "teachers": {
-    "eyebrow": "Faculty & Retreat-Team",
-    "title": "Ein Lehrer-Mix, der zum Retreat passt.",
-    "lead": "Das Programm steht im Mittelpunkt. Wir stimmen jedes Retreat auf passende Praxisleitung, Bodywork-Support, Gastpraktiker und lokale Hosts ab, statt alles von einer Person abhängig zu machen.",
+    "eyebrow": "Lehrer kennenlernen",
+    "title": "Mehrere Lehrer, ein Retreat-Rhythmus.",
+    "lead": "Jedes Retreat wird von Lehrern begleitet. Je nach Format verbinden wir Ninas achtsames Yoga, Awhams Vinyasa für alle Level und Thaivedic Bodywork mit Gastpraktikern und lokalen Hosts.",
+    "select_cta": "Retreats von {{teacher}} zeigen",
+    "selected_cta": "Diese Retreats werden gezeigt",
+    "selection_eyebrow": "Lehrer-Retreats",
+    "selection_title": "Retreats mit {{teacher}}",
+    "selection_lead": "Klicke oben auf einen Lehrer, um die Retreat-Formate zu sehen, die zu seiner Praxis passen. Die Buchungsanfrage öffnet direkt mit dem passenden Retreat.",
+    "detail": {
+      "page_title": "Retreats mit {{teacher}} · Destination Paradise",
+      "meta_description": "Lehrergeführte Sansibar-Retreats mit {{teacher}}.",
+      "breadcrumb_aria": "Breadcrumbs für Retreat-Lehrer",
+      "breadcrumb_home": "Start",
+      "breadcrumb_retreats": "Retreats",
+      "hero_label": "Lehrerprofil",
+      "plan_with_teacher": "Mit {{teacher}} planen",
+      "all_teachers": "Alle Lehrer",
+      "focus_eyebrow": "Praxisfokus",
+      "focus_title": "Wie {{teacher}} das Retreat hält",
+      "focus_lead": "Nutze diese Seite, um den Praxisfokus des Lehrers zu verstehen, und wähle danach eines der passenden Retreat-Formate unten.",
+      "retreats_eyebrow": "Zugeordnete Retreats",
+      "retreats_title": "Retreats mit {{teacher}}",
+      "retreats_lead": "Diese Retreat-Formate sind aktuell mit diesem Lehrer verbunden. Jedes öffnet die Buchungsanfrage direkt mit dem passenden Retreat.",
+      "cta_title": "Soll {{teacher}} Teil deines Retreat-Plans sein?",
+      "cta_text": "Teile deine Daten, Gruppengröße, Praxislevel und ob das Programm an der Küste bleiben oder mit Safari verbunden werden soll.",
+      "cta_primary": "Retreat-Anfrage starten →",
+      "cta_secondary": "Zurück zu Retreats",
+      "not_found_page_title": "Retreat-Lehrer nicht gefunden · Destination Paradise",
+      "not_found_eyebrow": "Lehrer nicht gefunden",
+      "not_found_title": "Dieser Retreat-Lehrer ist nicht im aktuellen Programm.",
+      "not_found_text": "Sieh dir die aktuellen Retreat-Lehrer an und öffne das Profil, das du erkunden möchtest.",
+      "back_to_teachers": "Zurück zu den Lehrern"
+    },
     "items": [
       {
-        "name": "Mindful Flow & Stille",
-        "role": "Nina · Vinyasa, Yin, Atemarbeit",
+        "id": "nina",
+        "name": "Nina Pfatischer",
+        "role": "Yogalehrerin · Vinyasa, Yin, Atemarbeit",
         "text": "Nina leitet warme, achtsame Praktiken, geprägt von ihrer Ausbildung in Portugal und Unterrichtserfahrung in Marokko und Deutschland. Ihre Sessions bringen Bewegung, Atem, Musik, Philosophie und stille Integration in den Retreat-Rhythmus.",
         "specialties": ["Vinyasa Flow", "Hatha und Yin", "Meditation und Atemarbeit"],
+        "retreats": ["yoga-safari-retreat", "coastal-reset-week"],
         "image_alt": "Gruppen-Yogapraxis mit einer leitenden Lehrerin"
       },
       {
-        "name": "Vinyasa für alle Level & Bodywork",
-        "role": "Awham Mohamed Al-Obaidy · @shela_yogi",
+        "id": "awham",
+        "name": "Awham Mohamed Al-Obaidy",
+        "role": "Yoga & Thaivedic Bodywork · @shela_yogi",
         "text": "Awham ist in Lamu geboren und aufgewachsen, internationaler Yoga- und Thaivedic-Experte, Content Creator und Erzähler für Wellness und Hospitality. In Retreats bringt er Vinyasa, Hatha und Hands-on-Bodywork mit einem Gefühl für das Leben am Ozean ein.",
         "specialties": ["Vinyasa für alle Level", "Hatha Yoga", "Thaivedic Bodywork", "Lamu-Wellness-Lifestyle"],
-        "image_alt": "Hands-on Bodywork-Session als Bild für Awham Yogas Thaivedic-Praxis"
+        "retreats": ["awham-thaivedic-flow-retreat", "private-teacher-led-retreat"],
+        "image_alt": "Awham korrigiert den herabschauenden Hund einer Schülerin in seinem Studio auf Lamu"
       },
       {
-        "name": "Gastpraktiker & Insel-Hosts",
+        "id": "guest",
+        "name": "Gastlehrer & Insel-Hosts",
         "role": "Klang, Meditation, Massage, Kultur",
         "text": "Je nach Retreat kann das Team lokale Wellness-Praktiker, Guides, Köche, Massagetherapeuten, Safari-Planer und Insel-Hosts einbinden, die die Reise geerdet, praktisch und mit dem Ort verbunden halten.",
         "specialties": ["Klang und Meditation", "Massage und Regeneration", "Insel- und Safari-Support"],
+        "retreats": ["private-teacher-led-retreat", "coastal-reset-week"],
         "image_alt": "Kleine Gruppe bei der Yogapraxis am Strand"
       }
     ]
@@ -131,13 +197,13 @@
     "lead": "Ein Einblick in die Praxis — Küste, Terrassen, warmer Stein, Hands-on-Unterstützung und die Stille nach der Bewegung.",
     "items": [
       { "caption": "Rückbeuge · offener Himmel" },
-      { "caption": "Wurzeln schlagen · warmer Stein" },
+      { "caption": "Thaivedic Bodywork · Palmen von Lamu" },
       { "caption": "Balancearbeit · Terrassenlicht" },
-      { "caption": "Kriegerkreis · gemeinsamer Atem" },
+      { "caption": "Gehaltenes Loslassen · Ruhe im Studio" },
       { "caption": "Wild Thing · goldene Stunde" },
-      { "caption": "Plank am Morgen · Praxis am Strand" },
+      { "caption": "Sitzender Twist · Meeresluft" },
       { "caption": "Vrksasana · Bergluft" },
-      { "caption": "Sanftes Loslassen · weiche Landung" }
+      { "caption": "Hands-on im Detail · ruhiger Druck" }
     ]
   },
   "included": {
@@ -164,7 +230,7 @@
     "items": [
       {
         "q": "Ist das noch ein Retreat oder sind es mehrere?",
-        "a": "Mehrere. Das Flagship ist die 14-tägige Yoga- & Safari-Reise, aber wir gestalten jetzt auch Coastal-Reset-Wochen und private lehrergeführte Retreats für Wunschdaten."
+        "a": "Mehrere. Die Yoga- & Safari-Reise ist ein Retreat mit Optionen für das volle Programm, nur Sansibar oder nur Safari. Außerdem gestalten wir Coastal-Reset-Wochen und private lehrergeführte Retreats für Wunschdaten."
       },
       {
         "q": "Können Anfänger mitkommen?",

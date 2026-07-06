@@ -147,6 +147,7 @@
     "end_date": "End date",
     "retreat_departure": "Retreat departure",
     "retreat_departure_placeholder": "Choose a departure",
+    "retreat_option": "Retreat option",
     "guests": "Guests",
     "transfer_legend": "Transfer details",
     "pickup_location": "Pickup location",
@@ -233,6 +234,7 @@
     "pickup": "Pickup",
     "dropoff": "Drop-off",
     "time": "Time",
+    "retreat_option": "Retreat option",
     "comfort": "Comfort",
     "payment": "Payment",
     "payment_title": "How payment works",
@@ -632,11 +634,32 @@
     "retreat": {
       "yoga-safari-retreat": {
         "label": "Yoga & Safari Journey",
-        "category": "14 days · Zanzibar + safari"
+        "category": "Full retreat, Zanzibar-only, or safari-only",
+        "options": {
+          "full-retreat": {
+            "label": "Full retreat",
+            "duration": "14 days · Zanzibar + safari",
+            "priceSub": "per person"
+          },
+          "zanzibar-only": {
+            "label": "Zanzibar-only",
+            "duration": "9 days · Zanzibar coast",
+            "priceSub": "per person"
+          },
+          "safari-only": {
+            "label": "Safari-only",
+            "duration": "5 days · mainland safari block",
+            "priceSub": "per person"
+          }
+        }
       },
       "coastal-reset-week": {
         "label": "Coastal Reset Week",
         "category": "7 days · Zanzibar coast"
+      },
+      "awham-thaivedic-flow-retreat": {
+        "label": "Awham Thaivedic Flow Retreat",
+        "category": "6 days · Awham-led coastal retreat"
       },
       "private-teacher-led-retreat": {
         "label": "Private Teacher-Led Retreat",

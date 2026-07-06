@@ -147,6 +147,7 @@
     "end_date": "Data zakończenia",
     "retreat_departure": "Termin retreatu",
     "retreat_departure_placeholder": "Wybierz termin",
+    "retreat_option": "Opcja retreatu",
     "guests": "Goście",
     "transfer_legend": "Szczegóły transferu",
     "pickup_location": "Miejsce odbioru",
@@ -233,6 +234,7 @@
     "pickup": "Odbiór",
     "dropoff": "Cel",
     "time": "Godzina",
+    "retreat_option": "Opcja retreatu",
     "comfort": "Komfort",
     "payment": "Płatność",
     "payment_title": "Jak działa płatność",
@@ -632,11 +634,32 @@
     "retreat": {
       "yoga-safari-retreat": {
         "label": "Podróż joga i safari",
-        "category": "14 dni · Zanzibar + safari"
+        "category": "Pełny retreat, tylko Zanzibar albo tylko safari",
+        "options": {
+          "full-retreat": {
+            "label": "Pełny retreat",
+            "duration": "14 dni · Zanzibar + safari",
+            "priceSub": "za osobę"
+          },
+          "zanzibar-only": {
+            "label": "Tylko Zanzibar",
+            "duration": "9 dni · wybrzeże Zanzibaru",
+            "priceSub": "za osobę"
+          },
+          "safari-only": {
+            "label": "Tylko safari",
+            "duration": "5 dni · blok safari na lądzie",
+            "priceSub": "za osobę"
+          }
+        }
       },
       "coastal-reset-week": {
         "label": "Coastal Reset Week",
         "category": "7 dni · wybrzeże Zanzibaru"
+      },
+      "awham-thaivedic-flow-retreat": {
+        "label": "Awham Thaivedic Flow Retreat",
+        "category": "6 dni · retreat nad wybrzeżem z Awhamem"
       },
       "private-teacher-led-retreat": {
         "label": "Prywatny retreat z nauczycielem",
