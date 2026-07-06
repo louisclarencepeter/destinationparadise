@@ -5,62 +5,23 @@ import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { useCurrency } from '../context/useCurrency.js';
 import usePageMeta from '../hooks/usePageMeta.js';
 import { RETREAT_PRODUCTS } from '../data/retreatProducts.js';
+import {
+  RETREAT_GALLERY_IMAGES,
+  RETREAT_HERO_IMAGES,
+  RETREAT_PAGE_IMAGES,
+  RETREAT_TEACHER_IMAGES,
+  RETREAT_TYPE_IMAGES,
+} from '../data/retreatsPageData.js';
+import { arrayFromTranslation } from '../utils/translationValues.js';
 import '../styles/excursions/hero.css';
 import '../styles/retreats.css';
 
 // Single source of truth for the retreat collection's "from" price.
 const RETREAT_PRICE = Math.min(...RETREAT_PRODUCTS.map((product) => product.price));
 
-const IMG = {
-  quote: '/assets/images/retreats/coastal-handstand-sunset.webp',
-  cta: '/assets/images/retreats/mountain-star-pose.webp',
-};
-
-const HERO_IMAGES = [
-  '/assets/images/retreats/zanzibar-tree-pose-view.webp',
-  '/assets/images/retreats/studio-warrior-circle.webp',
-  '/assets/images/retreats/assisted-beach-stretch.webp',
-  '/assets/images/retreats/yoga-side-bend-beach.webp',
-  '/assets/images/retreats/yoga-plank-sunset-coast.webp',
-  '/assets/images/retreats/terrace-wheel-pose.webp',
-  '/assets/images/retreats/red-rock-tree-pose.webp',
-  '/assets/images/retreats/terrace-balance-pose.webp',
-  '/assets/images/retreats/red-rock-wild-thing.webp',
-  '/assets/images/retreats/beach-class-plank.webp',
-  '/assets/images/retreats/alpine-tree-pose.webp',
-  '/assets/images/retreats/yoga-clifftop-ocean-view.webp',
-  '/assets/images/retreats/yoga-tree-pose-beach.webp',
-  '/assets/images/retreats/coastal-handstand-sunset.webp',
-  '/assets/images/retreats/mountain-star-pose.webp',
-  '/assets/images/retreats/teacher-garden-sun-portrait.webp',
-  '/assets/images/retreats/teacher-portrait-garden.webp',
-];
-
-const RETREAT_TYPE_IMAGES = [
-  '/assets/images/retreats/yoga-clifftop-ocean-view.webp',
-  '/assets/images/retreats/yoga-side-bend-beach.webp',
-  '/assets/images/retreats/assisted-beach-stretch.webp',
-];
-
-const TEACHER_IMAGES = [
-  '/assets/images/retreats/studio-warrior-circle.webp',
-  '/assets/images/retreats/assisted-beach-stretch.webp',
-  '/assets/images/retreats/beach-class-plank.webp',
-];
-
-// Bento gallery — paired with the localized captions (gallery.items), in order.
-const GALLERY_IMAGES = [
-  '/assets/images/retreats/terrace-wheel-pose.webp',
-  '/assets/images/retreats/red-rock-tree-pose.webp',
-  '/assets/images/retreats/terrace-balance-pose.webp',
-  '/assets/images/retreats/studio-warrior-circle.webp',
-  '/assets/images/retreats/red-rock-wild-thing.webp',
-  '/assets/images/retreats/beach-class-plank.webp',
-  '/assets/images/retreats/alpine-tree-pose.webp',
-  '/assets/images/retreats/assisted-beach-stretch.webp',
-];
-
-const arrayFromTranslation = (value) => (Array.isArray(value) ? value : []);
+const optionCopyBySlug = (item) => new Map(
+  arrayFromTranslation(item?.options).map((option) => [option.slug, option]),
+);
 
 export default function Retreats() {
   const { t, ready } = useTranslation('retreats');
@@ -93,9 +54,9 @@ export default function Retreats() {
 
   useEffect(() => {
     const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion || HERO_IMAGES.length < 2) return undefined;
+    if (reduceMotion || RETREAT_HERO_IMAGES.length < 2) return undefined;
     const timer = window.setInterval(() => {
-      setHeroSlide((index) => (index + 1) % HERO_IMAGES.length);
+      setHeroSlide((index) => (index + 1) % RETREAT_HERO_IMAGES.length);
     }, 5200);
     return () => window.clearInterval(timer);
   }, []);
@@ -127,7 +88,7 @@ export default function Retreats() {
       {/* Hero — shared site hero pattern (mirrors excursions/safaris/packages) */}
       <section className="exc-hero">
         <div className="exc-hero__bg ret-hero-slideshow">
-          {HERO_IMAGES.map((image, index) => (
+          {RETREAT_HERO_IMAGES.map((image, index) => (
             <div
               className={`ret-hero-slide${index === heroSlide ? ' is-active' : ''}`}
               key={image}
@@ -150,6 +111,7 @@ export default function Retreats() {
           <p className="exc-hero__lead">{t('hero.subtitle')}</p>
           <div className="exc-hero__row">
             <a className="btn btn--lg" href="#retreat-types">{t('hero.see_day')}</a>
+            <a className="btn btn--ghost btn--lg" href="#teachers">{t('hero.meet_teachers')}</a>
             <Link className="btn btn--ghost btn--lg" to="/booking?type=retreat">{t('hero.reserve')}</Link>
           </div>
           <div className="exc-hero__meta">
@@ -169,6 +131,43 @@ export default function Retreats() {
         </p>
       </section>
 
+      {/* Teachers */}
+      <section className="ret-teachers reveal" id="teachers">
+        <header className="ret-teachers__head">
+          <span className="ret-eyebrow">{t('teachers.eyebrow')}</span>
+          <h2 className="ret-title">{t('teachers.title')}</h2>
+          <p>{t('teachers.lead')}</p>
+        </header>
+        <div className="ret-teachers__grid">
+          {teachers.map((teacher, i) => {
+            return (
+              <article className="ret-teacher-card" key={teacher.name}>
+                <div className="ret-teacher-card__media">
+                  <ResponsiveImage src={RETREAT_TEACHER_IMAGES[i % RETREAT_TEACHER_IMAGES.length]} alt={teacher.image_alt} sizes="(max-width: 900px) 100vw, 45vw" />
+                </div>
+                <div className="ret-teacher-card__copy">
+                  <span>{teacher.role}</span>
+                  <h3>{teacher.name}</h3>
+                  <p>{teacher.text}</p>
+                  <ul>
+                    {arrayFromTranslation(teacher.specialties).map((specialty) => (
+                      <li key={specialty}>{specialty}</li>
+                    ))}
+                  </ul>
+                  <Link
+                    className="ret-teacher-card__button"
+                    to={`/retreats/teachers/${teacher.id}`}
+                    aria-label={t('teachers.select_cta', { teacher: teacher.name })}
+                  >
+                    {t('teachers.select_cta', { teacher: teacher.name })}
+                  </Link>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
       {/* Retreat styles */}
       <section className="ret-dark ret-types" id="retreat-types">
         <header className="ret-dark__head reveal">
@@ -179,6 +178,8 @@ export default function Retreats() {
         <div className="ret-types__grid">
           {retreatTypes.map((item, i) => {
             const product = RETREAT_PRODUCTS.find((entry) => entry.slug === item.slug);
+            const productOptions = product && 'options' in product && Array.isArray(product.options) ? product.options : [];
+            const optionCopy = optionCopyBySlug(item);
             return (
               <article className="ret-type-card reveal" key={item.slug} style={{ '--ret-reveal-index': i }}>
                 <div className="ret-type-card__media">
@@ -193,12 +194,40 @@ export default function Retreats() {
                       <li key={highlight}>{highlight}</li>
                     ))}
                   </ul>
-                  <div className="ret-type-card__footer">
-                    {product && (
-                      <p>{t('retreat_types.price_from')} <strong>{format(product.price)}</strong></p>
-                    )}
-                    <Link to={`/booking?type=retreat&item=${item.slug}`}>{item.cta}</Link>
-                  </div>
+                  {productOptions.length > 0 && (
+                    <div className="ret-type-card__options">
+                      {productOptions.map((option) => {
+                        const copy = optionCopy.get(option.slug);
+                        return (
+                          <Link
+                            className="ret-option-card"
+                            key={option.slug}
+                            to={`/booking?type=retreat&item=${item.slug}&option=${option.slug}`}
+                          >
+                            <span className="ret-option-card__copy">
+                              <span>{copy?.label || option.label}</span>
+                              <small>{copy?.text || option.duration}</small>
+                            </span>
+                            <strong>{format(option.price)}</strong>
+                            <span className="ret-option-card__cta">{copy?.cta || item.cta}</span>
+                          </Link>
+                        );
+                      })}
+                    </div>
+                  )}
+                  {productOptions.length === 0 && (
+                    <Link
+                      className="ret-option-card ret-option-card--single"
+                      to={`/booking?type=retreat&item=${item.slug}`}
+                    >
+                      <span className="ret-option-card__copy">
+                        <span>{item.title}</span>
+                        <small>{item.duration}</small>
+                      </span>
+                      {product && <strong>{format(product.price)}</strong>}
+                      <span className="ret-option-card__cta">{item.cta}</span>
+                    </Link>
+                  )}
                 </div>
               </article>
             );
@@ -206,37 +235,9 @@ export default function Retreats() {
         </div>
       </section>
 
-      {/* Teachers */}
-      <section className="ret-teachers reveal" id="teachers">
-        <header className="ret-teachers__head">
-          <span className="ret-eyebrow">{t('teachers.eyebrow')}</span>
-          <h2 className="ret-title">{t('teachers.title')}</h2>
-          <p>{t('teachers.lead')}</p>
-        </header>
-        <div className="ret-teachers__grid">
-          {teachers.map((teacher, i) => (
-            <article className="ret-teacher-card reveal" key={teacher.name} style={{ '--ret-reveal-index': i }}>
-              <div className="ret-teacher-card__media">
-                <ResponsiveImage src={TEACHER_IMAGES[i % TEACHER_IMAGES.length]} alt={teacher.image_alt} sizes="(max-width: 900px) 100vw, 45vw" />
-              </div>
-              <div className="ret-teacher-card__copy">
-                <span>{teacher.role}</span>
-                <h3>{teacher.name}</h3>
-                <p>{teacher.text}</p>
-                <ul>
-                  {arrayFromTranslation(teacher.specialties).map((specialty) => (
-                    <li key={specialty}>{specialty}</li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
-
       {/* Quote band */}
       <section className="ret-quote">
-        <div className="ret-quote__bg"><ResponsiveImage src={IMG.quote} alt="" sizes="100vw" /></div>
+        <div className="ret-quote__bg"><ResponsiveImage src={RETREAT_PAGE_IMAGES.quote} alt="" sizes="100vw" /></div>
         <blockquote className="ret-quote__text">
           <Trans i18nKey="quote.text" ns="retreats" components={{ em: <em /> }} />
         </blockquote>
@@ -312,7 +313,7 @@ export default function Retreats() {
         <div className="ret-gallery__grid">
           {galleryItems.map((item, i) => (
             <figure className={`ret-gallery__cell ret-gallery__cell--${i + 1} reveal`} key={`gallery-${i}`} style={{ '--ret-reveal-index': i }}>
-              <ResponsiveImage src={GALLERY_IMAGES[i % GALLERY_IMAGES.length]} alt={item.caption} sizes="(max-width: 900px) 100vw, 50vw" />
+              <ResponsiveImage src={RETREAT_GALLERY_IMAGES[i % RETREAT_GALLERY_IMAGES.length]} alt={item.caption} sizes="(max-width: 900px) 100vw, 50vw" />
               <figcaption aria-hidden="true">{item.caption}</figcaption>
             </figure>
           ))}
@@ -371,7 +372,7 @@ export default function Retreats() {
 
       {/* CTA */}
       <section className="ret-cta reveal">
-        <div className="ret-cta__bg"><ResponsiveImage src={IMG.cta} alt="" sizes="100vw" /></div>
+        <div className="ret-cta__bg"><ResponsiveImage src={RETREAT_PAGE_IMAGES.cta} alt="" sizes="100vw" /></div>
         <div className="ret-cta__inner">
           <h2 className="ret-title ret-title--light">{t('cta.title')}</h2>
           <p>{t('cta.text')}</p>

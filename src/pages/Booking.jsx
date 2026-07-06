@@ -28,6 +28,34 @@ import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/booking.css';
 
+/**
+ * @typedef {{ start: string, end: string }} RetreatDeparture
+ * @typedef {{ slug: string, label?: string, duration?: string, price?: number, priceSub?: string, departures?: RetreatDeparture[] }} RetreatOption
+ */
+
+/** @param {unknown} raw */
+const retreatOptionsFromRaw = (raw) => (
+  raw && typeof raw === 'object' && 'options' in raw && Array.isArray(raw.options)
+    ? /** @type {RetreatOption[]} */ (raw.options)
+    : []
+);
+
+/** @param {unknown} raw */
+const retreatDeparturesFromRaw = (raw) => (
+  raw && typeof raw === 'object' && 'departures' in raw && Array.isArray(raw.departures)
+    ? /** @type {RetreatDeparture[]} */ (raw.departures)
+    : []
+);
+
+/** @param {unknown} raw */
+const rawSlugOrId = (raw) => {
+  if (!raw || typeof raw !== 'object') return { slug: undefined, id: undefined };
+  return {
+    slug: 'slug' in raw ? raw.slug : undefined,
+    id: 'id' in raw ? raw.id : undefined,
+  };
+};
+
 export default function Booking() {
   const { t, i18n, ready } = useTranslation('booking');
   const { format } = useCurrency();
@@ -49,7 +77,7 @@ export default function Booking() {
   // Only the fields that change the summary's rendered height/content drive a
   // re-measure — keying on the whole `form` would re-subscribe the scroll/resize
   // listeners on every keystroke.
-  const summaryRefreshKey = `${form.serviceType}|${form.product}|${form.paymentPreference}|${form.transferTier}`;
+  const summaryRefreshKey = `${form.serviceType}|${form.product}|${form.retreatOption}|${form.paymentPreference}|${form.transferTier}`;
   const summaryFloat = useFloatingBookingSummary(layoutRef, summarySlotRef, summaryRef, summaryRefreshKey);
   const serviceTypes = useMemo(() => translatedList(t, 'service_types', SERVICE_TYPES), [t]);
   const paymentOptions = useMemo(() => translatedList(t, 'payment_options', PAYMENT_OPTIONS), [t]);
@@ -79,6 +107,7 @@ export default function Booking() {
   useEffect(() => {
     const type = searchParams.get('type');
     const item = searchParams.get('item') || searchParams.get('product');
+    const option = searchParams.get('option') || searchParams.get('variant');
     if (!type && !item) return;
 
     // Prefill once per unique deep link. `t` / `products` / `serviceTypes` change
@@ -88,17 +117,25 @@ export default function Booking() {
     const linkKey = searchParams.toString();
     if (prefillKeyRef.current === linkKey) return;
 
-    const matched = products.all.find((product) => (
-      (type ? product.type === type : true) &&
-      (product.raw.slug === item || product.raw.id === item || product.value === item)
-    ));
+    const matched = products.all.find((product) => {
+      const rawIds = rawSlugOrId(product.raw);
+      return (
+        (type ? product.type === type : true) &&
+        (rawIds.slug === item || rawIds.id === item || product.value === item)
+      );
+    });
 
     if (matched) {
+      const retreatOptions = matched.type === 'retreat' ? retreatOptionsFromRaw(matched.raw) : [];
+      const matchedOption = retreatOptions.find((entry) => entry.slug === option) || retreatOptions[0] || null;
       prefillKeyRef.current = linkKey;
       setForm((current) => ({
         ...current,
         serviceType: matched.type,
         product: matched.value,
+        retreatOption: matchedOption?.slug || '',
+        startDate: matched.type === 'retreat' ? '' : current.startDate,
+        endDate: matched.type === 'retreat' ? '' : current.endDate,
       }));
     } else if (products.all.length > 0) {
       // Products are loaded and nothing matched — a genuine unmatched deep link.
@@ -158,8 +195,10 @@ export default function Booking() {
   const isRetreatRequest = form.serviceType === 'retreat';
   const selectedTransferTier = transferTiers.find((item) => item.value === form.transferTier);
   const selectedRetreatProduct = selectedProduct?.type === 'retreat' ? selectedProduct : null;
+  const retreatOptions = retreatOptionsFromRaw(selectedRetreatProduct?.raw);
+  const selectedRetreatOption = retreatOptions.find((item) => item.slug === form.retreatOption) || retreatOptions[0] || null;
   const retreatDepartures = useMemo(() => {
-    const departures = selectedRetreatProduct?.raw.departures || [];
+    const departures = selectedRetreatOption?.departures || retreatDeparturesFromRaw(selectedRetreatProduct?.raw);
     const formatter = new Intl.DateTimeFormat(i18n.resolvedLanguage || 'en', {
       day: 'numeric',
       month: 'short',
@@ -170,7 +209,7 @@ export default function Booking() {
       // Noon avoids the UTC-midnight off-by-one day shift in negative offsets.
       label: formatter.formatRange(new Date(`${dep.start}T12:00:00`), new Date(`${dep.end}T12:00:00`)),
     }));
-  }, [selectedRetreatProduct, i18n.resolvedLanguage]);
+  }, [selectedRetreatProduct, selectedRetreatOption, i18n.resolvedLanguage]);
   const onDepartureChange = (event) => {
     const start = event.target.value;
     const departure = retreatDepartures.find((dep) => dep.start === start);
@@ -226,6 +265,7 @@ export default function Booking() {
       ...(key === 'serviceType'
         ? {
           product: '',
+          retreatOption: '',
           // Retreat uses fixed departures; clear any free-form dates so the
           // departure dropdown starts unselected rather than showing a stale date.
           startDate: value === 'retreat' ? '' : current.startDate,
@@ -236,6 +276,13 @@ export default function Booking() {
         }
         : {}),
       ...(key === 'product' && current.serviceType === 'retreat'
+        ? {
+          retreatOption: retreatOptionsFromRaw(products.all.find((item) => item.value === value)?.raw)[0]?.slug || '',
+          startDate: '',
+          endDate: '',
+        }
+        : {}),
+      ...(key === 'retreatOption'
         ? {
           startDate: '',
           endDate: '',
@@ -262,7 +309,8 @@ export default function Booking() {
       flightNumber: isTransferRequest ? form.flightNumber : '',
       transferTime: isTransferRequest ? form.transferTime : '',
       productLabel: selectedProduct?.label || t('common.not_selected', { defaultValue: 'Not selected' }),
-      estimatedPrice: bookingPriceLabel(selectedProduct, t, format),
+      retreatOptionLabel: selectedRetreatOption?.label || '',
+      estimatedPrice: bookingPriceLabel(selectedProduct, t, format, selectedRetreatOption),
       lang: i18n.resolvedLanguage || i18n.language || 'en',
       source: plannerHandoff ? 'planner' : 'booking',
       plannerDraft: plannerHandoff?.transcript || '',
@@ -309,6 +357,7 @@ export default function Booking() {
             messagePlaceholder={messagePlaceholder}
             onDepartureChange={onDepartureChange}
             onSubmit={submit}
+            retreatOptions={retreatOptions}
             retreatDepartures={retreatDepartures}
             paymentOptions={paymentOptions}
             productLabel={productLabel}
@@ -329,6 +378,7 @@ export default function Booking() {
             isTransferRequest={isTransferRequest}
             paymentOptions={paymentOptions}
             selectedProduct={selectedProduct}
+            selectedRetreatOption={selectedRetreatOption}
             selectedService={selectedService}
             selectedTransferTier={selectedTransferTier}
             showDateRange={showDateRange}

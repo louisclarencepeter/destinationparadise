@@ -8,8 +8,9 @@
     "subtitle": "Teacher-led yoga, Thaivedic bodywork, coastal reset weeks, and safari journeys.",
     "lead": "Choose a fixed group retreat or ask us to shape a private teacher-led program around your dates, pace, and practice.",
     "see_day": "Explore retreats",
+    "meet_teachers": "Meet the teachers",
     "reserve": "Plan my retreat →",
-    "stat_nights_value": "3",
+    "stat_nights_value": "4",
     "stat_nights": "Retreat styles",
     "stat_guests_value": "Team",
     "stat_guests": "Teacher mix",
@@ -32,8 +33,28 @@
         "slug": "yoga-safari-retreat",
         "title": "Yoga & Safari Journey",
         "duration": "14 days · fixed departures",
-        "text": "The full Zanzibar-to-mainland journey: sunrise practice, slow coastal days, and a five-day Tanzania safari woven into the middle.",
-        "highlights": ["Vinyasa, yin, meditation", "5-day safari included", "Small group departures"],
+        "text": "One shared retreat journey with three ways to join: the full Zanzibar and safari experience, the Zanzibar practice days only, or the mainland safari block only.",
+        "highlights": ["Vinyasa, yin, meditation", "Zanzibar-only and safari-only options", "Small group departures"],
+        "options": [
+          {
+            "slug": "full-retreat",
+            "label": "Full retreat",
+            "text": "14 days · Zanzibar + safari",
+            "cta": "Reserve full retreat"
+          },
+          {
+            "slug": "zanzibar-only",
+            "label": "Zanzibar-only",
+            "text": "9 days · coastal practice rhythm",
+            "cta": "Reserve Zanzibar-only"
+          },
+          {
+            "slug": "safari-only",
+            "label": "Safari-only",
+            "text": "5 days · mainland safari block",
+            "cta": "Reserve safari-only"
+          }
+        ],
         "cta": "Reserve this journey",
         "image_alt": "Yoga practice above the Zanzibar coastline"
       },
@@ -44,7 +65,16 @@
         "text": "A lighter wellness week for travelers who want daily practice, ocean time, bodywork, nourishing meals, and optional island excursions.",
         "highlights": ["Daily practice by the sea", "Optional bodywork sessions", "Beach, reef, and Stone Town add-ons"],
         "cta": "Ask for reset dates",
-        "image_alt": "Side-bend yoga pose on a warm coastal terrace"
+        "image_alt": "Awham guiding a supported leg stretch beside a Lamu pool"
+      },
+      {
+        "slug": "awham-thaivedic-flow-retreat",
+        "title": "Awham Thaivedic Flow Retreat",
+        "duration": "6 days · Awham-led coastal retreat",
+        "text": "A Lamu-inspired retreat built around Awham's all-level vinyasa, hatha, Thaivedic bodywork, hands-on adjustments, and slow coastal recovery.",
+        "highlights": ["Awham-led vinyasa and hatha", "Thaivedic bodywork sessions", "Small-group coaching and recovery"],
+        "cta": "Ask for Awham dates",
+        "image_alt": "Awham guiding Thaivedic bodywork on a yoga mat"
       },
       {
         "slug": "private-teacher-led-retreat",
@@ -53,34 +83,70 @@
         "text": "A tailor-made retreat for couples, friends, companies, or teachers bringing their own group to Zanzibar.",
         "highlights": ["Practice lead matched to the group", "Private villa or boutique hotel base", "Flexible practice and excursion plan"],
         "cta": "Build a private retreat",
-        "image_alt": "Hands-on bodywork session near the ocean"
+        "image_alt": "Awham adjusting a student in a private studio session"
       }
     ]
   },
   "teachers": {
-    "eyebrow": "Faculty & retreat team",
-    "title": "A teacher mix matched to the retreat.",
-    "lead": "The program comes first. We match each retreat to the right practice lead, bodywork support, guest practitioners, and local hosts instead of making the whole experience depend on one person.",
+    "eyebrow": "Meet the teachers",
+    "title": "Several teachers, one retreat rhythm.",
+    "lead": "Every retreat is teacher-led. Depending on the format, the program can combine Nina's mindful yoga, Awham's all-level vinyasa and Thaivedic bodywork, plus guest practitioners and local hosts.",
+    "select_cta": "Show retreats for {{teacher}}",
+    "selected_cta": "Showing these retreats",
+    "selection_eyebrow": "Teacher retreats",
+    "selection_title": "Retreats with {{teacher}}",
+    "selection_lead": "Click a teacher above to see the retreat formats connected to their practice, then open the booking request with that retreat already selected.",
+    "detail": {
+      "page_title": "{{teacher}} Retreats · Destination Paradise",
+      "meta_description": "Teacher-led Zanzibar retreats with {{teacher}}.",
+      "breadcrumb_aria": "Retreat teacher breadcrumbs",
+      "breadcrumb_home": "Home",
+      "breadcrumb_retreats": "Retreats",
+      "hero_label": "Teacher profile",
+      "plan_with_teacher": "Plan with {{teacher}}",
+      "all_teachers": "All teachers",
+      "focus_eyebrow": "Practice focus",
+      "focus_title": "How {{teacher}} holds the retreat",
+      "focus_lead": "Use this page to understand the teacher's practice focus, then choose one of the connected retreat formats below.",
+      "retreats_eyebrow": "Associated retreats",
+      "retreats_title": "Retreats with {{teacher}}",
+      "retreats_lead": "These are the retreat formats currently connected to this teacher. Each one opens the booking request with the right retreat selected.",
+      "cta_title": "Want {{teacher}} in your retreat plan?",
+      "cta_text": "Share your dates, group size, practice level, and whether you want the program to stay coastal or connect with safari.",
+      "cta_primary": "Start a retreat request →",
+      "cta_secondary": "Back to retreats",
+      "not_found_page_title": "Retreat teacher not found · Destination Paradise",
+      "not_found_eyebrow": "Teacher not found",
+      "not_found_title": "That retreat teacher is not in the current program.",
+      "not_found_text": "Browse the current retreat teachers and choose the profile you want to explore.",
+      "back_to_teachers": "Back to teachers"
+    },
     "items": [
       {
-        "name": "Mindful flow & stillness",
-        "role": "Nina · vinyasa, yin, breathwork",
+        "id": "nina",
+        "name": "Nina Pfatischer",
+        "role": "Yoga teacher · vinyasa, yin, breathwork",
         "text": "Nina leads warm, mindful practices shaped by teacher training in Portugal and teaching experience in Morocco and Germany. Her sessions bring movement, breath, music, philosophy, and quiet integration into the retreat rhythm.",
         "specialties": ["Vinyasa flow", "Hatha and yin", "Meditation and breathwork"],
+        "retreats": ["yoga-safari-retreat", "coastal-reset-week"],
         "image_alt": "Group yoga practice with a teacher leading the room"
       },
       {
-        "name": "All-level vinyasa & bodywork",
-        "role": "Awham Mohamed Al-Obaidy · @shela_yogi",
+        "id": "awham",
+        "name": "Awham Mohamed Al-Obaidy",
+        "role": "Yoga & Thaivedic bodywork · @shela_yogi",
         "text": "Lamu born and raised, Awham is an international yoga and Thaivedic expert, content creator, and wellness-hospitality storyteller. He brings vinyasa, hatha, and hands-on bodywork into retreat programs with an ocean-life sensibility.",
         "specialties": ["Vinyasa for all levels", "Hatha yoga", "Thaivedic bodywork", "Lamu wellness lifestyle"],
-        "image_alt": "Hands-on bodywork session representing Awham Yoga's Thaivedic practice"
+        "retreats": ["awham-thaivedic-flow-retreat", "private-teacher-led-retreat"],
+        "image_alt": "Awham adjusting a student's downward dog in his Lamu studio"
       },
       {
-        "name": "Guest practitioners & island hosts",
+        "id": "guest",
+        "name": "Guest teachers & island hosts",
         "role": "Sound, meditation, massage, culture",
         "text": "Depending on the retreat, the team can include local wellness practitioners, guides, chefs, massage therapists, safari planners, and island hosts who keep the journey grounded, practical, and connected to place.",
         "specialties": ["Sound and meditation", "Massage and recovery", "Island and safari support"],
+        "retreats": ["private-teacher-led-retreat", "coastal-reset-week"],
         "image_alt": "Small group practicing yoga by the beach"
       }
     ]
@@ -131,13 +197,13 @@
     "lead": "A glimpse of the practice — coast, terraces, warm stone, hands-on support, and the quiet after movement.",
     "items": [
       { "caption": "Backbend · open sky" },
-      { "caption": "Rooting down · warm stone" },
+      { "caption": "Thaivedic bodywork · Lamu palms" },
       { "caption": "Balance work · terrace light" },
-      { "caption": "Warrior circle · shared breath" },
+      { "caption": "Held release · studio calm" },
       { "caption": "Wild thing · golden hour" },
-      { "caption": "Morning plank · beach practice" },
+      { "caption": "Seated twist · ocean air" },
       { "caption": "Vrksasana · mountain air" },
-      { "caption": "Hands-on release · soft landing" }
+      { "caption": "Hands-on detail · steady pressure" }
     ]
   },
   "included": {
@@ -164,7 +230,7 @@
     "items": [
       {
         "q": "Is this still one retreat, or several?",
-        "a": "Several. The flagship is the 14-day Yoga & Safari Journey, but we now also shape coastal reset weeks and private teacher-led retreats for custom dates."
+        "a": "Several. The flagship Yoga & Safari Journey is one retreat with full, Zanzibar-only, and safari-only participation options. We also shape coastal reset weeks and private teacher-led retreats for custom dates."
       },
       {
         "q": "Can beginners join?",

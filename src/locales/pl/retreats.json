@@ -8,8 +8,9 @@
     "subtitle": "Joga prowadzona przez nauczycieli, Thaivedic bodywork, tygodnie coastal reset i podróże z safari.",
     "lead": "Wybierz gotowy retreat grupowy albo pozwól nam ułożyć prywatny program pod Twoje daty, tempo i praktykę.",
     "see_day": "Zobacz retreaty",
+    "meet_teachers": "Poznaj nauczycieli",
     "reserve": "Zaplanuj retreat →",
-    "stat_nights_value": "3",
+    "stat_nights_value": "4",
     "stat_nights": "Typy retreatów",
     "stat_guests_value": "Zespół",
     "stat_guests": "Mix nauczycieli",
@@ -32,8 +33,28 @@
         "slug": "yoga-safari-retreat",
         "title": "Podróż joga i safari",
         "duration": "14 dni · stałe terminy",
-        "text": "Pełna podróż z Zanzibaru na ląd: praktyka o wschodzie słońca, spokojne dni na wybrzeżu i pięciodniowe safari w Tanzanii w środku programu.",
-        "highlights": ["Vinyasa, yin, medytacja", "5-dniowe safari w cenie", "Kameralne terminy grupowe"],
+        "text": "Jedna wspólna podróż retreatowa z trzema sposobami dołączenia: pełny program Zanzibar i safari, tylko dni praktyki na Zanzibarze albo tylko blok safari na lądzie.",
+        "highlights": ["Vinyasa, yin, medytacja", "Opcje tylko Zanzibar i tylko safari", "Kameralne terminy grupowe"],
+        "options": [
+          {
+            "slug": "full-retreat",
+            "label": "Pełny retreat",
+            "text": "14 dni · Zanzibar + safari",
+            "cta": "Zarezerwuj pełny retreat"
+          },
+          {
+            "slug": "zanzibar-only",
+            "label": "Tylko Zanzibar",
+            "text": "9 dni · rytm praktyki nad wybrzeżem",
+            "cta": "Zarezerwuj tylko Zanzibar"
+          },
+          {
+            "slug": "safari-only",
+            "label": "Tylko safari",
+            "text": "5 dni · blok safari na lądzie",
+            "cta": "Zarezerwuj tylko safari"
+          }
+        ],
         "cta": "Zarezerwuj tę podróż",
         "image_alt": "Praktyka jogi nad wybrzeżem Zanzibaru"
       },
@@ -44,7 +65,16 @@
         "text": "Lżejszy tydzień wellness dla osób, które chcą codziennej praktyki, czasu nad oceanem, bodyworku, odżywczych posiłków i opcjonalnych wycieczek po wyspie.",
         "highlights": ["Codzienna praktyka nad morzem", "Opcjonalne sesje bodyworku", "Plaża, rafa i Stone Town jako dodatki"],
         "cta": "Zapytaj o terminy resetu",
-        "image_alt": "Pozycja jogi w skłonie bocznym na ciepłym tarasie przy wybrzeżu"
+        "image_alt": "Awham prowadzi wspierane rozciąganie nogi przy basenie na Lamu"
+      },
+      {
+        "slug": "awham-thaivedic-flow-retreat",
+        "title": "Awham Thaivedic Flow Retreat",
+        "duration": "6 dni · retreat nad wybrzeżem prowadzony przez Awhama",
+        "text": "Retreat inspirowany Lamu, zbudowany wokół vinyasy Awhama dla wszystkich poziomów, hathy, Thaivedic bodywork, korekt hands-on i powolnej regeneracji nad oceanem.",
+        "highlights": ["Vinyasa i hatha z Awhamem", "Sesje Thaivedic bodywork", "Kameralny coaching i regeneracja"],
+        "cta": "Zapytaj o terminy Awhama",
+        "image_alt": "Awham prowadzi Thaivedic bodywork na macie do jogi"
       },
       {
         "slug": "private-teacher-led-retreat",
@@ -53,34 +83,70 @@
         "text": "Retreat szyty na miarę dla par, przyjaciół, firm albo nauczycieli, którzy przywożą własną grupę na Zanzibar.",
         "highlights": ["Prowadzenie praktyki dobrane do grupy", "Prywatna willa albo butikowy hotel", "Elastyczny plan praktyki i wycieczek"],
         "cta": "Stwórz prywatny retreat",
-        "image_alt": "Sesja hands-on bodywork blisko oceanu"
+        "image_alt": "Awham koryguje uczennicę podczas prywatnej sesji w studiu"
       }
     ]
   },
   "teachers": {
-    "eyebrow": "Faculty i zespół retreatu",
-    "title": "Mix nauczycieli dopasowany do retreatu.",
-    "lead": "Najpierw jest program. Do każdego retreatu dobieramy prowadzącego praktykę, wsparcie bodywork, gościnnych praktyków i lokalnych hostów, zamiast opierać całe doświadczenie na jednej osobie.",
+    "eyebrow": "Poznaj nauczycieli",
+    "title": "Kilku nauczycieli, jeden rytm retreatu.",
+    "lead": "Każdy retreat jest prowadzony przez nauczycieli. W zależności od formatu łączymy uważną jogę Niny, vinyasę Awhama dla wszystkich poziomów i Thaivedic bodywork z gościnnymi praktykami oraz lokalnymi hostami.",
+    "select_cta": "Pokaż retreaty z {{teacher}}",
+    "selected_cta": "Pokazujemy te retreaty",
+    "selection_eyebrow": "Retreaty nauczycieli",
+    "selection_title": "Retreaty z {{teacher}}",
+    "selection_lead": "Kliknij nauczyciela powyżej, aby zobaczyć formaty retreatów powiązane z jego praktyką. Formularz rezerwacji otworzy się już z wybranym retreatem.",
+    "detail": {
+      "page_title": "Retreaty z {{teacher}} · Destination Paradise",
+      "meta_description": "Retreaty na Zanzibarze prowadzone przez {{teacher}}.",
+      "breadcrumb_aria": "Nawigacja okruszkowa nauczyciela retreatu",
+      "breadcrumb_home": "Start",
+      "breadcrumb_retreats": "Retreaty",
+      "hero_label": "Profil nauczyciela",
+      "plan_with_teacher": "Zaplanuj z {{teacher}}",
+      "all_teachers": "Wszyscy nauczyciele",
+      "focus_eyebrow": "Fokus praktyki",
+      "focus_title": "Jak {{teacher}} prowadzi retreat",
+      "focus_lead": "Użyj tej strony, aby zrozumieć fokus praktyki nauczyciela, a potem wybierz jeden z powiązanych formatów retreatu poniżej.",
+      "retreats_eyebrow": "Powiązane retreaty",
+      "retreats_title": "Retreaty z {{teacher}}",
+      "retreats_lead": "To formaty retreatów aktualnie powiązane z tym nauczycielem. Każdy otwiera formularz rezerwacji z właściwym retreatem.",
+      "cta_title": "Chcesz {{teacher}} w swoim planie retreatu?",
+      "cta_text": "Podaj daty, wielkość grupy, poziom praktyki i to, czy program ma zostać na wybrzeżu, czy połączyć się z safari.",
+      "cta_primary": "Rozpocznij zapytanie o retreat →",
+      "cta_secondary": "Wróć do retreatów",
+      "not_found_page_title": "Nie znaleziono nauczyciela retreatu · Destination Paradise",
+      "not_found_eyebrow": "Nie znaleziono nauczyciela",
+      "not_found_title": "Tego nauczyciela retreatu nie ma w aktualnym programie.",
+      "not_found_text": "Zobacz obecnych nauczycieli retreatów i wybierz profil, który chcesz poznać.",
+      "back_to_teachers": "Wróć do nauczycieli"
+    },
     "items": [
       {
-        "name": "Mindful flow i cisza",
-        "role": "Nina · vinyasa, yin, praca z oddechem",
+        "id": "nina",
+        "name": "Nina Pfatischer",
+        "role": "Nauczycielka jogi · vinyasa, yin, oddech",
         "text": "Nina prowadzi ciepłe, uważne praktyki, ukształtowane przez szkolenie w Portugalii oraz doświadczenie w Maroku i Niemczech. Jej sesje wnoszą ruch, oddech, muzykę, filozofię i cichą integrację w rytm retreatu.",
         "specialties": ["Vinyasa flow", "Hatha i yin", "Medytacja i praca z oddechem"],
+        "retreats": ["yoga-safari-retreat", "coastal-reset-week"],
         "image_alt": "Grupowa praktyka jogi prowadzona przez nauczyciela"
       },
       {
-        "name": "Vinyasa dla wszystkich i bodywork",
-        "role": "Awham Mohamed Al-Obaidy · @shela_yogi",
+        "id": "awham",
+        "name": "Awham Mohamed Al-Obaidy",
+        "role": "Joga i Thaivedic bodywork · @shela_yogi",
         "text": "Urodzony i wychowany w Lamu, Awham jest międzynarodowym ekspertem jogi i Thaivedic, twórcą treści oraz opowiada historię stylu życia wellness i hospitality. Do retreatów wnosi vinyasę, hathę i hands-on bodywork z oceaniczną wrażliwością.",
         "specialties": ["Vinyasa dla wszystkich poziomów", "Hatha joga", "Thaivedic bodywork", "Styl życia wellness z Lamu"],
-        "image_alt": "Sesja hands-on bodywork reprezentująca praktykę Thaivedic Awham Yoga"
+        "retreats": ["awham-thaivedic-flow-retreat", "private-teacher-led-retreat"],
+        "image_alt": "Awham koryguje pozycję psa z głową w dół u uczennicy w swoim studiu na Lamu"
       },
       {
-        "name": "Gościnni praktycy i lokalni hostowie",
+        "id": "guest",
+        "name": "Gościnni nauczyciele i lokalni hostowie",
         "role": "Dźwięk, medytacja, masaż, kultura",
         "text": "W zależności od retreatu zespół może obejmować lokalnych praktyków wellness, przewodników, kucharzy, masażystów, planistów safari i hostów wyspy, którzy utrzymują podróż praktyczną, ugruntowaną i związaną z miejscem.",
         "specialties": ["Dźwięk i medytacja", "Masaż i regeneracja", "Wsparcie na wyspie i safari"],
+        "retreats": ["private-teacher-led-retreat", "coastal-reset-week"],
         "image_alt": "Mała grupa praktykująca jogę przy plaży"
       }
     ]
@@ -131,13 +197,13 @@
     "lead": "Spojrzenie na praktykę — wybrzeże, tarasy, ciepły kamień, wsparcie hands-on i cisza po ruchu.",
     "items": [
       { "caption": "Wygięcie · otwarte niebo" },
-      { "caption": "Zapuszczanie korzeni · ciepły kamień" },
+      { "caption": "Thaivedic bodywork · palmy Lamu" },
       { "caption": "Praca z równowagą · światło tarasu" },
-      { "caption": "Krąg wojownika · wspólny oddech" },
+      { "caption": "Wspierane uwolnienie · spokój studia" },
       { "caption": "Wild Thing · złota godzina" },
-      { "caption": "Poranny plank · praktyka na plaży" },
+      { "caption": "Skręt w siadzie · morskie powietrze" },
       { "caption": "Vrksasana · górskie powietrze" },
-      { "caption": "Delikatne uwolnienie · miękkie lądowanie" }
+      { "caption": "Detal pracy dłoni · pewny nacisk" }
     ]
   },
   "included": {
@@ -164,7 +230,7 @@
     "items": [
       {
         "q": "Czy to nadal jeden retreat, czy kilka?",
-        "a": "Kilka. Flagowym programem jest 14-dniowa Podróż Joga i Safari, ale teraz tworzymy też tygodnie coastal reset i prywatne retreaty z nauczycielem na własne daty."
+        "a": "Kilka. Flagowa Podróż Joga i Safari to jeden retreat z opcją pełnego programu, tylko Zanzibaru albo tylko safari. Tworzymy też tygodnie coastal reset i prywatne retreaty z nauczycielem na własne daty."
       },
       {
         "q": "Czy początkujący mogą dołączyć?",

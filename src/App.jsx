@@ -33,6 +33,7 @@ const SafariTypeDetail = lazyWithRetry(() => import('./pages/SafariTypeDetail.js
 const Packages = lazyWithRetry(() => import('./pages/Packages.jsx'));
 const PackageDetail = lazyWithRetry(() => import('./pages/PackageDetail.jsx'));
 const Retreats = lazyWithRetry(() => import('./pages/Retreats.jsx'));
+const RetreatTeacherDetail = lazyWithRetry(() => import('./pages/RetreatTeacherDetail.jsx'));
 const TripPlannerPage = lazyWithRetry(() => import('./pages/TripPlannerPage.jsx'));
 const Explore = lazyWithRetry(() => import('./pages/Explore.jsx'));
 const About = lazyWithRetry(() => import('./pages/About.jsx'));
@@ -56,6 +57,7 @@ export default function App() {
           <Route path="/packages" element={<Packages />} />
           <Route path="/packages/:id" element={<PackageDetail />} />
           <Route path="/retreats" element={<Retreats />} />
+          <Route path="/retreats/teachers/:teacherId" element={<RetreatTeacherDetail />} />
           <Route path="/trip-planner" element={<TripPlannerPage />} />
           <Route path="/explore" element={<Explore />} />
           <Route path="/book-now" element={<Booking />} />

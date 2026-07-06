@@ -10,6 +10,7 @@ export default function BookingSummary({
   isTransferRequest,
   paymentOptions,
   selectedProduct,
+  selectedRetreatOption,
   selectedService,
   selectedTransferTier,
   showDateRange,
@@ -39,11 +40,12 @@ export default function BookingSummary({
         <div className="booking-summary__card reveal" style={{ '--reveal-index': 0 }}>
           <span className="section-eyebrow">{t('summary.eyebrow', { defaultValue: 'Your request' })}</span>
           <h3>{selectedProduct?.label || selectedService?.label || t('summary.custom_plan', { defaultValue: 'Custom plan' })}</h3>
-          <p>{selectedProduct?.category || t('summary.flexible_route', { defaultValue: 'Flexible route' })}</p>
-          <div className="booking-summary__price">{bookingPriceLabel(selectedProduct, t, format)}</div>
+          <p>{selectedRetreatOption?.duration || selectedProduct?.category || t('summary.flexible_route', { defaultValue: 'Flexible route' })}</p>
+          <div className="booking-summary__price">{bookingPriceLabel(selectedProduct, t, format, selectedRetreatOption)}</div>
           <dl>
             <div><dt>{t('summary.guests', { defaultValue: 'Guests' })}</dt><dd>{form.guests || t('common.flexible', { defaultValue: 'Flexible' })}</dd></div>
             <div><dt>{showDateRange ? t('summary.dates', { defaultValue: 'Dates' }) : t('summary.date', { defaultValue: 'Date' })}</dt><dd>{dateSummary}</dd></div>
+            {selectedRetreatOption && <div><dt>{t('summary.retreat_option', { defaultValue: 'Retreat option' })}</dt><dd>{selectedRetreatOption.label}</dd></div>}
             {isTransferRequest && <div><dt>{t('summary.tier', { defaultValue: 'Tier' })}</dt><dd>{selectedTransferTier?.label || t('summary.default_tier', { defaultValue: 'Standard Private' })}</dd></div>}
             {isTransferRequest && form.pickupLocation && <div><dt>{t('summary.pickup', { defaultValue: 'Pickup' })}</dt><dd>{form.pickupLocation}</dd></div>}
             {isTransferRequest && form.dropoffLocation && <div><dt>{t('summary.dropoff', { defaultValue: 'Drop-off' })}</dt><dd>{form.dropoffLocation}</dd></div>}

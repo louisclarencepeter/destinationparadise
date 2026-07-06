@@ -36,6 +36,7 @@ export async function getDynamicRoutes() {
   const { EXCURSION_COMBINATIONS } = await import(resolve(dataDir, 'excursionCombinations.js'));
   const { ALL_SAFARI_PRODUCTS, SAFARI_TYPES } = await import(resolve(dataDir, 'safariPageData.js'));
   const { destinationParadisePackages } = await import(resolve(dataDir, 'destinationParadisePackages.js'));
+  const { RETREAT_TEACHER_IDS } = await import(resolve(dataDir, 'retreatsPageData.js'));
 
   return [
     ...EXCURSIONS.map((e) => ({ path: `/excursions/${idOf(e)}`, priority: '0.7', changefreq: 'monthly' })),
@@ -43,6 +44,7 @@ export async function getDynamicRoutes() {
     ...ALL_SAFARI_PRODUCTS.map((s) => ({ path: `/safaris/${idOf(s)}`, priority: '0.7', changefreq: 'monthly' })),
     ...SAFARI_TYPES.map((t) => ({ path: `/safaris/types/${idOf(t)}`, priority: '0.6', changefreq: 'monthly' })),
     ...destinationParadisePackages.map((p) => ({ path: `/packages/${idOf(p)}`, priority: '0.7', changefreq: 'monthly' })),
+    ...RETREAT_TEACHER_IDS.map((id) => ({ path: `/retreats/teachers/${id}`, priority: '0.6', changefreq: 'monthly' })),
   ];
 }
 

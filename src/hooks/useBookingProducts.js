@@ -50,13 +50,24 @@ export function useBookingProducts(t) {
       raw: item,
     }));
 
-    const retreats = RETREAT_PRODUCTS.map((item) => ({
-      type: 'retreat',
-      value: `retreat:${item.slug}`,
-      label: productTranslation(translatedProducts, 'retreat', item.slug).label || item.title,
-      category: productTranslation(translatedProducts, 'retreat', item.slug).category || item.duration,
-      raw: item,
-    }));
+    const retreats = RETREAT_PRODUCTS.map((item) => {
+      const retreatTranslation = productTranslation(translatedProducts, 'retreat', item.slug);
+      const optionTranslations = objectFromTranslation(retreatTranslation.options);
+
+      return {
+        type: 'retreat',
+        value: `retreat:${item.slug}`,
+        label: retreatTranslation.label || item.title,
+        category: retreatTranslation.category || item.duration,
+        raw: {
+          ...item,
+          options: item.options?.map((option) => ({
+            ...option,
+            ...objectFromTranslation(optionTranslations[option.slug]),
+          })),
+        },
+      };
+    });
 
     return { packages, excursions, safaris, transfers, retreats, all: [...packages, ...excursions, ...safaris, ...transfers, ...retreats] };
   }, [t]);
