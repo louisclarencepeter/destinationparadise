@@ -6,6 +6,7 @@ import App from './App.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
 import { CurrencyProvider } from './context/CurrencyContext.jsx';
 import { applyTheme, readStoredTheme } from './utils/theme.js';
+import { registerServiceWorker } from './utils/registerServiceWorker.js';
 import './i18n/index.js';
 import './styles/tokens.css';
 import './styles/site-shell.css';
@@ -26,3 +27,5 @@ createRoot(document.getElementById('root')).render(
     </BrowserRouter>
   </StrictMode>
 );
+
+registerServiceWorker();

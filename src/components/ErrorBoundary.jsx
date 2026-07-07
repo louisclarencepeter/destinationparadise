@@ -10,7 +10,9 @@ function isChunkLoadError(error) {
   const name = error.name || '';
   const message = error.message || '';
   if (name === 'ChunkLoadError') return true;
-  return /Loading chunk [\w-]+ failed|Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module/i.test(
+  // "Unable to preload CSS for ..." is Vite's vite:preloadError message for a
+  // lazily-loaded chunk whose CSS 404s after a new deploy (Sentry DESTINATIONPARADISE-3).
+  return /Loading chunk [\w-]+ failed|Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module|Unable to preload CSS for/i.test(
     message,
   );
 }
