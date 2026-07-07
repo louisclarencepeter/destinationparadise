@@ -13,7 +13,11 @@ export default defineConfig(({ mode }) => {
       react(),
       VitePWA({
         registerType: 'autoUpdate',
-        injectRegister: 'script-defer',
+        // Register the service worker manually (see src/utils/registerServiceWorker.js)
+        // so registration failures are caught instead of surfacing as unhandled
+        // promise rejections (Sentry DESTINATIONPARADISE-2). The auto-injected
+        // registerSW.js called navigator.serviceWorker.register() with no .catch().
+        injectRegister: false,
         workbox: {
           clientsClaim: true,
           skipWaiting: true,
