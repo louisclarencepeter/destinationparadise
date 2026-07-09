@@ -56,6 +56,7 @@ Set this on Netlify:
 - `VITE_TURNSTILE_SITE_KEY` — Cloudflare Turnstile site key for the public booking form CAPTCHA.
 - `TURNSTILE_SECRET_KEY` — Cloudflare Turnstile secret key for `/api/booking-send` server-side token validation.
 - `TURNSTILE_REQUIRED` — optional. Set to `true` to fail closed if the Turnstile secret is missing. By default, Turnstile is required whenever `TURNSTILE_SECRET_KEY` is configured.
+- `BOOKING_CHALLENGE_SECRET` — optional. Signs the fallback booking verification challenge when Turnstile is not configured. If omitted, the booking function reuses an existing server secret such as `RESEND_API_KEY`.
 - `BOOKING_ALLOWED_HOSTNAMES` — optional comma-separated extra hostnames allowed to post to `/api/booking-send`; production, Netlify preview, and local dev hosts are allowed by default.
 - `BOOKING_MIN_FORM_ELAPSED_MS` / `BOOKING_MAX_FORM_AGE_MS` — optional timing thresholds for the booking form anti-spam guard. Defaults are 3 seconds minimum and 2 hours maximum.
 - `VITE_SENTRY_DSN` — optional browser Sentry DSN for React errors and performance traces. Without it, Sentry is disabled.
@@ -68,7 +69,7 @@ The planner endpoint registers its own route:
 - Frontend calls `/api/planner`
 - `netlify/functions/planner.mjs` declares `export const config = { path: '/api/planner' }`,
   which Netlify routes ahead of the SPA catch-all — no `netlify.toml` rewrite needed.
-- The other functions (`booking-send`, `contact-send`, `planner-send`) work the same way.
+- The other functions (`booking-challenge`, `booking-send`, `contact-send`, `planner-send`) work the same way.
 
 ## Routes
 

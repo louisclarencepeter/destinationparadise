@@ -72,6 +72,14 @@ export default function Booking() {
   const [formStartedAt, setFormStartedAt] = useState(() => Date.now());
   const [turnstileToken, setTurnstileToken] = useState('');
   const [turnstileResetSignal, setTurnstileResetSignal] = useState(0);
+  const [humanChallenge, setHumanChallenge] = useState({
+    question: '',
+    token: '',
+    loading: !TURNSTILE_SITE_KEY,
+    error: '',
+  });
+  const [humanChallengeAnswer, setHumanChallengeAnswer] = useState('');
+  const [humanChallengeRefreshSignal, setHumanChallengeRefreshSignal] = useState(0);
   const [status, setStatus] = useState('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const pageRef = useRef(null);
@@ -92,8 +100,12 @@ export default function Booking() {
   const comfortOptions = useMemo(() => translatedList(t, 'comfort_options', COMFORT_OPTIONS), [t]);
   const resetVerification = useCallback(() => {
     setTurnstileToken('');
+    setHumanChallengeAnswer('');
     setFormStartedAt(Date.now());
     setTurnstileResetSignal((current) => current + 1);
+    if (!TURNSTILE_SITE_KEY) {
+      setHumanChallengeRefreshSignal((current) => current + 1);
+    }
   }, []);
   const onBotFieldChange = useCallback((event) => {
     setBotField(event.target.value);
@@ -109,6 +121,57 @@ export default function Booking() {
   const onTurnstileError = useCallback(() => {
     setTurnstileToken('');
   }, []);
+  const onHumanChallengeAnswerChange = useCallback((event) => {
+    setHumanChallengeAnswer(event.target.value);
+    setErrorMessage('');
+    setStatus((current) => (current === 'error' ? 'idle' : current));
+  }, []);
+  const onHumanChallengeRefresh = useCallback(() => {
+    setHumanChallengeAnswer('');
+    setHumanChallengeRefreshSignal((current) => current + 1);
+  }, []);
+
+  useEffect(() => {
+    if (TURNSTILE_SITE_KEY) return undefined;
+
+    let cancelled = false;
+    setHumanChallenge((current) => ({ ...current, loading: true, error: '' }));
+
+    fetch('/api/booking-challenge', {
+      headers: { accept: 'application/json' },
+      cache: 'no-store',
+    })
+      .then(async (response) => {
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok || !data.ok || !data.question || !data.token) {
+          throw new Error(data.error || 'challenge-request-failed');
+        }
+        if (!cancelled) {
+          setHumanChallenge({
+            question: data.question,
+            token: data.token,
+            loading: false,
+            error: '',
+          });
+          setHumanChallengeAnswer('');
+          setFormStartedAt(Date.now());
+        }
+      })
+      .catch(() => {
+        if (!cancelled) {
+          setHumanChallenge({
+            question: '',
+            token: '',
+            loading: false,
+            error: t('form.human_check_error', { defaultValue: 'Could not load verification. Please refresh it and try again.' }),
+          });
+        }
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [humanChallengeRefreshSignal, t]);
 
   usePageMeta({
     title: t('page_title', { defaultValue: 'Booking Request · Destination Paradise' }),
@@ -324,6 +387,11 @@ export default function Booking() {
       setErrorMessage(t('form.verification_required', { defaultValue: 'Please complete the verification before sending.' }));
       return;
     }
+    if (!TURNSTILE_SITE_KEY && (!humanChallenge.token || !humanChallengeAnswer.trim())) {
+      setStatus('error');
+      setErrorMessage(t('form.verification_required', { defaultValue: 'Please complete the verification before sending.' }));
+      return;
+    }
     setStatus('sending');
     setErrorMessage('');
 
@@ -348,6 +416,8 @@ export default function Booking() {
       bookingWebsite: botField,
       formStartedAt,
       turnstileToken,
+      humanChallengeToken: TURNSTILE_SITE_KEY ? '' : humanChallenge.token,
+      humanChallengeAnswer: TURNSTILE_SITE_KEY ? '' : humanChallengeAnswer,
     };
 
     try {
@@ -393,8 +463,12 @@ export default function Booking() {
             isRetreatRequest={isRetreatRequest}
             isTransferRequest={isTransferRequest}
             messagePlaceholder={messagePlaceholder}
+            humanChallenge={humanChallenge}
+            humanChallengeAnswer={humanChallengeAnswer}
             onBotFieldChange={onBotFieldChange}
             onDepartureChange={onDepartureChange}
+            onHumanChallengeAnswerChange={onHumanChallengeAnswerChange}
+            onHumanChallengeRefresh={onHumanChallengeRefresh}
             onSubmit={submit}
             onTurnstileError={onTurnstileError}
             onTurnstileExpire={onTurnstileExpire}

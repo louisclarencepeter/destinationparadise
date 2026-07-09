@@ -2,6 +2,7 @@
 // Underscore-prefixed so Netlify's function scanner ignores it (it is NOT a
 // deployed function, just a library imported by the real functions).
 
+import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
 import { resolve4, resolve6, resolveMx } from 'node:dns/promises';
 import { domainToASCII } from 'node:url';
 
@@ -114,6 +115,81 @@ export function validateSubmissionTiming(startedAt, now = Date.now(), {
   if (elapsed > maxElapsedMs) return { ok: false, reason: 'stale-form' };
 
   return { ok: true, elapsed };
+}
+
+function signHumanChallenge(payload, secretKey) {
+  return createHmac('sha256', String(secretKey || 'destination-paradise-booking-challenge'))
+    .update(payload)
+    .digest('base64url');
+}
+
+function timingSafeStringEqual(left, right) {
+  const leftBuffer = Buffer.from(String(left || ''));
+  const rightBuffer = Buffer.from(String(right || ''));
+  if (leftBuffer.length !== rightBuffer.length) return false;
+  return timingSafeEqual(leftBuffer, rightBuffer);
+}
+
+export function createHumanChallenge({
+  secretKey,
+  now = Date.now(),
+  ttlMs = 10 * 60_000,
+  randomBytesFn = randomBytes,
+} = {}) {
+  const seed = randomBytesFn(14);
+  const left = 2 + (seed[0] % 8);
+  const right = 3 + (seed[1] % 7);
+  const expiresAt = now + ttlMs;
+  const nonce = Buffer.from(seed.subarray(2)).toString('base64url');
+  const payload = `${left}:${right}:${expiresAt}:${nonce}`;
+
+  return {
+    question: `${left} + ${right}`,
+    token: `${payload}:${signHumanChallenge(payload, secretKey)}`,
+    expiresAt,
+  };
+}
+
+export function validateHumanChallenge({
+  answer,
+  token,
+  secretKey,
+  now = Date.now(),
+} = {}) {
+  const response = trimField(answer, 20);
+  const tokenText = trimField(token, 600);
+  if (!response || !tokenText) return { ok: false, reason: 'missing-challenge' };
+
+  const parts = tokenText.split(':');
+  if (parts.length !== 5) return { ok: false, reason: 'malformed-token' };
+
+  const [leftRaw, rightRaw, expiresAtRaw, nonce, signature] = parts;
+  const left = Number(leftRaw);
+  const right = Number(rightRaw);
+  const expiresAt = Number(expiresAtRaw);
+  if (
+    !Number.isInteger(left) ||
+    !Number.isInteger(right) ||
+    !Number.isFinite(expiresAt) ||
+    !nonce ||
+    !signature
+  ) {
+    return { ok: false, reason: 'malformed-token' };
+  }
+
+  if (now > expiresAt) return { ok: false, reason: 'expired-token' };
+
+  const payload = `${left}:${right}:${expiresAt}:${nonce}`;
+  const expectedSignature = signHumanChallenge(payload, secretKey);
+  if (!timingSafeStringEqual(signature, expectedSignature)) {
+    return { ok: false, reason: 'signature-mismatch' };
+  }
+
+  if (Number(response) !== left + right) {
+    return { ok: false, reason: 'wrong-answer' };
+  }
+
+  return { ok: true };
 }
 
 export function createResendSender(apiKey, timeoutMs = 10_000) {

@@ -1,9 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import {
+  createHumanChallenge,
   createRateLimiter,
   normalizeEmailAddress,
   rateLimitKey,
   requestSourceAllowed,
+  validateHumanChallenge,
   validateSubmissionTiming,
   verifyTurnstileToken,
 } from '../../netlify/functions/_shared.mjs';
@@ -89,6 +91,56 @@ describe('validateSubmissionTiming', () => {
       ok: false,
       reason: 'stale-form',
     });
+  });
+});
+
+describe('human challenge fallback', () => {
+  it('creates and validates signed arithmetic challenges', () => {
+    const challenge = createHumanChallenge({
+      secretKey: 'secret',
+      now: 10_000,
+      randomBytesFn: (size) => Buffer.alloc(size, 1),
+    });
+
+    expect(challenge.question).toBe('3 + 4');
+    expect(validateHumanChallenge({
+      answer: '7',
+      token: challenge.token,
+      secretKey: 'secret',
+      now: 11_000,
+    })).toMatchObject({ ok: true });
+  });
+
+  it('rejects missing, wrong, tampered, and expired challenge answers', () => {
+    const challenge = createHumanChallenge({
+      secretKey: 'secret',
+      now: 10_000,
+      ttlMs: 5_000,
+      randomBytesFn: (size) => Buffer.alloc(size, 1),
+    });
+
+    expect(validateHumanChallenge({ secretKey: 'secret' })).toMatchObject({
+      ok: false,
+      reason: 'missing-challenge',
+    });
+    expect(validateHumanChallenge({
+      answer: '8',
+      token: challenge.token,
+      secretKey: 'secret',
+      now: 11_000,
+    })).toMatchObject({ ok: false, reason: 'wrong-answer' });
+    expect(validateHumanChallenge({
+      answer: '7',
+      token: challenge.token.replace(/.$/, 'x'),
+      secretKey: 'secret',
+      now: 11_000,
+    })).toMatchObject({ ok: false, reason: 'signature-mismatch' });
+    expect(validateHumanChallenge({
+      answer: '7',
+      token: challenge.token,
+      secretKey: 'secret',
+      now: 16_000,
+    })).toMatchObject({ ok: false, reason: 'expired-token' });
   });
 });
 

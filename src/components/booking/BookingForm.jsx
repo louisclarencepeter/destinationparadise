@@ -11,11 +11,15 @@ export default function BookingForm({
   comfortOptions,
   errorMessage,
   form,
+  humanChallenge,
+  humanChallengeAnswer,
   isRetreatRequest,
   isTransferRequest,
   messagePlaceholder,
   onBotFieldChange,
   onDepartureChange,
+  onHumanChallengeAnswerChange,
+  onHumanChallengeRefresh,
   onSubmit,
   onTurnstileError,
   onTurnstileExpire,
@@ -230,13 +234,51 @@ export default function BookingForm({
         </label>
       </div>
 
-      <TurnstileWidget
-        onError={onTurnstileError}
-        onExpire={onTurnstileExpire}
-        onVerify={onTurnstileVerify}
-        resetSignal={turnstileResetSignal}
-        siteKey={turnstileSiteKey}
-      />
+      {turnstileSiteKey ? (
+        <TurnstileWidget
+          onError={onTurnstileError}
+          onExpire={onTurnstileExpire}
+          onVerify={onTurnstileVerify}
+          resetSignal={turnstileResetSignal}
+          siteKey={turnstileSiteKey}
+        />
+      ) : (
+        <div className="booking-human-check">
+          <label className="booking-field">
+            <span>{t('form.human_check_label', { defaultValue: 'Verification' })}</span>
+            <div className="booking-human-check__row">
+              <span className="booking-human-check__question">
+                {humanChallenge.loading
+                  ? t('form.human_check_loading', { defaultValue: 'Loading...' })
+                  : humanChallenge.question}
+              </span>
+              <input
+                autoComplete="off"
+                disabled={humanChallenge.loading || !humanChallenge.token}
+                inputMode="numeric"
+                name="humanChallengeAnswer"
+                onChange={onHumanChallengeAnswerChange}
+                pattern="[0-9]*"
+                placeholder={t('form.human_check_answer_placeholder', { defaultValue: 'Answer' })}
+                required
+                type="text"
+                value={humanChallengeAnswer}
+              />
+              <button
+                className="booking-human-check__refresh"
+                disabled={humanChallenge.loading}
+                onClick={onHumanChallengeRefresh}
+                type="button"
+              >
+                {t('form.human_check_refresh', { defaultValue: 'Refresh' })}
+              </button>
+            </div>
+          </label>
+          {humanChallenge.error && (
+            <p className="booking-turnstile__error" role="alert">{humanChallenge.error}</p>
+          )}
+        </div>
+      )}
 
       <div className="booking-status-region" role="status" aria-live="polite">
         {status === 'sent' && (

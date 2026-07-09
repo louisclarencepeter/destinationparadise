@@ -171,6 +171,51 @@
   font-size: .9rem;
 }
 
+.booking-human-check {
+  display: grid;
+  gap: .6rem;
+}
+
+.booking-human-check__row {
+  display: grid;
+  grid-template-columns: minmax(92px, max-content) minmax(96px, 160px) auto;
+  gap: .65rem;
+  align-items: center;
+}
+
+.booking-human-check__question {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in srgb, currentColor 13%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--page-bg) 30%, var(--surface));
+  color: var(--ink);
+  padding: .7rem 1rem;
+  font-family: var(--dp-font-display);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.booking-human-check__refresh {
+  min-height: 46px;
+  border: 1px solid color-mix(in srgb, var(--dp-accent) 40%, transparent);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--dp-accent) 10%, var(--surface));
+  color: var(--dp-accent-text);
+  padding: .72rem 1rem;
+  font-family: var(--dp-font-sans);
+  font-size: .86rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.booking-human-check__refresh:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
 .booking-privacy {
   margin: -.25rem 0 0;
   color: var(--text-muted);

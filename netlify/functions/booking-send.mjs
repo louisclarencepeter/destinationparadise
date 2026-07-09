@@ -10,6 +10,7 @@ import {
   requestSourceAllowed,
   sanitizeHeaderLine,
   trimField,
+  validateHumanChallenge,
   validateEmailAddress,
   validateSubmissionTiming,
   verifyTurnstileToken,
@@ -31,6 +32,12 @@ const MAX_DRAFT = 8_000;
 const TURNSTILE_ACTION = 'booking_request';
 const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY || '';
 const TURNSTILE_REQUIRED = process.env.TURNSTILE_REQUIRED === 'true' || Boolean(TURNSTILE_SECRET_KEY);
+const BOOKING_CHALLENGE_SECRET = process.env.BOOKING_CHALLENGE_SECRET ||
+  TURNSTILE_SECRET_KEY ||
+  process.env.RESEND_API_KEY ||
+  process.env.SENTRY_DSN ||
+  process.env.SITE_ID ||
+  'destination-paradise-booking-challenge';
 const MIN_FORM_ELAPSED_MS = Number(process.env.BOOKING_MIN_FORM_ELAPSED_MS || 3_000);
 const MAX_FORM_AGE_MS = Number(process.env.BOOKING_MAX_FORM_AGE_MS || 2 * 60 * 60_000);
 const DEFAULT_ALLOWED_HOSTNAMES = [
@@ -200,6 +207,17 @@ export default async (req) => {
 
     if (!turnstile.ok) {
       console.warn('booking-send: blocked turnstile verification', turnstile.reason, turnstile.result?.['error-codes']);
+      return errorResponse('Please complete the verification and try again.', 400);
+    }
+  } else {
+    const challenge = validateHumanChallenge({
+      answer: body?.humanChallengeAnswer,
+      token: body?.humanChallengeToken,
+      secretKey: BOOKING_CHALLENGE_SECRET,
+    });
+
+    if (!challenge.ok) {
+      console.warn('booking-send: blocked human challenge', challenge.reason);
       return errorResponse('Please complete the verification and try again.', 400);
     }
   }

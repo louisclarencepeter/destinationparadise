@@ -46,6 +46,20 @@ describe('booking anti-spam guards', () => {
     expect(res.status).toBe(200);
     expect(data.ok).toBe(true);
   });
+
+  it('rejects fresh timed booking posts without a completed verification', async () => {
+    const res = await bookingSend(bookingRequest({
+      name: 'Guest',
+      email: 'guest@example.com',
+      serviceType: 'retreat',
+      product: 'Flexible — retreat',
+      formStartedAt: Date.now() - 5_000,
+    }));
+    const data = await res.json();
+
+    expect(res.status).toBe(400);
+    expect(data.error).toMatch(/verification/i);
+  });
 });
 
 describe('booking email validation', () => {
