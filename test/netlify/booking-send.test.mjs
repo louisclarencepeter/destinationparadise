@@ -1,9 +1,52 @@
 import { describe, expect, it, vi } from 'vitest';
-import { validateEmailAddress } from '../../netlify/functions/booking-send.mjs';
+import bookingSend, { validateEmailAddress } from '../../netlify/functions/booking-send.mjs';
 
 function dnsError(code) {
   return Object.assign(new Error(code), { code });
 }
+
+function bookingRequest(body, headers = {}) {
+  return new Request('https://yournexttriptoparadise.com/api/booking-send', {
+    method: 'POST',
+    headers: {
+      'content-type': 'application/json',
+      origin: 'https://yournexttriptoparadise.com',
+      ...headers,
+    },
+    body: JSON.stringify(body),
+  });
+}
+
+describe('booking anti-spam guards', () => {
+  it('rejects direct posts without a trusted source header', async () => {
+    const res = await bookingSend(bookingRequest({}, { origin: '' }));
+
+    expect(res.status).toBe(403);
+  });
+
+  it('rejects booking posts that did not come through a fresh form render', async () => {
+    const res = await bookingSend(bookingRequest({
+      name: 'Guest',
+      email: 'guest@example.com',
+    }));
+    const data = await res.json();
+
+    expect(res.status).toBe(400);
+    expect(data.error).toMatch(/refresh the booking form/i);
+  });
+
+  it('silently drops filled honeypot submissions before sending mail', async () => {
+    const res = await bookingSend(bookingRequest({
+      botField: 'https://spam.example',
+      name: 'Guest',
+      email: 'guest@example.com',
+    }));
+    const data = await res.json();
+
+    expect(res.status).toBe(200);
+    expect(data.ok).toBe(true);
+  });
+});
 
 describe('booking email validation', () => {
   it('rejects malformed email addresses before DNS checks', async () => {

@@ -163,6 +163,7 @@
     "message_label": "Co jeszcze powinniśmy wiedzieć?",
     "status_sent": "Asante. Otrzymaliśmy zapytanie i wrócimy z dostępnością, wyceną oraz kolejnym krokiem płatności.",
     "status_error": "Nie udało się wysłać. Spróbuj ponownie albo napisz do nas na WhatsApp.",
+    "verification_required": "Dokończ weryfikację przed wysłaniem zapytania.",
     "submit_sending": "Wysyłanie zapytania...",
     "submit_sent": "Zapytanie wysłane",
     "submit_idle": "Wyślij zapytanie",

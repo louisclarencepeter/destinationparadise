@@ -1,10 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useCurrency } from '../../context/useCurrency.js';
+import TurnstileWidget from './TurnstileWidget.jsx';
 
 /** @typedef {{ slug: string, label?: string, duration?: string, price?: number, priceSub?: string }} RetreatOption */
 
 export default function BookingForm({
+  botField,
   budgetOptions,
   comfortOptions,
   errorMessage,
@@ -12,8 +14,12 @@ export default function BookingForm({
   isRetreatRequest,
   isTransferRequest,
   messagePlaceholder,
+  onBotFieldChange,
   onDepartureChange,
   onSubmit,
+  onTurnstileError,
+  onTurnstileExpire,
+  onTurnstileVerify,
   paymentOptions,
   productLabel,
   productPlaceholder,
@@ -23,6 +29,8 @@ export default function BookingForm({
   showDateRange,
   showTravelPreferences,
   status,
+  turnstileResetSignal,
+  turnstileSiteKey,
   transferTiers,
   update,
   visibleProducts,
@@ -207,6 +215,28 @@ export default function BookingForm({
         <span>{t('form.message_label', { defaultValue: 'Anything we should know?' })}</span>
         <textarea name="message" value={form.message} onChange={update('message')} rows={6} placeholder={messagePlaceholder} />
       </label>
+
+      <div className="booking-bot-field" aria-hidden="true">
+        <label>
+          Website
+          <input
+            autoComplete="off"
+            name="bookingWebsite"
+            tabIndex={-1}
+            type="text"
+            value={botField}
+            onChange={onBotFieldChange}
+          />
+        </label>
+      </div>
+
+      <TurnstileWidget
+        onError={onTurnstileError}
+        onExpire={onTurnstileExpire}
+        onVerify={onTurnstileVerify}
+        resetSignal={turnstileResetSignal}
+        siteKey={turnstileSiteKey}
+      />
 
       <div className="booking-status-region" role="status" aria-live="polite">
         {status === 'sent' && (

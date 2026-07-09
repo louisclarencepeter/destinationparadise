@@ -163,6 +163,7 @@
     "message_label": "Was sollten wir noch wissen?",
     "status_sent": "Asante. Wir haben deine Anfrage erhalten und melden uns mit Verfügbarkeit, Angebot und nächstem Zahlungsschritt.",
     "status_error": "Das hat nicht geklappt. Bitte versuch es noch einmal oder schreib uns auf WhatsApp.",
+    "verification_required": "Bitte schließe die Verifizierung ab, bevor du die Anfrage sendest.",
     "submit_sending": "Anfrage wird gesendet...",
     "submit_sent": "Anfrage gesendet",
     "submit_idle": "Buchungsanfrage senden",

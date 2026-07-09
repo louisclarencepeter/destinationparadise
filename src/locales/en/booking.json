@@ -163,6 +163,7 @@
     "message_label": "Anything we should know?",
     "status_sent": "Asante. We received your request and will come back with availability, a quote, and the payment next step.",
     "status_error": "That did not go through. Please try again or message us on WhatsApp.",
+    "verification_required": "Please complete the verification before sending.",
     "submit_sending": "Sending request...",
     "submit_sent": "Request sent",
     "submit_idle": "Send booking request",

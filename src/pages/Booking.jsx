@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import BookingFlow from '../components/booking/BookingFlow.jsx';
@@ -27,6 +27,8 @@ import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/booking.css';
+
+const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY || '';
 
 /**
  * @typedef {{ start: string, end: string }} RetreatDeparture
@@ -66,6 +68,10 @@ export default function Booking() {
   const [plannerHandoff, setPlannerHandoff] = useState(
     /** @type {import('../utils/plannerHandoff.js').PlannerHandoff | null} */ (null),
   );
+  const [botField, setBotField] = useState('');
+  const [formStartedAt, setFormStartedAt] = useState(() => Date.now());
+  const [turnstileToken, setTurnstileToken] = useState('');
+  const [turnstileResetSignal, setTurnstileResetSignal] = useState(0);
   const [status, setStatus] = useState('idle');
   const [errorMessage, setErrorMessage] = useState('');
   const pageRef = useRef(null);
@@ -84,6 +90,25 @@ export default function Booking() {
   const transferTiers = useMemo(() => translatedList(t, 'transfer_tiers', TRANSFER_SERVICE_TIERS), [t]);
   const budgetOptions = useMemo(() => translatedList(t, 'budget_options', BUDGET_OPTIONS), [t]);
   const comfortOptions = useMemo(() => translatedList(t, 'comfort_options', COMFORT_OPTIONS), [t]);
+  const resetVerification = useCallback(() => {
+    setTurnstileToken('');
+    setFormStartedAt(Date.now());
+    setTurnstileResetSignal((current) => current + 1);
+  }, []);
+  const onBotFieldChange = useCallback((event) => {
+    setBotField(event.target.value);
+  }, []);
+  const onTurnstileVerify = useCallback((token) => {
+    setTurnstileToken(token);
+    setErrorMessage('');
+    setStatus((current) => (current === 'error' ? 'idle' : current));
+  }, []);
+  const onTurnstileExpire = useCallback(() => {
+    setTurnstileToken('');
+  }, []);
+  const onTurnstileError = useCallback(() => {
+    setTurnstileToken('');
+  }, []);
 
   usePageMeta({
     title: t('page_title', { defaultValue: 'Booking Request · Destination Paradise' }),
@@ -294,6 +319,11 @@ export default function Booking() {
   const submit = async (event) => {
     event.preventDefault();
     if (status === 'sending' || status === 'sent') return;
+    if (TURNSTILE_SITE_KEY && !turnstileToken) {
+      setStatus('error');
+      setErrorMessage(t('form.verification_required', { defaultValue: 'Please complete the verification before sending.' }));
+      return;
+    }
     setStatus('sending');
     setErrorMessage('');
 
@@ -314,6 +344,10 @@ export default function Booking() {
       lang: i18n.resolvedLanguage || i18n.language || 'en',
       source: plannerHandoff ? 'planner' : 'booking',
       plannerDraft: plannerHandoff?.transcript || '',
+      botField,
+      bookingWebsite: botField,
+      formStartedAt,
+      turnstileToken,
     };
 
     try {
@@ -326,11 +360,14 @@ export default function Booking() {
       if (!response.ok || !data.ok) throw new Error(data.error || 'booking-request-failed');
       setStatus('sent');
       setForm(DEFAULT_BOOKING_FORM);
+      setBotField('');
+      resetVerification();
       clearPlannerHandoff();
       setPlannerHandoff(null);
     } catch (err) {
       setStatus('error');
       setErrorMessage(err?.message && err.message !== 'booking-request-failed' ? err.message : '');
+      resetVerification();
     }
   };
 
@@ -348,6 +385,7 @@ export default function Booking() {
 
         <div className="booking-layout" ref={layoutRef}>
           <BookingForm
+            botField={botField}
             budgetOptions={budgetOptions}
             comfortOptions={comfortOptions}
             errorMessage={errorMessage}
@@ -355,8 +393,12 @@ export default function Booking() {
             isRetreatRequest={isRetreatRequest}
             isTransferRequest={isTransferRequest}
             messagePlaceholder={messagePlaceholder}
+            onBotFieldChange={onBotFieldChange}
             onDepartureChange={onDepartureChange}
             onSubmit={submit}
+            onTurnstileError={onTurnstileError}
+            onTurnstileExpire={onTurnstileExpire}
+            onTurnstileVerify={onTurnstileVerify}
             retreatOptions={retreatOptions}
             retreatDepartures={retreatDepartures}
             paymentOptions={paymentOptions}
@@ -366,6 +408,8 @@ export default function Booking() {
             showDateRange={showDateRange}
             showTravelPreferences={showTravelPreferences}
             status={status}
+            turnstileResetSignal={turnstileResetSignal}
+            turnstileSiteKey={TURNSTILE_SITE_KEY}
             transferTiers={transferTiers}
             update={update}
             visibleProducts={visibleProducts}

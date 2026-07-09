@@ -147,6 +147,30 @@
   margin-top: .25rem;
 }
 
+.booking-bot-field {
+  position: absolute;
+  left: -100vw;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.booking-turnstile {
+  min-height: 65px;
+  display: flex;
+  align-items: center;
+}
+
+.booking-turnstile__error {
+  margin: 0;
+  padding: .75rem .9rem;
+  border-radius: 12px;
+  color: var(--dp-error);
+  background: var(--dp-error-bg);
+  font-family: var(--dp-font-sans);
+  font-size: .9rem;
+}
+
 .booking-privacy {
   margin: -.25rem 0 0;
   color: var(--text-muted);

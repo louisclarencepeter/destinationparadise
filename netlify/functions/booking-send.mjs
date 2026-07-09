@@ -7,9 +7,12 @@ import {
   escapeHtml,
   normalizeLanguage,
   rateLimitKey,
+  requestSourceAllowed,
   sanitizeHeaderLine,
   trimField,
   validateEmailAddress,
+  validateSubmissionTiming,
+  verifyTurnstileToken,
 } from './_shared.mjs';
 import { captureFunctionException, captureFunctionMessage } from './_sentry.mjs';
 
@@ -25,6 +28,24 @@ const TEAM_REPLY_TO = process.env.TEAM_REPLY_TO || 'info@yournexttriptoparadise.
 const MAX_REQUEST_BYTES = 60_000;
 const MAX_MESSAGE = 8_000;
 const MAX_DRAFT = 8_000;
+const TURNSTILE_ACTION = 'booking_request';
+const TURNSTILE_SECRET_KEY = process.env.TURNSTILE_SECRET_KEY || '';
+const TURNSTILE_REQUIRED = process.env.TURNSTILE_REQUIRED === 'true' || Boolean(TURNSTILE_SECRET_KEY);
+const MIN_FORM_ELAPSED_MS = Number(process.env.BOOKING_MIN_FORM_ELAPSED_MS || 3_000);
+const MAX_FORM_AGE_MS = Number(process.env.BOOKING_MAX_FORM_AGE_MS || 2 * 60 * 60_000);
+const DEFAULT_ALLOWED_HOSTNAMES = [
+  'yournexttriptoparadise.com',
+  'www.yournexttriptoparadise.com',
+  'destinationparadisezanzibar.netlify.app',
+  'localhost',
+  '127.0.0.1',
+  '0.0.0.0',
+];
+const ALLOWED_HOSTNAME_SUFFIXES = ['--destinationparadisezanzibar.netlify.app'];
+const ALLOWED_REQUEST_HOSTNAMES = (process.env.BOOKING_ALLOWED_HOSTNAMES || '')
+  .split(',')
+  .map((host) => host.trim().toLowerCase())
+  .filter(Boolean);
 
 const checkRateLimit = createRateLimiter({ windowMs: 10 * 60_000, max: 4 });
 
@@ -123,6 +144,16 @@ function row(label, value) {
 export default async (req) => {
   if (req.method !== 'POST') return new Response('Method Not Allowed', { status: 405 });
 
+  const requestSource = requestSourceAllowed(
+    req,
+    [...DEFAULT_ALLOWED_HOSTNAMES, ...ALLOWED_REQUEST_HOSTNAMES],
+    ALLOWED_HOSTNAME_SUFFIXES,
+  );
+  if (!requestSource.ok) {
+    console.warn('booking-send: blocked request source', requestSource.reason);
+    return errorResponse('Please submit the booking form from the website.', 403);
+  }
+
   const requestBytes = Number(req.headers.get('content-length') || 0);
   if (requestBytes > MAX_REQUEST_BYTES) return errorResponse('That request is too large.');
 
@@ -144,8 +175,33 @@ export default async (req) => {
     return errorResponse('Could not read request body.');
   }
 
-  if (body && typeof body === 'object' && body.botField) {
+  if (body && typeof body === 'object' && (body.botField || body.bookingWebsite)) {
     return Response.json({ ok: true });
+  }
+
+  const timing = validateSubmissionTiming(body?.formStartedAt, Date.now(), {
+    minElapsedMs: MIN_FORM_ELAPSED_MS,
+    maxElapsedMs: MAX_FORM_AGE_MS,
+  });
+  if (!timing.ok) {
+    console.warn('booking-send: blocked suspicious timing', timing.reason);
+    return errorResponse('Please refresh the booking form and try again.', 400);
+  }
+
+  if (TURNSTILE_REQUIRED) {
+    const turnstile = await verifyTurnstileToken({
+      token: body?.turnstileToken,
+      secretKey: TURNSTILE_SECRET_KEY,
+      remoteIp: rateLimitKey(req),
+      expectedAction: TURNSTILE_ACTION,
+      expectedHostnames: [...DEFAULT_ALLOWED_HOSTNAMES, ...ALLOWED_REQUEST_HOSTNAMES],
+      expectedHostnameSuffixes: ALLOWED_HOSTNAME_SUFFIXES,
+    });
+
+    if (!turnstile.ok) {
+      console.warn('booking-send: blocked turnstile verification', turnstile.reason, turnstile.result?.['error-codes']);
+      return errorResponse('Please complete the verification and try again.', 400);
+    }
   }
 
   const name = sanitizeHeaderLine(body?.name, 120);

@@ -3,6 +3,9 @@ import {
   createRateLimiter,
   normalizeEmailAddress,
   rateLimitKey,
+  requestSourceAllowed,
+  validateSubmissionTiming,
+  verifyTurnstileToken,
 } from '../../netlify/functions/_shared.mjs';
 
 function reqWith(headers) {
@@ -44,6 +47,95 @@ describe('createRateLimiter', () => {
     expect(check('a').ok).toBe(true);
     expect(check('b').ok).toBe(true);
     expect(check('a').ok).toBe(false);
+  });
+});
+
+describe('requestSourceAllowed', () => {
+  it('allows requests from configured origins', () => {
+    const req = reqWith({ origin: 'https://yournexttriptoparadise.com' });
+
+    expect(requestSourceAllowed(req, ['yournexttriptoparadise.com']).ok).toBe(true);
+  });
+
+  it('allows configured Netlify preview suffixes', () => {
+    const req = reqWith({ referer: 'https://deploy-preview-12--destinationparadisezanzibar.netlify.app/book-now' });
+
+    expect(requestSourceAllowed(req, [], ['--destinationparadisezanzibar.netlify.app']).ok).toBe(true);
+  });
+
+  it('blocks requests without origin or referer context', () => {
+    expect(requestSourceAllowed(reqWith({}), ['yournexttriptoparadise.com'])).toMatchObject({
+      ok: false,
+      reason: 'missing-source',
+    });
+  });
+});
+
+describe('validateSubmissionTiming', () => {
+  it('accepts submissions inside the elapsed window', () => {
+    expect(validateSubmissionTiming(1_000, 5_000, { minElapsedMs: 3_000, maxElapsedMs: 10_000 }).ok).toBe(true);
+  });
+
+  it('rejects submissions that are too fast', () => {
+    expect(validateSubmissionTiming(4_000, 5_000, { minElapsedMs: 3_000 })).toMatchObject({
+      ok: false,
+      reason: 'too-fast',
+    });
+  });
+
+  it('rejects stale or missing timestamps', () => {
+    expect(validateSubmissionTiming('', 5_000)).toMatchObject({ ok: false, reason: 'missing-started-at' });
+    expect(validateSubmissionTiming(1_000, 20_000, { maxElapsedMs: 10_000 })).toMatchObject({
+      ok: false,
+      reason: 'stale-form',
+    });
+  });
+});
+
+describe('verifyTurnstileToken', () => {
+  it('accepts successful Siteverify responses', async () => {
+    const fetchFn = async () => Response.json({
+      success: true,
+      action: 'booking_request',
+      hostname: 'yournexttriptoparadise.com',
+    });
+
+    await expect(verifyTurnstileToken({
+      token: 'token',
+      secretKey: 'real-secret',
+      expectedAction: 'booking_request',
+      expectedHostnames: ['yournexttriptoparadise.com'],
+      fetchFn,
+    })).resolves.toMatchObject({ ok: true });
+  });
+
+  it('rejects failed Siteverify responses', async () => {
+    const fetchFn = async () => Response.json({
+      success: false,
+      'error-codes': ['invalid-input-response'],
+    });
+
+    await expect(verifyTurnstileToken({
+      token: 'bad-token',
+      secretKey: 'real-secret',
+      fetchFn,
+    })).resolves.toMatchObject({ ok: false, reason: 'turnstile-failed' });
+  });
+
+  it('checks action and hostname for real secret keys', async () => {
+    const fetchFn = async () => Response.json({
+      success: true,
+      action: 'other_action',
+      hostname: 'evil.example',
+    });
+
+    await expect(verifyTurnstileToken({
+      token: 'token',
+      secretKey: 'real-secret',
+      expectedAction: 'booking_request',
+      expectedHostnames: ['yournexttriptoparadise.com'],
+      fetchFn,
+    })).resolves.toMatchObject({ ok: false, reason: 'action-mismatch' });
   });
 });
 

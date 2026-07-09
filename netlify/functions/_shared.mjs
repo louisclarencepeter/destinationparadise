@@ -61,13 +61,59 @@ export function createRateLimiter({ windowMs, max }) {
 }
 
 // ---- Resend ----
-export function fetchWithTimeout(url, options = {}, timeoutMs = 10_000) {
+export function fetchWithTimeout(url, options = {}, timeoutMs = 10_000, fetchFn = fetch) {
   const timeoutSignal = AbortSignal.timeout(timeoutMs);
   const signal = options.signal
     ? AbortSignal.any([options.signal, timeoutSignal])
     : timeoutSignal;
 
-  return fetch(url, { ...options, signal });
+  return fetchFn(url, { ...options, signal });
+}
+
+function hostnameFromSource(value) {
+  if (!value) return null;
+
+  try {
+    return new URL(value).hostname.toLowerCase();
+  } catch {
+    return null;
+  }
+}
+
+export function requestSourceAllowed(req, allowedHostnames = [], allowedHostnameSuffixes = []) {
+  const sources = [
+    req.headers.get('origin'),
+    req.headers.get('referer'),
+  ].filter(Boolean);
+
+  if (sources.length === 0) return { ok: false, reason: 'missing-source' };
+
+  const allowed = new Set(allowedHostnames.map((host) => String(host || '').toLowerCase()).filter(Boolean));
+  const suffixes = allowedHostnameSuffixes.map((suffix) => String(suffix || '').toLowerCase()).filter(Boolean);
+
+  for (const source of sources) {
+    const hostname = hostnameFromSource(source);
+    if (!hostname) continue;
+    if (allowed.has(hostname) || suffixes.some((suffix) => hostname.endsWith(suffix))) {
+      return { ok: true, hostname };
+    }
+  }
+
+  return { ok: false, reason: 'disallowed-source' };
+}
+
+export function validateSubmissionTiming(startedAt, now = Date.now(), {
+  minElapsedMs = 3_000,
+  maxElapsedMs = 2 * 60 * 60_000,
+} = {}) {
+  const started = Number(startedAt);
+  if (!Number.isFinite(started) || started <= 0) return { ok: false, reason: 'missing-started-at' };
+
+  const elapsed = now - started;
+  if (elapsed < minElapsedMs) return { ok: false, reason: 'too-fast' };
+  if (elapsed > maxElapsedMs) return { ok: false, reason: 'stale-form' };
+
+  return { ok: true, elapsed };
 }
 
 export function createResendSender(apiKey, timeoutMs = 10_000) {
@@ -77,6 +123,79 @@ export function createResendSender(apiKey, timeoutMs = 10_000) {
       headers: { authorization: `Bearer ${apiKey}`, 'content-type': 'application/json' },
       body: JSON.stringify(payload),
     }, timeoutMs);
+}
+
+const TURNSTILE_SITEVERIFY_URL = 'https://challenges.cloudflare.com/turnstile/v0/siteverify';
+const TURNSTILE_TEST_SECRET_KEYS = new Set([
+  '1x0000000000000000000000000000000AA',
+  '2x0000000000000000000000000000000AA',
+  '3x0000000000000000000000000000000AA',
+]);
+
+export async function verifyTurnstileToken({
+  token,
+  secretKey,
+  remoteIp,
+  expectedAction,
+  expectedHostnames = [],
+  expectedHostnameSuffixes = [],
+  fetchFn = fetch,
+  timeoutMs = 5_000,
+} = {}) {
+  const responseToken = trimField(token, 2048);
+  const secret = trimField(secretKey, 200);
+  if (!secret) return { ok: false, reason: 'missing-secret' };
+  if (!responseToken) return { ok: false, reason: 'missing-token' };
+
+  const body = {
+    secret,
+    response: responseToken,
+  };
+  if (remoteIp && remoteIp !== 'unknown') body.remoteip = remoteIp;
+
+  let siteverifyResponse;
+  try {
+    siteverifyResponse = await fetchWithTimeout(TURNSTILE_SITEVERIFY_URL, {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(body),
+    }, timeoutMs, fetchFn);
+  } catch {
+    return { ok: false, reason: 'siteverify-unreachable' };
+  }
+
+  let result;
+  try {
+    result = await siteverifyResponse.json();
+  } catch {
+    return { ok: false, reason: 'siteverify-invalid-json' };
+  }
+
+  if (!siteverifyResponse.ok || !result?.success) {
+    return { ok: false, reason: 'turnstile-failed', result };
+  }
+
+  // Cloudflare's dummy test keys return canned action/hostname values. Keep the
+  // stricter production checks below for real keys only.
+  if (!TURNSTILE_TEST_SECRET_KEYS.has(secret)) {
+    if (expectedAction && result.action && result.action !== expectedAction) {
+      return { ok: false, reason: 'action-mismatch', result };
+    }
+
+    const expected = new Set(expectedHostnames.map((host) => String(host || '').toLowerCase()).filter(Boolean));
+    const suffixes = expectedHostnameSuffixes.map((suffix) => String(suffix || '').toLowerCase()).filter(Boolean);
+    const hostname = String(result.hostname || '').toLowerCase();
+    if (
+      hostname &&
+      expected.size > 0 &&
+      !expected.has(hostname) &&
+      !suffixes.some((suffix) => hostname.endsWith(suffix))
+    ) {
+      return { ok: false, reason: 'hostname-mismatch', result };
+    }
+  }
+
+  return { ok: true, result };
 }
 
 // ---- Email validation (syntax + DNS deliverability) ----

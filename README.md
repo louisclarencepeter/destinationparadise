@@ -53,6 +53,11 @@ npm run test       # Vitest tests
 Set this on Netlify:
 
 - `ANTHROPIC_API_KEY` — required for the AI Trip Planner. Without it, the planner returns a friendly fallback message and points guests to WhatsApp.
+- `VITE_TURNSTILE_SITE_KEY` — Cloudflare Turnstile site key for the public booking form CAPTCHA.
+- `TURNSTILE_SECRET_KEY` — Cloudflare Turnstile secret key for `/api/booking-send` server-side token validation.
+- `TURNSTILE_REQUIRED` — optional. Set to `true` to fail closed if the Turnstile secret is missing. By default, Turnstile is required whenever `TURNSTILE_SECRET_KEY` is configured.
+- `BOOKING_ALLOWED_HOSTNAMES` — optional comma-separated extra hostnames allowed to post to `/api/booking-send`; production, Netlify preview, and local dev hosts are allowed by default.
+- `BOOKING_MIN_FORM_ELAPSED_MS` / `BOOKING_MAX_FORM_AGE_MS` — optional timing thresholds for the booking form anti-spam guard. Defaults are 3 seconds minimum and 2 hours maximum.
 - `VITE_SENTRY_DSN` — optional browser Sentry DSN for React errors and performance traces. Without it, Sentry is disabled.
 - `SENTRY_DSN` — optional server-side Sentry DSN for Netlify Function errors. This can be the same Sentry project DSN as the browser, or a separate Node project DSN.
 - `SENTRY_ENVIRONMENT` / `VITE_SENTRY_ENVIRONMENT` — optional environment labels. Netlify's deploy context is used for functions when this is omitted.
