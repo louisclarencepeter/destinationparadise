@@ -93,16 +93,8 @@ function chooseCandidate(candidates, state) {
 }
 
 function createImageUrl(sourcePath) {
-  const params = new URLSearchParams({
-    url: sourcePath,
-    w: '1080',
-    h: '1920',
-    fit: 'cover',
-    position: 'center',
-    fm: 'jpg',
-    q: '85',
-  });
-  return `${SITE_ORIGIN}/.netlify/images?${params}`;
+  const params = new URLSearchParams({ src: sourcePath });
+  return `${SITE_ORIGIN}/api/instagram-story-image?${params}`;
 }
 
 async function graphRequest(config, endpoint, options = {}) {

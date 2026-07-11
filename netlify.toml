@@ -3,6 +3,9 @@
   publish = "dist"
   functions = "netlify/functions"
 
+[functions]
+  included_files = ["netlify/functions/_assets/**"]
+
 [build.environment]
   # Pin Node so the build is reproducible (Vite 8 needs >= 20.19).
   NODE_VERSION = "22"
