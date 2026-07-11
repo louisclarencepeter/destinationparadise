@@ -93,7 +93,7 @@ function chooseCandidate(candidates, state) {
 }
 
 function createImageUrl(sourcePath) {
-  const params = new URLSearchParams({ src: sourcePath });
+  const params = new URLSearchParams({ src: sourcePath, v: '2' });
   return `${SITE_ORIGIN}/api/instagram-story-image?${params}`;
 }
 

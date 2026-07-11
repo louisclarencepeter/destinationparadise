@@ -39,7 +39,7 @@ const NAME_OVERRIDES = new Map([
 ]);
 
 function titleFromSource(source) {
-  const slug = source.split('/').at(-1).replace(/\.webp$/, '');
+  const slug = source.split('/').at(-1).replace(/\.webp$/, '').replace(/-\d+w$/, '');
   return slug
     .split('-')
     .map((word) => NAME_OVERRIDES.get(word) || `${word[0].toUpperCase()}${word.slice(1)}`)
@@ -47,26 +47,56 @@ function titleFromSource(source) {
     .replace('Sup', 'SUP');
 }
 
-function copyForSource(source) {
+function sourceNumber(source) {
+  return [...source].reduce((total, character) => (total * 31 + character.charCodeAt(0)) >>> 0, 7);
+}
+
+function copyForSource(source, variation) {
+  let options;
   if (/sunset|dhow|harbor|waterfront/.test(source)) {
-    return 'Golden light, warm ocean air, and Zanzibar moving at its own rhythm.';
+    options = [
+      'Golden light, warm ocean air, and Zanzibar moving at its own rhythm.',
+      'Chase the last light across the Indian Ocean, one unforgettable sail at a time.',
+      'When the sky turns gold, Zanzibar saves its most beautiful moment for you.',
+    ];
+  } else if (/snorkel|reef|lagoon|sandbank|dolphin|diving|mnemba|kayak|marine|ocean/.test(source)) {
+    options = [
+      'Clear water, coral worlds, and another unforgettable day in paradise.',
+      'Trade the shoreline for turquoise water and a little island magic.',
+      'Above the water is paradise. Below it is an entirely new world.',
+    ];
+  } else if (/spice|cooking|coffee|herbal|forodhani/.test(source)) {
+    options = [
+      'Taste the stories, traditions, and unmistakable spirit of Zanzibar.',
+      'Fragrant spices, local recipes, and the flavors that make this island home.',
+      'The soul of Zanzibar is best discovered one flavor at a time.',
+    ];
+  } else if (/stone-town|hidden-alleys|ruins|baths|dhow-heritage|village/.test(source)) {
+    options = [
+      'Go beyond the postcard and discover the stories that shaped the island.',
+      'Follow the winding streets into centuries of culture, craft, and character.',
+      'Every doorway, alley, and ocean breeze carries another Zanzibar story.',
+    ];
+  } else if (/safaris\//.test(source)) {
+    options = [
+      'Wild landscapes, unforgettable encounters, and Tanzania at its most extraordinary.',
+      'The kind of wild beauty that stays with you long after the journey ends.',
+      'Open skies, untamed horizons, and a front-row seat to the wild.',
+    ];
+  } else if (/home\//.test(source)) {
+    options = [
+      'Your next journey to Zanzibar and Tanzania starts right here.',
+      'Come for the beauty. Stay for the feeling you will never quite forget.',
+      'A thoughtfully planned escape, made personal from the very first hello.',
+    ];
+  } else {
+    options = [
+      'Experience Zanzibar beyond the postcard, thoughtfully planned from start to finish.',
+      'Find the places, people, and moments that make paradise feel personal.',
+      'More than a destination: a journey designed around the way you love to travel.',
+    ];
   }
-  if (/snorkel|reef|lagoon|sandbank|dolphin|diving|mnemba|kayak|marine|ocean/.test(source)) {
-    return 'Clear water, coral worlds, and another unforgettable day in paradise.';
-  }
-  if (/spice|cooking|coffee|herbal|forodhani/.test(source)) {
-    return 'Taste the stories, traditions, and unmistakable spirit of Zanzibar.';
-  }
-  if (/stone-town|hidden-alleys|ruins|baths|dhow-heritage|village/.test(source)) {
-    return 'Go beyond the postcard and discover the stories that shaped the island.';
-  }
-  if (/safaris\//.test(source)) {
-    return 'Wild landscapes, unforgettable encounters, and Tanzania at its most extraordinary.';
-  }
-  if (/home\//.test(source)) {
-    return 'Your next journey to Zanzibar and Tanzania starts right here.';
-  }
-  return 'Experience Zanzibar beyond the postcard, thoughtfully planned from start to finish.';
+  return options[variation % options.length];
 }
 
 function wrapText(text, maxCharacters) {
@@ -86,10 +116,24 @@ function wrapText(text, maxCharacters) {
   return lines;
 }
 
-function svgPath(text, { x = 88, y, fontSize, weight = 400, fill = '#fff' }) {
+function textWidth(text, font, fontSize) {
+  const scale = fontSize / font.unitsPerEm;
+  let width = 0;
+  let previousGlyph;
+  for (const character of text) {
+    const glyph = font.charToGlyph(character);
+    if (previousGlyph) width += font.getKerningValue(previousGlyph, glyph) * scale;
+    width += (glyph.advanceWidth || font.unitsPerEm) * scale;
+    previousGlyph = glyph;
+  }
+  return width;
+}
+
+function svgPath(text, { x = 88, y, fontSize, weight = 400, fill = '#fff', anchor = 'start' }) {
   const selectedFont = weight >= 700 ? boldFont : regularFont;
   const scale = fontSize / selectedFont.unitsPerEm;
-  let cursor = x;
+  const width = textWidth(text, selectedFont, fontSize);
+  let cursor = anchor === 'middle' ? x - width / 2 : anchor === 'end' ? x - width : x;
   let previousGlyph;
   let outline = '';
 
@@ -106,25 +150,67 @@ function svgPath(text, { x = 88, y, fontSize, weight = 400, fill = '#fff' }) {
   return `<path d="${outline}" fill="${fill}" />`;
 }
 
-function svgTextLines(lines, { startY, lineHeight, fontSize, fontWeight = 400 }) {
+function svgTextLines(lines, { x, startY, lineHeight, fontSize, fontWeight = 400, anchor = 'start' }) {
   return lines
     .map(
       (line, index) =>
         svgPath(line, {
+          x,
           y: startY + index * lineHeight,
           fontSize,
           weight: fontWeight,
+          anchor,
         }),
     )
     .join('');
 }
 
 function createOverlay(source) {
+  const sourceSeed = sourceNumber(source);
+  const style = [
+    {
+      accent: '#f1c56d',
+      anchor: 'start',
+      gradient: '#07111b',
+      textX: 88,
+      titleY: 1425,
+      titleSize: 66,
+      decoration: '<rect x="88" y="276" width="112" height="5" rx="2.5" fill="#f1c56d" />',
+    },
+    {
+      accent: '#77e0d2',
+      anchor: 'middle',
+      gradient: '#061b2a',
+      textX: 540,
+      titleY: 1370,
+      titleSize: 62,
+      decoration: '<circle cx="540" cy="279" r="5" fill="#77e0d2" /><rect x="492" y="277" width="34" height="4" rx="2" fill="#77e0d2" /><rect x="554" y="277" width="34" height="4" rx="2" fill="#77e0d2" />',
+    },
+    {
+      accent: '#ffad82',
+      anchor: 'end',
+      gradient: '#231019',
+      textX: 992,
+      titleY: 1390,
+      titleSize: 64,
+      decoration: '<rect x="824" y="276" width="168" height="5" rx="2.5" fill="#ffad82" />',
+    },
+    {
+      accent: '#f4d678',
+      anchor: 'start',
+      gradient: '#11180f',
+      textX: 104,
+      titleY: 1375,
+      titleSize: 60,
+      decoration: '<rect x="64" y="1260" width="952" height="590" rx="28" fill="#07111b" fill-opacity="0.18" stroke="#f4d678" stroke-opacity="0.75" stroke-width="3" />',
+    },
+  ][sourceSeed % 4];
   const title = titleFromSource(source);
-  const titleLines = wrapText(title, 23).slice(0, 2);
-  const copyLines = wrapText(copyForSource(source), 42).slice(0, 3);
-  const titleStart = 1425 - (titleLines.length - 1) * 34;
+  const titleLines = wrapText(title, style.anchor === 'middle' ? 25 : 23).slice(0, 2);
+  const copyLines = wrapText(copyForSource(source, sourceSeed), style.anchor === 'middle' ? 46 : 42).slice(0, 3);
+  const titleStart = style.titleY - (titleLines.length - 1) * 34;
   const copyStart = titleStart + titleLines.length * 78 + 34;
+  const headerX = style.anchor === 'end' ? 992 : style.anchor === 'middle' ? 540 : 88;
 
   return Buffer.from(`
     <svg width="${WIDTH}" height="${HEIGHT}" viewBox="0 0 ${WIDTH} ${HEIGHT}" xmlns="http://www.w3.org/2000/svg">
@@ -132,19 +218,19 @@ function createOverlay(source) {
         <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#07111b" stop-opacity="0" />
           <stop offset="48%" stop-color="#07111b" stop-opacity="0.08" />
-          <stop offset="100%" stop-color="#07111b" stop-opacity="0.92" />
+          <stop offset="100%" stop-color="${style.gradient}" stop-opacity="0.94" />
         </linearGradient>
         <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
           <feDropShadow dx="0" dy="3" stdDeviation="5" flood-color="#000" flood-opacity="0.45" />
         </filter>
       </defs>
       <rect width="${WIDTH}" height="${HEIGHT}" fill="url(#shade)" />
+      ${style.decoration}
       <g filter="url(#shadow)">
-        ${svgPath('DESTINATION PARADISE', { y: 120, fontSize: 30, weight: 700 })}
-        <rect x="88" y="148" width="112" height="5" rx="2.5" fill="#f1c56d" />
-        ${svgTextLines(titleLines, { startY: titleStart, lineHeight: 74, fontSize: 66, fontWeight: 700 })}
-        ${svgTextLines(copyLines, { startY: copyStart, lineHeight: 50, fontSize: 38 })}
-        ${svgPath('@yournexttriptoparadise', { y: 1818, fontSize: 29, weight: 700, fill: '#f1c56d' })}
+        ${svgPath('DESTINATION PARADISE', { x: headerX, y: 248, fontSize: 30, weight: 700, anchor: style.anchor })}
+        ${svgTextLines(titleLines, { x: style.textX, startY: titleStart, lineHeight: 74, fontSize: style.titleSize, fontWeight: 700, anchor: style.anchor })}
+        ${svgTextLines(copyLines, { x: style.textX, startY: copyStart, lineHeight: 50, fontSize: 38, anchor: style.anchor })}
+        ${svgPath('@yournexttriptoparadise', { x: style.textX, y: 1818, fontSize: 29, weight: 700, fill: style.accent, anchor: style.anchor })}
       </g>
     </svg>
   `);
