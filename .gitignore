@@ -8,6 +8,8 @@ dev-dist
 .netlify
 .DS_Store
 *.log
+.instagram-story-state.json
+.instagram-story-log.jsonl
 
 # Docs-side asset/archive snapshots
 docs/

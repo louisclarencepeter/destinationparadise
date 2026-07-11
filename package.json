@@ -16,7 +16,9 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "instagram:story:dry-run": "node scripts/instagram-story.mjs --dry-run",
+    "instagram:story:publish": "node scripts/instagram-story.mjs --publish"
   },
   "dependencies": {
     "@sentry/node": "^10.63.0",
