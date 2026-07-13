@@ -1,0 +1,88 @@
+name: Daily Instagram Story
+
+on:
+  schedule:
+    - cron: '17 9 * * *'
+      timezone: Africa/Dar_es_Salaam
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish after restoring state; otherwise perform a dry run
+        required: true
+        type: boolean
+        default: false
+      initialize_state:
+        description: Seed state only when no prior remote state artifact exists
+        required: true
+        type: boolean
+        default: false
+
+concurrency:
+  group: destination-paradise-instagram-story
+  cancel-in-progress: false
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  story:
+    name: Publish Story
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      INSTAGRAM_STORY_LOG_PATH: .instagram-story-data/log.jsonl
+      INSTAGRAM_STORY_STATE_PATH: .instagram-story-data/state.json
+      INSTAGRAM_STORY_TIME_ZONE: Africa/Dar_es_Salaam
+      META_GRAPH_VERSION: ${{ secrets.META_GRAPH_VERSION }}
+      META_INSTAGRAM_ACCOUNT_ID: ${{ secrets.META_INSTAGRAM_ACCOUNT_ID }}
+      META_PAGE_ACCESS_TOKEN: ${{ secrets.META_PAGE_ACCESS_TOKEN }}
+      META_PAGE_ID: ${{ secrets.META_PAGE_ID }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Restore no-repeat state
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INITIALIZE_STATE: ${{ inputs.initialize_state || 'false' }}
+          INITIAL_STATE: ${{ secrets.INSTAGRAM_STORY_INITIAL_STATE }}
+        run: |
+          set -euo pipefail
+          mkdir -p .instagram-story-data
+          artifact_id="$(gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=instagram-story-state&per_page=100" --jq '[.artifacts[] | select(.expired == false)] | sort_by(.created_at) | reverse | .[0].id // empty')"
+          if [[ -n "${artifact_id}" ]]; then
+            gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${artifact_id}/zip" > /tmp/instagram-story-state.zip
+            unzip -jo /tmp/instagram-story-state.zip -d .instagram-story-data
+          elif [[ "${INITIALIZE_STATE}" == "true" && -n "${INITIAL_STATE}" ]]; then
+            printf '%s\n' "${INITIAL_STATE}" > .instagram-story-data/state.json
+          else
+            echo '::error::No remote Instagram Story state exists. Run this workflow manually once with initialize_state enabled.'
+            exit 1
+          fi
+
+      - name: Publish or validate Story
+        env:
+          MANUAL_PUBLISH: ${{ inputs.publish || 'false' }}
+        run: |
+          set -euo pipefail
+          if [[ "${GITHUB_EVENT_NAME}" == "schedule" || "${MANUAL_PUBLISH}" == "true" ]]; then
+            npm run instagram:story:publish
+          else
+            npm run instagram:story:dry-run
+          fi
+
+      - name: Persist no-repeat state
+        if: ${{ always() && hashFiles('.instagram-story-data/state.json') != '' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: instagram-story-state
+          path: .instagram-story-data/
+          if-no-files-found: error
+          retention-days: 90

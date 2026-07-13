@@ -4,12 +4,13 @@ import path from 'node:path';
 import process from 'node:process';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
-const ENV_PATH = path.join(ROOT, '.env.instagram-story');
-const STATE_PATH = path.join(ROOT, '.instagram-story-state.json');
-const LOG_PATH = path.join(ROOT, '.instagram-story-log.jsonl');
+const ENV_PATH = path.resolve(ROOT, process.env.INSTAGRAM_STORY_ENV_PATH || '.env.instagram-story');
+const STATE_PATH = path.resolve(ROOT, process.env.INSTAGRAM_STORY_STATE_PATH || '.instagram-story-state.json');
+const LOG_PATH = path.resolve(ROOT, process.env.INSTAGRAM_STORY_LOG_PATH || '.instagram-story-log.jsonl');
 const SITE_ORIGIN = 'https://yournexttriptoparadise.com';
 const EXPECTED_USERNAME = 'yournexttriptoparadise';
 const ALLOWED_IMAGE_ROOTS = ['home', 'excursions', 'safaris'];
+const STORY_TIME_ZONE = process.env.INSTAGRAM_STORY_TIME_ZONE || 'Africa/Dar_es_Salaam';
 const mode = process.argv.includes('--publish') ? 'publish' : 'dry-run';
 
 function parseEnv(source) {
@@ -28,13 +29,21 @@ function parseEnv(source) {
 }
 
 async function loadConfig() {
-  const values = parseEnv(await readFile(ENV_PATH, 'utf8'));
   const required = [
     'META_GRAPH_VERSION',
     'META_PAGE_ID',
     'META_INSTAGRAM_ACCOUNT_ID',
     'META_PAGE_ACCESS_TOKEN',
   ];
+  let fileValues = {};
+  try {
+    fileValues = parseEnv(await readFile(ENV_PATH, 'utf8'));
+  } catch (error) {
+    if (error.code !== 'ENOENT') throw error;
+  }
+  const values = Object.fromEntries(
+    required.map((key) => [key, process.env[key] || fileValues[key]]),
+  );
   const missing = required.filter((key) => !values[key]);
   if (missing.length) {
     throw new Error(`Missing Instagram Story configuration: ${missing.join(', ')}`);
@@ -73,6 +82,25 @@ async function readState() {
     if (error.code === 'ENOENT') return { cycle: 1, used: [] };
     throw error;
   }
+}
+
+export function storyDateKey(value, timeZone = STORY_TIME_ZONE) {
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime())) return null;
+  const parts = new Intl.DateTimeFormat('en', {
+    day: '2-digit',
+    month: '2-digit',
+    timeZone,
+    year: 'numeric',
+  }).formatToParts(date);
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+export function alreadyPublishedToday(state, now = new Date(), timeZone = STORY_TIME_ZONE) {
+  if (!state?.lastPublishedAt) return false;
+  const publishedDate = storyDateKey(state.lastPublishedAt, timeZone);
+  return publishedDate !== null && publishedDate === storyDateKey(now, timeZone);
 }
 
 function chooseCandidate(candidates, state) {
@@ -151,6 +179,21 @@ async function recordLog(entry) {
 }
 
 async function main() {
+  const state = await readState();
+  if (mode === 'publish' && alreadyPublishedToday(state)) {
+    console.log(
+      JSON.stringify({
+        ok: true,
+        skipped: true,
+        reason: 'already-published-today',
+        lastPublishedAt: state.lastPublishedAt,
+        lastMediaId: state.lastMediaId,
+        timeZone: STORY_TIME_ZONE,
+      }),
+    );
+    return;
+  }
+
   const config = await loadConfig();
   const profile = await graphRequest(
     config,
@@ -166,7 +209,6 @@ async function main() {
   }
 
   const candidates = await listCandidates();
-  const state = await readState();
   const { selected, nextState } = chooseCandidate(candidates, state);
   const imageUrl = createImageUrl(selected);
   const image = await verifyImage(imageUrl);
@@ -233,18 +275,20 @@ async function main() {
   );
 }
 
-main().catch(async (error) => {
-  const entry = {
-    failedAt: new Date().toISOString(),
-    error: error.message,
-    code: error.code,
-    subcode: error.subcode,
-  };
-  try {
-    await recordLog(entry);
-  } catch {
-    // Preserve the original publishing error if local logging also fails.
-  }
-  console.error(JSON.stringify(entry));
-  process.exitCode = 1;
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === import.meta.filename) {
+  main().catch(async (error) => {
+    const entry = {
+      failedAt: new Date().toISOString(),
+      error: error.message,
+      code: error.code,
+      subcode: error.subcode,
+    };
+    try {
+      await recordLog(entry);
+    } catch {
+      // Preserve the original publishing error if local logging also fails.
+    }
+    console.error(JSON.stringify(entry));
+    process.exitCode = 1;
+  });
+}
