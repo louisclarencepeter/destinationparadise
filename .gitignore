@@ -10,6 +10,7 @@ dev-dist
 *.log
 .instagram-story-state.json
 .instagram-story-log.jsonl
+.threads-auto-commenter-state.json
 
 # Docs-side asset/archive snapshots
 docs/

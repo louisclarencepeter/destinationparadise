@@ -18,7 +18,9 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "instagram:story:dry-run": "node scripts/instagram-story.mjs --dry-run",
-    "instagram:story:publish": "node scripts/instagram-story.mjs --publish"
+    "instagram:story:publish": "node scripts/instagram-story.mjs --publish",
+    "threads:comment:dry-run": "node scripts/threads-auto-commenter.mjs --dry-run",
+    "threads:comment:publish": "node scripts/threads-auto-commenter.mjs --publish"
   },
   "dependencies": {
     "@sentry/node": "^10.63.0",

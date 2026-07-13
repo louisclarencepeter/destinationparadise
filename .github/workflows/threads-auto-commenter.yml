@@ -1,0 +1,93 @@
+name: Threads Auto Commenter
+
+on:
+  schedule:
+    - cron: '23 8,12,16 * * *'
+      timezone: Africa/Dar_es_Salaam
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish replies; otherwise perform a dry run
+        required: true
+        type: boolean
+        default: false
+      initialize_state:
+        description: Create empty state only when no prior remote state exists
+        required: true
+        type: boolean
+        default: false
+
+concurrency:
+  group: destination-paradise-threads-auto-commenter
+  cancel-in-progress: false
+
+permissions:
+  actions: read
+  contents: read
+
+jobs:
+  comment:
+    name: Find and help travelers
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      THREADS_EXPECTED_USERNAME: yournexttriptoparadise
+      THREADS_STATE_PATH: .threads-auto-commenter-data/state.json
+      THREADS_TIME_ZONE: Africa/Dar_es_Salaam
+      THREADS_USER_ACCESS_TOKEN: ${{ secrets.THREADS_USER_ACCESS_TOKEN }}
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Restore duplicate-prevention state
+        env:
+          GH_TOKEN: ${{ github.token }}
+          INITIALIZE_STATE: ${{ inputs.initialize_state || 'false' }}
+        run: |
+          set -euo pipefail
+          mkdir -p .threads-auto-commenter-data
+          artifact_id="$(gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=threads-auto-commenter-state&per_page=100" --jq '[.artifacts[] | select(.expired == false)] | sort_by(.created_at) | reverse | .[0].id // empty')"
+          if [[ -n "${artifact_id}" ]]; then
+            gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${artifact_id}/zip" > /tmp/threads-auto-commenter-state.zip
+            unzip -jo /tmp/threads-auto-commenter-state.zip -d .threads-auto-commenter-data
+          elif [[ "${INITIALIZE_STATE}" == "true" ]]; then
+            printf '%s\n' '{"version":1,"records":[]}' > .threads-auto-commenter-data/state.json
+          else
+            echo '::error::No remote Threads state exists. Run this workflow manually once with initialize_state enabled and publish disabled.'
+            exit 1
+          fi
+
+      - name: Validate authorization is configured
+        run: |
+          set -euo pipefail
+          if [[ -z "${THREADS_USER_ACCESS_TOKEN}" ]]; then
+            echo '::error::Missing THREADS_USER_ACCESS_TOKEN. Complete the Threads OAuth grant before enabling publishing.'
+            exit 1
+          fi
+
+      - name: Publish or validate replies
+        env:
+          MANUAL_PUBLISH: ${{ inputs.publish || 'false' }}
+        run: |
+          set -euo pipefail
+          if [[ "${GITHUB_EVENT_NAME}" == "schedule" || "${MANUAL_PUBLISH}" == "true" ]]; then
+            npm run threads:comment:publish
+          else
+            npm run threads:comment:dry-run
+          fi
+
+      - name: Persist duplicate-prevention state
+        if: ${{ always() && hashFiles('.threads-auto-commenter-data/state.json') != '' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: threads-auto-commenter-state
+          path: .threads-auto-commenter-data/state.json
+          if-no-files-found: error
+          include-hidden-files: true
+          retention-days: 90
