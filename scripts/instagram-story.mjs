@@ -1,7 +1,9 @@
-import { createHash, randomInt } from 'node:crypto';
-import { appendFile, readFile, readdir, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import { access, appendFile, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+
+import { INSTAGRAM_STORY_CARDS } from '../data/instagramStoryCards.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const ENV_PATH = path.resolve(ROOT, process.env.INSTAGRAM_STORY_ENV_PATH || '.env.instagram-story');
@@ -9,7 +11,6 @@ const STATE_PATH = path.resolve(ROOT, process.env.INSTAGRAM_STORY_STATE_PATH || 
 const LOG_PATH = path.resolve(ROOT, process.env.INSTAGRAM_STORY_LOG_PATH || '.instagram-story-log.jsonl');
 const SITE_ORIGIN = 'https://yournexttriptoparadise.com';
 const EXPECTED_USERNAME = 'yournexttriptoparadise';
-const ALLOWED_IMAGE_ROOTS = ['home', 'excursions', 'safaris'];
 const STORY_TIME_ZONE = process.env.INSTAGRAM_STORY_TIME_ZONE || 'Africa/Dar_es_Salaam';
 const mode = process.argv.includes('--publish') ? 'publish' : 'dry-run';
 
@@ -51,28 +52,11 @@ async function loadConfig() {
   return values;
 }
 
-async function listFiles(directory) {
-  const entries = await readdir(directory, { withFileTypes: true });
-  const files = await Promise.all(
-    entries.map((entry) => {
-      const fullPath = path.join(directory, entry.name);
-      return entry.isDirectory() ? listFiles(fullPath) : [fullPath];
-    }),
+async function listApprovedCards() {
+  await Promise.all(
+    INSTAGRAM_STORY_CARDS.map((card) => access(path.join(ROOT, 'public', card.source))),
   );
-  return files.flat();
-}
-
-async function listCandidates() {
-  const root = path.join(ROOT, 'public', 'assets', 'images');
-  const files = (
-    await Promise.all(ALLOWED_IMAGE_ROOTS.map((folder) => listFiles(path.join(root, folder))))
-  ).flat();
-
-  return files
-    .filter((file) => file.endsWith('.webp'))
-    .filter((file) => !file.endsWith('-600w.webp'))
-    .map((file) => `/${path.relative(path.join(ROOT, 'public'), file).split(path.sep).join('/')}`)
-    .sort();
+  return INSTAGRAM_STORY_CARDS;
 }
 
 async function readState() {
@@ -103,25 +87,28 @@ export function alreadyPublishedToday(state, now = new Date(), timeZone = STORY_
   return publishedDate !== null && publishedDate === storyDateKey(now, timeZone);
 }
 
-function chooseCandidate(candidates, state) {
-  const existing = new Set(candidates);
-  const used = (state.used || []).filter((candidate) => existing.has(candidate));
-  let remaining = candidates.filter((candidate) => !used.includes(candidate));
+export function chooseStoryCard(cards, state) {
+  const existing = new Set(cards.map((card) => card.id));
+  const usedCards = (state.usedCards || []).filter((id) => existing.has(id));
+  const legacyUsedSources = new Set(state.used || []);
+  let remaining = cards.filter(
+    (card) => !usedCards.includes(card.id) && !legacyUsedSources.has(card.source),
+  );
   let cycle = Number(state.cycle) || 1;
 
   if (!remaining.length) {
-    remaining = candidates;
-    used.length = 0;
+    remaining = cards;
+    usedCards.length = 0;
     cycle += 1;
   }
 
-  if (!remaining.length) throw new Error('No eligible Destination Paradise images found.');
-  const selected = remaining[randomInt(remaining.length)];
-  return { selected, nextState: { cycle, used: [...used, selected] } };
+  if (!remaining.length) throw new Error('No approved Destination Paradise Story cards found.');
+  const selected = remaining[0];
+  return { selected, nextState: { cycle, usedCards: [...usedCards, selected.id] } };
 }
 
-function createImageUrl(sourcePath) {
-  const params = new URLSearchParams({ src: sourcePath, v: '2' });
+function createImageUrl(card) {
+  const params = new URLSearchParams({ src: card.source, card: card.id, v: '3' });
   return `${SITE_ORIGIN}/api/instagram-story-image?${params}`;
 }
 
@@ -208,11 +195,11 @@ async function main() {
     );
   }
 
-  const candidates = await listCandidates();
-  const { selected, nextState } = chooseCandidate(candidates, state);
+  const cards = await listApprovedCards();
+  const { selected, nextState } = chooseStoryCard(cards, state);
   const imageUrl = createImageUrl(selected);
   const image = await verifyImage(imageUrl);
-  const selectionHash = createHash('sha256').update(selected).digest('hex').slice(0, 12);
+  const selectionHash = createHash('sha256').update(selected.id).digest('hex').slice(0, 12);
 
   if (mode === 'dry-run') {
     console.log(
@@ -220,8 +207,10 @@ async function main() {
         {
           mode,
           account: `@${profile.username}`,
-          candidateCount: candidates.length,
-          selected,
+          cardCount: cards.length,
+          selected: selected.source,
+          title: selected.title,
+          caption: selected.caption,
           selectionHash,
           imageUrl,
           image,
@@ -260,7 +249,10 @@ async function main() {
   await recordLog({
     publishedAt,
     mediaId: published.id,
-    selected,
+    selected: selected.source,
+    cardId: selected.id,
+    title: selected.title,
+    caption: selected.caption,
     selectionHash,
     account: `@${profile.username}`,
   });
@@ -269,7 +261,10 @@ async function main() {
       ok: true,
       publishedAt,
       mediaId: published.id,
-      selected,
+      selected: selected.source,
+      cardId: selected.id,
+      title: selected.title,
+      caption: selected.caption,
       account: `@${profile.username}`,
     }),
   );

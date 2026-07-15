@@ -3,6 +3,8 @@ import { readFile } from 'node:fs/promises';
 import opentype from 'opentype.js';
 import sharp from 'sharp';
 
+import { INSTAGRAM_STORY_CARD_BY_ID } from '../../data/instagramStoryCards.mjs';
+
 const SITE_ORIGIN = 'https://yournexttriptoparadise.com';
 const ALLOWED_SOURCE = /^\/assets\/images\/(home|excursions|safaris)\/[a-z0-9/-]+\.webp$/;
 const WIDTH = 1080;
@@ -49,54 +51,6 @@ function titleFromSource(source) {
 
 function sourceNumber(source) {
   return [...source].reduce((total, character) => (total * 31 + character.charCodeAt(0)) >>> 0, 7);
-}
-
-function copyForSource(source, variation) {
-  let options;
-  if (/sunset|dhow|harbor|waterfront/.test(source)) {
-    options = [
-      'Golden light, warm ocean air, and Zanzibar moving at its own rhythm.',
-      'Chase the last light across the Indian Ocean, one unforgettable sail at a time.',
-      'When the sky turns gold, Zanzibar saves its most beautiful moment for you.',
-    ];
-  } else if (/snorkel|reef|lagoon|sandbank|dolphin|diving|mnemba|kayak|marine|ocean/.test(source)) {
-    options = [
-      'Clear water, coral worlds, and another unforgettable day in paradise.',
-      'Trade the shoreline for turquoise water and a little island magic.',
-      'Above the water is paradise. Below it is an entirely new world.',
-    ];
-  } else if (/spice|cooking|coffee|herbal|forodhani/.test(source)) {
-    options = [
-      'Taste the stories, traditions, and unmistakable spirit of Zanzibar.',
-      'Fragrant spices, local recipes, and the flavors that make this island home.',
-      'The soul of Zanzibar is best discovered one flavor at a time.',
-    ];
-  } else if (/stone-town|hidden-alleys|ruins|baths|dhow-heritage|village/.test(source)) {
-    options = [
-      'Go beyond the postcard and discover the stories that shaped the island.',
-      'Follow the winding streets into centuries of culture, craft, and character.',
-      'Every doorway, alley, and ocean breeze carries another Zanzibar story.',
-    ];
-  } else if (/safaris\//.test(source)) {
-    options = [
-      'Wild landscapes, unforgettable encounters, and Tanzania at its most extraordinary.',
-      'The kind of wild beauty that stays with you long after the journey ends.',
-      'Open skies, untamed horizons, and a front-row seat to the wild.',
-    ];
-  } else if (/home\//.test(source)) {
-    options = [
-      'Your next journey to Zanzibar and Tanzania starts right here.',
-      'Come for the beauty. Stay for the feeling you will never quite forget.',
-      'A thoughtfully planned escape, made personal from the very first hello.',
-    ];
-  } else {
-    options = [
-      'Experience Zanzibar beyond the postcard, thoughtfully planned from start to finish.',
-      'Find the places, people, and moments that make paradise feel personal.',
-      'More than a destination: a journey designed around the way you love to travel.',
-    ];
-  }
-  return options[variation % options.length];
 }
 
 function wrapText(text, maxCharacters) {
@@ -165,8 +119,8 @@ function svgTextLines(lines, { x, startY, lineHeight, fontSize, fontWeight = 400
     .join('');
 }
 
-function createOverlay(source) {
-  const sourceSeed = sourceNumber(source);
+function createOverlay(card) {
+  const sourceSeed = sourceNumber(card.id);
   const style = [
     {
       accent: '#f1c56d',
@@ -205,9 +159,9 @@ function createOverlay(source) {
       decoration: '<rect x="64" y="1260" width="952" height="590" rx="28" fill="#07111b" fill-opacity="0.18" stroke="#f4d678" stroke-opacity="0.75" stroke-width="3" />',
     },
   ][sourceSeed % 4];
-  const title = titleFromSource(source);
+  const title = card.title || titleFromSource(card.source);
   const titleLines = wrapText(title, style.anchor === 'middle' ? 25 : 23).slice(0, 2);
-  const copyLines = wrapText(copyForSource(source, sourceSeed), style.anchor === 'middle' ? 46 : 42).slice(0, 3);
+  const copyLines = wrapText(card.caption, style.anchor === 'middle' ? 46 : 42).slice(0, 3);
   const titleStart = style.titleY - (titleLines.length - 1) * 34;
   const copyStart = titleStart + titleLines.length * 78 + 34;
   const headerX = style.anchor === 'end' ? 992 : style.anchor === 'middle' ? 540 : 88;
@@ -241,8 +195,10 @@ export default async (request) => {
     return new Response('Method not allowed', { status: 405, headers: { Allow: 'GET, HEAD' } });
   }
 
-  const source = new URL(request.url).searchParams.get('src') || '';
-  if (!ALLOWED_SOURCE.test(source)) {
+  const url = new URL(request.url);
+  const source = url.searchParams.get('src') || '';
+  const card = INSTAGRAM_STORY_CARD_BY_ID.get(url.searchParams.get('card'));
+  if (!ALLOWED_SOURCE.test(source) || !card || card.source !== source) {
     return new Response('Invalid image source', { status: 400 });
   }
 
@@ -254,7 +210,7 @@ export default async (request) => {
   const sourceImage = Buffer.from(await sourceResponse.arrayBuffer());
   const storyImage = await sharp(sourceImage)
     .resize(WIDTH, HEIGHT, { fit: 'cover', position: 'centre' })
-    .composite([{ input: createOverlay(source), top: 0, left: 0 }])
+    .composite([{ input: createOverlay(card), top: 0, left: 0 }])
     .jpeg({ quality: 86, chromaSubsampling: '4:4:4' })
     .toBuffer();
 
