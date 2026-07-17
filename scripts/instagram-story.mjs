@@ -13,6 +13,7 @@ const SITE_ORIGIN = 'https://yournexttriptoparadise.com';
 const EXPECTED_USERNAME = 'yournexttriptoparadise';
 const STORY_TIME_ZONE = process.env.INSTAGRAM_STORY_TIME_ZONE || 'Africa/Dar_es_Salaam';
 const mode = process.argv.includes('--publish') ? 'publish' : 'dry-run';
+const SAFE_REQUEST_RETRIES = 2;
 
 function parseEnv(source) {
   return Object.fromEntries(
@@ -112,8 +113,34 @@ function createImageUrl(card) {
   return `${SITE_ORIGIN}/api/instagram-story-image?${params}`;
 }
 
+const TRANSIENT_HTTP_STATUSES = new Set([408, 429, 500, 502, 503, 504]);
+
+async function fetchWithSafeRetries(url, options = {}) {
+  const method = (options.method || 'GET').toUpperCase();
+  if (!['GET', 'HEAD'].includes(method)) return fetch(url, options);
+
+  let lastError;
+  for (let attempt = 0; attempt <= SAFE_REQUEST_RETRIES; attempt += 1) {
+    if (attempt > 0) await new Promise((resolve) => setTimeout(resolve, 1_000 * attempt));
+    try {
+      const response = await fetch(url, options);
+      // Return the final transient response so callers can surface the API's
+      // own error payload instead of a generic retry message.
+      if (!TRANSIENT_HTTP_STATUSES.has(response.status) || attempt === SAFE_REQUEST_RETRIES) {
+        return response;
+      }
+      lastError = new Error(`received transient HTTP ${response.status}`);
+    } catch (error) {
+      lastError = error;
+    }
+  }
+  throw new Error(
+    `${method} request failed after ${SAFE_REQUEST_RETRIES + 1} attempts: ${lastError?.message || 'unknown network error'}.`,
+  );
+}
+
 async function graphRequest(config, endpoint, options = {}) {
-  const response = await fetch(
+  const response = await fetchWithSafeRetries(
     `https://graph.facebook.com/${config.META_GRAPH_VERSION}/${endpoint}`,
     {
       ...options,
@@ -135,7 +162,7 @@ async function graphRequest(config, endpoint, options = {}) {
 }
 
 async function verifyImage(imageUrl) {
-  const response = await fetch(imageUrl, { method: 'HEAD' });
+  const response = await fetchWithSafeRetries(imageUrl, { method: 'HEAD' });
   if (!response.ok) throw new Error(`Story image is not publicly available (${response.status}).`);
   const contentType = response.headers.get('content-type') || '';
   const contentLength = Number(response.headers.get('content-length') || 0);

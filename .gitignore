@@ -20,3 +20,8 @@ docs/
 
 # Local editor workspace settings
 .vscode/
+
+# Local scratch output (browser session logs, generated assets, temp files)
+.playwright-cli/
+output/
+tmp/

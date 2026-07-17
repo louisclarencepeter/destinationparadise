@@ -25,6 +25,287 @@
     },
     "no_fit": "Not the main fit here."
   },
+  "local_guide": {
+    "eyebrow": "Our island food & events guide",
+    "title": "Where we send friends to eat.",
+    "lead": "From Stone Town to the north and south coasts, this is our current shortlist for the moments when a guest asks: where should we really eat — and what's worth planning around?",
+    "coverage": "{{areas}} areas · {{places}} hand-picked places · {{events}} dates to know",
+    "note": "Chosen the way our destination guides recommend a place to a friend: by mood, occasion and who you are travelling with.",
+    "reviewed": "Guide reviewed · July 2026",
+    "area_label": "Choose an area",
+    "open_map": "Open in Maps",
+    "footer_title": "Want us to narrow it down?",
+    "footer_text": "Tell us where you are staying, who you are with and what you feel like eating. We will suggest the best fit.",
+    "ask_us": "Ask us on WhatsApp",
+    "events": {
+      "label": "What's on",
+      "title": "When the island celebrates.",
+      "lead": "A few dates worth planning a trip around — from the nightly market to the island's big festivals.",
+      "details": "Festival details",
+      "items": [
+        {
+          "id": "forodhani",
+          "when": "Every evening",
+          "name": "Forodhani Night Market",
+          "where": "Forodhani Gardens, Stone Town",
+          "description": "Stone Town's seafront gardens turn into an open-air food market after sunset. Come hungry, browse the grills and eat standing up with the locals."
+        },
+        {
+          "id": "sauti-busara",
+          "when": "Early February",
+          "name": "Sauti za Busara",
+          "where": "Old Fort, Stone Town",
+          "description": "East Africa's warmest music festival — pan-African line-ups inside the Old Fort and a carnival mood in the streets. Book Stone Town beds early."
+        },
+        {
+          "id": "ziff",
+          "when": "July",
+          "name": "Zanzibar International Film Festival",
+          "where": "Old Fort, Stone Town",
+          "description": "Open-air screenings, exhibitions and music take over the old town for a week. A lovely excuse to slow down in Stone Town for a night or two."
+        },
+        {
+          "id": "mwaka-kogwa",
+          "when": "Late July",
+          "name": "Mwaka Kogwa",
+          "where": "Makunduchi",
+          "description": "The Shirazi new year: four days of rituals, mock fights and song in the island's south. Go with a local guide and ask before photographing."
+        },
+        {
+          "id": "water-sports",
+          "when": "August",
+          "name": "Beach & Water Sports Festival",
+          "where": "East & north coast beaches",
+          "description": "Dhow races, kite contests and beach games move along the coast for a week. Easy to combine with a beach stay in Paje or Nungwi."
+        },
+        {
+          "id": "full-moon",
+          "when": "Every full moon",
+          "name": "Kendwa Full Moon Party",
+          "where": "Kendwa Rocks, Kendwa",
+          "description": "The island's best-known beach party, on the Saturday closest to the full moon. Stay in Kendwa or Nungwi so the night ends with a short walk home."
+        }
+      ]
+    },
+    "areas": {
+      "stone_town": {
+        "label": "Stone Town",
+        "hint": "Local classics & rooftops",
+        "map_label": "Stone Town",
+        "places": [
+          {
+            "name": "Lukmaan Restaurant",
+            "occasion": "Local lunch",
+            "description": "A lively, no-fuss stop for Zanzibari favourites. Point to what looks good, try a few dishes and come hungry. Best when atmosphere matters more than ceremony."
+          },
+          {
+            "name": "Taarab Restaurant",
+            "occasion": "Rooftop evening",
+            "description": "Choose this when you want dinner above the old town, with a little more occasion around it. A good fit for couples or an unhurried family evening."
+          },
+          {
+            "name": "Breadfruit Restaurant & Café",
+            "occasion": "Polished & central",
+            "description": "A comfortable central choice for a calmer meal after exploring the alleys. Useful when you want local ingredients in a more polished setting."
+          },
+          {
+            "name": "The Beach House Restaurant",
+            "occasion": "Sunset by the water",
+            "description": "Go for sea views, drinks and an easy sunset dinner on the edge of Stone Town. Reserve ahead if the timing of the sunset matters to you."
+          }
+        ]
+      },
+      "north": {
+        "label": "Nungwi & Kendwa",
+        "hint": "Beach days & sunset dinners",
+        "map_label": "Nungwi Kendwa",
+        "places": [
+          {
+            "name": "Fish Market Local Restaurant",
+            "occasion": "Fresh & local",
+            "description": "A straightforward choice for seafood and local flavours without the resort formality. Come when you want the meal to feel relaxed and rooted in Nungwi."
+          },
+          {
+            "name": "Badolina Secret Garden",
+            "occasion": "Garden hideaway",
+            "description": "A sociable, easy-going spot that works well when your group wants variety. The leafy setting makes a welcome change from another table directly on the beach."
+          },
+          {
+            "name": "Terrace Nungwi",
+            "occasion": "Dinner with a view",
+            "description": "One for a longer evening with the water close by and a more considered menu. We would choose it when the setting is part of the celebration."
+          },
+          {
+            "name": "Mocco Beach Villa & Restaurant",
+            "occasion": "Barefoot Kendwa",
+            "description": "A relaxed Kendwa option for lunch or dinner close to the sand. Useful when you want to stay in the rhythm of a beach day instead of dressing up for dinner."
+          }
+        ]
+      },
+      "north_east": {
+        "label": "Matemwe & Kiwengwa",
+        "hint": "Quiet coast & long lunches",
+        "map_label": "Matemwe Kiwengwa",
+        "places": [
+          {
+            "name": "Bin Jabir Restaurant",
+            "occasion": "Matemwe local",
+            "description": "A warm, uncomplicated stop for Swahili food and seafood. A good choice when you want local cooking away from the hotel dining room."
+          },
+          {
+            "name": "Marlin Restaurant",
+            "occasion": "Seafood without fuss",
+            "description": "Come for a relaxed meal centred on fish and seafood. It suits an easy lunch or dinner when the plan is simply to eat well and slow down."
+          },
+          {
+            "name": "Zanzibar Sunrise at Bandas",
+            "occasion": "Slow beach evening",
+            "description": "Choose it for a beach setting and an evening that can stretch a little longer. It is more about settling into the coast than rushing through courses."
+          },
+          {
+            "name": "La Base JungleKite",
+            "occasion": "Casual Kiwengwa",
+            "description": "A laid-back option with an active, social feel. Good for a casual meal when you want something easy after time on the water."
+          }
+        ]
+      },
+      "pongwe": {
+        "label": "Pongwe",
+        "hint": "Secluded east-coast tables",
+        "map_label": "Pongwe",
+        "places": [
+          {
+            "name": "The Island – Pongwe Restaurant",
+            "occasion": "A destination lunch",
+            "description": "A tiny offshore setting that turns lunch into an outing of its own. Pick this for the experience and check access and timing before you set off."
+          },
+          {
+            "name": "The Cliff Grill",
+            "occasion": "A quieter dinner",
+            "description": "A good fit when you want a calm evening, sea air and a little more polish. Best for couples or families happy to take their time."
+          },
+          {
+            "name": "The Club by Pongwe Bay Resort",
+            "occasion": "Resort comfort",
+            "description": "A dependable choice for an easy, comfortable meal in Pongwe. Useful when different ages and appetites need to work around one table."
+          },
+          {
+            "name": "Pongwe Beach Hotel Restaurant",
+            "occasion": "Lunch by the bay",
+            "description": "Come for an unhurried meal beside one of the quieter bays on the east coast. It pairs naturally with a slow beach day."
+          }
+        ]
+      },
+      "michamvi": {
+        "label": "Michamvi & Pingwe",
+        "hint": "Sunsets & special settings",
+        "map_label": "Michamvi Pingwe",
+        "places": [
+          {
+            "name": "Kae Funk Sunset Beach Bar",
+            "occasion": "Sunset & bare feet",
+            "description": "Go for music, sand and the west-facing sunset rather than a formal dinner. Arrive with time to settle in before the sky changes."
+          },
+          {
+            "name": "The Rock Restaurant Zanzibar",
+            "occasion": "The iconic table",
+            "description": "The setting is the reason to go: a restaurant on a rock just offshore at Pingwe. Book ahead and treat it as a Zanzibar experience, not only a meal."
+          },
+          {
+            "name": "Dreamland Restaurant & Bar",
+            "occasion": "Easy & welcoming",
+            "description": "A relaxed alternative when you want friendly service and a straightforward dinner without turning the evening into a big event."
+          },
+          {
+            "name": "Sagando Restaurant & Bar",
+            "occasion": "Casual island dinner",
+            "description": "A comfortable local option for an easy evening in Michamvi. Good when the group wants familiar choices alongside island flavours."
+          }
+        ]
+      },
+      "jambiani": {
+        "label": "Jambiani",
+        "hint": "Our first choices nearby",
+        "map_label": "Jambiani",
+        "places": [
+          {
+            "name": "Fadhil Restaurant",
+            "occasion": "Local & relaxed",
+            "description": "Come for straightforward Swahili cooking, grilled fish and curries. A good choice when you want something local, warm and unpretentious."
+          },
+          {
+            "name": "Lost Soles",
+            "occasion": "Easy family dinner",
+            "description": "A relaxed option for grilled tuna, seafood and familiar comfort food — especially useful when everyone around the table wants something different."
+          },
+          {
+            "name": "Ocean Boho House",
+            "occasion": "A special evening",
+            "description": "Choose this for creative plates and a more polished dinner without losing the easy island mood. It is one we would reserve ahead."
+          },
+          {
+            "name": "Sharazad The View",
+            "occasion": "Beachfront & unhurried",
+            "description": "A beautiful setting for a slow family lunch or sunset dinner. Come for the view as much as the food, and book ahead for the best timing."
+          }
+        ]
+      },
+      "paje": {
+        "label": "Paje & Bwejuu",
+        "hint": "Coffee, choice & beach energy",
+        "map_label": "Paje Bwejuu",
+        "places": [
+          {
+            "name": "Mr Kahawa",
+            "occasion": "Breakfast by the beach",
+            "description": "Our easy choice for coffee, breakfast or a relaxed lunch with the ocean in front of you. Go earlier if you prefer a quieter table."
+          },
+          {
+            "name": "Mapacha Food Court",
+            "occasion": "Casual & flexible",
+            "description": "A good answer for families and groups who cannot agree on one cuisine. The atmosphere is informal and everyone can choose their own direction."
+          },
+          {
+            "name": "Shanga Restaurant Paje",
+            "occasion": "Swahili & seafood",
+            "description": "One to consider for local flavours and seafood in the centre of Paje, especially when you want dinner to feel rooted in the island."
+          },
+          {
+            "name": "Sahari Zanzibar",
+            "occasion": "Bwejuu by the beach",
+            "description": "A quieter alternative to Paje for a beachside meal with a little more breathing room. A nice fit for couples or a slow family lunch."
+          }
+        ]
+      },
+      "south": {
+        "label": "Kizimkazi & the south",
+        "hint": "Remote, relaxed & unhurried",
+        "map_label": "Kizimkazi",
+        "places": [
+          {
+            "name": "Restaurant Stone Village & The Dream Garden",
+            "occasion": "Garden dinner",
+            "description": "A welcoming choice for a relaxed dinner in Kizimkazi. Pick it when you want the evening to feel personal and away from the larger resorts."
+          },
+          {
+            "name": "Kameleon Blue Bar & Restaurant",
+            "occasion": "Easy-going south coast",
+            "description": "A casual place for a slow lunch or uncomplicated dinner. It works well when the plan is to stay relaxed after a day on the south coast."
+          },
+          {
+            "name": "Karamba Restaurant",
+            "occasion": "Ocean-view lunch",
+            "description": "Come for the coastal setting and give yourself time. This is a good match for a long lunch rather than a quick stop between activities."
+          },
+          {
+            "name": "Fahari Off The Grid",
+            "occasion": "Something different",
+            "description": "A characterful option when you want to step away from the usual beach-hotel routine. Check the day's opening details before making the journey."
+          }
+        ]
+      }
+    }
+  },
   "doorways": {
     "eyebrow": "Quick guide",
     "title": "Pick the right doorway.",

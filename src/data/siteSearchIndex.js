@@ -62,6 +62,13 @@ const pageItems = [
     keywords: ['book now', 'request', 'payment', 'reserve', 'availability'],
   },
   {
+    title: 'Our Zanzibar Guide',
+    category: 'Local guide',
+    description: 'Our current restaurant recommendations across eight Zanzibar areas, plus the island events worth planning around.',
+    to: '/explore#our-zanzibar-guide',
+    keywords: ['restaurants', 'food', 'where to eat', 'stone town', 'nungwi', 'kendwa', 'matemwe', 'kiwengwa', 'pongwe', 'michamvi', 'paje', 'bwejuu', 'jambiani', 'kizimkazi', 'local guide', 'family dinner', 'events', 'festivals', 'whats on', 'sauti za busara', 'ziff', 'full moon party', 'mwaka kogwa', 'forodhani night market'],
+  },
+  {
     title: 'About Us',
     category: 'Page',
     description: 'Learn about Destination Paradise, our mission, story, community, and local travel approach.',

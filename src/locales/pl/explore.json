@@ -25,6 +25,287 @@
     },
     "no_fit": "To nie jest tutaj główny wybór."
   },
+  "local_guide": {
+    "eyebrow": "Nasz przewodnik po jedzeniu i wydarzeniach",
+    "title": "Miejsca, do których wysyłamy przyjaciół na posiłek.",
+    "lead": "Od Stone Town po północne i południowe wybrzeże — to nasza aktualna lista na moment, gdy gość pyta: gdzie naprawdę warto zjeść — i czego nie przegapić?",
+    "coverage": "{{areas}} okolic · {{places}} starannie wybranych miejsc · {{events}} dat wartych zapamiętania",
+    "note": "Wybrane tak, jak nasi przewodnicy po destynacji polecają miejsce znajomym: według nastroju, okazji i tego, z kim podróżujesz.",
+    "reviewed": "Przewodnik sprawdzony · lipiec 2026",
+    "area_label": "Wybierz okolicę",
+    "open_map": "Otwórz w Mapach",
+    "footer_title": "Mamy zawęzić wybór?",
+    "footer_text": "Powiedz nam, gdzie mieszkasz, z kim podróżujesz i na co masz ochotę. Podpowiemy miejsce najlepiej dopasowane do Ciebie.",
+    "ask_us": "Zapytaj nas na WhatsAppie",
+    "events": {
+      "label": "Wydarzenia",
+      "title": "Kiedy wyspa świętuje.",
+      "lead": "Kilka dat, wokół których dobrze planować podróż — od wieczornego targu po największe festiwale.",
+      "details": "Szczegóły festiwalu",
+      "items": [
+        {
+          "id": "forodhani",
+          "when": "Co wieczór",
+          "name": "Forodhani Night Market",
+          "where": "Ogrody Forodhani, Stone Town",
+          "description": "Po zachodzie słońca nadmorskie ogrody zamieniają się w targ z jedzeniem pod gołym niebem. Przyjdźcie głodni, obejrzyjcie grille i jedzcie na stojąco razem z mieszkańcami."
+        },
+        {
+          "id": "sauti-busara",
+          "when": "Początek lutego",
+          "name": "Sauti za Busara",
+          "where": "Stary Fort, Stone Town",
+          "description": "Najcieplejszy festiwal muzyczny Afryki Wschodniej — panafrykańskie koncerty w Starym Forcie i karnawałowy nastrój na ulicach. Noclegi w Stone Town warto rezerwować wcześnie."
+        },
+        {
+          "id": "ziff",
+          "when": "Lipiec",
+          "name": "Zanzibar International Film Festival",
+          "where": "Stary Fort, Stone Town",
+          "description": "Kino plenerowe, wystawy i muzyka na tydzień przejmują stare miasto. Dobry pretekst, by zostać w Stone Town o noc lub dwie dłużej."
+        },
+        {
+          "id": "mwaka-kogwa",
+          "when": "Koniec lipca",
+          "name": "Mwaka Kogwa",
+          "where": "Makunduchi",
+          "description": "Szyraski Nowy Rok: cztery dni rytuałów, pozorowanych walk i pieśni na południu wyspy. Najlepiej z lokalnym przewodnikiem — i pytajcie, zanim zrobicie zdjęcie."
+        },
+        {
+          "id": "water-sports",
+          "when": "Sierpień",
+          "name": "Beach & Water Sports Festival",
+          "where": "Plaże wschodniego i północnego wybrzeża",
+          "description": "Regaty dhow, zawody kitesurfingowe i plażowe gry przez tydzień wędrują wzdłuż wybrzeża. Łatwo połączyć je z pobytem w Paje lub Nungwi."
+        },
+        {
+          "id": "full-moon",
+          "when": "W każdą pełnię",
+          "name": "Kendwa Full Moon Party",
+          "where": "Kendwa Rocks, Kendwa",
+          "description": "Najsłynniejsza plażowa impreza na wyspie, w sobotę najbliższą pełni księżyca. Nocując w Kendwie lub Nungwi, wracacie do łóżka pieszo."
+        }
+      ]
+    },
+    "areas": {
+      "stone_town": {
+        "label": "Stone Town",
+        "hint": "Lokalna klasyka i dachy",
+        "map_label": "Stone Town",
+        "places": [
+          {
+            "name": "Lukmaan Restaurant",
+            "occasion": "Lokalny lunch",
+            "description": "Tętniące życiem, bezpretensjonalne miejsce na zanzibarskie klasyki. Wskaż to, co wygląda dobrze, spróbuj kilku dań i przyjdź głodny."
+          },
+          {
+            "name": "Taarab Restaurant",
+            "occasion": "Wieczór na dachu",
+            "description": "Wybierz je na kolację ponad starym miastem, gdy wieczór ma być nieco bardziej wyjątkowy. Dobre dla par i rodzin bez pośpiechu."
+          },
+          {
+            "name": "Breadfruit Restaurant & Café",
+            "occasion": "Stylowo i centralnie",
+            "description": "Wygodny wybór w centrum na spokojny posiłek po spacerze uliczkami. Lokalnym składnikom towarzyszy tu bardziej dopracowana oprawa."
+          },
+          {
+            "name": "The Beach House Restaurant",
+            "occasion": "Zachód słońca nad wodą",
+            "description": "Na widok morza, drinki i swobodną kolację na skraju Stone Town. Zarezerwuj wcześniej, jeśli zależy Ci na porze zachodu słońca."
+          }
+        ]
+      },
+      "north": {
+        "label": "Nungwi i Kendwa",
+        "hint": "Plaża i kolacje o zachodzie słońca",
+        "map_label": "Nungwi Kendwa",
+        "places": [
+          {
+            "name": "Fish Market Local Restaurant",
+            "occasion": "Świeżo i lokalnie",
+            "description": "Prosty wybór na owoce morza i lokalne smaki bez resortowej formalności. Dla tych, którzy chcą, by posiłek był swobodny i mocno związany z Nungwi."
+          },
+          {
+            "name": "Badolina Secret Garden",
+            "occasion": "Ukryty ogród",
+            "description": "Towarzyskie, swobodne miejsce z wyborem dla różnych apetytów. Zielony ogród jest miłą odmianą od kolejnego stolika bezpośrednio na plaży."
+          },
+          {
+            "name": "Terrace Nungwi",
+            "occasion": "Kolacja z widokiem",
+            "description": "Na dłuższy wieczór blisko wody i bardziej przemyślane menu. Wybralibyśmy je, gdy sceneria ma być częścią świętowania."
+          },
+          {
+            "name": "Mocco Beach Villa & Restaurant",
+            "occasion": "Boso w Kendwie",
+            "description": "Luźna opcja w Kendwie na lunch lub kolację blisko piasku. Dobra, gdy chcesz zostać w rytmie dnia na plaży."
+          }
+        ]
+      },
+      "north_east": {
+        "label": "Matemwe i Kiwengwa",
+        "hint": "Spokojne wybrzeże i długie lunche",
+        "map_label": "Matemwe Kiwengwa",
+        "places": [
+          {
+            "name": "Bin Jabir Restaurant",
+            "occasion": "Lokalnie w Matemwe",
+            "description": "Serdeczny, prosty przystanek na kuchnię suahili i owoce morza. Dobry, gdy chcesz zjeść lokalnie poza hotelową restauracją."
+          },
+          {
+            "name": "Marlin Restaurant",
+            "occasion": "Owoce morza bez zadęcia",
+            "description": "Na spokojny posiłek oparty na rybach i owocach morza. Pasuje na lunch lub kolację, kiedy plan brzmi: dobrze zjeść i zwolnić."
+          },
+          {
+            "name": "Zanzibar Sunrise at Bandas",
+            "occasion": "Długi wieczór na plaży",
+            "description": "Wybierz ze względu na plażową scenerię i wieczór, który może potrwać dłużej. Tu chodzi bardziej o rytm wybrzeża niż o pośpiech."
+          },
+          {
+            "name": "La Base JungleKite",
+            "occasion": "Swobodnie w Kiwengwie",
+            "description": "Luźne miejsce z aktywną, towarzyską atmosferą. Dobre na prosty posiłek po czasie spędzonym na wodzie."
+          }
+        ]
+      },
+      "pongwe": {
+        "label": "Pongwe",
+        "hint": "Kameralne stoły na wschodnim wybrzeżu",
+        "map_label": "Pongwe",
+        "places": [
+          {
+            "name": "The Island – Pongwe Restaurant",
+            "occasion": "Lunch jako wyprawa",
+            "description": "Maleńka lokalizacja tuż przy brzegu zmienia lunch w osobną przygodę. Jedź dla doświadczenia i sprawdź dojazd oraz godziny przed wyjazdem."
+          },
+          {
+            "name": "The Cliff Grill",
+            "occasion": "Spokojniejsza kolacja",
+            "description": "Dobry wybór na cichy wieczór, morskie powietrze i odrobinę elegancji. Dla par i rodzin, które lubią mieć czas."
+          },
+          {
+            "name": "The Club by Pongwe Bay Resort",
+            "occasion": "Resortowy komfort",
+            "description": "Pewny wybór na łatwy, wygodny posiłek w Pongwe. Przydatny, gdy przy jednym stole spotykają się różne pokolenia i apetyty."
+          },
+          {
+            "name": "Pongwe Beach Hotel Restaurant",
+            "occasion": "Lunch nad zatoką",
+            "description": "Na niespieszny posiłek przy jednej ze spokojniejszych zatok wschodniego wybrzeża. Naturalnie łączy się z powolnym dniem na plaży."
+          }
+        ]
+      },
+      "michamvi": {
+        "label": "Michamvi i Pingwe",
+        "hint": "Zachody słońca i wyjątkowe miejsca",
+        "map_label": "Michamvi Pingwe",
+        "places": [
+          {
+            "name": "Kae Funk Sunset Beach Bar",
+            "occasion": "Zachód słońca boso",
+            "description": "Idź dla muzyki, piasku i zachodu słońca po zachodniej stronie półwyspu, nie dla formalnej kolacji. Przyjedź, zanim niebo zacznie się zmieniać."
+          },
+          {
+            "name": "The Rock Restaurant Zanzibar",
+            "occasion": "Kultowy stolik",
+            "description": "Najważniejsza jest sceneria: restauracja na skale tuż przy brzegu Pingwe. Rezerwuj wcześniej i potraktuj ją jako doświadczenie Zanzibaru."
+          },
+          {
+            "name": "Dreamland Restaurant & Bar",
+            "occasion": "Prosto i gościnnie",
+            "description": "Swobodna alternatywa na przyjazną obsługę i prostą kolację bez zmieniania wieczoru w wielkie wydarzenie."
+          },
+          {
+            "name": "Sagando Restaurant & Bar",
+            "occasion": "Luźna wyspiarska kolacja",
+            "description": "Wygodny lokalny wybór na łatwy wieczór w Michamvi. Dobry, gdy grupa szuka znajomych dań obok wyspiarskich smaków."
+          }
+        ]
+      },
+      "jambiani": {
+        "label": "Jambiani",
+        "hint": "Nasze pierwsze wybory w okolicy",
+        "map_label": "Jambiani",
+        "places": [
+          {
+            "name": "Fadhil Restaurant",
+            "occasion": "Lokalnie i swobodnie",
+            "description": "Na prostą kuchnię suahili, grillowaną rybę i curry. Dobry wybór, kiedy ma być lokalnie, serdecznie i bez zadęcia."
+          },
+          {
+            "name": "Lost Soles",
+            "occasion": "Łatwa kolacja z rodziną",
+            "description": "Swobodne miejsce na grillowanego tuńczyka, owoce morza i bardziej znajome dania — szczególnie gdy każdy przy stole ma ochotę na coś innego."
+          },
+          {
+            "name": "Ocean Boho House",
+            "occasion": "Wyjątkowy wieczór",
+            "description": "Na kreatywne dania i nieco bardziej elegancką kolację bez utraty wyspiarskiego luzu. Tutaj zarezerwowalibyśmy stolik wcześniej."
+          },
+          {
+            "name": "Sharazad The View",
+            "occasion": "Nad oceanem i bez pośpiechu",
+            "description": "Piękna sceneria na długi rodzinny lunch lub kolację o zachodzie słońca. Widok jest częścią doświadczenia — warto wcześniej zarezerwować."
+          }
+        ]
+      },
+      "paje": {
+        "label": "Paje i Bwejuu",
+        "hint": "Kawa, wybór i energia plaży",
+        "map_label": "Paje Bwejuu",
+        "places": [
+          {
+            "name": "Mr Kahawa",
+            "occasion": "Śniadanie przy plaży",
+            "description": "Nasz prosty wybór na kawę, śniadanie lub spokojny lunch z widokiem na ocean. Przyjdź wcześniej, jeśli wolisz cichszy stolik."
+          },
+          {
+            "name": "Mapacha Food Court",
+            "occasion": "Swobodnie i elastycznie",
+            "description": "Dobra odpowiedź dla rodzin i grup, które nie mogą zdecydować się na jedną kuchnię. Atmosfera jest luźna, a każdy wybiera po swojemu."
+          },
+          {
+            "name": "Shanga Restaurant Paje",
+            "occasion": "Suahili i owoce morza",
+            "description": "Warto rozważyć ze względu na lokalne smaki i owoce morza w centrum Paje, zwłaszcza gdy kolacja ma mieć prawdziwie wyspiarski charakter."
+          },
+          {
+            "name": "Sahari Zanzibar",
+            "occasion": "Na plaży w Bwejuu",
+            "description": "Spokojniejsza alternatywa dla Paje na posiłek przy plaży z większą przestrzenią. Dobra dla par lub na długi rodzinny lunch."
+          }
+        ]
+      },
+      "south": {
+        "label": "Kizimkazi i południe",
+        "hint": "Daleko, spokojnie i bez pośpiechu",
+        "map_label": "Kizimkazi",
+        "places": [
+          {
+            "name": "Restaurant Stone Village & The Dream Garden",
+            "occasion": "Kolacja w ogrodzie",
+            "description": "Gościnny wybór na spokojną kolację w Kizimkazi. Dla tych, którzy chcą osobistego wieczoru z dala od większych resortów."
+          },
+          {
+            "name": "Kameleon Blue Bar & Restaurant",
+            "occasion": "Swobodne południe wyspy",
+            "description": "Luźne miejsce na długi lunch lub prostą kolację. Pasuje, gdy po dniu na południowym wybrzeżu chcesz zachować spokojne tempo."
+          },
+          {
+            "name": "Karamba Restaurant",
+            "occasion": "Lunch z widokiem na ocean",
+            "description": "Przyjdź dla nadmorskiej scenerii i daj sobie czas. Lepiej pasuje do długiego lunchu niż szybkiego przystanku między atrakcjami."
+          },
+          {
+            "name": "Fahari Off The Grid",
+            "occasion": "Coś innego",
+            "description": "Miejsce z charakterem, z dala od zwykłej rutyny hotelu przy plaży. Przed podróżą sprawdź aktualne godziny otwarcia."
+          }
+        ]
+      }
+    }
+  },
   "doorways": {
     "eyebrow": "Szybki przewodnik",
     "title": "Wybierz właściwe wejście.",

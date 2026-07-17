@@ -5,13 +5,16 @@ import ExploreCta from '../components/explore/ExploreCta.jsx';
 import ExploreDoorways from '../components/explore/ExploreDoorways.jsx';
 import ExploreHero from '../components/explore/ExploreHero.jsx';
 import ExploreHub from '../components/explore/ExploreHub.jsx';
+import ExploreLocalGuide from '../components/explore/ExploreLocalGuide.jsx';
 import ExplorePaths from '../components/explore/ExplorePaths.jsx';
 import MapSection from '../components/homepage/MapSection.jsx';
 import { buildLocalizedExploreContent, plannerHrefForHub } from '../data/explorePageContent.js';
 import { usePageMeta } from '../hooks/usePageMeta.js';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
+import { preferredScrollBehavior } from '../utils/motion.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
+import '../styles/explore-local-guide.css';
 import '../styles/safaris.css';
 
 export default function Explore() {
@@ -41,6 +44,9 @@ export default function Explore() {
     return () => window.removeEventListener('dp-theme-change', handleThemeChange);
   }, []);
 
+  // location.key re-runs this on every router navigation, so clicking a link
+  // to the hash we are already on still scrolls; scrollIntoView (unlike direct
+  // scrollTop writes) honours the section's scroll-margin-top nav offset.
   useEffect(() => {
     if (!ready || !location.hash) return undefined;
     const timeout = window.setTimeout(() => {
@@ -50,12 +56,10 @@ export default function Explore() {
       target.classList.add('is-visible');
       target.style.opacity = '1';
       target.style.transform = 'none';
-      const top = target.getBoundingClientRect().top + document.documentElement.scrollTop;
-      document.documentElement.scrollTop = top;
-      document.body.scrollTop = top;
+      target.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
     }, 80);
     return () => window.clearTimeout(timeout);
-  }, [ready, location.hash]);
+  }, [ready, location.hash, location.key]);
 
   if (!ready) return null;
 
@@ -75,6 +79,7 @@ export default function Explore() {
       />
 
       <ExploreHub hub={activeHub} plannerHref={activeHubPlannerHref} />
+      <ExploreLocalGuide />
       <ExploreDoorways />
       <ExplorePaths paths={paths} />
       <ExploreCta />
