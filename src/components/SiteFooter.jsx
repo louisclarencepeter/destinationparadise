@@ -21,6 +21,7 @@ const FOOTER_ICONS = {
   route: ['M5 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z', 'M19 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z', 'M7 16h4a4 4 0 0 0 0-8h6'],
   map: ['M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z', 'M9 3v15', 'M15 6v15'],
   book: ['M4 5a3 3 0 0 1 3-3h13v17H7a3 3 0 0 0-3 3V5Z', 'M4 5v17'],
+  utensils: ['M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2', 'M7 2v20', 'M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7'],
   users: ['M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2', 'M9.5 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Z', 'M22 21v-2a4 4 0 0 0-3-3.87', 'M16 3.13a4 4 0 0 1 0 7.75'],
   leaf: ['M20 4c-7.5.5-12.5 4.5-13 11 4.5.5 9.5-1.5 13-11Z', 'M5 19c3-5 7-8 12-10'],
   newspaper: ['M4 5h13a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3V5Z', 'M8 9h5', 'M8 13h8', 'M8 17h6'],
@@ -237,6 +238,7 @@ export default function SiteFooter() {
             <li><Link to="/packages"><FooterIcon name="suitcase" />{t('columns.pages.packages')}</Link></li>
             <li><Link to="/trip-planner"><FooterIcon name="route" />{t('columns.pages.trip_planner')}</Link></li>
             <li><Link to="/explore"><FooterIcon name="map" />{t('columns.pages.explore')}</Link></li>
+            <li><Link to="/explore#our-zanzibar-guide"><FooterIcon name="utensils" />{t('columns.pages.local_guide')}</Link></li>
             <li><Link to="/aboutus"><FooterIcon name="book" />{t('columns.pages.about')}</Link></li>
           </ul>
         </div>
