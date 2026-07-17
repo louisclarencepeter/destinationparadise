@@ -38,7 +38,7 @@ export default function ExploreLocalGuide() {
   const location = useLocation();
   const tabsRef = useRef(/** @type {(HTMLButtonElement | null)[]} */ ([]));
   const [activeArea, setActiveArea] = useState(() => {
-    const requested = new URLSearchParams(location.search).get(GUIDE_PARAM);
+    const requested = new URLSearchParams(location.search).get(GUIDE_PARAM) || '';
     return AREA_KEYS.includes(requested) ? requested : DEFAULT_AREA;
   });
 
