@@ -50,7 +50,7 @@
           "title": "Przechowywanie, Retencja I Bezpieczeństwo",
           "items": [
             "Przechowujemy zapytania i dane rezerwacyjne tylko tak długo, jak jest to potrzebne do odpowiedzi, organizacji podróży, księgowości, obowiązków prawnych i poprawy jakości usług.",
-            "Lokalna pamięć przeglądarki może przechowywać język, motyw, wybór cookie, cache kursów walut, historię planera i szkic przekazania, aby strona działała sprawnie.",
+            "Lokalna pamięć przeglądarki może przechowywać język, motyw, wybór cookie, cache kursów walut i historię planera, aby strona działała sprawnie.",
             "Stosujemy rozsądne zabezpieczenia techniczne, takie jak HTTPS, kontrole dostępu u dostawców, limity rozmiaru zapytań, walidację, rate limiting i monitorowanie błędów.",
             "Żadna strona ani system e-mail nie są idealnie bezpieczne, dlatego nie wysyłaj skanów paszportu, danych kart płatniczych ani bardzo wrażliwych danych zdrowotnych przez otwarte pola tekstowe."
           ]
@@ -117,7 +117,7 @@
             "dp_cookie_consent_v1 zapisuje wybór cookie, abyśmy wiedzieli, czy analityka jest dozwolona.",
             "dp_tweaks zapisuje preferencje motywu i wyglądu, takie jak tryb jasny lub ciemny.",
             "dp_lang zapisuje wybór języka, a dp_fx_rates może przechowywać kursy walut do wyświetlania cen.",
-            "plannerHistory i dp_planner_handoff zapisują czat planera AI oraz szkice przekazania w przeglądarce, aby można było kontynuować lub wysłać plan."
+            "plannerHistory zapisuje czat planera AI w przeglądarce, aby można było później kontynuować plan."
           ]
         },
         {

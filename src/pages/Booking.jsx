@@ -21,8 +21,6 @@ import { useBookingProducts } from '../hooks/useBookingProducts.js';
 import { useFloatingBookingSummary } from '../hooks/useFloatingBookingSummary.js';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import usePageMeta from '../hooks/usePageMeta.js';
-import { buildPlannerHandoff, clearPlannerHandoff, isPlannerHandoffMessage, readPlannerHandoff } from '../utils/plannerHandoff.js';
-import { preferredScrollBehavior } from '../utils/motion.js';
 import { useCurrency } from '../context/useCurrency.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
@@ -65,9 +63,6 @@ export default function Booking() {
   const location = useLocation();
   const products = useBookingProducts(t);
   const [form, setForm] = useState(DEFAULT_BOOKING_FORM);
-  const [plannerHandoff, setPlannerHandoff] = useState(
-    /** @type {import('../utils/plannerHandoff.js').PlannerHandoff | null} */ (null),
-  );
   const [botField, setBotField] = useState('');
   const [formStartedAt, setFormStartedAt] = useState(() => Date.now());
   const [turnstileToken, setTurnstileToken] = useState('');
@@ -246,33 +241,6 @@ export default function Booking() {
     // effect re-run after load without locking the guard.
   }, [products.all, searchParams, serviceTypes, t]);
 
-  useEffect(() => {
-    if (searchParams.get('source') !== 'planner') return undefined;
-
-    const handoff = readPlannerHandoff() || buildPlannerHandoff([], '/trip-planner');
-    setPlannerHandoff(handoff);
-    setStatus('idle');
-    const contact = handoff.contact || {};
-    setForm((current) => ({
-      ...current,
-      serviceType: 'custom',
-      product: '',
-      paymentPreference: 'later',
-      name: !current.name.trim() && contact.name ? contact.name : current.name,
-      email: !current.email.trim() && contact.email ? contact.email : current.email,
-      phone: !current.phone.trim() && contact.phone ? contact.phone : current.phone,
-      message: !current.message.trim() || isPlannerHandoffMessage(current.message)
-        ? handoff.message
-        : current.message,
-    }));
-
-    const timeoutId = window.setTimeout(() => {
-      document.getElementById('booking-form')?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
-    }, 120);
-
-    return () => window.clearTimeout(timeoutId);
-  }, [searchParams]);
-
   const selectedProduct = products.all.find((item) => item.value === form.product);
   const visibleProducts = form.serviceType === 'custom'
     ? []
@@ -410,8 +378,7 @@ export default function Booking() {
       retreatOptionLabel: selectedRetreatOption?.label || '',
       estimatedPrice: bookingPriceLabel(selectedProduct, t, format, selectedRetreatOption),
       lang: i18n.resolvedLanguage || i18n.language || 'en',
-      source: plannerHandoff ? 'planner' : 'booking',
-      plannerDraft: plannerHandoff?.transcript || '',
+      source: 'booking',
       botField,
       bookingWebsite: botField,
       formStartedAt,
@@ -432,8 +399,6 @@ export default function Booking() {
       setForm(DEFAULT_BOOKING_FORM);
       setBotField('');
       resetVerification();
-      clearPlannerHandoff();
-      setPlannerHandoff(null);
     } catch (err) {
       setStatus('error');
       setErrorMessage(err?.message && err.message !== 'booking-request-failed' ? err.message : '');

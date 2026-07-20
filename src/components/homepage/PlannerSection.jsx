@@ -6,9 +6,11 @@ import '../../styles/homepage/planner.css';
 import { extractContact } from '../../utils/plannerHandoff.js';
 import { arrayFromTranslation } from '../../utils/translationValues.js';
 
-const HANDOFF_TOKEN_REGEX = /\[\[\s*PLANNER_HANDOFF_READY\s*\]\]/g;
+// Two regexes on purpose: .test() with a /g regex is stateful via lastIndex.
+const HANDOFF_TOKEN_REGEX = /\[\[\s*PLANNER_HANDOFF_READY\s*\]\]/;
+const HANDOFF_TOKEN_REGEX_ALL = /\[\[\s*PLANNER_HANDOFF_READY\s*\]\]/g;
 
-const stripToken = (text = '') => text.replace(HANDOFF_TOKEN_REGEX, '').trim();
+const stripToken = (text = '') => text.replace(HANDOFF_TOKEN_REGEX_ALL, '').trim();
 
 export default function PlannerSection({ initialPrompt }) {
   const { t, i18n } = useTranslation('home');

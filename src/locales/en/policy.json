@@ -50,7 +50,7 @@
           "title": "Storage, Retention, And Security",
           "items": [
             "We keep enquiries and booking details only as long as needed to reply, arrange the trip, handle accounting or legal duties, and improve service quality.",
-            "Local browser storage may hold your language, theme, cookie choice, currency-rate cache, planner history, and planner handoff draft so the site works smoothly.",
+            "Local browser storage may hold your language, theme, cookie choice, currency-rate cache, and planner history so the site works smoothly.",
             "We use reasonable technical safeguards such as HTTPS, provider access controls, request size limits, validation, rate limiting, and error monitoring.",
             "No website or email system is perfectly secure, so avoid sending passport scans, payment card details, or highly sensitive health information through open text fields."
           ]
@@ -117,7 +117,7 @@
             "dp_cookie_consent_v1 stores your cookie choice so we know whether analytics is allowed.",
             "dp_tweaks stores theme and display preferences such as light or dark mode.",
             "dp_lang stores your language choice, and dp_fx_rates may cache currency rates for price display.",
-            "plannerHistory and dp_planner_handoff store AI planner chat and handoff drafts in your browser so you can continue or send a plan."
+            "plannerHistory stores your AI planner chat in your browser so you can continue a plan later."
           ]
         },
         {
