@@ -1,61 +1,18 @@
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../../styles/homepage/contact.css';
 import { CONTACT_INFO } from '../../constants/contactInfo.js';
 import { ArrowIcon } from './Icons.jsx';
-import { clearPlannerHandoff, isPlannerHandoffMessage, PLANNER_HANDOFF_EVENT, readPlannerHandoff } from '../../utils/plannerHandoff.js';
 
 export default function ContactSection() {
   const { t, i18n } = useTranslation('home');
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
-  const [plannerHandoff, setPlannerHandoff] = useState(
-    /** @type {import('../../utils/plannerHandoff.js').PlannerHandoff | null} */ (null),
-  );
   const [status, setStatus] = useState('idle'); // idle | sending | sent | error
-  const messageRef = useRef(/** @type {HTMLTextAreaElement | null} */ (null));
   const update = (k) => (e) => {
     setStatus('idle');
     setForm((s) => ({ ...s, [k]: e.target.value }));
   };
-
-  useEffect(() => {
-    const applyPlannerHandoff = (handoff = readPlannerHandoff(), focusMessage = false) => {
-      if (!handoff) return;
-
-      setPlannerHandoff(handoff);
-      setStatus('idle');
-      const contact = handoff.contact || {};
-      setForm((current) => ({
-        ...current,
-        name: !current.name.trim() && contact.name ? contact.name : current.name,
-        email: !current.email.trim() && contact.email ? contact.email : current.email,
-        subject: !current.subject.trim() || current.subject === handoff.subject ? handoff.subject : current.subject,
-        message: !current.message.trim() || isPlannerHandoffMessage(current.message) ? handoff.message : current.message,
-      }));
-
-      if (focusMessage) {
-        window.setTimeout(() => messageRef.current?.focus(), 120);
-      }
-    };
-
-    if (window.location.hash === '#contact') {
-      applyPlannerHandoff();
-    }
-
-    const onPlannerHandoff = (event) => applyPlannerHandoff(event.detail, true);
-    const onHashChange = () => {
-      if (window.location.hash === '#contact') applyPlannerHandoff();
-    };
-
-    window.addEventListener(PLANNER_HANDOFF_EVENT, onPlannerHandoff);
-    window.addEventListener('hashchange', onHashChange);
-
-    return () => {
-      window.removeEventListener(PLANNER_HANDOFF_EVENT, onPlannerHandoff);
-      window.removeEventListener('hashchange', onHashChange);
-    };
-  }, []);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -68,16 +25,12 @@ export default function ContactSection() {
         body: JSON.stringify({
           ...form,
           lang: i18n.resolvedLanguage || i18n.language || 'en',
-          source: plannerHandoff ? 'planner' : 'contact',
-          plannerDraft: plannerHandoff?.transcript || '',
         }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.ok) throw new Error(data.error || 'http');
       setStatus('sent');
       setForm({ name: '', email: '', subject: '', message: '' });
-      clearPlannerHandoff();
-      setPlannerHandoff(null);
     } catch {
       setStatus('error');
     }
@@ -162,7 +115,7 @@ export default function ContactSection() {
           </label>
           <label className="contact__field">
             <span>{t('contact.form.message')}</span>
-            <textarea ref={messageRef} name="message" rows={5} required value={form.message} onChange={update('message')} />
+            <textarea name="message" rows={5} required value={form.message} onChange={update('message')} />
           </label>
 
           <div className="contact__status-region" role="status" aria-live="polite">

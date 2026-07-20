@@ -50,7 +50,7 @@
           "title": "Speicherung, Aufbewahrung Und Sicherheit",
           "items": [
             "Wir behalten Anfragen und Buchungsdaten nur so lange, wie es für Antwort, Reiseorganisation, Buchhaltung, rechtliche Pflichten und Servicequalität nötig ist.",
-            "Lokaler Browserspeicher kann Sprache, Design, Cookie-Auswahl, Wechselkurs-Cache, Planerverlauf und Planer-Übergabe speichern, damit die Website reibungslos funktioniert.",
+            "Lokaler Browserspeicher kann Sprache, Design, Cookie-Auswahl, Wechselkurs-Cache und Planerverlauf speichern, damit die Website reibungslos funktioniert.",
             "Wir nutzen angemessene technische Schutzmaßnahmen wie HTTPS, Anbieter-Zugriffskontrollen, Größenlimits, Validierung, Rate-Limiting und Fehlerüberwachung.",
             "Keine Website und kein E-Mail-System ist perfekt sicher. Bitte sende keine Passkopien, Kartendaten oder besonders sensiblen Gesundheitsdaten über offene Textfelder."
           ]
@@ -117,7 +117,7 @@
             "dp_cookie_consent_v1 speichert deine Cookie-Auswahl, damit wir wissen, ob Analyse erlaubt ist.",
             "dp_tweaks speichert Design- und Anzeigeeinstellungen wie hellen oder dunklen Modus.",
             "dp_lang speichert deine Sprache, und dp_fx_rates kann Wechselkurse für Preisangaben zwischenspeichern.",
-            "plannerHistory und dp_planner_handoff speichern KI-Planer-Chat und Übergabeentwürfe in deinem Browser, damit du einen Plan fortsetzen oder senden kannst."
+            "plannerHistory speichert deinen KI-Planer-Chat in deinem Browser, damit du einen Plan später fortsetzen kannst."
           ]
         },
         {
