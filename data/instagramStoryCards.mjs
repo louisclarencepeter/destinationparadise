@@ -1,3 +1,8 @@
+// The publish pipeline renders photos only (webp sources re-encoded to JPEG);
+// anything else is rejected by Meta with "Only photo or video can be accepted
+// as media type." (code 9004). Shared by the story script and the image endpoint.
+export const INSTAGRAM_STORY_ALLOWED_SOURCE = /^\/assets\/images\/(home|excursions|safaris)\/[a-z0-9/-]+\.webp$/;
+
 // Editorially approved Story queue. Keep each image, title, and caption together.
 export const INSTAGRAM_STORY_CARDS = [
   { id: 'safari-blue-dhow', source: '/assets/images/excursions/trips/safari-blue-dhow.webp', title: 'Safari Blue', caption: 'A day on clear water, a traditional boat, and time to slow down.' },
