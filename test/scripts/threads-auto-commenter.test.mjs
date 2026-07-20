@@ -1,8 +1,10 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
+  apiRequest,
   buildReply,
   classifyCandidate,
+  isTransientApiError,
   zanzibarDateKey,
 } from '../../scripts/threads-auto-commenter.mjs';
 
@@ -76,5 +78,89 @@ describe('Threads contextual reply builder', () => {
 describe('Threads daily cap date', () => {
   it('uses the Zanzibar calendar day', () => {
     expect(zanzibarDateKey('2026-07-12T21:30:00.000Z')).toBe('2026-07-13');
+  });
+});
+
+function jsonResponse(status, payload) {
+  return {
+    ok: status >= 200 && status < 300,
+    status,
+    text: async () => JSON.stringify(payload),
+  };
+}
+
+describe('Threads API transient error classification', () => {
+  it('treats retryable statuses and the Meta token-parse flake as transient', () => {
+    expect(isTransientApiError({ httpStatus: 500, code: 10 })).toBe(true);
+    expect(isTransientApiError({ httpStatus: 401, code: 190 })).toBe(true);
+    for (const httpStatus of [408, 429, 502, 503, 504]) {
+      expect(isTransientApiError({ httpStatus })).toBe(true);
+    }
+  });
+
+  it('does not treat other auth or client errors as transient', () => {
+    expect(isTransientApiError({ httpStatus: 401, code: 104 })).toBe(false);
+    expect(isTransientApiError({ httpStatus: 403, code: 10 })).toBe(false);
+    expect(isTransientApiError({ httpStatus: 400, code: 100 })).toBe(false);
+  });
+});
+
+describe('Threads API safe retries', () => {
+  afterEach(() => {
+    vi.unstubAllGlobals();
+    vi.useRealTimers();
+  });
+
+  it('retries a GET through the transient failures seen in production', async () => {
+    vi.useFakeTimers();
+    const fetchMock = vi.fn()
+      .mockResolvedValueOnce(jsonResponse(401, {
+        error: { message: 'Invalid OAuth access token - Cannot parse access token', code: 190 },
+      }))
+      .mockResolvedValueOnce(jsonResponse(500, {
+        error: { message: 'Application does not have permission for this action', code: 10 },
+      }))
+      .mockResolvedValueOnce(jsonResponse(200, { id: '123', username: 'yournexttriptoparadise' }));
+    vi.stubGlobal('fetch', fetchMock);
+
+    const promise = apiRequest('token', 'me', { params: { fields: 'id,username' } });
+    await vi.advanceTimersByTimeAsync(3_000);
+    await expect(promise).resolves.toMatchObject({ id: '123' });
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+  });
+
+  it('gives up after the retry budget and surfaces the API error', async () => {
+    vi.useFakeTimers();
+    const fetchMock = vi.fn().mockResolvedValue(jsonResponse(500, {
+      error: { message: 'Application does not have permission for this action', code: 10 },
+    }));
+    vi.stubGlobal('fetch', fetchMock);
+
+    const promise = apiRequest('token', 'me', {});
+    const assertion = expect(promise).rejects.toMatchObject({ httpStatus: 500, code: 10 });
+    await vi.advanceTimersByTimeAsync(3_000);
+    await assertion;
+    expect(fetchMock).toHaveBeenCalledTimes(3);
+  });
+
+  it('fails a GET immediately on a non-transient error', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(jsonResponse(400, {
+      error: { message: 'Unsupported request.', code: 100 },
+    }));
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(apiRequest('token', 'me', {})).rejects.toMatchObject({ httpStatus: 400, code: 100 });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
+  });
+
+  it('never retries a POST and keeps its uncertain marker', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(jsonResponse(500, {
+      error: { message: 'Application does not have permission for this action', code: 10 },
+    }));
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(apiRequest('token', 'me/threads_publish', { method: 'POST', body: { creation_id: '1' } }))
+      .rejects.toMatchObject({ httpStatus: 500, uncertain: true });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 });

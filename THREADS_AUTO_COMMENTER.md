@@ -12,6 +12,7 @@ This automation is separate from the Instagram Story publisher. It uses only Met
 - The Zanzibar-day cap is five attempts. A run handles at most two posts, and one post is attempted only once.
 - State retains only the source post ID, reply ID when known, timestamps, and a small status value. It is pruned after 90 days.
 - A post ID is journaled before publishing. The publish endpoint is called exactly once. A timeout, 5xx response, rate-limit response, or other uncertain failure is recorded and is never retried automatically.
+- Read-only GET requests retry up to two extra times with backoff on transient failures: network errors, HTTP 408/429/5xx, and Meta's intermittent `401` code `190` "Cannot parse access token" flake, which has failed scheduled runs despite a valid token.
 
 ## Required Threads authorization
 

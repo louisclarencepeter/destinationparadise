@@ -229,12 +229,38 @@ function createApiError(message, response, json, method) {
   return error;
 }
 
-async function apiRequest(token, endpoint, { body, method = 'GET', params } = {}) {
+const SAFE_REQUEST_RETRIES = 2;
+const TRANSIENT_HTTP_STATUSES = new Set([408, 429, 500, 502, 503, 504]);
+
+// Meta intermittently rejects valid GET requests with 500 code 10
+// ("Application does not have permission for this action") or 401 code 190
+// ("Cannot parse access token"); both cleared on the next scheduled run with
+// an unchanged token (Actions runs 29535570483 and 29536479874, 2026-07-16).
+export function isTransientApiError(error) {
+  if (TRANSIENT_HTTP_STATUSES.has(error.httpStatus)) return true;
+  return error.httpStatus === 401 && error.code === 190;
+}
+
+export async function apiRequest(token, endpoint, { body, method = 'GET', params } = {}) {
   const url = new URL(`${API_ORIGIN}/${endpoint.replace(/^\/+/, '')}`);
   for (const [key, value] of Object.entries(params || {})) {
     if (value !== null && value !== undefined && value !== '') url.searchParams.set(key, String(value));
   }
 
+  // Only idempotent GETs retry; publish POSTs stay exactly-once, and their
+  // transient failures keep flowing through the `uncertain` journaling path.
+  const retries = method === 'GET' ? SAFE_REQUEST_RETRIES : 0;
+  for (let attempt = 0; ; attempt += 1) {
+    if (attempt > 0) await new Promise((resolve) => setTimeout(resolve, 1_000 * attempt));
+    try {
+      return await sendApiRequest(token, url, { body, method });
+    } catch (error) {
+      if (attempt === retries || (error.httpStatus && !isTransientApiError(error))) throw error;
+    }
+  }
+}
+
+async function sendApiRequest(token, url, { body, method }) {
   let response;
   try {
     response = await fetch(url, {
