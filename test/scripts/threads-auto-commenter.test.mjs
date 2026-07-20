@@ -1,10 +1,16 @@
+import { execFile } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
+import { promisify } from 'node:util';
+
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import {
   apiRequest,
   buildReply,
   classifyCandidate,
+  isRetryableRunError,
   isTransientApiError,
+  TRANSIENT_RUN_EXIT_CODE,
   zanzibarDateKey,
 } from '../../scripts/threads-auto-commenter.mjs';
 
@@ -105,6 +111,56 @@ describe('Threads API transient error classification', () => {
   });
 });
 
+describe('Threads run-level retry classification', () => {
+  it('marks exhausted transient GET failures as safe to re-run', () => {
+    expect(TRANSIENT_RUN_EXIT_CODE).toBe(75);
+    expect(isRetryableRunError({ requestMethod: 'GET', httpStatus: 500, code: 10 })).toBe(true);
+    expect(isRetryableRunError({ requestMethod: 'GET', httpStatus: 401, code: 190 })).toBe(true);
+    expect(isRetryableRunError({ requestMethod: 'GET' })).toBe(true);
+  });
+
+  it('never marks POST failures or genuine errors as safe to re-run', () => {
+    expect(isRetryableRunError({ requestMethod: 'POST', httpStatus: 500, code: 10, uncertain: true })).toBe(false);
+    expect(isRetryableRunError({ requestMethod: 'POST' })).toBe(false);
+    expect(isRetryableRunError({ requestMethod: 'GET', httpStatus: 400, code: 100 })).toBe(false);
+    expect(isRetryableRunError({ requestMethod: 'GET', httpStatus: 401, code: 104 })).toBe(false);
+    expect(isRetryableRunError(new Error('Safety check failed'))).toBe(false);
+  });
+});
+
+describe('Threads run exit codes', () => {
+  const scriptPath = fileURLToPath(new URL('../../scripts/threads-auto-commenter.mjs', import.meta.url));
+  const stubPath = fileURLToPath(new URL('./helpers/threads-fetch-stub.mjs', import.meta.url));
+  const execFileAsync = promisify(execFile);
+
+  async function runScript(stubMode) {
+    try {
+      await execFileAsync(process.execPath, ['--import', stubPath, scriptPath, '--dry-run'], {
+        env: {
+          ...process.env,
+          THREADS_USER_ACCESS_TOKEN: 'test-token',
+          THREADS_FETCH_STUB_MODE: stubMode,
+          THREADS_RETRY_BACKOFF_MS: '1',
+        },
+      });
+      return 0;
+    } catch (error) {
+      return error.code;
+    }
+  }
+
+  it.each([
+    ['transient-401', TRANSIENT_RUN_EXIT_CODE],
+    ['transient-500', TRANSIENT_RUN_EXIT_CODE],
+    ['network-error', TRANSIENT_RUN_EXIT_CODE],
+    ['body-read-error', TRANSIENT_RUN_EXIT_CODE],
+    ['bad-request', 1],
+    ['wrong-user', 1],
+  ])('spawned run with a %s failure exits with code %d', async (stubMode, expectedCode) => {
+    expect(await runScript(stubMode)).toBe(expectedCode);
+  }, 15_000);
+});
+
 describe('Threads API safe retries', () => {
   afterEach(() => {
     vi.unstubAllGlobals();
@@ -137,7 +193,7 @@ describe('Threads API safe retries', () => {
     vi.stubGlobal('fetch', fetchMock);
 
     const promise = apiRequest('token', 'me', {});
-    const assertion = expect(promise).rejects.toMatchObject({ httpStatus: 500, code: 10 });
+    const assertion = expect(promise).rejects.toMatchObject({ httpStatus: 500, code: 10, requestMethod: 'GET' });
     await vi.advanceTimersByTimeAsync(3_000);
     await assertion;
     expect(fetchMock).toHaveBeenCalledTimes(3);
@@ -160,7 +216,7 @@ describe('Threads API safe retries', () => {
     vi.stubGlobal('fetch', fetchMock);
 
     await expect(apiRequest('token', 'me/threads_publish', { method: 'POST', body: { creation_id: '1' } }))
-      .rejects.toMatchObject({ httpStatus: 500, uncertain: true });
+      .rejects.toMatchObject({ httpStatus: 500, uncertain: true, requestMethod: 'POST' });
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 });

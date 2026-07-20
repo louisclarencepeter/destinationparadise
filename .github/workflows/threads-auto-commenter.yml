@@ -29,7 +29,10 @@ jobs:
   comment:
     name: Find and help travelers
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # Budget for the worst case of the retry loop below: three script runs
+    # whose GETs all ride the 30s request timeout (~3 min each), plus 90s+180s
+    # sleeps, plus checkout/setup/state steps.
+    timeout-minutes: 20
     env:
       THREADS_EXPECTED_USERNAME: yournexttriptoparadise
       THREADS_STATE_PATH: .threads-auto-commenter-data/state.json
@@ -77,10 +80,26 @@ jobs:
         run: |
           set -euo pipefail
           if [[ "${GITHUB_EVENT_NAME}" == "schedule" || "${MANUAL_PUBLISH}" == "true" ]]; then
-            npm run threads:comment:publish
+            run_command=(npm run threads:comment:publish)
           else
-            npm run threads:comment:dry-run
+            run_command=(npm run threads:comment:dry-run)
           fi
+          # Exit code 75 (EX_TEMPFAIL) means the script failed on a read-only
+          # request before selecting or attempting any reply, so a full re-run
+          # is side-effect free. Any other failure fails the job immediately.
+          for attempt in 1 2 3; do
+            exit_code=0
+            "${run_command[@]}" || exit_code=$?
+            if [[ "${exit_code}" -eq 0 ]]; then
+              exit 0
+            fi
+            if [[ "${exit_code}" -ne 75 || "${attempt}" -eq 3 ]]; then
+              exit "${exit_code}"
+            fi
+            wait_seconds=$(( attempt * 90 ))
+            echo "::warning::Transient Threads API failure on attempt ${attempt}; retrying in ${wait_seconds}s."
+            sleep "${wait_seconds}"
+          done
 
       - name: Persist duplicate-prevention state
         if: ${{ always() && hashFiles('.threads-auto-commenter-data/state.json') != '' }}
