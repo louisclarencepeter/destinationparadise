@@ -1,21 +1,30 @@
-// Development store API (HANDOFF.md Phase 1).
+// Store API client (HANDOFF.md Phase 1 + 2).
 //
-// Fixture-backed stand-ins for the future Netlify function endpoints
-// (`/api/store/availability`, `/api/store/quote`, `/api/store/checkout`).
-// The call shapes mirror the planned server contract — async, re-priced on
-// every call, availability re-checked at checkout — so swapping in real
-// endpoints in Phase 2/3 changes this module only, not the components.
+// Two modes behind ONE set of signatures, so components never know which is
+// active:
+//   - fixtures (default): deterministic in-browser stand-ins, no network.
+//   - live (VITE_STORE_API=live): the Netlify functions backed by Supabase —
+//     /api/store/availability, /quote, /checkout, /orders/:reference. Prices
+//     come back as integer minor units and are converted to USD numbers at
+//     this boundary only.
 //
-// Availability is deterministic (seeded by experience/date/time) so the UI is
-// stable across reloads, relative to "today" in Zanzibar so the fixtures never
-// go stale. No real inventory, no charges.
+// In both modes the server-shaped rules hold: re-price on every call,
+// re-check at checkout, never trust anything persisted in the browser.
 import { getInstantExperience } from '../data/commerceCatalog.js';
 
 export const BOOKING_WINDOW_DAYS = 60;
 export const ORDER_SESSION_KEY = 'dp_store_last_order_v1';
+export const ORDER_CREDENTIALS_KEY = 'dp_store_order_credentials_v1';
+const IDEMPOTENCY_KEY = 'dp_store_checkout_idem_v1';
 
 const DEFAULT_LATENCY_MS = 300;
 const CHECKOUT_LATENCY_MS = 1400;
+
+const LIVE = import.meta.env.VITE_STORE_API === 'live';
+
+export function isLiveStoreApi() {
+  return LIVE;
+}
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -40,6 +49,10 @@ export function addDaysIso(dateIso, days) {
   const date = new Date(Date.UTC(year, month - 1, day + days));
   return date.toISOString().slice(0, 10);
 }
+
+// ---------------------------------------------------------------------------
+// Fixture engine (deterministic; also documents the expected data shapes)
+// ---------------------------------------------------------------------------
 
 // Deterministic seats remaining for one departure. Distribution mirrors the
 // design prototype: ~15% sold out, a few low-seat days, the rest comfortable.
@@ -68,24 +81,8 @@ function dayAvailability(experience, dateIso, today) {
   return { date: dateIso, bookable: times.some((slot) => slot.seats > 0), times };
 }
 
-// Availability for one calendar month. `month` is 1–12.
-export async function fetchMonthAvailability(experienceId, year, month, { latencyMs = DEFAULT_LATENCY_MS } = {}) {
-  const experience = getInstantExperience(experienceId);
-  if (latencyMs > 0) await sleep(latencyMs);
-  if (!experience) throw new Error(`Unknown store experience: ${experienceId}`);
-
-  const today = todayInStoreTz();
-  const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
-  const days = {};
-  for (let day = 1; day <= daysInMonth; day += 1) {
-    const dateIso = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-    days[dateIso] = dayAvailability(experience, dateIso, today);
-  }
-  return { experienceId, year, month, timezone: experience.timezone, days };
-}
-
 // Server-owned pricing rule for one selection. Amounts are USD numbers here;
-// the real implementation stores integer minor units per HANDOFF.md.
+// the live backend stores integer minor units and converts at this boundary.
 export function priceSelection(experience, mode, guests) {
   /** @type {{ type: string, amountUsd: number, unitUsd?: number, quantity?: number }[]} */
   const lines = [
@@ -117,17 +114,6 @@ function evaluateItem(item, today) {
   return { id: item.id, status, seats, totalUsd };
 }
 
-// Re-price and re-check a set of cart items (drawer open, checkout render).
-export async function quoteCartItems(items, { latencyMs = DEFAULT_LATENCY_MS } = {}) {
-  if (latencyMs > 0) await sleep(latencyMs);
-  const today = todayInStoreTz();
-  const quotes = items.map((item) => evaluateItem(item, today));
-  const subtotalUsd = quotes
-    .filter((quote) => quote.status === 'available')
-    .reduce((sum, quote) => sum + quote.totalUsd, 0);
-  return { quotes, subtotalUsd, currency: 'USD' };
-}
-
 function bookingCodeFor(experience, item) {
   const seed = hashStr(`${item.experienceId}|${item.date}|${item.time}|${item.guests}|${item.mode}`);
   return `${experience.code}-${1000 + (seed % 9000)}`;
@@ -138,10 +124,187 @@ function orderReference(now = new Date()) {
   return `DP-${now.getFullYear()}-${digits}`;
 }
 
-// Simulated checkout: atomically re-checks every item (all-or-nothing, like the
-// future single Postgres transaction), then "pays" and mints one booking per
-// item. Conflicts identify the exact offending items — never silently dropped.
+// ---------------------------------------------------------------------------
+// Live-mode HTTP helpers
+// ---------------------------------------------------------------------------
+
+/**
+ * @param {string} path
+ * @param {{ method?: string, body?: object, headers?: Record<string, string> }} [options]
+ */
+async function apiRequest(path, { method = 'GET', body, headers } = {}) {
+  const response = await fetch(path, {
+    method,
+    headers: { ...(body ? { 'content-type': 'application/json' } : {}), ...headers },
+    body: body ? JSON.stringify(body) : undefined,
+    credentials: 'omit',
+  });
+  let data = null;
+  try {
+    data = await response.json();
+  } catch {
+    data = null;
+  }
+  return { status: response.status, data };
+}
+
+const toLiveItem = (item) => ({
+  id: item.id,
+  sourceKey: item.experienceId,
+  optionCode: item.mode,
+  guests: item.guests,
+  date: item.date,
+  time: item.time,
+});
+
+const minorToUsd = (minor) => Number(minor || 0) / 100;
+
+// One idempotency key per cart payload: a retry of the same cart replays the
+// same order; any change to the cart mints a new key.
+function idempotencyKeyFor(items) {
+  const signature = hashStr(JSON.stringify(items.map(toLiveItem))).toString(36);
+  try {
+    const stored = JSON.parse(window.sessionStorage.getItem(IDEMPOTENCY_KEY) || 'null');
+    if (stored && stored.signature === signature) return stored.key;
+    const key = `web-${signature}-${Math.random().toString(36).slice(2, 12)}${Date.now().toString(36)}`;
+    window.sessionStorage.setItem(IDEMPOTENCY_KEY, JSON.stringify({ signature, key }));
+    return key;
+  } catch {
+    return `web-${signature}-${Math.random().toString(36).slice(2, 12)}`;
+  }
+}
+
+function clearIdempotencyKey() {
+  try {
+    window.sessionStorage.removeItem(IDEMPOTENCY_KEY);
+  } catch {
+    // best effort
+  }
+}
+
+// Maps a server order (minor units, sourceKey) to the client shape the
+// confirmation UI renders (USD numbers, catalog images).
+function mapServerOrder(serverOrder) {
+  const items = (serverOrder.items || []).map((item) => ({
+    bookingCode: item.bookingCode || null,
+    experienceId: item.sourceKey,
+    title: item.title,
+    image: getInstantExperience(item.sourceKey)?.image || null,
+    date: item.date,
+    time: item.time,
+    mode: item.optionCode,
+    guests: item.guests,
+    pickup: item.pickup,
+    totalUsd: minorToUsd(item.totalMinor),
+  }));
+  return {
+    reference: serverOrder.reference,
+    createdAt: serverOrder.createdAt || new Date().toISOString(),
+    totalUsd: minorToUsd(serverOrder.totalMinor),
+    currency: serverOrder.currency || 'USD',
+    contact: { name: serverOrder.contactName || '' },
+    items,
+  };
+}
+
+// ---------------------------------------------------------------------------
+// Public API — identical signatures in both modes
+// ---------------------------------------------------------------------------
+
+// Availability for one calendar month. `month` is 1–12.
+export async function fetchMonthAvailability(experienceId, year, month, { latencyMs = DEFAULT_LATENCY_MS } = {}) {
+  if (LIVE) {
+    const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
+    const monthPrefix = `${year}-${String(month).padStart(2, '0')}`;
+    const { data } = await apiRequest(
+      `/api/store/availability?experience=${encodeURIComponent(experienceId)}&from=${monthPrefix}-01&to=${monthPrefix}-${String(daysInMonth).padStart(2, '0')}`,
+    );
+    if (!data?.ok) throw new Error(data?.error || 'availability_unavailable');
+    return { experienceId, year, month, timezone: data.timezone, days: data.days || {} };
+  }
+
+  const experience = getInstantExperience(experienceId);
+  if (latencyMs > 0) await sleep(latencyMs);
+  if (!experience) throw new Error(`Unknown store experience: ${experienceId}`);
+
+  const today = todayInStoreTz();
+  const daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
+  const days = {};
+  for (let day = 1; day <= daysInMonth; day += 1) {
+    const dateIso = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+    days[dateIso] = dayAvailability(experience, dateIso, today);
+  }
+  return { experienceId, year, month, timezone: experience.timezone, days };
+}
+
+// Re-price and re-check a set of cart items (drawer open, checkout render).
+export async function quoteCartItems(items, { latencyMs = DEFAULT_LATENCY_MS } = {}) {
+  if (LIVE) {
+    const { data } = await apiRequest('/api/store/quote', {
+      method: 'POST',
+      body: { items: items.map(toLiveItem) },
+    });
+    if (!data?.ok) throw new Error(data?.error || 'quote_unavailable');
+    const quotes = (data.quotes || []).map((quote) => ({
+      id: quote.id,
+      status: quote.status,
+      seats: quote.seats ?? 0,
+      totalUsd: minorToUsd(quote.price?.totalMinor),
+    }));
+    return { quotes, subtotalUsd: minorToUsd(data.subtotalMinor), currency: data.currency || 'USD' };
+  }
+
+  if (latencyMs > 0) await sleep(latencyMs);
+  const today = todayInStoreTz();
+  const quotes = items.map((item) => evaluateItem(item, today));
+  const subtotalUsd = quotes
+    .filter((quote) => quote.status === 'available')
+    .reduce((sum, quote) => sum + quote.totalUsd, 0);
+  return { quotes, subtotalUsd, currency: 'USD' };
+}
+
+// Simulated (fixtures) or real (live) checkout. Live mode creates the pending
+// order + holds atomically server-side, then — while payments are in
+// dev-simulation (pre-DPO) — finalizes through the dev-pay endpoint so the
+// full journey runs against real inventory.
 export async function submitCheckout({ items, contact }, { latencyMs = CHECKOUT_LATENCY_MS } = {}) {
+  if (LIVE) {
+    const { status, data } = await apiRequest('/api/store/checkout', {
+      method: 'POST',
+      body: {
+        items: items.map(toLiveItem),
+        contact: { name: contact?.name || '', email: contact?.email || '', phone: contact?.phone || '' },
+        language: (document.documentElement.lang || 'en').slice(0, 2),
+        idempotencyKey: idempotencyKeyFor(items),
+      },
+    });
+
+    if (!data?.ok) {
+      if (status === 409 || data?.error === 'availability_conflict') {
+        return { ok: false, conflicts: data?.conflicts || [] };
+      }
+      return { ok: false, conflicts: [], error: data?.error || 'checkout_unavailable' };
+    }
+
+    saveOrderCredentials({ reference: data.reference, token: data.accessToken });
+
+    if (data.payment?.mode !== 'dev_simulated') {
+      // Order + holds exist, but nothing can take payment yet (DPO is Phase 3).
+      return { ok: false, conflicts: [], error: 'payment_unavailable', reference: data.reference };
+    }
+
+    const devPay = await apiRequest('/api/store/dev-pay', {
+      method: 'POST',
+      body: { reference: data.reference, token: data.accessToken },
+    });
+    if (!devPay.data?.ok || !devPay.data?.order?.ok) {
+      return { ok: false, conflicts: [], error: devPay.data?.error || 'finalize_unavailable' };
+    }
+
+    clearIdempotencyKey();
+    return { ok: true, order: mapServerOrder(devPay.data.order) };
+  }
+
   if (latencyMs > 0) await sleep(latencyMs);
   const today = todayInStoreTz();
   const evaluated = items.map((item) => evaluateItem(item, today));
@@ -178,8 +341,13 @@ export async function submitCheckout({ items, contact }, { latencyMs = CHECKOUT_
   return { ok: true, order };
 }
 
+// ---------------------------------------------------------------------------
+// Confirmation-page persistence
+// ---------------------------------------------------------------------------
+
 // The confirmation page reads the order back by reference. Session-scoped and
-// browser-local for Phase 1; replaced by `GET /api/store/orders/:reference` later.
+// browser-local; in live mode a refresh can also re-fetch from the server
+// using the per-order credentials below.
 export function saveLastOrder(order) {
   try {
     window.sessionStorage.setItem(ORDER_SESSION_KEY, JSON.stringify(order));
@@ -198,4 +366,39 @@ export function readLastOrder(reference) {
   } catch {
     return null;
   }
+}
+
+function saveOrderCredentials(credentials) {
+  try {
+    window.sessionStorage.setItem(ORDER_CREDENTIALS_KEY, JSON.stringify(credentials));
+  } catch {
+    // best effort
+  }
+}
+
+function readOrderCredentials(reference) {
+  try {
+    const raw = window.sessionStorage.getItem(ORDER_CREDENTIALS_KEY);
+    if (!raw) return null;
+    const credentials = JSON.parse(raw);
+    if (!credentials || credentials.reference !== reference || !credentials.token) return null;
+    return credentials;
+  } catch {
+    return null;
+  }
+}
+
+// Live-mode refresh path for the confirmation page: re-reads the order from
+// the server with the per-order token (no-store on the wire, sha256 at rest).
+export async function fetchStoredOrder(reference) {
+  if (!LIVE) return null;
+  const credentials = readOrderCredentials(reference);
+  if (!credentials) return null;
+  const { data } = await apiRequest(`/api/store/orders/${encodeURIComponent(reference)}`, {
+    headers: { authorization: `Bearer ${credentials.token}` },
+  });
+  if (!data?.ok) return null;
+  const order = mapServerOrder(data);
+  saveLastOrder(order);
+  return order;
 }

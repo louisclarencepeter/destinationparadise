@@ -1,26 +1,44 @@
+import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { CheckIcon } from '../components/store/StoreIcons.jsx';
 import { useCurrency } from '../context/useCurrency.js';
 import usePageMeta from '../hooks/usePageMeta.js';
-import { readLastOrder } from '../lib/storeApi.js';
+import { fetchStoredOrder, isLiveStoreApi, readLastOrder } from '../lib/storeApi.js';
 import { formatDateLabel, formatTimeLabel } from '../lib/storeFormat.js';
 import '../styles/store.css';
 
 // Order confirmation: one order header, one card per booked trip with its own
-// booking code. Reads the just-placed order from session storage (Phase 1);
-// later this becomes the server-backed order-status endpoint. Always noindex.
+// booking code. Reads the just-placed order from session storage; in live
+// mode a refresh re-fetches from the order-status endpoint using the
+// per-order token minted at checkout. Always noindex.
 export default function StoreConfirmation() {
   const { t, i18n, ready } = useTranslation('store');
   const { format } = useCurrency();
   const { reference } = useParams();
   const lang = i18n.resolvedLanguage || 'en';
-  const order = readLastOrder(reference);
+  const [order, setOrder] = useState(() => readLastOrder(reference));
+  const [checking, setChecking] = useState(() => !readLastOrder(reference) && isLiveStoreApi());
 
   usePageMeta({ title: 'Order confirmation · Destination Paradise', noindex: true });
 
-  if (!ready) return null;
+  useEffect(() => {
+    if (order || !isLiveStoreApi()) return undefined;
+    let active = true;
+    fetchStoredOrder(reference)
+      .then((fetched) => {
+        if (active && fetched) setOrder(fetched);
+      })
+      .finally(() => {
+        if (active) setChecking(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [order, reference]);
+
+  if (!ready || checking) return null;
 
   if (!order) {
     return (

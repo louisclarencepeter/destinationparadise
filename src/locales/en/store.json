@@ -125,6 +125,9 @@
     "recheck_note": "Availability is re-checked before you pay.",
     "conflict": "Some departures are no longer available. Please adjust the highlighted trips.",
     "conflict_fix": "Choose a new time",
+    "failed": "We couldn't complete the payment just now. Nothing was charged — please try again in a moment.",
+    "payment_unavailable": "Online payment isn't available yet — your selection was saved as an order, but no payment was taken. Please use the booking request form for now.",
+    "usd_note": "You'll be charged in US dollars — prices shown in other currencies are estimates.",
     "errors": {
       "name_required": "Please add the lead guest's name.",
       "email_required": "Please add an email address.",

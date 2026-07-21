@@ -125,6 +125,9 @@
     "recheck_note": "Przed płatnością ponownie sprawdzamy dostępność.",
     "conflict": "Część terminów jest już niedostępna. Popraw zaznaczone wycieczki.",
     "conflict_fix": "Wybierz nowy termin",
+    "failed": "Nie udało się teraz dokończyć płatności. Nic nie zostało pobrane — spróbuj ponownie za chwilę.",
+    "payment_unavailable": "Płatność online nie jest jeszcze dostępna — twój wybór zapisaliśmy jako zamówienie, ale nic nie zostało pobrane. Na razie skorzystaj z formularza zapytania.",
+    "usd_note": "Płatność jest pobierana w dolarach amerykańskich — ceny w innych walutach są orientacyjne.",
     "errors": {
       "name_required": "Podaj imię i nazwisko gościa głównego.",
       "email_required": "Podaj adres e-mail.",

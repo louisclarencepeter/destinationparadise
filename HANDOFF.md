@@ -2,8 +2,42 @@
 
 - Last updated: 2026-07-21
 - Working branch: `store`
-- Implementation status: Phase 1 delivered (feature-flagged store UI with fixture data; flag `dp_store_preview` in localStorage or `VITE_STORE_ENABLED=true`, disabled by default). Phases 2–5 not started; DPO onboarding in progress.
+- Implementation status: Phase 1 delivered (feature-flagged store UI with fixture data; flag `dp_store_preview` in localStorage or `VITE_STORE_ENABLED=true`, disabled by default). Phase 2 delivered in code (Supabase schema + atomic checkout SQL, Netlify store API, live/fixture client switch — see "Phase 2 operations" below; requires a Supabase project + env vars to activate, everything ships dark otherwise). Phase 3 (DPO) not started; DPO onboarding in progress.
 - Payment provider decision: DPO Pay by Network
+
+## Phase 2 operations (activating the real backend)
+
+Code paths ship dark. To bring the live store API up on a deploy context:
+
+1. Create a Supabase project (region close to eu-central for Netlify Frankfurt).
+2. Apply `supabase/migrations/20260721120000_store_schema.sql`, then
+   `supabase/seed.sql` (SQL editor or `supabase db push` + `psql -f`). The seed
+   is idempotent and creates the pilot catalog plus a 60-day departure window;
+   re-run `select store_seed_departures(60);` any time to extend the window.
+3. Optional but recommended: validate on a scratch database first —
+   `psql "$SCRATCH_DB_URL" -v ON_ERROR_STOP=1 -f supabase/migrations/20260721120000_store_schema.sql -f supabase/seed.sql -f supabase/smoke.sql`
+   (the smoke script exercises atomic checkout, conflicts, idempotency,
+   finalize, token auth, expiry and the oversell guard; passes ⇔ prints
+   `store smoke test passed`).
+4. Netlify env vars (Functions scope, NEVER exposed to the browser):
+   - `SUPABASE_URL` — project URL
+   - `SUPABASE_SERVICE_ROLE_KEY` (or `SUPABASE_SECRET_KEY`) — service key
+   - `STORE_API_ENABLED=true` — master switch for `/api/store/*` (404 otherwise)
+   - `STORE_DEV_FAKE_PAYMENT=true` — preview/branch contexts ONLY; enables the
+     dev-simulated payment endpoint so the journey can finalize before DPO.
+     Must never be set in production.
+5. Frontend build vars: `VITE_STORE_ENABLED=true` (show the store) and
+   `VITE_STORE_API=live` (use `/api/store/*` instead of fixtures). Local live
+   testing needs `netlify dev` so the functions run beside Vite.
+6. Ops in Supabase dashboard until an admin exists: manage
+   `store_departures` (capacity/status/cutoff), watch `store_orders`,
+   `store_capacity_holds`, `store_bookings`; `store_notification_outbox` holds
+   queued (not yet sent) receipt jobs for Phase 3.
+
+Client contract note: the browser cart keeps its Phase 1 shape
+(`experienceId/mode/guests/date/time`); the server resolves departures from
+(sourceKey, date, time), re-prices in integer USD cents, and returns
+per-order bearer tokens (sha256-at-rest) for the confirmation read.
 
 ## Objective
 

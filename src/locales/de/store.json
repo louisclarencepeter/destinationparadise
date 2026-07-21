@@ -125,6 +125,9 @@
     "recheck_note": "Vor der Zahlung prüfen wir die Verfügbarkeit erneut.",
     "conflict": "Einige Abfahrten sind nicht mehr verfügbar. Passe bitte die markierten Touren an.",
     "conflict_fix": "Neue Zeit wählen",
+    "failed": "Die Zahlung konnte gerade nicht abgeschlossen werden. Es wurde nichts abgebucht — versuch es gleich noch einmal.",
+    "payment_unavailable": "Online-Zahlung ist noch nicht verfügbar — deine Auswahl wurde als Bestellung gespeichert, aber nichts abgebucht. Nutze vorerst bitte das Anfrageformular.",
+    "usd_note": "Abgerechnet wird in US-Dollar — Preise in anderen Währungen sind Richtwerte.",
     "errors": {
       "name_required": "Bitte gib den Namen des Hauptgasts an.",
       "email_required": "Bitte gib eine E-Mail-Adresse an.",

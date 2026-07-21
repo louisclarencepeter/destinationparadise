@@ -19,7 +19,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // browser never touches card data even in the preview.
 export default function StoreCheckout() {
   const { t, i18n, ready } = useTranslation('store');
-  const { format } = useCurrency();
+  const { currency, format } = useCurrency();
   const { state, dispatch } = useBookingCart();
   const navigate = useNavigate();
   const lang = i18n.resolvedLanguage || 'en';
@@ -28,6 +28,7 @@ export default function StoreCheckout() {
   const [touched, setTouched] = useState(false);
   const [checking, setChecking] = useState(false);
   const [conflictIds, setConflictIds] = useState(/** @type {string[] | null} */ (null));
+  const [checkoutError, setCheckoutError] = useState(/** @type {string | null} */ (null));
 
   usePageMeta({ title: 'Checkout · Destination Paradise', noindex: true });
 
@@ -65,11 +66,17 @@ export default function StoreCheckout() {
     if (!valid || checking) return;
     setChecking(true);
     setConflictIds(null);
+    setCheckoutError(null);
     const result = await submitCheckout({ items: state.items, contact });
     if (!result.ok || !result.order) {
       setChecking(false);
-      setConflictIds((result.conflicts || []).map((conflict) => conflict.id));
-      trackEvent('availability_conflict', { items: result.conflicts?.length || 0 });
+      if (result.conflicts?.length) {
+        setConflictIds(result.conflicts.map((conflict) => conflict.id));
+        trackEvent('availability_conflict', { items: result.conflicts.length });
+      } else {
+        setCheckoutError(result.error === 'payment_unavailable' ? 'payment_unavailable' : 'generic');
+        trackEvent('payment_failed', { reason: result.error || 'unknown' });
+      }
       return;
     }
     saveLastOrder(result.order);
@@ -168,12 +175,18 @@ export default function StoreCheckout() {
             </div>
 
             {conflictIds && <p className="checkout-conflict" role="alert">{t('checkout.conflict')}</p>}
+            {checkoutError && (
+              <p className="checkout-conflict" role="alert">
+                {checkoutError === 'payment_unavailable' ? t('checkout.payment_unavailable') : t('checkout.failed')}
+              </p>
+            )}
 
             <button type="button" className="checkout-pay" disabled={checking} onClick={pay}>
               {checking && <span className="checkout-pay__spinner" aria-hidden="true" />}
               {checking ? t('checkout.checking') : t('checkout.pay', { amount: format(subtotalUsd) })}
             </button>
             <p className="checkout-footnote">{t('checkout.recheck_note')}</p>
+            {currency !== 'USD' && <p className="checkout-footnote">{t('checkout.usd_note')}</p>}
           </div>
         </section>
       </div>
