@@ -1,8 +1,8 @@
 # Destination Paradise Multi-Trip Store Handoff
 
-- Last updated: 2026-07-20
+- Last updated: 2026-07-21
 - Working branch: `store`
-- Implementation status: design complete; production implementation not started
+- Implementation status: Phase 1 delivered (feature-flagged store UI with fixture data; flag `dp_store_preview` in localStorage or `VITE_STORE_ENABLED=true`, disabled by default). Phases 2–5 not started; DPO onboarding in progress.
 - Payment provider decision: DPO Pay by Network
 
 ## Objective

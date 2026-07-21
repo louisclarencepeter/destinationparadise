@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import SiteNav from './SiteNav.jsx';
@@ -6,6 +6,11 @@ import SiteFooter, { WhatsAppFab } from './SiteFooter.jsx';
 import PageScrollCue from './PageScrollCue.jsx';
 import FloatingBackButton from './FloatingBackButton.jsx';
 import CookieBanner from './CookieBanner.jsx';
+import { isStoreEnabled } from '../config/featureFlags.js';
+
+// Lazy so the store bundle (catalog data, drawer UI) never loads while the
+// store feature flag is off.
+const CartDrawer = lazy(() => import('./store/CartDrawer.jsx'));
 import { loadGoogleAnalytics, revokeGoogleAnalytics, trackPageView } from '../utils/analytics.js';
 import { preferredScrollBehavior } from '../utils/motion.js';
 import {
@@ -110,6 +115,11 @@ export default function SiteLayout() {
       <WhatsAppFab locationKey={`${location.pathname}${location.hash}`} />
       <FloatingBackButton />
       <CookieBanner />
+      {isStoreEnabled() && (
+        <Suspense fallback={null}>
+          <CartDrawer />
+        </Suspense>
+      )}
     </>
   );
 }

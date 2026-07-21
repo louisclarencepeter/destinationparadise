@@ -40,6 +40,19 @@
   to = "/index.html"
   status = 200
 
+# Experiences store (feature-flagged; HANDOFF.md). Client-only routes — direct
+# navigation, checkout and future hosted-payment returns must reach the SPA
+# instead of the 404 page. While the flag is off the app renders its own 404.
+[[redirects]]
+  from = "/store"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/store/*"
+  to = "/index.html"
+  status = 200
+
 # SPA fallback. Static files in dist/ (sitemap.xml, robots.txt, assets) are served
 # ahead of this catch-all, so unknown URLs return the prerendered 404 page.
 [[redirects]]

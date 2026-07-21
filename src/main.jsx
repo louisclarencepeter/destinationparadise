@@ -4,6 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
+import { BookingCartProvider } from './context/BookingCartContext.jsx';
 import { CurrencyProvider } from './context/CurrencyContext.jsx';
 import { applyTheme, readStoredTheme } from './utils/theme.js';
 import { registerServiceWorker } from './utils/registerServiceWorker.js';
@@ -21,7 +22,9 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <ErrorBoundary>
         <CurrencyProvider>
-          <App />
+          <BookingCartProvider>
+            <App />
+          </BookingCartProvider>
         </CurrencyProvider>
       </ErrorBoundary>
     </BrowserRouter>

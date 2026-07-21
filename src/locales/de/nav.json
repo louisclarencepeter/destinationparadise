@@ -10,6 +10,11 @@
       "hint": "Tagesausflüge auf Sansibar",
       "sub": "Stone Town · Riffe · Gewürzfarmen"
     },
+    "store": {
+      "label": "Store",
+      "hint": "Ausflüge sofort buchen",
+      "sub": "Sofort buchen · Ein Checkout"
+    },
     "safaris": {
       "label": "Safari",
       "hint": "Wildlife-Routen auf dem Festland",
@@ -50,6 +55,10 @@
     "book_now": "Buchen",
     "book_aria": "Jetzt buchen",
     "book_a_trip": "Reise anfragen"
+  },
+  "cart": {
+    "label": "Deine Reise",
+    "open_aria": "Reisekorb öffnen"
   },
   "menu": {
     "open": "Menü öffnen",

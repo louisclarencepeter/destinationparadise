@@ -2,12 +2,15 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { CONTACT_INFO } from '../constants/contactInfo';
+import { isStoreEnabled } from '../config/featureFlags.js';
 import SiteSearch, { SearchButton } from './SiteSearch.jsx';
 import LanguageSwitcher from './LanguageSwitcher.jsx';
+import CartNavButton from './store/CartNavButton.jsx';
 
 const NAV_ITEMS = [
   { key: 'home', to: '/', end: true, icon: 'home', desktopHidden: true },
   { key: 'excursions', to: '/excursions', icon: 'compass' },
+  { key: 'store', to: '/store', icon: 'ticket', storeOnly: true },
   { key: 'safaris', to: '/safaris', icon: 'binoculars' },
   { key: 'packages', to: '/packages', icon: 'suitcase' },
   { key: 'retreats', to: '/retreats', icon: 'lotus' },
@@ -26,6 +29,7 @@ const NAV_ICONS = {
   route: ['M5 18a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z', 'M19 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z', 'M7 16h4a4 4 0 0 0 0-8h6'],
   map: ['M9 18 3 21V6l6-3 6 3 6-3v15l-6 3-6-3Z', 'M9 3v15', 'M15 6v15'],
   bag: ['M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z', 'M3 6h18', 'M16 10a4 4 0 0 1-8 0'],
+  ticket: ['M3 9V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v2a3 3 0 0 0 0 6v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a3 3 0 0 0 0-6Z', 'M13 5v2', 'M13 11v2', 'M13 17v2'],
   info: ['M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z', 'M12 11v6', 'M12 7.5h.01'],
 };
 
@@ -76,6 +80,7 @@ const WhatsAppIcon = () => (
 // V2 mobile menu rows — labels/subs read from i18n nav namespace
 const MM_ITEMS = [
   { key: 'excursions',   to: '/excursions'    },
+  { key: 'store',        to: '/store', storeOnly: true },
   { key: 'safaris',      to: '/safaris'       },
   { key: 'packages',     to: '/packages'      },
   { key: 'retreats',     to: '/retreats'      },
@@ -103,6 +108,7 @@ export default function SiteNav({ theme = 'light', themeMode: _themeMode = 'auto
   const mmRef = useRef(/** @type {HTMLDivElement | null} */ (null));
   const closeBtnRef = useRef(/** @type {HTMLButtonElement | null} */ (null));
   const location = useLocation();
+  const storeEnabled = isStoreEnabled();
 
   // Close on route change
   useEffect(() => {
@@ -200,7 +206,7 @@ export default function SiteNav({ theme = 'light', themeMode: _themeMode = 'auto
           <span className="nav__logo-text">Destination Paradise<small>Zanzibar &amp; Tanzania</small></span>
         </Link>
         <ul className="nav__menu" id="navMenu">
-          {NAV_ITEMS.map((item) => {
+          {NAV_ITEMS.filter((item) => !item.storeOnly || storeEnabled).map((item) => {
             const modifiers = [
               item.mobileOnly ? 'nav__item--mobile-only' : '',
               item.desktopHidden ? 'nav__item--desktop-hide' : '',
@@ -234,6 +240,7 @@ export default function SiteNav({ theme = 'light', themeMode: _themeMode = 'auto
             <SunIcon className="theme-toggle__sun" />
             <MoonIcon className="theme-toggle__moon" />
           </button>
+          {storeEnabled && <CartNavButton className="nav__cart" />}
           <SearchButton className="nav__search" onClick={() => setSearchOpen(true)} label={t('search.label_short')} />
           <Link className="btn nav__cta" to="/booking" aria-label={t('cta.book_aria')}>
             <span className="nav__cta-text">{t('cta.book_now')}</span> <ArrowRight size={16} />
@@ -290,7 +297,7 @@ export default function SiteNav({ theme = 'light', themeMode: _themeMode = 'auto
         </div>
 
         <ul className="mm-menu__list">
-          {MM_ITEMS.map((item) => {
+          {MM_ITEMS.filter((item) => !item.storeOnly || storeEnabled).map((item) => {
             const active = isCurrent(item.to, item.end);
             const label = t(`items.${item.key}.label`);
             const sub = t(`items.${item.key}.sub`, '');

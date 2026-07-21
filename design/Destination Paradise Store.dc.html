@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<link rel="stylesheet" href="colors_and_type.css">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--dp-background)}
+  input,select,textarea,button{font-family:var(--dp-font-sans)}
+  ::selection{background:rgba(255,111,97,.25)}
+  a{color:var(--dp-accent);text-decoration:none}
+  a:hover{color:var(--dp-hover)}
+  input::placeholder{color:#9fb0bc}
+  @keyframes dpFade{from{opacity:0}to{opacity:1}}
+  @keyframes dpSlideIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
+  @keyframes dpRise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes dpSpin{to{transform:rotate(360deg)}}
+</style>
+</helmet>
+<div style="min-height:100vh;background:var(--dp-background);font-family:var(--dp-font-display);color:var(--dp-fg-1)">
+
+  <header style="position:sticky;top:0;z-index:40;display:flex;align-items:center;gap:1rem;padding:.7rem clamp(1rem,4vw,2.5rem);background:rgba(250,251,253,.82);backdrop-filter:blur(14px);border-bottom:1px solid var(--dp-border)">
+    <a href="#" onClick="{{ brandHome }}" style="display:flex;align-items:center;gap:.65rem;text-decoration:none">
+      <img src="assets/logo-primary.png" alt="Destination Paradise" style="height:42px;width:42px;border-radius:50%;object-fit:cover;box-shadow:var(--dp-shadow-1)"/>
+      <span style="display:flex;flex-direction:column;line-height:1">
+        <span style="font-family:var(--dp-font-script);font-size:1.35rem;color:var(--dp-primary)">Destination Paradise</span>
+        <span style="font-family:var(--dp-font-sans);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--dp-fg-3);margin-top:2px">Experiences · Zanzibar</span>
+      </span>
+    </a>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:.9rem">
+      <a href="#" onClick="{{ noop }}" style="font-family:var(--dp-font-sans);font-size:.82rem;color:var(--dp-secondary);font-weight:500;text-decoration:none">Help</a>
+      <button onClick="{{ openCart }}" style="position:relative;display:inline-flex;align-items:center;gap:.5rem;background:var(--dp-primary);color:#fff;border:none;border-radius:999px;padding:.55rem 1.05rem .55rem .95rem;font:600 .82rem var(--dp-font-sans);cursor:pointer;box-shadow:var(--dp-shadow-2)">
+        <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.4a1 1 0 0 1 .97.76L6.6 14.4a1.5 1.5 0 0 0 1.46 1.14h8.6a1.5 1.5 0 0 0 1.46-1.15l1.5-6.3a.75.75 0 0 0-.73-.92H5.2M8 20a1 1 0 1 0 0-2 1 1 0 0 0 0 2Zm9 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z"/></svg>
+        Your trip
+        <span style="{{ cartBadgeStyle }}">{{ cartCount }}</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ STORE ============ -->
+  <sc-if value="{{ isStore }}" hint-placeholder-val="{{ true }}">
+  <main style="animation:dpFade .4s ease">
+    <section style="position:relative;overflow:hidden">
+      <div style="position:absolute;inset:0"><img src="assets/mizingani.jpg" alt="" style="width:100%;height:100%;object-fit:cover;object-position:center 40%"/><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(26,77,110,.34) 0%,rgba(26,77,110,.20) 45%,rgba(250,251,253,.92) 100%)"></div></div>
+      <div style="position:relative;max-width:1000px;margin:0 auto;padding:clamp(2.5rem,6vw,4.5rem) clamp(1rem,4vw,2rem) 0;text-align:center">
+        <span style="font:700 .72rem var(--dp-font-sans);letter-spacing:.18em;text-transform:uppercase;color:#fff;opacity:.92">Local. Guided. Unhurried.</span>
+        <h1 style="font-family:var(--dp-font-script);font-size:clamp(2.6rem,5vw+1rem,4.6rem);color:#fff;margin:.4rem 0 .3rem;line-height:1.05;text-shadow:0 2px 24px rgba(26,77,110,.4)">Find your experiences</h1>
+        <p style="font-family:var(--dp-font-display);font-size:clamp(1rem,.5vw+.9rem,1.2rem);color:#f3f7fa;max-width:520px;margin:0 auto;line-height:1.6;text-shadow:0 1px 10px rgba(26,77,110,.3)">Choose your days on the island, build one trip from many excursions, and pay once.</p>
+
+        <div style="display:flex;flex-wrap:wrap;gap:.35rem;align-items:stretch;background:#fff;border:1px solid var(--dp-border);border-radius:var(--dp-radius-2xl);box-shadow:var(--dp-shadow-3);padding:.5rem;max-width:860px;margin:1.75rem auto 0;text-align:left">
+          <div style="flex:2 1 210px;display:flex;flex-direction:column;gap:1px;padding:.5rem .95rem;min-width:0">
+            <span style="font:700 .6rem var(--dp-font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--dp-fg-3)">Experience</span>
+            <input value="{{ q }}" onInput="{{ onSearch }}" placeholder="Search dhow, Stone Town, spice…" style="border:none;background:transparent;font:500 .95rem var(--dp-font-sans);color:var(--dp-primary);outline:none;width:100%"/>
+          </div>
+          <div style="width:1px;background:var(--dp-border);margin:.4rem 0"></div>
+          <div style="flex:1 1 130px;display:flex;flex-direction:column;gap:1px;padding:.5rem .95rem;min-width:0">
+            <span style="font:700 .6rem var(--dp-font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--dp-fg-3)">When</span>
+            <select style="border:none;background:transparent;font:500 .95rem var(--dp-font-sans);color:var(--dp-primary);outline:none;cursor:pointer;width:100%">
+              <option>Anytime in July</option><option>Jul 21–25</option><option>This week</option>
+            </select>
+          </div>
+          <div style="width:1px;background:var(--dp-border);margin:.4rem 0"></div>
+          <div style="flex:1 1 130px;display:flex;flex-direction:column;gap:1px;padding:.5rem .95rem">
+            <span style="font:700 .6rem var(--dp-font-sans);letter-spacing:.12em;text-transform:uppercase;color:var(--dp-fg-3)">Guests</span>
+            <div style="display:flex;align-items:center;gap:.6rem">
+              <button onClick="{{ decGuestSearch }}" style="width:26px;height:26px;border-radius:50%;border:1px solid var(--dp-border);background:#fff;color:var(--dp-secondary);font-size:1rem;cursor:pointer;line-height:1;flex:none">−</button>
+              <span style="font:600 .95rem var(--dp-font-sans);color:var(--dp-primary);min-width:14px;text-align:center">{{ searchGuests }}</span>
+              <button onClick="{{ incGuestSearch }}" style="width:26px;height:26px;border-radius:50%;border:1px solid var(--dp-border);background:#fff;color:var(--dp-secondary);font-size:1rem;cursor:pointer;line-height:1;flex:none">+</button>
+            </div>
+          </div>
+          <button onClick="{{ noop }}" style="flex:none;align-self:stretch;display:inline-flex;align-items:center;gap:.5rem;background-image:var(--dp-gradient-button);color:#fff;border:none;border-radius:calc(var(--dp-radius-2xl) - 6px);padding:0 1.3rem;font:600 .9rem var(--dp-font-sans);cursor:pointer;margin:.15rem">
+            Search <svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1200px;margin:0 auto;padding:clamp(1.75rem,4vw,3rem) clamp(1rem,4vw,2rem) 4rem">
+      <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1rem;margin-bottom:1.4rem">
+        <div>
+          <span style="font:700 .72rem var(--dp-font-sans);letter-spacing:.14em;text-transform:uppercase;color:var(--dp-fg-3)">Zanzibar &amp; Tanzania</span>
+          <h2 style="font-family:var(--dp-font-script);font-size:clamp(1.9rem,2vw+1rem,2.9rem);color:var(--dp-secondary);margin:.15rem 0 0">Curated experiences</h2>
+        </div>
+        <p style="font-family:var(--dp-font-display);font-size:.95rem;color:var(--dp-fg-3);max-width:360px;margin:0;line-height:1.55">Coastal excursions book instantly. Safaris and tailor-made routes are arranged on request.</p>
+      </div>
+
+      <div style="display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;margin-bottom:1.5rem">
+        <button onClick="{{ setFilterAll }}" style="{{ chipAllStyle }}">All experiences</button>
+        <button onClick="{{ setFilterInstant }}" style="{{ chipInstantStyle }}"><span style="width:7px;height:7px;border-radius:50%;background:var(--dp-primary);display:inline-block"></span> Instant booking</button>
+        <button onClick="{{ setFilterRequest }}" style="{{ chipRequestStyle }}"><span style="width:7px;height:7px;border-radius:50%;background:var(--dp-accent);display:inline-block"></span> Request availability</button>
+        <span style="margin-left:auto;font:500 .85rem var(--dp-font-sans);color:var(--dp-fg-3)">{{ resultCount }}</span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:clamp(1.35rem,2vw,2rem)">
+        <sc-for list="{{ trips }}" as="trip" hint-placeholder-count="0">
+          <article onClick="{{ trip.onOpen }}" style="cursor:pointer;position:relative;overflow:hidden;border-radius:var(--dp-radius-xl);background:#fff;border:1px solid rgba(33,90,124,.08);box-shadow:var(--dp-shadow-3);display:flex;flex-direction:column">
+            <div style="position:absolute;left:0;top:0;right:0;height:6px;background:var(--dp-gradient-accent-bar);z-index:3"></div>
+            <div style="position:relative;height:212px;overflow:hidden">
+              <img src="{{ trip.image }}" alt="{{ trip.title }}" style="width:100%;height:100%;object-fit:cover;display:block"/>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(26,77,110,.34))"></div>
+              <span style="position:absolute;top:14px;right:14px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);color:var(--dp-secondary);font:700 .62rem var(--dp-font-sans);letter-spacing:.08em;text-transform:uppercase;padding:.35rem .7rem;border-radius:999px;box-shadow:var(--dp-shadow-2)">{{ trip.durationTag }}</span>
+            </div>
+            <div style="padding:1.05rem 1.15rem 1.15rem;display:flex;flex-direction:column;gap:.55rem;flex:1">
+              <span style="{{ trip.typeStyle }}">{{ trip.typeLabel }}</span>
+              <h3 style="font:600 1.12rem var(--dp-font-sans);color:var(--dp-secondary);margin:0;line-height:1.25">{{ trip.title }}</h3>
+              <p style="font-family:var(--dp-font-display);font-size:.92rem;line-height:1.55;color:var(--dp-fg-3);margin:0;flex:1;text-wrap:pretty">{{ trip.blurb }}</p>
+              <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:.75rem;margin-top:.25rem;padding-top:.8rem;border-top:1px solid var(--dp-border)">
+                <div style="display:flex;flex-direction:column;line-height:1.2">
+                  <span style="font:600 1.05rem var(--dp-font-sans);color:var(--dp-primary)">{{ trip.priceLabel }}</span>
+                  <span style="font:500 .72rem var(--dp-font-sans);color:var(--dp-fg-3)">{{ trip.priceUnit }}</span>
+                </div>
+                <span style="display:inline-flex;align-items:center;gap:.35rem;font:600 .82rem var(--dp-font-sans);color:#C14A3F;white-space:nowrap">{{ trip.ctaLabel }}<svg width="15" height="15" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></span>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+    </section>
+  </main>
+  </sc-if>
+
+  <!-- ============ DETAIL ============ -->
+  <sc-if value="{{ isDetail }}" hint-placeholder-val="{{ false }}">
+  <main style="animation:dpFade .35s ease;padding-bottom:4rem">
+    <div style="max-width:1200px;margin:0 auto;padding:1rem clamp(1rem,4vw,2rem) 0">
+      <button onClick="{{ onBack }}" style="display:inline-flex;align-items:center;gap:.4rem;background:none;border:none;color:var(--dp-secondary);font:500 .88rem var(--dp-font-sans);cursor:pointer;padding:.3rem 0">
+        <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg> All experiences
+      </button>
+    </div>
+    <div style="position:relative;max-width:1200px;margin:.6rem auto 0;height:min(44vh,400px);border-radius:var(--dp-radius-2xl);overflow:hidden;box-shadow:var(--dp-shadow-3)">
+      <sc-if value="{{ detailTrip.image }}" hint-placeholder-val="{{ false }}"><img src="{{ detailTrip.image }}" alt="" style="width:100%;height:100%;object-fit:cover"/></sc-if>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(26,77,110,.6))"></div>
+      <div style="position:absolute;left:0;right:0;bottom:0;padding:clamp(1.25rem,3vw,2rem)">
+        <span style="display:inline-block;background:rgba(255,255,255,.85);backdrop-filter:blur(10px);color:var(--dp-secondary);font:700 .62rem var(--dp-font-sans);letter-spacing:.08em;text-transform:uppercase;padding:.35rem .75rem;border-radius:999px">{{ detailTrip.durationTag }}</span>
+        <h1 style="font-family:var(--dp-font-script);font-size:clamp(2rem,3vw+1rem,3.4rem);color:#fff;margin:.5rem 0 0;line-height:1.05;text-shadow:0 2px 20px rgba(26,77,110,.5)">{{ detailTrip.title }}</h1>
+        <p style="font:500 .9rem var(--dp-font-sans);color:#eef4f8;margin:.35rem 0 0">{{ detailTrip.duration }}</p>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(1.5rem,3vw,2.5rem);align-items:flex-start;max-width:1200px;margin:0 auto;padding:clamp(1.5rem,3vw,2.25rem) clamp(1rem,4vw,2rem) 0">
+      <div style="flex:2 1 360px;min-width:0">
+        <p style="font-family:var(--dp-font-display);font-size:1.12rem;line-height:1.7;color:var(--dp-fg-1);margin:0 0 1.75rem;text-wrap:pretty">{{ detailTrip.blurb }}</p>
+
+        <h3 style="font:600 1.05rem var(--dp-font-sans);color:var(--dp-secondary);margin:0 0 .9rem">What's included</h3>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.65rem 1.25rem;margin-bottom:2rem">
+          <sc-for list="{{ detailTrip.included }}" as="inc" hint-placeholder-count="4">
+            <div style="display:flex;align-items:flex-start;gap:.6rem">
+              <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="var(--dp-accent)" style="margin-top:2px;flex:none"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>
+              <span style="font-family:var(--dp-font-display);font-size:.95rem;color:var(--dp-fg-1);line-height:1.45">{{ inc }}</span>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="background:linear-gradient(160deg,rgba(255,255,255,.96),rgba(255,255,255,.86)),linear-gradient(135deg,rgba(33,90,124,.04),rgba(255,111,97,.08));border:1px solid rgba(33,90,124,.1);border-radius:var(--dp-radius-lg);padding:1.1rem 1.25rem;display:flex;gap:.85rem;align-items:flex-start">
+          <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="var(--dp-secondary)" style="flex:none"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/></svg>
+          <div>
+            <p style="font:600 .82rem var(--dp-font-sans);color:var(--dp-secondary);margin:0 0 .2rem;letter-spacing:.02em">Pickup &amp; meeting point</p>
+            <p style="font-family:var(--dp-font-display);font-size:.92rem;color:var(--dp-fg-3);margin:0;line-height:1.55">{{ detailTrip.pickup }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOKING PANEL -->
+      <aside style="flex:1 1 320px;max-width:400px;position:sticky;top:80px;width:100%">
+        <div style="position:relative;overflow:hidden;background:#fff;border:1px solid rgba(33,90,124,.12);border-radius:var(--dp-radius-xl);box-shadow:var(--dp-shadow-3);padding:1.35rem 1.35rem 1.25rem">
+          <div style="position:absolute;left:0;top:0;right:0;height:6px;background:var(--dp-gradient-accent-bar)"></div>
+
+          <sc-if value="{{ detailIsInstant }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:.5rem;margin-bottom:1rem">
+              <div style="display:flex;align-items:baseline;gap:.4rem">
+                <span style="font:600 1.6rem var(--dp-font-sans);color:var(--dp-primary)">{{ detailPerPerson }}</span>
+                <span style="font:500 .78rem var(--dp-font-sans);color:var(--dp-fg-3)">per person</span>
+              </div>
+              <span style="display:inline-flex;align-items:center;gap:.35rem;font:700 .62rem var(--dp-font-sans);letter-spacing:.06em;text-transform:uppercase;color:var(--dp-secondary);background:rgba(26,77,110,.08);padding:.3rem .55rem;border-radius:999px"><span style="width:6px;height:6px;border-radius:50%;background:var(--dp-primary)"></span>Instant</span>
+            </div>
+
+            <div style="display:flex;background:var(--dp-background);border:1px solid var(--dp-border);border-radius:var(--dp-radius-sm);padding:3px;margin-bottom:1rem">
+              <button onClick="{{ setShared }}" style="{{ sharedStyle }}">Shared group</button>
+              <button onClick="{{ setPrivate }}" style="{{ privateStyle }}">Private group</button>
+            </div>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem">
+              <div style="display:flex;flex-direction:column;line-height:1.2">
+                <span style="font:600 .9rem var(--dp-font-sans);color:var(--dp-secondary)">Guests</span>
+                <span style="font:500 .72rem var(--dp-font-sans);color:var(--dp-fg-3)">Max {{ detailMaxGuests }} per departure</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:.75rem">
+                <button onClick="{{ decGuestB }}" style="width:32px;height:32px;border-radius:50%;border:1px solid var(--dp-border);background:#fff;color:var(--dp-secondary);font-size:1.15rem;cursor:pointer;line-height:1">−</button>
+                <span style="font:600 1.05rem var(--dp-font-sans);color:var(--dp-primary);min-width:18px;text-align:center">{{ bookingGuests }}</span>
+                <button onClick="{{ incGuestB }}" style="width:32px;height:32px;border-radius:50%;border:1px solid var(--dp-border);background:#fff;color:var(--dp-secondary);font-size:1.15rem;cursor:pointer;line-height:1">+</button>
+              </div>
+            </div>
+
+            <div style="border-top:1px solid var(--dp-border);padding-top:1rem;margin-bottom:.4rem">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.7rem">
+                <span style="font:600 .9rem var(--dp-font-sans);color:var(--dp-secondary)">{{ monthLabel }}</span>
+                <span style="font:500 .72rem var(--dp-font-sans);color:var(--dp-fg-3)">Africa / Dar es Salaam</span>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;margin-bottom:4px">
+                <span style="font:600 .62rem var(--dp-font-sans);color:var(--dp-fg-3)">Su</span><span style="font:600 .62rem var(--dp-font-sans);color:var(--dp-fg-3)">Mo</span><span style="font:600 .62rem var(--dp-font-sans);color:var(--dp-fg-3)">Tu</span><span style="font:600 .62rem var(--dp-font-sans);color:var(--dp-fg-3)">We</span><span style="font:600 .62rem var(--dp-font-sans);color:var(--dp-fg-3)">Th</span><span style="font:600 .62rem var(--dp-font-sans);color:var(--dp-fg-3)">Fr</span><span style="font:600 .62rem var(--dp-font-sans);color:var(--dp-fg-3)">Sa</span>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(7,1fr);gap:2px">
+                <sc-for list="{{ calendarCells }}" as="cell" hint-placeholder-count="35">
+                  <div onClick="{{ cell.onClick }}" style="{{ cell.style }}">{{ cell.label }}</div>
+                </sc-for>
+              </div>
+            </div>
+
+            <div style="margin:.5rem 0 1rem">
+              <span style="font:600 .82rem var(--dp-font-sans);color:var(--dp-secondary)">Available times</span>
+              <sc-if value="{{ bookingHasDate }}">
+                <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:.45rem;margin-top:.6rem">
+                  <sc-for list="{{ slotList }}" as="slot" hint-placeholder-count="2">
+                    <button onClick="{{ slot.onClick }}" style="{{ slot.style }}">
+                      <span style="font:600 .88rem var(--dp-font-sans)">{{ slot.label }}</span>
+                      <span style="font:500 .64rem var(--dp-font-sans)">{{ slot.sub }}</span>
+                    </button>
+                  </sc-for>
+                </div>
+              </sc-if>
+              <sc-if value="{{ bookingNoDate }}">
+                <p style="font-family:var(--dp-font-display);font-size:.85rem;color:var(--dp-fg-3);margin:.5rem 0 0">Select a date above to see available departures.</p>
+              </sc-if>
+            </div>
+
+            <div style="border-top:1px solid var(--dp-border);padding-top:.85rem;margin-bottom:1rem">
+              <sc-for list="{{ priceRows }}" as="row" hint-placeholder-count="1">
+                <div style="display:flex;justify-content:space-between;font-family:var(--dp-font-display);font-size:.92rem;color:var(--dp-fg-3);margin-bottom:.4rem"><span>{{ row.k }}</span><span>{{ row.v }}</span></div>
+              </sc-for>
+              <div style="display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--dp-border);padding-top:.6rem;margin-top:.3rem"><span style="font:600 .95rem var(--dp-font-sans);color:var(--dp-secondary)">Total</span><span style="font:600 1.25rem var(--dp-font-sans);color:var(--dp-primary)">{{ priceTotal }}</span></div>
+            </div>
+
+            <button onClick="{{ onAdd }}" style="{{ addBtnStyle }}">{{ addLabel }}<svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></button>
+            <p style="text-align:center;font-family:var(--dp-font-display);font-size:.78rem;color:var(--dp-fg-3);margin:.65rem 0 0">Free cancellation up to 24 h before · you're not charged yet</p>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ detailIsRequest }}">
+          <div>
+            <span style="display:inline-flex;align-items:center;gap:.4rem;font:700 .62rem var(--dp-font-sans);letter-spacing:.06em;text-transform:uppercase;color:#C14A3F;border:1px solid var(--dp-accent);padding:.3rem .6rem;border-radius:999px;margin-bottom:.9rem"><span style="width:6px;height:6px;border-radius:50%;background:var(--dp-accent)"></span>Request availability</span>
+            <h3 style="font:600 1.15rem var(--dp-font-sans);color:var(--dp-secondary);margin:0 0 .5rem">Tell us your dates</h3>
+            <p style="font-family:var(--dp-font-display);font-size:.92rem;color:var(--dp-fg-3);line-height:1.6;margin:0 0 1.1rem">{{ detailRequestNote }} We confirm availability and a price by email, usually within 24 hours.</p>
+
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+              <span style="font:600 .9rem var(--dp-font-sans);color:var(--dp-secondary)">Guests</span>
+              <div style="display:flex;align-items:center;gap:.75rem">
+                <button onClick="{{ decGuestB }}" style="width:32px;height:32px;border-radius:50%;border:1px solid var(--dp-border);background:#fff;color:var(--dp-secondary);font-size:1.15rem;cursor:pointer;line-height:1">−</button>
+                <span style="font:600 1.05rem var(--dp-font-sans);color:var(--dp-primary);min-width:18px;text-align:center">{{ bookingGuests }}</span>
+                <button onClick="{{ incGuestB }}" style="width:32px;height:32px;border-radius:50%;border:1px solid var(--dp-border);background:#fff;color:var(--dp-secondary);font-size:1.15rem;cursor:pointer;line-height:1">+</button>
+              </div>
+            </div>
+            <label style="display:block;font:600 .74rem var(--dp-font-sans);letter-spacing:.04em;color:var(--dp-fg-3);margin-bottom:.35rem">Preferred dates</label>
+            <input placeholder="e.g. 22–24 July, flexible" style="width:100%;border:1px solid var(--dp-border);border-radius:5px;padding:.7rem .8rem;font:500 .9rem var(--dp-font-sans);color:var(--dp-primary);outline:none;margin-bottom:1rem"/>
+
+            <sc-if value="{{ requestNotSent }}" hint-placeholder-val="{{ true }}">
+              <button onClick="{{ onSendRequest }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background-image:var(--dp-gradient-button);color:#fff;border:none;border-radius:var(--dp-radius-sm);padding:.9rem;font:600 .95rem var(--dp-font-sans);cursor:pointer">Send request<svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></button>
+            </sc-if>
+            <sc-if value="{{ requestSent }}">
+              <div style="display:flex;align-items:center;gap:.6rem;background:var(--dp-success-bg);color:var(--dp-success);border-radius:var(--dp-radius-sm);padding:.85rem 1rem;font:600 .88rem var(--dp-font-sans)"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Request sent — we'll be in touch shortly.</div>
+            </sc-if>
+            <p style="text-align:center;font-family:var(--dp-font-display);font-size:.78rem;color:var(--dp-fg-3);margin:.75rem 0 0">Not added to your pay-now trip — arranged separately.</p>
+          </div>
+          </sc-if>
+        </div>
+      </aside>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- ============ CHECKOUT ============ -->
+  <sc-if value="{{ isCheckout }}" hint-placeholder-val="{{ false }}">
+  <main style="animation:dpFade .35s ease;padding-bottom:4rem">
+    <div style="max-width:1040px;margin:0 auto;padding:1rem clamp(1rem,4vw,2rem) 0">
+      <button onClick="{{ onCheckoutBack }}" style="display:inline-flex;align-items:center;gap:.4rem;background:none;border:none;color:var(--dp-secondary);font:500 .88rem var(--dp-font-sans);cursor:pointer;padding:.3rem 0"><svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>Back to your trip</button>
+      <h2 style="font-family:var(--dp-font-script);font-size:clamp(1.9rem,2vw+1rem,2.9rem);color:var(--dp-secondary);margin:.4rem 0 0">Checkout</h2>
+      <p style="font-family:var(--dp-font-display);color:var(--dp-fg-3);margin:.15rem 0 0">One order, {{ cartCount }} experiences · Destination Paradise is your single host.</p>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:clamp(1.5rem,3vw,2.25rem);align-items:flex-start;max-width:1040px;margin:0 auto;padding:1.5rem clamp(1rem,4vw,2rem) 0">
+      <div style="flex:1 1 380px;min-width:0;order:2">
+        <div style="background:#fff;border:1px solid rgba(33,90,124,.1);border-radius:var(--dp-radius-xl);box-shadow:var(--dp-shadow-3);padding:1.4rem">
+          <h3 style="font:600 1.05rem var(--dp-font-sans);color:var(--dp-secondary);margin:0 0 1.1rem">Guest details</h3>
+          <div style="display:flex;flex-direction:column;gap:.85rem">
+            <div style="display:flex;flex-direction:column;gap:.3rem;min-width:0"><label style="font:600 .72rem var(--dp-font-sans);letter-spacing:.04em;color:var(--dp-fg-3)">Lead guest name</label><input value="{{ contactName }}" onInput="{{ onName }}" placeholder="Jane Traveller" style="width:100%;min-width:0;border:1px solid var(--dp-border);border-radius:5px;padding:.7rem .8rem;font:500 .92rem var(--dp-font-sans);color:var(--dp-primary);outline:none"/></div>
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap;min-width:0">
+              <div style="flex:1 1 160px;display:flex;flex-direction:column;gap:.3rem;min-width:0"><label style="font:600 .72rem var(--dp-font-sans);letter-spacing:.04em;color:var(--dp-fg-3)">Email</label><input value="{{ contactEmail }}" onInput="{{ onEmail }}" type="email" placeholder="you@example.com" style="width:100%;min-width:0;border:1px solid var(--dp-border);border-radius:5px;padding:.7rem .8rem;font:500 .92rem var(--dp-font-sans);color:var(--dp-primary);outline:none"/></div>
+              <div style="flex:1 1 140px;display:flex;flex-direction:column;gap:.3rem;min-width:0"><label style="font:600 .72rem var(--dp-font-sans);letter-spacing:.04em;color:var(--dp-fg-3)">Phone / WhatsApp</label><input value="{{ contactPhone }}" onInput="{{ onPhone }}" placeholder="+255 …" style="width:100%;min-width:0;border:1px solid var(--dp-border);border-radius:5px;padding:.7rem .8rem;font:500 .92rem var(--dp-font-sans);color:var(--dp-primary);outline:none"/></div>
+            </div>
+          </div>
+
+          <h3 style="font:600 1.05rem var(--dp-font-sans);color:var(--dp-secondary);margin:1.5rem 0 1.1rem">Payment</h3>
+          <div style="display:flex;flex-direction:column;gap:.85rem">
+            <div style="display:flex;flex-direction:column;gap:.3rem;min-width:0"><label style="font:600 .72rem var(--dp-font-sans);letter-spacing:.04em;color:var(--dp-fg-3)">Card number</label><input defaultValue="4242 4242 4242 4242" style="width:100%;min-width:0;border:1px solid var(--dp-border);border-radius:5px;padding:.7rem .8rem;font:500 .92rem var(--dp-font-sans);color:var(--dp-primary);outline:none"/></div>
+            <div style="display:flex;gap:.75rem;flex-wrap:wrap;min-width:0">
+              <div style="flex:1 1 120px;min-width:0;display:flex;flex-direction:column;gap:.3rem"><label style="font:600 .72rem var(--dp-font-sans);letter-spacing:.04em;color:var(--dp-fg-3)">Expiry</label><input defaultValue="09 / 27" style="width:100%;min-width:0;border:1px solid var(--dp-border);border-radius:5px;padding:.7rem .8rem;font:500 .92rem var(--dp-font-sans);color:var(--dp-primary);outline:none"/></div>
+              <div style="flex:1 1 100px;min-width:0;display:flex;flex-direction:column;gap:.3rem"><label style="font:600 .72rem var(--dp-font-sans);letter-spacing:.04em;color:var(--dp-fg-3)">CVC</label><input defaultValue="123" style="width:100%;min-width:0;border:1px solid var(--dp-border);border-radius:5px;padding:.7rem .8rem;font:500 .92rem var(--dp-font-sans);color:var(--dp-primary);outline:none"/></div>
+            </div>
+          </div>
+
+          <button onClick="{{ onPay }}" style="{{ payBtnStyle }}">
+            <sc-if value="{{ checking }}"><span style="width:16px;height:16px;border:2px solid rgba(255,255,255,.4);border-top-color:#fff;border-radius:50%;display:inline-block;animation:dpSpin .7s linear infinite"></span></sc-if>
+            {{ payLabel }}
+          </button>
+          <p style="text-align:center;font-family:var(--dp-font-display);font-size:.78rem;color:var(--dp-fg-3);margin:.7rem 0 0">Simulated payment — no card is charged. Availability is re-checked before you pay.</p>
+        </div>
+      </div>
+
+      <div style="flex:1 1 320px;max-width:400px;min-width:0;order:1">
+        <div style="background:linear-gradient(160deg,rgba(255,255,255,.96),rgba(255,255,255,.86)),linear-gradient(135deg,rgba(33,90,124,.04),rgba(255,111,97,.08));border:1px solid rgba(33,90,124,.1);border-radius:var(--dp-radius-xl);box-shadow:var(--dp-shadow-3);padding:1.4rem">
+          <h3 style="font:600 1.05rem var(--dp-font-sans);color:var(--dp-secondary);margin:0 0 1.1rem">Your trips</h3>
+          <sc-for list="{{ cartItems }}" as="it" hint-placeholder-count="0">
+            <div style="display:flex;gap:.85rem;padding:.75rem 0;border-bottom:1px solid var(--dp-border);min-width:0">
+              <img src="{{ it.image }}" alt="" style="width:60px;height:60px;border-radius:12px;object-fit:cover;flex:none"/>
+              <div style="flex:1;min-width:0">
+                <p style="font:600 .92rem var(--dp-font-sans);color:var(--dp-secondary);margin:0 0 .2rem">{{ it.title }}</p>
+                <p style="font-family:var(--dp-font-display);font-size:.82rem;color:var(--dp-fg-3);margin:0;line-height:1.5">{{ it.dateLabel }} · {{ it.timeLabel }}</p>
+                <p style="font-family:var(--dp-font-display);font-size:.82rem;color:var(--dp-fg-3);margin:0;line-height:1.5">{{ it.guestsLabel }} · {{ it.modeLabel }}</p>
+                <span style="{{ it.availStyle }}">{{ it.availLabel }}</span>
+              </div>
+              <span style="font:600 .95rem var(--dp-font-sans);color:var(--dp-primary);flex:none">{{ it.totalLabel }}</span>
+            </div>
+          </sc-for>
+          <div style="display:flex;justify-content:space-between;align-items:baseline;padding-top:1rem"><span style="font:600 1rem var(--dp-font-sans);color:var(--dp-secondary)">Total due</span><span style="font:600 1.5rem var(--dp-font-sans);color:var(--dp-primary)">{{ subtotalLabel }}</span></div>
+        </div>
+      </div>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- ============ SUCCESS ============ -->
+  <sc-if value="{{ isSuccess }}" hint-placeholder-val="{{ false }}">
+  <main style="animation:dpFade .4s ease;padding-bottom:4rem">
+    <div style="max-width:760px;margin:0 auto;padding:clamp(2rem,5vw,3.5rem) clamp(1rem,4vw,2rem) 0;text-align:center">
+      <div style="width:66px;height:66px;border-radius:50%;background:var(--dp-success-bg);display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;animation:dpRise .5s ease"><svg width="34" height="34" fill="none" viewBox="0 0 24 24" stroke-width="2.2" stroke="var(--dp-success)"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg></div>
+      <h2 style="font-family:var(--dp-font-script);font-size:clamp(2rem,3vw+1rem,3.2rem);color:var(--dp-secondary);margin:0">You're going to Paradise</h2>
+      <p style="font-family:var(--dp-font-display);font-size:1.05rem;color:var(--dp-fg-1);margin:.5rem 0 0;line-height:1.6">Order <strong style="color:var(--dp-primary)">{{ orderNo }}</strong> is confirmed. A confirmation is on its way to your email — each experience has its own booking below.</p>
+    </div>
+
+    <div style="max-width:760px;margin:0 auto;padding:2rem clamp(1rem,4vw,2rem) 0;display:flex;flex-direction:column;gap:1rem">
+      <sc-for list="{{ confirmations }}" as="c" hint-placeholder-count="0">
+        <div style="position:relative;overflow:hidden;display:flex;gap:1rem;background:#fff;border:1px solid rgba(33,90,124,.1);border-radius:var(--dp-radius-xl);box-shadow:var(--dp-shadow-3);padding:1rem 1.15rem;animation:dpRise .5s ease">
+          <div style="position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--dp-gradient-accent-bar)"></div>
+          <img src="{{ c.image }}" alt="" style="width:88px;height:88px;border-radius:14px;object-fit:cover;flex:none;margin-left:.4rem"/>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.5rem">
+              <p style="font:600 1.05rem var(--dp-font-sans);color:var(--dp-secondary);margin:0">{{ c.title }}</p>
+              <span style="font:600 .74rem var(--dp-font-sans);letter-spacing:.06em;color:var(--dp-fg-3)">CONF · {{ c.code }}</span>
+            </div>
+            <p style="font-family:var(--dp-font-display);font-size:.9rem;color:var(--dp-fg-1);margin:.35rem 0 0;line-height:1.55">{{ c.dateLabel }} · {{ c.timeLabel }} · {{ c.guestsLabel }} · {{ c.modeLabel }}</p>
+            <p style="font-family:var(--dp-font-display);font-size:.82rem;color:var(--dp-fg-3);margin:.2rem 0 .4rem;line-height:1.5">{{ c.pickup }}</p>
+            <span style="display:inline-flex;align-items:center;gap:.35rem;font:600 .72rem var(--dp-font-sans);color:var(--dp-success)"><svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke-width="2.4" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5"/></svg>Confirmed &amp; paid</span>
+          </div>
+        </div>
+      </sc-for>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;padding:.5rem .25rem 0"><span style="font:600 1rem var(--dp-font-sans);color:var(--dp-secondary)">Total paid</span><span style="font:600 1.4rem var(--dp-font-sans);color:var(--dp-primary)">{{ orderTotalLabel }}</span></div>
+      <div style="text-align:center;margin-top:1rem"><button onClick="{{ onDone }}" style="display:inline-flex;align-items:center;gap:.5rem;background:transparent;border:1px solid var(--dp-border);color:var(--dp-secondary);border-radius:var(--dp-radius-sm);padding:.8rem 1.5rem;font:600 .9rem var(--dp-font-sans);cursor:pointer">Back to experiences</button></div>
+    </div>
+  </main>
+  </sc-if>
+
+  <!-- ============ CART DRAWER ============ -->
+  <sc-if value="{{ cartOpen }}" hint-placeholder-val="{{ false }}">
+  <div onClick="{{ closeCart }}" style="position:fixed;inset:0;background:rgba(26,77,110,.4);z-index:50;animation:dpFade .25s ease"></div>
+  </sc-if>
+  <aside style="{{ cartDrawerStyle }}">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:1.1rem clamp(1rem,5vw,1.35rem);border-bottom:1px solid var(--dp-border)">
+      <div><h3 style="font-family:var(--dp-font-script);font-size:1.6rem;color:var(--dp-secondary);margin:0;line-height:1">Your trip</h3><p style="font:500 .78rem var(--dp-font-sans);color:var(--dp-fg-3);margin:.15rem 0 0">{{ cartSubhead }}</p></div>
+      <button onClick="{{ closeCart }}" style="width:36px;height:36px;border-radius:50%;border:1px solid var(--dp-border);background:#fff;color:var(--dp-secondary);cursor:pointer;display:flex;align-items:center;justify-content:center"><svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke-width="1.7" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/></svg></button>
+    </div>
+
+    <div style="flex:1;overflow-y:auto;overflow-x:hidden;padding:1rem clamp(1rem,5vw,1.35rem)">
+      <sc-if value="{{ cartEmpty }}">
+        <div style="text-align:center;padding:3rem 1rem;color:var(--dp-fg-3)"><p style="font-family:var(--dp-font-display);font-size:1rem;margin:0 0 1rem">Your trip is empty.</p><button onClick="{{ closeCart }}" style="background:transparent;border:1px solid var(--dp-border);color:var(--dp-secondary);border-radius:var(--dp-radius-sm);padding:.7rem 1.3rem;font:600 .88rem var(--dp-font-sans);cursor:pointer">Browse experiences</button></div>
+      </sc-if>
+      <sc-for list="{{ cartItems }}" as="it" hint-placeholder-count="0">
+        <div style="position:relative;overflow:hidden;background:#fff;border:1px solid rgba(33,90,124,.1);border-radius:var(--dp-radius-lg);box-shadow:var(--dp-shadow-1);padding:.85rem;margin-bottom:.85rem;display:flex;gap:.65rem">
+          <img src="{{ it.image }}" alt="" style="width:clamp(52px,16vw,74px);height:clamp(52px,16vw,74px);border-radius:12px;object-fit:cover;flex:none"/>
+          <div style="flex:1;min-width:0">
+            <div style="display:flex;flex-wrap:wrap;justify-content:space-between;gap:.3rem .5rem"><p style="font:600 .92rem var(--dp-font-sans);color:var(--dp-secondary);margin:0;word-break:break-word">{{ it.title }}</p><span style="font:600 .92rem var(--dp-font-sans);color:var(--dp-primary);white-space:nowrap">{{ it.totalLabel }}</span></div>
+            <p style="font-family:var(--dp-font-display);font-size:.82rem;color:var(--dp-fg-3);margin:.25rem 0 0;line-height:1.5">{{ it.dateLabel }} · {{ it.timeLabel }}</p>
+            <p style="font-family:var(--dp-font-display);font-size:.82rem;color:var(--dp-fg-3);margin:0;line-height:1.5">{{ it.guestsLabel }} · {{ it.modeLabel }}</p>
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:.6rem .9rem;margin-top:.4rem">
+              <span style="{{ it.availStyle }}">{{ it.availLabel }}</span>
+              <button onClick="{{ it.onEdit }}" style="background:none;border:none;color:var(--dp-secondary);font:600 .78rem var(--dp-font-sans);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px">Edit</button>
+              <button onClick="{{ it.onRemove }}" style="background:none;border:none;color:var(--dp-fg-3);font:600 .78rem var(--dp-font-sans);cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:2px">Remove</button>
+            </div>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <sc-if value="{{ cartHasItems }}">
+    <div style="border-top:1px solid var(--dp-border);padding:1.1rem clamp(1rem,5vw,1.35rem);background:#fff">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:.4rem;margin-bottom:.9rem"><span style="font:600 .95rem var(--dp-font-sans);color:var(--dp-secondary)">Subtotal</span><span style="font:600 1.4rem var(--dp-font-sans);color:var(--dp-primary)">{{ subtotalLabel }}</span></div>
+      <button onClick="{{ onCheckout }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;background-image:var(--dp-gradient-button);color:#fff;border:none;border-radius:var(--dp-radius-sm);padding:.95rem;font:600 .95rem var(--dp-font-sans);cursor:pointer">Continue to checkout<svg width="17" height="17" fill="none" viewBox="0 0 24 24" stroke-width="1.6" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg></button>
+      <p style="text-align:center;font-family:var(--dp-font-display);font-size:.76rem;color:var(--dp-fg-3);margin:.6rem 0 0">Each experience keeps its own date, time and guests.</p>
+    </div>
+    </sc-if>
+  </aside>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.trips = [
+      { id:'safari-blue', code:'SB', title:'Safari Blue Dhow', kind:'instant', durationTag:'FULL DAY', duration:'Full day · about 8 hours', price:95, image:'assets/boat.jpg', maxGuests:8, privateSupplement:180,
+        blurb:'A full day aboard traditional sailing dhows — turquoise sandbanks, snorkeling over coral, and a grilled seafood lunch on the lagoon.',
+        pickup:'Hotel pickup from south-coast and Stone Town areas, 07:15–07:45.',
+        included:['Return dhow sailing','Snorkeling gear','Seafood BBQ lunch','Fresh fruit & soft drinks'], times:['08:30','09:30'] },
+      { id:'spice-tour', code:'SP', title:'Zanzibar Spice Tour', kind:'instant', durationTag:'HALF DAY', duration:'Half day · about 4 hours', price:45, image:'assets/gallery/2.webp', maxGuests:10, privateSupplement:90,
+        blurb:'Walk a working spice farm where clove, nutmeg, cinnamon and vanilla are grown, tasted and explained at the source.',
+        pickup:'Hotel pickup from Stone Town and west-coast areas, 30 minutes before start.',
+        included:['Local spice-farm guide','Tastings straight from the plant','Seasonal tropical fruit','Bottled water'], times:['09:00','14:00'] },
+      { id:'stone-town', code:'ST', title:'Stone Town Heritage Walk', kind:'instant', durationTag:'HALF DAY', duration:'Half day · about 3 hours', price:55, image:'assets/stone-town.jpg', maxGuests:8, privateSupplement:70,
+        blurb:'Timeless alleys, the Old Fort and the seafront at golden hour — a walk where history resonates in every doorway.',
+        pickup:'Meet at the Old Fort forecourt, or Stone Town hotel pickup on request.',
+        included:['Licensed heritage guide','Old Fort & House of Wonders exterior','Darajani market walk'], times:['09:30','14:30','16:30'] },
+      { id:'prison-island', code:'PI', title:'Prison Island & Tortoises', kind:'instant', durationTag:'HALF DAY', duration:'Half day · about 4 hours', price:60, image:'assets/gallery/3.webp', maxGuests:8, privateSupplement:100,
+        blurb:'A short dhow hop to Changuu Island for the giant Aldabra tortoise sanctuary and clear snorkeling water.',
+        pickup:'Boat departs Stone Town jetty; hotel pickup on request.',
+        included:['Return boat transfer','Island & tortoise sanctuary entry','Snorkeling gear'], times:['09:00','13:30'] },
+      { id:'tanzania-safari', code:'SG', title:'Northern Tanzania Safari', kind:'request', durationTag:'MULTI-DAY', duration:'3–4 days · tailor-made', price:340, image:'assets/gallery/4.webp', maxGuests:6, privateSupplement:0,
+        blurb:'A mainland safari across the Serengeti and Ngorongoro — wildlife game drives, lodge nights and light aircraft transfers.',
+        pickup:'Flights and transfers arranged with your safari planner.',
+        included:['Private safari guide & vehicle','Park fees','Lodge accommodation','Light-aircraft transfers'], times:[],
+        requestNote:'Multi-day safaris depend on lodge and park availability, so they are quoted rather than booked instantly.' },
+      { id:'custom-journey', code:'CX', title:'Custom Zanzibar Journey', kind:'request', durationTag:'CUSTOM', duration:'Tailor-made · your dates', price:null, image:'assets/mizingani.jpg', maxGuests:12, privateSupplement:0,
+        blurb:'Tell us the shape of your days and we will stitch dhows, spice gardens, beaches and Stone Town into one private itinerary.',
+        pickup:'Every transfer is planned around your itinerary.',
+        included:['Dedicated trip designer','Private guide & driver','Flexible daily itinerary'], times:[],
+        requestNote:'Bespoke routes are hand-built around your dates and pace.' },
+    ];
+    this.state = {
+      view:'store', cartOpen:false, selectedId:null, editingCartId:null,
+      booking:{ mode:'shared', guests:2, date:null, time:null },
+      requestSent:false,
+      filterType:'all', q:'', searchGuests:2,
+      cart:[
+        { id:'seed1', tripId:'safari-blue', mode:'shared', guests:2, date:21, time:'09:30' },
+        { id:'seed2', tripId:'stone-town', mode:'shared', guests:3, date:23, time:'09:30' },
+      ],
+      contact:{ name:'', email:'', phone:'' },
+      checking:false, order:null,
+    };
+    this._uid = 1;
+  }
+
+  scrollTop(){ setTimeout(()=>{ try{ window.scrollTo(0,0); }catch(e){} },0); }
+  hashStr(s){ let h=0; for(let i=0;i<s.length;i++) h=(h*31+s.charCodeAt(i))>>>0; return h; }
+  seatsFor(id,d,t){ const k=(this.hashStr(id)+d*17+parseInt(t)*7+parseInt(t.slice(3)))%13; if(k<=1) return 0; if(k===2) return 1; if(k===3) return 2; return 4+(k%5); }
+  tripById(id){ return this.trips.find(t=>t.id===id); }
+  fmtDate(d){ return new Date(2026,6,d).toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}); }
+  fmtTime(t){ let[h,m]=t.split(':').map(Number); const ap=h>=12?'PM':'AM'; const hh=((h+11)%12)+1; return hh+':'+String(m).padStart(2,'0')+' '+ap; }
+  money(n){ return '$'+Number(n).toLocaleString('en-US'); }
+  priceOf(trip,mode,guests){ return trip.price*guests + (mode==='private'?trip.privateSupplement:0); }
+
+  // ---- navigation ----
+  brandHome = (e)=>{ e && e.preventDefault(); this.setState({view:'store',cartOpen:false}); this.scrollTop(); };
+  noop = (e)=>{ e && e.preventDefault && e.preventDefault(); };
+  openCart = ()=> this.setState({cartOpen:true});
+  closeCart = ()=> this.setState({cartOpen:false});
+  onBack = ()=> { this.setState({view:'store'}); this.scrollTop(); };
+
+  openDetail(id){ this.setState({ view:'detail', selectedId:id, editingCartId:null, requestSent:false, booking:{ mode:'shared', guests:this.state.searchGuests, date:null, time:null } }); this.scrollTop(); }
+  editItem(cartId){ const it=this.state.cart.find(c=>c.id===cartId); if(!it) return; this.setState({ view:'detail', selectedId:it.tripId, editingCartId:cartId, cartOpen:false, requestSent:false, booking:{ mode:it.mode, guests:it.guests, date:it.date, time:it.time } }); this.scrollTop(); }
+  removeItem(cartId){ this.setState(s=>({ cart:s.cart.filter(c=>c.id!==cartId) })); }
+
+  setShared = ()=> this.setState(s=>({booking:{...s.booking,mode:'shared'}}));
+  setPrivate = ()=> this.setState(s=>({booking:{...s.booking,mode:'private'}}));
+  incGuestB = ()=> this.setState(s=>{ const t=this.tripById(s.selectedId); return {booking:{...s.booking,guests:Math.min(t?t.maxGuests:8,s.booking.guests+1)}}; });
+  decGuestB = ()=> this.setState(s=>({booking:{...s.booking,guests:Math.max(1,s.booking.guests-1)}}));
+  setDate(d){ this.setState(s=>({booking:{...s.booking,date:d,time:null}})); }
+  setTime(t){ this.setState(s=>({booking:{...s.booking,time:t}})); }
+
+  incGuestSearch = ()=> this.setState(s=>({searchGuests:Math.min(12,s.searchGuests+1)}));
+  decGuestSearch = ()=> this.setState(s=>({searchGuests:Math.max(1,s.searchGuests-1)}));
+  onSearch = (e)=> this.setState({q:e.target.value});
+  setFilterAll = ()=> this.setState({filterType:'all'});
+  setFilterInstant = ()=> this.setState({filterType:'instant'});
+  setFilterRequest = ()=> this.setState({filterType:'request'});
+
+  onSendRequest = ()=> this.setState({requestSent:true});
+
+  onAdd = ()=>{ const s=this.state; if(!s.booking.date||!s.booking.time) return; const rec={ tripId:s.selectedId, mode:s.booking.mode, guests:s.booking.guests, date:s.booking.date, time:s.booking.time };
+    this.setState(st=>{ let cart; if(st.editingCartId){ cart=st.cart.map(c=>c.id===st.editingCartId?{...c,...rec}:c); } else { cart=[...st.cart,{id:'c'+(this._uid++),...rec}]; } return {cart, view:'store', cartOpen:true, editingCartId:null}; }); this.scrollTop(); };
+
+  onCheckout = ()=> { this.setState({view:'checkout',cartOpen:false}); this.scrollTop(); };
+  onCheckoutBack = ()=> { this.setState({view:'store',cartOpen:true}); this.scrollTop(); };
+  onName = (e)=> this.setState(s=>({contact:{...s.contact,name:e.target.value}}));
+  onEmail = (e)=> this.setState(s=>({contact:{...s.contact,email:e.target.value}}));
+  onPhone = (e)=> this.setState(s=>({contact:{...s.contact,phone:e.target.value}}));
+
+  onPay = ()=>{
+    if(this.state.checking) return;
+    this.setState({checking:true});
+    setTimeout(()=>{
+      const s=this.state;
+      const items=s.cart.map(c=>{
+        const t=this.tripById(c.tripId);
+        return { code:t.code+'-'+(8100+((c.date*37+this.hashStr(c.tripId))%1799)), title:t.title, image:t.image, dateLabel:this.fmtDate(c.date), timeLabel:this.fmtTime(c.time)+' EAT', guestsLabel:c.guests+(c.guests>1?' guests':' guest'), modeLabel:c.mode==='private'?'Private group':'Shared group', pickup:t.pickup, total:this.priceOf(t,c.mode,c.guests) };
+      });
+      const total=items.reduce((a,b)=>a+b.total,0);
+      const orderNo='DP-2026-'+(4200+total%1000);
+      this.setState({ checking:false, view:'success', order:{items,total,orderNo}, cart:[] }, ()=>this.scrollTop());
+    }, 1500);
+  };
+
+  onDone = ()=> { this.setState({view:'store',order:null,contact:{name:'',email:'',phone:''}}); this.scrollTop(); };
+
+  // ---- style helpers ----
+  chipStyle(active){ return { display:'inline-flex',alignItems:'center',gap:'.4rem',padding:'.5rem .9rem',borderRadius:'999px',border:active?'1px solid var(--dp-primary)':'1px solid var(--dp-border)',background:active?'var(--dp-primary)':'#fff',color:active?'#fff':'var(--dp-secondary)',font:'600 .8rem var(--dp-font-sans)',cursor:'pointer',letterSpacing:'.01em',transition:'all .2s ease' }; }
+  toggleStyle(active){ return { flex:1,padding:'.55rem',border:'none',borderRadius:'calc(var(--dp-radius-sm) - 2px)',background:active?'#fff':'transparent',color:active?'var(--dp-primary)':'var(--dp-fg-3)',font:'600 .82rem var(--dp-font-sans)',cursor:'pointer',boxShadow:active?'var(--dp-shadow-1)':'none',transition:'all .2s ease' }; }
+  typeStyle(instant){ return instant
+    ? { display:'inline-flex',alignItems:'center',gap:'.35rem',alignSelf:'flex-start',padding:'.25rem .6rem',borderRadius:'999px',background:'rgba(26,77,110,.08)',color:'var(--dp-secondary)',font:'700 .6rem var(--dp-font-sans)',letterSpacing:'.08em',textTransform:'uppercase' }
+    : { display:'inline-flex',alignItems:'center',gap:'.35rem',alignSelf:'flex-start',padding:'.25rem .6rem',borderRadius:'999px',border:'1px solid var(--dp-accent)',color:'#C14A3F',font:'700 .6rem var(--dp-font-sans)',letterSpacing:'.08em',textTransform:'uppercase' }; }
+  availStyle(){ return { display:'inline-flex',alignItems:'center',gap:'.3rem',font:'600 .72rem var(--dp-font-sans)',color:'var(--dp-success)' }; }
+
+  buildCalendar(trip){
+    const cells=[]; const startDow=new Date(2026,6,1).getDay();
+    for(let i=0;i<startDow;i++) cells.push({ key:'e'+i, label:'', onClick:undefined, style:{visibility:'hidden'} });
+    for(let d=1; d<=31; d++){
+      const past = d<=16; let avail=false;
+      if(!past && trip) avail = trip.times.some(t=>this.seatsFor(trip.id,d,t)>0);
+      const disabled = past || !avail;
+      const selected = this.state.booking.date===d;
+      const base={ aspectRatio:'1',display:'flex',alignItems:'center',justifyContent:'center',borderRadius:'9px',font:'500 .85rem var(--dp-font-sans)',userSelect:'none' };
+      let style;
+      if(selected) style={...base,background:'var(--dp-primary)',color:'#fff',cursor:'pointer',boxShadow:'var(--dp-shadow-2)',fontWeight:600};
+      else if(disabled) style={...base,color:'#c2ccd4',cursor:'default'};
+      else style={...base,color:'var(--dp-primary)',background:'rgba(26,77,110,.05)',cursor:'pointer'};
+      cells.push({ key:'d'+d, label:String(d), onClick: disabled?undefined:()=>this.setDate(d), style });
+    }
+    return cells;
+  }
+  buildSlots(trip){
+    const d=this.state.booking.date; if(!d) return [];
+    return trip.times.map(t=>{
+      const seats=this.seatsFor(trip.id,d,t); const soldout=seats===0; const low=seats>0&&seats<=2;
+      const selected=this.state.booking.time===t;
+      const base={ display:'flex',flexDirection:'column',alignItems:'center',gap:'1px',padding:'.5rem .3rem',borderRadius:'11px',border:'1px solid',textAlign:'center' };
+      let style;
+      if(soldout) style={...base,borderStyle:'dashed',borderColor:'var(--dp-border)',color:'#c2ccd4',background:'transparent',cursor:'default'};
+      else if(selected) style={...base,borderColor:'var(--dp-primary)',background:'rgba(26,77,110,.06)',color:'var(--dp-primary)',cursor:'pointer'};
+      else style={...base,borderColor:'var(--dp-border)',background:'#fff',color:'var(--dp-secondary)',cursor:'pointer'};
+      const sub = soldout?'Sold out':(low?seats+' left':'Available');
+      return { key:t, label:this.fmtTime(t), sub, style, onClick: soldout?undefined:()=>this.setTime(t) };
+    });
+  }
+
+  renderVals(){
+    const s=this.state;
+    const cartCount=s.cart.length;
+    const cartItems=s.cart.map(c=>{ const t=this.tripById(c.tripId); const total=this.priceOf(t,c.mode,c.guests); return {
+      key:c.id, image:t.image, title:t.title, dateLabel:this.fmtDate(c.date), timeLabel:this.fmtTime(c.time)+' EAT',
+      guestsLabel:c.guests+(c.guests>1?' guests':' guest'), modeLabel:c.mode==='private'?'Private group':'Shared group',
+      totalLabel:this.money(total), availLabel:'Available', availStyle:this.availStyle(),
+      onEdit:()=>this.editItem(c.id), onRemove:()=>this.removeItem(c.id) }; });
+    const subtotal=s.cart.reduce((a,c)=>{ const t=this.tripById(c.tripId); return a+this.priceOf(t,c.mode,c.guests); },0);
+
+    // store list
+    const q=s.q.trim().toLowerCase();
+    const trips=this.trips.filter(t=> (s.filterType==='all'||t.kind===s.filterType) && (q===''|| (t.title+' '+t.blurb).toLowerCase().includes(q)) ).map(t=>({
+      key:t.id, id:t.id, image:t.image, title:t.title, blurb:t.blurb, durationTag:t.durationTag,
+      typeLabel:t.kind==='instant'?'Instant booking':'Request availability', typeStyle:this.typeStyle(t.kind==='instant'),
+      priceLabel: t.price==null?'Priced on request':'from '+this.money(t.price), priceUnit: t.price==null?'tailor-made':'per person',
+      ctaLabel: t.kind==='instant'?'Choose date & time':'Request availability',
+      onOpen:()=>this.openDetail(t.id),
+    }));
+    const rc=trips.length; const resultCount=rc+(rc===1?' experience':' experiences');
+
+    // detail
+    const dt=this.tripById(s.selectedId);
+    let detailVals={};
+    if(dt){
+      const isInstant=dt.kind==='instant';
+      const rows=[{k:this.money(dt.price)+' × '+s.booking.guests+(s.booking.guests>1?' guests':' guest'), v:this.money((dt.price||0)*s.booking.guests)}];
+      if(s.booking.mode==='private' && dt.privateSupplement) rows.push({k:'Private group', v:'+'+this.money(dt.privateSupplement)});
+      const total=this.priceOf(dt,s.booking.mode,s.booking.guests);
+      const canAdd=!!(s.booking.date&&s.booking.time);
+      const addBtnStyle={ width:'100%',display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'.5rem',border:'none',borderRadius:'var(--dp-radius-sm)',padding:'.95rem',font:'600 .95rem var(--dp-font-sans)',cursor:canAdd?'pointer':'not-allowed', backgroundImage:canAdd?'var(--dp-gradient-button)':'none', background:canAdd?undefined:'var(--dp-background-dk)', color:canAdd?'#fff':'var(--dp-fg-3)', transition:'all .2s ease' };
+      detailVals={
+        detailTrip:{ image:dt.image, title:dt.title, durationTag:dt.durationTag, duration:dt.duration, blurb:dt.blurb, pickup:dt.pickup, included:dt.included.map((x,i)=>({key:i,toString:()=>x})) },
+        detailIsInstant:isInstant, detailIsRequest:!isInstant,
+        detailPerPerson: dt.price==null?'On request':this.money(dt.price), detailMaxGuests:dt.maxGuests,
+        detailRequestNote: dt.requestNote||'',
+        sharedStyle:this.toggleStyle(s.booking.mode==='shared'), privateStyle:this.toggleStyle(s.booking.mode==='private'),
+        bookingGuests:s.booking.guests, monthLabel:'July 2026',
+        calendarCells:this.buildCalendar(dt), slotList:this.buildSlots(dt),
+        bookingHasDate:!!s.booking.date, bookingNoDate:!s.booking.date,
+        priceRows:rows, priceTotal:this.money(total),
+        addLabel: s.editingCartId?'Update trip':'Add to my trip', addBtnStyle, onAdd:this.onAdd,
+        requestSent:s.requestSent, requestNotSent:!s.requestSent,
+      };
+    }
+
+    // checkout / success
+    const payLabel=s.checking?'Re-checking availability…':('Pay '+this.money(subtotal));
+    const payBtnStyle={ width:'100%',display:'inline-flex',alignItems:'center',justifyContent:'center',gap:'.55rem',border:'none',borderRadius:'var(--dp-radius-sm)',padding:'.95rem',font:'600 .98rem var(--dp-font-sans)',cursor:s.checking?'wait':'pointer', backgroundImage:'var(--dp-gradient-button)', color:'#fff', marginTop:'1.4rem', opacity:s.checking?.85:1 };
+    const order=s.order||{items:[],total:0,orderNo:''};
+
+    // detail included: sc-for renders {{ inc }} — plain strings work; provide array of strings
+    if(detailVals.detailTrip) detailVals.detailTrip.included = dt.included;
+
+    return {
+      isStore:s.view==='store', isDetail:s.view==='detail', isCheckout:s.view==='checkout', isSuccess:s.view==='success',
+      brandHome:this.brandHome, noop:this.noop, openCart:this.openCart, closeCart:this.closeCart,
+      cartCount, cartBadgeStyle:{ minWidth:'20px',height:'20px',padding:'0 5px',borderRadius:'999px',background:'var(--dp-accent)',color:'#fff',font:'700 .68rem var(--dp-font-sans)',display:'inline-flex',alignItems:'center',justifyContent:'center' },
+      cartItems, cartOpen:s.cartOpen, cartEmpty:cartCount===0, cartHasItems:cartCount>0,
+      cartDrawerStyle:{ position:'fixed', top:0, right:0, bottom:0, width:'min(100vw,440px)', transform: s.cartOpen?'translateX(0)':'translateX(100%)', transition:'transform .32s cubic-bezier(.16,1,.3,1)', background:'var(--dp-background)', zIndex:51, boxShadow:'-20px 0 60px rgba(26,77,110,.25)', display:'flex', flexDirection:'column', overflow:'hidden', pointerEvents: s.cartOpen?'auto':'none', visibility: s.cartOpen?'visible':'hidden' },
+      cartSubhead: cartCount+(cartCount===1?' experience · Zanzibar':' experiences · Zanzibar'),
+      subtotalLabel:this.money(subtotal), onCheckout:this.onCheckout,
+      // store
+      q:s.q, searchGuests:s.searchGuests, incGuestSearch:this.incGuestSearch, decGuestSearch:this.decGuestSearch, onSearch:this.onSearch,
+      trips, resultCount,
+      chipAllStyle:this.chipStyle(s.filterType==='all'), chipInstantStyle:this.chipStyle(s.filterType==='instant'), chipRequestStyle:this.chipStyle(s.filterType==='request'),
+      setFilterAll:this.setFilterAll, setFilterInstant:this.setFilterInstant, setFilterRequest:this.setFilterRequest,
+      // detail
+      onBack:this.onBack, setShared:this.setShared, setPrivate:this.setPrivate, incGuestB:this.incGuestB, decGuestB:this.decGuestB, onSendRequest:this.onSendRequest,
+      ...detailVals,
+      // checkout
+      onCheckoutBack:this.onCheckoutBack, contactName:s.contact.name, contactEmail:s.contact.email, contactPhone:s.contact.phone,
+      onName:this.onName, onEmail:this.onEmail, onPhone:this.onPhone, checking:s.checking, payLabel, payBtnStyle, onPay:this.onPay,
+      // success
+      orderNo:order.orderNo, confirmations:order.items.map((it,i)=>({...it,key:i})), orderTotalLabel:this.money(order.total), onDone:this.onDone,
+    };
+  }
+}
+</script>
+</body>
+</html>
