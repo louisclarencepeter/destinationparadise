@@ -11,6 +11,7 @@ import {
   validateEmailAddress,
 } from './_shared.mjs';
 import { captureFunctionException } from './_sentry.mjs';
+import { dpoEnabled } from './_dpo.mjs';
 import {
   callStoreRpc,
   devFakePaymentEnabled,
@@ -71,12 +72,10 @@ export default async (req) => {
       return storeJson({ ok: false, error: result?.error || 'checkout_failed', conflicts: result?.conflicts || [] }, status);
     }
 
-    return storeJson({
-      ...result,
-      // Tells the preview client it may finalize via the dev-only endpoint.
-      // Phase 3 replaces this with the DPO hosted-checkout redirect URL.
-      payment: { mode: devFakePaymentEnabled() ? 'dev_simulated' : 'unavailable' },
-    });
+    // Real payments (DPO hosted checkout) win over the dev simulation; the
+    // dev mode only exists for previews without provider credentials.
+    const paymentMode = dpoEnabled() ? 'dpo' : devFakePaymentEnabled() ? 'dev_simulated' : 'unavailable';
+    return storeJson({ ...result, payment: { mode: paymentMode } });
   } catch (error) {
     await captureFunctionException(error, { functionName: FUNCTION_NAME, req, extra: { stage: 'checkout-rpc' } });
     return storeJson({ ok: false, error: 'checkout_unavailable' }, 502);

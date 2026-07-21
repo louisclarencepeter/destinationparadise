@@ -1397,6 +1397,19 @@
   margin: 0 auto 1.1rem;
   animation: dpStoreRise 0.5s ease;
 }
+.store-confirm__badge--waiting {
+  background: var(--soft-tint);
+  color: var(--text-soft);
+}
+.store-confirm__spinner {
+  width: 26px;
+  height: 26px;
+  border: 3px solid var(--divider);
+  border-top-color: var(--dp-accent);
+  border-radius: 50%;
+  display: inline-block;
+  animation: dpStoreSpin 0.8s linear infinite;
+}
 .store-confirm__title {
   font-family: var(--dp-font-script);
   font-size: clamp(2rem, 3vw + 1rem, 3.2rem);

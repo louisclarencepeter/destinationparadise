@@ -68,6 +68,15 @@ export default function StoreCheckout() {
     setConflictIds(null);
     setCheckoutError(null);
     const result = await submitCheckout({ items: state.items, contact });
+
+    // Hosted payment (DPO): the order + holds exist server-side; hand the
+    // browser to the payment page. The cart clears only once payment confirms.
+    if (result.ok && result.redirect) {
+      trackEvent('payment_redirect', { transaction_id: result.reference });
+      window.location.assign(result.redirect);
+      return;
+    }
+
     if (!result.ok || !result.order) {
       setChecking(false);
       if (result.conflicts?.length) {

@@ -135,6 +135,11 @@
     }
   },
   "confirm": {
+    "processing_title": "Zahlung wird abgeschlossen…",
+    "processing_text": "Wir bestätigen Bestellung <ref>{{reference}}</ref> gerade mit unserem Zahlungspartner. Das dauert meist nur ein paar Sekunden — die Seite aktualisiert sich von selbst.",
+    "problem_title": "Die Zahlung wurde nicht abgeschlossen",
+    "problem_text": "Bestellung <ref>{{reference}}</ref> wurde nicht abgebucht, oder die Zahlung braucht eine manuelle Prüfung. Falls Geld abgegangen ist, klären wir das per E-Mail — sonst versuch es einfach noch einmal.",
+    "problem_cta": "Zurück zum Checkout",
     "title": "Es geht ins Paradies",
     "lead": "Bestellung <ref>{{reference}}</ref> ist bestätigt. Eine Bestätigung ist auf dem Weg in dein Postfach — jedes Erlebnis hat unten seinen eigenen Buchungscode.",
     "code_prefix": "CONF",

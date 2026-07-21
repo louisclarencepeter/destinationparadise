@@ -135,6 +135,11 @@
     }
   },
   "confirm": {
+    "processing_title": "Finishing your payment…",
+    "processing_text": "We're confirming order <ref>{{reference}}</ref> with our payment partner. This usually takes a few seconds — this page updates by itself.",
+    "problem_title": "The payment didn't complete",
+    "problem_text": "Order <ref>{{reference}}</ref> wasn't charged, or the payment needs a manual check. If money left your account we'll resolve it by email — otherwise you can simply try again.",
+    "problem_cta": "Back to checkout",
     "title": "You're going to Paradise",
     "lead": "Order <ref>{{reference}}</ref> is confirmed. A confirmation is on its way to your email — each experience has its own booking code below.",
     "code_prefix": "CONF",

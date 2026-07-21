@@ -174,7 +174,9 @@ function idempotencyKeyFor(items) {
   }
 }
 
-function clearIdempotencyKey() {
+// Exported so the confirmation page can clear it once payment is confirmed —
+// until then, a retry of the same cart must replay the same order.
+export function clearIdempotencyKey() {
   try {
     window.sessionStorage.removeItem(IDEMPOTENCY_KEY);
   } catch {
@@ -199,6 +201,8 @@ function mapServerOrder(serverOrder) {
   }));
   return {
     reference: serverOrder.reference,
+    // Fixture orders have no status and are treated as paid by the UI.
+    status: serverOrder.status || 'paid',
     createdAt: serverOrder.createdAt || new Date().toISOString(),
     totalUsd: minorToUsd(serverOrder.totalMinor),
     currency: serverOrder.currency || 'USD',
@@ -288,8 +292,22 @@ export async function submitCheckout({ items, contact }, { latencyMs = CHECKOUT_
 
     saveOrderCredentials({ reference: data.reference, token: data.accessToken });
 
+    if (data.payment?.mode === 'dpo') {
+      // Real payments: ask the server for the hosted-checkout URL and send the
+      // browser there. The idempotency key survives until payment confirms so
+      // an abandoned attempt replays the SAME order instead of double-holding.
+      const pay = await apiRequest('/api/store/pay', {
+        method: 'POST',
+        body: { reference: data.reference, token: data.accessToken },
+      });
+      if (!pay.data?.ok || !pay.data?.paymentUrl) {
+        return { ok: false, conflicts: [], error: pay.data?.error || 'payment_unavailable' };
+      }
+      return { ok: true, redirect: pay.data.paymentUrl, reference: data.reference };
+    }
+
     if (data.payment?.mode !== 'dev_simulated') {
-      // Order + holds exist, but nothing can take payment yet (DPO is Phase 3).
+      // Order + holds exist, but nothing can take payment yet.
       return { ok: false, conflicts: [], error: 'payment_unavailable', reference: data.reference };
     }
 

@@ -2,8 +2,41 @@
 
 - Last updated: 2026-07-21
 - Working branch: `store`
-- Implementation status: Phase 1 delivered (feature-flagged store UI with fixture data; flag `dp_store_preview` in localStorage or `VITE_STORE_ENABLED=true`, disabled by default). Phase 2 delivered in code (Supabase schema + atomic checkout SQL, Netlify store API, live/fixture client switch — see "Phase 2 operations" below; requires a Supabase project + env vars to activate, everything ships dark otherwise). Phase 3 (DPO) not started; DPO onboarding in progress.
+- Implementation status: Phase 1 delivered (feature-flagged store UI with fixture data; flag `dp_store_preview` in localStorage or `VITE_STORE_ENABLED=true`, disabled by default). Phase 2 delivered in code (Supabase schema + atomic checkout SQL, Netlify store API, live/fixture client switch — see "Phase 2 operations"). Phase 3 delivered in code (DPO adapter, hosted-checkout redirect, return/callback verify pipeline, reconciliation, outbox emails — see "Phase 3 operations"; requires DPO sandbox credentials to activate, ships dark otherwise). Commercial DPO onboarding in progress (user).
 - Payment provider decision: DPO Pay by Network
+
+## Phase 3 operations (activating DPO payments)
+
+On top of the Phase 2 env, payments need (Functions scope):
+
+- `DPO_ENABLED=true` — master switch; without it `POST /api/store/pay` 404s and
+  checkout falls back to `STORE_DEV_FAKE_PAYMENT` / unavailable.
+- `DPO_COMPANY_TOKEN` — sandbox or production company token.
+- `DPO_SERVICE_TYPE` — the DPO-approved service type code (required).
+- `DPO_API_URL` / `DPO_PAY_URL` — override for sandbox endpoints if DPO issues
+  distinct sandbox hosts (defaults: secure.3gdirectpay.com API v6 / payv2).
+- `STORE_PUBLIC_ORIGIN` — origin used to build RedirectURL/BackURL
+  (default https://yournexttriptoparadise.com; set to the branch URL in previews).
+- `RESEND_API_KEY` (already present for booking-send) — enables the outbox
+  sender (receipt to guest, manifest to team) after finalization.
+
+Flow: checkout (order+holds) → `POST /api/store/pay` (createToken, one Service
+per trip, PTL aligned with the hold) → browser pays on DPO's page → return
+`/api/payments/dpo/return` and/or callback `/api/payments/dpo/callback` both
+funnel into the same idempotent settle pipeline: server-side verifyToken(0),
+exact ref/amount/currency comparison (mismatch → requires_review), Phase 2
+finalize transaction, then verifyToken(1) acknowledgement (failure →
+`paid_acknowledgement_pending`, retried by the scheduled reconciler every
+10 min). Declined/expired payments release capacity immediately. The
+confirmation page polls the internal order status and never trusts DPO
+query parameters.
+
+Sandbox checklist before flipping production (from the DPO onboarding list):
+confirm the real callback contract (method/payload/retries), the
+`VerifyTransaction` acknowledgement semantics, the authoritative amount
+fields under payer currency conversion (test one conversion payment and read
+`store_payment_attempts.provider_amounts`), the approved `ServiceType`, and
+register both return + callback URLs with DPO.
 
 ## Phase 2 operations (activating the real backend)
 

@@ -264,4 +264,117 @@ begin
   end if;
 end $$;
 
+-- 11. Payment attach + provider-event dedupe + definitive failure ------------
+do $$
+declare v jsonb; d text := (current_date + 5)::text; ref text; dd date := current_date + 5; seats int;
+begin
+  v := store_api_checkout(
+    jsonb_build_array(jsonb_build_object('id', 'p1', 'sourceKey', 'spice-tour',
+      'optionCode', 'shared', 'guests', 3, 'date', d, 'time', '14:00')),
+    jsonb_build_object('name', 'Pay Guest', 'email', 'pay@example.com'), 'en', 15, null);
+  if not (v->>'ok')::boolean then raise exception 'payment checkout failed: %', v; end if;
+  ref := v->>'reference';
+  insert into smoke_ctx values ('payref', ref);
+
+  v := store_attach_payment(ref, 'TOKEN-SMOKE-1', ref);
+  if not (v->>'ok')::boolean then raise exception 'attach failed: %', v; end if;
+  if (select pa.status from store_payment_attempts pa join store_orders o on o.id = pa.order_id
+        where o.reference = ref) <> 'pending' then
+    raise exception 'attempt must be pending after attach';
+  end if;
+  if store_reference_for_provider_token('TOKEN-SMOKE-1') <> ref then
+    raise exception 'token → reference lookup failed';
+  end if;
+
+  v := store_payment_context(ref);
+  if (v->>'totalMinor')::bigint <> 13500 or v->>'attemptStatus' <> 'pending' then
+    raise exception 'payment context wrong: %', v;
+  end if;
+
+  v := store_record_provider_event('dpo', 'evt-smoke-1', ref, '{"kind":"callback"}'::jsonb);
+  if not (v->>'new')::boolean then raise exception 'first event must be new'; end if;
+  v := store_record_provider_event('dpo', 'evt-smoke-1', ref, '{"kind":"callback"}'::jsonb);
+  if (v->>'new')::boolean then raise exception 'duplicate event must dedupe'; end if;
+
+  -- Declined payment: order fails and the seats come straight back.
+  v := store_mark_payment(ref, 'failed', '{"code":"901"}'::jsonb);
+  if not (v->>'ok')::boolean then raise exception 'mark failed errored: %', v; end if;
+  if (select status from store_orders where reference = ref) <> 'payment_failed' then
+    raise exception 'order must be payment_failed';
+  end if;
+  if exists (select 1 from store_capacity_holds h join store_orders o on o.id = h.order_id
+              where o.reference = ref and h.status = 'active') then
+    raise exception 'declined payment must release holds';
+  end if;
+  v := store_api_availability('spice-tour', dd, dd);
+  seats := (select (t->>'seats')::int from jsonb_array_elements(v->'days'->(dd::text)->'times') t
+             where t->>'time' = '14:00');
+  if seats <> 16 then raise exception 'released seats must be sellable again (got %)', seats; end if;
+end $$;
+
+-- 12. Paid flow with acknowledgement retry + outbox lifecycle ----------------
+do $$
+declare v jsonb; d text := (current_date + 6)::text; ref text; outbox_id uuid;
+begin
+  v := store_api_checkout(
+    jsonb_build_array(jsonb_build_object('id', 'p2', 'sourceKey', 'stone-town',
+      'optionCode', 'private', 'guests', 2, 'date', d, 'time', '09:30')),
+    jsonb_build_object('name', 'Ack Guest', 'email', 'ack@example.com'), 'en', 15, null);
+  if not (v->>'ok')::boolean then raise exception 'ack checkout failed: %', v; end if;
+  ref := v->>'reference';
+
+  perform store_attach_payment(ref, 'TOKEN-SMOKE-2', ref);
+  v := store_finalize_paid_order(ref);
+  if not (v->>'ok')::boolean then raise exception 'ack finalize failed: %', v; end if;
+
+  -- Provider acknowledgement failed → paid_acknowledgement_pending, order stays paid.
+  perform store_mark_payment_ack(ref, false);
+  if (select pa.status from store_payment_attempts pa join store_orders o on o.id = pa.order_id
+        where o.reference = ref order by pa.created_at desc limit 1) <> 'paid_acknowledgement_pending' then
+    raise exception 'expected paid_acknowledgement_pending';
+  end if;
+  if (select status from store_orders where reference = ref) <> 'paid' then
+    raise exception 'ack failure must not touch the paid order';
+  end if;
+
+  -- Reconciliation worklist sees it (no age filter dodge: pass 0 minutes).
+  v := store_payments_to_reconcile(0, 50);
+  if not exists (select 1 from jsonb_array_elements(v) e where e->>'reference' = ref) then
+    raise exception 'ack-pending attempt must appear in reconciliation list';
+  end if;
+
+  perform store_mark_payment_ack(ref, true);
+  if (select pa.status from store_payment_attempts pa join store_orders o on o.id = pa.order_id
+        where o.reference = ref order by pa.created_at desc limit 1) <> 'paid' then
+    raise exception 'ack retry must restore paid';
+  end if;
+
+  -- Outbox: due rows exist for this order, marking works both ways.
+  v := store_outbox_due(50);
+  if (select count(*) from jsonb_array_elements(v) e where e->>'reference' = ref) <> 2 then
+    raise exception 'expected 2 due outbox rows for %', ref;
+  end if;
+  outbox_id := (select (e->>'id')::uuid from jsonb_array_elements(v) e
+                 where e->>'reference' = ref limit 1);
+  perform store_outbox_mark(outbox_id, false);
+  if (select attempts from store_notification_outbox where id = outbox_id) <> 1 then
+    raise exception 'failed outbox mark must bump attempts';
+  end if;
+  perform store_outbox_mark(outbox_id, true);
+  if (select status from store_notification_outbox where id = outbox_id) <> 'sent' then
+    raise exception 'outbox row must be sent';
+  end if;
+end $$;
+
+-- 13. mark_payment never regresses a finalized order -------------------------
+do $$
+declare v jsonb; ref text := (select val from smoke_ctx where key = 'ref');
+begin
+  v := store_mark_payment(ref, 'failed', null);
+  if v->>'skipped' is null then raise exception 'finalized order must be skip-protected: %', v; end if;
+  if (select status from store_orders where reference = ref) <> 'paid' then
+    raise exception 'paid order must stay paid';
+  end if;
+end $$;
+
 select 'store smoke test passed' as result;
