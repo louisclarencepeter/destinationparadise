@@ -561,10 +561,21 @@ Obtain written confirmation of:
 - authoritative `verifyToken` amount/currency fields when customer currency conversion is enabled
 - whether embedding the hosted payment page in an iframe on our site is
   officially supported for the account (their frame-ancestors policy), and how
-  3-D Secure bank challenges behave inside a frame — goal: guests pay without
-  visibly leaving the site, with a redirect fallback only where banks require it
-- hosted payment page branding options (logo, trading name, colors) so the
-  payment step reads as Destination Paradise even when redirected
+  3-D Secure bank challenges behave inside a frame — the current "by Network"
+  docs describe the card flow as redirect-only and never mention iframes, so
+  expect "no" and treat any "yes" as requiring sandbox proof
+- hosted payment page branding: DOCS-CONFIRMED ("add your logo and colours for
+  a familiar experience") — bring logo assets and set it up in the back office
+  during onboarding
+- on-site mobile money (the real no-redirect answer for Tanzanian guests):
+  DOCS-CONFIRMED — `chargeTokenMobile` lets us collect the guest's mobile-money
+  number on OUR site and trigger the operator's payment prompt on their phone,
+  with `verifyToken` confirming completion (our existing settle pipeline and
+  polling confirmation page already fit this shape); `getMobilePaymentOptions`
+  lists enabled operators. Confirm which MNOs are enabled for the account
+  (M-Pesa / Tigo Pesa / Airtel Money Tanzania), fees per MNO, and test one
+  on-site mobile payment in the sandbox. Cards stay on the branded hosted-page
+  redirect (direct card API exists but drags us into PCI scope — do not use)
 - support escalation contacts
 
 Do not block frontend/store work on commercial onboarding, but do not promise a live-payment launch date until the merchant account and settlement terms are approved.
