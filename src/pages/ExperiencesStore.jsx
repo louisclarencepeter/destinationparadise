@@ -31,8 +31,9 @@ export default function ExperiencesStore() {
     title: 'Experiences Store · Destination Paradise',
     description:
       'Browse Zanzibar experiences, pick a date and time for each one, and pay once for the whole trip. Instant booking for selected excursions.',
-    // Pre-launch: keep the store out of the index until the pilot goes live.
-    noindex: true,
+    // Indexable only in launched builds (VITE_STORE_ENABLED baked in at build
+    // time, matching scripts/routes.mjs); localStorage previews stay noindex.
+    noindex: import.meta.env.VITE_STORE_ENABLED !== 'true',
   });
 
   useRevealOnScroll(pageRef, '.reveal:not(.is-visible)', ready ? i18n.resolvedLanguage : 'loading');

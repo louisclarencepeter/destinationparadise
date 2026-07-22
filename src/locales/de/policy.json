@@ -64,6 +64,17 @@
             "Du kannst lokalen Browserspeicher wie Planerverlauf, Sprache, Design und gecachte Wechselkurse in deinen Browser-Einstellungen löschen.",
             "Du kannst Marketingnachrichten jederzeit abbestellen, indem du uns kontaktierst."
           ]
+        },
+        {
+          "title": "Zahlungen und Buchungen im Online-Store",
+          "items": [
+            "Wenn du in unserem Erlebnis-Store direkt buchst, erfassen wir Name, E-Mail-Adresse und Telefonnummer des Hauptgasts sowie den Inhalt deiner Bestellung: die gewählten Erlebnisse, Termine, Abfahrtszeiten und Gästezahlen.",
+            "Zahlungen verarbeitet unser Zahlungspartner DPO Pay auf dessen sicheren Bezahlseiten. Karten- und Mobile-Money-Daten werden nur dort eingegeben — sie erreichen oder durchlaufen unsere Systeme nie.",
+            "Wir speichern die Bestellung, ihre Buchungscodes und den von DPO gemeldeten Zahlungsstatus (nie Kartennummern) in unserer Buchungsdatenbank, um deine Touren durchzuführen, Änderungen zu bearbeiten und Buchhaltungspflichten zu erfüllen.",
+            "Bestellbestätigungen und Buchungsbestätigungen versenden wir über unseren E-Mail-Dienstleister an die beim Checkout angegebene Adresse.",
+            "Bestellungen und Buchungen bewahren wir als Geschäftsunterlagen so lange auf, wie Steuer- und Handelsrecht es verlangen; melde dich jederzeit, um deine Daten einzusehen oder zu korrigieren.",
+            "Analytics-Ereignisse des Stores enthalten nie Namen, E-Mail-Adressen, Telefonnummern oder Zahlungsreferenzen."
+          ]
         }
       ]
     },
@@ -102,6 +113,17 @@
             "Reisen sind immer mit gewissen Risiken verbunden. Du bist verantwortlich für passende Reiseversicherung, Gesundheitsberatung, Visa, Reisepässe und persönliche Gegenstände.",
             "Wir arbeiten sorgfältig mit lokalen Partnern, sind jedoch nicht verantwortlich für Verzögerungen oder Verluste durch Ereignisse außerhalb unseres angemessenen Einflussbereichs.",
             "Wenn während deiner Reise etwas schiefläuft, kontaktiere uns schnell, damit wir helfen können, solange noch Zeit zum Handeln ist."
+          ]
+        },
+        {
+          "title": "Buchungen im Online-Store",
+          "items": [
+            "Ausgewählte Erlebnisse lassen sich in unserem Online-Store mit Live-Verfügbarkeit sofort buchen; alles andere läuft weiter über den oben beschriebenen Anfrageweg.",
+            "Du zahlst einmal für deinen gesamten Warenkorb, und jedes Erlebnis darin wird eine eigene Buchung mit eigenem Bestätigungscode — jede Tour behält Datum, Uhrzeit und Gästezahl.",
+            "Store-Zahlungen werden in US-Dollar abgerechnet; Preise in anderen Währungen sind Richtwerte auf Basis aktueller Wechselkurse.",
+            "Während des Checkouts sind deine gewählten Plätze kurz reserviert (etwa 15 Minuten); wird nicht gezahlt, löst sich die Reservierung automatisch und die Plätze gehen zurück in den Verkauf.",
+            "Eine Buchung besteht erst, wenn unser Zahlungspartner deine Zahlung bestätigt und wir deine Buchungscodes ausgestellt haben; kann eine Zahlung nicht automatisch verifiziert werden, prüfen wir sie manuell und melden uns, bevor irgendetwas weiter passiert.",
+            "Detaillierte Storno- und Erstattungsregeln für sofort gebuchte Erlebnisse werden gerade finalisiert und vor dem Start der Online-Zahlungen auf dieser Seite veröffentlicht."
           ]
         }
       ]

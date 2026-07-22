@@ -2,7 +2,7 @@
 
 - Last updated: 2026-07-21
 - Working branch: `store`
-- Implementation status: Phase 1 delivered (feature-flagged store UI with fixture data; flag `dp_store_preview` in localStorage or `VITE_STORE_ENABLED=true`, disabled by default). Phase 2 delivered in code (Supabase schema + atomic checkout SQL, Netlify store API, live/fixture client switch — see "Phase 2 operations"). Phase 3 delivered in code (DPO adapter, hosted-checkout redirect, return/callback verify pipeline, reconciliation, outbox emails — see "Phase 3 operations"; requires DPO sandbox credentials to activate, ships dark otherwise). Commercial DPO onboarding in progress (user).
+- Implementation status: Phases 1–3 delivered in code (feature-flagged store UI; Supabase backend with atomic checkout; DPO payment pipeline — all dark until env activation, see the per-phase operations sections). Phase 4 hardening delivered in code: dblink concurrency races green on real Postgres (last-seats checkout race, concurrent finalize replay), hourly health-check alerts (requires_review / stuck payments / dead outbox → Sentry, counts only), store payment/booking sections added to privacy+terms in EN/DE/PL (cancellation/refund rules still explicitly "pending"), and launch mechanics wired (`VITE_STORE_ENABLED=true` at build time adds `/store` to sitemap+prerender and drops its noindex; checkout/confirmation stay noindex). Remaining Phase 4 items need the user: DPO sandbox replay testing with real credentials, real-device journeys, deposit-vs-full-payment decision, final legal sign-off on the new policy copy, then the controlled production pilot. Commercial DPO onboarding in progress (user).
 - Payment provider decision: DPO Pay by Network
 
 ## Phase 3 operations (activating DPO payments)
@@ -47,11 +47,14 @@ Code paths ship dark. To bring the live store API up on a deploy context:
    `supabase/seed.sql` (SQL editor or `supabase db push` + `psql -f`). The seed
    is idempotent and creates the pilot catalog plus a 60-day departure window;
    re-run `select store_seed_departures(60);` any time to extend the window.
-3. Optional but recommended: validate on a scratch database first —
-   `psql "$SCRATCH_DB_URL" -v ON_ERROR_STOP=1 -f supabase/migrations/20260721120000_store_schema.sql -f supabase/seed.sql -f supabase/smoke.sql`
-   (the smoke script exercises atomic checkout, conflicts, idempotency,
-   finalize, token auth, expiry and the oversell guard; passes ⇔ prints
-   `store smoke test passed`).
+3. Optional but recommended: validate on a scratch database first — apply all
+   three migration files (schema, payments, health) plus `supabase/seed.sql`,
+   then run `supabase/smoke.sql` (atomic checkout, conflicts, idempotency,
+   finalize, token auth, expiry, oversell guard, payment transitions, outbox,
+   health snapshot) and `supabase/concurrency.sql` (dblink-powered races:
+   concurrent last-seat checkouts, concurrent finalize replays; set
+   `store.test_conninfo` first as documented in the file). Green ⇔ they print
+   `store smoke test passed` / `store concurrency test passed`.
 4. Netlify env vars (Functions scope, NEVER exposed to the browser):
    - `SUPABASE_URL` — project URL
    - `SUPABASE_SERVICE_ROLE_KEY` (or `SUPABASE_SECRET_KEY`) — service key

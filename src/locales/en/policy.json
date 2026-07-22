@@ -64,6 +64,17 @@
             "You can clear local browser storage such as planner history, language, theme, and cached currency rates in your browser settings.",
             "You can unsubscribe from marketing messages at any time by contacting us."
           ]
+        },
+        {
+          "title": "Online Store Payments And Bookings",
+          "items": [
+            "When you book instantly in our experiences store, we collect the lead guest’s name, email address and phone number, plus your order contents: the chosen experiences, dates, departure times and guest counts.",
+            "Payments are processed by our payment partner DPO Pay on their secure payment pages. Card and mobile-money details are entered there only — they never reach or pass through our own systems.",
+            "We keep the order, its booking codes and the payment status returned by DPO (never card numbers) in our booking database so we can operate your trips, handle changes and meet accounting obligations.",
+            "Order receipts and booking confirmations are sent through our email provider to the address you give at checkout.",
+            "Orders and bookings are retained as commercial records for as long as tax and accounting law requires; contact us any time to access or correct your data.",
+            "Store analytics events never contain names, email addresses, phone numbers or payment references."
+          ]
         }
       ]
     },
@@ -102,6 +113,17 @@
             "Travel always carries some risk. You are responsible for suitable travel insurance, health advice, visas, passports, and personal belongings.",
             "We work carefully with local partners, but we are not responsible for delays or losses caused by events outside our reasonable control.",
             "If something goes wrong during your trip, contact us quickly so we can help while there is still time to act."
+          ]
+        },
+        {
+          "title": "Online Store Bookings",
+          "items": [
+            "Selected experiences can be booked instantly in our online store with live availability; everything else remains on the request flow described above.",
+            "You pay once for your whole cart, and every experience in it becomes its own booking with its own confirmation code — each trip keeps its own date, time and guest count.",
+            "Store payments are charged in US dollars; prices shown in other currencies are estimates based on current exchange rates.",
+            "While you complete checkout, your selected places are held for a short time (about 15 minutes); if payment is not completed, the hold releases automatically and the places return to sale.",
+            "A booking exists only once our payment partner confirms your payment and we issue your booking codes; if a payment cannot be verified automatically we review it manually and contact you before anything else happens.",
+            "Detailed cancellation and refund rules for instantly booked experiences are being finalised and will be published on this page before online payments open."
           ]
         }
       ]

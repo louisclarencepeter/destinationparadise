@@ -377,4 +377,24 @@ begin
   end if;
 end $$;
 
+-- 14. Health snapshot counts the states the earlier sections created --------
+do $$
+declare v jsonb;
+begin
+  v := store_health_snapshot(0);
+  -- Section 10 parked one order in requires_review.
+  if (v->>'requiresReviewOrders')::int < 1 then
+    raise exception 'health: expected requires_review orders, got %', v;
+  end if;
+  -- Sections 7 and 12 finalized paid orders.
+  if (v->>'paidOrdersLast24h')::int < 2 then
+    raise exception 'health: expected paid orders in window, got %', v;
+  end if;
+  if v->>'failedOutbox' is null or v->>'stuckPendingAttempts' is null
+     or v->>'stuckAcknowledgements' is null or v->>'overdueOutbox' is null
+     or v->>'activeHolds' is null then
+    raise exception 'health: snapshot missing keys: %', v;
+  end if;
+end $$;
+
 select 'store smoke test passed' as result;
