@@ -145,13 +145,27 @@ export default function StoreConfirmation() {
     );
   }
 
+  const titleWords = t('confirm.title').split(' ');
+
   return (
     <main className="store-confirm">
       <div className="store-confirm__head">
         <div className="store-confirm__badge" aria-hidden="true">
           <CheckIcon size={34} strokeWidth={2.2} />
         </div>
-        <h1 className="store-confirm__title">{t('confirm.title')}</h1>
+        {/* Brand tagline, hand-lettered in word by word (screen readers get the
+            plain sentence; the per-word spans are presentation only). */}
+        <h1
+          className="store-confirm__title store-confirm__title--animated"
+          aria-label={t('confirm.title')}
+          style={{ '--word-count': titleWords.length }}
+        >
+          {titleWords.map((word, index) => (
+            <span aria-hidden="true" className="store-confirm__word" style={{ '--word-index': index }} key={`${word}-${index}`}>
+              {word}
+            </span>
+          ))}
+        </h1>
         <p className="store-confirm__lead">
           <Trans
             t={t}

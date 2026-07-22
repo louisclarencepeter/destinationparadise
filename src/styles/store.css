@@ -1417,6 +1417,52 @@
   color: var(--text-soft);
   margin: 0;
 }
+
+/* Brand-tagline entrance: each word lands like brush lettering (rise, un-blur,
+   settle), then an accent flourish sweeps in underneath. Timed off
+   --word-count/--word-index so it adapts to every language. */
+.store-confirm__title--animated .store-confirm__word {
+  display: inline-block;
+  opacity: 0;
+  animation: dpStoreWordIn 0.65s var(--dp-ease-out) forwards;
+  animation-delay: calc(0.25s + var(--word-index, 0) * 0.14s);
+}
+.store-confirm__title--animated .store-confirm__word + .store-confirm__word {
+  margin-left: 0.28em;
+}
+.store-confirm__title--animated::after {
+  content: '';
+  display: block;
+  width: 132px;
+  height: 5px;
+  margin: 0.45em auto 0;
+  border-radius: var(--dp-radius-pill);
+  background: var(--dp-gradient-accent-bar);
+  transform: scaleX(0);
+  transform-origin: left center;
+  animation: dpStoreFlourish 0.55s var(--dp-ease-out) forwards;
+  animation-delay: calc(0.45s + var(--word-count, 4) * 0.14s);
+}
+@keyframes dpStoreWordIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.55em) rotate(2.5deg) scale(0.94);
+    filter: blur(7px);
+  }
+  60% {
+    filter: blur(0);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+@keyframes dpStoreFlourish {
+  to {
+    transform: scaleX(1);
+  }
+}
 .store-confirm__lead {
   font-family: var(--dp-font-display);
   font-size: 1.05rem;
@@ -1571,6 +1617,14 @@
   .store-confirm__badge,
   .confirm-card {
     animation: none;
+  }
+  .store-confirm__title--animated .store-confirm__word {
+    animation: none;
+    opacity: 1;
+  }
+  .store-confirm__title--animated::after {
+    animation: none;
+    transform: scaleX(1);
   }
   .checkout-pay__spinner {
     animation-duration: 1.4s;

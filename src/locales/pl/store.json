@@ -140,7 +140,7 @@
     "problem_title": "Płatność nie została dokończona",
     "problem_text": "Zamówienie <ref>{{reference}}</ref> nie zostało obciążone albo płatność wymaga ręcznej weryfikacji. Jeśli pieniądze zeszły z konta, wyjaśnimy to mailowo — w innym razie po prostu spróbuj ponownie.",
     "problem_cta": "Wróć do kasy",
-    "title": "Ruszasz do raju",
+    "title": "Twoja następna podróż do raju",
     "lead": "Zamówienie <ref>{{reference}}</ref> jest potwierdzone. Potwierdzenie jest w drodze na twój e-mail — każda atrakcja ma poniżej własny kod rezerwacji.",
     "code_prefix": "CONF",
     "paid_chip": "Potwierdzone i opłacone",

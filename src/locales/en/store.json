@@ -140,7 +140,7 @@
     "problem_title": "The payment didn't complete",
     "problem_text": "Order <ref>{{reference}}</ref> wasn't charged, or the payment needs a manual check. If money left your account we'll resolve it by email — otherwise you can simply try again.",
     "problem_cta": "Back to checkout",
-    "title": "You're going to Paradise",
+    "title": "Your next trip to Paradise",
     "lead": "Order <ref>{{reference}}</ref> is confirmed. A confirmation is on its way to your email — each experience has its own booking code below.",
     "code_prefix": "CONF",
     "paid_chip": "Confirmed & paid",
