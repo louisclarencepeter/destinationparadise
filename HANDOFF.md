@@ -40,7 +40,18 @@ register both return + callback URLs with DPO.
 
 ## Phase 2 operations (activating the real backend)
 
-Code paths ship dark. To bring the live store API up on a deploy context:
+STATUS 2026-07-22: DONE for staging. Supabase project
+`destination-paradise-store` (ref `hskhpsdociwikywfnsvf`, eu-central-1,
+org "Louis Dev") is provisioned, migrated (all three migrations) and seeded
+(3 pilot experiences, 60-day departure window). Netlify env vars are set for
+the **branch-deploy and deploy-preview contexts only** — production remains
+completely dark. The `store` branch deploy is the live staging store
+(real inventory + dev-simulated payment). The database password was generated
+during setup and intentionally not stored anywhere; reset it in the Supabase
+dashboard whenever direct psql access is needed (`supabase link` + `db push`
+will prompt for it).
+
+Original activation steps (for reference / a future production project):
 
 1. Create a Supabase project (region close to eu-central for Netlify Frankfurt).
 2. Apply `supabase/migrations/20260721120000_store_schema.sql`, then

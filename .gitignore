@@ -25,3 +25,6 @@ docs/
 .playwright-cli/
 output/
 tmp/
+
+# Supabase CLI link state (machine-local)
+supabase/.temp/
