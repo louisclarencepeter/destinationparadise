@@ -9,15 +9,24 @@ const STATUS_KEYS = {
   insufficient_seats: 'cart.status_insufficient',
   departed: 'cart.status_departed',
   unknown_experience: 'cart.status_departed',
+  request_pending: 'cart.status_request',
+};
+
+const MODE_KEYS = {
+  shared: 'cart.mode_shared',
+  private: 'cart.mode_private',
+  request: 'cart.mode_request',
 };
 
 // One trip line inside the cart drawer. `experience` is the commerce record;
 // `status` comes from the latest quote ('available' until a re-check lands).
+// Request items show preferred dates instead of a departure and carry no price.
 export default function CartItem({ item, experience, status = 'available', totalUsd, onEdit, onRemove }) {
   const { t, i18n } = useTranslation('store');
   const { format } = useCurrency();
   const lang = i18n.resolvedLanguage || 'en';
-  const ok = status === 'available';
+  const isRequest = item.mode === 'request';
+  const ok = status === 'available' || status === 'request_pending';
 
   return (
     <div className={`cart-item${ok ? '' : ' cart-item--blocked'}`}>
@@ -27,16 +36,20 @@ export default function CartItem({ item, experience, status = 'available', total
       <div className="cart-item__body">
         <div className="cart-item__top">
           <p className="cart-item__title">{experience.title}</p>
-          <span className="cart-item__price">{format(totalUsd)}</span>
+          <span className="cart-item__price">
+            {isRequest ? t('cart.price_on_request') : format(totalUsd)}
+          </span>
         </div>
         <p className="cart-item__meta">
-          {formatDateLabel(lang, item.date)} · {formatTimeLabel(lang, item.time)}
+          {isRequest
+            ? `${t('cart.requested_dates')}: ${item.requestedDates || t('cart.requested_flexible')}`
+            : `${formatDateLabel(lang, item.date)} · ${formatTimeLabel(lang, item.time)}`}
         </p>
         <p className="cart-item__meta">
-          {t('cart.guest_count', { count: item.guests })} · {item.mode === 'private' ? t('cart.mode_private') : t('cart.mode_shared')}
+          {t('cart.guest_count', { count: item.guests })} · {t(MODE_KEYS[item.mode] || MODE_KEYS.shared)}
         </p>
         <div className="cart-item__actions">
-          <span className={`cart-item__status${ok ? '' : ' cart-item__status--warn'}`}>
+          <span className={`cart-item__status${ok ? '' : ' cart-item__status--warn'}${isRequest ? ' cart-item__status--request' : ''}`}>
             {t(STATUS_KEYS[status] || STATUS_KEYS.available)}
           </span>
           <button type="button" className="cart-item__link" onClick={onEdit}>{t('cart.edit')}</button>

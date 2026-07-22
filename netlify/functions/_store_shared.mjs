@@ -147,6 +147,45 @@ export function parseStoreItems(raw) {
   return { ok: true, items };
 }
 
+// Mixed request carts: request items carry preferred dates as free text
+// instead of a departure; instant riders keep the strict shape. At least one
+// request item is required (pure-instant carts use /api/store/checkout).
+export function parseRequestItems(raw) {
+  if (!Array.isArray(raw) || raw.length === 0 || raw.length > MAX_CHECKOUT_ITEMS) {
+    return { ok: false, error: 'invalid_items' };
+  }
+  const items = [];
+  let requestCount = 0;
+  for (const entry of raw) {
+    if (!entry || typeof entry !== 'object') return { ok: false, error: 'invalid_items' };
+    const guests = Number(entry.guests);
+    const optionCode = entry.optionCode ?? entry.mode;
+    const base = {
+      id: typeof entry.id === 'string' ? entry.id.slice(0, 64) : '',
+      sourceKey: entry.sourceKey ?? entry.experienceId,
+      optionCode,
+      guests,
+    };
+    if (!base.id || !isSourceKey(base.sourceKey) ||
+        !Number.isInteger(guests) || guests < 1 || guests > 24) {
+      return { ok: false, error: 'invalid_items' };
+    }
+    if (optionCode === 'request') {
+      requestCount += 1;
+      items.push({
+        ...base,
+        requestedDates: String(entry.requestedDates ?? '').slice(0, 300),
+      });
+    } else if (OPTION_CODES.has(optionCode) && isIsoDate(entry.date) && isLocalTime(entry.time)) {
+      items.push({ ...base, date: entry.date, time: entry.time });
+    } else {
+      return { ok: false, error: 'invalid_items' };
+    }
+  }
+  if (requestCount === 0) return { ok: false, error: 'no_request_items' };
+  return { ok: true, items };
+}
+
 export function parseIdempotencyKey(value) {
   return typeof value === 'string' && IDEMPOTENCY_RE.test(value) ? value : null;
 }

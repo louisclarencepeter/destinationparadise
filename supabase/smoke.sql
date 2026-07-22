@@ -16,12 +16,16 @@ do $$
 declare v jsonb;
 begin
   v := store_api_catalog();
-  if jsonb_array_length(v) <> 3 then
-    raise exception 'catalog: expected 3 experiences, got %', jsonb_array_length(v);
+  if jsonb_array_length(v) <> 6 then
+    raise exception 'catalog: expected 6 experiences (3 instant + 3 request), got %', jsonb_array_length(v);
   end if;
   if (select count(*) from jsonb_array_elements(v) e
         where e->'options' @> '[{"code":"shared"}]'::jsonb) <> 3 then
-    raise exception 'catalog: every experience needs a shared option';
+    raise exception 'catalog: expected 3 experiences with shared options';
+  end if;
+  if (select count(*) from jsonb_array_elements(v) e
+        where e->'options' @> '[{"code":"request"}]'::jsonb) <> 3 then
+    raise exception 'catalog: expected 3 request-only experiences';
   end if;
 end $$;
 
@@ -394,6 +398,133 @@ begin
      or v->>'stuckAcknowledgements' is null or v->>'overdueOutbox' is null
      or v->>'activeHolds' is null then
     raise exception 'health: snapshot missing keys: %', v;
+  end if;
+end $$;
+
+-- 15. Request cart lifecycle: submit → staff quote → accept → finalize ------
+do $$
+declare v jsonb; d text := (current_date + 8)::text; ref text; tok text;
+  item_req uuid; item_inst uuid; exp_pi uuid;
+begin
+  -- Mixed cart: one request item (prison-island) + one instant rider (spice-tour).
+  v := store_api_request_checkout(
+    jsonb_build_array(
+      jsonb_build_object('id', 'r1', 'sourceKey', 'prison-island', 'optionCode', 'request',
+                         'guests', 4, 'requestedDates', 'Any morning around ' || d),
+      jsonb_build_object('id', 'i1', 'sourceKey', 'spice-tour', 'optionCode', 'shared',
+                         'guests', 2, 'date', d, 'time', '09:00')),
+    jsonb_build_object('name', 'Request Guest', 'email', 'request@example.com'),
+    'en', 'smoke-req-key-0001');
+  if not (v->>'ok')::boolean then raise exception 'request checkout failed: %', v; end if;
+  ref := v->>'reference'; tok := v->>'accessToken';
+
+  if (select status from store_orders where reference = ref) <> 'awaiting_availability' then
+    raise exception 'request order must await availability';
+  end if;
+  if exists (select 1 from store_capacity_holds h join store_orders o on o.id = h.order_id
+              where o.reference = ref) then
+    raise exception 'request checkout must take NO holds';
+  end if;
+  if (select count(*) from store_notification_outbox nb join store_orders o on o.id = nb.order_id
+        where o.reference = ref and nb.kind in ('request_received', 'request_team_alert')) <> 2 then
+    raise exception 'request emails must be queued';
+  end if;
+
+  -- Idempotent replay.
+  v := store_api_request_checkout(
+    jsonb_build_array(jsonb_build_object('id', 'r1', 'sourceKey', 'prison-island',
+      'optionCode', 'request', 'guests', 4)),
+    jsonb_build_object('name', 'Request Guest', 'email', 'request@example.com'),
+    'en', 'smoke-req-key-0001');
+  if v->>'reference' <> ref then raise exception 'request replay must return original order'; end if;
+
+  select id into item_req from store_order_items oi
+    where oi.order_id = (select id from store_orders where reference = ref)
+      and oi.item_kind = 'request';
+  select id into item_inst from store_order_items oi
+    where oi.order_id = (select id from store_orders where reference = ref)
+      and oi.item_kind = 'instant';
+
+  -- Accept before quote must fail.
+  v := store_api_accept_quote(ref, tok);
+  if (v->>'ok')::boolean then raise exception 'accept before quote must fail'; end if;
+
+  -- Staff quote without a departure for the request item → clear error.
+  v := store_staff_quote(ref, jsonb_build_array(jsonb_build_object(
+    'itemId', item_req, 'date', d, 'time', '10:10', 'totalMinor', 20000)), null, 72);
+  if v->>'error' <> 'no_departure' then raise exception 'expected no_departure, got %', v; end if;
+
+  -- Staff create the departure, then quote both items.
+  select id into exp_pi from store_experiences where source_key = 'prison-island';
+  insert into store_departures (experience_id, starts_at, ends_at, local_date, local_time,
+                                capacity_total, status, booking_cutoff_at)
+  values (exp_pi, (d || ' 10:10')::timestamp at time zone 'Africa/Dar_es_Salaam', null,
+          d::date, '10:10', 8, 'scheduled', now() + interval '6 days')
+  on conflict do nothing;
+
+  v := store_staff_quote(ref,
+    jsonb_build_array(
+      jsonb_build_object('itemId', item_req, 'date', d, 'time', '10:10', 'totalMinor', 20000,
+                         'note', 'Private boat confirmed'),
+      jsonb_build_object('itemId', item_inst, 'date', d, 'time', '09:00', 'totalMinor', 9000)),
+    'All confirmed with suppliers', 72);
+  if not (v->>'ok')::boolean then raise exception 'staff quote failed: %', v; end if;
+  if (v->>'totalMinor')::bigint <> 29000 then
+    raise exception 'quote total wrong: %', v->>'totalMinor';
+  end if;
+  if (select status from store_orders where reference = ref) <> 'quoted' then
+    raise exception 'order must be quoted';
+  end if;
+
+  -- Quoting rotated the token: the old link must be dead, the new one lives
+  -- transiently in the quote_ready outbox payload until redacted after send.
+  v := store_api_order(ref, tok);
+  if (v->>'ok')::boolean then raise exception 'old token must die on quote rotation'; end if;
+  select nb.payload->>'accessToken' into tok
+    from store_notification_outbox nb join store_orders o on o.id = nb.order_id
+    where o.reference = ref and nb.kind = 'quote_ready';
+  if tok is null then raise exception 'quote_ready payload must carry the new token'; end if;
+
+  -- Guest accepts: atomic holds + pending_payment.
+  v := store_api_accept_quote(ref, tok);
+  if not (v->>'ok')::boolean then raise exception 'accept failed: %', v; end if;
+  if (select count(*) from store_capacity_holds h join store_orders o on o.id = h.order_id
+        where o.reference = ref and h.status = 'active') <> 2 then
+    raise exception 'accept must hold both items';
+  end if;
+  if (select status from store_orders where reference = ref) <> 'pending_payment' then
+    raise exception 'accepted order must be pending_payment';
+  end if;
+
+  -- Accept replay is idempotent.
+  v := store_api_accept_quote(ref, tok);
+  if not (v->>'alreadyAccepted')::boolean then raise exception 'accept replay must be idempotent'; end if;
+
+  -- Wrong token cannot accept.
+  v := store_api_accept_quote(ref, repeat('0', 48));
+  if (v->>'ok')::boolean then raise exception 'accept must reject bad tokens'; end if;
+
+  -- Finalize mints codes for both kinds (PI- prefix proves request items book).
+  v := store_finalize_paid_order(ref);
+  if not (v->>'ok')::boolean then raise exception 'request finalize failed: %', v; end if;
+  if (select count(*) from store_bookings b join store_orders o on o.id = b.order_id
+        where o.reference = ref and b.code like 'PI-%') <> 1 then
+    raise exception 'request item must get its own PI- booking code';
+  end if;
+
+  v := store_api_order(ref, tok);
+  if (select count(*) from jsonb_array_elements(v->'items') i
+        where i->>'bookingCode' is not null) <> 2 then
+    raise exception 'order read must show both booking codes';
+  end if;
+
+  -- Sender-side redaction removes the raw token from every guest-facing row.
+  perform store_outbox_redact(nb.id)
+    from store_notification_outbox nb join store_orders o on o.id = nb.order_id
+    where o.reference = ref and nb.payload ? 'accessToken';
+  if exists (select 1 from store_notification_outbox nb join store_orders o on o.id = nb.order_id
+              where o.reference = ref and nb.payload ? 'accessToken') then
+    raise exception 'redaction must strip tokens from outbox payloads';
   end if;
 end $$;
 

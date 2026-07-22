@@ -107,3 +107,36 @@ describe('cart persistence', () => {
     expect(state.items[0].totalUsd).toBeUndefined();
   });
 });
+
+describe('request cart items (Phase 5)', () => {
+  const requestItem = (overrides = {}) => ({
+    id: 'ci_req1',
+    experienceId: 'prison-island',
+    mode: 'request',
+    guests: 4,
+    requestedDates: 'Any morning in August',
+    ...overrides,
+  });
+
+  it('accepts request items without date/time', () => {
+    expect(isValidCartItem(requestItem())).toBe(true);
+    expect(isValidCartItem(requestItem({ requestedDates: undefined }))).toBe(true);
+  });
+
+  it('rejects oversized preferred-dates text', () => {
+    expect(isValidCartItem(requestItem({ requestedDates: 'x'.repeat(301) }))).toBe(false);
+  });
+
+  it('still requires date/time for instant modes', () => {
+    expect(isValidCartItem({ id: 'x', experienceId: 'safari-blue', mode: 'shared', guests: 2 })).toBe(false);
+  });
+
+  it('round-trips request items through persistence', () => {
+    const state = cartReducer(initialCartState, { type: 'add', item: requestItem() });
+    const revived = deserializeCart(serializeCart(state));
+    expect(revived[0]).toEqual({
+      id: 'ci_req1', experienceId: 'prison-island', mode: 'request',
+      guests: 4, requestedDates: 'Any morning in August',
+    });
+  });
+});

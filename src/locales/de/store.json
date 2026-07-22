@@ -100,7 +100,15 @@
     "remove": "Entfernen",
     "subtotal": "Zwischensumme",
     "checkout_cta": "Weiter zum Checkout",
-    "note": "Jedes Erlebnis behält sein Datum, seine Uhrzeit und seine Gäste."
+    "note": "Jedes Erlebnis behält sein Datum, seine Uhrzeit und seine Gäste.",
+    "price_on_request": "Auf Anfrage",
+    "requested_dates": "Wunschtermine",
+    "requested_flexible": "flexibel",
+    "mode_request": "Auf Anfrage",
+    "status_request": "Wartet auf Bestätigung",
+    "plus_request": "+ Positionen auf Anfrage",
+    "request_cta": "Weiter zur Reiseanfrage",
+    "request_note": "Deine Reise enthält Anfragen — wir bestätigen erst die Verfügbarkeit, gezahlt wird einmal am Ende."
   },
   "checkout": {
     "back": "Zurück zu deiner Reise",
@@ -132,7 +140,16 @@
       "name_required": "Bitte gib den Namen des Hauptgasts an.",
       "email_required": "Bitte gib eine E-Mail-Adresse an.",
       "email_invalid": "Diese E-Mail-Adresse sieht nicht richtig aus."
-    }
+    },
+    "request_title": "Reiseanfrage",
+    "request_sub": "Jetzt keine Zahlung — wir bestätigen erst die Verfügbarkeit, dann stimmst du einem Endpreis zu.",
+    "request_how": "So funktioniert es",
+    "request_note": "Wir prüfen jedes angefragte Erlebnis mit unseren Partnern vor Ort und schicken dir per E-Mail einen bestätigten Plan mit Endpreis, meist innerhalb von 24 Stunden. Deine Plätze werden erst nach deiner Zustimmung reserviert und bezahlt.",
+    "request_cta": "Reiseanfrage senden",
+    "request_sending": "Anfrage wird gesendet…",
+    "request_footnote": "Beim Senden einer Anfrage wird nichts abgebucht oder reserviert.",
+    "request_total_label": "Sofort buchbare Positionen bisher",
+    "request_pricing_hint": "Angefragte Erlebnisse werden in deiner Bestätigungs-E-Mail bepreist."
   },
   "confirm": {
     "processing_title": "Zahlung wird abgeschlossen…",
@@ -148,6 +165,35 @@
     "back": "Zurück zu den Erlebnissen",
     "missing_title": "Bestellung nicht gefunden",
     "missing_text": "Dieser Bestätigungslink ist in diesem Browser abgelaufen. Alle Details stehen in deiner E-Mail-Bestätigung.",
-    "missing_cta": "Erlebnisse entdecken"
+    "missing_cta": "Erlebnisse entdecken",
+    "request_title": "Anfrage erhalten!",
+    "request_lead": "Anfrage <ref>{{reference}}</ref> liegt bei unserem Team. Wir prüfen die Verfügbarkeit mit unseren Partnern und mailen dir Plan und Endpreis, meist innerhalb von 24 Stunden.",
+    "request_footnote": "Noch wird nichts abgebucht oder reserviert. Du kannst die Seite schließen — es geht per E-Mail weiter.",
+    "quote_title": "Deine Reise ist bestätigt",
+    "quote_lead": "Alles in Anfrage <ref>{{reference}}</ref> ist von unseren Partnern bestätigt. Prüfe den Plan und nimm an, um deine Plätze zu reservieren und zur Zahlung fortzufahren.",
+    "quote_expiry": "Diese Bestätigung gilt bis {{date}}.",
+    "accept_cta": "Annehmen & weiter — {{amount}}",
+    "accepting": "Plätze werden reserviert…",
+    "accept_note": "Mit der Annahme prüfen wir die Verfügbarkeit erneut und reservieren jeden Platz deiner Reise; gezahlt wird einmal gesamt.",
+    "accept_conflict": "Eine Abfahrt ist gerade ausgebucht. Unser Team ist informiert und mailt dir eine Alternative.",
+    "accepted_payment_pending": "Deine Plätze sind reserviert! Die Online-Zahlung öffnet in Kürze — wir mailen dir den Zahlungslink."
+  },
+  "request_panel": {
+    "chip": "Auf Anfrage buchen",
+    "lead": "Nenn uns deine Wunschtermine — wir bestätigen Verfügbarkeit und Endpreis per E-Mail, meist innerhalb von 24 Stunden. Noch wird nichts abgebucht oder reserviert.",
+    "indicative": "pro Person · Richtwert",
+    "dates_label": "Wunschtermine",
+    "dates_placeholder": "z. B. 22.–24. August, flexibel",
+    "add": "Anfrage zu meiner Reise",
+    "foot": "Kommt als Anfrage in deine Reise — den Endpreis bestätigst du vor jeder Zahlung."
+  },
+  "request_section": {
+    "eyebrow": "Auf Anfrage buchen",
+    "title": "Nenn uns deine Termine",
+    "lead": "Dieses Erlebnis organisieren wir mit unseren Partnern vor Ort — wir bestätigen die Verfügbarkeit, bevor etwas gebucht oder bezahlt wird.",
+    "point_no_charge": "Keine Abbuchung und keine Reservierung, bis du zustimmst",
+    "point_confirm": "Termine und Endpreis bestätigen wir in etwa 24 Stunden",
+    "point_one_payment": "Am Ende steht eine einzige gemeinsame Zahlung",
+    "pickup_fallback": "Abholdetails bestätigen wir zusammen mit deinen Terminen."
   }
 }

@@ -57,7 +57,8 @@ const REQUEST_CARDS = [
   {
     id: 'prison-island',
     sourceKey: 'prison-island',
-    to: '/excursions/prison-island',
+    // Has its own request panel (Phase 5) — deep-link straight to it.
+    to: '/excursions/prison-island#book',
   },
   {
     id: 'northern-safari',
@@ -108,6 +109,41 @@ export function getInstantExperience(id) {
 
 export function isInstantBookable(id) {
   return INSTANT_EXPERIENCE_IDS.includes(id);
+}
+
+// Request-to-book products that can join the multi-trip cart (Phase 5). Only
+// products with their own detail page get an on-page request panel; the
+// consultative ones (safari, custom journey) stay on their existing flows.
+const REQUEST_RULES = [
+  { id: 'prison-island', code: 'PI', maxGuests: 8, minGuests: 1 },
+];
+
+function requestExperienceFor(rules) {
+  const excursion = excursionById(rules.id);
+  if (!excursion) return null;
+  return {
+    ...rules,
+    sourceKey: excursion.id,
+    title: excursion.title,
+    image: excursion.image,
+    alt: excursion.alt || excursion.title,
+    blurb: excursion.description,
+    durationTag: excursion.duration,
+    indicativePriceUsd: typeof excursion.price === 'number' ? excursion.price : null,
+    bookingMode: 'request',
+    timezone: STORE_TIMEZONE,
+  };
+}
+
+const REQUEST_EXPERIENCES = REQUEST_RULES.map(requestExperienceFor).filter(Boolean);
+
+export function getRequestExperience(id) {
+  return REQUEST_EXPERIENCES.find((exp) => exp.id === id) || null;
+}
+
+// Any experience that can live in the cart (drawer/checkout rendering).
+export function getCartExperience(id) {
+  return getInstantExperience(id) || getRequestExperience(id);
 }
 
 // Cards for the store grid: instant pilots first, then request-only products.

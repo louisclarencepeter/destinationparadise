@@ -100,7 +100,15 @@
     "remove": "Usuń",
     "subtotal": "Suma częściowa",
     "checkout_cta": "Przejdź do kasy",
-    "note": "Każda atrakcja zachowuje swoją datę, godzinę i gości."
+    "note": "Każda atrakcja zachowuje swoją datę, godzinę i gości.",
+    "price_on_request": "Na zapytanie",
+    "requested_dates": "Preferowane",
+    "requested_flexible": "elastycznie",
+    "mode_request": "Na zapytanie",
+    "status_request": "Czeka na potwierdzenie",
+    "plus_request": "+ pozycje na zapytanie",
+    "request_cta": "Przejdź do zapytania",
+    "request_note": "Twoja podróż zawiera zapytania — najpierw potwierdzamy dostępność, płacisz raz na końcu."
   },
   "checkout": {
     "back": "Wróć do swojej podróży",
@@ -132,7 +140,16 @@
       "name_required": "Podaj imię i nazwisko gościa głównego.",
       "email_required": "Podaj adres e-mail.",
       "email_invalid": "Ten adres e-mail wygląda niepoprawnie."
-    }
+    },
+    "request_title": "Zapytanie o podróż",
+    "request_sub": "Teraz bez płatności — najpierw potwierdzamy dostępność, potem zatwierdzasz jedną ostateczną cenę.",
+    "request_how": "Jak to działa",
+    "request_note": "Sprawdzamy każdą atrakcję z zapytania u naszych lokalnych partnerów i wysyłamy mailem potwierdzony plan z ostateczną ceną, zwykle w ciągu 24 godzin. Miejsca są blokowane i opłacane dopiero po twojej akceptacji.",
+    "request_cta": "Wyślij zapytanie o podróż",
+    "request_sending": "Wysyłamy zapytanie…",
+    "request_footnote": "Wysłanie zapytania niczego nie pobiera ani nie blokuje.",
+    "request_total_label": "Pozycje od ręki do tej pory",
+    "request_pricing_hint": "Atrakcje z zapytania wycenimy w mailu z potwierdzeniem."
   },
   "confirm": {
     "processing_title": "Kończymy twoją płatność…",
@@ -148,6 +165,35 @@
     "back": "Wróć do atrakcji",
     "missing_title": "Nie znaleźliśmy tego zamówienia",
     "missing_text": "Link potwierdzenia wygasł w tej przeglądarce. Wszystkie szczegóły znajdziesz w e-mailu z potwierdzeniem.",
-    "missing_cta": "Przeglądaj atrakcje"
+    "missing_cta": "Przeglądaj atrakcje",
+    "request_title": "Zapytanie przyjęte!",
+    "request_lead": "Zapytanie <ref>{{reference}}</ref> jest u naszego zespołu. Sprawdzamy dostępność u lokalnych partnerów i wyślemy mailem potwierdzony plan z ostateczną ceną, zwykle w ciągu 24 godzin.",
+    "request_footnote": "Nic nie jest jeszcze pobierane ani blokowane. Możesz zamknąć tę stronę — dalej wszystko dzieje się mailowo.",
+    "quote_title": "Twoja podróż jest potwierdzona",
+    "quote_lead": "Wszystko w zapytaniu <ref>{{reference}}</ref> zostało potwierdzone przez naszych partnerów. Sprawdź plan i zaakceptuj, aby zablokować miejsca i przejść do płatności.",
+    "quote_expiry": "To potwierdzenie jest ważne do {{date}}.",
+    "accept_cta": "Akceptuję i kontynuuję — {{amount}}",
+    "accepting": "Blokujemy twoje miejsca…",
+    "accept_note": "Akceptacja ponownie sprawdza dostępność i blokuje każde miejsce w twojej podróży; płatność następuje jako jedna łączna kwota.",
+    "accept_conflict": "Jeden z terminów właśnie się wyprzedał. Nasz zespół już o tym wie i wyśle ci alternatywę mailem.",
+    "accepted_payment_pending": "Twoje miejsca są zablokowane! Płatność online ruszy wkrótce — wyślemy ci link do płatności mailem."
+  },
+  "request_panel": {
+    "chip": "Rezerwacja na zapytanie",
+    "lead": "Podaj preferowane terminy — potwierdzimy dostępność i ostateczną cenę mailowo, zwykle w ciągu 24 godzin. Nic nie jest jeszcze pobierane ani blokowane.",
+    "indicative": "za osobę · orientacyjnie",
+    "dates_label": "Preferowane terminy",
+    "dates_placeholder": "np. 22–24 sierpnia, elastycznie",
+    "add": "Dodaj zapytanie do podróży",
+    "foot": "Trafia do twojej podróży jako zapytanie — ostateczną cenę zatwierdzisz przed jakąkolwiek płatnością."
+  },
+  "request_section": {
+    "eyebrow": "Rezerwacja na zapytanie",
+    "title": "Podaj swoje terminy",
+    "lead": "Tę atrakcję organizujemy z lokalnymi partnerami — potwierdzamy dostępność, zanim cokolwiek zostanie zarezerwowane lub opłacone.",
+    "point_no_charge": "Żadnych opłat ani blokad, dopóki nie zatwierdzisz",
+    "point_confirm": "Terminy i ostateczną cenę potwierdzamy w około 24 godziny",
+    "point_one_payment": "Na końcu jest jedna wspólna płatność",
+    "pickup_fallback": "Szczegóły odbioru potwierdzimy razem z terminami."
   }
 }

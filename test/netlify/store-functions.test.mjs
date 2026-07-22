@@ -240,3 +240,31 @@ describe('store-dev-pay endpoint', () => {
     expect(data.order.items[0].bookingCode).toBe('SB-1234');
   });
 });
+
+describe('parseRequestItems (Phase 5)', () => {
+  it('accepts mixed carts and normalizes request items', async () => {
+    const { parseRequestItems } = await import('../../netlify/functions/_store_shared.mjs');
+    const parsed = parseRequestItems([
+      { id: 'r1', experienceId: 'prison-island', mode: 'request', guests: 4, requestedDates: 'late August' },
+      { id: 'i1', experienceId: 'spice-tour', mode: 'shared', guests: 2, date: '2026-08-18', time: '09:00' },
+    ]);
+    expect(parsed.ok).toBe(true);
+    expect(parsed.items[0]).toEqual({
+      id: 'r1', sourceKey: 'prison-island', optionCode: 'request', guests: 4, requestedDates: 'late August',
+    });
+    expect(parsed.items[1].date).toBe('2026-08-18');
+  });
+
+  it('rejects carts without any request item and malformed entries', async () => {
+    const { parseRequestItems } = await import('../../netlify/functions/_store_shared.mjs');
+    expect(parseRequestItems([
+      { id: 'i1', experienceId: 'spice-tour', mode: 'shared', guests: 2, date: '2026-08-18', time: '09:00' },
+    ]).error).toBe('no_request_items');
+    expect(parseRequestItems([
+      { id: 'r1', experienceId: 'prison-island', mode: 'request', guests: 0 },
+    ]).ok).toBe(false);
+    expect(parseRequestItems([
+      { id: 'x', experienceId: 'spice-tour', mode: 'shared', guests: 2 },
+    ]).ok).toBe(false);
+  });
+});

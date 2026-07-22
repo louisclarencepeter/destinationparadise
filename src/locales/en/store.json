@@ -100,7 +100,15 @@
     "remove": "Remove",
     "subtotal": "Subtotal",
     "checkout_cta": "Continue to checkout",
-    "note": "Each experience keeps its own date, time and guests."
+    "note": "Each experience keeps its own date, time and guests.",
+    "price_on_request": "On request",
+    "requested_dates": "Preferred",
+    "requested_flexible": "flexible",
+    "mode_request": "Request to book",
+    "status_request": "Awaiting confirmation",
+    "plus_request": "+ items on request",
+    "request_cta": "Continue to trip request",
+    "request_note": "Your trip has request items, so we confirm availability first — you pay once at the end."
   },
   "checkout": {
     "back": "Back to your trip",
@@ -132,7 +140,16 @@
       "name_required": "Please add the lead guest's name.",
       "email_required": "Please add an email address.",
       "email_invalid": "That email address doesn't look right."
-    }
+    },
+    "request_title": "Trip request",
+    "request_sub": "No payment now — we confirm availability first, then you approve one final price.",
+    "request_how": "How this works",
+    "request_note": "We check every requested experience with our local partners and email you a confirmed plan with the final price, usually within 24 hours. Your places are held and paid only after you approve it.",
+    "request_cta": "Send trip request",
+    "request_sending": "Sending your request…",
+    "request_footnote": "Nothing is charged or held when you send a request.",
+    "request_total_label": "Instant items so far",
+    "request_pricing_hint": "Requested experiences are priced in your confirmation email."
   },
   "confirm": {
     "processing_title": "Finishing your payment…",
@@ -148,6 +165,35 @@
     "back": "Back to experiences",
     "missing_title": "We couldn't find that order",
     "missing_text": "This confirmation link has expired in this browser. Your email confirmation has all the details.",
-    "missing_cta": "Browse experiences"
+    "missing_cta": "Browse experiences",
+    "request_title": "Request received!",
+    "request_lead": "Request <ref>{{reference}}</ref> is with our team. We're checking availability with our local partners and will email your confirmed plan and final price, usually within 24 hours.",
+    "request_footnote": "Nothing is charged or held yet. You can close this page — everything continues by email.",
+    "quote_title": "Your trip is confirmed",
+    "quote_lead": "Everything in request <ref>{{reference}}</ref> is confirmed by our partners. Review the plan and accept to hold your places and continue to payment.",
+    "quote_expiry": "This confirmation is valid until {{date}}.",
+    "accept_cta": "Accept & continue — {{amount}}",
+    "accepting": "Securing your places…",
+    "accept_note": "Accepting re-checks availability and holds every place in your trip; payment follows as one combined amount.",
+    "accept_conflict": "One of the departures just sold out. Our team has been notified and will email you an alternative.",
+    "accepted_payment_pending": "Your places are held! Online payment opens shortly — we will email you the payment link."
+  },
+  "request_panel": {
+    "chip": "Request to book",
+    "lead": "Tell us your preferred dates — we confirm availability and the final price by email, usually within 24 hours. Nothing is charged or held yet.",
+    "indicative": "per person · indicative",
+    "dates_label": "Preferred dates",
+    "dates_placeholder": "e.g. 22–24 August, flexible",
+    "add": "Add request to my trip",
+    "foot": "Joins your trip as a request — you'll approve the final price before any payment."
+  },
+  "request_section": {
+    "eyebrow": "Request to book",
+    "title": "Tell us your dates",
+    "lead": "This experience is arranged with our local partners, so we confirm availability before anything is booked or paid.",
+    "point_no_charge": "No charge and no holds until you approve",
+    "point_confirm": "We confirm dates and the final price within about 24 hours",
+    "point_one_payment": "Everything ends in one combined payment",
+    "pickup_fallback": "Pickup details are confirmed together with your dates."
   }
 }

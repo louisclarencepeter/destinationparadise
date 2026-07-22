@@ -41,7 +41,11 @@ export default function BookingPanel({ experience }) {
   const maxMonth = monthIsoOf(addDaysIso(today, BOOKING_WINDOW_DAYS));
 
   const editId = searchParams.get('edit');
-  const editItem = editId ? cart.items.find((item) => item.id === editId && item.experienceId === experience.id) : null;
+  const editItem = editId
+    ? cart.items.find((item) =>
+        item.id === editId && item.experienceId === experience.id &&
+        item.mode !== 'request' && item.date && item.time)
+    : null;
 
   /** @typedef {{ date: string, times: {time: string, seats: number}[] | null }} DaySnapshot */
   const [mode, setMode] = useState('shared');
@@ -53,16 +57,17 @@ export default function BookingPanel({ experience }) {
   // Load the cart line being edited exactly once per edit id.
   const appliedEditRef = useRef(/** @type {string | null} */ (null));
   useEffect(() => {
-    if (!editItem || appliedEditRef.current === editItem.id) return;
+    if (!editItem?.date || !editItem?.time || appliedEditRef.current === editItem.id) return;
+    const { date, time } = editItem;
     appliedEditRef.current = editItem.id;
     setMode(editItem.mode);
     setGuests(Math.min(editItem.guests, experience.maxGuests));
     setMonthIso((current) => {
-      const target = monthIsoOf(editItem.date);
+      const target = monthIsoOf(date);
       return target >= minMonth && target <= maxMonth ? target : current;
     });
-    setSelectedDay({ date: editItem.date, times: null });
-    setSelectedTime(editItem.time);
+    setSelectedDay({ date, times: null });
+    setSelectedTime(time);
   }, [editItem, experience.maxGuests, minMonth, maxMonth]);
 
   const { loading, days } = useAvailability(experience.id, monthIso);

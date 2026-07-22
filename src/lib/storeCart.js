@@ -13,10 +13,13 @@ export const CART_VERSION = 1;
 export const MAX_CART_ITEMS = 20;
 export const MAX_GUESTS_PER_ITEM = 24;
 
-export const CART_MODES = ['shared', 'private'];
+export const CART_MODES = ['shared', 'private', 'request'];
+export const MAX_REQUESTED_DATES_LENGTH = 300;
 
 /**
- * @typedef {{ id: string, experienceId: string, mode: 'shared'|'private', guests: number, date: string, time: string }} CartItem
+ * Instant items carry a concrete departure (date+time); request items carry
+ * the guest's preferred dates as free text and are scheduled by staff later.
+ * @typedef {{ id: string, experienceId: string, mode: 'shared'|'private'|'request', guests: number, date?: string, time?: string, requestedDates?: string }} CartItem
  * @typedef {{ items: CartItem[], drawerOpen: boolean }} CartState
  * @typedef {{ type: string, item?: any, id?: string, patch?: object, items?: any[] }} CartAction
  */
@@ -35,20 +38,30 @@ const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_RE = /^\d{2}:\d{2}$/;
 
 export function isValidCartItem(item) {
-  return Boolean(
+  const baseValid = Boolean(
     item &&
       typeof item.id === 'string' && item.id &&
       typeof item.experienceId === 'string' && item.experienceId &&
       CART_MODES.includes(item.mode) &&
-      Number.isInteger(item.guests) && item.guests >= 1 && item.guests <= MAX_GUESTS_PER_ITEM &&
-      typeof item.date === 'string' && DATE_RE.test(item.date) &&
-      typeof item.time === 'string' && TIME_RE.test(item.time),
+      Number.isInteger(item.guests) && item.guests >= 1 && item.guests <= MAX_GUESTS_PER_ITEM,
+  );
+  if (!baseValid) return false;
+  if (item.mode === 'request') {
+    return item.requestedDates === undefined ||
+      (typeof item.requestedDates === 'string' && item.requestedDates.length <= MAX_REQUESTED_DATES_LENGTH);
+  }
+  return (
+    typeof item.date === 'string' && DATE_RE.test(item.date) &&
+    typeof item.time === 'string' && TIME_RE.test(item.time)
   );
 }
 
 function sanitizeItem(item) {
-  const { id, experienceId, mode, guests, date, time } = item;
-  return { id, experienceId, mode, guests, date, time };
+  const { id, experienceId, mode, guests } = item;
+  if (mode === 'request') {
+    return { id, experienceId, mode, guests, requestedDates: item.requestedDates || '' };
+  }
+  return { id, experienceId, mode, guests, date: item.date, time: item.time };
 }
 
 /**

@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useCurrency } from '../../context/useCurrency.js';
 import { useBookingCart } from '../../context/useBookingCart.js';
-import { getInstantExperience } from '../../data/commerceCatalog.js';
-import { priceSelection, quoteCartItems } from '../../lib/storeApi.js';
+import { getCartExperience, getInstantExperience } from '../../data/commerceCatalog.js';
+import { isRequestItem, priceSelection, quoteCartItems } from '../../lib/storeApi.js';
 import { trackEvent } from '../../utils/analytics.js';
 import CartItem from './CartItem.jsx';
 import { ArrowRightIcon, CloseIcon } from './StoreIcons.jsx';
@@ -30,17 +30,21 @@ export default function CartDrawer() {
   const lines = useMemo(
     () =>
       state.items
-        .map((item) => ({ item, experience: getInstantExperience(item.experienceId) }))
+        .map((item) => ({ item, experience: getCartExperience(item.experienceId) }))
         .filter((line) => line.experience),
     [state.items],
   );
 
+  const hasRequestItems = lines.some(({ item }) => isRequestItem(item));
+
+  // Request items carry no price until staff quote them.
   const subtotalUsd = useMemo(
     () =>
-      lines.reduce(
-        (sum, { item, experience }) => sum + priceSelection(experience, item.mode, item.guests).totalUsd,
-        0,
-      ),
+      lines.reduce((sum, { item }) => {
+        if (isRequestItem(item)) return sum;
+        const experience = getInstantExperience(item.experienceId);
+        return experience ? sum + priceSelection(experience, item.mode, item.guests).totalUsd : sum;
+      }, 0),
     [lines],
   );
 
@@ -101,8 +105,10 @@ export default function CartDrawer() {
     };
   }, [open, dispatch]);
 
-  const statusFor = (itemId) =>
-    quote?.quotes?.find((entry) => entry.id === itemId)?.status || 'available';
+  const statusFor = (line) => {
+    if (isRequestItem(line.item)) return 'request_pending';
+    return quote?.quotes?.find((entry) => entry.id === line.item.id)?.status || 'available';
+  };
 
   const editItem = (line) => {
     dispatch({ type: 'close_drawer' });
@@ -154,8 +160,10 @@ export default function CartDrawer() {
                 key={line.item.id}
                 item={line.item}
                 experience={line.experience}
-                status={statusFor(line.item.id)}
-                totalUsd={priceSelection(line.experience, line.item.mode, line.item.guests).totalUsd}
+                status={statusFor(line)}
+                totalUsd={isRequestItem(line.item)
+                  ? 0
+                  : priceSelection(line.experience, line.item.mode, line.item.guests).totalUsd}
                 onEdit={() => editItem(line)}
                 onRemove={() => removeItem(line)}
               />
@@ -167,13 +175,18 @@ export default function CartDrawer() {
           <div className="cart-drawer__foot">
             <div className="cart-drawer__subtotal">
               <span>{t('cart.subtotal')}</span>
-              <strong>{format(subtotalUsd)}</strong>
+              <strong>
+                {format(subtotalUsd)}
+                {hasRequestItems && <small className="cart-drawer__subtotal-note"> {t('cart.plus_request')}</small>}
+              </strong>
             </div>
             <button type="button" className="cart-drawer__checkout" onClick={beginCheckout}>
-              {t('cart.checkout_cta')}
+              {hasRequestItems ? t('cart.request_cta') : t('cart.checkout_cta')}
               <ArrowRightIcon size={17} />
             </button>
-            <p className="cart-drawer__note">{t('cart.note')}</p>
+            <p className="cart-drawer__note">
+              {hasRequestItems ? t('cart.request_note') : t('cart.note')}
+            </p>
           </div>
         )}
       </aside>

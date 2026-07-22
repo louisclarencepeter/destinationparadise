@@ -10,7 +10,7 @@
 //
 // In both modes the server-shaped rules hold: re-price on every call,
 // re-check at checkout, never trust anything persisted in the browser.
-import { getInstantExperience } from '../data/commerceCatalog.js';
+import { getCartExperience, getInstantExperience } from '../data/commerceCatalog.js';
 
 export const BOOKING_WINDOW_DAYS = 60;
 export const ORDER_SESSION_KEY = 'dp_store_last_order_v1';
@@ -148,14 +148,24 @@ async function apiRequest(path, { method = 'GET', body, headers } = {}) {
   return { status: response.status, data };
 }
 
-const toLiveItem = (item) => ({
-  id: item.id,
-  sourceKey: item.experienceId,
-  optionCode: item.mode,
-  guests: item.guests,
-  date: item.date,
-  time: item.time,
-});
+const toLiveItem = (item) => (item.mode === 'request'
+  ? {
+      id: item.id,
+      sourceKey: item.experienceId,
+      optionCode: 'request',
+      guests: item.guests,
+      requestedDates: item.requestedDates || '',
+    }
+  : {
+      id: item.id,
+      sourceKey: item.experienceId,
+      optionCode: item.mode,
+      guests: item.guests,
+      date: item.date,
+      time: item.time,
+    });
+
+export const isRequestItem = (item) => item?.mode === 'request';
 
 const minorToUsd = (minor) => Number(minor || 0) / 100;
 
@@ -191,13 +201,16 @@ function mapServerOrder(serverOrder) {
     bookingCode: item.bookingCode || null,
     experienceId: item.sourceKey,
     title: item.title,
-    image: getInstantExperience(item.sourceKey)?.image || null,
+    image: getCartExperience(item.sourceKey)?.image || null,
+    kind: item.kind || 'instant',
     date: item.date,
     time: item.time,
+    requestedDates: item.requestedDates || null,
+    staffNote: item.staffNote || null,
     mode: item.optionCode,
     guests: item.guests,
     pickup: item.pickup,
-    totalUsd: minorToUsd(item.totalMinor),
+    totalUsd: item.totalMinor != null ? minorToUsd(item.totalMinor) : null,
   }));
   return {
     reference: serverOrder.reference,
@@ -207,6 +220,8 @@ function mapServerOrder(serverOrder) {
     totalUsd: minorToUsd(serverOrder.totalMinor),
     currency: serverOrder.currency || 'USD',
     contact: { name: serverOrder.contactName || '' },
+    quoteNote: serverOrder.quoteNote || null,
+    quoteExpiresAt: serverOrder.quoteExpiresAt || null,
     items,
   };
 }
@@ -242,11 +257,21 @@ export async function fetchMonthAvailability(experienceId, year, month, { latenc
 }
 
 // Re-price and re-check a set of cart items (drawer open, checkout render).
+// Request items are not quotable — they get a static 'request_pending' status
+// and never count toward the payable subtotal.
 export async function quoteCartItems(items, { latencyMs = DEFAULT_LATENCY_MS } = {}) {
+  const requestQuotes = items
+    .filter(isRequestItem)
+    .map((item) => ({ id: item.id, status: 'request_pending', seats: 0, totalUsd: 0 }));
+  const instantItems = items.filter((item) => !isRequestItem(item));
+
   if (LIVE) {
+    if (instantItems.length === 0) {
+      return { quotes: requestQuotes, subtotalUsd: 0, currency: 'USD' };
+    }
     const { data } = await apiRequest('/api/store/quote', {
       method: 'POST',
-      body: { items: items.map(toLiveItem) },
+      body: { items: instantItems.map(toLiveItem) },
     });
     if (!data?.ok) throw new Error(data?.error || 'quote_unavailable');
     const quotes = (data.quotes || []).map((quote) => ({
@@ -255,16 +280,20 @@ export async function quoteCartItems(items, { latencyMs = DEFAULT_LATENCY_MS } =
       seats: quote.seats ?? 0,
       totalUsd: minorToUsd(quote.price?.totalMinor),
     }));
-    return { quotes, subtotalUsd: minorToUsd(data.subtotalMinor), currency: data.currency || 'USD' };
+    return {
+      quotes: [...quotes, ...requestQuotes],
+      subtotalUsd: minorToUsd(data.subtotalMinor),
+      currency: data.currency || 'USD',
+    };
   }
 
   if (latencyMs > 0) await sleep(latencyMs);
   const today = todayInStoreTz();
-  const quotes = items.map((item) => evaluateItem(item, today));
+  const quotes = instantItems.map((item) => evaluateItem(item, today));
   const subtotalUsd = quotes
     .filter((quote) => quote.status === 'available')
     .reduce((sum, quote) => sum + quote.totalUsd, 0);
-  return { quotes, subtotalUsd, currency: 'USD' };
+  return { quotes: [...quotes, ...requestQuotes], subtotalUsd, currency: 'USD' };
 }
 
 // Simulated (fixtures) or real (live) checkout. Live mode creates the pending
@@ -359,6 +388,126 @@ export async function submitCheckout({ items, contact }, { latencyMs = CHECKOUT_
   return { ok: true, order };
 }
 
+// Submit a request/mixed cart: an awaiting_availability order with no payment
+// and no holds. Staff confirm via SQL; the guest accepts by email link.
+export async function submitRequestCheckout({ items, contact }, { latencyMs = CHECKOUT_LATENCY_MS } = {}) {
+  if (LIVE) {
+    const { data } = await apiRequest('/api/store/request', {
+      method: 'POST',
+      body: {
+        items: items.map(toLiveItem),
+        contact: { name: contact?.name || '', email: contact?.email || '', phone: contact?.phone || '' },
+        language: (document.documentElement.lang || 'en').slice(0, 2),
+        idempotencyKey: idempotencyKeyFor(items),
+      },
+    });
+    if (!data?.ok) {
+      return { ok: false, error: data?.error || 'request_unavailable' };
+    }
+    saveOrderCredentials({ reference: data.reference, token: data.accessToken });
+    clearIdempotencyKey();
+    const order = {
+      reference: data.reference,
+      status: 'awaiting_availability',
+      createdAt: new Date().toISOString(),
+      totalUsd: 0,
+      currency: 'USD',
+      contact: { name: contact?.name || '' },
+      items: items.map((item) => ({
+        bookingCode: null,
+        experienceId: item.experienceId,
+        title: getCartExperience(item.experienceId)?.title || item.experienceId,
+        image: getCartExperience(item.experienceId)?.image || null,
+        kind: isRequestItem(item) ? 'request' : 'instant',
+        date: item.date || null,
+        time: item.time || null,
+        requestedDates: item.requestedDates || null,
+        mode: item.mode,
+        guests: item.guests,
+        pickup: getCartExperience(item.experienceId)?.pickup || null,
+        totalUsd: null,
+      })),
+    };
+    saveLastOrder(order);
+    return { ok: true, order };
+  }
+
+  // Fixture mode: simulate the awaiting order locally (no staff flow exists).
+  if (latencyMs > 0) await sleep(latencyMs);
+  const order = {
+    reference: orderReference(),
+    status: 'awaiting_availability',
+    createdAt: new Date().toISOString(),
+    totalUsd: 0,
+    currency: 'USD',
+    contact: { name: contact?.name || '' },
+    items: items.map((item) => ({
+      bookingCode: null,
+      experienceId: item.experienceId,
+      title: getCartExperience(item.experienceId)?.title || item.experienceId,
+      image: getCartExperience(item.experienceId)?.image || null,
+      kind: isRequestItem(item) ? 'request' : 'instant',
+      date: item.date || null,
+      time: item.time || null,
+      requestedDates: item.requestedDates || null,
+      mode: item.mode,
+      guests: item.guests,
+      pickup: getCartExperience(item.experienceId)?.pickup || null,
+      totalUsd: null,
+    })),
+  };
+  return { ok: true, order };
+}
+
+// Guest accepts a staff quote (live only — the quoted state can't arise in
+// fixtures). Returns { ok, redirect? } mirroring submitCheckout's payment
+// hand-off so the order page can reuse the same continuation logic.
+export async function acceptQuote(reference) {
+  if (!LIVE) return { ok: false, error: 'accept_unavailable' };
+  const credentials = readOrderCredentials(reference);
+  if (!credentials) return { ok: false, error: 'not_found' };
+
+  const { status, data } = await apiRequest('/api/store/accept', {
+    method: 'POST',
+    body: { reference, token: credentials.token },
+  });
+  if (!data?.ok) {
+    if (status === 409 || data?.error === 'availability_conflict') {
+      return { ok: false, error: 'availability_conflict', conflicts: data?.conflicts || [] };
+    }
+    return { ok: false, error: data?.error || 'accept_unavailable' };
+  }
+
+  if (data.payment?.mode === 'dpo') {
+    const pay = await apiRequest('/api/store/pay', {
+      method: 'POST',
+      body: { reference, token: credentials.token },
+    });
+    if (!pay.data?.ok || !pay.data?.paymentUrl) {
+      return { ok: false, error: pay.data?.error || 'payment_unavailable' };
+    }
+    return { ok: true, redirect: pay.data.paymentUrl };
+  }
+
+  if (data.payment?.mode === 'dev_simulated') {
+    const devPay = await apiRequest('/api/store/dev-pay', {
+      method: 'POST',
+      body: { reference, token: credentials.token },
+    });
+    if (!devPay.data?.ok || !devPay.data?.order?.ok) {
+      return { ok: false, error: devPay.data?.error || 'finalize_unavailable' };
+    }
+    const order = mapServerOrder(devPay.data.order);
+    saveLastOrder(order);
+    return { ok: true, order };
+  }
+
+  // Accepted with holds in place, but no payment rail yet (pre-DPO): the team
+  // sends the payment link manually once DPO activates.
+  const refreshed = await fetchStoredOrder(reference);
+  return { ok: true, order: refreshed || undefined, paymentPending: true };
+}
+
 // ---------------------------------------------------------------------------
 // Confirmation-page persistence
 // ---------------------------------------------------------------------------
@@ -404,6 +553,14 @@ function readOrderCredentials(reference) {
   } catch {
     return null;
   }
+}
+
+// Email links carry `?t=<token>`; the order page adopts it into the session
+// (and then strips it from the URL) so refreshes and accepts keep working.
+export function adoptOrderCredentials(reference, token) {
+  if (!/^[a-f0-9]{48}$/.test(String(token || ''))) return false;
+  saveOrderCredentials({ reference, token });
+  return true;
 }
 
 // Live-mode refresh path for the confirmation page: re-reads the order from
