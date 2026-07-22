@@ -70,7 +70,6 @@
 .policy-meta a,
 .policy-section a {
   color: var(--dp-accent-text);
-  text-decoration: underline;
 }
 
 .policy-content {

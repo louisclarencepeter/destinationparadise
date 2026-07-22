@@ -661,7 +661,6 @@ html[data-theme="dark"] .ret-teacher-card__copy li {
 .ret-detail-crumbs a:focus-visible {
   color: var(--dp-accent);
   outline: 0;
-  text-decoration: underline;
 }
 .ret-teacher-detail-hero {
   width: min(var(--site-max-width), 92%);
