@@ -31,7 +31,10 @@
     "empty": "No excursions in this category yet — check back soon, or filter by All.",
     "show_more": "Show more excursions",
     "show_fewer": "Show fewer excursions",
-    "showing_count": "{{visible}} of {{total}} shown"
+    "showing_count": "{{visible}} of {{total}} shown",
+    "directory_eyebrow": "Complete excursion directory",
+    "directory_title": "Browse all {{total}} Zanzibar excursions.",
+    "directory_lead": "Use this quick directory to compare every day trip, water activity, cultural experience, and island adventure."
   },
   "pairings": {
     "eyebrow": "Locals' picks",
@@ -96,6 +99,12 @@
     "from": "from",
     "per_person": "per person",
     "price_on_request": "Price on request",
+    "related": {
+      "eyebrow": "Keep exploring",
+      "title": "More Zanzibar experiences like this.",
+      "lead": "Compare related excursions and build a day that fits your pace.",
+      "view": "View excursion →"
+    },
     "book_this": "Book this →",
     "all_excursions": "All excursions",
     "timeline": {

@@ -378,7 +378,11 @@
     "empty": "No safaris in this filter yet. Try All.",
     "show_more": "Show more safaris",
     "show_fewer": "Show fewer safaris",
-    "showing_count": "{{visible}} of {{total}} shown"
+    "showing_count": "{{visible}} of {{total}} shown",
+    "directory_eyebrow": "Complete safari directory",
+    "directory_title": "Browse all {{total}} Tanzania safari itineraries.",
+    "directory_lead": "Compare every classic circuit, fly-in safari, walking route, family trip, and bush-and-beach itinerary.",
+    "directory_group": "All Tanzania safaris"
   },
   "filters": {
     "all": "All",

@@ -31,7 +31,10 @@
     "empty": "In dieser Kategorie gibt es noch keine Ausflüge — schau bald wieder vorbei oder filtere nach Alle.",
     "show_more": "Mehr Ausflüge anzeigen",
     "show_fewer": "Weniger anzeigen",
-    "showing_count": "{{visible}} von {{total}} angezeigt"
+    "showing_count": "{{visible}} von {{total}} angezeigt",
+    "directory_eyebrow": "Vollständiges Ausflugsverzeichnis",
+    "directory_title": "Alle {{total}} Sansibar-Ausflüge entdecken.",
+    "directory_lead": "Nutze dieses Verzeichnis, um alle Tagesausflüge, Wasseraktivitäten, Kulturerlebnisse und Inselabenteuer zu vergleichen."
   },
   "pairings": {
     "eyebrow": "Tipps von Locals",
@@ -96,6 +99,12 @@
     "from": "ab",
     "per_person": "pro Person",
     "price_on_request": "Preis auf Anfrage",
+    "related": {
+      "eyebrow": "Weiter entdecken",
+      "title": "Weitere ähnliche Erlebnisse auf Sansibar.",
+      "lead": "Vergleiche passende Ausflüge und stelle einen Tag zusammen, der zu deinem Tempo passt.",
+      "view": "Ausflug ansehen →"
+    },
     "book_this": "Diesen Ausflug buchen →",
     "all_excursions": "Alle Ausflüge",
     "timeline": {

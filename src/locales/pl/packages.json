@@ -22,7 +22,11 @@
     "explore_cta": "Zobacz →",
     "show_more": "Pokaż więcej pakietów",
     "show_fewer": "Pokaż mniej pakietów",
-    "showing_count": "Pokazano {{visible}} z {{total}}"
+    "showing_count": "Pokazano {{visible}} z {{total}}",
+    "directory_eyebrow": "Pełny katalog pakietów",
+    "directory_title": "Zobacz wszystkie {{total}} pakiety na Zanzibar i do Tanzanii.",
+    "directory_lead": "Porównaj wszystkie trasy safari i plaża, podróże poślubne, rodzinne, przelotowe i pakiety na dłuższy pobyt.",
+    "directory_group": "Wszystkie pakiety podróżne"
   },
   "filters": {
     "all": "Wszystkie",

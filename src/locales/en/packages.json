@@ -22,7 +22,11 @@
     "explore_cta": "Explore →",
     "show_more": "Show more packages",
     "show_fewer": "Show fewer packages",
-    "showing_count": "{{visible}} of {{total}} shown"
+    "showing_count": "{{visible}} of {{total}} shown",
+    "directory_eyebrow": "Complete package directory",
+    "directory_title": "Browse all {{total}} Zanzibar and Tanzania packages.",
+    "directory_lead": "Compare every safari-and-beach itinerary, honeymoon, family trip, fly-in route, and long-stay package.",
+    "directory_group": "All travel packages"
   },
   "filters": {
     "all": "All",

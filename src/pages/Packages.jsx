@@ -178,6 +178,26 @@ export default function Packages() {
             <span>{t('grid.showing_count', { visible: Math.min(visibleCount, filteredPackages.length), total: filteredPackages.length })}</span>
           </div>
         )}
+
+        <nav className="exc-directory" aria-labelledby="package-directory-title">
+          <header className="exc-directory__head">
+            <span className="section-eyebrow">{t('grid.directory_eyebrow')}</span>
+            <h2 className="section-title" id="package-directory-title">
+              {t('grid.directory_title', { total: packages.length })}
+            </h2>
+            <p className="section-lead">{t('grid.directory_lead')}</p>
+          </header>
+          <div className="exc-directory__groups">
+            <section className="exc-directory__group exc-directory__group--wide">
+              <h3>{t('grid.directory_group')}</h3>
+              <ul>
+                {packages.map((pkg) => (
+                  <li key={pkg.id}><Link to={`/packages/${pkg.id}`}>{pkg.title}</Link></li>
+                ))}
+              </ul>
+            </section>
+          </div>
+        </nav>
       </section>
 
       <section className="saf-compare">

@@ -31,7 +31,10 @@
     "empty": "Nie ma jeszcze wycieczek w tej kategorii. Spróbuj wybrać Wszystkie.",
     "show_more": "Pokaż więcej wycieczek",
     "show_fewer": "Pokaż mniej wycieczek",
-    "showing_count": "Pokazano {{visible}} z {{total}}"
+    "showing_count": "Pokazano {{visible}} z {{total}}",
+    "directory_eyebrow": "Pełny katalog wycieczek",
+    "directory_title": "Zobacz wszystkie {{total}} wycieczki na Zanzibarze.",
+    "directory_lead": "Skorzystaj z katalogu, aby porównać wszystkie wycieczki jednodniowe, atrakcje wodne, doświadczenia kulturowe i przygody na wyspie."
   },
   "pairings": {
     "eyebrow": "Wybory lokalnych",
@@ -96,6 +99,12 @@
     "from": "od",
     "per_person": "za osobę",
     "price_on_request": "Cena na zapytanie",
+    "related": {
+      "eyebrow": "Odkrywaj dalej",
+      "title": "Więcej podobnych atrakcji na Zanzibarze.",
+      "lead": "Porównaj powiązane wycieczki i ułóż dzień w swoim tempie.",
+      "view": "Zobacz wycieczkę →"
+    },
     "book_this": "Zarezerwuj tę wycieczkę →",
     "all_excursions": "Wszystkie wycieczki",
     "timeline": {

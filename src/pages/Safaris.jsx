@@ -56,6 +56,7 @@ export default function Safaris() {
     <main className="safaris-page" ref={pageRef}>
       <SafariHero safariCount={ALL_SAFARI_PRODUCTS.length} minSafariPrice={minSafariPrice} />
       <SafariItineraries
+        allSafaris={ALL_SAFARI_PRODUCTS}
         filteredSafaris={filteredSafaris}
         filter={filter}
         hasHiddenSafaris={hasHiddenSafaris}

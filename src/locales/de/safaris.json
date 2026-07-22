@@ -458,7 +458,11 @@
     "empty": "In diesem Filter gibt es noch keine Safaris. Versuch Alle.",
     "show_more": "Mehr Safaris anzeigen",
     "show_fewer": "Weniger anzeigen",
-    "showing_count": "{{visible}} von {{total}} angezeigt"
+    "showing_count": "{{visible}} von {{total}} angezeigt",
+    "directory_eyebrow": "Vollständiges Safari-Verzeichnis",
+    "directory_title": "Alle {{total}} Tansania-Safari-Routen entdecken.",
+    "directory_lead": "Vergleiche klassische Rundreisen, Fly-in-Safaris, Wanderrouten, Familienreisen und Bush-und-Strand-Kombinationen.",
+    "directory_group": "Alle Tansania-Safaris"
   },
   "filters": {
     "all": "Alle",

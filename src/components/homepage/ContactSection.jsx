@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../../styles/homepage/contact.css';
 import { CONTACT_INFO } from '../../constants/contactInfo.js';
+import { trackEvent } from '../../utils/analytics.js';
 import { ArrowIcon } from './Icons.jsx';
 
 export default function ContactSection() {
@@ -29,6 +30,7 @@ export default function ContactSection() {
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok || !data.ok) throw new Error(data.error || 'http');
+      trackEvent('generate_lead', { lead_source: 'contact_form' });
       setStatus('sent');
       setForm({ name: '', email: '', subject: '', message: '' });
     } catch {

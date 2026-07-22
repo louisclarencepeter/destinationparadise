@@ -378,7 +378,11 @@
     "empty": "Nie ma jeszcze safari w tym filtrze. Spróbuj wybrać Wszystkie.",
     "show_more": "Pokaż więcej safari",
     "show_fewer": "Pokaż mniej safari",
-    "showing_count": "Pokazano {{visible}} z {{total}}"
+    "showing_count": "Pokazano {{visible}} z {{total}}",
+    "directory_eyebrow": "Pełny katalog safari",
+    "directory_title": "Zobacz wszystkie {{total}} trasy safari w Tanzanii.",
+    "directory_lead": "Porównaj klasyczne trasy, safari z przelotem, wyprawy piesze, rodzinne oraz połączenia buszu i plaży.",
+    "directory_group": "Wszystkie safari w Tanzanii"
   },
   "filters": {
     "all": "Wszystkie",

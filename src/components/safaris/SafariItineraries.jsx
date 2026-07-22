@@ -6,6 +6,7 @@ import { textFromTranslation } from '../../utils/translationValues.js';
 import { preferredScrollBehavior } from '../../utils/motion.js';
 
 export default function SafariItineraries({
+  allSafaris,
   filteredSafaris,
   filter,
   hasHiddenSafaris,
@@ -107,6 +108,28 @@ export default function SafariItineraries({
           <span>{t('itineraries.showing_count', { visible: Math.min(visibleCount, filteredSafaris.length), total: filteredSafaris.length })}</span>
         </div>
       )}
+
+      <nav className="exc-directory" aria-labelledby="safari-directory-title">
+        <header className="exc-directory__head">
+          <span className="section-eyebrow">{t('itineraries.directory_eyebrow')}</span>
+          <h2 className="section-title" id="safari-directory-title">
+            {t('itineraries.directory_title', { total: allSafaris.length })}
+          </h2>
+          <p className="section-lead">{t('itineraries.directory_lead')}</p>
+        </header>
+        <div className="exc-directory__groups">
+          <section className="exc-directory__group exc-directory__group--wide">
+            <h3>{t('itineraries.directory_group')}</h3>
+            <ul>
+              {allSafaris.map((itinerary) => (
+                <li key={itinerary.id}>
+                  <Link to={`/safaris/${itinerary.id}`}>{itinerary.title}</Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
+      </nav>
     </section>
   );
 }
