@@ -225,16 +225,56 @@ function createApiError(message, response, json, method) {
   error.httpStatus = response.status;
   error.code = json?.error?.code;
   error.subcode = json?.error?.error_subcode;
+  error.requestMethod = method;
   error.uncertain = method === 'POST' && (response.status === 408 || response.status === 429 || response.status >= 500);
   return error;
 }
 
-async function apiRequest(token, endpoint, { body, method = 'GET', params } = {}) {
+const SAFE_REQUEST_RETRIES = 2;
+// Overridable so the exit-code tests can spawn the real script without
+// paying the production backoff.
+const SAFE_REQUEST_BACKOFF_MS = Number(process.env.THREADS_RETRY_BACKOFF_MS) || 1_000;
+const TRANSIENT_HTTP_STATUSES = new Set([408, 429, 500, 502, 503, 504]);
+
+// Meta intermittently rejects valid GET requests with 500 code 10
+// ("Application does not have permission for this action") or 401 code 190
+// ("Cannot parse access token"); both cleared on the next scheduled run with
+// an unchanged token (Actions runs 29535570483 and 29536479874, 2026-07-16).
+export function isTransientApiError(error) {
+  if (TRANSIENT_HTTP_STATUSES.has(error.httpStatus)) return true;
+  return error.httpStatus === 401 && error.code === 190;
+}
+
+// All GETs happen before a reply is selected, so a run that dies on a GET has
+// journaled nothing and attempted no publish; re-running the whole script is
+// side-effect free. The workflow re-runs the step only on this exit code.
+export const TRANSIENT_RUN_EXIT_CODE = 75;
+
+export function isRetryableRunError(error) {
+  if (error.requestMethod !== 'GET') return false;
+  return !error.httpStatus || isTransientApiError(error);
+}
+
+export async function apiRequest(token, endpoint, { body, method = 'GET', params } = {}) {
   const url = new URL(`${API_ORIGIN}/${endpoint.replace(/^\/+/, '')}`);
   for (const [key, value] of Object.entries(params || {})) {
     if (value !== null && value !== undefined && value !== '') url.searchParams.set(key, String(value));
   }
 
+  // Only idempotent GETs retry; publish POSTs stay exactly-once, and their
+  // transient failures keep flowing through the `uncertain` journaling path.
+  const retries = method === 'GET' ? SAFE_REQUEST_RETRIES : 0;
+  for (let attempt = 0; ; attempt += 1) {
+    if (attempt > 0) await new Promise((resolve) => setTimeout(resolve, SAFE_REQUEST_BACKOFF_MS * attempt));
+    try {
+      return await sendApiRequest(token, url, { body, method });
+    } catch (error) {
+      if (attempt === retries || (error.httpStatus && !isTransientApiError(error))) throw error;
+    }
+  }
+}
+
+async function sendApiRequest(token, url, { body, method }) {
   let response;
   try {
     response = await fetch(url, {
@@ -249,11 +289,23 @@ async function apiRequest(token, endpoint, { body, method = 'GET', params } = {}
   } catch (cause) {
     const error = new Error(`Threads API ${method} request did not return a response.`);
     error.cause = cause;
+    error.requestMethod = method;
     error.uncertain = method === 'POST';
     throw error;
   }
 
-  const text = await response.text();
+  let text;
+  try {
+    text = await response.text();
+  } catch (cause) {
+    // The connection can drop after headers arrive; a POST body may still
+    // have been processed by the server, so it keeps the uncertain marker.
+    const error = new Error(`Threads API ${method} response body could not be read (${response.status}).`);
+    error.cause = cause;
+    error.requestMethod = method;
+    error.uncertain = method === 'POST';
+    throw error;
+  }
   let json;
   try {
     json = text ? JSON.parse(text) : {};
@@ -309,6 +361,7 @@ function safeError(error) {
     ...(error.httpStatus ? { httpStatus: error.httpStatus } : {}),
     ...(error.code ? { code: error.code } : {}),
     ...(error.subcode ? { subcode: error.subcode } : {}),
+    ...(error.requestMethod ? { requestMethod: error.requestMethod } : {}),
     ...(error.uncertain ? { uncertain: true } : {}),
   };
 }
@@ -416,6 +469,6 @@ async function main() {
 if (process.argv[1] && path.resolve(process.argv[1]) === import.meta.filename) {
   main().catch((error) => {
     console.error(JSON.stringify({ ok: false, ...safeError(error) }));
-    process.exitCode = 1;
+    process.exitCode = isRetryableRunError(error) ? TRANSIENT_RUN_EXIT_CODE : 1;
   });
 }

@@ -3,10 +3,12 @@ import { readFile } from 'node:fs/promises';
 import opentype from 'opentype.js';
 import sharp from 'sharp';
 
-import { INSTAGRAM_STORY_CARD_BY_ID } from '../../data/instagramStoryCards.mjs';
+import {
+  INSTAGRAM_STORY_ALLOWED_SOURCE as ALLOWED_SOURCE,
+  INSTAGRAM_STORY_CARD_BY_ID,
+} from '../../data/instagramStoryCards.mjs';
 
 const SITE_ORIGIN = 'https://yournexttriptoparadise.com';
-const ALLOWED_SOURCE = /^\/assets\/images\/(home|excursions|safaris)\/[a-z0-9/-]+\.webp$/;
 const WIDTH = 1080;
 const HEIGHT = 1920;
 async function loadFont(relativePath) {

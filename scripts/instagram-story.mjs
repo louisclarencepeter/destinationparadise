@@ -3,7 +3,10 @@ import { access, appendFile, readFile, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
-import { INSTAGRAM_STORY_CARDS } from '../data/instagramStoryCards.mjs';
+import {
+  INSTAGRAM_STORY_ALLOWED_SOURCE,
+  INSTAGRAM_STORY_CARDS,
+} from '../data/instagramStoryCards.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
 const ENV_PATH = path.resolve(ROOT, process.env.INSTAGRAM_STORY_ENV_PATH || '.env.instagram-story');
@@ -53,11 +56,54 @@ async function loadConfig() {
   return values;
 }
 
-async function listApprovedCards() {
-  await Promise.all(
-    INSTAGRAM_STORY_CARDS.map((card) => access(path.join(ROOT, 'public', card.source))),
+// A problem with one card's media (bad type, missing file, Meta rejection)
+// must skip that card, not fail the whole run.
+export class StoryMediaError extends Error {
+  constructor(message, card, { code, subcode } = {}) {
+    super(message);
+    this.name = 'StoryMediaError';
+    this.cardId = card?.id;
+    this.source = card?.source;
+    this.code = code;
+    this.subcode = subcode;
+  }
+}
+
+// Meta reports unacceptable media as code 9004 (e.g. subcode 2207052,
+// "Only photo or video can be accepted as media type.").
+export function isStoryMediaError(error) {
+  return (
+    error instanceof StoryMediaError ||
+    error?.code === 9004 ||
+    error?.subcode === 2207052 ||
+    /only photo or video can be accepted/i.test(error?.message || '')
   );
-  return INSTAGRAM_STORY_CARDS;
+}
+
+export function partitionPublishableCards(cards) {
+  const publishable = [];
+  const rejected = [];
+  for (const card of cards) {
+    if (typeof card?.source === 'string' && INSTAGRAM_STORY_ALLOWED_SOURCE.test(card.source)) {
+      publishable.push(card);
+    } else {
+      rejected.push({ card, reason: 'unsupported-media-source' });
+    }
+  }
+  return { publishable, rejected };
+}
+
+async function listApprovedCards() {
+  const { publishable, rejected } = partitionPublishableCards(INSTAGRAM_STORY_CARDS);
+  const checks = await Promise.allSettled(
+    publishable.map((card) => access(path.join(ROOT, 'public', card.source))),
+  );
+  const cards = publishable.filter((card, index) => {
+    if (checks[index].status === 'fulfilled') return true;
+    rejected.push({ card, reason: 'missing-media-file' });
+    return false;
+  });
+  return { cards, rejected };
 }
 
 async function readState() {
@@ -161,27 +207,35 @@ async function graphRequest(config, endpoint, options = {}) {
   return json;
 }
 
-async function verifyImage(imageUrl) {
+export async function verifyImage(imageUrl, card) {
   const response = await fetchWithSafeRetries(imageUrl, { method: 'HEAD' });
-  if (!response.ok) throw new Error(`Story image is not publicly available (${response.status}).`);
+  if (!response.ok) {
+    throw new StoryMediaError(`Story image is not publicly available (${response.status}).`, card);
+  }
   const contentType = response.headers.get('content-type') || '';
   const contentLength = Number(response.headers.get('content-length') || 0);
   if (contentType !== 'image/jpeg') {
-    throw new Error(`Story image must resolve to image/jpeg, received ${contentType || 'unknown'}.`);
+    throw new StoryMediaError(
+      `Story image must resolve to image/jpeg, received ${contentType || 'unknown'}.`,
+      card,
+    );
   }
   if (contentLength > 8 * 1024 * 1024) {
-    throw new Error(`Story image is too large (${contentLength} bytes).`);
+    throw new StoryMediaError(`Story image is too large (${contentLength} bytes).`, card);
   }
   return { contentLength, contentType };
 }
 
-async function waitForContainer(config, creationId) {
+async function waitForContainer(config, creationId, card) {
   const deadline = Date.now() + 120_000;
   while (Date.now() < deadline) {
     const status = await graphRequest(config, `${creationId}?fields=status_code,status`);
     if (status.status_code === 'FINISHED') return status;
     if (['ERROR', 'EXPIRED'].includes(status.status_code)) {
-      throw new Error(`Story media processing failed: ${status.status || status.status_code}`);
+      throw new StoryMediaError(
+        `Story media processing failed: ${status.status || status.status_code}`,
+        card,
+      );
     }
     await new Promise((resolve) => setTimeout(resolve, 5_000));
   }
@@ -222,10 +276,48 @@ async function main() {
     );
   }
 
-  const cards = await listApprovedCards();
-  const { selected, nextState } = chooseStoryCard(cards, state);
+  const { cards, rejected } = await listApprovedCards();
+  for (const { card, reason } of rejected) {
+    await reportSkippedCard({ reason, cardId: card?.id, source: card?.source });
+  }
+  if (!cards.length) throw new Error('No approved Destination Paradise Story cards found.');
+
+  const skippedIds = new Set();
+  for (;;) {
+    const candidates = cards.filter((card) => !skippedIds.has(card.id));
+    if (!candidates.length) {
+      throw new Error(
+        `Every approved Story card failed media validation: ${[...skippedIds].join(', ')}.`,
+      );
+    }
+    const { selected, nextState } = chooseStoryCard(candidates, state);
+    try {
+      await publishStoryCard({ config, profile, selected, nextState, cardCount: cards.length });
+      return;
+    } catch (error) {
+      if (!isStoryMediaError(error)) throw error;
+      skippedIds.add(selected.id);
+      await reportSkippedCard({
+        reason: 'unpublishable-media',
+        cardId: selected.id,
+        source: selected.source,
+        error: error.message,
+        code: error.code,
+        subcode: error.subcode,
+      });
+    }
+  }
+}
+
+async function reportSkippedCard(details) {
+  const entry = { skippedCardAt: new Date().toISOString(), ...details };
+  console.warn(JSON.stringify(entry));
+  if (mode === 'publish') await recordLog(entry);
+}
+
+async function publishStoryCard({ config, profile, selected, nextState, cardCount }) {
   const imageUrl = createImageUrl(selected);
-  const image = await verifyImage(imageUrl);
+  const image = await verifyImage(imageUrl, selected);
   const selectionHash = createHash('sha256').update(selected.id).digest('hex').slice(0, 12);
 
   if (mode === 'dry-run') {
@@ -234,7 +326,7 @@ async function main() {
         {
           mode,
           account: `@${profile.username}`,
-          cardCount: cards.length,
+          cardCount,
           selected: selected.source,
           title: selected.title,
           caption: selected.caption,
@@ -258,7 +350,7 @@ async function main() {
     `${config.META_INSTAGRAM_ACCOUNT_ID}/media`,
     { method: 'POST', body: createBody },
   );
-  await waitForContainer(config, container.id);
+  await waitForContainer(config, container.id, selected);
 
   const publishBody = new URLSearchParams({ creation_id: container.id });
   const published = await graphRequest(

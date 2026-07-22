@@ -22,6 +22,7 @@ import { useFloatingBookingSummary } from '../hooks/useFloatingBookingSummary.js
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import usePageMeta from '../hooks/usePageMeta.js';
 import { useCurrency } from '../context/useCurrency.js';
+import { trackEvent } from '../utils/analytics.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/booking.css';
@@ -395,6 +396,10 @@ export default function Booking() {
       });
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data.ok) throw new Error(data.error || 'booking-request-failed');
+      trackEvent('generate_lead', {
+        lead_source: 'booking_request',
+        service_type: form.serviceType || 'not_selected',
+      });
       setStatus('sent');
       setForm(DEFAULT_BOOKING_FORM);
       setBotField('');

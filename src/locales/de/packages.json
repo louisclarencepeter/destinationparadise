@@ -22,7 +22,11 @@
     "explore_cta": "Ansehen →",
     "show_more": "Mehr Pakete anzeigen",
     "show_fewer": "Weniger anzeigen",
-    "showing_count": "{{visible}} von {{total}} angezeigt"
+    "showing_count": "{{visible}} von {{total}} angezeigt",
+    "directory_eyebrow": "Vollständiges Paketverzeichnis",
+    "directory_title": "Alle {{total}} Sansibar- und Tansania-Pakete entdecken.",
+    "directory_lead": "Vergleiche alle Safari-und-Strand-Reisen, Flitterwochen, Familienreisen, Fly-in-Routen und Langzeitpakete.",
+    "directory_group": "Alle Reisepakete"
   },
   "filters": {
     "all": "Alle",

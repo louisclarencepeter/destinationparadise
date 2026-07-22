@@ -10,5 +10,6 @@
 @import './excursions/anchor-offsets.css';
 @import './excursions/responsive.css';
 @import './excursions/grid.css';
+@import './excursions/directory.css';
 @import './excursions/detail.css';
 @import './excursions/reveal.css';

@@ -92,7 +92,6 @@ a.contact__detail-value:hover { color: var(--dp-accent); }
   font-weight: 800;
   text-decoration: none;
 }
-.contact__privacy a:hover { text-decoration: underline; }
 
 .contact__status {
   font-family: var(--dp-font-sans);

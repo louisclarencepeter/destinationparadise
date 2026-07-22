@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import {
   EXCURSION_BATCH_COUNT,
   EXCURSION_FILTERS,
+  EXCURSION_PAGE_CARDS,
   INITIAL_EXCURSION_COUNT,
   categoryToSlug,
 } from '../../data/excursionsPageContent.js';
@@ -120,6 +121,34 @@ export default function ExcursionsGrid({
           <span>{t('grid.showing_count', { visible: Math.min(visibleCount, filteredExcursions.length), total: filteredExcursions.length })}</span>
         </div>
       )}
+
+      <nav className="exc-directory" aria-labelledby="exc-directory-title">
+        <header className="exc-directory__head">
+          <span className="section-eyebrow">{t('grid.directory_eyebrow')}</span>
+          <h2 className="section-title" id="exc-directory-title">
+            {t('grid.directory_title', { total: EXCURSION_PAGE_CARDS.length })}
+          </h2>
+          <p className="section-lead">{t('grid.directory_lead')}</p>
+        </header>
+        <div className="exc-directory__groups">
+          {EXCURSION_FILTERS.filter(({ cat }) => cat !== 'all').map(({ cat }) => {
+            const items = EXCURSION_PAGE_CARDS.filter((excursion) => excursion.category === cat);
+            if (items.length === 0) return null;
+            return (
+              <section className="exc-directory__group" key={cat}>
+                <h3>{filterLabel(cat)}</h3>
+                <ul>
+                  {items.map((excursion) => (
+                    <li key={excursion.id}>
+                      <Link to={`/excursions/${excursion.id}`}>{excursion.title}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            );
+          })}
+        </div>
+      </nav>
     </section>
   );
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import '../../styles/homepage/newsletter.css';
+import { trackEvent } from '../../utils/analytics.js';
 
 const encodeForm = (data) =>
   Object.keys(data)
@@ -31,6 +32,7 @@ export default function NewsletterSection() {
     try {
       const res = await postNetlifyForm('newsletter', { email });
       if (!res.ok) throw new Error('newsletter-submit-failed');
+      trackEvent('sign_up', { method: 'newsletter' });
       setDone(true);
       setEmail('');
     } catch {

@@ -85,3 +85,13 @@ export function trackPageView(path) {
     page_title: document.title,
   });
 }
+
+// Consent-gated custom events. Callers must only pass anonymous funnel data;
+// never names, email addresses, phone numbers, notes, or payment references.
+export function trackEvent(eventName, params = {}) {
+  if (typeof window === 'undefined' || !hasAnalyticsConsent()) return;
+  loadGoogleAnalytics();
+  if (typeof window.gtag !== 'function') return;
+
+  window.gtag('event', eventName, { send_to: GOOGLE_ANALYTICS_ID, ...params });
+}

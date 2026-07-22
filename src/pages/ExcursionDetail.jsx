@@ -71,6 +71,9 @@ export default function ExcursionDetail() {
   }
 
   const e = excursion;
+  const relatedExcursions = EXCURSIONS
+    .filter((item) => item.id !== e.id && item.category === e.category)
+    .slice(0, 3);
   const pricingTiers = e.pricing ? Object.entries(e.pricing).map(([key, value]) => ({
     label: formatTierName(key),
     price: value.from,
@@ -178,6 +181,27 @@ export default function ExcursionDetail() {
           ))}
         </div>
       </section>
+
+      {relatedExcursions.length > 0 && (
+        <nav className="exc-related" aria-labelledby="exc-related-title">
+          <div className="exc-related__head">
+            <span className="section-eyebrow">{t('detail.related.eyebrow')}</span>
+            <h2 className="section-title" id="exc-related-title">{t('detail.related.title')}</h2>
+            <p className="section-lead">{t('detail.related.lead')}</p>
+          </div>
+          <ul className="exc-related__links">
+            {relatedExcursions.map((item) => (
+              <li key={item.id}>
+                <Link to={`/excursions/${item.id}`}>
+                  <span>{item.category}</span>
+                  <strong>{item.title}</strong>
+                  <small>{t('detail.related.view')}</small>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      )}
 
       <section className="exc-cta">
         <div className="exc-cta__bg"><ResponsiveImage className="dp-drift" src={e.imageNeeded ? '/assets/images/excursions/safari-blue-sandbank.webp' : e.image} alt="" /></div>
