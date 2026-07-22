@@ -3,6 +3,17 @@
 - Last updated: 2026-07-21
 - Working branch: `store`
 - Implementation status: Phases 1–3 delivered in code (feature-flagged store UI; Supabase backend with atomic checkout; DPO payment pipeline — all dark until env activation, see the per-phase operations sections). Phase 4 hardening delivered in code: dblink concurrency races green on real Postgres (last-seats checkout race, concurrent finalize replay), hourly health-check alerts (requires_review / stuck payments / dead outbox → Sentry, counts only), store payment/booking sections added to privacy+terms in EN/DE/PL (cancellation/refund rules still explicitly "pending"), and launch mechanics wired (`VITE_STORE_ENABLED=true` at build time adds `/store` to sitemap+prerender and drops its noindex; checkout/confirmation stay noindex). Remaining Phase 4 items need the user: DPO sandbox replay testing with real credentials, real-device journeys, deposit-vs-full-payment decision, final legal sign-off on the new policy copy, then the controlled production pilot. DPO merchant account will be opened in person in Zanzibar on 2026-08-03; the payment integration stays in dev-simulated mode until then (take the "DPO onboarding checklist" section below to that meeting — it is the exact list of written confirmations to request).
+
+Phase 5 delivered in code (2026-07-22): request/mixed carts. Request-only
+products (prison-island panel; northern-safari and custom-journey remain
+consultative links) join the cart, check out with NO payment and NO holds
+into an `awaiting_availability` order, staff confirm dates/prices via
+`store_staff_quote` in the Supabase SQL editor (recipes in docs/store-ops.md;
+the team-alert email links there), the guest gets a quote email whose accept
+link (rotated token, redacted after send) triggers the atomic
+hold-and-move-to-payment step, and payment reuses the existing DPO/dev
+rails. The only remaining build item across all phases is swapping the
+dev-simulated payment for live DPO once sandbox credentials exist.
 - Payment provider decision: DPO Pay by Network
 
 ## Phase 3 operations (activating DPO payments)
@@ -548,6 +559,12 @@ Obtain written confirmation of:
 - accepted `ServiceRef` format and confirmation of `ServiceDate` timezone/serialization
 - exact return/callback methods, payloads, retry behavior, and whether a true server-to-server callback is enabled
 - authoritative `verifyToken` amount/currency fields when customer currency conversion is enabled
+- whether embedding the hosted payment page in an iframe on our site is
+  officially supported for the account (their frame-ancestors policy), and how
+  3-D Secure bank challenges behave inside a frame — goal: guests pay without
+  visibly leaving the site, with a redirect fallback only where banks require it
+- hosted payment page branding options (logo, trading name, colors) so the
+  payment step reads as Destination Paradise even when redirected
 - support escalation contacts
 
 Do not block frontend/store work on commercial onboarding, but do not promise a live-payment launch date until the merchant account and settlement terms are approved.
