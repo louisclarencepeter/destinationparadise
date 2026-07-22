@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/build-image-manifest.mjs && node scripts/build-sitemap.mjs && vite build && node scripts/prerender.mjs",
+    "build": "node scripts/build-image-manifest.mjs && node scripts/build-sitemap.mjs && vite build && node scripts/prerender.mjs && node scripts/build-staging-headers.mjs",
     "build:manifest": "node scripts/build-image-manifest.mjs",
     "build:sitemap": "node scripts/build-sitemap.mjs",
     "build:prerender": "node scripts/prerender.mjs",

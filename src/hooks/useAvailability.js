@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchMonthAvailability } from '../lib/storeApi.js';
+import { trackEvent } from '../utils/analytics.js';
 
 /**
  * Loads one month of departure availability for a store experience.
@@ -22,7 +23,10 @@ export function useAvailability(experienceId, monthIso) {
     const [year, month] = monthIso.split('-').map(Number);
     fetchMonthAvailability(experienceId, year, month)
       .then((result) => {
-        if (active) setState({ loading: false, days: result.days, error: null });
+        if (active) {
+          setState({ loading: false, days: result.days, error: null });
+          trackEvent('view_availability', { item_id: experienceId, month: monthIso });
+        }
       })
       .catch((error) => {
         if (active) setState({ loading: false, days: null, error });
