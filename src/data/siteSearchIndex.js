@@ -3,8 +3,19 @@ import { EXCURSION_COMBINATIONS } from './excursionCombinations.js';
 import { destinationParadisePackages } from './destinationParadisePackages.js';
 import { ALL_SAFARI_PRODUCTS, SAFARI_TYPES } from './safariPageData.js';
 import { TRANSFER_PRODUCTS } from './transferProducts.js';
+import { isStoreEnabled } from '../config/featureFlags.js';
 
 const pageItems = [
+  // Feature-flagged: joins search only where the store itself is reachable.
+  ...(isStoreEnabled()
+    ? [{
+        title: 'Experiences Store',
+        category: 'Page',
+        description: 'Book selected excursions instantly — pick dates, times, and guests, combine several trips, and pay once.',
+        to: '/store',
+        keywords: ['store', 'instant booking', 'book online', 'cart', 'checkout', 'availability', 'safari blue', 'spice tour'],
+      }]
+    : []),
   {
     title: 'Home',
     category: 'Page',

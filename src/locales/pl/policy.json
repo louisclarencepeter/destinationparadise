@@ -64,6 +64,17 @@
             "Możesz wyczyścić lokalną pamięć przeglądarki, taką jak historia planera, język, motyw i cache kursów walut, w ustawieniach przeglądarki.",
             "Możesz w każdej chwili zrezygnować z wiadomości marketingowych, kontaktując się z nami."
           ]
+        },
+        {
+          "title": "Płatności i rezerwacje w sklepie online",
+          "items": [
+            "Gdy rezerwujesz od ręki w naszym sklepie z atrakcjami, zbieramy imię i nazwisko, adres e-mail i numer telefonu gościa głównego oraz zawartość zamówienia: wybrane atrakcje, daty, godziny i liczbę gości.",
+            "Płatności obsługuje nasz partner płatności DPO Pay na swoich bezpiecznych stronach. Dane kart i mobile money podajesz wyłącznie tam — nigdy nie trafiają do naszych systemów ani przez nie nie przechodzą.",
+            "W naszej bazie rezerwacji przechowujemy zamówienie, jego kody rezerwacji i status płatności zwrócony przez DPO (nigdy numery kart), aby zrealizować twoje wycieczki, obsłużyć zmiany i spełnić obowiązki księgowe.",
+            "Potwierdzenia zamówienia i rezerwacji wysyłamy przez naszego dostawcę poczty na adres podany przy kasie.",
+            "Zamówienia i rezerwacje przechowujemy jako dokumentację handlową tak długo, jak wymagają przepisy podatkowe i rachunkowe; napisz do nas w każdej chwili, aby uzyskać dostęp do danych lub je poprawić.",
+            "Zdarzenia analityczne sklepu nigdy nie zawierają nazwisk, adresów e-mail, numerów telefonu ani referencji płatności."
+          ]
         }
       ]
     },
@@ -102,6 +113,17 @@
             "Podroz zawsze wiaze sie z pewnym ryzykiem. Odpowiadasz za odpowiednie ubezpieczenie, porady zdrowotne, wizy, paszporty i rzeczy osobiste.",
             "Starannie wspolpracujemy z lokalnymi partnerami, ale nie odpowiadamy za opoznienia lub straty spowodowane zdarzeniami poza nasza rozsadna kontrola.",
             "Jesli cos pojdzie nie tak podczas wyjazdu, skontaktuj sie z nami szybko, abysmy mogli pomoc, gdy jest jeszcze czas na dzialanie."
+          ]
+        },
+        {
+          "title": "Rezerwacje w sklepie online",
+          "items": [
+            "Wybrane atrakcje można rezerwować od ręki w naszym sklepie online z podglądem dostępności na żywo; wszystko inne działa dalej w trybie zapytania opisanym powyżej.",
+            "Płacisz raz za cały koszyk, a każda atrakcja staje się osobną rezerwacją z własnym kodem potwierdzenia — każda wycieczka zachowuje swoją datę, godzinę i liczbę gości.",
+            "Płatności w sklepie pobieramy w dolarach amerykańskich; ceny w innych walutach są orientacyjne i oparte na bieżących kursach.",
+            "Podczas finalizacji zakupu wybrane miejsca są krótko wstrzymane (około 15 minut); bez płatności blokada zwalnia się automatycznie, a miejsca wracają do sprzedaży.",
+            "Rezerwacja istnieje dopiero wtedy, gdy nasz partner płatności potwierdzi wpłatę i wydamy kody rezerwacji; jeśli płatności nie da się zweryfikować automatycznie, sprawdzamy ją ręcznie i kontaktujemy się, zanim cokolwiek się wydarzy.",
+            "Szczegółowe zasady anulacji i zwrotów dla atrakcji rezerwowanych od ręki są właśnie finalizowane i zostaną opublikowane na tej stronie przed uruchomieniem płatności online."
           ]
         }
       ]

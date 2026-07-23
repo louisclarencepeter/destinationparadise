@@ -2,6 +2,7 @@
   "items": {
     "home":         { "label": "Home",         "hint": "Start at the island hub",  "sub": "Start at the island hub" },
     "excursions":   { "label": "Excursions",   "hint": "Zanzibar day trips",        "sub": "Stone Town · Reefs · Spice farms" },
+    "store":        { "label": "Store",        "hint": "Book excursions instantly", "sub": "Instant booking · One checkout" },
     "safaris":      { "label": "Safaris",      "hint": "Mainland wildlife routes",  "sub": "Serengeti · Ngorongoro · Selous" },
     "packages":     { "label": "Packages",     "hint": "Safari, beach, honeymoon",  "sub": "Bush & Beach · 7–14 nights" },
     "retreats":     { "label": "Retreats",     "hint": "Yoga, spa, meditation",     "sub": "Yoga · Spa · Healing" },
@@ -14,6 +15,10 @@
     "book_now": "Book Now",
     "book_aria": "Book now",
     "book_a_trip": "Book a trip"
+  },
+  "cart": {
+    "label": "Your trip",
+    "open_aria": "Open your trip cart"
   },
   "menu": {
     "open": "Open menu",

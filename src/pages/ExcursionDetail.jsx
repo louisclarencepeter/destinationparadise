@@ -2,6 +2,8 @@ import { useRef } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
+import StoreBookingSection from '../components/store/StoreBookingSection.jsx';
+import { isStoreEnabled } from '../config/featureFlags.js';
 import { EXCURSIONS } from '../data/excursionsData.js';
 import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
 import { touristTripJsonLd } from '../utils/productJsonLd.js';
@@ -145,6 +147,9 @@ export default function ExcursionDetail() {
           </div>
         </div>
       </article>
+
+      {/* Instant booking for pilot store products (no-op for everything else). */}
+      {isStoreEnabled() && <StoreBookingSection excursionId={e.id} />}
 
       {e.timeline && e.timeline.length > 0 && (
         <section className="exc-day" id="day">
