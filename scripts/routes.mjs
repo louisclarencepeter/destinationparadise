@@ -28,6 +28,7 @@ export const STATIC_ROUTES = [
   { path: '/cookies-policy', priority: '0.2', changefreq: 'yearly' },
   { path: '/privacy-policy', priority: '0.2', changefreq: 'yearly' },
   { path: '/terms-of-service', priority: '0.2', changefreq: 'yearly' },
+  { path: '/booking-policy', priority: '0.4', changefreq: 'yearly' },
 ];
 
 // Routes that stay client-only by design (booking + AI planner): still listed in

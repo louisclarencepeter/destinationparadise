@@ -131,6 +131,7 @@
     "pay": "{{amount}} zahlen",
     "checking": "Verfügbarkeit wird geprüft…",
     "recheck_note": "Vor der Zahlung prüfen wir die Verfügbarkeit erneut.",
+    "terms_ack": "Mit dem Fortfahren akzeptierst du unsere <booking>Buchungsbedingungen</booking> und <terms>AGB</terms>, einschließlich der Stornogebühren für deine Termine.",
     "conflict": "Einige Abfahrten sind nicht mehr verfügbar. Passe bitte die markierten Touren an.",
     "conflict_fix": "Neue Zeit wählen",
     "failed": "Die Zahlung konnte gerade nicht abgeschlossen werden. Es wurde nichts abgebucht — versuch es gleich noch einmal.",

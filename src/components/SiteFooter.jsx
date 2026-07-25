@@ -268,6 +268,7 @@ export default function SiteFooter() {
         <span className="footer__policy-links">
           <Link to="/privacy-policy">{t('policy.privacy')}</Link>
           <Link to="/terms-of-service">{t('policy.terms')}</Link>
+          <Link to="/booking-policy">{t('policy.booking')}</Link>
           <Link to="/cookies-policy">{t('policy.cookies')}</Link>
           <button type="button" onClick={openCookieSettings}>{t('policy.cookie_settings')}</button>
         </span>

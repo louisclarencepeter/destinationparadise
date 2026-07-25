@@ -3,7 +3,7 @@
   "meta": {
     "aria_label": "Szczegoly zasad",
     "last_updated": "Ostatnia aktualizacja",
-    "last_updated_value": "5 lipca 2026",
+    "last_updated_value": "25 lipca 2026",
     "contact": "Kontakt"
   },
   "policies": {
@@ -92,20 +92,16 @@
           ]
         },
         {
-          "title": "Wyceny I Rezerwacje",
+          "title": "Rezerwacje, Płatności I Anulacje",
           "items": [
-            "Rezerwacja jest potwierdzona dopiero po potwierdzeniu dostepnosci, uzgodnieniu finalnego planu wyjazdu i otrzymaniu wymaganej platnosci lub zaliczki.",
-            "Wycena wyjasni, co jest wliczone, co nie jest wliczone, terminy platnosci, zasady anulowania i wazne warunki dostawcow.",
-            "Odpowiadasz za sprawdzenie nazwisk, dat, szczegolow odbioru, informacji paszportowych, potrzeb dietetycznych, kwestii medycznych i dokumentow podroznych przed potwierdzeniem."
-          ]
-        },
-        {
-          "title": "Zmiany, Anulacje I Zwroty",
-          "items": [
-            "Zasady zmian i anulacji zaleza od konkretnego hotelu, parku, linii lotniczej, lodzi, przewodnika lub zewnetrznego dostawcy w Twoim planie.",
-            "Zwroty, czesciowe zwroty lub kredyty sa obslugiwane zgodnie z pisemnymi warunkami przekazanymi wraz z potwierdzeniem rezerwacji.",
-            "Pogoda, warunki na morzu, dostep do parku, stan drog, przepisy rzadowe lub wzgledy bezpieczenstwa moga wymagac zmian czasu, trasy, dostawcy lub kolejnosci atrakcji."
-          ]
+            "Zaliczki, terminy płatności, opłaty za anulowanie, zmiany, zwroty oraz nasze zobowiązania wobec Ciebie są w całości opisane w Warunkach rezerwacji, które stanowią część niniejszego regulaminu.",
+            "Przed potwierdzeniem odpowiadasz za sprawdzenie imion i nazwisk, dat, danych odbioru, informacji paszportowych, wymagań żywieniowych, kwestii zdrowotnych oraz dokumentów podróży.",
+            "Twoja wycena lub podsumowanie zamówienia potwierdza, co jest wliczone, co wyłączone oraz jakie warunki dostawców dotyczą Twojej podróży."
+          ],
+          "link": {
+            "to": "/booking-policy",
+            "label": "Przeczytaj pełne Warunki rezerwacji"
+          }
         },
         {
           "title": "Odpowiedzialnosc Za Podroz",
@@ -123,7 +119,214 @@
             "Płatności w sklepie pobieramy w dolarach amerykańskich; ceny w innych walutach są orientacyjne i oparte na bieżących kursach.",
             "Podczas finalizacji zakupu wybrane miejsca są krótko wstrzymane (około 15 minut); bez płatności blokada zwalnia się automatycznie, a miejsca wracają do sprzedaży.",
             "Rezerwacja istnieje dopiero wtedy, gdy nasz partner płatności potwierdzi wpłatę i wydamy kody rezerwacji; jeśli płatności nie da się zweryfikować automatycznie, sprawdzamy ją ręcznie i kontaktujemy się, zanim cokolwiek się wydarzy.",
-            "Szczegółowe zasady anulacji i zwrotów dla atrakcji rezerwowanych od ręki są właśnie finalizowane i zostaną opublikowane na tej stronie przed uruchomieniem płatności online."
+            "Dla atrakcji rezerwowanych od ręki obowiązują zasady anulowania wycieczek na Zanzibarze opisane w Warunkach rezerwacji: bezpłatnie powyżej 48 godzin przed rozpoczęciem, 50 % między 24 a 48 godzinami oraz 100 % poniżej 24 godzin lub przy niestawieniu się."
+          ]
+        }
+      ]
+    },
+    "booking": {
+      "eyebrow": "Rezerwacja",
+      "title": "Warunki rezerwacji",
+      "intro": "Niniejsze warunki dotyczą każdej wycieczki, atrakcji, transferu, safari i pakietu organizowanego przez Destination Paradise LTD — niezależnie od tego, czy rezerwujesz przez zapytanie, czy od ręki w naszym sklepie online.",
+      "sections": [
+        {
+          "title": "Potwierdzenie Rezerwacji",
+          "items": [
+            "Wszystkie rezerwacje zależą od dostępności w momencie ich potwierdzenia przez nas.",
+            "W przypadku rezerwacji przez zapytanie rezerwacja jest potwierdzona dopiero po otrzymaniu przez nas wymaganej zaliczki lub płatności i wysłaniu Ci pisemnego potwierdzenia.",
+            "Atrakcje zarezerwowane od ręki w sklepie online są potwierdzane automatycznie, gdy tylko nasz partner płatności zweryfikuje płatność, a my wystawimy kody rezerwacji. Osobne pisemne potwierdzenie nie jest potrzebne.",
+            "Jeśli płatność w sklepie nie może zostać zweryfikowana automatycznie, sprawdzamy ją ręcznie i kontaktujemy się z Tobą, zanim rezerwacja zostanie potwierdzona lub zwolniona.",
+            "Ceny podawane są w dolarach amerykańskich, o ile nie wskazano inaczej. Rezerwacje z zapytania mogą być rozliczone także w szylingach tanzańskich po aktualnym kursie. Płatności w sklepie online są pobierane w dolarach amerykańskich, a ceny w innych walutach mają charakter orientacyjny."
+          ]
+        },
+        {
+          "title": "Płatność",
+          "items": [
+            "Wycieczki jednodniowe, atrakcje i transfery na Zanzibarze: pełna płatność jest wymagana przed rozpoczęciem usługi. Atrakcje rezerwowane w sklepie online opłacasz w całości przy składaniu zamówienia.",
+            "Safari w Tanzanii: zaliczka w wysokości 30 % potwierdza rezerwację, a pozostałe 70 % jest płatne najpóźniej 30 dni przed datą rozpoczęcia safari.",
+            "Rezerwacje safari dokonane w ciągu 30 dni przed datą rozpoczęcia wymagają pełnej płatności przy potwierdzeniu.",
+            "Jeśli dopłata do safari nie wpłynie w terminie, skontaktujemy się z Tobą, zanim podejmiemy jakiekolwiek kroki. Gdy należność pozostanie nieopłacona, możemy potraktować rezerwację jako anulowaną przez Ciebie i zastosować poniższe opłaty."
+          ]
+        },
+        {
+          "title": "Jak Liczymy Terminy",
+          "items": [
+            "Terminy liczymy wstecz od planowanego rozpoczęcia usługi: godziny odbioru wskazanej w potwierdzeniu — w przypadku wycieczek i transferów — lub daty rozpoczęcia safari.",
+            "Wszystkie godziny podane są w czasie wschodnioafrykańskim (UTC+3), czyli czasie lokalnym Zanzibaru i Tanzanii kontynentalnej.",
+            "Okresy podane w dniach oznaczają dni kalendarzowe, wliczając weekendy i dni ustawowo wolne od pracy.",
+            "Anulowanie jest skuteczne z chwilą jego otrzymania przez nas na piśmie, a nie z chwilą wysłania."
+          ]
+        },
+        {
+          "title": "Anulowanie Przez Ciebie",
+          "items": [
+            "Anulowanie należy przesłać do nas na piśmie e-mailem lub przez WhatsApp. Wysokość opłaty zależy od tego, kiedy otrzymamy Twoje anulowanie.",
+            "Niestawienie się bez powiadomienia lub wcześniejsze zakończenie rozpoczętej już podróży jest naliczane w wysokości 100 % i nie podlega zwrotowi."
+          ],
+          "tables": [
+            {
+              "caption": "Wycieczki, atrakcje i transfery na Zanzibarze",
+              "columns": [
+                "Kiedy otrzymamy anulowanie",
+                "Opłata"
+              ],
+              "rows": [
+                [
+                  "Powyżej 48 godzin przed rozpoczęciem",
+                  "Brak — pełny zwrot"
+                ],
+                [
+                  "Od 24 do 48 godzin przed rozpoczęciem",
+                  "50 % wartości rezerwacji"
+                ],
+                [
+                  "Poniżej 24 godzin przed rozpoczęciem lub niestawienie się",
+                  "100 % wartości rezerwacji"
+                ]
+              ]
+            },
+            {
+              "caption": "Safari w Tanzanii",
+              "columns": [
+                "Kiedy otrzymamy anulowanie",
+                "Opłata"
+              ],
+              "rows": [
+                [
+                  "Powyżej 60 dni przed przyjazdem",
+                  "10 % opłaty administracyjnej"
+                ],
+                [
+                  "Od 31 do 60 dni przed przyjazdem",
+                  "30 % wartości rezerwacji"
+                ],
+                [
+                  "Od 15 do 30 dni przed przyjazdem",
+                  "50 % wartości rezerwacji"
+                ],
+                [
+                  "14 dni lub mniej, niestawienie się albo wcześniejszy wyjazd",
+                  "100 % wartości rezerwacji"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Anulowanie Lub Zmiany Z Naszej Strony",
+          "items": [
+            "Możemy być zmuszeni anulować lub zmienić wyjazd, jeśli nie zostanie osiągnięta minimalna liczba uczestników, dostawca się wycofa, łódź lub pojazd stanie się niedostępny albo warunki sprawią, że wyjazd będzie niebezpieczny.",
+            "Gdy anulujemy, możesz wybrać pełny zwrot wszystkich kwot zapłaconych za odwołaną usługę albo alternatywny termin lub porównywalną atrakcję o równej wartości.",
+            "Jeśli przed wyjazdem wprowadzimy istotną zmianę w potwierdzonej rezerwacji, możesz zaakceptować zmianę, wybrać zaproponowaną przez nas alternatywę albo anulować tę usługę z pełnym zwrotem.",
+            "Pogoda, stan morza, pływy, dostęp do parków, warunki drogowe i polecenia służb mogą wymagać zmiany godzin, trasy, kolejności atrakcji lub dostawcy. Jeśli atrakcja zostanie zrealizowana co do istoty, takich zmian nie traktujemy jako anulowania."
+          ]
+        },
+        {
+          "title": "Zmiany W Rezerwacji",
+          "items": [
+            "Zmiany dat podróży, zakwaterowania lub programu zależą od dostępności w momencie zgłoszenia.",
+            "Jeśli dostawca nalicza opłatę za zmianę lub nowe świadczenia kosztują więcej, różnicę pokrywasz Ty.",
+            "Zmiany zgłoszone tuż przed wyjazdem mogą nie być możliwe. W takim przypadku, jeśli zdecydujesz się nie jechać, obowiązują powyższe opłaty za anulowanie."
+          ]
+        },
+        {
+          "title": "Dzieci",
+          "items": [
+            "Dzieci są mile widziane na wszystkich wycieczkach i safari.",
+            "Ceny dla dzieci oraz przedziały wiekowe, których dotyczą, ustala każdy hotel, park i organizator atrakcji; potwierdzamy je w wycenie lub przy składaniu zamówienia. Nie są one jednakowe u wszystkich dostawców.",
+            "Niektóre atrakcje mają ustalone przez organizatora minimalne granice wieku lub ograniczenia zdrowotne ze względów bezpieczeństwa. Poinformujemy Cię, gdy będą miały zastosowanie.",
+            "Rodzic lub opiekun musi towarzyszyć dzieciom i sprawować nad nimi opiekę przez cały czas trwania podróży."
+          ]
+        },
+        {
+          "title": "Opłaty Parkowe I Podatki Państwowe",
+          "items": [
+            "Opłaty za parki narodowe, podatki państwowe i opłaty konserwatorskie są wliczone wyłącznie wtedy, gdy Twoja wycena lub potwierdzenie rezerwacji tak stanowi.",
+            "Opłaty te ustalają władze Tanzanii i mogą się zmienić z krótkim wyprzedzeniem. Jeśli podwyżka zostanie ogłoszona po potwierdzeniu Twojej rezerwacji, podamy Ci kwotę i datę wejścia w życie, zanim ją naliczymy.",
+            "Jeśli podwyżka nałożona przez władze istotnie zwiększa łączną cenę Twojej potwierdzonej rezerwacji, możesz bezpłatnie anulować usługę, której to dotyczy."
+          ]
+        },
+        {
+          "title": "Dokumenty Podróży",
+          "items": [
+            "Odpowiadasz za posiadanie ważnego paszportu, wizy wymaganej do wjazdu do Tanzanii oraz wszelkich szczepień i zaświadczeń zdrowotnych wymaganych przy wjeździe.",
+            "Przed wyjazdem sprawdź aktualne wymagania dla swojego obywatelstwa we właściwej ambasadzie, ponieważ przepisy się zmieniają.",
+            "Nie możemy zwrócić kosztów rezerwacji niewykorzystanej z powodu braku wymaganych dokumentów podróży."
+          ]
+        },
+        {
+          "title": "Ubezpieczenie Podróżne",
+          "items": [
+            "Zdecydowanie zalecamy pełne ubezpieczenie podróżne obejmujące leczenie, ewakuację medyczną, koszty anulowania i skrócenia podróży oraz rzeczy osobiste.",
+            "Ochrona na wypadek ewakuacji medycznej ma szczególne znaczenie na safari i podczas wypraw morskich, gdzie odległości do placówek medycznych są duże.",
+            "Zawarcie ubezpieczenia podróżnego jest Twoim obowiązkiem. Nie oferujemy takiego ubezpieczenia."
+          ]
+        },
+        {
+          "title": "Zdrowie I Bezpieczeństwo",
+          "items": [
+            "Przed podróżą poinformuj nas o wszelkich schorzeniach, alergiach, ograniczeniach ruchowych, ciąży lub wymaganiach żywieniowych, abyśmy mogli sprawdzić, co jest odpowiednie, i przekazać to dostawcom.",
+            "Zawsze stosuj się do zaleceń bezpieczeństwa przewodnika, kierowcy, sternika lub strażnika parku.",
+            "Aktywności takie jak snorkeling, nurkowanie, rejsy, pływanie i safari piesze wiążą się z ryzykiem, którego nie da się wyeliminować. Decydując się na udział, akceptujesz to ryzyko — nie ogranicza to naszej odpowiedzialności za własne zaniedbania.",
+            "Przewodnik lub organizator może odmówić udziału albo go przerwać, jeśli uzna to za niebezpieczne. Zwrot nie przysługuje, gdy wynika to z nieujawnionego nam schorzenia."
+          ]
+        },
+        {
+          "title": "Siła Wyższa",
+          "items": [
+            "Nie odpowiadamy za opóźnienia, odwołania ani zmiany spowodowane zdarzeniami pozostającymi poza naszą rozsądną kontrolą, w tym gwałtownymi zjawiskami pogodowymi, klęskami żywiołowymi, epidemiami i pandemiami, strajkami, niepokojami społecznymi, działaniami władz, zamknięciem granic lub ograniczeniami przestrzeni powietrznej.",
+            "Jeśli takie zdarzenie uniemożliwi realizację wyjazdu, zwrócimy to, co uda nam się odzyskać od dostawców, i w miarę możliwości zaproponujemy alternatywny termin.",
+            "Zawsze niezwłocznie poinformujemy Cię o tym, co się wydarzyło i jakie masz możliwości."
+          ]
+        },
+        {
+          "title": "Nasza Odpowiedzialność Wobec Ciebie",
+          "items": [
+            "Organizujemy wyjazdy jako pośrednik hoteli, linii lotniczych, przewoźników, operatorów łodzi, władz parków i organizatorów atrakcji, którzy świadczą swoje usługi na własnych warunkach.",
+            "Odpowiadamy za zorganizowanie Twojej rezerwacji z należytą starannością i fachowością oraz za działania i zaniechania naszych własnych pracowników.",
+            "Nie odpowiadamy za straty, szkody, opóźnienia ani koszty spowodowane działaniem lub zaniechaniem zewnętrznego dostawcy albo okolicznościami pozostającymi poza naszą rozsądną kontrolą.",
+            "Żadne z postanowień niniejszych warunków nie wyłącza ani nie ogranicza naszej odpowiedzialności za śmierć lub uszkodzenie ciała spowodowane naszym zaniedbaniem, za oszustwo lub podstępne wprowadzenie w błąd, ani za jakąkolwiek inną odpowiedzialność, której nie można wyłączyć zgodnie z prawem.",
+            "W zakresie, w jakim nasza odpowiedzialność nie jest wyłączona, jest ona ograniczona do łącznej kwoty zapłaconej nam za rezerwację, której dotyczy sprawa."
+          ]
+        },
+        {
+          "title": "Zwroty",
+          "items": [
+            "Zatwierdzone zwroty realizujemy w miarę możliwości na pierwotną metodę płatności, zwykle w ciągu 14 dni od potwierdzenia przez nas zwrotu.",
+            "Jeśli anulujesz w okresie objętym opłatą, zwracamy pozostałą kwotę po potrąceniu należnej opłaty za anulowanie oraz bezzwrotnych kosztów dostawców już zaangażowanych w Twoją rezerwację.",
+            "Gdy przysługuje pełny zwrot — ponieważ to my anulowaliśmy albo anulowałeś bezpłatnie w dozwolonym terminie — nie potrącamy opłat za obsługę płatności.",
+            "Opłaty bankowe możemy potrącić wyłącznie wtedy, gdy zwrot musi zostać wysłany międzynarodowym przelewem bankowym na Twoje życzenie, zamiast na pierwotną metodę płatności.",
+            "Zwroty za rezerwacje ze sklepu online realizujemy przez naszego partnera płatności na kartę lub konto mobile money użyte przy składaniu zamówienia."
+          ]
+        },
+        {
+          "title": "Prośby Specjalne",
+          "items": [
+            "Prośby dotyczące wymagań żywieniowych, organizacji podróży poślubnej, preferencji pokojowych, pokoi obok siebie czy konkretnych miejsc w pojeździe przekazujemy dostawcom, ale nie możemy ich zagwarantować.",
+            "Prośba specjalna jest potwierdzona tylko wtedy, gdy Twoje potwierdzenie rezerwacji wyraźnie to stwierdza."
+          ]
+        },
+        {
+          "title": "Reklamacje",
+          "items": [
+            "Jeśli w trakcie podróży coś jest nie tak, powiedz od razu przewodnikowi, kierowcy lub naszemu biuru, abyśmy mogli to naprawić, póki jesteś jeszcze na miejscu. Większość problemów da się rozwiązać od ręki.",
+            "Jeśli problemu nie uda się rozwiązać na miejscu, napisz do nas w ciągu 28 dni od powrotu, podając numer rezerwacji i opis zdarzenia.",
+            "Potwierdzamy przyjęcie reklamacji w ciągu 5 dni roboczych i dążymy do udzielenia pełnej odpowiedzi w ciągu 28 dni."
+          ]
+        },
+        {
+          "title": "Prawo Właściwe",
+          "items": [
+            "Niniejsze warunki oraz Twoja rezerwacja podlegają prawu Zjednoczonej Republiki Tanzanii, a właściwe są sądy tanzańskie.",
+            "Jeśli jesteś konsumentem zamieszkałym w innym kraju, nie pozbawia Cię to ochrony wynikającej z bezwzględnie obowiązujących przepisów konsumenckich Twojego kraju zamieszkania."
+          ]
+        },
+        {
+          "title": "Akceptacja I Zmiany",
+          "items": [
+            "Zapłata zaliczki lub pełnej kwoty albo sfinalizowanie zamówienia w naszym sklepie online potwierdza, że przeczytałeś, zrozumiałeś i akceptujesz niniejsze warunki rezerwacji.",
+            "Możemy aktualizować niniejsze warunki, gdy zmienią się warunki dostawców, przepisy parków narodowych lub wymogi prawne.",
+            "Do Twojej podróży stosuje się wersja opublikowana w chwili potwierdzenia rezerwacji. Późniejsze zmiany nie działają wstecz wobec potwierdzonej rezerwacji."
           ]
         }
       ]

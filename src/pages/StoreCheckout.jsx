@@ -235,6 +235,19 @@ export default function StoreCheckout() {
               </p>
             )}
 
+            {/* Terms have to be in front of the guest before payment, not after —
+                the Booking Policy treats completing checkout as acceptance. */}
+            <p className="checkout-terms">
+              <Trans
+                t={t}
+                i18nKey="checkout.terms_ack"
+                components={{
+                  booking: <Link to="/booking-policy" />,
+                  terms: <Link to="/terms-of-service" />,
+                }}
+              />
+            </p>
+
             <button type="button" className="checkout-pay" disabled={checking} onClick={pay}>
               {checking && <span className="checkout-pay__spinner" aria-hidden="true" />}
               {checking

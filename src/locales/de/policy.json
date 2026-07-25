@@ -3,7 +3,7 @@
   "meta": {
     "aria_label": "Richtliniendetails",
     "last_updated": "Zuletzt aktualisiert",
-    "last_updated_value": "5. Juli 2026",
+    "last_updated_value": "25. Juli 2026",
     "contact": "Kontakt"
   },
   "policies": {
@@ -92,20 +92,16 @@
           ]
         },
         {
-          "title": "Angebote Und Buchungen",
+          "title": "Buchung, Zahlung Und Stornierung",
           "items": [
-            "Eine Buchung ist erst bestätigt, nachdem wir die Verfügbarkeit bestätigt, den finalen Reiseplan mit dir abgestimmt und die erforderliche Zahlung oder Anzahlung erhalten haben.",
-            "Dein Angebot erklärt, was enthalten ist, was nicht enthalten ist, wann Zahlungen fällig sind, welche Stornoregeln gelten und welche wichtigen Partnerbedingungen zu beachten sind.",
-            "Du bist dafür verantwortlich, Namen, Daten, Abholdetails, Passinformationen, Ernährungswünsche, medizinische Hinweise und Reisedokumente vor der Bestätigung zu prüfen."
-          ]
-        },
-        {
-          "title": "Änderungen, Stornierungen Und Rückerstattungen",
-          "items": [
-            "Änderungs- und Stornoregeln hängen vom jeweiligen Hotel, Park, der Airline, dem Boot, Guide oder Drittanbieter in deinem Reiseplan ab.",
-            "Rückerstattungen, Teilrückerstattungen oder Gutschriften richten sich nach den schriftlichen Bedingungen, die du mit deiner Buchungsbestätigung erhältst.",
-            "Wetter, Seegang, Parkzugang, Straßenzustand, staatliche Regeln oder Sicherheitsbedenken können Änderungen bei Uhrzeit, Route, Anbieter oder Reihenfolge der Aktivitäten erforderlich machen."
-          ]
+            "Anzahlungen, Zahlungsfristen, Stornogebühren, Umbuchungen, Rückerstattungen und unsere Verpflichtungen dir gegenüber sind vollständig in unseren Buchungsbedingungen geregelt, die Bestandteil dieser AGB sind.",
+            "Du bist dafür verantwortlich, Namen, Daten, Abholangaben, Passdaten, Ernährungswünsche, gesundheitliche Hinweise und Reisedokumente vor der Bestätigung zu prüfen.",
+            "Dein Angebot oder deine Checkout-Übersicht bestätigt, was enthalten und was ausgeschlossen ist sowie alle für deine Reise geltenden Bedingungen der Leistungsträger."
+          ],
+          "link": {
+            "to": "/booking-policy",
+            "label": "Vollständige Buchungsbedingungen lesen"
+          }
         },
         {
           "title": "Reiseverantwortung",
@@ -123,7 +119,214 @@
             "Store-Zahlungen werden in US-Dollar abgerechnet; Preise in anderen Währungen sind Richtwerte auf Basis aktueller Wechselkurse.",
             "Während des Checkouts sind deine gewählten Plätze kurz reserviert (etwa 15 Minuten); wird nicht gezahlt, löst sich die Reservierung automatisch und die Plätze gehen zurück in den Verkauf.",
             "Eine Buchung besteht erst, wenn unser Zahlungspartner deine Zahlung bestätigt und wir deine Buchungscodes ausgestellt haben; kann eine Zahlung nicht automatisch verifiziert werden, prüfen wir sie manuell und melden uns, bevor irgendetwas weiter passiert.",
-            "Detaillierte Storno- und Erstattungsregeln für sofort gebuchte Erlebnisse werden gerade finalisiert und vor dem Start der Online-Zahlungen auf dieser Seite veröffentlicht."
+            "Für sofort gebuchte Erlebnisse gelten die Stornoregeln für Sansibar-Touren aus unseren Buchungsbedingungen: kostenfrei bis 48 Stunden vor Beginn, 50 % zwischen 24 und 48 Stunden und 100 % innerhalb von 24 Stunden oder bei Nichterscheinen."
+          ]
+        }
+      ]
+    },
+    "booking": {
+      "eyebrow": "Buchung",
+      "title": "Buchungsbedingungen",
+      "intro": "Diese Buchungsbedingungen gelten für jede Tour, jeden Ausflug, jeden Transfer, jede Safari und jedes Paket, das von Destination Paradise LTD arrangiert wird — ob du per Anfrage oder sofort über unseren Online-Store buchst.",
+      "sections": [
+        {
+          "title": "Buchungsbestätigung",
+          "items": [
+            "Alle Buchungen stehen unter dem Vorbehalt der Verfügbarkeit zum Zeitpunkt unserer Bestätigung.",
+            "Bei Buchungen über eine Anfrage gilt eine Buchung erst dann als bestätigt, wenn wir die erforderliche Anzahlung oder Zahlung erhalten und dir eine schriftliche Bestätigung gesendet haben.",
+            "Über unseren Online-Store sofort gebuchte Erlebnisse sind automatisch bestätigt, sobald unser Zahlungspartner deine Zahlung verifiziert hat und wir deine Buchungscodes ausgestellt haben. Eine gesonderte schriftliche Bestätigung ist nicht erforderlich.",
+            "Kann eine Store-Zahlung nicht automatisch verifiziert werden, prüfen wir sie manuell und kontaktieren dich, bevor die Buchung bestätigt oder freigegeben wird.",
+            "Preise werden, sofern nicht anders angegeben, in US-Dollar ausgewiesen. Anfragebuchungen können auch in Tansania-Schilling zum jeweils gültigen Wechselkurs beglichen werden. Zahlungen im Online-Store werden in US-Dollar abgerechnet; Preise in anderen Währungen sind Richtwerte."
+          ]
+        },
+        {
+          "title": "Zahlung",
+          "items": [
+            "Tagestouren, Ausflüge und Transfers auf Sansibar: Die vollständige Zahlung ist vor Beginn der Leistung fällig. Im Online-Store gebuchte Erlebnisse werden beim Checkout vollständig bezahlt.",
+            "Safaris in Tansania: Eine Anzahlung von 30 % bestätigt deine Buchung; die restlichen 70 % sind spätestens 30 Tage vor Safaribeginn fällig.",
+            "Safaribuchungen innerhalb von 30 Tagen vor Reisebeginn erfordern die vollständige Zahlung bei Bestätigung.",
+            "Geht eine Restzahlung nicht fristgerecht ein, kontaktieren wir dich, bevor wir Schritte einleiten. Bleibt der Betrag offen, können wir die Buchung als von dir storniert behandeln; dann gelten die untenstehenden Gebühren."
+          ]
+        },
+        {
+          "title": "Wie Wir Fristen Berechnen",
+          "items": [
+            "Fristen werden ab dem geplanten Leistungsbeginn zurückgerechnet: der auf deiner Bestätigung genannten Abholzeit bei Touren und Transfers oder dem Startdatum bei Safaris.",
+            "Alle Zeitangaben verstehen sich in ostafrikanischer Zeit (UTC+3), der Ortszeit auf Sansibar und dem tansanischen Festland.",
+            "Als Tage angegebene Zeiträume sind Kalendertage einschließlich Wochenenden und Feiertagen.",
+            "Eine Stornierung wird wirksam, wenn sie schriftlich bei uns eingeht — nicht zum Zeitpunkt des Absendens."
+          ]
+        },
+        {
+          "title": "Stornierung Durch Dich",
+          "items": [
+            "Stornierungen müssen uns schriftlich per E-Mail oder WhatsApp zugehen. Die Gebühr richtet sich danach, wann deine Stornierung bei uns eingeht.",
+            "Nichterscheinen ohne Abmeldung oder der vorzeitige Abbruch einer bereits begonnenen Reise wird mit 100 % berechnet; eine Rückerstattung erfolgt nicht."
+          ],
+          "tables": [
+            {
+              "caption": "Sansibar-Touren, Ausflüge und Transfers",
+              "columns": [
+                "Eingang deiner Stornierung",
+                "Gebühr"
+              ],
+              "rows": [
+                [
+                  "Mehr als 48 Stunden vor Beginn",
+                  "Keine — volle Rückerstattung"
+                ],
+                [
+                  "24 bis 48 Stunden vor Beginn",
+                  "50 % des Buchungswerts"
+                ],
+                [
+                  "Weniger als 24 Stunden vor Beginn oder Nichterscheinen",
+                  "100 % des Buchungswerts"
+                ]
+              ]
+            },
+            {
+              "caption": "Safaris in Tansania",
+              "columns": [
+                "Eingang deiner Stornierung",
+                "Gebühr"
+              ],
+              "rows": [
+                [
+                  "Mehr als 60 Tage vor Anreise",
+                  "10 % Bearbeitungsgebühr"
+                ],
+                [
+                  "31 bis 60 Tage vor Anreise",
+                  "30 % des Buchungswerts"
+                ],
+                [
+                  "15 bis 30 Tage vor Anreise",
+                  "50 % des Buchungswerts"
+                ],
+                [
+                  "14 Tage oder weniger, Nichterscheinen oder vorzeitige Abreise",
+                  "100 % des Buchungswerts"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Stornierung Oder Änderungen Durch Uns",
+          "items": [
+            "Wir müssen eine Reise möglicherweise stornieren oder ändern, wenn eine Mindestteilnehmerzahl nicht erreicht wird, ein Leistungsträger absagt, ein Boot oder Fahrzeug nicht verfügbar ist oder die Bedingungen die Durchführung unsicher machen.",
+            "Wenn wir stornieren, kannst du zwischen einer vollständigen Rückerstattung aller für die abgesagte Leistung gezahlten Beträge und einem Alternativtermin oder einem gleichwertigen vergleichbaren Erlebnis wählen.",
+            "Nehmen wir vor Abreise eine wesentliche Änderung an einer bestätigten Buchung vor, kannst du die Änderung annehmen, eine von uns angebotene Alternative wählen oder diese Leistung gegen volle Rückerstattung stornieren.",
+            "Wetter, Seegang, Gezeiten, Parkzugang, Straßenverhältnisse und behördliche Anweisungen können Anpassungen bei Zeitplan, Route, Reihenfolge der Aktivitäten oder eingesetztem Leistungsträger erfordern. Wird das Erlebnis im Wesentlichen dennoch erbracht, gelten solche Anpassungen nicht als Stornierung."
+          ]
+        },
+        {
+          "title": "Umbuchungen",
+          "items": [
+            "Änderungen von Reisedaten, Unterkunft oder Reiseverlauf stehen unter dem Vorbehalt der Verfügbarkeit zum Zeitpunkt deiner Anfrage.",
+            "Erhebt ein Leistungsträger eine Umbuchungsgebühr oder sind die neuen Leistungen teurer, ist die Differenz von dir zu tragen.",
+            "Kurzfristig gewünschte Umbuchungen sind unter Umständen nicht möglich. Trittst du die Reise dann nicht an, gelten die oben genannten Stornogebühren."
+          ]
+        },
+        {
+          "title": "Kinder",
+          "items": [
+            "Kinder sind auf allen Touren und Safaris willkommen.",
+            "Kinderpreise und die zugehörigen Altersgrenzen werden von jedem Hotel, Nationalpark und Aktivitätsanbieter selbst festgelegt und in deinem Angebot oder beim Checkout bestätigt. Sie sind nicht bei allen Anbietern gleich.",
+            "Für einige Aktivitäten gelten vom Anbieter aus Sicherheitsgründen festgelegte Mindestalter oder gesundheitliche Einschränkungen. Wir weisen dich darauf hin, wo dies zutrifft.",
+            "Ein Elternteil oder eine erziehungsberechtigte Person muss Kinder während der gesamten Reise begleiten und beaufsichtigen."
+          ]
+        },
+        {
+          "title": "Parkgebühren Und Staatliche Abgaben",
+          "items": [
+            "Nationalparkgebühren, staatliche Abgaben und Naturschutzgebühren sind nur enthalten, wenn dein Angebot oder deine Buchungsbestätigung dies ausdrücklich angibt.",
+            "Diese Gebühren werden von den tansanischen Behörden festgelegt und können sich kurzfristig ändern. Wird eine Erhöhung nach Bestätigung deiner Buchung angekündigt, teilen wir dir Betrag und Stichtag mit, bevor wir sie berechnen.",
+            "Erhöht eine staatlich verfügte Anhebung den Gesamtpreis deiner bestätigten Buchung erheblich, kannst du die betroffene Leistung kostenfrei stornieren."
+          ]
+        },
+        {
+          "title": "Reisedokumente",
+          "items": [
+            "Du bist dafür verantwortlich, einen gültigen Reisepass, ein für Tansania erforderliches Visum sowie alle für die Einreise nötigen Impfungen oder Gesundheitsnachweise zu besitzen.",
+            "Prüfe die aktuellen Anforderungen für deine Staatsangehörigkeit vor der Reise bei der zuständigen Botschaft, da sich Vorschriften ändern.",
+            "Eine Buchung, die versäumt wird, weil erforderliche Reisedokumente nicht in Ordnung waren, können wir nicht erstatten."
+          ]
+        },
+        {
+          "title": "Reiseversicherung",
+          "items": [
+            "Wir empfehlen dringend eine umfassende Reiseversicherung, die medizinische Behandlung, Notfallevakuierung, Storno und Reiseabbruch sowie persönliche Gegenstände abdeckt.",
+            "Der Schutz bei Notfallevakuierungen ist besonders auf Safaris und bei Ausflügen auf dem Meer wichtig, da die Wege zu medizinischen Einrichtungen weit sind.",
+            "Der Abschluss einer Reiseversicherung liegt in deiner Verantwortung. Wir bieten keine an."
+          ]
+        },
+        {
+          "title": "Gesundheit Und Sicherheit",
+          "items": [
+            "Teile uns vor der Reise alle Vorerkrankungen, Allergien, Mobilitätseinschränkungen, eine Schwangerschaft oder Ernährungsanforderungen mit, damit wir die Eignung prüfen und die Leistungsträger informieren können.",
+            "Befolge jederzeit die Sicherheitshinweise deines Guides, Fahrers, Bootsführers oder Park-Rangers.",
+            "Aktivitäten wie Schnorcheln, Tauchen, Bootsfahrten, Schwimmen und Fußsafaris bergen naturgemäß Risiken, die sich nicht ausschließen lassen. Mit deiner Teilnahme nimmst du diese Risiken in Kauf — unsere Haftung für eigenes Verschulden bleibt davon unberührt.",
+            "Ein Guide oder Anbieter kann die Teilnahme verweigern oder abbrechen, wenn er sie für unsicher hält. Beruht dies auf einer uns nicht mitgeteilten Vorerkrankung, besteht kein Anspruch auf Rückerstattung."
+          ]
+        },
+        {
+          "title": "Höhere Gewalt",
+          "items": [
+            "Wir haften nicht für Verzögerungen, Absagen oder Änderungen durch Ereignisse außerhalb unseres zumutbaren Einflussbereichs, einschließlich schwerer Unwetter, Naturkatastrophen, Epidemien und Pandemien, Streiks, ziviler Unruhen, behördlicher Maßnahmen, Grenzschließungen oder Luftraumsperrungen.",
+            "Verhindert ein solches Ereignis die Durchführung einer Reise, erstatten wir, was wir von den Leistungsträgern zurückerhalten können, und bieten nach Möglichkeit einen Alternativtermin an.",
+            "Wir informieren dich unverzüglich darüber, was geschehen ist und welche Möglichkeiten du hast."
+          ]
+        },
+        {
+          "title": "Unsere Verantwortung Dir Gegenüber",
+          "items": [
+            "Wir organisieren Reisen als Vermittler für Hotels, Fluggesellschaften, Transportunternehmen, Bootsbetreiber, Parkbehörden und Aktivitätsanbieter, die ihre Leistungen zu eigenen Bedingungen erbringen.",
+            "Wir sind dafür verantwortlich, deine Buchung mit angemessener Sorgfalt und Fachkenntnis zu arrangieren, und haften für Handlungen und Unterlassungen unserer eigenen Mitarbeitenden.",
+            "Für Verluste, Schäden, Verzögerungen oder Kosten, die durch Handlungen oder Unterlassungen eines dritten Leistungsträgers oder durch Umstände außerhalb unseres zumutbaren Einflussbereichs entstehen, sind wir nicht verantwortlich.",
+            "Nichts in diesen Bedingungen schließt unsere Haftung für Tod oder Körperverletzung durch unsere Fahrlässigkeit, für Betrug oder arglistige Täuschung oder für sonstige gesetzlich nicht ausschließbare Haftung aus oder beschränkt sie.",
+            "Soweit unsere Haftung nicht ausgeschlossen ist, ist sie auf den Gesamtbetrag begrenzt, den du uns für die betroffene Buchung gezahlt hast."
+          ]
+        },
+        {
+          "title": "Rückerstattungen",
+          "items": [
+            "Genehmigte Rückerstattungen erfolgen nach Möglichkeit auf das ursprüngliche Zahlungsmittel, in der Regel innerhalb von 14 Tagen nach unserer Bestätigung der Erstattung.",
+            "Stornierst du innerhalb eines Gebührenzeitraums, erstatten wir den Restbetrag nach Abzug der jeweiligen Stornogebühr und bereits verbindlich angefallener, nicht erstattungsfähiger Kosten der Leistungsträger.",
+            "Steht dir eine vollständige Rückerstattung zu — weil wir storniert haben oder du kostenfrei innerhalb der zulässigen Frist storniert hast — ziehen wir keine Zahlungsabwicklungsgebühren ab.",
+            "Bankgebühren können nur dann abgezogen werden, wenn eine Rückerstattung auf deinen Wunsch per internationaler Banküberweisung statt auf das ursprüngliche Zahlungsmittel erfolgen muss.",
+            "Rückerstattungen von Online-Store-Buchungen werden über unseren Zahlungspartner auf die beim Checkout verwendete Karte oder das Mobile-Money-Konto zurückgeführt."
+          ]
+        },
+        {
+          "title": "Sonderwünsche",
+          "items": [
+            "Wünsche wie Ernährungsanforderungen, Flitterwochen-Arrangements, Zimmerpräferenzen, nebeneinanderliegende Zimmer oder bestimmte Sitzplätze im Fahrzeug leiten wir an die Leistungsträger weiter, können sie aber nicht garantieren.",
+            "Ein Sonderwunsch gilt nur dann als bestätigt, wenn deine Buchungsbestätigung ihn ausdrücklich bestätigt."
+          ]
+        },
+        {
+          "title": "Beschwerden",
+          "items": [
+            "Wenn während deiner Reise etwas nicht stimmt, sprich sofort deinen Guide, deinen Fahrer oder unser Büro an, damit wir es beheben können, solange du noch vor Ort bist. Die meisten Probleme lassen sich direkt lösen.",
+            "Lässt sich ein Problem vor Ort nicht lösen, schreibe uns innerhalb von 28 Tagen nach deiner Rückkehr unter Angabe deiner Buchungsreferenz und des Vorfalls.",
+            "Wir bestätigen den Eingang von Beschwerden innerhalb von 5 Werktagen und streben eine abschließende Antwort innerhalb von 28 Tagen an."
+          ]
+        },
+        {
+          "title": "Anwendbares Recht",
+          "items": [
+            "Diese Bedingungen und deine Buchung unterliegen dem Recht der Vereinigten Republik Tansania; zuständig sind die tansanischen Gerichte.",
+            "Bist du Verbraucher mit Wohnsitz in einem anderen Land, entzieht dir dies nicht den Schutz zwingender Verbraucherschutzvorschriften deines Wohnsitzlandes."
+          ]
+        },
+        {
+          "title": "Annahme Und Änderungen",
+          "items": [
+            "Mit der Zahlung einer Anzahlung oder des Gesamtbetrags oder mit dem Abschluss des Checkouts in unserem Online-Store bestätigst du, diese Buchungsbedingungen gelesen, verstanden und akzeptiert zu haben.",
+            "Wir können diese Bedingungen anpassen, wenn sich Bedingungen der Leistungsträger, Parkvorschriften oder gesetzliche Anforderungen ändern.",
+            "Für deine Reise gilt die Fassung, die bei Bestätigung deiner Buchung veröffentlicht war. Spätere Änderungen wirken nicht rückwirkend auf eine bestätigte Buchung."
           ]
         }
       ]

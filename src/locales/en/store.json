@@ -131,6 +131,7 @@
     "pay": "Pay {{amount}}",
     "checking": "Re-checking availability…",
     "recheck_note": "Availability is re-checked before you pay.",
+    "terms_ack": "By continuing you accept our <booking>Booking Policy</booking> and <terms>Terms of Service</terms>, including the cancellation charges that apply to your dates.",
     "conflict": "Some departures are no longer available. Please adjust the highlighted trips.",
     "conflict_fix": "Choose a new time",
     "failed": "We couldn't complete the payment just now. Nothing was charged — please try again in a moment.",

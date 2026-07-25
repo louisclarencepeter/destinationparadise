@@ -3,7 +3,7 @@
   "meta": {
     "aria_label": "Policy details",
     "last_updated": "Last updated",
-    "last_updated_value": "July 5, 2026",
+    "last_updated_value": "July 25, 2026",
     "contact": "Contact"
   },
   "policies": {
@@ -92,20 +92,16 @@
           ]
         },
         {
-          "title": "Quotes And Bookings",
+          "title": "Bookings, Payment, And Cancellation",
           "items": [
-            "A booking is confirmed only after we confirm availability, agree the final itinerary with you, and receive the required payment or deposit.",
-            "Your quote will explain what is included, what is excluded, payment timing, cancellation rules, and any important supplier conditions.",
-            "You are responsible for checking names, dates, pickup details, passport information, dietary needs, medical considerations, and travel documents before confirmation."
-          ]
-        },
-        {
-          "title": "Changes, Cancellations, And Refunds",
-          "items": [
-            "Change and cancellation rules depend on the specific hotel, park, airline, boat, guide, or third-party supplier used in your itinerary.",
-            "Refunds, partial refunds, or credits are handled according to the written terms shared with your booking confirmation.",
-            "Weather, sea conditions, park access, road conditions, government rules, or safety concerns may require changes to timing, route, supplier, or activity order."
-          ]
+            "Deposits, payment deadlines, cancellation charges, amendments, refunds, and our responsibilities to you are set out in full in our Booking Policy, which forms part of these terms.",
+            "You are responsible for checking names, dates, pickup details, passport information, dietary needs, medical considerations, and travel documents before confirmation.",
+            "Your quote or checkout summary will confirm what is included, what is excluded, and any supplier conditions specific to your trip."
+          ],
+          "link": {
+            "to": "/booking-policy",
+            "label": "Read the full Booking Policy"
+          }
         },
         {
           "title": "Travel Responsibility",
@@ -123,7 +119,214 @@
             "Store payments are charged in US dollars; prices shown in other currencies are estimates based on current exchange rates.",
             "While you complete checkout, your selected places are held for a short time (about 15 minutes); if payment is not completed, the hold releases automatically and the places return to sale.",
             "A booking exists only once our payment partner confirms your payment and we issue your booking codes; if a payment cannot be verified automatically we review it manually and contact you before anything else happens.",
-            "Detailed cancellation and refund rules for instantly booked experiences are being finalised and will be published on this page before online payments open."
+            "Cancellation and refund rules for instantly booked experiences are the Zanzibar tour rules set out in our Booking Policy: free cancellation more than 48 hours before the start, 50% from 24 to 48 hours, and 100% inside 24 hours or for a no-show."
+          ]
+        }
+      ]
+    },
+    "booking": {
+      "eyebrow": "Booking",
+      "title": "Booking Policy",
+      "intro": "These booking policies apply to every tour, excursion, transfer, safari, and package arranged by Destination Paradise LTD, whether you book by enquiry or instantly through our online store.",
+      "sections": [
+        {
+          "title": "Booking Confirmation",
+          "items": [
+            "All bookings are subject to availability at the time we confirm them.",
+            "For bookings arranged by enquiry, a booking is confirmed only once we have received the required deposit or payment and sent you written confirmation.",
+            "Experiences booked instantly through our online store are confirmed automatically as soon as our payment partner verifies your payment and we issue your booking codes. No separate written confirmation is needed.",
+            "If a store payment cannot be verified automatically, we review it manually and contact you before the booking is either confirmed or released.",
+            "Prices are quoted in US dollars unless otherwise stated. Enquiry bookings may also be settled in Tanzanian shillings at the prevailing exchange rate. Online store payments are charged in US dollars, and prices displayed in other currencies are indicative estimates."
+          ]
+        },
+        {
+          "title": "Payment",
+          "items": [
+            "Day tours, excursions, and transfers in Zanzibar: full payment is required before the service begins. Experiences booked in our online store are paid in full at checkout.",
+            "Tanzania safaris: a 30% deposit confirms your booking, and the remaining 70% is due at least 30 days before the safari start date.",
+            "Safari bookings made within 30 days of the start date require full payment on confirmation.",
+            "If a safari balance is not received by its due date we will contact you before taking any action. Where the balance remains unpaid, we may treat the booking as cancelled by you and the charges below will apply."
+          ]
+        },
+        {
+          "title": "How We Calculate Deadlines",
+          "items": [
+            "Deadlines are counted back from the scheduled start of the service: the pickup time shown on your confirmation for tours and transfers, or the start date for safaris.",
+            "All times are East Africa Time (UTC+3), the local time in Zanzibar and mainland Tanzania.",
+            "Periods described in days mean calendar days, including weekends and public holidays.",
+            "A cancellation takes effect when we receive it in writing, not when it was sent."
+          ]
+        },
+        {
+          "title": "Cancellation By You",
+          "items": [
+            "Cancellations must be sent to us in writing by email or WhatsApp. The charge depends on when we receive your cancellation.",
+            "A no-show without notice, or leaving a trip early once it has started, is charged at 100% and no refund is due."
+          ],
+          "tables": [
+            {
+              "caption": "Zanzibar tours, excursions, and transfers",
+              "columns": [
+                "When we receive your cancellation",
+                "Charge"
+              ],
+              "rows": [
+                [
+                  "More than 48 hours before the start",
+                  "None — full refund"
+                ],
+                [
+                  "24 to 48 hours before the start",
+                  "50% of the booking value"
+                ],
+                [
+                  "Less than 24 hours before the start, or no-show",
+                  "100% of the booking value"
+                ]
+              ]
+            },
+            {
+              "caption": "Tanzania safaris",
+              "columns": [
+                "When we receive your cancellation",
+                "Charge"
+              ],
+              "rows": [
+                [
+                  "More than 60 days before arrival",
+                  "10% administration fee"
+                ],
+                [
+                  "31 to 60 days before arrival",
+                  "30% of the booking value"
+                ],
+                [
+                  "15 to 30 days before arrival",
+                  "50% of the booking value"
+                ],
+                [
+                  "14 days or less, no-show, or early departure",
+                  "100% of the booking value"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "title": "Cancellation Or Changes By Us",
+          "items": [
+            "We may need to cancel or change a trip if a minimum number of guests is not reached, a supplier withdraws, a vessel or vehicle becomes unavailable, or conditions make the trip unsafe.",
+            "Where we cancel, you may choose a full refund of everything paid for the cancelled service, or an alternative date or comparable experience of equal value.",
+            "Where we make a significant change to a confirmed booking before departure, you may accept the change, move to an alternative we offer, or cancel that service for a full refund.",
+            "Weather, sea conditions, tides, park access, road conditions, and official instructions may require us to adjust timing, routing, the order of activities, or the supplier used. Where the experience is still delivered in substance, these adjustments are not treated as a cancellation."
+          ]
+        },
+        {
+          "title": "Amendments",
+          "items": [
+            "Changes to travel dates, accommodation, or itinerary are subject to availability at the time you ask.",
+            "Where a supplier charges an amendment fee, or the new arrangements cost more, the difference is payable by you.",
+            "Amendments requested close to travel may not be possible. In that case the cancellation charges above apply if you choose not to travel."
+          ]
+        },
+        {
+          "title": "Children",
+          "items": [
+            "Children are welcome on all tours and safaris.",
+            "Child rates, and the age bands they apply to, are set by each hotel, park, and activity provider and are confirmed in your quote or at checkout. They are not standard across suppliers.",
+            "Some activities carry minimum ages or health restrictions set by the operator for safety reasons. We will tell you where these apply.",
+            "A parent or guardian must accompany and supervise children throughout the trip."
+          ]
+        },
+        {
+          "title": "Park Fees And Government Taxes",
+          "items": [
+            "National park fees, government taxes, and conservation fees are included only where your quotation or booking confirmation says so.",
+            "These fees are set by the Tanzanian authorities and can change at short notice. Where an increase is announced after your booking is confirmed, we will tell you the amount and the effective date before charging it.",
+            "Where a government-imposed increase materially raises the total price of your confirmed booking, you may cancel the affected service without charge."
+          ]
+        },
+        {
+          "title": "Travel Documents",
+          "items": [
+            "You are responsible for holding a valid passport, any visa required for Tanzania, and any vaccinations or health certificates required for entry.",
+            "Check the current requirements for your nationality with the relevant embassy before you travel, as rules change.",
+            "We cannot refund a booking missed because required travel documents were not in order."
+          ]
+        },
+        {
+          "title": "Travel Insurance",
+          "items": [
+            "We strongly recommend comprehensive travel insurance covering medical treatment, emergency evacuation, cancellation and curtailment, and personal belongings.",
+            "Cover for emergency evacuation matters particularly on safari and on marine excursions, where distances to medical facilities are long.",
+            "Arranging travel insurance is your responsibility. We do not provide it."
+          ]
+        },
+        {
+          "title": "Health And Safety",
+          "items": [
+            "Tell us about any medical condition, allergy, mobility limitation, pregnancy, or dietary requirement before travel so we can check what is suitable and inform suppliers.",
+            "Follow the safety instructions given by your guide, driver, skipper, or park ranger at all times.",
+            "Activities such as snorkelling, diving, boat trips, swimming, and walking safaris carry inherent risks that cannot be removed. Where you choose to take part you accept those risks — this does not limit our responsibility for our own negligence.",
+            "A guide or operator may refuse or stop participation where they judge it unsafe. No refund is due where this follows from a condition that was not disclosed to us."
+          ]
+        },
+        {
+          "title": "Force Majeure",
+          "items": [
+            "We are not liable for delays, cancellations, or changes caused by events beyond our reasonable control, including severe weather, natural disasters, epidemics and pandemics, strikes, civil unrest, government action, border closures, or airspace restrictions.",
+            "Where such an event prevents a trip from going ahead, we will refund what we are able to recover from suppliers and will offer an alternative date where one is possible.",
+            "We will tell you promptly what has happened and what your options are."
+          ]
+        },
+        {
+          "title": "Our Responsibility To You",
+          "items": [
+            "We arrange trips as an agent for hotels, airlines, transport providers, boat operators, park authorities, and activity operators, who provide those services under their own terms.",
+            "We are responsible for arranging your booking with reasonable care and skill, and for the acts and omissions of our own staff.",
+            "We are not responsible for loss, damage, delay, or expense caused by a third-party supplier's own act or omission, or by anything outside our reasonable control.",
+            "Nothing in these policies excludes or limits our liability for death or personal injury caused by our negligence, for fraud or fraudulent misrepresentation, or for any other liability that cannot lawfully be excluded.",
+            "Where our liability is not excluded, it is limited to the total amount you paid us for the affected booking."
+          ]
+        },
+        {
+          "title": "Refunds",
+          "items": [
+            "Approved refunds are returned to the original payment method wherever possible, normally within 14 days of us confirming the refund.",
+            "Where you cancel inside a charging window, we refund the balance after the applicable cancellation charge and any non-refundable supplier costs already committed to your booking.",
+            "Where a refund is due in full — because we cancelled, or because you cancelled free of charge within the permitted window — we do not deduct payment processing fees.",
+            "Bank transfer charges may be deducted only where a refund has to be sent by international bank transfer at your request, rather than to the original payment method.",
+            "Refunds of online store bookings are returned through our payment partner to the card or mobile-money account used at checkout."
+          ]
+        },
+        {
+          "title": "Special Requests",
+          "items": [
+            "Requests such as dietary requirements, honeymoon arrangements, room preferences, adjoining rooms, or specific vehicle seating are passed to suppliers but cannot be guaranteed.",
+            "A special request is confirmed only where your booking confirmation says it is confirmed."
+          ]
+        },
+        {
+          "title": "Complaints",
+          "items": [
+            "If something is wrong during your trip, tell your guide, driver, or our office immediately so we can try to put it right while you are still with us. Most problems can be solved on the spot.",
+            "If a problem cannot be resolved locally, write to us within 28 days of your return with your booking reference and what happened.",
+            "We acknowledge complaints within 5 working days and aim to give a full response within 28 days."
+          ]
+        },
+        {
+          "title": "Governing Law",
+          "items": [
+            "These policies and your booking are governed by the laws of the United Republic of Tanzania, and the Tanzanian courts have jurisdiction.",
+            "If you are a consumer resident elsewhere, this does not remove the protection of any mandatory consumer laws of your country of residence."
+          ]
+        },
+        {
+          "title": "Acceptance And Updates",
+          "items": [
+            "Paying a deposit or the full amount, or completing checkout in our online store, confirms that you have read, understood, and accepted these booking policies.",
+            "We may update these policies where supplier terms, park regulations, or legal requirements change.",
+            "The version that applies to your trip is the one published when your booking was confirmed. Later changes do not apply retrospectively to a confirmed booking."
           ]
         }
       ]

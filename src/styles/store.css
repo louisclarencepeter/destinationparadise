@@ -1507,6 +1507,20 @@
   margin: 0.7rem 0 0;
 }
 
+/* Sits above the pay button: the guest has to see the terms before paying. */
+.checkout-terms {
+  font-family: var(--dp-font-sans);
+  font-size: 0.82rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0 0 0.9rem;
+}
+.checkout-terms a {
+  color: var(--dp-accent-text);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
 /* ---------- Confirmation ---------- */
 
 .store-confirm {

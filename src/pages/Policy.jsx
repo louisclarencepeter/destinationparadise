@@ -8,15 +8,48 @@ import { objectFromTranslation } from '../utils/translationValues.js';
 import '../styles/homepage.css';
 import '../styles/policy.css';
 
-function PolicySection({ title, items }) {
+function PolicySection({ title, items = [], tables = [], link }) {
+  // Reveal order runs heading → bullets → tables → link, so --reveal-index keeps
+  // counting past the list rather than restarting per block.
+  let revealIndex = 0;
   return (
     <section className="policy-section">
-      <h2 className="reveal" style={{ '--reveal-index': 0 }}>{title}</h2>
-      <ul>
-        {items.map((item, i) => (
-          <li className="reveal" style={{ '--reveal-index': i + 1 }} key={item}>{item}</li>
-        ))}
-      </ul>
+      <h2 className="reveal" style={{ '--reveal-index': revealIndex++ }}>{title}</h2>
+      {items.length > 0 && (
+        <ul>
+          {items.map((item) => (
+            <li className="reveal" style={{ '--reveal-index': revealIndex++ }} key={item}>{item}</li>
+          ))}
+        </ul>
+      )}
+      {tables.map((table) => (
+        <figure className="policy-table reveal" style={{ '--reveal-index': revealIndex++ }} key={table.caption}>
+          <figcaption>{table.caption}</figcaption>
+          <div className="policy-table__scroll">
+            <table>
+              <thead>
+                <tr>{table.columns.map((column) => <th key={column} scope="col">{column}</th>)}</tr>
+              </thead>
+              <tbody>
+                {table.rows.map((row) => (
+                  <tr key={row[0]}>
+                    {row.map((cell, i) => (
+                      i === 0
+                        ? <th key={cell} scope="row">{cell}</th>
+                        : <td key={cell}>{cell}</td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </figure>
+      ))}
+      {link && (
+        <div className="policy-actions reveal" style={{ '--reveal-index': revealIndex++ }}>
+          <Link className="btn btn--ghost" to={link.to}>{link.label}</Link>
+        </div>
+      )}
     </section>
   );
 }
@@ -64,7 +97,13 @@ export default function Policy({ section = 'privacy' }) {
 
       <section className="policy-content" aria-label={policy.title}>
         {policy.sections.map((item) => (
-          <PolicySection key={item.title} title={item.title} items={item.items} />
+          <PolicySection
+            key={item.title}
+            title={item.title}
+            items={item.items}
+            tables={item.tables}
+            link={item.link}
+          />
         ))}
 
         <section className="policy-section policy-section--contact">

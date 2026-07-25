@@ -79,6 +79,9 @@
 }
 
 .policy-section {
+  /* Grid items default to min-width:auto, which would let a wide table push the
+     section past the viewport instead of scrolling inside .policy-table__scroll. */
+  min-width: 0;
   padding: clamp(1.25rem, 3vw, 1.8rem);
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -121,6 +124,71 @@
   border-radius: 999px;
   background: var(--dp-accent);
   box-shadow: 0 0 0 4px rgba(255, 111, 97, .13);
+}
+
+/* Cancellation windows read as a comparison, not a list — the deadline column
+   is the row header so screen readers announce it with each charge. */
+.policy-table {
+  margin: 1.4rem 0 0;
+}
+
+.policy-table figcaption {
+  margin-bottom: .55rem;
+  color: var(--text);
+  font-family: var(--dp-font-sans);
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.policy-table__scroll {
+  min-width: 0;
+  overflow-x: auto;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.policy-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--dp-font-sans);
+  font-size: .94rem;
+}
+
+.policy-table th,
+.policy-table td {
+  padding: .7rem .85rem;
+  text-align: left;
+  line-height: 1.6;
+  vertical-align: top;
+}
+
+.policy-table thead th {
+  background: var(--surface-raised);
+  color: var(--text-muted);
+  font-size: .72rem;
+  font-weight: 800;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.policy-table tbody tr + tr th,
+.policy-table tbody tr + tr td {
+  border-top: 1px solid var(--border);
+}
+
+.policy-table tbody th {
+  color: var(--text-soft);
+  font-weight: 600;
+  min-width: 15rem;
+}
+
+.policy-table tbody td {
+  color: var(--text);
+  font-weight: 650;
+  white-space: nowrap;
 }
 
 .policy-section--contact p {

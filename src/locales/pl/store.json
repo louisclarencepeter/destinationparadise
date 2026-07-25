@@ -131,6 +131,7 @@
     "pay": "Zapłać {{amount}}",
     "checking": "Sprawdzamy dostępność…",
     "recheck_note": "Przed płatnością ponownie sprawdzamy dostępność.",
+    "terms_ack": "Kontynuując, akceptujesz nasze <booking>Warunki rezerwacji</booking> i <terms>Regulamin</terms>, w tym opłaty za anulowanie obowiązujące dla Twoich terminów.",
     "conflict": "Część terminów jest już niedostępna. Popraw zaznaczone wycieczki.",
     "conflict_fix": "Wybierz nowy termin",
     "failed": "Nie udało się teraz dokończyć płatności. Nic nie zostało pobrane — spróbuj ponownie za chwilę.",
