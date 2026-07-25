@@ -17,6 +17,39 @@ export const INSTAGRAM_STORY_CARDS = [
   { id: 'organic-spice-farm', source: '/assets/images/excursions/trips/organic-spice-farm.webp', title: 'A Spice Farm Welcome', caption: 'Fresh coconut, generous local hospitality, and a taste of Zanzibar’s spice country.' },
   { id: 'nakupenda-sandbank', source: '/assets/images/excursions/trips/nakupenda-sandbank.webp', title: 'Sandbank Escape', caption: 'White sand, an open horizon, and nowhere else you need to be.' },
   { id: 'wellness-yoga-beach', source: '/assets/images/excursions/trips/wellness-yoga-beach.webp', title: 'Golden Hour', caption: 'A simple evening by the sea, shared with the people you came to Zanzibar with.' },
+  { id: 'aerial-zanzibar-water', source: '/assets/images/home/aerial-boats-turquoise-water-600w.webp', title: 'Zanzibar From Above', caption: 'From above, the Indian Ocean reveals every shade of blue.' },
+  { id: 'mizingani-waterfront', source: '/assets/images/home/mizingani-waterfront-600w.webp', title: 'A Waterfront Morning', caption: 'Palms, sea air, and an unhurried start along Stone Town’s waterfront.' },
+  { id: 'stone-town-seafront', source: '/assets/images/home/stone-town-waterfront.webp', title: 'Where History Meets the Sea', caption: 'Centuries of island history unfold beside Stone Town’s blue horizon.' },
+  { id: 'blue-lagoon-reef', source: '/assets/images/excursions/trips/blue-lagoon-snorkeling.webp', title: 'Beneath Zanzibar', caption: 'Clear water, bright reef fish, and a gentler pace below the surface.' },
+  { id: 'chumbe-coral-park', source: '/assets/images/excursions/trips/chumbe-coral-reef.webp', title: 'Chumbe Coral Park', caption: 'Protected reef, clear water, and conservation at the heart of the day.' },
+  { id: 'spice-in-your-hands', source: '/assets/images/excursions/trips/cooking-coffee-spices.webp', title: 'Taste the Spice Island', caption: 'Touch, taste, and discover how Zanzibar’s famous spices grow.' },
+  { id: 'dhow-heritage', source: '/assets/images/excursions/trips/dhow-building.webp', title: 'Dhow Heritage', caption: 'Hand-built wooden boats still carry Zanzibar’s Indian Ocean story.' },
+  { id: 'pange-sandbank', source: '/assets/images/excursions/trips/pange-sandbank.webp', title: 'Pange Sandbank', caption: 'A ribbon of white sand surrounded by open blue water.' },
+  { id: 'the-rock-zanzibar', source: '/assets/images/excursions/trips/the-rock-restaurant.webp', title: 'An Island Icon', caption: 'The Rock rises from the tide on Zanzibar’s beautiful east coast.' },
+  { id: 'zanzibar-historical-ruins', source: '/assets/images/excursions/trips/historical-ruins.webp', title: 'Zanzibar Through Time', caption: 'Palaces, old façades, and stories shaped by centuries of island history.' },
+  { id: 'buffalo-country', source: '/assets/images/safaris/buffalo-herd-close.webp', title: 'Buffalo Country', caption: 'A powerful safari encounter on Tanzania’s open plains.' },
+  { id: 'yellow-weaver', source: '/assets/images/safaris/yellow-weaver-on-rail.webp', title: 'Safari in the Details', caption: 'The smallest flashes of colour can become unforgettable safari moments.' },
+  { id: 'eland-herd', source: '/assets/images/safaris/eland-herd-plains.webp', title: 'Across the Plains', caption: 'Eland move quietly through Tanzania’s wide landscapes.' },
+  { id: 'lion-cub', source: '/assets/images/safaris/lion-cub-in-grass.webp', title: 'Young Explorer', caption: 'A lion cub discovers the grasslands one careful step at a time.' },
+  { id: 'lioness-and-cub', source: '/assets/images/safaris/lioness-and-cub-resting.webp', title: 'A Quiet Family Moment', caption: 'A lioness and her cub rest together between journeys across the plains.' },
+  { id: 'male-lion', source: '/assets/images/safaris/male-lion-in-grass.webp', title: 'Lion on the Plains', caption: 'A male lion watches over the grasslands on a quiet safari morning.' },
+  { id: 'rhino-on-plains', source: '/assets/images/safaris/rhino-on-plains.webp', title: 'A Rare Encounter', caption: 'A rhino on the open plain is a safari moment that stays with you.' },
+  { id: 'zebra-family', source: '/assets/images/safaris/zebra-mare-and-foal.webp', title: 'Together on Safari', caption: 'A zebra mare keeps her foal close on Tanzania’s green plains.' },
+];
+
+// One-time migration seed for images published by the former local scheduler.
+// These were posted to the same Instagram account but are not all present in
+// the cloud scheduler's retained log.
+export const INSTAGRAM_STORY_PUBLISHED_HISTORY_SEED = [
+  'safari-blue-dhow',
+  'stone-town-old-fort',
+  'jozani-red-colobus',
+  'prison-island-tortoise',
+  'dream-dhow-sunset',
+  'dolphin-snorkeling',
+  'spice-tour',
+  'mnemba-snorkeling',
+  'private-sunset-dhow',
 ];
 
 export const INSTAGRAM_STORY_CARD_BY_ID = new Map(INSTAGRAM_STORY_CARDS.map((card) => [card.id, card]));

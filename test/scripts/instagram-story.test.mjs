@@ -9,6 +9,8 @@ import {
   alreadyPublishedToday,
   chooseStoryCard,
   isStoryMediaError,
+  migrateStoryState,
+  parseStoryPublicationLog,
   partitionPublishableCards,
   StoryMediaError,
   storyDateKey,
@@ -59,7 +61,141 @@ describe('Instagram Story editorial queue', () => {
   it('begins a new cycle only after every approved card is used', () => {
     const result = chooseStoryCard(cards, { cycle: 1, usedCards: ['first', 'second'] });
     expect(result.selected.id).toBe('first');
-    expect(result.nextState).toEqual({ cycle: 2, usedCards: ['first'] });
+    expect(result.nextState).toEqual({
+      version: 2,
+      cycle: 2,
+      usedCards: ['first'],
+      usedSources: [cards[0].source],
+    });
+  });
+
+  it('persists legacy image paths as card ids instead of forgetting them', () => {
+    const result = chooseStoryCard(cards, { cycle: 1, used: [cards[0].source] });
+    expect(result.nextState).toEqual({
+      version: 2,
+      cycle: 1,
+      usedCards: ['first', 'second'],
+      usedSources: cards.map((card) => card.source),
+    });
+  });
+
+  it('keeps the complete history when a failed card is excluded for one run', () => {
+    const extendedCards = [
+      ...cards,
+      { id: 'third', source: '/assets/images/excursions/third.webp' },
+    ];
+    const result = chooseStoryCard(
+      extendedCards,
+      { version: 2, cycle: 1, usedCards: ['first'] },
+      { excludedIds: ['second'] },
+    );
+    expect(result.selected.id).toBe('third');
+    expect(result.nextState.usedCards).toEqual(['first', 'third']);
+  });
+
+  it('does not reset the cycle when all remaining unused cards fail validation', () => {
+    expect(() => chooseStoryCard(
+      cards,
+      { version: 2, cycle: 1, usedCards: ['first'] },
+      { excludedIds: ['second'] },
+    )).toThrow('Every unused Story card failed media validation: second.');
+  });
+
+  it('uses every card once before starting the next cycle', () => {
+    let state = { version: 2, cycle: 1, usedCards: [], usedSources: [] };
+    const selected = [];
+    for (let index = 0; index < cards.length; index += 1) {
+      const result = chooseStoryCard(cards, state);
+      selected.push(result.selected.id);
+      state = result.nextState;
+    }
+    expect(selected).toEqual(['first', 'second']);
+    expect(chooseStoryCard(cards, state).selected.id).toBe('first');
+  });
+});
+
+describe('Instagram Story history migration', () => {
+  const cards = [
+    { id: 'first', source: '/assets/images/excursions/first.webp' },
+    { id: 'second', source: '/assets/images/excursions/second.webp' },
+    { id: 'third', source: '/assets/images/excursions/third.webp' },
+  ];
+
+  it('merges legacy state, successful log entries, and the known history seed', () => {
+    const migrated = migrateStoryState(
+      cards,
+      { cycle: 3, used: [cards[0].source] },
+      [
+        { publishedAt: '2026-07-20T07:00:00.000Z', selected: cards[1].source },
+        { failedAt: '2026-07-21T07:00:00.000Z', cardId: 'third' },
+      ],
+      ['third'],
+    );
+    expect(migrated).toEqual({
+      version: 2,
+      cycle: 3,
+      usedCards: ['first', 'second', 'third'],
+      usedSources: cards.map((card) => card.source),
+      lastPublishedAt: '2026-07-20T07:00:00.000Z',
+    });
+  });
+
+  it('does not replay all-time history after state version 2 starts a new cycle', () => {
+    const migrated = migrateStoryState(
+      cards,
+      { version: 2, cycle: 2, usedCards: ['first'] },
+      [{ publishedAt: '2026-07-20T07:00:00.000Z', cardId: 'second' }],
+      ['third'],
+    );
+    expect(migrated.usedCards).toEqual(['first']);
+  });
+
+  it('retains the newest successful publication guard during migration', () => {
+    const migrated = migrateStoryState(
+      cards,
+      {
+        cycle: 1,
+        lastPublishedAt: '2026-07-20T07:00:00.000Z',
+        lastMediaId: 'older-media',
+      },
+      [
+        {
+          publishedAt: '2026-07-21T07:00:00.000Z',
+          mediaId: 'newer-media',
+          cardId: 'second',
+        },
+      ],
+      [],
+    );
+    expect(migrated.lastPublishedAt).toBe('2026-07-21T07:00:00.000Z');
+    expect(migrated.lastMediaId).toBe('newer-media');
+  });
+
+  it('is idempotent once the state reaches version 2', () => {
+    const first = migrateStoryState(
+      cards,
+      { cycle: 1, used: [cards[0].source] },
+      [{ publishedAt: '2026-07-20T07:00:00.000Z', cardId: 'second' }],
+      ['third'],
+    );
+    expect(migrateStoryState(
+      cards,
+      first,
+      [{ publishedAt: '2026-07-22T07:00:00.000Z', cardId: 'first' }],
+      [],
+    )).toEqual(first);
+  });
+
+  it('reads valid JSONL records and ignores malformed log lines', () => {
+    expect(parseStoryPublicationLog([
+      '{"publishedAt":"2026-07-20T07:00:00.000Z","cardId":"first"}',
+      'not-json',
+      '{"failedAt":"2026-07-21T07:00:00.000Z"}',
+      '',
+    ].join('\n'))).toEqual([
+      { publishedAt: '2026-07-20T07:00:00.000Z', cardId: 'first' },
+      { failedAt: '2026-07-21T07:00:00.000Z' },
+    ]);
   });
 });
 
@@ -142,6 +278,10 @@ describe('Meta media rejection classification', () => {
 });
 
 describe('Approved Story queue audit', () => {
+  it('keeps at least a month of unique daily pictures in rotation', () => {
+    expect(INSTAGRAM_STORY_CARDS.length).toBeGreaterThanOrEqual(30);
+  });
+
   it('contains only publishable photo sources', () => {
     const { rejected } = partitionPublishableCards(INSTAGRAM_STORY_CARDS);
     expect(rejected.map((entry) => entry.card.id)).toEqual([]);
@@ -150,6 +290,11 @@ describe('Approved Story queue audit', () => {
   it('gives every card a unique id', () => {
     const ids = INSTAGRAM_STORY_CARDS.map((card) => card.id);
     expect(new Set(ids).size).toBe(ids.length);
+  });
+
+  it('does not assign the same picture to two different cards', () => {
+    const sources = INSTAGRAM_STORY_CARDS.map((card) => card.source);
+    expect(new Set(sources).size).toBe(sources.length);
   });
 
   it('points every card at an image file that exists', () => {

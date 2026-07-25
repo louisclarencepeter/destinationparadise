@@ -28,6 +28,7 @@ permissions:
 jobs:
   story:
     name: Publish Story
+    if: ${{ github.ref_name == 'main' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     env:
@@ -56,7 +57,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p .instagram-story-data
-          artifact_id="$(gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=instagram-story-state&per_page=100" --jq '[.artifacts[] | select(.expired == false)] | sort_by(.created_at) | reverse | .[0].id // empty')"
+          artifact_id="$(gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts?name=instagram-story-state&per_page=100" --jq '[.artifacts[] | select(.expired == false and .workflow_run.head_branch == "main")] | sort_by(.created_at) | reverse | .[0].id // empty')"
           if [[ -n "${artifact_id}" ]]; then
             gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/${artifact_id}/zip" > /tmp/instagram-story-state.zip
             unzip -jo /tmp/instagram-story-state.zip -d .instagram-story-data
