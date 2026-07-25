@@ -6,6 +6,7 @@ import process from 'node:process';
 import {
   INSTAGRAM_STORY_ALLOWED_SOURCE,
   INSTAGRAM_STORY_CARDS,
+  INSTAGRAM_STORY_PUBLISHED_HISTORY_SEED,
 } from '../data/instagramStoryCards.mjs';
 
 const ROOT = path.resolve(import.meta.dirname, '..');
@@ -17,6 +18,7 @@ const EXPECTED_USERNAME = 'yournexttriptoparadise';
 const STORY_TIME_ZONE = process.env.INSTAGRAM_STORY_TIME_ZONE || 'Africa/Dar_es_Salaam';
 const mode = process.argv.includes('--publish') ? 'publish' : 'dry-run';
 const SAFE_REQUEST_RETRIES = 2;
+export const INSTAGRAM_STORY_STATE_VERSION = 2;
 
 function parseEnv(source) {
   return Object.fromEntries(
@@ -115,6 +117,101 @@ async function readState() {
   }
 }
 
+export function parseStoryPublicationLog(source) {
+  return String(source || '')
+    .split(/\r?\n/)
+    .filter(Boolean)
+    .flatMap((line) => {
+      try {
+        const entry = JSON.parse(line);
+        return entry && typeof entry === 'object' ? [entry] : [];
+      } catch {
+        return [];
+      }
+    });
+}
+
+async function readPublicationLog() {
+  try {
+    return parseStoryPublicationLog(await readFile(LOG_PATH, 'utf8'));
+  } catch (error) {
+    if (error.code === 'ENOENT') return [];
+    throw error;
+  }
+}
+
+function cardHistoryFromState(cards, state) {
+  const ids = new Set(cards.map((card) => card.id));
+  const idsBySource = new Map(cards.map((card) => [card.source, card.id]));
+  const sourcesById = new Map(cards.map((card) => [card.id, card.source]));
+  const usedCardIds = new Set(
+    Array.isArray(state?.usedCards)
+      ? state.usedCards.filter((id) => ids.has(id))
+      : [],
+  );
+  const usedSources = new Set([
+    ...(Array.isArray(state?.usedSources) ? state.usedSources : []),
+    ...(Array.isArray(state?.used) ? state.used : []),
+  ]);
+  for (const source of usedSources) {
+    const id = idsBySource.get(source);
+    if (id) usedCardIds.add(id);
+  }
+  for (const id of usedCardIds) {
+    const source = sourcesById.get(id);
+    if (source) usedSources.add(source);
+  }
+  return { usedCardIds, usedSources };
+}
+
+export function migrateStoryState(
+  cards,
+  state = {},
+  publicationLog = [],
+  publishedHistorySeed = INSTAGRAM_STORY_PUBLISHED_HISTORY_SEED,
+) {
+  const ids = new Set(cards.map((card) => card.id));
+  const idsBySource = new Map(cards.map((card) => [card.source, card.id]));
+  const sourcesById = new Map(cards.map((card) => [card.id, card.source]));
+  const { usedCardIds, usedSources } = cardHistoryFromState(cards, state);
+  const stateVersion = Number(state.version) || 0;
+  let lastPublishedAt = state.lastPublishedAt;
+  let lastMediaId = state.lastMediaId;
+
+  if (stateVersion < INSTAGRAM_STORY_STATE_VERSION) {
+    for (const entry of publicationLog) {
+      if (!entry?.publishedAt) continue;
+      const id = ids.has(entry.cardId) ? entry.cardId : idsBySource.get(entry.selected);
+      const source = id ? sourcesById.get(id) : null;
+      if (id) usedCardIds.add(id);
+      if (source) usedSources.add(source);
+      const entryTime = new Date(entry.publishedAt).getTime();
+      const currentTime = new Date(lastPublishedAt || 0).getTime();
+      if (!Number.isNaN(entryTime) && (Number.isNaN(currentTime) || entryTime > currentTime)) {
+        lastPublishedAt = entry.publishedAt;
+        lastMediaId = entry.mediaId || lastMediaId;
+      }
+    }
+    for (const id of publishedHistorySeed) {
+      if (!ids.has(id)) continue;
+      usedCardIds.add(id);
+      usedSources.add(sourcesById.get(id));
+    }
+  }
+
+  const migrated = {
+    ...state,
+    version: Math.max(stateVersion, INSTAGRAM_STORY_STATE_VERSION),
+    cycle: Number(state.cycle) || 1,
+    usedCards: cards.filter((card) => usedCardIds.has(card.id)).map((card) => card.id),
+    usedSources: cards.filter((card) => usedSources.has(card.source)).map((card) => card.source),
+  };
+  if (lastPublishedAt) migrated.lastPublishedAt = lastPublishedAt;
+  if (lastMediaId) migrated.lastMediaId = lastMediaId;
+  delete migrated.used;
+  return migrated;
+}
+
 export function storyDateKey(value, timeZone = STORY_TIME_ZONE) {
   const date = value instanceof Date ? value : new Date(value);
   if (Number.isNaN(date.getTime())) return null;
@@ -134,24 +231,41 @@ export function alreadyPublishedToday(state, now = new Date(), timeZone = STORY_
   return publishedDate !== null && publishedDate === storyDateKey(now, timeZone);
 }
 
-export function chooseStoryCard(cards, state) {
-  const existing = new Set(cards.map((card) => card.id));
-  const usedCards = (state.usedCards || []).filter((id) => existing.has(id));
-  const legacyUsedSources = new Set(state.used || []);
-  let remaining = cards.filter(
-    (card) => !usedCards.includes(card.id) && !legacyUsedSources.has(card.source),
+export function chooseStoryCard(cards, state = {}, { excludedIds = [] } = {}) {
+  const { usedCardIds, usedSources } = cardHistoryFromState(cards, state);
+  const excludedCardIds = new Set(excludedIds);
+  const availableCards = cards.filter((card) => !excludedCardIds.has(card.id));
+  const unusedCards = cards.filter(
+    (card) => !usedCardIds.has(card.id) && !usedSources.has(card.source),
   );
+  let remaining = unusedCards.filter((card) => !excludedCardIds.has(card.id));
   let cycle = Number(state.cycle) || 1;
 
   if (!remaining.length) {
-    remaining = cards;
-    usedCards.length = 0;
+    if (unusedCards.length) {
+      throw new Error(
+        `Every unused Story card failed media validation: ${unusedCards.map((card) => card.id).join(', ')}.`,
+      );
+    }
+    remaining = availableCards;
+    usedCardIds.clear();
+    usedSources.clear();
     cycle += 1;
   }
 
   if (!remaining.length) throw new Error('No approved Destination Paradise Story cards found.');
   const selected = remaining[0];
-  return { selected, nextState: { cycle, usedCards: [...usedCards, selected.id] } };
+  usedCardIds.add(selected.id);
+  usedSources.add(selected.source);
+  const nextState = {
+    ...state,
+    version: Math.max(Number(state.version) || 0, INSTAGRAM_STORY_STATE_VERSION),
+    cycle,
+    usedCards: cards.filter((card) => usedCardIds.has(card.id)).map((card) => card.id),
+    usedSources: cards.filter((card) => usedSources.has(card.source)).map((card) => card.source),
+  };
+  delete nextState.used;
+  return { selected, nextState };
 }
 
 function createImageUrl(card) {
@@ -281,6 +395,7 @@ async function main() {
     await reportSkippedCard({ reason, cardId: card?.id, source: card?.source });
   }
   if (!cards.length) throw new Error('No approved Destination Paradise Story cards found.');
+  const migratedState = migrateStoryState(cards, state, await readPublicationLog());
 
   const skippedIds = new Set();
   for (;;) {
@@ -290,7 +405,9 @@ async function main() {
         `Every approved Story card failed media validation: ${[...skippedIds].join(', ')}.`,
       );
     }
-    const { selected, nextState } = chooseStoryCard(candidates, state);
+    const { selected, nextState } = chooseStoryCard(cards, migratedState, {
+      excludedIds: skippedIds,
+    });
     try {
       await publishStoryCard({ config, profile, selected, nextState, cardCount: cards.length });
       return;
