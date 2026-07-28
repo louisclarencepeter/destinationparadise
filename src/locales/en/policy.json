@@ -85,7 +85,7 @@
           "items": [
             "Deposits, payment deadlines, cancellation charges, amendments, refunds, and our responsibilities to you are set out in full in our Booking Policy, which forms part of these terms.",
             "You are responsible for checking names, dates, pickup details, passport information, dietary needs, medical considerations, and travel documents before confirmation.",
-            "Your quote or checkout summary will confirm what is included, what is excluded, and any supplier conditions specific to your trip."
+            "Your quote will confirm what is included, what is excluded, and any supplier conditions specific to your trip."
           ],
           "link": {
             "to": "/booking-policy",
@@ -105,22 +105,20 @@
     "booking": {
       "eyebrow": "Booking",
       "title": "Booking Policy",
-      "intro": "These booking policies apply to every tour, excursion, transfer, safari, and package arranged by Destination Paradise LTD, whether you book by enquiry or instantly through our online store.",
+      "intro": "These booking policies apply to every tour, excursion, transfer, safari, and package arranged by Destination Paradise LTD.",
       "sections": [
         {
           "title": "Booking Confirmation",
           "items": [
             "All bookings are subject to availability at the time we confirm them.",
-            "For bookings arranged by enquiry, a booking is confirmed only once we have received the required deposit or payment and sent you written confirmation.",
-            "Experiences booked instantly through our online store are confirmed automatically as soon as our payment partner verifies your payment and we issue your booking codes. No separate written confirmation is needed.",
-            "If a store payment cannot be verified automatically, we review it manually and contact you before the booking is either confirmed or released.",
-            "Prices are quoted in US dollars unless otherwise stated. Enquiry bookings may also be settled in Tanzanian shillings at the prevailing exchange rate. Online store payments are charged in US dollars, and prices displayed in other currencies are indicative estimates."
+            "A booking is confirmed only once we have received the required deposit or payment and sent you written confirmation.",
+            "Prices are quoted in US dollars unless otherwise stated, and may also be settled in Tanzanian shillings at the prevailing exchange rate. Prices displayed in other currencies are indicative estimates."
           ]
         },
         {
           "title": "Payment",
           "items": [
-            "Day tours, excursions, and transfers in Zanzibar: full payment is required before the service begins. Experiences booked in our online store are paid in full at checkout.",
+            "Day tours, excursions, and transfers in Zanzibar: full payment is required before the service begins.",
             "Tanzania safaris: a 30% deposit confirms your booking, and the remaining 70% is due at least 30 days before the safari start date.",
             "Safari bookings made within 30 days of the start date require full payment on confirmation.",
             "If a safari balance is not received by its due date we will contact you before taking any action. Where the balance remains unpaid, we may treat the booking as cancelled by you and the charges below will apply."
@@ -211,7 +209,7 @@
           "title": "Children",
           "items": [
             "Children are welcome on all tours and safaris.",
-            "Child rates, and the age bands they apply to, are set by each hotel, park, and activity provider and are confirmed in your quote or at checkout. They are not standard across suppliers.",
+            "Child rates, and the age bands they apply to, are set by each hotel, park, and activity provider and are confirmed in your quote. They are not standard across suppliers.",
             "Some activities carry minimum ages or health restrictions set by the operator for safety reasons. We will tell you where these apply.",
             "A parent or guardian must accompany and supervise children throughout the trip."
           ]
@@ -273,8 +271,7 @@
             "Approved refunds are returned to the original payment method wherever possible, normally within 14 days of us confirming the refund.",
             "Where you cancel inside a charging window, we refund the balance after the applicable cancellation charge and any non-refundable supplier costs already committed to your booking.",
             "Where a refund is due in full — because we cancelled, or because you cancelled free of charge within the permitted window — we do not deduct payment processing fees.",
-            "Bank transfer charges may be deducted only where a refund has to be sent by international bank transfer at your request, rather than to the original payment method.",
-            "Refunds of online store bookings are returned through our payment partner to the card or mobile-money account used at checkout."
+            "Bank transfer charges may be deducted only where a refund has to be sent by international bank transfer at your request, rather than to the original payment method."
           ]
         },
         {
@@ -302,7 +299,7 @@
         {
           "title": "Acceptance And Updates",
           "items": [
-            "Paying a deposit or the full amount, or completing checkout in our online store, confirms that you have read, understood, and accepted these booking policies.",
+            "Paying a deposit or the full amount confirms that you have read, understood, and accepted these booking policies.",
             "We may update these policies where supplier terms, park regulations, or legal requirements change.",
             "The version that applies to your trip is the one published when your booking was confirmed. Later changes do not apply retrospectively to a confirmed booking."
           ]

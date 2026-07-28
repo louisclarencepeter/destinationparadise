@@ -85,7 +85,7 @@
           "items": [
             "Anzahlungen, Zahlungsfristen, Stornogebühren, Umbuchungen, Rückerstattungen und unsere Verpflichtungen dir gegenüber sind vollständig in unseren Buchungsbedingungen geregelt, die Bestandteil dieser AGB sind.",
             "Du bist dafür verantwortlich, Namen, Daten, Abholangaben, Passdaten, Ernährungswünsche, gesundheitliche Hinweise und Reisedokumente vor der Bestätigung zu prüfen.",
-            "Dein Angebot oder deine Checkout-Übersicht bestätigt, was enthalten und was ausgeschlossen ist sowie alle für deine Reise geltenden Bedingungen der Leistungsträger."
+            "Dein Angebot bestätigt, was enthalten und was ausgeschlossen ist sowie alle für deine Reise geltenden Bedingungen der Leistungsträger."
           ],
           "link": {
             "to": "/booking-policy",
@@ -105,22 +105,20 @@
     "booking": {
       "eyebrow": "Buchung",
       "title": "Buchungsbedingungen",
-      "intro": "Diese Buchungsbedingungen gelten für jede Tour, jeden Ausflug, jeden Transfer, jede Safari und jedes Paket, das von Destination Paradise LTD arrangiert wird — ob du per Anfrage oder sofort über unseren Online-Store buchst.",
+      "intro": "Diese Buchungsbedingungen gelten für jede Tour, jeden Ausflug, jeden Transfer, jede Safari und jedes Paket, das von Destination Paradise LTD arrangiert wird.",
       "sections": [
         {
           "title": "Buchungsbestätigung",
           "items": [
             "Alle Buchungen stehen unter dem Vorbehalt der Verfügbarkeit zum Zeitpunkt unserer Bestätigung.",
-            "Bei Buchungen über eine Anfrage gilt eine Buchung erst dann als bestätigt, wenn wir die erforderliche Anzahlung oder Zahlung erhalten und dir eine schriftliche Bestätigung gesendet haben.",
-            "Über unseren Online-Store sofort gebuchte Erlebnisse sind automatisch bestätigt, sobald unser Zahlungspartner deine Zahlung verifiziert hat und wir deine Buchungscodes ausgestellt haben. Eine gesonderte schriftliche Bestätigung ist nicht erforderlich.",
-            "Kann eine Store-Zahlung nicht automatisch verifiziert werden, prüfen wir sie manuell und kontaktieren dich, bevor die Buchung bestätigt oder freigegeben wird.",
-            "Preise werden, sofern nicht anders angegeben, in US-Dollar ausgewiesen. Anfragebuchungen können auch in Tansania-Schilling zum jeweils gültigen Wechselkurs beglichen werden. Zahlungen im Online-Store werden in US-Dollar abgerechnet; Preise in anderen Währungen sind Richtwerte."
+            "Eine Buchung gilt erst dann als bestätigt, wenn wir die erforderliche Anzahlung oder Zahlung erhalten und dir eine schriftliche Bestätigung gesendet haben.",
+            "Preise werden, sofern nicht anders angegeben, in US-Dollar ausgewiesen und können auch in Tansania-Schilling zum jeweils gültigen Wechselkurs beglichen werden. Preise in anderen Währungen sind Richtwerte."
           ]
         },
         {
           "title": "Zahlung",
           "items": [
-            "Tagestouren, Ausflüge und Transfers auf Sansibar: Die vollständige Zahlung ist vor Beginn der Leistung fällig. Im Online-Store gebuchte Erlebnisse werden beim Checkout vollständig bezahlt.",
+            "Tagestouren, Ausflüge und Transfers auf Sansibar: Die vollständige Zahlung ist vor Beginn der Leistung fällig.",
             "Safaris in Tansania: Eine Anzahlung von 30 % bestätigt deine Buchung; die restlichen 70 % sind spätestens 30 Tage vor Safaribeginn fällig.",
             "Safaribuchungen innerhalb von 30 Tagen vor Reisebeginn erfordern die vollständige Zahlung bei Bestätigung.",
             "Geht eine Restzahlung nicht fristgerecht ein, kontaktieren wir dich, bevor wir Schritte einleiten. Bleibt der Betrag offen, können wir die Buchung als von dir storniert behandeln; dann gelten die untenstehenden Gebühren."
@@ -211,7 +209,7 @@
           "title": "Kinder",
           "items": [
             "Kinder sind auf allen Touren und Safaris willkommen.",
-            "Kinderpreise und die zugehörigen Altersgrenzen werden von jedem Hotel, Nationalpark und Aktivitätsanbieter selbst festgelegt und in deinem Angebot oder beim Checkout bestätigt. Sie sind nicht bei allen Anbietern gleich.",
+            "Kinderpreise und die zugehörigen Altersgrenzen werden von jedem Hotel, Nationalpark und Aktivitätsanbieter selbst festgelegt und in deinem Angebot bestätigt. Sie sind nicht bei allen Anbietern gleich.",
             "Für einige Aktivitäten gelten vom Anbieter aus Sicherheitsgründen festgelegte Mindestalter oder gesundheitliche Einschränkungen. Wir weisen dich darauf hin, wo dies zutrifft.",
             "Ein Elternteil oder eine erziehungsberechtigte Person muss Kinder während der gesamten Reise begleiten und beaufsichtigen."
           ]
@@ -273,8 +271,7 @@
             "Genehmigte Rückerstattungen erfolgen nach Möglichkeit auf das ursprüngliche Zahlungsmittel, in der Regel innerhalb von 14 Tagen nach unserer Bestätigung der Erstattung.",
             "Stornierst du innerhalb eines Gebührenzeitraums, erstatten wir den Restbetrag nach Abzug der jeweiligen Stornogebühr und bereits verbindlich angefallener, nicht erstattungsfähiger Kosten der Leistungsträger.",
             "Steht dir eine vollständige Rückerstattung zu — weil wir storniert haben oder du kostenfrei innerhalb der zulässigen Frist storniert hast — ziehen wir keine Zahlungsabwicklungsgebühren ab.",
-            "Bankgebühren können nur dann abgezogen werden, wenn eine Rückerstattung auf deinen Wunsch per internationaler Banküberweisung statt auf das ursprüngliche Zahlungsmittel erfolgen muss.",
-            "Rückerstattungen von Online-Store-Buchungen werden über unseren Zahlungspartner auf die beim Checkout verwendete Karte oder das Mobile-Money-Konto zurückgeführt."
+            "Bankgebühren können nur dann abgezogen werden, wenn eine Rückerstattung auf deinen Wunsch per internationaler Banküberweisung statt auf das ursprüngliche Zahlungsmittel erfolgen muss."
           ]
         },
         {
@@ -302,7 +299,7 @@
         {
           "title": "Annahme Und Änderungen",
           "items": [
-            "Mit der Zahlung einer Anzahlung oder des Gesamtbetrags oder mit dem Abschluss des Checkouts in unserem Online-Store bestätigst du, diese Buchungsbedingungen gelesen, verstanden und akzeptiert zu haben.",
+            "Mit der Zahlung einer Anzahlung oder des Gesamtbetrags bestätigst du, diese Buchungsbedingungen gelesen, verstanden und akzeptiert zu haben.",
             "Wir können diese Bedingungen anpassen, wenn sich Bedingungen der Leistungsträger, Parkvorschriften oder gesetzliche Anforderungen ändern.",
             "Für deine Reise gilt die Fassung, die bei Bestätigung deiner Buchung veröffentlicht war. Spätere Änderungen wirken nicht rückwirkend auf eine bestätigte Buchung."
           ]

@@ -85,7 +85,7 @@
           "items": [
             "Zaliczki, terminy płatności, opłaty za anulowanie, zmiany, zwroty oraz nasze zobowiązania wobec Ciebie są w całości opisane w Warunkach rezerwacji, które stanowią część niniejszego regulaminu.",
             "Przed potwierdzeniem odpowiadasz za sprawdzenie imion i nazwisk, dat, danych odbioru, informacji paszportowych, wymagań żywieniowych, kwestii zdrowotnych oraz dokumentów podróży.",
-            "Twoja wycena lub podsumowanie zamówienia potwierdza, co jest wliczone, co wyłączone oraz jakie warunki dostawców dotyczą Twojej podróży."
+            "Twoja wycena potwierdza, co jest wliczone, co wyłączone oraz jakie warunki dostawców dotyczą Twojej podróży."
           ],
           "link": {
             "to": "/booking-policy",
@@ -105,22 +105,20 @@
     "booking": {
       "eyebrow": "Rezerwacja",
       "title": "Warunki rezerwacji",
-      "intro": "Niniejsze warunki dotyczą każdej wycieczki, atrakcji, transferu, safari i pakietu organizowanego przez Destination Paradise LTD — niezależnie od tego, czy rezerwujesz przez zapytanie, czy od ręki w naszym sklepie online.",
+      "intro": "Niniejsze warunki dotyczą każdej wycieczki, atrakcji, transferu, safari i pakietu organizowanego przez Destination Paradise LTD.",
       "sections": [
         {
           "title": "Potwierdzenie Rezerwacji",
           "items": [
             "Wszystkie rezerwacje zależą od dostępności w momencie ich potwierdzenia przez nas.",
-            "W przypadku rezerwacji przez zapytanie rezerwacja jest potwierdzona dopiero po otrzymaniu przez nas wymaganej zaliczki lub płatności i wysłaniu Ci pisemnego potwierdzenia.",
-            "Atrakcje zarezerwowane od ręki w sklepie online są potwierdzane automatycznie, gdy tylko nasz partner płatności zweryfikuje płatność, a my wystawimy kody rezerwacji. Osobne pisemne potwierdzenie nie jest potrzebne.",
-            "Jeśli płatność w sklepie nie może zostać zweryfikowana automatycznie, sprawdzamy ją ręcznie i kontaktujemy się z Tobą, zanim rezerwacja zostanie potwierdzona lub zwolniona.",
-            "Ceny podawane są w dolarach amerykańskich, o ile nie wskazano inaczej. Rezerwacje z zapytania mogą być rozliczone także w szylingach tanzańskich po aktualnym kursie. Płatności w sklepie online są pobierane w dolarach amerykańskich, a ceny w innych walutach mają charakter orientacyjny."
+            "Rezerwacja jest potwierdzona dopiero po otrzymaniu przez nas wymaganej zaliczki lub płatności i wysłaniu Ci pisemnego potwierdzenia.",
+            "Ceny podawane są w dolarach amerykańskich, o ile nie wskazano inaczej, i mogą być rozliczone także w szylingach tanzańskich po aktualnym kursie. Ceny w innych walutach mają charakter orientacyjny."
           ]
         },
         {
           "title": "Płatność",
           "items": [
-            "Wycieczki jednodniowe, atrakcje i transfery na Zanzibarze: pełna płatność jest wymagana przed rozpoczęciem usługi. Atrakcje rezerwowane w sklepie online opłacasz w całości przy składaniu zamówienia.",
+            "Wycieczki jednodniowe, atrakcje i transfery na Zanzibarze: pełna płatność jest wymagana przed rozpoczęciem usługi.",
             "Safari w Tanzanii: zaliczka w wysokości 30 % potwierdza rezerwację, a pozostałe 70 % jest płatne najpóźniej 30 dni przed datą rozpoczęcia safari.",
             "Rezerwacje safari dokonane w ciągu 30 dni przed datą rozpoczęcia wymagają pełnej płatności przy potwierdzeniu.",
             "Jeśli dopłata do safari nie wpłynie w terminie, skontaktujemy się z Tobą, zanim podejmiemy jakiekolwiek kroki. Gdy należność pozostanie nieopłacona, możemy potraktować rezerwację jako anulowaną przez Ciebie i zastosować poniższe opłaty."
@@ -211,7 +209,7 @@
           "title": "Dzieci",
           "items": [
             "Dzieci są mile widziane na wszystkich wycieczkach i safari.",
-            "Ceny dla dzieci oraz przedziały wiekowe, których dotyczą, ustala każdy hotel, park i organizator atrakcji; potwierdzamy je w wycenie lub przy składaniu zamówienia. Nie są one jednakowe u wszystkich dostawców.",
+            "Ceny dla dzieci oraz przedziały wiekowe, których dotyczą, ustala każdy hotel, park i organizator atrakcji; potwierdzamy je w wycenie. Nie są one jednakowe u wszystkich dostawców.",
             "Niektóre atrakcje mają ustalone przez organizatora minimalne granice wieku lub ograniczenia zdrowotne ze względów bezpieczeństwa. Poinformujemy Cię, gdy będą miały zastosowanie.",
             "Rodzic lub opiekun musi towarzyszyć dzieciom i sprawować nad nimi opiekę przez cały czas trwania podróży."
           ]
@@ -273,8 +271,7 @@
             "Zatwierdzone zwroty realizujemy w miarę możliwości na pierwotną metodę płatności, zwykle w ciągu 14 dni od potwierdzenia przez nas zwrotu.",
             "Jeśli anulujesz w okresie objętym opłatą, zwracamy pozostałą kwotę po potrąceniu należnej opłaty za anulowanie oraz bezzwrotnych kosztów dostawców już zaangażowanych w Twoją rezerwację.",
             "Gdy przysługuje pełny zwrot — ponieważ to my anulowaliśmy albo anulowałeś bezpłatnie w dozwolonym terminie — nie potrącamy opłat za obsługę płatności.",
-            "Opłaty bankowe możemy potrącić wyłącznie wtedy, gdy zwrot musi zostać wysłany międzynarodowym przelewem bankowym na Twoje życzenie, zamiast na pierwotną metodę płatności.",
-            "Zwroty za rezerwacje ze sklepu online realizujemy przez naszego partnera płatności na kartę lub konto mobile money użyte przy składaniu zamówienia."
+            "Opłaty bankowe możemy potrącić wyłącznie wtedy, gdy zwrot musi zostać wysłany międzynarodowym przelewem bankowym na Twoje życzenie, zamiast na pierwotną metodę płatności."
           ]
         },
         {
@@ -302,7 +299,7 @@
         {
           "title": "Akceptacja I Zmiany",
           "items": [
-            "Zapłata zaliczki lub pełnej kwoty albo sfinalizowanie zamówienia w naszym sklepie online potwierdza, że przeczytałeś, zrozumiałeś i akceptujesz niniejsze warunki rezerwacji.",
+            "Zapłata zaliczki lub pełnej kwoty potwierdza, że przeczytałeś, zrozumiałeś i akceptujesz niniejsze warunki rezerwacji.",
             "Możemy aktualizować niniejsze warunki, gdy zmienią się warunki dostawców, przepisy parków narodowych lub wymogi prawne.",
             "Do Twojej podróży stosuje się wersja opublikowana w chwili potwierdzenia rezerwacji. Późniejsze zmiany nie działają wstecz wobec potwierdzonej rezerwacji."
           ]
