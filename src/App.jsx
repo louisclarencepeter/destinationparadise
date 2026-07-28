@@ -67,6 +67,7 @@ export default function App() {
           <Route path="/cookies-policy" element={<Policy section="cookies" />} />
           <Route path="/privacy-policy" element={<Policy section="privacy" />} />
           <Route path="/terms-of-service" element={<Policy section="terms" />} />
+          <Route path="/booking-policy" element={<Policy section="booking" />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
