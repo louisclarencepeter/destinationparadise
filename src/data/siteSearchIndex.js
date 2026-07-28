@@ -58,7 +58,7 @@ const pageItems = [
     title: 'Booking',
     category: 'Page',
     description: 'Send a booking request for a package, excursion, safari, transfer, or custom plan.',
-    to: '/booking',
+    to: '/book-now',
     keywords: ['book now', 'request', 'payment', 'reserve', 'availability'],
   },
   {

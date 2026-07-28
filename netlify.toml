@@ -25,20 +25,141 @@
   status = 301
   force = true
 
-[[redirects]]
-  from = "/book-now"
-  to = "/index.html"
-  status = 200
+# ---------------------------------------------------------------------------
+# One URL per page
+# ---------------------------------------------------------------------------
+# Any route that exists on disk as dist/<route>/index.html gets Netlify's
+# built-in normalization for free: /route answers 301 -> /route/, and /route/
+# answers 200. That is exactly the trailing-slash form usePageMeta emits as
+# <link rel="canonical"> and build-sitemap.mjs writes as <loc>.
+#
+# /book-now and /trip-planner used to be served through `status = 200` rewrites
+# instead, so BOTH /route and /route/ answered 200 — two live URLs for one page,
+# neither redirecting to the other. Search Console reported the sitemap's
+# /trip-planner/ as "Duplicate, Google chose different canonical than user"
+# because of it. They now get real dist/<route>/index.html shells written by
+# scripts/build-spa-route-shells.mjs, so their rewrites are gone and both forms
+# collapse onto one canonical URL like every other route.
 
+# /booking renders the same <Booking /> page as /book-now and already declared
+# /book-now/ as its canonical, but it stayed independently crawlable: Search
+# Console logged ~17 /booking?type=…&item=… variants under "Alternate page with
+# proper canonical tag" plus one Soft 404 (the route is client-only, so Googlebot
+# got the bare shell). Collapse it into the canonical URL. Netlify carries the
+# query string across a redirect, so ?type=…&item=… deep links still prefill.
 [[redirects]]
   from = "/booking"
-  to = "/index.html"
-  status = 200
+  to = "/book-now/"
+  status = 301
+
+# ---------------------------------------------------------------------------
+# Legacy URLs from the pre-2026 site
+# ---------------------------------------------------------------------------
+# Renamed excursion slugs. Search Console listed these under "Not found (404)"
+# and "Server error (5xx)" with crawls as recent as Jul 24, 2026, so they still
+# carry external links and residual traffic — send them to today's pages
+# instead of the 404 shell. Targets use the trailing-slash canonical form so
+# there is no second hop.
+[[redirects]]
+  from = "/excursions/jozani-forest-tour"
+  to = "/excursions/jozani/"
+  status = 301
 
 [[redirects]]
-  from = "/trip-planner"
-  to = "/index.html"
-  status = 200
+  from = "/excursions/nungwi-trip"
+  to = "/excursions/north-nungwi/"
+  status = 301
+
+[[redirects]]
+  from = "/excursions/kizimkazi-fishing"
+  to = "/excursions/fishing-kizimkazi/"
+  status = 301
+
+[[redirects]]
+  from = "/excursions/local-game-fishing"
+  to = "/excursions/local-fishing/"
+  status = 301
+
+[[redirects]]
+  from = "/excursions/mnemba-snorkeling-trip-north"
+  to = "/excursions/mnemba/"
+  status = 301
+
+[[redirects]]
+  from = "/excursions/stone-town-heritage-walk"
+  to = "/excursions/stone-town/"
+  status = 301
+
+[[redirects]]
+  from = "/excursions/dolphin-tour"
+  to = "/excursions/dolphins/"
+  status = 301
+
+# "Swimming in Maalum Cave" — was reported as Server error (5xx).
+[[redirects]]
+  from = "/excursions/swimming-cave"
+  to = "/excursions/cave/"
+  status = 301
+
+# "Transparent Kayak & Paddleboarding" — was reported as Server error (5xx).
+[[redirects]]
+  from = "/excursions/stand-up-paddling"
+  to = "/excursions/transparent-kayak-sup/"
+  status = 301
+
+# Pages the old site had that the current one folded into other sections.
+[[redirects]]
+  from = "/gallery"
+  to = "/explore/"
+  status = 301
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/"
+  status = 301
+
+# WordPress leftovers Googlebot still requests (feeds, attachment pages, admin
+# endpoints). 410 Gone tells Google the URL is permanently retired so it stops
+# re-crawling, instead of the indefinite retries a 404 invites.
+[[redirects]]
+  from = "/feed/*"
+  to = "/404.html"
+  status = 410
+
+[[redirects]]
+  from = "/comments/feed/*"
+  to = "/404.html"
+  status = 410
+
+[[redirects]]
+  from = "/post-2/*"
+  to = "/404.html"
+  status = 410
+
+[[redirects]]
+  from = "/wp-admin/*"
+  to = "/404.html"
+  status = 410
+
+[[redirects]]
+  from = "/wp-content/*"
+  to = "/404.html"
+  status = 410
+
+[[redirects]]
+  from = "/wp-includes/*"
+  to = "/404.html"
+  status = 410
+
+[[redirects]]
+  from = "/wp-login.php"
+  to = "/404.html"
+  status = 410
+
+[[redirects]]
+  from = "/xmlrpc.php"
+  to = "/404.html"
+  status = 410
 
 # SPA fallback. Static files in dist/ (sitemap.xml, robots.txt, assets) are served
 # ahead of this catch-all, so unknown URLs return the prerendered 404 page.

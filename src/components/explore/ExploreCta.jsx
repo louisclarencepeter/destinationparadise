@@ -12,7 +12,7 @@ export default function ExploreCta() {
         <h2 className="reveal" style={{ '--reveal-index': 0 }}>{t('cta.title')}</h2>
         <p className="reveal" style={{ '--reveal-index': 1 }}>{t('cta.text')}</p>
         <div className="exc-cta__btns">
-          <Link className="btn btn--lg btn--accent reveal" style={{ '--reveal-index': 2 }} to="/booking">{t('cta.get_quote')}</Link>
+          <Link className="btn btn--lg btn--accent reveal" style={{ '--reveal-index': 2 }} to="/book-now">{t('cta.get_quote')}</Link>
           <Link className="btn btn--ghost-light btn--lg reveal" style={{ '--reveal-index': 3 }} to="/trip-planner">{t('cta.plan_ai')}</Link>
         </div>
       </div>

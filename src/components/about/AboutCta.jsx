@@ -14,7 +14,7 @@ export default function AboutCta() {
         <h2 className="reveal" style={{ '--reveal-index': 1 }}>{t('cta.title_prefix', { defaultValue: 'Welcome to' })} <em>{t('cta.title_em', { defaultValue: 'Destination Paradise' })}</em>{t('cta.title_suffix', { defaultValue: '.' })}</h2>
         <p className="reveal" style={{ '--reveal-index': 2 }}>{t('cta.text', { defaultValue: 'To everyone who supported this journey from the beginning — thank you. And to everyone joining us now: the vision is big, the journey is long, and we are so glad you are here at the start.' })}</p>
         <div className="ab-cta__btns reveal" style={{ '--reveal-index': 3 }}>
-          <Link className="btn btn--lg btn--accent" to="/booking">{t('cta.booking', { defaultValue: 'Plan your journey →' })}</Link>
+          <Link className="btn btn--lg btn--accent" to="/book-now">{t('cta.booking', { defaultValue: 'Plan your journey →' })}</Link>
           <Link className="btn btn--ghost-light btn--lg" to="/excursions">{t('cta.excursions', { defaultValue: 'See our excursions' })}</Link>
         </div>
       </div>
