@@ -12,13 +12,14 @@ The site has grown from a homepage rebuild into a multi-page travel platform:
 
 ## Stack
 
-- Vite + React 18
-- React Router 6
+- Vite 8 + React 19
+- React Router 8
 - Plain CSS modules by page/section, no preprocessor
 - Leaflet for the map experience
 - Netlify hosting
-- Netlify Function for `/api/planner`
+- Netlify Functions for planner, booking, contact, and the feature-flagged store
 - Netlify Forms for contact/newsletter forms
+- Supabase + DPO integration for the feature-flagged multi-trip store (production remains disabled)
 
 ## Run Locally
 
@@ -86,9 +87,12 @@ The planner endpoint registers its own route:
 | `/packages/:id` | Package detail pages |
 | `/trip-planner` | AI Trip Planner page with prompt cards and chat UI |
 | `/explore` | Interactive Explore page with map, destination hubs, related products, and CTA |
+| `/retreats`, `/retreats/teachers/:teacherId` | Retreat portfolio and teacher detail pages |
+| `/transfers` | Airport and island transfer portfolio |
 | `/booking`, `/book-now` | Booking request, quote, and payment-link entry point |
-| `/aboutus` | About placeholder |
-| `/cookies-policy`, `/privacy-policy`, `/terms-of-service` | Policy pages |
+| `/aboutus` | Company story, mission, community, and destination coverage |
+| `/store`, `/store/checkout`, `/store/order/:reference` | Feature-flagged multi-trip store; unavailable in production until launch approval |
+| `/cookies-policy`, `/privacy-policy`, `/terms-of-service`, `/booking-policy` | Policy pages |
 | `*` | 404 page |
 
 ## Project Layout
@@ -122,8 +126,11 @@ src/
     Excursions.jsx
     Safaris.jsx
     Packages.jsx
+    Retreats.jsx
+    Transfers.jsx
     TripPlannerPage.jsx
     Explore.jsx
+    ExperiencesStore.jsx
     *Detail.jsx
   styles/
     tokens.css
@@ -134,6 +141,11 @@ src/
 netlify/
   functions/
     planner.mjs
+    booking-*.mjs
+    store-*.mjs
+supabase/
+  migrations/
+  seed.sql
 netlify.toml
 ```
 
