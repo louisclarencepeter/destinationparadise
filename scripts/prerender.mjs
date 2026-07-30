@@ -107,6 +107,24 @@ function createServer(indexHtml) {
   });
 }
 
+function sanitizeSerializedHtml(html, port) {
+  // Vite adds modulepreload and stylesheet links while lazy chunks load.
+  // Chromium serializes those runtime-created hrefs as absolute URLs, which
+  // would otherwise leak this temporary crawl server into the deployed HTML.
+  const localOrigins = [
+    `http://localhost:${port}`,
+    `http://127.0.0.1:${port}`,
+  ];
+  let sanitized = html;
+  for (const origin of localOrigins) sanitized = sanitized.replaceAll(origin, '');
+
+  const leakedOrigin = sanitized.match(/https?:\/\/(?:localhost|127\.0\.0\.1)(?::\d+)?/i);
+  if (leakedOrigin) {
+    throw new Error(`serialized HTML still contains local crawl origin ${leakedOrigin[0]}`);
+  }
+  return sanitized;
+}
+
 async function renderRoute(browser, port, path) {
   const page = await browser.newPage();
   try {
@@ -165,7 +183,8 @@ async function renderRoute(browser, port, path) {
       );
     }
     await new Promise((r) => setTimeout(r, 100));
-    return await page.evaluate(() => `<!doctype html>\n${document.documentElement.outerHTML}`);
+    const html = await page.evaluate(() => `<!doctype html>\n${document.documentElement.outerHTML}`);
+    return sanitizeSerializedHtml(html, port);
   } finally {
     await page.close().catch(() => {});
   }
