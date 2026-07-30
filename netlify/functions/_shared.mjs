@@ -2,7 +2,7 @@
 // Underscore-prefixed so Netlify's function scanner ignores it (it is NOT a
 // deployed function, just a library imported by the real functions).
 
-import { createHmac, randomBytes, timingSafeEqual } from 'node:crypto';
+import { createHmac, randomBytes, randomInt, timingSafeEqual } from 'node:crypto';
 import { resolve4, resolve6, resolveMx } from 'node:dns/promises';
 import { domainToASCII } from 'node:url';
 
@@ -135,12 +135,13 @@ export function createHumanChallenge({
   now = Date.now(),
   ttlMs = 10 * 60_000,
   randomBytesFn = randomBytes,
+  randomIntFn = randomInt,
 } = {}) {
-  const seed = randomBytesFn(14);
-  const left = 2 + (seed[0] % 8);
-  const right = 3 + (seed[1] % 7);
+  const seed = randomBytesFn(12);
+  const left = randomIntFn(2, 10);
+  const right = randomIntFn(3, 10);
   const expiresAt = now + ttlMs;
-  const nonce = Buffer.from(seed.subarray(2)).toString('base64url');
+  const nonce = Buffer.from(seed).toString('base64url');
   const payload = `${left}:${right}:${expiresAt}:${nonce}`;
 
   return {

@@ -96,10 +96,12 @@ describe('validateSubmissionTiming', () => {
 
 describe('human challenge fallback', () => {
   it('creates and validates signed arithmetic challenges', () => {
+    const randomInts = [3, 4];
     const challenge = createHumanChallenge({
       secretKey: 'secret',
       now: 10_000,
       randomBytesFn: (size) => Buffer.alloc(size, 1),
+      randomIntFn: () => randomInts.shift(),
     });
 
     expect(challenge.question).toBe('3 + 4');
@@ -112,11 +114,13 @@ describe('human challenge fallback', () => {
   });
 
   it('rejects missing, wrong, tampered, and expired challenge answers', () => {
+    const randomInts = [3, 4];
     const challenge = createHumanChallenge({
       secretKey: 'secret',
       now: 10_000,
       ttlMs: 5_000,
       randomBytesFn: (size) => Buffer.alloc(size, 1),
+      randomIntFn: () => randomInts.shift(),
     });
 
     expect(validateHumanChallenge({ secretKey: 'secret' })).toMatchObject({
@@ -141,6 +145,25 @@ describe('human challenge fallback', () => {
       secretKey: 'secret',
       now: 16_000,
     })).toMatchObject({ ok: false, reason: 'expired-token' });
+  });
+
+  it('uses unbiased bounded integer ranges and preserves a 12-byte nonce', () => {
+    const ranges = [];
+    const challenge = createHumanChallenge({
+      secretKey: 'secret',
+      now: 10_000,
+      randomBytesFn: (size) => Buffer.alloc(size, 1),
+      randomIntFn: (min, max) => {
+        ranges.push([min, max]);
+        return max - 1;
+      },
+    });
+
+    expect(ranges).toEqual([[2, 10], [3, 10]]);
+    expect(challenge.question).toBe('9 + 9');
+
+    const [, , , nonce] = challenge.token.split(':');
+    expect(Buffer.from(nonce, 'base64url')).toHaveLength(12);
   });
 });
 
