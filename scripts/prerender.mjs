@@ -116,17 +116,32 @@ async function renderRoute(browser, port, path) {
     });
     await page.goto(`http://localhost:${port}${path}`, { waitUntil: 'domcontentloaded', timeout: 30000 });
     // Wait until the route has mounted AND usePageMeta has applied this page's head
-    // (meta / canonical / JSON-LD), signalled by window.__DP_META_APPLIED__.
-    await page.waitForFunction(
-      () =>
-        window.__DP_META_APPLIED__ > 0 &&
-        !!document.getElementById('root') &&
-        document.getElementById('root').childElementCount > 0,
-      { timeout: 30000 },
-    );
+    // (meta / canonical / JSON-LD), signalled by a temporary DOM marker.
+    try {
+      // Puppeteer may poll page functions in an isolated world where custom
+      // window properties are invisible. DOM selectors cross that boundary.
+      await Promise.all([
+        page.waitForSelector('html[data-dp-meta-applied]', { timeout: 30000 }),
+        page.waitForSelector('#root > *', { timeout: 30000 }),
+      ]);
+    } catch (error) {
+      const state = await page
+        .evaluate(() => ({
+          metaApplied: window.__DP_META_APPLIED__ || 0,
+          metaMarker: document.documentElement.dataset.dpMetaApplied || '',
+          rootChildren: document.getElementById('root')?.childElementCount || 0,
+          title: document.title,
+        }))
+        .catch(() => null);
+      throw new Error(
+        `${error.message}; route state ${JSON.stringify(state)}`,
+        { cause: error },
+      );
+    }
     // Nudge DeferredMount sections (homepage) to mount so below-the-fold content
     // is captured too, then let lazy chunks / images settle.
     await page.evaluate(() => {
+      document.documentElement.removeAttribute('data-dp-meta-applied');
       window.dispatchEvent(new Event('pointermove'));
       window.scrollTo(0, document.body.scrollHeight);
     });

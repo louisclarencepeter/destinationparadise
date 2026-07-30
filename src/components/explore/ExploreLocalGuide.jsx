@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router';
 import { CONTACT_INFO } from '../../constants/contactInfo.js';
 import { arrayFromTranslation } from '../../utils/translationValues.js';
 

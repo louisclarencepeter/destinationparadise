@@ -1,13 +1,14 @@
-import './utils/sentry.js';
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router';
 import App from './App.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
 import { BookingCartProvider } from './context/BookingCartContext.jsx';
 import { CurrencyProvider } from './context/CurrencyContext.jsx';
+import { afterPageLoad } from './utils/afterPageLoad.js';
 import { applyTheme, readStoredTheme } from './utils/theme.js';
 import { registerServiceWorker } from './utils/registerServiceWorker.js';
+import { scheduleSentryInit } from './utils/sentry.js';
 import './i18n/index.js';
 import './styles/tokens.css';
 import './styles/site-shell.css';
@@ -19,7 +20,7 @@ applyTheme(readStoredTheme());
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+    <BrowserRouter>
       <ErrorBoundary>
         <CurrencyProvider>
           <BookingCartProvider>
@@ -31,4 +32,5 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>
 );
 
-registerServiceWorker();
+scheduleSentryInit();
+afterPageLoad(registerServiceWorker);

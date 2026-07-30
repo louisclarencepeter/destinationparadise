@@ -10,6 +10,24 @@ export default defineConfig(({ mode }) => {
   const strictPort = env.DEV_STRICT_PORT === 'true';
 
   return {
+    define: {
+      __SENTRY_DEBUG__: false,
+    },
+    build: {
+      rolldownOptions: {
+        output: {
+          codeSplitting: {
+            groups: [
+              {
+                name: 'react-vendor',
+                test: /node_modules[\\/](?:react|react-dom|react-router|scheduler)[\\/]/,
+                priority: 20,
+              },
+            ],
+          },
+        },
+      },
+    },
     plugins: [
       react(),
       VitePWA({

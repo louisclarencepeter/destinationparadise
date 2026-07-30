@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { CONTACT_INFO } from '../constants/contactInfo.js';
 import '../styles/error-boundary.css';
 

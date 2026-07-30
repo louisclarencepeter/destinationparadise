@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import StoreBookingSection from '../components/store/StoreBookingSection.jsx';

@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import ErrorBoundaryPage from '../pages/ErrorBoundaryPage.jsx';
 import { captureSentryException } from '../utils/sentry.js';
 

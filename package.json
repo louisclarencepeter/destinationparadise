@@ -4,7 +4,7 @@
   "version": "3.2.0",
   "type": "module",
   "engines": {
-    "node": ">=22"
+    "node": ">=22.22.0"
   },
   "scripts": {
     "dev": "vite",
@@ -13,6 +13,7 @@
     "build:sitemap": "node scripts/build-sitemap.mjs",
     "build:prerender": "node scripts/prerender.mjs",
     "preview": "vite preview",
+    "postinstall": "node scripts/patch-minimatch-brace-expansion.mjs",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
     "test": "vitest run",
@@ -23,17 +24,17 @@
     "threads:comment:publish": "node scripts/threads-auto-commenter.mjs --publish"
   },
   "dependencies": {
-    "@sentry/node": "^10.63.0",
-    "@sentry/react": "^10.63.0",
+    "@sentry/node": "^10.69.0",
+    "@sentry/react": "^10.69.0",
     "i18next": "^23.16.8",
     "i18next-browser-languagedetector": "^8.2.1",
     "leaflet": "^1.9.4",
     "opentype.js": "^2.0.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
     "react-i18next": "^14.1.3",
     "react-markdown": "^10.1.0",
-    "react-router-dom": "^6.27.0",
+    "react-router": "8.3.0",
     "sharp": "^0.35.3"
   },
   "devDependencies": {
@@ -51,5 +52,8 @@
     "vite": "^8.0.13",
     "vite-plugin-pwa": "^1.3.0",
     "vitest": "^4.1.6"
+  },
+  "overrides": {
+    "brace-expansion": "5.0.9"
   }
 }

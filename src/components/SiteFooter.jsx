@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { CONTACT_INFO, SOCIAL_LINKS } from '../constants/contactInfo.js';
 import { COOKIE_SETTINGS_EVENT } from './CookieBanner.jsx';
