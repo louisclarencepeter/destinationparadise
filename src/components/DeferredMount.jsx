@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { isPrerender } from '../utils/prerender.js';
 
 const INTERACTION_EVENTS = ['scroll', 'pointermove', 'pointerdown', 'touchstart', 'keydown', 'wheel'];
 
@@ -18,7 +19,7 @@ export default function DeferredMount({
   className = '',
 }) {
   const ref = useRef(null);
-  const [shouldMount, setShouldMount] = useState(false);
+  const [shouldMount, setShouldMount] = useState(() => isPrerender());
 
   useEffect(() => {
     if (shouldMount) return undefined;

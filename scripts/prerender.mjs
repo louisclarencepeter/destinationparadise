@@ -149,15 +149,22 @@ async function renderRoute(browser, port, path) {
         { cause: error },
       );
     }
-    // Nudge DeferredMount sections (homepage) to mount so below-the-fold content
-    // is captured too, then let lazy chunks / images settle.
+    // Nudge any interaction-driven content, then wait for explicit homepage
+    // section markers instead of network-idle. Chromium's network-idle signal
+    // is inconsistent across bundled and serverless builds and can add minutes
+    // to a 100+ route crawl even when the DOM is already complete.
     await page.evaluate(() => {
       document.documentElement.removeAttribute('data-dp-meta-applied');
       window.dispatchEvent(new Event('pointermove'));
       window.scrollTo(0, document.body.scrollHeight);
     });
-    await page.waitForNetworkIdle({ idleTime: 500, timeout: 6000 }).catch(() => {});
-    await new Promise((r) => setTimeout(r, 300));
+    if (path === '/') {
+      await Promise.all(
+        ['#planner', '#why', '#map', '#weather', '#gallery', '#reviews', '#about-intro', '#contact', '#newsletter']
+          .map((selector) => page.waitForSelector(selector, { timeout: 10000 })),
+      );
+    }
+    await new Promise((r) => setTimeout(r, 100));
     return await page.evaluate(() => `<!doctype html>\n${document.documentElement.outerHTML}`);
   } finally {
     await page.close().catch(() => {});
