@@ -1,9 +1,6 @@
 import { lazy, Suspense } from 'react';
-import { Route, Routes as RouterRoutes } from 'react-router-dom';
+import { Route, Routes as RouterRoutes } from 'react-router';
 import SiteLayout from './components/SiteLayout.jsx';
-import { SentryRoutes } from './utils/sentry.js';
-
-const Routes = SentryRoutes(RouterRoutes);
 
 function lazyWithRetry(factory) {
   return lazy(async () => {
@@ -45,7 +42,7 @@ const NotFound = lazyWithRetry(() => import('./pages/NotFound.jsx'));
 export default function App() {
   return (
     <Suspense fallback={null}>
-      <Routes>
+      <RouterRoutes>
         <Route element={<SiteLayout />}>
           <Route path="/" element={<Homepage />} />
           <Route path="/excursions" element={<Excursions />} />
@@ -70,7 +67,7 @@ export default function App() {
           <Route path="/booking-policy" element={<Policy section="booking" />} />
           <Route path="*" element={<NotFound />} />
         </Route>
-      </Routes>
+      </RouterRoutes>
     </Suspense>
   );
 }

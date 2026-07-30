@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useSearchParams } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router';
 import BookingFlow from '../components/booking/BookingFlow.jsx';
 import BookingForm from '../components/booking/BookingForm.jsx';
 import BookingHero from '../components/booking/BookingHero.jsx';

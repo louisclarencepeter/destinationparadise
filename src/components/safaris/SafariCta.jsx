@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../ResponsiveImage.jsx';
 import { safariImg } from '../../data/safarisPageContent.js';

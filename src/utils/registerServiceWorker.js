@@ -1,4 +1,5 @@
 import { captureSentryException } from './sentry.js';
+import { isPrerender } from './prerender.js';
 
 // Manually register the vite-plugin-pwa service worker.
 //
@@ -14,6 +15,7 @@ import { captureSentryException } from './sentry.js';
 // unhandled rejection either (and so it stays out of the test module graph).
 export function registerServiceWorker() {
   if (typeof window === 'undefined') return;
+  if (isPrerender()) return;
   if (!('serviceWorker' in navigator)) return;
 
   import('virtual:pwa-register')

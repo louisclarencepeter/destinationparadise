@@ -1,6 +1,6 @@
 import { useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import { CONTACT_INFO } from '../constants/contactInfo.js';
 import { usePageMeta } from '../hooks/usePageMeta.js';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';

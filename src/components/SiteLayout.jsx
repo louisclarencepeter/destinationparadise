@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Outlet, useLocation, useNavigationType } from 'react-router-dom';
+import { Outlet, useLocation, useNavigationType } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import SiteNav from './SiteNav.jsx';
 import SiteFooter, { WhatsAppFab } from './SiteFooter.jsx';

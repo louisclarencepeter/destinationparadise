@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useLayoutEffect } from 'react';
 import { isPrerender } from '../utils/prerender.js';
 
 export const SITE_URL = 'https://yournexttriptoparadise.com';
@@ -94,7 +94,7 @@ export function usePageMeta(options = {}, legacyDescription) {
   // literals are referentially unstable across renders).
   const jsonLdString = jsonLd ? JSON.stringify(jsonLd) : '';
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const desc = description || DEFAULT_DESCRIPTION;
     const img = absoluteImage(image);
     const url = canonical
@@ -130,6 +130,7 @@ export function usePageMeta(options = {}, legacyDescription) {
     if (isPrerender()) {
       const w = /** @type {any} */ (window);
       w.__DP_META_APPLIED__ = (w.__DP_META_APPLIED__ || 0) + 1;
+      document.documentElement.dataset.dpMetaApplied = String(w.__DP_META_APPLIED__);
     }
   }, [title, description, image, type, canonical, noindex, jsonLdString]);
 }

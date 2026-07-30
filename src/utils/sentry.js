@@ -1,11 +1,5 @@
-import { useEffect } from 'react';
-import * as Sentry from '@sentry/react';
-import {
-  createRoutesFromChildren,
-  matchRoutes,
-  useLocation,
-  useNavigationType,
-} from 'react-router-dom';
+import { afterPageLoad } from './afterPageLoad.js';
+import { isPrerender } from './prerender.js';
 
 function readSampleRate(value, fallback) {
   const parsed = Number.parseFloat(value);
@@ -20,33 +14,79 @@ const sentryEnvironment =
 const sentryRelease = import.meta.env.VITE_SENTRY_RELEASE || undefined;
 
 export const isSentryEnabled = Boolean(sentryDsn);
+const canInitialize =
+  isSentryEnabled && typeof window !== 'undefined' && !isPrerender();
 
-if (isSentryEnabled) {
-  Sentry.init({
-    dsn: sentryDsn,
-    environment: sentryEnvironment,
-    release: sentryRelease,
-    sendDefaultPii: false,
-    tracesSampleRate: readSampleRate(
-      import.meta.env.VITE_SENTRY_TRACES_SAMPLE_RATE,
-      import.meta.env.PROD ? 0.1 : 1.0,
-    ),
-    tracePropagationTargets: [/^\//, /^https:\/\/(www\.)?yournexttriptoparadise\.com\/api/],
-    integrations: [
-      Sentry.reactRouterV6BrowserTracingIntegration({
-        useEffect,
-        useLocation,
-        useNavigationType,
-        createRoutesFromChildren,
-        matchRoutes,
-      }),
-    ],
-  });
+const earlyErrors = [];
+let sentryPromise;
+
+function rememberEarlyError(error) {
+  if (earlyErrors.length < 5) earlyErrors.push(error);
+}
+
+function onEarlyError(event) {
+  rememberEarlyError(
+    event.error || new Error(event.message || 'Unknown browser error'),
+  );
+}
+
+function onEarlyRejection(event) {
+  rememberEarlyError(event.reason || new Error('Unhandled promise rejection'));
+}
+
+if (canInitialize) {
+  window.addEventListener('error', onEarlyError);
+  window.addEventListener('unhandledrejection', onEarlyRejection);
+}
+
+function loadSentry() {
+  if (!canInitialize) return Promise.resolve(null);
+  if (sentryPromise) return sentryPromise;
+
+  sentryPromise = import('@sentry/react')
+    .then(({ browserTracingIntegration, captureException, init }) => {
+      window.removeEventListener('error', onEarlyError);
+      window.removeEventListener('unhandledrejection', onEarlyRejection);
+
+      init({
+        dsn: sentryDsn,
+        environment: sentryEnvironment,
+        release: sentryRelease,
+        sendDefaultPii: false,
+        tracesSampleRate: readSampleRate(
+          import.meta.env.VITE_SENTRY_TRACES_SAMPLE_RATE,
+          import.meta.env.PROD ? 0.1 : 1.0,
+        ),
+        tracePropagationTargets: [
+          /^\//,
+          /^https:\/\/(www\.)?yournexttriptoparadise\.com\/api/,
+        ],
+        integrations: [browserTracingIntegration()],
+      });
+
+      earlyErrors.splice(0).forEach((error) => {
+        captureException(error, {
+          tags: { capturedBeforeSentryInit: 'true' },
+        });
+      });
+
+      return { captureException };
+    })
+    .catch(() => null);
+
+  return sentryPromise;
 }
 
 export function captureSentryException(error, context) {
-  if (!isSentryEnabled) return;
-  Sentry.captureException(error, context);
+  if (!canInitialize) return;
+  void loadSentry().then((Sentry) => {
+    Sentry?.captureException(error, context);
+  });
 }
 
-export const SentryRoutes = Sentry.withSentryReactRouterV6Routing;
+export function scheduleSentryInit() {
+  if (!canInitialize) return;
+  afterPageLoad(() => {
+    void loadSentry();
+  });
+}

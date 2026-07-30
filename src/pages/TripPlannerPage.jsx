@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import PlannerSection from '../components/homepage/PlannerSection.jsx';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';

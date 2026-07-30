@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import '../styles/page-scroll-cue.css';
 
 export default function PageScrollCue() {

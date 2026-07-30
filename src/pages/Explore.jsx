@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import ExploreCta from '../components/explore/ExploreCta.jsx';
 import ExploreDoorways from '../components/explore/ExploreDoorways.jsx';
 import ExploreHero from '../components/explore/ExploreHero.jsx';
