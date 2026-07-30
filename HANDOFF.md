@@ -3,6 +3,8 @@
 - Last updated: 2026-07-31
 - Working branch: `development` (store remains feature-flagged and dark)
 - Implementation status: Phases 1–3 delivered in code (feature-flagged store UI; Supabase backend with atomic checkout; DPO payment pipeline — all dark until env activation, see the per-phase operations sections). Phase 4 hardening delivered in code: dblink concurrency races green on real Postgres (last-seats checkout race, concurrent finalize replay), hourly health-check alerts (requires_review / stuck payments / dead outbox → Sentry, counts only), store payment/booking sections added to privacy+terms in EN/DE/PL (customer-facing cancellation/refund rules are implemented; commercial and legal approval is still pending), and launch mechanics wired (`VITE_STORE_ENABLED=true` at build time adds `/store` to sitemap+prerender and drops its noindex; checkout/confirmation stay noindex). Remaining Phase 4 items require external provider evidence or business approval: DPO sandbox replay testing with real credentials, real-device journeys, deposit-vs-full-payment decision, final legal sign-off on the policy copy, then the controlled production pilot. DPO merchant onboarding is planned in Zanzibar on 2026-08-03; the payment integration stays in dev-simulated mode until then (take the "DPO onboarding checklist" section below to that meeting — it is the exact list of written confirmations to request).
+- Published stock-photo provenance is tracked in `PHOTO_SOURCES.md`. Photos that
+  are only representative stock retain `imageTBD: true`.
 
 Phase 5 delivered in code (2026-07-22): request/mixed carts. Request-only
 products (prison-island panel; northern-safari and custom-journey remain
