@@ -110,6 +110,17 @@ function createServer(indexHtml) {
 async function renderRoute(browser, port, path) {
   const page = await browser.newPage();
   try {
+    // The serialized HTML needs image elements and dimensions, not downloaded
+    // image/font bytes. Blocking those assets keeps the 100+ route crawl fast
+    // and deterministic while CSS and JavaScript still execute normally.
+    await page.setRequestInterception(true);
+    page.on('request', (request) => {
+      if (['image', 'media', 'font'].includes(request.resourceType())) {
+        void request.abort();
+        return;
+      }
+      void request.continue();
+    });
     await page.emulateMediaFeatures([{ name: 'prefers-color-scheme', value: 'light' }]);
     await page.evaluateOnNewDocument(() => {
       window.__PRERENDER__ = true;
