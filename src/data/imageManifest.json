@@ -92,8 +92,8 @@
     "smallW": 600
   },
   "/assets/images/excursions/trips/hidden-alleys.webp": {
-    "w": 1200,
-    "h": 803,
+    "w": 804,
+    "h": 1200,
     "smallW": 600
   },
   "/assets/images/excursions/trips/historical-ruins.webp": {
@@ -162,7 +162,7 @@
     "smallW": 600
   },
   "/assets/images/excursions/trips/nungwi-coast.webp": {
-    "w": 803,
+    "w": 960,
     "h": 1200,
     "smallW": 600
   },
@@ -223,7 +223,7 @@
   },
   "/assets/images/excursions/trips/seaweed-cooperative.webp": {
     "w": 1200,
-    "h": 803,
+    "h": 800,
     "smallW": 600
   },
   "/assets/images/excursions/trips/skydive-zanzibar-beach.webp": {
