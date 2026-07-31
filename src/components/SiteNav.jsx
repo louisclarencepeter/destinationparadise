@@ -17,7 +17,7 @@ const NAV_ITEMS = [
   { key: 'trip_planner', to: '/trip-planner', icon: 'route', hasBadge: true },
   { key: 'explore', to: '/explore', icon: 'map' },
   { key: 'about', to: '/aboutus', icon: 'info', desktopHidden: true },
-  { key: 'book', to: '/booking', icon: 'bag', mobileOnly: true },
+  { key: 'book', to: '/book-now', icon: 'bag', mobileOnly: true },
 ];
 
 const NAV_ICONS = {
@@ -242,7 +242,7 @@ export default function SiteNav({ theme = 'light', themeMode: _themeMode = 'auto
           </button>
           {storeEnabled && <CartNavButton className="nav__cart" />}
           <SearchButton className="nav__search" onClick={() => setSearchOpen(true)} label={t('search.label_short')} />
-          <Link className="btn nav__cta" to="/booking" aria-label={t('cta.book_aria')}>
+          <Link className="btn nav__cta" to="/book-now" aria-label={t('cta.book_aria')}>
             <span className="nav__cta-text">{t('cta.book_now')}</span> <ArrowRight size={16} />
           </Link>
           <button
@@ -332,7 +332,7 @@ export default function SiteNav({ theme = 'light', themeMode: _themeMode = 'auto
             }}
             label={t('search.label_long')}
           />
-          <Link to="/booking" className="mm-menu__cta">
+          <Link to="/book-now" className="mm-menu__cta">
             {t('cta.book_a_trip')} <ChevronRight />
           </Link>
           <a
