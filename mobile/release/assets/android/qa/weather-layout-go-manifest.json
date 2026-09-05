@@ -1,0 +1,143 @@
+{
+  "status": "Expo Go source verification complete; corrected production-derived code4 retest subsequently passed, see code4-runtime-manifest.json.",
+  "recordedAtUtc": "2026-09-05T21:51:40.321960+00:00",
+  "sourceFile": "src/features/weather/weather-screen.tsx",
+  "sourceSha256": "3b843f7b24b0430d94e50473d9125c0bec0462a636c5a024cd32d0443408ec73",
+  "change": "Constrain outer row to100% width; explicitly switch seasonal column from100% narrow width to0 width plus flexGrow1 on wide layout, with flexShrink1/minWidth0.",
+  "initialProductionFailure": {
+    "buildId": "29c21f3e-68d3-4b02-b02a-6b12c2bd566d",
+    "versionCode": 3,
+    "screenshot": "phone-weather-landscape-overflow.png",
+    "details": "2424\u00d71080 after portrait rotation: seasonal description clipped to50px height and later month chips beyond right edge."
+  },
+  "devices": [
+    {
+      "serial": "emulator-5554",
+      "api": 36,
+      "abi": "arm64-v8a",
+      "portraitPixels": [
+        1080,
+        2424
+      ],
+      "landscapePixels": [
+        2424,
+        1080
+      ],
+      "rotations": "portrait\u2192landscape\u2192portrait\u2192landscape"
+    },
+    {
+      "serial": "emulator-5556",
+      "api": 36,
+      "abi": "arm64-v8a",
+      "portraitPixels": [
+        1600,
+        2560
+      ],
+      "landscapePixels": [
+        2560,
+        1600
+      ],
+      "rotations": "landscape\u2192portrait\u2192landscape"
+    }
+  ],
+  "results": {
+    "typecheck": "Passed after source edit; no later code edits.",
+    "phone": "All 12months visible, description wraps to 100px height and right edge 2345px within 2424px screen. December selection 31\u00b0C, wrapped detail and Plan CTA retained after rotations.",
+    "tablet": "Both columns/cards and live Apple Weather remain within width in 1280dp landscape and 800dp portrait; rail/bottom navigation transitions correctly.",
+    "liveData": "24\u00b0C, Mostly clear, humidity 86%, sea unavailable, Apple Weather attribution; provider timestamps vary by capture.",
+    "externalSends": "None. No AI, report, quote or contact submission.",
+    "testScope": "Runtime layout regression verified with real native rendering; no source-style mirror test added.",
+    "cleanup": "Own Metro 8084 stopped and both 8084 adb reverse rules removed. Existing 8082 unchanged. Both emulators returned to standalone app, tablet landscape/free rotation; phone landscape failure reproduction preserved."
+  },
+  "correctedCandidate": {
+    "androidBuildId": "d5ad03c9-bca0-4d33-9ba5-2c9cebe89260",
+    "versionCode": 4,
+    "iosBuildId": "a8eb3b90-eb2c-4f2d-a6fb-1fd3507bf876",
+    "iosBuildNumber": "3",
+    "sourceArchiveManifest": "../../../weather-layout-build-source-sha256.json",
+    "runtimeRetest": "Passed separately; see code4-runtime-manifest.json."
+  },
+  "captureMethod": "adb exec-out screencap -p; copied byte-for-byte. No cropping, resizing, overlays added or reconstructed UI. Expo Go tools overlay is development UI, and these are QA evidence only.",
+  "assets": [
+    {
+      "path": "go-phone-landscape-before.png",
+      "sha256": "59b079509ae47a7aa0d0a788f4496731c4531fb369885034750e671690ffaf65",
+      "bytes": 301963,
+      "width": 2424,
+      "height": 1080,
+      "sourceCapturedAtUtc": "2026-09-05T21:36:53.845991+00:00",
+      "captureEnvironment": "Expo Go57.0.9, Android API36 ARM64 emulator",
+      "storeUploadSuitable": false
+    },
+    {
+      "path": "go-phone-landscape-fixed.png",
+      "sha256": "05c281fdb143a3c7425eeece620362c3d317540d3c282e5a39bb0764a567675e",
+      "bytes": 310964,
+      "width": 2424,
+      "height": 1080,
+      "sourceCapturedAtUtc": "2026-09-05T21:41:41.166575+00:00",
+      "captureEnvironment": "Expo Go57.0.9, Android API36 ARM64 emulator",
+      "storeUploadSuitable": false
+    },
+    {
+      "path": "go-phone-landscape-december.png",
+      "sha256": "3c7230445d8dcdd3367d3882d4b08bae6107eabce6cf629e64f09b250a6e0ff9",
+      "bytes": 314515,
+      "width": 2424,
+      "height": 1080,
+      "sourceCapturedAtUtc": "2026-09-05T21:42:23.107523+00:00",
+      "captureEnvironment": "Expo Go57.0.9, Android API36 ARM64 emulator",
+      "storeUploadSuitable": false
+    },
+    {
+      "path": "go-phone-portrait-december.png",
+      "sha256": "a60bf357df1fee3669038f160994720d5e724f56a44ae19082c8aa62b89ba3a0",
+      "bytes": 338491,
+      "width": 1080,
+      "height": 2424,
+      "sourceCapturedAtUtc": "2026-09-05T21:43:03.554063+00:00",
+      "captureEnvironment": "Expo Go57.0.9, Android API36 ARM64 emulator",
+      "storeUploadSuitable": false
+    },
+    {
+      "path": "go-phone-landscape-repeat.png",
+      "sha256": "9f249f9427caa217772f75255633b056c25adb66bca8c6300209cc14ee5abc80",
+      "bytes": 331558,
+      "width": 2424,
+      "height": 1080,
+      "sourceCapturedAtUtc": "2026-09-05T21:43:41.723680+00:00",
+      "captureEnvironment": "Expo Go57.0.9, Android API36 ARM64 emulator",
+      "storeUploadSuitable": false
+    },
+    {
+      "path": "go-tablet-landscape-fixed.png",
+      "sha256": "ddd2d6f9c8f9fce6aefbae4f305aacbce1f8a1cea743a26912441e92be966ee4",
+      "bytes": 687560,
+      "width": 2560,
+      "height": 1600,
+      "sourceCapturedAtUtc": "2026-09-05T21:45:15.879513+00:00",
+      "captureEnvironment": "Expo Go57.0.9, Android API36 ARM64 emulator",
+      "storeUploadSuitable": false
+    },
+    {
+      "path": "go-tablet-portrait-fixed.png",
+      "sha256": "2d9fa1d1e9bfd8783248afd5286f1185f08ef4091f9b2d324f360e344cb07b3c",
+      "bytes": 632626,
+      "width": 1600,
+      "height": 2560,
+      "sourceCapturedAtUtc": "2026-09-05T21:45:31.084574+00:00",
+      "captureEnvironment": "Expo Go57.0.9, Android API36 ARM64 emulator",
+      "storeUploadSuitable": false
+    },
+    {
+      "path": "go-tablet-landscape-return.png",
+      "sha256": "9b3b1bb2520c95bc0d14a765d5a58d12e8199c942f918225433b483cd87f4399",
+      "bytes": 687824,
+      "width": 2560,
+      "height": 1600,
+      "sourceCapturedAtUtc": "2026-09-05T21:45:57.203144+00:00",
+      "captureEnvironment": "Expo Go57.0.9, Android API36 ARM64 emulator",
+      "storeUploadSuitable": false
+    }
+  ]
+}

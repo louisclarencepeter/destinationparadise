@@ -1,0 +1,16 @@
+{
+  "checkedAtUtc": "2026-09-05T21:59:03.902526+00:00",
+  "submissionId": "c48ecd45-1469-4f70-a552-67b58c6162cf",
+  "status": "FINISHED",
+  "platform": "IOS",
+  "appleAppId": "6809042574",
+  "createdAtUtc": "2026-09-05T21:58:26.273Z",
+  "completedAtUtc": "2026-09-05T21:58:39.696Z",
+  "errorCode": null,
+  "buildId": "a8eb3b90-eb2c-4f2d-a6fb-1fd3507bf876",
+  "appVersion": "1.0.0",
+  "buildVersion": "3",
+  "autoTestFlightSetup": false,
+  "appReviewSubmitted": false,
+  "appleProcessingVerified": false
+}

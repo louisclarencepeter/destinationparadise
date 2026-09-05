@@ -1,0 +1,49 @@
+{
+  "createdAtUtc": "2026-09-05T21:15:24.131Z",
+  "scope": "Local Google Play listing asset candidates; no upload or publication performed.",
+  "generator": "build-play-assets.mjs",
+  "files": [
+    {
+      "file": "google-play-feature-graphic.png",
+      "width": 1024,
+      "height": 500,
+      "format": "24-bit RGB PNG",
+      "alpha": false,
+      "sha256": "b9516b06d217906a5dd6c22e3d5919391cd85fa0057d7fcc8d36ade4ece28635",
+      "bytes": 59246,
+      "source": "google-play-feature-graphic.svg",
+      "altText": "Destination Paradise: Zanzibar and Tanzania, with a sailboat, coral sun and waves. Explore, Plan, Weather.",
+      "provenance": "New AI-assisted vector promotional illustration using the approved app palette and typefaces; no screenshots, photographs or generated raster imagery.",
+      "aiAssetDeclaration": "Review as AI-assisted original vector artwork; do not represent this graphic as a native screenshot."
+    },
+    {
+      "file": "google-play-icon-512.png",
+      "width": 512,
+      "height": 512,
+      "format": "32-bit RGBA PNG",
+      "alpha": true,
+      "sha256": "5150cb3c33aa523843b306bec7a6856b15db01fb4e2b3b72bf5ca0cf143d4998",
+      "bytes": 89184,
+      "source": "public/assets/brand/destination-paradise-logo-512.png",
+      "altText": "Destination Paradise circular logo with palm trees, a traveller and a sailboat.",
+      "provenance": "Byte-for-byte copy of the existing approved 512px brand asset. No editing, recoloring, resizing or regeneration.",
+      "aiAssetDeclaration": "Existing brand asset provenance remains with the owner; this export adds no generated or edited imagery."
+    }
+  ],
+  "typography": [
+    {
+      "name": "Kaushan Script Regular",
+      "source": "mobile/node_modules/@expo-google-fonts/kaushan-script/400Regular/KaushanScript_400Regular.ttf",
+      "usage": "Same brand title typeface used by the app; embedded as outlines in SVG."
+    },
+    {
+      "name": "Montserrat Medium",
+      "source": "mobile/node_modules/@expo-google-fonts/montserrat/500Medium/Montserrat_500Medium.ttf",
+      "usage": "Same supporting typeface used by the app; embedded as outlines in SVG."
+    }
+  ],
+  "sourceChecks": [
+    "https://support.google.com/googleplay/android-developer/answer/9866151?hl=en",
+    "https://developer.android.com/distribute/google-play/resources/icon-design-specifications"
+  ]
+}

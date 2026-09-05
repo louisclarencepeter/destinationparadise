@@ -1,5 +1,5 @@
 {
-  "status": "LOCAL_REVIEW_DRAFT_NOT_SUBMITTED",
+  "status": "STORE_LISTING_DRAFTS_SAVED_FINAL_NAME_AND_RELEASE_GATES_PENDING",
   "preparedAt": "2026-09-05",
   "locale": "en-US",
   "appName": "Destination Paradise",
@@ -13,19 +13,181 @@
     "primaryCategory": "Travel",
     "description": "Find your way to Zanzibar and Tanzania with Destination Paradise.\n\nEXPLORE ON A REAL MAP\nBrowse 24 destinations across Zanzibar and mainland Tanzania. Pan and zoom, filter by interests, search places and switch between the map and a photo list. Save favourites on your device and discover related excursions and safari experiences.\n\nSHAPE YOUR TRIP\nChoose your travel month, nights, group size, budget and pace. Start with a destination or a trip idea, then chat with the AI planner after giving your permission. Review the draft and decide whether to send your conversation and contact details to the Destination Paradise team for a quote. Suggestions are a starting point; the team confirms prices, availability and booking details.\n\nCHOOSE YOUR SEASON\nSee current Zanzibar weather and a month-by-month seasonal guide. The weather scene follows the reported conditions, with a pause control and support for reduced motion.\n\nGO A LITTLE DEEPER\nExplore the island food guide and dates to know. Check venue and event details before making plans.\n\nMADE FOR PHONES AND TABLETS\nEnjoy a dark navy design, clear numbered map pins, phone destination sheets and a wider map-and-sidebar layout on tablets.\n\nNo account is required. Saved places and trip preferences stay on your device. Maps, photos, current weather and AI planning require an internet connection. External experience links open the website. The app does not provide turn-by-turn navigation or confirm bookings automatically.",
     "whatsNew": "First release: a real destination map, saved places, AI trip planning, Zanzibar weather and seasonal inspiration for phones and tablets.",
-    "supportUrlCandidate": "https://yournexttriptoparadise.com/#contact",
     "marketingUrl": "https://yournexttriptoparadise.com/",
-    "privacyPolicyUrlCandidate": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
-    "privacyPolicyReady": false,
-    "copyrightHolder": null,
+    "privacyPolicyReady": true,
+    "copyrightHolder": "Destination Paradise",
     "reviewContact": {
-      "firstName": null,
-      "lastName": null,
-      "email": null,
-      "phone": null
+      "firstName": "Louis",
+      "lastName": "Peter",
+      "email": "louisclarencepeters@gmail.com",
+      "phone": "+255768779517"
     },
     "signInRequired": false,
-    "ageRating": null
+    "ageRating": "13+",
+    "listingName": "Destination Paradise Zanzibar",
+    "ascAppId": "6809042574",
+    "sku": "destination-paradise-mobile",
+    "primaryLanguage": "en-US",
+    "appleTeamId": "86ZX7JC345",
+    "copyright": "2026 Destination Paradise",
+    "reviewContactVerification": "Saved in App Store Connect and visually confirmed in the screenshot; accessibility text redacts some contact fields.",
+    "listingMetadataStatus": "SAVED_DRAFT",
+    "thirdPartyContentRightsConfirmed": true,
+    "ageRatingDetails": {
+      "status": "CALCULATED_AND_SAVED",
+      "overrideApplied": false,
+      "features": "None selected",
+      "alcoholTobaccoDrugReferences": "Infrequent; island guide includes bar references",
+      "otherContent": "None selected"
+    },
+    "listingNameProvisional": true,
+    "preferredNameDecisionPending": true,
+    "supportUrl": "https://yournexttriptoparadise.com/#contact",
+    "privacyPolicyUrl": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
+    "urlsStatus": "SAVED",
+    "screenshots": {
+      "status": "UPLOADED_VERIFIED",
+      "iphone69InchCount": 3,
+      "ipad13InchCount": 3,
+      "automaticScalingConfirmed": true
+    },
+    "privacy": {
+      "status": "PUBLISHED",
+      "publishClicked": true,
+      "dataCollected": true,
+      "allDataTypesLinkedToUser": true,
+      "tracking": false,
+      "dataTypes": [
+        {
+          "name": "Name",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality"
+          ]
+        },
+        {
+          "name": "Email Address",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality"
+          ]
+        },
+        {
+          "name": "Phone Number",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality"
+          ]
+        },
+        {
+          "name": "Coarse Location",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality",
+            "Analytics"
+          ]
+        },
+        {
+          "name": "Customer Support",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality"
+          ]
+        },
+        {
+          "name": "Other User Content",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality",
+            "Product Personalization"
+          ]
+        },
+        {
+          "name": "Product Interaction",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality",
+            "Analytics"
+          ]
+        },
+        {
+          "name": "Other Diagnostic Data",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality"
+          ]
+        },
+        {
+          "name": "Other Data Types",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality",
+            "Product Personalization"
+          ]
+        }
+      ],
+      "publishedBy": "Louis Peter",
+      "verification": "Root verified the nine-type privacy publication in Apple UI around 2026-09-05 22:06 UTC."
+    },
+    "dsa": {
+      "appStatus": "NON_TRADER_DEFAULT",
+      "accountStatus": "IN_REVIEW",
+      "accountStatusDate": "2026-09-05",
+      "ownerDecisionPending": "Reuse existing trader details or supply different business details.",
+      "privateAddressRecorded": false
+    },
+    "correctedBuild": {
+      "easBuildId": "a8eb3b90-eb2c-4f2d-a6fb-1fd3507bf876",
+      "version": "1.0.0",
+      "buildNumber": "3",
+      "easStatus": "FINISHED",
+      "easSubmissionId": "c48ecd45-1469-4f70-a552-67b58c6162cf",
+      "easSubmissionStatus": "FINISHED",
+      "appleStatus": "READY_TO_TEST",
+      "appleProcessingComplete": true,
+      "expiresInDaysObserved": 90,
+      "testFlightGroupAccessVerified": true,
+      "testFlightGroup": {
+        "id": "0db9334b-5e79-4fa1-8950-e0e782456ba8",
+        "name": "Destination Paradise owner test",
+        "scope": "OWNER_ONLY",
+        "testerCount": 1,
+        "testerEmail": "louisclarencepeters@gmail.com",
+        "testerStatus": "INVITED",
+        "automaticDistribution": false,
+        "invitationAcceptedVerified": false,
+        "installationVerified": false
+      },
+      "appStoreVersionSelection": {
+        "selectedBuild": "3",
+        "saveClicked": true,
+        "savedVerified": true,
+        "status": "SAVED_VERIFIED_AFTER_NAVIGATION",
+        "evidence": "Build 3 was reattached and saved; Save became disabled. Root navigated to App Information and back to the version through the menu and verified the App Icon/build 3/version 1.0.0 row remained with Save disabled. No App Review was submitted."
+      }
+    },
+    "pricing": {
+      "status": "SAVED",
+      "baseCurrency": "USD",
+      "basePrice": 0,
+      "zeroPriceEquivalentCount": 175,
+      "note": "Price equivalents do not establish App Availability country selections."
+    },
+    "availability": {
+      "countriesStatus": "UNSET",
+      "macAvailabilityEnabled": false,
+      "visionProAvailabilityEnabled": false,
+      "distribution": "PUBLIC_DEFAULT"
+    }
   },
   "google": {
     "title": "Destination Paradise",
@@ -37,16 +199,139 @@
     "privacyPolicyUrlCandidate": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
     "containsAdsSourceFinding": false,
     "appAccessSourceFinding": "All features can be reached without an account. AI processing requires consent; submitting a quote requires name, email and separate sharing consent.",
-    "targetAudience": null,
-    "contentRating": null,
+    "targetAudience": [
+      "18 and over"
+    ],
+    "contentRating": {
+      "status": "COMPLETED_SAVED",
+      "savedAtLocal": "2026-09-06 01:28 EAT",
+      "ESRB": "Everyone (Alcohol Reference)",
+      "PEGI": "3",
+      "USK": "All ages",
+      "ClassInd": "All ages",
+      "Generic": "3+",
+      "questionnaire": {
+        "downloadedContentAlcoholReference": "Rarely",
+        "otherDownloadedCategories": "No",
+        "onlineContent": true,
+        "onlineContentReason": "AI planner",
+        "onlineAgeCategories": "No",
+        "miscellaneous": "No"
+      }
+    },
     "dataSafetyReady": false,
-    "aiAssetDeclarations": "Review provenance for each submitted visual asset; do not blanket-declare based solely on using an AI coding assistant."
+    "aiAssetDeclarations": "Review provenance for each submitted visual asset; do not blanket-declare based solely on using an AI coding assistant.",
+    "playAppId": "4972417635244765220",
+    "developerAccountId": "7868106536966385994",
+    "defaultLanguage": "en-US",
+    "pricing": "free",
+    "privacyPolicyReady": true,
+    "productionAccessGranted": false,
+    "closedTestRequirement": {
+      "minimumContinuouslyOptedInTesters": 12,
+      "minimumConsecutiveDays": 14,
+      "status": "NOT_ESTABLISHED"
+    },
+    "androidArtifact": {
+      "easBuildId": "29c21f3e-68d3-4b02-b02a-6b12c2bd566d",
+      "versionName": "1.0.0",
+      "versionCode": 3,
+      "status": "FINISHED_DOWNLOADED_VALIDATED"
+    },
+    "internalReleaseUploadStatus": "RELEASE_1_PUBLISHED_AVAILABLE_TO_INTERNAL_TESTERS",
+    "listingStatus": "SAVED_DRAFT_NOT_PUBLISHED",
+    "savedListingAssets": {
+      "copy": true,
+      "appIcon": true,
+      "featureGraphic": true,
+      "phoneScreenshots": 3,
+      "largeTabletScreenshots": 3,
+      "sevenInchTabletScreenshots": "READY_LOCALLY_NOT_UPLOADED",
+      "status": "SAVED_DRAFT_ONLY"
+    },
+    "internalTrack": {
+      "id": "4701496308193764699",
+      "status": "ACTIVE",
+      "versionCode": 3,
+      "releaseName": "1",
+      "joinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
+      "selectedOwnerListCount": 1,
+      "ownerTesterEmail": "louisclarencepeters@gmail.com",
+      "otherListsSelected": false,
+      "ownerOptInVerified": false
+    },
+    "correctedBuild": {
+      "easBuildId": "d5ad03c9-bca0-4d33-9ba5-2c9cebe89260",
+      "versionName": "1.0.0",
+      "versionCode": 4,
+      "status": "FINISHED_STANDALONE_QA_PASSED",
+      "uploadedToPlayVerified": false,
+      "completedAtUtc": "2026-09-05T22:03:13Z",
+      "completionEvidence": "Verified by Android QA agent via official EAS build:view.",
+      "qa": {
+        "evidence": "assets/android/qa/code4-runtime-manifest.json",
+        "verifiedAtUtc": "2026-09-05T22:15:15.807878Z",
+        "aabSha256": "4d9e8e899191850d22e1f6ccf2edcbd0acb647c2ccdd9b98427f883411a1218c",
+        "scope": "Exact AAB converted with bundletool to a locally test-signed universal APK; phone and tablet cold launches, repeated rotations, December card/CTA, Apple Weather and Pause/Play passed with zero app error lines.",
+        "remaining": "Physical devices, Play-generated APK signing/distribution and iOS store-signed runtime remain separate."
+      }
+    },
+    "targetAudienceStatus": "SAVED",
+    "setupProgress": {
+      "completedCountLastObserved": 8,
+      "totalCount": 11,
+      "countObservedAfter": "IARC completion; target audience was subsequently saved, so the dashboard count must be rechecked.",
+      "completedSections": [
+        "Privacy policy",
+        "App access",
+        "Ads",
+        "Government apps",
+        "Financial features",
+        "Health apps",
+        "Category and contact",
+        "Content rating (IARC)",
+        "Target audience"
+      ],
+      "dataSafetyStatus": "FILLED_PREVIEW_VERIFIED_SAVE_FAILED"
+    },
+    "sevenInchScreenshotEvidence": "assets/android/tablet-7/capture-manifest.json",
+    "dataSafety": {
+      "status": "FILLED_PREVIEW_VERIFIED_SAVE_FAILED",
+      "filledTypeCount": 10,
+      "answersSource": "store-privacy-answers.md",
+      "previewVerified": true,
+      "savedVerified": false,
+      "publishedVerified": false,
+      "saveErrorCode": "5C897C1E",
+      "saveAttempts": "Save and Save as draft / Save Draft retried; unexpected error persisted.",
+      "preservedForm": "Original filled form remains open in browser tab 15.",
+      "freshDashboard": "Browser tab 16 returned HTTP 403 Forbidden.",
+      "nextStep": "Resume from the preserved form after Play Console access/save service recovers; verify persistence before marking complete."
+    }
   },
   "ownerConfirmationRequired": [
-    "Legal publisher/copyright holder and complete App Review contact; no individual identity is inferred from the company support address.",
-    "Supported territories, pricing choice, target audience and the stores' actual content-rating questionnaires.",
-    "Operational support URL/email and published mobile privacy coverage.",
-    "Production provider settings, WeatherKit activation under the existing Apple Developer allowance, retention, privacy labels and required AI reporting/safety implementation.",
-    "Rights and AI provenance of the final submitted photography, logo and promotional assets."
-  ]
+    "Preferred final App Store name; Destination Paradise Zanzibar remains provisional.",
+    "Whether to reuse existing trader details or provide different business details for the Apple DSA declaration.",
+    "Separate Destination Paradise closed-test list; do not reuse the OutreachOS tester list."
+  ],
+  "updatedAtUtc": "2026-09-05T22:50:12.003486Z",
+  "publisher": {
+    "accountName": "Louis Peter",
+    "choiceConfirmed": true,
+    "copyrightEntryConfirmed": true
+  },
+  "pendingReleaseWork": [
+    "Upload corrected Android code 4 to the intended Play test track; the published internal release still uses code 3. Verify owner opt-in/installation and iOS build 3 TestFlight installation; Apple owner invitation is sent, but acceptance/install is not established.",
+    "Upload the ready authentic seven-inch Google tablet screenshots and review final store assets against the corrected build.",
+    "Resume Google Data Safety after the Play Console failure clears: all ten types were filled and previewed, but save retries failed with 5C897C1E and a fresh dashboard returned 403. Verify saved persistence; IARC and 18+ audience are already saved.",
+    "Verify remaining controlled quote/report delivery, consent, error recovery and physical-device release QA; maintain truthful provider retention/deletion statements.",
+    "Configure the separate closed test and verify at least 12 continuous opt-ins for 14 days before applying for Google production access.",
+    "Choose and save Apple App Availability countries; zero-price equivalents for 175 regions are saved, but country availability remains unset."
+  ],
+  "publicMobileBackend": {
+    "url": "https://destination-paradise-mobile.netlify.app",
+    "privacyPolicyUrl": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
+    "latestVerifiedPolicyDeployId": "6a9c9097c7e4b26b67fadcd5",
+    "evidence": "Deployment verified and documented by the policy deployment agent; separate from store listing publication."
+  }
 }

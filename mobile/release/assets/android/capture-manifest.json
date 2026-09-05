@@ -1,0 +1,207 @@
+{
+  "status": "Initial candidate captures. Phone landscape Weather overflow blocks final visual approval until a corrected candidate is verified.",
+  "appVersion": "1.0.0",
+  "androidVersionCode": 3,
+  "package": "com.yournexttriptoparadise.mobile",
+  "easProductionBuildId": "29c21f3e-68d3-4b02-b02a-6b12c2bd566d",
+  "productionAabSha256": "63daaaada695e49ede252f559980055b8fc08d02092d4c6cd4595e6ce4e886ae",
+  "localTestApkSha256": "57be51d5cd6ff4e3149efcdd6abf28fe67e29680406b521ae84bdf3c761212e3",
+  "signer": "Dedicated local Android Debug certificate; APK derived from production AAB without code changes. Production EAS keystore was not accessed. Play App Signing is separate.",
+  "localTestCertificateSha256": "09148a81ca65ab839704593853320acac5934935239c3077c1369b3038e1598f",
+  "captureMethod": "Android adb exec-out screencap -p. Original PNGs retained; JPEG copies transcoded with sips quality 100. No cropping, resizing, added content or reconstructed UI.",
+  "devices": [
+    {
+      "serial": "emulator-5554",
+      "api": 36,
+      "abi": "arm64-v8a",
+      "initialPixels": [
+        1080,
+        2424
+      ],
+      "qaLandscapePixels": [
+        2424,
+        1080
+      ]
+    },
+    {
+      "serial": "emulator-5556",
+      "api": 36,
+      "abi": "arm64-v8a",
+      "initialPixels": [
+        2560,
+        1600
+      ],
+      "qaPortraitPixels": [
+        1600,
+        2560
+      ]
+    }
+  ],
+  "weatherReading": "24\u00b0C, mostly clear, humidity 85%, updated 6 Sep at 00:20 EAT. Official Apple Weather branding/legal attribution visible; sea temperature unavailable.",
+  "qa": {
+    "phoneListAndStoneTownDetail": "Passed",
+    "tabletNungwiSelectionAndMapHighlight": "Passed",
+    "phonePlannerScroll": "Passed; after upward swipe intro left viewport and budget became visible; scrolled back before leaving.",
+    "weatherLoad": "Passed on both devices",
+    "weatherPauseResume": "Passed on both devices. Control changed to Play; two paused native frames byte-identical; two resumed frames differed.",
+    "tabletPortraitWeatherLayout": "Passed",
+    "phoneLandscapeWeatherLayout": "Failed; persistent horizontal overflow in seasonal guide. Exact screenshot retained under qa/. Narrow source fix delegated to mobile_explore.",
+    "externalSends": "None. No AI, report, contact or quote request sent.",
+    "restoration": "Tablet restored to original landscape/free rotation and Explore with Stone Town selected. Phone intentionally retained in landscape on paused Weather at root request for defect reproduction; original setting was free rotation/user_rotation=0."
+  },
+  "assets": [
+    {
+      "path": "phone/01-explore-map.jpg",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "3380be848123cd1e8ca9ab3e2e647942b2c3d1b202778e0a8a3f5c0cb196ade8",
+      "bytes": 667354,
+      "pixelWidth": "1080",
+      "pixelHeight": "2424",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "phone/01-explore-map.png",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "07702390a2427a63d90a29b05a9adf59aa4bef4c401d70d06c590a3ac8220998",
+      "bytes": 554167,
+      "pixelWidth": "1080",
+      "pixelHeight": "2424",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "phone/02-planner-preferences.jpg",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "f4c525d4e2dd3bda850d4597adc6fe09426afd42c6ba3d4d29de8acbb1f1bac7",
+      "bytes": 607174,
+      "pixelWidth": "1080",
+      "pixelHeight": "2424",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "phone/02-planner-preferences.png",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "6ec951d5c4ba9f7d31a6913aa5fbc822df17b8644dfeb8f22f15ef738ea48712",
+      "bytes": 236453,
+      "pixelWidth": "1080",
+      "pixelHeight": "2424",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "phone/03-weather-live.jpg",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "13948470c4310edbe20bd8906be8ff6b4884307c075c763729f7c9ba04f1e62b",
+      "bytes": 927916,
+      "pixelWidth": "1080",
+      "pixelHeight": "2424",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "phone/03-weather-live.png",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "77a9ff199540064ffbcb9ad81bd0ac6eed4f0c1b5880902112a03e474e6aa3b5",
+      "bytes": 488188,
+      "pixelWidth": "1080",
+      "pixelHeight": "2424",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "qa/phone-weather-landscape-overflow.png",
+      "purpose": "QA failure evidence, do not upload",
+      "sha256": "b0c859bf24e76962b46db94848a137a767ca728dc3f3b8166e3163533fa9f159",
+      "bytes": 298579,
+      "pixelWidth": "2424",
+      "pixelHeight": "1080",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "tablet/01-explore-map.jpg",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "c4d1fa1f4e35909b16447e725ee8ef0ad0d560f9ad511d3761ccf96d9cea49d2",
+      "bytes": 921854,
+      "pixelWidth": "2560",
+      "pixelHeight": "1600",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "tablet/01-explore-map.png",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "c9fd538768eb436399b5cfa0f5b3d2d0d9bef337731956adc143f6396a420a0d",
+      "bytes": 725009,
+      "pixelWidth": "2560",
+      "pixelHeight": "1600",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "tablet/02-planner-preferences.jpg",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "52777e7703fbc9422c11cd77a83f49a66d7aeee6a0e61a7a09636a592a6ffd5a",
+      "bytes": 920394,
+      "pixelWidth": "2560",
+      "pixelHeight": "1600",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "tablet/02-planner-preferences.png",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "9f9b5c97b050cc41f0278d119211158cf2f50f795c04d30ca7b9e9165a7464ee",
+      "bytes": 416495,
+      "pixelWidth": "2560",
+      "pixelHeight": "1600",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "tablet/03-weather-live.jpg",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "151d9a3e93a77139815ffae3753e99ccd05627d78c16d837df221c9e55c57464",
+      "bytes": 1237972,
+      "pixelWidth": "2560",
+      "pixelHeight": "1600",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "tablet/03-weather-live.png",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "fc546a3c983ef7c34d01ffd80623c47b89fb4a0d9945168dea77e05dd279e4af",
+      "bytes": 682647,
+      "pixelWidth": "2560",
+      "pixelHeight": "1600",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "tablet/04-nungwi-detail.jpg",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "ee29be52b1f823d8662f4c55de926761969e83a018dbe8d64b489befd99c7456",
+      "bytes": 1382536,
+      "pixelWidth": "2560",
+      "pixelHeight": "1600",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "tablet/04-nungwi-detail.png",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "7fe729ff20107ae2b22c7d749af78e2d71f027ee5f4358d5dd8a8fb27e74dd48",
+      "bytes": 1438714,
+      "pixelWidth": "2560",
+      "pixelHeight": "1600",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "tablet/05-weather-portrait.jpg",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "a6f62e8a21b875dfa83f2b1388b89bbf44bc1399c6b021384b3328091dd6e5b4",
+      "bytes": 1227392,
+      "pixelWidth": "1600",
+      "pixelHeight": "2560",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "tablet/05-weather-portrait.png",
+      "purpose": "Initial candidate screenshot",
+      "sha256": "f53a9723993bfd4356271c91b051267c598a717ec0e65a589fd864b60742fa75",
+      "bytes": 628316,
+      "pixelWidth": "1600",
+      "pixelHeight": "2560",
+      "hasAlpha": "yes"
+    }
+  ]
+}

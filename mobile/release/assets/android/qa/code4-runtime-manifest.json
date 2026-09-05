@@ -1,0 +1,162 @@
+{
+  "status": "Corrected production-derived Android code4 passed bounded standalone cold-launch/rotation regression. Store submission and Play App Signing are separate.",
+  "verifiedAtUtc": "2026-09-05T22:15:15.807878+00:00",
+  "easBuildId": "d5ad03c9-bca0-4d33-9ba5-2c9cebe89260",
+  "easCompletedAtUtc": "2026-09-05T22:03:13.040Z",
+  "aabSha256": "4d9e8e899191850d22e1f6ccf2edcbd0acb647c2ccdd9b98427f883411a1218c",
+  "aabBytes": 77144054,
+  "download": "Artifact URL obtained from official EASCLI23.1.0 build:view; downloaded via curl with redirects. Private URL not retained in repository.",
+  "bundletoolVersion": "1.18.3",
+  "bundletoolValidation": "Passed",
+  "localTestApkSha256": "02909f064d7423c94614dc23876765b67e8dc6fcfc23845798c931c504c06591",
+  "localTestApkBytes": 112569109,
+  "localTestSignerSha256": "09148a81ca65ab839704593853320acac5934935239c3077c1369b3038e1598f",
+  "signerProvenance": "Exact AAB converted to universal APK using existing dedicated local Android Debug certificate; apksigner verification passed. No source modification or production keystore access. App installed with adb install -r preserving data.",
+  "binaryManifest": {
+    "package": "com.yournexttriptoparadise.mobile",
+    "versionName": "1.0.0",
+    "versionCode": "4",
+    "minSdk": "24",
+    "targetSdk": "36",
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.VIBRATE",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "com.yournexttriptoparadise.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "customPermissions": [
+      {
+        "name": "com.yournexttriptoparadise.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+        "protectionLevel": "0x00000002"
+      }
+    ],
+    "debuggable": "false (default)",
+    "usesCleartextTraffic": "false (default)"
+  },
+  "sourceManifest": "../../../weather-layout-build-source-sha256.json",
+  "testedWeatherSourceSha256": "3b843f7b24b0430d94e50473d9125c0bec0462a636c5a024cd32d0443408ec73",
+  "devices": [
+    {
+      "serial": "emulator-5554",
+      "api": 36,
+      "abi": "arm64-v8a",
+      "portraitPixels": [
+        1080,
+        2424
+      ],
+      "landscapePixels": [
+        2424,
+        1080
+      ]
+    },
+    {
+      "serial": "emulator-5556",
+      "api": 36,
+      "abi": "arm64-v8a",
+      "portraitPixels": [
+        1600,
+        2560
+      ],
+      "landscapePixels": [
+        2560,
+        1600
+      ]
+    }
+  ],
+  "checks": {
+    "installedIdentity": "Both running packages verified com.yournexttriptoparadise.mobile version1.0.0/code4.",
+    "coldLaunch": "Both launch from force-stop into Explore; real tiles and numbered pins render. Second cold launches succeeded; phone Explore capture retained.",
+    "phoneRotation": "Portrait\u2192landscape\u2192portrait\u2192landscape passed. All12months visible; description bounds[1160,382][2345,482] inside2424px screen, unlike code3 failure.",
+    "monthSelection": "December selected31\u00b0C, complete description and selected chip retained through rotation. Month card/Plan CTA within phone width.",
+    "tabletRotation": "Landscape\u2192portrait\u2192landscape passed; live and seasonal columns bounded at1280dp/800dp, rail and bottom tabs adapt.",
+    "weather": "Real24\u00b0C Mostly clear,86% humidity, seaUnavailable, Apple logo/legal source and actual observation time displayed.",
+    "animation": "Pause\u2192Play controls changed correctly on both devices; resumed artwork differs visibly.",
+    "errors": "Zero AndroidRuntime:E or ReactNativeJS:E lines for each tested app process before and after second cold launches.",
+    "externalSends": "None. No AI, report, contact or quote submitted.",
+    "remainingScope": "Physical devices, Play-generated APK signing/distribution and iOS store-signed runtime not verified by this task.",
+    "restoration": "Tablet restored to original2560\u00d71600/320dpi and free rotation, then cold-launched into Explore. Phone restored to portrait/free rotation and Explore."
+  },
+  "captureMethod": "adb exec-out screencap -p, PNG copies unchanged. QA files are separate from the7-inch store screenshot set in../tablet-7.",
+  "assets": [
+    {
+      "path": "code4-phone-cold-explore.png",
+      "sha256": "287eff937e24771e466f1df17cda21387bae7cc8e0d947de03872384d5e96520",
+      "bytes": 553722,
+      "width": 1080,
+      "height": 2424,
+      "capturedAtUtc": "2026-09-05T22:07:22.833834+00:00"
+    },
+    {
+      "path": "code4-phone-weather-landscape.png",
+      "sha256": "1a73bf73aabb2ca0c29ba8a1d41b636aff6841f837ee21c1f10314e85fb693ce",
+      "bytes": 303909,
+      "width": 2424,
+      "height": 1080,
+      "capturedAtUtc": "2026-09-05T22:08:09.311420+00:00"
+    },
+    {
+      "path": "code4-phone-landscape-december.png",
+      "sha256": "52a733426e011abc4183be9e54c9d5a87d3dd5fb5e6f201281013f03cfe0b380",
+      "bytes": 305924,
+      "width": 2424,
+      "height": 1080,
+      "capturedAtUtc": "2026-09-05T22:08:40.607293+00:00"
+    },
+    {
+      "path": "code4-phone-portrait-december.png",
+      "sha256": "6a849eafdd4c5dfb50f4e3fbb97df19c868d91bf5d9589d600f99320b8fca825",
+      "bytes": 356370,
+      "width": 1080,
+      "height": 2424,
+      "capturedAtUtc": "2026-09-05T22:09:13.334851+00:00"
+    },
+    {
+      "path": "code4-phone-landscape-repeat-playing.png",
+      "sha256": "eb4e9f316d32c63dd231ad83f504077ac543d0a5e6b543fde666a10f5f42ef50",
+      "bytes": 304176,
+      "width": 2424,
+      "height": 1080,
+      "capturedAtUtc": "2026-09-05T22:10:16.694510+00:00"
+    },
+    {
+      "path": "code4-tablet-weather-portrait.png",
+      "sha256": "46a98c8b6f2987668d5c38625894855a49ef39f24bc5fe072a7f1cd22a779d94",
+      "bytes": 628484,
+      "width": 1600,
+      "height": 2560,
+      "capturedAtUtc": "2026-09-05T22:08:22.217249+00:00"
+    },
+    {
+      "path": "code4-tablet-weather-landscape-return.png",
+      "sha256": "dcc434bc0549259ed677ddc44ffec50a81866bfc2a5b96c3e8b986db06cbebe0",
+      "bytes": 682990,
+      "width": 2560,
+      "height": 1600,
+      "capturedAtUtc": "2026-09-05T22:09:12.899079+00:00"
+    },
+    {
+      "path": "code4-phone-second-cold-explore.png",
+      "sha256": "f316eb7157bb91eae83aaa526145b1ed6c85f33243c88d7468adf4fedcac89ce",
+      "bytes": 552507,
+      "width": 1080,
+      "height": 2424,
+      "capturedAtUtc": "2026-09-05T22:11:04.936282+00:00"
+    },
+    {
+      "path": "code4-tablet-cold-explore.png",
+      "sha256": "f3e94dc43d2516728ce886e42650ec650a39c56a4d831da23dde25957b2c9114",
+      "bytes": 724527,
+      "width": 2560,
+      "height": 1600,
+      "capturedAtUtc": "2026-09-05T22:07:32.694124+00:00"
+    },
+    {
+      "path": "code4-phone-december-card-cta.png",
+      "sha256": "5339166847046669b82f07b18c334ccaafe74dc993e88d04adf617dc38a4456a",
+      "bytes": 320671,
+      "width": 1080,
+      "height": 2424,
+      "capturedAtUtc": "2026-09-05T22:15:15.722543+00:00"
+    }
+  ]
+}

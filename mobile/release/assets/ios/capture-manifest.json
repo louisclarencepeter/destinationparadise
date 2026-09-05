@@ -1,0 +1,131 @@
+{
+  "capturedAtUtc": {
+    "first": "2026-09-05T21:19:21.866143+00:00",
+    "last": "2026-09-05T21:22:08.615298+00:00"
+  },
+  "appVersion": "1.0.0",
+  "simulatorBuildNumber": "1",
+  "easSimulatorBuildId": "e9a5dd2a-d500-4daa-a32e-8fea7de77472",
+  "sourceApp": "/tmp/dp-native-release/DestinationParadise.app",
+  "captureMethod": "Simulator native Save Screen toolbar action via CUA. Original PNGs retained; JPEG exports made with sips at quality 100 without crop, resize or added content.",
+  "devices": [
+    {
+      "name": "iPhone 17 Pro Max",
+      "runtime": "iOS 26.5",
+      "udid": "066E7612-97AD-4A39-8D69-8D351ADB9489",
+      "pixels": [
+        1320,
+        2868
+      ]
+    },
+    {
+      "name": "iPad Pro 13-inch (M5)",
+      "runtime": "iOS 26.5",
+      "udid": "EA7365AB-3582-4DDE-ADE0-B576B88B9375",
+      "pixels": [
+        2064,
+        2752
+      ]
+    }
+  ],
+  "weatherObservation": "24\u00b0C, mostly clear, humidity 85%, source updated 6 Sep at 00:20 EAT. Apple Weather logo and legal attribution are visible; sea temperature is unavailable.",
+  "syntheticState": "Initial planning preferences: 9 nights, 2 adults, 0 children, September. Consent is unchecked. No AI request, report, contact or quote was sent.",
+  "assets": [
+    {
+      "path": "ipad-13/01-explore-map.jpg",
+      "sha256": "59fe522f32276696e12cc9dcb9476aca2a8f62088a4ecde93273be7c1d920ee6",
+      "bytes": 1455911,
+      "pixelWidth": "2064",
+      "pixelHeight": "2752",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "ipad-13/01-explore-map.png",
+      "sha256": "8f3f0b69d876d8fdfa785fb8e86f7342431dccde6da3c748c0bc523ea9955295",
+      "bytes": 1624944,
+      "pixelWidth": "2064",
+      "pixelHeight": "2752",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "ipad-13/02-planner-preferences.jpg",
+      "sha256": "171a689e47a7e862bdf700601a3c923fc3d52c31fe7ffbc5286a1b822c79409f",
+      "bytes": 1033016,
+      "pixelWidth": "2064",
+      "pixelHeight": "2752",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "ipad-13/02-planner-preferences.png",
+      "sha256": "08f045729eb6eb3f389ff22a77df2f802e7326dcebf67fab1146fc1ccddb7421",
+      "bytes": 533306,
+      "pixelWidth": "2064",
+      "pixelHeight": "2752",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "ipad-13/03-weather-live.jpg",
+      "sha256": "5278b0b84e790a8933f5fc385cc55f953d6ceeff6f0491cf6a9578345ac46286",
+      "bytes": 1435985,
+      "pixelWidth": "2064",
+      "pixelHeight": "2752",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "ipad-13/03-weather-live.png",
+      "sha256": "f6b0ed1fab688fa4d88e4125ba47f237afc490ecafd59cf8212ea8dbf4d2c483",
+      "bytes": 1395379,
+      "pixelWidth": "2064",
+      "pixelHeight": "2752",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "iphone-6.9/01-explore-map.jpg",
+      "sha256": "c02c9566dfb9d2870b9caec10c7b3235ea876a66610aa67a68814dec28062d8b",
+      "bytes": 886725,
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "iphone-6.9/01-explore-map.png",
+      "sha256": "07c523a26d79771a83398ef56131985837ad1cc3b660f7b6f34a93efe89e125e",
+      "bytes": 881335,
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "iphone-6.9/02-planner-preferences.jpg",
+      "sha256": "2782b6f90300004016853fa19834672694e0c533076ab1ec03748aabd0874a9b",
+      "bytes": 750481,
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "iphone-6.9/02-planner-preferences.png",
+      "sha256": "429162eb053306bb03d688b144effaca36d99d774b89bed60f8db050005c4b74",
+      "bytes": 297031,
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "yes"
+    },
+    {
+      "path": "iphone-6.9/03-weather-live.jpg",
+      "sha256": "e59c3d12e76f0170d7213d9b172c4bcafc056de983892a4afcc3a6adf148f4b3",
+      "bytes": 1330134,
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "no"
+    },
+    {
+      "path": "iphone-6.9/03-weather-live.png",
+      "sha256": "08c12809082ef7ec1ab1845511410a682b9732afebe7a5445b8c50605ccf2994",
+      "bytes": 1721522,
+      "pixelWidth": "1320",
+      "pixelHeight": "2868",
+      "hasAlpha": "yes"
+    }
+  ]
+}

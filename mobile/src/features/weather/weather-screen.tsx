@@ -166,9 +166,10 @@ export default function WeatherScreen({ onPlan }: { onPlan: (month: string) => v
   </View>;
 
   return <ScrollView contentInsetAdjustmentBehavior="never" style={{ flex: 1, backgroundColor: colors.background }} refreshControl={<RefreshControl refreshing={isFetching && !!data} onRefresh={() => void refetch()} tintColor={colors.coral} colors={[colors.coral]} />} contentContainerStyle={{ padding: tablet ? 30 : 18, paddingTop: insets.top + 18, paddingBottom: 32, width: '100%', maxWidth: 1240, alignSelf: 'center', gap: 23 }}>
-    <View style={{ flexDirection: tablet ? 'row' : 'column', gap: tablet ? 32 : 30, alignItems: 'flex-start' }}>
+    <View style={{ width: '100%', flexDirection: tablet ? 'row' : 'column', gap: tablet ? 32 : 30, alignItems: 'flex-start' }}>
       <View style={{ width: tablet ? '44%' : '100%' }}>{liveWeather}</View>
-      <View style={tablet ? { flex: 1 } : { width: '100%' }}>{seasonalGuide}</View>
+      {/* Reset the width explicitly on rotation before filling the remaining row. */}
+      <View style={{ width: tablet ? 0 : '100%', flexGrow: tablet ? 1 : 0, flexShrink: 1, minWidth: 0 }}>{seasonalGuide}</View>
     </View>
   </ScrollView>;
 }
