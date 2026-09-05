@@ -7,7 +7,7 @@ import jsxA11y from 'eslint-plugin-jsx-a11y';
 
 export default [
   {
-    ignores: ['dist/**', 'dev-dist/**', 'node_modules/**', '.claude/**'],
+    ignores: ['dist/**', 'dev-dist/**', 'node_modules/**', '.claude/**', 'mobile/**', 'design/mobile-app/**'],
   },
   {
     files: ['**/*.{js,jsx}'],

@@ -1,0 +1,14 @@
+# Standalone mobile backend. Run from this directory; never use website config.
+[build]
+command = "npm run build"
+publish = "build/public"
+functions = "build/functions"
+
+[build.environment]
+NODE_VERSION = "22"
+
+[functions]
+node_bundler = "esbuild"
+
+# Static response headers are generated from headers.txt into public/_headers.
+# Function responses carry their own headers in the three source handlers.

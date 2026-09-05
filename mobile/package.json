@@ -1,0 +1,55 @@
+{
+  "name": "destination-paradise-mobile",
+  "version": "1.0.0",
+  "main": "expo-router/entry",
+  "dependencies": {
+    "@expo-google-fonts/kaushan-script": "^0.4.1",
+    "@expo-google-fonts/montserrat": "^0.4.2",
+    "@expo-google-fonts/playfair-display": "^0.4.2",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@tanstack/react-query": "^5.102.8",
+    "decode-uri-component": "file:vendor/decode-uri-component",
+    "expo": "~57.0.20",
+    "expo-constants": "~57.0.17",
+    "expo-font": "~57.0.3",
+    "expo-image": "~57.0.4",
+    "expo-linear-gradient": "~57.0.1",
+    "expo-linking": "~57.0.9",
+    "expo-router": "~57.0.19",
+    "expo-splash-screen": "~57.0.8",
+    "expo-status-bar": "~57.0.1",
+    "expo-system-ui": "~57.0.3",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-reanimated": "4.5.1",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.0",
+    "react-native-svg": "15.15.4",
+    "react-native-web": "^0.21.2",
+    "react-native-webview": "13.16.1",
+    "react-native-worklets": "0.10.1"
+  },
+  "devDependencies": {
+    "@types/node": "^26.4.1",
+    "@types/react": "~19.2.2",
+    "leaflet": "^1.9.4",
+    "tsx": "^4.23.13",
+    "typescript": "~6.0.3"
+  },
+  "scripts": {
+    "start": "./script/build_and_run.sh",
+    "android": "./script/build_and_run.sh --android",
+    "ios": "./script/build_and_run.sh --ios",
+    "web": "./script/build_and_run.sh --web",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts src/components/map/*.test.ts src/features/explore/*.test.ts",
+    "content:sync": "node scripts/sync-content.mjs",
+    "content:check": "node scripts/sync-content.mjs --check",
+    "export": "expo export --platform all"
+  },
+  "private": true,
+  "overrides": {
+    "decode-uri-component": "$decode-uri-component"
+  }
+}

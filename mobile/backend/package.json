@@ -1,0 +1,18 @@
+{
+  "name": "destination-paradise-mobile-backend",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "preflight": "node deploy.mjs preflight",
+    "verify": "node deploy.mjs verify"
+  },
+  "devDependencies": {
+    "@netlify/dev-utils": "4.4.3",
+    "@netlify/zip-it-and-ship-it": "14.5.3"
+  }
+}
