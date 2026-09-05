@@ -1,5 +1,5 @@
 {
-  "status": "STORE_LISTING_DRAFTS_SAVED_FINAL_NAME_AND_RELEASE_GATES_PENDING",
+  "status": "STORE_NAMES_SAVED_RELEASE_GATES_PENDING",
   "preparedAt": "2026-09-05",
   "locale": "en-US",
   "appName": "Destination Paradise",
@@ -24,7 +24,7 @@
     },
     "signInRequired": false,
     "ageRating": "13+",
-    "listingName": "Destination Paradise Zanzibar",
+    "listingName": "Destination Paradise Travel",
     "ascAppId": "6809042574",
     "sku": "destination-paradise-mobile",
     "primaryLanguage": "en-US",
@@ -40,8 +40,8 @@
       "alcoholTobaccoDrugReferences": "Infrequent; island guide includes bar references",
       "otherContent": "None selected"
     },
-    "listingNameProvisional": true,
-    "preferredNameDecisionPending": true,
+    "listingNameProvisional": false,
+    "preferredNameDecisionPending": false,
     "supportUrl": "https://yournexttriptoparadise.com/#contact",
     "privacyPolicyUrl": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
     "urlsStatus": "SAVED",
@@ -187,10 +187,13 @@
       "macAvailabilityEnabled": false,
       "visionProAvailabilityEnabled": false,
       "distribution": "PUBLIC_DEFAULT"
-    }
+    },
+    "listingNameStatus": "SAVED_VERIFIED_AFTER_NAVIGATION",
+    "lastVerifiedSavedListingName": "Destination Paradise Travel",
+    "listingNameVerification": "Saved indicator confirmed; navigated to the version and back to App Information and verified Destination Paradise Travel remained. Subtitle unchanged. Fresh App Information again shows the exact approved Name and unchanged subtitle; the cached top header still showed the older Zanzibar name, which does not change the verified field persistence."
   },
   "google": {
-    "title": "Destination Paradise",
+    "title": "Destination Paradise Travel",
     "shortDescription": "Explore Zanzibar and Tanzania, save places and shape your next trip.",
     "fullDescriptionSource": "Use apple.description above; its copy describes the same Android functionality.",
     "category": "Travel & Local",
@@ -219,7 +222,7 @@
         "miscellaneous": "No"
       }
     },
-    "dataSafetyReady": false,
+    "dataSafetyReady": true,
     "aiAssetDeclarations": "Review provenance for each submitted visual asset; do not blanket-declare based solely on using an AI coding assistant.",
     "playAppId": "4972417635244765220",
     "developerAccountId": "7868106536966385994",
@@ -230,42 +233,67 @@
     "closedTestRequirement": {
       "minimumContinuouslyOptedInTesters": 12,
       "minimumConsecutiveDays": 14,
-      "status": "NOT_ESTABLISHED"
+      "status": "NOT_ESTABLISHED",
+      "setupUnlocked": true
     },
     "androidArtifact": {
-      "easBuildId": "29c21f3e-68d3-4b02-b02a-6b12c2bd566d",
+      "easBuildId": "d5ad03c9-bca0-4d33-9ba5-2c9cebe89260",
       "versionName": "1.0.0",
-      "versionCode": 3,
-      "status": "FINISHED_DOWNLOADED_VALIDATED"
+      "versionCode": 4,
+      "status": "ACCEPTED_PUBLISHED_TO_INTERNAL_TESTERS",
+      "sha256": "4d9e8e899191850d22e1f6ccf2edcbd0acb647c2ccdd9b98427f883411a1218c",
+      "minimumSdk": 24,
+      "targetSdk": 36
     },
-    "internalReleaseUploadStatus": "RELEASE_1_PUBLISHED_AVAILABLE_TO_INTERNAL_TESTERS",
-    "listingStatus": "SAVED_DRAFT_NOT_PUBLISHED",
+    "internalReleaseUploadStatus": "RELEASE_2_PUBLISHED_AVAILABLE_TO_INTERNAL_TESTERS",
+    "listingStatus": "SAVED_CHANGES_AWAITING_SEND_FOR_REVIEW",
     "savedListingAssets": {
       "copy": true,
       "appIcon": true,
       "featureGraphic": true,
       "phoneScreenshots": 3,
       "largeTabletScreenshots": 3,
-      "sevenInchTabletScreenshots": "READY_LOCALLY_NOT_UPLOADED",
-      "status": "SAVED_DRAFT_ONLY"
+      "sevenInchTabletScreenshots": 3,
+      "status": "SAVED_CHANGES_NOT_SENT_FOR_REVIEW"
     },
     "internalTrack": {
       "id": "4701496308193764699",
       "status": "ACTIVE",
-      "versionCode": 3,
-      "releaseName": "1",
+      "versionCode": 4,
+      "releaseName": "1.0.0 (4) — weather rotation fix",
       "joinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
       "selectedOwnerListCount": 1,
       "ownerTesterEmail": "louisclarencepeters@gmail.com",
       "otherListsSelected": false,
-      "ownerOptInVerified": false
+      "ownerOptInVerified": false,
+      "availability": "AVAILABLE_TO_INTERNAL_TESTERS",
+      "reviewStatus": "NOT_REVIEWED",
+      "latestVerification": "Save and publish confirmed; fresh track shows release 2/code 4 available to internal testers, Active and Not reviewed. Fresh Testers tab shows only Destination Paradise owner test (1) selected, other lists unchecked, Save disabled.",
+      "releaseNumber": 2,
+      "releaseDetailsPath": "/releases/2/details",
+      "releasedAtLocal": "2026-09-06 02:08 EAT",
+      "selectedTesterListName": "Destination Paradise owner test",
+      "selectedTesterCount": 1,
+      "unselectedTesterLists": [
+        {
+          "name": "OutreachOS",
+          "count": 15
+        },
+        {
+          "name": "Rexona",
+          "count": 17
+        }
+      ],
+      "testersSaveDisabled": true,
+      "temporaryAppLabel": "com.yournexttriptoparadise.mobile (unreviewed)",
+      "nameDisplayNote": "The unreviewed internal track still uses the temporary package label until app review; the Destination Paradise Travel listing field is separately saved and verified."
     },
     "correctedBuild": {
       "easBuildId": "d5ad03c9-bca0-4d33-9ba5-2c9cebe89260",
       "versionName": "1.0.0",
       "versionCode": 4,
-      "status": "FINISHED_STANDALONE_QA_PASSED",
-      "uploadedToPlayVerified": false,
+      "status": "FINISHED_STANDALONE_QA_PASSED_INTERNAL_PUBLISHED",
+      "uploadedToPlayVerified": true,
       "completedAtUtc": "2026-09-05T22:03:13Z",
       "completionEvidence": "Verified by Android QA agent via official EAS build:view.",
       "qa": {
@@ -274,13 +302,28 @@
         "aabSha256": "4d9e8e899191850d22e1f6ccf2edcbd0acb647c2ccdd9b98427f883411a1218c",
         "scope": "Exact AAB converted with bundletool to a locally test-signed universal APK; phone and tablet cold launches, repeated rotations, December card/CTA, Apple Weather and Pause/Play passed with zero app error lines.",
         "remaining": "Physical devices, Play-generated APK signing/distribution and iOS store-signed runtime remain separate."
+      },
+      "internalPublicationVerified": true,
+      "playAcceptance": {
+        "versionDisplay": "4 (1.0.0)",
+        "minimumSdk": 24,
+        "targetSdk": 36,
+        "previewWarnings": [
+          {
+            "type": "Missing deobfuscation mapping",
+            "blocking": false
+          }
+        ],
+        "previewWarningCount": 1,
+        "nativeDebugSymbolsAttached": true,
+        "saveAndPublishConfirmed": true
       }
     },
     "targetAudienceStatus": "SAVED",
     "setupProgress": {
-      "completedCountLastObserved": 8,
+      "completedCountLastObserved": 10,
       "totalCount": 11,
-      "countObservedAfter": "IARC completion; target audience was subsequently saved, so the dashboard count must be rechecked.",
+      "countObservedAfter": "Historical 10/11 after final listing save and before Data Safety save. The later dashboard removed the setup checklist; no 11/11 count was displayed.",
       "completedSections": [
         "Privacy policy",
         "App access",
@@ -290,40 +333,69 @@
         "Health apps",
         "Category and contact",
         "Content rating (IARC)",
-        "Target audience"
+        "Target audience",
+        "Main store listing",
+        "Data Safety"
       ],
-      "dataSafetyStatus": "FILLED_PREVIEW_VERIFIED_SAVE_FAILED"
+      "dataSafetyStatus": "SAVED_VERIFIED_AWAITING_SEND_FOR_REVIEW",
+      "status": "COMPLETE_VERIFIED",
+      "completionEvidence": "After the successful Data Safety save, the app-information setup checklist and closed-test setup lock disappeared from the dashboard.",
+      "currentNumericCountDisplayed": false
     },
     "sevenInchScreenshotEvidence": "assets/android/tablet-7/capture-manifest.json",
     "dataSafety": {
-      "status": "FILLED_PREVIEW_VERIFIED_SAVE_FAILED",
+      "status": "SAVED_VERIFIED_AWAITING_SEND_FOR_REVIEW",
       "filledTypeCount": 10,
       "answersSource": "store-privacy-answers.md",
       "previewVerified": true,
-      "savedVerified": false,
+      "savedVerified": true,
       "publishedVerified": false,
-      "saveErrorCode": "5C897C1E",
-      "saveAttempts": "Save and Save as draft / Save Draft retried; unexpected error persisted.",
-      "preservedForm": "Original filled form remains open in browser tab 15.",
-      "freshDashboard": "Browser tab 16 returned HTTP 403 Forbidden.",
-      "nextStep": "Resume from the preserved form after Play Console access/save service recovers; verify persistence before marking complete."
+      "verification": "Fresh form was blank after the earlier failed save. Root restored all ten exact worksheet types/purposes and verified the preview. Save returned Changes saved and Send for review; confirmation modal showed Save and Save Draft disabled.",
+      "priorFailure": {
+        "code": "5C897C1E",
+        "result": "Earlier unsaved form was lost; it was restored in a fresh form and saved successfully. Old tab 15 was closed.",
+        "resolved": true
+      },
+      "nextStep": "Saved changes await Send for review; this action has not been taken."
+    },
+    "titleStatus": "SAVED_VERIFIED",
+    "lastVerifiedSavedTitle": "Destination Paradise Travel",
+    "titleVerification": "Final Review Save produced Changes saved and Send for review/Publishing overview; confirmation modal said the change was saved. Dashboard displayed Destination Paradise Travel.",
+    "sevenInchScreenshotUpload": {
+      "status": "SAVED_VERIFIED",
+      "count": 3,
+      "dimensions": [
+        1200,
+        1920
+      ],
+      "captureType": "Authentic native captures",
+      "verification": "All three sets showed three images each in Next/Review; final Review Save was confirmed by Changes saved and the saved-change modal.",
+      "finalReviewSaveStatus": "SAVED_VERIFIED"
+    },
+    "consoleAccess": {
+      "status": "RECOVERED",
+      "verification": "Current tab 18 is accessible. After Data Safety saved, the dashboard removed the app-information setup checklist and closed-test setup lock."
+    },
+    "previousAndroidArtifact": {
+      "easBuildId": "29c21f3e-68d3-4b02-b02a-6b12c2bd566d",
+      "versionName": "1.0.0",
+      "versionCode": 3,
+      "status": "FINISHED_DOWNLOADED_VALIDATED"
     }
   },
   "ownerConfirmationRequired": [
-    "Preferred final App Store name; Destination Paradise Zanzibar remains provisional.",
     "Whether to reuse existing trader details or provide different business details for the Apple DSA declaration.",
     "Separate Destination Paradise closed-test list; do not reuse the OutreachOS tester list."
   ],
-  "updatedAtUtc": "2026-09-05T22:50:12.003486Z",
+  "updatedAtUtc": "2026-09-05T23:11:19.063451Z",
   "publisher": {
     "accountName": "Louis Peter",
     "choiceConfirmed": true,
     "copyrightEntryConfirmed": true
   },
   "pendingReleaseWork": [
-    "Upload corrected Android code 4 to the intended Play test track; the published internal release still uses code 3. Verify owner opt-in/installation and iOS build 3 TestFlight installation; Apple owner invitation is sent, but acceptance/install is not established.",
-    "Upload the ready authentic seven-inch Google tablet screenshots and review final store assets against the corrected build.",
-    "Resume Google Data Safety after the Play Console failure clears: all ten types were filled and previewed, but save retries failed with 5C897C1E and a fresh dashboard returned 403. Verify saved persistence; IARC and 18+ audience are already saved.",
+    "Verify owner opt-in and installation of published Play internal code 4, plus iOS build 3 TestFlight installation. Owner-only access is configured in both stores; invitation acceptance and installation remain unverified.",
+    "Google app-information setup is complete; saved listing and Data Safety changes await Send for review, which has not been clicked.",
     "Verify remaining controlled quote/report delivery, consent, error recovery and physical-device release QA; maintain truthful provider retention/deletion statements.",
     "Configure the separate closed test and verify at least 12 continuous opt-ins for 14 days before applying for Google production access.",
     "Choose and save Apple App Availability countries; zero-price equivalents for 175 regions are saved, but country availability remains unset."
@@ -333,5 +405,16 @@
     "privacyPolicyUrl": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
     "latestVerifiedPolicyDeployId": "6a9c9097c7e4b26b67fadcd5",
     "evidence": "Deployment verified and documented by the policy deployment agent; separate from store listing publication."
+  },
+  "storeNameApproval": {
+    "name": "Destination Paradise Travel",
+    "stores": [
+      "Apple App Store",
+      "Google Play"
+    ],
+    "approvedByUser": true,
+    "approvalEvidence": "User replied yes to the exact proposed store name.",
+    "applicationStatus": "SAVED_VERIFIED_IN_BOTH_STORES",
+    "scope": "Store listing names only; native display name and existing Destination Paradise brand are unchanged."
   }
 }
