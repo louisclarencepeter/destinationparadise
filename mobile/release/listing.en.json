@@ -152,7 +152,7 @@
       "easStatus": "FINISHED",
       "easSubmissionId": "c48ecd45-1469-4f70-a552-67b58c6162cf",
       "easSubmissionStatus": "FINISHED",
-      "appleStatus": "READY_TO_TEST",
+      "appleStatus": "TESTING",
       "appleProcessingComplete": true,
       "expiresInDaysObserved": 90,
       "testFlightGroupAccessVerified": true,
@@ -161,11 +161,27 @@
         "name": "Destination Paradise owner test",
         "scope": "OWNER_ONLY",
         "testerCount": 1,
+        "buildCount": 1,
         "testerEmail": "louisclarencepeters@gmail.com",
         "testerStatus": "INVITED",
         "automaticDistribution": false,
         "invitationAcceptedVerified": false,
-        "installationVerified": false
+        "installationVerified": false,
+        "invitationRecovery": {
+          "reportedError": "Invitation revoked or invalid",
+          "reportedAtLocalDate": "2026-09-06",
+          "action": "Reinvite existing owner tester, then Resend",
+          "resendCompletedWithoutError": true,
+          "replacementEmailSubject": "Louis Peter has invited you to test Destination Paradise Travel.",
+          "replacementEmailReceivedAt": "2026-09-06T19:26:27Z",
+          "replacementEmailReceivedAtLocal": "2026-09-06 22:26 EAT",
+          "replacementEmailReceiptVerified": true,
+          "testerRemoved": false,
+          "membershipsOrAccessChanged": false,
+          "rootCauseProven": false,
+          "successfulRedemptionVerified": false,
+          "verification": "Root verified the owner's error screenshot, completed Reinvite and Resend for the existing owner, and confirmed replacement-email receipt in Gmail. A fresh owner-group check showed one tester, one build and 1.0.0 (3) Testing with 90 days remaining. The tester remains Invited; acceptance and installation are pending."
+        }
       },
       "appStoreVersionSelection": {
         "selectedBuild": "3",
