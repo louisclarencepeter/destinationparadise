@@ -161,12 +161,17 @@
         "name": "Destination Paradise owner test",
         "scope": "OWNER_ONLY",
         "testerCount": 1,
-        "buildCount": 1,
+        "buildCount": 2,
         "testerEmail": "louisclarencepeters@gmail.com",
-        "testerStatus": "INVITED",
+        "testerStatus": "INSTALLED",
         "automaticDistribution": false,
-        "invitationAcceptedVerified": false,
-        "installationVerified": false,
+        "invitationAcceptedVerified": true,
+        "installationVerified": true,
+        "installedBuild": "3",
+        "installationDateDisplayed": "2026-09-06",
+        "installedDevice": "iPhone 15 Pro Max",
+        "installedOSVersion": "iOS 26.6.1",
+        "installationVerification": "Root navigated away and back; the fresh tester page showed Installed 1.0.0 (3). The earlier Invited display was cached. This verifies build 3 installation only.",
         "invitationRecovery": {
           "reportedError": "Invitation revoked or invalid",
           "reportedAtLocalDate": "2026-09-06",
@@ -179,17 +184,52 @@
           "testerRemoved": false,
           "membershipsOrAccessChanged": false,
           "rootCauseProven": false,
-          "successfulRedemptionVerified": false,
-          "verification": "Root verified the owner's error screenshot, completed Reinvite and Resend for the existing owner, and confirmed replacement-email receipt in Gmail. A fresh owner-group check showed one tester, one build and 1.0.0 (3) Testing with 90 days remaining. The tester remains Invited; acceptance and installation are pending."
+          "successfulRedemptionVerified": true,
+          "resolvedForBuild": "3",
+          "verification": "Root verified the owner's error screenshot, completed Reinvite and Resend for the existing owner, and confirmed replacement-email receipt in Gmail. After navigating away and back later, root verified Installed 1.0.0 (3), dated September 6, on iPhone 15 Pro Max / iOS 26.6.1. Acceptance and installation of build 3 are verified; the original error cause is unproven and new build 4 installation remains unverified."
         }
       },
       "appStoreVersionSelection": {
         "selectedBuild": "3",
         "saveClicked": true,
         "savedVerified": true,
-        "status": "SAVED_VERIFIED_AFTER_NAVIGATION",
-        "evidence": "Build 3 was reattached and saved; Save became disabled. Root navigated to App Information and back to the version through the menu and verified the App Icon/build 3/version 1.0.0 row remained with Save disabled. No App Review was submitted."
+        "status": "HISTORICAL_SELECTION_REPLACED_BY_BUILD_4",
+        "evidence": "Build 3 was previously saved and verified after navigation. Root later removed only its App Store draft attachment and replaced it with navy-icon build 4; build 3 remains in TestFlight. No App Review was submitted."
       }
+    },
+    "iconReplacementBuild": {
+      "easBuildId": "4a785994-db2c-40fc-9329-a296e584ec15",
+      "version": "1.0.0",
+      "buildNumber": "4",
+      "easStatus": "FINISHED",
+      "completedAtUtc": "2026-09-06T19:57:58.628Z",
+      "ipaSha256": "31ef588f37267c0fea9635ca887702aad16a0a8cb8f8e2111d94a5c6e513dd9f",
+      "artifactEvidence": "icon-review/navy-ios-artifact-verification.json",
+      "easSubmissionId": "f44a111f-8f11-491e-b39c-8d156e6c0f65",
+      "easSubmissionStatus": "FINISHED",
+      "submissionCompletedAtUtc": "2026-09-06T20:01:01.642Z",
+      "submissionEvidence": "icon-review/navy-ios-submission.json",
+      "ascBuildId": "baaed647-bc09-465e-9f15-52d9387b16ba",
+      "appleUploadStatus": "COMPLETE",
+      "appleProcessingComplete": true,
+      "appleStatus": "TESTING",
+      "expiresInDaysObserved": 90,
+      "testFlightGroupAccessVerified": true,
+      "testFlightGroupId": "0db9334b-5e79-4fa1-8950-e0e782456ba8",
+      "groupAssignment": "Root manually assigned build 4 to the existing owner group after the EAS upload did not assign it automatically.",
+      "whatToTest": "Updated the app icon and launch screen with the complete Destination Paradise logo in ivory and coral on navy.",
+      "whatToTestSavedVerified": true,
+      "appleUIEvidence": "icon-review/apple-testflight-verification.json",
+      "ownerInstallationVerified": false,
+      "appStoreVersionSelection": {
+        "status": "SAVED_VERIFIED_AFTER_NAVIGATION",
+        "lastVerifiedSavedBuild": "4",
+        "selectedBuild": "4",
+        "saveClicked": true,
+        "build4SavedVerified": true,
+        "evidence": "Root removed only the previous build 3 draft attachment, selected build 4 and saved until Save was disabled. Root then navigated to App Information, verified Destination Paradise Travel, and returned to 1.0.0 Prepare for Submission; App Icon/build 4/version 1.0.0 and disabled Save persisted. Add for Review was not clicked."
+      },
+      "appReviewSubmitted": false
     },
     "pricing": {
       "status": "SAVED",
@@ -253,30 +293,37 @@
       "setupUnlocked": true
     },
     "androidArtifact": {
-      "easBuildId": "d5ad03c9-bca0-4d33-9ba5-2c9cebe89260",
+      "easBuildId": "4106b3fe-467d-4769-b407-fe107d5ca526",
       "versionName": "1.0.0",
-      "versionCode": 4,
+      "versionCode": 5,
       "status": "ACCEPTED_PUBLISHED_TO_INTERNAL_TESTERS",
-      "sha256": "4d9e8e899191850d22e1f6ccf2edcbd0acb647c2ccdd9b98427f883411a1218c",
+      "sha256": "c067fea9c268bb27359bea2ea9ffbc53582e62e81e5114b4440cf5efe3c93026",
       "minimumSdk": 24,
       "targetSdk": 36
     },
-    "internalReleaseUploadStatus": "RELEASE_2_PUBLISHED_AVAILABLE_TO_INTERNAL_TESTERS",
+    "internalReleaseUploadStatus": "RELEASE_3_PUBLISHED_AVAILABLE_TO_INTERNAL_TESTERS",
     "listingStatus": "SAVED_CHANGES_AWAITING_SEND_FOR_REVIEW",
     "savedListingAssets": {
       "copy": true,
       "appIcon": true,
+      "appIconVariant": "OWNER_APPROVED_FULL_LOGO_NAVY",
+      "appIconEvidence": "icon-review/store-icon-save.json",
       "featureGraphic": true,
       "phoneScreenshots": 3,
       "largeTabletScreenshots": 3,
       "sevenInchTabletScreenshots": 3,
-      "status": "SAVED_CHANGES_NOT_SENT_FOR_REVIEW"
+      "status": "SAVED_CHANGES_NOT_SENT_FOR_REVIEW",
+      "aiAssetDeclaration": {
+        "selectedAssets": ["App icon", "Feature graphic"],
+        "nativeScreenshotsSelected": false,
+        "savedVerified": true
+      }
     },
     "internalTrack": {
       "id": "4701496308193764699",
       "status": "ACTIVE",
-      "versionCode": 4,
-      "releaseName": "1.0.0 (4) — weather rotation fix",
+      "versionCode": 5,
+      "releaseName": "1.0.0 (5) — full-logo navy icon",
       "joinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
       "selectedOwnerListCount": 1,
       "ownerTesterEmail": "louisclarencepeters@gmail.com",
@@ -284,10 +331,12 @@
       "ownerOptInVerified": false,
       "availability": "AVAILABLE_TO_INTERNAL_TESTERS",
       "reviewStatus": "NOT_REVIEWED",
-      "latestVerification": "Save and publish confirmed; fresh track shows release 2/code 4 available to internal testers, Active and Not reviewed. Fresh Testers tab shows only Destination Paradise owner test (1) selected, other lists unchecked, Save disabled.",
-      "releaseNumber": 2,
-      "releaseDetailsPath": "/releases/2/details",
-      "releasedAtLocal": "2026-09-06 02:08 EAT",
+      "latestVerification": "Root completed Save and publish and its explicit confirmation. Fresh track shows release 3/code 5 Available to internal testers, Active and Not reviewed, released September 6 at 11:14 PM EAT. Fresh Testers tab shows only Destination Paradise owner test (1) selected; OutreachOS (15) and Rexona (17) unchecked, Save disabled.",
+      "releaseNumber": 3,
+      "releaseDetailsPath": "/releases/3/details",
+      "releasedAtLocal": "2026-09-06 23:14 EAT",
+      "publicationEvidence": "icon-review/android-internal-release-verification.json",
+      "propagationNote": "Google's confirmation says device availability can take an hour or more. Owner installation is not verified.",
       "selectedTesterListName": "Destination Paradise owner test",
       "selectedTesterCount": 1,
       "unselectedTesterLists": [
@@ -308,7 +357,7 @@
       "easBuildId": "d5ad03c9-bca0-4d33-9ba5-2c9cebe89260",
       "versionName": "1.0.0",
       "versionCode": 4,
-      "status": "FINISHED_STANDALONE_QA_PASSED_INTERNAL_PUBLISHED",
+      "status": "PREVIOUS_INTERNAL_RELEASE_SUPERSEDED_BY_CODE_5",
       "uploadedToPlayVerified": true,
       "completedAtUtc": "2026-09-05T22:03:13Z",
       "completionEvidence": "Verified by Android QA agent via official EAS build:view.",
@@ -334,6 +383,45 @@
         "nativeDebugSymbolsAttached": true,
         "saveAndPublishConfirmed": true
       }
+    },
+    "iconReplacementBuild": {
+      "easBuildId": "4106b3fe-467d-4769-b407-fe107d5ca526",
+      "versionName": "1.0.0",
+      "versionCode": 5,
+      "status": "FINISHED_ICON_QA_PASSED_INTERNAL_PUBLISHED",
+      "easStatus": "FINISHED",
+      "completedAtUtc": "2026-09-06T20:06:35.329Z",
+      "aabBytes": 78159005,
+      "aabSha256": "c067fea9c268bb27359bea2ea9ffbc53582e62e81e5114b4440cf5efe3c93026",
+      "minimumSdk": 24,
+      "targetSdk": 36,
+      "artifactEvidence": "icon-review/navy-android-artifact-verification.json",
+      "bundletoolValidationPassed": true,
+      "qa": {
+        "evidence": "icon-review/android-code5-icon-qa.json",
+        "verifiedAtUtc": "2026-09-06T20:11:09.143007+00:00",
+        "nativePhoneAndTabletPassed": true,
+        "scope": "Exact production-AAB-derived test APK: launcher logo, unclipped native splash and cold Explore launch with real map tiles; zero app errors. Root visually reviewed phone launcher and tablet splash.",
+        "remaining": "Play-delivered installation and physical-device runtime are separate checks."
+      },
+      "uploadedToPlayVerified": true,
+      "releaseNumber": 3,
+      "releaseName": "1.0.0 (5) — full-logo navy icon",
+      "playProcessingStatus": "ACCEPTED",
+      "internalPublicationVerified": true,
+      "lastVerifiedActiveVersionCode": 5,
+      "publicationEvidence": "icon-review/android-internal-release-verification.json",
+      "playAcceptance": {
+        "versionDisplay": "5 (1.0.0)",
+        "nativeDebugSymbolsAttached": true,
+        "onlyWarning": "Missing deobfuscation mapping (nonblocking)",
+        "supportedPhoneCount": 12477,
+        "supportedTabletCount": 6690,
+        "devicesLost": 0,
+        "saveAndPublishConfirmed": true,
+        "explicitConfirmationCompleted": true
+      },
+      "note": "The exact navy-icon AAB is published as release 3, Active and Available to internal testers, Not reviewed. Owner-only audience is unchanged. Device propagation can take an hour or more; owner installation is not verified."
     },
     "targetAudienceStatus": "SAVED",
     "setupProgress": {
@@ -410,7 +498,7 @@
     "copyrightEntryConfirmed": true
   },
   "pendingReleaseWork": [
-    "Verify owner opt-in and installation of published Play internal code 4, plus iOS build 3 TestFlight installation. Owner-only access is configured in both stores; invitation acceptance and installation remain unverified.",
+    "Verify owner opt-in and installation of published Play internal code 5 after device propagation, and the owner's update to iOS navy-icon build 4. Prior iOS build 3 invitation acceptance and installation are confirmed; installation of the new builds remains unverified.",
     "Google app-information setup is complete; saved listing and Data Safety changes await Send for review, which has not been clicked.",
     "Verify remaining controlled quote/report delivery, consent, error recovery and physical-device release QA; maintain truthful provider retention/deletion statements.",
     "Configure the separate closed test and verify at least 12 continuous opt-ins for 14 days before applying for Google production access.",

@@ -1,0 +1,265 @@
+{
+  "checkedAtUtc": "2026-09-06T19:58:28.681496+00:00",
+  "easBuildId": "4a785994-db2c-40fc-9329-a296e584ec15",
+  "easBuildStatus": "FINISHED",
+  "completedAtUtc": "2026-09-06T19:57:58.628Z",
+  "archivePath": "/tmp/dp-native-release/destination-paradise-ios-navy-icon-build4.ipa",
+  "archiveBytes": 23721241,
+  "archiveSHA256": "31ef588f37267c0fea9635ca887702aad16a0a8cb8f8e2111d94a5c6e513dd9f",
+  "download": "Actual archive resolved from official EAS CLI build:view. Artifact URL omitted.",
+  "sourceManifest": "navy-build-source-manifest.json",
+  "infoPlistPath": "Payload/DestinationParadise.app/Info.plist",
+  "bundleIdentifier": "com.yournexttriptoparadise.mobile",
+  "displayName": "Destination Paradise",
+  "appVersion": "1.0.0",
+  "buildVersion": "4",
+  "minimumOSVersion": "16.4",
+  "supportedPlatforms": [
+    "iPhoneOS"
+  ],
+  "deviceFamilies": [
+    1,
+    2
+  ],
+  "orientations": {
+    "UISupportedInterfaceOrientations": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationPortraitUpsideDown",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "UISupportedInterfaceOrientations~ipad": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationPortraitUpsideDown",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ]
+  },
+  "transportSecurity": {
+    "NSAllowsArbitraryLoads": false,
+    "NSAllowsLocalNetworking": true
+  },
+  "privacyUsageDescriptions": {},
+  "usesNonExemptEncryption": false,
+  "primaryIconConfiguration": {
+    "CFBundleIcons": {
+      "CFBundlePrimaryIcon": {
+        "CFBundleIconFiles": [
+          "AppIcon60x60"
+        ],
+        "CFBundleIconName": "AppIcon"
+      }
+    },
+    "CFBundleIcons~ipad": {
+      "CFBundlePrimaryIcon": {
+        "CFBundleIconFiles": [
+          "AppIcon60x60",
+          "AppIcon76x76"
+        ],
+        "CFBundleIconName": "AppIcon"
+      }
+    }
+  },
+  "privacyAndDeviceSupportUnchangedFromBuild3": true,
+  "bundledIconResources": [
+    {
+      "path": "Payload/DestinationParadise.app/AppIcon60x60@2x.png",
+      "bytes": 15996,
+      "sha256": "2aa75918ba6edc694b80118c3ddb243710042a77259bb9643ce35c79433b5634"
+    },
+    {
+      "path": "Payload/DestinationParadise.app/Assets.car",
+      "bytes": 2710088,
+      "sha256": "57c92ded34bff6b74024e9392fcb6aa4e9a46a89af366feed6b598a0d3902942"
+    },
+    {
+      "path": "Payload/DestinationParadise.app/AppIcon76x76@2x~ipad.png",
+      "bytes": 24304,
+      "sha256": "6abdcc8dcd2edb2be3e1b6118529045fb70f1bdeaa8087b690182405959dab76"
+    }
+  ],
+  "bundledPrivacyManifests": [
+    {
+      "path": "Payload/DestinationParadise.app/React-timing_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategorySystemBootTime"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/ExpoSystemUI_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryUserDefaults"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/ExpoConstants_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryUserDefaults"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/React-cxxreact_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryFileTimestamp"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryUserDefaults",
+        "NSPrivacyAccessedAPICategoryFileTimestamp",
+        "NSPrivacyAccessedAPICategorySystemBootTime"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_folly.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryFileTimestamp"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_glog.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryFileTimestamp"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_boost.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryFileTimestamp",
+        "NSPrivacyAccessedAPICategorySystemBootTime"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/RNCAsyncStorage_resources.bundle/PrivacyInfo.xcprivacy",
+      "tracking": null,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryFileTimestamp"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/React-Core_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryFileTimestamp",
+        "NSPrivacyAccessedAPICategoryUserDefaults"
+      ]
+    }
+  ],
+  "bundledPrivacyManifestsUnchangedFromBuild3": true,
+  "limits": "Static inspection of actual store artifact. Does not establish physical-device or store-delivered runtime, store processing, tester installation or final review approval.",
+  "compiledIconCatalog": [
+    {
+      "AssetType": "Color",
+      "Name": "SplashScreenBackground",
+      "RenditionName": null,
+      "PixelWidth": null,
+      "PixelHeight": null,
+      "Scale": 1,
+      "Idiom": "universal"
+    },
+    {
+      "AssetType": "Icon Image",
+      "Name": "AppIcon",
+      "RenditionName": "App-Icon-1024x1024@1x.png",
+      "PixelWidth": 1024,
+      "PixelHeight": 1024,
+      "Scale": 1,
+      "Idiom": "phone"
+    },
+    {
+      "AssetType": "Icon Image",
+      "Name": "AppIcon",
+      "RenditionName": "App-Icon-1024x1024@1x.png",
+      "PixelWidth": 1024,
+      "PixelHeight": 1024,
+      "Scale": 1,
+      "Idiom": "pad"
+    },
+    {
+      "AssetType": "Image",
+      "Name": "SplashScreenLogo",
+      "RenditionName": "image.png",
+      "PixelWidth": 180,
+      "PixelHeight": 180,
+      "Scale": 1,
+      "Idiom": "universal"
+    },
+    {
+      "AssetType": "Image",
+      "Name": "SplashScreenLogo",
+      "RenditionName": "image@2x.png",
+      "PixelWidth": 360,
+      "PixelHeight": 360,
+      "Scale": 2,
+      "Idiom": "universal"
+    },
+    {
+      "AssetType": "Image",
+      "Name": "SplashScreenLogo",
+      "RenditionName": "image@3x.png",
+      "PixelWidth": 540,
+      "PixelHeight": 540,
+      "Scale": 3,
+      "Idiom": "universal"
+    },
+    {
+      "AssetType": "MultiSized Image",
+      "Name": "AppIcon",
+      "RenditionName": null,
+      "PixelWidth": null,
+      "PixelHeight": null,
+      "Scale": 1,
+      "Idiom": "phone"
+    },
+    {
+      "AssetType": "MultiSized Image",
+      "Name": "AppIcon",
+      "RenditionName": null,
+      "PixelWidth": null,
+      "PixelHeight": null,
+      "Scale": 1,
+      "Idiom": "pad"
+    }
+  ],
+  "nativeIconVisualInspection": {
+    "result": "Complete approved compass/circle Destination Paradise logo visibly present against navy background.",
+    "original": "Payload/DestinationParadise.app/AppIcon76x76@2x~ipad.png",
+    "previewPath": "/tmp/dp-native-release/navy-icon-ios-build4-assets/AppIcon-ipad-decoded.png",
+    "previewMethod": "sips decoded the original Apple-optimized PNG into a standard PNG for inspection; no composition or layout change.",
+    "previewSHA256": "766d47acea4b827e7717e2e323c26165ec1848bee02125b50c4744894941cf50",
+    "pixels": [
+      152,
+      152
+    ],
+    "limits": "Compiled icon visual inspection, not an installed physical-device screenshot."
+  }
+}

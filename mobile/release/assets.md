@@ -6,9 +6,9 @@ Prepared 5 September 2026. Capture the final candidate after privacy/reporting a
 
 | File | Observed dimensions | Use |
 | --- | --- | --- |
-| `../assets/icon.png` | 1024 × 1024, no alpha | Existing iOS app icon source. Confirm brand/content rights and final build appearance. |
-| `../assets/android-icon-foreground.png` | 1024 × 1024, alpha | Android adaptive foreground; not a finished flat Play listing icon. |
-| `../assets/splash-icon.png` | App splash source | Not a store screenshot or feature graphic. |
+| `../assets/icon.png` | 1024 × 1024, no alpha | Owner-approved full-logo navy icon exported for the next iOS/Android build; see `icon-review/README.md`. |
+| `../assets/android-icon-foreground.png` | 1024 × 1024, no alpha | Full-logo adaptive foreground with navy edge padding and all measured artwork inside the Android safe circle; separate from the Play listing icon. |
+| `../assets/splash-icon.png` | 512 × 512, no alpha | Matching approved full-logo navy splash source; not a store screenshot or feature graphic. |
 | `../assets/apple-weather-dark.png` | Bundled official attribution PNG | Displayed locally with the Apple Weather legal-attribution link; retain this branding in weather screenshots. |
 
 No final store screenshot set or feature graphic was present in `mobile/release/` when this audit began. Native QA used iPhone 17 Pro and iPad 11-inch; those are useful QA targets but do not by themselves satisfy the required largest Apple screenshot slots.

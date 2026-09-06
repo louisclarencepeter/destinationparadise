@@ -1,0 +1,52 @@
+{
+  "evidenceSource": "Root task authenticated Google Play Console UI verification",
+  "appId": "4972417635244765220",
+  "packageName": "com.yournexttriptoparadise.mobile",
+  "trackId": "4701496308193764699",
+  "trackStatus": "ACTIVE",
+  "releaseNumber": 3,
+  "releaseName": "1.0.0 (5) — full-logo navy icon",
+  "releaseDetailsPath": "/releases/3/details",
+  "versionName": "1.0.0",
+  "versionCode": 5,
+  "versionCodeCount": 1,
+  "easBuildId": "4106b3fe-467d-4769-b407-fe107d5ca526",
+  "aabSha256": "c067fea9c268bb27359bea2ea9ffbc53582e62e81e5114b4440cf5efe3c93026",
+  "acceptedVersionDisplay": "5 (1.0.0)",
+  "minimumSdk": 24,
+  "targetSdk": 36,
+  "nativeDebugSymbolsAttached": true,
+  "onlyReviewWarning": "Missing deobfuscation mapping (nonblocking)",
+  "deviceSupport": {
+    "phones": 12477,
+    "tablets": 6690,
+    "devicesLost": 0
+  },
+  "saveAndPublishCompleted": true,
+  "explicitConfirmationCompleted": true,
+  "availability": "AVAILABLE_TO_INTERNAL_TESTERS",
+  "reviewStatus": "NOT_REVIEWED",
+  "releasedAtLocal": "2026-09-06 23:14 EAT",
+  "releasedAtUtcMinute": "2026-09-06T20:14Z",
+  "releaseTimeDisplay": "Released on Sep 6 11:14 PM",
+  "testerAudience": {
+    "selectedListName": "Destination Paradise owner test",
+    "selectedTesterCount": 1,
+    "ownerEmail": "louisclarencepeters@gmail.com",
+    "otherListsSelected": false,
+    "unselectedLists": [
+      { "name": "OutreachOS", "testerCount": 15 },
+      { "name": "Rexona", "testerCount": 17 }
+    ],
+    "freshTestersTabVerified": true,
+    "saveDisabled": true,
+    "audienceChanged": false
+  },
+  "joinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
+  "joinUrlUnchanged": true,
+  "ownerInstallationVerified": false,
+  "propagationNote": "Google's publication confirmation says device availability can take an hour or more.",
+  "productionPublished": false,
+  "publicReviewSubmitted": false,
+  "limits": "Owner-only internal publication is verified. Device propagation, owner installation and public production availability are separate states."
+}

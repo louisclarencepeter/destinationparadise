@@ -1,6 +1,6 @@
 {
   "createdAtUtc": "2026-09-05T21:15:24.131Z",
-  "scope": "Local Google Play listing asset candidates; no upload or publication performed.",
+  "scope": "Local asset-preparation record; the generator does not upload or publish. Current provider state is recorded separately in release/icon-review/store-icon-save.json.",
   "generator": "build-play-assets.mjs",
   "files": [
     {
@@ -22,12 +22,14 @@
       "height": 512,
       "format": "32-bit RGBA PNG",
       "alpha": true,
-      "sha256": "5150cb3c33aa523843b306bec7a6856b15db01fb4e2b3b72bf5ca0cf143d4998",
-      "bytes": 89184,
-      "source": "public/assets/brand/destination-paradise-logo-512.png",
-      "altText": "Destination Paradise circular logo with palm trees, a traveller and a sailboat.",
-      "provenance": "Byte-for-byte copy of the existing approved 512px brand asset. No editing, recoloring, resizing or regeneration.",
-      "aiAssetDeclaration": "Existing brand asset provenance remains with the owner; this export adds no generated or edited imagery."
+      "sha256": "689f1e0168c6b184f5a15683fdefffe8834441abf0bcb14bbad93e6ee581a9a5",
+      "bytes": 269748,
+      "source": "mobile/release/icon-review/full-logo-navy-candidate.png",
+      "altText": "The complete Destination Paradise logo in ivory and coral on navy, including its wording, traveller, palms, sailboat and rays.",
+      "provenance": "Mechanical size export of the owner-approved full-logo navy candidate. The candidate was AI-assisted; this export preserves its entire artwork without redrawing or recoloring.",
+      "aiAssetDeclaration": "Created or edited using AI: owner-approved navy full-logo image. Mechanical platform export; not a native screenshot.",
+      "sourceSha256": "b1e8e1625f0ff36a66613afa5905af38d01b881a786136d74a297b04dec72b1d",
+      "fullyOpaque": true
     }
   ],
   "typography": [
@@ -45,5 +47,6 @@
   "sourceChecks": [
     "https://support.google.com/googleplay/android-developer/answer/9866151?hl=en",
     "https://developer.android.com/distribute/google-play/resources/icon-design-specifications"
-  ]
+  ],
+  "iconExportState": "Owner-approved full-logo navy icon uploaded and saved in the Google Play default listing; navy thumbnail and save confirmation verified. Saved changes await Send for review; no review submission or public publication verified. See release/icon-review/store-icon-save.json."
 }

@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import sharp from 'sharp';
+import { approvedIconSource, approvedIconSha256, exportPlayStoreIcon, iconProvenance, iconAiDeclaration } from '../../scripts/export-app-icons.mjs';
 
 const output = path.dirname(fileURLToPath(import.meta.url));
 const mobile = path.resolve(output, '../..');
@@ -58,25 +59,25 @@ await fs.mkdir(output, { recursive: true });
 const featureSvg = path.join(output, 'google-play-feature-graphic.svg');
 const featurePng = path.join(output, 'google-play-feature-graphic.png');
 const iconPng = path.join(output, 'google-play-icon-512.png');
-const iconSource = path.join(repo, 'public/assets/brand/destination-paradise-logo-512.png');
 if (/NaN|undefined|Infinity/.test(svg)) throw new Error('Invalid SVG geometry');
 await fs.writeFile(featureSvg, svg);
 await sharp(Buffer.from(svg)).removeAlpha().png({ compressionLevel: 9, palette: false }).toFile(featurePng);
-// This is an unchanged existing approved asset: no image editing or regeneration.
-await fs.copyFile(iconSource, iconPng);
+// Mechanical export of the exact owner-approved full-logo navy candidate.
+await exportPlayStoreIcon(iconPng);
 
 const hash = async (filename) => createHash('sha256').update(await fs.readFile(filename)).digest('hex');
 const feature = await sharp(featurePng).metadata();
 const icon = await sharp(iconPng).metadata();
 if (feature.width !== 1024 || feature.height !== 500 || feature.channels !== 3 || feature.hasAlpha) throw new Error('Feature graphic format mismatch');
-if (icon.width !== 512 || icon.height !== 512 || icon.channels !== 4 || icon.space !== 'srgb') throw new Error('Existing icon format mismatch');
+if (icon.width !== 512 || icon.height !== 512 || icon.channels !== 4 || icon.space !== 'srgb') throw new Error('Approved icon export format mismatch');
 if ((await fs.stat(iconPng)).size > 1024 * 1024) throw new Error('Play icon exceeds the upload limit');
-if (await hash(iconPng) !== await hash(iconSource)) throw new Error('Approved icon must remain byte-for-byte unchanged');
+if (await hash(approvedIconSource) !== approvedIconSha256) throw new Error('Approved full-logo source has changed');
 
 const manifest = {
   createdAtUtc: new Date().toISOString(),
-  scope: 'Local Google Play listing asset candidates; no upload or publication performed.',
+  scope: 'Local asset-preparation record; the generator does not upload or publish. Current provider state is recorded separately in release/icon-review/store-icon-save.json.',
   generator: 'build-play-assets.mjs',
+  iconExportState: 'Owner-approved full-logo navy export; provider publication state is recorded separately in release/icon-review/store-icon-save.json.',
   files: [
     {
       file: 'google-play-feature-graphic.png', width: 1024, height: 500, format: '24-bit RGB PNG', alpha: false,
@@ -89,10 +90,10 @@ const manifest = {
     {
       file: 'google-play-icon-512.png', width: 512, height: 512, format: '32-bit RGBA PNG', alpha: true,
       sha256: await hash(iconPng), bytes: (await fs.stat(iconPng)).size,
-      source: 'public/assets/brand/destination-paradise-logo-512.png',
-      altText: 'Destination Paradise circular logo with palm trees, a traveller and a sailboat.',
-      provenance: 'Byte-for-byte copy of the existing approved 512px brand asset. No editing, recoloring, resizing or regeneration.',
-      aiAssetDeclaration: 'Existing brand asset provenance remains with the owner; this export adds no generated or edited imagery.',
+      source: 'mobile/release/icon-review/full-logo-navy-candidate.png', sourceSha256: approvedIconSha256, fullyOpaque: true,
+      altText: 'The complete Destination Paradise logo in ivory and coral on navy, including its wording, traveller, palms, sailboat and rays.',
+      provenance: iconProvenance,
+      aiAssetDeclaration: iconAiDeclaration,
     },
   ],
   typography: [

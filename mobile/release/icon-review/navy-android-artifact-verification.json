@@ -1,0 +1,148 @@
+{
+  "checkedAtUtc": "2026-09-06T20:07:20.565267+00:00",
+  "easBuildId": "4106b3fe-467d-4769-b407-fe107d5ca526",
+  "easBuildStatus": "FINISHED",
+  "completedAtUtc": "2026-09-06T20:06:35.329Z",
+  "archivePath": "/tmp/dp-native-release/destination-paradise-android-navy-icon-code5.aab",
+  "archiveBytes": 78159005,
+  "archiveSHA256": "c067fea9c268bb27359bea2ea9ffbc53582e62e81e5114b4440cf5efe3c93026",
+  "download": "Actual archive resolved from official EAS CLI build:view. Artifact URL omitted.",
+  "sourceManifest": "navy-build-source-manifest.json",
+  "binaryManifest": {
+    "package": "com.yournexttriptoparadise.mobile",
+    "versionName": "1.0.0",
+    "versionCode": "5",
+    "minSdk": "24",
+    "targetSdk": "36",
+    "permissions": [
+      "android.permission.ACCESS_NETWORK_STATE",
+      "android.permission.INTERNET",
+      "android.permission.VIBRATE",
+      "com.yournexttriptoparadise.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "debuggable": "false",
+    "usesCleartextTraffic": "false",
+    "icon": "@mipmap/ic_launcher",
+    "roundIcon": "@mipmap/ic_launcher_round"
+  },
+  "permissionsAndSdkUnchangedFromCode4": true,
+  "bundletoolValidation": "Passed",
+  "bundledIconResources": [
+    {
+      "path": "base/res/drawable-hdpi-v4/splashscreen_logo.png",
+      "bytes": 85313,
+      "sha256": "54d7f8d178be6d1bb93d0ef3c78051232e376a9304ededfd95d3b0b6323ede06"
+    },
+    {
+      "path": "base/res/drawable-mdpi-v4/splashscreen_logo.png",
+      "bytes": 38052,
+      "sha256": "8b665057e3ecf4194d5df128d3461b276945e71bc785aa3fe577be4734e5a855"
+    },
+    {
+      "path": "base/res/drawable-xhdpi-v4/splashscreen_logo.png",
+      "bytes": 147578,
+      "sha256": "e94079be3f589b69ebe62cd3b35d3e330982391ae5d9ae37eeefc11525224cf3"
+    },
+    {
+      "path": "base/res/drawable-xxhdpi-v4/splashscreen_logo.png",
+      "bytes": 306244,
+      "sha256": "951bf90bf9131025244492fbf66e1bdd8a71e0da68f30b6f0d956b3d63f4f75a"
+    },
+    {
+      "path": "base/res/drawable-xxxhdpi-v4/splashscreen_logo.png",
+      "bytes": 467823,
+      "sha256": "a9c27db699b5547038d6473f131fd3fceac5eff8f2f50c81ae1036001a88e350"
+    },
+    {
+      "path": "base/res/drawable/ic_launcher_background.xml",
+      "bytes": 486,
+      "sha256": "6eee68d10b3381eb86250958dd8ff1b2e941eeb16c01faa8f92086d8a1ed93d2"
+    },
+    {
+      "path": "base/res/mipmap-anydpi-v26/ic_launcher.xml",
+      "bytes": 396,
+      "sha256": "44aac8ff2c122a6afe4c7dc86083394e2de343a1081282ff6cd4e42c64ec5948"
+    },
+    {
+      "path": "base/res/mipmap-anydpi-v26/ic_launcher_round.xml",
+      "bytes": 396,
+      "sha256": "44aac8ff2c122a6afe4c7dc86083394e2de343a1081282ff6cd4e42c64ec5948"
+    },
+    {
+      "path": "base/res/mipmap-hdpi-v4/ic_launcher.webp",
+      "bytes": 7143,
+      "sha256": "94d1300b8de935dccd5e8233e8ce0c4ecc0fd80e3d868028b7629d8c6a1eac01"
+    },
+    {
+      "path": "base/res/mipmap-hdpi-v4/ic_launcher_foreground.webp",
+      "bytes": 17360,
+      "sha256": "7a34315fc4bba3fd50763b831ef1d4da4c6a3af473e72502eb720f158739d595"
+    },
+    {
+      "path": "base/res/mipmap-hdpi-v4/ic_launcher_round.webp",
+      "bytes": 7694,
+      "sha256": "320e60f2770aeaba93f2a87af75f2932abdd34ac29033f4ce377b2dc03127337"
+    },
+    {
+      "path": "base/res/mipmap-mdpi-v4/ic_launcher.webp",
+      "bytes": 3641,
+      "sha256": "6b612772bc432cfbb57e4cd9cbf7058e02150c864f41ec6558348b81a07d1fd7"
+    },
+    {
+      "path": "base/res/mipmap-mdpi-v4/ic_launcher_foreground.webp",
+      "bytes": 8589,
+      "sha256": "ca92ba1b0f4266e42f02cc1469db4fb6d6e8253ad7379925d10f3b5ec6ab903c"
+    },
+    {
+      "path": "base/res/mipmap-mdpi-v4/ic_launcher_round.webp",
+      "bytes": 3997,
+      "sha256": "4363236fdec24c53f0efd553a3477268272ebf1db0ce6aa2a1b1d8a1e08fb7f2"
+    },
+    {
+      "path": "base/res/mipmap-xhdpi-v4/ic_launcher.webp",
+      "bytes": 11388,
+      "sha256": "4d4bbe7f9ec97de5aab397d31b51644dbea624208960226bf930d123e1830209"
+    },
+    {
+      "path": "base/res/mipmap-xhdpi-v4/ic_launcher_foreground.webp",
+      "bytes": 29567,
+      "sha256": "8cbcd0b1938a86805f76cfe23567f2af7c38dc8558ef17c77f76ad9e407108b3"
+    },
+    {
+      "path": "base/res/mipmap-xhdpi-v4/ic_launcher_round.webp",
+      "bytes": 12234,
+      "sha256": "6d826626071811dd4ca637b9ad7347870e8583e2c1b9fb883d52c5af13af154d"
+    },
+    {
+      "path": "base/res/mipmap-xxhdpi-v4/ic_launcher.webp",
+      "bytes": 24336,
+      "sha256": "d2b68cd4ca2d3e676afacea627f1c602d2b778cfbe09d3704dd8aeeae3535671"
+    },
+    {
+      "path": "base/res/mipmap-xxhdpi-v4/ic_launcher_foreground.webp",
+      "bytes": 64943,
+      "sha256": "015ce74cb4396cc0b38ea1207e1788b525750e7668a7d9c17718334f4295e292"
+    },
+    {
+      "path": "base/res/mipmap-xxhdpi-v4/ic_launcher_round.webp",
+      "bytes": 25362,
+      "sha256": "2c7919ac6e86f753df9f6c633d65dba4e25d90e11112db894101b8f1480067d4"
+    },
+    {
+      "path": "base/res/mipmap-xxxhdpi-v4/ic_launcher.webp",
+      "bytes": 42795,
+      "sha256": "456e12396eafd33a0671d3ea1768bdaa0b9f9622d4d9f09a7abe724167c87ad1"
+    },
+    {
+      "path": "base/res/mipmap-xxxhdpi-v4/ic_launcher_foreground.webp",
+      "bytes": 112813,
+      "sha256": "a1cf6d75065064836cd8ce5879a194250ad62c9207a72436a649a3cbf3f6b919"
+    },
+    {
+      "path": "base/res/mipmap-xxxhdpi-v4/ic_launcher_round.webp",
+      "bytes": 44150,
+      "sha256": "b536e01d64a6174d1cb7e3381f1e3bfceab71b963471fa9ba71285e7519db91e"
+    }
+  ],
+  "limits": "Static inspection of actual store artifact. Does not establish physical-device or store-delivered runtime, store processing, tester installation or final review approval."
+}

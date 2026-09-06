@@ -1,0 +1,39 @@
+{
+  "provider": "Google Play Console",
+  "appId": "4972417635244765220",
+  "packageName": "com.yournexttriptoparadise.mobile",
+  "listing": "Default store listing",
+  "status": "SAVED_CHANGES_AWAITING_SEND_FOR_REVIEW",
+  "evidenceSource": "Root task authenticated Play Console UI verification",
+  "appIcon": {
+    "file": "mobile/release/assets/google-play-icon-512.png",
+    "sha256": "689f1e0168c6b184f5a15683fdefffe8834441abf0bcb14bbad93e6ee581a9a5",
+    "approvedSource": "mobile/release/icon-review/full-logo-navy-candidate.png",
+    "uploaded": true,
+    "saved": true,
+    "navyThumbnailVerified": true
+  },
+  "saveConfirmation": "Change saved. Send for review in Publishing overview.",
+  "followUpModalAction": "Not now",
+  "aiAssetDeclaration": {
+    "selectedAssets": ["App icon", "Feature graphic"],
+    "nativeScreenshotsSelected": false,
+    "evidence": "Root selected the new AI-assisted navy App icon and the existing AI-assisted vector Feature graphic; all native screenshots remained unchecked."
+  },
+  "featureGraphicChanged": false,
+  "nativeScreenshotsChanged": false,
+  "reviewSubmitted": false,
+  "publicListingPublicationVerified": false,
+  "nativeBuilds": {
+    "status": "BUILDING_NOT_VERIFIED_AVAILABLE_TO_TESTERS",
+    "android": {
+      "versionCode": 5,
+      "easBuildId": "4106b3fe-467d-4769-b407-fe107d5ca526"
+    },
+    "ios": {
+      "buildNumber": "4",
+      "easBuildId": "4a785994-db2c-40fc-9329-a296e584ec15"
+    },
+    "note": "Play listing save is separate from native build completion, store upload and tester availability."
+  }
+}
