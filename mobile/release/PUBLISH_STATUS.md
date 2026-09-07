@@ -1,6 +1,23 @@
 # Destination Paradise — publishing status
 
-Latest reconciliation: **6 September 2026, 23:14 EAT**, after root confirmed Android navy-icon code `5` published as internal release `3`. iOS navy-icon build `4` is processed, assigned to the owner group and **Testing**, and saved for the App Store version. Root also refreshed the tester page and verified the owner's installation of prior iOS build `3`. Store UI and invitation-receipt facts came from root's authenticated App Store Connect / Play Console and Gmail checks; artifact and EAS completion evidence are recorded separately.
+## Nearby feature candidate — 7 September 2026
+
+The optional **Near me** feature is implemented and locally validated. Users first opt in to approximate foreground location, then receive ranked tours and destinations from the bundled catalogue. Suggestions refresh on a new session or foreground return while enabled; manual browsing, refresh and turn-off remain available. Coordinates stay in memory on the device. Nearby photos are bundled and the map opens only after an explicit destination selection; Planner receives only the chosen destination ID.
+
+Validation: **77/77 tests**, typecheck and iOS/Android/web production exports passed. Isolated Chromium checked phone, tablet and short landscape layouts, four Tanzania origins, outside-coverage/denial/cancellation, filtering, settings, persistence and destination-to-Planner transfer, with no console errors or origin-coordinate network/storage leakage observed. Android Expo Go phone/tablet checks passed permission, denial, services-off, timeout/cancel, foreground refresh, persistence and disable. The emulator did not provide a usable GMS coarse location; successful real-device location acquisition remains unverified. Final signed candidate checks are separate.
+
+A local EAS archive contained **108 files / 4,885,037 bytes**, all matching the frozen workspace source. It excluded credentials, backend, release records, dependency trees and generated native projects. Two signed production candidates were started with existing remote credentials and no automatic submission:
+
+| Candidate | EAS build | Current stage |
+| --- | --- | --- |
+| iOS `1.0.0 (5)` | `e6c3bbd7-a328-4de1-9151-3b3da6162c64` | Build requested; artifact and upload verification pending |
+| Android `1.0.0 (6)` | `f2bfbbcc-3902-4850-be1c-517e533ae72f` | Build requested; artifact and internal-track verification pending |
+
+The policy source and reviewer draft now describe Nearby. Updated policy deployment is in progress. App Store Connect requires a fresh sign-in before owner-group assignment can be verified. Existing iOS build `4` and Android code `5` remain the last verified private releases below; no public store release is established.
+
+## Previous private release — navy icon
+
+Previous navy-icon reconciliation: **6 September 2026, 23:14 EAT**, after root confirmed Android navy-icon code `5` published as internal release `3`. iOS navy-icon build `4` is processed, assigned to the owner group and **Testing**, and saved for the App Store version. Root also refreshed the tester page and verified the owner's installation of prior iOS build `3`. Store UI and invitation-receipt facts came from root's authenticated App Store Connect / Play Console and Gmail checks; artifact and EAS completion evidence are recorded separately.
 
 **Public app-store launch is not complete.** The navy-icon iOS build `4` is uploaded, processed and **Testing** in the owner-only TestFlight group; its installation is not yet verified. The owner has installed prior build `3` on an iPhone 15 Pro Max running iOS 26.6.1, resolving the earlier invitation/install blocker for that build. Android navy-icon code `5` is published as active owner-only internal release `3`, **Available to internal testers** and **Not reviewed**, released at **23:14 EAT**. Its exact AAB passed bounded launcher/splash/cold-launch phone/tablet QA. Google noted device availability can take an hour or more; owner installation remains unverified.
 

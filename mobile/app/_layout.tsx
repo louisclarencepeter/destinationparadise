@@ -15,6 +15,7 @@ import { TripStoreProvider, useTripStore } from '@/src/state/trip-store';
 import { AppText } from '@/src/components/ui';
 import { MotionProvider, useReducedMotion } from '@/src/components/motion';
 import { colors } from '@/src/theme';
+import { NearbyLocationProvider } from '@/src/features/nearby/nearby-location-provider';
 
 export { ErrorBoundary } from 'expo-router';
 void SplashScreen.preventAutoHideAsync().catch(() => undefined);
@@ -38,5 +39,5 @@ export default function RootLayout() {
   const [fontsLoaded, fontError] = useFonts({ Montserrat: Montserrat_400Regular, MontserratMedium: Montserrat_500Medium, MontserratBold: Montserrat_700Bold, PlayfairDisplay: PlayfairDisplay_400Regular, KaushanScript: KaushanScript_400Regular });
   useEffect(() => { if (fontsLoaded || fontError) void SplashScreen.hideAsync(); }, [fontsLoaded, fontError]);
   if (!fontsLoaded && !fontError) return null;
-  return <SafeAreaProvider><MotionProvider><QueryClientProvider client={queryClient}><TripStoreProvider><StatusBar style="light" /><Navigation /></TripStoreProvider></QueryClientProvider></MotionProvider></SafeAreaProvider>;
+  return <SafeAreaProvider><MotionProvider><QueryClientProvider client={queryClient}><TripStoreProvider><NearbyLocationProvider refreshOnForeground><StatusBar style="light" /><Navigation /></NearbyLocationProvider></TripStoreProvider></QueryClientProvider></MotionProvider></SafeAreaProvider>;
 }

@@ -2,6 +2,8 @@
 
 Release records and review drafts prepared from the mobile source, verified store setup and Netlify services. Store app records now exist; the listing drafts and build records do not establish review approval, public availability, provider contracts or legal copyright ownership.
 
+The 7 September Nearby feature and revised policy are local candidates pending QA, new signed builds and policy deployment. Existing store/build evidence remains historical; neither store has received this feature through these documentation changes.
+
 - [Current publishing status and remaining steps](PUBLISH_STATUS.md)
 - [Listing copy and account fields](listing.en.json)
 - [Review notes](review-notes.md)
@@ -59,7 +61,9 @@ The four task-created WeatherKit settings were removed from the old website site
 
 Current source config uses version `1.0.0`, identifiers `com.yournexttriptoparadise.mobile`, tablet support and both orientations. SDK 57 documents iOS 16.4+, Android 7+, API target 36 and Xcode 26.4+. Confirm the generated candidate rather than treating Expo Go as the signed app. [Exact Expo SDK 57 reference](https://docs.expo.dev/versions/v57.0.0/)
 
-Inspect the final merged Android manifest and iOS privacy manifests for actual permissions/required-reason APIs. The app code does not request GPS, camera, microphone, contacts, photos or ad tracking. Development tooling and transitive native packages are not proof of the release permission set.
+Inspect the final merged Android manifest and iOS privacy manifests for actual permissions/required-reason APIs. The local Nearby candidate requests approximate foreground location only after opt-in: Android coarse access and iOS reduced accuracy by default, with no background tracking. Coordinates stay in memory and are not sent to backend, AI, maps or reverse geocoding; only the enabled preference is saved. Camera, microphone, contacts, photos and ad tracking are not requested. Development tooling and transitive native packages are not proof of the release permission set.
+
+Nearby matches prebundled destinations and related experiences. Enabled users get a one-shot reading on a new session or return to foreground, plus manual refresh and turn-off. QA must confirm denied/revoked permission and disabled states remain usable, coordinates do not enter persistent storage or request payloads, and the map never adds a user pin or recenters on location. The updated policy source is `mobile-privacy.html`; `mobile/backend/build.mjs` copies it to the dedicated backend artifact. This needs a separate verified policy deployment; no location backend or provider change is required. Store data-collection answers remain unchanged only while processing stays exclusively on device; retain the existing OSM-derived approximate-location declarations.
 
 OSM tiles are permitted for ordinary interactive viewing with attribution, app identification and normal caching. Source contains all three mechanisms and no bulk/offline download feature; verify actual release WebView requests and caching. Public tiles have no availability guarantee, so maintain the list fallback and a provider migration plan. [OSMF tile policy](https://operations.osmfoundation.org/policies/tiles/)
 

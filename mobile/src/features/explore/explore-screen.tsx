@@ -27,6 +27,10 @@ import { colors, fonts } from "@/src/theme";
 import DestinationMap from "@/src/components/map/destination-map";
 import DestinationDetail from "./destination-detail";
 import IslandGuide from "./island-guide";
+import NearbyContent from "@/src/features/nearby/nearby-content";
+import { useNearbyLocation } from "@/src/features/nearby/nearby-location-provider";
+import { recommendNearby } from "@/src/features/nearby/nearby-model";
+import { AppText, Icon } from "@/src/components/ui";
 import {
   categories,
   Category,
@@ -52,6 +56,11 @@ export default function ExploreScreen({
   const insets = useSafeAreaInsets();
   const tablet = width >= 768;
   const { savedIds, toggleSaved } = useTripStore();
+  const nearby = useNearbyLocation();
+  const compactHeight = height < 500;
+  const [compactFiltersOpen, setCompactFiltersOpen] = useState(false);
+  const [nearbyChoice, setNearbyChoice] = useState<boolean | null>(null);
+  const nearbyOpen = nearbyChoice ?? nearby.enabled;
   const [region, setRegion] = useState<Destination["region"]>("Zanzibar");
   const [mode, setMode] = useState<"map" | "list">("map");
   const [category, setCategory] = useState<Category>("all");
@@ -60,7 +69,7 @@ export default function ExploreScreen({
   const [selectedId, setSelectedId] = useState<string | null>("stone-town");
   const [detailOpen, setDetailOpen] = useState(false);
   const [guideOpen, setGuideOpen] = useState(false);
-  const filtered = useMemo(
+  const browseFiltered = useMemo(
     () =>
       filterDestinations(destinations, {
         region,
@@ -71,9 +80,14 @@ export default function ExploreScreen({
       }),
     [region, category, query, savedOnly, savedIds],
   );
+  const recommendations = useMemo(() => nearby.location ? recommendNearby(destinations, nearby.location, {
+    category, query, savedOnly, savedIds,
+  }) : null, [nearby.location, category, query, savedOnly, savedIds]);
+  const filtered = nearbyOpen ? recommendations?.destinations.map(item => item.destination) ?? [] : browseFiltered;
   const selected = destinations.find((item) => item.id === selectedId);
-  const resultLabel = `${filtered.length} ${filtered.length === 1 ? "place" : "places"}${savedOnly ? " saved" : " to explore"}`;
-  const fitKey = `${region}/${category}/${query.trim()}/${savedOnly}/${savedOnly ? savedIds.join(",") : ""}`;
+  const mapPins = nearbyOpen ? (detailOpen && selected ? [selected] : []) : filtered;
+  const resultLabel = nearbyOpen ? 'Trips matched to your approximate location' : `${filtered.length} ${filtered.length === 1 ? "place" : "places"}${savedOnly ? " saved" : " to explore"}`;
+  const fitKey = `${nearbyOpen ? filtered.map(d => d.id).join(',') : region}/${category}/${query.trim()}/${savedOnly}/${savedOnly ? savedIds.join(",") : ""}`;
   const select = useCallback((id: string) => {
     Keyboard.dismiss();
     setSelectedId(id);
@@ -85,6 +99,7 @@ export default function ExploreScreen({
     setSavedOnly(false);
   };
   const changeRegion = (next: Destination["region"]) => {
+    setNearbyChoice(false);
     setRegion(next);
     setSelectedId(null);
     setDetailOpen(false);
@@ -107,18 +122,18 @@ export default function ExploreScreen({
     />
   );
   const toolbar = (
-    <View style={styles.toolbar}>
+    <View style={[styles.toolbar, compactHeight && { paddingVertical: 8, gap: 8 }]}>
       <View style={styles.titleRow}>
         <View style={{ flex: 1, gap: 4 }}>
           <Text style={styles.title}>
-            Explore {region === "Zanzibar" ? "Zanzibar" : "Tanzania"}
+            {nearbyOpen ? 'Explore near you' : `Explore ${region === "Zanzibar" ? "Zanzibar" : "Tanzania"}`}
           </Text>
-          <Text style={styles.subtitle}>
+          {!compactHeight && <Text style={styles.subtitle}>
             {resultLabel}
-            {filtered.length > 0 && (tablet || mode === "map")
+            {!nearbyOpen && filtered.length > 0 && (tablet || mode === "map")
               ? " · tap a pin to begin"
               : ""}
-          </Text>
+          </Text>}
         </View>
         <IconButton
           name="heart"
@@ -134,7 +149,15 @@ export default function ExploreScreen({
             setDetailOpen(false);
           }}
         />
-        {!tablet && (
+        {compactHeight && <AnimatedPressable
+          accessibilityRole="button"
+          accessibilityLabel={compactFiltersOpen ? "Hide search and filters" : "Show search and filters"}
+          accessibilityState={{ expanded: compactFiltersOpen }}
+          aria-expanded={compactFiltersOpen}
+          onPress={() => setCompactFiltersOpen((open) => !open)}
+          style={[styles.viewButton, { minWidth: 44, minHeight: 44 }, compactFiltersOpen && styles.activeView]}
+        ><ExploreIcon name={compactFiltersOpen ? "close" : "search"} color={query || category !== "all" ? colors.coral : colors.text} /></AnimatedPressable>}
+        {!tablet && !nearbyOpen && (
           <View style={styles.viewSwitcher}>
             {(["list", "map"] as const).map((view) => (
               <AnimatedPressable
@@ -155,7 +178,7 @@ export default function ExploreScreen({
           </View>
         )}
       </View>
-      <View style={styles.search}>
+      {(!compactHeight || compactFiltersOpen) && <View style={styles.search}>
         <ExploreIcon name="search" size={18} color={colors.muted} />
         <TextInput
           accessibilityLabel="Search places and activities"
@@ -179,25 +202,26 @@ export default function ExploreScreen({
             <ExploreIcon name="close" size={16} />
           </AnimatedPressable>
         )}
-      </View>
+      </View>}
       <View style={styles.regions}>
         {(["Zanzibar", "Mainland"] as const).map((item) => (
           <AnimatedPressable
             key={item}
             accessibilityRole="tab"
-            accessibilityState={{ selected: item === region }}
+            accessibilityState={{ selected: item === region && !nearbyOpen }}
+            aria-selected={item === region && !nearbyOpen}
             onPress={() => changeRegion(item)}
-            style={[styles.region, item === region && styles.activeRegion]}
+            style={[styles.region, item === region && !nearbyOpen && styles.activeRegion]}
           >
             <Text
               style={[
                 styles.regionText,
-                item === region && { color: colors.text },
+                item === region && !nearbyOpen && { color: colors.text },
               ]}
             >
               {item}
               <Text
-                style={{ color: item === region ? "#ffd9d3" : colors.muted }}
+                style={{ color: item === region && !nearbyOpen ? "#ffd9d3" : colors.muted }}
               >
                 {" "}
                 {
@@ -209,8 +233,11 @@ export default function ExploreScreen({
             </Text>
           </AnimatedPressable>
         ))}
+        <AnimatedPressable accessibilityRole="tab" accessibilityLabel="Near me" accessibilityState={{ selected: nearbyOpen }} aria-selected={nearbyOpen} onPress={() => { setNearbyChoice(true); setDetailOpen(false); }} style={[styles.region, nearbyOpen && styles.activeRegion]}>
+          <Text style={[styles.regionText, nearbyOpen && { color: colors.coral }]}>Near me</Text>
+        </AnimatedPressable>
       </View>
-      <ScrollView
+      {(!compactHeight || compactFiltersOpen) && <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.categories}
@@ -240,7 +267,7 @@ export default function ExploreScreen({
             </Text>
           </AnimatedPressable>
         ))}
-      </ScrollView>
+      </ScrollView>}
     </View>
   );
   const listing = (
@@ -393,6 +420,7 @@ export default function ExploreScreen({
       </Text>
     </ScrollView>
   );
+  const nearbyListing = <NearbyContent recommendations={recommendations} onSelect={select} onPlan={onPlan} onBrowse={(next) => { clear(); changeRegion(next); }} onClearFilters={clear} />;
   return (
     <View
       style={[
@@ -417,21 +445,26 @@ export default function ExploreScreen({
             ) : (
               <>
                 {toolbar}
-                {listing}
+                {nearbyOpen ? nearbyListing : listing}
               </>
             )}
           </View>
           <View style={styles.mapArea}>
+            {nearbyOpen && !detailOpen ? <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 40, gap: 20, backgroundColor: colors.background }}>
+              <Icon name="compass" size={88} color={colors.coral} />
+              <AppText variant="title" style={{ textAlign: 'center', maxWidth: 420 }}>Your next adventure is closer.</AppText>
+              <AppText color={colors.textSecondary} style={{ textAlign: 'center', maxWidth: 350 }}>Choose a suggested destination to explore it on the map, or start planning a trip.</AppText>
+            </View> : <>
             <DestinationMap
-              pins={filtered}
+              pins={mapPins}
               selectedId={selectedId}
-              fitKey={fitKey}
+              fitKey={nearbyOpen ? `nearby-selected/${selectedId}` : fitKey}
               onSelect={select}
               statusInset={75}
             />
             <View style={styles.mapHeading}>
               <Text style={styles.mapHeadingTitle}>
-                {region === "Zanzibar"
+                {nearbyOpen ? 'Places for your next trip.' : region === "Zanzibar"
                   ? "The island, at your pace."
                   : "Beyond the island."}
               </Text>
@@ -439,17 +472,18 @@ export default function ExploreScreen({
                 Drag to explore · pinch to zoom
               </Text>
             </View>
-            {!filtered.length && (
+            {!filtered.length && !nearbyOpen && (
               <View style={styles.emptyMap}>
                 <EmptyResults onClear={clear} savedOnly={savedOnly} />
               </View>
             )}
+            </>}
           </View>
         </View>
       ) : (
         <>
           {toolbar}
-          {mode === "map" ? (
+          {nearbyOpen ? nearbyListing : mode === "map" ? (
             <View style={styles.mapArea}>
               <DestinationMap
                 pins={filtered}

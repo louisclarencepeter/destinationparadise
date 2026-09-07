@@ -18,6 +18,8 @@ Live reads returned HTTP 200 for the website and mobile privacy page. The websit
 
 ## Answers supported by the implementation
 
+The 7 September Nearby changes in this worksheet describe the local feature candidate, pending QA, new signed builds and policy deployment. They do not change the saved/published store answers or current distributed builds recorded above.
+
 | General question | Answer and scope |
 | --- | --- |
 | Does the app collect user data? | **Yes.** AI requests, quote contact/transcript, reports and retained network/security metadata leave the device. |
@@ -25,11 +27,17 @@ Live reads returned HTTP 200 for the website and mobile privacy page. The websit
 | Does the app create accounts or require login? | **No.** No account creation, sign-in, account ID or account-management flow exists. |
 | Can users request deletion? | A public email-based request mechanism exists at the URL above. This supports saying a request mechanism is offered; fulfillment timing and deletion across each provider have not been tested. Device reset clears local saved places/preferences only. |
 | Does the app contain ads or advertising tracking code? | No advertising, attribution, cross-company ad tracking or native analytics SDK was found in the mobile source/dependencies. No tracking purpose is identified. |
-| Does it collect device location? | No GPS/location permission or user-location feature. Weather uses fixed Zanzibar coordinates; map pins are supplied destination locations. **Disclose provider-derived approximate location:** OSM's public tile-log schema retains client country with IP/request records, as detailed below. |
+| Does it collect device location? | The local Nearby candidate accesses approximate foreground location only after opt-in and permission, matching bundled destinations/experiences on device. Coordinates remain in memory and are not saved or sent to backend, AI, maps or reverse geocoding. Only the enabled preference persists. Weather still uses fixed Zanzibar coordinates and map pins remain supplied destinations. **Retain provider-derived approximate-location collection/sharing disclosures:** OSM retains client country with IP/request records, as detailed below. |
 | Does it collect payment data, a photo library, audio, contacts or calendars? | No such collection path was found. Value/Mid-range/Luxury is a travel preference, not a payment-card or income field. Remote destination photographs are not the user's photos. |
 | Are locally saved places and preferences collected automatically? | They remain in AsyncStorage. Selected trip context is transmitted when the user opts into AI planning or sends a quote. Chat and contact fields are held in session memory. |
 
 Evidence: `../package.json`, `../app.json`, `../src/api/`, `../src/state/trip-store.tsx`, `../src/features/planner/planner-screen.tsx`, `../src/features/planner/planning-context.ts`, and `../../netlify/functions/{planner,planner-send,planner-report,_shared,_weather_proxy}.mjs`.
+
+### Nearby candidate: on-device access and store collection are different
+
+Nearby refreshes a one-shot approximate reading when a new app session starts or the app returns to the foreground only while enabled, and offers manual refresh and turn-off. Android uses coarse location; iOS defaults to reduced accuracy. No background access, user-location pin, location-based tile centering or reverse geocoding is part of this feature. Planning passes only the selected destination into the existing consent-based flow, without coordinates, distances or a current-location label.
+
+Apple excludes data processed only on device from collection; Google likewise excludes on-device-only access/processing. Therefore this design adds no Precise Location or new location-collection purpose to the existing store answers. This is an implementation-dependent assessment, pending payload/storage and final-binary QA. Keep existing OSM-derived Coarse/Approximate Location and its automatic/required/shared treatment unchanged. Do not label local-only coordinates as ephemeral off-device collection. Reassess if coordinates or derived current-location information are sent later. [Apple on-device guidance](https://developer.apple.com/app-store/app-privacy-details/), [Google on-device exclusion](https://support.google.com/googleplay/android-developer/answer/10787469?hl=en).
 
 ## Apple App Privacy — published selections
 

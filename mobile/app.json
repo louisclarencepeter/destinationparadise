@@ -13,6 +13,7 @@
       "bundleIdentifier": "com.yournexttriptoparadise.mobile",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
+        "NSLocationDefaultAccuracyReduced": true,
         "NSAppTransportSecurity": {
           "NSAllowsArbitraryLoads": false,
           "NSAllowsLocalNetworking": true
@@ -28,7 +29,12 @@
       "blockedPermissions": [
         "android.permission.SYSTEM_ALERT_WINDOW",
         "android.permission.READ_EXTERNAL_STORAGE",
-        "android.permission.WRITE_EXTERNAL_STORAGE"
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.FOREGROUND_SERVICE_LOCATION",
+        "android.permission.ACTIVITY_RECOGNITION",
+        "com.google.android.gms.permission.ACTIVITY_RECOGNITION"
       ],
       "package": "com.yournexttriptoparadise.mobile"
     },
@@ -42,6 +48,19 @@
       "expo-status-bar",
       "expo-image",
       "expo-font",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Use your approximate location to show nearby places while you use Destination Paradise. Your position stays on this device.",
+          "locationAlwaysAndWhenInUsePermission": false,
+          "locationAlwaysPermission": false,
+          "motionUsagePermission": false,
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false,
+          "isAndroidForegroundServiceEnabled": false,
+          "isAndroidMotionActivityEnabled": false
+        }
+      ],
       [
         "expo-splash-screen",
         {

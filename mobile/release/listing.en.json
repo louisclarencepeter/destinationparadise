@@ -6,6 +6,30 @@
   "version": "1.0.0",
   "bundleIdentifier": "com.yournexttriptoparadise.mobile",
   "androidPackage": "com.yournexttriptoparadise.mobile",
+  "localFeatureDraft": {
+    "feature": "Nearby trip suggestions",
+    "preparedAt": "2026-09-07",
+    "status": "LOCAL_VALIDATION_PASSED_NEW_SIGNED_CANDIDATES_PENDING",
+    "storeMetadataSubmitted": false,
+    "policySourceUpdated": true,
+    "updatedPolicyDeploymentVerified": false,
+    "listingParagraphToAdd": "FIND IDEAS NEARBY\nChoose to enable Nearby for suggestions around your approximate location. Matching happens on your device using included destinations and related experiences. Refresh when you want, turn Nearby off at any time, or keep exploring without location access. Your coordinates are not saved or sent to our servers, AI or map services.",
+    "reviewNotes": "Nearby requests opt-in approximate foreground location: Android coarse access and iOS reduced accuracy by default. A one-shot reading refreshes on a new app session or return to foreground only while enabled, with manual refresh and turn-off controls. Coordinates remain in memory; only the enabled preference persists. No background tracking, user-location pin, tile centering or reverse geocoding occurs. Planning sends only the selected destination through the existing consent-based Planner flow, without coordinates, distances or a current-location label.",
+    "storePrivacyAssessment": "Exclusively on-device Nearby processing does not propose an additional location collection entry. Existing OSM-derived Coarse/Approximate Location collection and sharing remain unchanged. Local browser request checks passed; final signed-candidate permissions and native location acquisition still require verification before distribution. Saved store declarations have not changed.",
+    "existingReleasedBuildRecordsPreserved": true,
+    "localValidation": {
+      "status": "passed",
+      "validatedAt": "2026-09-07",
+      "typecheck": "passed",
+      "automatedTests": {
+        "passed": 59
+      },
+      "browserRuntime": "Responsive Nearby flows, consent, permission/error recovery, matching, cancellation, persistence, privacy request checks and final compact landscape/ARIA refinements passed in isolated browser contexts.",
+      "androidExpoGoRuntime": "Phone/tablet actual permission flow, coarse grant, denial/manual fallback, services-off, timeout/cancel, foreground refresh, enabled-preference persistence and turn-off checks passed.",
+      "nativeCoarseFixLimitation": "Successful native recommendations remain unverified: ordinary emulator coordinates and temporary Android framework mock providers did not resolve Expo Go Balanced/coarse GMS location acquisition. No application code was changed to simulate a successful native fix. Expo Go permission branding and its broader manifest do not establish final signed-app permission declarations.",
+      "nextGate": "Verify new signed iOS build5 and Android code6 candidates and updated policy deployment before distributing Nearby."
+    }
+  },
   "apple": {
     "subtitle": "Zanzibar & Tanzania trip guide",
     "promotionalText": "Explore Zanzibar and Tanzania on a real map, save your favourite places, shape an AI trip draft and find a season that suits your journey.",
@@ -314,7 +338,10 @@
       "sevenInchTabletScreenshots": 3,
       "status": "SAVED_CHANGES_NOT_SENT_FOR_REVIEW",
       "aiAssetDeclaration": {
-        "selectedAssets": ["App icon", "Feature graphic"],
+        "selectedAssets": [
+          "App icon",
+          "Feature graphic"
+        ],
         "nativeScreenshotsSelected": false,
         "savedVerified": true
       }
@@ -323,7 +350,7 @@
       "id": "4701496308193764699",
       "status": "ACTIVE",
       "versionCode": 5,
-      "releaseName": "1.0.0 (5) — full-logo navy icon",
+      "releaseName": "1.0.0 (5) \u2014 full-logo navy icon",
       "joinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
       "selectedOwnerListCount": 1,
       "ownerTesterEmail": "louisclarencepeters@gmail.com",
@@ -406,7 +433,7 @@
       },
       "uploadedToPlayVerified": true,
       "releaseNumber": 3,
-      "releaseName": "1.0.0 (5) — full-logo navy icon",
+      "releaseName": "1.0.0 (5) \u2014 full-logo navy icon",
       "playProcessingStatus": "ACCEPTED",
       "internalPublicationVerified": true,
       "lastVerifiedActiveVersionCode": 5,
