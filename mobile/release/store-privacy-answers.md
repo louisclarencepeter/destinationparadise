@@ -2,6 +2,8 @@
 
 Reviewed 6 September 2026 EAT against the current mobile source, existing planner functions, public pages and the specific Netlify environment metadata noted below. Existing Louis Peter publishing accounts are the accepted account choice. The root task subsequently verified Apple privacy publication and saved Google IARC/18+ audience answers; Google Data Safety was subsequently saved and verified with all ten exact worksheet types/purposes after the earlier failed save. Saved changes await Send for review; no publication is established. Corrected Android code `4` was subsequently published to the existing owner-only internal track; that internal release did not send the saved Google listing/Data Safety metadata for review or establish a public launch. See [PUBLISH_STATUS.md](PUBLISH_STATUS.md) for the latest store actions. The public map disclosure was subsequently updated and deployed as recorded below.
 
+Android code 8 adds com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE through expo-application 57.0.2 and installreferrer 2.2. The native client connects only from explicit getInstallReferrerAsync; no app call exists, Settings reads version constants only, and provider/service/receiver components are unchanged. No automatic attribution flow was found; this was a source/component audit, not a complete network capture.
+
 ## Public support and privacy fields
 
 | Field | Verified entry |
@@ -18,7 +20,7 @@ Live reads returned HTTP 200 for the website and mobile privacy page. The websit
 
 ## Answers supported by the implementation
 
-The 7 September Nearby implementation passed local validation and exact Android code `6` functional QA; signed iOS build `5` inspection/upload and revised policy deployment also passed. Corrected Android code `7` passed artifact/device-coverage and bounded native QA and is published as owner-only internal release `4`, with zero devices lost. This does not change saved/published privacy answers or establish public availability. See [PUBLISH_STATUS.md](PUBLISH_STATUS.md) for exact evidence and the still-unverified iOS build `5` processing/group state.
+Current **1.1.0** private release: iOS **build 6 is Complete and Testing** in the existing owner group; Android **code 8 is Active / Available to internal testers / Not reviewed** as internal release 5. All **79 tests**, typecheck and Android phone/tablet version/permission/manual-fallback checks passed. New physical-device installations and public release remain pending. See [PUBLISH_STATUS.md](PUBLISH_STATUS.md) for artifacts, provider readback and historical build 5 processing failure.
 
 | General question | Answer and scope |
 | --- | --- |

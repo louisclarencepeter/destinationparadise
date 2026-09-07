@@ -2,7 +2,9 @@
 
 Prepared 5 September 2026; Nearby and live-policy evidence updated 7 September 2026 EAT. This is an engineering evidence worksheet; use [store-privacy-answers.md](store-privacy-answers.md) for the verified saved/published form answers and provider/account findings. It would be inaccurate to describe this app as collecting no data. Code paths in the evidence column are relative to the mobile package root; `../netlify` refers to the repository's website functions.
 
-Nearby passed local validation and Android code `6` native functional QA; signed iOS build `5` inspection/upload also passed. Corrected Android code `7` passed artifact/device-coverage and bounded native QA and is published to the existing owner-only internal track, with zero devices lost. The revised policy is live and source-matching. [PUBLISH_STATUS.md](PUBLISH_STATUS.md) records exact evidence and the still-unverified iOS build `5` processing/group state; no public release is established.
+Current **1.1.0** private release: iOS **build 6 is Complete and Testing** in the existing owner group; Android **code 8 is Active / Available to internal testers / Not reviewed** as internal release 5. All **79 tests**, typecheck and Android phone/tablet version/permission/manual-fallback checks passed. New physical-device installations and public release remain pending. See [PUBLISH_STATUS.md](PUBLISH_STATUS.md) for artifacts, provider readback and historical build 5 processing failure.
+
+Android code 8 adds com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE through expo-application 57.0.2 and installreferrer 2.2. The native client connects only from explicit getInstallReferrerAsync; no app call exists, Settings reads version constants only, and provider/service/receiver components are unchanged. No automatic attribution flow was found; this was a source/component audit, not a complete network capture.
 
 ## Observed data flows
 
