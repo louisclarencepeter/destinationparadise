@@ -1,6 +1,6 @@
 {
   "name": "destination-paradise-mobile",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "expo-router/entry",
   "dependencies": {
     "@expo-google-fonts/kaushan-script": "^0.4.1",
@@ -10,6 +10,7 @@
     "@tanstack/react-query": "^5.102.8",
     "decode-uri-component": "file:vendor/decode-uri-component",
     "expo": "~57.0.20",
+    "expo-application": "~57.0.2",
     "expo-constants": "~57.0.17",
     "expo-font": "~57.0.3",
     "expo-image": "~57.0.4",

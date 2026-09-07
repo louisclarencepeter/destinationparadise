@@ -1,5 +1,8 @@
 import { useState } from 'react';
-import { Linking, Pressable, ScrollView, Switch, View } from 'react-native';
+import { Linking, Platform, Pressable, ScrollView, Switch, View } from 'react-native';
+import { isRunningInExpoGo } from 'expo';
+import * as Application from 'expo-application';
+import Constants from 'expo-constants';
 import { router } from 'expo-router';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { AppText, Button, Icon, Surface } from '@/src/components/ui';
@@ -11,6 +14,10 @@ export default function AppInformation() {
   const insets = useSafeAreaInsets();
   const { savedIds, clearSavedData } = useTripStore();
   const nearby = useNearbyLocation();
+  const useNativeVersion = Platform.OS !== 'web' && !isRunningInExpoGo();
+  const appVersion = (useNativeVersion ? Application.nativeApplicationVersion : null) ?? Constants.expoConfig?.version;
+  const buildVersion = useNativeVersion ? Application.nativeBuildVersion : null;
+  const versionLabel = appVersion ? `Version ${appVersion}${buildVersion ? ` (${buildVersion})` : ''}` : 'Version unavailable';
   const [confirmClear, setConfirmClear] = useState(false);
   const [status, setStatus] = useState('');
   async function open(url: string) { try { await Linking.openURL(url); } catch { setStatus('The link could not be opened. Please try again.'); } }
@@ -23,6 +30,6 @@ export default function AppInformation() {
     </Surface>
     <Surface><AppText variant="heading">Stay connected</AppText><AppText color={colors.textSecondary}>Maps, photos, current weather and the AI planner need an internet connection. Destination and seasonal guides are bundled with the app.</AppText><Button label="Visit our website" variant="secondary" icon="external" onPress={() => open(websiteUrl)} /><Button label="Privacy policy" variant="ghost" icon="shield" onPress={() => open(privacyPolicyUrl)} /></Surface>
     <Surface><AppText variant="heading">Sources & credits</AppText><AppText variant="caption">Destinations, guides and seasonal information: Destination Paradise. Map: Leaflet and OpenStreetMap contributors. Current weather: Apple Weather. Photography: the Destination Paradise website.</AppText><Button label="OpenStreetMap contributors" variant="ghost" icon="external" onPress={() => open('https://www.openstreetmap.org/copyright')} /><Button label="Apple Weather attribution" variant="ghost" icon="external" onPress={() => open('https://developer.apple.com/weatherkit/data-source-attribution/')} /></Surface>
-    {!!status && <AppText accessibilityRole="alert">{status}</AppText>}<AppText variant="caption" color={colors.muted}>Destination Paradise · Version 1.0.0</AppText>
+    {!!status && <AppText accessibilityRole="alert">{status}</AppText>}<AppText variant="caption" color={colors.muted}>Destination Paradise · {versionLabel}</AppText>
   </ScrollView>;
 }
