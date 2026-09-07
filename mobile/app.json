@@ -61,6 +61,7 @@
           "isAndroidMotionActivityEnabled": false
         }
       ],
+      "./plugins/with-optional-location-features.cjs",
       [
         "expo-splash-screen",
         {
