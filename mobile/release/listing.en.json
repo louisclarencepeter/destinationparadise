@@ -9,26 +9,91 @@
   "localFeatureDraft": {
     "feature": "Nearby trip suggestions",
     "preparedAt": "2026-09-07",
-    "status": "LOCAL_VALIDATION_PASSED_NEW_SIGNED_CANDIDATES_PENDING",
+    "status": "ANDROID_INTERNAL_PUBLISHED_IOS_UPLOAD_AWAITING_OWNER_ASSIGNMENT",
     "storeMetadataSubmitted": false,
     "policySourceUpdated": true,
-    "updatedPolicyDeploymentVerified": false,
+    "updatedPolicyDeploymentVerified": true,
     "listingParagraphToAdd": "FIND IDEAS NEARBY\nChoose to enable Nearby for suggestions around your approximate location. Matching happens on your device using included destinations and related experiences. Refresh when you want, turn Nearby off at any time, or keep exploring without location access. Your coordinates are not saved or sent to our servers, AI or map services.",
     "reviewNotes": "Nearby requests opt-in approximate foreground location: Android coarse access and iOS reduced accuracy by default. A one-shot reading refreshes on a new app session or return to foreground only while enabled, with manual refresh and turn-off controls. Coordinates remain in memory; only the enabled preference persists. No background tracking, user-location pin, tile centering or reverse geocoding occurs. Planning sends only the selected destination through the existing consent-based Planner flow, without coordinates, distances or a current-location label.",
-    "storePrivacyAssessment": "Exclusively on-device Nearby processing does not propose an additional location collection entry. Existing OSM-derived Coarse/Approximate Location collection and sharing remain unchanged. Local browser request checks passed; final signed-candidate permissions and native location acquisition still require verification before distribution. Saved store declarations have not changed.",
+    "storePrivacyAssessment": "Nearby is processed exclusively on-device. Runtime/source checks found no origin coordinates in storage or application requests. Exact iOS5 and Android7 permissions were verified; no additional collected location category is introduced. Existing OSM-derived coarse/approximate location collection and sharing disclosures remain unchanged.",
     "existingReleasedBuildRecordsPreserved": true,
     "localValidation": {
       "status": "passed",
       "validatedAt": "2026-09-07",
       "typecheck": "passed",
       "automatedTests": {
-        "passed": 59
+        "passed": 78
       },
       "browserRuntime": "Responsive Nearby flows, consent, permission/error recovery, matching, cancellation, persistence, privacy request checks and final compact landscape/ARIA refinements passed in isolated browser contexts.",
       "androidExpoGoRuntime": "Phone/tablet actual permission flow, coarse grant, denial/manual fallback, services-off, timeout/cancel, foreground refresh, enabled-preference persistence and turn-off checks passed.",
-      "nativeCoarseFixLimitation": "Successful native recommendations remain unverified: ordinary emulator coordinates and temporary Android framework mock providers did not resolve Expo Go Balanced/coarse GMS location acquisition. No application code was changed to simulate a successful native fix. Expo Go permission branding and its broader manifest do not establish final signed-app permission declarations.",
-      "nextGate": "Verify new signed iOS build5 and Android code6 candidates and updated policy deployment before distributing Nearby."
-    }
+      "nativeCoarseFixLimitation": "Initial Expo Go coarse acquisition did not resolve. Later the exact code6 AAB-derived native app obtained a normal emulator location fix after refresh and showed Stone Town recommendations; a force-stop/cold relaunch repeated the result. No framework mock provider or application source override was used for that successful native check. Physical-device acquisition remains a separate field check.",
+      "nextGate": "Owner field testing and Play-delivered installation remain unverified. Apple processing and owner TestFlight group assignment await fresh App Store Connect sign-in.",
+      "androidSignedArtifactRuntime": "Exact code6 AAB-derived package passed phone/tablet cold launch, approximate-only permission dialog, Stone Town recommendations, denied/manual fallback, timeout/retry, portrait keyboard/search focus, opt-out and cold persistence, with zero app warnings or errors."
+    },
+    "policyPublication": {
+      "status": "live_verified",
+      "deploymentId": "6a9ea3bf9044dfcb528cdd62",
+      "url": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
+      "sha256": "1ce162735435379f5972bd7ead12cbcbfc4eb111529b4ad84680d9f448843788"
+    },
+    "iosCandidate": {
+      "version": "1.0.0",
+      "buildNumber": "5",
+      "buildId": "e6c3bbd7-a328-4de1-9151-3b3da6162c64",
+      "buildStatus": "FINISHED",
+      "submissionId": "133ac304-be96-4a3a-8e0d-0cc96deaf9e2",
+      "submissionStatus": "FINISHED",
+      "submittedAtUtc": "2026-09-07T11:50:39.181Z",
+      "artifactSha256": "f9aae1fa93d2f187a0faedf5083b8367c97bea573713d7ba0cc024b490581050",
+      "appleProcessingAndTestflightGroupVerified": false,
+      "blocker": "App Store Connect session expired; fresh owner sign-in requested."
+    },
+    "androidCandidate": {
+      "version": "1.0.0",
+      "versionCode": "7",
+      "buildId": "ae4d6007-7317-4cc3-a41d-44682aa5b871",
+      "buildStatus": "FINISHED",
+      "compatibilityFixCommit": "cc6b32c1",
+      "sourceFiles": 110,
+      "sourceBytes": 4887930,
+      "supersededCandidate": {
+        "versionCode": "6",
+        "buildId": "f2bfbbcc-3902-4850-be1c-517e533ae72f",
+        "artifactSha256": "68337eee1b7d6945c49f583070d3c8683740a9e0d9e74d510a05bf6073ce6dd6",
+        "published": false,
+        "reason": "Implied mandatory location hardware excluded one phone and five tablets in Play preview."
+      },
+      "completedAtUtc": "2026-09-07T12:25:19.076Z",
+      "artifactBytes": 80959187,
+      "artifactSha256": "84f3f55f838cb319dde330dd0ea8193fedec7b69a00e427c5160f6c41fc8d4ea",
+      "artifactPermissionAndFeatureChecks": "passed",
+      "requiredFeatures": [
+        "android.hardware.faketouch"
+      ],
+      "optionalFeatures": [
+        "android.hardware.location",
+        "android.hardware.location.network"
+      ],
+      "published": true,
+      "releaseId": "4",
+      "releaseName": "1.0.0 (7) — Nearby trip suggestions",
+      "releaseState": "ACTIVE_AVAILABLE_TO_INTERNAL_TESTERS_NOT_REVIEWED",
+      "releasedAtLocal": "2026-09-07 15:34 EAT",
+      "trackId": "4701496308193764699",
+      "supportedPhoneModels": 12477,
+      "supportedTabletModels": 6690,
+      "devicesLost": 0,
+      "internalJoinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
+      "nativeQa": "passed_bounded_phone_tablet_regression",
+      "runtimeBundleMatchesCode6": true,
+      "code7LookupScope": "Phone emulator showed truthful timeout/unavailable recovery. Successful native Stone Town acquisition was proven on code6 with the byte-identical Hermes bundle.",
+      "playDeliveredInstallationVerified": false,
+      "selectedTesterListName": "Destination Paradise owner test",
+      "selectedTesterCount": 1,
+      "otherTesterListsSelected": false,
+      "postPublicationTesterVerification": true
+    },
+    "listingAndReviewNotesStatus": "Updated draft only; Android internal release notes were published separately."
   },
   "apple": {
     "subtitle": "Zanzibar & Tanzania trip guide",
@@ -325,7 +390,7 @@
       "minimumSdk": 24,
       "targetSdk": 36
     },
-    "internalReleaseUploadStatus": "RELEASE_3_PUBLISHED_AVAILABLE_TO_INTERNAL_TESTERS",
+    "internalReleaseUploadStatus": "RELEASE_4_PUBLISHED_AVAILABLE_TO_INTERNAL_TESTERS",
     "listingStatus": "SAVED_CHANGES_AWAITING_SEND_FOR_REVIEW",
     "savedListingAssets": {
       "copy": true,
@@ -349,8 +414,8 @@
     "internalTrack": {
       "id": "4701496308193764699",
       "status": "ACTIVE",
-      "versionCode": 5,
-      "releaseName": "1.0.0 (5) \u2014 full-logo navy icon",
+      "versionCode": 7,
+      "releaseName": "1.0.0 (7) — Nearby trip suggestions",
       "joinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
       "selectedOwnerListCount": 1,
       "ownerTesterEmail": "louisclarencepeters@gmail.com",
@@ -358,11 +423,11 @@
       "ownerOptInVerified": false,
       "availability": "AVAILABLE_TO_INTERNAL_TESTERS",
       "reviewStatus": "NOT_REVIEWED",
-      "latestVerification": "Root completed Save and publish and its explicit confirmation. Fresh track shows release 3/code 5 Available to internal testers, Active and Not reviewed, released September 6 at 11:14 PM EAT. Fresh Testers tab shows only Destination Paradise owner test (1) selected; OutreachOS (15) and Rexona (17) unchecked, Save disabled.",
-      "releaseNumber": 3,
-      "releaseDetailsPath": "/releases/3/details",
-      "releasedAtLocal": "2026-09-06 23:14 EAT",
-      "publicationEvidence": "icon-review/android-internal-release-verification.json",
+      "latestVerification": "Both publish confirmations completed. Fresh release is Active, Available to internal testers and Not reviewed. Postpublication Testers shows only Destination Paradise owner test (1) selected; OutreachOS Closed Testers (15) and Rexona Testers Jul 2026 (17) unchecked, Save disabled.",
+      "releaseNumber": 4,
+      "releaseDetailsPath": "/releases/4/details",
+      "releasedAtLocal": "2026-09-07 15:34 EAT",
+      "publicationEvidence": "PUBLISH_STATUS.md",
       "propagationNote": "Google's confirmation says device availability can take an hour or more. Owner installation is not verified.",
       "selectedTesterListName": "Destination Paradise owner test",
       "selectedTesterCount": 1,
@@ -433,7 +498,7 @@
       },
       "uploadedToPlayVerified": true,
       "releaseNumber": 3,
-      "releaseName": "1.0.0 (5) \u2014 full-logo navy icon",
+      "releaseName": "1.0.0 (5) — full-logo navy icon",
       "playProcessingStatus": "ACCEPTED",
       "internalPublicationVerified": true,
       "lastVerifiedActiveVersionCode": 5,
@@ -448,7 +513,7 @@
         "saveAndPublishConfirmed": true,
         "explicitConfirmationCompleted": true
       },
-      "note": "The exact navy-icon AAB is published as release 3, Active and Available to internal testers, Not reviewed. Owner-only audience is unchanged. Device propagation can take an hour or more; owner installation is not verified."
+      "note": "Historical release 3/code 5 was published with the navy icon and has been superseded by Nearby code 7. Its publication evidence is preserved; owner installation of that build was not verified."
     },
     "targetAudienceStatus": "SAVED",
     "setupProgress": {
@@ -512,20 +577,55 @@
       "versionName": "1.0.0",
       "versionCode": 3,
       "status": "FINISHED_DOWNLOADED_VALIDATED"
+    },
+    "previousIconInternalTrackSnapshot": {
+      "id": "4701496308193764699",
+      "status": "ACTIVE",
+      "versionCode": 5,
+      "releaseName": "1.0.0 (5) — full-logo navy icon",
+      "joinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
+      "selectedOwnerListCount": 1,
+      "ownerTesterEmail": "louisclarencepeters@gmail.com",
+      "otherListsSelected": false,
+      "ownerOptInVerified": false,
+      "availability": "AVAILABLE_TO_INTERNAL_TESTERS",
+      "reviewStatus": "NOT_REVIEWED",
+      "latestVerification": "Root completed Save and publish and its explicit confirmation. Fresh track shows release 3/code 5 Available to internal testers, Active and Not reviewed, released September 6 at 11:14 PM EAT. Fresh Testers tab shows only Destination Paradise owner test (1) selected; OutreachOS (15) and Rexona (17) unchecked, Save disabled.",
+      "releaseNumber": 3,
+      "releaseDetailsPath": "/releases/3/details",
+      "releasedAtLocal": "2026-09-06 23:14 EAT",
+      "publicationEvidence": "icon-review/android-internal-release-verification.json",
+      "propagationNote": "Google's confirmation says device availability can take an hour or more. Owner installation is not verified.",
+      "selectedTesterListName": "Destination Paradise owner test",
+      "selectedTesterCount": 1,
+      "unselectedTesterLists": [
+        {
+          "name": "OutreachOS",
+          "count": 15
+        },
+        {
+          "name": "Rexona",
+          "count": 17
+        }
+      ],
+      "testersSaveDisabled": true,
+      "temporaryAppLabel": "com.yournexttriptoparadise.mobile (unreviewed)",
+      "nameDisplayNote": "The unreviewed internal track still uses the temporary package label until app review; the Destination Paradise Travel listing field is separately saved and verified.",
+      "historicalAsOf": "2026-09-06 23:14 EAT"
     }
   },
   "ownerConfirmationRequired": [
     "Whether to reuse existing trader details or provide different business details for the Apple DSA declaration.",
     "Separate Destination Paradise closed-test list; do not reuse the OutreachOS tester list."
   ],
-  "updatedAtUtc": "2026-09-05T23:11:19.063451Z",
+  "updatedAtUtc": "2026-09-07T12:40:33.294714Z",
   "publisher": {
     "accountName": "Louis Peter",
     "choiceConfirmed": true,
     "copyrightEntryConfirmed": true
   },
   "pendingReleaseWork": [
-    "Verify owner opt-in and installation of published Play internal code 5 after device propagation, and the owner's update to iOS navy-icon build 4. Prior iOS build 3 invitation acceptance and installation are confirmed; installation of the new builds remains unverified.",
+    "Verify owner opt-in and installation of published Play internal code 7 after device propagation. Sign in to App Store Connect to verify iOS build 5 processing and assign it to the existing owner-only TestFlight group. Prior iOS build 3 installation is confirmed; installation of the new builds remains unverified.",
     "Google app-information setup is complete; saved listing and Data Safety changes await Send for review, which has not been clicked.",
     "Verify remaining controlled quote/report delivery, consent, error recovery and physical-device release QA; maintain truthful provider retention/deletion statements.",
     "Configure the separate closed test and verify at least 12 continuous opt-ins for 14 days before applying for Google production access.",
