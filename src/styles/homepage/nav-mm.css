@@ -21,7 +21,7 @@
   pointer-events: auto;
 }
 
-@media (min-width: 961px) {
+@media (min-width: 1281px) {
   .mm-menu {
     display: none;
   }
@@ -282,12 +282,12 @@ html[data-theme="dark"] .mm-menu__wa:focus-visible {
 }
 
 /* Mobile-only — desktop suppresses the V2 overlay; the existing inline nav__menu remains */
-@media (min-width: 961px) {
+@media (min-width: 1281px) {
   .mm-menu { display: none; }
 }
 
 /* Hide the legacy fullscreen ul/backdrop on mobile so V2 overlay is the only menu */
-@media (max-width: 960px) {
+@media (max-width: 1280px) {
   .nav__menu { display: none; }
   .nav__backdrop { display: none; }
 }

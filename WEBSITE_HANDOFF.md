@@ -102,6 +102,12 @@ The follow-up corrected these confirmed low-contrast text families:
   weather temperature/season labels, and the map attribution strip.
 - Language-menu selections, active navigation labels and search categories/chips.
   The weather current-month marker also follows the selected language.
+- Live-preview inspection additionally found the expanded store navigation
+  clipping the booking button at 1280px. The compact navigation breakpoint is
+  synchronized at 1280px between its CSS and interaction behavior. Desktop logo
+  and controls retain their natural widths, and inline link spacing adapts to
+  laptop screens. All 24 combinations of EN/DE/PL, store on/off, and widths
+  1024/1280/1366/1440px fit without clipped or overlapping navigation controls.
 
 Small text uses the existing accessible foreground tokens. Coral fills retain
 readable dark labels, and planner action buttons use the existing brand gradient.

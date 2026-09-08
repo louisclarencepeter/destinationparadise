@@ -96,7 +96,8 @@ const MM_BGS = [
   '/assets/images/safaris/zebra-herd-on-track.webp',
 ];
 
-const MOBILE_NAV_QUERY = '(max-width: 960px)';
+// Keep in sync with the compact menu breakpoint in nav.css and nav-mm.css.
+const MOBILE_NAV_QUERY = '(max-width: 1280px)';
 
 export default function SiteNav({ theme = 'light', themeMode: _themeMode = 'auto', onThemeModeChange }) {
   const { t } = useTranslation('nav');
