@@ -22,7 +22,10 @@ replaying the old divergent checkout wholesale.
   subsets retain German/Polish glyphs and save 124,780 WOFF2 bytes.
 - Planner presentation and responsive styling are retained, including direct
   `/trip-planner` navigation. Homepage map descriptions use existing localized
-  Explore content.
+  Explore content. Standard OpenStreetMap tiles replace the CARTO endpoint that
+  returned API-key watermarks. Tiles retain browser caching and visible OSM
+  attribution; the map is skipped during prerender and has no offline download.
+  Provider reference: <https://operations.osmfoundation.org/policies/tiles/>.
 - React 19 image-priority and translated-navigation key warnings are corrected.
   Compatible lockfile updates address the reported browserslist, fast-uri and
   nanoid advisories.

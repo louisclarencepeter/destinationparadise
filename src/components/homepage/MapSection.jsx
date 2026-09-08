@@ -6,16 +6,13 @@ import { DESTINATION_MAP_PINS } from '../../data/destinationMapPins.js';
 import { isPrerender } from '../../utils/prerender.js';
 import { ArrowIcon } from './Icons.jsx';
 
-const TILE_URLS = {
-  dark: 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
-  light: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
-};
+const TILE_URL = 'https://tile.openstreetmap.org/{z}/{x}/{y}.png';
 const TILE_ATTRIBUTION =
-  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
 /**
  * @param {{
- *   tweaks: any,
+ *   tweaks?: any,
  *   PINS?: typeof DESTINATION_MAP_PINS,
  *   activePin?: string,
  *   setActivePin?: import('react').Dispatch<import('react').SetStateAction<string>>,
@@ -26,7 +23,6 @@ const TILE_ATTRIBUTION =
  * }} props
  */
 export default function MapSection({
-  tweaks,
   PINS: providedPins = undefined,
   activePin: providedActivePin = undefined,
   setActivePin: providedSetActivePin = undefined,
@@ -51,21 +47,18 @@ export default function MapSection({
   const resolvedCtaLabel = ctaLabel ?? t('map.cta_label');
   const mapElRef = useRef(/** @type {HTMLDivElement | null} */ (null));
   const mapApiRef = useRef(
-    /** @type {{ map: any, markers: Record<string, any>, tileLayer: any } | null} */ (null),
+    /** @type {{ map: any, markers: Record<string, any> } | null} */ (null),
   );
-  const isDark = tweaks.theme === 'dark';
-  const isDarkRef = useRef(isDark);
-  isDarkRef.current = isDark;
 
-  // Build the map for the loaded pin set. Selecting a pin does not rebuild it;
-  // theme changes swap only the tile layer in the separate effect below.
+  // Build the map for the loaded pin set. Pin selection and page theme changes
+  // keep the same map and standard OpenStreetMap tile layer.
   useEffect(() => {
     if (!ready) return undefined;
     const el = mapElRef.current;
     if (!el) return;
     // Skip live Leaflet during the build-time prerender crawl: a real map would
     // bake non-deterministic tile/marker DOM into the captured HTML and fire
-    // CARTO tile requests. The static section markup (copy + pin list) still renders.
+    // tile requests. The static section markup (copy + pin list) still renders.
     if (isPrerender()) return undefined;
 
     if (mapApiRef.current) {
@@ -83,7 +76,7 @@ export default function MapSection({
       attributionControl: true,
     });
 
-    const tileLayer = L.tileLayer(TILE_URLS[isDarkRef.current ? 'dark' : 'light'], {
+    L.tileLayer(TILE_URL, {
       attribution: TILE_ATTRIBUTION,
       maxZoom: 14,
     }).addTo(map);
@@ -106,7 +99,7 @@ export default function MapSection({
       markers[p.id] = m;
     });
 
-    mapApiRef.current = { map, markers, tileLayer };
+    mapApiRef.current = { map, markers };
 
     const invalidateTimer = setTimeout(() => map.invalidateSize(), 200);
     return () => {
@@ -117,22 +110,6 @@ export default function MapSection({
       }
     };
   }, [ready, pins, setActivePin]);
-
-  // Swap the tile layer in place when the theme toggles — no full rebuild/refetch.
-  useEffect(() => {
-    const api = mapApiRef.current;
-    if (!api) return undefined;
-    const next = L.tileLayer(TILE_URLS[isDark ? 'dark' : 'light'], {
-      attribution: TILE_ATTRIBUTION,
-      maxZoom: 14,
-    }).addTo(api.map);
-    const previous = api.tileLayer;
-    api.tileLayer = next;
-    if (previous) {
-      try { api.map.removeLayer(previous); } catch { /* noop */ }
-    }
-    return undefined;
-  }, [isDark]);
 
   useEffect(() => {
     const r = mapApiRef.current;
