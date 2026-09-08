@@ -106,8 +106,11 @@ The follow-up corrected these confirmed low-contrast text families:
   clipping the booking button at 1280px. The compact navigation breakpoint is
   synchronized at 1280px between its CSS and interaction behavior. Desktop logo
   and controls retain their natural widths, and inline link spacing adapts to
-  laptop screens. All 24 combinations of EN/DE/PL, store on/off, and widths
-  1024/1280/1366/1440px fit without clipped or overlapping navigation controls.
+  laptop screens. All 36 combinations of EN/DE/PL, store on/off, and widths
+  320/390/1024/1280/1366/1440px fit without clipped or overlapping controls.
+  The compact menu scrolls when its rows exceed available height; 24 phone and
+  laptop cases verified every row remains reachable, keyboard focus is trapped
+  and restored, Escape/close/navigation work, and desktop resize unlocks scrolling.
 
 Small text uses the existing accessible foreground tokens. Coral fills retain
 readable dark labels, and planner action buttons use the existing brand gradient.

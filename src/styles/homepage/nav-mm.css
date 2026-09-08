@@ -100,12 +100,14 @@
   padding: 2px 16px;
   flex: 1;
   display: flex; flex-direction: column;
-  justify-content: center;
+  justify-content: safe center;
   gap: 4px;
   margin: 0; list-style: none;
-  overflow: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   min-height: 0;
 }
+.mm-menu__list > li { flex: 0 0 auto; }
 .mm-menu__row {
   display: grid;
   grid-template-columns: 1fr auto;

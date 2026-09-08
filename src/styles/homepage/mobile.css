@@ -33,12 +33,21 @@ html, body { max-width: 100%; }
 }
 
 @media (max-width: 480px) {
+  .nav { padding-inline: .75rem; }
+  .nav__inner { gap: .5rem; }
+  .nav__logo img { flex-shrink: 0; }
   .nav__logo-text small { display: none; }
   .nav__logo-text { font-size: .95rem; }
+  .nav__right { gap: .3rem; }
 }
 
 @media (max-width: 360px) {
-  .nav__logo img { height: 32px; }
+  .nav { padding-inline: .65rem; }
+  .nav__inner { gap: .4rem; }
+  .nav__logo { gap: .3rem; }
+  .nav__logo img { height: 28px; }
+  .nav__logo-text { font-size: .8rem; }
+  .nav__right { gap: .25rem; }
 }
 
 /* ---- Hero: tame display sizes & padding ---- */
