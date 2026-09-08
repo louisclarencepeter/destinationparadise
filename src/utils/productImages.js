@@ -40,9 +40,9 @@ function lineText(value, max = 26) {
   return lines.slice(0, 3);
 }
 
-export function productPlaceholderImage({ id, title, category, scope = 'Product' }) {
+export function productPlaceholderImage({ id, title, category, scope = 'Product', photoLabel = 'Photo coming soon' }) {
   const palette = COLORS[Math.abs(hashText(id || title)) % COLORS.length];
-  const titleLines = lineText(title || 'Photo coming soon', 24);
+  const titleLines = lineText(title || photoLabel, 24);
   const categoryLabel = escapeXml(category || scope);
   const titleStartY = 278 - ((titleLines.length - 1) * 22);
 
@@ -67,7 +67,7 @@ export function productPlaceholderImage({ id, title, category, scope = 'Product'
       <path d="M-80 500 C 120 410, 245 545, 430 464 S 735 352, 980 456 L 980 700 L -80 700 Z" fill="#ffffff" opacity=".08"/>
       <path d="M286 128 C 386 86, 512 86, 614 128" fill="none" stroke="${palette[1]}" stroke-width="9" stroke-linecap="round" opacity=".55"/>
       <text x="450" y="154" fill="${palette[1]}" font-family="Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="8" text-anchor="middle">${escapeXml(scope.toUpperCase())}</text>
-      <text x="450" y="206" fill="#b7c8d4" font-family="Arial, sans-serif" font-size="23" font-weight="700" letter-spacing="4" text-anchor="middle">PHOTO COMING SOON</text>
+      <text x="450" y="206" fill="#b7c8d4" font-family="Arial, sans-serif" font-size="23" font-weight="700" letter-spacing="4" text-anchor="middle">${escapeXml(photoLabel.toUpperCase())}</text>
       ${titleMarkup}
       <text x="450" y="478" fill="#b7c8d4" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="3" text-anchor="middle">${categoryLabel}</text>
     </svg>
@@ -76,20 +76,21 @@ export function productPlaceholderImage({ id, title, category, scope = 'Product'
   return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
 }
 
-export function uniqueProductImages(products, { scope = 'Product', idKey = 'id', titleKey = 'title' } = {}) {
+export function uniqueProductImages(products, { scope = 'Product', idKey = 'id', titleKey = 'title', categoryKey = 'category', photoLabel = 'Photo coming soon' } = {}) {
   const seen = new Set();
 
   return products.map((product) => {
     const image = product.image;
-    if (!image || seen.has(image)) {
+    if (!image || product.imageNeeded || seen.has(image)) {
       return {
         ...product,
-        originalImage: image || null,
+        originalImage: product.originalImage ?? (product.imageNeeded ? null : image || null),
         image: productPlaceholderImage({
           id: product[idKey] || product.slug || product[titleKey],
           title: product[titleKey],
-          category: product.category || product.positioning,
+          category: product[categoryKey] || product.category || product.positioning,
           scope,
+          photoLabel,
         }),
         imageNeeded: true,
         imageTBD: true,

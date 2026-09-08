@@ -1,0 +1,235 @@
+/* ------------ HOMEPAGE SECTION COMPASS ------------ */
+.site-main > .section-compass {
+  --section-compass-progress: 0%;
+  position: fixed;
+  top: calc(var(--nav-height, 66px) + (100svh - var(--nav-height, 66px)) / 2);
+  left: clamp(12px, 1.25vw, 20px);
+  z-index: 40;
+  width: 44px;
+  transform: translateY(-50%);
+  font-family: var(--dp-font-sans);
+}
+
+.section-compass__panel {
+  position: relative;
+  width: 44px;
+  padding: 9px 6px;
+  overflow: hidden;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background: transparent;
+  box-shadow: 0 12px 30px rgba(26, 77, 110, 0);
+  transition:
+    width 220ms var(--dp-ease-out),
+    background-color 180ms ease,
+    border-color 180ms ease,
+    box-shadow 220ms ease;
+}
+
+.section-compass:hover .section-compass__panel,
+.section-compass:focus-within .section-compass__panel {
+  width: 196px;
+  border-color: var(--border);
+  background: rgba(255, 255, 255, .94);
+  box-shadow: 0 18px 44px rgba(26, 77, 110, .16);
+  backdrop-filter: blur(8px) saturate(115%);
+  -webkit-backdrop-filter: blur(8px) saturate(115%);
+}
+
+html[data-theme="dark"] .section-compass__panel {
+  background: transparent;
+}
+
+html[data-theme="dark"] .section-compass:hover .section-compass__panel,
+html[data-theme="dark"] .section-compass:focus-within .section-compass__panel {
+  background: rgba(11, 32, 48, .94);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, .35);
+}
+
+.section-compass__track {
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 21px;
+  width: 1px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--text-muted) 34%, transparent);
+  pointer-events: none;
+}
+
+.section-compass__progress {
+  position: absolute;
+  inset: 0 0 auto;
+  height: var(--section-compass-progress);
+  border-radius: inherit;
+  background: var(--dp-accent);
+  box-shadow: 0 0 8px rgba(255, 111, 97, .35);
+}
+
+.section-compass__progress-head {
+  position: absolute;
+  top: var(--section-compass-progress);
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--dp-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--dp-accent) 18%, transparent);
+  transform: translate(-50%, -50%);
+}
+
+.section-compass__list {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.section-compass__item {
+  margin: 0;
+  padding: 0;
+}
+
+.section-compass__link {
+  position: relative;
+  display: grid;
+  grid-template-columns: 30px 26px minmax(0, 1fr);
+  align-items: center;
+  min-width: 180px;
+  min-height: 30px;
+  color: var(--text-muted);
+  line-height: 1;
+  white-space: nowrap;
+  border-radius: 10px;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+.section-compass__link:hover {
+  color: var(--text-soft);
+  background: var(--surface-subtle);
+}
+
+.section-compass__link:focus-visible {
+  outline: 2px solid var(--dp-focus-ring);
+  outline-offset: -2px;
+}
+
+.section-compass__link[aria-current="location"] {
+  color: var(--dp-accent-text);
+}
+
+.section-compass__dot {
+  grid-column: 1;
+  justify-self: center;
+  width: 6px;
+  height: 6px;
+  border: 1px solid color-mix(in srgb, var(--text-muted) 72%, var(--surface));
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: 0 1px 5px rgba(26, 77, 110, .18);
+  transition:
+    width 180ms var(--dp-ease-out),
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.section-compass__link[aria-current="location"] .section-compass__dot {
+  width: 16px;
+  border-color: var(--dp-accent);
+  border-radius: 999px;
+  background: var(--dp-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--dp-accent) 16%, transparent);
+}
+
+.section-compass__number,
+.section-compass__label {
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 140ms ease, transform 200ms var(--dp-ease-out);
+}
+
+.section-compass__number {
+  grid-column: 2;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  color: var(--text-muted);
+}
+
+.section-compass__label {
+  grid-column: 3;
+  overflow: hidden;
+  font-size: 10px;
+  font-weight: 650;
+  letter-spacing: .035em;
+  text-overflow: ellipsis;
+}
+
+.section-compass:hover .section-compass__number,
+.section-compass:hover .section-compass__label,
+.section-compass:focus-within .section-compass__number,
+.section-compass:focus-within .section-compass__label {
+  opacity: 1;
+  transform: translateX(0);
+  transition-delay: 45ms;
+}
+
+@supports not ((backdrop-filter: blur(8px)) or (-webkit-backdrop-filter: blur(8px))) {
+  .section-compass:hover .section-compass__panel,
+  .section-compass:focus-within .section-compass__panel {
+    background: rgba(255, 255, 255, .9);
+  }
+
+  html[data-theme="dark"] .section-compass:hover .section-compass__panel,
+  html[data-theme="dark"] .section-compass:focus-within .section-compass__panel {
+    background: rgba(11, 32, 48, .9);
+  }
+}
+
+@media (max-width: 960px), (max-height: 560px), (pointer: coarse) {
+  .section-compass {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section-compass__panel,
+  .section-compass__link,
+  .section-compass__dot,
+  .section-compass__number,
+  .section-compass__label {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .section-compass__panel {
+    background: Canvas;
+    border-color: CanvasText;
+    forced-color-adjust: none;
+  }
+
+  .section-compass__track,
+  .section-compass__progress,
+  .section-compass__progress-head,
+  .section-compass__dot,
+  .section-compass__link[aria-current="location"] .section-compass__dot {
+    background: CanvasText;
+    border-color: CanvasText;
+    box-shadow: none;
+  }
+
+  .section-compass__link,
+  .section-compass__link[aria-current="location"] {
+    color: CanvasText;
+  }
+
+  .section-compass__link:focus-visible {
+    outline-color: Highlight;
+  }
+}

@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { ArrowIcon } from './Icons.jsx';
@@ -5,6 +6,7 @@ import ResponsiveImage from '../ResponsiveImage.jsx';
 import { destinationParadiseSafariPricing } from '../../data/safariPricing.js';
 import { nextLevelSafariProducts } from '../../data/nextLevelSafariProducts.js';
 import { useCurrency } from '../../context/useCurrency.js';
+import { buildLocalizedSafariProducts } from '../../data/localizedCatalog.js';
 
 const SAFARI_FEATURES = [
   {
@@ -32,9 +34,20 @@ const safariCards = SAFARI_FEATURES.map((feature) => {
 }).filter((item) => item.title);
 
 export default function SafarisSection() {
-  const { t } = useTranslation('home');
+  const { t, i18n, ready } = useTranslation(['home', 'catalog', 'safaris']);
+  const catalogLanguage = ready ? i18n.resolvedLanguage : '';
   const { format } = useCurrency();
   const totalSafaris = destinationParadiseSafariPricing.length + nextLevelSafariProducts.length;
+  const localizedSafaris = useMemo(
+    () => (catalogLanguage ? buildLocalizedSafariProducts(t) : []),
+    [t, catalogLanguage],
+  );
+  const localizedCards = safariCards.map((card) => ({
+    ...card,
+    title: localizedSafaris.find((item) => item.id === card.slug)?.title || card.title,
+  }));
+
+  if (!ready) return null;
 
   return (
     <section className="safaris" id="safaris">
@@ -49,7 +62,7 @@ export default function SafarisSection() {
         </ul>
       </header>
       <div className="safaris__grid">
-        {safariCards.map((trip, i) => (
+        {localizedCards.map((trip, i) => (
           <article className={`safari-card reveal${trip.featured ? ' safari-card--feature' : ''}`} style={{ '--reveal-index': i }} key={trip.slug}>
             <div className="safari-card__img">
               <ResponsiveImage src={trip.image} alt="" loading="lazy" decoding="async" sizes="(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 380px" />

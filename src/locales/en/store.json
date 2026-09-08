@@ -1,4 +1,29 @@
 {
+  "meta": {
+    "title": "Experiences Store · Destination Paradise",
+    "description": "Browse Zanzibar experiences, choose a date and time, and pay once for the whole trip. Instant booking for selected excursions."
+  },
+  "catalog": {
+    "pickups": {
+      "safari-blue": "Hotel pickup from south-coast and Stone Town areas, 07:15–07:45.",
+      "spice-tour": "Hotel pickup from Stone Town and west-coast areas, 30 minutes before start.",
+      "stone-town": "Meet at the Old Fort forecourt, or request pickup from a Stone Town hotel."
+    },
+    "requestCards": {
+      "northern-safari": {
+        "title": "Northern Tanzania Safari",
+        "alt": "Zebra herd on a safari track",
+        "blurb": "A mainland safari across the Serengeti and Ngorongoro with wildlife drives, lodge nights, and light-aircraft transfers.",
+        "durationTag": "Multi-day"
+      },
+      "custom-journey": {
+        "title": "Custom Zanzibar Journey",
+        "alt": "Aerial view of boats on turquoise water",
+        "blurb": "Tell us how you want your days to feel and we will shape one private itinerary around dhows, spice gardens, beaches, and Stone Town.",
+        "durationTag": "Tailor-made"
+      }
+    }
+  },
   "hero": {
     "eyebrow": "Local. Guided. Unhurried.",
     "title": "Find your experiences",
@@ -111,6 +136,7 @@
     "request_note": "Your trip has request items, so we confirm availability first — you pay once at the end."
   },
   "checkout": {
+    "meta_title": "Checkout · Destination Paradise",
     "back": "Back to your trip",
     "title": "Checkout",
     "sub_one": "One order, {{count}} experience · Destination Paradise is your single host.",
@@ -153,6 +179,7 @@
     "request_pricing_hint": "Requested experiences are priced in your confirmation email."
   },
   "confirm": {
+    "meta_title": "Order confirmation · Destination Paradise",
     "processing_title": "Finishing your payment…",
     "processing_text": "We're confirming order <ref>{{reference}}</ref> with our payment partner. This usually takes a few seconds — this page updates by itself.",
     "problem_title": "The payment didn't complete",

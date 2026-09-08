@@ -1,7 +1,8 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { useTranslation } from 'react-i18next';
+import { DESTINATION_MAP_PINS } from '../../data/destinationMapPins.js';
 import { isPrerender } from '../../utils/prerender.js';
 import { ArrowIcon } from './Icons.jsx';
 
@@ -12,8 +13,41 @@ const TILE_URLS = {
 const TILE_ATTRIBUTION =
   '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>';
 
-export default function MapSection({ tweaks, PINS, activePin, setActivePin, islandPins, mainlandPins, ctaHref = '#contact', ctaLabel }) {
-  const { t } = useTranslation('home');
+/**
+ * @param {{
+ *   tweaks: any,
+ *   PINS?: typeof DESTINATION_MAP_PINS,
+ *   activePin?: string,
+ *   setActivePin?: import('react').Dispatch<import('react').SetStateAction<string>>,
+ *   islandPins?: typeof DESTINATION_MAP_PINS,
+ *   mainlandPins?: typeof DESTINATION_MAP_PINS,
+ *   ctaHref?: string,
+ *   ctaLabel?: string,
+ * }} props
+ */
+export default function MapSection({
+  tweaks,
+  PINS: providedPins = undefined,
+  activePin: providedActivePin = undefined,
+  setActivePin: providedSetActivePin = undefined,
+  islandPins: providedIslandPins = undefined,
+  mainlandPins: providedMainlandPins = undefined,
+  ctaHref = '#contact',
+  ctaLabel,
+}) {
+  const { t, ready } = useTranslation(['home', 'explore']);
+  // The homepage mounts this section lazily. Load the existing destination copy
+  // with it, while keeping Explore's supplied pin data and selection intact.
+  const pins = useMemo(() => providedPins ?? DESTINATION_MAP_PINS.map((pin) => ({
+    ...pin,
+    name: t(`pins.${pin.id}.name`, { ns: 'explore', defaultValue: pin.name }),
+    desc: t(`pins.${pin.id}.desc`, { ns: 'explore', defaultValue: pin.desc }),
+  })), [providedPins, t]);
+  const [internalActivePin, setInternalActivePin] = useState('stone-town');
+  const activePin = providedActivePin ?? internalActivePin;
+  const setActivePin = providedSetActivePin ?? setInternalActivePin;
+  const islandPins = providedIslandPins ?? pins.filter((pin) => pin.region === 'Zanzibar');
+  const mainlandPins = providedMainlandPins ?? pins.filter((pin) => pin.region === 'Mainland');
   const resolvedCtaLabel = ctaLabel ?? t('map.cta_label');
   const mapElRef = useRef(/** @type {HTMLDivElement | null} */ (null));
   const mapApiRef = useRef(
@@ -23,9 +57,10 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
   const isDarkRef = useRef(isDark);
   isDarkRef.current = isDark;
 
-  // Build the map and markers once. Theme changes swap only the tile layer
-  // (separate effect below) rather than tearing down and recreating the map.
+  // Build the map for the loaded pin set. Selecting a pin does not rebuild it;
+  // theme changes swap only the tile layer in the separate effect below.
   useEffect(() => {
+    if (!ready) return undefined;
     const el = mapElRef.current;
     if (!el) return;
     // Skip live Leaflet during the build-time prerender crawl: a real map would
@@ -54,7 +89,7 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
     }).addTo(map);
 
     const markers = {};
-    PINS.forEach((p, i) => {
+    pins.forEach((p, i) => {
       const icon = L.divIcon({
         className: 'dp-leaflet-pin',
         html:
@@ -81,7 +116,7 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
         mapApiRef.current = null;
       }
     };
-  }, [PINS, setActivePin]);
+  }, [ready, pins, setActivePin]);
 
   // Swap the tile layer in place when the theme toggles — no full rebuild/refetch.
   useEffect(() => {
@@ -102,12 +137,14 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
   useEffect(() => {
     const r = mapApiRef.current;
     if (!r) return;
-    const p = PINS.find((x) => x.id === activePin);
+    const p = pins.find((x) => x.id === activePin);
     Object.entries(r.markers).forEach(([id, m]) => {
       if (m._icon) m._icon.classList.toggle('is-active', id === activePin);
     });
     if (p) r.map.flyTo([p.lat, p.lng], p.region === 'Mainland' ? 7 : 10, { duration: 0.8 });
-  }, [activePin, PINS]);
+  }, [activePin, pins, ready]);
+
+  if (!ready) return null;
 
   return (
     <section className="map-section reveal" id="map">
@@ -121,7 +158,7 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
             <div className="map-list-label">{t('map.island_label')}</div>
             <ul className="map-list">
               {islandPins.map((p) => {
-                const i = PINS.findIndex((x) => x.id === p.id);
+                const i = pins.findIndex((x) => x.id === p.id);
                 return (
                   <li key={p.id} className={p.id === activePin ? 'is-active' : ''}>
                     <button
@@ -142,7 +179,7 @@ export default function MapSection({ tweaks, PINS, activePin, setActivePin, isla
             <div className="map-list-label">{t('map.mainland_label')}</div>
             <ul className="map-list">
               {mainlandPins.map((p) => {
-                const i = PINS.findIndex((x) => x.id === p.id);
+                const i = pins.findIndex((x) => x.id === p.id);
                 return (
                   <li key={p.id} className={p.id === activePin ? 'is-active' : ''}>
                     <button

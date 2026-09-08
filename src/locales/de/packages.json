@@ -149,7 +149,7 @@
     "not_found_title": "Paket nicht gefunden",
     "not_found_text": "Dieses Paket ist nicht mehr verfügbar oder wurde verschoben.",
     "back_to_packages": "Zurück zu allen Paketen →",
-    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_aria": "Brotkrumen-Navigation",
     "breadcrumb_home": "Start",
     "breadcrumb_packages": "Pakete",
     "facts": {

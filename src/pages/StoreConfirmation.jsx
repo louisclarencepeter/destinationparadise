@@ -57,7 +57,7 @@ export default function StoreConfirmation() {
   // owns the purchase event (the checkout page tracked the non-redirect path).
   const cameFromRedirectRef = useRef(!readLastOrder(reference));
 
-  usePageMeta({ title: 'Order confirmation · Destination Paradise', noindex: true });
+  usePageMeta({ title: t('confirm.meta_title'), noindex: true });
 
   // Drop the token from the URL once adopted (fresh render keeps working via session).
   useEffect(() => {

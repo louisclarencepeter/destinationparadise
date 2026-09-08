@@ -1,11 +1,17 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { EXCURSION_COMBINATIONS } from '../../data/excursionCombinations.js';
+import { buildLocalizedExcursionCombinations } from '../../data/localizedCatalog.js';
 import { useCurrency } from '../../context/useCurrency.js';
 
 export default function ExcursionsPairings() {
-  const { t } = useTranslation('excursions');
+  const { t, i18n, ready } = useTranslation(['excursions', 'catalog']);
+  const catalogLanguage = ready ? i18n.resolvedLanguage : '';
   const { format } = useCurrency();
+  const combinations = useMemo(
+    () => (catalogLanguage ? buildLocalizedExcursionCombinations(t) : []),
+    [t, catalogLanguage],
+  );
   return (
     <section className="exc-pair">
       <div className="exc-pair__head">
@@ -14,7 +20,7 @@ export default function ExcursionsPairings() {
         <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('pairings.lead')}</p>
       </div>
       <div className="exc-pair__grid">
-        {EXCURSION_COMBINATIONS.map((p, i) => (
+        {combinations.map((p, i) => (
           <Link className="exc-pair__card reveal" style={{ '--reveal-index': i }} key={p.title} to={`/excursions/combinations/${p.id}`} aria-label={t('pairings.explore_aria', { title: p.title })}>
             <div className="exc-pair__combo">
               <span>{p.combo[0]}</span>

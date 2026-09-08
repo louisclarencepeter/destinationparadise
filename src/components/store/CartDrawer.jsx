@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useCurrency } from '../../context/useCurrency.js';
 import { useBookingCart } from '../../context/useBookingCart.js';
 import { getCartExperience, getInstantExperience } from '../../data/commerceCatalog.js';
+import { buildLocalizedExcursions } from '../../data/localizedCatalog.js';
 import { isRequestItem, priceSelection, quoteCartItems } from '../../lib/storeApi.js';
 import { trackEvent } from '../../utils/analytics.js';
 import CartItem from './CartItem.jsx';
@@ -13,7 +14,8 @@ import '../../styles/store.css';
 // Slide-in multi-trip cart, mounted once at layout level. Every open triggers a
 // re-quote so prices/availability shown are fresh, never the persisted copy.
 export default function CartDrawer() {
-  const { t } = useTranslation('store');
+  const { t, i18n, ready } = useTranslation(['store', 'catalog']);
+  const catalogLanguage = ready ? i18n.resolvedLanguage : '';
   const { format } = useCurrency();
   const { state, dispatch } = useBookingCart();
   const navigate = useNavigate();
@@ -25,14 +27,18 @@ export default function CartDrawer() {
 
   const open = state.drawerOpen;
   const close = () => dispatch({ type: 'close_drawer' });
+  const catalog = useMemo(() => ({
+    excursions: catalogLanguage ? buildLocalizedExcursions(t) : [],
+    operationalCopy: t('store:catalog', { returnObjects: true, defaultValue: {} }),
+  }), [t, catalogLanguage]);
 
   // Resolve items against the catalog; drop lines whose product no longer exists.
   const lines = useMemo(
     () =>
       state.items
-        .map((item) => ({ item, experience: getCartExperience(item.experienceId) }))
+        .map((item) => ({ item, experience: getCartExperience(item.experienceId, catalog.excursions, catalog.operationalCopy) }))
         .filter((line) => line.experience),
-    [state.items],
+    [catalog, state.items],
   );
 
   const hasRequestItems = lines.some(({ item }) => isRequestItem(item));
@@ -42,10 +48,10 @@ export default function CartDrawer() {
     () =>
       lines.reduce((sum, { item }) => {
         if (isRequestItem(item)) return sum;
-        const experience = getInstantExperience(item.experienceId);
+        const experience = getInstantExperience(item.experienceId, catalog.excursions, catalog.operationalCopy);
         return experience ? sum + priceSelection(experience, item.mode, item.guests).totalUsd : sum;
       }, 0),
-    [lines],
+    [catalog, lines],
   );
 
   // Re-check availability whenever the drawer opens or the items change.

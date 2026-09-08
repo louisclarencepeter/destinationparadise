@@ -48,7 +48,7 @@ const getPackageItems = (pkg) => {
 };
 
 export default function PackagesSection() {
-  const { t } = useTranslation(['home', 'packages']);
+  const { t } = useTranslation(['home', 'packages'], { useSuspense: true });
   const { format } = useCurrency();
   const packageCards = useMemo(() => {
     const packageT = (key, options) => t(`packages:${key}`, options);

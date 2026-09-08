@@ -23,7 +23,14 @@
     <link rel="icon" type="image/webp" href="/assets/brand/destination-paradise-logo-96.webp" />
     <link rel="apple-touch-icon" sizes="192x192" href="/assets/brand/destination-paradise-logo-192.png" />
     <link rel="preload" href="/assets/fonts/kaushan-script-regular.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/assets/images/home/stone-town-waterfront.webp" as="image" fetchpriority="high" />
+    <link
+      rel="preload"
+      href="/assets/images/home/stone-town-waterfront.webp"
+      imagesrcset="/assets/images/home/stone-town-waterfront-600w.webp 600w, /assets/images/home/stone-town-waterfront.webp 1195w"
+      imagesizes="(max-width: 600px) 100vw, 1200px"
+      as="image"
+      fetchpriority="high"
+    />
     <link rel="manifest" href="/manifest.json" />
     <title>Destination Paradise — your next trip to paradise</title>
     <script type="application/ld+json">

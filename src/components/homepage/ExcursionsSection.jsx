@@ -4,8 +4,13 @@ import { ArrowIcon } from './Icons.jsx';
 import ResponsiveImage from '../ResponsiveImage.jsx';
 import { useCurrency } from '../../context/useCurrency.js';
 import { objectFromTranslation } from '../../utils/translationValues.js';
+import { EXCURSIONS } from '../../data/excursionsData.js';
 
-export default function ExcursionsSection({ tweaks, excursions }) {
+const BEST_SELLING_EXCURSION_IDS = ['safari-blue', 'mnemba', 'spice-tour'];
+const FEATURED_EXCURSIONS = BEST_SELLING_EXCURSION_IDS
+  .flatMap((id) => EXCURSIONS.filter((trip) => trip.id === id).slice(0, 1));
+
+export default function ExcursionsSection({ tweaks }) {
   const { t } = useTranslation('home');
   const { format } = useCurrency();
   return (
@@ -21,7 +26,7 @@ export default function ExcursionsSection({ tweaks, excursions }) {
         </ul>
       </header>
       <div className="excursions__grid">
-        {excursions.map((tr, i) => {
+        {FEATURED_EXCURSIONS.map((tr, i) => {
           const localized = objectFromTranslation(t(`excursions.featured.${tr.id}`, { returnObjects: true, defaultValue: {} }), {});
           const title = localized.title || tr.title;
           const description = localized.description || tr.description;

@@ -1,8 +1,8 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Link, useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
-import { ALL_SAFARI_PRODUCTS, INCLUDED_LIST } from '../data/safariPageData.js';
+import { buildLocalizedSafariProducts } from '../data/localizedCatalog.js';
 import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
 import { touristTripJsonLd } from '../utils/productJsonLd.js';
 import { useCurrency } from '../context/useCurrency.js';
@@ -19,10 +19,15 @@ function cleanInclude(item = '') {
 }
 
 export default function SafariDetail() {
-  const { t, i18n, ready } = useTranslation('safaris');
+  const { t, i18n, ready } = useTranslation(['safaris', 'catalog']);
+  const catalogLanguage = ready ? i18n.resolvedLanguage : '';
   const { id } = useParams();
   const { format } = useCurrency();
-  const safari = ALL_SAFARI_PRODUCTS.find((item) => item.id === id);
+  const safariProducts = useMemo(
+    () => (catalogLanguage ? buildLocalizedSafariProducts(t) : []),
+    [t, catalogLanguage],
+  );
+  const safari = safariProducts.find((item) => item.id === id);
   const pageRef = useRef(null);
 
   // Key on the route id too: detail routes reuse one component instance across
@@ -37,13 +42,13 @@ export default function SafariDetail() {
           description: clampDescription(
             safari.blurb ||
               safari.intro ||
-              `${safari.title} — a guided Tanzania safari with park fees, professional guide, and full-board lodging.`,
+              t('safaris:detail.meta_fallback', { title: safari.title }),
           ),
           jsonLd: touristTripJsonLd({
             name: safari.title,
             description: safari.blurb || safari.intro,
             path: `/safaris/${safari.id}`,
-            image: safari.image,
+            image: safari.imageNeeded ? undefined : safari.image,
             price: safari.publicPrice?.lowSeason ?? (typeof safari.price === 'number' ? safari.price : undefined),
           }),
         }
@@ -70,6 +75,7 @@ export default function SafariDetail() {
   const included = safari.includesList || safari.highlights || safari.includes.split('·').map(cleanInclude);
   const price = safari.publicPrice;
   const upsells = safari.upsells || [];
+  const priceUnit = (unit) => t(`safaris:price_units.${unit}`, { defaultValue: unit });
 
   return (
     <main className="safaris-page exc-detail saf-detail" ref={pageRef}>
@@ -84,7 +90,7 @@ export default function SafariDetail() {
       <article id={safari.id} className="exc-block exc-block--detail">
         <div className="exc-block__img reveal">
           <ResponsiveImage src={safari.image} alt={safari.alt || safari.title} />
-          <span className="exc-block__cat">{safari.category}</span>
+          <span className="exc-block__cat">{safari.localizedCategory}</span>
           {safari.feature && <span className="exc-block__season">{t('detail.most_popular')}</span>}
         </div>
         <div className="exc-block__body">
@@ -92,15 +98,15 @@ export default function SafariDetail() {
           <h1 className="exc-block__title reveal" style={{ '--reveal-index': 1 }}>{safari.title}</h1>
           <p className="exc-block__desc reveal" style={{ '--reveal-index': 2 }}>{safari.intro}</p>
           <dl className="exc-block__facts">
-            <div className="reveal" style={{ '--reveal-index': 0 }}><dt>{t('detail.facts.duration')}</dt><dd>{safari.duration}<small>{t('detail.facts.duration_sub')}</small></dd></div>
+            <div className="reveal" style={{ '--reveal-index': 0 }}><dt>{t('detail.facts.duration')}</dt><dd>{safari.localizedDuration}<small>{t('detail.facts.duration_sub')}</small></dd></div>
             <div className="reveal" style={{ '--reveal-index': 1 }}><dt>{t('detail.facts.starts_from')}</dt><dd>{safari.from}<small>{t('detail.facts.starts_from_sub')}</small></dd></div>
-            <div className="reveal" style={{ '--reveal-index': 2 }}><dt>{t('detail.facts.style')}</dt><dd>{safari.positioning || safari.category}<small>{t('detail.facts.style_sub')}</small></dd></div>
+            <div className="reveal" style={{ '--reveal-index': 2 }}><dt>{t('detail.facts.style')}</dt><dd>{safari.localizedCategory || safari.positioning}<small>{t('detail.facts.style_sub')}</small></dd></div>
             <div className="reveal" style={{ '--reveal-index': 3 }}>
               <dt>{t('detail.facts.price')}</dt>
               <dd>
                 {format(price ? price.lowSeason : safari.price)}
                 {price && `–${format(price.peakSeason)}`}
-                <small>{price?.unit || safari.priceSub}</small>
+                <small>{priceUnit(price?.unit || safari.priceSub)}</small>
               </dd>
             </div>
           </dl>
@@ -111,7 +117,7 @@ export default function SafariDetail() {
             </div>
             <div className="exc-block__col reveal" style={{ '--reveal-index': 1 }}>
               <h4>{safari.idealFor?.length ? t('detail.ideal_for') : t('detail.typical_inclusions')}</h4>
-              <ul>{(safari.idealFor?.length ? safari.idealFor : INCLUDED_LIST.slice(0, 4)).map((item) => <li key={item}>{item}</li>)}</ul>
+              <ul>{(safari.idealFor?.length ? safari.idealFor : arrayFromTranslation(t('safaris:included.items', { returnObjects: true })).slice(0, 4)).map((item) => <li key={item}>{item}</li>)}</ul>
             </div>
           </div>
           {upsells.length > 0 && (
@@ -125,7 +131,7 @@ export default function SafariDetail() {
           <div className="exc-block__actions">
             <span className="exc-block__price reveal" style={{ '--reveal-index': 0 }}>
               {format(price ? price.lowSeason : safari.price)}
-              <small>{price ? t('detail.price_low_peak', { price: format(price.peakSeason) }) : safari.priceSub}</small>
+              <small>{price ? t('detail.price_low_peak', { price: format(price.peakSeason) }) : priceUnit(safari.priceSub)}</small>
             </span>
             <span className="exc-block__price-note reveal" style={{ '--reveal-index': 1 }}>{t('detail.price_note')}</span>
             <Link className="btn reveal" style={{ '--reveal-index': 2 }} to={`/booking?type=safari&item=${encodeURIComponent(safari.id)}`}>{t('detail.book_route')}</Link>

@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import {
   EXCURSION_BATCH_COUNT,
   EXCURSION_FILTERS,
-  EXCURSION_PAGE_CARDS,
   INITIAL_EXCURSION_COUNT,
   categoryToSlug,
 } from '../../data/excursionsPageContent.js';
@@ -12,6 +11,7 @@ import { textFromTranslation } from '../../utils/translationValues.js';
 import { preferredScrollBehavior } from '../../utils/motion.js';
 
 export default function ExcursionsGrid({
+  allExcursions,
   filter,
   setFilter,
   visible,
@@ -60,7 +60,7 @@ export default function ExcursionsGrid({
           >
             <div className={`exc-card__img${e.imageNeeded ? ' exc-card__img--placeholder' : ''}`} data-cat={categoryToSlug(e.category)}>
               <img src={e.image} alt={e.imageNeeded ? '' : e.alt || e.title} loading="lazy" />
-              <span className="exc-card__cat" data-cat={categoryToSlug(e.category)}>{textFromTranslation(t(`categories.${e.category}`, { defaultValue: e.category }), e.category)}</span>
+              <span className="exc-card__cat" data-cat={categoryToSlug(e.category)}>{e.localizedCategory || textFromTranslation(t(`categories.${e.category}`, { defaultValue: e.category }), e.category)}</span>
               {e.season && <span className="exc-card__season">{t('grid.season_prefix')} · {e.season}</span>}
             </div>
             <div className="exc-card__body">
@@ -126,13 +126,13 @@ export default function ExcursionsGrid({
         <header className="exc-directory__head">
           <span className="section-eyebrow">{t('grid.directory_eyebrow')}</span>
           <h2 className="section-title" id="exc-directory-title">
-            {t('grid.directory_title', { total: EXCURSION_PAGE_CARDS.length })}
+            {t('grid.directory_title', { total: allExcursions.length })}
           </h2>
           <p className="section-lead">{t('grid.directory_lead')}</p>
         </header>
         <div className="exc-directory__groups">
           {EXCURSION_FILTERS.filter(({ cat }) => cat !== 'all').map(({ cat }) => {
-            const items = EXCURSION_PAGE_CARDS.filter((excursion) => excursion.category === cat);
+            const items = allExcursions.filter((excursion) => excursion.category === cat);
             if (items.length === 0) return null;
             return (
               <section className="exc-directory__group" key={cat}>

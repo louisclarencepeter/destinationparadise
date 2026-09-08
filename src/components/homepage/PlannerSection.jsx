@@ -191,6 +191,7 @@ export default function PlannerSection({ initialPrompt }) {
   };
 
   const isInputBusy = sending || handoffState === 'sending' || handoffState === 'updating';
+  const hasUserMessages = history.some((message) => message.role === 'user');
 
   return (
     <section className="planner reveal" id="planner">
@@ -230,8 +231,24 @@ export default function PlannerSection({ initialPrompt }) {
             <button
               className="planner__reset"
               title={t('planner.header.reset_title')}
+              aria-label={t('planner.header.reset_title')}
               onClick={startOver}
-            >↻</button>
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M3 12a9 9 0 1 0 3-6.7" />
+                <path d="M3 4.5v5h5" />
+              </svg>
+            </button>
           </header>
           <div className="planner__log" ref={logRef} role="log" aria-live="polite">
             <div className="planner__msg planner__msg--bot planner__msg--welcome">
@@ -335,26 +352,24 @@ export default function PlannerSection({ initialPrompt }) {
             </button>
           </form>
           <footer className="planner__foot">
+            {hasUserMessages && (
+              <button
+                type="button"
+                className="planner__handoff"
+                onClick={() => submitHandoff(history)}
+                disabled={isInputBusy || handoffState === 'sent'}
+              >
+                {handoffState === 'sent' || handoffState === 'updated'
+                  ? t('planner.foot.handoff_done')
+                  : t('planner.foot.handoff_idle')}
+              </button>
+            )}
             <span className="planner__foot-note">{t('planner.foot.note')}</span>
             <span className="planner__privacy">
               {t('planner.foot.privacy_prefix')}{' '}
               <Link to="/privacy-policy">{t('planner.foot.privacy_link')}</Link>
               {t('planner.foot.privacy_suffix')}
             </span>
-            <button
-              type="button"
-              className="planner__handoff"
-              onClick={() => submitHandoff(history)}
-              disabled={
-                isInputBusy ||
-                handoffState === 'sent' ||
-                history.filter((m) => m.role === 'user').length < 1
-              }
-            >
-              {handoffState === 'sent' || handoffState === 'updated'
-                ? t('planner.foot.handoff_done')
-                : t('planner.foot.handoff_idle')}
-            </button>
           </footer>
         </div>
       </div>

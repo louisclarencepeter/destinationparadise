@@ -1,4 +1,29 @@
 {
+  "meta": {
+    "title": "Sklep z atrakcjami · Destination Paradise",
+    "description": "Przeglądaj atrakcje na Zanzibarze, wybierz datę i godzinę i zapłać raz za całą podróż. Wybrane wycieczki zarezerwujesz od ręki."
+  },
+  "catalog": {
+    "pickups": {
+      "safari-blue": "Odbiór z hotelu na południowym wybrzeżu lub w Stone Town między 07:15 a 07:45.",
+      "spice-tour": "Odbiór z hotelu w Stone Town lub na zachodnim wybrzeżu 30 minut przed rozpoczęciem.",
+      "stone-town": "Spotkanie przed Old Fort; odbiór z hotelu w Stone Town na życzenie."
+    },
+    "requestCards": {
+      "northern-safari": {
+        "title": "Safari w północnej Tanzanii",
+        "alt": "Stado zebr na trasie safari",
+        "blurb": "Safari przez Serengeti i Ngorongoro z obserwacją zwierząt, noclegami w lodge i przelotami małym samolotem.",
+        "durationTag": "Kilka dni"
+      },
+      "custom-journey": {
+        "title": "Podróż po Zanzibarze na miarę",
+        "alt": "Łodzie na turkusowej wodzie widziane z lotu ptaka",
+        "blurb": "Powiedz nam, jak mają wyglądać Twoje dni, a ułożymy prywatną trasę z rejsami dhow, ogrodami przypraw, plażami i Stone Town.",
+        "durationTag": "Na miarę"
+      }
+    }
+  },
   "hero": {
     "eyebrow": "Lokalnie. Z przewodnikiem. Bez pośpiechu.",
     "title": "Znajdź swoje atrakcje",
@@ -111,6 +136,7 @@
     "request_note": "Twoja podróż zawiera zapytania — najpierw potwierdzamy dostępność, płacisz raz na końcu."
   },
   "checkout": {
+    "meta_title": "Kasa · Destination Paradise",
     "back": "Wróć do swojej podróży",
     "title": "Kasa",
     "sub_one": "Jedno zamówienie, {{count}} atrakcja · Destination Paradise jest twoim gospodarzem.",
@@ -153,6 +179,7 @@
     "request_pricing_hint": "Atrakcje z zapytania wycenimy w mailu z potwierdzeniem."
   },
   "confirm": {
+    "meta_title": "Potwierdzenie rezerwacji · Destination Paradise",
     "processing_title": "Kończymy twoją płatność…",
     "processing_text": "Potwierdzamy zamówienie <ref>{{reference}}</ref> u naszego partnera płatności. Zwykle trwa to kilka sekund — ta strona odświeży się sama.",
     "problem_title": "Płatność nie została dokończona",

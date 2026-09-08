@@ -6,6 +6,7 @@ import { ArrowLeftIcon, CheckIcon } from '../components/store/StoreIcons.jsx';
 import { useBookingCart } from '../context/useBookingCart.js';
 import { useCurrency } from '../context/useCurrency.js';
 import { getCartExperience, getInstantExperience } from '../data/commerceCatalog.js';
+import { buildLocalizedExcursions } from '../data/localizedCatalog.js';
 import usePageMeta from '../hooks/usePageMeta.js';
 import {
   isRequestItem,
@@ -24,7 +25,8 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 // No card fields — production hands the payment to DPO's hosted page, so the
 // browser never touches card data even in the preview.
 export default function StoreCheckout() {
-  const { t, i18n, ready } = useTranslation('store');
+  const { t, i18n, ready } = useTranslation(['store', 'catalog']);
+  const catalogLanguage = ready ? i18n.resolvedLanguage : '';
   const { currency, format } = useCurrency();
   const { state, dispatch } = useBookingCart();
   const navigate = useNavigate();
@@ -36,20 +38,25 @@ export default function StoreCheckout() {
   const [conflictIds, setConflictIds] = useState(/** @type {string[] | null} */ (null));
   const [checkoutError, setCheckoutError] = useState(/** @type {string | null} */ (null));
 
-  usePageMeta({ title: 'Checkout · Destination Paradise', noindex: true });
+  usePageMeta({ title: t('store:checkout.meta_title'), noindex: true });
+
+  const catalog = useMemo(() => ({
+    excursions: catalogLanguage ? buildLocalizedExcursions(t) : [],
+    operationalCopy: t('store:catalog', { returnObjects: true, defaultValue: {} }),
+  }), [t, catalogLanguage]);
 
   const lines = useMemo(
     () =>
       state.items
-        .map((item) => ({ item, experience: getCartExperience(item.experienceId) }))
+        .map((item) => ({ item, experience: getCartExperience(item.experienceId, catalog.excursions, catalog.operationalCopy) }))
         .filter((line) => line.experience)
         .map((line) => ({
           ...line,
           totalUsd: isRequestItem(line.item)
             ? null
-            : priceSelection(getInstantExperience(line.item.experienceId), line.item.mode, line.item.guests).totalUsd,
+            : priceSelection(getInstantExperience(line.item.experienceId, catalog.excursions, catalog.operationalCopy), line.item.mode, line.item.guests).totalUsd,
         })),
-    [state.items],
+    [catalog, state.items],
   );
   const subtotalUsd = lines.reduce((sum, line) => sum + (line.totalUsd || 0), 0);
   // Any request item switches the whole checkout to the no-payment request
@@ -59,8 +66,8 @@ export default function StoreCheckout() {
 
   // An empty cart has nothing to check out — go pick experiences instead.
   useEffect(() => {
-    if (lines.length === 0 && !checking) navigate('/store', { replace: true });
-  }, [lines.length, checking, navigate]);
+    if (catalogLanguage && lines.length === 0 && !checking) navigate('/store', { replace: true });
+  }, [catalogLanguage, lines.length, checking, navigate]);
 
   const errors = {
     name: contact.name.trim() ? null : 'name_required',

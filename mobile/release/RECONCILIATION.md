@@ -69,12 +69,12 @@ corrections above; no replacement signed binary was built or submitted.
 
 ## Continuing work safely
 
-Use current `origin/development` for new shared work. The primary checkout at
-`/Users/louisclarencepetersgmail.com/Projects/destinationparadise` remains on its
-historical local `development` with the user's unfinished website edits. Its raw
-ahead/behind counts include old commit identities even though the ten mobile
-patches are now retained under the reconciled identities above. Do not push that
-checkout wholesale. Reconciling the remaining website work is a separate task.
+Use current `development` for new shared work. The subsequent
+[website reconciliation](../../WEBSITE_HANDOFF.md) integrated the useful older
+website changes and pending translations/section navigator with this mobile
+history. The original local commits and working state remain recoverable in the
+recorded bundle, archive and stash; do not reapply them wholesale. The website
+handoff records its separate validation and production-release boundary.
 
 Temporary integration branches must be removed after merging into `development`.
 Keep `main` unchanged and create no `development` → `main` PR without an explicit

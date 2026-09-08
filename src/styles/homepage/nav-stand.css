@@ -167,7 +167,10 @@
   transition: opacity 1.1s ease, transform 7s ease;
 }
 .hero__bg-slide:first-child { opacity: 1; }
-.hero__bg-slide.is-active {
+.hero__bg-slide:first-child.is-active {
+  transform: scale(1.05);
+}
+.hero__bg-slide.is-active:not(:first-child) {
   opacity: 1;
   transform: scale(1.05);
   animation: heroImageReveal 1.4s var(--dp-ease-out) both;
@@ -206,7 +209,6 @@
   border-radius: 999px;
   border: 1px solid rgba(255,255,255,.25);
   margin-bottom: 0;
-  animation: fadeInUp .9s var(--dp-ease-out) both;
 }
 .hero__eyebrow::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--dp-accent); box-shadow: 0 0 0 3px rgba(255,111,97,.3); }
 
@@ -220,8 +222,6 @@
   max-width: min(100%, 780px);
   text-wrap: balance;
   text-shadow: 0 8px 40px rgba(0,0,0,.35);
-  animation: fadeInUp 1s var(--dp-ease-out) both;
-  animation-delay: .1s;
 }
 .hero__motto {
   font-family: var(--dp-font-script);
@@ -232,22 +232,6 @@
   max-width: min(100%, 780px);
   text-wrap: balance;
   text-shadow: 0 2px 18px rgba(0,0,0,.4);
-  animation: fadeInUp 1s var(--dp-ease-out) both;
-  animation-delay: .3s;
-}
-.hero__motto-cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  margin-left: 2px;
-  background: currentColor;
-  vertical-align: text-bottom;
-  animation: hero-motto-blink 1.05s steps(1) infinite;
-}
-.hero__motto--typed.is-done .hero__motto-cursor { opacity: .55; }
-@keyframes hero-motto-blink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
 }
 .hero__desc {
   font-family: var(--dp-font-display);
@@ -258,13 +242,8 @@
   margin: 0 auto;
   max-width: 640px;
   text-shadow: 0 2px 10px rgba(0,0,0,.4);
-  animation: fadeInUp 1s var(--dp-ease-out) both;
-  animation-delay: .5s;
 }
-.hero__cta-row { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-bottom: clamp(.25rem, .7vh, .65rem);
-  animation: fadeInUp 1s var(--dp-ease-out) both;
-  animation-delay: .7s;
-}
+.hero__cta-row { display: flex; gap: .75rem; justify-content: center; flex-wrap: wrap; margin-bottom: clamp(.25rem, .7vh, .65rem); }
 
 /* Hero scroll indicator */
 .hero__scroll {
@@ -292,8 +271,6 @@
   display: grid;
   grid-template-columns: 1.6fr 1fr 1fr minmax(180px, auto);
   gap: 2px;
-  animation: fadeInUp 1s var(--dp-ease-out) both;
-  animation-delay: .9s;
 }
 .hero__search-field {
   display: flex; flex-direction: column; gap: 2px;

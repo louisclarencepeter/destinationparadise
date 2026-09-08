@@ -292,7 +292,7 @@ export default function SiteNav({ theme = 'light', themeMode: _themeMode = 'auto
         <div className="mm-menu__hero">
           <span className="mm-menu__eyebrow">{t('menu.eyebrow')}</span>
           <p className="mm-menu__head">
-            <Trans i18nKey="menu.headline" ns="nav" components={{ em: <em /> }} />
+            <Trans i18nKey="menu.headline" ns="nav" components={{ em: <em key="headline-em" /> }} />
           </p>
         </div>
 

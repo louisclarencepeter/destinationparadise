@@ -1,10 +1,10 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Link, useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import StoreBookingSection from '../components/store/StoreBookingSection.jsx';
 import { isStoreEnabled } from '../config/featureFlags.js';
-import { EXCURSIONS } from '../data/excursionsData.js';
+import { buildLocalizedExcursions } from '../data/localizedCatalog.js';
 import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
 import { touristTripJsonLd } from '../utils/productJsonLd.js';
 import { useCurrency } from '../context/useCurrency.js';
@@ -24,11 +24,16 @@ function formatTierName(key) {
 }
 
 export default function ExcursionDetail() {
-  const { t, i18n, ready } = useTranslation('excursions');
+  const { t, i18n, ready } = useTranslation(['excursions', 'catalog']);
+  const catalogLanguage = ready ? i18n.resolvedLanguage : '';
   const { id } = useParams();
   const { format } = useCurrency();
   const pageRef = useRef(null);
-  const excursion = EXCURSIONS.find((item) => item.id === id);
+  const excursions = useMemo(
+    () => (catalogLanguage ? buildLocalizedExcursions(t) : []),
+    [t, catalogLanguage],
+  );
+  const excursion = excursions.find((item) => item.id === id);
 
   // Key on the route id too: detail routes reuse one component instance across
   // :id changes, so without it the observer wouldn't re-scan the new product's
@@ -42,7 +47,7 @@ export default function ExcursionDetail() {
           description: clampDescription(
             excursion.description ||
               excursion.intro ||
-              `${excursion.title} — a guided Zanzibar excursion with hotel pickup, small groups, and local guides.`,
+              t('excursions:detail.meta_fallback', { title: excursion.title }),
           ),
           jsonLd: touristTripJsonLd({
             name: excursion.title,
@@ -73,11 +78,11 @@ export default function ExcursionDetail() {
   }
 
   const e = excursion;
-  const relatedExcursions = EXCURSIONS
+  const relatedExcursions = excursions
     .filter((item) => item.id !== e.id && item.category === e.category)
     .slice(0, 3);
   const pricingTiers = e.pricing ? Object.entries(e.pricing).map(([key, value]) => ({
-    label: formatTierName(key),
+    label: t(`excursions:detail.pricing_tiers.${key}`, { defaultValue: formatTierName(key) }),
     price: value.from,
     currency: value.currency || 'USD',
   })) : [];
@@ -95,7 +100,7 @@ export default function ExcursionDetail() {
       <article id={e.id} data-cat={categoryToSlug(e.category)} className="exc-block exc-block--detail">
         <div className="exc-block__img reveal">
           <ResponsiveImage src={e.image} alt={e.imageNeeded ? '' : e.alt || e.title} />
-          <span className="exc-block__cat" data-cat={categoryToSlug(e.category)}>{e.category}</span>
+          <span className="exc-block__cat" data-cat={categoryToSlug(e.category)}>{e.localizedCategory}</span>
           {e.season && <span className="exc-block__season">{t('detail.season_prefix')} · {e.season}</span>}
         </div>
         <div className="exc-block__body">
@@ -198,7 +203,7 @@ export default function ExcursionDetail() {
             {relatedExcursions.map((item) => (
               <li key={item.id}>
                 <Link to={`/excursions/${item.id}`}>
-                  <span>{item.category}</span>
+                  <span>{item.localizedCategory}</span>
                   <strong>{item.title}</strong>
                   <small>{t('detail.related.view')}</small>
                 </Link>

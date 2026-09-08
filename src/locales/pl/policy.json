@@ -80,8 +80,8 @@
     },
     "terms": {
       "eyebrow": "Regulamin",
-      "title": "Regulamin uslug",
-      "intro": "Ten regulamin opisuje, jak dzialaja zapytania, rezerwacje, platnosci, zmiany i odpowiedzialnosc za podroz podczas korzystania z uslug Destination Paradise.",
+      "title": "Regulamin usług",
+      "intro": "Ten regulamin opisuje, jak działają zapytania, rezerwacje, płatności, zmiany i odpowiedzialność za podróż podczas korzystania z usług Destination Paradise.",
       "sections": [
         {
           "title": "Korzystanie Z Naszej Strony",
@@ -104,7 +104,7 @@
           }
         },
         {
-          "title": "Odpowiedzialnosc Za Podroz",
+          "title": "Odpowiedzialność za podróż",
           "items": [
             "Podroz zawsze wiaze sie z pewnym ryzykiem. Odpowiadasz za odpowiednie ubezpieczenie, porady zdrowotne, wizy, paszporty i rzeczy osobiste.",
             "Starannie wspolpracujemy z lokalnymi partnerami, ale nie odpowiadamy za opoznienia lub straty spowodowane zdarzeniami poza nasza rozsadna kontrola.",

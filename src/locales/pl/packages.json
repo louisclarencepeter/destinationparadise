@@ -149,7 +149,7 @@
     "not_found_title": "Nie znaleziono pakietu",
     "not_found_text": "Tego pakietu nie ma na aktualnej liście. Zobacz wszystkie pakiety poniżej.",
     "back_to_packages": "Wróć do pakietów →",
-    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_aria": "Nawigacja okruszkowa",
     "breadcrumb_home": "Strona główna",
     "breadcrumb_packages": "Pakiety",
     "facts": {

@@ -23,6 +23,20 @@
     "body": "Tej strony nie ma na mapie. Wróć na stronę główną i wybierz trasę.",
     "cta": "← Wróć na stronę główną"
   },
+  "error": {
+    "eyebrow": "Coś poszło nie tak",
+    "title": "Na chwilę zgubiliśmy trasę",
+    "body": "Na stronie wystąpił nieoczekiwany błąd. Spróbuj ponownie lub wróć na stronę główną i kontynuuj planowanie.",
+    "actions_aria": "Opcje odzyskiwania",
+    "try_again": "Spróbuj ponownie",
+    "back_home": "Wróć na stronę główną",
+    "contact_aria": "Dane kontaktowe Destination Paradise",
+    "contact_intro": "Potrzebujesz bezpośredniego kontaktu? Napisz lub zadzwoń do naszego zespołu.",
+    "contact_hours": "Codziennie · 8:00–19:00 EAT",
+    "details": "Szczegóły błędu",
+    "error_name": "Błąd",
+    "unknown_error": "Nieznany błąd"
+  },
   "cookies": {
     "aria_label": "Zgoda na pliki cookie",
     "eyebrow": "Preferencje plików cookie",
@@ -52,6 +66,31 @@
     "loading": "Przygotowywanie indeksu strony...",
     "empty_title": "Brak dokładnego dopasowania.",
     "empty_body": "Wypróbuj miejsce, aktywność, typ pakietu, park safari lub trasę transferu – albo wyślij nam indywidualne zapytanie.",
-    "open_planner": "Otwórz plan podróży"
+    "open_planner": "Otwórz plan podróży",
+    "index": {
+      "categories": {
+        "page": "Strona",
+        "package": "Pakiet",
+        "safari": "Safari",
+        "safariStyle": "Rodzaj safari",
+        "excursion": "Wycieczka",
+        "excursionCombo": "Pakiet wycieczek",
+        "transfer": "Transfer"
+      },
+      "popular": ["Transfer z lotniska", "Safari Blue", "Pakiet dla nowożeńców", "Serengeti", "Stone Town", "Paje"],
+      "pages": {
+        "store": { "title": "Sklep z atrakcjami", "description": "Rezerwuj wybrane wycieczki od ręki, łącz kilka atrakcji i zapłać raz." },
+        "home": { "title": "Strona główna", "description": "Zacznij tutaj planowanie Zanzibaru, safari, pakietów, transferów i pogody." },
+        "excursions": { "title": "Wycieczki", "description": "Przeglądaj wycieczki po Zanzibarze: rejsy dhow, Stone Town, farmy przypraw, snorkeling, delfiny i przyrodę." },
+        "safaris": { "title": "Safari", "description": "Trasy przyrodnicze przez Serengeti, Ngorongoro, Tarangire, Nyerere, Ruahę i inne parki Tanzanii." },
+        "packages": { "title": "Pakiety", "description": "Pakiety safari i Zanzibar dla nowożeńców, rodzin oraz miłośników luksusu, kultury, migracji i plaż." },
+        "retreats": { "title": "Wyjazdy jogowe i wellness", "description": "Joga z nauczycielem, praca z ciałem, prywatne retreaty i wyprawy joga-safari na Zanzibarze." },
+        "transfers": { "title": "Transfery", "description": "Prywatne transfery lotniskowe i hotelowe, transport grupowy oraz usługa VIP na lotnisku." },
+        "tripPlanner": { "title": "Planer podróży", "description": "Ułóż własną trasę według tempa, dat, budżetu, czasu na plaży, safari i wycieczek." },
+        "booking": { "title": "Rezerwacja", "description": "Wyślij zapytanie o pakiet, wycieczkę, safari, transfer lub podróż na miarę." },
+        "guide": { "title": "Nasz przewodnik po Zanzibarze", "category": "Lokalny przewodnik", "description": "Polecane restauracje na Zanzibarze i wydarzenia, wokół których warto zaplanować pobyt." },
+        "about": { "title": "O nas", "description": "Poznaj Destination Paradise, naszą misję, historię, społeczność i lokalne podejście do podróży." }
+      }
+    }
   }
 }

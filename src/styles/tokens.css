@@ -7,6 +7,7 @@
     url("/assets/fonts/playfair-display-variable.ttf") format("truetype-variations");
   font-weight: 400 900;
   font-display: swap;
+  unicode-range: U+0000-017F, U+2000-206F, U+20AC;
 }
 @font-face {
   font-family: "Montserrat";
@@ -15,6 +16,7 @@
     url("/assets/fonts/montserrat-variable.ttf") format("truetype-variations");
   font-weight: 100 900;
   font-display: swap;
+  unicode-range: U+0000-017F, U+2000-206F, U+20AC;
 }
 @font-face {
   font-family: "Kaushan Script";
@@ -23,6 +25,7 @@
     url("/assets/fonts/kaushan-script-regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
+  unicode-range: U+0000-017F, U+2000-206F, U+20AC;
 }
 
 :root {

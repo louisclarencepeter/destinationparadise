@@ -1,16 +1,15 @@
 import { useEffect, useState, lazy, Suspense } from 'react';
 import { useTranslation } from 'react-i18next';
 import '../styles/homepage.css';
-import { EXCURSIONS } from '../data/excursionsData.js';
-import { DESTINATION_MAP_PINS } from '../data/destinationMapPins.js';
 import DeferredMount from '../components/DeferredMount.jsx';
 import usePageMeta from '../hooks/usePageMeta.js';
 import HeroSection from '../components/homepage/HeroSection.jsx';
-import ExcursionsSection from '../components/homepage/ExcursionsSection.jsx';
-import SafarisSection from '../components/homepage/SafarisSection.jsx';
-import PackagesSection from '../components/homepage/PackagesSection.jsx';
-import TransfersSection from '../components/homepage/TransfersSection.jsx';
+import SectionCompass from '../components/homepage/SectionCompass.jsx';
 
+const ExcursionsSection = lazy(() => import('../components/homepage/ExcursionsSection.jsx'));
+const SafarisSection = lazy(() => import('../components/homepage/SafarisSection.jsx'));
+const PackagesSection = lazy(() => import('../components/homepage/PackagesSection.jsx'));
+const TransfersSection = lazy(() => import('../components/homepage/TransfersSection.jsx'));
 const MapSection = lazy(() => import('../components/homepage/MapSection.jsx'));
 const PlannerSection = lazy(() => import('../components/homepage/PlannerSection.jsx'));
 const WhySection = lazy(() => import('../components/homepage/WhySection.jsx'));
@@ -22,8 +21,6 @@ const ContactSection = lazy(() => import('../components/homepage/ContactSection.
 const NewsletterSection = lazy(() => import('../components/homepage/NewsletterSection.jsx'));
 import { readStoredTheme, readStoredThemeMode, readStoredTweaks } from '../utils/theme.js';
 import { preferredScrollBehavior } from '../utils/motion.js';
-
-const PINS = DESTINATION_MAP_PINS;
 
 // season: hotel pricing band, not climate.
 //   'peak' — festive holidays + European summer (most expensive, book months ahead)
@@ -47,8 +44,6 @@ const SCORES = [72, 78, 62, 42, 56, 82, 92, 95, 90, 80, 55, 68];
 const NOW_MONTH = new Date().getMonth();
 
 const TWEAKS_DEFAULTS = { hero: 'photo', layout: '3up', theme: 'light', themeMode: 'auto' };
-const BEST_SELLING_EXCURSION_IDS = ['safari-blue', 'mnemba', 'spice-tour'];
-
 function loadTweaks() {
   const theme = readStoredTheme();
   const themeMode = readStoredThemeMode();
@@ -60,7 +55,6 @@ function loadTweaks() {
 export default function Homepage() {
   const { t } = useTranslation('home');
   const [tweaks, setTweaks] = useState(loadTweaks);
-  const [activePin, setActivePin] = useState('stone-town');
   const [tweaksOpen, setTweaksOpen] = useState(false);
   const [tweaksGearVisible, setTweaksGearVisible] = useState(false);
   const [plannerPrompt, setPlannerPrompt] = useState(
@@ -94,29 +88,53 @@ export default function Homepage() {
     return () => window.removeEventListener('dp-theme-change', onThemeChange);
   }, []);
 
+  useEffect(() => {
+    if (!plannerPrompt) return undefined;
+
+    let frameId;
+    let attempts = 0;
+    const scrollWhenReady = () => {
+      const target = document.getElementById('planner-chat') || document.getElementById('planner');
+      if (target) {
+        target.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
+        return;
+      }
+      attempts += 1;
+      if (attempts < 600) frameId = window.requestAnimationFrame(scrollWhenReady);
+    };
+
+    frameId = window.requestAnimationFrame(scrollWhenReady);
+    return () => window.cancelAnimationFrame(frameId);
+  }, [plannerPrompt]);
+
   // Reveal-on-scroll
   useEffect(() => {
-    if (!('IntersectionObserver' in window)) {
-      document.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => el.classList.add('is-visible'));
-      return undefined;
-    }
-
-    const io = new IntersectionObserver((entries) => {
+    const io = typeof IntersectionObserver === 'undefined' ? null : new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
           e.target.classList.add('is-visible');
-          io.unobserve(e.target);
+          io?.unobserve(e.target);
         }
       });
     }, { threshold: 0.12 });
 
-    const observeReveal = (node) => {
-      if (!(node instanceof Element)) return;
-      if (node.matches('.reveal:not(.is-visible)')) io.observe(node);
-      node.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => io.observe(el));
+    const revealOrObserve = (element) => {
+      if (io) io.observe(element);
+      else {
+        // Offscreen content-visibility can pause entrance animations at opacity
+        // zero. The fallback exposes late sections without waiting on motion.
+        element.style.animation = 'none';
+        element.classList.add('is-visible');
+      }
     };
 
-    document.querySelectorAll('.reveal:not(.is-visible)').forEach((el) => io.observe(el));
+    const observeReveal = (node) => {
+      if (!(node instanceof Element)) return;
+      if (node.matches('.reveal:not(.is-visible)')) revealOrObserve(node);
+      node.querySelectorAll('.reveal:not(.is-visible)').forEach(revealOrObserve);
+    };
+
+    document.querySelectorAll('.reveal:not(.is-visible)').forEach(revealOrObserve);
 
     const root = document.getElementById('root') || document.body;
     const mutationObserver = new MutationObserver((mutations) => {
@@ -128,7 +146,7 @@ export default function Homepage() {
 
     return () => {
       mutationObserver.disconnect();
-      io.disconnect();
+      io?.disconnect();
     };
   }, []);
 
@@ -151,10 +169,6 @@ export default function Homepage() {
 
   const setTweak = (key, val) => setTweaks((s) => ({ ...s, [key]: val }));
 
-  const bestSellingExcursions = BEST_SELLING_EXCURSION_IDS
-    .map((id) => EXCURSIONS.find((trip) => trip.id === id))
-    .filter(Boolean);
-
   const handleHeroSearch = (e) => {
     e.preventDefault();
     const fields = new FormData(e.currentTarget);
@@ -176,76 +190,86 @@ export default function Homepage() {
       id: Date.now(),
       text: `I'm looking for ${experienceText}${dateText} for ${guests}. Can you suggest the best fit and ask me anything else you need?`,
     });
-    const target = document.getElementById('planner-chat') || document.getElementById('planner');
-    target?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
+    document.querySelector('[data-deferred-anchor="planner"]')
+      ?.scrollIntoView({ behavior: preferredScrollBehavior(), block: 'start' });
   };
-
-  const islandPins = PINS.filter((p) => p.region === 'Zanzibar');
-  const mainlandPins = PINS.filter((p) => p.region === 'Mainland');
 
   return (
     <>
       <main>
       <HeroSection tweaks={tweaks} handleHeroSearch={handleHeroSearch} />
-      <ExcursionsSection tweaks={tweaks} excursions={bestSellingExcursions} />
-      <SafarisSection />
-      <PackagesSection />
-      <TransfersSection />
-      <DeferredMount minHeight="640px">
+      <DeferredMount anchorId="excursions" minHeight="900px">
+        <Suspense fallback={<div style={{ minHeight: '900px' }} />}>
+          <ExcursionsSection tweaks={tweaks} />
+        </Suspense>
+      </DeferredMount>
+      <DeferredMount anchorId="safaris" minHeight="860px">
+        <Suspense fallback={<div style={{ minHeight: '860px' }} />}>
+          <SafarisSection />
+        </Suspense>
+      </DeferredMount>
+      <DeferredMount anchorId="packages" minHeight="980px">
+        <Suspense fallback={<div style={{ minHeight: '980px' }} />}>
+          <PackagesSection />
+        </Suspense>
+      </DeferredMount>
+      <DeferredMount anchorId="transfers" minHeight="820px">
+        <Suspense fallback={<div style={{ minHeight: '820px' }} />}>
+          <TransfersSection />
+        </Suspense>
+      </DeferredMount>
+      <DeferredMount anchorId="planner" force={Boolean(plannerPrompt)} minHeight="640px">
         <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
           <PlannerSection initialPrompt={plannerPrompt} />
         </Suspense>
       </DeferredMount>
-      <DeferredMount minHeight="520px">
+      <DeferredMount anchorId="why" minHeight="520px">
         <Suspense fallback={<div style={{ minHeight: '360px' }} />}>
           <WhySection />
         </Suspense>
       </DeferredMount>
-      <DeferredMount minHeight="520px">
+      <DeferredMount anchorId="map" minHeight="520px">
         <Suspense fallback={<div style={{ minHeight: '400px' }} />}>
           <MapSection
             tweaks={tweaks}
-            PINS={PINS}
-            activePin={activePin}
-            setActivePin={setActivePin}
-            islandPins={islandPins}
-            mainlandPins={mainlandPins}
             ctaHref="/explore"
             ctaLabel={t('map.cta_explore_full')}
           />
         </Suspense>
       </DeferredMount>
-      <DeferredMount minHeight="520px">
+      <DeferredMount anchorId="weather" minHeight="520px">
         <Suspense fallback={<div style={{ minHeight: '360px' }} />}>
           <WeatherSection MONTHS={MONTHS} SCORES={SCORES} NOW_MONTH={NOW_MONTH} />
         </Suspense>
       </DeferredMount>
-      <DeferredMount minHeight="520px">
+      <DeferredMount anchorId="gallery" minHeight="520px">
         <Suspense fallback={<div style={{ minHeight: '360px' }} />}>
           <GallerySection />
         </Suspense>
       </DeferredMount>
-      <DeferredMount minHeight="420px">
+      <DeferredMount anchorId="reviews" minHeight="420px">
         <Suspense fallback={<div style={{ minHeight: '320px' }} />}>
           <TestimonialsSection />
         </Suspense>
       </DeferredMount>
-      <DeferredMount minHeight="520px">
+      <DeferredMount anchorId="about-intro" minHeight="520px">
         <Suspense fallback={<div style={{ minHeight: '360px' }} />}>
           <AboutSection />
         </Suspense>
       </DeferredMount>
-      <DeferredMount minHeight="520px">
+      <DeferredMount anchorId="contact" minHeight="520px">
         <Suspense fallback={<div style={{ minHeight: '360px' }} />}>
           <ContactSection />
         </Suspense>
       </DeferredMount>
-      <DeferredMount minHeight="260px">
+      <DeferredMount anchorId="newsletter" minHeight="260px">
         <Suspense fallback={<div style={{ minHeight: '220px' }} />}>
           <NewsletterSection />
         </Suspense>
       </DeferredMount>
       </main>
+
+      <SectionCompass />
 
       {/* ============ TWEAKS PANEL (claude.ai design preview only) ============ */}
       <button

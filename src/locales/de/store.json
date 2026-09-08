@@ -1,4 +1,29 @@
 {
+  "meta": {
+    "title": "Erlebnis-Shop · Destination Paradise",
+    "description": "Entdecke Erlebnisse auf Sansibar, wähle Datum und Uhrzeit und bezahle die ganze Reise in einem Schritt. Ausgewählte Ausflüge sind sofort buchbar."
+  },
+  "catalog": {
+    "pickups": {
+      "safari-blue": "Hotelabholung an der Südküste und in Stone Town zwischen 07:15 und 07:45 Uhr.",
+      "spice-tour": "Hotelabholung in Stone Town und an der Westküste 30 Minuten vor Beginn.",
+      "stone-town": "Treffpunkt am Vorplatz des Old Fort; Abholung von einem Hotel in Stone Town auf Anfrage."
+    },
+    "requestCards": {
+      "northern-safari": {
+        "title": "Safari im Norden Tansanias",
+        "alt": "Zebraherde auf einer Safaripiste",
+        "blurb": "Eine Festland-Safari durch Serengeti und Ngorongoro mit Pirschfahrten, Lodge-Übernachtungen und Transfers im Kleinflugzeug.",
+        "durationTag": "Mehrtägig"
+      },
+      "custom-journey": {
+        "title": "Individuelle Sansibar-Reise",
+        "alt": "Boote im türkisfarbenen Wasser aus der Luft",
+        "blurb": "Erzähl uns, wie sich deine Tage anfühlen sollen. Wir gestalten daraus eine private Route mit Dhaus, Gewürzgärten, Stränden und Stone Town.",
+        "durationTag": "Maßgeschneidert"
+      }
+    }
+  },
   "hero": {
     "eyebrow": "Lokal. Geführt. Entspannt.",
     "title": "Finde deine Erlebnisse",
@@ -111,6 +136,7 @@
     "request_note": "Deine Reise enthält Anfragen — wir bestätigen erst die Verfügbarkeit, gezahlt wird einmal am Ende."
   },
   "checkout": {
+    "meta_title": "Kasse · Destination Paradise",
     "back": "Zurück zu deiner Reise",
     "title": "Checkout",
     "sub_one": "Eine Bestellung, {{count}} Erlebnis · Destination Paradise ist dein Gastgeber.",
@@ -153,6 +179,7 @@
     "request_pricing_hint": "Angefragte Erlebnisse werden in deiner Bestätigungs-E-Mail bepreist."
   },
   "confirm": {
+    "meta_title": "Buchungsbestätigung · Destination Paradise",
     "processing_title": "Zahlung wird abgeschlossen…",
     "processing_text": "Wir bestätigen Bestellung <ref>{{reference}}</ref> gerade mit unserem Zahlungspartner. Das dauert meist nur ein paar Sekunden — die Seite aktualisiert sich von selbst.",
     "problem_title": "Die Zahlung wurde nicht abgeschlossen",

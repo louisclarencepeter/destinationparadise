@@ -1,4 +1,5 @@
 import { Link } from 'react-router';
+import { useTranslation } from 'react-i18next';
 import { CONTACT_INFO } from '../constants/contactInfo.js';
 import '../styles/error-boundary.css';
 
@@ -17,27 +18,28 @@ function CompassIcon() {
 }
 
 export default function ErrorBoundaryPage({ error, onReset }) {
+  const { t } = useTranslation('common');
   return (
     <main className="error-page" role="alert">
       <section className="error-page__panel" aria-labelledby="error-title">
         <div className="error-page__mark">
           <CompassIcon />
         </div>
-        <span className="error-page__eyebrow">Something went wrong</span>
-        <h1 className="error-page__title" id="error-title">We lost the route for a moment</h1>
+        <span className="error-page__eyebrow">{t('error.eyebrow')}</span>
+        <h1 className="error-page__title" id="error-title">{t('error.title')}</h1>
         <p className="error-page__lead">
-          The page hit an unexpected snag. Try again, or return to the homepage and keep planning from there.
+          {t('error.body')}
         </p>
-        <div className="error-page__actions" aria-label="Recovery actions">
+        <div className="error-page__actions" aria-label={t('error.actions_aria')}>
           <button className="btn error-page__button" type="button" onClick={onReset}>
-            Try again
+            {t('error.try_again')}
           </button>
           <Link className="btn btn--ghost-dark error-page__button" to="/" onClick={onReset}>
-            Back to home
+            {t('error.back_home')}
           </Link>
         </div>
-        <aside className="error-page__contact" aria-label="Destination Paradise contact details">
-          <p className="error-page__contact-intro">Need us directly? Reach the team here.</p>
+        <aside className="error-page__contact" aria-label={t('error.contact_aria')}>
+          <p className="error-page__contact-intro">{t('error.contact_intro')}</p>
           <div className="error-page__contact-list">
             <a href={`mailto:${CONTACT_INFO.email}`}>{CONTACT_INFO.email}</a>
             {CONTACT_INFO.phones.map((phone) => (
@@ -45,12 +47,12 @@ export default function ErrorBoundaryPage({ error, onReset }) {
             ))}
             <a href={CONTACT_INFO.whatsappUrl} target="_blank" rel="noreferrer">WhatsApp</a>
           </div>
-          <p className="error-page__contact-meta">{CONTACT_INFO.hours}</p>
+          <p className="error-page__contact-meta">{t('error.contact_hours')}</p>
         </aside>
         {isDev && error ? (
           <details className="error-page__details">
-            <summary>Error details</summary>
-            <pre>{`${error.name || 'Error'}: ${error.message || 'Unknown error'}`}</pre>
+            <summary>{t('error.details')}</summary>
+            <pre>{`${error.name || t('error.error_name')}: ${error.message || t('error.unknown_error')}`}</pre>
           </details>
         ) : null}
       </section>

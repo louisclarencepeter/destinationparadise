@@ -6,6 +6,7 @@ import GuestPicker from '../components/store/GuestPicker.jsx';
 import { STORE_GUESTS_KEY } from '../components/store/BookingPanel.jsx';
 import { ArrowRightIcon } from '../components/store/StoreIcons.jsx';
 import { getStoreCards } from '../data/commerceCatalog.js';
+import { buildLocalizedExcursions } from '../data/localizedCatalog.js';
 import usePageMeta from '../hooks/usePageMeta.js';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import '../styles/store.css';
@@ -15,7 +16,8 @@ const HERO_IMAGE = '/assets/images/excursions/dream-dhow-sunset.webp';
 // Store landing page: hero with search, filter chips, experience grid.
 // Phase 1 (feature-flagged): fixture catalog, noindex until the pilot launches.
 export default function ExperiencesStore() {
-  const { t, i18n, ready } = useTranslation('store');
+  const { t, i18n, ready } = useTranslation(['store', 'catalog']);
+  const catalogLanguage = ready ? i18n.resolvedLanguage : '';
   const pageRef = useRef(null);
   const [query, setQuery] = useState('');
   const [filter, setFilter] = useState('all');
@@ -28,9 +30,8 @@ export default function ExperiencesStore() {
   });
 
   usePageMeta({
-    title: 'Experiences Store · Destination Paradise',
-    description:
-      'Browse Zanzibar experiences, pick a date and time for each one, and pay once for the whole trip. Instant booking for selected excursions.',
+    title: t('store:meta.title'),
+    description: t('store:meta.description'),
     // Indexable only in launched builds (VITE_STORE_ENABLED baked in at build
     // time, matching scripts/routes.mjs); localStorage previews stay noindex.
     noindex: import.meta.env.VITE_STORE_ENABLED !== 'true',
@@ -38,7 +39,10 @@ export default function ExperiencesStore() {
 
   useRevealOnScroll(pageRef, '.reveal:not(.is-visible)', ready ? i18n.resolvedLanguage : 'loading');
 
-  const cards = useMemo(() => getStoreCards(), []);
+  const cards = useMemo(() => getStoreCards({
+    excursions: catalogLanguage ? buildLocalizedExcursions(t) : [],
+    operationalCopy: t('store:catalog', { returnObjects: true, defaultValue: {} }),
+  }), [t, catalogLanguage]);
   const visibleCards = useMemo(() => {
     const needle = query.trim().toLowerCase();
     return cards.filter(

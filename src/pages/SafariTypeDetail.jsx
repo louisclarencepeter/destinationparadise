@@ -1,8 +1,8 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Link, useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
-import { ALL_SAFARI_PRODUCTS, SAFARI_TYPES } from '../data/safariPageData.js';
+import { buildLocalizedSafariProducts, buildLocalizedSafariTypes } from '../data/localizedCatalog.js';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
 import { touristTripJsonLd } from '../utils/productJsonLd.js';
@@ -12,10 +12,24 @@ import '../styles/excursions.css';
 import '../styles/safaris.css';
 
 export default function SafariTypeDetail() {
-  const { t, i18n, ready } = useTranslation('safaris');
+  const { t, i18n, ready } = useTranslation(['safaris', 'catalog']);
+  const catalogLanguage = ready ? i18n.resolvedLanguage : '';
   const { typeId } = useParams();
   const { format } = useCurrency();
-  const type = SAFARI_TYPES.find((item) => item.id === typeId);
+  const safariProducts = useMemo(
+    () => (catalogLanguage ? buildLocalizedSafariProducts(t) : []),
+    [t, catalogLanguage],
+  );
+  const safariTypes = useMemo(
+    () => (catalogLanguage ? buildLocalizedSafariTypes(t).map((item) => ({
+      ...item,
+      title: t(`safaris:types.items.${item.id}.title`, { defaultValue: item.title }),
+      desc: t(`safaris:types.items.${item.id}.desc`, { defaultValue: item.desc }),
+      bestFor: t(`safaris:types.items.${item.id}.best_for`, { defaultValue: item.bestFor }),
+    })) : []),
+    [t, catalogLanguage],
+  );
+  const type = safariTypes.find((item) => item.id === typeId);
   const pageRef = useRef(null);
 
   // Key on the route param too: the route reuses one component instance across
@@ -30,7 +44,7 @@ export default function SafariTypeDetail() {
           description: clampDescription(
             type.blurb ||
               type.intro ||
-              `${type.title} safaris across Tanzania — handpicked routes, expert guides, and tailored itineraries.`,
+              t('safaris:type_detail.meta_fallback', { title: type.title }),
           ),
           jsonLd: touristTripJsonLd({
             name: type.title,
@@ -59,7 +73,7 @@ export default function SafariTypeDetail() {
     );
   }
 
-  const routes = ALL_SAFARI_PRODUCTS.filter((route) => type.routeIds.includes(route.id));
+  const routes = safariProducts.filter((route) => type.routeIds.includes(route.id));
 
   return (
     <main className="safaris-page exc-detail saf-type-detail" ref={pageRef}>
@@ -108,7 +122,7 @@ export default function SafariTypeDetail() {
             <Link key={route.id} to={`/safaris/${route.id}`} className="exc-card saf-route-card reveal" style={{ '--reveal-index': i }} aria-label={t('itineraries.explore_aria', { title: route.title })}>
               <div className="exc-card__img">
                 <img src={route.image} alt={route.alt || route.title} loading="lazy" />
-                <span className="exc-card__cat">{route.category}</span>
+                <span className="exc-card__cat">{route.localizedCategory}</span>
                 {route.feature && <span className="exc-card__season">{t('itineraries.most_popular')}</span>}
               </div>
               <div className="exc-card__body">
@@ -116,7 +130,7 @@ export default function SafariTypeDetail() {
                 <h3 className="exc-card__title">{route.title}</h3>
                 <p className="exc-card__desc">{route.intro}</p>
                 <div className="exc-card__meta">
-                  <span>{route.duration}</span>
+                  <span>{route.localizedDuration}</span>
                   <span>{route.from}</span>
                 </div>
                 <div className="exc-card__foot">

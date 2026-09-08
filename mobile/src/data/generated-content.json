@@ -40,7 +40,7 @@
       },
       {
         "path": "src/utils/productImages.js",
-        "sha256": "2c1590b26109cbf8b8fec47af874b9b0b6ad922fea4b4212d9610a412549cdaf"
+        "sha256": "be673d512981f67997141e22ba56c54d0c52c3d4ffa719a4498383cc96b65590"
       },
       {
         "path": "src/components/explore/ExploreLocalGuide.jsx",
@@ -52,11 +52,11 @@
       },
       {
         "path": "src/locales/en/home.json",
-        "sha256": "954fbb9d54e5f88c274d4ab5bb9853129846bb31530ffffb9726bd6e5b8aed70"
+        "sha256": "7d52e6afa8c80d57746554022ae80bb88d4605cbeb9a94c0529f9ba423aa0b3c"
       },
       {
         "path": "src/pages/Homepage.jsx",
-        "sha256": "2b66822ea34402904ba674aad82bc95298f1316fae801d823b2d12f065b72b8d"
+        "sha256": "eac99a47ad2dd51f74730d2a4d85283d0782b602c21ecf77f7168094c640846a"
       }
     ]
   },

@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { ArrowIcon } from './Icons.jsx';
 import ResponsiveImage from '../ResponsiveImage.jsx';
+import { isPrerender } from '../../utils/prerender.js';
 import { arrayFromTranslation } from '../../utils/translationValues.js';
 
 const HERO_SLIDES = [
@@ -14,7 +15,6 @@ const HERO_SLIDES = [
 ];
 const HERO_SLIDE_INTERVAL_MS = 7000;
 const HERO_SLIDE_PRELOAD_DELAY_MS = 6500;
-const HERO_SLIDE_INTERACTION_EVENTS = ['pointerdown', 'touchstart', 'keydown'];
 
 const dateInputValue = (date) => {
   const year = date.getFullYear();
@@ -26,42 +26,9 @@ const dateInputValue = (date) => {
 function HeroMotto() {
   const { t } = useTranslation('home');
   const motto = t('hero.motto');
-  const [typed, setTyped] = useState('');
-  const [done, setDone] = useState(false);
-
-  useEffect(() => {
-    setTyped('');
-    setDone(false);
-    const reduceMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      setTyped(motto);
-      setDone(true);
-      return undefined;
-    }
-    let timeoutId;
-    let i = 0;
-    const tick = () => {
-      i += 1;
-      setTyped(motto.slice(0, i));
-      if (i >= motto.length) {
-        setDone(true);
-        return;
-      }
-      const pause = motto[i - 1] === ' ' ? 80 : 48 + (i % 4) * 14;
-      timeoutId = window.setTimeout(tick, pause);
-    };
-    timeoutId = window.setTimeout(tick, 600);
-    return () => {
-      if (timeoutId) window.clearTimeout(timeoutId);
-    };
-  }, [motto]);
 
   return (
-    <h2 className={`hero__motto hero__motto--typed${done ? ' is-done' : ''}`}>
-      <span className="visually-hidden">{motto}</span>
-      <i aria-hidden="true">{typed}</i>
-      <span className="hero__motto-cursor" aria-hidden="true" />
-    </h2>
+    <h2 className="hero__motto">{motto}</h2>
   );
 }
 
@@ -101,7 +68,7 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
   }, []);
 
   useEffect(() => {
-    if (reduceMotion) {
+    if (reduceMotion || isPrerender()) {
       setSlidesReady(false);
       return undefined;
     }
@@ -119,18 +86,11 @@ export default function HeroSection({ tweaks, handleHeroSearch }) {
       revealSlides();
     }, HERO_SLIDE_PRELOAD_DELAY_MS);
 
-    HERO_SLIDE_INTERACTION_EVENTS.forEach((event) => {
-      window.addEventListener(event, revealSlides, { once: true, passive: true });
-    });
-
     return () => {
       window.clearTimeout(timeoutId);
       if (idleId !== undefined && 'cancelIdleCallback' in window) {
         window.cancelIdleCallback(idleId);
       }
-      HERO_SLIDE_INTERACTION_EVENTS.forEach((event) => {
-        window.removeEventListener(event, revealSlides);
-      });
     };
   }, [reduceMotion]);
 

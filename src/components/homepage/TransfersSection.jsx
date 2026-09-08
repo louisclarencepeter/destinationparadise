@@ -18,7 +18,7 @@ const getTransferTagKey = (transfer) => {
 };
 
 export default function TransfersSection() {
-  const { t } = useTranslation(['home', 'transfers']);
+  const { t } = useTranslation(['home', 'transfers'], { useSuspense: true });
   const transferCards = useMemo(() => {
     const transferT = (key, options) => t(`transfers:${key}`, options);
     const products = buildLocalizedTransferProducts(transferT);

@@ -11,7 +11,7 @@ import { EXCURSIONS } from './excursionsData.js';
 
 export const STORE_TIMEZONE = 'Africa/Dar_es_Salaam';
 
-const excursionById = (id) => EXCURSIONS.find((item) => item.id === id);
+const excursionById = (id, excursions = EXCURSIONS) => excursions.find((item) => item.id === id);
 
 // Operational rules per pilot experience. Times are Zanzibar local wall times;
 // capacity/cutoff values are placeholders until Phase 0 confirms them.
@@ -82,11 +82,12 @@ const REQUEST_CARDS = [
   },
 ];
 
-function instantExperienceFor(rules) {
-  const excursion = excursionById(rules.id);
+function instantExperienceFor(rules, excursions = EXCURSIONS, operationalCopy = {}) {
+  const excursion = excursionById(rules.id, excursions);
   if (!excursion || typeof excursion.price !== 'number') return null;
   return {
     ...rules,
+    pickup: operationalCopy.pickups?.[rules.id] || rules.pickup,
     sourceKey: excursion.id,
     title: excursion.title,
     image: excursion.image,
@@ -99,12 +100,11 @@ function instantExperienceFor(rules) {
   };
 }
 
-const INSTANT_EXPERIENCES = INSTANT_RULES.map(instantExperienceFor).filter(Boolean);
+export const INSTANT_EXPERIENCE_IDS = INSTANT_RULES.map((rules) => rules.id);
 
-export const INSTANT_EXPERIENCE_IDS = INSTANT_EXPERIENCES.map((exp) => exp.id);
-
-export function getInstantExperience(id) {
-  return INSTANT_EXPERIENCES.find((exp) => exp.id === id) || null;
+export function getInstantExperience(id, excursions = EXCURSIONS, operationalCopy = {}) {
+  const rules = INSTANT_RULES.find((entry) => entry.id === id);
+  return rules ? instantExperienceFor(rules, excursions, operationalCopy) : null;
 }
 
 export function isInstantBookable(id) {
@@ -118,11 +118,12 @@ const REQUEST_RULES = [
   { id: 'prison-island', code: 'PI', maxGuests: 8, minGuests: 1 },
 ];
 
-function requestExperienceFor(rules) {
-  const excursion = excursionById(rules.id);
+function requestExperienceFor(rules, excursions = EXCURSIONS, operationalCopy = {}) {
+  const excursion = excursionById(rules.id, excursions);
   if (!excursion) return null;
   return {
     ...rules,
+    pickup: operationalCopy.pickups?.[rules.id],
     sourceKey: excursion.id,
     title: excursion.title,
     image: excursion.image,
@@ -135,20 +136,23 @@ function requestExperienceFor(rules) {
   };
 }
 
-const REQUEST_EXPERIENCES = REQUEST_RULES.map(requestExperienceFor).filter(Boolean);
-
-export function getRequestExperience(id) {
-  return REQUEST_EXPERIENCES.find((exp) => exp.id === id) || null;
+export function getRequestExperience(id, excursions = EXCURSIONS, operationalCopy = {}) {
+  const rules = REQUEST_RULES.find((entry) => entry.id === id);
+  return rules ? requestExperienceFor(rules, excursions, operationalCopy) : null;
 }
 
 // Any experience that can live in the cart (drawer/checkout rendering).
-export function getCartExperience(id) {
-  return getInstantExperience(id) || getRequestExperience(id);
+export function getCartExperience(id, excursions = EXCURSIONS, operationalCopy = {}) {
+  return getInstantExperience(id, excursions, operationalCopy) || getRequestExperience(id, excursions, operationalCopy);
 }
 
 // Cards for the store grid: instant pilots first, then request-only products.
-export function getStoreCards() {
-  const instant = INSTANT_EXPERIENCES.map((exp) => ({
+export function getStoreCards({ excursions = EXCURSIONS, operationalCopy = {} } = {}) {
+  const localizedCopy = /** @type {any} */ (operationalCopy);
+  const instant = INSTANT_RULES
+    .map((rules) => instantExperienceFor(rules, excursions, operationalCopy))
+    .filter(Boolean)
+    .map((exp) => ({
     id: exp.id,
     kind: 'instant',
     title: exp.title,
@@ -161,15 +165,16 @@ export function getStoreCards() {
   }));
 
   const request = REQUEST_CARDS.map((card) => {
-    const excursion = card.sourceKey ? excursionById(card.sourceKey) : null;
+    const translated = localizedCopy.requestCards?.[card.id] || {};
+    const excursion = card.sourceKey ? excursionById(card.sourceKey, excursions) : null;
     return {
       id: card.id,
       kind: 'request',
-      title: card.title || excursion?.title || card.id,
+      title: translated.title || card.title || excursion?.title || card.id,
       image: card.image || excursion?.image,
-      alt: card.alt || excursion?.alt || card.title || '',
-      blurb: card.blurb || excursion?.description || '',
-      durationTag: card.durationTag || excursion?.duration || '',
+      alt: translated.alt || card.alt || excursion?.alt || card.title || '',
+      blurb: translated.blurb || card.blurb || excursion?.description || '',
+      durationTag: translated.durationTag || card.durationTag || excursion?.duration || '',
       priceFromUsd: card.priceFromUsd ?? (typeof excursion?.price === 'number' ? excursion.price : null),
       to: card.to,
     };

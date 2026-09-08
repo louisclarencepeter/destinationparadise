@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getInstantExperience, getRequestExperience } from '../../data/commerceCatalog.js';
+import { buildLocalizedExcursions } from '../../data/localizedCatalog.js';
 import { useRevealOnScroll } from '../../hooks/useRevealOnScroll.js';
 import { trackEvent } from '../../utils/analytics.js';
 import BookingPanel from './BookingPanel.jsx';
@@ -12,10 +13,15 @@ import '../../styles/store.css';
 // the request-to-book panel for requestable ones, nothing for the rest —
 // mounting it is safe on every excursion. Parent gates on the store flag.
 export default function StoreBookingSection({ excursionId }) {
-  const { t, i18n, ready } = useTranslation('store');
+  const { t, i18n, ready } = useTranslation(['store', 'catalog']);
+  const catalogLanguage = ready ? i18n.resolvedLanguage : '';
   const sectionRef = useRef(null);
-  const instant = getInstantExperience(excursionId);
-  const requestable = instant ? null : getRequestExperience(excursionId);
+  const catalog = useMemo(() => ({
+    excursions: catalogLanguage ? buildLocalizedExcursions(t) : [],
+    operationalCopy: t('store:catalog', { returnObjects: true, defaultValue: {} }),
+  }), [t, catalogLanguage]);
+  const instant = getInstantExperience(excursionId, catalog.excursions, catalog.operationalCopy);
+  const requestable = instant ? null : getRequestExperience(excursionId, catalog.excursions, catalog.operationalCopy);
   const experience = instant || requestable;
 
   useRevealOnScroll(
@@ -24,9 +30,10 @@ export default function StoreBookingSection({ excursionId }) {
     ready ? `${i18n.resolvedLanguage}-${excursionId}` : 'loading',
   );
 
+  const experienceId = experience?.id;
   useEffect(() => {
-    if (experience) trackEvent('view_item', { item_id: experience.id });
-  }, [experience]);
+    if (experienceId) trackEvent('view_item', { item_id: experienceId });
+  }, [experienceId]);
 
   if (!experience || !ready) return null;
 

@@ -319,6 +319,26 @@
       "privacy_suffix": "."
     }
   },
+  "section_nav": {
+    "aria": "Explore this page",
+    "item_aria": "{{label}}, section {{current}} of {{total}}",
+    "items": {
+      "hero": "Start",
+      "excursions": "Excursions",
+      "safaris": "Safaris",
+      "packages": "Packages",
+      "transfers": "Transfers",
+      "planner": "Trip planner",
+      "why": "Why us",
+      "map": "Map",
+      "weather": "Weather & seasons",
+      "gallery": "Gallery",
+      "reviews": "Guest reviews",
+      "about": "About us",
+      "contact": "Contact",
+      "newsletter": "Updates"
+    }
+  },
   "weather": {
     "live_suffix": " · Live",
     "facts": {

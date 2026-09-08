@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Sansibar-Ausflüge · Tagestouren · Destination Paradise",
+    "description": "{{count}} handverlesene Sansibar-Ausflüge — Dhaus, Stone Town, Schnorcheln vor Mnemba, Jozani Forest, Kitesurfen, Festivals und mehr."
+  },
   "hero": {
     "eyebrow": "Sansibar & Küste · handverlesene Tagesausflüge",
     "title_prefix": "Eine Insel.",
@@ -85,12 +89,18 @@
     }
   },
   "detail": {
+    "meta_fallback": "{{title}} — ein geführter Sansibar-Ausflug mit Hotelabholung, kleinen Gruppen und lokalen Guides.",
+    "pricing_tiers": {
+      "sharedExperience": "Gemeinsames Erlebnis",
+      "privateExperience": "Privates Erlebnis",
+      "premiumWorkshop": "Premium-Workshop"
+    },
     "not_found_page_title": "Ausflug nicht gefunden · Destination Paradise",
     "not_found_eyebrow": "Ausflüge",
     "not_found_title": "Ausflug nicht gefunden",
     "not_found_text": "Diese Route ist nicht auf unserer aktuellen Liste. Sieh dir unten alle verfügbaren Ausflüge an.",
     "back_to_excursions": "Zurück zu allen Ausflügen →",
-    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_aria": "Brotkrumen-Navigation",
     "breadcrumb_home": "Start",
     "breadcrumb_excursions": "Ausflüge",
     "season_prefix": "Saisonal",
@@ -132,12 +142,14 @@
     }
   },
   "combination": {
+    "meta_title": "{{title}} · Ausflugskombination · Destination Paradise",
+    "meta_fallback": "{{title}} — ein kombinierter Sansibar-Tagesausflug mit Hotelabholung und lokalen Guides.",
     "not_found_page_title": "Ausflugskombination nicht gefunden · Destination Paradise",
     "not_found_eyebrow": "Ausflugskombinationen",
     "not_found_title": "Kombination nicht gefunden",
     "not_found_text": "Diese Kombination ist nicht auf unserer aktuellen Liste. Sieh dir unten alle Ausflüge an.",
     "back_to_excursions": "Zurück zu den Ausflügen →",
-    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_aria": "Brotkrumen-Navigation",
     "breadcrumb_home": "Start",
     "breadcrumb_excursions": "Ausflüge",
     "category": "Kombination",
@@ -219,7 +231,7 @@
   "categories": {
     "Water & Snorkeling": "Wasser & Schnorcheln",
     "Culture & Heritage": "Kultur & Geschichte",
-    "Nature & Wildlife": "Natur & Wildlife",
+    "Nature & Wildlife": "Natur & Tierwelt",
     "Adventure & Sports": "Abenteuer & Sport",
     "Wellness & Luxury": "Wellness & Luxus",
     "Festivals & Seasonal": "Festivals & Saisonales"
