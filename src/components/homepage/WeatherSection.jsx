@@ -285,7 +285,11 @@ export default function WeatherSection({ MONTHS, SCORES, NOW_MONTH }) {
           <h2 className="weather__side-title">{t('weather.side_title')}</h2>
           <div className="weather__months">
             {MONTHS.map((m, i) => (
-              <div key={m.m} className={`weather-month weather-month--${m.season}${i === NOW_MONTH ? ' is-now' : ''}`}>
+              <div
+                key={m.m}
+                className={`weather-month weather-month--${m.season}${i === NOW_MONTH ? ' is-now' : ''}`}
+                data-current-label={i === NOW_MONTH ? t('weather.today') : undefined}
+              >
                 <span className="weather-month__m">
                   <span className="weather-month__dot" aria-hidden="true"></span>
                   {m.m}

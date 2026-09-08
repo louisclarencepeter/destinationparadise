@@ -51,11 +51,11 @@
   height: 2px; background: var(--dp-accent); transform: scaleX(0);
   transform-origin: left; transition: transform .3s var(--dp-ease-out);
 }
-.nav__item a:hover { color: var(--dp-accent); }
+.nav__item a:hover { color: color-mix(in srgb, var(--dp-accent-text) 60%, var(--text)); }
 .nav__item a:hover::after { transform: scaleX(1); }
 .nav__item--active a,
 .nav__item a[aria-current="page"] {
-  color: var(--dp-accent);
+  color: color-mix(in srgb, var(--dp-accent-text) 60%, var(--text));
 }
 .nav__item--active a::after,
 .nav__item a[aria-current="page"]::after {
@@ -73,7 +73,7 @@
   padding: .12rem .42rem;
   border-radius: 6px;
   background: linear-gradient(135deg, #ff8a73 0%, #ff6f61 100%);
-  color: #fff;
+  color: var(--dp-black);
   font-size: 10px;
   font-weight: 800;
   letter-spacing: .06em;

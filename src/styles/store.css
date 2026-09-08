@@ -148,9 +148,11 @@
   width: 100%;
   padding: 0;
 }
-.store-search__field input::placeholder {
+.store-search__field input::placeholder,
+.checkout-field input::placeholder,
+.booking-panel__request-dates input::placeholder {
   color: var(--text-muted);
-  opacity: 0.75;
+  opacity: 1;
 }
 .store-search__divider {
   width: 1px;

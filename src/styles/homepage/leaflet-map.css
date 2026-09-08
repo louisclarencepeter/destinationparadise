@@ -17,21 +17,25 @@
   border-bottom-color: var(--border);
   font-family: var(--dp-font-sans);
 }
-.map-stage .leaflet-bar a:hover { color: var(--dp-accent); }
+.map-stage .leaflet-bar a:hover { color: var(--dp-accent-text); }
 html[data-theme="dark"] .map-stage .leaflet-bar a {
   background: rgba(17,44,63,.92);
   color: var(--text-soft);
   border-bottom-color: rgba(255,255,255,.08);
 }
-.map-stage .leaflet-control-attribution {
-  background: rgba(255,255,255,.78);
+.map-stage .leaflet-container .leaflet-control-attribution {
+  background: var(--surface);
   font-family: var(--dp-font-sans);
   font-size: 10px;
   color: var(--text-muted);
 }
-html[data-theme="dark"] .map-stage .leaflet-control-attribution {
-  background: rgba(17,44,63,.78);
-  color: var(--text-muted);
+.map-stage .leaflet-container .leaflet-control-attribution a {
+  color: var(--text-soft);
+  text-decoration: underline !important;
+}
+.map-stage .leaflet-container .leaflet-control-attribution a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
 }
 
 .leaflet-div-icon.dp-leaflet-pin,
@@ -61,7 +65,7 @@ html[data-theme="dark"] .map-stage .leaflet-control-attribution {
 }
 .dp-leaflet-pin:hover .map-pin__dot,
 .dp-leaflet-pin.is-active .map-pin__dot {
-  background: var(--dp-accent); color: #fff;
+  background: var(--dp-accent); color: var(--dp-black);
   transform: scale(1.15);
   box-shadow: 0 10px 24px rgba(255,111,97,.45), 0 0 0 8px rgba(255,111,97,.18);
 }
@@ -90,4 +94,3 @@ html[data-theme="dark"] .map-stage .leaflet-control-attribution {
 .map-list-label:first-child { margin-top: 0; }
 .map-list-label::before { content: ""; width: 14px; height: 1px; background: var(--dp-accent); }
 .map-list-group .map-list { margin: 0; }
-

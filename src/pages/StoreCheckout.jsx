@@ -231,7 +231,7 @@ export default function StoreCheckout() {
               <p>
                 {requestMode
                   ? t('checkout.request_note')
-                  : <Trans t={t} i18nKey="checkout.payment_note" components={{ strong: <strong /> }} />}
+                  : <Trans t={t} i18nKey="checkout.payment_note" components={{ strong: <strong key="payment-partner" /> }} />}
               </p>
             </div>
 
@@ -249,8 +249,8 @@ export default function StoreCheckout() {
                 t={t}
                 i18nKey="checkout.terms_ack"
                 components={{
-                  booking: <Link to="/booking-policy" />,
-                  terms: <Link to="/terms-of-service" />,
+                  booking: <Link key="booking-policy" to="/booking-policy" />,
+                  terms: <Link key="terms-of-service" to="/terms-of-service" />,
                 }}
               />
             </p>

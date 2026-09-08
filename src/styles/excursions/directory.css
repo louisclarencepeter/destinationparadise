@@ -112,7 +112,7 @@
 }
 
 .exc-related__links strong {
-  font-family: var(--font-display, serif);
+  font-family: var(--dp-font-display);
   font-size: 1.25rem;
 }
 

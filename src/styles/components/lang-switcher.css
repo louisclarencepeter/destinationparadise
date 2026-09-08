@@ -33,7 +33,7 @@
 
 .lang-switcher__toggle:hover,
 .lang-switcher__toggle:focus-visible {
-  color: var(--dp-accent);
+  color: color-mix(in srgb, var(--dp-accent-text) 80%, var(--text));
   border-color: color-mix(in srgb, var(--dp-accent) 38%, var(--border));
   background: color-mix(in srgb, var(--dp-accent) 8%, var(--surface-raised));
 }
@@ -80,7 +80,7 @@
 .lang-switcher__option:hover,
 .lang-switcher__option:focus-visible {
   background: color-mix(in srgb, var(--dp-accent) 10%, transparent);
-  color: var(--dp-accent);
+  color: color-mix(in srgb, var(--dp-accent-text) 80%, var(--text));
 }
 
 .lang-switcher__option:focus-visible {
@@ -89,7 +89,7 @@
 }
 
 .lang-switcher__option.is-active {
-  color: var(--dp-accent);
+  color: color-mix(in srgb, var(--dp-accent-text) 80%, var(--text));
   background: color-mix(in srgb, var(--dp-accent) 18%, transparent);
 }
 
@@ -98,7 +98,6 @@
   letter-spacing: .08em;
   font-size: 11px;
   min-width: 22px;
-  opacity: .9;
 }
 
 .lang-switcher__option-name {

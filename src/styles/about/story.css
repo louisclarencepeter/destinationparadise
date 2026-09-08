@@ -16,7 +16,7 @@
   display: inline-flex; align-items: center; gap: .55rem;
   font-family: var(--dp-font-sans, 'Montserrat', sans-serif);
   font-size: 11px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase;
-  color: #b8541a;
+  color: var(--dp-accent-text);
   margin-bottom: 1rem;
 }
 .ab-story__eyebrow::before { content: ''; width: 18px; height: 1px; background: #b8541a; }
@@ -30,7 +30,7 @@
   color: var(--text-soft, #1a4d6e);
   max-width: 13ch;
 }
-.ab-story__title em { font-style: italic; color: #b8541a; }
+.ab-story__title em { font-style: italic; color: var(--dp-accent-text); }
 .ab-story__lead p {
   font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
@@ -85,7 +85,7 @@
   font-family: 'Playfair Display', Georgia, serif;
   font-style: italic;
   font-size: 1.05rem;
-  color: #b8541a;
+  color: var(--dp-accent-text);
   letter-spacing: .04em;
   margin-bottom: .35rem;
 }

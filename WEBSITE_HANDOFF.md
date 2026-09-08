@@ -80,6 +80,48 @@ and all 124 prerendered website routes. Browser regression coverage includes:
 Local browser evidence and reproducible checks are saved outside the repository:
 `/Users/louisclarencepetersgmail.com/Documents/Codex/2026-09-08/dp-website-qa`.
 
+## Follow-up audit for similar visibility problems
+
+After the directory fix, the user requested a broader check for similar problems.
+Source inspection covered 104 CSS files (15,201 lines) and inline custom properties.
+It found no other undefined foreground/background token pairs. Browser inspection
+covered 16 representative routes in both themes at desktop and mobile sizes (64
+states), plus the preview store, cart, checkout and synthetic confirmation states.
+
+The follow-up corrected these confirmed low-contrast text families:
+
+- Selected excursion/safari filters and counts; package/card badges, prices,
+  links and safari comparison/booking-step labels.
+- Excursion/safari detail facts and price labels.
+- Retreat teacher breadcrumbs, roles and practice labels; About-page labels;
+  transfer card durations and vehicle capacities.
+- Explore hub tags, itinerary/path labels, map selections and marker numbers.
+- Planner prompt labels, quick replies and their hover states, send/handoff
+  controls; preview-store search and checkout placeholders.
+- Homepage section headings, package/excursion links and labels, transfer ribbons,
+  weather temperature/season labels, and the map attribution strip.
+- Language-menu selections, active navigation labels and search categories/chips.
+  The weather current-month marker also follows the selected language.
+
+Small text uses the existing accessible foreground tokens. Coral fills retain
+readable dark labels, and planner action buttons use the existing brand gradient.
+The audit also corrected the missing related-card font token and Explore border
+token fallbacks, plus React keys in translated checkout/confirmation content.
+
+Photo/gradient-background contrast candidates were inspected visually rather than
+reported from an incorrect flat-background calculation. Disabled controls,
+offscreen reveal states and hidden cart descendants were excluded from visible
+text failures. The final 64-state matrix had no page errors, visible horizontal
+overflow or remaining confirmed flat-background text failures. Separate pixel
+checks covered the affected gradient labels. Evidence is recorded in
+`website-readability-verification.json`, the shared-card/detail contrast reports,
+and the store/navigation follow-up reports in the QA directory above.
+
+This is a targeted template/state audit, not a claim of complete
+accessibility certification or live payment/form-delivery verification.
+
+## Provider status
+
 The development preview is
 <https://development--destinationparadisezanzibar.netlify.app>.
 Confirm its Netlify commit and GitHub CI run against the final development HEAD;

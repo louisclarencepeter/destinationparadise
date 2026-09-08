@@ -17,6 +17,6 @@
   border-radius: 999px;
   transition: color .25s var(--dp-ease-out), background .25s var(--dp-ease-out);
 }
-.ab-anchor a:hover { color: #b8541a; background: rgba(184,84,26,.08); }
+.ab-anchor a:hover { color: var(--dp-accent-text); background: rgba(184,84,26,.08); }
 .ab-anchor a.is-active { background: #b8541a; color: #fff; }
 

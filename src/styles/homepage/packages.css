@@ -44,7 +44,7 @@
   font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
   transform: rotate(35deg);
 }
-.pkg-card__rib--gold { background: #FF6F61; color: #fff; }
+.pkg-card__rib--gold { background: #FF6F61; color: var(--dp-black); }
 .pkg-card--feature .pkg-card__rib--gold { background: #FF6F61; }
 
 html[data-theme="dark"] .pkg-card--feature {
@@ -72,10 +72,11 @@ html[data-theme="dark"] .pkg-card--feature .pkg-card__list li {
 .pkg-card__nights {
   display: inline-block;
   font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
-  color: var(--accent, #FF6F61);
+  color: var(--dp-accent-text);
   margin-bottom: .75rem;
 }
-.pkg-card--feature .pkg-card__nights { color: #FF6F61; }
+.pkg-card--feature .pkg-card__nights { color: var(--dp-accent-text); }
+html[data-theme="dark"] .pkg-card--feature .pkg-card__nights { color: var(--text-soft); }
 .pkg-card h3 { font-size: 1.5rem; line-height: 1.2; margin: 0 0 .5rem; color: var(--ink); }
 .pkg-card__lead { font-size: .95rem; line-height: 1.5; color: var(--text-muted); margin: 0; }
 .pkg-card__list {
@@ -99,8 +100,8 @@ html[data-theme="dark"] .pkg-card--feature .pkg-card__list li {
   min-width: 64px;
 }
 .pkg-tag--hotel { background: rgba(26,77,110,.1); color: #1A4D6E; }
-.pkg-tag--saf   { background: rgba(255,111,97,.15); color: #c44a3d; }
-.pkg-tag--exc   { background: rgba(46,139,87,.13); color: #2e8b57; }
+.pkg-tag--saf   { background: rgba(255,111,97,.15); color: var(--text); }
+.pkg-tag--exc   { background: rgba(46,139,87,.13); color: var(--text); }
 .pkg-tag--inc   { background: rgba(184,134,11,.15); color: #8a6308; }
 [data-theme="dark"] .pkg-tag--hotel { background: rgba(255,255,255,.1); color: #cfe5f0; }
 [data-theme="dark"] .pkg-tag--saf { background: rgba(255,111,97,.2); color: #ffb1a8; }

@@ -47,9 +47,10 @@
   font-size: 10px;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: var(--dp-accent);
+  color: var(--dp-accent-text);
   font-weight: 700;
 }
+.saf-step span { color: var(--text); }
 .saf-compare__card h3,
 .saf-step h3 {
   font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif);
@@ -68,4 +69,3 @@
   color: currentColor;
   opacity: .78;
 }
-

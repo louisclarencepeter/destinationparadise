@@ -52,7 +52,7 @@
       },
       {
         "path": "src/locales/en/home.json",
-        "sha256": "7d52e6afa8c80d57746554022ae80bb88d4605cbeb9a94c0529f9ba423aa0b3c"
+        "sha256": "cadc151b8704545166a08f20f91c2d344b46a40f817c6d6744a38e4349825369"
       },
       {
         "path": "src/pages/Homepage.jsx",

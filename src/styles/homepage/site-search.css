@@ -125,7 +125,7 @@
 .site-search__chips button:focus-visible {
   background: var(--dp-accent);
   border-color: var(--dp-accent);
-  color: #fff;
+  color: var(--dp-black);
 }
 
 .site-search__results {
@@ -158,7 +158,7 @@
 }
 
 .site-search__category {
-  color: var(--dp-accent);
+  color: color-mix(in srgb, var(--dp-accent-text) 80%, var(--text));
   font-family: var(--dp-font-sans);
   font-size: .68rem;
   font-weight: 900;
@@ -273,7 +273,7 @@
 
 html[data-theme="dark"] .site-search__clear,
 html[data-theme="dark"] .site-search__close,
-html[data-theme="dark"] .site-search__chips button {
+html[data-theme="dark"] .site-search__chips button:not(:hover):not(:focus-visible) {
   background: color-mix(in srgb, var(--surface-2) 88%, white 4%);
 }
 

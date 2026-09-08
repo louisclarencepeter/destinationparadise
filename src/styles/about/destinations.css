@@ -18,7 +18,7 @@
 .ab-dest__tag {
   font-family: var(--dp-font-sans, 'Montserrat', sans-serif);
   font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
-  color: #b8541a; font-weight: 700;
+  color: var(--dp-accent-text); font-weight: 700;
 }
 .ab-dest__name {
   font-family: 'Playfair Display', Georgia, serif;

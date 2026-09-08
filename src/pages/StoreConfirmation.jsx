@@ -194,7 +194,7 @@ export default function StoreConfirmation() {
               t={t}
               i18nKey="confirm.request_lead"
               values={{ reference: order.reference }}
-              components={{ ref: <strong className="store-confirm__ref" /> }}
+              components={{ ref: <strong key="order-reference" className="store-confirm__ref" /> }}
             />
           </p>
         </div>
@@ -224,7 +224,7 @@ export default function StoreConfirmation() {
               t={t}
               i18nKey="confirm.quote_lead"
               values={{ reference: order.reference }}
-              components={{ ref: <strong className="store-confirm__ref" /> }}
+              components={{ ref: <strong key="order-reference" className="store-confirm__ref" /> }}
             />
           </p>
           {order.quoteNote && <p className="confirm-request__quote-note">{order.quoteNote}</p>}
@@ -279,7 +279,7 @@ export default function StoreConfirmation() {
               t={t}
               i18nKey="confirm.processing_text"
               values={{ reference: order.reference }}
-              components={{ ref: <strong className="store-confirm__ref" /> }}
+              components={{ ref: <strong key="order-reference" className="store-confirm__ref" /> }}
             />
           </p>
         </div>
@@ -297,7 +297,7 @@ export default function StoreConfirmation() {
               t={t}
               i18nKey="confirm.problem_text"
               values={{ reference: order.reference }}
-              components={{ ref: <strong className="store-confirm__ref" /> }}
+              components={{ ref: <strong key="order-reference" className="store-confirm__ref" /> }}
             />
           </p>
           <div className="store-confirm__actions">
@@ -334,7 +334,7 @@ export default function StoreConfirmation() {
             t={t}
             i18nKey="confirm.lead"
             values={{ reference: order.reference }}
-            components={{ ref: <strong className="store-confirm__ref" /> }}
+            components={{ ref: <strong key="order-reference" className="store-confirm__ref" /> }}
           />
         </p>
       </div>

@@ -67,7 +67,7 @@
 
 .exc-block__eyebrow {
   font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
-  color: #FF6F61;
+  color: var(--dp-accent-text);
   margin-bottom: 1rem;
   display: block;
   font-weight: 600;
@@ -103,7 +103,7 @@
 .exc-block__facts > div { display: flex; flex-direction: column; gap: .15rem; min-width: 0; }
 .exc-block__facts dt {
   font-size: 10px; letter-spacing: .15em; text-transform: uppercase;
-  color: color-mix(in srgb, currentColor 60%, transparent);
+  color: var(--text-soft);
   font-weight: 600;
 }
 .exc-block__facts dd {
@@ -127,7 +127,7 @@
 .exc-block__cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 0 0 2rem; }
 .exc-block__col h4 {
   font-size: 11px; letter-spacing: .2em; text-transform: uppercase;
-  color: color-mix(in srgb, currentColor 65%, transparent);
+  color: var(--text-muted);
   margin: 0 0 .75rem;
   font-weight: 700;
 }
@@ -145,13 +145,13 @@
 }
 
 .exc-block__actions { display: flex; gap: .75rem; flex-wrap: wrap; align-items: center; }
-.exc-block__price { font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif); font-size: 1.3rem; color: #FF6F61; font-weight: 500; margin-right: .5rem; }
-.exc-block__price small { font-family: var(--dp-font-sans, 'Montserrat', sans-serif); font-size: 11px; opacity: .65; margin-left: .35rem; }
+.exc-block__price { font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif); font-size: 1.3rem; color: var(--dp-accent-text); font-weight: 500; margin-right: .5rem; }
+.exc-block__price small { font-family: var(--dp-font-sans, 'Montserrat', sans-serif); font-size: 11px; color: var(--text-muted); margin-left: .35rem; }
 .exc-block__price-note {
   font-family: var(--dp-font-sans, 'Montserrat', sans-serif);
   font-size: 11px;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: color-mix(in srgb, currentColor 60%, transparent);
+  color: var(--text-muted);
   margin-right: .25rem;
 }

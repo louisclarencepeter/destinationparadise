@@ -20,7 +20,7 @@
   color: var(--text-soft, #1a4d6e);
   max-width: 13ch;
 }
-.ab-guides__head h2 em { font-style: italic; color: #b8541a; }
+.ab-guides__head h2 em { font-style: italic; color: var(--dp-accent-text); }
 .ab-guides__head p {
   margin: 0;
   font-size: 1.05rem; line-height: 1.7;
@@ -78,7 +78,7 @@
 .ab-guide__role {
   font-family: var(--dp-font-sans, 'Montserrat', sans-serif);
   font-size: 10px; letter-spacing: .18em; text-transform: uppercase;
-  color: #b8541a; font-weight: 700;
+  color: var(--dp-accent-text); font-weight: 700;
 }
 .ab-guide__bio {
   margin: .5rem 0 0;

@@ -63,10 +63,6 @@
     white-space: nowrap;
   }
 
-  .exc-filter__btn.is-active {
-    color: #fff;
-  }
-
   .exc-grid {
     gap: 1rem;
   }
@@ -165,7 +161,7 @@
   letter-spacing: .14em;
   text-transform: uppercase;
   background: #FF6F61;
-  color: #fff;
+  color: var(--dp-black, #1A1A1A);
   padding: .35rem .65rem;
   border-radius: 999px;
   font-weight: 700;
@@ -183,7 +179,7 @@
   font-size: 10px;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: #FF6F61;
+  color: var(--dp-accent-text);
   font-weight: 700;
 }
 .exc-card__title {
@@ -238,7 +234,7 @@
 .exc-card__price strong {
   font-family: var(--dp-font-display, 'Playfair Display', Georgia, serif);
   font-size: 1.05rem;
-  color: #FF6F61;
+  color: var(--dp-accent-text);
   font-weight: 500;
   margin: 0 .15rem 0 .25rem;
 }
@@ -252,7 +248,7 @@
   font-size: 12px;
   letter-spacing: .12em;
   text-transform: uppercase;
-  color: #FF6F61;
+  color: var(--dp-accent-text);
   font-weight: 700;
 }
 

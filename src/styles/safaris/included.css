@@ -13,7 +13,7 @@
   align-items: center;
 }
 .included__copy .section-title { color: var(--text-soft); margin: .5rem 0 1rem; text-align: left; }
-.included__copy .section-eyebrow { color: var(--dp-accent); }
+.included__copy .section-eyebrow { color: var(--dp-accent-text); }
 .included__copy .section-lead { color: var(--text-muted); text-align: left; margin: 0; }
 .included__list {
   list-style: none; padding: 0; margin: 0;
@@ -82,4 +82,3 @@ html[data-theme="dark"] .itin--feature .itin__foot {
   .included__wrap { grid-template-columns: 1fr; }
   .included__list { grid-template-columns: 1fr; }
 }
-

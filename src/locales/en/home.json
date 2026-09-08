@@ -341,6 +341,7 @@
   },
   "weather": {
     "live_suffix": " · Live",
+    "today": "TODAY",
     "facts": {
       "sea_temp": "Sea temp",
       "humidity": "Humidity",
