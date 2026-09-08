@@ -1,0 +1,431 @@
+{
+  "preservedAtUtc": "2026-09-08T08:22:14.832683+00:00",
+  "historicalEvidenceDate": "2026-09-07",
+  "scope": "Curated local release QA, artifact/signing/source and provider observation evidence; provider state not refreshed.",
+  "files": [
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code6-artifact.json",
+      "originalBytes": 351,
+      "originalSha256": "91d9c64758f3ac54b3903c2fde25280a335089559e63644e74230be95543a364",
+      "preservedPath": "nearby-code6-artifact.json",
+      "preservedBytes": 351,
+      "preservedSha256": "91d9c64758f3ac54b3903c2fde25280a335089559e63644e74230be95543a364",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code6-local-apk-verification.json",
+      "originalBytes": 883,
+      "originalSha256": "cab2809b72ec135fde7c363ad39b759fba27ba70394bd7929bb398e69826376d",
+      "preservedPath": "nearby-code6-local-apk-verification.json",
+      "preservedBytes": 883,
+      "preservedSha256": "cab2809b72ec135fde7c363ad39b759fba27ba70394bd7929bb398e69826376d",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code6-native-qa.json",
+      "originalBytes": 7999,
+      "originalSha256": "c5d04974927f5e6dc63b9378f4d4687fed0e4fef86078cbe7b7c2f6f549c09a4",
+      "preservedPath": "nearby-code6-native-qa.json",
+      "preservedBytes": 7999,
+      "preservedSha256": "c5d04974927f5e6dc63b9378f4d4687fed0e4fef86078cbe7b7c2f6f549c09a4",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code6-runtime-identity.json",
+      "originalBytes": 693,
+      "originalSha256": "e8cda4e161be83fd6967739df7a202b126a29e6770bb800d27cb41ec258c490c",
+      "preservedPath": "nearby-code6-runtime-identity.json",
+      "preservedBytes": 693,
+      "preservedSha256": "e8cda4e161be83fd6967739df7a202b126a29e6770bb800d27cb41ec258c490c",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code7-artifact.json",
+      "originalBytes": 351,
+      "originalSha256": "f4c918cc63d65affe0b7a67ae0cf0f4abdd0bfb63d4970903ae84ba57c0df085",
+      "preservedPath": "nearby-code7-artifact.json",
+      "preservedBytes": 351,
+      "preservedSha256": "f4c918cc63d65affe0b7a67ae0cf0f4abdd0bfb63d4970903ae84ba57c0df085",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code7-local-apk-verification.json",
+      "originalBytes": 1086,
+      "originalSha256": "bf3ae738765347c8b12ab11e15c4ea02516bdd1564c729fdcb315c298f1044a6",
+      "preservedPath": "nearby-code7-local-apk-verification.json",
+      "preservedBytes": 1086,
+      "preservedSha256": "bf3ae738765347c8b12ab11e15c4ea02516bdd1564c729fdcb315c298f1044a6",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code7-native-qa.json",
+      "originalBytes": 7732,
+      "originalSha256": "34b9cc0335ed51c718d7c763a65071392b784b7c1e541ecb06a458708b99cb62",
+      "preservedPath": "nearby-code7-native-qa.json",
+      "preservedBytes": 7732,
+      "preservedSha256": "34b9cc0335ed51c718d7c763a65071392b784b7c1e541ecb06a458708b99cb62",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code7-runtime-identity.json",
+      "originalBytes": 612,
+      "originalSha256": "6228add35399504eb8b827b2fb754cd2519262fdc4ba1517ffe5a9c22bc2cc9f",
+      "preservedPath": "nearby-code7-runtime-identity.json",
+      "preservedBytes": 612,
+      "preservedSha256": "6228add35399504eb8b827b2fb754cd2519262fdc4ba1517ffe5a9c22bc2cc9f",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code8-artifact.json",
+      "originalBytes": 351,
+      "originalSha256": "5ec8175a9837e05474d9b0469673834eeea6bec0d509e2d809dd5b7af5443d03",
+      "preservedPath": "nearby-code8-artifact.json",
+      "preservedBytes": 351,
+      "preservedSha256": "5ec8175a9837e05474d9b0469673834eeea6bec0d509e2d809dd5b7af5443d03",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code8-local-apk-verification.json",
+      "originalBytes": 1504,
+      "originalSha256": "1d13fb3508ccc5c85da1afda302e0a6f72d904a23298907cc9abdbcb7f0fdd3e",
+      "preservedPath": "nearby-code8-local-apk-verification.json",
+      "preservedBytes": 1504,
+      "preservedSha256": "1d13fb3508ccc5c85da1afda302e0a6f72d904a23298907cc9abdbcb7f0fdd3e",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code8-native-qa.json",
+      "originalBytes": 9058,
+      "originalSha256": "c5d7c1c94be1c0c8ed2222979e2490a71b8a0add4febdf27bbf960c94abfcb37",
+      "preservedPath": "nearby-code8-native-qa.json",
+      "preservedBytes": 9058,
+      "preservedSha256": "c5d7c1c94be1c0c8ed2222979e2490a71b8a0add4febdf27bbf960c94abfcb37",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code8-runtime-identity.json",
+      "originalBytes": 837,
+      "originalSha256": "39bf3ab09fd2f1f5da0cf4a50f464e547c49e3093e073ee8428836650e969975",
+      "preservedPath": "nearby-code8-runtime-identity.json",
+      "preservedBytes": 837,
+      "preservedSha256": "39bf3ab09fd2f1f5da0cf4a50f464e547c49e3093e073ee8428836650e969975",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code6-cleanup-before-stop.json",
+      "originalBytes": 760,
+      "originalSha256": "dc05d71b9e41d7d606862645b8e73e1474b59ae9b0f06f45b09ec28f7e55bb33",
+      "preservedPath": "nearby-code6-cleanup-before-stop.json",
+      "preservedBytes": 760,
+      "preservedSha256": "dc05d71b9e41d7d606862645b8e73e1474b59ae9b0f06f45b09ec28f7e55bb33",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code7-cleanup.json",
+      "originalBytes": 742,
+      "originalSha256": "21b3c487f8d68573965e6a3a5c7741657644b74de52575f403672ae339f3a26c",
+      "preservedPath": "nearby-code7-cleanup.json",
+      "preservedBytes": 742,
+      "preservedSha256": "21b3c487f8d68573965e6a3a5c7741657644b74de52575f403672ae339f3a26c",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code8-cleanup.json",
+      "originalBytes": 919,
+      "originalSha256": "c20533e32e3aa0d9fa445f46e8bff01ec20d39073b4744d5cadd8fb7d5ce6082",
+      "preservedPath": "nearby-code8-cleanup.json",
+      "preservedBytes": 919,
+      "preservedSha256": "c20533e32e3aa0d9fa445f46e8bff01ec20d39073b4744d5cadd8fb7d5ce6082",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-ios-build5-artifact-verification.json",
+      "originalBytes": 3741,
+      "originalSha256": "9df781d047199467b72b7d5b7fbfe546640f82b20cb85e4f6e50755cb5b1b51b",
+      "preservedPath": "nearby-ios-build5-artifact-verification.json",
+      "preservedBytes": 3741,
+      "preservedSha256": "9df781d047199467b72b7d5b7fbfe546640f82b20cb85e4f6e50755cb5b1b51b",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-ios-build5-signing-verification.json",
+      "originalBytes": 380,
+      "originalSha256": "e6985ab3f92c1dfcd55ff37ae005fbc76d43149e44084e965e1ca60704c54b55",
+      "preservedPath": "nearby-ios-build5-signing-verification.json",
+      "preservedBytes": 380,
+      "preservedSha256": "e6985ab3f92c1dfcd55ff37ae005fbc76d43149e44084e965e1ca60704c54b55",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-ios-build5-submission-verification.json",
+      "originalBytes": 1825,
+      "originalSha256": "c2ade85836f17a963dd1f85ea4076482772b1d39333da96ac79aac37c3a9b4ff",
+      "preservedPath": "nearby-ios-build5-submission-verification.json",
+      "preservedBytes": 1825,
+      "preservedSha256": "c2ade85836f17a963dd1f85ea4076482772b1d39333da96ac79aac37c3a9b4ff",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-build5-apple-processing-failure.json",
+      "originalBytes": 765,
+      "originalSha256": "08a6a55fb872f289f31c8c1dfdc3223beb3062f436537a2aa8a0669a1a1fcddf",
+      "preservedPath": "nearby-build5-apple-processing-failure.json",
+      "preservedBytes": 765,
+      "preservedSha256": "08a6a55fb872f289f31c8c1dfdc3223beb3062f436537a2aa8a0669a1a1fcddf",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/version110-ios-build6-artifact-verification.json",
+      "originalBytes": 4067,
+      "originalSha256": "bdf3fe46327dcba287130abde9408ce948f810e786d5a890a79b652d05cbfe3a",
+      "preservedPath": "version110-ios-build6-artifact-verification.json",
+      "preservedBytes": 4067,
+      "preservedSha256": "bdf3fe46327dcba287130abde9408ce948f810e786d5a890a79b652d05cbfe3a",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/version110-ios-build6-signing-verification.json",
+      "originalBytes": 675,
+      "originalSha256": "51741078e0f0ed68654ff0fac9cff1ee0c2898f619292b658deaa193f2687adf",
+      "preservedPath": "version110-ios-build6-signing-verification.json",
+      "preservedBytes": 675,
+      "preservedSha256": "51741078e0f0ed68654ff0fac9cff1ee0c2898f619292b658deaa193f2687adf",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/version110-ios-build6-source-verification.json",
+      "originalBytes": 256,
+      "originalSha256": "33786a3c9493d10f987ac5afb3f044af72a55277aa447e587ce35554f42f4aea",
+      "preservedPath": "version110-ios-build6-source-verification.json",
+      "preservedBytes": 256,
+      "preservedSha256": "33786a3c9493d10f987ac5afb3f044af72a55277aa447e587ce35554f42f4aea",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/version110-ios-build6-submission-verification.json",
+      "originalBytes": 3522,
+      "originalSha256": "077a86740351f12ecd6cf326f21b18f00f12fcb7181feba3a5e2b3d18ce51f4c",
+      "preservedPath": "version110-ios-build6-submission-verification.json",
+      "preservedBytes": 3544,
+      "preservedSha256": "84838d801464bd3fc757022f1b99521387127a9e2641f627cb419929432bac70",
+      "byteIdentical": false,
+      "transformations": [
+        {
+          "jsonPath": "$.directUploadFallback.existingAssignedKeyId",
+          "action": "Replaced credential identifier with redaction marker; no credential contents were present or accessed."
+        }
+      ]
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/version110-apple-validate-result.json",
+      "originalBytes": 195,
+      "originalSha256": "a1d294e32dd4de7094156834eca1d3397e0546610431d4b0ffab313313b3c6ca",
+      "preservedPath": "version110-apple-validate-result.json",
+      "preservedBytes": 195,
+      "preservedSha256": "a1d294e32dd4de7094156834eca1d3397e0546610431d4b0ffab313313b3c6ca",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/version110-apple-key-cleanup-verification.json",
+      "originalBytes": 292,
+      "originalSha256": "578db7f8c6311be81d2a74e818b29f0e8f8f784510f1c5db620080f8b759495b",
+      "preservedPath": "version110-apple-key-cleanup-verification.json",
+      "preservedBytes": 292,
+      "preservedSha256": "578db7f8c6311be81d2a74e818b29f0e8f8f784510f1c5db620080f8b759495b",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/version110-apple-processing-and-distribution.json",
+      "originalBytes": 912,
+      "originalSha256": "48c795b64f11e0049f78f46439b7ed19bbe265aef367f68edca88899fe794b4a",
+      "preservedPath": "version110-apple-processing-and-distribution.json",
+      "preservedBytes": 912,
+      "preservedSha256": "48c795b64f11e0049f78f46439b7ed19bbe265aef367f68edca88899fe794b4a",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/version110-android-play-distribution.json",
+      "originalBytes": 1577,
+      "originalSha256": "fcb1e715ac71c55892dcf9a595f2b2dc70a8e3467ba3b32a3c49862808697e95",
+      "preservedPath": "version110-android-play-distribution.json",
+      "preservedBytes": 1593,
+      "preservedSha256": "c3eee0758e41b3167728eab26e736cf2f502a61e29a07c262723ee257e9f02bd",
+      "byteIdentical": false,
+      "transformations": [
+        {
+          "jsonPath": "$.unselectedTesterLists[0].name",
+          "action": "Replaced unrelated tester-list name; selection state and counts retained."
+        },
+        {
+          "jsonPath": "$.unselectedTesterLists[1].name",
+          "action": "Replaced unrelated tester-list name; selection state and counts retained."
+        }
+      ]
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/version110-policy-before-ios-submit.json",
+      "originalBytes": 332,
+      "originalSha256": "7eea204c7e0a83eddfa26b9455f824d310450e1b0e562148bfc7bc87040a82a1",
+      "preservedPath": "version110-policy-before-ios-submit.json",
+      "preservedBytes": 332,
+      "preservedSha256": "7eea204c7e0a83eddfa26b9455f824d310450e1b0e562148bfc7bc87040a82a1",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-version-110-source-manifest.json",
+      "originalBytes": 19100,
+      "originalSha256": "6407090b21b6e1616a7b0bede72604893c253ad653ff61a55b9cf13a24f5127a",
+      "preservedPath": "dp-version-110-source-manifest.json",
+      "preservedBytes": 19100,
+      "preservedSha256": "6407090b21b6e1616a7b0bede72604893c253ad653ff61a55b9cf13a24f5127a",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-nearby-source-manifest-20260907.json",
+      "originalBytes": 17017,
+      "originalSha256": "07fee3e12d40e84ea8310ea65264fbb60e395c4a4ca8918faa8b3b6df1600ffe",
+      "preservedPath": "dp-nearby-source-manifest-20260907.json",
+      "preservedBytes": 17017,
+      "preservedSha256": "07fee3e12d40e84ea8310ea65264fbb60e395c4a4ca8918faa8b3b6df1600ffe",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-nearby-android7-source-manifest-20260907.json",
+      "originalBytes": 17352,
+      "originalSha256": "4fb2aa01555485247fdc168309e4e71b762b8b20353a553328e5feeb7b12194b",
+      "preservedPath": "dp-nearby-android7-source-manifest-20260907.json",
+      "preservedBytes": 17352,
+      "preservedSha256": "4fb2aa01555485247fdc168309e4e71b762b8b20353a553328e5feeb7b12194b",
+      "byteIdentical": true,
+      "transformations": []
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code6-phone-stone-town-ready.png",
+      "originalBytes": 1157145,
+      "originalSha256": "955a57b7cf5372ecc14dc8976763d17f150accad002a1d4d1318b68d95fd2b8c",
+      "preservedPath": "screenshots/nearby-code6-phone-stone-town-ready.png",
+      "preservedBytes": 1157145,
+      "preservedSha256": "955a57b7cf5372ecc14dc8976763d17f150accad002a1d4d1318b68d95fd2b8c",
+      "byteIdentical": true,
+      "transformations": [],
+      "matchedHistoricalQaScreenshotHash": true,
+      "visuallyInspectedBeforeCopy": true
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code7-tablet-permission-approximate-only.png",
+      "originalBytes": 282612,
+      "originalSha256": "914bfcf45610890a2568233ddbd62cb37dff19bc56db0c441ddc0a13baffe0b5",
+      "preservedPath": "screenshots/nearby-code7-tablet-permission-approximate-only.png",
+      "preservedBytes": 282612,
+      "preservedSha256": "914bfcf45610890a2568233ddbd62cb37dff19bc56db0c441ddc0a13baffe0b5",
+      "byteIdentical": true,
+      "transformations": [],
+      "matchedHistoricalQaScreenshotHash": true,
+      "visuallyInspectedBeforeCopy": true
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code8-phone-permission-approximate-only.png",
+      "originalBytes": 186568,
+      "originalSha256": "60292a143a0cc91aaa9ccf226db8d3599f8291f1d6bc5eca6eedf6a9e141f381",
+      "preservedPath": "screenshots/nearby-code8-phone-permission-approximate-only.png",
+      "preservedBytes": 186568,
+      "preservedSha256": "60292a143a0cc91aaa9ccf226db8d3599f8291f1d6bc5eca6eedf6a9e141f381",
+      "byteIdentical": true,
+      "transformations": [],
+      "matchedHistoricalQaScreenshotHash": true,
+      "visuallyInspectedBeforeCopy": true
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code8-phone-settings-version.png",
+      "originalBytes": 280830,
+      "originalSha256": "9a8aac2a114dd2cd55dd58de6084447c0683e822d4d5cd1a627e2e53de74e452",
+      "preservedPath": "screenshots/nearby-code8-phone-settings-version.png",
+      "preservedBytes": 280830,
+      "preservedSha256": "9a8aac2a114dd2cd55dd58de6084447c0683e822d4d5cd1a627e2e53de74e452",
+      "byteIdentical": true,
+      "transformations": [],
+      "matchedHistoricalQaScreenshotHash": true,
+      "visuallyInspectedBeforeCopy": true
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code8-tablet-settings-version.png",
+      "originalBytes": 209101,
+      "originalSha256": "8c23dc544c6550789a36ef15377ffeff26a06eba1896fe676f378626519833d5",
+      "preservedPath": "screenshots/nearby-code8-tablet-settings-version.png",
+      "preservedBytes": 209101,
+      "preservedSha256": "8c23dc544c6550789a36ef15377ffeff26a06eba1896fe676f378626519833d5",
+      "byteIdentical": true,
+      "transformations": [],
+      "matchedHistoricalQaScreenshotHash": true,
+      "visuallyInspectedBeforeCopy": true
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/nearby-code8-tablet-manual-fallback.png",
+      "originalBytes": 733894,
+      "originalSha256": "33e11e2e1d50e17f732dc1aee8fed42066db01ffb3d0592f3100993e25395a1e",
+      "preservedPath": "screenshots/nearby-code8-tablet-manual-fallback.png",
+      "preservedBytes": 733894,
+      "preservedSha256": "33e11e2e1d50e17f732dc1aee8fed42066db01ffb3d0592f3100993e25395a1e",
+      "byteIdentical": true,
+      "transformations": [],
+      "matchedHistoricalQaScreenshotHash": true,
+      "visuallyInspectedBeforeCopy": true
+    }
+  ],
+  "generatedFiles": [
+    {
+      "preservedPath": "README.md",
+      "preservedBytes": 6012,
+      "preservedSha256": "58d0d0932b915259acdb5798951d7d1d0f533b19fa12069a9eedfca60a444614",
+      "createdAtUtc": "2026-09-08T08:22:14.832683+00:00",
+      "originalPath": null
+    },
+    {
+      "preservedPath": "android-runtime-bundle-comparison.json",
+      "preservedBytes": 3420,
+      "preservedSha256": "a8bb85c49bd9756e2328a0b0bd9e06a5ff6ed8836e4f5456c42398f338e51eb6",
+      "createdAtUtc": "2026-09-08T08:22:14.832683+00:00",
+      "originalPath": null
+    },
+    {
+      "preservedPath": "artifact-integrity-verification.json",
+      "preservedBytes": 3195,
+      "preservedSha256": "6a55c3ea4e5d108e386b0ed7cc77c169adf394841b9b69fa0e26e0d434cf8ec2",
+      "createdAtUtc": "2026-09-08T08:22:14.832683+00:00",
+      "originalPath": null
+    }
+  ],
+  "indexSelfChecksumExcluded": true,
+  "originalFilesModified": false,
+  "providerActionsPerformed": false,
+  "secretCredentialFilesAccessed": false,
+  "rawProviderResponsesCopied": false
+}

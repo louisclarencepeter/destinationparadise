@@ -12,8 +12,16 @@ permissions:
 
 jobs:
   verify:
+    needs: mobile
+    if: always()
     runs-on: ubuntu-latest
     steps:
+      - name: Require successful mobile checks
+        if: needs.mobile.result != 'success'
+        run: |
+          echo "::error::Mobile checks must pass before the required verify check can succeed."
+          exit 1
+
       - name: Check out repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -37,3 +45,37 @@ jobs:
 
       - name: Build
         run: npm run build
+
+  mobile:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: mobile
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+
+      - name: Install mobile dependencies
+        run: npm ci
+
+      - name: Check Expo dependency compatibility
+        run: npx --no-install expo install --check
+
+      - name: Check website content snapshot
+        run: npm run content:check
+
+      - name: Typecheck mobile
+        run: npm run typecheck
+
+      - name: Test mobile
+        run: npm test
+
+      - name: Export iOS, Android and web bundles
+        run: npm run export

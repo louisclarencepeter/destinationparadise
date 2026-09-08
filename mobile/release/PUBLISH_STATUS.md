@@ -1,5 +1,9 @@
 # Destination Paradise — publishing status
 
+## Repository reconciliation — 8 September 2026
+
+The mobile history, design export, handoff and selected release evidence are now retained in the reconciled `development` history. See [RECONCILIATION.md](RECONCILIATION.md) for commit mapping and validation. Historical `/tmp` references below identify the original evidence locations; use the [preserved evidence index](evidence/2026-09-07-nearby/README.md) for durable copies and redaction details. Store observations below remain dated **7 September**; repository checks do not refresh provider state or establish physical installation.
+
 ## Nearby feature — 7 September 2026
 
 The optional **Near me** update is now in private testing. iOS **`1.1.0 (6)`** is **Complete** at Apple and **Testing** in the existing owner TestFlight group. Android **`1.1.0 (8)`** is published as internal release **`5`**, **Active / Available to internal testers / Not reviewed**, released **7 September 2026 at 18:43 EAT**. Both audiences remain the existing one-person owner group. Public store release is pending.

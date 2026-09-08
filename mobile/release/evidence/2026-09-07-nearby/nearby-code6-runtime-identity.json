@@ -1,0 +1,22 @@
+{
+  "phone": {
+    "pid": "3783",
+    "packageFields": [
+      "versionCode=6 minSdk=24 targetSdk=36",
+      "versionName=1.0.0",
+      "firstInstallTime=2026-09-06 00:12:44",
+      "android.permission.ACCESS_COARSE_LOCATION: granted=true, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|524288]"
+    ],
+    "errors": []
+  },
+  "tablet": {
+    "pid": "3778",
+    "packageFields": [
+      "versionCode=6 minSdk=24 targetSdk=36",
+      "versionName=1.0.0",
+      "firstInstallTime=2026-09-06 00:12:46",
+      "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]"
+    ],
+    "errors": []
+  }
+}

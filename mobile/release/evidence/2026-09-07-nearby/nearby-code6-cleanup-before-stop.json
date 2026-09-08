@@ -1,0 +1,24 @@
+{
+  "phone": {
+    "permission": "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|524288]",
+    "locationMode": "3",
+    "size": "Physical size: 1080x2424",
+    "rotation": "0",
+    "autoRotation": "1",
+    "nearbyOptIn": false,
+    "firstInstallTime": [
+      "firstInstallTime=2026-09-06 00:12:44"
+    ]
+  },
+  "tablet": {
+    "permission": "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+    "locationMode": "3",
+    "size": "Physical size: 2560x1600",
+    "rotation": "0",
+    "autoRotation": "1",
+    "nearbyOptIn": false,
+    "firstInstallTime": [
+      "firstInstallTime=2026-09-06 00:12:46"
+    ]
+  }
+}

@@ -1,0 +1,257 @@
+{
+  "plugins": [
+    "react",
+    "import"
+  ],
+  "rules": {
+    "react/forbid-elements": [
+      "warn",
+      {
+        "forbid": []
+      }
+    ],
+    "no-restricted-imports": [
+      "warn",
+      {
+        "patterns": [
+          {
+            "group": [
+              "components/ArrowIcon/**",
+              "components/Badge/**",
+              "components/Button/**",
+              "components/ExcursionCard/**",
+              "components/SectionPanel/**",
+              "components/TestimonialCard/**",
+              "ui_kits/marketing-site/**"
+            ],
+            "message": "Import design-system components from 'index.js', not component internals."
+          }
+        ]
+      }
+    ],
+    "no-restricted-syntax": [
+      "warn",
+      {
+        "selector": "Literal[value=/#[0-9a-fA-F]{3,8}\\b/]",
+        "message": "Raw hex color — use a design-system color token via var()."
+      },
+      {
+        "selector": "Literal[value=/\\b\\d+px\\b/]",
+        "message": "Raw px value — use a design-system spacing token via var()."
+      },
+      {
+        "selector": "Literal[value=/font-family\\s*:\\s*(?!['\\\"]?(?:Playfair Display|Montserrat|Kaushan Script))/i]",
+        "message": "Font not provided by the design system. Available: Playfair Display, Montserrat, Kaushan Script."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ArrowIcon'] > JSXAttribute > JSXIdentifier[name!=/^(?:size|key|ref|className|style|children)$/]",
+        "message": "<ArrowIcon> doesn't accept that prop. Declared props: size."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|tone|key|ref|className|style|children)$/]",
+        "message": "<Badge> doesn't accept that prop. Declared props: children, tone."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Badge'] > JSXAttribute[name.name='tone'] > Literal[value!=/^(?:white|primary|accent|success|outline)$/]",
+        "message": "<Badge> tone must be one of 'white' | 'primary' | 'accent' | 'success' | 'outline'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute > JSXIdentifier[name!=/^(?:children|variant|compact|href|onClick|type|key|ref|className|style|children)$/]",
+        "message": "<Button> doesn't accept that prop. Declared props: children, variant, compact, href, onClick, type."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='variant'] > Literal[value!=/^(?:primary|ghost)$/]",
+        "message": "<Button> variant must be one of 'primary' | 'ghost'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='Button'] > JSXAttribute[name.name='type'] > Literal[value!=/^(?:button|submit|reset)$/]",
+        "message": "<Button> type must be one of 'button' | 'submit' | 'reset'."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='ExcursionCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|description|image|linkText|duration|onClick|key|ref|className|style|children)$/]",
+        "message": "<ExcursionCard> doesn't accept that prop. Declared props: title, description, image, linkText, duration, onClick."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='SectionPanel'] > JSXAttribute > JSXIdentifier[name!=/^(?:title|children|key|ref|className|style|children)$/]",
+        "message": "<SectionPanel> doesn't accept that prop. Declared props: title, children."
+      },
+      {
+        "selector": "JSXOpeningElement[name.name='TestimonialCard'] > JSXAttribute > JSXIdentifier[name!=/^(?:name|review|stars|avatar|key|ref|className|style|children)$/]",
+        "message": "<TestimonialCard> doesn't accept that prop. Declared props: name, review, stars, avatar."
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/index.js"
+      ],
+      "rules": {
+        "no-restricted-imports": "off"
+      }
+    }
+  ],
+  "x-omelette": {
+    "components": {
+      "ArrowIcon": {
+        "replaces": []
+      },
+      "Badge": {
+        "replaces": []
+      },
+      "Button": {
+        "replaces": []
+      },
+      "ExcursionCard": {
+        "replaces": []
+      },
+      "SectionPanel": {
+        "replaces": []
+      },
+      "TestimonialCard": {
+        "replaces": []
+      }
+    },
+    "tokens": [
+      "--dp-accent",
+      "--dp-assistant-msg",
+      "--dp-background",
+      "--dp-background-dk",
+      "--dp-background-lt",
+      "--dp-bg-1",
+      "--dp-bg-2",
+      "--dp-bg-3",
+      "--dp-black",
+      "--dp-border",
+      "--dp-box-shadow",
+      "--dp-container-lg",
+      "--dp-container-md",
+      "--dp-container-sm",
+      "--dp-container-xl",
+      "--dp-ease-out",
+      "--dp-error",
+      "--dp-error-bg",
+      "--dp-fg-1",
+      "--dp-fg-2",
+      "--dp-fg-3",
+      "--dp-fg-invert",
+      "--dp-font-display",
+      "--dp-font-sans",
+      "--dp-font-script",
+      "--dp-fs-body",
+      "--dp-fs-body-sm",
+      "--dp-fs-caption",
+      "--dp-fs-eyebrow",
+      "--dp-fs-h1",
+      "--dp-fs-h2",
+      "--dp-fs-h3",
+      "--dp-fs-h4",
+      "--dp-fs-h5",
+      "--dp-gradient-accent-bar",
+      "--dp-gradient-button",
+      "--dp-gradient-button-hover",
+      "--dp-gradient-hero-scrim",
+      "--dp-hover",
+      "--dp-on-primary",
+      "--dp-primary",
+      "--dp-radius-2xl",
+      "--dp-radius-lg",
+      "--dp-radius-md",
+      "--dp-radius-pill",
+      "--dp-radius-sm",
+      "--dp-radius-xl",
+      "--dp-secondary",
+      "--dp-shadow-1",
+      "--dp-shadow-2",
+      "--dp-shadow-3",
+      "--dp-shadow-4",
+      "--dp-shadow-hover",
+      "--dp-space-1",
+      "--dp-space-2",
+      "--dp-space-3",
+      "--dp-space-4",
+      "--dp-space-5",
+      "--dp-space-6",
+      "--dp-space-7",
+      "--dp-space-8",
+      "--dp-success",
+      "--dp-success-bg",
+      "--dp-transition",
+      "--dp-user-msg",
+      "--nav-height"
+    ],
+    "tokenKinds": {
+      "--dp-primary": "color",
+      "--dp-secondary": "color",
+      "--dp-accent": "color",
+      "--dp-hover": "color",
+      "--dp-background": "color",
+      "--dp-background-lt": "color",
+      "--dp-background-dk": "color",
+      "--dp-border": "color",
+      "--dp-black": "color",
+      "--dp-on-primary": "color",
+      "--dp-box-shadow": "shadow",
+      "--dp-error": "color",
+      "--dp-error-bg": "color",
+      "--dp-success": "color",
+      "--dp-success-bg": "color",
+      "--dp-user-msg": "color",
+      "--dp-assistant-msg": "color",
+      "--dp-fg-1": "color",
+      "--dp-fg-2": "color",
+      "--dp-fg-3": "color",
+      "--dp-fg-invert": "color",
+      "--dp-bg-1": "color",
+      "--dp-bg-2": "color",
+      "--dp-bg-3": "color",
+      "--dp-gradient-button": "color",
+      "--dp-gradient-button-hover": "color",
+      "--dp-gradient-accent-bar": "color",
+      "--dp-gradient-hero-scrim": "color",
+      "--dp-font-display": "font",
+      "--dp-font-sans": "font",
+      "--dp-font-script": "font",
+      "--dp-fs-h1": "other",
+      "--dp-fs-h2": "other",
+      "--dp-fs-h3": "other",
+      "--dp-fs-h4": "spacing",
+      "--dp-fs-h5": "spacing",
+      "--dp-fs-body": "other",
+      "--dp-fs-body-sm": "spacing",
+      "--dp-fs-caption": "spacing",
+      "--dp-fs-eyebrow": "spacing",
+      "--dp-space-1": "spacing",
+      "--dp-space-2": "spacing",
+      "--dp-space-3": "spacing",
+      "--dp-space-4": "spacing",
+      "--dp-space-5": "spacing",
+      "--dp-space-6": "spacing",
+      "--dp-space-7": "spacing",
+      "--dp-space-8": "spacing",
+      "--dp-radius-sm": "radius",
+      "--dp-radius-md": "radius",
+      "--dp-radius-lg": "radius",
+      "--dp-radius-xl": "radius",
+      "--dp-radius-2xl": "radius",
+      "--dp-radius-pill": "radius",
+      "--dp-shadow-1": "shadow",
+      "--dp-shadow-2": "shadow",
+      "--dp-shadow-3": "shadow",
+      "--dp-shadow-4": "shadow",
+      "--dp-shadow-hover": "shadow",
+      "--dp-transition": "other",
+      "--dp-ease-out": "other",
+      "--dp-container-sm": "spacing",
+      "--dp-container-md": "spacing",
+      "--dp-container-lg": "spacing",
+      "--dp-container-xl": "spacing",
+      "--nav-height": "spacing"
+    },
+    "fontFamilies": [
+      "Kaushan Script",
+      "Montserrat",
+      "Playfair Display"
+    ]
+  }
+}

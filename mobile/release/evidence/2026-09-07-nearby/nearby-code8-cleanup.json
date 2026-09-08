@@ -1,0 +1,25 @@
+{
+  "phone": {
+    "nearbyOffVerified": true,
+    "geoChangedByThisRun": false,
+    "permission": "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|524288]",
+    "size": "Physical size: 1080x2424",
+    "density": "Physical density: 420",
+    "rotation": "0",
+    "autoRotation": "1",
+    "locationMode": "3",
+    "firstInstallTime": "firstInstallTime=2026-09-06 00:12:44"
+  },
+  "tablet": {
+    "nearbyOffVerified": true,
+    "geoChangedByThisRun": false,
+    "permission": "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+    "size": "Physical size: 2560x1600",
+    "density": "Physical density: 320",
+    "rotation": "0",
+    "autoRotation": "1",
+    "locationMode": "3",
+    "firstInstallTime": "firstInstallTime=2026-09-06 00:12:46"
+  },
+  "emulatorsStopped": true
+}

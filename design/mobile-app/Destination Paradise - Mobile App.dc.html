@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="_ds/destination-paradise-design-system-aac3041c-2728-4cea-9834-2a4593800ead/colors_and_type.css">
+<link rel="stylesheet" href="_ds/destination-paradise-design-system-aac3041c-2728-4cea-9834-2a4593800ead/ui_kits/marketing-site/styles.css">
+<script src="_ds/destination-paradise-design-system-aac3041c-2728-4cea-9834-2a4593800ead/_ds_bundle.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha384-sHL9NAb7lN7rfvG5lfHpm643Xkcjzp4jFvuavGOndn6pjVqS6ny56CAt3nsEVT4H" crossorigin="anonymous">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha384-cxOPjt7s7Iz04uaHJceBmS+qpjv2JkIHNVcuOrM+YHwZOmJGBXI00mdUXEq65HTH" crossorigin="anonymous"></script>
+<style>
+:root{--dpa-900:#071c2b;--dpa-800:#0b2839;--dpa-700:#103349;--dpa-600:#16425c;--dpa-line:rgba(255,255,255,.13);--dpa-ink:#ffffff;--dpa-ink2:#c7d8e2;--dpa-ink3:#9bb2c2}
+body{margin:0;background:#04121c;font-family:var(--dp-font-sans);color:#fff;-webkit-font-smoothing:antialiased}
+a{color:var(--dp-accent);text-decoration:none}
+a:hover{color:var(--dp-hover)}
+button{font-family:var(--dp-font-sans)}
+input,textarea{font-family:var(--dp-font-sans)}
+@keyframes dpaSpin{to{transform:rotate(360deg)}}
+@keyframes dpaUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@keyframes dpaSheet{from{transform:translateY(100%)}to{transform:none}}
+@keyframes dpaBlink{0%,80%,100%{opacity:.25}40%{opacity:1}}
+.dpa-s{scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.dpa-s::-webkit-scrollbar{display:none}
+.leaflet-container{background:#0b2839;isolation:isolate;z-index:0}
+.leaflet-top,.leaflet-bottom{z-index:400}
+.leaflet-control-attribution{font-size:9px!important;background:rgba(7,28,43,.72)!important;color:#c7d8e2!important}
+.leaflet-control-attribution a{color:#c7d8e2!important}
+</style>
+</helmet>
+
+<div style="min-height:100dvh;display:flex;align-items:center;justify-content:center;background:radial-gradient(120% 80% at 50% 0%,#0b2839 0%,#04121c 70%)">
+<div style="position:relative;width:min(390px,100vw);height:min(844px,100dvh);display:flex;flex-direction:column;overflow:hidden;background:var(--dpa-900);border-radius:clamp(0px,3vw,30px);box-shadow:0 40px 90px rgba(0,0,0,.55)">
+
+  <div style="display:flex;align-items:flex-end;justify-content:space-between;padding:12px 22px 6px;height:46px;flex:none;font-family:var(--dp-font-sans);font-size:12.5px;font-weight:600;color:#fff;letter-spacing:.02em">
+    <span>{{ clock }}</span>
+    <span style="display:flex;align-items:center;gap:5px">
+      <svg width="16" height="11" viewBox="0 0 16 11" aria-hidden="true"><rect x="0" y="7" width="3" height="4" rx="1" fill="#fff"/><rect x="4.3" y="5" width="3" height="6" rx="1" fill="#fff"/><rect x="8.6" y="2.6" width="3" height="8.4" rx="1" fill="#fff"/><rect x="12.9" y="0" width="3" height="11" rx="1" fill="rgba(255,255,255,.4)"/></svg>
+      <svg width="24" height="11" viewBox="0 0 24 11" aria-hidden="true"><rect x="0.5" y="0.5" width="19" height="10" rx="3" fill="none" stroke="rgba(255,255,255,.5)"/><rect x="2" y="2" width="13" height="7" rx="2" fill="#fff"/><path d="M21 4v3a2 2 0 0 0 0-3z" fill="rgba(255,255,255,.5)"/></svg>
+    </span>
+  </div>
+
+  <div style="position:relative;flex:1;min-height:0">
+
+    <sc-if value="{{ vList }}" hint-placeholder-val="{{ true }}">
+    <div class="dpa-s" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 16px 12px">
+        <img src="public/assets/brand/destination-paradise-logo-96.webp" alt="" width="36" height="36" style="border-radius:50%;background:#fff;flex:none">
+        <div style="display:flex;flex-direction:column;flex:1;min-width:0">
+          <span style="font-size:11.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#fff">Destination Paradise</span>
+          <span style="font-family:var(--dp-font-script);font-size:14.5px;color:var(--dp-accent);line-height:1.2">your next trip to paradise...</span>
+        </div>
+        <button type="button" onClick="{{ onOpenSaved }}" aria-label="Saved places" style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;gap:3px;border:1px solid var(--dpa-line);border-radius:50%;background:var(--dpa-800);color:#fff;cursor:pointer">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="{{ savedHeartFill }}" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 20.5S4 15.2 4 9.9A4.4 4.4 0 0 1 12 7.3 4.4 4.4 0 0 1 20 9.9c0 5.3-8 10.6-8 10.6z"/></svg>
+          <span style="font-size:10.5px;font-weight:700;color:var(--dp-accent)">{{ savedCount }}</span>
+        </button>
+      </div>
+
+      <div style="position:relative;margin:0 16px;border-radius:22px;overflow:hidden;height:186px">
+        <img src="public/assets/images/home/stone-town-waterfront.webp" alt="Dhows on the water at the Stone Town waterfront, Zanzibar" style="width:100%;height:100%;object-fit:cover;display:block">
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,28,43,.1) 25%,rgba(7,28,43,.86))"></div>
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:16px">
+          <span style="font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#ffd9d3">Explore Zanzibar &amp; Tanzania</span>
+          <p style="margin:6px 0 0;font-family:var(--dp-font-display);font-size:21px;line-height:1.25;color:#fff;max-width:250px;text-wrap:pretty">Start with the place, or the kind of trip.</p>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:8px;margin:14px 16px 0;padding:0 14px;height:46px;border:1px solid var(--dpa-line);border-radius:12px;background:var(--dpa-800)">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--dpa-ink3)" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5 21 21"/></svg>
+        <input type="search" value="{{ q }}" onInput="{{ onSearch }}" placeholder="Search a place or activity" aria-label="Search places and activities" style="flex:1;min-width:0;height:44px;border:0;outline:none;background:transparent;color:#fff;font-size:14px">
+        <sc-if value="{{ hasQuery }}">
+          <button type="button" onClick="{{ onClearSearch }}" aria-label="Clear search" style="width:26px;height:26px;flex:none;border:0;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;cursor:pointer;font-size:14px;line-height:1">×</button>
+        </sc-if>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:8px;margin:12px 16px 0">
+        <div style="display:flex;flex:1;padding:3px;gap:3px;border:1px solid var(--dpa-line);border-radius:11px;background:var(--dpa-800)">
+          <button type="button" onClick="{{ onZanzibar }}" style="{{ zStyle }}">Zanzibar</button>
+          <button type="button" onClick="{{ onMainland }}" style="{{ mStyle }}">Mainland</button>
+        </div>
+        <div style="display:flex;padding:3px;gap:3px;border:1px solid var(--dpa-line);border-radius:11px;background:var(--dpa-800)">
+          <button type="button" onClick="{{ onShowList }}" aria-label="List view" style="{{ listStyle }}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+          </button>
+          <button type="button" onClick="{{ onShowMap }}" aria-label="Map view" style="{{ mapStyle }}">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3 3 5.5v15L9 18l6 3 6-2.5v-15L15 6z"/><path d="M9 3v15M15 6v15"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="dpa-s" style="display:flex;gap:8px;overflow-x:auto;padding:12px 16px 2px">
+        <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+          <button type="button" onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin:18px 16px 10px">
+        <h2 style="margin:0;font-family:var(--dp-font-script);font-size:24px;font-weight:400;color:#fff">Where to go</h2>
+        <span style="font-size:11px;color:var(--dpa-ink3)">{{ resultLabel }}</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:14px;margin:0 16px">
+        <sc-for list="{{ photoDests }}" as="d" hint-placeholder-count="3">
+          <article style="position:relative;border-radius:22px;overflow:hidden;background:var(--dpa-800);border:1px solid var(--dpa-line);animation:dpaUp .45s var(--dp-ease-out) both">
+            <div style="height:5px;background:var(--dp-gradient-accent-bar)"></div>
+            <div style="position:relative;height:172px">
+              <div role="img" aria-label="{{ d.alt }}" style="{{ d.imgStyle }}"></div>
+              <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,28,43,0) 40%,rgba(7,28,43,.9))"></div>
+              <span style="position:absolute;top:12px;left:12px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);color:var(--dp-secondary);font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase">{{ d.type }}</span>
+              <button type="button" onClick="{{ d.onSave }}" aria-label="{{ d.saveLabel }}" style="position:absolute;top:6px;right:6px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:rgba(7,28,43,.45);backdrop-filter:blur(8px);color:#fff;cursor:pointer">
+                <svg width="19" height="19" viewBox="0 0 24 24" fill="{{ d.heartFill }}" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 20.5S4 15.2 4 9.9A4.4 4.4 0 0 1 12 7.3 4.4 4.4 0 0 1 20 9.9c0 5.3-8 10.6-8 10.6z"/></svg>
+              </button>
+              <div style="position:absolute;left:14px;bottom:10px">
+                <h3 style="margin:0;font-family:var(--dp-font-sans);font-size:19px;font-weight:600;color:#fff;letter-spacing:.01em">{{ d.name }}</h3>
+                <span style="font-size:11.5px;color:#ffd9d3">{{ d.desc }}</span>
+              </div>
+            </div>
+            <div style="padding:12px 14px 14px">
+              <p style="margin:0;font-family:var(--dp-font-display);font-size:13.5px;line-height:1.55;color:var(--dpa-ink2);text-wrap:pretty">{{ d.text }}</p>
+              <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
+                <sc-for list="{{ d.best }}" as="t" hint-placeholder-count="3">
+                  <span style="padding:4px 9px;border-radius:999px;border:1px solid var(--dpa-line);font-size:10.5px;color:var(--dpa-ink2)">{{ t }}</span>
+                </sc-for>
+              </div>
+              <button type="button" onClick="{{ d.onOpen }}" style="margin-top:12px;width:100%;height:44px;display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:10px;background-image:var(--dp-gradient-button);color:#fff;font-size:13.5px;font-weight:600;cursor:pointer">
+                {{ d.cta }}
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+              </button>
+            </div>
+          </article>
+        </sc-for>
+
+        <sc-for list="{{ rowDests }}" as="d" hint-placeholder-count="0">
+          <article style="display:flex;gap:12px;padding:13px 14px;border-radius:18px;background:var(--dpa-800);border:1px solid var(--dpa-line);animation:dpaUp .4s var(--dp-ease-out) both">
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;align-items:center;gap:8px">
+                <h3 style="margin:0;font-size:15px;font-weight:600;color:#fff">{{ d.name }}</h3>
+                <span style="font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dpa-ink3)">{{ d.type }}</span>
+              </div>
+              <p style="margin:5px 0 0;font-family:var(--dp-font-display);font-size:12.5px;line-height:1.5;color:var(--dpa-ink2)">{{ d.short }}</p>
+              <div style="display:flex;gap:14px;margin-top:9px">
+                <button type="button" onClick="{{ d.onOpen }}" style="min-height:44px;padding:0;border:0;background:none;color:var(--dp-accent);font-size:12.5px;font-weight:600;cursor:pointer">{{ d.cta }}</button>
+                <button type="button" onClick="{{ d.onSave }}" aria-label="{{ d.saveLabel }}" style="min-height:44px;display:flex;align-items:center;gap:6px;padding:0;border:0;background:none;color:var(--dpa-ink2);font-size:12.5px;cursor:pointer">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ d.heartFill }}" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 20.5S4 15.2 4 9.9A4.4 4.4 0 0 1 12 7.3 4.4 4.4 0 0 1 20 9.9c0 5.3-8 10.6-8 10.6z"/></svg>
+                  Save
+                </button>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+
+      <sc-if value="{{ noResults }}">
+        <div style="margin:8px 16px 0;padding:26px 20px;border-radius:20px;border:1px dashed var(--dpa-line);text-align:center">
+          <p style="margin:0;font-family:var(--dp-font-display);font-size:14px;color:#fff">Nothing matches that yet.</p>
+          <p style="margin:6px 0 14px;font-size:12.5px;line-height:1.5;color:var(--dpa-ink3)">Try another area, clear the category, or ask us — we know places that never make a filter list.</p>
+          <button type="button" onClick="{{ onResetFilters }}" style="min-height:44px;padding:0 18px;border:1px solid var(--dpa-line);border-radius:10px;background:transparent;color:#fff;font-size:13px;cursor:pointer">Clear filters</button>
+        </div>
+      </sc-if>
+
+      <div style="margin:26px 16px 10px">
+        <h2 style="margin:0 0 4px;font-family:var(--dp-font-script);font-size:24px;font-weight:400;color:#fff">Day trips we run</h2>
+        <p style="margin:0;font-size:11.5px;color:var(--dpa-ink3)">Prices are “from” per person and confirmed with your quote.</p>
+      </div>
+      <div class="dpa-s" style="display:flex;gap:12px;overflow-x:auto;padding:4px 16px 4px">
+        <sc-for list="{{ experiences }}" as="e" hint-placeholder-count="3">
+          <article style="flex:none;width:212px;border-radius:20px;overflow:hidden;background:var(--dpa-800);border:1px solid var(--dpa-line)">
+            <div style="position:relative;height:124px">
+              <div role="img" aria-label="{{ e.alt }}" style="{{ e.imgStyle }}"></div>
+              <span style="position:absolute;top:10px;left:10px;padding:4px 9px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);color:var(--dp-secondary);font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase">{{ e.duration }}</span>
+            </div>
+            <div style="padding:11px 13px 13px">
+              <h3 style="margin:0;font-size:13.5px;font-weight:600;color:#fff;line-height:1.3">{{ e.title }}</h3>
+              <p style="margin:5px 0 0;font-size:11.5px;color:var(--dpa-ink3)">{{ e.where }}</p>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-top:10px">
+                <span style="font-family:var(--dp-font-display);font-size:13px;color:#fff">{{ e.price }}</span>
+                <button type="button" onClick="{{ e.onAdd }}" style="min-height:44px;padding:0 4px;border:0;background:none;color:var(--dp-accent);font-size:12px;font-weight:600;cursor:pointer">{{ e.action }}</button>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+
+      <button type="button" onClick="{{ onOpenGuide }}" style="display:block;width:calc(100% - 32px);margin:22px 16px 0;padding:0;border:1px solid var(--dpa-line);border-radius:20px;overflow:hidden;background:var(--dpa-800);color:#fff;text-align:left;cursor:pointer">
+        <div style="position:relative;height:130px">
+          <img src="public/assets/images/excursions/trips/forodhani-street-food-600w.webp" alt="Grilled seafood at the Forodhani night market in Stone Town" style="width:100%;height:100%;object-fit:cover;display:block">
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,28,43,.15),rgba(7,28,43,.88))"></div>
+          <div style="position:absolute;left:14px;right:14px;bottom:12px">
+            <span style="font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#ffd9d3">Our island food &amp; events guide</span>
+            <p style="margin:5px 0 0;font-family:var(--dp-font-display);font-size:17px;color:#fff">Where we send friends to eat.</p>
+          </div>
+        </div>
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:12px 14px">
+          <span style="font-size:11.5px;color:var(--dpa-ink2)">8 areas · 32 places · 6 dates to know</span>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--dp-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </div>
+      </button>
+
+      <div style="margin:24px 16px 0;padding-top:16px;border-top:1px solid var(--dpa-line)">
+        <p style="margin:0;font-size:11px;line-height:1.7;color:var(--dpa-ink3)">Destination Paradise · Zanzibar, Tanzania<br>info@yournexttriptoparadise.com · +255 768 779 517<br>yournexttriptoparadise.com</p>
+      </div>
+      <div style="height:118px"></div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ vMap }}">
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column">
+      <div style="flex:none;padding:6px 16px 12px;background:var(--dpa-900);z-index:2">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="flex:1;min-width:0">
+            <h2 style="margin:0;font-size:16px;font-weight:600;color:#fff">{{ mapTitle }}</h2>
+            <span style="font-size:11px;color:var(--dpa-ink3)">{{ mapSubtitle }}</span>
+          </div>
+          <button type="button" onClick="{{ onOpenSaved }}" aria-label="Saved places" style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;gap:3px;border:1px solid var(--dpa-line);border-radius:50%;background:var(--dpa-800);color:#fff;cursor:pointer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="{{ savedHeartFill }}" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 20.5S4 15.2 4 9.9A4.4 4.4 0 0 1 12 7.3 4.4 4.4 0 0 1 20 9.9c0 5.3-8 10.6-8 10.6z"/></svg>
+            <span style="font-size:10.5px;font-weight:700;color:var(--dp-accent)">{{ savedCount }}</span>
+          </button>
+          <div style="display:flex;padding:3px;gap:3px;border:1px solid var(--dpa-line);border-radius:11px;background:var(--dpa-800)">
+            <button type="button" onClick="{{ onShowList }}" aria-label="List view" style="{{ listStyle }}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+            </button>
+            <button type="button" onClick="{{ onShowMap }}" aria-label="Map view" style="{{ mapStyle }}">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3 3 5.5v15L9 18l6 3 6-2.5v-15L15 6z"/><path d="M9 3v15M15 6v15"/></svg>
+            </button>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button type="button" onClick="{{ onZanzibar }}" style="{{ zStyle }}">Zanzibar</button>
+          <button type="button" onClick="{{ onMainland }}" style="{{ mStyle }}">Mainland</button>
+        </div>
+        <div class="dpa-s" style="display:flex;gap:8px;overflow-x:auto;margin:10px -16px 0;padding:0 16px">
+          <sc-for list="{{ cats }}" as="c" hint-placeholder-count="5">
+            <button type="button" onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="position:relative;flex:1;min-height:0">
+        <x-import component="MapView" from="./MapView.jsx" pins="{{ mapPins }}" selected-id="{{ mapSelectedId }}" on-select="{{ onMapSelect }}" fit-key="{{ mapFitKey }}" hint-size="100%,100%"></x-import>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ vDetail }}">
+    <div class="dpa-s" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+      <div style="position:relative;height:290px">
+        <div role="img" aria-label="{{ det.alt }}" style="{{ det.imgStyle }}"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,28,43,.55) 0%,rgba(7,28,43,.05) 35%,rgba(7,28,43,.95))"></div>
+        <button type="button" onClick="{{ onBack }}" aria-label="Back to Explore" style="position:absolute;top:8px;left:10px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:rgba(7,28,43,.5);backdrop-filter:blur(8px);color:#fff;cursor:pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+        </button>
+        <button type="button" onClick="{{ det.onSave }}" aria-label="{{ det.saveLabel }}" style="position:absolute;top:8px;right:10px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;border:0;border-radius:50%;background:rgba(7,28,43,.5);backdrop-filter:blur(8px);color:#fff;cursor:pointer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="{{ det.heartFill }}" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M12 20.5S4 15.2 4 9.9A4.4 4.4 0 0 1 12 7.3 4.4 4.4 0 0 1 20 9.9c0 5.3-8 10.6-8 10.6z"/></svg>
+        </button>
+        <div style="position:absolute;left:16px;right:16px;bottom:14px">
+          <span style="padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);color:var(--dp-secondary);font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase">{{ det.type }}</span>
+          <h1 style="margin:9px 0 2px;font-family:var(--dp-font-sans);font-size:28px;font-weight:600;color:#fff;line-height:1.1">{{ det.name }}</h1>
+          <span style="font-size:12px;color:#ffd9d3">{{ det.regionLine }}</span>
+        </div>
+      </div>
+
+      <div style="padding:16px">
+        <p style="margin:0;font-family:var(--dp-font-display);font-size:15px;line-height:1.65;color:#fff;text-wrap:pretty">{{ det.text }}</p>
+        <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:14px">
+          <sc-for list="{{ det.best }}" as="t" hint-placeholder-count="4">
+            <span style="padding:6px 11px;border-radius:999px;background:var(--dpa-800);border:1px solid var(--dpa-line);font-size:11.5px;color:var(--dpa-ink2)">{{ t }}</span>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ det.hasGallery }}">
+          <div class="dpa-s" style="display:flex;gap:10px;overflow-x:auto;margin:18px -16px 0;padding:0 16px">
+            <sc-for list="{{ det.gallery }}" as="g" hint-placeholder-count="3">
+              <figure style="flex:none;width:150px;margin:0">
+                <div role="img" aria-label="{{ g.alt }}" style="{{ g.imgStyle }}"></div>
+                <figcaption style="margin-top:6px;font-size:10.5px;color:var(--dpa-ink3)">{{ g.caption }}</figcaption>
+              </figure>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <h2 style="margin:24px 0 10px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">Experiences here</h2>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <sc-for list="{{ det.excursions }}" as="x" hint-placeholder-count="2">
+            <div style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:14px;background:var(--dpa-800);border:1px solid var(--dpa-line)">
+              <div style="flex:1;min-width:0">
+                <p style="margin:0;font-size:13.5px;font-weight:600;color:#fff">{{ x.label }}</p>
+                <span style="font-size:11px;color:var(--dpa-ink3)">{{ x.meta }}</span>
+              </div>
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--dp-accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+            </div>
+          </sc-for>
+        </div>
+
+        <sc-if value="{{ det.hasPackages }}">
+          <h2 style="margin:24px 0 10px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">Packages that include it</h2>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <sc-for list="{{ det.packages }}" as="p" hint-placeholder-count="2">
+              <div style="display:flex;align-items:center;gap:10px;padding:13px 14px;border-radius:14px;border:1px solid var(--dpa-line)">
+                <span style="font-size:13px;color:#fff;flex:1">{{ p }}</span>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--dpa-ink3)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+              </div>
+            </sc-for>
+          </div>
+        </sc-if>
+
+        <p style="margin:20px 0 0;font-size:11.5px;line-height:1.6;color:var(--dpa-ink3)">Availability and prices are checked by our team in Zanzibar before anything is confirmed.</p>
+        <div style="height:104px"></div>
+      </div>
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:0;padding:12px 16px 14px;background:linear-gradient(180deg,rgba(7,28,43,0),rgba(7,28,43,.96) 40%)">
+      <button type="button" onClick="{{ det.onPlan }}" style="width:100%;height:52px;display:flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:13px;background-image:var(--dp-gradient-button);color:#fff;font-size:15px;font-weight:600;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.4)">
+        {{ det.planLabel }}
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+      </button>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ vGuide }}">
+    <div class="dpa-s" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 16px 8px">
+        <button type="button" onClick="{{ onBack }}" aria-label="Back to Explore" style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;border:1px solid var(--dpa-line);border-radius:50%;background:var(--dpa-800);color:#fff;cursor:pointer">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+        </button>
+        <div>
+          <span style="font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dpa-ink3)">Food &amp; events guide</span>
+          <h1 style="margin:2px 0 0;font-family:var(--dp-font-display);font-size:19px;font-weight:500;color:#fff">Where we send friends to eat.</h1>
+        </div>
+      </div>
+      <p style="margin:6px 16px 0;font-family:var(--dp-font-display);font-size:13px;line-height:1.6;color:var(--dpa-ink2)">Chosen the way our guides recommend a place to a friend: by mood, occasion and who you are travelling with.</p>
+      <p style="margin:8px 16px 0;font-size:11px;color:var(--dpa-ink3)">8 areas · 32 hand-picked places · 6 dates to know · guide reviewed July 2026</p>
+
+      <div class="dpa-s" style="display:flex;gap:8px;overflow-x:auto;padding:14px 16px 2px">
+        <sc-for list="{{ guideAreas }}" as="a" hint-placeholder-count="8">
+          <button type="button" onClick="{{ a.onClick }}" style="{{ a.style }}">
+            <strong style="display:block;font-size:12.5px;font-weight:600">{{ a.label }}</strong>
+            <span style="display:block;font-size:10px;opacity:.75;margin-top:2px">{{ a.hint }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="position:relative;margin:14px 16px 0;border-radius:18px;overflow:hidden;height:132px">
+        <div role="img" aria-label="{{ area.alt }}" style="{{ area.imgStyle }}"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,28,43,.1),rgba(7,28,43,.82))"></div>
+        <span style="position:absolute;left:14px;bottom:12px;font-family:var(--dp-font-sans);font-size:15px;font-weight:600;color:#fff">{{ area.label }} · Zanzibar</span>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:10px;margin:14px 16px 0">
+        <sc-for list="{{ area.places }}" as="p" hint-placeholder-count="4">
+          <article style="padding:14px;border-radius:18px;background:var(--dpa-800);border:1px solid var(--dpa-line)">
+            <div style="display:flex;align-items:baseline;gap:8px">
+              <span style="font-family:var(--dp-font-display);font-size:12px;color:var(--dp-accent)">{{ p.num }}</span>
+              <div style="flex:1;min-width:0">
+                <span style="font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">{{ p.occasion }}</span>
+                <h3 style="margin:3px 0 0;font-size:14.5px;font-weight:600;color:#fff;line-height:1.3">{{ p.name }}</h3>
+              </div>
+            </div>
+            <p style="margin:8px 0 0;font-family:var(--dp-font-display);font-size:12.5px;line-height:1.6;color:var(--dpa-ink2)">{{ p.description }}</p>
+            <a href="{{ p.mapUrl }}" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:7px;min-height:44px;font-size:12.5px;font-weight:600;color:var(--dp-accent)">
+              Open in Maps
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg>
+            </a>
+          </article>
+        </sc-for>
+      </div>
+
+      <div style="margin:26px 16px 0">
+        <span style="font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dpa-ink3)">What's on</span>
+        <h2 style="margin:4px 0 4px;font-family:var(--dp-font-script);font-size:23px;font-weight:400;color:#fff">When the island celebrates.</h2>
+        <p style="margin:0;font-size:11.5px;line-height:1.6;color:var(--dpa-ink3)">Seasonal guide entries, not confirmed upcoming dates. Confirm before you book flights.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:10px;margin:14px 16px 0">
+        <sc-for list="{{ events }}" as="e" hint-placeholder-count="6">
+          <article style="display:flex;gap:12px;padding:14px;border-radius:18px;border:1px solid var(--dpa-line)">
+            <span style="flex:none;width:74px;font-size:11px;font-weight:700;letter-spacing:.04em;color:var(--dp-accent);text-transform:uppercase">{{ e.when }}</span>
+            <div style="flex:1;min-width:0">
+              <h3 style="margin:0;font-size:14px;font-weight:600;color:#fff">{{ e.name }}</h3>
+              <span style="font-size:11px;color:var(--dpa-ink3)">{{ e.where }}</span>
+              <p style="margin:7px 0 0;font-family:var(--dp-font-display);font-size:12.5px;line-height:1.6;color:var(--dpa-ink2)">{{ e.description }}</p>
+              <a href="{{ e.linkUrl }}" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:6px;min-height:44px;font-size:12px;font-weight:600;color:var(--dp-accent)">{{ e.action }}</a>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+      <div style="margin:22px 16px 0;padding:16px;border-radius:18px;background:var(--dpa-800);border:1px solid var(--dpa-line)">
+        <strong style="display:block;font-size:13.5px;color:#fff">Want us to narrow it down?</strong>
+        <p style="margin:6px 0 0;font-family:var(--dp-font-display);font-size:12.5px;line-height:1.6;color:var(--dpa-ink2)">Tell us where you are staying, who you are with and what you feel like eating.</p>
+        <button type="button" onClick="{{ onGuideToPlanner }}" style="margin-top:12px;width:100%;height:46px;border:1px solid var(--dpa-line);border-radius:11px;background:transparent;color:#fff;font-size:13.5px;font-weight:600;cursor:pointer">Ask Paradise Planner</button>
+      </div>
+      <div style="height:118px"></div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ vPlanStart }}">
+    <div class="dpa-s" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+      <div style="padding:8px 16px 0">
+        <span style="font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dpa-ink3)">Paradise Planner</span>
+        <h1 style="margin:6px 0 0;font-family:var(--dp-font-script);font-size:30px;font-weight:400;color:#fff;line-height:1.15">Karibu. Let's shape your trip.</h1>
+        <p style="margin:10px 0 0;font-family:var(--dp-font-display);font-size:14px;line-height:1.6;color:var(--dpa-ink2);text-wrap:pretty">Tell us roughly what you want. We draft the days, then a human in Zanzibar checks every price and booking. No account needed.</p>
+      </div>
+
+      <sc-if value="{{ hasPlace }}">
+        <div style="display:flex;align-items:center;gap:10px;margin:16px 16px 0;padding:12px 14px;border-radius:14px;background:rgba(255,111,97,.12);border:1px solid rgba(255,111,97,.35)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--dp-accent)" stroke-width="1.6" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div style="flex:1;min-width:0">
+            <p style="margin:0;font-size:12.5px;color:#fff">Planning around <strong>{{ placeName }}</strong></p>
+            <span style="font-size:11px;color:var(--dpa-ink3)">{{ placeContext }}</span>
+          </div>
+          <button type="button" onClick="{{ onClearPlace }}" aria-label="Remove selected place" style="width:44px;height:44px;flex:none;border:0;background:none;color:var(--dpa-ink3);font-size:17px;cursor:pointer">×</button>
+        </div>
+      </sc-if>
+
+      <h2 style="margin:24px 16px 10px;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">Where do we start?</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 16px">
+        <sc-for list="{{ angles }}" as="a" hint-placeholder-count="4">
+          <button type="button" onClick="{{ a.onClick }}" style="{{ a.style }}">
+            <strong style="display:block;font-size:14px;font-weight:600">{{ a.label }}</strong>
+            <span style="display:block;margin-top:5px;font-family:var(--dp-font-display);font-size:11.5px;line-height:1.5;opacity:.8">{{ a.sub }}</span>
+          </button>
+        </sc-for>
+      </div>
+
+      <div style="margin:22px 16px 0;padding:16px;border-radius:20px;background:var(--dpa-800);border:1px solid var(--dpa-line)">
+        <div style="display:flex;align-items:center;justify-content:space-between">
+          <h2 style="margin:0;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">Your basics</h2>
+          <button type="button" onClick="{{ onOpenPrefs }}" style="min-height:44px;padding:0;border:0;background:none;color:var(--dp-accent);font-size:12.5px;font-weight:600;cursor:pointer">Refine</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:11px;margin-top:6px">
+          <sc-for list="{{ prefRows }}" as="r" hint-placeholder-count="5">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+              <span style="font-size:12px;color:var(--dpa-ink3)">{{ r.k }}</span>
+              <span style="font-size:12.5px;color:#fff;text-align:right">{{ r.v }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="margin:14px 16px 0">
+        <button type="button" onClick="{{ onStartChat }}" style="width:100%;height:52px;display:flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:13px;background-image:var(--dp-gradient-button);color:#fff;font-size:15px;font-weight:600;cursor:pointer">
+          {{ startChatLabel }}
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </button>
+        <p style="margin:10px 0 0;font-size:11px;line-height:1.6;color:var(--dpa-ink3);text-align:center">Drafted with AI · a human reviews everything before booking</p>
+      </div>
+      <div style="height:118px"></div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ vChat }}">
+    <div style="position:absolute;inset:0;display:flex;flex-direction:column">
+      <div style="flex:none;display:flex;align-items:center;gap:10px;padding:6px 16px 12px;border-bottom:1px solid var(--dpa-line)">
+        <button type="button" onClick="{{ onChatBack }}" aria-label="Back" style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;border:1px solid var(--dpa-line);border-radius:50%;background:var(--dpa-800);color:#fff;cursor:pointer">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+        </button>
+        <div style="flex:1;min-width:0">
+          <div style="display:flex;align-items:center;gap:7px">
+            <h1 style="margin:0;font-size:15.5px;font-weight:600;color:#fff">Paradise Planner</h1>
+            <span style="padding:2.5px 7px;border-radius:999px;border:1px solid var(--dpa-line);font-size:9px;font-weight:700;letter-spacing:.1em;color:var(--dpa-ink2)">AI</span>
+          </div>
+          <span style="font-size:10.5px;color:var(--dpa-ink3)">Human reviewed before booking</span>
+        </div>
+        <button type="button" onClick="{{ onOpenPrivacy }}" aria-label="How your messages are handled" style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;border:1px solid var(--dpa-line);border-radius:50%;background:var(--dpa-800);color:var(--dpa-ink2);cursor:pointer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.5"/></svg>
+        </button>
+      </div>
+
+      <div class="dpa-s" ref="{{ chatRef }}" style="flex:1;min-height:0;overflow-y:auto;padding:14px 16px 8px">
+        <sc-if value="{{ hasPlace }}">
+          <div style="display:inline-flex;align-items:center;gap:7px;margin-bottom:12px;padding:6px 11px;border-radius:999px;background:rgba(255,111,97,.13);border:1px solid rgba(255,111,97,.3);font-size:11px;color:#ffd9d3">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/></svg>
+            {{ placeName }} · {{ nights }}
+          </div>
+        </sc-if>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ msgs }}" as="m" hint-placeholder-count="2">
+            <div style="{{ m.rowStyle }}">
+              <div style="{{ m.bubbleStyle }}">{{ m.text }}</div>
+            </div>
+          </sc-for>
+          <sc-if value="{{ typing }}">
+            <div style="display:flex;justify-content:flex-start">
+              <div style="display:flex;gap:5px;padding:14px 16px;border-radius:16px 16px 16px 5px;background:var(--dpa-700)">
+                <span style="width:6px;height:6px;border-radius:50%;background:#fff;animation:dpaBlink 1.1s infinite"></span>
+                <span style="width:6px;height:6px;border-radius:50%;background:#fff;animation:dpaBlink 1.1s .18s infinite"></span>
+                <span style="width:6px;height:6px;border-radius:50%;background:#fff;animation:dpaBlink 1.1s .36s infinite"></span>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+        <div style="height:10px"></div>
+      </div>
+
+      <div style="flex:none;padding:0 16px 12px">
+        <div class="dpa-s" style="display:flex;gap:8px;overflow-x:auto;padding:2px 0 10px">
+          <sc-for list="{{ suggestions }}" as="s" hint-placeholder-count="3">
+            <button type="button" onClick="{{ s.onClick }}" style="flex:none;min-height:38px;padding:0 13px;border:1px solid var(--dpa-line);border-radius:999px;background:var(--dpa-800);color:var(--dpa-ink2);font-size:12px;white-space:nowrap;cursor:pointer">{{ s.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px">
+          <input type="text" value="{{ chatInput }}" onInput="{{ onChatInput }}" onKeyDown="{{ onChatKey }}" placeholder="Ask about places, dates or pace" aria-label="Message Paradise Planner" style="flex:1;min-width:0;height:46px;padding:0 14px;border:1px solid var(--dpa-line);border-radius:12px;background:var(--dpa-800);color:#fff;font-size:14px;outline:none">
+          <button type="button" onClick="{{ onSend }}" aria-label="Send message" style="width:46px;height:46px;flex:none;display:flex;align-items:center;justify-content:center;border:0;border-radius:12px;background-image:var(--dp-gradient-button);color:#fff;cursor:pointer">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16M13.5 5.5 20 12l-6.5 6.5"/></svg>
+          </button>
+        </div>
+        <button type="button" onClick="{{ onSeeDraft }}" style="margin-top:10px;width:100%;height:48px;display:flex;align-items:center;justify-content:center;gap:9px;border:1px solid rgba(255,111,97,.45);border-radius:12px;background:rgba(255,111,97,.14);color:#fff;font-size:14px;font-weight:600;cursor:pointer">
+          <sc-if value="{{ drafting }}">
+            <span style="width:16px;height:16px;border-radius:50%;border:2px solid rgba(255,255,255,.3);border-top-color:var(--dp-accent);animation:dpaSpin .8s linear infinite"></span>
+          </sc-if>
+          {{ draftLabel }}
+        </button>
+      </div>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ vItinerary }}">
+    <div class="dpa-s" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+      <div style="display:flex;align-items:center;gap:10px;padding:6px 16px 0">
+        <button type="button" onClick="{{ onItinBack }}" aria-label="Back to Paradise Planner" style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;border:1px solid var(--dpa-line);border-radius:50%;background:var(--dpa-800);color:#fff;cursor:pointer">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"/></svg>
+        </button>
+        <div>
+          <span style="font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dp-accent)">Draft itinerary</span>
+          <h1 style="margin:2px 0 0;font-size:18px;font-weight:600;color:#fff">{{ itin.title }}</h1>
+        </div>
+      </div>
+      <p style="margin:10px 16px 0;font-size:12px;color:var(--dpa-ink2)">{{ itin.meta }}</p>
+
+      <div style="display:flex;gap:8px;margin:12px 16px 0">
+        <sc-for list="{{ itin.stays }}" as="s" hint-placeholder-count="3">
+          <div style="flex:1;padding:11px 12px;border-radius:14px;background:var(--dpa-800);border:1px solid var(--dpa-line)">
+            <span style="display:block;font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dpa-ink3)">{{ s.region }}</span>
+            <strong style="display:block;margin-top:4px;font-size:13px;color:#fff">{{ s.place }}</strong>
+            <span style="font-size:11px;color:var(--dp-accent)">{{ s.nights }}</span>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:9px;margin:12px 16px 0;padding:11px 13px;border-radius:12px;border:1px dashed rgba(255,111,97,.4)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--dp-accent)" stroke-width="1.6" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.6v.5"/></svg>
+        <p style="margin:0;font-size:11.5px;line-height:1.55;color:var(--dpa-ink2)">A draft, not a booking. Hotels, flights and prices are proposals until our team confirms them.</p>
+      </div>
+
+      <div style="display:flex;flex-direction:column;gap:12px;margin:16px 16px 0">
+        <sc-for list="{{ itin.days }}" as="d" hint-placeholder-count="4">
+          <article style="border-radius:18px;background:var(--dpa-800);border:1px solid var(--dpa-line);overflow:hidden">
+            <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--dpa-700)">
+              <span style="flex:none;width:34px;height:34px;display:flex;align-items:center;justify-content:center;border-radius:10px;background:rgba(255,255,255,.08);font-size:12.5px;font-weight:700;color:#fff">{{ d.n }}</span>
+              <div style="flex:1;min-width:0">
+                <strong style="display:block;font-size:13.5px;color:#fff">{{ d.title }}</strong>
+                <span style="font-size:10.5px;color:var(--dpa-ink3)">{{ d.date }} · {{ d.place }}</span>
+              </div>
+            </div>
+            <div style="padding:12px 14px">
+              <div style="display:flex;flex-direction:column;gap:9px">
+                <sc-for list="{{ d.rows }}" as="r" hint-placeholder-count="3">
+                  <div style="display:flex;gap:11px">
+                    <span style="flex:none;width:74px;font-size:9.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--dpa-ink3);padding-top:2px">{{ r.k }}</span>
+                    <span style="flex:1;font-family:var(--dp-font-display);font-size:12.5px;line-height:1.55;color:var(--dpa-ink2)">{{ r.v }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <div style="display:flex;flex-wrap:wrap;gap:7px;margin-top:11px;padding-top:11px;border-top:1px solid var(--dpa-line)">
+                <span style="padding:4px 9px;border-radius:8px;background:rgba(255,255,255,.06);font-size:10.5px;color:var(--dpa-ink2)">{{ d.stay }}</span>
+                <span style="padding:4px 9px;border-radius:8px;background:rgba(255,255,255,.06);font-size:10.5px;color:var(--dpa-ink2)">{{ d.transport }}</span>
+              </div>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+
+      <div style="display:flex;gap:9px;margin:16px 16px 0">
+        <button type="button" onClick="{{ onOpenPrefs }}" style="flex:1;min-height:46px;border:1px solid var(--dpa-line);border-radius:12px;background:transparent;color:#fff;font-size:13px;font-weight:600;cursor:pointer">Edit preferences</button>
+        <button type="button" onClick="{{ onSaveDraft }}" style="flex:1;min-height:46px;border:1px solid var(--dpa-line);border-radius:12px;background:transparent;color:#fff;font-size:13px;font-weight:600;cursor:pointer">{{ saveDraftLabel }}</button>
+      </div>
+      <div style="height:120px"></div>
+    </div>
+    <div style="position:absolute;left:0;right:0;bottom:0;padding:12px 16px 14px;background:linear-gradient(180deg,rgba(7,28,43,0),rgba(7,28,43,.96) 40%)">
+      <button type="button" onClick="{{ onOpenQuote }}" style="width:100%;height:52px;display:flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:13px;background-image:var(--dp-gradient-button);color:#fff;font-size:15px;font-weight:600;cursor:pointer;box-shadow:0 12px 30px rgba(0,0,0,.4)">
+        Request a human quote
+      </button>
+    </div>
+    </sc-if>
+
+    <sc-if value="{{ vWeather }}">
+    <div class="dpa-s" style="position:absolute;inset:0;overflow-y:auto;overflow-x:hidden">
+      <div style="padding:8px 16px 0">
+        <div style="display:flex;align-items:center;gap:8px">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--dpa-ink2)" stroke-width="1.75" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <h1 style="margin:0;font-size:17px;font-weight:600;color:#fff">Zanzibar</h1>
+          <span style="padding:3px 8px;border-radius:999px;border:1px solid rgba(255,111,97,.4);background:rgba(255,111,97,.12);font-size:9.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ffd9d3">Sample data</span>
+        </div>
+      </div>
+
+      <div style="margin:14px 16px 0;padding:18px;border-radius:24px;background:linear-gradient(160deg,var(--dpa-700),var(--dpa-800));border:1px solid var(--dpa-line)">
+        <div style="display:flex;align-items:center;gap:14px">
+          <svg width="76" height="76" viewBox="0 0 64 64" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M44 36a16 16 0 1 1-16-22 12 12 0 0 0 16 16c0 2-.05 4-.05 6Z" fill="rgba(207,225,238,.25)"/>
+            <circle cx="50" cy="18" r="1.2" fill="#fff" stroke="none"/>
+            <circle cx="14" cy="14" r="1" fill="#fff" stroke="none"/>
+            <circle cx="56" cy="32" r="1" fill="#fff" stroke="none"/>
+          </svg>
+          <div>
+            <div style="font-family:var(--dp-font-display);font-size:54px;line-height:1;color:#fff">26<sup style="font-size:22px;top:-.6em">°</sup></div>
+            <p style="margin:4px 0 0;font-size:12.5px;color:var(--dpa-ink2)">Clear night · gentle breeze</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px">
+          <sc-for list="{{ wxFacts }}" as="f" hint-placeholder-count="4">
+            <div style="padding:12px;border-radius:14px;background:rgba(255,255,255,.06)">
+              <span style="display:block;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dpa-ink3)">{{ f.k }}</span>
+              <strong style="display:block;margin-top:5px;font-size:17px;font-weight:600;color:#fff">{{ f.v }}</strong>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:14px;padding-top:13px;border-top:1px solid var(--dpa-line)">
+          <span style="width:7px;height:7px;flex:none;border-radius:50%;background:var(--dp-accent)"></span>
+          <p style="margin:0;flex:1;font-size:10.5px;line-height:1.5;color:var(--dpa-ink3)">Demo values, not a live reading. No weather provider is connected in this prototype.</p>
+          <button type="button" onClick="{{ onConnectData }}" style="min-height:44px;padding:0 4px;border:0;background:none;color:var(--dp-accent);font-size:11.5px;font-weight:600;cursor:pointer">Source</button>
+        </div>
+      </div>
+
+      <div style="margin:24px 16px 0">
+        <span style="font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--dpa-ink3)">Seasonal temperature guide</span>
+        <h2 style="margin:4px 0 4px;font-family:var(--dp-font-script);font-size:23px;font-weight:400;color:#fff">When to come, and what it costs.</h2>
+        <p style="margin:0;font-size:11.5px;line-height:1.6;color:var(--dpa-ink3)">Monthly temperatures and hotel seasons as published on our website. A planning guide, not a forecast for your dates.</p>
+      </div>
+
+      <div class="dpa-s" style="display:flex;gap:7px;overflow-x:auto;padding:14px 16px 4px">
+        <sc-for list="{{ monthChips }}" as="m" hint-placeholder-count="12">
+          <button type="button" onClick="{{ m.onClick }}" style="{{ m.style }}">{{ m.label }}</button>
+        </sc-for>
+      </div>
+
+      <div style="margin:10px 16px 0;padding:18px;border-radius:20px;background:var(--dpa-800);border:1px solid var(--dpa-line)">
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+          <div>
+            <h3 style="margin:0;font-size:17px;font-weight:600;color:#fff">{{ selMonth.name }}</h3>
+            <span style="font-size:11.5px;color:var(--dpa-ink3)">Seasonal temperature guide</span>
+          </div>
+          <div style="text-align:right">
+            <div style="font-family:var(--dp-font-display);font-size:30px;line-height:1;color:#fff">{{ selMonth.temp }}</div>
+            <span style="{{ selMonth.seasonStyle }}">{{ selMonth.seasonLabel }}</span>
+          </div>
+        </div>
+        <p style="margin:14px 0 0;font-family:var(--dp-font-display);font-size:13.5px;line-height:1.6;color:var(--dpa-ink2);text-wrap:pretty">{{ selMonth.note }}</p>
+        <button type="button" onClick="{{ onPlanMonth }}" style="margin-top:16px;width:100%;height:48px;display:flex;align-items:center;justify-content:center;gap:9px;border:0;border-radius:12px;background-image:var(--dp-gradient-button);color:#fff;font-size:14px;font-weight:600;cursor:pointer">
+          Plan for {{ selMonth.name }}
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
+        </button>
+      </div>
+
+      <div style="margin:18px 16px 0;padding:16px;border-radius:18px;border:1px solid var(--dpa-line)">
+        <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">Hotel seasons</span>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:11px">
+          <sc-for list="{{ seasonLegend }}" as="l" hint-placeholder-count="3">
+            <div style="display:flex;gap:9px">
+              <span style="{{ l.dotStyle }}"></span>
+              <p style="margin:0;font-size:11.5px;line-height:1.5;color:var(--dpa-ink2)"><strong style="color:#fff">{{ l.label }}</strong> — {{ l.text }}</p>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="height:118px"></div>
+    </div>
+    </sc-if>
+  </div>
+
+  <nav style="position:relative;z-index:50;flex:none;display:flex;align-items:stretch;gap:4px;padding:8px 12px 22px;background:rgba(7,28,43,.94);backdrop-filter:blur(14px);border-top:1px solid var(--dpa-line)" aria-label="Main">
+    <button type="button" onClick="{{ onTabExplore }}" aria-label="Explore" style="{{ tabExploreStyle }}">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m15.5 8.5-2 5-5 2 2-5z"/></svg>
+      <span style="font-size:10.5px;font-weight:600;letter-spacing:.02em">Explore</span>
+    </button>
+    <button type="button" onClick="{{ onTabPlanner }}" aria-label="Planner" style="{{ tabPlannerStyle }}">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 19c4 0 4-6 8-6s6-2 6-5"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="6" r="2"/></svg>
+      <span style="font-size:10.5px;font-weight:600;letter-spacing:.02em">Planner</span>
+    </button>
+    <button type="button" onClick="{{ onTabWeather }}" aria-label="Weather" style="{{ tabWeatherStyle }}">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg>
+      <span style="font-size:10.5px;font-weight:600;letter-spacing:.02em">Weather</span>
+    </button>
+  </nav>
+
+  <sc-if value="{{ anySheet }}">
+  <div style="position:absolute;inset:0;z-index:2000;display:flex;flex-direction:column;justify-content:flex-end">
+    <button type="button" onClick="{{ onCloseSheet }}" aria-label="Close" style="position:absolute;inset:0;border:0;background:rgba(4,18,28,.62);backdrop-filter:blur(2px);cursor:pointer"></button>
+    <div class="dpa-s" style="position:relative;max-height:82%;overflow-y:auto;border-radius:26px 26px 0 0;background:var(--dpa-800);border-top:1px solid var(--dpa-line);box-shadow:0 -20px 50px rgba(0,0,0,.5);animation:dpaSheet .3s var(--dp-ease-out)">
+      <div style="position:sticky;top:0;display:flex;justify-content:center;padding:10px 0 4px;background:var(--dpa-800)">
+        <span style="width:40px;height:4px;border-radius:999px;background:rgba(255,255,255,.22)"></span>
+      </div>
+
+      <sc-if value="{{ sheetDestOpen }}">
+        <div style="padding:6px 18px 22px">
+          <div style="display:flex;gap:13px">
+            <div role="img" aria-label="{{ sheetDest.alt }}" style="{{ sheetDest.thumbStyle }}"></div>
+            <div style="flex:1;min-width:0">
+              <span style="font-size:9.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">{{ sheetDest.type }}</span>
+              <h2 style="margin:3px 0 3px;font-size:19px;font-weight:600;color:#fff">{{ sheetDest.name }}</h2>
+              <span style="font-size:11.5px;color:var(--dp-accent)">{{ sheetDest.regionLine }}</span>
+            </div>
+            <button type="button" onClick="{{ sheetDest.onSave }}" aria-label="{{ sheetDest.saveLabel }}" style="width:44px;height:44px;flex:none;display:flex;align-items:center;justify-content:center;border:1px solid var(--dpa-line);border-radius:50%;background:transparent;color:#fff;cursor:pointer">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="{{ sheetDest.heartFill }}" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 20.5S4 15.2 4 9.9A4.4 4.4 0 0 1 12 7.3 4.4 4.4 0 0 1 20 9.9c0 5.3-8 10.6-8 10.6z"/></svg>
+            </button>
+          </div>
+          <p style="margin:13px 0 0;font-family:var(--dp-font-display);font-size:13.5px;line-height:1.6;color:var(--dpa-ink2)">{{ sheetDest.text }}</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px">
+            <sc-for list="{{ sheetDest.best }}" as="t" hint-placeholder-count="4">
+              <span style="padding:5px 10px;border-radius:999px;border:1px solid var(--dpa-line);font-size:11px;color:var(--dpa-ink2)">{{ t }}</span>
+            </sc-for>
+          </div>
+          <div style="display:flex;gap:9px;margin-top:16px">
+            <button type="button" onClick="{{ sheetDest.onOpen }}" style="flex:1;min-height:48px;border:1px solid var(--dpa-line);border-radius:12px;background:transparent;color:#fff;font-size:13.5px;font-weight:600;cursor:pointer">Details</button>
+            <button type="button" onClick="{{ sheetDest.onPlan }}" style="flex:1.4;min-height:48px;border:0;border-radius:12px;background-image:var(--dp-gradient-button);color:#fff;font-size:13.5px;font-weight:600;cursor:pointer">{{ sheetDest.planLabel }}</button>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ sheetSavedOpen }}">
+        <div style="padding:6px 18px 22px">
+          <h2 style="margin:0 0 4px;font-size:18px;font-weight:600;color:#fff">Saved</h2>
+          <p style="margin:0 0 14px;font-size:11.5px;color:var(--dpa-ink3)">Kept on this device for the demo. Saved places travel with you between tabs.</p>
+          <sc-if value="{{ savedEmpty }}">
+            <div style="padding:26px 12px;border-radius:16px;border:1px dashed var(--dpa-line);text-align:center">
+              <p style="margin:0;font-family:var(--dp-font-display);font-size:13.5px;color:#fff">Nothing saved yet.</p>
+              <p style="margin:6px 0 0;font-size:12px;line-height:1.5;color:var(--dpa-ink3)">Tap the heart on any place and it lands here.</p>
+            </div>
+          </sc-if>
+          <div style="display:flex;flex-direction:column;gap:9px">
+            <sc-for list="{{ savedList }}" as="s" hint-placeholder-count="0">
+              <div style="display:flex;align-items:center;gap:12px;padding:11px;border-radius:14px;background:rgba(255,255,255,.05)">
+                <div role="img" aria-label="{{ s.alt }}" style="{{ s.rowThumbStyle }}"></div>
+                <div style="flex:1;min-width:0">
+                  <strong style="display:block;font-size:13.5px;color:#fff">{{ s.name }}</strong>
+                  <span style="font-size:11px;color:var(--dpa-ink3)">{{ s.regionLine }}</span>
+                </div>
+                <button type="button" onClick="{{ s.onOpen }}" style="min-height:44px;padding:0 8px;border:0;background:none;color:var(--dp-accent);font-size:12.5px;font-weight:600;cursor:pointer">Open</button>
+                <button type="button" onClick="{{ s.onRemove }}" aria-label="{{ s.removeLabel }}" style="width:40px;height:44px;flex:none;border:0;background:none;color:var(--dpa-ink3);font-size:16px;cursor:pointer">×</button>
+              </div>
+            </sc-for>
+          </div>
+          <sc-if value="{{ savedAny }}">
+            <button type="button" onClick="{{ onPlanSaved }}" style="margin-top:14px;width:100%;height:48px;border:0;border-radius:12px;background-image:var(--dp-gradient-button);color:#fff;font-size:14px;font-weight:600;cursor:pointer">Plan around these</button>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ sheetPrefsOpen }}">
+        <div style="padding:6px 18px 22px">
+          <h2 style="margin:0 0 4px;font-size:18px;font-weight:600;color:#fff">Preferences</h2>
+          <p style="margin:0 0 16px;font-size:11.5px;color:var(--dpa-ink3)">Only what changes the plan. Everything is editable later.</p>
+
+          <span style="display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">Trip length</span>
+          <div style="display:flex;gap:7px;margin:9px 0 18px;flex-wrap:wrap">
+            <sc-for list="{{ nightChips }}" as="c" hint-placeholder-count="3">
+              <button type="button" onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+            </sc-for>
+          </div>
+
+          <span style="display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">Month</span>
+          <div class="dpa-s" style="display:flex;gap:7px;overflow-x:auto;margin:9px 0 18px;padding-bottom:2px">
+            <sc-for list="{{ prefMonthChips }}" as="m" hint-placeholder-count="12">
+              <button type="button" onClick="{{ m.onClick }}" style="{{ m.style }}">{{ m.label }}</button>
+            </sc-for>
+          </div>
+
+          <span style="display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">Guests</span>
+          <div style="display:flex;flex-direction:column;gap:10px;margin:9px 0 0">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.05)">
+              <span style="font-size:13px;color:#fff">Adults</span>
+              <div style="display:flex;align-items:center;gap:6px">
+                <button type="button" onClick="{{ onAdultsDown }}" aria-label="Fewer adults" style="width:44px;height:44px;border:1px solid var(--dpa-line);border-radius:11px;background:transparent;color:#fff;font-size:17px;cursor:pointer">−</button>
+                <span style="min-width:26px;text-align:center;font-size:15px;font-weight:600;color:#fff">{{ adults }}</span>
+                <button type="button" onClick="{{ onAdultsUp }}" aria-label="More adults" style="width:44px;height:44px;border:1px solid var(--dpa-line);border-radius:11px;background:transparent;color:#fff;font-size:17px;cursor:pointer">+</button>
+              </div>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:9px 12px;border-radius:12px;background:rgba(255,255,255,.05)">
+              <span style="font-size:13px;color:#fff">Children</span>
+              <div style="display:flex;align-items:center;gap:6px">
+                <button type="button" onClick="{{ onKidsDown }}" aria-label="Fewer children" style="width:44px;height:44px;border:1px solid var(--dpa-line);border-radius:11px;background:transparent;color:#fff;font-size:17px;cursor:pointer">−</button>
+                <span style="min-width:26px;text-align:center;font-size:15px;font-weight:600;color:#fff">{{ kids }}</span>
+                <button type="button" onClick="{{ onKidsUp }}" aria-label="More children" style="width:44px;height:44px;border:1px solid var(--dpa-line);border-radius:11px;background:transparent;color:#fff;font-size:17px;cursor:pointer">+</button>
+              </div>
+            </div>
+            <sc-if value="{{ hasKids }}">
+              <label style="display:block;padding:11px 12px;border-radius:12px;background:rgba(255,255,255,.05)">
+                <span style="display:block;font-size:11.5px;color:var(--dpa-ink3);margin-bottom:7px">Child ages — rooms and activity suitability depend on them</span>
+                <input type="text" value="{{ kidAges }}" onInput="{{ onKidAges }}" placeholder="e.g. 6 and 9" aria-label="Child ages" style="width:100%;height:44px;padding:0 12px;border:1px solid var(--dpa-line);border-radius:10px;background:var(--dpa-900);color:#fff;font-size:14px;outline:none">
+              </label>
+            </sc-if>
+          </div>
+
+          <span style="display:block;margin-top:18px;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">Budget band</span>
+          <div style="display:flex;gap:7px;margin:9px 0 18px;flex-wrap:wrap">
+            <sc-for list="{{ budgetChips }}" as="c" hint-placeholder-count="3">
+              <button type="button" onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+            </sc-for>
+          </div>
+
+          <span style="display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">Pace</span>
+          <div style="display:flex;gap:7px;margin:9px 0 18px;flex-wrap:wrap">
+            <sc-for list="{{ paceChips }}" as="c" hint-placeholder-count="3">
+              <button type="button" onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+            </sc-for>
+          </div>
+
+          <span style="display:block;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dpa-ink3)">Interests</span>
+          <div style="display:flex;gap:7px;margin:9px 0 0;flex-wrap:wrap">
+            <sc-for list="{{ interestChips }}" as="c" hint-placeholder-count="6">
+              <button type="button" onClick="{{ c.onClick }}" style="{{ c.style }}">{{ c.label }}</button>
+            </sc-for>
+          </div>
+
+          <button type="button" onClick="{{ onCloseSheet }}" style="margin-top:20px;width:100%;height:50px;border:0;border-radius:12px;background-image:var(--dp-gradient-button);color:#fff;font-size:14.5px;font-weight:600;cursor:pointer">Save preferences</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ sheetPrivacyOpen }}">
+        <div style="padding:6px 18px 24px">
+          <h2 style="margin:0 0 12px;font-size:18px;font-weight:600;color:#fff">How your messages are handled</h2>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ privacyRows }}" as="r" hint-placeholder-count="3">
+              <div style="padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.05)">
+                <strong style="display:block;font-size:12.5px;color:#fff">{{ r.k }}</strong>
+                <p style="margin:5px 0 0;font-size:12px;line-height:1.6;color:var(--dpa-ink2)">{{ r.v }}</p>
+              </div>
+            </sc-for>
+          </div>
+          <p style="margin:14px 0 0;font-size:11px;line-height:1.6;color:var(--dpa-ink3)">Questions? info@yournexttriptoparadise.com · +255 768 779 517</p>
+          <button type="button" onClick="{{ onCloseSheet }}" style="margin-top:16px;width:100%;height:48px;border:1px solid var(--dpa-line);border-radius:12px;background:transparent;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Close</button>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ sheetQuoteOpen }}">
+        <div style="padding:6px 18px 24px">
+          <sc-if value="{{ quoteSent }}">
+            <div style="text-align:center;padding:12px 0 4px">
+              <div style="width:56px;height:56px;margin:0 auto;display:flex;align-items:center;justify-content:center;border-radius:50%;background:rgba(255,111,97,.16);border:1px solid rgba(255,111,97,.4)">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--dp-accent)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m4 12.5 5 5L20 6.5"/></svg>
+              </div>
+              <h2 style="margin:14px 0 6px;font-size:19px;font-weight:600;color:#fff">Demo request logged</h2>
+              <p style="margin:0;font-family:var(--dp-font-display);font-size:13.5px;line-height:1.6;color:var(--dpa-ink2)">Nothing was sent and nobody was emailed — this is a prototype. In the real app the team replies within 24 hours.</p>
+              <div style="margin:16px 0 0;padding:14px;border-radius:14px;background:rgba(255,255,255,.05);text-align:left">
+                <sc-for list="{{ quoteSummary }}" as="r" hint-placeholder-count="4">
+                  <div style="display:flex;justify-content:space-between;gap:12px;padding:5px 0">
+                    <span style="font-size:11.5px;color:var(--dpa-ink3)">{{ r.k }}</span>
+                    <span style="font-size:12px;color:#fff;text-align:right">{{ r.v }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <button type="button" onClick="{{ onCloseSheet }}" style="margin-top:16px;width:100%;height:48px;border:0;border-radius:12px;background-image:var(--dp-gradient-button);color:#fff;font-size:14px;font-weight:600;cursor:pointer">Back to the draft</button>
+            </div>
+          </sc-if>
+          <sc-if value="{{ quoteForm }}">
+            <div>
+              <h2 style="margin:0 0 4px;font-size:18px;font-weight:600;color:#fff">Review your request</h2>
+              <p style="margin:0 0 14px;font-size:11.5px;color:var(--dpa-ink3)">Check the summary, then send. No payment, no commitment.</p>
+              <div style="padding:14px;border-radius:14px;background:rgba(255,255,255,.05)">
+                <sc-for list="{{ quoteSummary }}" as="r" hint-placeholder-count="4">
+                  <div style="display:flex;justify-content:space-between;gap:12px;padding:5px 0">
+                    <span style="font-size:11.5px;color:var(--dpa-ink3)">{{ r.k }}</span>
+                    <span style="font-size:12px;color:#fff;text-align:right">{{ r.v }}</span>
+                  </div>
+                </sc-for>
+              </div>
+              <label style="display:block;margin-top:14px">
+                <span style="display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dpa-ink3);margin-bottom:7px">Name</span>
+                <input type="text" value="{{ formName }}" onInput="{{ onFormName }}" placeholder="Who should we reply to?" style="width:100%;height:48px;padding:0 13px;border:1px solid var(--dpa-line);border-radius:11px;background:var(--dpa-900);color:#fff;font-size:14px;outline:none">
+              </label>
+              <label style="display:block;margin-top:12px">
+                <span style="display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dpa-ink3);margin-bottom:7px">Email</span>
+                <input type="email" value="{{ formEmail }}" onInput="{{ onFormEmail }}" placeholder="name@example.com" style="width:100%;height:48px;padding:0 13px;border:1px solid var(--dpa-line);border-radius:11px;background:var(--dpa-900);color:#fff;font-size:14px;outline:none">
+              </label>
+              <label style="display:block;margin-top:12px">
+                <span style="display:block;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dpa-ink3);margin-bottom:7px">Anything else</span>
+                <textarea value="{{ formNote }}" onInput="{{ onFormNote }}" rows="3" placeholder="Flights, anniversaries, dietary needs…" style="width:100%;padding:11px 13px;border:1px solid var(--dpa-line);border-radius:11px;background:var(--dpa-900);color:#fff;font-size:14px;outline:none;resize:none"></textarea>
+              </label>
+              <sc-if value="{{ hasFormError }}">
+                <p style="margin:10px 0 0;padding:10px 12px;border-radius:10px;background:rgba(255,111,97,.14);border:1px solid rgba(255,111,97,.4);font-size:12px;color:#ffd9d3">{{ formError }}</p>
+              </sc-if>
+              <div style="display:flex;gap:9px;margin-top:16px">
+                <button type="button" onClick="{{ onCloseSheet }}" style="flex:1;min-height:50px;border:1px solid var(--dpa-line);border-radius:12px;background:transparent;color:#fff;font-size:13.5px;font-weight:600;cursor:pointer">Edit draft</button>
+                <button type="button" onClick="{{ onSendQuote }}" style="flex:1.5;min-height:50px;border:0;border-radius:12px;background-image:var(--dp-gradient-button);color:#fff;font-size:13.5px;font-weight:600;cursor:pointer">Send request</button>
+              </div>
+              <p style="margin:11px 0 0;font-size:10.5px;line-height:1.6;color:var(--dpa-ink3);text-align:center">Prototype only — this does not email Destination Paradise.</p>
+            </div>
+          </sc-if>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ sheetSourceOpen }}">
+        <div style="padding:6px 18px 24px">
+          <h2 style="margin:0 0 12px;font-size:18px;font-weight:600;color:#fff">About these weather values</h2>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ sourceRows }}" as="r" hint-placeholder-count="3">
+              <div style="padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.05)">
+                <strong style="display:block;font-size:12.5px;color:#fff">{{ r.k }}</strong>
+                <p style="margin:5px 0 0;font-size:12px;line-height:1.6;color:var(--dpa-ink2)">{{ r.v }}</p>
+              </div>
+            </sc-for>
+          </div>
+          <button type="button" onClick="{{ onCloseSheet }}" style="margin-top:16px;width:100%;height:48px;border:1px solid var(--dpa-line);border-radius:12px;background:transparent;color:#fff;font-size:14px;font-weight:600;cursor:pointer">Close</button>
+        </div>
+      </sc-if>
+    </div>
+  </div>
+  </sc-if>
+
+</div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390,&quot;height&quot;:844},&quot;startTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;explore&quot;,&quot;planner&quot;,&quot;weather&quot;],&quot;default&quot;:&quot;explore&quot;,&quot;tsType&quot;:&quot;'explore' | 'planner' | 'weather'&quot;,&quot;section&quot;:&quot;Demo state&quot;},&quot;startView&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;map&quot;,&quot;list&quot;],&quot;default&quot;:&quot;map&quot;,&quot;tsType&quot;:&quot;'map' | 'list'&quot;,&quot;section&quot;:&quot;Demo state&quot;},&quot;startRegion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Zanzibar&quot;,&quot;Mainland&quot;],&quot;default&quot;:&quot;Zanzibar&quot;,&quot;tsType&quot;:&quot;'Zanzibar' | 'Mainland'&quot;,&quot;section&quot;:&quot;Demo state&quot;},&quot;seedSaved&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Demo state&quot;}}">
+class Component extends DCLogic {
+  IMG = 'public/assets/images/';
+
+  DESTS = [
+    { id: 'stone-town', region: 'Zanzibar', name: 'Stone Town', lat: -6.1659, lng: 39.1985, desc: 'Heritage + food', type: 'Culture hub', cats: ['culture', 'family'],
+      text: 'Best for guests who want history, food, carved doors, markets, rooftops, spice routes, and an easy first day on Zanzibar.',
+      best: ['Culture', 'Food', 'First day', 'Rainy-day friendly'], img: 'home/stone-town-waterfront.webp',
+      alt: 'Dhows moored along the Stone Town waterfront',
+      gallery: [['excursions/stone-town-old-fort.webp', 'The Old Fort in Stone Town', 'Old Fort'], ['excursions/trips/hidden-alleys-600w.webp', 'A narrow Stone Town alley', 'Alleys & carved doors'], ['excursions/trips/forodhani-street-food-600w.webp', 'Grilled seafood at Forodhani night market', 'Forodhani market'], ['excursions/trips/stone-town-harbor-600w.webp', 'Boats in Stone Town harbour', 'Harbour']],
+      ex: [['Historical City Tour', 'Half day · guided walk'], ['Spice Tour', 'Half day · from USD 45 pp'], ['Stone Town & Prison Island combo', 'Full day · boat + walk']],
+      pk: ['9 Days Safari, Zanzibar & Culture', 'Stone Town & Culture Experience'] },
+    { id: 'fumba', region: 'Zanzibar', name: 'Fumba', lat: -6.3413, lng: 39.29, desc: 'Dhow + sandbank', type: 'Ocean hub', cats: ['beach'],
+      text: 'The classic launch point for dhow sailing, sandbanks, snorkeling, seafood lunches, and slow Menai Bay days.',
+      best: ['Dhow sailing', 'Sandbank picnic', 'Snorkeling', 'Couples'], img: 'excursions/safari-blue-sandbank.webp',
+      alt: 'Dhow anchored off a sandbank near Fumba',
+      ex: [['Safari Blue Dhow & Snorkel', 'Full day · Fumba · from USD 95 pp'], ['Reef & mangrove combo', 'Full day · boat']],
+      pk: ['Zanzibar Adventure & Marine Package', '6 Days Safari & Zanzibar Escape'] },
+    { id: 'kizimkazi', region: 'Zanzibar', name: 'Kizimkazi', lat: -6.4434, lng: 39.467, desc: 'Dolphin coast', type: 'South coast', cats: ['beach', 'wildlife'],
+      text: 'Best for early-morning dolphin trips and a quieter south-coast rhythm, often paired with Jozani or a beach lunch.',
+      best: ['Dolphins', 'Early starts', 'Nature', 'South coast'], img: 'excursions/dolphin-snorkeling.webp',
+      alt: 'Snorkeller in clear water off the Kizimkazi coast',
+      gallery: [['excursions/trips/kizimkazi-fishing-boat-600w.webp', 'Fishing boat at Kizimkazi', 'Fishing boats']],
+      ex: [['Dolphin Tour', 'Half day · early start'], ['South-coast nature combo', 'Full day']],
+      pk: ['Zanzibar Adventure & Marine Package'] },
+    { id: 'jozani', region: 'Zanzibar', name: 'Jozani Forest', lat: -6.279, lng: 39.413, desc: 'Red colobus', type: 'Nature stop', cats: ['wildlife', 'family'],
+      text: 'A gentle nature stop for red colobus monkeys, mangrove boardwalks, and forest time between beach or culture days.',
+      best: ['Families', 'Nature', 'Wildlife', 'Half day'], img: 'excursions/jozani-red-colobus.webp',
+      alt: 'Red colobus monkey in Jozani Forest',
+      ex: [['Jozani Forest Tour', 'Half day · guided'], ['Forest & spice combo', 'Full day']],
+      pk: ['Zanzibar Adventure & Marine Package', '9 Days Safari, Zanzibar & Culture'] },
+    { id: 'nungwi', region: 'Zanzibar', name: 'Nungwi', lat: -5.726, lng: 39.296, desc: 'Beach + sunsets', type: 'North beach', cats: ['beach', 'family'],
+      text: 'The easiest north-coast base for wide beaches, sunsets, turtle stops, dhow yards, and Mnemba snorkeling days.',
+      best: ['Beach', 'Sunset', 'Snorkeling', 'Honeymoon'], img: 'excursions/trips/nungwi-coast-600w.webp',
+      alt: 'Wide beach and turquoise water at Nungwi',
+      gallery: [['excursions/trips/private-sunset-dhow-600w.webp', 'Dhow sailing at sunset', 'Sunset dhow'], ['excursions/trips/mnemba-snorkeling-600w.webp', 'Snorkelling near Mnemba atoll', 'Mnemba snorkel'], ['excursions/dream-dhow-sunset.webp', 'Dream Dhow sunset cruise', 'Dream Dhow']],
+      ex: [['Trip to the North · Nungwi', 'Full day'], ['Mnemba Snorkeling & Trip to the North', 'Full day · from USD 110 pp'], ['North-coast all-day combo', 'Full day']],
+      pk: ['7 Days Honeymoon Safari & Zanzibar', '10 Days Classic Safari & Zanzibar'] },
+    { id: 'matemwe', region: 'Zanzibar', name: 'Matemwe', lat: -5.866, lng: 39.358, desc: 'Reef snorkel', type: 'Reef coast', cats: ['beach'],
+      text: 'A quieter northeast-coast base for reef days, Mnemba snorkeling, slower boutique stays, and ocean time without the busiest beach rhythm.',
+      best: ['Snorkeling', 'Quiet beach', 'Reef days', 'Couples'], img: 'excursions/trips/mnemba-snorkeling-600w.webp',
+      alt: 'Snorkellers over the reef near Matemwe',
+      ex: [['Mnemba Snorkeling & Trip to the North', 'Full day · from USD 110 pp'], ['North-coast all-day combo', 'Full day']],
+      pk: ['7 Days Honeymoon Safari & Zanzibar', 'Zanzibar Adventure & Marine Package'] },
+    { id: 'paje', region: 'Zanzibar', name: 'Paje', lat: -6.27, lng: 39.547, desc: 'Kitesurf lagoon', type: 'East coast', cats: ['beach'],
+      text: 'A breezy east-coast base for kitesurfing, lagoon walks, casual beach stays, and active ocean days.',
+      best: ['Kitesurfing', 'Beach', 'Adventure', 'Long stays'], img: 'excursions/trips/kitesurfing-beach-600w.webp',
+      alt: 'Kitesurfer on the lagoon at Paje',
+      ex: [['Kitesurfing Lessons', 'Half or full day'], ['Zanzibar Adventure & Marine Package', 'Multi-day']],
+      pk: ['Digital Nomad Zanzibar Stay', 'Zanzibar Adventure & Marine Package'] },
+
+    { id: 'arusha', region: 'Mainland', name: 'Arusha', lat: -3.3869, lng: 36.683, desc: 'Safari gateway', type: 'Safari gateway', cats: [],
+      text: 'The main launch point for northern Tanzania safaris, Kilimanjaro add-ons, and smooth connections into Tarangire, Manyara, Ngorongoro, and Serengeti.',
+      best: ['Safari start', 'Airport access', 'Northern circuit', 'Kilimanjaro add-on'],
+      ex: [['Ngorongoro & Tarangire', 'Safari route'], ['Serengeti Migration', 'Safari route'], ['Mount Kilimanjaro Day Experience', 'Day trip']],
+      pk: ['10 Days Classic Safari & Zanzibar', 'Kilimanjaro + Safari + Zanzibar Expedition'] },
+    { id: 'serengeti', region: 'Mainland', name: 'Serengeti', lat: -2.3333, lng: 34.8333, desc: 'Migration safari', type: 'Safari circuit', cats: ['wildlife'],
+      text: 'The big-name safari anchor: migration plains, predators, balloon options, and fly-in routes from Zanzibar.',
+      best: ['Migration', 'Big cats', 'Photography', 'Luxury camps'], img: 'safaris/wildebeest-grazing-600w.webp',
+      alt: 'Wildebeest grazing on the plains',
+      gallery: [['safaris/male-lion-in-grass-600w.webp', 'Male lion in long grass', 'Big cats'], ['safaris/zebra-herd-on-track-600w.webp', 'Zebra herd crossing a track', 'Zebra herds']],
+      ex: [['Serengeti Migration', 'Safari route'], ['3 Days Serengeti Fly-In Safari', 'Fly-in']],
+      pk: ['Great Migration Luxury Package', '12 Days Serengeti & Zanzibar'] },
+    { id: 'ngorongoro', region: 'Mainland', name: 'Ngorongoro', lat: -3.225, lng: 35.488, desc: 'Crater wildlife', type: 'Crater safari', cats: ['wildlife', 'family'],
+      text: 'High-density wildlife, crater landscapes, black rhino chances, and a strong fit for short Tanzania safari routes.',
+      best: ['Big Five', 'Short safari', 'First timers', 'Crater views'], img: 'safaris/male-lion-in-grass-600w.webp',
+      alt: 'Male lion resting in grass',
+      ex: [['Ngorongoro Overnight', 'Safari route'], ['Ngorongoro & Tarangire', 'Safari route']],
+      pk: ['8 Days Tanzania Parks & Zanzibar', '10 Days Classic Safari & Zanzibar'] },
+    { id: 'tarangire', region: 'Mainland', name: 'Tarangire', lat: -4, lng: 36, desc: 'Elephants', type: 'Elephant country', cats: ['wildlife', 'family'],
+      text: 'A strong short-safari choice for elephants, baobabs, and easier routing with Ngorongoro.',
+      best: ['Elephants', 'Baobabs', 'Short safari', 'Value'], img: 'safaris/zebra-herd-on-track-600w.webp',
+      alt: 'Zebra herd on a park track',
+      ex: [['Tarangire Express Day Safari', 'Day safari'], ['Tarangire + Ngorongoro Short Circuit', '2–3 days']],
+      pk: ['6 Days Safari & Zanzibar Escape', '8 Days Tanzania Parks & Zanzibar'] },
+    { id: 'manyara', region: 'Mainland', name: 'Lake Manyara', lat: -3.5, lng: 35.8333, desc: 'Birds + lions', type: 'Northern lake park', cats: ['wildlife', 'family'],
+      text: 'A compact northern-circuit stop for lake views, birdlife, forest, and a gentle wildlife day between Tarangire and Ngorongoro.',
+      best: ['Birding', 'Families', 'Short game drive', 'Northern circuit'], img: 'safaris/crowned-crane-close-600w.webp',
+      alt: 'Crowned crane close up',
+      ex: [['Ngorongoro & Tarangire', 'Safari route'], ['Tarangire + Ngorongoro Short Circuit', '2–3 days']],
+      pk: ['10 Days Classic Safari & Zanzibar'] },
+    { id: 'lake-natron', region: 'Mainland', name: 'Lake Natron', lat: -2.4216, lng: 36.006, desc: 'Flamingos', type: 'Adventure lake', cats: ['wildlife'],
+      text: 'Remote soda-lake landscapes, flamingo breeding grounds, hot springs, Maasai villages, and volcanic scenery near Ol Doinyo Lengai.',
+      best: ['Flamingos', 'Remote landscapes', 'Photography', 'Adventure'],
+      ex: [['Lake Natron Flamingo Expedition', 'Safari route'], ['Authentic Maasai Cultural Safari', 'Culture']], pk: [] },
+    { id: 'olduvai', region: 'Mainland', name: 'Olduvai Gorge', lat: -2.9958, lng: 35.3539, desc: 'Human origins', type: 'History stop', cats: ['culture'],
+      text: 'A human-origins stop between Ngorongoro and Serengeti, good for guests who want archaeology and context alongside wildlife.',
+      best: ['Human origins', 'History', 'Ngorongoro add-on', 'Culture'],
+      ex: [['Olduvai Gorge Human Origins Safari', 'Add-on day'], ['Ngorongoro & Tarangire', 'Safari route']],
+      pk: ['9 Days Safari, Zanzibar & Culture'] },
+    { id: 'maasai', region: 'Mainland', name: 'Maasai Villages', lat: -3.35, lng: 35.75, desc: 'Culture', type: 'Cultural safari', cats: ['culture', 'family'],
+      text: 'A cultural layer for guests who want village time, Maasai traditions, local cooking, and a more human story around the northern circuit.',
+      best: ['Culture', 'Families', 'Photography', 'Northern add-on'],
+      ex: [['Authentic Maasai Cultural Safari', 'Culture'], ['Lake Natron Flamingo Expedition', 'Safari route']],
+      pk: ['9 Days Safari, Zanzibar & Culture'] },
+    { id: 'kilimanjaro', region: 'Mainland', name: 'Kilimanjaro', lat: -3.0674, lng: 37.3556, desc: 'Mountain', type: 'Mountain adventure', cats: [],
+      text: 'Tanzania’s mountain icon, available as a day experience or as the anchor for a longer climb, safari, and Zanzibar combination.',
+      best: ['Mountain views', 'Hiking', 'Bucket list', 'Adventure'],
+      ex: [['Mount Kilimanjaro Day Experience', 'Day trip'], ['Materuni Waterfalls & Coffee Experience', 'Day trip']],
+      pk: ['Kilimanjaro + Safari + Zanzibar Expedition'] },
+    { id: 'materuni', region: 'Mainland', name: 'Materuni', lat: -3.25, lng: 37.3333, desc: 'Waterfall + coffee', type: 'Mountain village', cats: ['culture', 'family'],
+      text: 'A softer Kilimanjaro foothills day with waterfall hiking, coffee farms, Chagga culture, and mountain scenery.',
+      best: ['Waterfall', 'Coffee', 'Culture', 'Soft adventure'],
+      ex: [['Materuni Waterfalls & Coffee Experience', 'Day trip'], ['Mount Kilimanjaro Day Experience', 'Day trip']],
+      pk: ['Kilimanjaro + Safari + Zanzibar Expedition'] },
+    { id: 'mikumi', region: 'Mainland', name: 'Mikumi', lat: -7.404, lng: 37, desc: 'Quick fly-in', type: 'Quick fly-in safari', cats: ['wildlife', 'family'],
+      text: 'One of the fastest mainland safari choices from Zanzibar, with lions, giraffes, buffalo, zebra, and simpler logistics for short stays.',
+      best: ['Short stays', 'Value', 'First safari', 'Zanzibar guests'],
+      ex: [['Mikumi Fly-In Safari From Zanzibar', 'Fly-in'], ['2 Days Fly-In Safari From Zanzibar', '2 days']],
+      pk: ['2 Days Fly-In Safari From Zanzibar'] },
+    { id: 'selous', region: 'Mainland', name: 'Nyerere', lat: -8.5, lng: 38, desc: 'Boat safaris', type: 'Southern safari', cats: ['wildlife'],
+      text: 'A wilder southern choice for boat safaris, walking safaris, fewer vehicles, and quick fly-in options from Zanzibar.',
+      best: ['Boat safari', 'Walking safari', 'Fly-in', 'Wilderness'],
+      ex: [['Nyerere (Selous) Wild', 'Safari route'], ['2 Days Fly-In Safari From Zanzibar', '2 days']],
+      pk: ['2 Days Fly-In Safari From Zanzibar', '14 Days Ultimate Tanzania & Zanzibar'] },
+    { id: 'saadani', region: 'Mainland', name: 'Saadani', lat: -6.0333, lng: 38.75, desc: 'Beach safari', type: 'Beach safari', cats: ['wildlife', 'beach'],
+      text: 'A rare Indian Ocean safari setting where beach, river, and bush meet, best for guests who want a different coastal wilderness feel.',
+      best: ['Beach + bush', 'Boat safari', 'Turtles', 'Unusual routes'],
+      ex: [['Saadani Beach & Safari Experience', 'Safari route'], ['Nyerere (Selous) Wild', 'Safari route']], pk: [] },
+    { id: 'udzungwa', region: 'Mainland', name: 'Udzungwa', lat: -7.7667, lng: 36.85, desc: 'Hiking', type: 'Hiking wilderness', cats: [],
+      text: 'Rainforest hikes, waterfalls, rare primates, and a nature-heavy mountain counterpoint to Mikumi or southern safari routes.',
+      best: ['Hiking', 'Waterfalls', 'Rare primates', 'Nature'],
+      ex: [['Udzungwa Mountains Hiking Safari', 'Safari route'], ['Mikumi Fly-In Safari From Zanzibar', 'Fly-in']], pk: [] },
+    { id: 'ruaha', region: 'Mainland', name: 'Ruaha', lat: -7.5, lng: 34.8, desc: 'Big cats', type: 'Southern big-cat safari', cats: ['wildlife'],
+      text: 'A remote southern park known for big-cat country, baobab valleys, fewer vehicles, and a stronger wilderness feel than the classic north.',
+      best: ['Big cats', 'Remote safari', 'Repeat guests', 'Photography'],
+      ex: [['Ruaha Big-Cat Trail', 'Safari route'], ['Nyerere (Selous) Wild', 'Safari route']],
+      pk: ['14 Days Ultimate Tanzania & Zanzibar'] },
+    { id: 'mahale', region: 'Mainland', name: 'Mahale', lat: -6.15, lng: 29.75, desc: 'Chimps + lake', type: 'Western chimp route', cats: ['wildlife'],
+      text: 'A premium western circuit for wild chimpanzee trekking, remote lakefront lodges, forest walks, and Lake Tanganyika downtime.',
+      best: ['Chimpanzees', 'Lake Tanganyika', 'Remote luxury', 'Adventure'],
+      ex: [['Mahale Chimp & Lake Tanganyika', 'Safari route'], ['Chimpanzee Trekking Expedition', 'Safari route']], pk: [] },
+    { id: 'katavi', region: 'Mainland', name: 'Katavi', lat: -6.85, lng: 31.25, desc: 'Remote frontier', type: 'Remote frontier', cats: ['wildlife'],
+      text: 'A far-west wilderness for serious safari travellers, dry-season floodplain herds, lion coalitions, hippo pools, and very few vehicles.',
+      best: ['Remote wilderness', 'Buffalo herds', 'Experienced safari', 'Fly-in'],
+      ex: [['Katavi Remote Frontier', 'Safari route'], ['Mahale Chimp & Lake Tanganyika', 'Safari route']], pk: [] },
+  ];
+
+  CATS = [
+    ['all', 'All'],
+    ['beach', 'Beach & ocean'],
+    ['culture', 'Culture & food'],
+    ['wildlife', 'Wildlife'],
+    ['family', 'Family'],
+  ];
+
+  EXPERIENCES = [
+    { title: 'Safari Blue', duration: 'Full day', where: 'Fumba · dhow, sandbank, snorkel', price: 'from USD 95 pp', img: 'excursions/safari-blue-sandbank.webp', alt: 'Dhow at a sandbank on Safari Blue' },
+    { title: 'Mnemba Snorkeling & Trip to the North', duration: 'Full day', where: 'North coast · reef + Nungwi', price: 'from USD 110 pp', img: 'excursions/trips/mnemba-snorkeling-600w.webp', alt: 'Snorkellers near Mnemba atoll' },
+    { title: 'Spice Tour', duration: 'Half day', where: 'Stone Town · farms + tasting', price: 'from USD 45 pp', img: 'excursions/spice-tour-nutmeg.webp', alt: 'Nutmeg on a Zanzibar spice farm' },
+  ];
+
+  AREAS = [
+    { key: 'stone_town', label: 'Stone Town', hint: 'Local classics & rooftops', img: 'excursions/trips/forodhani-street-food-600w.webp', alt: 'Forodhani night market grills',
+      places: [
+        ['Lukmaan Restaurant', 'Local lunch', 'A lively, no-fuss stop for Zanzibari favourites. Point to what looks good, try a few dishes and come hungry. Best when atmosphere matters more than ceremony.'],
+        ['Taarab Restaurant', 'Rooftop evening', 'Choose this when you want dinner above the old town, with a little more occasion around it. A good fit for couples or an unhurried family evening.'],
+        ['Breadfruit Restaurant & Café', 'Polished & central', 'A comfortable central choice for a calmer meal after exploring the alleys. Useful when you want local ingredients in a more polished setting.'],
+        ['The Beach House Restaurant', 'Sunset by the water', 'Go for sea views, drinks and an easy sunset dinner on the edge of Stone Town. Reserve ahead if the timing of the sunset matters to you.'],
+      ] },
+    { key: 'north', label: 'Nungwi & Kendwa', hint: 'Beach days & sunset dinners', img: 'excursions/trips/nungwi-coast-600w.webp', alt: 'The beach at Nungwi',
+      places: [
+        ['Fish Market Local Restaurant', 'Fresh & local', 'A straightforward choice for seafood and local flavours without the resort formality. Come when you want the meal to feel relaxed and rooted in Nungwi.'],
+        ['Badolina Secret Garden', 'Garden hideaway', 'A sociable, easy-going spot that works well when your group wants variety. The leafy setting makes a welcome change from another table directly on the beach.'],
+        ['Terrace Nungwi', 'Dinner with a view', 'One for a longer evening with the water close by and a more considered menu. We would choose it when the setting is part of the celebration.'],
+        ['Mocco Beach Villa & Restaurant', 'Barefoot Kendwa', 'A relaxed Kendwa option for lunch or dinner close to the sand. Useful when you want to stay in the rhythm of a beach day instead of dressing up for dinner.'],
+      ] },
+    { key: 'north_east', label: 'Matemwe & Kiwengwa', hint: 'Quiet coast & long lunches', img: 'excursions/trips/mnemba-snorkeling-600w.webp', alt: 'Reef water off Matemwe',
+      places: [
+        ['Bin Jabir Restaurant', 'Matemwe local', 'A warm, uncomplicated stop for Swahili food and seafood. A good choice when you want local cooking away from the hotel dining room.'],
+        ['Marlin Restaurant', 'Seafood without fuss', 'Come for a relaxed meal centred on fish and seafood. It suits an easy lunch or dinner when the plan is simply to eat well and slow down.'],
+        ['Zanzibar Sunrise at Bandas', 'Slow beach evening', 'Choose it for a beach setting and an evening that can stretch a little longer. It is more about settling into the coast than rushing through courses.'],
+        ['La Base JungleKite', 'Casual Kiwengwa', 'A laid-back option with an active, social feel. Good for a casual meal when you want something easy after time on the water.'],
+      ] },
+    { key: 'pongwe', label: 'Pongwe', hint: 'Secluded east-coast tables', img: 'excursions/trips/blue-lagoon-snorkeling-600w.webp', alt: 'Calm bay water on the east coast',
+      places: [
+        ['The Island – Pongwe Restaurant', 'A destination lunch', 'A tiny offshore setting that turns lunch into an outing of its own. Pick this for the experience and check access and timing before you set off.'],
+        ['The Cliff Grill', 'A quieter dinner', 'A good fit when you want a calm evening, sea air and a little more polish. Best for couples or families happy to take their time.'],
+        ['The Club by Pongwe Bay Resort', 'Resort comfort', 'A dependable choice for an easy, comfortable meal in Pongwe. Useful when different ages and appetites need to work around one table.'],
+        ['Pongwe Beach Hotel Restaurant', 'Lunch by the bay', 'Come for an unhurried meal beside one of the quieter bays on the east coast. It pairs naturally with a slow beach day.'],
+      ] },
+    { key: 'michamvi', label: 'Michamvi & Pingwe', hint: 'Sunsets & special settings', img: 'excursions/trips/the-rock-restaurant-600w.webp', alt: 'The Rock Restaurant offshore at Pingwe',
+      places: [
+        ['Kae Funk Sunset Beach Bar', 'Sunset & bare feet', 'Go for music, sand and the west-facing sunset rather than a formal dinner. Arrive with time to settle in before the sky changes.'],
+        ['The Rock Restaurant Zanzibar', 'The iconic table', 'The setting is the reason to go: a restaurant on a rock just offshore at Pingwe. Book ahead and treat it as a Zanzibar experience, not only a meal.'],
+        ['Dreamland Restaurant & Bar', 'Easy & welcoming', 'A relaxed alternative when you want friendly service and a straightforward dinner without turning the evening into a big event.'],
+        ['Sagando Restaurant & Bar', 'Casual island dinner', 'A comfortable local option for an easy evening in Michamvi. Good when the group wants familiar choices alongside island flavours.'],
+      ] },
+    { key: 'jambiani', label: 'Jambiani', hint: 'Our first choices nearby', img: 'excursions/trips/seaweed-cooperative-600w.webp', alt: 'Seaweed farming on the south-east coast',
+      places: [
+        ['Fadhil Restaurant', 'Local & relaxed', 'Come for straightforward Swahili cooking, grilled fish and curries. A good choice when you want something local, warm and unpretentious.'],
+        ['Lost Soles', 'Easy family dinner', 'A relaxed option for grilled tuna, seafood and familiar comfort food — especially useful when everyone around the table wants something different.'],
+        ['Ocean Boho House', 'A special evening', 'Choose this for creative plates and a more polished dinner without losing the easy island mood. It is one we would reserve ahead.'],
+        ['Sharazad The View', 'Beachfront & unhurried', 'A beautiful setting for a slow family lunch or sunset dinner. Come for the view as much as the food, and book ahead for the best timing.'],
+      ] },
+    { key: 'paje', label: 'Paje & Bwejuu', hint: 'Coffee, choice & beach energy', img: 'excursions/trips/kitesurfing-beach-600w.webp', alt: 'Kitesurfing at Paje',
+      places: [
+        ['Mr Kahawa', 'Breakfast by the beach', 'Our easy choice for coffee, breakfast or a relaxed lunch with the ocean in front of you. Go earlier if you prefer a quieter table.'],
+        ['Mapacha Food Court', 'Casual & flexible', 'A good answer for families and groups who cannot agree on one cuisine. The atmosphere is informal and everyone can choose their own direction.'],
+        ['Shanga Restaurant Paje', 'Swahili & seafood', 'One to consider for local flavours and seafood in the centre of Paje, especially when you want dinner to feel rooted in the island.'],
+        ['Sahari Zanzibar', 'Bwejuu by the beach', 'A quieter alternative to Paje for a beachside meal with a little more breathing room. A nice fit for couples or a slow family lunch.'],
+      ] },
+    { key: 'south', label: 'Kizimkazi & the south', hint: 'Remote, relaxed & unhurried', img: 'excursions/trips/kizimkazi-fishing-boat-600w.webp', alt: 'Fishing boat at Kizimkazi',
+      places: [
+        ['Restaurant Stone Village & The Dream Garden', 'Garden dinner', 'A welcoming choice for a relaxed dinner in Kizimkazi. Pick it when you want the evening to feel personal and away from the larger resorts.'],
+        ['Kameleon Blue Bar & Restaurant', 'Easy-going south coast', 'A casual place for a slow lunch or uncomplicated dinner. It works well when the plan is to stay relaxed after a day on the south coast.'],
+        ['Karamba Restaurant', 'Ocean-view lunch', 'Come for the coastal setting and give yourself time. This is a good match for a long lunch rather than a quick stop between activities.'],
+        ['Fahari Off The Grid', 'Something different', 'A characterful option when you want to step away from the usual beach-hotel routine. Check the day’s opening details before making the journey.'],
+      ] },
+  ];
+
+  EVENTS = [
+    ['Every evening', 'Forodhani Night Market', 'Forodhani Gardens, Stone Town', 'Stone Town’s seafront gardens turn into an open-air food market after sunset. Come hungry, browse the grills and eat standing up with the locals.'],
+    ['Early February', 'Sauti za Busara', 'Old Fort, Stone Town', 'East Africa’s warmest music festival — pan-African line-ups inside the Old Fort and a carnival mood in the streets. Book Stone Town beds early.', 'sauti-busara'],
+    ['July', 'Zanzibar International Film Festival', 'Old Fort, Stone Town', 'Open-air screenings, exhibitions and music take over the old town for a week. A lovely excuse to slow down in Stone Town for a night or two.', 'ziff'],
+    ['Late July', 'Mwaka Kogwa', 'Makunduchi', 'The Shirazi new year: four days of rituals, mock fights and song in the island’s south. Go with a local guide and ask before photographing.'],
+    ['August', 'Beach & Water Sports Festival', 'East & north coast beaches', 'Dhow races, kite contests and beach games move along the coast for a week. Easy to combine with a beach stay in Paje or Nungwi.', 'water-sports-festival'],
+    ['Saturday nearest the full moon', 'Kendwa Full Moon Party', 'Kendwa Rocks, Kendwa', 'The island’s best-known beach party, on the Saturday closest to the full moon. Stay in Kendwa or Nungwi so the night ends with a short walk home.'],
+  ];
+
+  MONTHS = [
+    ['Jan', 'January', 32, 'peak', 'Festive-season peak. Premium rates, and worth booking early.'],
+    ['Feb', 'February', 33, 'high', 'The warmest month on our seasonal guide, and one of the busy dry months at standard high-season rates.'],
+    ['Mar', 'March', 32, 'low', 'Rainy season. Best deals of the year, and quieter beaches.'],
+    ['Apr', 'April', 30, 'low', 'Rainy season. Best deals, but some hotels close through April and May.'],
+    ['May', 'May', 29, 'low', 'Rainy season. Lowest rates, and some hotels stay closed until June.'],
+    ['Jun', 'June', 28, 'high', 'First of the busy dry months. Standard high-season rates.'],
+    ['Jul', 'July', 27, 'peak', 'European summer peak. Premium rates, and Stone Town festivals fall this month — confirm dates before booking flights.'],
+    ['Aug', 'August', 27, 'peak', 'European summer peak. Premium rates, and the Beach & Water Sports Festival falls this month — confirm dates.'],
+    ['Sep', 'September', 28, 'high', 'A busy dry month after the peak. Standard high-season rates.'],
+    ['Oct', 'October', 29, 'high', 'The last of the busy dry months. Standard high-season rates.'],
+    ['Nov', 'November', 30, 'low', 'Rainy season. Best deals, and quiet beaches.'],
+    ['Dec', 'December', 31, 'peak', 'Festive-season peak from mid-month. Premium rates, and worth booking early.'],
+  ];
+
+  SEASONS = {
+    peak: { label: 'Peak', color: '#FF9183', text: 'Festive and European summer months. Premium rates, book early.' },
+    high: { label: 'High', color: '#A9D3E8', text: 'Busy dry months. Standard high-season rates.' },
+    low: { label: 'Low', color: '#9BB2C2', text: 'Rainy season. Best deals, and some hotels close April–May.' },
+  };
+
+  ANGLES = [
+    ['safari-beach', 'Safari + beach', 'A short mainland safari, then the coast.'],
+    ['honeymoon', 'Honeymoon', 'Quiet beaches, dhow sunsets, slow days.'],
+    ['family', 'Family', 'Shorter drives, forest and shallow water.'],
+    ['culture', 'Culture + ocean', 'Stone Town, spice routes, reef days.'],
+  ];
+
+  REPLIES = {
+    'Safari first, beach after': 'That routes well from Zanzibar: fly out mid-trip for a short Mikumi safari, then land back on the island so the last days are slow. Domestic flight times are limited and we confirm them with your quote.',
+    'Add a spice tour': 'Added — Spice Tour, half day from Stone Town, from USD 45 per person. It sits neatly on a late-morning start with a rooftop dinner afterwards.',
+    'Keep the pace slow': 'Noted. I will leave two full free days on the beach and avoid back-to-back early starts. Dolphin trips and Safari Blue both need early departures, so I would keep only one of them.',
+    'Two guests, no children': 'Two adults it is — double rooms, and private transfers priced rather than shared seats.',
+    'What about a rainy day?': 'Stone Town is the rainy-day answer: museums, carved-door walks, the covered market and a cooking or spice session all work under cover. April and May are the wettest months.',
+    'Which beach for the last nights?': 'Nungwi for wide beach and sunsets, Matemwe if you would rather be quiet and close to the reef. Both work for four nights at the end of the trip.',
+  };
+
+  monthData = (code) => this.MONTHS.find((m) => m[0] === code) || this.MONTHS[6];
+
+  monthName = () => this.monthData(this.state.month)[1];
+
+  suggestionPool = () => {
+    const m = this.monthData(this.state.month);
+    const season = this.SEASONS[m[3]];
+    const monthReply = m[1] + ' sits in our ' + season.label.toLowerCase() + ' season — ' + m[4].charAt(0).toLowerCase() + m[4].slice(1)
+      + '\n\nFor ' + this.state.nights.toLowerCase() + ' I would hold two nights in Stone Town, add a short mainland safari, then finish on the north coast. Send exact dates when you have them and we will price the real days.';
+    const pool = [['Travelling in ' + m[1], monthReply]];
+    Object.keys(this.REPLIES).forEach((k) => pool.push([k, this.REPLIES[k]]));
+    return pool;
+  };
+
+  state = {
+    tab: this.props.startTab || 'explore',
+    view: this.props.startView || 'map',
+    region: this.props.startRegion || 'Zanzibar',
+    q: '',
+    cat: 'all',
+    destId: 'stone-town',
+    mapSelectedId: null,
+    saved: this.props.seedSaved ? ['stone-town', 'nungwi'] : [],
+    guideArea: 'stone_town',
+    backView: 'list',
+    sheet: null,
+    pstep: 'start',
+    angle: null,
+    placeId: null,
+    nights: '8–10 nights',
+    month: 'Jul',
+    adults: 2,
+    kids: 0,
+    kidAges: '',
+    budget: 'Mid-range',
+    pace: 'Balanced',
+    interests: ['Culture', 'Beach', 'Food'],
+    msgs: [],
+    typing: false,
+    chatInput: '',
+    used: [],
+    drafting: false,
+    wxMonth: 6,
+    draftSaved: false,
+    form: { name: '', email: '', note: '' },
+    formError: '',
+    quoteSent: false,
+    clock: '',
+  };
+
+  chatEl = React.createRef();
+
+  componentDidMount() {
+    this.tick();
+    this.timer = setInterval(() => this.tick(), 20000);
+  }
+
+  componentDidUpdate() {
+    const el = this.chatEl.current;
+    if (el && this.state.tab === 'planner' && this.state.pstep === 'chat') {
+      el.scrollTop = el.scrollHeight;
+    }
+  }
+
+  componentWillUnmount() { clearInterval(this.timer); }
+
+  tick = () => {
+    const t = new Intl.DateTimeFormat('en-GB', { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Africa/Dar_es_Salaam' }).format(new Date());
+    this.setState({ clock: t });
+  };
+
+  img = (p) => (p ? this.IMG + p : '');
+
+  bg = (src, extra) => Object.assign({
+    backgroundImage: src ? 'url("' + src + '")' : 'linear-gradient(160deg,var(--dpa-700),var(--dpa-800))',
+    backgroundSize: 'cover', backgroundPosition: 'center', display: 'block',
+    width: '100%', height: '100%',
+  }, extra || {});
+  dest = (id) => this.DESTS.find((d) => d.id === id);
+  isSaved = (id) => this.state.saved.indexOf(id) > -1;
+
+  toggleSave = (id) => this.setState((s) => ({
+    saved: s.saved.indexOf(id) > -1 ? s.saved.filter((x) => x !== id) : s.saved.concat([id]),
+  }));
+
+  openDetail = (id) => this.setState((s) => ({
+    tab: 'explore', view: 'detail', destId: id, sheet: null,
+    backView: s.view === 'detail' ? s.backView : (s.view === 'map' ? 'map' : 'list'),
+  }));
+
+  planAround = (id) => {
+    const d = this.dest(id);
+    this.setState({
+      tab: 'planner', pstep: 'start', placeId: id, sheet: null,
+      interests: d && d.cats.indexOf('wildlife') > -1 ? ['Wildlife', 'Beach'] : this.state.interests,
+    });
+  };
+
+  chip = (on, extra) => Object.assign({
+    flex: 'none', minHeight: 38, padding: '0 13px', borderRadius: 999,
+    border: on ? '1px solid rgba(255,111,97,.55)' : '1px solid var(--dpa-line)',
+    background: on ? 'rgba(255,111,97,.18)' : 'var(--dpa-800)',
+    color: on ? '#fff' : 'var(--dpa-ink2)',
+    fontSize: 12.5, fontWeight: on ? 600 : 400, whiteSpace: 'nowrap', cursor: 'pointer',
+  }, extra || {});
+
+  seg = (on) => ({
+    flex: 1, minHeight: 38, border: 0, borderRadius: 9,
+    background: on ? 'var(--dp-secondary)' : 'transparent',
+    color: on ? '#fff' : 'var(--dpa-ink3)',
+    fontSize: 12.5, fontWeight: 600, cursor: 'pointer',
+  });
+
+  iconBtn = (on) => ({
+    width: 40, height: 38, display: 'flex', alignItems: 'center', justifyContent: 'center',
+    border: 0, borderRadius: 9, background: on ? 'var(--dp-secondary)' : 'transparent',
+    color: on ? '#fff' : 'var(--dpa-ink3)', cursor: 'pointer',
+  });
+
+  tabStyle = (on) => ({
+    flex: 1, minHeight: 52, display: 'flex', flexDirection: 'column', alignItems: 'center',
+    justifyContent: 'center', gap: 4, border: 0, borderRadius: 14, background: 'transparent',
+    color: on ? 'var(--dp-accent)' : 'var(--dpa-ink3)', cursor: 'pointer',
+  });
+
+  matches = (d) => {
+    const s = this.state;
+    if (d.region !== s.region) return false;
+    if (s.cat !== 'all' && d.cats.indexOf(s.cat) < 0) return false;
+    const q = s.q.trim().toLowerCase();
+    if (!q) return true;
+    return (d.name + ' ' + d.desc + ' ' + d.type + ' ' + d.text + ' ' + d.best.join(' ')).toLowerCase().indexOf(q) > -1;
+  };
+
+  sendChat = (text) => {
+    const clean = (text || '').trim();
+    if (!clean) return;
+    const id = Date.now();
+    const hit = this.suggestionPool().find((p) => p[0] === clean);
+    this.setState((s) => ({
+      msgs: s.msgs.concat([{ id: id, role: 'user', text: clean }]),
+      chatInput: '', typing: true, used: s.used.concat([clean]),
+    }));
+    setTimeout(() => {
+      const reply = (hit && hit[1]) || 'Good to know. I will keep that in the draft — and our team in Zanzibar will sanity-check it against what is actually open and available on your dates.';
+      this.setState((s) => ({ typing: false, msgs: s.msgs.concat([{ id: id + 1, role: 'bot', text: reply }]) }));
+    }, 1100);
+  };
+
+  startChat = () => {
+    const p = this.state.placeId ? this.dest(this.state.placeId) : null;
+    const opener = p
+      ? p.name + ' is a good anchor — ' + p.text.charAt(0).toLowerCase() + p.text.slice(1) + '\n\nFor ' + this.state.nights.toLowerCase() + ' in ' + this.monthName() + ' I would build around it. Two questions first: do you have exact dates yet, and would you rather take the safari before or after the beach?'
+      : 'Karibu. Tell me where you are starting from — a place you already like, or the kind of trip you want — and I will draft the days around it.';
+    this.setState({ pstep: 'chat', msgs: [{ id: 1, role: 'bot', text: opener }], used: [] });
+  };
+
+  seeDraft = () => {
+    this.setState({ drafting: true });
+    setTimeout(() => this.setState({ drafting: false, pstep: 'itinerary' }), 1200);
+  };
+
+  sendQuote = () => {
+    const f = this.state.form;
+    if (!f.name.trim()) return this.setState({ formError: 'Add a name so we know who to reply to.' });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email.trim())) return this.setState({ formError: 'That email does not look right yet.' });
+    this.setState({ formError: '', quoteSent: true });
+  };
+
+  ITIN = [
+    { n: '01', date: 'Sat 10 Jul', title: 'Arrive Zanzibar', place: 'Stone Town', rows: [['Afternoon', 'Airport pickup and a slow check-in — nothing scheduled on arrival day.'], ['Evening', 'Walk to Forodhani Gardens for the night market and eat standing up with the locals.']], stay: 'Old-town guest house — 2 options with your quote', transport: 'Private airport transfer · proposal' },
+    { n: '02', date: 'Sun 11 Jul', title: 'Stone Town on foot', place: 'Stone Town', rows: [['Morning', 'Historical City Tour: carved doors, the Old Fort, the market and the spice-route history.'], ['Afternoon', 'Free time in the alleys, or the Prison Island add-on if you want water.'], ['Evening', 'Rooftop dinner above the old town — Taarab is our guide pick.']], stay: 'Same guest house · 2nd night', transport: 'Walking · guided' },
+    { n: '03', date: 'Mon 12 Jul', title: 'Spice farms, then fly south', place: 'Stone Town → Mikumi', rows: [['Morning', 'Spice Tour, half day, from USD 45 pp — tasting and a farm lunch.'], ['Midday', 'Domestic flight to the mainland for the short safari leg.'], ['Late afternoon', 'First game drive on the way to camp.']], stay: 'Tented camp near the park gate · proposal', transport: 'Flight ZNZ → Mikumi · schedule to confirm' },
+    { n: '04', date: 'Tue 13 Jul', title: 'Full day on safari', place: 'Mikumi', rows: [['Sunrise', 'Early drive for lions, giraffe and buffalo on the floodplain.'], ['Midday', 'Back to camp through the heat of the day.'], ['Afternoon', 'Second drive, ending at the hippo pools.']], stay: 'Tented camp · 2nd night', transport: 'Private 4x4 · guide included' },
+    { n: '05', date: 'Wed 14 Jul', title: 'Back to the island', place: 'Mikumi → Nungwi', rows: [['Morning', 'One more short drive, then the flight back to Zanzibar.'], ['Afternoon', 'Road transfer north — about 1h30 to Nungwi.'], ['Evening', 'Sunset on the west-facing beach. Nothing planned.']], stay: 'North-coast beach hotel · proposal', transport: 'Flight + private road transfer · proposal' },
+    { n: '06', date: 'Thu 15 Jul', title: 'Beach day', place: 'Nungwi', rows: [['All day', 'Free. Swim, walk to the dhow yards, read.'], ['Late afternoon', 'Optional sunset dhow sail — decide on the day.']], stay: 'Beach hotel · 2nd night', transport: 'On foot' },
+    { n: '07', date: 'Fri 16 Jul', title: 'Mnemba reef', place: 'Nungwi', rows: [['Morning', 'Mnemba Snorkeling & Trip to the North, full day, from USD 110 pp.'], ['Evening', 'Quiet dinner nearby — Terrace Nungwi if you want a view.']], stay: 'Beach hotel · 3rd night', transport: 'Boat · shared departure' },
+    { n: '08', date: 'Sat 17 Jul', title: 'Slow day', place: 'Nungwi', rows: [['All day', 'Deliberately empty. Kendwa is a 25-minute walk if you want a change of beach.'], ['Evening', 'Festival and full-moon dates move every year — tell us what you would like to plan around and we will confirm them.']], stay: 'Beach hotel · 4th night', transport: 'On foot' },
+    { n: '09', date: 'Sun 18 Jul', title: 'Fly home', place: 'Nungwi → ZNZ', rows: [['Morning', 'Late checkout where possible, then the transfer south.'], ['Afternoon', 'Airport drop-off, about 3 hours before your flight.']], stay: '—', transport: 'Private transfer · proposal' },
+  ];
+
+  renderVals() {
+    const s = this.state;
+    const S = this;
+    const visible = this.DESTS.filter((d) => this.matches(d));
+    const wrap = (d) => {
+      const saved = this.isSaved(d.id);
+      return {
+        id: d.id, name: d.name, desc: d.desc, type: d.type, text: d.text, best: d.best,
+        short: d.desc + ' — ' + d.text.split('.')[0] + '.',
+        img: this.img(d.img), alt: d.alt || (d.name + ', Tanzania'),
+        imgStyle: this.bg(this.img(d.img)),
+        thumbStyle: this.bg(this.img(d.img), { width: 86, height: 86, flex: 'none', borderRadius: 16 }),
+        rowThumbStyle: this.bg(this.img(d.img), { width: 52, height: 52, flex: 'none', borderRadius: 11 }),
+        regionLine: d.region + ' · ' + d.desc,
+        heartFill: saved ? 'var(--dp-accent)' : 'none',
+        saveLabel: (saved ? 'Remove ' : 'Save ') + d.name,
+        cta: 'View ' + d.name,
+        planLabel: 'Plan around ' + d.name,
+        onOpen: () => this.openDetail(d.id),
+        onSave: () => this.toggleSave(d.id),
+        onPlan: () => this.planAround(d.id),
+        onRemove: () => this.toggleSave(d.id),
+        removeLabel: 'Remove ' + d.name + ' from saved',
+      };
+    };
+
+    const det = wrap(this.dest(s.destId) || this.DESTS[0]);
+    const dd = this.dest(s.destId) || this.DESTS[0];
+    det.hasGallery = !!(dd.gallery && dd.gallery.length > 1);
+    det.gallery = (dd.gallery || []).map((g) => ({
+      alt: g[1], caption: g[2],
+      imgStyle: this.bg(this.img(g[0]), { width: 150, height: 110, borderRadius: 14 }),
+    }));
+    det.excursions = (dd.ex || []).map((x) => ({ label: x[0], meta: x[1] }));
+    det.packages = dd.pk || [];
+    det.hasPackages = (dd.pk || []).length > 0;
+    det.onPlan = () => this.planAround(dd.id);
+    det.onSave = () => this.toggleSave(dd.id);
+
+    const sheetD = s.mapSelectedId ? wrap(this.dest(s.mapSelectedId)) : null;
+    const area = this.AREAS.find((a) => a.key === s.guideArea) || this.AREAS[0];
+    const place = s.placeId ? this.dest(s.placeId) : null;
+    const m = this.MONTHS[s.wxMonth];
+    const season = this.SEASONS[m[3]];
+
+    const nightsCount = s.nights === '5–7 nights' ? '7 nights' : s.nights === '11–14 nights' ? '12 nights' : '8 nights';
+    const guestLine = s.adults + (s.adults === 1 ? ' adult' : ' adults') + (s.kids ? ' · ' + s.kids + (s.kids === 1 ? ' child' : ' children') + (s.kidAges ? ' (' + s.kidAges + ')' : '') : '');
+
+    return {
+      clock: s.clock,
+      region: s.region,
+      q: s.q,
+      hasQuery: !!s.q,
+      nights: s.nights,
+      adults: s.adults,
+      kids: s.kids,
+      hasKids: s.kids > 0,
+      kidAges: s.kidAges,
+
+      vList: s.tab === 'explore' && s.view === 'list',
+      vMap: s.tab === 'explore' && s.view === 'map',
+      vDetail: s.tab === 'explore' && s.view === 'detail',
+      vGuide: s.tab === 'explore' && s.view === 'guide',
+      vPlanStart: s.tab === 'planner' && s.pstep === 'start',
+      vChat: s.tab === 'planner' && s.pstep === 'chat',
+      vItinerary: s.tab === 'planner' && s.pstep === 'itinerary',
+      vWeather: s.tab === 'weather',
+
+      tabExploreStyle: this.tabStyle(s.tab === 'explore'),
+      tabPlannerStyle: this.tabStyle(s.tab === 'planner'),
+      tabWeatherStyle: this.tabStyle(s.tab === 'weather'),
+      onTabExplore: () => this.setState({ tab: 'explore', sheet: null, view: s.tab === 'explore' ? 'map' : s.view }),
+      onTabPlanner: () => this.setState({ tab: 'planner', sheet: null }),
+      onTabWeather: () => this.setState({ tab: 'weather', sheet: null }),
+
+      zStyle: this.seg(s.region === 'Zanzibar'),
+      mStyle: this.seg(s.region === 'Mainland'),
+      onZanzibar: () => this.setState({ region: 'Zanzibar', mapSelectedId: null }),
+      onMainland: () => this.setState({ region: 'Mainland', mapSelectedId: null }),
+      listStyle: this.iconBtn(s.view !== 'map'),
+      mapStyle: this.iconBtn(s.view === 'map'),
+      onShowList: () => this.setState({ view: 'list' }),
+      onShowMap: () => this.setState({ view: 'map', sheet: null }),
+
+      onSearch: (e) => this.setState({ q: e.target.value }),
+      onClearSearch: () => this.setState({ q: '' }),
+      onResetFilters: () => this.setState({ q: '', cat: 'all' }),
+      cats: this.CATS.map((c) => ({ key: c[0], label: c[1], style: this.chip(s.cat === c[0]), onClick: () => this.setState({ cat: c[0] }) })),
+
+      photoDests: visible.filter((d) => d.img).map(wrap),
+      rowDests: visible.filter((d) => !d.img).map(wrap),
+      resultLabel: visible.length + (visible.length === 1 ? ' place' : ' places') + ' in ' + s.region,
+      noResults: visible.length === 0,
+
+      experiences: this.EXPERIENCES.map((e) => ({
+        title: e.title, duration: e.duration, where: e.where, price: e.price,
+        imgStyle: this.bg(this.img(e.img)), alt: e.alt, action: 'Add to plan',
+        onAdd: () => this.setState({ tab: 'planner', pstep: 'start', interests: s.interests.indexOf('Food') > -1 ? s.interests : s.interests.concat(['Food']) }),
+      })),
+
+      savedCount: s.saved.length,
+      savedHeartFill: s.saved.length ? 'var(--dp-accent)' : 'none',
+      onOpenSaved: () => this.setState({ sheet: 'saved' }),
+      savedList: s.saved.map((id) => wrap(this.dest(id))),
+      savedEmpty: s.saved.length === 0,
+      savedAny: s.saved.length > 0,
+      onPlanSaved: () => this.planAround(s.saved[0]),
+
+      mapPins: this.DESTS.map((d, i) => Object.assign({}, d, { n: i + 1 })).filter((d) => this.matches(d))
+        .map((d) => ({ id: d.id, n: d.n, name: d.name, desc: d.desc, lat: d.lat, lng: d.lng })),
+      mapFitKey: s.region + '|' + s.cat + '|' + s.q.trim().toLowerCase(),
+      mapSelectedId: s.mapSelectedId,
+      onMapSelect: (id) => this.setState({ mapSelectedId: id, sheet: 'dest' }),
+      mapTitle: s.region === 'Zanzibar' ? 'Zanzibar' : 'Mainland Tanzania',
+      mapSubtitle: visible.length + (visible.length === 1 ? ' pin' : ' pins') + ' · tap one for detail',
+
+      det: det,
+      onBack: () => this.setState({ view: s.view === 'guide' ? 'list' : (s.backView || 'list') }),
+
+      guideAreas: this.AREAS.map((a) => ({
+        label: a.label, hint: a.hint,
+        style: this.chip(s.guideArea === a.key, { minHeight: 52, padding: '8px 13px', textAlign: 'left', whiteSpace: 'normal', minWidth: 132 }),
+        onClick: () => this.setState({ guideArea: a.key }),
+      })),
+      area: {
+        label: area.label, imgStyle: this.bg(this.img(area.img)), alt: area.alt,
+        places: area.places.map((p, i) => ({
+          num: String(i + 1).padStart(2, '0'), name: p[0], occasion: p[1], description: p[2],
+          mapUrl: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(p[0] + ' ' + area.label + ' Zanzibar'),
+        })),
+      },
+      events: this.EVENTS.map((e) => ({
+        when: e[0], name: e[1], where: e[2], description: e[3],
+        action: e[4] ? 'Festival details' : 'View location',
+        linkUrl: e[4]
+          ? 'https://yournexttriptoparadise.com/excursions/' + e[4]
+          : 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(e[2] + ' Zanzibar'),
+      })),
+      onOpenGuide: () => this.setState({ view: 'guide' }),
+      onGuideToPlanner: () => this.setState({ tab: 'planner', pstep: 'start' }),
+
+      hasPlace: !!place,
+      placeName: place ? place.name : '',
+      placeContext: place ? place.type + ' · ' + place.best.slice(0, 3).join(', ') : '',
+      onClearPlace: () => this.setState({ placeId: null }),
+      angles: this.ANGLES.map((a) => ({
+        label: a[1], sub: a[2],
+        style: this.chip(s.angle === a[0], { display: 'block', minHeight: 96, padding: '14px', borderRadius: 18, textAlign: 'left', whiteSpace: 'normal', width: '100%' }),
+        onClick: () => this.setState({ angle: a[0] }),
+      })),
+      prefRows: [
+        { k: 'Angle', v: s.angle ? (this.ANGLES.find((a) => a[0] === s.angle) || [])[1] : 'Not chosen yet' },
+        { k: 'Length', v: s.nights + ' · ' + s.month },
+        { k: 'Guests', v: guestLine },
+        { k: 'Budget', v: s.budget },
+        { k: 'Pace', v: s.pace },
+        { k: 'Interests', v: s.interests.join(', ') || 'Open' },
+      ],
+      startChatLabel: place ? 'Plan around ' + place.name : 'Start planning',
+      onStartChat: this.startChat,
+      onOpenPrefs: () => this.setState({ sheet: 'prefs' }),
+
+      msgs: s.msgs.map((mm) => ({
+        id: mm.id, text: mm.text,
+        rowStyle: { display: 'flex', justifyContent: mm.role === 'user' ? 'flex-end' : 'flex-start' },
+        bubbleStyle: {
+          maxWidth: '84%', padding: '12px 14px', whiteSpace: 'pre-line',
+          fontFamily: 'var(--dp-font-display)', fontSize: 13.5, lineHeight: 1.6,
+          borderRadius: mm.role === 'user' ? '16px 16px 5px 16px' : '16px 16px 16px 5px',
+          background: mm.role === 'user' ? 'rgba(255,111,97,.2)' : 'var(--dpa-700)',
+          border: mm.role === 'user' ? '1px solid rgba(255,111,97,.35)' : '1px solid var(--dpa-line)',
+          color: '#fff',
+        },
+      })),
+      typing: s.typing,
+      chatRef: this.chatEl,
+      chatInput: s.chatInput,
+      onChatInput: (e) => this.setState({ chatInput: e.target.value }),
+      onChatKey: (e) => { if (e.key === 'Enter') this.sendChat(this.state.chatInput); },
+      onSend: () => this.sendChat(this.state.chatInput),
+      suggestions: this.suggestionPool().map((p) => p[0]).filter((k) => s.used.indexOf(k) < 0).slice(0, 4).map((k) => ({ label: k, onClick: () => this.sendChat(k) })),
+      onChatBack: () => this.setState({ pstep: 'start' }),
+      onOpenPrivacy: () => this.setState({ sheet: 'privacy' }),
+      drafting: s.drafting,
+      draftLabel: s.drafting ? 'Drafting your days…' : 'See draft itinerary',
+      onSeeDraft: this.seeDraft,
+
+      itin: {
+        title: nightsCount + ' · culture, beach & a short safari',
+        meta: (place ? place.name + ' first · ' : '') + this.monthName() + ' · exact dates to confirm · ' + guestLine + ' · ' + s.pace.toLowerCase() + ' pace',
+        stays: [
+          { region: 'Zanzibar', place: 'Stone Town', nights: '2 nights' },
+          { region: 'Mainland', place: 'Mikumi', nights: '2 nights' },
+          { region: 'Zanzibar', place: 'Nungwi', nights: '4 nights' },
+        ],
+        days: this.ITIN.map((d, i) => ({ n: d.n, date: 'Day ' + (i + 1), title: d.title, place: d.place, stay: d.stay, transport: d.transport, rows: d.rows.map((r) => ({ k: r[0], v: r[1] })) })),
+      },
+      onItinBack: () => this.setState({ pstep: 'chat' }),
+      onSaveDraft: () => this.setState({ draftSaved: true }),
+      saveDraftLabel: s.draftSaved ? 'Draft saved' : 'Save draft',
+      onOpenQuote: () => this.setState({ sheet: 'quote', quoteSent: false }),
+
+      wxFacts: [
+        { k: 'Sea temp', v: '26°C' },
+        { k: 'Humidity', v: '73%' },
+        { k: 'Sunrise', v: '06:21' },
+        { k: 'Sunset', v: '18:22' },
+      ],
+      onConnectData: () => this.setState({ sheet: 'source' }),
+      monthChips: this.MONTHS.map((mm, i) => ({
+        label: mm[0],
+        style: this.chip(s.wxMonth === i, { minWidth: 52, padding: '0 10px', justifyContent: 'center' }),
+        onClick: () => this.setState({ wxMonth: i }),
+      })),
+      selMonth: {
+        name: m[1], temp: m[2] + '°C', note: m[4], seasonLabel: season.label + ' season',
+        seasonStyle: { display: 'inline-block', marginTop: 6, padding: '4px 9px', borderRadius: 999, background: 'rgba(255,255,255,.07)', border: '1px solid var(--dpa-line)', fontSize: 10.5, fontWeight: 700, letterSpacing: '.06em', textTransform: 'uppercase', color: season.color },
+      },
+      onPlanMonth: () => this.setState({ tab: 'planner', pstep: 'start', month: this.MONTHS[s.wxMonth][0] }),
+      seasonLegend: ['peak', 'high', 'low'].map((k) => ({
+        label: this.SEASONS[k].label, text: this.SEASONS[k].text,
+        dotStyle: { flex: 'none', width: 9, height: 9, marginTop: 5, borderRadius: '50%', background: this.SEASONS[k].color },
+      })),
+
+      anySheet: !!s.sheet,
+      onCloseSheet: () => this.setState({ sheet: null }),
+      sheetDestOpen: s.sheet === 'dest' && !!sheetD,
+      sheetDest: sheetD,
+      sheetSavedOpen: s.sheet === 'saved',
+      sheetPrefsOpen: s.sheet === 'prefs',
+      sheetPrivacyOpen: s.sheet === 'privacy',
+      sheetQuoteOpen: s.sheet === 'quote',
+      sheetSourceOpen: s.sheet === 'source',
+
+      nightChips: ['5–7 nights', '8–10 nights', '11–14 nights'].map((n) => ({
+        label: n, style: this.chip(s.nights === n), onClick: () => this.setState({ nights: n }),
+      })),
+      prefMonthChips: this.MONTHS.map((mm) => ({
+        label: mm[0], style: this.chip(s.month === mm[0], { minWidth: 52, padding: '0 10px' }),
+        onClick: () => this.setState({ month: mm[0] }),
+      })),
+      budgetChips: ['Value', 'Mid-range', 'Premium'].map((b) => ({
+        label: b, style: this.chip(s.budget === b), onClick: () => this.setState({ budget: b }),
+      })),
+      paceChips: ['Slow', 'Balanced', 'Full'].map((p) => ({
+        label: p, style: this.chip(s.pace === p), onClick: () => this.setState({ pace: p }),
+      })),
+      interestChips: ['Beach', 'Culture', 'Food', 'Wildlife', 'Snorkelling', 'Kitesurf', 'Honeymoon', 'Family'].map((i) => ({
+        label: i, style: this.chip(s.interests.indexOf(i) > -1),
+        onClick: () => this.setState((st) => ({ interests: st.interests.indexOf(i) > -1 ? st.interests.filter((x) => x !== i) : st.interests.concat([i]) })),
+      })),
+      onAdultsUp: () => this.setState((st) => ({ adults: Math.min(9, st.adults + 1) })),
+      onAdultsDown: () => this.setState((st) => ({ adults: Math.max(1, st.adults - 1) })),
+      onKidsUp: () => this.setState((st) => ({ kids: Math.min(6, st.kids + 1) })),
+      onKidsDown: () => this.setState((st) => ({ kids: Math.max(0, st.kids - 1) })),
+      onKidAges: (e) => this.setState({ kidAges: e.target.value }),
+
+      privacyRows: [
+        { k: 'AI drafting', v: 'Planner messages may be processed by Anthropic to draft suggestions. They are used to write your itinerary, nothing else.' },
+        { k: 'Email delivery', v: 'Drafts and quote requests are emailed to our team in Zanzibar via Resend.' },
+        { k: 'Human review', v: 'Every price, hotel and transfer is checked by a person here before anything is confirmed. The AI never books.' },
+        { k: 'This prototype', v: 'Nothing leaves your device in this demo. No message is sent and no request reaches the company.' },
+      ],
+      sourceRows: [
+        { k: 'Sample values', v: 'Air 26°C, sea 26°C, humidity 73%, sunrise 06:21, sunset 18:22 — captured from the website as example values, not a live reading.' },
+        { k: 'No provider connected', v: 'A live version would name its weather provider and show a timestamp on every value.' },
+        { k: 'Seasonal guide', v: 'Monthly temperatures and hotel seasons are editorial guidance for planning. They are not a forecast for your dates.' },
+      ],
+
+      quoteForm: !s.quoteSent,
+      quoteSent: s.quoteSent,
+      quoteSummary: [
+        { k: 'Trip', v: nightsCount + ' · culture, beach & short safari' },
+        { k: 'Dates', v: this.monthName() + ' · exact dates to confirm' },
+        { k: 'Guests', v: guestLine },
+        { k: 'Route', v: 'Stone Town · Mikumi · Nungwi' },
+        { k: 'Budget band', v: s.budget },
+        { k: 'Reply', v: 'Within 24 hours (advertised)' },
+      ],
+      formName: s.form.name,
+      formEmail: s.form.email,
+      formNote: s.form.note,
+      onFormName: (e) => this.setState({ form: Object.assign({}, S.state.form, { name: e.target.value }) }),
+      onFormEmail: (e) => this.setState({ form: Object.assign({}, S.state.form, { email: e.target.value }) }),
+      onFormNote: (e) => this.setState({ form: Object.assign({}, S.state.form, { note: e.target.value }) }),
+      hasFormError: !!s.formError,
+      formError: s.formError,
+      onSendQuote: this.sendQuote,
+    };
+  }
+}
+
+</script>
+</body>
+</html>

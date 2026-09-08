@@ -1,0 +1,189 @@
+{
+  "verifiedAtUtc": "2026-09-07T12:36:58.360837+00:00",
+  "gate": "PASS narrow exact code7 regression; completed code6 functional baseline retained because runtime bundle is byte-identical.",
+  "buildId": "ae4d6007-7317-4cc3-a41d-44682aa5b871",
+  "completedAtUtc": "2026-09-07T12:25:19.076Z",
+  "sourceFreeze": "/tmp/dp-nearby-android7-source-manifest-20260907.json; all110files matched",
+  "artifact": {
+    "package": "com.yournexttriptoparadise.mobile",
+    "versionName": "1.0.0",
+    "versionCode": 7,
+    "permissions": [
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.INTERNET",
+      "android.permission.VIBRATE",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "com.yournexttriptoparadise.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "minSdk": "24",
+    "targetSdk": "36",
+    "bundletoolValidation": "passed",
+    "coarseOnlyLocation": true,
+    "debuggable": false,
+    "cleartextTraffic": false,
+    "aabBytes": 80959187,
+    "aabSha256": "84f3f55f838cb319dde330dd0ea8193fedec7b69a00e427c5160f6c41fc8d4ea",
+    "localTestApkBytes": 116524543,
+    "localTestApkSha256": "7135cf7d5cdee800f1e8ff906389d54b71a6648211b3e82c908c3b3da3e8caeb",
+    "localTestSignerSha256": "09148a81ca65ab839704593853320acac5934935239c3077c1369b3038e1598f",
+    "signatureVerified": true,
+    "locationFeatures": {
+      "android.hardware.location": "false",
+      "android.hardware.location.network": "false"
+    },
+    "requiredFeatures": [
+      "uses-feature: name='android.hardware.faketouch'"
+    ]
+  },
+  "runtimeBundleSha256": "ec5e3a7396735a2b94903fda93ca24b5bd1616ea8e1c98c6c642ee165652f5ec",
+  "runtimeByteIdenticalToCode6": true,
+  "baseline": "/tmp/dp-native-release/nearby-code6-native-qa.json",
+  "checks": {
+    "compatibility": "Generic location and network location explicitly optional. aapt2 requiredfeatures ONLYandroid.hardware.faketouch, matching code5. Root independently verified Play12477phones/6690tablets and0lostdevices.",
+    "permissions": "COARSEonly; fine/background/FGSlocation/activityrecognition/storage/overlay absent. Actual code7 tablet Android sheet says approximate location only.",
+    "upgrade": "Both dedicated AVDs upgraded6\u21927 via adb install-r; firstInstallTime retained, no data clear/uninstall.",
+    "coldLaunch": "Both production-derived standalone coldlaunches pass: phone724ms,tablet841ms. Normal Explore/map renders, opt-in initiallyoff.",
+    "nearby": "Phone opt-in enters lookup. Emulator returned timeout then unavailable on one manual refresh; clear retry/manualfallback shown, and Zanzibar manualmap restored. No further location retries.",
+    "denial": "Tablet denied actual permission sheet; manual Zanzibar map works. After permanent denial, one retry updates recovery UI to Open device settings and Try location again.",
+    "disable": "Both turnedoff using appcontrol; Use my location returned, no busylookup.",
+    "errors": "Zero ReactNativeJS warning/error or AndroidRuntime errors for tested appPIDs.",
+    "externalSends": "No AI/quote/email/report submission.",
+    "noSourceOverride": "No app-source override, synthetic nativeprovider, sourceedit or repo report created by QA."
+  },
+  "retainedCode6Evidence": "Exact nativecode6 proved StoneTown recommendations with standard emulator geo fix, enabled coldreopen success, keyboardfocus/query, denial/fallback, optoutpersistence. Do not represent StoneTown success as repeated oncode7.",
+  "cleanup": {
+    "phone": {
+      "nearbyOffVerified": true,
+      "locationMode": "3",
+      "size": "Physical size: 1080x2424",
+      "rotation": "0",
+      "autoRotation": "1",
+      "permission": "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|524288]",
+      "firstInstallTime": "firstInstallTime=2026-09-06 00:12:44"
+    },
+    "tablet": {
+      "nearbyOffVerified": true,
+      "locationMode": "3",
+      "size": "Physical size: 2560x1600",
+      "rotation": "0",
+      "autoRotation": "1",
+      "permission": "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+      "firstInstallTime": "firstInstallTime=2026-09-06 00:12:46"
+    },
+    "emulatorsStopped": true
+  },
+  "physicalDevicesTouched": false,
+  "screenshots": [
+    {
+      "path": "/tmp/dp-native-release/nearby-code7-phone-cold-explore.png",
+      "bytes": 559263,
+      "sha256": "dda28ebb0a01864068ff9ec4c5e811e8d2c4c33b396797b9b0fe041d0d0725f2",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code7-tablet-cold-explore.png",
+      "bytes": 732288,
+      "sha256": "b64fcb8b2db40fd5e6d58fe2102ce690ee6dbbea91ef28d6b26cf8c587aad06f",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code7-phone-after-optin.png",
+      "bytes": 252868,
+      "sha256": "e2cf1c36fecce7746c6174672241a903700e7f24dc2c6d7d9acb2ca1bddf628d",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code7-tablet-permission-approximate-only.png",
+      "bytes": 282612,
+      "sha256": "914bfcf45610890a2568233ddbd62cb37dff19bc56db0c441ddc0a13baffe0b5",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code7-tablet-denied.png",
+      "bytes": 257625,
+      "sha256": "53526116fddf19099c0c3d6c18498ab0142a0a20b8070f8445a54c8d2f8c8fe5",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code7-tablet-manual-fallback.png",
+      "bytes": 734359,
+      "sha256": "b25586d6430c1e6066c5b4a5a045bb26a08ff6d43a37ed15b6d9318348a6d883",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code7-tablet-permanent-denial-settings.png",
+      "bytes": 304807,
+      "sha256": "e3696b512e2711afabaa8e8c65a3e9c7fd8e68582efa71b0d9c47bb54588f26e",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code7-phone-location-unavailable.png",
+      "bytes": 217481,
+      "sha256": "57a3c4be2b8cc40051ec036461cc8f663cd6981048f748b017928ea5294394cd",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code7-phone-manual-fallback.png",
+      "bytes": 557005,
+      "sha256": "0fc0704f7daaf17b773bba9cd6c9fda29729cacea158daf3f46b6bbec2590fd4",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code7-phone-disabled.png",
+      "bytes": 307943,
+      "sha256": "faf7f8f08eb584041d214691ce0a5b463211c2ff1c7edeb2e1bce12a0a6a22b1",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code7-tablet-disabled.png",
+      "bytes": 320919,
+      "sha256": "8be5c4267afb76987c63092931159e33aa5cc4660ecb8c5378b50607fe0ae2c4",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    }
+  ],
+  "limits": "Localdebug signer on exact AAB-derived APK; Play signing/distribution remains a separate store gate. Code7nativeGPSsuccess not independently repeated; safe fallback exercised and runtime matches code6 successful baseline."
+}

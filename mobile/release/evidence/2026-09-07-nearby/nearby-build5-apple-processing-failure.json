@@ -1,0 +1,20 @@
+{
+  "checkedAtUtc": "2026-09-07T14:55:37.306978+00:00",
+  "source": "Signed-in App Store Connect TestFlight UI",
+  "appId": "6809042574",
+  "version": "1.0.0",
+  "buildNumber": "5",
+  "uploadId": "36a4d65b-0312-403e-a117-5535e3203733",
+  "processingStatus": "FAILED",
+  "code": "90683",
+  "missingKey": "NSMotionUsageDescription",
+  "message": "Missing purpose string in Info.plist. The app code or linked libraries reference sensitive APIs, and Apple requires NSMotionUsageDescription even if the app does not use those APIs.",
+  "availableForTesting": false,
+  "lastGroupAssignedBuild": "4",
+  "androidLiveStatus": {
+    "version": "1.0.0",
+    "versionCode": 7,
+    "releaseNumber": 4,
+    "status": "Active / Available to internal testers / Not reviewed"
+  }
+}

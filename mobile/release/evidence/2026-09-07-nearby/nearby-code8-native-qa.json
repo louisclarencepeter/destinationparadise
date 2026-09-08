@@ -1,0 +1,218 @@
+{
+  "verifiedAtUtc": "2026-09-07T15:44:31.142781+00:00",
+  "gate": "PASS narrow exact Android1.1.0(8) upgrade/Settings/Nearby regression",
+  "buildId": "869ab4bf-ae37-4b84-9a92-45671c95bacd",
+  "completedAtUtc": "2026-09-07T15:34:53.417Z",
+  "sourceFreeze": {
+    "path": "/tmp/dp-version-110-source-manifest.json",
+    "all111FilesMatched": true,
+    "totalBytes": 4890284,
+    "nearbyFilesByteIdenticalToCode7": [
+      "mobile/src/features/nearby/location-service.ts",
+      "mobile/src/features/nearby/nearby-content.tsx",
+      "mobile/src/features/nearby/nearby-images.ts",
+      "mobile/src/features/nearby/nearby-location-provider.tsx",
+      "mobile/src/features/nearby/nearby-model.ts"
+    ]
+  },
+  "artifact": {
+    "package": "com.yournexttriptoparadise.mobile",
+    "versionName": "1.1.0",
+    "versionCode": 8,
+    "permissions": [
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.INTERNET",
+      "android.permission.VIBRATE",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "com.yournexttriptoparadise.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION",
+      "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE"
+    ],
+    "addedPermissionAudit": {
+      "name": "com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE",
+      "source": "expo-application 57.0.2 -> installreferrer 2.2",
+      "trigger": "Only explicit getInstallReferrerAsync; app uses version/build constants only",
+      "appCalls": false,
+      "autoInitComponentsChanged": false
+    },
+    "minSdk": "24",
+    "targetSdk": "36",
+    "bundletoolValidation": "passed",
+    "coarseOnlyLocation": true,
+    "debuggable": false,
+    "cleartextTraffic": false,
+    "aabBytes": 80969254,
+    "aabSha256": "43675893dad633ec2983ea3bfcaa535d894b82a5044ba46ca2a07211427459ba",
+    "localTestApkBytes": 116540927,
+    "localTestApkSha256": "177ff0f5e666c39483aa24d218da891332ec4b881613f4d4d6cbf876e5220e1a",
+    "localTestSignerSha256": "09148a81ca65ab839704593853320acac5934935239c3077c1369b3038e1598f",
+    "signatureVerified": true,
+    "locationFeatures": {
+      "android.hardware.location": "false",
+      "android.hardware.location.network": "false"
+    },
+    "requiredFeatures": [
+      "uses-feature: name='android.hardware.faketouch'"
+    ]
+  },
+  "checks": {
+    "upgrade": "Both dedicated AVDs upgraded7\u21928 with adb install-r and existing dedicated debug signer; firstInstallTime/app data retained.",
+    "coldLaunch": "Standalone AAB-derived app cold launches pass; phone578ms,tablet843ms; normal Explore/maps render.",
+    "settings": "Both rendered Settings footers show Destination Paradise \u00b7 Version1.1.0(8); actual screenshot/DOM text contains normal spaces.",
+    "permission": "Phone actual app-branded Android permission sheet offers approximate location only, no precise option. Denied with actual Dont allow. Tablet reused denied permission history and correctly showed Open device settings without another sheet.",
+    "fallback": "After denial, both manual Zanzibar controls restore real destination map and7places.",
+    "optOut": "Nearby disabled on both via actual app controls; Use my location returned and no busy state remained.",
+    "errors": "Zero app-specific ReactNativeJS warnings/errors or AndroidRuntime errors for both tested PIDs.",
+    "newLinkedCapability": "Install Referrer service bind permission comes from new expo-application package. No app call exists; native client connects only inside explicit getInstallReferrerAsync. All provider/service/receiver manifest components unchanged from code7. Independent audit agreed. No new runtime permission prompt or automatic attribution flow found.",
+    "externalSends": "No AI/quote/email/report submission or explicit install-referrer request.",
+    "priorBaseline": "Nearbys source files match code7. Exactcode6 successful StoneTown recommendation/keyboard/persistence tests are retained as prior functional evidence; this run intentionally checks narrow version/config regression."
+  },
+  "runtimeIdentity": {
+    "phone": {
+      "installedIdentity": [
+        "versionCode=8 minSdk=24 targetSdk=36",
+        "versionName=1.1.0",
+        "firstInstallTime=2026-09-06 00:12:44",
+        "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SET|USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|524288]"
+      ],
+      "pid": "3590",
+      "appErrors": 0,
+      "settingsLabel": "Destination Paradise \u00b7 Version 1.1.0 (8)"
+    },
+    "tablet": {
+      "installedIdentity": [
+        "versionCode=8 minSdk=24 targetSdk=36",
+        "versionName=1.1.0",
+        "firstInstallTime=2026-09-06 00:12:46",
+        "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]"
+      ],
+      "pid": "3583",
+      "appErrors": 0,
+      "settingsLabel": "Destination Paradise \u00b7 Version 1.1.0 (8)"
+    }
+  },
+  "cleanup": {
+    "phone": {
+      "nearbyOffVerified": true,
+      "geoChangedByThisRun": false,
+      "permission": "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|524288]",
+      "size": "Physical size: 1080x2424",
+      "density": "Physical density: 420",
+      "rotation": "0",
+      "autoRotation": "1",
+      "locationMode": "3",
+      "firstInstallTime": "firstInstallTime=2026-09-06 00:12:44"
+    },
+    "tablet": {
+      "nearbyOffVerified": true,
+      "geoChangedByThisRun": false,
+      "permission": "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+      "size": "Physical size: 2560x1600",
+      "density": "Physical density: 320",
+      "rotation": "0",
+      "autoRotation": "1",
+      "locationMode": "3",
+      "firstInstallTime": "firstInstallTime=2026-09-06 00:12:46"
+    },
+    "emulatorsStopped": true
+  },
+  "physicalDevicesTouched": false,
+  "sourceEdits": false,
+  "providerActions": false,
+  "screenshots": [
+    {
+      "path": "/tmp/dp-native-release/nearby-code8-phone-cold-explore.png",
+      "bytes": 559825,
+      "sha256": "1983e30c5800774d5a67579e78f39d1c5febb272a2c54ff829d8314e165861bf",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code8-phone-denied.png",
+      "bytes": 215833,
+      "sha256": "ce8d9b7c0b437f59dfa326e937096188de5e97997ea8473f1984e1bed3b7112f",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code8-phone-manual-fallback.png",
+      "bytes": 557353,
+      "sha256": "8ca6633be5bab86cf44b4f2e1e6e1085926d82b8a47adaee47fd044c092dec7f",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code8-phone-permission-approximate-only.png",
+      "bytes": 186568,
+      "sha256": "60292a143a0cc91aaa9ccf226db8d3599f8291f1d6bc5eca6eedf6a9e141f381",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code8-phone-settings-version.png",
+      "bytes": 280830,
+      "sha256": "9a8aac2a114dd2cd55dd58de6084447c0683e822d4d5cd1a627e2e53de74e452",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code8-tablet-cold-explore.png",
+      "bytes": 732750,
+      "sha256": "8d12c0f92c6f032ec14ab198d364c6ee7dcec605cee187b494b1de9a7581c868",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code8-tablet-denied-settings-fallback.png",
+      "bytes": 304632,
+      "sha256": "375bfa23599da5ae89730a09239af1d3dfcaf84d92cca19c3ab0db6db7aad304",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code8-tablet-manual-fallback.png",
+      "bytes": 733894,
+      "sha256": "33e11e2e1d50e17f732dc1aee8fed42066db01ffb3d0592f3100993e25395a1e",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code8-tablet-settings-version.png",
+      "bytes": 209101,
+      "sha256": "8c23dc544c6550789a36ef15377ffeff26a06eba1896fe676f378626519833d5",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    }
+  ],
+  "limits": "Local debug signer applied to exact AAB-derived APK; Play signing/distribution is a separate root-owned gate. GPS-success flow was not repeated oncode8. Referrer audit inspected source/native component parity; this run did not capture all network traffic.",
+  "sources": [
+    "https://developer.android.com/google/play/installreferrer/library",
+    "https://docs.expo.dev/versions/v57.0.0/sdk/application/"
+  ]
+}

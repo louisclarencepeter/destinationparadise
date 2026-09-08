@@ -1,0 +1,9 @@
+{
+  "verifiedAtUtc": "2026-09-07T15:06:47.160308+00:00",
+  "manifest": "/tmp/dp-version-110-source-manifest.json",
+  "archive": "/tmp/dp-version-110-source-20260907",
+  "files": 111,
+  "workspacePassed": true,
+  "archivePassed": true,
+  "mismatches": []
+}

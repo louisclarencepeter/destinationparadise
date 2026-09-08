@@ -16,7 +16,7 @@
       },
       {
         "path": "src/data/excursionsData.js",
-        "sha256": "d1dcab61a6220679883b1616ba8c29b40507941db2d70fa088f58a6c17101cf6"
+        "sha256": "7652a115de7f6ef16b62610e4c44f2c090f81b1cba99a12c1c2afe133e61ed28"
       },
       {
         "path": "src/data/safariPageData.js",
@@ -44,7 +44,7 @@
       },
       {
         "path": "src/components/explore/ExploreLocalGuide.jsx",
-        "sha256": "078e5bba761e827b5218b2ad42611b3da5d20ce6416326fb33720612118fbf1c"
+        "sha256": "5c79f02e1c627e16c80c6e110f91cf524ecb614fe97e0bff2b5cb88f029b94d8"
       },
       {
         "path": "src/locales/en/explore.json",
@@ -52,11 +52,11 @@
       },
       {
         "path": "src/locales/en/home.json",
-        "sha256": "7d52e6afa8c80d57746554022ae80bb88d4605cbeb9a94c0529f9ba423aa0b3c"
+        "sha256": "954fbb9d54e5f88c274d4ab5bb9853129846bb31530ffffb9726bd6e5b8aed70"
       },
       {
         "path": "src/pages/Homepage.jsx",
-        "sha256": "9c58e4a3949b598b7a31220ce40d03964b4980c74945812bca31e8f03ae86205"
+        "sha256": "2b66822ea34402904ba674aad82bc95298f1316fae801d823b2d12f065b72b8d"
       }
     ]
   },
@@ -288,7 +288,7 @@
       ],
       "image": "https://yournexttriptoparadise.com/assets/images/excursions/trips/mnemba-snorkeling.webp",
       "imageIsRepresentative": false,
-      "imageLabel": "Aerial view of the island and sandspit inside the turquoise Mnemba reef ring",
+      "imageLabel": "Turquoise water around Mnemba Atoll",
       "excursions": [
         {
           "label": "Mnemba Snorkeling & Trip to the North",

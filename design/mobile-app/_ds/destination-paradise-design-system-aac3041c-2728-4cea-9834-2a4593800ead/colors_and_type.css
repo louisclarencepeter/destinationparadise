@@ -1,0 +1,236 @@
+/* Destination Paradise — Colors & Type tokens
+ * Source of truth: github.com/louisclarencepeter/destinationparadise
+ *   src/styles/_variables.scss  and  src/styles/base.scss
+ * The brand is a warm, aspirational Zanzibar travel company.
+ * Deep ocean navy + coral sunset accent + off-white sand background.
+ */
+
+/* ---------- Fonts ---------- */
+@font-face {
+  font-family: "Playfair Display";
+  src: url("./fonts/PlayfairDisplay-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 400 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/Montserrat-VariableFont_wght.ttf") format("truetype-variations");
+  font-weight: 100 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kaushan Script";
+  src: url("./fonts/KaushanScript-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+:root {
+  /* ---------- Color tokens (from _variables.scss) ---------- */
+  --dp-primary:        #1A4D6E;   /* deep ocean navy — logo stroke */
+  --dp-secondary:      #215A7C;   /* lighter navy — most H2s, text accents */
+  --dp-accent:         #FF6F61;   /* coral sunset — the second logo color */
+  --dp-hover:          #FF926B;   /* warmer coral for hover */
+  --dp-background:     #FAFBFD;   /* off-white, faint cool tint */
+  --dp-background-lt:  #ffffff;   /* +8% lightness */
+  --dp-background-dk:  #E2E6EC;   /* -8% lightness */
+  --dp-border:         #E1E6EB;
+  --dp-black:          #1A1A1A;
+  --dp-on-primary:     #ffffff;
+  --dp-box-shadow:     rgba(26, 77, 110, 0.2);
+
+  /* Feedback */
+  --dp-error:          #991b1b;
+  --dp-error-bg:       #fee2e2;
+  --dp-success:        #166534;
+  --dp-success-bg:     #dcfce7;
+
+  /* Chatbot */
+  --dp-user-msg:       #FF9183;   /* accent + 10% lightness */
+  --dp-assistant-msg:  #F4F7FA;
+
+  /* ---------- Semantic foreground/background aliases ---------- */
+  --dp-fg-1: var(--dp-primary);     /* primary body text on light bg */
+  --dp-fg-2: var(--dp-secondary);   /* headings / softer text */
+  --dp-fg-3: #4a6c82;               /* muted subcopy */
+  --dp-fg-invert: var(--dp-background);
+  --dp-bg-1: var(--dp-background);
+  --dp-bg-2: var(--dp-background-lt);
+  --dp-bg-3: var(--dp-background-dk);
+
+  /* ---------- Gradients ---------- */
+  --dp-gradient-button: linear-gradient(
+    120deg,
+    rgba(26, 77, 110, 0.8) 0%,
+    rgba(255, 111, 97, 0.8) 100%
+  ); /* @kind color */
+  --dp-gradient-button-hover: linear-gradient(
+    120deg,
+    rgba(19, 58, 83, 0.8) 0%,
+    rgba(255, 79, 62, 0.8) 100%
+  ); /* @kind color */
+  --dp-gradient-accent-bar: linear-gradient(
+    90deg,
+    var(--dp-accent),
+    #2B6F93
+  ); /* @kind color */
+  --dp-gradient-hero-scrim: linear-gradient(
+    180deg,
+    transparent 40%,
+    rgba(26, 77, 110, 0.28)
+  ); /* @kind color */
+
+  /* ---------- Fonts ---------- */
+  --dp-font-display: "Playfair Display", Georgia, serif;   /* primary body+display serif */
+  --dp-font-sans:    "Montserrat", Arial, sans-serif;      /* UI, labels, nav */
+  --dp-font-script:  "Kaushan Script", cursive;            /* brand voice, logo motto */
+
+  /* ---------- Type scale (follows base.scss; responsive range) ---------- */
+  /* Fluid heading sizes — lengths, not families; kept out of the font group. */
+  --dp-fs-h1:  clamp(2.75rem, 4vw + 1rem, 7rem); /* @kind other */
+  --dp-fs-h2:  clamp(1.6rem, 2vw + 0.6rem, 3.25rem); /* @kind other */
+  --dp-fs-h3:  clamp(1.25rem, 1vw + 0.75rem, 1.6rem); /* @kind other */
+  --dp-fs-h4:  1.3rem;
+  --dp-fs-h5:  1rem;
+  --dp-fs-body:     clamp(1rem, 0.5vw + 0.85rem, 1.25rem); /* @kind other */
+  --dp-fs-body-sm:  0.875rem;
+  --dp-fs-caption:  0.72rem;
+  --dp-fs-eyebrow:  0.72rem;
+
+  /* ---------- Spacing (derived from in-codebase clamp patterns) ---------- */
+  --dp-space-1:  0.25rem;
+  --dp-space-2:  0.5rem;
+  --dp-space-3:  0.75rem;
+  --dp-space-4:  1rem;
+  --dp-space-5:  1.5rem;
+  --dp-space-6:  2rem;
+  --dp-space-7:  3rem;
+  --dp-space-8:  4rem;
+
+  /* ---------- Radii ---------- */
+  --dp-radius-sm:  0.5rem;     /* buttons, small controls */
+  --dp-radius-md:  10px;       /* hero description pill */
+  --dp-radius-lg:  22px;       /* cards on mobile */
+  --dp-radius-xl:  28px;       /* cards desktop */
+  --dp-radius-2xl: 32px;       /* section panels */
+  --dp-radius-pill: 999px;     /* badges */
+
+  /* ---------- Elevation (soft ocean-tinted shadows) ---------- */
+  --dp-shadow-1: 0 4px 6px -6px rgba(0, 0, 0, 0.2);
+  --dp-shadow-2: 0 10px 26px rgba(26, 77, 110, 0.18);
+  --dp-shadow-3: 0 20px 45px rgba(26, 77, 110, 0.10),
+                 inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  --dp-shadow-4: 0 24px 60px rgba(26, 77, 110, 0.08),
+                 inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  --dp-shadow-hover: 0 28px 55px rgba(26, 77, 110, 0.14),
+                    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+
+  /* ---------- Motion ---------- */
+  --dp-transition: all 0.3s ease-in-out; /* @kind other */
+  --dp-ease-out: cubic-bezier(0.22, 1, 0.36, 1); /* @kind other */
+
+  /* ---------- Layout ---------- */
+  --dp-container-sm:  768px;
+  --dp-container-md:  1000px;
+  --dp-container-lg:  1200px;
+  --dp-container-xl:  1400px;
+}
+
+/* ---------- Base element styles (mirrors base.scss) ---------- */
+.dp-root {
+  font-family: var(--dp-font-display);
+  color: var(--dp-fg-1);
+  background-color: var(--dp-bg-1);
+  font-size: var(--dp-fs-body);
+  line-height: 1.6;
+}
+
+.dp-h1, h1.dp {
+  font-family: var(--dp-font-script);
+  font-size: var(--dp-fs-h1);
+  font-weight: 500;
+  color: var(--dp-fg-invert);
+  line-height: 1.05;
+  margin: 0;
+}
+
+.dp-h2, h2.dp {
+  font-family: var(--dp-font-script);
+  font-size: var(--dp-fs-h2);
+  font-weight: 300;
+  color: var(--dp-fg-2);
+  text-align: center;
+  margin: 0 0 var(--dp-space-5);
+}
+
+.dp-h3, h3.dp {
+  font-family: var(--dp-font-sans);
+  font-size: var(--dp-fs-h3);
+  font-weight: 500;
+  color: var(--dp-fg-2);
+  margin: 0 0 var(--dp-space-3);
+}
+
+.dp-h4, h4.dp {
+  font-family: var(--dp-font-sans);
+  font-size: var(--dp-fs-h4);
+  font-weight: 500;
+  color: var(--dp-fg-2);
+  margin: 0 0 var(--dp-space-3);
+}
+
+.dp-eyebrow {
+  font-family: var(--dp-font-primary, var(--dp-font-display));
+  font-size: var(--dp-fs-eyebrow);
+  font-weight: 700;
+  color: var(--dp-fg-2);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.dp-script {
+  font-family: var(--dp-font-script);
+  color: var(--dp-accent);
+  font-weight: 400;
+}
+
+.dp-body {
+  font-family: var(--dp-font-display);
+  font-size: var(--dp-fs-body);
+  line-height: 1.7;
+  color: var(--dp-fg-1);
+}
+
+/* ---------- Button styles (from _mixins.scss @mixin button-styles) ---------- */
+.dp-btn {
+  font-family: var(--dp-font-display);
+  font-weight: 300;
+  border: none;
+  border-radius: var(--dp-radius-sm);
+  padding: 0.6rem 1.2rem;
+  font-size: calc(0.6rem + 0.5vw);
+  background-image: var(--dp-gradient-button);
+  color: var(--dp-on-primary);
+  cursor: pointer;
+  transition: var(--dp-transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+.dp-btn:hover {
+  color: var(--dp-hover);
+  background-image: var(--dp-gradient-button-hover);
+}
+.dp-btn--ghost {
+  background-image: none;
+  background: transparent;
+  color: var(--dp-fg-2);
+  border: 1px solid var(--dp-border);
+}
+.dp-btn--ghost:hover {
+  color: var(--dp-accent);
+  background: var(--dp-bg-2);
+}

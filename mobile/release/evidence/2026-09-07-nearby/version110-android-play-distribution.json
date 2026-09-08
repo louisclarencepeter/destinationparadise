@@ -1,0 +1,47 @@
+{
+  "checkedAtUtc": "2026-09-07T15:44:36.457754+00:00",
+  "source": "Authenticated Google Play Console UI, preview and fresh track/tester readback",
+  "package": "com.yournexttriptoparadise.mobile",
+  "appId": "4972417635244765220",
+  "trackId": "4701496308193764699",
+  "track": "internal",
+  "releaseId": "5",
+  "version": "1.1.0",
+  "versionCode": 8,
+  "releaseName": "1.1.0 (8) \u2014 Nearby trip suggestions",
+  "trackStatus": "ACTIVE",
+  "releaseStatus": "AVAILABLE_TO_INTERNAL_TESTERS",
+  "reviewStatus": "NOT_REVIEWED",
+  "releasedAtDisplay": "Sep 7, 2026 6:43 PM EAT",
+  "artifactPath": "/tmp/dp-native-release/destination-paradise-android-nearby-code8.aab",
+  "artifactSha256": "43675893dad633ec2983ea3bfcaa535d894b82a5044ba46ca2a07211427459ba",
+  "artifactSizeBytes": 80969254,
+  "supportedPhones": 12477,
+  "supportedTablets": 6690,
+  "devicesLost": 0,
+  "validationErrors": 0,
+  "validationWarnings": [
+    "No deobfuscation file associated with App Bundle"
+  ],
+  "selectedTesterLists": [
+    {
+      "name": "Destination Paradise owner test",
+      "users": 1
+    }
+  ],
+  "unselectedTesterLists": [
+    {
+      "name": "[REDACTED unrelated tester list]",
+      "users": 15
+    },
+    {
+      "name": "[REDACTED unrelated tester list]",
+      "users": 17
+    }
+  ],
+  "testerSaveButtonDisabled": true,
+  "joinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
+  "productionReleased": false,
+  "ownerDeviceInstallationVerified": false,
+  "providerPropagationMessage": "Changes usually appear on Google Play within 1 hour, but can occasionally take longer."
+}

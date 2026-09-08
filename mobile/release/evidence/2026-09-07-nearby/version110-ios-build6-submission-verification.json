@@ -1,0 +1,92 @@
+{
+  "verifiedAtUtc": "2026-09-07T15:31:19.276390+00:00",
+  "appStoreConnectAppId": "6809042574",
+  "bundleIdentifier": "com.yournexttriptoparadise.mobile",
+  "version": "1.1.0",
+  "buildNumber": "6",
+  "easBuildId": "d439b36e-da24-4ab6-a3b9-2d3d9114df56",
+  "easBuildCompletedAt": "2026-09-07T15:05:02.353Z",
+  "artifactPath": "/tmp/dp-native-release/destination-paradise-ios-1.1.0-build6.ipa",
+  "bytes": 26285441,
+  "sha256": "24f4b89e8e760b565d355ecf5fad17bc3b335b7bb2d29060cdf710849adc3521",
+  "staticChecksPassed": true,
+  "codeSignVerifyPassed": true,
+  "teamIdentifier": "86ZX7JC345",
+  "motionUsageDescription": "Destination Paradise does not access motion or fitness data. Nearby suggestions use only your approximate location.",
+  "sourceFreeze": {
+    "verifiedAtUtc": "2026-09-07T15:06:47.160308+00:00",
+    "manifest": "/tmp/dp-version-110-source-manifest.json",
+    "archive": "/tmp/dp-version-110-source-20260907",
+    "files": 111,
+    "workspacePassed": true,
+    "archivePassed": true,
+    "mismatches": []
+  },
+  "canonicalPolicyBeforeUpload": {
+    "checkedAtUtc": "2026-09-07T15:03:47.241172+00:00",
+    "url": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
+    "httpStatus": 200,
+    "sha256": "1ce162735435379f5972bd7ead12cbcbfc4eb111529b4ad84680d9f448843788",
+    "bytes": 17666,
+    "nearbyMention": true,
+    "approximateLocation": true,
+    "onDevice": true
+  },
+  "submission": {
+    "id": "2e39c349-c95e-4871-ae2c-5133f81385f7",
+    "status": "FINISHED",
+    "createdAt": "2026-09-07T15:07:06.654Z",
+    "completedAt": "2026-09-07T15:29:14.373Z",
+    "error": null,
+    "existingApiKeySource": "EAS servers",
+    "autoTestFlightSetup": false,
+    "groupsRequested": false,
+    "whatToTestSubmitted": false,
+    "publicReviewRequested": false
+  },
+  "appleProcessingVerified": false,
+  "testFlightBuildAvailableVerified": false,
+  "testFlightGroupAssignmentPerformed": false,
+  "appStoreVersionSelectionPerformed": false,
+  "deviceRuntimeVerified": false,
+  "repositoryFilesEditedDuringArtifactSubmissionTask": false,
+  "directUploadFallback": {
+    "existingAssignedKeyId": "[REDACTED credential identifier]",
+    "appleValidation": {
+      "mode": "validate",
+      "startedAtUtc": "2026-09-07T15:28:03.204434+00:00",
+      "finishedAtUtc": "2026-09-07T15:29:39.510801+00:00",
+      "exitCode": 0,
+      "stdoutBytes": 343,
+      "stderrBytes": 309
+    },
+    "validationMessage": "No errors validating archive.",
+    "directUploadPerformed": false,
+    "originalEasSubmissionCanceled": false,
+    "reason": "Original EAS submission was FINISHED when rechecked after successful Apple validation.",
+    "appleBuildStatusAttempt": {
+      "exitCode": 1,
+      "message": "altool required --delivery-id despite documented app/version lookup; no delivery ID returned by EAS submit:view."
+    },
+    "keyCleanup": {
+      "cleanedAtUtc": "2026-09-07T15:32:16.968861+00:00",
+      "taskKeyCopyRemoved": true,
+      "taskMetadataCopyRemoved": true,
+      "taskPrivateDirectoryRemoved": true,
+      "existingServerKeyChanged": false,
+      "newKeyCreated": false,
+      "directUploadPerformed": false,
+      "easSubmissionCanceled": false
+    }
+  },
+  "rootAppStoreConnectObservation": {
+    "source": "Root live App Store Connect verification",
+    "version": "1.1.0",
+    "build": "6",
+    "status": "PROCESSING",
+    "uploadId": "5d8d6831-9fdf-4e2c-89b8-a22442e54353",
+    "displayedUploadTime": "Sep7 6:29PM EAT",
+    "processingCompleted": false,
+    "ownerGroupAssignmentPending": true
+  }
+}
