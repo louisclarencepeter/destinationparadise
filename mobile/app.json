@@ -62,6 +62,7 @@
         }
       ],
       "./plugins/with-optional-location-features.cjs",
+      "./plugins/with-android-release-optimization.cjs",
       [
         "expo-splash-screen",
         {
