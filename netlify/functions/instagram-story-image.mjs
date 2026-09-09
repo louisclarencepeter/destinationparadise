@@ -216,7 +216,10 @@ export default async (request) => {
     .jpeg({ quality: 86, chromaSubsampling: '4:4:4' })
     .toBuffer();
 
-  return new Response(request.method === 'HEAD' ? null : storyImage, {
+  // The portable Sharp runtime can return a SharedArrayBuffer-backed Buffer.
+  // Copy it so Response receives ordinary binary bytes instead of coercing it
+  // to text, which corrupts JPEG data and its advertised Content-Length.
+  return new Response(request.method === 'HEAD' ? null : Buffer.from(storyImage), {
     headers: {
       'Cache-Control': 'public, max-age=86400, s-maxage=31536000, immutable',
       'Content-Length': String(storyImage.length),

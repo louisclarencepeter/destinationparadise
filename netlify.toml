@@ -6,6 +6,11 @@
 [functions]
   included_files = ["netlify/functions/_assets/**"]
 
+[functions."instagram-story-image"]
+  # Sharp's portable fallback loads this binary dynamically. Keep it in the
+  # function package so deployments built on macOS also run on Netlify Linux.
+  included_files = ["node_modules/@img/sharp-wasm32/lib/*.wasm"]
+
 [build.environment]
   # Pin Node so the build is reproducible (Vite 8 needs >= 20.19).
   NODE_VERSION = "22"
