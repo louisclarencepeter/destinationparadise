@@ -5,9 +5,9 @@ export const SITE_URL = 'https://yournexttriptoparadise.com';
 export const SITE_NAME = 'Destination Paradise';
 const DEFAULT_DESCRIPTION =
   'Destination Paradise offers bespoke excursions, luxury safaris, and unforgettable packages in Zanzibar & Tanzania.';
-const DEFAULT_IMAGE = `${SITE_URL}/assets/brand/zanzibar-nungwi-coast-share-20260909.jpg`;
+const DEFAULT_IMAGE = `${SITE_URL}/assets/brand/zanzibar-palms-sunset-share-20260909.jpg`;
 const DEFAULT_IMAGE_ALT =
-  "Aerial view of Nungwi's white-sand coastline, palm trees and turquoise ocean, Zanzibar";
+  'Palm trees and fishing boats along the Zanzibar coast beneath a golden sunset';
 
 function upsertMeta(attr, key, content) {
   let el = document.head.querySelector(`meta[${attr}="${key}"]`);
@@ -117,8 +117,8 @@ export function usePageMeta(options = {}, legacyDescription) {
     // Route-specific photos must not inherit the default photo's description or dimensions.
     const isDefaultImage = img === DEFAULT_IMAGE;
     upsertMeta('property', 'og:image:type', isDefaultImage ? 'image/jpeg' : null);
-    upsertMeta('property', 'og:image:width', isDefaultImage ? '960' : null);
-    upsertMeta('property', 'og:image:height', isDefaultImage ? '1200' : null);
+    upsertMeta('property', 'og:image:width', isDefaultImage ? '1200' : null);
+    upsertMeta('property', 'og:image:height', isDefaultImage ? '803' : null);
     upsertMeta('property', 'og:image:alt', isDefaultImage ? DEFAULT_IMAGE_ALT : null);
     upsertMeta('property', 'og:url', url);
     upsertMeta('property', 'og:type', type);
