@@ -76,7 +76,7 @@ test("inline configuration cannot escape a script tag, and bundled map scripts p
     },
     "http://localhost:8081",
   );
-  const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)];
+  const scripts = [...html.matchAll(/<script>([\s\S]*?)<\/script>/gi)];
   assert.equal(scripts.length, 2);
   for (const script of scripts)
     assert.doesNotThrow(() => new Script(script[1]));
@@ -93,7 +93,7 @@ function runMapRuntime() {
     reducedMotion: false,
   };
   const html = createMapDocument(token, initial);
-  const script = [...html.matchAll(/<script>([\s\S]*?)<\/script>/g)][1][1];
+  const script = [...html.matchAll(/<script>([\s\S]*?)<\/script>/gi)][1][1];
   const stats = { maps: 0, markers: 0, fits: 0, stops: 0, icons: 0 };
   const attributes: Record<string, string> = {};
   let onMediaChange: (() => void) | undefined;
