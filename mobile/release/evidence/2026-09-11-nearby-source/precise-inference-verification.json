@@ -1,0 +1,25 @@
+{
+  "syntheticLocation": {
+    "latitude": -6.146,
+    "longitude": 39.15,
+    "accuracy": 150
+  },
+  "viewport": {
+    "x": 0,
+    "y": 357,
+    "width": 430,
+    "height": 508
+  },
+  "maxZoom": 17,
+  "uniqueTileCount": 4,
+  "longitudeSpanDegrees": 0.0008797645568847656,
+  "latitudeSpanDegrees": 4.266867880442504e-05,
+  "assumptions": [
+    "Observer knows app viewport size",
+    "Location remains centered during zoom17 requests",
+    "User enabled full accuracy on iOS; mock100m source accuracy rounded and150m marker floor",
+    "This is inference capability, not proof of actual OSM analysis or physical accuracy"
+  ],
+  "externalRequestsIntercepted": true,
+  "bothAxesBelowThreeDecimalDegreeResolution": true
+}
