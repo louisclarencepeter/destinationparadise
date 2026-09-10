@@ -1,0 +1,95 @@
+{
+  "checkedAt": "2026-09-10T21:53:21.615Z",
+  "writes": 0,
+  "easCredentials": {
+    "iosBuildCredentials": 1,
+    "appleSubmissionKeyAvailable": true,
+    "androidBuildCredentials": 1,
+    "googleSubmissionKeyAvailable": false
+  },
+  "androidBuild9": {
+    "id": "f51d0c5d-605e-4fbc-9137-f32d89a4c28b",
+    "message": "Android optimization only: frozen code8 runtime plus 0ee33eff; source f3e89bd01ef1cbeebb9c2e3a8307823a6b0189b6333d938f193a0c8e4fe630e3; no auto-submit",
+    "appVersion": "1.1.1",
+    "appBuildVersion": "9",
+    "gitCommitHash": null,
+    "gitCommitMessage": null,
+    "sdkVersion": "57.0.0",
+    "fingerprint": {
+      "hash": "ae79397c0db06079d70aaa53b4e677e302ba0720"
+    },
+    "submissions": []
+  },
+  "apple": {
+    "versions": {
+      "httpStatus": 200,
+      "items": [
+        {
+          "id": "2917021a-94df-47be-9332-9c6f6876dba7",
+          "versionString": "1.1.0",
+          "appStoreState": "WAITING_FOR_REVIEW",
+          "appVersionState": "WAITING_FOR_REVIEW",
+          "platform": "IOS",
+          "createdDate": "2026-09-05T14:16:29-07:00",
+          "buildId": "5d8d6831-9fdf-4e2c-89b8-a22442e54353"
+        }
+      ],
+      "builds": [
+        {
+          "id": "5d8d6831-9fdf-4e2c-89b8-a22442e54353",
+          "version": "6",
+          "processingState": "VALID",
+          "expired": false
+        }
+      ]
+    },
+    "betaGroups": {
+      "httpStatus": 200,
+      "items": [
+        {
+          "id": "0db9334b-5e79-4fa1-8950-e0e782456ba8",
+          "name": "Destination Paradise owner test",
+          "isInternalGroup": true,
+          "publicLinkEnabled": null
+        }
+      ]
+    },
+    "builds": {
+      "httpStatus": 200,
+      "items": [
+        {
+          "id": "5d8d6831-9fdf-4e2c-89b8-a22442e54353",
+          "version": "6",
+          "uploadedDate": "2026-09-07T08:30:02-07:00",
+          "processingState": "VALID",
+          "expired": false
+        },
+        {
+          "id": "baaed647-bc09-465e-9f15-52d9387b16ba",
+          "version": "4",
+          "uploadedDate": "2026-09-06T13:01:58-07:00",
+          "processingState": "VALID",
+          "expired": false
+        },
+        {
+          "id": "47a06cc3-3d0f-4f40-859b-bafe5871bd44",
+          "version": "3",
+          "uploadedDate": "2026-09-05T14:59:35-07:00",
+          "processingState": "VALID",
+          "expired": false
+        },
+        {
+          "id": "54c78ede-62b0-4a59-a261-bf1cba4600cf",
+          "version": "2",
+          "uploadedDate": "2026-09-05T14:34:05-07:00",
+          "processingState": "VALID",
+          "expired": false
+        }
+      ]
+    }
+  },
+  "googlePlay": {
+    "liveReadAvailable": false,
+    "reason": "No Google Play submission service account is configured in the project EAS credentials; Mac GUI session is locked."
+  }
+}

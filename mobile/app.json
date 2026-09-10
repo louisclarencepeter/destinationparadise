@@ -2,7 +2,7 @@
   "expo": {
     "name": "Destination Paradise",
     "slug": "destination-paradise",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "orientation": "default",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "dark",
@@ -51,7 +51,7 @@
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Use your approximate location to show nearby places while you use Destination Paradise. Your position stays on this device.",
+          "locationWhenInUsePermission": "Use approximate location to show your position and nearby places. OpenStreetMap receives the map area you view.",
           "locationAlwaysAndWhenInUsePermission": false,
           "locationAlwaysPermission": false,
           "motionUsagePermission": "Destination Paradise does not access motion or fitness data. Nearby suggestions use only your approximate location.",

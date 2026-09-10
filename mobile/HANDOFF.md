@@ -1,5 +1,29 @@
 # Destination Paradise Mobile — Project Handoff
 
+## Near me source candidate — 11 September 2026
+
+The replacement source is **1.1.1** on iOS and Android, preserving the already integrated Android optimization. It adds the requested location activator, map centering/current-position marker, nearby pins, explicit list view, recovery and turn-off. The marker lets taps pass through to overlapping destination pins. The map permits local data-image cleanup while its network connection policy remains closed.
+
+This is source readiness, not a completed native release. Fresh authenticated Apple readback on 11 September EAT confirms **1.1.0 / build 6 is Waiting for Review**, with valid processing and the existing owner group. That review and build attachment were preserved. EAS also contains Android **1.1.1 (9)**, completed 9 September, built from frozen code 8 plus Android optimization; its empty EAS submissions list does not prove whether a manual Play upload occurred. Google Play was not refreshed: the EAS project has no Play submission service account and the Mac GUI is locked. The owner's 9 September feedback proves iOS build 6 was used on their phone, superseding the older build-4-only installation statement below.
+
+The standalone backend now captures the current website deployment at release start, persists that baseline before mutation, and retains it across resume/verification with an artifact and deployment identity check. Mobile and backend dependency audits are clean after the scoped UUID and backend-tooling updates, without changing Expo SDK 57. Current checks and remaining privacy/native distribution work are recorded in [NEARBY_RELEASE_2026-09-11.md](release/NEARBY_RELEASE_2026-09-11.md). Older sections below are explicitly dated historical evidence.
+
+## TestFlight feedback update — 9 September 2026
+
+**Current work: implemented and validated locally; no replacement binary uploaded.**
+
+Retrieved the owner screenshot feedback submitted **9 September, 22:46 EAT**, from **1.1.0 (6)** on an **iPhone 15 Pro Max / iOS 26.6.1**: “There should be a location near me activator and map zoom to where and show me on the map what is there to not show me the list directly”. The screenshot circles the lower-right map corner. [Original feedback in App Store Connect](https://appstoreconnect.apple.com/teams/8eccdd06-74ba-4965-9981-38b8eec2fc92/apps/6809042574/testflight/screenshots/APs18R_AAu5Y5kh5gz3hNi4).
+
+- Added the lower-right location button. First use opens the location explanation and opt-in; an available fix supports recentering without another location lookup.
+- Near me opens the map, centers the approximate position with nearby destination pins, and keeps the list as an explicit option. Pin details, composed filters, refresh, cancellation, denial recovery and turn-off remain available. Short landscape screens use the side panel so the location controls and map remain usable.
+- Added the approximate marker/accuracy circle and map regressions. Device coordinates are excluded from retained initial map HTML and removed from the live map on opt-out. The source policy, permission explanation, Settings and privacy worksheets now disclose OSM requests for the viewed map area. The live policy has **not** been updated.
+- Validation: **91 tests**, TypeScript, content consistency, Expo dependency compatibility and iOS/Android/web production bundle exports passed. In-app browser QA used **synthetic** Stone Town, Arusha and outside-coverage locations; checked phone portrait, short landscape and tablet layouts, list/map transitions, pin details, filters, recenter, denial and cancellation. This is not native replacement-binary or physical-device QA.
+- Release follow-up: build and validate the replacement native app, publish the corresponding policy and reconcile store disclosures before distribution. Existing App Store version **1.1.0** was observed **Waiting for Review** on 9 September; no review, build attachment, tester group or store submission was changed. This feedback confirms build 6 was used on the owner's phone; it does not establish complete feature QA.
+
+The sections below retain the **8 September handoff snapshot** and its earlier release evidence.
+
+---
+
 **Current Date:** 8 September 2026
 
 **Package:** `destination-paradise-mobile` (`com.yournexttriptoparadise.mobile`)

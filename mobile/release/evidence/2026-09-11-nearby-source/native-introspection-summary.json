@@ -1,0 +1,98 @@
+{
+  "checkedAt": "2026-09-11 EAT",
+  "marketingVersion": "1.1.1",
+  "ios": {
+    "NSLocationWhenInUseUsageDescription": "Use approximate location to show your position and nearby places. OpenStreetMap receives the map area you view.",
+    "NSLocationDefaultAccuracyReduced": true,
+    "NSMotionUsageDescription": "Destination Paradise does not access motion or fitness data. Nearby suggestions use only your approximate location.",
+    "NSLocationAlwaysUsageDescription": null,
+    "NSLocationAlwaysAndWhenInUseUsageDescription": null,
+    "UIBackgroundModes": null,
+    "NSUserTrackingUsageDescription": null
+  },
+  "android": {
+    "permissions": [
+      {
+        "name": "android.permission.INTERNET",
+        "manifestMergerAction": "merge"
+      },
+      {
+        "name": "android.permission.VIBRATE",
+        "manifestMergerAction": "merge"
+      },
+      {
+        "name": "android.permission.ACCESS_COARSE_LOCATION",
+        "manifestMergerAction": "merge"
+      },
+      {
+        "name": "android.permission.SYSTEM_ALERT_WINDOW",
+        "manifestMergerAction": "remove"
+      },
+      {
+        "name": "android.permission.READ_EXTERNAL_STORAGE",
+        "manifestMergerAction": "remove"
+      },
+      {
+        "name": "android.permission.WRITE_EXTERNAL_STORAGE",
+        "manifestMergerAction": "remove"
+      },
+      {
+        "name": "android.permission.ACCESS_FINE_LOCATION",
+        "manifestMergerAction": "remove"
+      },
+      {
+        "name": "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "manifestMergerAction": "remove"
+      },
+      {
+        "name": "android.permission.FOREGROUND_SERVICE_LOCATION",
+        "manifestMergerAction": "remove"
+      },
+      {
+        "name": "android.permission.ACTIVITY_RECOGNITION",
+        "manifestMergerAction": "remove"
+      },
+      {
+        "name": "com.google.android.gms.permission.ACTIVITY_RECOGNITION",
+        "manifestMergerAction": "remove"
+      }
+    ],
+    "features": [
+      {
+        "$": {
+          "android:name": "android.hardware.location",
+          "android:required": "false"
+        }
+      },
+      {
+        "$": {
+          "android:name": "android.hardware.location.network",
+          "android:required": "false"
+        }
+      }
+    ],
+    "releaseGradleProperties": [
+      {
+        "type": "property",
+        "key": "android.enableMinifyInReleaseBuilds",
+        "value": "true"
+      },
+      {
+        "type": "property",
+        "key": "android.enableShrinkResourcesInReleaseBuilds",
+        "value": "true"
+      },
+      {
+        "type": "property",
+        "key": "android.r8.optimizedResourceShrinking",
+        "value": "true"
+      },
+      {
+        "type": "property",
+        "key": "org.gradle.jvmargs",
+        "value": "-Xmx4096m -XX:MaxMetaspaceSize=1024m"
+      }
+    ]
+  },
+  "scope": "Expo introspection, not signed-artifact inspection or device validation"
+}

@@ -1,0 +1,77 @@
+{
+  "method": "Synthetic request interception; no OSM tile requests sent. Tile rectangle area uses Web Mercator local scale. Center interval intersection assumes the observer knows viewport dimensions and that the consecutive zoom views remain centered; this is an inference capability, not observed OSM processing or actual GPS accuracy.",
+  "scenarios": [
+    {
+      "scenario": "phone-stone-town",
+      "viewport": {
+        "x": 0,
+        "y": 357,
+        "width": 430,
+        "height": 508
+      },
+      "zoom17TileWidthMeters": 303.98148863471727,
+      "zoom17RequestedTileRectangleAreaKm2": 0.8316427088932088,
+      "conservativeCenterInferenceAssumingKnownViewportAndUnpannedZoomSequence": {
+        "longitudeSpanDegrees": 0.0007617473602294922,
+        "latitudeSpanDegrees": 0.0025387149962217137,
+        "widthMeters": 84.30775163330229,
+        "heightMeters": 282.6097533794012,
+        "nonempty": true
+      }
+    },
+    {
+      "scenario": "tile-boundary-stone-town",
+      "viewport": {
+        "x": 0,
+        "y": 357,
+        "width": 430,
+        "height": 508
+      },
+      "zoom17TileWidthMeters": 303.9907675934078,
+      "zoom17RequestedTileRectangleAreaKm2": 0.5544623206921755,
+      "conservativeCenterInferenceAssumingKnownViewportAndUnpannedZoomSequence": {
+        "longitudeSpanDegrees": 0.0008797645568847656,
+        "latitudeSpanDegrees": 0.002666785527409843,
+        "widthMeters": 97.3724881509072,
+        "heightMeters": 296.8665649112637,
+        "nonempty": true
+      }
+    },
+    {
+      "scenario": "landscape-arusha",
+      "viewport": {
+        "x": 330,
+        "y": 0,
+        "width": 514,
+        "height": 323
+      },
+      "zoom17TileWidthMeters": 305.2140880326723,
+      "zoom17RequestedTileRectangleAreaKm2": 0.558933837201695,
+      "conservativeCenterInferenceAssumingKnownViewportAndUnpannedZoomSequence": {
+        "longitudeSpanDegrees": 0.0026929378509521484,
+        "latitudeSpanDegrees": 0.0020242074172864832,
+        "widthMeters": 299.25424423963335,
+        "heightMeters": 225.33476969233132,
+        "nonempty": true
+      }
+    },
+    {
+      "scenario": "tablet-stone-town",
+      "viewport": {
+        "x": 348.15625,
+        "y": 0,
+        "width": 675.84375,
+        "height": 701
+      },
+      "zoom17TileWidthMeters": 303.98148863471727,
+      "zoom17RequestedTileRectangleAreaKm2": 1.108856945190945,
+      "conservativeCenterInferenceAssumingKnownViewportAndUnpannedZoomSequence": {
+        "longitudeSpanDegrees": 0.00021960586309432983,
+        "latitudeSpanDegrees": 0.0020160329092409057,
+        "widthMeters": 24.305271707664172,
+        "heightMeters": 224.42478345669764,
+        "nonempty": true
+      }
+    }
+  ]
+}

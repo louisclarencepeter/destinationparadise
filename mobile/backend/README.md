@@ -61,7 +61,7 @@ Authenticate the Netlify CLI, or supply `NETLIFY_AUTH_TOKEN` through a secure en
 node mobile/backend/deploy.mjs preflight
 ```
 
-Preflight is read-only. It checks the complete artifact allowlist and hashes, source freshness, exact target project/team, required production variable metadata, and the unchanged website's published ID. It does not read or print private environment values.
+Preflight is read-only. It checks the complete artifact allowlist and hashes, source freshness, exact target project/team, required production variable metadata, and the current website published ID before and after the check. It does not read or print private environment values.
 
 Only after those checks, explicitly publish the **mobile backend**:
 
@@ -71,14 +71,14 @@ node mobile/backend/deploy.mjs deploy --production
 
 This creates a production deployment through the API with only two files and three function digests, uploads the requested known artifacts, and verifies the resulting published ID, static-file hashes, function names/routes/runtime, and unchanged website ID. The production context uses the new project's production variables; no draft-variable copy is needed. It never relies on `.netlify/state.json`, never deploys the root website, and cannot create a site or modify environment settings.
 
-The new deploy ID is printed and saved to `build/deploy-id.txt` immediately. If an upload or polling call times out, keep the artifact and resume the same deployment:
+The current website deployment is captured at the start and persisted before the first provider mutation. Its ID is saved with the artifact fingerprint and mobile deploy ID in `build/website-baseline.json`; the mobile deploy ID is also saved in `build/deploy-id.txt`. Resume and verification load that original receipt and reject a changed website, changed artifact, or mismatched mobile deploy instead of silently capturing a new baseline. If an upload or polling call times out, keep the artifact and resume the same deployment:
 
 ```sh
 node mobile/backend/deploy.mjs resume DEPLOY_ID
 node mobile/backend/deploy.mjs verify DEPLOY_ID
 ```
 
-Do not rebuild between an interrupted deployment and its resume. Source changes require a new reviewed artifact. `verify` checks provider metadata and publication, and is read-only.
+If deployment creation itself returns an uncertain result before its ID is recorded, the original baseline remains saved and duplicate publication is blocked. Reconcile the provider deployment and artifact before attempting recovery. Do not rebuild between an interrupted deployment and its resume. Source changes require a new reviewed artifact. `verify` checks provider metadata and publication, and is read-only.
 
 ## Live checks
 
@@ -97,6 +97,7 @@ The new project intentionally does not contain the website, planner generation, 
 ## Validation
 
 ```sh
+node --test mobile/backend/website-preservation.test.mjs
 npx vitest run test/netlify/planner-report.test.mjs test/netlify/weather-proxy.test.mjs
 npx eslint netlify/functions/planner-report.mjs
 ```
@@ -109,4 +110,4 @@ Run those commands from the repository root. The 24 backend tests passed after t
 - [Netlify environment variable API](https://open-api.netlify.com/#operation/createEnvVars)
 - [Netlify configuration](https://docs.netlify.com/build/configure-builds/file-based-configuration/)
 
-The existing website preservation baseline for this release is deploy `6a8dbf35cb01b33e235abc4b`. Its earlier attempted additive draft `6a9c7bf73fad91136a2e1035` must remain unpublished because original function archives could not be recovered. This standalone package avoids that dependency entirely.
+The website preservation baseline is captured from the currently published website at the start of each new release; it is not a hardcoded historical deploy ID. Keep `website-baseline.json` with the original artifact for resume and verification. Older artifacts without this receipt cannot be resumed with this helper. Its earlier attempted additive draft `6a9c7bf73fad91136a2e1035` must remain unpublished because original function archives could not be recovered. This standalone package avoids that dependency entirely.

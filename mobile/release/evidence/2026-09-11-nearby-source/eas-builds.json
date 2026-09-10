@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-09-10T21:50:32.768842+00:00",
+  "builds": [
+    {
+      "id": "f51d0c5d-605e-4fbc-9137-f32d89a4c28b",
+      "status": "FINISHED",
+      "platform": "ANDROID",
+      "appVersion": "1.1.1",
+      "appBuildVersion": "9",
+      "buildProfile": "production",
+      "distribution": "STORE",
+      "gitCommitHash": null,
+      "createdAt": "2026-09-09T07:08:34.824Z",
+      "completedAt": "2026-09-09T07:25:29.816Z"
+    },
+    {
+      "id": "d439b36e-da24-4ab6-a3b9-2d3d9114df56",
+      "status": "FINISHED",
+      "platform": "IOS",
+      "appVersion": "1.1.0",
+      "appBuildVersion": "6",
+      "buildProfile": "production",
+      "distribution": "STORE",
+      "gitCommitHash": "04e009df4db77894294a891cedb85211db7d9109",
+      "createdAt": "2026-09-07T14:59:08.738Z",
+      "completedAt": "2026-09-07T15:05:02.353Z"
+    },
+    {
+      "id": "869ab4bf-ae37-4b84-9a92-45671c95bacd",
+      "status": "FINISHED",
+      "platform": "ANDROID",
+      "appVersion": "1.1.0",
+      "appBuildVersion": "8",
+      "buildProfile": "production",
+      "distribution": "STORE",
+      "gitCommitHash": "04e009df4db77894294a891cedb85211db7d9109",
+      "createdAt": "2026-09-07T14:58:18.890Z",
+      "completedAt": "2026-09-07T15:34:53.417Z"
+    },
+    {
+      "id": "ae4d6007-7317-4cc3-a41d-44682aa5b871",
+      "status": "FINISHED",
+      "platform": "ANDROID",
+      "appVersion": "1.0.0",
+      "appBuildVersion": "7",
+      "buildProfile": "production",
+      "distribution": "STORE",
+      "gitCommitHash": "04e6eb30829dae68d8b59e403800d9e4e466797a",
+      "createdAt": "2026-09-07T12:09:43.868Z",
+      "completedAt": "2026-09-07T12:25:19.076Z"
+    }
+  ]
+}
