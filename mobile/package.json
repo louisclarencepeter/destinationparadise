@@ -1,6 +1,6 @@
 {
   "name": "destination-paradise-mobile",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "main": "expo-router/entry",
   "dependencies": {
     "@expo-google-fonts/kaushan-script": "^0.4.1",
@@ -52,6 +52,9 @@
   },
   "private": true,
   "overrides": {
-    "decode-uri-component": "$decode-uri-component"
+    "decode-uri-component": "$decode-uri-component",
+    "xcode": {
+      "uuid": "11.1.1"
+    }
   }
 }

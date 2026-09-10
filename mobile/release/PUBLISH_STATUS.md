@@ -1,5 +1,13 @@
 # Destination Paradise — publishing status
 
+## Near me source candidate — 11 September 2026
+
+The replacement source is **1.1.1** on iOS and Android, preserving the already integrated Android optimization. It adds the requested location activator, map centering/current-position marker, nearby pins, explicit list view, recovery and turn-off. The marker lets taps pass through to overlapping destination pins. The map permits local data-image cleanup while its network connection policy remains closed.
+
+This is source readiness, not a completed native release. Fresh authenticated Apple readback on 11 September EAT confirms **1.1.0 / build 6 is Waiting for Review**, with valid processing and the existing owner group. That review and build attachment were preserved. EAS also contains Android **1.1.1 (9)**, completed 9 September, built from frozen code 8 plus Android optimization; its empty EAS submissions list does not prove whether a manual Play upload occurred. Google Play was not refreshed: the EAS project has no Play submission service account and the Mac GUI is locked. The owner's 9 September feedback proves iOS build 6 was used on their phone, superseding the older build-4-only installation statement below.
+
+The standalone backend now captures the current website deployment at release start, persists that baseline before mutation, and retains it across resume/verification with an artifact and deployment identity check. Mobile and backend dependency audits are clean after the scoped UUID and backend-tooling updates, without changing Expo SDK 57. Current checks and remaining privacy/native distribution work are recorded in [NEARBY_RELEASE_2026-09-11.md](NEARBY_RELEASE_2026-09-11.md). Older sections below are explicitly dated historical evidence.
+
 ## Repository reconciliation — 8 September 2026
 
 The mobile history, design export, handoff and selected release evidence are now retained in the reconciled `development` history. See [RECONCILIATION.md](RECONCILIATION.md) for commit mapping and validation. Historical `/tmp` references below identify the original evidence locations; use the [preserved evidence index](evidence/2026-09-07-nearby/README.md) for durable copies and redaction details. Store observations below remain dated **7 September**; repository checks do not refresh provider state or establish physical installation.

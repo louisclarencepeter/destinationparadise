@@ -25,13 +25,13 @@
       <p class="eyebrow">Privacy · iOS &amp; Android</p>
       <h1>Your information,<br>through every part of the trip.</h1>
       <p class="lead">This policy explains how Destination Paradise handles information in our mobile app for phones and tablets. It covers saved places, trip preferences, optional nearby suggestions, AI planning, quote requests, content reports, maps and weather.</p>
-      <p class="meta">Last updated: 7 September 2026 · Contact: <a href="mailto:info@yournexttriptoparadise.com">info@yournexttriptoparadise.com</a></p>
+      <p class="meta">Last updated: 11 September 2026 · Contact: <a href="mailto:info@yournexttriptoparadise.com">info@yournexttriptoparadise.com</a></p>
       <div class="overview">
         <ul>
           <li>You can explore without an account. Saved places and trip preferences are stored on your device.</li>
           <li>AI planning is optional. We ask permission before sending preferences and chat messages to Destination Paradise and Anthropic.</li>
           <li>A quote request or AI-content report is shared only after you review it and submit it.</li>
-          <li>Nearby suggestions use approximate location only if you enable them and grant permission. Your coordinates stay on your device. The app does not request your address book, camera, microphone or photo library.</li>
+          <li>Nearby uses approximate location only if you enable it and grant permission. Coordinates are not sent to our planner. OpenStreetMap receives the map area you view, which can reveal your approximate area. The app does not request your address book, camera, microphone or photo library.</li>
         </ul>
       </div>
     </header>
@@ -49,8 +49,8 @@
     </section>
     <section class="policy-section" aria-labelledby="nearby">
       <h2 id="nearby">Optional nearby suggestions</h2>
-      <p>If you enable Nearby and allow location access, the app uses an approximate foreground location reading to match destinations and related experiences already included in the app. While Nearby remains enabled, the app refreshes this reading when a new app session starts or when you return to the foreground. You can also refresh it yourself or turn Nearby off. The app does not track your location in the background.</p>
-      <p>Your coordinates are held only in memory and are not saved with your preferences or sent to Destination Paradise, an AI provider, a map service or a reverse-geocoding service. Nearby does not add a current-location map pin or move the map to your position. Only the enabled preference is saved. Planning from a suggestion selects the destination in the existing Planner flow; it does not attach your coordinates or current location.</p>
+      <p>If you enable Nearby and allow location access, the app uses an approximate foreground location reading to show your position on the map and match destinations and related experiences already included in the app. While Nearby remains enabled, the app refreshes this reading when a new app session starts or when you return to the foreground. You can also refresh it yourself or turn Nearby off. The app does not track your location in the background.</p>
+      <p>Your approximate coordinates are held in memory, passed locally to the map, and are not saved with your preferences or sent to Destination Paradise, an AI provider or a reverse-geocoding service. The nearby map shows your approximate position and surrounding places. Loading that map sends requests for the viewed area to OpenStreetMap; these requests can reveal your approximate area even though we do not send your coordinate values. Only the enabled preference is saved. Turning Nearby off removes your position. Planning from a suggestion selects the destination in the existing Planner flow; it does not attach your coordinates or current location.</p>
     </section>
     <section class="policy-section" aria-labelledby="ai">
       <h2 id="ai">Optional AI trip planning</h2>
@@ -72,7 +72,7 @@
     </section>
     <section class="policy-section" aria-labelledby="services">
       <h2 id="services">Maps, photographs and weather</h2>
-      <p>The interactive map loads tiles directly from <strong>OpenStreetMap</strong> services. The OpenStreetMap Foundation acts as an independent data controller. Its services retain request records, including your IP address, app or browser information, requested map tiles, request times and country-level approximate location inferred from your IP address. These records support service operations, security and usage analysis. See the <a href="https://osmfoundation.org/wiki/Privacy_Policy">OpenStreetMap Foundation privacy policy</a> for its practices. The map does not access your device's GPS position; requested tiles identify the area you are viewing.</p>
+      <p>The interactive map loads tiles directly from <strong>OpenStreetMap</strong> services. The OpenStreetMap Foundation acts as an independent data controller. Its services retain request records, including your IP address, app or browser information, requested map tiles, request times and country-level approximate location inferred from your IP address. These records support service operations, security and usage analysis. See the <a href="https://osmfoundation.org/wiki/Privacy_Policy">OpenStreetMap Foundation privacy policy</a> for its practices. Requested tiles identify the area you are viewing. After you enable Nearby and allow location access, this may include the area around your approximate position. The map receives that position locally from the app; it does not make a separate location request.</p>
       <p>Photographs shown in automatic Nearby suggestions are bundled with the app, so displaying them does not request images based on your location. Photographs in ordinary Explore browsing and destination details can load from the Destination Paradise website. Systems serving those images receive normal network information such as an IP address, app or browser information, and the image requested.</p>
       <p>Weather information is supplied by <strong>Apple Weather through WeatherKit</strong>. The app requests readings from Destination Paradise's weather service, hosted on Netlify. Our server requests weather for a fixed Zanzibar location from Apple; it does not forward your device's location or contact details. Apple receives the server's weather request, rather than a direct weather request from your phone or tablet.</p>
       <p>Our hosting service receives the normal network information needed to answer your request. The fixed Zanzibar coordinates do not represent your current physical location, and the app does not request location permission for weather.</p>

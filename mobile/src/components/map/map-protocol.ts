@@ -5,17 +5,25 @@ export type MapPin = {
   lat: number;
   lng: number;
 };
+/** A foreground fix held in memory only; never sent back through map events. */
+export type MapUserLocation = {
+  latitude: number;
+  longitude: number;
+  accuracy?: number | null;
+};
 export type MapData = {
   pins: MapPin[];
   selectedId: string | null;
   fitKey: string;
   reducedMotion: boolean;
+  userLocation?: MapUserLocation | null;
 };
 export type MapStatus = "loading" | "ready" | "error";
 export type MapCommand =
   | { type: "update"; data: MapData }
   | { type: "zoom"; delta: 1 | -1 }
   | { type: "fit" }
+  | { type: "recenter" }
   | { type: "ping" };
 export type MapEvent =
   | { type: "ready" }
@@ -24,6 +32,23 @@ export type MapEvent =
   | { type: "link"; url: string };
 export const MAP_CHANNEL = "destination-paradise-map-v1";
 export const MAP_BASE_URL = "https://yournexttriptoparadise.com/app-map/";
+
+export function isMapUserLocation(value: unknown): value is MapUserLocation {
+  if (!value || typeof value !== "object") return false;
+  const point = value as Partial<MapUserLocation>;
+  return (
+    typeof point.latitude === "number" &&
+    Number.isFinite(point.latitude) &&
+    Math.abs(point.latitude) <= 90 &&
+    typeof point.longitude === "number" &&
+    Number.isFinite(point.longitude) &&
+    Math.abs(point.longitude) <= 180 &&
+    (point.accuracy == null ||
+      (typeof point.accuracy === "number" &&
+        Number.isFinite(point.accuracy) &&
+        point.accuracy >= 0))
+  );
+}
 
 export function serializeForScript(value: unknown): string {
   return JSON.stringify(value)

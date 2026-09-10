@@ -28,9 +28,9 @@ import DestinationMap from "@/src/components/map/destination-map";
 import DestinationDetail from "./destination-detail";
 import IslandGuide from "./island-guide";
 import NearbyContent from "@/src/features/nearby/nearby-content";
+import NearbyLocationControls from "@/src/features/nearby/nearby-location-controls";
 import { useNearbyLocation } from "@/src/features/nearby/nearby-location-provider";
 import { recommendNearby } from "@/src/features/nearby/nearby-model";
-import { AppText, Icon } from "@/src/components/ui";
 import {
   categories,
   Category,
@@ -54,7 +54,7 @@ export default function ExploreScreen({
   const { width, height } = useWindowDimensions();
   const reducedMotion = useReducedMotion();
   const insets = useSafeAreaInsets();
-  const tablet = width >= 768;
+  const tablet = width >= 768 || (width > height && height < 500);
   const { savedIds, toggleSaved } = useTripStore();
   const nearby = useNearbyLocation();
   const compactHeight = height < 500;
@@ -81,13 +81,20 @@ export default function ExploreScreen({
     [region, category, query, savedOnly, savedIds],
   );
   const recommendations = useMemo(() => nearby.location ? recommendNearby(destinations, nearby.location, {
-    category, query, savedOnly, savedIds,
+    category, query, savedOnly, savedIds, destinationLimit: 24,
   }) : null, [nearby.location, category, query, savedOnly, savedIds]);
-  const filtered = nearbyOpen ? recommendations?.destinations.map(item => item.destination) ?? [] : browseFiltered;
+  const filtered = nearbyOpen && recommendations ? recommendations.destinations.map(item => item.destination) : browseFiltered;
   const selected = destinations.find((item) => item.id === selectedId);
-  const mapPins = nearbyOpen ? (detailOpen && selected ? [selected] : []) : filtered;
-  const resultLabel = nearbyOpen ? 'Trips matched to your approximate location' : `${filtered.length} ${filtered.length === 1 ? "place" : "places"}${savedOnly ? " saved" : " to explore"}`;
-  const fitKey = `${nearbyOpen ? filtered.map(d => d.id).join(',') : region}/${category}/${query.trim()}/${savedOnly}/${savedOnly ? savedIds.join(",") : ""}`;
+  const userLocation = useMemo(() => nearbyOpen && nearby.enabled && nearby.status === 'ready' && nearby.location ? {
+    latitude: nearby.location.latitude,
+    longitude: nearby.location.longitude,
+    accuracy: nearby.location.accuracyMeters,
+  } : null, [nearbyOpen, nearby.enabled, nearby.status, nearby.location]);
+  const locating = nearby.status === 'checking' || nearby.status === 'locating';
+  const resultLabel = nearbyOpen
+    ? userLocation ? `${filtered.length} nearby ${filtered.length === 1 ? 'place' : 'places'}${filtered.length && mode === 'map' ? ' · tap a pin to explore' : ''}` : 'Find your location to explore places around you'
+    : `${filtered.length} ${filtered.length === 1 ? "place" : "places"}${savedOnly ? " saved" : " to explore"}`;
+  const fitKey = `${nearbyOpen ? `nearby/${nearby.location?.timestamp ?? 'off'}/${filtered.map(d => d.id).join(',')}` : region}/${category}/${query.trim()}/${savedOnly}/${savedOnly ? savedIds.join(",") : ""}`;
   const select = useCallback((id: string) => {
     Keyboard.dismiss();
     setSelectedId(id);
@@ -103,6 +110,19 @@ export default function ExploreScreen({
     setRegion(next);
     setSelectedId(null);
     setDetailOpen(false);
+  };
+  const openNearbyMap = () => {
+    Keyboard.dismiss();
+    setNearbyChoice(true);
+    setMode('map');
+    setSelectedId(null);
+    setDetailOpen(false);
+  };
+  const locateOnMap = () => {
+    openNearbyMap();
+    // The first use opens the explanation and opt-in. Later attempts can reuse
+    // the existing choice without requesting broader permissions.
+    if (nearby.enabled && !locating) void nearby.refresh();
   };
   const plan = () => {
     if (selected) {
@@ -157,7 +177,7 @@ export default function ExploreScreen({
           onPress={() => setCompactFiltersOpen((open) => !open)}
           style={[styles.viewButton, { minWidth: 44, minHeight: 44 }, compactFiltersOpen && styles.activeView]}
         ><ExploreIcon name={compactFiltersOpen ? "close" : "search"} color={query || category !== "all" ? colors.coral : colors.text} /></AnimatedPressable>}
-        {!tablet && !nearbyOpen && (
+        {(!tablet || nearbyOpen) && (
           <View style={styles.viewSwitcher}>
             {(["list", "map"] as const).map((view) => (
               <AnimatedPressable
@@ -233,7 +253,7 @@ export default function ExploreScreen({
             </Text>
           </AnimatedPressable>
         ))}
-        <AnimatedPressable accessibilityRole="tab" accessibilityLabel="Near me" accessibilityState={{ selected: nearbyOpen }} aria-selected={nearbyOpen} onPress={() => { setNearbyChoice(true); setDetailOpen(false); }} style={[styles.region, nearbyOpen && styles.activeRegion]}>
+        <AnimatedPressable accessibilityRole="tab" accessibilityLabel="Near me" accessibilityState={{ selected: nearbyOpen }} aria-selected={nearbyOpen} onPress={openNearbyMap} style={[styles.region, nearbyOpen && styles.activeRegion]}>
           <Text style={[styles.regionText, nearbyOpen && { color: colors.coral }]}>Near me</Text>
         </AnimatedPressable>
       </View>
@@ -421,6 +441,53 @@ export default function ExploreScreen({
     </ScrollView>
   );
   const nearbyListing = <NearbyContent recommendations={recommendations} onSelect={select} onPlan={onPlan} onBrowse={(next) => { clear(); changeRegion(next); }} onClearFilters={clear} />;
+  const nearbyControls = (
+    <ScrollView
+      testID="nearby-map-controls"
+      contentInsetAdjustmentBehavior="automatic"
+      keyboardShouldPersistTaps="handled"
+      style={tablet ? { flex: 1 } : { maxHeight: Math.max(110, height * 0.28), flexGrow: 0, flexShrink: 1 }}
+      contentContainerStyle={{ padding: 12, gap: 12 }}
+    >
+      <NearbyLocationControls recommendations={recommendations} onClearFilters={clear} compact />
+    </ScrollView>
+  );
+  const mapCanvas = (
+    <View style={styles.mapArea}>
+      <DestinationMap
+        pins={filtered}
+        selectedId={selectedId}
+        userLocation={userLocation}
+        fitKey={fitKey}
+        onSelect={select}
+        onLocate={locateOnMap}
+        locating={locating}
+        statusInset={tablet ? 75 : 0}
+      />
+      {tablet && <View style={styles.mapHeading}>
+        <Text style={styles.mapHeadingTitle}>
+          {nearbyOpen ? 'Explore the places around you.' : region === 'Zanzibar' ? 'The island, at your pace.' : 'Beyond the island.'}
+        </Text>
+        <Text style={styles.mapHeadingCaption}>Drag to explore · pinch to zoom</Text>
+      </View>}
+      {!filtered.length && !nearbyOpen && <View style={styles.emptyMap}>
+        <EmptyResults onClear={clear} savedOnly={savedOnly} />
+      </View>}
+      {(!tablet || nearbyOpen && mode === 'map') && <View style={styles.mapFooter}>
+        <AnimatedPressable
+          accessibilityRole="button"
+          accessibilityLabel={nearbyOpen ? 'Browse nearby list' : 'Browse destination list'}
+          onPress={() => setMode('list')}
+          style={styles.browse}
+        >
+          <ExploreIcon name="list" size={16} color={colors.textSecondary} />
+          <Text style={styles.browseText}>
+            {nearbyOpen ? 'View nearby list' : `Browse ${filtered.length} ${filtered.length === 1 ? 'place' : 'places'}`}
+          </Text>
+        </AnimatedPressable>
+      </View>}
+    </View>
+  );
   return (
     <View
       style={[
@@ -445,79 +512,19 @@ export default function ExploreScreen({
             ) : (
               <>
                 {toolbar}
-                {nearbyOpen ? nearbyListing : listing}
+                {nearbyOpen ? mode === 'map' ? nearbyControls : nearbyListing : listing}
               </>
             )}
           </View>
-          <View style={styles.mapArea}>
-            {nearbyOpen && !detailOpen ? <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', padding: 40, gap: 20, backgroundColor: colors.background }}>
-              <Icon name="compass" size={88} color={colors.coral} />
-              <AppText variant="title" style={{ textAlign: 'center', maxWidth: 420 }}>Your next adventure is closer.</AppText>
-              <AppText color={colors.textSecondary} style={{ textAlign: 'center', maxWidth: 350 }}>Choose a suggested destination to explore it on the map, or start planning a trip.</AppText>
-            </View> : <>
-            <DestinationMap
-              pins={mapPins}
-              selectedId={selectedId}
-              fitKey={nearbyOpen ? `nearby-selected/${selectedId}` : fitKey}
-              onSelect={select}
-              statusInset={75}
-            />
-            <View style={styles.mapHeading}>
-              <Text style={styles.mapHeadingTitle}>
-                {nearbyOpen ? 'Places for your next trip.' : region === "Zanzibar"
-                  ? "The island, at your pace."
-                  : "Beyond the island."}
-              </Text>
-              <Text style={styles.mapHeadingCaption}>
-                Drag to explore · pinch to zoom
-              </Text>
-            </View>
-            {!filtered.length && !nearbyOpen && (
-              <View style={styles.emptyMap}>
-                <EmptyResults onClear={clear} savedOnly={savedOnly} />
-              </View>
-            )}
-            </>}
-          </View>
+          {mapCanvas}
         </View>
       ) : (
         <>
           {toolbar}
-          {nearbyOpen ? nearbyListing : mode === "map" ? (
-            <View style={styles.mapArea}>
-              <DestinationMap
-                pins={filtered}
-                selectedId={selectedId}
-                fitKey={fitKey}
-                onSelect={select}
-              />
-              {!filtered.length && (
-                <View style={styles.emptyMap}>
-                  <EmptyResults onClear={clear} savedOnly={savedOnly} />
-                </View>
-              )}
-              <View style={styles.mapFooter}>
-                <AnimatedPressable
-                  accessibilityRole="button"
-                  accessibilityLabel="Browse destination list"
-                  onPress={() => setMode("list")}
-                  style={styles.browse}
-                >
-                  <ExploreIcon
-                    name="list"
-                    size={16}
-                    color={colors.textSecondary}
-                  />
-                  <Text style={styles.browseText}>
-                    Browse {filtered.length}{" "}
-                    {filtered.length === 1 ? "place" : "places"}
-                  </Text>
-                </AnimatedPressable>
-              </View>
-            </View>
-          ) : (
-            listing
-          )}
+          {mode === 'map' ? <>
+            {nearbyOpen && nearbyControls}
+            {mapCanvas}
+          </> : nearbyOpen ? nearbyListing : listing}
         </>
       )}
       {!tablet && (

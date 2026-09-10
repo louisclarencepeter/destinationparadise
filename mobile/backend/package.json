@@ -12,7 +12,7 @@
     "verify": "node deploy.mjs verify"
   },
   "devDependencies": {
-    "@netlify/dev-utils": "4.4.3",
-    "@netlify/zip-it-and-ship-it": "14.5.3"
+    "@netlify/dev-utils": "6.0.1",
+    "@netlify/zip-it-and-ship-it": "15.5.1"
   }
 }

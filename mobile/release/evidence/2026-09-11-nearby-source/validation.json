@@ -1,0 +1,176 @@
+{
+  "mobileTests": 91,
+  "backendWebsiteGuardTests": 3,
+  "syntheticUiChecks": 73,
+  "uiScenarios": [
+    {
+      "name": "phone-stone-town",
+      "checks": [
+        "No location request before opt-in",
+        "Map activator opens disclosure without requesting permission",
+        "Origin excluded from retained initial map HTML",
+        "Rounded origin and minimum accuracy shown on the map after explicit opt-in",
+        "Approximate marker centered in rendered map",
+        "List remains explicit and returns to mapped location",
+        "Recenter uses existing fix without reacquisition",
+        "Nearby destination pin opens and closes its detail sheet",
+        "Composed filtering exposes no-matches recovery and restores nearby pins",
+        "Interactive map supports zoom17; tile request paths captured locally",
+        "Refresh requests a new fix",
+        "Coordinates absent from persisted browser storage",
+        "Turn off removes marker and saved opt-in",
+        "Disabled preference survives reload without location requests",
+        "No console errors, page errors or external writes"
+      ],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "name": "tile-boundary-stone-town",
+      "checks": [
+        "No location request before opt-in",
+        "Map activator opens disclosure without requesting permission",
+        "Origin excluded from retained initial map HTML",
+        "Rounded origin and minimum accuracy shown on the map after explicit opt-in",
+        "Approximate marker centered in rendered map",
+        "List remains explicit and returns to mapped location",
+        "Recenter uses existing fix without reacquisition",
+        "Interactive map supports zoom17; tile request paths captured locally",
+        "Refresh requests a new fix",
+        "Coordinates absent from persisted browser storage",
+        "Turn off removes marker and saved opt-in",
+        "Disabled preference survives reload without location requests",
+        "No console errors, page errors or external writes"
+      ],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "name": "landscape-arusha",
+      "checks": [
+        "No location request before opt-in",
+        "Map activator opens disclosure without requesting permission",
+        "Origin excluded from retained initial map HTML",
+        "Rounded origin and minimum accuracy shown on the map after explicit opt-in",
+        "Approximate marker centered in rendered map",
+        "List remains explicit and returns to mapped location",
+        "Recenter uses existing fix without reacquisition",
+        "Interactive map supports zoom17; tile request paths captured locally",
+        "Refresh requests a new fix",
+        "Coordinates absent from persisted browser storage",
+        "Turn off removes marker and saved opt-in",
+        "Disabled preference survives reload without location requests",
+        "No console errors, page errors or external writes"
+      ],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "name": "tablet-stone-town",
+      "checks": [
+        "No location request before opt-in",
+        "Map activator opens disclosure without requesting permission",
+        "Origin excluded from retained initial map HTML",
+        "Rounded origin and minimum accuracy shown on the map after explicit opt-in",
+        "Approximate marker centered in rendered map",
+        "List remains explicit and returns to mapped location",
+        "Recenter uses existing fix without reacquisition",
+        "Interactive map supports zoom17; tile request paths captured locally",
+        "Refresh requests a new fix",
+        "Coordinates absent from persisted browser storage",
+        "Turn off removes marker and saved opt-in",
+        "Disabled preference survives reload without location requests",
+        "No console errors, page errors or external writes"
+      ],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "name": "outside-coverage",
+      "checks": [
+        "No location request before opt-in",
+        "Map activator opens disclosure without requesting permission",
+        "Origin excluded from retained initial map HTML",
+        "Rounded origin and minimum accuracy shown on the map after explicit opt-in",
+        "Approximate marker centered in rendered map",
+        "Outside-coverage explanation rendered",
+        "Coordinates absent from persisted browser storage",
+        "Turn off removes marker and saved opt-in",
+        "Disabled preference survives reload without location requests",
+        "No console errors, page errors or external writes"
+      ],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "name": "permission-denied",
+      "checks": [
+        "No location request before opt-in",
+        "Map activator opens disclosure without requesting permission",
+        "Permission denial shows recovery and manual browsing remains usable",
+        "No console errors, page errors or external writes"
+      ],
+      "consoleErrors": [],
+      "pageErrors": []
+    },
+    {
+      "name": "cancel-late-result",
+      "checks": [
+        "No location request before opt-in",
+        "Map activator opens disclosure without requesting permission",
+        "Cancellation discards late result and exposes paused-state recovery",
+        "Explicit turn-off clears the retained opt-in after cancellation",
+        "No console errors, page errors or external writes"
+      ],
+      "consoleErrors": [],
+      "pageErrors": []
+    }
+  ],
+  "typescript": "passed",
+  "contentConsistency": "passed",
+  "expoCompatibility": "passed",
+  "expoDoctor": {
+    "passed": 21,
+    "total": 21
+  },
+  "exports": [
+    "ios",
+    "android",
+    "web"
+  ],
+  "audits": {
+    "mobile": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    },
+    "backend": {
+      "info": 0,
+      "low": 0,
+      "moderate": 0,
+      "high": 0,
+      "critical": 0,
+      "total": 0
+    }
+  },
+  "backendPreflight": {
+    "ready": true,
+    "siteId": "f0fa9f3a-0de9-4e62-9809-d64031c415a2",
+    "websiteUnchanged": "6aa3271bc9017000085331a1",
+    "files": 2,
+    "functions": [
+      "marine",
+      "planner-report",
+      "weather"
+    ],
+    "writes": 0
+  },
+  "limits": [
+    "Synthetic web QA is not native signed-binary or physical-device validation",
+    "All external requests in UI QA were intercepted",
+    "No store declarations, review attachment, tester groups or public publication changed"
+  ]
+}

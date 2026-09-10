@@ -7,11 +7,19 @@ import {
   View,
 } from "react-native";
 import { AnimatedPressable, useReducedMotion } from "@/src/components/motion";
+import { Icon } from "@/src/components/ui";
 import { colors, fonts } from "@/src/theme";
 import MapFrame from "./map-frame";
 import type { MapFrameHandle } from "./map-frame-types";
 import { createMapDocument } from "./map-document";
-import { MapData, MapPin, MapStatus, parseMapEvent } from "./map-protocol";
+import {
+  MapData,
+  MapPin,
+  MapStatus,
+  MapUserLocation,
+  isMapUserLocation,
+  parseMapEvent,
+} from "./map-protocol";
 
 type Props = {
   pins: MapPin[];
@@ -19,6 +27,10 @@ type Props = {
   fitKey: string;
   onSelect: (id: string) => void;
   statusInset?: number;
+  userLocation?: MapUserLocation | null;
+  onLocate?: () => void;
+  locating?: boolean;
+  locationLabel?: string;
 };
 
 export default function DestinationMap(props: Props) {
@@ -39,19 +51,32 @@ function MapSession({
   onSelect,
   onRetry,
   statusInset = 0,
+  userLocation,
+  onLocate,
+  locating = false,
+  locationLabel,
 }: Props & { onRetry: () => void }) {
   const frame = useRef<MapFrameHandle>(null);
   const reducedMotion = useReducedMotion();
   const [status, setStatus] = useState<MapStatus>("loading");
   const [bridgeReady, setBridgeReady] = useState(false);
+  const [compactControls, setCompactControls] = useState(false);
   const [token] = useState(
     () => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`,
   );
   const data = useMemo<MapData>(
-    () => ({ pins, selectedId, fitKey, reducedMotion }),
-    [pins, selectedId, fitKey, reducedMotion],
+    () => ({
+      pins,
+      selectedId,
+      fitKey,
+      reducedMotion,
+      userLocation: isMapUserLocation(userLocation) ? userLocation : null,
+    }),
+    [pins, selectedId, fitKey, reducedMotion, userLocation],
   );
-  const initial = useRef(data).current;
+  // Keep a device fix out of the retained document and its initial config.
+  // The ready bridge receives the current fix and clears it on opt-out.
+  const initial = useRef<MapData>({ ...data, userLocation: null }).current;
   const html = useMemo(
     () =>
       createMapDocument(
@@ -88,7 +113,12 @@ function MapSession({
   }, []);
   const fail = useCallback(() => setStatus("error"), []);
   return (
-    <View style={styles.container}>
+    <View
+      style={styles.container}
+      onLayout={({ nativeEvent }) =>
+        setCompactControls(nativeEvent.layout.height < 250)
+      }
+    >
       <MapFrame
         ref={frame}
         html={html}
@@ -96,7 +126,7 @@ function MapSession({
         onMessage={onMessage}
         onError={fail}
       />
-      <View style={styles.controls}>
+      <View style={[styles.controls, compactControls && styles.compactControls]}>
         <AnimatedPressable
           accessibilityRole="button"
           accessibilityLabel="Zoom in"
@@ -105,7 +135,7 @@ function MapSession({
         >
           <Text style={styles.controlText}>+</Text>
         </AnimatedPressable>
-        <View style={styles.divider} />
+        <View style={compactControls ? styles.compactDivider : styles.divider} />
         <AnimatedPressable
           accessibilityRole="button"
           accessibilityLabel="Zoom out"
@@ -114,16 +144,49 @@ function MapSession({
         >
           <Text style={styles.controlText}>−</Text>
         </AnimatedPressable>
-        <View style={styles.divider} />
+        <View style={compactControls ? styles.compactDivider : styles.divider} />
         <AnimatedPressable
           accessibilityRole="button"
-          accessibilityLabel="Fit all destinations"
+          accessibilityLabel={
+            data.userLocation
+              ? "Fit nearby places and your location"
+              : "Fit all destinations"
+          }
           onPress={() => frame.current?.send({ type: "fit" })}
           style={styles.control}
         >
           <Text style={styles.fit}>⛶</Text>
         </AnimatedPressable>
       </View>
+      {(onLocate || data.userLocation) && (
+        <AnimatedPressable
+          accessibilityRole="button"
+          accessibilityLabel={
+            locating
+              ? "Finding your location"
+              : locationLabel ||
+                (data.userLocation ? "Center on my location" : "Use my location")
+          }
+          accessibilityState={{ disabled: locating, busy: locating }}
+          disabled={locating}
+          testID="map-location-control"
+          onPress={() => {
+            if (data.userLocation) frame.current?.send({ type: "recenter" });
+            else onLocate?.();
+          }}
+          style={styles.locate}
+        >
+          {locating ? (
+            <ActivityIndicator color={colors.coral} />
+          ) : (
+            <Icon
+              name="compass"
+              size={24}
+              color={data.userLocation ? colors.coral : colors.text}
+            />
+          )}
+        </AnimatedPressable>
+      )}
       {status === "loading" && (
         <View style={[styles.loading, { top: 16 + statusInset }]}>
           <ActivityIndicator color={colors.coral} />
@@ -163,6 +226,8 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     overflow: "hidden",
   },
+  compactControls: { flexDirection: "row" },
+  compactDivider: { width: 1, backgroundColor: "#ffffff26" },
   control: {
     width: 46,
     height: 46,
@@ -171,6 +236,19 @@ const styles = StyleSheet.create({
   },
   controlText: { color: "#fff", fontSize: 26, lineHeight: 30 },
   fit: { color: "#fff", fontSize: 23 },
+  locate: {
+    position: "absolute",
+    bottom: 40,
+    right: 14,
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: "#071c2bee",
+    borderWidth: 1,
+    borderColor: "#ffffff40",
+    alignItems: "center",
+    justifyContent: "center",
+  },
   divider: { height: 1, backgroundColor: "#ffffff26" },
   loading: {
     pointerEvents: "none",

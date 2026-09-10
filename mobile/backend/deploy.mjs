@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { getAPIToken } from '@netlify/dev-utils';
+import { WEBSITE_ID, captureWebsiteBaseline, assertWebsiteUnchanged, saveWebsiteBaseline, recordMobileDeployId, loadWebsiteBaseline } from './website-preservation.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const REPO = path.resolve(HERE, '../..');
@@ -12,8 +13,6 @@ const OUT = path.join(HERE, 'build');
 const SITE = 'f0fa9f3a-0de9-4e62-9809-d64031c415a2';
 const ORIGIN = 'https://destination-paradise-mobile.netlify.app';
 const ACCOUNT = '63fdd2e141224b0084aa509a';
-const WEBSITE = 'c97b6108-c09d-4cf9-88be-8439f69994c4';
-const WEBSITE_DEPLOY = '6a8dbf35cb01b33e235abc4b';
 const NAMES = ['marine', 'planner-report', 'weather'];
 const REQUIRED_ENV = ['RESEND_API_KEY', 'RESEND_FROM_PLANNER', 'TEAM_EMAIL_PLANNER',
   'WEATHERKIT_TEAM_ID', 'WEATHERKIT_SERVICE_ID', 'WEATHERKIT_KEY_ID', 'WEATHERKIT_PRIVATE_KEY'];
@@ -60,12 +59,9 @@ async function artifacts() {
   return manifest;
 }
 
-async function unchangedWebsite() {
-  const website = await api('sites/' + WEBSITE);
-  assert.equal(website.published_deploy?.id, WEBSITE_DEPLOY, 'Website changed since release baseline; review separately');
-}
+const readWebsite = () => api('sites/' + WEBSITE_ID);
 
-async function preflight() {
+async function preflight(baseline) {
   const site = await api('sites/' + SITE);
   assert.equal(site.id, SITE);
   assert.equal(site.name, 'destination-paradise-mobile');
@@ -76,11 +72,11 @@ async function preflight() {
     assert.ok(entry.values?.some((value) => ['production', 'all'].includes(value.context)), `Missing production setting: ${key}`);
     if (['RESEND_API_KEY', 'WEATHERKIT_PRIVATE_KEY'].includes(key)) assert.equal(entry.is_secret, true, `Set ${key} as a secret`);
   }
-  await unchangedWebsite();
+  await assertWebsiteUnchanged(readWebsite, baseline);
   return site;
 }
 
-async function verify(manifest, id) {
+async function verify(manifest, id, baseline) {
   assert.match(id, /^[a-f0-9]{24}$/);
   const deploy = await api('deploys/' + id);
   assert.equal(deploy.site_id, SITE);
@@ -104,12 +100,12 @@ async function verify(manifest, id) {
   assert.ok(!deploy.edge_functions_present, 'Standalone backend must not deploy website edge functions');
   const site = await api('sites/' + SITE);
   assert.equal(site.published_deploy?.id, id, 'Production publication not confirmed');
-  await unchangedWebsite();
+  await assertWebsiteUnchanged(readWebsite, baseline);
   console.log(JSON.stringify({ verified: true, deployId: id, siteId: SITE, url: ORIGIN,
-    websiteUnchanged: WEBSITE_DEPLOY, files: 2, functions: NAMES }));
+    websiteUnchanged: baseline.publishedDeployId, files: 2, functions: NAMES }));
 }
 
-async function upload(manifest, deploy) {
+async function upload(manifest, deploy, baseline) {
   assert.equal(deploy.site_id, SITE);
   for (let attempt = 0; deploy.state === 'preparing' && attempt < 90; attempt++) {
     await sleep(2_000); deploy = await api('deploys/' + deploy.id);
@@ -135,15 +131,20 @@ async function upload(manifest, deploy) {
     if (['error', 'canceled'].includes(deploy.state)) throw new Error(`Deploy ended in ${deploy.state}`);
     await sleep(2_000);
   }
-  await verify(manifest, deploy.id);
+  await verify(manifest, deploy.id, baseline);
 }
 
 async function main() {
   const manifest = await artifacts();
-  if (mode === 'verify') return verify(manifest, process.argv[3]);
-  await preflight();
+  // Resume and verification retain the original baseline. Recapturing it after
+  // an interruption would conceal a website change during the mobile release.
+  const baseline = ['resume', 'verify'].includes(mode)
+    ? await loadWebsiteBaseline(OUT, manifest, process.argv[3])
+    : await captureWebsiteBaseline(readWebsite);
+  if (mode === 'verify') return verify(manifest, process.argv[3], baseline);
+  await preflight(baseline);
   if (mode === 'preflight') {
-    console.log(JSON.stringify({ ready: true, siteId: SITE, files: 2, functions: NAMES, writes: 0 }));
+    console.log(JSON.stringify({ ready: true, siteId: SITE, websiteUnchanged: baseline.publishedDeployId, files: 2, functions: NAMES, writes: 0 }));
     return;
   }
   let deploy;
@@ -154,6 +155,10 @@ async function main() {
     deploy = await api('deploys/' + id);
   } else {
     assert.equal(process.argv[3], '--production', 'Use deploy --production to explicitly publish only the mobile backend');
+    // A previous attempt must be resumed or verified, never silently replaced.
+    for (const filename of ['website-baseline.json', 'deploy-id.txt']) {
+      await assert.rejects(fs.access(path.join(OUT, filename)), { code: 'ENOENT' }, 'Existing deployment receipt; resume or verify it first');
+    }
     // A branch field is a deploy alias on this manual site. Omit it, matching
     // Netlify CLI --prod, so production-scoped runtime variables are selected.
     const body = { draft: false, async: true, framework: 'static',
@@ -163,11 +168,15 @@ async function main() {
         routes: fn.routes, excluded_routes: fn.excludedRoutes, priority: fn.priority,
       }])), function_schedules: [],
     };
+    // Persist before the first write: even an uncertain creation response must
+    // retain the original website ID and prevent a blind duplicate publication.
+    await saveWebsiteBaseline(OUT, baseline, manifest);
     deploy = await api(`sites/${SITE}/deploys`, { method: 'POST', body, query: { title: 'Standalone mobile weather, AI reports and privacy' } });
+    await recordMobileDeployId(OUT, manifest, deploy.id);
     await fs.writeFile(path.join(OUT, 'deploy-id.txt'), deploy.id + '\n');
     console.log(JSON.stringify({ deployId: deploy.id, siteId: SITE, state: deploy.state }));
   }
-  await upload(manifest, deploy);
+  await upload(manifest, deploy, baseline);
 }
 
 main().catch((error) => { console.error(error.message); process.exitCode = 1; });

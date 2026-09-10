@@ -61,7 +61,7 @@ for (const name of names) {
 const manifest = {
   siteId: SITE_ID,
   origin: ORIGIN,
-  bundler: { name: '@netlify/zip-it-and-ship-it', version: '14.5.3' },
+  bundler: { name: '@netlify/zip-it-and-ship-it', version: '15.5.1' },
   sources: Object.fromEntries(Object.entries(sources).sort(([a], [b]) => a.localeCompare(b))),
   files: [
     { path: '/_headers', source: 'public/_headers', sha1: digest(headers, 'sha1'), size: headers.length },
