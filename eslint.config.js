@@ -35,7 +35,9 @@ export default [
     },
     rules: {
       ...js.configs.recommended.rules,
-      ...reactHooks.configs.recommended.rules,
+      // Keep the established hook checks; React Compiler adoption is separate.
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'warn',
       // Catch dead imports/vars — the cheapest signal for leftover code after refactors.
       // Underscore-prefixed names are intentionally ignored.
       'no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
