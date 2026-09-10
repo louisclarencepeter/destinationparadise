@@ -23,6 +23,20 @@
     "body": "Diese Seite liegt nicht auf der Karte. Kehre zur Startseite zurück und wähle eine Route.",
     "cta": "← Zurück zur Startseite"
   },
+  "error": {
+    "eyebrow": "Etwas ist schiefgelaufen",
+    "title": "Wir haben die Route kurz verloren",
+    "body": "Auf dieser Seite ist ein unerwarteter Fehler aufgetreten. Versuchen Sie es erneut oder kehren Sie zur Startseite zurück.",
+    "actions_aria": "Möglichkeiten zur Wiederherstellung",
+    "try_again": "Erneut versuchen",
+    "back_home": "Zur Startseite",
+    "contact_aria": "Kontaktdaten von Destination Paradise",
+    "contact_intro": "Sie brauchen uns direkt? Hier erreichen Sie unser Team.",
+    "contact_hours": "Täglich · 8:00–19:00 EAT",
+    "details": "Fehlerdetails",
+    "error_name": "Fehler",
+    "unknown_error": "Unbekannter Fehler"
+  },
   "cookies": {
     "aria_label": "Cookie-Einwilligung",
     "eyebrow": "Cookie-Einstellungen",
@@ -52,6 +66,31 @@
     "loading": "Seitenindex wird vorbereitet...",
     "empty_title": "Noch kein genauer Treffer.",
     "empty_body": "Versuchen Sie ein Reiseziel, eine Aktivität, einen Pakettyp, einen Safari-Park oder eine Transferstrecke – oder senden Sie uns eine individuelle Anfrage.",
-    "open_planner": "Reiseplaner öffnen"
+    "open_planner": "Reiseplaner öffnen",
+    "index": {
+      "categories": {
+        "page": "Seite",
+        "package": "Reisepaket",
+        "safari": "Safari",
+        "safariStyle": "Safari-Art",
+        "excursion": "Ausflug",
+        "excursionCombo": "Ausflugskombination",
+        "transfer": "Transfer"
+      },
+      "popular": ["Flughafentransfer", "Safari Blue", "Flitterwochen-Paket", "Serengeti", "Stone Town", "Paje"],
+      "pages": {
+        "store": { "title": "Erlebnis-Shop", "description": "Ausgewählte Ausflüge sofort buchen, mehrere Erlebnisse kombinieren und einmal bezahlen." },
+        "home": { "title": "Startseite", "description": "Der Einstieg für Sansibar-Reisen, Safaris, Pakete, Transfers, Wetter und Reiseplanung." },
+        "excursions": { "title": "Ausflüge", "description": "Entdecke Tagesausflüge auf Sansibar: Dhaus, Stone Town, Gewürzfarmen, Schnorcheln, Delfine und Naturtouren." },
+        "safaris": { "title": "Safaris", "description": "Wildtierrouten auf dem Festland durch Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha und weitere Parks." },
+        "packages": { "title": "Reisepakete", "description": "Safari- und Sansibar-Pakete für Flitterwochen, Familien, Luxus, Kultur, Migration und Strandurlaub." },
+        "retreats": { "title": "Yoga- & Wellness-Retreats", "description": "Geführtes Yoga, Körperarbeit, private Retreats und Yoga-Safari-Reisen auf Sansibar." },
+        "transfers": { "title": "Transfers", "description": "Private Flughafen- und Hoteltransfers, Gruppentransporte und VIP-Flughafenservice." },
+        "tripPlanner": { "title": "Reiseplaner", "description": "Stelle deine Route nach Tempo, Reisedaten, Budget, Strandzeit, Safaris und Ausflügen zusammen." },
+        "booking": { "title": "Buchung", "description": "Sende eine Buchungsanfrage für ein Paket, einen Ausflug, eine Safari, einen Transfer oder eine individuelle Reise." },
+        "guide": { "title": "Unser Sansibar-Guide", "category": "Lokaler Guide", "description": "Restaurantempfehlungen für Sansibar und Inselveranstaltungen, die eine Reise wert sind." },
+        "about": { "title": "Über uns", "description": "Erfahre mehr über Destination Paradise, unsere Mission, Geschichte, Community und lokale Reisephilosophie." }
+      }
+    }
   }
 }

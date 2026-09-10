@@ -46,7 +46,7 @@
   font-size: 10px;
   letter-spacing: .18em;
   text-transform: uppercase;
-  color: var(--dp-accent);
+  color: var(--dp-accent-text);
   font-weight: 700;
 }
 .explore-path-card h3 {
@@ -110,7 +110,7 @@
   border: 1px solid color-mix(in srgb, var(--dp-accent) 38%, transparent);
   border-radius: 999px;
   padding: .35rem .65rem;
-  color: var(--dp-accent);
+  color: var(--dp-accent-text);
   font-family: var(--dp-font-sans);
   font-size: 11px;
   font-weight: 700;
@@ -129,7 +129,7 @@
 }
 .explore-hub__match h3 {
   margin: 0 0 .75rem;
-  color: var(--dp-accent);
+  color: var(--dp-accent-text);
   font-family: var(--dp-font-sans);
   font-size: 11px;
   letter-spacing: .18em;
@@ -150,7 +150,7 @@
   line-height: 1.35;
 }
 .explore-hub__match a:hover {
-  color: var(--dp-accent);
+  color: var(--dp-accent-text);
 }
 .explore-hub__match p {
   margin: 0;
@@ -252,7 +252,7 @@
 .itin__day {
   font-family: var(--dp-font-sans);
   font-size: 11px; letter-spacing: .15em; text-transform: uppercase;
-  color: var(--dp-accent); font-weight: 700;
+  color: var(--dp-accent-text); font-weight: 700;
   padding-top: 4px;
 }
 .itin__days strong {

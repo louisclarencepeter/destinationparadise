@@ -55,8 +55,8 @@ export default defineConfig(({ mode }) => {
       strictPort,
     },
     test: {
-      // Keep vitest from collecting stale duplicate tests inside .claude/worktrees/*
-      exclude: [...configDefaults.exclude, '**/.claude/**'],
+      // Mobile uses its own node:test runner and dependency installation.
+      exclude: [...configDefaults.exclude, '**/.claude/**', 'mobile/**', 'design/mobile-app/**'],
     },
   };
 });

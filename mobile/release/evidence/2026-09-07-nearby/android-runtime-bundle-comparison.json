@@ -1,0 +1,74 @@
+{
+  "verifiedAtUtc": "2026-09-08T08:22:14.832683+00:00",
+  "scope": "Read-only SHA-256 comparison of preserved historical AAB files and source-manifest records; no app runtime or store-console refresh.",
+  "bundles": [
+    {
+      "versionCode": 6,
+      "aabPath": "/tmp/dp-native-release/destination-paradise-android-nearby-code6.aab",
+      "aabSha256": "68337eee1b7d6945c49f583070d3c8683740a9e0d9e74d510a05bf6073ce6dd6",
+      "zipEntry": "base/assets/index.android.bundle",
+      "bundleBytes": 2863184,
+      "bundleSha256": "ec5e3a7396735a2b94903fda93ca24b5bd1616ea8e1c98c6c642ee165652f5ec"
+    },
+    {
+      "versionCode": 7,
+      "aabPath": "/tmp/dp-native-release/destination-paradise-android-nearby-code7.aab",
+      "aabSha256": "84f3f55f838cb319dde330dd0ea8193fedec7b69a00e427c5160f6c41fc8d4ea",
+      "zipEntry": "base/assets/index.android.bundle",
+      "bundleBytes": 2863184,
+      "bundleSha256": "ec5e3a7396735a2b94903fda93ca24b5bd1616ea8e1c98c6c642ee165652f5ec"
+    },
+    {
+      "versionCode": 8,
+      "aabPath": "/tmp/dp-native-release/destination-paradise-android-nearby-code8.aab",
+      "aabSha256": "43675893dad633ec2983ea3bfcaa535d894b82a5044ba46ca2a07211427459ba",
+      "zipEntry": "base/assets/index.android.bundle",
+      "bundleBytes": 2869100,
+      "bundleSha256": "abb6fabddc5673367673d62484679ac6190924dfd96f3eadbd13a0268a08a3f0"
+    }
+  ],
+  "code6And7ByteIdentical": true,
+  "code7And8ByteIdentical": false,
+  "sourceManifests": [
+    "dp-nearby-android7-source-manifest-20260907.json",
+    "dp-version-110-source-manifest.json"
+  ],
+  "nearbySourceComparison": [
+    {
+      "path": "mobile/src/features/nearby/location-service.ts",
+      "bytes": 8781,
+      "code7Sha256": "2b6e076f70a054dab5b9530290badfbc67dd69978034464a7453758fda39cd5e",
+      "code8Sha256": "2b6e076f70a054dab5b9530290badfbc67dd69978034464a7453758fda39cd5e",
+      "sourceManifestsMatch": true
+    },
+    {
+      "path": "mobile/src/features/nearby/nearby-content.tsx",
+      "bytes": 9849,
+      "code7Sha256": "c96c49fdcaf7a8d8c82d521c0969b2c79ff9bfcd5934fe831ff2aecb425d3d7a",
+      "code8Sha256": "c96c49fdcaf7a8d8c82d521c0969b2c79ff9bfcd5934fe831ff2aecb425d3d7a",
+      "sourceManifestsMatch": true
+    },
+    {
+      "path": "mobile/src/features/nearby/nearby-images.ts",
+      "bytes": 2004,
+      "code7Sha256": "ec2d41fdac0c2b1bdb519f82c221baf7955f3564e6df98067b9874f26e5a80d7",
+      "code8Sha256": "ec2d41fdac0c2b1bdb519f82c221baf7955f3564e6df98067b9874f26e5a80d7",
+      "sourceManifestsMatch": true
+    },
+    {
+      "path": "mobile/src/features/nearby/nearby-location-provider.tsx",
+      "bytes": 5641,
+      "code7Sha256": "a9ae264e6d401dd542a5b2a338648e51cb72f6032a946a781f2f10a6f23f9511",
+      "code8Sha256": "a9ae264e6d401dd542a5b2a338648e51cb72f6032a946a781f2f10a6f23f9511",
+      "sourceManifestsMatch": true
+    },
+    {
+      "path": "mobile/src/features/nearby/nearby-model.ts",
+      "bytes": 6967,
+      "code7Sha256": "88f4dcee428727eb4c0638405c335947833153e56b1df30fc418b468fcc1ee2c",
+      "code8Sha256": "88f4dcee428727eb4c0638405c335947833153e56b1df30fc418b468fcc1ee2c",
+      "sourceManifestsMatch": true
+    }
+  ],
+  "correction": "Only Android codes 6 and 7 have byte-identical Hermes bundles. Code 8 has a different bundle while the five Nearby source-file hashes match code 7. Code 6 native location success is prior evidence; it was not repeated on code 7 or 8."
+}

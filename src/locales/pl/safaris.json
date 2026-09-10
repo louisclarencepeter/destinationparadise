@@ -1,4 +1,11 @@
 {
+  "meta": {
+    "title": "Safari w Tanzanii · Destination Paradise",
+    "description": "Trasy i style safari przez Serengeti, Ngorongoro, Tarangire i inne regiony Tanzanii. Ponad {{count}} programów od campingu po luksus."
+  },
+  "product_types": {
+    "specialty": "Safari specjalistyczne"
+  },
   "hero": {
     "eyebrow": "Tanzania kontynentalna · serce naszej pracy",
     "title_prefix": "Tam, gdzie dzikość",
@@ -238,23 +245,24 @@
     "title": "Jedna cena. Bez niespodzianek na końcu.",
     "lead": "Dawno nauczyliśmy się, że \"od $X\" i dwanaście dopłat później psuje całą radość. W naszych wycenach uwzględniamy poniższe elementy.",
     "items": [
-      "Bush flights między parkami (Cessna)",
-      "Wszystkie opłaty parkowe i conservation fees",
-      "Certyfikowany przewodnik min. Silver-level",
-      "Pełne wyżywienie w każdym campie",
-      "Sundownery i pikniki w buszu",
+      "Przeloty małym samolotem między parkami (Cessna)",
+      "Wszystkie opłaty parkowe i za ochronę przyrody",
+      "Certyfikowany przewodnik klasy Silver",
+      "Pełne wyżywienie w każdym obozie",
+      "Drinki o zachodzie słońca i pikniki w buszu",
       "Odbiory z lotnisk na Zanzibarze i w Arushy",
-      "Woda butelkowana i napoje w lodge",
-      "Concierge 24/7 na WhatsApp"
+      "Woda butelkowana i napoje w obiekcie",
+      "Całodobowy kontakt z concierge przez WhatsApp"
     ]
   },
   "detail": {
+    "meta_fallback": "{{title}} — safari w Tanzanii z opłatami parkowymi, zawodowym przewodnikiem i pełnym wyżywieniem.",
     "not_found_page_title": "Nie znaleziono safari · Destination Paradise",
     "not_found_eyebrow": "Safari",
     "not_found_title": "Nie znaleziono safari",
     "not_found_text": "Tej trasy nie ma na aktualnej liście. Zobacz wszystkie dostępne safari poniżej.",
     "back_to_safaris": "Wróć do wszystkich safari →",
-    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_aria": "Nawigacja okruszkowa",
     "breadcrumb_home": "Strona główna",
     "breadcrumb_safaris": "Safari",
     "most_popular": "Najpopularniejsze",
@@ -284,7 +292,7 @@
     "practical": {
       "included": {
         "heading": "Zawsze w cenie",
-        "items": ["Loty bushowe i transfery", "Opłaty parkowe i za ochronę przyrody", "Profesjonalny przewodnik safari", "Pełne wyżywienie w obozie lub lodge"]
+        "items": ["Przeloty małym samolotem i transfery", "Opłaty parkowe i za ochronę przyrody", "Profesjonalny przewodnik safari", "Pełne wyżywienie w obozie lub lodży"]
       },
       "not_included": {
         "heading": "Nie wliczono",
@@ -292,7 +300,7 @@
       },
       "booking": {
         "heading": "Rezerwacja i płatność",
-        "items": ["Najlepiej rezerwować 2-6 miesięcy wcześniej", "Zaliczka potwierdza lodge i loty", "Pozostała kwota przed podróżą", "USD, EUR, GBP, TZS akceptowane"]
+        "items": ["Najlepiej rezerwować 2-6 miesięcy wcześniej", "Zaliczka potwierdza lodże i przeloty", "Pozostała kwota przed podróżą", "Akceptujemy USD, EUR, GBP i TZS"]
       }
     },
     "cta": {
@@ -301,12 +309,13 @@
     }
   },
   "type_detail": {
+    "meta_fallback": "{{title}} w Tanzanii — wybrane trasy, doświadczeni przewodnicy i programy szyte na miarę.",
     "not_found_page_title": "Nie znaleziono typu safari · Destination Paradise",
     "not_found_eyebrow": "Style safari",
     "not_found_title": "Nie znaleziono typu safari",
     "not_found_text": "Tego stylu nie ma na aktualnej liście. Zobacz wszystkie style safari poniżej.",
     "back_to_styles": "Wróć do stylów safari →",
-    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_aria": "Nawigacja okruszkowa",
     "breadcrumb_home": "Strona główna",
     "breadcrumb_safaris": "Safari",
     "cat": "Styl safari",
@@ -415,8 +424,8 @@
     "Beach & Safari": "Plaża i safari",
     "Hiking & Nature": "Trekking i natura",
     "Ultra Luxury": "Ultra luksus",
-    "Wildlife": "Wildlife",
-    "Birding": "Ptaki",
+    "Wildlife": "Dzika przyroda",
+    "Birding": "Obserwacja ptaków",
     "Adventure": "Przygoda",
     "Migration": "Migracja",
     "Combo": "Safari i plaża",

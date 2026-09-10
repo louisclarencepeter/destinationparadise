@@ -83,7 +83,7 @@
 }
 .excursions__mode-tag--accent {
   background: rgba(255,111,97,.14);
-  color: #c44a3d;
+  color: var(--text);
 }
 html[data-theme="dark"] .excursions__mode-tag {
   background: rgba(255,255,255,.08);
@@ -167,11 +167,11 @@ html[data-theme="dark"] .excursions__mode-tag--accent {
   line-height: 1.2;
   transition: color .3s ease;
 }
-.ex-card:hover .ex-card__title { color: var(--dp-accent); }
+.ex-card:hover .ex-card__title { color: var(--dp-accent-text); }
 .ex-card__text { font-family: var(--dp-font-display); font-size: .975rem; color: var(--text); line-height: 1.65; margin: 0 0 1.2rem; flex: 1; }
 .ex-card__link {
   font-family: var(--dp-font-sans); font-size: .9rem; font-weight: 600;
-  color: var(--dp-accent);
+  color: var(--dp-accent-text);
   text-decoration: none;
   display: inline-flex; align-items: center; gap: .4rem;
   transition: transform .3s ease, gap .3s ease;

@@ -36,7 +36,7 @@
   opacity: 1;
   background: var(--dp-accent, #FF6F61);
   border-color: var(--dp-accent, #FF6F61);
-  color: #fff;
+  color: var(--dp-black, #1A1A1A);
   box-shadow: 0 8px 22px -8px rgba(255, 111, 97, 0.6);
 }
 .exc-filter__count {
@@ -45,4 +45,4 @@
   margin-left: .15rem;
   font-variant-numeric: tabular-nums;
 }
-.exc-filter__btn.is-active .exc-filter__count { opacity: .9; color: rgba(255,255,255,.9); }
+.exc-filter__btn.is-active .exc-filter__count { opacity: 1; color: inherit; }

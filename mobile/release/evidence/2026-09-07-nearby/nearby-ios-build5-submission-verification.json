@@ -1,0 +1,52 @@
+{
+  "verifiedAtUtc": "2026-09-07T11:52:40.008343+00:00",
+  "appStoreConnectAppId": "6809042574",
+  "bundleIdentifier": "com.yournexttriptoparadise.mobile",
+  "version": "1.0.0",
+  "buildNumber": "5",
+  "easBuildId": "e6c3bbd7-a328-4de1-9151-3b3da6162c64",
+  "easBuildCompletedAt": "2026-09-07T11:48:14.827Z",
+  "artifactPath": "/tmp/dp-native-release/destination-paradise-ios-nearby-build5.ipa",
+  "bytes": 26268155,
+  "sha256": "f9aae1fa93d2f187a0faedf5083b8367c97bea573713d7ba0cc024b490581050",
+  "staticChecksPassed": true,
+  "codeSignVerifyPassed": true,
+  "teamIdentifier": "86ZX7JC345",
+  "sourceFreeze": {
+    "manifest": "/tmp/dp-nearby-source-manifest-20260907.json",
+    "verifiedFiles": 108,
+    "mismatches": 0
+  },
+  "canonicalPolicyBeforeUpload": {
+    "checkedAtUtc": "2026-09-07T11:46:26.266636+00:00",
+    "url": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
+    "httpStatus": 200,
+    "sha256": "1ce162735435379f5972bd7ead12cbcbfc4eb111529b4ad84680d9f448843788",
+    "bytes": 17666,
+    "checks": {
+      "nearbyMention": true,
+      "approximateLocation": true,
+      "onDevice": true,
+      "updatedSeptember7": true
+    },
+    "allPassed": true
+  },
+  "submission": {
+    "id": "133ac304-be96-4a3a-8e0d-0cc96deaf9e2",
+    "status": "FINISHED",
+    "createdAt": "2026-09-07T11:49:59.836Z",
+    "completedAt": "2026-09-07T11:50:39.181Z",
+    "error": null,
+    "existingApiKeySource": "EAS servers",
+    "autoTestFlightSetup": false,
+    "groupsRequested": false,
+    "whatToTestSubmitted": false,
+    "publicReviewRequested": false
+  },
+  "appleProcessingVerified": false,
+  "testFlightBuildAvailableVerified": false,
+  "testFlightGroupAssignmentPerformed": false,
+  "appStoreVersionSelectionPerformed": false,
+  "deviceRuntimeVerified": false,
+  "repositoryFilesEdited": false
+}

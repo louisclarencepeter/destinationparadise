@@ -1,0 +1,837 @@
+{
+  "status": "VERSION_1_1_0_PRIVATE_TESTING_PUBLIC_RELEASE_PENDING",
+  "preparedAt": "2026-09-05",
+  "locale": "en-US",
+  "appName": "Destination Paradise",
+  "version": "1.1.0",
+  "versionExplanation": {
+    "marketingVersion": "1.1.0",
+    "userApproved": true,
+    "meaning": "iOS 1.1.0 (6) is Apple Complete and Testing in the existing one-person owner TestFlight group. Android 1.1.0 (8) is published as active internal release 5, Available to internal testers and Not reviewed. New owner-device installations remain unverified; public release is pending.",
+    "lastVerifiedOwnerTestFlightBuild": "4",
+    "currentAndroidInternalVersionCode": 8,
+    "currentAndroidInternalMarketingVersion": "1.1.0",
+    "settingsDisplayCorrection": "Settings reads the actual native version/build. Android phone/tablet screenshots visibly show 1.1.0 (8); iOS6 identity is verified in the signed IPA, with owner installation pending.",
+    "currentOwnerTestFlightBuild": "6"
+  },
+  "bundleIdentifier": "com.yournexttriptoparadise.mobile",
+  "androidPackage": "com.yournexttriptoparadise.mobile",
+  "localFeatureDraft": {
+    "feature": "Nearby trip suggestions",
+    "preparedAt": "2026-09-07",
+    "status": "IOS_1_1_0_6_TESTING_ANDROID_1_1_0_8_INTERNAL_PUBLISHED",
+    "storeMetadataSubmitted": false,
+    "policySourceUpdated": true,
+    "updatedPolicyDeploymentVerified": true,
+    "listingParagraphToAdd": "FIND IDEAS NEARBY\nChoose to enable Nearby for suggestions around your approximate location. Matching happens on your device using included destinations and related experiences. Refresh when you want, turn Nearby off at any time, or keep exploring without location access. Your coordinates are not saved or sent to our servers, AI or map services.",
+    "reviewNotes": "Nearby requests opt-in approximate foreground location: Android coarse access and iOS reduced accuracy by default. A one-shot reading refreshes on a new app session or return to foreground only while enabled, with manual refresh and turn-off controls. Coordinates remain in memory; only the enabled preference persists. No background tracking, user-location pin, tile centering or reverse geocoding occurs. Planning sends only the selected destination through the existing consent-based Planner flow, without coordinates, distances or a current-location label.",
+    "storePrivacyAssessment": "Nearby stays on-device; existing OSM-derived location disclosures remain unchanged. Exact iOS6 and Android8 permissions were verified. No new collected location category is introduced. Android code 8 adds com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE through expo-application 57.0.2 and installreferrer 2.2. The native client connects only from explicit getInstallReferrerAsync; no app call exists, Settings reads version constants only, and provider/service/receiver components are unchanged. No automatic attribution flow was found; this was a source/component audit, not a complete network capture.",
+    "existingReleasedBuildRecordsPreserved": true,
+    "localValidation": {
+      "status": "passed",
+      "validatedAt": "2026-09-07",
+      "typecheck": "passed",
+      "automatedTests": {
+        "passed": 79
+      },
+      "browserRuntime": "Responsive Nearby flows, consent, permission/error recovery, matching, cancellation, persistence, privacy request checks and final compact landscape/ARIA refinements passed in isolated browser contexts.",
+      "androidExpoGoRuntime": "Phone/tablet actual permission flow, coarse grant, denial/manual fallback, services-off, timeout/cancel, foreground refresh, enabled-preference persistence and turn-off checks passed.",
+      "nativeCoarseFixLimitation": "Initial Expo Go coarse acquisition did not resolve. Later the exact code6 AAB-derived native app obtained a normal emulator location fix after refresh and showed Stone Town recommendations; a force-stop/cold relaunch repeated the result. No framework mock provider or application source override was used for that successful native check. Physical-device acquisition remains a separate field check.",
+      "nextGate": "Install the accepted iOS6 and published Play8 builds on owner devices and complete physical-device field QA; public review/availability and the separate Google closed-test audience remain pending.",
+      "androidSignedArtifactRuntime": "Exact code6 AAB-derived package passed phone/tablet cold launch, approximate-only permission dialog, Stone Town recommendations, denied/manual fallback, timeout/retry, portrait keyboard/search focus, opt-out and cold persistence, with zero app warnings or errors.",
+      "androidVersion110NativeRuntime": "Exact code8 AAB-derived APK passed phone/tablet upgrades with original data retained, cold launches, Settings 1.1.0 (8), approximate-only permission, denial recovery and manual maps, with zero app errors. Nearby source is unchanged from code7; successful GPS acquisition was not repeated on code8."
+    },
+    "policyPublication": {
+      "status": "live_verified",
+      "deploymentId": "6a9ea3bf9044dfcb528cdd62",
+      "url": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
+      "sha256": "1ce162735435379f5972bd7ead12cbcbfc4eb111529b4ad84680d9f448843788"
+    },
+    "iosCandidate": {
+      "version": "1.0.0",
+      "buildNumber": "5",
+      "buildId": "e6c3bbd7-a328-4de1-9151-3b3da6162c64",
+      "buildStatus": "FINISHED",
+      "submissionId": "133ac304-be96-4a3a-8e0d-0cc96deaf9e2",
+      "submissionStatus": "FINISHED",
+      "submittedAtUtc": "2026-09-07T11:50:39.181Z",
+      "artifactSha256": "f9aae1fa93d2f187a0faedf5083b8367c97bea573713d7ba0cc024b490581050",
+      "appleProcessingStatus": "FAILED",
+      "appleProcessingFailureVerified": true,
+      "appleUploadId": "36a4d65b-0312-403e-a117-5535e3203733",
+      "appleUploadTimeDisplayed": "7 September 2026, 2:50 PM",
+      "appleProcessingErrorCode": "90683",
+      "missingPurposeString": "NSMotionUsageDescription",
+      "appleAccepted": false,
+      "testFlightGroupAssigned": false,
+      "availableToTestFlightTesters": false,
+      "lastVerifiedOwnerGroupBuild": "4",
+      "blocker": "Authenticated App Store Connect verified Failed processing: 90683 Missing purpose string NSMotionUsageDescription. EAS upload completion succeeded but is not Apple acceptance. Build 5 never reached the owner group.",
+      "replacementStage": "APPLE_COMPLETE_OWNER_GROUP_TESTING",
+      "replacementBuildId": "d439b36e-da24-4ab6-a3b9-2d3d9114df56",
+      "sourceCorrection": "Corrected Motion purpose string verified in signed iOS6 and accepted by Apple; app never uses motion data. The iOS config fix did not alter Android location permissions; later expo-application added the unused Install Referrer binding documented in version110Candidates."
+    },
+    "androidCandidate": {
+      "version": "1.0.0",
+      "versionCode": "7",
+      "buildId": "ae4d6007-7317-4cc3-a41d-44682aa5b871",
+      "buildStatus": "FINISHED",
+      "compatibilityFixCommit": "cc6b32c1",
+      "sourceFiles": 110,
+      "sourceBytes": 4887930,
+      "supersededCandidate": {
+        "versionCode": "6",
+        "buildId": "f2bfbbcc-3902-4850-be1c-517e533ae72f",
+        "artifactSha256": "68337eee1b7d6945c49f583070d3c8683740a9e0d9e74d510a05bf6073ce6dd6",
+        "published": false,
+        "reason": "Implied mandatory location hardware excluded one phone and five tablets in Play preview."
+      },
+      "completedAtUtc": "2026-09-07T12:25:19.076Z",
+      "artifactBytes": 80959187,
+      "artifactSha256": "84f3f55f838cb319dde330dd0ea8193fedec7b69a00e427c5160f6c41fc8d4ea",
+      "artifactPermissionAndFeatureChecks": "passed",
+      "requiredFeatures": [
+        "android.hardware.faketouch"
+      ],
+      "optionalFeatures": [
+        "android.hardware.location",
+        "android.hardware.location.network"
+      ],
+      "published": true,
+      "releaseId": "4",
+      "releaseName": "1.0.0 (7) — Nearby trip suggestions",
+      "releaseState": "ACTIVE_AVAILABLE_TO_INTERNAL_TESTERS_NOT_REVIEWED",
+      "releasedAtLocal": "2026-09-07 15:34 EAT",
+      "trackId": "4701496308193764699",
+      "supportedPhoneModels": 12477,
+      "supportedTabletModels": 6690,
+      "devicesLost": 0,
+      "internalJoinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
+      "nativeQa": "passed_bounded_phone_tablet_regression",
+      "runtimeBundleMatchesCode6": true,
+      "code7LookupScope": "Phone emulator showed truthful timeout/unavailable recovery. Successful native Stone Town acquisition was proven on code6 with the byte-identical Hermes bundle.",
+      "playDeliveredInstallationVerified": false,
+      "selectedTesterListName": "Destination Paradise owner test",
+      "selectedTesterCount": 1,
+      "otherTesterListsSelected": false,
+      "postPublicationTesterVerification": true
+    },
+    "version110Candidates": {
+      "version": "1.1.0",
+      "runtimeCommit": "2b92765c",
+      "branch": "development",
+      "sourceManifest": "/tmp/dp-version-110-source-manifest.json",
+      "sourceFiles": 111,
+      "sourceBytes": 4890284,
+      "allSourceFilesMatchAfterBothUploads": true,
+      "automatedTestsPassed": 79,
+      "typecheck": "passed",
+      "android": {
+        "versionCode": 8,
+        "buildId": "869ab4bf-ae37-4b84-9a92-45671c95bacd",
+        "createdAtUtc": "2026-09-07T14:58:18.890Z",
+        "buildRequestVerified": true,
+        "stage": "INTERNAL_RELEASE_5_PUBLISHED",
+        "easBuildStatus": "FINISHED",
+        "completionVerified": true,
+        "artifactVerified": true,
+        "distributionVerified": true,
+        "completedAtUtc": "2026-09-07T15:34:53.417Z",
+        "artifactPath": "/tmp/dp-native-release/destination-paradise-android-nearby-code8.aab",
+        "artifactBytes": 80969254,
+        "artifactSha256": "43675893dad633ec2983ea3bfcaa535d894b82a5044ba46ca2a07211427459ba",
+        "releaseId": "5",
+        "releaseName": "1.1.0 (8) — Nearby trip suggestions",
+        "releaseState": "ACTIVE_AVAILABLE_TO_INTERNAL_TESTERS_NOT_REVIEWED",
+        "releasedAtLocal": "2026-09-07 18:43 EAT",
+        "selectedTesterListName": "Destination Paradise owner test",
+        "selectedTesterCount": 1,
+        "otherTesterListsSelected": false,
+        "postPublicationTesterVerification": true,
+        "supportedPhoneModels": 12477,
+        "supportedTabletModels": 6690,
+        "devicesLost": 0,
+        "nativeQa": "PASS",
+        "ownerDeviceInstallationVerified": false,
+        "permissionDeltaAudit": "Android code 8 adds com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE through expo-application 57.0.2 and installreferrer 2.2. The native client connects only from explicit getInstallReferrerAsync; no app call exists, Settings reads version constants only, and provider/service/receiver components are unchanged. No automatic attribution flow was found; this was a source/component audit, not a complete network capture.",
+        "evidence": "/tmp/dp-native-release/version110-android-play-distribution.json",
+        "nativeQaEvidence": "/tmp/dp-native-release/nearby-code8-native-qa.json",
+        "artifactEvidence": "/tmp/dp-native-release/nearby-code8-local-apk-verification.json",
+        "cleanupEvidence": "/tmp/dp-native-release/nearby-code8-cleanup.json"
+      },
+      "ios": {
+        "buildNumber": "6",
+        "buildId": "d439b36e-da24-4ab6-a3b9-2d3d9114df56",
+        "createdAtUtc": "2026-09-07T14:59:08.738Z",
+        "buildRequestVerified": true,
+        "stage": "APPLE_COMPLETE_OWNER_GROUP_TESTING",
+        "easBuildStatus": "FINISHED",
+        "completedAtUtc": "2026-09-07T15:05:02.353Z",
+        "completionVerified": true,
+        "artifactVerified": true,
+        "artifactPath": "/tmp/dp-native-release/destination-paradise-ios-1.1.0-build6.ipa",
+        "artifactBytes": 26285441,
+        "artifactSha256": "24f4b89e8e760b565d355ecf5fad17bc3b335b7bb2d29060cdf710849adc3521",
+        "staticChecksPassed": true,
+        "strictDeepSigningPassed": true,
+        "motionPurposeStringVerified": true,
+        "easSubmissionId": "2e39c349-c95e-4871-ae2c-5133f81385f7",
+        "easSubmissionStatus": "FINISHED",
+        "submissionCreatedAtUtc": "2026-09-07T15:07:06.654Z",
+        "submissionCompletedAtUtc": "2026-09-07T15:29:14.373Z",
+        "originalSubmissionCanceled": false,
+        "localAppleValidationPassed": true,
+        "directDuplicateUploadPerformed": false,
+        "taskKeyCopyRemoved": true,
+        "existingServerKeyChanged": false,
+        "newKeyCreated": false,
+        "appleUploadId": "5d8d6831-9fdf-4e2c-89b8-a22442e54353",
+        "appleUploadTimeDisplayed": "7 September 2026, 6:29 PM EAT",
+        "appleProcessingStatus": "COMPLETE",
+        "appleProcessingCompleted": true,
+        "testFlightGroupAssigned": true,
+        "distributionVerified": true,
+        "deviceRuntimeVerified": false,
+        "evidence": "/tmp/dp-native-release/version110-ios-build6-submission-verification.json",
+        "artifactEvidence": "/tmp/dp-native-release/version110-ios-build6-artifact-verification.json",
+        "signingEvidence": "/tmp/dp-native-release/version110-ios-build6-signing-verification.json",
+        "testFlightStatus": "TESTING",
+        "testFlightNotesSaved": true,
+        "groupName": "Destination Paradise owner test",
+        "groupId": "0db9334b-5e79-4fa1-8950-e0e782456ba8",
+        "groupTesterCount": 1,
+        "groupBuilds": [
+          "1.1.0 (6)",
+          "1.0.0 (4)",
+          "1.0.0 (3)"
+        ],
+        "appStoreDraftAttached": true,
+        "ownerDeviceInstallationVerified": false,
+        "distributionEvidence": "/tmp/dp-native-release/version110-apple-processing-and-distribution.json"
+      }
+    },
+    "listingAndReviewNotesStatus": "Apple1.1.0 draft description/reviewer notes and build6 attached, saved and verified after navigation; TestFlight notes saved. Android1.1.0 release5 notes published. No public review requested."
+  },
+  "apple": {
+    "subtitle": "Zanzibar & Tanzania trip guide",
+    "promotionalText": "Explore Zanzibar and Tanzania on a real map, save your favourite places, shape an AI trip draft and find a season that suits your journey.",
+    "keywords": "Zanzibar,Tanzania,safari,beach,itinerary,island,travel,Stone Town,Serengeti,weather",
+    "primaryCategory": "Travel",
+    "description": "Find your way to Zanzibar and Tanzania with Destination Paradise.\n\nEXPLORE ON A REAL MAP\nBrowse 24 destinations across Zanzibar and mainland Tanzania. Pan and zoom, filter by interests, search places and switch between the map and a photo list. Save favourites on your device and discover related excursions and safari experiences.\n\nFIND IDEAS NEARBY\nChoose to enable Near me for suggestions around your approximate location. Matching happens on your device using included destinations and related experiences. Refresh when you want, turn Nearby off at any time, or keep exploring without location access. Your coordinates are not saved or sent to our servers, AI or map services.\n\nSHAPE YOUR TRIP\nChoose your travel month, nights, group size, budget and pace. Start with a destination or a trip idea, then chat with the AI planner after giving your permission. Review the draft and decide whether to send your conversation and contact details to the Destination Paradise team for a quote. Suggestions are a starting point; the team confirms prices, availability and booking details.\n\nCHOOSE YOUR SEASON\nSee current Zanzibar weather and a month-by-month seasonal guide. The weather scene follows the reported conditions, with a pause control and support for reduced motion.\n\nGO A LITTLE DEEPER\nExplore the island food guide and dates to know. Check venue and event details before making plans.\n\nMADE FOR PHONES AND TABLETS\nEnjoy a dark navy design, clear numbered map pins, phone destination sheets and a wider map-and-sidebar layout on tablets.\n\nNo account is required. Saved places and trip preferences stay on your device. Maps, photos, current weather and AI planning require an internet connection. External experience links open the website. The app does not provide turn-by-turn navigation or confirm bookings automatically.",
+    "whatsNew": "First release: a real destination map, saved places, AI trip planning, Zanzibar weather and seasonal inspiration for phones and tablets.",
+    "marketingUrl": "https://yournexttriptoparadise.com/",
+    "privacyPolicyReady": true,
+    "copyrightHolder": "Destination Paradise",
+    "reviewContact": {
+      "firstName": "Louis",
+      "lastName": "Peter",
+      "email": "louisclarencepeters@gmail.com",
+      "phone": "+255768779517"
+    },
+    "signInRequired": false,
+    "ageRating": "13+",
+    "listingName": "Destination Paradise Travel",
+    "ascAppId": "6809042574",
+    "sku": "destination-paradise-mobile",
+    "primaryLanguage": "en-US",
+    "appleTeamId": "86ZX7JC345",
+    "copyright": "2026 Destination Paradise",
+    "reviewContactVerification": "Saved in App Store Connect and visually confirmed in the screenshot; accessibility text redacts some contact fields.",
+    "listingMetadataStatus": "SAVED_DRAFT",
+    "thirdPartyContentRightsConfirmed": true,
+    "ageRatingDetails": {
+      "status": "CALCULATED_AND_SAVED",
+      "overrideApplied": false,
+      "features": "None selected",
+      "alcoholTobaccoDrugReferences": "Infrequent; island guide includes bar references",
+      "otherContent": "None selected"
+    },
+    "listingNameProvisional": false,
+    "preferredNameDecisionPending": false,
+    "supportUrl": "https://yournexttriptoparadise.com/#contact",
+    "privacyPolicyUrl": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
+    "urlsStatus": "SAVED",
+    "screenshots": {
+      "status": "UPLOADED_VERIFIED",
+      "iphone69InchCount": 3,
+      "ipad13InchCount": 3,
+      "automaticScalingConfirmed": true
+    },
+    "privacy": {
+      "status": "PUBLISHED",
+      "publishClicked": true,
+      "dataCollected": true,
+      "allDataTypesLinkedToUser": true,
+      "tracking": false,
+      "dataTypes": [
+        {
+          "name": "Name",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality"
+          ]
+        },
+        {
+          "name": "Email Address",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality"
+          ]
+        },
+        {
+          "name": "Phone Number",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality"
+          ]
+        },
+        {
+          "name": "Coarse Location",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality",
+            "Analytics"
+          ]
+        },
+        {
+          "name": "Customer Support",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality"
+          ]
+        },
+        {
+          "name": "Other User Content",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality",
+            "Product Personalization"
+          ]
+        },
+        {
+          "name": "Product Interaction",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality",
+            "Analytics"
+          ]
+        },
+        {
+          "name": "Other Diagnostic Data",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality"
+          ]
+        },
+        {
+          "name": "Other Data Types",
+          "linkedToUser": true,
+          "usedForTracking": false,
+          "purposes": [
+            "App Functionality",
+            "Product Personalization"
+          ]
+        }
+      ],
+      "publishedBy": "Louis Peter",
+      "verification": "Root verified the nine-type privacy publication in Apple UI around 2026-09-05 22:06 UTC."
+    },
+    "dsa": {
+      "appStatus": "NON_TRADER_DEFAULT",
+      "accountStatus": "IN_REVIEW",
+      "accountStatusDate": "2026-09-05",
+      "ownerDecisionPending": "Reuse existing trader details or supply different business details.",
+      "privateAddressRecorded": false
+    },
+    "correctedBuild": {
+      "easBuildId": "a8eb3b90-eb2c-4f2d-a6fb-1fd3507bf876",
+      "version": "1.0.0",
+      "buildNumber": "3",
+      "easStatus": "FINISHED",
+      "easSubmissionId": "c48ecd45-1469-4f70-a552-67b58c6162cf",
+      "easSubmissionStatus": "FINISHED",
+      "appleStatus": "TESTING",
+      "appleProcessingComplete": true,
+      "expiresInDaysObserved": 90,
+      "testFlightGroupAccessVerified": true,
+      "testFlightGroup": {
+        "id": "0db9334b-5e79-4fa1-8950-e0e782456ba8",
+        "name": "Destination Paradise owner test",
+        "scope": "OWNER_ONLY",
+        "testerCount": 1,
+        "buildCount": 2,
+        "testerEmail": "louisclarencepeters@gmail.com",
+        "testerStatus": "INSTALLED",
+        "automaticDistribution": false,
+        "invitationAcceptedVerified": true,
+        "installationVerified": true,
+        "installedBuild": "3",
+        "installationDateDisplayed": "2026-09-06",
+        "installedDevice": "iPhone 15 Pro Max",
+        "installedOSVersion": "iOS 26.6.1",
+        "installationVerification": "Root navigated away and back; the fresh tester page showed Installed 1.0.0 (3). The earlier Invited display was cached. This verifies build 3 installation only.",
+        "invitationRecovery": {
+          "reportedError": "Invitation revoked or invalid",
+          "reportedAtLocalDate": "2026-09-06",
+          "action": "Reinvite existing owner tester, then Resend",
+          "resendCompletedWithoutError": true,
+          "replacementEmailSubject": "Louis Peter has invited you to test Destination Paradise Travel.",
+          "replacementEmailReceivedAt": "2026-09-06T19:26:27Z",
+          "replacementEmailReceivedAtLocal": "2026-09-06 22:26 EAT",
+          "replacementEmailReceiptVerified": true,
+          "testerRemoved": false,
+          "membershipsOrAccessChanged": false,
+          "rootCauseProven": false,
+          "successfulRedemptionVerified": true,
+          "resolvedForBuild": "3",
+          "verification": "Root verified the owner's error screenshot, completed Reinvite and Resend for the existing owner, and confirmed replacement-email receipt in Gmail. After navigating away and back later, root verified Installed 1.0.0 (3), dated September 6, on iPhone 15 Pro Max / iOS 26.6.1. Acceptance and installation of build 3 are verified; the original error cause is unproven and new build 4 installation remains unverified."
+        }
+      },
+      "appStoreVersionSelection": {
+        "selectedBuild": "3",
+        "saveClicked": true,
+        "savedVerified": true,
+        "status": "HISTORICAL_SELECTION_REPLACED_BY_BUILD_4",
+        "evidence": "Build 3 was previously saved and verified after navigation. Root later removed only its App Store draft attachment and replaced it with navy-icon build 4; build 3 remains in TestFlight. No App Review was submitted."
+      }
+    },
+    "iconReplacementBuild": {
+      "easBuildId": "4a785994-db2c-40fc-9329-a296e584ec15",
+      "version": "1.0.0",
+      "buildNumber": "4",
+      "easStatus": "FINISHED",
+      "completedAtUtc": "2026-09-06T19:57:58.628Z",
+      "ipaSha256": "31ef588f37267c0fea9635ca887702aad16a0a8cb8f8e2111d94a5c6e513dd9f",
+      "artifactEvidence": "icon-review/navy-ios-artifact-verification.json",
+      "easSubmissionId": "f44a111f-8f11-491e-b39c-8d156e6c0f65",
+      "easSubmissionStatus": "FINISHED",
+      "submissionCompletedAtUtc": "2026-09-06T20:01:01.642Z",
+      "submissionEvidence": "icon-review/navy-ios-submission.json",
+      "ascBuildId": "baaed647-bc09-465e-9f15-52d9387b16ba",
+      "appleUploadStatus": "COMPLETE",
+      "appleProcessingComplete": true,
+      "appleStatus": "TESTING",
+      "expiresInDaysObserved": 90,
+      "testFlightGroupAccessVerified": true,
+      "testFlightGroupId": "0db9334b-5e79-4fa1-8950-e0e782456ba8",
+      "groupAssignment": "Root manually assigned build 4 to the existing owner group after the EAS upload did not assign it automatically.",
+      "whatToTest": "Updated the app icon and launch screen with the complete Destination Paradise logo in ivory and coral on navy.",
+      "whatToTestSavedVerified": true,
+      "appleUIEvidence": "icon-review/apple-testflight-verification.json",
+      "ownerInstallationVerified": true,
+      "ownerInstallation": {
+        "status": "INSTALLED",
+        "version": "1.0.0",
+        "buildNumber": "4",
+        "dateDisplayed": "2026-09-07",
+        "device": "iPhone 15 Pro Max",
+        "osVersion": "iOS 26.6.1",
+        "sessionsObserved": 6,
+        "reportedCrashesObserved": 0,
+        "groupTesterCount": 1,
+        "groupBuildNumbers": [
+          "3",
+          "4"
+        ],
+        "verification": "Fresh authenticated App Store Connect owner-group tester page showed Installed 1.0.0 (4). This supersedes the historical build 3 installation snapshot; no full physical-device functional QA is inferred."
+      },
+      "appStoreVersionSelection": {
+        "status": "SAVED_VERIFIED_AFTER_NAVIGATION",
+        "lastVerifiedSavedBuild": "4",
+        "selectedBuild": "4",
+        "saveClicked": true,
+        "build4SavedVerified": true,
+        "evidence": "Root removed only the previous build 3 draft attachment, selected build 4 and saved until Save was disabled. Root then navigated to App Information, verified Destination Paradise Travel, and returned to 1.0.0 Prepare for Submission; App Icon/build 4/version 1.0.0 and disabled Save persisted. Add for Review was not clicked."
+      },
+      "appReviewSubmitted": false
+    },
+    "pricing": {
+      "status": "SAVED",
+      "baseCurrency": "USD",
+      "basePrice": 0,
+      "zeroPriceEquivalentCount": 175,
+      "note": "Price equivalents do not establish App Availability country selections."
+    },
+    "availability": {
+      "countriesStatus": "UNSET",
+      "macAvailabilityEnabled": false,
+      "visionProAvailabilityEnabled": false,
+      "distribution": "PUBLIC_DEFAULT"
+    },
+    "listingNameStatus": "SAVED_VERIFIED_AFTER_NAVIGATION",
+    "lastVerifiedSavedListingName": "Destination Paradise Travel",
+    "listingNameVerification": "Saved indicator confirmed; navigated to the version and back to App Information and verified Destination Paradise Travel remained. Subtitle unchanged. Fresh App Information again shows the exact approved Name and unchanged subtitle; the cached top header still showed the older Zanzibar name, which does not change the verified field persistence.",
+    "version110Draft": {
+      "version": "1.1.0",
+      "state": "PREPARE_FOR_SUBMISSION",
+      "versionAndNearbyDescriptionSaved": true,
+      "reviewNotesSaved": true,
+      "reviewNotes": "No sign-in, account or payment is required to review the app.\n\nExplore: browse Zanzibar and Mainland destinations on the real map, switch to List, filter/search, open a destination and save it on this device.\n\nNear me: opt in to approximate foreground location for nearby destinations and related tours. Location is held in memory and matched on device; only the enabled preference persists. It refreshes when the app opens or returns to the foreground while enabled. Refresh, deny permission, browse manually and turn it off in Settings. No background location or motion/fitness data is used. The bundled location library references motion APIs, so the binary includes the required purpose description; the app never requests motion permission.\n\nPlanner: explicitly consent to share messages with Destination Paradise and Anthropic before starting AI suggestions. Each AI reply can be reported using Report reply. Sending a quote has a separate review and consent step and sends a real request to our team; use clearly identified reviewer test details if testing that action. AI suggestions do not confirm prices, availability or bookings.\n\nWeather: current conditions use Apple WeatherKit through our server for fixed Zanzibar coordinates, with official attribution. Sea temperature is marked unavailable because the provider does not supply it. Animation can be paused and respects reduced motion. The monthly guide is seasonal planning information.\n\nPhones and tablets support portrait and landscape. Saved places and preferences stay on-device. Maps, ordinary photos, weather and AI planning need the internet. Website links describe physical travel services; there are no digital purchases or subscriptions in the app.",
+      "buildAttachment": {
+        "version": "1.1.0",
+        "buildNumber": "6",
+        "appleBuildId": "5d8d6831-9fdf-4e2c-89b8-a22442e54353"
+      },
+      "oldBuild4DetachedFromDraftOnly": true,
+      "publicReviewSubmitted": false,
+      "verification": "Navigated TestFlight then Distribution after saving; version1.1.0/build6, Nearby description/review notes and disabled Save persisted. Prepare for Submission; Add for Review not clicked."
+    }
+  },
+  "google": {
+    "title": "Destination Paradise Travel",
+    "shortDescription": "Explore Zanzibar and Tanzania, save places and shape your next trip.",
+    "fullDescriptionSource": "Use apple.description above; its copy describes the same Android functionality.",
+    "category": "Travel & Local",
+    "contactEmailCandidate": "info@yournexttriptoparadise.com",
+    "contactWebsiteCandidate": "https://yournexttriptoparadise.com/#contact",
+    "privacyPolicyUrlCandidate": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
+    "containsAdsSourceFinding": false,
+    "appAccessSourceFinding": "All features can be reached without an account. AI processing requires consent; submitting a quote requires name, email and separate sharing consent.",
+    "targetAudience": [
+      "18 and over"
+    ],
+    "contentRating": {
+      "status": "COMPLETED_SAVED",
+      "savedAtLocal": "2026-09-06 01:28 EAT",
+      "ESRB": "Everyone (Alcohol Reference)",
+      "PEGI": "3",
+      "USK": "All ages",
+      "ClassInd": "All ages",
+      "Generic": "3+",
+      "questionnaire": {
+        "downloadedContentAlcoholReference": "Rarely",
+        "otherDownloadedCategories": "No",
+        "onlineContent": true,
+        "onlineContentReason": "AI planner",
+        "onlineAgeCategories": "No",
+        "miscellaneous": "No"
+      }
+    },
+    "dataSafetyReady": true,
+    "aiAssetDeclarations": "Review provenance for each submitted visual asset; do not blanket-declare based solely on using an AI coding assistant.",
+    "playAppId": "4972417635244765220",
+    "developerAccountId": "7868106536966385994",
+    "defaultLanguage": "en-US",
+    "pricing": "free",
+    "privacyPolicyReady": true,
+    "productionAccessGranted": false,
+    "closedTestRequirement": {
+      "minimumContinuouslyOptedInTesters": 12,
+      "minimumConsecutiveDays": 14,
+      "status": "NOT_ESTABLISHED",
+      "setupUnlocked": true
+    },
+    "androidArtifact": {
+      "easBuildId": "4106b3fe-467d-4769-b407-fe107d5ca526",
+      "versionName": "1.0.0",
+      "versionCode": 5,
+      "status": "ACCEPTED_PUBLISHED_TO_INTERNAL_TESTERS",
+      "sha256": "c067fea9c268bb27359bea2ea9ffbc53582e62e81e5114b4440cf5efe3c93026",
+      "minimumSdk": 24,
+      "targetSdk": 36
+    },
+    "internalReleaseUploadStatus": "RELEASE_5_PUBLISHED_AVAILABLE_TO_INTERNAL_TESTERS",
+    "listingStatus": "SAVED_CHANGES_AWAITING_SEND_FOR_REVIEW",
+    "savedListingAssets": {
+      "copy": true,
+      "appIcon": true,
+      "appIconVariant": "OWNER_APPROVED_FULL_LOGO_NAVY",
+      "appIconEvidence": "icon-review/store-icon-save.json",
+      "featureGraphic": true,
+      "phoneScreenshots": 3,
+      "largeTabletScreenshots": 3,
+      "sevenInchTabletScreenshots": 3,
+      "status": "SAVED_CHANGES_NOT_SENT_FOR_REVIEW",
+      "aiAssetDeclaration": {
+        "selectedAssets": [
+          "App icon",
+          "Feature graphic"
+        ],
+        "nativeScreenshotsSelected": false,
+        "savedVerified": true
+      }
+    },
+    "internalTrack": {
+      "id": "4701496308193764699",
+      "status": "ACTIVE",
+      "versionCode": 8,
+      "releaseName": "1.1.0 (8) — Nearby trip suggestions",
+      "joinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
+      "selectedOwnerListCount": 1,
+      "ownerTesterEmail": "louisclarencepeters@gmail.com",
+      "otherListsSelected": false,
+      "ownerOptInVerified": false,
+      "availability": "AVAILABLE_TO_INTERNAL_TESTERS",
+      "reviewStatus": "NOT_REVIEWED",
+      "latestVerification": "Both publish confirmations completed. Fresh release is Active, Available to internal testers and Not reviewed. Postpublication Testers shows only Destination Paradise owner test (1) selected; OutreachOS Closed Testers (15) and Rexona Testers Jul 2026 (17) unchecked, Save disabled.",
+      "releaseNumber": 5,
+      "releaseDetailsPath": "/releases/5/details",
+      "releasedAtLocal": "2026-09-07 18:43 EAT",
+      "publicationEvidence": "PUBLISH_STATUS.md",
+      "propagationNote": "Google's confirmation says device availability can take an hour or more. Owner installation is not verified.",
+      "selectedTesterListName": "Destination Paradise owner test",
+      "selectedTesterCount": 1,
+      "unselectedTesterLists": [
+        {
+          "name": "OutreachOS",
+          "count": 15
+        },
+        {
+          "name": "Rexona",
+          "count": 17
+        }
+      ],
+      "testersSaveDisabled": true,
+      "temporaryAppLabel": "com.yournexttriptoparadise.mobile (unreviewed)",
+      "nameDisplayNote": "The unreviewed internal track still uses the temporary package label until app review; the Destination Paradise Travel listing field is separately saved and verified.",
+      "versionName": "1.1.0",
+      "releaseId": "5",
+      "evidence": "/tmp/dp-native-release/version110-android-play-distribution.json"
+    },
+    "correctedBuild": {
+      "easBuildId": "d5ad03c9-bca0-4d33-9ba5-2c9cebe89260",
+      "versionName": "1.0.0",
+      "versionCode": 4,
+      "status": "PREVIOUS_INTERNAL_RELEASE_SUPERSEDED_BY_CODE_5",
+      "uploadedToPlayVerified": true,
+      "completedAtUtc": "2026-09-05T22:03:13Z",
+      "completionEvidence": "Verified by Android QA agent via official EAS build:view.",
+      "qa": {
+        "evidence": "assets/android/qa/code4-runtime-manifest.json",
+        "verifiedAtUtc": "2026-09-05T22:15:15.807878Z",
+        "aabSha256": "4d9e8e899191850d22e1f6ccf2edcbd0acb647c2ccdd9b98427f883411a1218c",
+        "scope": "Exact AAB converted with bundletool to a locally test-signed universal APK; phone and tablet cold launches, repeated rotations, December card/CTA, Apple Weather and Pause/Play passed with zero app error lines.",
+        "remaining": "Physical devices, Play-generated APK signing/distribution and iOS store-signed runtime remain separate."
+      },
+      "internalPublicationVerified": true,
+      "playAcceptance": {
+        "versionDisplay": "4 (1.0.0)",
+        "minimumSdk": 24,
+        "targetSdk": 36,
+        "previewWarnings": [
+          {
+            "type": "Missing deobfuscation mapping",
+            "blocking": false
+          }
+        ],
+        "previewWarningCount": 1,
+        "nativeDebugSymbolsAttached": true,
+        "saveAndPublishConfirmed": true
+      }
+    },
+    "iconReplacementBuild": {
+      "easBuildId": "4106b3fe-467d-4769-b407-fe107d5ca526",
+      "versionName": "1.0.0",
+      "versionCode": 5,
+      "status": "FINISHED_ICON_QA_PASSED_INTERNAL_PUBLISHED",
+      "easStatus": "FINISHED",
+      "completedAtUtc": "2026-09-06T20:06:35.329Z",
+      "aabBytes": 78159005,
+      "aabSha256": "c067fea9c268bb27359bea2ea9ffbc53582e62e81e5114b4440cf5efe3c93026",
+      "minimumSdk": 24,
+      "targetSdk": 36,
+      "artifactEvidence": "icon-review/navy-android-artifact-verification.json",
+      "bundletoolValidationPassed": true,
+      "qa": {
+        "evidence": "icon-review/android-code5-icon-qa.json",
+        "verifiedAtUtc": "2026-09-06T20:11:09.143007+00:00",
+        "nativePhoneAndTabletPassed": true,
+        "scope": "Exact production-AAB-derived test APK: launcher logo, unclipped native splash and cold Explore launch with real map tiles; zero app errors. Root visually reviewed phone launcher and tablet splash.",
+        "remaining": "Play-delivered installation and physical-device runtime are separate checks."
+      },
+      "uploadedToPlayVerified": true,
+      "releaseNumber": 3,
+      "releaseName": "1.0.0 (5) — full-logo navy icon",
+      "playProcessingStatus": "ACCEPTED",
+      "internalPublicationVerified": true,
+      "lastVerifiedActiveVersionCode": 5,
+      "publicationEvidence": "icon-review/android-internal-release-verification.json",
+      "playAcceptance": {
+        "versionDisplay": "5 (1.0.0)",
+        "nativeDebugSymbolsAttached": true,
+        "onlyWarning": "Missing deobfuscation mapping (nonblocking)",
+        "supportedPhoneCount": 12477,
+        "supportedTabletCount": 6690,
+        "devicesLost": 0,
+        "saveAndPublishConfirmed": true,
+        "explicitConfirmationCompleted": true
+      },
+      "note": "Historical release 3/code 5 was published with the navy icon and has been superseded by Nearby code 7. Its publication evidence is preserved; owner installation of that build was not verified."
+    },
+    "targetAudienceStatus": "SAVED",
+    "setupProgress": {
+      "completedCountLastObserved": 10,
+      "totalCount": 11,
+      "countObservedAfter": "Historical 10/11 after final listing save and before Data Safety save. The later dashboard removed the setup checklist; no 11/11 count was displayed.",
+      "completedSections": [
+        "Privacy policy",
+        "App access",
+        "Ads",
+        "Government apps",
+        "Financial features",
+        "Health apps",
+        "Category and contact",
+        "Content rating (IARC)",
+        "Target audience",
+        "Main store listing",
+        "Data Safety"
+      ],
+      "dataSafetyStatus": "SAVED_VERIFIED_AWAITING_SEND_FOR_REVIEW",
+      "status": "COMPLETE_VERIFIED",
+      "completionEvidence": "After the successful Data Safety save, the app-information setup checklist and closed-test setup lock disappeared from the dashboard.",
+      "currentNumericCountDisplayed": false
+    },
+    "sevenInchScreenshotEvidence": "assets/android/tablet-7/capture-manifest.json",
+    "dataSafety": {
+      "status": "SAVED_VERIFIED_AWAITING_SEND_FOR_REVIEW",
+      "filledTypeCount": 10,
+      "answersSource": "store-privacy-answers.md",
+      "previewVerified": true,
+      "savedVerified": true,
+      "publishedVerified": false,
+      "verification": "Fresh form was blank after the earlier failed save. Root restored all ten exact worksheet types/purposes and verified the preview. Save returned Changes saved and Send for review; confirmation modal showed Save and Save Draft disabled.",
+      "priorFailure": {
+        "code": "5C897C1E",
+        "result": "Earlier unsaved form was lost; it was restored in a fresh form and saved successfully. Old tab 15 was closed.",
+        "resolved": true
+      },
+      "nextStep": "Saved changes await Send for review; this action has not been taken."
+    },
+    "titleStatus": "SAVED_VERIFIED",
+    "lastVerifiedSavedTitle": "Destination Paradise Travel",
+    "titleVerification": "Final Review Save produced Changes saved and Send for review/Publishing overview; confirmation modal said the change was saved. Dashboard displayed Destination Paradise Travel.",
+    "sevenInchScreenshotUpload": {
+      "status": "SAVED_VERIFIED",
+      "count": 3,
+      "dimensions": [
+        1200,
+        1920
+      ],
+      "captureType": "Authentic native captures",
+      "verification": "All three sets showed three images each in Next/Review; final Review Save was confirmed by Changes saved and the saved-change modal.",
+      "finalReviewSaveStatus": "SAVED_VERIFIED"
+    },
+    "consoleAccess": {
+      "status": "RECOVERED",
+      "verification": "Current tab 18 is accessible. After Data Safety saved, the dashboard removed the app-information setup checklist and closed-test setup lock."
+    },
+    "previousAndroidArtifact": {
+      "easBuildId": "29c21f3e-68d3-4b02-b02a-6b12c2bd566d",
+      "versionName": "1.0.0",
+      "versionCode": 3,
+      "status": "FINISHED_DOWNLOADED_VALIDATED"
+    },
+    "previousIconInternalTrackSnapshot": {
+      "id": "4701496308193764699",
+      "status": "ACTIVE",
+      "versionCode": 5,
+      "releaseName": "1.0.0 (5) — full-logo navy icon",
+      "joinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
+      "selectedOwnerListCount": 1,
+      "ownerTesterEmail": "louisclarencepeters@gmail.com",
+      "otherListsSelected": false,
+      "ownerOptInVerified": false,
+      "availability": "AVAILABLE_TO_INTERNAL_TESTERS",
+      "reviewStatus": "NOT_REVIEWED",
+      "latestVerification": "Root completed Save and publish and its explicit confirmation. Fresh track shows release 3/code 5 Available to internal testers, Active and Not reviewed, released September 6 at 11:14 PM EAT. Fresh Testers tab shows only Destination Paradise owner test (1) selected; OutreachOS (15) and Rexona (17) unchecked, Save disabled.",
+      "releaseNumber": 3,
+      "releaseDetailsPath": "/releases/3/details",
+      "releasedAtLocal": "2026-09-06 23:14 EAT",
+      "publicationEvidence": "icon-review/android-internal-release-verification.json",
+      "propagationNote": "Google's confirmation says device availability can take an hour or more. Owner installation is not verified.",
+      "selectedTesterListName": "Destination Paradise owner test",
+      "selectedTesterCount": 1,
+      "unselectedTesterLists": [
+        {
+          "name": "OutreachOS",
+          "count": 15
+        },
+        {
+          "name": "Rexona",
+          "count": 17
+        }
+      ],
+      "testersSaveDisabled": true,
+      "temporaryAppLabel": "com.yournexttriptoparadise.mobile (unreviewed)",
+      "nameDisplayNote": "The unreviewed internal track still uses the temporary package label until app review; the Destination Paradise Travel listing field is separately saved and verified.",
+      "historicalAsOf": "2026-09-06 23:14 EAT"
+    },
+    "previousNearbyInternalTrackSnapshot": {
+      "id": "4701496308193764699",
+      "status": "ACTIVE",
+      "versionCode": 7,
+      "releaseName": "1.0.0 (7) — Nearby trip suggestions",
+      "joinUrl": "https://play.google.com/apps/internaltest/4701496308193764699",
+      "selectedOwnerListCount": 1,
+      "ownerTesterEmail": "louisclarencepeters@gmail.com",
+      "otherListsSelected": false,
+      "ownerOptInVerified": false,
+      "availability": "AVAILABLE_TO_INTERNAL_TESTERS",
+      "reviewStatus": "NOT_REVIEWED",
+      "latestVerification": "Both publish confirmations completed. Fresh release is Active, Available to internal testers and Not reviewed. Postpublication Testers shows only Destination Paradise owner test (1) selected; OutreachOS Closed Testers (15) and Rexona Testers Jul 2026 (17) unchecked, Save disabled.",
+      "releaseNumber": 4,
+      "releaseDetailsPath": "/releases/4/details",
+      "releasedAtLocal": "2026-09-07 15:34 EAT",
+      "publicationEvidence": "PUBLISH_STATUS.md",
+      "propagationNote": "Google's confirmation says device availability can take an hour or more. Owner installation is not verified.",
+      "selectedTesterListName": "Destination Paradise owner test",
+      "selectedTesterCount": 1,
+      "unselectedTesterLists": [
+        {
+          "name": "OutreachOS",
+          "count": 15
+        },
+        {
+          "name": "Rexona",
+          "count": 17
+        }
+      ],
+      "testersSaveDisabled": true,
+      "temporaryAppLabel": "com.yournexttriptoparadise.mobile (unreviewed)",
+      "nameDisplayNote": "The unreviewed internal track still uses the temporary package label until app review; the Destination Paradise Travel listing field is separately saved and verified.",
+      "historicalAsOf": "2026-09-07 15:34 EAT"
+    }
+  },
+  "ownerConfirmationRequired": [
+    "Whether to reuse existing trader details or provide different business details for the Apple DSA declaration.",
+    "Separate Destination Paradise closed-test list; do not reuse the OutreachOS tester list."
+  ],
+  "updatedAtUtc": "2026-09-07T15:51:51.903121+00:00",
+  "publisher": {
+    "accountName": "Louis Peter",
+    "choiceConfirmed": true,
+    "copyrightEntryConfirmed": true
+  },
+  "pendingReleaseWork": [
+    "Verify owner installation and physical-device field QA of iOS1.1.0(6) and Android1.1.0(8). Both existing private groups are verified; latest installed iOS evidence remains1.0.0(4), with6sessions and no reported crashes.",
+    "Google app-information setup is complete; saved listing and Data Safety changes await Send for review, which has not been clicked.",
+    "Verify remaining controlled quote/report delivery, consent, error recovery and physical-device release QA; maintain truthful provider retention/deletion statements.",
+    "Configure the separate closed test and verify at least 12 continuous opt-ins for 14 days before applying for Google production access.",
+    "Choose and save Apple App Availability countries; zero-price equivalents for 175 regions are saved, but country availability remains unset."
+  ],
+  "publicMobileBackend": {
+    "url": "https://destination-paradise-mobile.netlify.app",
+    "privacyPolicyUrl": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
+    "latestVerifiedPolicyDeployId": "6a9c9097c7e4b26b67fadcd5",
+    "evidence": "Deployment verified and documented by the policy deployment agent; separate from store listing publication."
+  },
+  "storeNameApproval": {
+    "name": "Destination Paradise Travel",
+    "stores": [
+      "Apple App Store",
+      "Google Play"
+    ],
+    "approvedByUser": true,
+    "approvalEvidence": "User replied yes to the exact proposed store name.",
+    "applicationStatus": "SAVED_VERIFIED_IN_BOTH_STORES",
+    "scope": "Store listing names only; native display name and existing Destination Paradise brand are unchanged."
+  }
+}

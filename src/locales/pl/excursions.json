@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Wycieczki po Zanzibarze · Jednodniowe wyprawy · Destination Paradise",
+    "description": "{{count}} wybranych wycieczek po Zanzibarze — rejsy dhow, Stone Town, snorkeling przy Mnemba, las Jozani, kitesurfing, festiwale i więcej."
+  },
   "hero": {
     "eyebrow": "Zanzibar i wybrzeże · wybrane wycieczki jednodniowe",
     "title_prefix": "Jedna wyspa.",
@@ -85,12 +89,18 @@
     }
   },
   "detail": {
+    "meta_fallback": "{{title}} — wycieczka po Zanzibarze z odbiorem z hotelu, małą grupą i lokalnym przewodnikiem.",
+    "pricing_tiers": {
+      "sharedExperience": "Wycieczka grupowa",
+      "privateExperience": "Wycieczka prywatna",
+      "premiumWorkshop": "Warsztaty premium"
+    },
     "not_found_page_title": "Nie znaleziono wycieczki · Destination Paradise",
     "not_found_eyebrow": "Wycieczki",
     "not_found_title": "Nie znaleziono wycieczki",
     "not_found_text": "Tej trasy nie ma na aktualnej liście. Zobacz wszystkie dostępne wycieczki poniżej.",
     "back_to_excursions": "Wróć do wszystkich wycieczek →",
-    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_aria": "Nawigacja okruszkowa",
     "breadcrumb_home": "Strona główna",
     "breadcrumb_excursions": "Wycieczki",
     "season_prefix": "Sezonowo",
@@ -132,12 +142,14 @@
     }
   },
   "combination": {
+    "meta_title": "{{title}} · Pakiet wycieczek · Destination Paradise",
+    "meta_fallback": "{{title}} — połączone atrakcje na Zanzibarze z odbiorem z hotelu i lokalnymi przewodnikami.",
     "not_found_page_title": "Nie znaleziono kombinacji wycieczek · Destination Paradise",
     "not_found_eyebrow": "Kombinacje wycieczek",
     "not_found_title": "Nie znaleziono kombinacji",
     "not_found_text": "Tej kombinacji nie ma na aktualnej liście. Zobacz wszystkie wycieczki poniżej.",
     "back_to_excursions": "Wróć do wycieczek →",
-    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_aria": "Nawigacja okruszkowa",
     "breadcrumb_home": "Strona główna",
     "breadcrumb_excursions": "Wycieczki",
     "category": "Kombinacja",

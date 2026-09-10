@@ -5,6 +5,7 @@ import {
   getCachedRates,
   isCacheFresh,
 } from '../utils/currency.js';
+import { afterPageLoad } from '../utils/afterPageLoad.js';
 import { isPrerender } from '../utils/prerender.js';
 import { CurrencyContext } from './currencyContext.js';
 
@@ -17,15 +18,18 @@ export function CurrencyProvider({ children }) {
     if (isPrerender()) return undefined;
     if (isCacheFresh()) return undefined;
     let active = true;
-    fetchRates()
-      .then((next) => {
-        if (active) setRates(next);
-      })
-      .catch(() => {
-        // keep cached/fallback rates on failure
-      });
+    const cancelSchedule = afterPageLoad(() => {
+      fetchRates()
+        .then((next) => {
+          if (active) setRates(next);
+        })
+        .catch(() => {
+          // keep cached/fallback rates on failure
+        });
+    });
     return () => {
       active = false;
+      cancelSchedule();
     };
   }, []);
 

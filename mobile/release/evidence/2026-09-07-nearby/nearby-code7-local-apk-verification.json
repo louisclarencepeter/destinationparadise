@@ -1,0 +1,31 @@
+{
+  "package": "com.yournexttriptoparadise.mobile",
+  "versionName": "1.0.0",
+  "versionCode": 7,
+  "permissions": [
+    "android.permission.ACCESS_COARSE_LOCATION",
+    "android.permission.INTERNET",
+    "android.permission.VIBRATE",
+    "android.permission.ACCESS_NETWORK_STATE",
+    "com.yournexttriptoparadise.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+  ],
+  "minSdk": "24",
+  "targetSdk": "36",
+  "bundletoolValidation": "passed",
+  "coarseOnlyLocation": true,
+  "debuggable": false,
+  "cleartextTraffic": false,
+  "aabBytes": 80959187,
+  "aabSha256": "84f3f55f838cb319dde330dd0ea8193fedec7b69a00e427c5160f6c41fc8d4ea",
+  "localTestApkBytes": 116524543,
+  "localTestApkSha256": "7135cf7d5cdee800f1e8ff906389d54b71a6648211b3e82c908c3b3da3e8caeb",
+  "localTestSignerSha256": "09148a81ca65ab839704593853320acac5934935239c3077c1369b3038e1598f",
+  "signatureVerified": true,
+  "locationFeatures": {
+    "android.hardware.location": "false",
+    "android.hardware.location.network": "false"
+  },
+  "requiredFeatures": [
+    "uses-feature: name='android.hardware.faketouch'"
+  ]
+}

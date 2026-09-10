@@ -1,0 +1,3396 @@
+{
+  "excursions": {
+    "spice-tour": {
+      "title": "Gewürztour",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Familienfavorit · alle Altersgruppen",
+      "alt": "Zanzibar Gewürzplantage",
+      "description": "Ein geführter Plantagenspaziergang durch Nelken, Zimt, Muskatnuss, Pfeffer, Kräuter und Heilpflanzen - gefolgt von einem mit Gewürzen angereicherten Swahili-Mittagessen.",
+      "intro": "Eine geführte Tour durch die berühmten Gewürzplantagen von Zanzibar - Nelken, Zimt, Muskatnuss, Pfeffer, Vanille, Kardamom, Zitronengras und Dutzende von Heilpflanzen. Zerkleinern Sie die Blätter, probieren Sie die Früchte und erfahren Sie, wie Gewürze seit tausend Jahren Kochen, Medizin und Kosmetik auf der Insel prägen. Gefolgt von einem mit Gewürzen angereicherten Swahili-Mittagessen.",
+      "duration": "Halbtägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 8",
+      "from": "Stone Town",
+      "highlights": [
+        "Nelken, Zimt, Muskatnuss, Pfefferbetriebe",
+        "Hands-on Verkostung und Aromen",
+        "Spice Infused Swahili Mittagessen"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Halbtägig",
+          "9 Uhr – 2 Uhr"
+        ],
+        [
+          "von",
+          "Stone Town",
+          "Hotelabholung"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 8",
+          "Minivan"
+        ],
+        [
+          "Am besten für",
+          "Familien",
+          "Feinschmecker"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Sie werden schmecken & sehen",
+          "items": [
+            "Nelken, Zimt, Muskatnuss, Vanille",
+            "Tropische Früchte in der Saison",
+            "Verwendung von Heil- und Kosmetikpflanzen",
+            "Ein Swahili-Mittagessen auf der Farm"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Hut und Sonnencreme",
+            "Geschlossene Schuhe (unebene Wege)",
+            "Geld für Gewürze mit nach Hause nehmen",
+            "Appetit"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "09:00",
+          "Hotelabholung",
+          "Klimatisierter Van von Ihrem Hotel. Fahren Sie landeinwärts durch den Gewürzgürtel."
+        ],
+        [
+          "09:45",
+          "Willkommen auf der Plantage",
+          "Gefüllt vom Bauernführer mit frischen tropischen Früchten und einer Tasse Ingwertee."
+        ],
+        [
+          "10:00 Uhr",
+          "Plantagenwanderung",
+          "Durch Nelken, Zimt, Muskatnuss, Pfeffer und Vanille. Zerkleinern Sie die Blätter, kratzen Sie die Rinde, probieren Sie die Früchte."
+        ],
+        [
+          "11:30",
+          "Hands-on-Verkostung",
+          "Für medizinische und kosmetische Zwecke — Kurkuma, Zitronengras, Kardamom. Die Kinder lieben diesen Teil normalerweise."
+        ],
+        [
+          "12:30 Uhr",
+          "Swahili Mittagessen",
+          "Kokosreis, gewürzte Fische oder Hühner, frische Salate, Früchte. Vor Ort gekocht."
+        ],
+        [
+          "13:30 Uhr",
+          "Optionaler Stopp des Gewürzmarktes",
+          "Nehmen Sie Nelken, Vanillehülsen oder Safran mit nach Hause. Nur Bargeld."
+        ],
+        [
+          "14:00 Uhr",
+          "Abschaltung",
+          "Zurück in Ihrem Hotel."
+        ]
+      ]
+    },
+    "stone-town": {
+      "title": "Historische Stadtführung durch Stone Town",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "UNESCO-Weltkulturerbe",
+      "alt": "Stone Town-Gasse, Zanzibar",
+      "description": "Ein kultureller Spaziergang durch das historische Stone Town - das Haus der Wunder, das Palastmuseum, das arabische Fort, Kathedralen, Moscheen, Märkte und die geschnitzten Türen, die jede Gasse säumen.",
+      "intro": "Ein langsamer Morgen durch die Gassen der Altstadt von Zanzibar - vorbei am Haus der Wunder, dem Palastmuseum, dem arabischen Fort, den Kathedralen und Moscheen, dem Gewürzmarkt und den geschnitzten indischen Türen, die jede Straße säumen. Geführt von einem Guide, der hier aufgewachsen ist.",
+      "duration": "Halbtägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 6",
+      "from": "Stone Town",
+      "highlights": [
+        "Haus der Wunder & Palastmuseum",
+        "Arabisches Fort und Forodhani Gardens",
+        "Geschnitzte Türen, Märkte, Moscheen und Kathedralen"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Halbtägig",
+          "9 Uhr – 13 Uhr"
+        ],
+        [
+          "von",
+          "Stone Town",
+          "Hotelabholung"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 6",
+          "Zu Fuß"
+        ],
+        [
+          "Am besten für",
+          "Geschichtsfans",
+          "Alle Altersgruppen"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Stops beinhalten",
+          "items": [
+            "Haus der Wunder (extern)",
+            "Palastmuseum und Arabisches Fort",
+            "St. Joseph Kathedrale und alte Moschee",
+            "Darajani Gewürzmarkt"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Bescheidenes Kleid (Schultern + Knie)",
+            "Bequeme Wanderschuhe",
+            "Wasserflasche (wir werden nachfüllen)",
+            "Eine Kamera, aber fragen Sie, bevor Sie Menschen fotografieren"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "09:00",
+          "Hotelabholung",
+          "Driver bringt Sie an den Rand von Stone Town. Von hier aus zu Fuß."
+        ],
+        [
+          "09:30 Uhr",
+          "Forodhani Gärten",
+          "Beginnen Sie an der Küste - dem arabischen Fort und der alten Hafenmauer."
+        ],
+        [
+          "10:00 Uhr",
+          "Haus der Wunder & Palastmuseum",
+          "Exterior des Hauses der Wunder (noch in Restaurierung), dann das Palastmuseum."
+        ],
+        [
+          "10:45",
+          "Denkmal für Sklavenhandel",
+          "Eine ruhige Pause in der anglikanischen Kathedrale, die über dem alten Sklavenmarkt gebaut wurde."
+        ],
+        [
+          "11:30",
+          "Darajani Gewürzmarkt",
+          "Sehenswürdigkeiten, Gerüche, Fisch und Früchte. Das Arbeitsherz von Stone Town."
+        ],
+        [
+          "12:15",
+          "Geschnitzte Türen gehen",
+          "Durch die Gassen - arabische und indische Türen, Freddie Mercurys Geburtsort."
+        ],
+        [
+          "13:00",
+          "Abschaltung",
+          "Zurück in Ihrem Hotel oder bleiben Sie zum Mittagessen in der Stadt."
+        ]
+      ]
+    },
+    "prison-island": {
+      "title": "Bootsausflug zur Prison Island",
+      "category": "Natur & Tierwelt",
+      "eyebrow": "Kurze Überfahrt · einfacher Tag",
+      "alt": "Aldabra Riesenschildkröte auf Prison Island",
+      "description": "Eine Bootsfahrt nach Changuu - riesige Aldabra-Schildkröten, weiße Sandstrände, Korallenriffschnorcheln und die historische Gefängnis- und Quarantänestation.",
+      "intro": "Eine 30-minütige Bootsfahrt nach Changuu - die Insel, die als Gefängnis gebaut wurde (damals noch nie genutzt wurde), beherbergt jetzt eine Kolonie von Aldabra-Schildkröten, die 1919 von den Seychellen geschenkt wurde. Einige sind über 180 Jahre alt. Ein kurzer Spaziergang durch die Gefängnisruinen, ein Schnorcheln in den Korallenbecken und Zeit an einem ruhigen Strand.",
+      "duration": "Halbtägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 8",
+      "from": "Stone Town",
+      "highlights": [
+        "Aldabra Riesenschildkröte Heiligtum",
+        "Weißsandstrand und Korallenbecken",
+        "Ruinen der Gefängnis- und Quarantänestationen"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Halbtägig",
+          "9 Uhr – 13 Uhr"
+        ],
+        [
+          "von",
+          "Stone Town",
+          "Forodhani-Anleger"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 8",
+          "Schnellboot"
+        ],
+        [
+          "Am besten für",
+          "Familien",
+          "Leicht und flexibel"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Auf der Insel",
+          "items": [
+            "Aldabra Riesenschildkröte Heiligtum",
+            "Gefängnisruinen und Quarantänegeschichte",
+            "Schnorcheln vom kleinen Strand",
+            "Optionales Café Mittagessen auf der Insel"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Badeanzug und Handtuch",
+            "Riffsicheres Sonnenschutzmittel",
+            "Barzahlung für Parkgebühren, wenn nicht im Voraus bezahlt",
+            "Neugier (Kinder werden viel verlangen)"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "09:00",
+          "Hotelabholung",
+          "Fahren Sie zum Forodhani-Anleger in Stone Town."
+        ],
+        [
+          "09:30 Uhr",
+          "Schnellboot nach Changuu",
+          "30-minütige Überfahrt über ruhiges Morgenwasser."
+        ],
+        [
+          "10:00 Uhr",
+          "Schildkrötenschutzgebiet",
+          "Wandern Sie zwischen den Aldabra-Giganten. Die ältesten sind 180+ Jahre."
+        ],
+        [
+          "10:45",
+          "Prison Ruinen Tour",
+          "Eine kurze Schleife durch die Quarantänestation und Gefängniszellen."
+        ],
+        [
+          "11:15",
+          "Schnorchel & Strandzeit",
+          "Korallenpools am kleinen Strand - ruhig und flach."
+        ],
+        [
+          "12:30 Uhr",
+          "Boot zurück",
+          "Rückfahrt nach Stone Town."
+        ],
+        [
+          "13:00",
+          "Abschaltung",
+          "Zurück in Ihrem Hotel."
+        ]
+      ]
+    },
+    "jozani": {
+      "title": "Tour durch den Jozani-Wald",
+      "category": "Natur & Tierwelt",
+      "eyebrow": "Endemische Arten: leicht zu Fuß",
+      "alt": "Red colobus monkey im Jozani Forest",
+      "description": "Ein geführter Spaziergang durch den einzigen Nationalpark von Zanzibar - Heimat des endemischen roten Colobus-Affen, Chamäleons, Buschschweinen und einer erhöhten Mangrovenpromenade.",
+      "intro": "Zanzibar's einziger Nationalpark und die letzte Zuflucht des endemischen roten Colobus - ein Primat, der nirgendwo sonst auf der Erde zu finden ist. Eine geführte Wanderung durch Mahagoni und Ebenholzhaine, dann eine erhöhte Promenade über die Gezeitenmangroven. Ruhig, schattiert und überraschend nah.",
+      "duration": "Halbtägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 8",
+      "from": "Jozani",
+      "highlights": [
+        "Endemische Rotkolobusverfolgung",
+        "Chamäleons, Buschschweine und Waldvögel",
+        "Mangrovenpromenade"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Halbtägig",
+          "8 Uhr – 12 Uhr"
+        ],
+        [
+          "von",
+          "Jozani",
+          "Südzentral"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 8",
+          "Wandern"
+        ],
+        [
+          "Am besten für",
+          "Naturfans",
+          "Familien · alle Altersgruppen"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Du wirst sehen",
+          "items": [
+            "Endemischer Zanzibar Roter Colobus",
+            "Chamäleons, Buschschweine, Waldvögel",
+            "Mahogany- und Ebenholzhaine",
+            "Mangrovenpromenade"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Lange Ärmel und lange Hosen (Moskitos)",
+            "Geschlossene Schuhe - Wege können schlammig sein",
+            "Insektenschutzmittel",
+            "Ruhige Stimmen, die Truppen sind wild"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "08:00",
+          "Hotelabholung",
+          "Fahren Sie nach Süden durch den Gewürzgürtel in Richtung Jozani."
+        ],
+        [
+          "09:00",
+          "Parkeintritt & Briefing",
+          "Treffen Sie Ihren Waldführer. Insekten abweisend, Stimmen niedrig."
+        ],
+        [
+          "09:15",
+          "Rotkolobus-Tracking",
+          "Durch die Mahagonihaine zur gewohnten Truppe. Oft in wenigen Metern."
+        ],
+        [
+          "10:30 Uhr",
+          "Mangrovenpromenade",
+          "Raised Schleife über den Gezeitenwald. Krabben, Schlammfänger, Königsfischer."
+        ],
+        [
+          "11:30",
+          "Rückfahrt",
+          "Durch den Gewürzgürtel zu Ihrem Hotel."
+        ],
+        [
+          "12:30 Uhr",
+          "Abschaltung",
+          "Zurück in Ihrem Hotel."
+        ]
+      ]
+    },
+    "dolphins": {
+      "title": "Delfintour",
+      "category": "Wasser & Schnorcheln",
+      "eyebrow": "Frühanfang · respektvolles Betrachten",
+      "alt": "Bottlenose Delfine, Kizimkazi",
+      "description": "Eine Bootsfahrt aus dem Kizimkazi, um Bottlenose und Buckelwalfine nach delfinfreundlichen Prinzipien zu entdecken und möglicherweise neben ihnen zu schwimmen.",
+      "intro": "Ein 5-Uhr-Pickup, ein ruhiges Boot aus Kizimkazi, wo sich die Flaschenose und Buckelwalhülsen ernähren, bevor die Sonne aufgeht. Wir folgen in der Ferne - Motoren ab - und rutschen in das Wasser neben ihnen, wenn die Bedingungen es erlauben. Immer ethisch, nie verfolgt. Bis 10 Uhr und zurück in Ihrem Hotel mit dem Mittagessen.",
+      "duration": "Halbtägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 6",
+      "from": "Kizimkazi",
+      "highlights": [
+        "Flaschen- und Buckelwalfinhülsen",
+        "Respektvolle, delfinfreundliche Betrachtung",
+        "Frühzeitiger Start von Ruhewasser"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Halbtägig",
+          "5 Uhr – 11 Uhr"
+        ],
+        [
+          "von",
+          "Kizimkazi",
+          "Südküste"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 6",
+          "Kleines Boot"
+        ],
+        [
+          "Am besten für",
+          "Selbstbewusste Schwimmer",
+          "Kinder 10+"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Du wirst sehen",
+          "items": [
+            "Bottlenose und Buckelwalfine",
+            "Korallen- & Rifffische am zweiten Halt",
+            "Lokale Fischer gehen auf den Weg",
+            "Sonnenaufgang im Indischen Ozean"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Badeanzug + eine warme Schicht (früh!)",
+            "Riffsicheres Sonnenschutzmittel",
+            "GoPro, wenn Sie eine haben",
+            "Maske / Flossen enthalten; bringen Sie eigene, wenn Sie bevorzugen"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "05:00",
+          "Hotelabholung",
+          "Frühe Fahrt nach Süden zum Kizimkazi. Kaffee in einer Thermoskanne für die Straße."
+        ],
+        [
+          "06:00",
+          "Bootsabfahrt",
+          "Drücken Sie ab, wenn die Sonne aufgeht. Motoren ab, wenn wir den Pod sehen."
+        ],
+        [
+          "07:00",
+          "Delfinbegegnung",
+          "Slip in neben ihnen, wenn die Bedingungen richtig sind - nie gejagt, nie überfüllt. Sie werden kommen, wenn sie wollen."
+        ],
+        [
+          "08:30",
+          "Halt am Riff",
+          "Anker über der Koralle auf dem Rückweg. Rifffisch, die gelegentliche Schildkröte."
+        ],
+        [
+          "09:30 Uhr",
+          "Zurück zur Küste",
+          "Boot kehrt zum Hafen Kizimkazi zurück."
+        ],
+        [
+          "10:00 Uhr",
+          "Optionales Mittagessen am Strand",
+          "Gegrillter Fisch in einem Strandcafé. Add-on, nicht inbegriffen."
+        ],
+        [
+          "11:00",
+          "Abschaltung",
+          "Fahren Sie zurück zu Ihrem Hotel."
+        ]
+      ]
+    },
+    "sunset-rock": {
+      "title": "Sonnenuntergang & The Rock Restaurant",
+      "category": "Wellness & Luxus",
+      "eyebrow": "Abend · ikonisches Restaurant",
+      "alt": "Sonnenuntergang an der Ostküste Sansibars",
+      "description": "Ein Abend am Michamvi Beach zum Sonnenuntergang, auf Wunsch mit Besichtigung oder Abendessen im berühmten The Rock Restaurant in der Lagune.",
+      "intro": "Ein Abendausflug zum Michamvi Beach – dem einzigen Abschnitt der Ostküste Sansibars, der nach Westen ausgerichtet ist. Hier lässt sich der Sonnenuntergang direkt über dem Meer erleben. Es bleibt Zeit zum Spazieren, Schwimmen oder für einen Sundowner. Auf Wunsch besuchen Sie das The Rock Restaurant auf seinem Korallenfelsen in der Lagune.",
+      "duration": "Abends",
+      "priceSub": "pro Person",
+      "group": "Bis zu 6",
+      "from": "Ostküste",
+      "priceNote": "Sonnenuntergangserlebnis am The Rock",
+      "highlights": [
+        "Sonnenuntergang über dem Indischen Ozean",
+        "Zeit am Michamvi Beach",
+        "Optionaler Besuch bei The Rock Restaurant"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Abends",
+          "16 Uhr – 20 Uhr"
+        ],
+        [
+          "von",
+          "Ostküste",
+          "Hotelabholung"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 6",
+          "Privatfahrzeug"
+        ],
+        [
+          "Am besten für",
+          "Paare",
+          "Besondere Anlässe"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Auf der Reise",
+          "items": [
+            "Sonnenuntergang am Michamvi Beach",
+            "Optionaler Spaziergang zum The Rock Restaurant",
+            "Musik und Sundowner direkt am Strand",
+            "Ruhige Fahrt zurück entlang der Küste"
+          ]
+        },
+        {
+          "h": "Gut zu wissen",
+          "items": [
+            "Die Reservierung im The Rock Restaurant erfolgt separat",
+            "Beste Sicht von November bis März",
+            "Leichte Jacke für die Brise",
+            "Am besten barfuß"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "16:00 Uhr",
+          "Hotelabholung",
+          "Ihr Fahrer holt Sie für die Fahrt zur westlich ausgerichteten Halbinsel ab."
+        ],
+        [
+          "16:45",
+          "Ankunft in Michamvi",
+          "Zeit für einen Spaziergang am ruhigen Strand – die meisten Resorts liegen auf der anderen Seite der Küste."
+        ],
+        [
+          "17:30 Uhr",
+          "Sundowner am Strand",
+          "Genießen Sie einen Drink in einer Strandbar oder direkt auf dem Sand."
+        ],
+        [
+          "18:15",
+          "Sonnenuntergang",
+          "Der einzige Ort auf Zanzibar, an dem die Sonne direkt ins Meer fällt."
+        ],
+        [
+          "19:00",
+          "Optionales Rock Restaurant",
+          "Gehen oder waten Sie – je nach Gezeiten – für Fotos oder zum Abendessen hinüber. Die Reservierung erfolgt separat."
+        ],
+        [
+          "20:00",
+          "Rückfahrt",
+          "Ruhige Rückkehr entlang der Küstenstraße."
+        ]
+      ]
+    },
+    "snorkeling-tour": {
+      "title": "Schnorcheltour zur Blue Lagoon",
+      "category": "Wasser & Schnorcheln",
+      "eyebrow": "Riffschnorchel · ruhiges Wasser",
+      "alt": "Türkiswasser und Riff, Zanzibar",
+      "description": "Eine Schnorchelreise zur Blauen Lagune von Zanzibar - ruhiges, kristallklares Wasser, farbenfrohe Korallenriffe, tropische Fische und ein traditionelles Dhow-Segel.",
+      "intro": "Ein Morgen auf der Blauen Lagune - eine geschützte Bucht mit kristallklarem Wasser und flachen Korallen. Wir segeln auf einer traditionellen Dhow, legen Anker über dem Riff und schnorcheln zwischen Papageienfischen, Schmetterlingsfischen und gelegentlichen Schildkröten. Ruhiges Wasser, sanfte Strömungen, geeignet für Erstschnorchler.",
+      "duration": "Halbtägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 8",
+      "from": "Ostküste",
+      "priceNote": "Pro Person abhängig von der Gruppengröße",
+      "highlights": [
+        "Ruhiges, kristallklares Lagunenwasser",
+        "Buntes Korallen- und Rifffischleben",
+        "Traditionelles Dhow Segeln"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Halbtägig",
+          "9 Uhr – 13 Uhr"
+        ],
+        [
+          "von",
+          "Ostküste",
+          "Hotelabholung"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 8",
+          "Dau"
+        ],
+        [
+          "Am besten für",
+          "Erstmalige Schnorchler",
+          "Familien"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Du wirst sehen",
+          "items": [
+            "Rifffische und lebende Korallen",
+            "Seeigel und Seesterne",
+            "Gelegentliche Schildkrötensichtung",
+            "Ruhiges Segeln auf einer traditionellen Dhow"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Badeanzug, Handtuch, Trockenbeutel",
+            "Riffsicheres Sonnenschutzmittel",
+            "Hut und Sonnenbrille",
+            "Maske / Flossen enthalten; bringen Sie eigene, wenn Sie bevorzugen"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "09:00",
+          "Hotelabholung",
+          "Kurze Fahrt zum Dhow-Startpunkt."
+        ],
+        [
+          "09:30 Uhr",
+          "Boarding & Safety Briefing",
+          "Schwimmwesten angebracht, Masken und Flossen verteilt. Segelt auf."
+        ],
+        [
+          "10:00 Uhr",
+          "Erster Riffschnorchel",
+          "Ruhiges Flachwasser. Papageienfisch, Schmetterlingsfisch, Seeigel, Seestern."
+        ],
+        [
+          "11:00",
+          "Drift zum zweiten Standort",
+          "Frisches Obst an Deck, während wir über die Lagune segeln."
+        ],
+        [
+          "11:30",
+          "Zweiter Schnorchel",
+          "Etwas tiefere Korallen. Suchen Sie nach Schildkröten im Seegras."
+        ],
+        [
+          "12:30 Uhr",
+          "Langsamer Segelrücken",
+          "Lazy Return Bein mit der Brise auf dem Balken."
+        ],
+        [
+          "13:00",
+          "Abschaltung",
+          "Zurück in Ihrem Hotel."
+        ]
+      ]
+    },
+    "village-tour": {
+      "title": "Dorftour durch Bwejuu",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Lokales Leben · respektvoller Besuch",
+      "alt": "Dorf Bwejuu, Ostküste Zanzibar",
+      "description": "Ein geführter Spaziergang durch das Dorf Bwejuu - treffen Sie Einheimische, besuchen Sie Häuser, Geschäfte und Schulen und erleben Sie das authentische Zanzibari-Leben an der Ostküste.",
+      "intro": "Ein langsamer Spaziergang durch Bwejuu - ein Fischer- und Algenzuchtdorf an der Ostküste von Zanzibar. Sie treffen Einheimische, schauen in eine Schule und ein paar kleine Geschäfte, sehen, wie Seetang getrocknet und verkauft wird, und teilen Tee mit einer Familie, wenn das Timing funktioniert. Laufen Sie mit - und geben Sie dem Dorf zurück.",
+      "duration": "Halbtägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 6",
+      "from": "Bwejuu",
+      "priceNote": "Kulturdorferfahrung pro Person",
+      "highlights": [
+        "Treffen Sie Einheimische in ihren Häusern und Geschäften",
+        "Besuchen Sie eine Dorfschule",
+        "Seetangzucht und Fischerei aus nächster Nähe"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Halbtägig",
+          "9 Uhr – 13 Uhr"
+        ],
+        [
+          "von",
+          "Bwejuu",
+          "Ostküste"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 6",
+          "Zu Fuß"
+        ],
+        [
+          "Am besten für",
+          "Neugierige Reisende",
+          "Kulturelles Eintauchen"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Du wirst sehen",
+          "items": [
+            "Familienhäuser & Geschäfte",
+            "Eine Dorfschule",
+            "Algenfarmen bei Ebbe",
+            "Alltag an der Ostküste"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Bescheidenes Kleid (Schultern + Knie)",
+            "Ein kleines Geschenk beim Besuch eines Hauses",
+            "Bargeld zur Unterstützung lokaler Geschäfte",
+            "Geduld und Neugier"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "09:00",
+          "Hotelabholung",
+          "Kurzer Transfer ins Dorf."
+        ],
+        [
+          "09:30 Uhr",
+          "Ankunft in Bwejuu",
+          "Treffen Sie Ihren lokalen Guide - hier geboren und aufgewachsen."
+        ],
+        [
+          "09:45",
+          "Spaziergang durch das Dorf",
+          "Vergangene Familienhäuser und kleine Dukas (Läden). Stoppen, wo eingeladen."
+        ],
+        [
+          "10:30 Uhr",
+          "Besuchen Sie eine Dorfschule",
+          "Treffen Sie die Lehrer. Fotos OK mit Erlaubnis."
+        ],
+        [
+          "11:00",
+          "Algenfarmen bei Ebbe",
+          "Sehen Sie, wie die Hauptindustrie von Bwejuu funktioniert - hauptsächlich von Frauengenossenschaften."
+        ],
+        [
+          "12:00",
+          "Tee mit einer Familie",
+          "Wenn das Timing funktioniert - Chai, Kokosnussbrot, Konversation."
+        ],
+        [
+          "13:00",
+          "Abschaltung",
+          "Zurück in Ihrem Hotel."
+        ]
+      ]
+    },
+    "mnemba": {
+      "title": "Mnemba-Schnorcheln & Tour in den Norden",
+      "category": "Wasser & Schnorcheln",
+      "eyebrow": "Ganztags · klarstes Wasser",
+      "alt": "Luftaufnahme der Insel und Sandspits innerhalb des türkisfarbenen Riffrings Mnemba",
+      "description": "Ein ganztägiges Schnorcheln rund um den Mnemba Korallenring mit Entspannung am Nungwi Beach im Norden des Zanzibar.",
+      "intro": "Ein ganzer Tag, der die beiden besten Strecken der Nordküste Zanzibar kombiniert - ein Morgenschnorchel auf dem Mnemba Korallenring (einfach das klarste Wasser der Insel und das beste Riff), dann Transfer zum Nungwi zum Mittagessen, Strandzeit und eine langsame Fahrt zurück nach Süden.",
+      "duration": "Ganztägig",
+      "priceSub": "pro Person",
+      "priceNote": "Private Charter verfügbar",
+      "group": "Bis zu 8",
+      "from": "Matemwe / Nungwi",
+      "highlights": [
+        "Korallenringschnorchelstellen",
+        "Häufige Schildkröten- und Delfinsichtungen",
+        "Nachmittags am Nungwi Beach"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Ganztägig",
+          "8 Uhr – 16 Uhr"
+        ],
+        [
+          "von",
+          "Matemwe",
+          "Nordostküste"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 8",
+          "Private Charter"
+        ],
+        [
+          "Am besten für",
+          "Schnorchler",
+          "Flitterwochen"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Du wirst sehen",
+          "items": [
+            "Korallenring um Mnemba Insel",
+            "Grüne Schildkröten in den Flachen",
+            "Bottlenose Delfine (häufig)",
+            "Nungwi Strand & lokales Mittagessen"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Riffsicheres Sonnenschutzmittel (streng)",
+            "Badeanzug, Handtuch, Trockenbeutel",
+            "Unterwasserkamera, wenn Sie eine haben",
+            "Maske / Flossen enthalten; bringen Sie eigene, wenn Sie bevorzugen"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "08:00",
+          "Hotelabholung",
+          "Fahrt nach Matemwe an der Nordostküste."
+        ],
+        [
+          "09:00",
+          "Boot nach Mnemba",
+          "20 Minuten bis zum Korallenring."
+        ],
+        [
+          "09:30 Uhr",
+          "Erster Schnorchel",
+          "An der Riffwand — Zanzibar beste Sicht, oft 20m+."
+        ],
+        [
+          "11:00",
+          "Zweiter Schnorchel",
+          "Treiblinie entlang der Südseite. Bottlenose Delfine häufig zu dieser Zeit."
+        ],
+        [
+          "12:00",
+          "Übertragung auf Nungwi",
+          "Boots- oder Straßentransfer bis zur Nordspitze."
+        ],
+        [
+          "12:30 Uhr",
+          "Mittagessen am Strand",
+          "Langes, langsames Mittagessen auf dem Sand an einem lokalen Ort."
+        ],
+        [
+          "14:00 Uhr",
+          "Strandzeit bei Nungwi",
+          "Schwimmen, gehen Sie durch den Sand, beobachten Sie den Dhow-Yard bei der Arbeit."
+        ],
+        [
+          "15:30 Uhr",
+          "Rückfahrt",
+          "Süden durch den Gewürzgürtel."
+        ],
+        [
+          "16:00 Uhr",
+          "Abschaltung",
+          "Zurück in Ihrem Hotel."
+        ]
+      ]
+    },
+    "safari-blue": {
+      "title": "Safari Blue",
+      "category": "Wasser & Schnorcheln",
+      "eyebrow": "Unterschrift · meist gebucht",
+      "alt": "Traditionelles Dhow-Segeln in Menai Bay",
+      "description": "Ein ganztägiges Dhow-Segelabenteuer in Menai Bay - Sandbank-Picknicks, Mangrovenschwimmen, Schnorchelriffe und Meeresfrüchte-Mittagessen.",
+      "intro": "Ein ganzer Tag an Bord einer traditionellen Segeldhow - von Fumba in das Naturschutzgebiet Menai Bay. Mangrovenkanäle, ein Schnorchelstopp am Kwale-Riff, ein Mittagessen auf der Sandbank, ein Schwimmen in der natürlichen Lagune und die langsame Heimkehr, wenn die Sonne fällt.",
+      "duration": "Ganztägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 8",
+      "from": "Fumba",
+      "highlights": [
+        "Traditionelles Dhow Segeln",
+        "Sandbank Meeresfrüchte Picknick",
+        "Mangrovenschwimmen und Riffschnorcheln"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Ganztägig",
+          "8 Uhr – 16 Uhr"
+        ],
+        [
+          "von",
+          "Fumba",
+          "30min von Stone Town"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 8",
+          "Kleine Dhow"
+        ],
+        [
+          "Am besten für",
+          "Paare",
+          "Familien mit Kindern 8+"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Was du tun wirst",
+          "items": [
+            "Segeln Sie traditionelle Dhow aus Fumba",
+            "Schnorchelriffe rund um Kwale",
+            "Schwimmen einer natürlichen Mangrovenlagune",
+            "Sandbank Mittagessen, frisch gegrillt"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Badeanzug, Handtuch, Riff-sicheres Sonnenschutzmittel",
+            "Hut, Sonnenbrille, Trockenbeutel",
+            "Bargeld für Trinkgelder (USD oder TZS)",
+            "Wir bieten Masken & Flossen"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "07:30 Uhr",
+          "Pickup",
+          "Klimatisierter Van von Ihrem Hotel. Kaffee oder Tee in einer Thermoskanne."
+        ],
+        [
+          "08:30",
+          "Fumba Jetty & Boarding",
+          "Kurzes Sicherheitsgespräch vom Kapitän, Schwimmwesten angebracht, segelt auf. Die erste Stunde ist reines Segeln."
+        ],
+        [
+          "10:00 Uhr",
+          "Mangrovenkanalschwimmen",
+          "Drop Anker in einer versteckten Lagune. Das Wasser ist glasig und warm. Schwimmen, nicht schwimmen."
+        ],
+        [
+          "11:30",
+          "Schnorchelstopp, Kwale Riff",
+          "Masken, Flossen und etwa 45 Minuten im Wasser. Papageienfisch, Schmetterlingsfisch, der gelegentliche Riffhai."
+        ],
+        [
+          "13:00",
+          "Sandbank Mittagessen",
+          "Fang des Tages auf dem Grill. Kokosreis, frische Salate, Früchte. Wir sitzen auf Matten im Schatten."
+        ],
+        [
+          "14:30",
+          "Langsames Nachmittagssegel",
+          "Der Wind verschiebt sich an Land. Die meisten Menschen schlafen an Deck. Wir beeilen uns nicht."
+        ],
+        [
+          "16:00 Uhr",
+          "Zurück am Jetty",
+          "Schnell spülen, van zurück zum hotel. Haus von 5, sonnenmüde und salzverkrustet."
+        ]
+      ]
+    },
+    "fishing-kizimkazi": {
+      "title": "Angeltour in Kizimkazi",
+      "category": "Abenteuer & Sport",
+      "eyebrow": "Tiefsee · Großspielziele",
+      "alt": "Fischerboot vor Kizimkazi",
+      "description": "Ein Tiefseefischereitag vor dem Kizimkazi-Schelf - Thunfisch, Königsfisch, Marlin und Delfinfisch in reichen pelagischen Gewässern.",
+      "intro": "Ein Tiefsee-Angeltag vor dem Kizimkazi, wo der Kontinentalschelf schnell fällt und die großen Pelagics laufen. Zu den Zielen gehören Gelbflossenthun, Königsfisch, Marlin, Segelfisch und Dorado (Delphinfisch) in der Saison. Trolling- und Jigging-Ausrüstung vorhanden. Die Fänge, die wir halten, werden mit der Bootsbesatzung geteilt oder am Strand gegrillt.",
+      "duration": "Ganztägig",
+      "priceSub": "pro Schiff",
+      "group": "Bis zu 4 Angler",
+      "from": "Kizimkazi",
+      "season": "Sept – Mar",
+      "priceNote": "Tiefseefischerei pro Person",
+      "highlights": [
+        "Tiefseetrolling für pelagische Arten",
+        "Thunfisch, Königsfisch, Marlin und Dorado",
+        "Alle Fanggeräte und Köder enthalten"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Ganztägig",
+          "6 Uhr – 2 Uhr"
+        ],
+        [
+          "von",
+          "Kizimkazi",
+          "Südküste"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 4",
+          "pro Schiff"
+        ],
+        [
+          "Am besten für",
+          "Angler",
+          "Sept – Mar Saison"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Zielarten",
+          "items": [
+            "Gelbflossenthun und echter Bonito",
+            "Königsbarsch (Königsmakrelen)",
+            "Schwarzer und gestreifter Marlin",
+            "Segelfisch & Dorado in der Saison"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Sonnenschutz — ganztägig auf Wasser",
+            "Seekrankheit Tabletten, wenn anfällig",
+            "Ein Hut und polarisierte Sonnenbrille",
+            "Snacks (wir bieten Wasser)"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "06:00",
+          "Pickup",
+          "Frühe Fahrt nach Süden zum Start des Kizimkazi."
+        ],
+        [
+          "07:00",
+          "Bootsabfahrt",
+          "Vorbei am Riff und über das Regal, wo das tiefe Wasser beginnt."
+        ],
+        [
+          "07:30 Uhr",
+          "Trolling beginnt",
+          "Linien für Thunfisch, Königsfisch und Dorado. Kaffee an Deck."
+        ],
+        [
+          "09:00",
+          "An der Stange",
+          "Wenn sich die Stange beugt, nehmen Sie den Stuhl. Die Crew kümmert sich um den Rest."
+        ],
+        [
+          "11:30",
+          "Mittagessen an Bord",
+          "Sandwich, Obst, Softdrinks. Linien bleiben draußen."
+        ],
+        [
+          "12:30 Uhr",
+          "Letzter Drift",
+          "Letzte Stunde - oft die beste, mit der Flut."
+        ],
+        [
+          "13:30 Uhr",
+          "Zurück zum Hafen",
+          "Fang sortiert auf dem Dock - was Sie behalten, was mit der Crew geteilt wird."
+        ],
+        [
+          "14:00 Uhr",
+          "Abschaltung",
+          "Fahren Sie zurück zu Ihrem Hotel."
+        ]
+      ]
+    },
+    "local-fishing": {
+      "title": "Angeln mit einheimischen Fischern",
+      "category": "Abenteuer & Sport",
+      "eyebrow": "Traditionell · mit lokalen Fischern",
+      "alt": "Traditionelle Fischereidhow, Zanzibar",
+      "description": "Ein traditioneller Angelmorgen mit Zanzibari-Fischern an Bord einer Holzdhow - einfache Ausrüstung, Handleinen und ein echter Tag auf See.",
+      "intro": "Ein Morgen auf See mit einer kleinen Crew von Zanzibari-Fischern - auf einer Holzdhow, die die Küstenriffe mit Handleinen und einfacher traditioneller Ausrüstung bearbeitet. Ziele sind die alltäglichen Fische, die die Insel füttern: Thunfisch, Barrakuda, Zackenbarsch, Schnapper und Queenfish. Eine echte Arbeitsreise, keine Charter - langsamer, ruhiger und viel näher daran, wie die Küste seit Jahrhunderten fischt.",
+      "duration": "Halbtägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 4",
+      "from": "Ostküste",
+      "priceNote": "Lokale Fischereierfahrung pro Person",
+      "highlights": [
+        "Segeln Sie mit lokalen Fischern auf einer Holzdau",
+        "Handleinenfischerei an Küstenriffen",
+        "Thunfisch, Barracuda, Zackenbarsch und Schnapper"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Halbtägig",
+          "6 Uhr – 11 Uhr"
+        ],
+        [
+          "von",
+          "Ostküste",
+          "Hotelabholung"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 4",
+          "Holzdau"
+        ],
+        [
+          "Am besten für",
+          "Authentische Erfahrung",
+          "Alle Fähigkeiten"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Zielarten",
+          "items": [
+            "Thunfisch und Queenfish",
+            "Barracuda",
+            "Grouper und Snapper",
+            "Was auch immer der Tag bringt"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Hut und starke Sonnencreme",
+            "Ein leichtes Langarmhemd",
+            "Geschlossene Schuhe (Deck ist rau)",
+            "Bargeld, um die Crew zu kippen"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "06:00",
+          "Hotelabholung",
+          "Kurze Fahrt zum Dhow-Start."
+        ],
+        [
+          "06:30",
+          "Ablegen mit der Dhow",
+          "Holzboot, Latein, kein Motor. Raus mit der Morgenbrise."
+        ],
+        [
+          "07:00",
+          "Arbeiten an Küstenriffen",
+          "Hand-line down. Die Crew zeigt Ihnen, wie - einfach, aber effektiv."
+        ],
+        [
+          "09:00",
+          "Tee an Bord",
+          "Kochen Sie Wasser auf einem kleinen Ofen. Süßes Chai mit der Crew."
+        ],
+        [
+          "09:30 Uhr",
+          "Versuchen Sie einen zweiten Spot",
+          "Bewegen Sie sich entlang des Riffs, wo die Queenfish laufen."
+        ],
+        [
+          "10:30 Uhr",
+          "Segeln zurück",
+          "Mit der Morgenbrise auf dem Balken."
+        ],
+        [
+          "11:00",
+          "Abschaltung",
+          "Zurück in Ihrem Hotel."
+        ]
+      ]
+    },
+    "mangrove": {
+      "title": "Mangroventour in der Chwaka Bay",
+      "category": "Natur & Tierwelt",
+      "eyebrow": "Natur · Seevögel · Mittagessen",
+      "alt": "Mangrovenkanäle und flaches türkisfarbenes Wasser von oben gesehen, Zanzibar",
+      "description": "Eine Bootstour durch die Chwaka Bay Mangroven - Schnorcheln, Seevogellebensräume, Mangrovenkanäle und ein lokales Mittagessen in der Bucht.",
+      "intro": "Ein Morgen auf den Chwaka Bay Mangroven - dem größten Mangrovenwald in Zanzibar und einem der reichsten Seevogellebensräume an der ostafrikanischen Küste. Wir bewegen uns mit dem lokalen Fischerboot durch die Kanäle, halten für einen Schnorchel, wo sich die Bucht öffnet, und machen eine Pause für ein Suaheli-Mittagessen in einer kleinen Dorfküche.",
+      "duration": "Halbtägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 8",
+      "from": "Chwaka Bay",
+      "priceNote": "Mangrovenökosystemerfahrung",
+      "highlights": [
+        "Lokales Fischerboot durch Mangrovenkanäle",
+        "Schnorchelstopp an der Bucht",
+        "Swahili Mittagessen in einem Fischerdorf"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Halbtägig",
+          "9 Uhr – 2 Uhr"
+        ],
+        [
+          "von",
+          "Chwaka Bay",
+          "Ostküste"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 8",
+          "Lokales Boot"
+        ],
+        [
+          "Am besten für",
+          "Birders & Naturfans",
+          "Langsame Reisende"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Du wirst sehen",
+          "items": [
+            "Gezeiten-Mangrovenkanäle",
+            "Reiher, Königsfischer und Seeadler",
+            "Krabben- und Schlammkipperkolonien",
+            "Schnorchelstopp an der Bucht"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Insektenschutzmittel",
+            "Badeanzug und Handtuch",
+            "Sonnenhut und lange Ärmel",
+            "Ferngläser, wenn Sie sie haben"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "09:00",
+          "Hotelabholung",
+          "Weiterfahrt zum Chwaka Bucht an der Ostküste."
+        ],
+        [
+          "09:45",
+          "Bootsbord",
+          "Holzfischerboot - die Art, mit der Einheimische in diesen Kanälen Fallen stellen."
+        ],
+        [
+          "10:00 Uhr",
+          "Mangrovenkanäle",
+          "Langsames Paddeln durch den Gezeitenwald. Suchen Sie nach Krabben, Schlammkippern, der gelegentlichen Monitor-Echse."
+        ],
+        [
+          "11:00",
+          "Vogelbeobachtungsstopp",
+          "Reiher, Königsfischer, Fischadler. Bringen Sie Ferngläser mit, wenn Sie sie haben."
+        ],
+        [
+          "11:45",
+          "Schnorcheln, wo sich die Bucht öffnet",
+          "Ruhiges, seichtes Wasser - anderes Riffleben als das offene Meer."
+        ],
+        [
+          "12:45",
+          "Mittagessen im Dorf",
+          "Swahili Spread gekocht in einem kleinen Dorf Küche."
+        ],
+        [
+          "14:00 Uhr",
+          "Abschaltung",
+          "Zurück in Ihrem Hotel."
+        ]
+      ]
+    },
+    "sandbank-picnic": {
+      "title": "Sandbank-Picknick bei Pange",
+      "category": "Wasser & Schnorcheln",
+      "eyebrow": "Kombi · Gefängnisinsel + Sandbank",
+      "alt": "Pange Sandbank, Zanzibar",
+      "description": "Ein entspannter Ganztag, der Prison Island mit Freizeit, Schnorcheln und einem langen Mittagessen auf der Pange Sandbank verbindet.",
+      "intro": "Ein entspannter ganzer Tag, der einen Gefängnisinselmorgen kombiniert - Aldabraschildkröten, einen kurzen Spaziergang, die Gefängnisruinen - mit einem Nachmittag auf der Pange Sandbank, einem Streifen weißen Sandes, der bei Ebbe einige Kilometer vor Stone Town auftaucht. Schnorcheln vom Boot, schwimmen, sonnenbaden und Mittagessen auf dem Sand serviert.",
+      "duration": "Ganztägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 8",
+      "from": "Stone Town",
+      "priceNote": "Geteilter Tourpreis pro Person",
+      "highlights": [
+        "Morgens auf Prison Island",
+        "Nachmittags auf der Pange Sandbank",
+        "Schnorcheln, Schwimmen und Strand Mittagessen"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Ganztägig",
+          "9 Uhr – 16 Uhr"
+        ],
+        [
+          "von",
+          "Stone Town",
+          "Forodhani-Anleger"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 8",
+          "Schnellboot"
+        ],
+        [
+          "Am besten für",
+          "Leichter, entspannter Tag",
+          "Familien"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Dein Tag",
+          "items": [
+            "Prison Island & Riesenschildkröten",
+            "Boot nach Pange Sandbank",
+            "Schwimmen, Schnorcheln und Sonnenbaden",
+            "Mittagessen auf dem Sand serviert"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Badeanzug, Handtuch, Trockenbeutel",
+            "Riffsicheres Sonnenschutzmittel",
+            "Hut und Sonnenbrille",
+            "Bargeld für Parkgebühren, wenn nicht im Voraus bezahlt"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "09:00",
+          "Hotelabholung",
+          "Fahrt zum Forodhani-Anleger."
+        ],
+        [
+          "09:30 Uhr",
+          "Schnellboot nach Changuu",
+          "Überfahrt nach Prison Island."
+        ],
+        [
+          "10:00 Uhr",
+          "Schildkröten und Ruinen von Aldabra",
+          "Spazieren Sie zwischen den Riesen und durch das alte Gefängnis."
+        ],
+        [
+          "11:30",
+          "Boot nach Pange Sandbank",
+          "20-minütige Überfahrt zur Sandbank."
+        ],
+        [
+          "12:00",
+          "Settle auf dem Sand",
+          "Matten, Sonnenschirme und Schatten für Sie ausgelegt."
+        ],
+        [
+          "13:00",
+          "Mittagessen serviert",
+          "Gegrillte Meeresfrüchte, Salate, frische Früchte auf dem Sand."
+        ],
+        [
+          "14:00 Uhr",
+          "Schnorcheln, Schwimmen, Sonnenbaden",
+          "Freizeit in flachem, klarem Wasser."
+        ],
+        [
+          "15:30 Uhr",
+          "Boot zurück zu Stone Town"
+        ],
+        [
+          "16:00 Uhr",
+          "Abschaltung",
+          "Zurück in Ihrem Hotel."
+        ]
+      ]
+    },
+    "cave": {
+      "title": "Schwimmen in der Maalum-Höhle",
+      "category": "Natur & Tierwelt",
+      "eyebrow": "Süßwasser · malerisches Höhlenbecken",
+      "alt": "Maalum natürlicher Höhlenpool, Zanzibar",
+      "description": "Ein halbtägiger Besuch in der natürlichen Höhle von Maalum - einem zum Himmel offenen Süßwasserhöhlenpool, einem der schönsten Bademöglichkeiten von Zanzibar.",
+      "intro": "Ein halber Tag nach Maalum Cave - ein natürliches Sinkloch im Korallenlappen, mit hängenden Wurzeln umringt und zum Himmel hin offen. Der Pool im Inneren ist Süßwasser, kühl und brusttief. Eine kurze Leiterabfahrt, ein langes ruhiges Schwimmen und Zeit, im Schatten oben zu sitzen. Eine perfekte Pause vom Salz und der Hitze der Küste.",
+      "duration": "Halbtägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 8",
+      "from": "Südzentral",
+      "priceNote": "Höhlenschwimmen & Erkundungstour",
+      "highlights": [
+        "Natürlicher Süßwasserhöhlenpool",
+        "Cool, ruhig schwimmen aus der Sonne",
+        "Einer der fotogensten Spots von Zanzibar"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Halbtägig",
+          "9 Uhr – 13 Uhr"
+        ],
+        [
+          "von",
+          "Südzentral",
+          "Hotelabholung"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 8",
+          "Minivan"
+        ],
+        [
+          "Am besten für",
+          "Easy Nature Day",
+          "Familien & Kinder"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Was du tun wirst",
+          "items": [
+            "Kurzer Spaziergang zum Höhleneingang",
+            "Leiterabstieg in den Pool",
+            "Langes, ruhiges Schwimmen in frischem Wasser",
+            "Zeit zum Sitzen und Fotografieren oben"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Badeanzug und Handtuch",
+            "Wasserschuhe, wenn Sie sie haben",
+            "Eine wasserdichte Telefontasche",
+            "Barzahlung für die Eintrittsgebühr"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "09:00",
+          "Hotelabholung",
+          "Fahren Sie nach Süden durch den Gewürzgürtel."
+        ],
+        [
+          "09:45",
+          "Ankunft in Maalum",
+          "Kurze Einführungs- und Eintrittsgebühr am Gate."
+        ],
+        [
+          "10:00 Uhr",
+          "Leiterabstieg",
+          "Eine kurze Holzleiter hinunter in das offene Sinkhole."
+        ],
+        [
+          "10:30 Uhr",
+          "Langes Schwimmen",
+          "Kühles Süßwasser, brusttief. Die Wurzeln hängen von oben herab."
+        ],
+        [
+          "11:30",
+          "Sitzen im Schatten oben",
+          "Kaffee oder frischer Saft im kleinen Café am Rand."
+        ],
+        [
+          "12:30 Uhr",
+          "Abschaltung",
+          "Zurück in Ihrem Hotel."
+        ]
+      ]
+    },
+    "north-nungwi": {
+      "title": "Tour in den Norden nach Nungwi",
+      "category": "Wasser & Schnorcheln",
+      "eyebrow": "Strandtag · Nordküste",
+      "alt": "Luftaufnahme des Nungwi Strandstreifens, Nord Zanzibar",
+      "description": "Ein Sightseeing-Tag an der Nordküste rund um Nungwi - die besten Strände von Zanzibar, Dhow-Erbauer, das Schildkrötenaquarium und ein langes, langsames Mittagessen auf dem Sand.",
+      "intro": "Ein Tag an der Nordküste - Nungwi hat die breitesten Strände von Zanzibar, das beste Schwimmen bei jeder Flut und einen funktionierenden Hafen, in dem Dhows immer noch von Hand gebaut werden. Wir halten am Dhow-Hof, besuchen das natürliche Schildkrötenaquarium in Mnarani und machen eine Pause für ein langes Mittagessen auf dem Sand. Los, leicht, keine Eile.",
+      "duration": "Ganztägig",
+      "priceSub": "pro Person",
+      "group": "Bis zu 8",
+      "from": "Nungwi",
+      "priceNote": "Nordküstenerfahrung pro Person",
+      "highlights": [
+        "Die besten Badestrände auf der Insel",
+        "Dhow-Builder im Hafen",
+        "Mnarani Schildkröten-Aquarium"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "Ganztägig",
+          "9 Uhr – 17 Uhr"
+        ],
+        [
+          "von",
+          "Nungwi",
+          "Nordküste"
+        ],
+        [
+          "Gruppe",
+          "Bis zu 8",
+          "Minivan"
+        ],
+        [
+          "Am besten für",
+          "Einfacher Strandtag",
+          "Alle Altersgruppen"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Dein Tag",
+          "items": [
+            "Fahrt entlang der Westküste",
+            "Besuchen Sie den Hafen von Dhow-Building",
+            "Aktivitäten in der Nähe von Mnarani Turtle Aquarium",
+            "Langes Mittagessen und Nachmittag am Strand"
+          ]
+        },
+        {
+          "h": "Bringen",
+          "items": [
+            "Badeanzug und Handtuch",
+            "Riffsicheres Sonnenschutzmittel",
+            "Bargeld für das Mittagessen und das Aquarium",
+            "Ein Buch - es wird Ausfallzeiten geben"
+          ]
+        }
+      ],
+      "timeline": [
+        [
+          "09:00",
+          "Hotelabholung",
+          "Fahren Sie die Westküste hinauf in Richtung Nungwi."
+        ],
+        [
+          "10:30 Uhr",
+          "Mnarani Schildkröten-Aquarium",
+          "Besuchen Sie den natürlichen Gezeitenpool. Fütterungszeiten, wenn Sie es richtig timen."
+        ],
+        [
+          "11:30",
+          "Dhowbauhafen",
+          "Beobachten Sie, wie Boote mit jahrhundertealten Techniken von Hand gebaut werden."
+        ],
+        [
+          "12:30 Uhr",
+          "Mittagessen am Strand",
+          "Langes, langsames Mittagessen am Strand."
+        ],
+        [
+          "14:00 Uhr",
+          "Schwimmen & Entspannen",
+          "Die besten Badestrände der Insel - das tiefe Wasser von Nungwi bei jeder Flut."
+        ],
+        [
+          "16:00 Uhr",
+          "Rückfahrt nach Süden"
+        ],
+        [
+          "17:00 Uhr",
+          "Abschaltung",
+          "Zurück in Ihrem Hotel."
+        ]
+      ]
+    },
+    "cooking-coffee": {
+      "title": "Kochkurs & Kaffeeerlebnis",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Hands-on · Markt zum Teller",
+      "alt": "Zanzibar Kochkurs",
+      "description": "Ein Marktbesuch, ein Spaziergang auf der Gewürzfarm, ein praktischer Swahili-Kochkurs und eine Zanzibar-Kaffeezeremonie auf einem Stone Town-Dach.",
+      "duration": "Ganztägig",
+      "from": "Stone Town",
+      "group": "Bis zu 8",
+      "priceNote": "Traditionelles Kochen und Kaffeeerlebnis",
+      "highlights": [
+        "Lokaler Marktbesuch",
+        "Kochen Sie eine Swahili-Mahlzeit von Grund auf neu",
+        "Dach Zanzibar Kaffee-Zeremonie"
+      ]
+    },
+    "street-food": {
+      "title": "Streetfood- & Nachtmarkttour",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Abends · Nachtmarkt",
+      "alt": "Forodhani Nachtmarkt",
+      "description": "Ein Abend durch Forodhani Night Market und Darajani - Zanzibar Pizza, Urojo-Suppe, Mischkaki, frische Meeresfrüchte und Zuckerrohrsaft.",
+      "duration": "Abends",
+      "from": "Stone Town",
+      "group": "Bis zu 8",
+      "priceNote": "Stone Town Street Food Tour",
+      "highlights": [
+        "Forodhani Nachtmarkt Verkostung",
+        "Zanzibar Pizza, Mischkaki, Urojo",
+        "Darajani Markt bei Nacht"
+      ]
+    },
+    "healer-herbal": {
+      "title": "Traditionelle Heiler & Pflanzenmedizin",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Kultur · Heilpflanzen",
+      "alt": "Traditionelle Swahili Heiler",
+      "description": "Treffen Sie einen traditionellen Swahili-Heiler und erfahren Sie mehr über lokale Heilpflanzen, pflanzliche Heilmittel und die seit Generationen verwendeten spirituellen Praktiken.",
+      "duration": "Halbtägig",
+      "from": "Südzentral",
+      "group": "Bis zu 6",
+      "priceNote": "Traditionelle Heiler & Kräutererfahrung",
+      "highlights": [
+        "Treffen Sie einen traditionellen Heiler",
+        "Lokale Heilpflanzen identifizieren",
+        "Hören Sie Geschichten von Swahili Heilung"
+      ]
+    },
+    "village-workshop": {
+      "title": "Dorfleben & Handwerksworkshop",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Hands-on · mit lokalen Familien",
+      "alt": "Dorf Handwerkswerkstatt, Zanzibar",
+      "description": "Ein tieferes Dorferlebnis - Kokosnussweben, Kochen, Landwirtschaft, Keramik und traditionelles Handwerk, mit Mittagessen in einem lokalen Familienhaus.",
+      "duration": "Ganztägig",
+      "from": "Ostküste",
+      "group": "Bis zu 6",
+      "priceNote": "Lokale Handwerkswerkstatt Erfahrung",
+      "highlights": [
+        "Kokosweberei und Keramik",
+        "Hands-on Landwirtschaft und Kochen",
+        "Mittagessen mit einer lokalen Familie"
+      ]
+    },
+    "private-sunset-dhow-dinner": {
+      "title": "Private Dhow-Fahrt bei Sonnenuntergang mit Dinner",
+      "category": "Wellness & Luxus",
+      "eyebrow": "Privat · Luxus · Essen",
+      "alt": "Private Dhow bei Sonnenuntergang mit Abendessen Setup",
+      "description": "Eine private Luxusdhow bei Sonnenuntergang - Meeresfrüchte-Dinner, Swahili-Musik, tropische Getränke und Kerzenlicht unter den Sternen.",
+      "duration": "Abends",
+      "from": "Stone Town / Nungwi",
+      "group": "2 – 12 Gäste",
+      "priceNote": "Private Sonnenuntergang Dhow Dinner Erfahrung",
+      "highlights": [
+        "Private Dhow Charter",
+        "Seafood Dinner & Swahili Musik",
+        "Kerzenlicht und Sterne"
+      ]
+    },
+    "nakupenda": {
+      "title": "Picknick auf der Nakupenda-Sandbank",
+      "category": "Wasser & Schnorcheln",
+      "eyebrow": "Sandbank · Türkiswasser",
+      "alt": "Nakupenda-Sandbank auf Sansibar",
+      "description": "Ein entspannter halber Tag auf der berühmten Nakupenda Sandbank - Schnorcheln, Mittagessen mit Meeresfrüchten, tropische Früchte, Sonnenbaden und kristallklares Wasser.",
+      "duration": "Halber oder ganzer Tag",
+      "from": "Stone Town",
+      "group": "Bis zu 10",
+      "priceNote": "Pro Person in geteilter Gruppe",
+      "highlights": [
+        "Boot zur Sandbank",
+        "Schnorcheln & Schwimmen im klaren Wasser",
+        "Seafood Mittagessen auf dem Sand"
+      ]
+    },
+    "mangrove-kayak": {
+      "title": "Kajakabenteuer durch die Mangroven",
+      "category": "Abenteuer & Sport",
+      "eyebrow": "Kajak · ruhige Natur",
+      "alt": "Kajakfahrt durch Zanzibar Mangroven",
+      "description": "Ein geführtes Kajak durch Mangrovenwälder und versteckte Wasserstraßen - friedliche Natur, Vogelwelt, lokale Dörfer und (optional) Aussicht auf den Sonnenuntergang.",
+      "duration": "Halbtägig",
+      "from": "Ostküste",
+      "group": "Bis zu 6",
+      "priceNote": "Mangrove Kajak-Abenteuer",
+      "highlights": [
+        "Kajak durch Mangrovenkanäle",
+        "Vogelwelt & ruhige Natur",
+        "Optionaler Sonnenuntergangslauf"
+      ]
+    },
+    "chumbe": {
+      "title": "Korallenpark auf Chumbe Island",
+      "category": "Wasser & Schnorcheln",
+      "eyebrow": "Eco · geschütztes Riff",
+      "alt": "Korallenpark auf Chumbe Island, Sansibar",
+      "description": "Ein Tag im geschützten Chumbe Marine Park - schnorcheln Sie eines der gesündesten Riffe Ostafrikas, spazieren Sie auf dem Naturpfad und erfahren Sie mehr über die Naturschutzarbeit.",
+      "duration": "Ganztägig",
+      "from": "Stone Town",
+      "group": "Bis zu 12",
+      "priceNote": "Marine Park Tagesausflug pro Person",
+      "highlights": [
+        "Pristine geschütztes Riff",
+        "Wald Natur Spaziergang",
+        "Erhaltungserziehung"
+      ]
+    },
+    "seaweed-coop": {
+      "title": "Algenfarm & Frauenkooperative",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Nachhaltig · Frauengeführt",
+      "alt": "Frauen arbeiten die Algenfarmen bei Ebbe, Zanzibar Ostküste",
+      "description": "Ein Morgen auf den Algenfarmen mit den Frauen, die sie führen - sehen Sie Ernte, Trocknung und wie die Algen in Seifen und Hautpflege verwandelt werden.",
+      "duration": "Halbtägig",
+      "from": "Ostküste",
+      "group": "Bis zu 6",
+      "priceNote": "Genossenschaftstour von Algenbetrieben",
+      "highlights": [
+        "Besuchen Sie eine Frauenkooperative",
+        "Siehe Ernte bei Ebbe",
+        "Probenprodukte auf Algenbasis"
+      ]
+    },
+    "turtle-conservation": {
+      "title": "Tour zum Schutz der Meeresschildkröten",
+      "category": "Natur & Tierwelt",
+      "eyebrow": "Erhaltung · alle Altersgruppen",
+      "alt": "Meeresschildkröte in der Lagune Zanzibar",
+      "description": "Ein Besuch in einem Zanzibar-Schildkrötenrettungs- und Rehabilitationszentrum - erfahren Sie mehr über die Arbeit, füttern Sie die Schildkröten, schwimmen Sie optional in der natürlichen Lagune.",
+      "duration": "Halbtägig",
+      "from": "Nungwi / Mnarani",
+      "group": "Bis zu 8",
+      "priceNote": "Schildkrötenschutzerfahrung",
+      "highlights": [
+        "Turtle Rescue & Reha-Zentrum",
+        "Fütterungssitzung",
+        "Optionales natürliches Lagunenschwimmen"
+      ]
+    },
+    "butterfly-center": {
+      "title": "Schmetterlingszentrum & Naturspaziergang",
+      "category": "Natur & Tierwelt",
+      "eyebrow": "Familie · leicht zu Fuß",
+      "alt": "Tropischer Schmetterling, Zanzibar",
+      "description": "Eine Führung durch die tropischen Schmetterlingsgärten in der Nähe von Jozani - Erhaltungsarbeiten, Identifikationsspaziergänge und die breitere Biodiversität des Waldes.",
+      "duration": "Halbtägig",
+      "from": "Jozani",
+      "group": "Bis zu 8",
+      "priceNote": "Eingang zum Butterfly Center",
+      "highlights": [
+        "Tropische Schmetterlingsgärten",
+        "Identifizierungsweg",
+        "Oft gepaart mit Jozani"
+      ]
+    },
+    "stargazing": {
+      "title": "Sternebeobachtung am Strand",
+      "category": "Wellness & Luxus",
+      "eyebrow": "Nacht · Astronomie",
+      "alt": "Nachthimmel über Zanzibar Strand",
+      "description": "Eine ruhige nächtliche Strandsitzung - Teleskopbeobachtung, afrikanische Himmelslegenden, ein kleines Lagerfeuer und (optional) Astrofotografie.",
+      "duration": "Abends",
+      "from": "Ostküste",
+      "group": "Bis zu 8",
+      "priceNote": "Beach Stargazing Erfahrung",
+      "highlights": [
+        "Teleskop & Sky-Legend Storytelling",
+        "Feuer am Strand",
+        "Fakultative Astrofotografie"
+      ]
+    },
+    "organic-spice": {
+      "title": "Bio-Gewürz- & Kräuterfarm",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Öko · Nachhaltige Landwirtschaft",
+      "alt": "Bio-Gewürzfarm, Zanzibar",
+      "description": "Eine aktualisierte Gewürztour konzentrierte sich auf den ökologischen Landbau, Heilkräuter, Nachhaltigkeit und die Permakulturpraktiken, die in den kleineren Betrieben verwendet werden.",
+      "duration": "Halbtägig",
+      "from": "Stone Town",
+      "group": "Bis zu 6",
+      "priceNote": "Bio-Spice Farm Erfahrung",
+      "highlights": [
+        "Ökologische Zertifizierungsbetriebe",
+        "Heilkräutergarten",
+        "Permakultur in der Praxis"
+      ]
+    },
+    "turtle-nesting": {
+      "title": "Freiwilligeneinsatz zum Schutz nistender Schildkröten",
+      "category": "Festivals & Saisonale",
+      "eyebrow": "Erhaltung · Nistsaison",
+      "alt": "Turtle Nesting Strand, Zanzibar",
+      "description": "Eine saisonale Naturschutzaktivität - Säuberungen am Strand, Überwachung von Schildkrötennest und Umweltbildung mit den lokalen Marineteams.",
+      "duration": "Halbtägig",
+      "from": "Ost-/Nordküste",
+      "group": "Bis zu 8",
+      "season": "Mar — Aug",
+      "priceNote": "Beobachtung von Schildkrötenschachteln",
+      "highlights": [
+        "Nest Monitoring mit Rangern",
+        "Beach Cleaning Beitrag",
+        "Umweltbriefing"
+      ]
+    },
+    "kitesurfing": {
+      "title": "Kitesurf-Unterricht & Touren",
+      "category": "Abenteuer & Sport",
+      "eyebrow": "Kite · alle Ebenen",
+      "alt": "Kitesurfen in Paje, Zanzibar",
+      "description": "Professionelles Kitesurfen in Paje und Jambiani - Anfängerunterricht, fortgeschrittene Kliniken und Downwind-Kitensafaris mit voller Ausrüstung.",
+      "duration": "Halber oder ganzer Tag",
+      "from": "Paje / Jambiani",
+      "group": "1–4",
+      "season": "Jun – Sep · Dec – Feb",
+      "priceNote": "Kitesurfstunde pro Stunde",
+      "highlights": [
+        "IKO-zertifizierte Ausbilder",
+        "Vollausrüstung",
+        "Downwind Kite Safaris"
+      ]
+    },
+    "horse-riding": {
+      "title": "Reiten am Strand",
+      "category": "Abenteuer & Sport",
+      "eyebrow": "Strandfahrt · Sonnenuntergang Option",
+      "alt": "Reiten am Strand von Zanzibar",
+      "description": "Eine malerische Strandfahrt - sanfte Fahrten für Anfänger, Sonnenuntergang und Schwimmen mit Pferden Optionen und private romantische Fahrten auf Anfrage.",
+      "duration": "1 – 2 Stunden",
+      "from": "Ostküste",
+      "group": "1–6",
+      "priceNote": "Beach Horse Reiterlebnis",
+      "highlights": [
+        "Beach Ride in jedem Tempo",
+        "Sonnenuntergang & Schwimmen mit Pferden",
+        "Private romantische Option"
+      ]
+    },
+    "quad-bike": {
+      "title": "Quad-Safari-Abenteuer",
+      "category": "Abenteuer & Sport",
+      "eyebrow": "ATV · Gelände",
+      "alt": "Quad Bike Safari, Zanzibar",
+      "description": "Eine Offroad-Quad-Rad-Route durch Dörfer, Plantagen und versteckte Strände - kurze kulturelle Haltestellen und tropische Obstproben auf dem Weg.",
+      "duration": "Halbtägig",
+      "from": "Ost-/Nordküste",
+      "group": "Bis zu 8",
+      "priceNote": "Quad Bike Abenteuer",
+      "highlights": [
+        "Dorf & Plantage Route",
+        "Versteckte Strandstopps",
+        "Fruchtverkostungspause"
+      ]
+    },
+    "jet-ski": {
+      "title": "Jetski-Abenteuer",
+      "category": "Abenteuer & Sport",
+      "eyebrow": "Geschwindigkeit · Ocean Run",
+      "alt": "Jet-Ski vor Zanzibar Küste",
+      "description": "Eine Hochgeschwindigkeitsfahrt entlang der Küste - geführte Routen zu versteckten Stränden und Buchten mit klarem Wasser oder Freestyle auf dem offenen Wasser.",
+      "duration": "1 – 2 Stunden",
+      "from": "Ost-/Nordküste",
+      "group": "1–6",
+      "priceNote": "Startpreis für Jet-Ski-Vermietung",
+      "highlights": [
+        "Geführte Küstenroute",
+        "Haltestellen am Strand",
+        "Freestyle Option"
+      ]
+    },
+    "parasailing": {
+      "title": "Parasailing-Erlebnis",
+      "category": "Abenteuer & Sport",
+      "eyebrow": "Luft · Meerblick",
+      "alt": "Parasailing über Zanzibar",
+      "description": "Ein kurzer, aufregender Lift über den Ozean - Luftaufnahmen der Küste und des türkisfarbenen Wassers mit Tandem- und Solo-Optionen.",
+      "duration": "30-60 Minuten",
+      "from": "Nordküste",
+      "group": "1–2",
+      "priceNote": "Parasailing Erfahrung pro Person",
+      "highlights": [
+        "Tandem- oder Alleinflug",
+        "Ansichten der Küstenlinie",
+        "GoPro Option"
+      ]
+    },
+    "skydive": {
+      "title": "Fallschirmsprung über Sansibar",
+      "category": "Abenteuer & Sport",
+      "eyebrow": "Premium · Tandem-Fallschirmsprung",
+      "alt": "Tandem Fallschirmsprung über Zanzibar",
+      "description": "Ein Tandem-Fallschirmsprung über der Zanzibar-Küste - Aussicht auf den offenen Ozean, Landung am Strand und Full-HD-Video des Sprungs.",
+      "duration": "Halbtägig",
+      "from": "Nordküste",
+      "group": "1 (Tandem)",
+      "priceNote": "Tandem Skydiving Erfahrung",
+      "highlights": [
+        "Tandem mit zertifiziertem Instructor",
+        "HD Video vom Sprung",
+        "Strandlandung"
+      ]
+    },
+    "dhow-building": {
+      "title": "Traditioneller Dhow-Bau",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Hands-on · Handwerkserbe",
+      "alt": "Dhow wird auf Nungwi Yard gebaut",
+      "description": "Eine praktische kulturelle Erfahrung mit lokalen Dhow-Handwerkern - Holzbearbeitung, traditionelle Bootsbauvorführungen, Dorfgeschichten und Erfrischungen.",
+      "intro": "Treten Sie mit den Handwerkern, die die Holzboote von Zanzibar immer noch von Hand bauen, in einen Dauhof ein. Lernen Sie die Form des Rumpfes kennen, probieren Sie einfache Holzbearbeitung aus, hören Sie die Geschichten hinter dem Handel und verbinden Sie die maritime Kultur der Küste mit den Booten, die Sie noch auf dem Wasser sehen.",
+      "duration": "2 - 4 Stunden",
+      "from": "Nungwi",
+      "group": "Bis zu 6",
+      "priceSub": "pro Person",
+      "priceNote": "Geteilte Erfahrung ab $ 45 · privat ab $ 120 · Premium-Workshop ab $ 180",
+      "pricing": {
+        "sharedExperience": {
+          "currency": "USD"
+        },
+        "privateExperience": {
+          "currency": "USD"
+        },
+        "premiumWorkshop": {
+          "currency": "USD"
+        }
+      },
+      "highlights": [
+        "Lokale Dhow Handwerker Erfahrung",
+        "Hands-on Holzbearbeitung",
+        "Traditionelle Demonstration des Bootsbaus"
+      ],
+      "includes": [
+        "Lokale Dhow Handwerker Erfahrung",
+        "Hands-on Holzbearbeitung",
+        "Traditionelle Demonstration des Bootsbaus",
+        "Kulturelles Storytelling",
+        "Dorfbesuch",
+        "Erfrischung"
+      ],
+      "optionalAddons": [
+        "Sunset Dhow Kreuzfahrt",
+        "Mittagessen mit Meeresfrüchten",
+        "Fotopaket",
+        "Privatverkehr"
+      ],
+      "facts": [
+        [
+          "Dauer",
+          "2 - 4 Stunden",
+          "Flexible Werkstattlänge"
+        ],
+        [
+          "von",
+          "Nungwi",
+          "Hotel Abholung optional"
+        ],
+        [
+          "Gruppe",
+          "Geteilt oder privat",
+          "Skalierbar für Gruppen"
+        ],
+        [
+          "Am besten für",
+          "Kultur und Handwerk",
+          "Alle Altersgruppen"
+        ]
+      ],
+      "cols": [
+        {
+          "h": "Eingeschlossen",
+          "items": [
+            "Lokale Dhow Handwerker Erfahrung",
+            "Hands-on Holzbearbeitung",
+            "Traditionelle Demonstration des Bootsbaus",
+            "Kulturelles Storytelling",
+            "Dorfbesuch",
+            "Erfrischung"
+          ]
+        },
+        {
+          "h": "Optionale Add-ons",
+          "items": [
+            "Sunset Dhow Kreuzfahrt",
+            "Mittagessen mit Meeresfrüchten",
+            "Fotopaket",
+            "Privatverkehr"
+          ]
+        }
+      ]
+    },
+    "advanced-diving": {
+      "title": "Tauchgänge für Fortgeschrittene",
+      "category": "Abenteuer & Sport",
+      "eyebrow": "Nur zertifizierte Taucher",
+      "alt": "Taucher, Zanzibar",
+      "description": "PADI-geführte Tauchgänge an fortgeschrittenen Standorten — Leven Bank und Tumbatu — Drift-Tauchgänge, Korallengärten, Schildkröten, Barrakuda, Thunfisch und Riffhaie.",
+      "duration": "Halber oder ganzer Tag",
+      "from": "Nungwi / Matemwe",
+      "group": "Bis zu 6",
+      "priceNote": "Zertifiziertes Tauchpaket",
+      "highlights": [
+        "Leven Bank und Tumbatu",
+        "Drift & Wall Tauchgänge",
+        "Big-Fish Begegnungen"
+      ]
+    },
+    "transparent-kayak-sup": {
+      "title": "Transparentes Kajak & Stand-up-Paddling",
+      "category": "Wasser & Schnorcheln",
+      "eyebrow": "Glasboden · leichtes Wasser",
+      "alt": "Transparentes Kajak in türkisfarbenem Wasser",
+      "description": "Ein entspanntes Paddel in transparenten Kajaks und Stand-up-Paddleboards - sehen Sie das Riffleben und kleine Meerestiere unter Ihnen, während Sie kreuzen.",
+      "duration": "1 – 2 Stunden",
+      "from": "Ost-/Nordküste",
+      "group": "Bis zu 6",
+      "priceNote": "Kajak & SUP Erfahrung pro Person",
+      "highlights": [
+        "Transparente Kajaks",
+        "Stand-up-Paddleboards",
+        "Ruhige Wasserriffroute"
+      ]
+    },
+    "ocean-sand-combo": {
+      "title": "Abenteuer zwischen Ozean & Sand",
+      "category": "Abenteuer & Sport",
+      "eyebrow": "Premium · Multiaktivitätstag",
+      "alt": "Multiaktiver Ozeantag, Zanzibar",
+      "description": "Ein Premium-Ganztag kombiniert Jet-Ski, Parasailing, Schnorcheln, Kajakfahren und eine Dhow-Kreuzfahrt bei Sonnenuntergang - jede Wasseraktivität auf einmal.",
+      "duration": "Ganztägig",
+      "from": "Nordküste",
+      "group": "1–4",
+      "priceNote": "Ocean & Sandbank Combo Abenteuer",
+      "highlights": [
+        "Jet Ski + Parasail am Morgen",
+        "Schnorchel & Kajak Mittag",
+        "Sunset Dhow schließt"
+      ]
+    },
+    "historical-ruins": {
+      "title": "Tour zu Sansibars historischen Ruinen",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Erbe · Königlicher und Sklavenhandel",
+      "alt": "Ruinen des Mtoni-Palastes, Zanzibar",
+      "description": "Ein Erbe Schaltung - Mtoni Palace, Maruhubi Palace, Kidichi Persian Baths, Mangapwani Sklavenkammern und die weniger bekannten Sultan Stätten.",
+      "duration": "Ganztägig",
+      "from": "Stone Town",
+      "group": "Bis zu 6",
+      "priceNote": "Historische Ruinen & Heritage Tour",
+      "highlights": [
+        "Mtoni & Maruhubi Paläste",
+        "Kidichi Persische Bäder",
+        "Sklavenkammern von Mangapwani"
+      ]
+    },
+    "hidden-alleys": {
+      "title": "Verborgene Gassen von Stone Town",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Langsam · Backstreets gehen",
+      "alt": "Enge Wohnbahn in Stone Town, Zanzibar",
+      "description": "Ein tieferer Stone Town-Spaziergang durch versteckte Gassen, geheime Innenhöfe, geschnitzte Türen, Kunststudios und die Nachbarschaften, die die meisten Besucher nicht sehen.",
+      "duration": "Halbtägig",
+      "from": "Stone Town",
+      "group": "Bis zu 6",
+      "priceNote": "Versteckte Stone Town Wandererfahrung",
+      "highlights": [
+        "Versteckte Gassen und Höfe",
+        "Lokale Kunststudios",
+        "Authentische Swahili Nachbarschaften"
+      ]
+    },
+    "persian-baths-sultan": {
+      "title": "Persische Bäder & Erbe der Sultane",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Königliches Erbe",
+      "alt": "Persische Bäder von Kidichi auf Sansibar",
+      "description": "Zanzibar's persischer Einfluss im Detail - Kidichi und Hamamni Bäder, die Palastruinen und die Familiengeschichten des omanischen Sultanats.",
+      "duration": "Halbtägig",
+      "from": "Stone Town",
+      "group": "Bis zu 6",
+      "priceNote": "Persische Bäder & Sultan Geschichte Tour",
+      "highlights": [
+        "Kidichi & Hamamni Bäder",
+        "Palastruine",
+        "Geschichten vom Sultanat"
+      ]
+    },
+    "mangapwani-cave": {
+      "title": "Korallenhöhle & Sklavenkammern von Mangapwani",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Geschichte · Korallenhöhle",
+      "alt": "Sklavenkammern von Mangapwani, Zanzibar",
+      "description": "Eine Fahrt entlang der Westküste zur Mangapwani-Korallenhöhle und den unterirdischen Kammern, die während des illegalen Sklavenhandels nach der Abschaffung verwendet wurden.",
+      "duration": "Halbtägig",
+      "from": "Stone Town",
+      "group": "Bis zu 6",
+      "priceNote": "Mangapwani Höhle & Sklavenkammern Tour",
+      "highlights": [
+        "Korallenhöhle Mangapwani",
+        "Unterirdische Slavekammern",
+        "Küstenspaziergang & ruhiger Strand"
+      ]
+    },
+    "dhow-heritage": {
+      "title": "Dhow-Kultur & Seefahrtsgeschichte",
+      "category": "Kultur & Geschichte",
+      "eyebrow": "Maritime Geschichte",
+      "alt": "Traditionelle Dhow, Zanzibar",
+      "description": "Eine Tour durch das maritime Erbe von Zanzibar - Dhow-Kultur, Bootsbautraditionen und die Jahrhunderte des Handels im Indischen Ozean, die die Inseln geprägt haben.",
+      "duration": "Halbtägig",
+      "from": "Stone Town",
+      "group": "Bis zu 6",
+      "priceNote": "Traditionelles Dhow-Erbe",
+      "highlights": [
+        "Dhow Yards & Maritime Museum",
+        "Handelsgeschichte des Indischen Ozeans",
+        "Bootsbauer-Besuch"
+      ]
+    },
+    "sauti-busara": {
+      "title": "Sauti za Busara Festival",
+      "category": "Festivals & Saisonale",
+      "eyebrow": "Festival · Panafrikanische Musik",
+      "alt": "Sauti za Busara Festival, Stone Town",
+      "description": "Zanzibar's größtes afrikanisches Musikfestival - Live-Konzerte im alten Fort, Karnevalsumzüge durch Stone Town, Essensstände und späte Nächte.",
+      "duration": "Mehrtägig",
+      "from": "Stone Town",
+      "group": "Offen",
+      "season": "Anfang Februar",
+      "priceNote": "4-tägiger Sauti za Busara Festivalpass",
+      "highlights": [
+        "Live Konzerte im Old Fort",
+        "Straßenkarneval Parade",
+        "Panafrikanisches Essen & Nachtleben"
+      ]
+    },
+    "ziff": {
+      "title": "Zanzibar International Film Festival",
+      "category": "Festivals & Saisonale",
+      "eyebrow": "Festival · Film & Kunst",
+      "alt": "ZIFF-Screening im Old Fort",
+      "description": "ZIFF - Ostafrikas größtes Filmfestival mit Vorführungen, Kunstausstellungen, Workshops, Musikaufführungen und Stone Town Nachtleben.",
+      "duration": "Mehrtägig",
+      "from": "Stone Town",
+      "group": "Offen",
+      "season": "Juli",
+      "priceNote": "ZIFF Festivalpass",
+      "highlights": [
+        "Freiluftsiebungen",
+        "Kunstausstellungen & Workshops",
+        "Musik & Nachtleben Pop-ups"
+      ]
+    },
+    "water-sports-festival": {
+      "title": "Strand- & Wassersportfestival Sansibar",
+      "category": "Festivals & Saisonale",
+      "eyebrow": "Festival · Ozeansport",
+      "alt": "Wassersportfestival, Zanzibar",
+      "description": "Eine saisonale Sport- und Unterhaltungswoche - Dhow-Rennen, Kitesurfen, Kajakfahren, Strandspiele, lokale Aufführungen und Wasserwettbewerbe.",
+      "duration": "Mehrtägig",
+      "from": "Ost-/Nordküste",
+      "group": "Offen",
+      "season": "August",
+      "priceNote": "Zugang zum Wassersportfestival",
+      "highlights": [
+        "Dhow Rennen & Kite Wettbewerbe",
+        "Strandspiele & Wettbewerbe",
+        "Lokale Leistungen"
+      ]
+    },
+    "private-vip-island": {
+      "title": "Privater VIP-Inseltrip",
+      "category": "Wellness & Luxus",
+      "eyebrow": "Premium · vollständig privat",
+      "alt": "Private Dhow Charter, Zanzibar",
+      "description": "Ein ganz privater Tag - Premium-Dhow, Privatkoch, Schnorcheln, Strand-Setup, Getränke, Fotografie und eine personalisierte Reiseroute, Ende an Ende.",
+      "duration": "Ganztägig",
+      "from": "Stone Town",
+      "group": "2 – 12 Gäste",
+      "priceNote": "Private VIP Insel Flucht",
+      "highlights": [
+        "Private Dhow & Chef",
+        "Kundenspezifische Reiseroute",
+        "Fotograf inklusive"
+      ]
+    },
+    "wellness-yoga": {
+      "title": "Wellness- & Yoga-Retreat",
+      "category": "Wellness & Luxus",
+      "eyebrow": "Langsam · restaurativ",
+      "alt": "Strand Yoga in Zanzibar",
+      "description": "Ein Wellness-Tag, der Strand-Yoga, Meditation, gesunde Suaheli-Küche, Massagetherapie, Klangheilung und Meeresentspannung kombiniert.",
+      "duration": "Halber oder ganzer Tag",
+      "from": "Ostküste",
+      "group": "Bis zu 8",
+      "priceNote": "Wellness & Yoga Beach Session",
+      "highlights": [
+        "Beach Yoga und Meditation",
+        "Klangheilungssitzung",
+        "Massage und gesunde Küche"
+      ]
+    },
+    "mafia-whale-shark": {
+      "title": "Walhai-Erlebnis auf Mafia Island",
+      "category": "Festivals & Saisonale",
+      "eyebrow": "Saisonal · Schwimmen mit Walhaien",
+      "alt": "Walhai, Mafia Island",
+      "description": "Eine saisonale Reise von Zanzibar nach Mafia Island - schwimmen Sie mit Walhaien während ihrer Fütterungssaison und erkunden Sie eines der reichsten marinen Ökosysteme von Tanzania.",
+      "duration": "Mehrtägig",
+      "from": "Mafia Island",
+      "group": "Bis zu 6",
+      "season": "Okt. – Februar",
+      "priceNote": "Schnorchelerfahrung von Walhaien",
+      "highlights": [
+        "Schwimmen mit Walhaien",
+        "Mafia Marine Park Schnorchel",
+        "Ruhiger, Low-Impact-Inselaufenthalt"
+      ]
+    }
+  },
+  "excursionCombinations": {
+    "forest-spice": {
+      "combo": [
+        "Jozani Wald",
+        "Spice Tour"
+      ],
+      "title": "Wald & Gewürze",
+      "desc": "Rote colobus-affen am morgen, plantagenspaziergang und suaheli-mittagessen am nachmittag. Der klassische Natur- und Kulturtag, alles vor Sonnenuntergang.",
+      "length": "Ein Tag",
+      "idealFor": [
+        "Naturliebhaber",
+        "Familien",
+        "Kultur neugierige Reisende"
+      ],
+      "rhythm": [
+        [
+          "Vormittag",
+          "Jozani Wald",
+          "Verfolge rote colobus-affen und gehe die mangrovenpromenade, bevor der tag heiß wird."
+        ],
+        [
+          "Mittag",
+          "Übertragung durch den Gewürzgürtel",
+          "Bewegen Sie sich landeinwärts mit der Zeit für Fotos, Obststände und ein entspanntes Tempo."
+        ],
+        [
+          "Nachmittag",
+          "Spice Tour",
+          "Gehen Sie durch die Plantage, probieren Sie tropische Früchte und beenden Sie mit einem Swahili-Mittagessen."
+        ]
+      ]
+    },
+    "full-stone-town-day": {
+      "combo": [
+        "Spice Tour",
+        "Stone Town"
+      ],
+      "title": "Ein ganzer Tag in Stone Town",
+      "desc": "Gewürzplantage am Morgen, Mittagessen am Meer, Erbe Spaziergang durch Stone Town am Nachmittag. Haus um 17 Uhr mit einem Kopf voller Geschichten.",
+      "length": "Ein Tag",
+      "idealFor": [
+        "Geschichtsfans",
+        "Lebensmittelliebhaber",
+        "Erstmalige Zanzibar Gäste"
+      ],
+      "rhythm": [
+        [
+          "Vormittag",
+          "Spice Tour",
+          "Beginnen Sie landeinwärts mit Nelken, Zimt, Vanille, Obstverkostung und einem Plantagen-Mittagessen."
+        ],
+        [
+          "Früher Nachmittag",
+          "Stone Town Mittagspause",
+          "Machen Sie eine Pause am Meer, bevor Sie zu Fuß in die Altstadt ziehen."
+        ],
+        [
+          "Nachmittag",
+          "Historische Stadtrundfahrt",
+          "Erkunden Sie geschnitzte Türen, Märkte, das arabische Fort, Kathedralen, Moscheen und alte Handelsstraßen."
+        ]
+      ]
+    },
+    "south-coast-nature": {
+      "combo": [
+        "Dolphin Tour",
+        "Jozani Wald"
+      ],
+      "title": "Natur an der Südküste",
+      "desc": "Sonnenaufgang Delfine aus Kizimkazi, dann eine kurze Fahrt nach Jozani für die roten colobus Affen. Beides vor 14 Uhr. Mittagessen an einem lokalen Ort am Strand auf dem Heimweg.",
+      "length": "Ein Tag",
+      "idealFor": [
+        "Wildlife Lover",
+        "Frühaufsteher",
+        "Aktive Paare"
+      ],
+      "rhythm": [
+        [
+          "Sonnenaufgang",
+          "Dolphin Tour",
+          "Gehen Sie früh aus Kizimkazi für respektvolle Delfinbeobachtung, während das Wasser ruhig ist."
+        ],
+        [
+          "Spätmorgens",
+          "Jozani Wald",
+          "Gehen Sie die Waldwege und Mangrovenpromenade mit einem lokalen Naturführer."
+        ],
+        [
+          "Mittagessen",
+          "Haltestelle an der Südküste",
+          "Beenden Sie mit einem einfachen Mittagessen am Strand, bevor Sie zu Ihrem Hotel zurückkehren."
+        ]
+      ]
+    },
+    "tortoises-alleys": {
+      "combo": [
+        "Stone Town",
+        "Gefängnisinsel"
+      ],
+      "title": "Riesenschildkröten & Gassen",
+      "desc": "Heritage Walk am Morgen, während es noch kühl ist, Boot nach Changuu nach dem Mittagessen für die Aldabra-Schildkröten. Die zwei besten halbtage, zu einem genäht.",
+      "length": "Ein Tag",
+      "idealFor": [
+        "Familien",
+        "Geschichtsfans",
+        "Easy-paced Reisende"
+      ],
+      "rhythm": [
+        [
+          "Vormittag",
+          "Historische Stadtrundfahrt",
+          "Gehen Sie Stone Town vor den Hitzebauten: Märkte, geschnitzte Türen, alte Festungen und die Küste."
+        ],
+        [
+          "Mittagessen",
+          "Forodhani oder Seafront",
+          "Pause für ein entspanntes Mittagessen in der Nähe der Anlegestelle."
+        ],
+        [
+          "Nachmittag",
+          "Prison Island Bootsfahrt",
+          "Kreuzen Sie nach Changuu für Riesenschildkröten, Gefängnisruinen, Strandzeit und Korallenbecken."
+        ]
+      ]
+    },
+    "reef-mangrove": {
+      "combo": [
+        "Schnorcheltour",
+        "Mangroven"
+      ],
+      "title": "Riff & Mangroven",
+      "desc": "Ein Morgenschnorchel am Riff der Blauen Lagune, dann fahren Sie zur Chwaka Bay für die Mangrovenkanäle und ein Swahili-Mittagessen in einem Fischerdorf.",
+      "length": "Ein Tag",
+      "idealFor": [
+        "Wasserliebhaber",
+        "Naturreisende",
+        "Langsame Abenteuergäste"
+      ],
+      "rhythm": [
+        [
+          "Vormittag",
+          "Blaue Lagune Schnorcheln",
+          "Beginnen Sie in ruhigem Riffwasser mit Masken, Flossen, tropischen Fischen und einer entspannten Bootsbesatzung."
+        ],
+        [
+          "Mittag",
+          "Mittagessen im Dorf",
+          "Bewegung in Richtung Chwaka Bucht für eine lokale Mahlzeit und einen langsameren Inselrhythmus."
+        ],
+        [
+          "Nachmittag",
+          "Mangroventour",
+          "Erkunden Sie Mangrovenkanäle, Seevögel und die ruhigere Seite des Küsten Zanzibar."
+        ]
+      ]
+    },
+    "north-coast-all-day": {
+      "combo": [
+        "Mnemba",
+        "Nungwi"
+      ],
+      "title": "Ein ganzer Tag an der Nordküste",
+      "desc": "Schnorcheln Sie den Mnemba-Korallenring beim ersten Licht, dann bis zum Nungwi zum Mittagessen und am Nachmittag - das klarste Wasser von Zanzibar und seine breitesten Strände an einem einzigen Tag.",
+      "length": "Ein langer Tag",
+      "idealFor": [
+        "Strandliebhaber",
+        "Schnorchler",
+        "Gäste außerhalb des Nordens"
+      ],
+      "rhythm": [
+        [
+          "Vormittag",
+          "Mnemba Schnorcheln",
+          "Boot früh für das klarste Wasser und die besten Riffbedingungen rund um Mnemba."
+        ],
+        [
+          "Mittagessen",
+          "Nungwi Küste",
+          "Fahren Sie nach Norden zum Mittagessen in der Nähe des Strandes und Zeit zum Umsetzen."
+        ],
+        [
+          "Nachmittag",
+          "Reise in den Norden",
+          "Schwimmen Sie, besuchen Sie den Dhow-Hof oder das Schildkrötenaquarium und genießen Sie den breitesten Strand von Zanzibar."
+        ]
+      ]
+    }
+  },
+  "safariProducts": {
+    "ngorongoro-tarangire": {
+      "category": "Nordkreis",
+      "alt": "Schwarzes Nashorn auf den Ebenen während einer Ngorongoro und Tarangire Safari",
+      "duration": "5 Nächte",
+      "from": "Arusha / Zanzibar",
+      "priceSub": "pp",
+      "rib": "5 Nächte · Ab $ 2.890 pp",
+      "title": "Ngorongoro & Tarangire",
+      "intro": "Steigen Sie den Krater für die Big Five beim ersten Licht ab und bewegen Sie sich dann zu den Elefantenherden und Baobabs von Tarangire. Eine klassische Northern Circuit Paarung.",
+      "days": [
+        {
+          "d": "Tag 1",
+          "h": "Fliegen Sie nach Arusha → Tarangire",
+          "p": "Fahren Sie 2 Stunden zum Camp. Abends Game Drive zwischen den Baobabs."
+        },
+        {
+          "d": "Tag 2",
+          "h": "Tarangire Elefanten",
+          "p": "Ganztägige Fahrt entlang des Tarangire River. Hunderte Elefanten in den trockenen Monaten."
+        },
+        {
+          "d": "Tag 3",
+          "h": "Überführung in den Kraterrand",
+          "p": "Fahrt über den Lake Manyara (optionaler Halt für baumkletternde Löwen). Lodge thront am Kraterrand."
+        },
+        {
+          "d": "Tag 4",
+          "h": "Kraterboden",
+          "p": "Pre-Dawn Abstieg. Schwarzes Nashorn, Löwenstolz, Flamingo-Wohnungen. Picknick in Ngoitokitok Springs."
+        },
+        {
+          "d": "Tag 5",
+          "h": "Olduvai und zurück",
+          "p": "Besuchen Sie die Olduvai-Schlucht (Leakeys „Wiege der Menschheit). Fliegen Sie zurück zu Zanzibar."
+        }
+      ],
+      "includes": "✓ Alle Flüge & Transfers · ✓ Lodge-Upgrades · ✓ Kratergebühren · ✓ Kulturbesuch inklusive",
+      "positioning": "Premium Mittelklasse",
+      "includesList": [
+        "Parkgebühren",
+        "Professioneller Safari Guide",
+        "4x4 Safari Fahrzeug",
+        "Unterkunft",
+        "Mahlzeiten",
+        "Flughafentransfers"
+      ],
+      "upsells": [
+        {
+          "name": "Luxus-Lodge Upgrade"
+        },
+        {
+          "name": "Privatfahrzeug"
+        },
+        {
+          "name": "Heißluftballon Safari"
+        }
+      ],
+      "priceRange": "$ 2.890- $ 3.290 pp"
+    },
+    "serengeti-migration": {
+      "category": "Migration Safari",
+      "alt": "Zebraherde auf einer Serengeti-Strecke während der Migrationssaison",
+      "duration": "3 Nächte",
+      "from": "Zanzibar / Arusha",
+      "priceSub": "pp",
+      "rib": "3 Nächte · Ab $ 2.190 pp",
+      "title": "Große Migration in der Serengeti",
+      "intro": "Verfolgen Sie die große Gnusüberquerung auf dem Mara River. Zeltlager, morgendliche Pirschfahrten, Sundowner auf den Kopjes.",
+      "days": [
+        {
+          "d": "Tag 1",
+          "h": "Fliegen Zanzibar → Seronera",
+          "p": "Bush Flug über Arusha. Am Nachmittag Game Drive im zentralen Serengeti."
+        },
+        {
+          "d": "Tag 2",
+          "h": "Mara Flussübergang",
+          "p": "Ganztägige Fahrt nach der Migration. Picknick-Mittagessen in den Ebenen. Optionaler Ballon im Morgengrauen."
+        },
+        {
+          "d": "Tag 3",
+          "h": "Westlicher Korridor und zurück",
+          "p": "Räubergebiet — Clans von Löwen, Geparden, Hyänen. Fliegen Sie zurück zu Zanzibar bei Sonnenuntergang."
+        }
+      ],
+      "includes": "✓ Bush Flüge · ✓ Alle Mahlzeiten · ✓ Parkgebühren · ✓ Pro Guide",
+      "positioning": "Starker Verkäufer",
+      "includesList": [
+        "Serengeti Parkgebühren",
+        "Safarifahrzeug",
+        "Führung",
+        "Unterkunft",
+        "Mahlzeiten"
+      ],
+      "upsells": [
+        {
+          "name": "Ballon Safari"
+        },
+        {
+          "name": "Luxus Tented Camp"
+        },
+        {
+          "name": "Fly-In Upgrade"
+        }
+      ],
+      "priceRange": "$2,190-$2,690 pp"
+    },
+    "nyerere-selous": {
+      "category": "Südlicher Kreis",
+      "alt": "Büffel und Ranger in der Nähe von Feuchtgebieten im Nyerere Nationalpark",
+      "duration": "4 Nächte",
+      "from": "Zanzibar",
+      "priceSub": "pp",
+      "rib": "4 Nächte · Ab $2.490 pp",
+      "title": "Wildnis im Nyerere (Selous)",
+      "intro": "Bootssafaris auf dem Rufiji, Wandern mit bewaffneten Rangern, Fliegencamping unter den Sternen. Die Straße ist weniger gereist.",
+      "days": [
+        {
+          "d": "Tag 1",
+          "h": "Zanzibar → Selous",
+          "p": "50-Minuten-Flug nach Mtemere Landebahn. Nachmittags Bootssafari bei Sonnenuntergang."
+        },
+        {
+          "d": "Tag 2",
+          "h": "Wandersafari",
+          "p": "Morgens Buschspaziergang mit Ranger. Am Nachmittag Pirschfahrt — Wildhundegebiet."
+        },
+        {
+          "d": "Tag 3",
+          "h": "Fly Camp",
+          "p": "Bewegen Sie sich in ein Fly-Camp tiefer im Reservat. Lagerfeuer, keine Zäune, volle Sterne."
+        },
+        {
+          "d": "Tag 4",
+          "h": "Rufiji nach Zanzibar",
+          "p": "Letzte Bootssafari im Morgengrauen (Hippos, Krokodile, Fischadler). Fliegen Sie mittags zurück."
+        }
+      ],
+      "includes": "✓ Boot & Wandersafaris · ✓ Fly-Camping-Kit · ✓ Alle Ausrüstung & Mahlzeiten · ✓ Ranger-Gebühren",
+      "positioning": "Premium-Safari in der Wildnis",
+      "includesList": [
+        "Boot Safari",
+        "Wandern Safari",
+        "Luxuscamp",
+        "Führung",
+        "Inlandsflüge"
+      ],
+      "upsells": [
+        {
+          "name": "Privates Fly Camp"
+        },
+        {
+          "name": "Luxus-Riverside Suite"
+        }
+      ],
+      "priceRange": "$2,490-$2,990 pp"
+    },
+    "ruaha-big-cat": {
+      "category": "Südlicher Kreis",
+      "alt": "Männlicher Löwe ruht im Gras auf einer Ruaha Großkatzen-Safari",
+      "duration": "3 Nächte",
+      "from": "Zanzibar",
+      "priceSub": "pp",
+      "rib": "3 Nächte · Ab $2.590 pp",
+      "title": "Auf den Spuren der Großkatzen in Ruaha",
+      "intro": "Ein Süd-Circuit-Favorit für Löwenstolze, Leopardensichtungen und weniger Fahrzeuge als die nördlichen Parks.",
+      "days": [
+        {
+          "d": "Tag 1",
+          "h": "Zanzibar → Ruaha",
+          "p": "Morgendlicher Buschflug in Ruaha. Abends Pirschfahrt entlang des Great Ruaha River."
+        },
+        {
+          "d": "Tag 2",
+          "h": "Predator Tracking",
+          "p": "Ganztägige Fahrt durch Prime Lion und Leoparden Lebensraum mit Busch Mittagessen im Park."
+        },
+        {
+          "d": "Tag 3",
+          "h": "Baobabs & Rückkehr",
+          "p": "Sunrise Game Drive zwischen Baobab-Tälern, dann Nachmittagsflug zurück zum Zanzibar."
+        }
+      ],
+      "includes": "✓ Bush Flüge · ✓ Vollpension · ✓ Parkgebühren · ✓ Professioneller Guide",
+      "positioning": "Exklusive Predator Safari",
+      "includesList": [
+        "Ruaha Parkgebühren",
+        "Luxus-Bush Camp",
+        "Führung",
+        "4x4 Safari",
+        "Inlandsflüge"
+      ],
+      "upsells": [
+        {
+          "name": "Privater Guide"
+        },
+        {
+          "name": "Fly Camping"
+        }
+      ],
+      "priceRange": "$2.590-$3.190 pp"
+    },
+    "mahale-chimp": {
+      "category": "Western Circuit",
+      "alt": "Wildtiere im Grasland, die eine westliche Tanzania Safariroute darstellen",
+      "duration": "4 Nächte",
+      "from": "Zanzibar / Kigoma",
+      "priceSub": "pp",
+      "rib": "4 Nächte · Ab $ 3,890 pp",
+      "title": "Schimpansen in Mahale & Tanganjikasee",
+      "intro": "Verfolgen Sie wilde Schimpansen in den Mahale Mountains und entspannen Sie sich an den weißen Sandufern des Tanganyika-Sees.",
+      "days": [
+        {
+          "d": "Tag 1",
+          "h": "Zanzibar → Kigoma → Mahale",
+          "p": "Flug nach Westen nach Kigoma, dann Bootstransfer zum Lager am See."
+        },
+        {
+          "d": "Tag 2",
+          "h": "Schimpansen Trekking",
+          "p": "Morgendliche Waldwanderung mit Trackern. Am Nachmittag schwimmen und Kajak auf Tanganyika."
+        },
+        {
+          "d": "Tag 3",
+          "h": "Zweiter Schimpansentreck",
+          "p": "Eine weitere geführte Wanderung für bessere Schimpansenbegegnungen und optionalen Dorfbesuch."
+        },
+        {
+          "d": "Tag 4",
+          "h": "Lake Morgen und Rückkehr",
+          "p": "Sonnenaufgang am Strand, Boot nach Kigoma und Flugverbindung zurück."
+        }
+      ],
+      "includes": "✓ Inlandsflüge · ✓ Bootstransfers · ✓ Schimpansengenehmigungen · ✓ Vollpension",
+      "positioning": "Ultra-Premium-Expedition",
+      "includesList": [
+        "Chimp Trekking",
+        "Luxus Lodge",
+        "Bootstransfers",
+        "Inlandsflüge",
+        "Alle Mahlzeiten"
+      ],
+      "upsells": [
+        {
+          "name": "Privates Schimpansenerlebnis"
+        },
+        {
+          "name": "Luxus Beach Suite"
+        }
+      ],
+      "priceRange": "$ 3,890- $ 4,890 pp"
+    },
+    "katavi-frontier": {
+      "category": "Western Circuit",
+      "alt": "Cape Buffalo Herde Nahaufnahme auf einer abgelegenen Katavi Safari",
+      "duration": "5 Nächte",
+      "from": "Zanzibar",
+      "priceSub": "pp",
+      "rib": "5 Nächte · Ab $ 4.290 pp",
+      "title": "Abenteuer im abgelegenen Katavi",
+      "intro": "Für erfahrene Safari-Reisende: dramatische Trockensaison-Spielkonzentrationen in einem der wildesten, am wenigsten besuchten Parks von Tanzania.",
+      "days": [
+        {
+          "d": "Tag 1",
+          "h": "Zanzibar - Katavi",
+          "p": "Mehrbeiniger Buschflug zum westlichen Tanzania, mit Sonnenuntergang Game Drive bei der Ankunft."
+        },
+        {
+          "d": "Tag 2",
+          "h": "Auenbestände",
+          "p": "Verfolge Büffel-Superherden und Löwenkoalitionen über Katavi-Auen."
+        },
+        {
+          "d": "Tag 3",
+          "h": "Flussbecken und Flussbetten",
+          "p": "Erkunden Sie saisonale Flussbetten voller Nilpferde und Krokodile."
+        },
+        {
+          "d": "Tag 4",
+          "h": "Volle Wildnis Tag",
+          "p": "Deep-Park Game Drives mit Picknick-Mittagessen und optionaler Nachtfahrt."
+        },
+        {
+          "d": "Tag 5",
+          "h": "Final Drive & Fly Out",
+          "p": "Morgens Spielschleife vor den Rückflügen nach Osten und weiter Transfer."
+        }
+      ],
+      "includes": "✓ Bush-Flüge · ✓ Luxus-Fly-Camp · ✓ Parkgebühren · Expert Guide Team",
+      "positioning": "Exklusive Wildnis-Expedition",
+      "includesList": [
+        "Remote Safari Erfahrung",
+        "Luxuscamp",
+        "Bush Flüge",
+        "Privater Guide",
+        "Alle Parkgebühren"
+      ],
+      "upsells": [
+        {
+          "name": "Privates Expeditionsfahrzeug"
+        },
+        {
+          "name": "Fly Camp Erfahrung"
+        }
+      ],
+      "priceRange": "$4,290-$5,490 pp"
+    },
+    "tarangire-ngorongoro-short": {
+      "category": "Last-Minute Safari",
+      "alt": "Offene Ebenen auf einer Tarangire und Ngorongoro Kurzsafari",
+      "duration": "2 Nächte",
+      "from": "Zanzibar",
+      "priceSub": "pp",
+      "rib": "2 Nächte · Ab $ 1.390 pp",
+      "title": "Kurztour Tarangire + Ngorongoro",
+      "intro": "Die beste Kurzsafari: Elefanten und Baobabs in Tarangire, dann die dichten Raubtierzonen des Kraters.",
+      "days": [
+        {
+          "d": "Tag 1",
+          "h": "Fliegen Sie nach Arusha → Tarangire",
+          "p": "Transfer zum Park, Nachmittag Pirschfahrt, Übernachtung in der Nähe von Tarangire."
+        },
+        {
+          "d": "Tag 2",
+          "h": "Kraterrandtransfer",
+          "p": "Morgens Fahrt, Transfer zum Ngorongoro Hochland, Abends in der Lodge."
+        },
+        {
+          "d": "Tag 3",
+          "h": "Krater Game Drive & Return",
+          "p": "Frühe Kraterabfahrt und Wildtierverfolgung vor dem Rückflug nach Zanzibar."
+        }
+      ],
+      "includes": "✓ Flüge · ✓ 2 Lodge-Nächte · ✓ Park & Kratergebühren · ✓ Guide",
+      "positioning": "Beste Short Safari",
+      "includesList": [
+        "Ngorongoro Krater",
+        "Tarangire Safari",
+        "Unterkunft",
+        "Führung",
+        "Transport"
+      ],
+      "upsells": [
+        {
+          "name": "Luxus Lodge"
+        },
+        {
+          "name": "Private Safari"
+        }
+      ],
+      "priceRange": "$1,390-$1,690 pp"
+    },
+    "ngorongoro-overnight": {
+      "category": "Last-Minute Safari",
+      "alt": "Rhino auf den Ebenen während einer Ngorongoro Übernachtungssafari",
+      "duration": "1 Nacht",
+      "from": "Zanzibar",
+      "priceSub": "pp",
+      "rib": "1 Nacht · Ab $ 950 pp",
+      "title": "Ngorongoro mit Übernachtung",
+      "intro": "Perfekt, wenn Sie eine Nacht ersparen können: Kratertiere im ersten Licht plus eine Lodge bleiben am Rand.",
+      "days": [
+        {
+          "d": "Tag 1",
+          "h": "Zanzibar → Arusha → Kraterrand",
+          "p": "Morgens Flug, Transfer ins Hochland, abendlicher Sundowner in der Lodge."
+        },
+        {
+          "d": "Tag 2",
+          "h": "Kraterboden & Fly Back",
+          "p": "Frühe Abfahrt für Big Five Tracking, Picknick Mittagessen, Rückflug nach Zanzibar."
+        }
+      ],
+      "includes": "✓ Flüge & Transfers · ✓ Lodgeaufenthalt · ✓ Kratergebühren · ✓ Guide",
+      "positioning": "Schnelle Luxus-Flucht",
+      "includesList": [
+        "Krater Safari",
+        "Lodge Aufenthalt",
+        "Führung",
+        "Übertragungen"
+      ],
+      "upsells": [
+        {
+          "name": "Lodge mit Kraterblick"
+        }
+      ],
+      "priceRange": "$950-$1,190 pp"
+    },
+    "tarangire-day-trip": {
+      "category": "Tag Safari",
+      "alt": "Weide Antilope auf einer Tarangire Express Tagessafari",
+      "duration": "1 Tag",
+      "from": "Zanzibar",
+      "priceSub": "pp",
+      "rib": "1 Tag · Ab $ 490 pp",
+      "title": "Tarangire Express Tagessafari",
+      "intro": "Eine schnelle, einflussreiche eintägige Option für Gäste, die bereits in Zanzibar sind und einen echten Game Drive auf dem Festland ohne Übernachtung wünschen.",
+      "days": [
+        {
+          "d": "Tag 1",
+          "h": "Zanzibar ↔ Arusha/Tarangire",
+          "p": "Früher Flug, ganztägige Pirschfahrt in Tarangire, Sonnenuntergang Rückflug nach Zanzibar."
+        }
+      ],
+      "includes": "✓ Hin- und Rückflüge · ✓ Parkgebühren · ✓ Picknick-Mittagessen · ✓ Pro Guide",
+      "positioning": "Hochkonversionsprodukt",
+      "includesList": [
+        "Rückflug",
+        "Parkgebühren",
+        "Mittagessen",
+        "Safari Guide",
+        "Game Drive"
+      ],
+      "upsells": [
+        {
+          "name": "Privater Tag Safari"
+        }
+      ],
+      "priceRange": "$490-$590 pp"
+    },
+    "lake-natron-expedition": {
+      "title": "Flamingo-Expedition zum Lake Natron",
+      "category": "Natur & Abenteuer",
+      "alt": "Lake Natron Flamingo Expedition Safari Erfahrung",
+      "duration": "2 - 4 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Natur & Abenteuer · 2 - 4 Tage · Ab $ 1.690 pp",
+      "intro": "Flamingo Brutstätten · Vulkanlandschaften · Ol Doinyo Lengai Vulkan · abgelegene Maasai Dörfer",
+      "includesList": [
+        "Flamingo-Zuchtgebiete",
+        "Vulkanlandschaften",
+        "Vulkan Ol Doinyo Lengai",
+        "abgelegene Maasai-Dörfer",
+        "Natürliche heiße Quellen"
+      ],
+      "highlights": [
+        "Flamingo-Zuchtgebiete",
+        "Vulkanlandschaften",
+        "Vulkan Ol Doinyo Lengai",
+        "abgelegene Maasai-Dörfer",
+        "Natürliche heiße Quellen"
+      ],
+      "idealFor": [
+        "Abenteuerreisende",
+        "Fotografen",
+        "Naturliebhaber"
+      ],
+      "positioning": "Natur & Abenteuer",
+      "productType": "Spezialität Safari"
+    },
+    "olduvai-gorge": {
+      "title": "Safari zu den Ursprüngen der Menschheit in Olduvai",
+      "category": "Geschichte & Safari",
+      "alt": "Olduvai Gorge Human Origins Safari Safari Erfahrung",
+      "duration": "1 - 2 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Geschichte & Safari · 1 - 2 Tage · Ab $ 890 pp",
+      "intro": "Wiege der Menschheit · Archäologisches Museum · Ngorongoro Landschaften · Alte Fossilfunde",
+      "includesList": [
+        "Wiege der Menschheit",
+        "Archäologisches Museum",
+        "Ngorongoro Landschaften",
+        "Alte Fossilienfunde"
+      ],
+      "highlights": [
+        "Wiege der Menschheit",
+        "Archäologisches Museum",
+        "Ngorongoro Landschaften",
+        "Alte Fossilienfunde"
+      ],
+      "positioning": "Geschichte & Safari",
+      "productType": "Spezialität Safari"
+    },
+    "maasai-cultural-expedition": {
+      "title": "Authentische Massai-Kultursafari",
+      "category": "Kultur",
+      "alt": "Authentische Massai Kultur Safari Safari Erfahrung",
+      "duration": "1 - 3 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Kultur · 1 - 3 Tage · Ab $ 690 pp",
+      "intro": "Traditionelle Maasai-Dörfer · Kriegerausbildung · Traditionelle Tänze · Bush-Überlebenswissen",
+      "includesList": [
+        "Traditionelle Maasai-Dörfer",
+        "Kriegerausbildung",
+        "Traditionelle Tänze",
+        "Bush Überlebenswissen",
+        "Lokale Küche"
+      ],
+      "highlights": [
+        "Traditionelle Maasai-Dörfer",
+        "Kriegerausbildung",
+        "Traditionelle Tänze",
+        "Bush Überlebenswissen",
+        "Lokale Küche"
+      ],
+      "positioning": "Kultur",
+      "productType": "Spezialität Safari"
+    },
+    "materuni-waterfalls-coffee": {
+      "title": "Materuni-Wasserfälle & Kaffeeerlebnis",
+      "category": "Natur & Kultur",
+      "alt": "Materuni Wasserfälle & Kaffee Safari Erfahrung",
+      "duration": "1 Tag",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Natur & Kultur · 1 Tag · Ab $ 290 pp",
+      "intro": "Wasserfallwanderung · Erlebnis auf der Kaffeefarm · Chagga-Kultur · Berglandschaft",
+      "includesList": [
+        "Wasserfallwandern",
+        "Kaffeefarm Erfahrung",
+        "Chagga-Kultur",
+        "Berglandschaft"
+      ],
+      "highlights": [
+        "Wasserfallwandern",
+        "Kaffeefarm Erfahrung",
+        "Chagga-Kultur",
+        "Berglandschaft"
+      ],
+      "positioning": "Natur & Kultur",
+      "productType": "Spezialität Safari"
+    },
+    "kilimanjaro-day-hike": {
+      "title": "Tageswanderung am Kilimandscharo",
+      "category": "Mountain Adventure",
+      "alt": "Mount Kilimanjaro Day Safari erleben",
+      "duration": "1 Tag",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Mountain Adventure · 1 Tag · Ab $ 390 pp",
+      "intro": "Kilimanjaro Regenwald · Mandara Hutroute · Bergfotografie · Wasserfälle",
+      "includesList": [
+        "Kilimanjaro Regenwald",
+        "Mandara Hutroute",
+        "Bergfotografie",
+        "Wasserfälle"
+      ],
+      "highlights": [
+        "Kilimanjaro Regenwald",
+        "Mandara Hutroute",
+        "Bergfotografie",
+        "Wasserfälle"
+      ],
+      "positioning": "Mountain Adventure",
+      "productType": "Spezialität Safari"
+    },
+    "luxury-honeymoon-safari": {
+      "title": "Luxus-Flitterwochen-Safari & Sansibar",
+      "category": "Luxus",
+      "alt": "Luxus Flitterwochen Safari & Zanzibar Flucht Safari Erfahrung",
+      "duration": "7 - 12 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Luxus · 7 - 12 Tage · Ab $ 5.890 pp",
+      "intro": "Privates Safarifahrzeug · Luxus-Lodges · Champagner-Buschdinner · Private Zanzibar Villa",
+      "includesList": [
+        "Privates Safarifahrzeug",
+        "Luxus-Lodges",
+        "Abendessen mit Champagnerbusch",
+        "Private Zanzibar Villa",
+        "Paare Spa Erfahrungen"
+      ],
+      "highlights": [
+        "Privates Safarifahrzeug",
+        "Luxus-Lodges",
+        "Abendessen mit Champagnerbusch",
+        "Private Zanzibar Villa",
+        "Paare Spa Erfahrungen"
+      ],
+      "positioning": "Luxus",
+      "productType": "Spezialität Safari"
+    },
+    "private-photography-safari": {
+      "title": "Private Safari für Tierfotografie",
+      "category": "Fotografie",
+      "alt": "Wildlife Photography Expedition Safari Erfahrung",
+      "duration": "5 - 10 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Fotografie · 5 - 10 Tage · Ab 4.490 $ pp",
+      "intro": "Fotoführer · Goldene Stunde Game Drives · Spezielle Kamera Fahrzeug-Setup · Migration Fotografie",
+      "includesList": [
+        "Fotoführer",
+        "Golden Hour Game Drives",
+        "Spezielle Kamera-Fahrzeug-Einrichtung",
+        "Migrationsfotografie"
+      ],
+      "highlights": [
+        "Fotoführer",
+        "Golden Hour Game Drives",
+        "Spezielle Kamera-Fahrzeug-Einrichtung",
+        "Migrationsfotografie"
+      ],
+      "positioning": "Fotografie",
+      "productType": "Spezialität Safari"
+    },
+    "women-only-safari": {
+      "title": "Luxus-Safari nur für Frauen",
+      "category": "Luxus & Wellness",
+      "alt": "Nur für Frauen Luxus Safari Safari Erfahrung",
+      "duration": "5 - 8 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Luxus & Wellness · 5 - 8 Tage · Ab $ 3.690 pp",
+      "intro": "Weibliche Safariguides · Luxuscamps · Spa-Erlebnisse · Sichere Gruppenumgebung",
+      "includesList": [
+        "Weibliche Safari Guides",
+        "Luxuscamps",
+        "Spa Erfahrungen",
+        "Sichere Gruppenumgebung"
+      ],
+      "highlights": [
+        "Weibliche Safari Guides",
+        "Luxuscamps",
+        "Spa Erfahrungen",
+        "Sichere Gruppenumgebung"
+      ],
+      "positioning": "Luxus & Wellness",
+      "productType": "Spezialität Safari"
+    },
+    "family-safari": {
+      "title": "Safari-Abenteuer für Familien",
+      "category": "Familie",
+      "alt": "Familien Safari Abenteuer Safari Erfahrung",
+      "duration": "4 - 7 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Familie · 4 - 7 Tage · Ab $ 2.590 pp",
+      "intro": "Familienfreundliche Lodges · Kindersichere Aktivitäten · Pädagogische Tiererlebnisse · Flexible Zeitpläne",
+      "includesList": [
+        "Familienfreundliche Lodges",
+        "Kindersichere Tätigkeiten",
+        "Pädagogische Wildlife Experiences",
+        "Flexible Zeitpläne"
+      ],
+      "highlights": [
+        "Familienfreundliche Lodges",
+        "Kindersichere Tätigkeiten",
+        "Pädagogische Wildlife Experiences",
+        "Flexible Zeitpläne"
+      ],
+      "positioning": "Familie",
+      "productType": "Spezialität Safari"
+    },
+    "mikumi-flyin": {
+      "title": "Fly-in-Safari nach Mikumi ab Sansibar",
+      "category": "Schnelle Safari",
+      "alt": "Mikumi Fly-In Safari Von Zanzibar Safari Erfahrung",
+      "duration": "1 - 3 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Quick Safari · 1 - 3 Tage · Ab $ 590 pp",
+      "intro": "Nächste Safari von Zanzibar · Löwensichtungen · Büffel & Giraffen · Schneller Zugang zum Flug",
+      "includesList": [
+        "Nächste Safari von Zanzibar",
+        "Löwensichtungen",
+        "Büffel und Giraffen",
+        "Schneller Flugzugang"
+      ],
+      "highlights": [
+        "Nächste Safari von Zanzibar",
+        "Löwensichtungen",
+        "Büffel und Giraffen",
+        "Schneller Flugzugang"
+      ],
+      "positioning": "Schnelle Safari",
+      "productType": "Spezialität Safari"
+    },
+    "saadani-beach-safari": {
+      "title": "Strand & Safari in Saadani",
+      "category": "Strand & Safari",
+      "alt": "Saadani Beach & Safari Safari Erfahrung",
+      "duration": "3 - 5 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Strand & Safari · 3 - 5 Tage · Ab $ 1.990 pp",
+      "intro": "Safari am Strand · Wildtiere im Indischen Ozean · Bootssafari · Turtle Nesting",
+      "includesList": [
+        "Safari am Strand",
+        "Wildtiere im Indischen Ozean",
+        "Bootssafari",
+        "Schildkrötenschachtel"
+      ],
+      "highlights": [
+        "Safari am Strand",
+        "Wildtiere im Indischen Ozean",
+        "Bootssafari",
+        "Schildkrötenschachtel"
+      ],
+      "positioning": "Strand & Safari",
+      "productType": "Spezialität Safari"
+    },
+    "udzungwa-hiking-safari": {
+      "title": "Wandersafari in den Udzungwa-Bergen",
+      "category": "Wandern & Natur",
+      "alt": "Udzungwa Mountains Wandern Safari Safari Erfahrung",
+      "duration": "2 - 4 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Wandern & Natur · 2 - 4 Tage · Ab $ 1.490 pp",
+      "intro": "Wasserfall Trekking · Seltene Primaten · Bergregenwald · Naturfotografie",
+      "includesList": [
+        "Wasserfall Trekking",
+        "Seltene Primaten",
+        "Bergregenwald",
+        "Naturfotografie"
+      ],
+      "highlights": [
+        "Wasserfall Trekking",
+        "Seltene Primaten",
+        "Bergregenwald",
+        "Naturfotografie"
+      ],
+      "positioning": "Wandern & Natur",
+      "productType": "Spezialität Safari"
+    },
+    "private-helicopter-safari": {
+      "title": "Private Helikopter-Safari",
+      "category": "Ultra Luxus",
+      "alt": "Private Hubschrauber Safari Safari Erfahrung",
+      "duration": "1 - 5 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Ultra Luxus · 1 - 5 Tage · Ab 12.000 $ pp",
+      "intro": "Hubschraubertransfer · Private Luxuscamps · VIP-Service · Exklusive Luftaufnahmen",
+      "includesList": [
+        "Hubschraubertransfers",
+        "Private Luxuscamps",
+        "VIP-Service",
+        "Exklusive Luftaufnahmen"
+      ],
+      "highlights": [
+        "Hubschraubertransfers",
+        "Private Luxuscamps",
+        "VIP-Service",
+        "Exklusive Luftaufnahmen"
+      ],
+      "positioning": "Ultra Luxus",
+      "productType": "Spezialität Safari"
+    },
+    "presidential-safari": {
+      "title": "Präsidenten-Safari",
+      "category": "Ultra Luxus",
+      "alt": "Presidential Safari Erfahrung Safari Erfahrung",
+      "duration": "7 - 14 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Ultra Luxus · 7 - 14 Tage · Ab $ 25.000 pp",
+      "intro": "Privatjetunterstützung · Elite Safari Lodges · Persönlicher Koch · Private Guides",
+      "includesList": [
+        "Unterstützung durch Privatjets",
+        "Elite Safari Lodges",
+        "Persönlicher Koch",
+        "Private Guides",
+        "Luxus-Insel Villa"
+      ],
+      "highlights": [
+        "Unterstützung durch Privatjets",
+        "Elite Safari Lodges",
+        "Persönlicher Koch",
+        "Private Guides",
+        "Luxus-Insel Villa"
+      ],
+      "positioning": "Ultra Luxus",
+      "productType": "Spezialität Safari"
+    },
+    "chimpanzee-trekking": {
+      "title": "Schimpansen-Trekking-Expedition",
+      "category": "Wildtiere",
+      "alt": "Schimpansen Trekking Expedition Safari Erfahrung",
+      "duration": "4 - 8 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Wildlife · 4 - 8 Tage · Von $ 3.990 pp",
+      "intro": "Wilde Schimpansenbegegnungen · abgelegenes Dschungel-Trekking · Tanganyika-See · Naturschutzerlebnisse",
+      "includesList": [
+        "Begegnungen mit wilden Schimpansen",
+        "Remote Dschungel Trekking",
+        "Tanganyikasee",
+        "Naturschutzerfahrungen"
+      ],
+      "highlights": [
+        "Begegnungen mit wilden Schimpansen",
+        "Remote Dschungel Trekking",
+        "Tanganyikasee",
+        "Naturschutzerfahrungen"
+      ],
+      "positioning": "Wildtiere",
+      "productType": "Spezialität Safari"
+    },
+    "birdwatching-safari": {
+      "title": "Vogelbeobachtungs-Safari",
+      "category": "Vogelbeobachtung",
+      "alt": "Vogelbeobachtung Safari Safari Erfahrung",
+      "duration": "5 - 10 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Birding · 5 - 10 Tage · Ab $ 2.790 pp",
+      "intro": "Seltene ostafrikanische Vögel · Professioneller Vogelführer · Feuchtgebiete und Wälder · Möglichkeiten zum Fotografieren",
+      "includesList": [
+        "Seltene ostafrikanische Vögel",
+        "Professioneller Vogelführer",
+        "Feuchtgebiete und Wälder",
+        "Möglichkeiten zum Fotografieren"
+      ],
+      "highlights": [
+        "Seltene ostafrikanische Vögel",
+        "Professioneller Vogelführer",
+        "Feuchtgebiete und Wälder",
+        "Möglichkeiten zum Fotografieren"
+      ],
+      "positioning": "Vogelbeobachtung",
+      "productType": "Spezialität Safari"
+    },
+    "walking-bushcraft-safari": {
+      "title": "Wandersafari & Bushcraft",
+      "category": "Abenteuer",
+      "alt": "Walking & Bushcraft Safari Safari Erfahrung",
+      "duration": "3 - 6 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Abenteuer · 3 - 6 Tage · Ab $2.490 pp",
+      "intro": "Bush-Überlebensfähigkeiten · Wandersafari · Wildtiere verfolgen · Fliegencamping",
+      "includesList": [
+        "Bush Überleben Fähigkeiten",
+        "Wandersafari",
+        "Aufspüren von Wildtieren",
+        "Fly Camping"
+      ],
+      "highlights": [
+        "Bush Überleben Fähigkeiten",
+        "Wandersafari",
+        "Aufspüren von Wildtieren",
+        "Fly Camping"
+      ],
+      "positioning": "Abenteuer",
+      "productType": "Spezialität Safari"
+    },
+    "migration-calving-safari": {
+      "title": "Safari zur Kalbungszeit der Großen Migration",
+      "category": "Migration",
+      "alt": "Große Migration Calving Saison Safari Safari Erfahrung",
+      "duration": "4 - 7 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Migration · 4 - 7 Tage · Ab 3.190 $ pp",
+      "intro": "Baby-Gnu-Saison · Predator-Aktion · Ndutu-Ebenen · Luxuscamps",
+      "includesList": [
+        "Baby Gnus Saison",
+        "Predator-Aktion",
+        "Ndutu-Ebenen",
+        "Luxuscamps"
+      ],
+      "highlights": [
+        "Baby Gnus Saison",
+        "Predator-Aktion",
+        "Ndutu-Ebenen",
+        "Luxuscamps"
+      ],
+      "positioning": "Migration",
+      "productType": "Spezialität Safari"
+    },
+    "bush-to-beach": {
+      "title": "Vom Busch an den Strand",
+      "category": "Combo",
+      "alt": "Bush To Beach Safari erleben",
+      "duration": "7 - 14 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Combo · 7 - 14 Tage · Ab $ 4.290 pp",
+      "intro": "Safari + Zanzibar · Luxus-Strandresorts · Privattransfers · Romantische Erlebnisse",
+      "includesList": [
+        "Safari + Zanzibar",
+        "Luxus-Strandresorts",
+        "Private Transfers",
+        "Romantische Erlebnisse"
+      ],
+      "highlights": [
+        "Safari + Zanzibar",
+        "Luxus-Strandresorts",
+        "Private Transfers",
+        "Romantische Erlebnisse"
+      ],
+      "positioning": "Combo",
+      "productType": "Spezialität Safari"
+    },
+    "east-africa-grand-tour": {
+      "title": "Große Ostafrika-Expedition",
+      "category": "Mehrländerland",
+      "alt": "East Africa Grand Expedition Safari Erfahrung",
+      "duration": "14 - 30 Tage",
+      "from": "Tanzania / Zanzibar",
+      "priceSub": "pp",
+      "rib": "Multi Country · 14 - 30 Tage · Ab $ 8.900 pp",
+      "intro": "Tanzania · Kenia · Zanzibar · Gorilla Trekking optional",
+      "includesList": [
+        "Tanzania",
+        "Kenia",
+        "Zanzibar",
+        "Gorilla Trekking optional",
+        "Luxus Safari Circuit"
+      ],
+      "highlights": [
+        "Tanzania",
+        "Kenia",
+        "Zanzibar",
+        "Gorilla Trekking optional",
+        "Luxus Safari Circuit"
+      ],
+      "positioning": "Mehrländerland",
+      "productType": "Spezialität Safari"
+    }
+  },
+  "safariTypes": {
+    "classic-game-drive": {
+      "title": "Klassische Pirschfahrten",
+      "desc": "Private oder kleine Gruppen Land Cruiser fährt über Serengeti, Ngorongoro, Tarangire und Lake Manyara mit erfahrenen lokalen Guides.",
+      "bestFor": "Erstmalige Safari-Reisende",
+      "highlights": [
+        "Private oder kleine Gruppe 4x4 Game Drives",
+        "Bester Zugang zu ikonischen nördlichen Parks",
+        "Strong Big Five und Predator Viewing"
+      ],
+      "alt": "Löwe ruht im Gras auf einem klassischen Game Drive"
+    },
+    "fly-in": {
+      "title": "Fly-in-Safaris",
+      "desc": "Überspringen Sie lange Straßentransfers und verbinden Sie Schlüsselparks per Buschflug von Zanzibar, Arusha oder Dar es Salaam.",
+      "bestFor": "Begrenzte Zeit, maximale Spielzeit",
+      "highlights": [
+        "Weniger Zeit auf den Straßen",
+        "Einfache Zanzibar-zu-Busch-Kombinationen",
+        "Am besten für kurze Premium-Reisen"
+      ],
+      "alt": "Offene Ebenen Landschaft auf einer Fly-in Safari Route gesehen"
+    },
+    "walking": {
+      "title": "Wandersafaris",
+      "desc": "Geführte Buschwanderungen mit bewaffneten Rangern in Wildnisgebieten wie Nyerere und Ruaha für ein naturnahes Erlebnis.",
+      "bestFor": "Abenteuer und Tracking-Liebhaber",
+      "highlights": [
+        "Bewaffnete Ranger-geführte Buschwanderungen",
+        "Spuren, Vögel, Pflanzen und kleinere Wildtiere",
+        "Ein intimeres Wildnistempo"
+      ],
+      "alt": "Warthog während einer Wandersafari entdeckt"
+    },
+    "boat": {
+      "title": "Bootssafaris",
+      "desc": "Fluss- und Seesafaris in Nyerere (Selous) und westlichen Kreisläufen, in denen Wildtiere vom Wasser aus gesehen werden.",
+      "bestFor": "Einzigartige Wildtierwinkel und Vogelbeobachtung",
+      "highlights": [
+        "Nilpferde, Krokodile und Flussvögel",
+        "Sunset River Erfahrungen",
+        "Toller Kontrast zu klassischen Game Drives"
+      ],
+      "alt": "Büffel und Ranger in der Nähe von Feuchtgebieten, ideal für Bootssafari"
+    },
+    "family": {
+      "title": "Familiensafaris",
+      "desc": "Familienfreundliche Reiserouten mit kürzeren Fahrten, flexiblem Tempo und Lodges für Kinder und Multi-Gen-Reisen.",
+      "bestFor": "Familien mit Kindern",
+      "highlights": [
+        "Kürzere Antriebe und flexible Starts",
+        "Lodges mit Pools und Familienzimmern",
+        "Routen mit zuverlässiger Wildbeobachtung"
+      ],
+      "alt": "Zebrastute und Fohlen, eine familienfreundliche Tierbeobachtung"
+    },
+    "luxury-lodge-tented": {
+      "title": "Luxus-Lodge- & Zelt-Safaris",
+      "desc": "Hochkomfortaufenthalte, Premium-Camps und kuratierter Service in der Nähe von Migrationsrouten und Großkatzengebiet.",
+      "bestFor": "Flitterwochen und Premiumreisen",
+      "highlights": [
+        "Premium Camps und Lodge Upgrades",
+        "Leichtere Logistik und private Führung",
+        "Am besten für Flitterwochen und Meilensteinreisen"
+      ],
+      "alt": "Löwin und Junge ruhen im goldenen Licht in der Nähe von Luxuscamps"
+    },
+    "budget-camping": {
+      "title": "Camping-Safaris für kleinere Budgets",
+      "desc": "Wertorientierte Routen mit gut geführten Camps und unverzichtbarem Komfort, ohne die Führungsqualität zu beeinträchtigen.",
+      "bestFor": "Backpacker und budgetbewusste Reisende",
+      "highlights": [
+        "Kostengünstigere Routen und einfachere Camps",
+        "Geteilte Logistik, soweit verfügbar",
+        "Am besten, wenn Termine flexibel sind"
+      ],
+      "alt": "Wildebeest Herde auf offenen Ebenen für Budget Camping Routen"
+    },
+    "bush-beach": {
+      "title": "Busch- & Strandkombinationen",
+      "desc": "Nahtlose Tanzania Festland-Safari gepaart mit Zanzibar Strandaufenthalten, wobei alle Flüge und Transfers koordiniert werden.",
+      "bestFor": "Safari + Entspannung auf einer Reise",
+      "highlights": [
+        "Safariflüge koordiniert mit Zanzibar Hotels",
+        "Einfache Post-Safari-Strand Erholung",
+        "Am besten für Flitterwochen und Familienurlaub"
+      ],
+      "alt": "Kronenkrane in Grasland, die Busch- und Strandkombofahrten darstellen"
+    }
+  },
+  "placeholders": {
+    "excursion": "Ausflug",
+    "safari": "Safari",
+    "photo": "Foto folgt"
+  }
+}

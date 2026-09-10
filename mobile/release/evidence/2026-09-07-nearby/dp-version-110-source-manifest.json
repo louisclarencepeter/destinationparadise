@@ -1,0 +1,563 @@
+{
+  "archive": "/tmp/dp-version-110-source-20260907",
+  "files": [
+    {
+      "path": "mobile/.claude/settings.json",
+      "bytes": 71,
+      "sha256": "1e7be1a32a758be623e4897bcd97715f42c1585f3d7389eaa996c230e8fe9834"
+    },
+    {
+      "path": "mobile/.env.example",
+      "bytes": 272,
+      "sha256": "1b63b9ccb81baba0168af682459611fc0d7f4a8d4f712afe34ed002dd7d74532"
+    },
+    {
+      "path": "mobile/.gitignore",
+      "bytes": 454,
+      "sha256": "a168ccf3b78f53cfd51d52d033d9164ec94a406a16afc20f6db11332b7566446"
+    },
+    {
+      "path": "mobile/AGENTS.md",
+      "bytes": 118,
+      "sha256": "5986df214fcb822f856b9a8aac7c06503e02158aad55c8d7edf2966d7ee2dffd"
+    },
+    {
+      "path": "mobile/CLAUDE.md",
+      "bytes": 11,
+      "sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49"
+    },
+    {
+      "path": "mobile/README.md",
+      "bytes": 6477,
+      "sha256": "b3eaa3179ddfa92ee180579739082f0d306e1639db7047297aa2ae6529fb12d8"
+    },
+    {
+      "path": "mobile/VALIDATION.md",
+      "bytes": 20332,
+      "sha256": "3310efd1924006de1538a36a4bc745725b13f7271bc5eb0dd85f5ed54b53420b"
+    },
+    {
+      "path": "mobile/WEATHER_RELEASE.md",
+      "bytes": 7099,
+      "sha256": "d644128052cf5a194e912e148ed0064dfee3eb64278d611e59a12fee4cbd95b1"
+    },
+    {
+      "path": "mobile/app/(tabs)/_layout.tsx",
+      "bytes": 4558,
+      "sha256": "be35f05a02d7f3cfeee5ca245d09f83f7318c027592b2e81f2eb659e02966e56"
+    },
+    {
+      "path": "mobile/app/(tabs)/index.tsx",
+      "bytes": 373,
+      "sha256": "a35925ec6d2cb9b46069c99de506a6babfb7b437f289de761b0899ffdb3f687f"
+    },
+    {
+      "path": "mobile/app/(tabs)/planner.tsx",
+      "bytes": 136,
+      "sha256": "609cc1269ccaaad243be16c259720fc71f041e890b95a8351fffaa4388156a33"
+    },
+    {
+      "path": "mobile/app/(tabs)/weather.tsx",
+      "bytes": 356,
+      "sha256": "c24445ebe26c024bed2d3ceeb604f45e671929c201e5ea8e53dcc2e65b4fac6e"
+    },
+    {
+      "path": "mobile/app/+not-found.tsx",
+      "bytes": 508,
+      "sha256": "e21f220a768cd47cebbae3770281488673f8b2a734b84453ed22f14b3ef501c1"
+    },
+    {
+      "path": "mobile/app/_layout.tsx",
+      "bytes": 3195,
+      "sha256": "402f9d3b0dcf4a6a55354f05d75a57d163f1ea241594a29607c1bc80d41da8bb"
+    },
+    {
+      "path": "mobile/app/settings.tsx",
+      "bytes": 5605,
+      "sha256": "b8c153dd584ae478d320eba125a5187f9cd8226ed83d6473f5d89643b0511360"
+    },
+    {
+      "path": "mobile/app.json",
+      "bytes": 2746,
+      "sha256": "02d9b315aa8b04baf6f4b9334b0d44aa32cd05e67490e9cbe9dc2a43da49ac95"
+    },
+    {
+      "path": "mobile/assets/android-icon-foreground.png",
+      "bytes": 484387,
+      "sha256": "2bf168cfe0ac7c92a947d24f00b41dee46662c9ffd8985c9ccef1cd9ec236bef"
+    },
+    {
+      "path": "mobile/assets/apple-weather-dark.png",
+      "bytes": 3114,
+      "sha256": "93a85eb9dbab1b7fae43f3ad7a212a228f2f7fc0f9b45e108ee950941b822b0e"
+    },
+    {
+      "path": "mobile/assets/favicon.png",
+      "bytes": 3465,
+      "sha256": "c0871f25f1ed2b3fb766c858caae07529f221cc0e7e9a38be9db497e85bf65e7"
+    },
+    {
+      "path": "mobile/assets/icon.png",
+      "bytes": 920959,
+      "sha256": "505b8d8ceebbd198fdbba1535fd7d5336f04348ad42576cb72f17e4657bb7570"
+    },
+    {
+      "path": "mobile/assets/nearby/buffalo-and-egret.webp",
+      "bytes": 121270,
+      "sha256": "a82ce2494fc9f82722e4195c2e31a9dae403bc39317735177c36d9726d8f28a9"
+    },
+    {
+      "path": "mobile/assets/nearby/buffalo-herd-close.webp",
+      "bytes": 62820,
+      "sha256": "375ab20ecd23a5959135d6d493536a013b16ebdb39db740af38906a9d8f7ce66"
+    },
+    {
+      "path": "mobile/assets/nearby/crowned-cranes-in-grass.webp",
+      "bytes": 193728,
+      "sha256": "da923d68f51ea392d9e3ff2daddce902dd025aed7e1fd91bbd172d045d42fbe8"
+    },
+    {
+      "path": "mobile/assets/nearby/dolphin-swim.webp",
+      "bytes": 10846,
+      "sha256": "47ba0b2409addf425aa3803d9aeb3282a6c365bcdbd3b62e9755c1bcc207d8ca"
+    },
+    {
+      "path": "mobile/assets/nearby/eland-herd-plains.webp",
+      "bytes": 116538,
+      "sha256": "61aefb1ea0dbaed813ebd3a8a4f1b28282b7c6c9b60461ea9d595df78c361b7b"
+    },
+    {
+      "path": "mobile/assets/nearby/jozani-red-colobus.webp",
+      "bytes": 165318,
+      "sha256": "3b1d649c627c027eb4cec3bbcd4c564f1f44d6ab21932aeb44aa0d59d2556a41"
+    },
+    {
+      "path": "mobile/assets/nearby/kitesurfing-beach.webp",
+      "bytes": 19070,
+      "sha256": "8baf14f166677160194124b6df7e4076cd3a906fdaf44e14db76e71f874100dd"
+    },
+    {
+      "path": "mobile/assets/nearby/lioness-and-cub-resting.webp",
+      "bytes": 167326,
+      "sha256": "436a7085f8e73f1fbb05bf476fdd9ddd0d9b02088baa4b6b0123af3abd43ca29"
+    },
+    {
+      "path": "mobile/assets/nearby/male-lion-in-grass.webp",
+      "bytes": 165034,
+      "sha256": "a0405b4ad8e3f7c63c2e15a0776898283bb47a02fb71545691f6a157337644da"
+    },
+    {
+      "path": "mobile/assets/nearby/mnemba-snorkeling.webp",
+      "bytes": 125420,
+      "sha256": "2f34f0823afdc9dd2c2a77487f0211f4f00114778c9f4124cc2d14958d4c2ac4"
+    },
+    {
+      "path": "mobile/assets/nearby/nungwi-coast.webp",
+      "bytes": 214438,
+      "sha256": "4cf3bc633de5b2178520fe70b41ecd37e7e9cc23aac1f1fd8b697fd4df6e0514"
+    },
+    {
+      "path": "mobile/assets/nearby/rhino-on-plains.webp",
+      "bytes": 61614,
+      "sha256": "28bbd67a3386d58475165ff828f77994bea7ccae77357760ee6bf84af5392f0f"
+    },
+    {
+      "path": "mobile/assets/nearby/safari-blue-dhow.webp",
+      "bytes": 109254,
+      "sha256": "5c02dfb5952a3cb963a940cc7d2d2aa6eb3bd8311843d33e44d12c510fdab2a7"
+    },
+    {
+      "path": "mobile/assets/nearby/stone-town-harbor.webp",
+      "bytes": 227616,
+      "sha256": "a4bfcb7625c180961b9665242a84ff8b7dee3779ec140600bcec1c424f0dda15"
+    },
+    {
+      "path": "mobile/assets/nearby/warthog-on-plains.webp",
+      "bytes": 189628,
+      "sha256": "ad7e79174c5c5f7dcb087a66b52d51b7c122a30702aa1fa460e976ed4ac93da3"
+    },
+    {
+      "path": "mobile/assets/nearby/yellow-weaver-on-rail.webp",
+      "bytes": 30328,
+      "sha256": "b040ffe6b03191c698b0695f32f8bc97c134a1c09fb632e1406b9579101684db"
+    },
+    {
+      "path": "mobile/assets/nearby/zebra-herd-on-track.webp",
+      "bytes": 138798,
+      "sha256": "40128a594e87fcfb1c230b8bea589fa747da89eaaa862a731c428c77cbdc1876"
+    },
+    {
+      "path": "mobile/assets/nearby/zebra-mare-and-foal.webp",
+      "bytes": 212892,
+      "sha256": "c43a63b27a073f765cdef2acdb4162bff01b9c9ac529174e54e359e3bcb97dd0"
+    },
+    {
+      "path": "mobile/assets/splash-icon.png",
+      "bytes": 250813,
+      "sha256": "3935c283766808f59e4dfcd947f0d7bd9d8e355ea161558d22978afcaae81c0a"
+    },
+    {
+      "path": "mobile/eas.json",
+      "bytes": 819,
+      "sha256": "e9ed5b944f9540974866ddef6cd22faf76062a68e9e63b4f7e1683de0df4b92d"
+    },
+    {
+      "path": "mobile/expo-env.d.ts",
+      "bytes": 110,
+      "sha256": "6fc02634da46d3edc5a88eec9173ba6bf709726be3cba83c73ebd8e859d5c147"
+    },
+    {
+      "path": "mobile/licenses/expo-template.txt",
+      "bytes": 1106,
+      "sha256": "fb3ca4a837f5779e83cef89b78253a8949cfb9429c340309f62d0465ec6610b4"
+    },
+    {
+      "path": "mobile/metro.config.cjs",
+      "bytes": 2149,
+      "sha256": "29e82797a9a728e2edcdf2d09bbb6e6785b82715179b53ba998bc8429ce4d55d"
+    },
+    {
+      "path": "mobile/package-lock.json",
+      "bytes": 312225,
+      "sha256": "6499ef5fe4b5851831b0ee614dd2a46613e84ebde63b385b1a8cc0d686ae166d"
+    },
+    {
+      "path": "mobile/package.json",
+      "bytes": 1935,
+      "sha256": "fe2212b87367142fb481bc7c6b816d73dd90c7d7e6578d8612a7fae3ef1c24d6"
+    },
+    {
+      "path": "mobile/plugins/with-optional-location-features.cjs",
+      "bytes": 1026,
+      "sha256": "46e1df93ef54e76b32d581c83a8866af5b2c7f9ae93392eb96f21ea817719fd7"
+    },
+    {
+      "path": "mobile/script/build_and_run.sh",
+      "bytes": 1359,
+      "sha256": "47efe07d642469701e06fc4bc1fde48da75f28ef72fd61faddbe772b7b094629"
+    },
+    {
+      "path": "mobile/scripts/export-app-icons.mjs",
+      "bytes": 7324,
+      "sha256": "eda57d2dfa7ffe2d58090dc808dc67cdceec692473fd84cc582f778d744c1c2d"
+    },
+    {
+      "path": "mobile/scripts/sync-content.mjs",
+      "bytes": 7641,
+      "sha256": "1218829000f37a310b1f3ca16bc4b62fc302fc871d3d7ae743ba4a855349ff7c"
+    },
+    {
+      "path": "mobile/src/api/client.ts",
+      "bytes": 2635,
+      "sha256": "836cc1e4104ce79daeb564ce2d2db2b7182692cba422cb437127673c7e4fdfd4"
+    },
+    {
+      "path": "mobile/src/api/index.ts",
+      "bytes": 385,
+      "sha256": "0c2f6e6873b89a33e0eaf9b640f9927daeecfca2b1fb78475895033d40048544"
+    },
+    {
+      "path": "mobile/src/api/planner.ts",
+      "bytes": 6819,
+      "sha256": "340d1391d012cf74bf31fd14555c3079d85e8c066a6fd716bfda34be32abe66c"
+    },
+    {
+      "path": "mobile/src/api/report-ai.ts",
+      "bytes": 2299,
+      "sha256": "eb2043e7c382d2f86dfe63d1c5dba7aa0e7ad59e7b1c6dd20a4ba914930bcc6e"
+    },
+    {
+      "path": "mobile/src/api/weather.ts",
+      "bytes": 5850,
+      "sha256": "c2f33dfadc01910b090f416755585e4aae9cf98f01ad1a84e06741e4a8907116"
+    },
+    {
+      "path": "mobile/src/components/map/bundle-leaflet.cjs",
+      "bytes": 747,
+      "sha256": "93b63cbbf944615f00ce8ec0b823b6e0783c9405f6cc9831609378db8526c7d9"
+    },
+    {
+      "path": "mobile/src/components/map/destination-map.tsx",
+      "bytes": 6476,
+      "sha256": "9f4b60c876ebb1770250f7200ad32434a24ddd0c5105d7ebca5ef40a5426f093"
+    },
+    {
+      "path": "mobile/src/components/map/leaflet-LICENSE",
+      "bytes": 1395,
+      "sha256": "53e8dc25862014e4324741ca18fbe3611e11d42ef69f59f86ea8c5389647d4cb"
+    },
+    {
+      "path": "mobile/src/components/map/leaflet-bundle.ts",
+      "bytes": 166097,
+      "sha256": "48a15ca98d4181526fa828f2ada313e9e849cf019dbe857d159aaed30cc18927"
+    },
+    {
+      "path": "mobile/src/components/map/map-document.ts",
+      "bytes": 7906,
+      "sha256": "0c1e626fea4be43830f4ac9b28ad8a2f01d02f351738681425a2b15cdc6b4bd3"
+    },
+    {
+      "path": "mobile/src/components/map/map-frame-types.ts",
+      "bytes": 309,
+      "sha256": "7238f8ed632fd9be24e8391963deb36b954275aa1b76ded48b95ff411c07eefa"
+    },
+    {
+      "path": "mobile/src/components/map/map-frame.tsx",
+      "bytes": 2354,
+      "sha256": "115440c422c7873e75e66cee087cfa39ee2e26d8cb50e743254f9c53ff5f282c"
+    },
+    {
+      "path": "mobile/src/components/map/map-frame.web.tsx",
+      "bytes": 1525,
+      "sha256": "e140ca6b05030b11290a985325e7d16abc729a14c186f5a7488cba49325faac4"
+    },
+    {
+      "path": "mobile/src/components/map/map-protocol.test.ts",
+      "bytes": 6653,
+      "sha256": "a9815ff2a6527d8c5cde142983e4576d8872f17368cb8ddf7eb26513c6bb03cc"
+    },
+    {
+      "path": "mobile/src/components/map/map-protocol.ts",
+      "bytes": 2428,
+      "sha256": "8daed44e19686643a14278807726952ed1e1e6a5d8ab3ffea2ed4340d78e1395"
+    },
+    {
+      "path": "mobile/src/components/motion.tsx",
+      "bytes": 5227,
+      "sha256": "ef7a2ad8257a0d46d8dd2192df6efcad8f583b4b133ee60d674fd79a6019481e"
+    },
+    {
+      "path": "mobile/src/components/ui.tsx",
+      "bytes": 7856,
+      "sha256": "918a2dd2aeff47e2cd5da7783ceacbd4a5d035dd2899f287a8e6e7f438d6d889"
+    },
+    {
+      "path": "mobile/src/config/endpoint-origins.json",
+      "bytes": 130,
+      "sha256": "f6d29258f9d8ff710e0c1df7d74b7079bb98890fc4355168b2857439aa9c5628"
+    },
+    {
+      "path": "mobile/src/config/endpoints.ts",
+      "bytes": 223,
+      "sha256": "4f40efad97fe5cd508503a88eeb713f70b6ddc06714f868a39a7bc30623451c6"
+    },
+    {
+      "path": "mobile/src/data/content.ts",
+      "bytes": 1883,
+      "sha256": "a32d9ba8fb332fe54df78e01db35cfd07a52e6f8447b0120618c61821d95b498"
+    },
+    {
+      "path": "mobile/src/data/generated-content.json",
+      "bytes": 52168,
+      "sha256": "7df87814aa1f325b00b8d6688b1ea16c5aa85a31a39cf1ac40d8630a924168f1"
+    },
+    {
+      "path": "mobile/src/features/explore/destination-detail.tsx",
+      "bytes": 5287,
+      "sha256": "af65d0b947ea0a4e5981461be99bcc8dd7c08625cc012b8f1e6d7d2f65b69006"
+    },
+    {
+      "path": "mobile/src/features/explore/explore-model.test.ts",
+      "bytes": 1496,
+      "sha256": "d3101c1ec486a3acc9517f4358b6ae115514093eee1ef4d2282aa986bd31fb76"
+    },
+    {
+      "path": "mobile/src/features/explore/explore-model.ts",
+      "bytes": 2084,
+      "sha256": "0a2b77bb3374b17989903f796fe40613660eb6cb42a633cb1f68168ba9eb4eaa"
+    },
+    {
+      "path": "mobile/src/features/explore/explore-screen.tsx",
+      "bytes": 33134,
+      "sha256": "50959ed10ad120e0ef33a9791c2e11ab70a472c044af4d0328fa42ce4d4457a9"
+    },
+    {
+      "path": "mobile/src/features/explore/explore-ui.tsx",
+      "bytes": 9137,
+      "sha256": "3386400aa8e629a13255d463972615c8140bc8e46455b5a52e981d36b73a9e4a"
+    },
+    {
+      "path": "mobile/src/features/explore/island-guide.tsx",
+      "bytes": 8005,
+      "sha256": "919c882e1708dd3655da453a64a2cfeba09154f0eb46a9cbb0d5b26a26879d8e"
+    },
+    {
+      "path": "mobile/src/features/nearby/location-service.ts",
+      "bytes": 8781,
+      "sha256": "2b6e076f70a054dab5b9530290badfbc67dd69978034464a7453758fda39cd5e"
+    },
+    {
+      "path": "mobile/src/features/nearby/nearby-content.tsx",
+      "bytes": 9849,
+      "sha256": "c96c49fdcaf7a8d8c82d521c0969b2c79ff9bfcd5934fe831ff2aecb425d3d7a"
+    },
+    {
+      "path": "mobile/src/features/nearby/nearby-images.ts",
+      "bytes": 2004,
+      "sha256": "ec2d41fdac0c2b1bdb519f82c221baf7955f3564e6df98067b9874f26e5a80d7"
+    },
+    {
+      "path": "mobile/src/features/nearby/nearby-location-provider.tsx",
+      "bytes": 5641,
+      "sha256": "a9ae264e6d401dd542a5b2a338648e51cb72f6032a946a781f2f10a6f23f9511"
+    },
+    {
+      "path": "mobile/src/features/nearby/nearby-model.ts",
+      "bytes": 6967,
+      "sha256": "88f4dcee428727eb4c0638405c335947833153e56b1df30fc418b468fcc1ee2c"
+    },
+    {
+      "path": "mobile/src/features/planner/planner-parts.tsx",
+      "bytes": 4865,
+      "sha256": "a6533275ec90761e7960af00dc233036aa47b71ba7ceb30c80f7b5286422d6be"
+    },
+    {
+      "path": "mobile/src/features/planner/planner-screen.tsx",
+      "bytes": 26632,
+      "sha256": "422a82f38256721a642cabdc455ff474c0e3e73b549bd6df997fd8c1daf38e69"
+    },
+    {
+      "path": "mobile/src/features/planner/planning-context.ts",
+      "bytes": 2591,
+      "sha256": "44c8d12dcfe73ac24ca888cf7521d20583f93081fc3a54f6a9d964e3b971c5f2"
+    },
+    {
+      "path": "mobile/src/features/planner/report-ai.tsx",
+      "bytes": 6684,
+      "sha256": "64ff9c1843cadde9aa52c75ed44b2653b041be333952dc0dc20e8181ccf0def9"
+    },
+    {
+      "path": "mobile/src/features/weather/weather-scene-state.ts",
+      "bytes": 1590,
+      "sha256": "ba7e999737dc3b484b4c8a289ab2c94bb5387ad67128200a8ac73e25fcd721e1"
+    },
+    {
+      "path": "mobile/src/features/weather/weather-scene.tsx",
+      "bytes": 10225,
+      "sha256": "6d21f805dcf44b0660f9ed7e5effd73e023452320db2bfdef726f7b92c597bd1"
+    },
+    {
+      "path": "mobile/src/features/weather/weather-screen.tsx",
+      "bytes": 15113,
+      "sha256": "3b843f7b24b0430d94e50473d9125c0bec0462a636c5a024cd32d0443408ec73"
+    },
+    {
+      "path": "mobile/src/state/preferences.ts",
+      "bytes": 2457,
+      "sha256": "6b57e899fe467f3a25f93dc59950c0e85fad7bd6fa581afe13bcac604ba00a64"
+    },
+    {
+      "path": "mobile/src/state/storage-write-queue.ts",
+      "bytes": 675,
+      "sha256": "391ffcc39a674161b308c1e4f7a985f3eb729684ddf95d666a267dd7c04a7215"
+    },
+    {
+      "path": "mobile/src/state/trip-store.tsx",
+      "bytes": 4007,
+      "sha256": "8a6e498a8699e83f76a1fcfd4aa7dd1c4850e37ef0b5500fba2ed14364322472"
+    },
+    {
+      "path": "mobile/src/theme.ts",
+      "bytes": 728,
+      "sha256": "e806e320c4e583194474fa58ce7daf9fc897276b8f472e9f26a882338f41d52f"
+    },
+    {
+      "path": "mobile/test/android-location-config.test.ts",
+      "bytes": 1812,
+      "sha256": "499138031fb5126475bebdb972bcfe6c107c37ee5d821043f3b1d158b847b25f"
+    },
+    {
+      "path": "mobile/test/api-planner.test.ts",
+      "bytes": 6280,
+      "sha256": "bd0c001c9391fe835d935d5caff6e8d715f5efe7193ab520fe207737f482c503"
+    },
+    {
+      "path": "mobile/test/api-report-ai.test.ts",
+      "bytes": 2244,
+      "sha256": "1b81a664062f9542cf4e94c1392c4f3130bba70ca2de5b2dbd910c90a5670b45"
+    },
+    {
+      "path": "mobile/test/api-weather.test.ts",
+      "bytes": 3861,
+      "sha256": "83db1cb756430abb79f034369a72ee8296c62a1c0a55abb2c3c3f7cd35757490"
+    },
+    {
+      "path": "mobile/test/data-content.test.ts",
+      "bytes": 3206,
+      "sha256": "354c639b072fb6b133ebac84c2c19f09e8ea6cc1352c6e040ecfd3082c8f4d61"
+    },
+    {
+      "path": "mobile/test/ios-location-config.test.ts",
+      "bytes": 1257,
+      "sha256": "5d7caf5c7ab41cf65a918a727730e4b0a24f49985ce2858983e7aaec89403ec3"
+    },
+    {
+      "path": "mobile/test/nearby-location.test.ts",
+      "bytes": 10879,
+      "sha256": "f0e9f8d650bce0c6c09af3e3ae500f9aa819e354705f28a19df402b71439e742"
+    },
+    {
+      "path": "mobile/test/nearby-model.test.ts",
+      "bytes": 9690,
+      "sha256": "f8a38a77b46571c96e934d07c56ccdaec1c67dd39d5414ed70fdd4732ff74a83"
+    },
+    {
+      "path": "mobile/test/planning-context.test.ts",
+      "bytes": 2685,
+      "sha256": "422ee4b6eb26678341bf2b2fb2200c09e9020ce88d212f956402b6686da2c594"
+    },
+    {
+      "path": "mobile/test/preferences.test.ts",
+      "bytes": 1584,
+      "sha256": "7b29714ddedb207277556fabaa28130a241bbd7b1d843ff4e0ee13c53244f5ae"
+    },
+    {
+      "path": "mobile/test/router-decoder.test.ts",
+      "bytes": 2717,
+      "sha256": "4f4ac6ebbd8ceda2c3932e77882c402a71b27154658126b5f7c018b9807bacee"
+    },
+    {
+      "path": "mobile/test/storage-write-queue.test.ts",
+      "bytes": 2272,
+      "sha256": "178812165cea58b2dca1ad064688c43103b5892b134166a92b162f94de84c966"
+    },
+    {
+      "path": "mobile/test/weather-scene-state.test.ts",
+      "bytes": 1319,
+      "sha256": "889e692b21df8b1050e604352645243fee6547a46f042da38c6e8240371d7e3b"
+    },
+    {
+      "path": "mobile/tsconfig.json",
+      "bytes": 267,
+      "sha256": "93fdca1ba134249f828b36d5e9e642659fe4b560cc9fb505d3d108eb863a9de6"
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/LICENSE",
+      "bytes": 1139,
+      "sha256": "ed7a9a0f74e43951b2520efe1a4349cb9ed5f3dff0b0f268e2e51a4d38df7ea4"
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/README.md",
+      "bytes": 2147,
+      "sha256": "0ff0147f7974f1c69a58b3431b4db8359e10d69e58d6c68702a9d48896f81513"
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/index.cjs",
+      "bytes": 4141,
+      "sha256": "684ba79779327ba789733a3a563050370a928a57eb7dd33d19b346f43b32cbb7"
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/index.d.ts",
+      "bytes": 380,
+      "sha256": "85347394f21746d5b50a60c7876e28b0fee5667aee00aae8c0410d4df95b548e"
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/package.json",
+      "bytes": 406,
+      "sha256": "9dd5443644eb3fccd8151801d4206dda0df7498590cd82a2adea89548b5a1654"
+    }
+  ],
+  "count": 111,
+  "bytes": 4890284,
+  "version": "1.1.0"
+}

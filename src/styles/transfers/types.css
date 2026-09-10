@@ -79,7 +79,7 @@
   font-weight: 600;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: var(--dp-accent);
+  color: var(--dp-accent-text);
   margin-bottom: .5rem;
 }
 .tr-card__title {

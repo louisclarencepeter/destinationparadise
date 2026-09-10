@@ -1,0 +1,21 @@
+{
+  "verifiedAtUtc": "2026-09-07T15:06:28.867802+00:00",
+  "appPath": "/tmp/dp-native-release/ios-version110-build6-inspect/Payload/DestinationParadise.app",
+  "codeSignVerifyPassed": true,
+  "codeSignExit": 0,
+  "verificationMessage": "",
+  "entitlementsReadExit": 0,
+  "applicationIdentifier": "86ZX7JC345.com.yournexttriptoparadise.mobile",
+  "teamIdentifier": "86ZX7JC345",
+  "getTaskAllow": false,
+  "backgroundEntitlementKeys": [],
+  "checks": {
+    "strictDeepSignature": true,
+    "entitlementsRead": true,
+    "applicationIdentifier": true,
+    "teamIdentifier": true,
+    "notDebuggable": true,
+    "noBackgroundEntitlements": true
+  },
+  "allChecksPassed": true
+}

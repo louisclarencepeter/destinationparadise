@@ -1,0 +1,104 @@
+{
+  "verifiedAtUtc": "2026-09-07T11:49:25.440707+00:00",
+  "buildId": "e6c3bbd7-a328-4de1-9151-3b3da6162c64",
+  "artifactPath": "/tmp/dp-native-release/destination-paradise-ios-nearby-build5.ipa",
+  "bytes": 26268155,
+  "sha256": "f9aae1fa93d2f187a0faedf5083b8367c97bea573713d7ba0cc024b490581050",
+  "infoPlistPath": "Payload/DestinationParadise.app/Info.plist",
+  "facts": {
+    "CFBundleIdentifier": "com.yournexttriptoparadise.mobile",
+    "CFBundleShortVersionString": "1.0.0",
+    "CFBundleVersion": "5",
+    "UIDeviceFamily": [
+      1,
+      2
+    ],
+    "UISupportedInterfaceOrientations": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationPortraitUpsideDown",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "UISupportedInterfaceOrientations~ipad": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationPortraitUpsideDown",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "NSLocationWhenInUseUsageDescription": "Use your approximate location to show nearby places while you use Destination Paradise. Your position stays on this device.",
+    "NSLocationDefaultAccuracyReduced": true,
+    "NSLocationAlwaysUsageDescription": null,
+    "NSLocationAlwaysAndWhenInUseUsageDescription": null,
+    "NSMotionUsageDescription": null,
+    "NSUserTrackingUsageDescription": null,
+    "UIBackgroundModes": null
+  },
+  "checks": {
+    "bundleIdentifier": true,
+    "version": true,
+    "buildNumber": true,
+    "phoneAndTablet": true,
+    "phoneOrientations": true,
+    "tabletOrientations": true,
+    "whenInUse": true,
+    "defaultReducedAccuracy": true,
+    "noAlwaysMotionOrTrackingUsageDescriptions": true,
+    "noBackgroundModes": true,
+    "noDeclaredPrivacyTracking": true
+  },
+  "privacyManifests": [
+    {
+      "path": "Payload/DestinationParadise.app/React-timing_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomains": []
+    },
+    {
+      "path": "Payload/DestinationParadise.app/ExpoSystemUI_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomains": []
+    },
+    {
+      "path": "Payload/DestinationParadise.app/ExpoConstants_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomains": []
+    },
+    {
+      "path": "Payload/DestinationParadise.app/React-cxxreact_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomains": []
+    },
+    {
+      "path": "Payload/DestinationParadise.app/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomains": []
+    },
+    {
+      "path": "Payload/DestinationParadise.app/Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_folly.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomains": []
+    },
+    {
+      "path": "Payload/DestinationParadise.app/Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_glog.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomains": []
+    },
+    {
+      "path": "Payload/DestinationParadise.app/Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_boost.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomains": []
+    },
+    {
+      "path": "Payload/DestinationParadise.app/RNCAsyncStorage_resources.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomains": []
+    },
+    {
+      "path": "Payload/DestinationParadise.app/React-Core_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomains": []
+    }
+  ],
+  "staticChecksPassed": true,
+  "deviceRuntimeVerified": false,
+  "storeUploadVerified": false
+}

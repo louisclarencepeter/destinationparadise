@@ -1,0 +1,86 @@
+{
+  "expo": {
+    "name": "Destination Paradise",
+    "slug": "destination-paradise",
+    "version": "1.1.0",
+    "orientation": "default",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "dark",
+    "scheme": "destinationparadise",
+    "backgroundColor": "#071C2B",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.yournexttriptoparadise.mobile",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSLocationDefaultAccuracyReduced": true,
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": false,
+          "NSAllowsLocalNetworking": true
+        }
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#031C32",
+        "foregroundImage": "./assets/android-icon-foreground.png"
+      },
+      "predictiveBackGestureEnabled": true,
+      "blockedPermissions": [
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_BACKGROUND_LOCATION",
+        "android.permission.FOREGROUND_SERVICE_LOCATION",
+        "android.permission.ACTIVITY_RECOGNITION",
+        "com.google.android.gms.permission.ACTIVITY_RECOGNITION"
+      ],
+      "package": "com.yournexttriptoparadise.mobile"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      "expo-image",
+      "expo-font",
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Use your approximate location to show nearby places while you use Destination Paradise. Your position stays on this device.",
+          "locationAlwaysAndWhenInUsePermission": false,
+          "locationAlwaysPermission": false,
+          "motionUsagePermission": "Destination Paradise does not access motion or fitness data. Nearby suggestions use only your approximate location.",
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false,
+          "isAndroidForegroundServiceEnabled": false,
+          "isAndroidMotionActivityEnabled": false
+        }
+      ],
+      "./plugins/with-optional-location-features.cjs",
+      "./plugins/with-android-release-optimization.cjs",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#031C32",
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 180
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "dfc96989-7474-4df5-864a-5527f98fb018"
+      }
+    },
+    "owner": "louis-dev"
+  }
+}

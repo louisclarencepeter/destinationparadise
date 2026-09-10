@@ -1,0 +1,474 @@
+{
+  "schemaVersion": 1,
+  "capturedAtUtc": "2026-09-06T19:50:42.101021+00:00",
+  "purpose": "Frozen approved navy full-logo production build archive. Does not itself prove cloud completion, device QA or submission.",
+  "localArchive": "/tmp/dp-navy-icon-20260906-eas-archive",
+  "archiveCommand": "eas build:inspect --platform android --stage archive --profile production",
+  "archiveSourceMatchesWorkspace": true,
+  "archiveFileCount": 83,
+  "archiveTotalBytes": 2493134,
+  "credentialArtifactWebsitePathAndPrivateKeyPatternChecksPassed": true,
+  "previousManifest": "../weather-layout-build-source-sha256.json",
+  "changesFromPriorArchive": [
+    "mobile/VALIDATION.md",
+    "mobile/app.json",
+    "mobile/assets/android-icon-foreground.png",
+    "mobile/assets/favicon.png",
+    "mobile/assets/icon.png",
+    "mobile/assets/splash-icon.png"
+  ],
+  "addedToPriorArchive": [
+    "mobile/scripts/export-app-icons.mjs"
+  ],
+  "removedFromPriorArchive": [],
+  "runtimeSrcAndRoutesUnchanged": true,
+  "sourceFiles": [
+    {
+      "path": "mobile/.claude/settings.json",
+      "sha256": "1e7be1a32a758be623e4897bcd97715f42c1585f3d7389eaa996c230e8fe9834",
+      "bytes": 71
+    },
+    {
+      "path": "mobile/.env.example",
+      "sha256": "1b63b9ccb81baba0168af682459611fc0d7f4a8d4f712afe34ed002dd7d74532",
+      "bytes": 272
+    },
+    {
+      "path": "mobile/.gitignore",
+      "sha256": "a168ccf3b78f53cfd51d52d033d9164ec94a406a16afc20f6db11332b7566446",
+      "bytes": 454
+    },
+    {
+      "path": "mobile/AGENTS.md",
+      "sha256": "5986df214fcb822f856b9a8aac7c06503e02158aad55c8d7edf2966d7ee2dffd",
+      "bytes": 118
+    },
+    {
+      "path": "mobile/CLAUDE.md",
+      "sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49",
+      "bytes": 11
+    },
+    {
+      "path": "mobile/README.md",
+      "sha256": "b3eaa3179ddfa92ee180579739082f0d306e1639db7047297aa2ae6529fb12d8",
+      "bytes": 6477
+    },
+    {
+      "path": "mobile/VALIDATION.md",
+      "sha256": "3310efd1924006de1538a36a4bc745725b13f7271bc5eb0dd85f5ed54b53420b",
+      "bytes": 20332
+    },
+    {
+      "path": "mobile/WEATHER_RELEASE.md",
+      "sha256": "d644128052cf5a194e912e148ed0064dfee3eb64278d611e59a12fee4cbd95b1",
+      "bytes": 7099
+    },
+    {
+      "path": "mobile/app/(tabs)/_layout.tsx",
+      "sha256": "be35f05a02d7f3cfeee5ca245d09f83f7318c027592b2e81f2eb659e02966e56",
+      "bytes": 4558
+    },
+    {
+      "path": "mobile/app/(tabs)/index.tsx",
+      "sha256": "a35925ec6d2cb9b46069c99de506a6babfb7b437f289de761b0899ffdb3f687f",
+      "bytes": 373
+    },
+    {
+      "path": "mobile/app/(tabs)/planner.tsx",
+      "sha256": "609cc1269ccaaad243be16c259720fc71f041e890b95a8351fffaa4388156a33",
+      "bytes": 136
+    },
+    {
+      "path": "mobile/app/(tabs)/weather.tsx",
+      "sha256": "c24445ebe26c024bed2d3ceeb604f45e671929c201e5ea8e53dcc2e65b4fac6e",
+      "bytes": 356
+    },
+    {
+      "path": "mobile/app/+not-found.tsx",
+      "sha256": "e21f220a768cd47cebbae3770281488673f8b2a734b84453ed22f14b3ef501c1",
+      "bytes": 508
+    },
+    {
+      "path": "mobile/app/_layout.tsx",
+      "sha256": "428c6054bf3a2df49c8dbaa2aa180093f6763f29de867a8f03fd19934f936692",
+      "bytes": 3037
+    },
+    {
+      "path": "mobile/app/settings.tsx",
+      "sha256": "1d4f6aa715312c125ce1d5c012958077456bb271deca27d160f1f61bf4ea557b",
+      "bytes": 3933
+    },
+    {
+      "path": "mobile/app.json",
+      "sha256": "5d87d11b1d291fc99333e37b395d28f9f256a4ae073dcd54e9b7ed1dcaa9bc68",
+      "bytes": 1662
+    },
+    {
+      "path": "mobile/assets/android-icon-foreground.png",
+      "sha256": "2bf168cfe0ac7c92a947d24f00b41dee46662c9ffd8985c9ccef1cd9ec236bef",
+      "bytes": 484387
+    },
+    {
+      "path": "mobile/assets/apple-weather-dark.png",
+      "sha256": "93a85eb9dbab1b7fae43f3ad7a212a228f2f7fc0f9b45e108ee950941b822b0e",
+      "bytes": 3114
+    },
+    {
+      "path": "mobile/assets/favicon.png",
+      "sha256": "c0871f25f1ed2b3fb766c858caae07529f221cc0e7e9a38be9db497e85bf65e7",
+      "bytes": 3465
+    },
+    {
+      "path": "mobile/assets/icon.png",
+      "sha256": "505b8d8ceebbd198fdbba1535fd7d5336f04348ad42576cb72f17e4657bb7570",
+      "bytes": 920959
+    },
+    {
+      "path": "mobile/assets/splash-icon.png",
+      "sha256": "3935c283766808f59e4dfcd947f0d7bd9d8e355ea161558d22978afcaae81c0a",
+      "bytes": 250813
+    },
+    {
+      "path": "mobile/eas.json",
+      "sha256": "e9ed5b944f9540974866ddef6cd22faf76062a68e9e63b4f7e1683de0df4b92d",
+      "bytes": 819
+    },
+    {
+      "path": "mobile/expo-env.d.ts",
+      "sha256": "6fc02634da46d3edc5a88eec9173ba6bf709726be3cba83c73ebd8e859d5c147",
+      "bytes": 110
+    },
+    {
+      "path": "mobile/licenses/expo-template.txt",
+      "sha256": "fb3ca4a837f5779e83cef89b78253a8949cfb9429c340309f62d0465ec6610b4",
+      "bytes": 1106
+    },
+    {
+      "path": "mobile/metro.config.cjs",
+      "sha256": "29e82797a9a728e2edcdf2d09bbb6e6785b82715179b53ba998bc8429ce4d55d",
+      "bytes": 2149
+    },
+    {
+      "path": "mobile/package-lock.json",
+      "sha256": "80e13d51d8ca08b6dbf9b11f04ed0ed4658160e2ccf24a6ca84175e4ee27e26c",
+      "bytes": 311352
+    },
+    {
+      "path": "mobile/package.json",
+      "sha256": "28063c91fd5101d7154b59efffcc5e066596617b2d239ea4dfd91a318ab30f1f",
+      "bytes": 1867
+    },
+    {
+      "path": "mobile/script/build_and_run.sh",
+      "sha256": "47efe07d642469701e06fc4bc1fde48da75f28ef72fd61faddbe772b7b094629",
+      "bytes": 1359
+    },
+    {
+      "path": "mobile/scripts/export-app-icons.mjs",
+      "sha256": "eda57d2dfa7ffe2d58090dc808dc67cdceec692473fd84cc582f778d744c1c2d",
+      "bytes": 7324
+    },
+    {
+      "path": "mobile/scripts/sync-content.mjs",
+      "sha256": "1218829000f37a310b1f3ca16bc4b62fc302fc871d3d7ae743ba4a855349ff7c",
+      "bytes": 7641
+    },
+    {
+      "path": "mobile/src/api/client.ts",
+      "sha256": "836cc1e4104ce79daeb564ce2d2db2b7182692cba422cb437127673c7e4fdfd4",
+      "bytes": 2635
+    },
+    {
+      "path": "mobile/src/api/index.ts",
+      "sha256": "0c2f6e6873b89a33e0eaf9b640f9927daeecfca2b1fb78475895033d40048544",
+      "bytes": 385
+    },
+    {
+      "path": "mobile/src/api/planner.ts",
+      "sha256": "340d1391d012cf74bf31fd14555c3079d85e8c066a6fd716bfda34be32abe66c",
+      "bytes": 6819
+    },
+    {
+      "path": "mobile/src/api/report-ai.ts",
+      "sha256": "eb2043e7c382d2f86dfe63d1c5dba7aa0e7ad59e7b1c6dd20a4ba914930bcc6e",
+      "bytes": 2299
+    },
+    {
+      "path": "mobile/src/api/weather.ts",
+      "sha256": "c2f33dfadc01910b090f416755585e4aae9cf98f01ad1a84e06741e4a8907116",
+      "bytes": 5850
+    },
+    {
+      "path": "mobile/src/components/map/bundle-leaflet.cjs",
+      "sha256": "93b63cbbf944615f00ce8ec0b823b6e0783c9405f6cc9831609378db8526c7d9",
+      "bytes": 747
+    },
+    {
+      "path": "mobile/src/components/map/destination-map.tsx",
+      "sha256": "9f4b60c876ebb1770250f7200ad32434a24ddd0c5105d7ebca5ef40a5426f093",
+      "bytes": 6476
+    },
+    {
+      "path": "mobile/src/components/map/leaflet-LICENSE",
+      "sha256": "53e8dc25862014e4324741ca18fbe3611e11d42ef69f59f86ea8c5389647d4cb",
+      "bytes": 1395
+    },
+    {
+      "path": "mobile/src/components/map/leaflet-bundle.ts",
+      "sha256": "48a15ca98d4181526fa828f2ada313e9e849cf019dbe857d159aaed30cc18927",
+      "bytes": 166097
+    },
+    {
+      "path": "mobile/src/components/map/map-document.ts",
+      "sha256": "0c1e626fea4be43830f4ac9b28ad8a2f01d02f351738681425a2b15cdc6b4bd3",
+      "bytes": 7906
+    },
+    {
+      "path": "mobile/src/components/map/map-frame-types.ts",
+      "sha256": "7238f8ed632fd9be24e8391963deb36b954275aa1b76ded48b95ff411c07eefa",
+      "bytes": 309
+    },
+    {
+      "path": "mobile/src/components/map/map-frame.tsx",
+      "sha256": "115440c422c7873e75e66cee087cfa39ee2e26d8cb50e743254f9c53ff5f282c",
+      "bytes": 2354
+    },
+    {
+      "path": "mobile/src/components/map/map-frame.web.tsx",
+      "sha256": "e140ca6b05030b11290a985325e7d16abc729a14c186f5a7488cba49325faac4",
+      "bytes": 1525
+    },
+    {
+      "path": "mobile/src/components/map/map-protocol.test.ts",
+      "sha256": "a9815ff2a6527d8c5cde142983e4576d8872f17368cb8ddf7eb26513c6bb03cc",
+      "bytes": 6653
+    },
+    {
+      "path": "mobile/src/components/map/map-protocol.ts",
+      "sha256": "8daed44e19686643a14278807726952ed1e1e6a5d8ab3ffea2ed4340d78e1395",
+      "bytes": 2428
+    },
+    {
+      "path": "mobile/src/components/motion.tsx",
+      "sha256": "ef7a2ad8257a0d46d8dd2192df6efcad8f583b4b133ee60d674fd79a6019481e",
+      "bytes": 5227
+    },
+    {
+      "path": "mobile/src/components/ui.tsx",
+      "sha256": "918a2dd2aeff47e2cd5da7783ceacbd4a5d035dd2899f287a8e6e7f438d6d889",
+      "bytes": 7856
+    },
+    {
+      "path": "mobile/src/config/endpoint-origins.json",
+      "sha256": "f6d29258f9d8ff710e0c1df7d74b7079bb98890fc4355168b2857439aa9c5628",
+      "bytes": 130
+    },
+    {
+      "path": "mobile/src/config/endpoints.ts",
+      "sha256": "4f40efad97fe5cd508503a88eeb713f70b6ddc06714f868a39a7bc30623451c6",
+      "bytes": 223
+    },
+    {
+      "path": "mobile/src/data/content.ts",
+      "sha256": "a32d9ba8fb332fe54df78e01db35cfd07a52e6f8447b0120618c61821d95b498",
+      "bytes": 1883
+    },
+    {
+      "path": "mobile/src/data/generated-content.json",
+      "sha256": "7df87814aa1f325b00b8d6688b1ea16c5aa85a31a39cf1ac40d8630a924168f1",
+      "bytes": 52168
+    },
+    {
+      "path": "mobile/src/features/explore/destination-detail.tsx",
+      "sha256": "af65d0b947ea0a4e5981461be99bcc8dd7c08625cc012b8f1e6d7d2f65b69006",
+      "bytes": 5287
+    },
+    {
+      "path": "mobile/src/features/explore/explore-model.test.ts",
+      "sha256": "d3101c1ec486a3acc9517f4358b6ae115514093eee1ef4d2282aa986bd31fb76",
+      "bytes": 1496
+    },
+    {
+      "path": "mobile/src/features/explore/explore-model.ts",
+      "sha256": "0a2b77bb3374b17989903f796fe40613660eb6cb42a633cb1f68168ba9eb4eaa",
+      "bytes": 2084
+    },
+    {
+      "path": "mobile/src/features/explore/explore-screen.tsx",
+      "sha256": "97d7bf6fe43e4c83dec38870f14af92b848c4bc54f9ab21391c5d535445db84a",
+      "bytes": 29683
+    },
+    {
+      "path": "mobile/src/features/explore/explore-ui.tsx",
+      "sha256": "3386400aa8e629a13255d463972615c8140bc8e46455b5a52e981d36b73a9e4a",
+      "bytes": 9137
+    },
+    {
+      "path": "mobile/src/features/explore/island-guide.tsx",
+      "sha256": "919c882e1708dd3655da453a64a2cfeba09154f0eb46a9cbb0d5b26a26879d8e",
+      "bytes": 8005
+    },
+    {
+      "path": "mobile/src/features/planner/planner-parts.tsx",
+      "sha256": "a6533275ec90761e7960af00dc233036aa47b71ba7ceb30c80f7b5286422d6be",
+      "bytes": 4865
+    },
+    {
+      "path": "mobile/src/features/planner/planner-screen.tsx",
+      "sha256": "422a82f38256721a642cabdc455ff474c0e3e73b549bd6df997fd8c1daf38e69",
+      "bytes": 26632
+    },
+    {
+      "path": "mobile/src/features/planner/planning-context.ts",
+      "sha256": "44c8d12dcfe73ac24ca888cf7521d20583f93081fc3a54f6a9d964e3b971c5f2",
+      "bytes": 2591
+    },
+    {
+      "path": "mobile/src/features/planner/report-ai.tsx",
+      "sha256": "64ff9c1843cadde9aa52c75ed44b2653b041be333952dc0dc20e8181ccf0def9",
+      "bytes": 6684
+    },
+    {
+      "path": "mobile/src/features/weather/weather-scene-state.ts",
+      "sha256": "ba7e999737dc3b484b4c8a289ab2c94bb5387ad67128200a8ac73e25fcd721e1",
+      "bytes": 1590
+    },
+    {
+      "path": "mobile/src/features/weather/weather-scene.tsx",
+      "sha256": "6d21f805dcf44b0660f9ed7e5effd73e023452320db2bfdef726f7b92c597bd1",
+      "bytes": 10225
+    },
+    {
+      "path": "mobile/src/features/weather/weather-screen.tsx",
+      "sha256": "3b843f7b24b0430d94e50473d9125c0bec0462a636c5a024cd32d0443408ec73",
+      "bytes": 15113
+    },
+    {
+      "path": "mobile/src/state/preferences.ts",
+      "sha256": "6b57e899fe467f3a25f93dc59950c0e85fad7bd6fa581afe13bcac604ba00a64",
+      "bytes": 2457
+    },
+    {
+      "path": "mobile/src/state/storage-write-queue.ts",
+      "sha256": "391ffcc39a674161b308c1e4f7a985f3eb729684ddf95d666a267dd7c04a7215",
+      "bytes": 675
+    },
+    {
+      "path": "mobile/src/state/trip-store.tsx",
+      "sha256": "8a6e498a8699e83f76a1fcfd4aa7dd1c4850e37ef0b5500fba2ed14364322472",
+      "bytes": 4007
+    },
+    {
+      "path": "mobile/src/theme.ts",
+      "sha256": "e806e320c4e583194474fa58ce7daf9fc897276b8f472e9f26a882338f41d52f",
+      "bytes": 728
+    },
+    {
+      "path": "mobile/test/api-planner.test.ts",
+      "sha256": "bd0c001c9391fe835d935d5caff6e8d715f5efe7193ab520fe207737f482c503",
+      "bytes": 6280
+    },
+    {
+      "path": "mobile/test/api-report-ai.test.ts",
+      "sha256": "1b81a664062f9542cf4e94c1392c4f3130bba70ca2de5b2dbd910c90a5670b45",
+      "bytes": 2244
+    },
+    {
+      "path": "mobile/test/api-weather.test.ts",
+      "sha256": "83db1cb756430abb79f034369a72ee8296c62a1c0a55abb2c3c3f7cd35757490",
+      "bytes": 3861
+    },
+    {
+      "path": "mobile/test/data-content.test.ts",
+      "sha256": "354c639b072fb6b133ebac84c2c19f09e8ea6cc1352c6e040ecfd3082c8f4d61",
+      "bytes": 3206
+    },
+    {
+      "path": "mobile/test/planning-context.test.ts",
+      "sha256": "422ee4b6eb26678341bf2b2fb2200c09e9020ce88d212f956402b6686da2c594",
+      "bytes": 2685
+    },
+    {
+      "path": "mobile/test/preferences.test.ts",
+      "sha256": "7b29714ddedb207277556fabaa28130a241bbd7b1d843ff4e0ee13c53244f5ae",
+      "bytes": 1584
+    },
+    {
+      "path": "mobile/test/router-decoder.test.ts",
+      "sha256": "4f4ac6ebbd8ceda2c3932e77882c402a71b27154658126b5f7c018b9807bacee",
+      "bytes": 2717
+    },
+    {
+      "path": "mobile/test/storage-write-queue.test.ts",
+      "sha256": "178812165cea58b2dca1ad064688c43103b5892b134166a92b162f94de84c966",
+      "bytes": 2272
+    },
+    {
+      "path": "mobile/test/weather-scene-state.test.ts",
+      "sha256": "889e692b21df8b1050e604352645243fee6547a46f042da38c6e8240371d7e3b",
+      "bytes": 1319
+    },
+    {
+      "path": "mobile/tsconfig.json",
+      "sha256": "93fdca1ba134249f828b36d5e9e642659fe4b560cc9fb505d3d108eb863a9de6",
+      "bytes": 267
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/LICENSE",
+      "sha256": "ed7a9a0f74e43951b2520efe1a4349cb9ed5f3dff0b0f268e2e51a4d38df7ea4",
+      "bytes": 1139
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/README.md",
+      "sha256": "0ff0147f7974f1c69a58b3431b4db8359e10d69e58d6c68702a9d48896f81513",
+      "bytes": 2147
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/index.cjs",
+      "sha256": "684ba79779327ba789733a3a563050370a928a57eb7dd33d19b346f43b32cbb7",
+      "bytes": 4141
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/index.d.ts",
+      "sha256": "85347394f21746d5b50a60c7876e28b0fee5667aee00aae8c0410d4df95b548e",
+      "bytes": 380
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/package.json",
+      "sha256": "9dd5443644eb3fccd8151801d4206dda0df7498590cd82a2adea89548b5a1654",
+      "bytes": 406
+    }
+  ],
+  "autoSubmit": false,
+  "workspaceUnchangedThroughCloudUpload": true,
+  "uploadSourceVerifiedAtUtc": "2026-09-06T19:52:06.880374+00:00",
+  "cloudBuilds": [
+    {
+      "id": "4106b3fe-467d-4769-b407-fe107d5ca526",
+      "platform": "ANDROID",
+      "status": "FINISHED",
+      "appVersion": "1.0.0",
+      "appBuildVersion": "5",
+      "createdAt": "2026-09-06T19:51:16.491Z",
+      "buildProfile": "production",
+      "distribution": "STORE",
+      "easFingerprint": "a235a180988ebc3fd2e92b84676b5d01581cf410",
+      "completedAtUtc": "2026-09-06T20:06:35.329Z"
+    },
+    {
+      "id": "4a785994-db2c-40fc-9329-a296e584ec15",
+      "platform": "IOS",
+      "status": "FINISHED",
+      "appVersion": "1.0.0",
+      "appBuildVersion": "4",
+      "createdAt": "2026-09-06T19:51:50.774Z",
+      "buildProfile": "production",
+      "distribution": "STORE",
+      "easFingerprint": "66d0d9ac726e01df1a28759383e0f99bc5bc0ff8",
+      "completedAtUtc": "2026-09-06T19:57:58.628Z"
+    }
+  ],
+  "buildCommand": "eas build --platform all --profile production --freeze-credentials --non-interactive --no-wait --json --message 'Approved full-logo navy app icon and splash'",
+  "workspaceUnchangedThroughBuildCompletion": true,
+  "finalSourceVerifiedAtUtc": "2026-09-06T20:08:14.622040+00:00"
+}

@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { Route, Routes as RouterRoutes } from 'react-router';
 import SiteLayout from './components/SiteLayout.jsx';
+import { isStoreEnabled } from './config/featureFlags.js';
 
 function lazyWithRetry(factory) {
   return lazy(async () => {
@@ -38,8 +39,12 @@ const Booking = lazyWithRetry(() => import('./pages/Booking.jsx'));
 const Policy = lazyWithRetry(() => import('./pages/Policy.jsx'));
 const Transfers = lazyWithRetry(() => import('./pages/Transfers.jsx'));
 const NotFound = lazyWithRetry(() => import('./pages/NotFound.jsx'));
+const ExperiencesStore = lazyWithRetry(() => import('./pages/ExperiencesStore.jsx'));
+const StoreCheckout = lazyWithRetry(() => import('./pages/StoreCheckout.jsx'));
+const StoreConfirmation = lazyWithRetry(() => import('./pages/StoreConfirmation.jsx'));
 
 export default function App() {
+  const storeEnabled = isStoreEnabled();
   return (
     <Suspense fallback={null}>
       <RouterRoutes>
@@ -61,6 +66,13 @@ export default function App() {
           <Route path="/aboutus" element={<About />} />
           <Route path="/booking" element={<Booking />} />
           <Route path="/transfers" element={<Transfers />} />
+          {storeEnabled && (
+            <>
+              <Route path="/store" element={<ExperiencesStore />} />
+              <Route path="/store/checkout" element={<StoreCheckout />} />
+              <Route path="/store/order/:reference" element={<StoreConfirmation />} />
+            </>
+          )}
           <Route path="/cookies-policy" element={<Policy section="cookies" />} />
           <Route path="/privacy-policy" element={<Policy section="privacy" />} />
           <Route path="/terms-of-service" element={<Policy section="terms" />} />

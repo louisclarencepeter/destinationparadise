@@ -23,6 +23,20 @@
     "body": "That page isn't on the map. Head back to the homepage and pick a route.",
     "cta": "← Back to home"
   },
+  "error": {
+    "eyebrow": "Something went wrong",
+    "title": "We lost the route for a moment",
+    "body": "The page hit an unexpected snag. Try again, or return to the homepage and keep planning from there.",
+    "actions_aria": "Recovery actions",
+    "try_again": "Try again",
+    "back_home": "Back to home",
+    "contact_aria": "Destination Paradise contact details",
+    "contact_intro": "Need us directly? Reach the team here.",
+    "contact_hours": "Daily · 8:00–19:00 EAT",
+    "details": "Error details",
+    "error_name": "Error",
+    "unknown_error": "Unknown error"
+  },
   "cookies": {
     "aria_label": "Cookie consent",
     "eyebrow": "Cookie preferences",
@@ -52,6 +66,31 @@
     "loading": "Preparing the site index...",
     "empty_title": "No exact match yet.",
     "empty_body": "Try a destination, activity, package style, safari park, transfer route, or send us a custom request.",
-    "open_planner": "Open trip planner"
+    "open_planner": "Open trip planner",
+    "index": {
+      "categories": {
+        "page": "Page",
+        "package": "Package",
+        "safari": "Safari",
+        "safariStyle": "Safari style",
+        "excursion": "Excursion",
+        "excursionCombo": "Excursion combo",
+        "transfer": "Transfer"
+      },
+      "popular": ["Airport transfer", "Safari Blue", "Honeymoon package", "Serengeti", "Stone Town", "Paje"],
+      "pages": {
+        "store": { "title": "Experiences Store", "description": "Book selected excursions instantly, combine several trips, and pay once." },
+        "home": { "title": "Home", "description": "Start here for Zanzibar trips, safaris, packages, transfers, weather, and trip planning." },
+        "excursions": { "title": "Excursions", "description": "Browse Zanzibar day trips, dhow sailing, Stone Town, spice farms, snorkeling, dolphins, and nature tours." },
+        "safaris": { "title": "Safaris", "description": "Mainland wildlife routes across Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha, and more." },
+        "packages": { "title": "Packages", "description": "Safari and Zanzibar packages for honeymoon, family, luxury, culture, migration, and beach holidays." },
+        "retreats": { "title": "Yoga & Wellness Retreats", "description": "Teacher-led yoga, bodywork, coastal reset weeks, private retreats, and yoga safari journeys on Zanzibar." },
+        "transfers": { "title": "Transfers", "description": "Private airport transfers, hotel transfers, group transport, and VIP airport concierge service." },
+        "tripPlanner": { "title": "Trip Planner", "description": "Build a custom itinerary around pace, dates, budget, beach time, safaris, and excursions." },
+        "booking": { "title": "Booking", "description": "Send a booking request for a package, excursion, safari, transfer, or custom plan." },
+        "guide": { "title": "Our Zanzibar Guide", "category": "Local guide", "description": "Restaurant recommendations across Zanzibar, plus island events worth planning around." },
+        "about": { "title": "About Us", "description": "Learn about Destination Paradise, our mission, story, community, and local travel approach." }
+      }
+    }
   }
 }

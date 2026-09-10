@@ -17,7 +17,7 @@
   margin: .5rem 0 0; color: var(--text-soft, #1a4d6e);
   max-width: 13ch;
 }
-.ab-press__head h2 em { font-style: italic; color: #b8541a; }
+.ab-press__head h2 em { font-style: italic; color: var(--dp-accent-text); }
 .ab-press__head p { margin: 0; font-size: 1.05rem; line-height: 1.7; color: var(--text, #2a3942); max-width: 54ch; }
 
 .ab-press__strip {
@@ -75,7 +75,7 @@
 .ab-press__quote-source {
   font-family: var(--dp-font-sans, 'Montserrat', sans-serif);
   font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
-  color: #b8541a; font-weight: 700;
+  color: var(--dp-accent-text); font-weight: 700;
 }
 .ab-press__quote-text {
   font-family: 'Playfair Display', Georgia, serif;
@@ -84,7 +84,7 @@
   margin: 0;
   text-wrap: pretty;
 }
-.ab-press__quote-text em { font-style: italic; color: #b8541a; }
+.ab-press__quote-text em { font-style: italic; color: var(--dp-accent-text); }
 .ab-press__quote-foot {
   display: flex; align-items: center; justify-content: space-between;
   margin-top: auto;
@@ -96,7 +96,7 @@
   font-weight: 600;
 }
 .ab-press__quote-foot a {
-  color: #b8541a;
+  color: var(--dp-accent-text);
   text-decoration: none;
   display: inline-flex; align-items: center; gap: .35rem;
   font-weight: 600;

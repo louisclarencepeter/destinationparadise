@@ -31,7 +31,7 @@
   font-family: var(--dp-font-script);
   font-size: clamp(4.5rem, 10vw, 8rem);
   line-height: 1;
-  color: var(--dp-secondary);
+  color: var(--text-soft);
   font-weight: 400;
   display: inline-flex;
   align-items: flex-start;
@@ -40,7 +40,7 @@
   font-family: var(--dp-font-sans);
   font-size: .3em;
   font-weight: 600;
-  color: var(--dp-accent);
+  color: var(--text-soft);
   line-height: 1;
   margin-left: .55em;
   margin-top: .35em;
@@ -142,7 +142,7 @@
 .weather-fact__value { font-family: var(--dp-font-sans); font-size: 1.1rem; font-weight: 600; color: var(--text-soft); margin-top: 2px; }
 
 .weather__side { display: flex; flex-direction: column; gap: 1rem; }
-.weather__side-title { font-family: var(--dp-font-sans); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--dp-accent); font-weight: 700; display: flex; align-items: center; gap: .55rem; }
+.weather__side-title { font-family: var(--dp-font-sans); font-size: 11px; letter-spacing: .18em; text-transform: uppercase; color: var(--text); font-weight: 700; display: flex; align-items: center; gap: .55rem; margin: 0; }
 .weather__side-title::before { content: ""; width: 18px; height: 1px; background: var(--dp-accent); }
 .weather__months { display: flex; flex-direction: column; gap: .25rem; }
 .weather-month {
@@ -169,11 +169,8 @@
   letter-spacing: .1em;
   text-transform: uppercase;
   text-align: right;
-  color: var(--text-muted);
+  color: var(--text-soft);
 }
-.weather-month--peak .weather-month__season { color: var(--dp-accent); }
-.weather-month--high .weather-month__season { color: #b08230; }
-.weather-month--low  .weather-month__season { color: var(--text-muted); }
 
 .weather__legend {
   display: flex; flex-direction: column; gap: .35rem;
@@ -196,7 +193,7 @@
   font-family: var(--dp-font-sans);
   font-size: 10px; font-weight: 700;
   letter-spacing: .18em; text-transform: uppercase;
-  color: var(--dp-accent);
+  color: var(--text);
   margin-bottom: .15rem;
 }
 .weather__legend-item strong { color: var(--text-soft); font-weight: 600; }
@@ -214,9 +211,8 @@ html[data-theme="dark"] .weather-month--low .weather-month__dot { background: rg
   background: linear-gradient(90deg, rgba(26,77,110,.8), var(--dp-accent));
 }
 .weather-month__score { font-family: var(--dp-font-sans); font-size: 12px; color: var(--text-muted); text-align: right; font-weight: 600; }
-.weather-month.is-now .weather-month__m { color: var(--dp-accent); font-weight: 700; }
+.weather-month.is-now .weather-month__m { color: var(--text); font-weight: 700; }
 .weather-month.is-now::after {
-  content: "TODAY"; font-family: var(--dp-font-sans); font-size: 9px; letter-spacing: .14em;
-  color: var(--dp-accent); font-weight: 700;
+  content: attr(data-current-label); font-family: var(--dp-font-sans); font-size: 9px; letter-spacing: .14em;
+  color: var(--text); font-weight: 700;
 }
-

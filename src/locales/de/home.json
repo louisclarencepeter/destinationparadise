@@ -319,8 +319,29 @@
       "privacy_suffix": "."
     }
   },
+  "section_nav": {
+    "aria": "Diese Seite erkunden",
+    "item_aria": "{{label}}, Abschnitt {{current}} von {{total}}",
+    "items": {
+      "hero": "Start",
+      "excursions": "Ausflüge",
+      "safaris": "Safaris",
+      "packages": "Reisepakete",
+      "transfers": "Transfers",
+      "planner": "Reiseplaner",
+      "why": "Warum wir",
+      "map": "Karte",
+      "weather": "Wetter & Reisezeiten",
+      "gallery": "Galerie",
+      "reviews": "Gästestimmen",
+      "about": "Über uns",
+      "contact": "Kontakt",
+      "newsletter": "Neuigkeiten"
+    }
+  },
   "weather": {
     "live_suffix": " · Live",
+    "today": "HEUTE",
     "facts": {
       "sea_temp": "Meerestemperatur",
       "humidity": "Luftfeuchtigkeit",

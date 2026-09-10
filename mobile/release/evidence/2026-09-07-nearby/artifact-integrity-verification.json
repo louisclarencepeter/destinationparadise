@@ -1,0 +1,71 @@
+{
+  "verifiedAtUtc": "2026-09-08T08:22:14.832683+00:00",
+  "scope": "Read-only file integrity verification during evidence preservation. This does not rerun native QA, signing validation, upload, or provider readback.",
+  "allEightArtifactsMatchHistoricalHashesAndSizes": true,
+  "artifacts": [
+    {
+      "originalPath": "/tmp/dp-native-release/destination-paradise-android-nearby-code6.aab",
+      "bytes": 80959092,
+      "sha256": "68337eee1b7d6945c49f583070d3c8683740a9e0d9e74d510a05bf6073ce6dd6",
+      "historicalEvidence": "nearby-code6-artifact.json",
+      "matchesHistoricalHashAndSize": true,
+      "artifactCopied": false
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/destination-paradise-android-nearby-code6-local-test.apk",
+      "bytes": 116524543,
+      "sha256": "427b60a4065a2065591c9ffeac220a2dcd73e258258567b5cea6ac34e5ade4a1",
+      "historicalEvidence": "nearby-code6-local-apk-verification.json",
+      "matchesHistoricalHashAndSize": true,
+      "artifactCopied": false
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/destination-paradise-android-nearby-code7.aab",
+      "bytes": 80959187,
+      "sha256": "84f3f55f838cb319dde330dd0ea8193fedec7b69a00e427c5160f6c41fc8d4ea",
+      "historicalEvidence": "nearby-code7-artifact.json",
+      "matchesHistoricalHashAndSize": true,
+      "artifactCopied": false
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/destination-paradise-android-nearby-code7-local-test.apk",
+      "bytes": 116524543,
+      "sha256": "7135cf7d5cdee800f1e8ff906389d54b71a6648211b3e82c908c3b3da3e8caeb",
+      "historicalEvidence": "nearby-code7-local-apk-verification.json",
+      "matchesHistoricalHashAndSize": true,
+      "artifactCopied": false
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/destination-paradise-android-nearby-code8.aab",
+      "bytes": 80969254,
+      "sha256": "43675893dad633ec2983ea3bfcaa535d894b82a5044ba46ca2a07211427459ba",
+      "historicalEvidence": "nearby-code8-artifact.json",
+      "matchesHistoricalHashAndSize": true,
+      "artifactCopied": false
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/destination-paradise-android-nearby-code8-local-test.apk",
+      "bytes": 116540927,
+      "sha256": "177ff0f5e666c39483aa24d218da891332ec4b881613f4d4d6cbf876e5220e1a",
+      "historicalEvidence": "nearby-code8-local-apk-verification.json",
+      "matchesHistoricalHashAndSize": true,
+      "artifactCopied": false
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/destination-paradise-ios-nearby-build5.ipa",
+      "bytes": 26268155,
+      "sha256": "f9aae1fa93d2f187a0faedf5083b8367c97bea573713d7ba0cc024b490581050",
+      "historicalEvidence": "nearby-ios-build5-artifact-verification.json",
+      "matchesHistoricalHashAndSize": true,
+      "artifactCopied": false
+    },
+    {
+      "originalPath": "/tmp/dp-native-release/destination-paradise-ios-1.1.0-build6.ipa",
+      "bytes": 26285441,
+      "sha256": "24f4b89e8e760b565d355ecf5fad17bc3b335b7bb2d29060cdf710849adc3521",
+      "historicalEvidence": "version110-ios-build6-artifact-verification.json",
+      "matchesHistoricalHashAndSize": true,
+      "artifactCopied": false
+    }
+  ]
+}

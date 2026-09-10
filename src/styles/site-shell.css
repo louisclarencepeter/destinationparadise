@@ -79,6 +79,11 @@ html, body {
   min-height: 100svh;
 }
 
+.deferred-mount {
+  content-visibility: auto;
+  contain-intrinsic-size: auto var(--deferred-intrinsic-size, 400px);
+}
+
 .site-main {
   flex: 1 0 auto;
   display: flex;

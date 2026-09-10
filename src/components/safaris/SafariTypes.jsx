@@ -1,9 +1,16 @@
+import { useMemo } from 'react';
 import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
-import { SAFARI_TYPES } from '../../data/safariPageData.js';
+import { buildLocalizedSafariTypes } from '../../data/localizedCatalog.js';
+import { textFromTranslation } from '../../utils/translationValues.js';
 
 export default function SafariTypes() {
-  const { t } = useTranslation('safaris');
+  const { t, i18n, ready } = useTranslation(['safaris', 'catalog']);
+  const catalogLanguage = ready ? i18n.resolvedLanguage : '';
+  const safariTypes = useMemo(
+    () => (catalogLanguage ? buildLocalizedSafariTypes(t) : []),
+    [t, catalogLanguage],
+  );
   return (
     <section className="saf-types" id="safari-types">
       <header className="saf-types__head">
@@ -26,10 +33,10 @@ export default function SafariTypes() {
         </ul>
       </header>
       <div className="saf-types__grid">
-        {SAFARI_TYPES.map((item, i) => {
-          const title = t(`types.items.${item.id}.title`, item.title);
-          const desc = t(`types.items.${item.id}.desc`, item.desc);
-          const bestFor = t(`types.items.${item.id}.best_for`, item.bestFor);
+        {safariTypes.map((item, i) => {
+          const title = textFromTranslation(t(`types.items.${item.id}.title`, { defaultValue: item.title }), item.title);
+          const desc = textFromTranslation(t(`types.items.${item.id}.desc`, { defaultValue: item.desc }), item.desc);
+          const bestFor = textFromTranslation(t(`types.items.${item.id}.best_for`, { defaultValue: item.bestFor }), item.bestFor);
           return (
             <Link className="saf-type-card reveal" style={{ '--reveal-index': i }} key={item.id} to={`/safaris/types/${item.id}`} aria-label={t('types.card.explore_aria', { title })}>
               <div className="saf-type-card__media">

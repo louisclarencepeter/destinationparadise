@@ -1,10 +1,12 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Link, useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
-import { EXCURSIONS } from '../data/excursionsData.js';
-import { EXCURSION_COMBINATIONS } from '../data/excursionCombinations.js';
+import {
+  buildLocalizedExcursionCombinations,
+  buildLocalizedExcursions,
+} from '../data/localizedCatalog.js';
 import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
 import { touristTripJsonLd } from '../utils/productJsonLd.js';
 import { useCurrency } from '../context/useCurrency.js';
@@ -15,7 +17,8 @@ import '../styles/excursions.css';
 const fallbackImage = '/assets/images/excursions/safari-blue-sandbank.webp';
 
 export default function ExcursionCombinationDetail() {
-  const { t, i18n, ready } = useTranslation('excursions');
+  const { t, i18n, ready } = useTranslation(['excursions', 'catalog']);
+  const catalogLanguage = ready ? i18n.resolvedLanguage : '';
   const { id } = useParams();
   const { format } = useCurrency();
   const pageRef = useRef(null);
@@ -23,11 +26,19 @@ export default function ExcursionCombinationDetail() {
   // :id changes, so without it the observer wouldn't re-scan the new combo's
   // reveal elements and they'd stay hidden.
   useRevealOnScroll(pageRef, '.reveal:not(.is-visible)', ready ? `${i18n.resolvedLanguage}-${id}` : 'loading');
-  const combo = EXCURSION_COMBINATIONS.find((item) => item.id === id);
-  const excursions = /** @type {Array<(typeof EXCURSIONS)[number]>} */ (
+  const localizedExcursions = useMemo(
+    () => (catalogLanguage ? buildLocalizedExcursions(t) : []),
+    [t, catalogLanguage],
+  );
+  const combinations = useMemo(
+    () => (catalogLanguage ? buildLocalizedExcursionCombinations(t) : []),
+    [t, catalogLanguage],
+  );
+  const combo = combinations.find((item) => item.id === id);
+  const excursions = (
     combo
       ? combo.excursionIds
-          .map((excursionId) => EXCURSIONS.find((item) => item.id === excursionId))
+          .map((excursionId) => localizedExcursions.find((item) => item.id === excursionId))
           .filter(Boolean)
       : []
   );
@@ -38,10 +49,10 @@ export default function ExcursionCombinationDetail() {
   usePageMeta(
     combo
       ? {
-          title: `${combo.title} · Excursion Combination · Destination Paradise`,
+          title: t('excursions:combination.meta_title', { title: combo.title }),
           description: clampDescription(
             combo.desc ||
-              `${combo.title} — a combined Zanzibar day pairing ${combo.combo ? combo.combo.join(' and ') : 'two excursions'}, with hotel pickup and local guides.`,
+              t('excursions:combination.meta_fallback', { title: combo.title }),
           ),
           jsonLd: touristTripJsonLd({
             name: combo.title,

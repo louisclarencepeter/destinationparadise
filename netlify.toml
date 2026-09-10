@@ -6,6 +6,11 @@
 [functions]
   included_files = ["netlify/functions/_assets/**"]
 
+[functions."instagram-story-image"]
+  # Sharp's portable fallback loads this binary dynamically. Keep it in the
+  # function package so deployments built on macOS also run on Netlify Linux.
+  included_files = ["node_modules/@img/sharp-wasm32/lib/*.wasm"]
+
 [build.environment]
   # Pin Node so the build is reproducible (Vite 8 needs >= 20.19).
   NODE_VERSION = "22"
@@ -160,6 +165,9 @@
   from = "/xmlrpc.php"
   to = "/404.html"
   status = 410
+
+# Store routes are generated in dist/_redirects by build-spa-route-shells.mjs:
+# disabled builds return HTTP 404; enabled previews retain the SPA routes.
 
 # SPA fallback. Static files in dist/ (sitemap.xml, robots.txt, assets) are served
 # ahead of this catch-all, so unknown URLs return the prerendered 404 page.

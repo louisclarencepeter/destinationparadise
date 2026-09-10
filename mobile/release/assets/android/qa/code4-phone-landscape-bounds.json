@@ -1,0 +1,60 @@
+{
+  "screenPixels": [
+    2424,
+    1080
+  ],
+  "nodes": [
+    {
+      "text": "Typical monthly temperatures and hotel seasons from our website. A planning guide, not a forecast for your dates.",
+      "bounds": "[1160,382][2345,482]"
+    },
+    {
+      "content-desc": "January, 32 degrees Celsius, peak season",
+      "bounds": "[1160,529][1302,644]"
+    },
+    {
+      "content-desc": "February, 33 degrees Celsius, high season",
+      "bounds": "[1323,529][1469,644]"
+    },
+    {
+      "content-desc": "March, 32 degrees Celsius, low season",
+      "bounds": "[1490,529][1637,644]"
+    },
+    {
+      "content-desc": "April, 30 degrees Celsius, low season",
+      "bounds": "[1658,529][1801,644]"
+    },
+    {
+      "content-desc": "May, 29 degrees Celsius, low season",
+      "bounds": "[1822,529][1974,644]"
+    },
+    {
+      "content-desc": "June, 28 degrees Celsius, high season",
+      "bounds": "[1995,529][2139,644]"
+    },
+    {
+      "content-desc": "July, 27 degrees Celsius, peak season",
+      "bounds": "[2160,529][2291,644]"
+    },
+    {
+      "content-desc": "August, 27 degrees Celsius, peak season",
+      "bounds": "[1160,666][1311,782]"
+    },
+    {
+      "content-desc": "September, 28 degrees Celsius, high season",
+      "bounds": "[1332,666][1479,782]"
+    },
+    {
+      "content-desc": "October, 29 degrees Celsius, high season",
+      "bounds": "[1500,666][1643,782]"
+    },
+    {
+      "content-desc": "November, 30 degrees Celsius, low season",
+      "bounds": "[1664,666][1812,782]"
+    },
+    {
+      "content-desc": "December, 31 degrees Celsius, peak season",
+      "bounds": "[1833,666][1982,782]"
+    }
+  ]
+}

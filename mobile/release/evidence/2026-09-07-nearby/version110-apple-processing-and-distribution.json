@@ -1,0 +1,29 @@
+{
+  "checkedAtUtc": "2026-09-07T15:43:49.896943+00:00",
+  "appId": "6809042574",
+  "version": "1.1.0",
+  "buildNumber": "6",
+  "appleBuildId": "5d8d6831-9fdf-4e2c-89b8-a22442e54353",
+  "processingStatus": "COMPLETE",
+  "testflightNotesSaved": true,
+  "groupAssignmentRequested": true,
+  "groupAssignmentVerified": true,
+  "appStoreDraftVersionSaved": "1.1.0",
+  "appStoreDraftDescriptionAndNotesSaved": true,
+  "appReviewSubmitted": false,
+  "testFlightStatus": "TESTING",
+  "groupName": "Destination Paradise owner test",
+  "groupId": "0db9334b-5e79-4fa1-8950-e0e782456ba8",
+  "testers": 1,
+  "groupBuildCount": 3,
+  "builds": [
+    "1.1.0 (6)",
+    "1.0.0 (4)",
+    "1.0.0 (3)"
+  ],
+  "ownerLatestInstalled": "1.0.0 (4)",
+  "ownerInstalledNewBuildVerified": false,
+  "appStoreDraftBuildAttached": "1.1.0 (6)",
+  "appStoreDraftSaveVerifiedAfterRevisit": true,
+  "appStoreDraftState": "PREPARE_FOR_SUBMISSION"
+}

@@ -1,0 +1,11 @@
+{
+  "appPath": "/tmp/dp-native-release/ios-nearby-build5-inspect/Payload/DestinationParadise.app",
+  "codeSignVerifyPassed": true,
+  "codeSignExit": 0,
+  "verificationMessage": "",
+  "entitlementsReadExit": 0,
+  "applicationIdentifier": "86ZX7JC345.com.yournexttriptoparadise.mobile",
+  "teamIdentifier": "86ZX7JC345",
+  "getTaskAllow": false,
+  "backgroundEntitlementKeys": []
+}

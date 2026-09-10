@@ -1,4 +1,11 @@
 {
+  "meta": {
+    "title": "Tansania-Safaris · Destination Paradise",
+    "description": "Safari-Routen und Reisearten durch Serengeti, Ngorongoro, Tarangire und weitere Regionen Tansanias. Über {{count}} Routen von Camping bis Luxus."
+  },
+  "product_types": {
+    "specialty": "Spezial-Safari"
+  },
   "hero": {
     "eyebrow": "Festland Tansania · das Herz unserer Arbeit",
     "title_prefix": "Wo die Wildnis",
@@ -329,12 +336,13 @@
     ]
   },
   "detail": {
+    "meta_fallback": "{{title}} — eine geführte Tansania-Safari mit Parkgebühren, professionellem Guide und Vollpension.",
     "not_found_page_title": "Safari nicht gefunden · Destination Paradise",
     "not_found_eyebrow": "Safaris",
     "not_found_title": "Safari nicht gefunden",
     "not_found_text": "Diese Route ist nicht auf unserer aktuellen Liste. Sieh dir unten alle verfügbaren Safaris an.",
     "back_to_safaris": "Zurück zu allen Safaris →",
-    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_aria": "Brotkrumen-Navigation",
     "breadcrumb_home": "Start",
     "breadcrumb_safaris": "Safaris",
     "most_popular": "Am beliebtesten",
@@ -381,12 +389,13 @@
     }
   },
   "type_detail": {
+    "meta_fallback": "{{title}} in Tansania — handverlesene Routen, erfahrene Guides und individuell geplante Safaris.",
     "not_found_page_title": "Safari-Typ nicht gefunden · Destination Paradise",
     "not_found_eyebrow": "Safari-Stile",
     "not_found_title": "Safari-Typ nicht gefunden",
     "not_found_text": "Dieser Stil ist nicht auf unserer aktuellen Liste. Sieh dir unten alle Safari-Stile an.",
     "back_to_styles": "Zurück zu den Safari-Stilen →",
-    "breadcrumb_aria": "Breadcrumb",
+    "breadcrumb_aria": "Brotkrumen-Navigation",
     "breadcrumb_home": "Start",
     "breadcrumb_safaris": "Safaris",
     "cat": "Safari-Stil",
@@ -476,10 +485,10 @@
     "combo": "Bush & Beach"
   },
   "categories": {
-    "Northern Circuit": "Northern Circuit",
+    "Northern Circuit": "Nördlicher Safari-Rundkurs",
     "Migration Safari": "Migrationssafari",
-    "Southern Circuit": "Southern Circuit",
-    "Western Circuit": "Western Circuit",
+    "Southern Circuit": "Südlicher Safari-Rundkurs",
+    "Western Circuit": "Westlicher Safari-Rundkurs",
     "Last-minute Safari": "Last-Minute-Safari",
     "Day Safari": "Tagessafari",
     "Nature & Adventure": "Natur & Abenteuer",
@@ -495,8 +504,8 @@
     "Beach & Safari": "Strand & Safari",
     "Hiking & Nature": "Wandern & Natur",
     "Ultra Luxury": "Ultra-Luxus",
-    "Wildlife": "Wildlife",
-    "Birding": "Birding",
+    "Wildlife": "Tierwelt",
+    "Birding": "Vogelbeobachtung",
     "Adventure": "Abenteuer",
     "Migration": "Migration",
     "Combo": "Kombi",

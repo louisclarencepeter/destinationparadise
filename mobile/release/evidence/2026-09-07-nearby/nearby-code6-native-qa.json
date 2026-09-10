@@ -1,0 +1,204 @@
+{
+  "verifiedAtUtc": "2026-09-07T12:11:41.963549+00:00",
+  "scope": "Exact EAS Android code6 AAB converted to existing dedicated debug-signed universal APK; code7 will replace this due to optional-hardware compatibility fix. No app-source overrides.",
+  "buildId": "f2bfbbcc-3902-4850-be1c-517e533ae72f",
+  "artifact": {
+    "package": "com.yournexttriptoparadise.mobile",
+    "versionName": "1.0.0",
+    "versionCode": 6,
+    "permissions": [
+      "android.permission.ACCESS_COARSE_LOCATION",
+      "android.permission.INTERNET",
+      "android.permission.VIBRATE",
+      "android.permission.ACCESS_NETWORK_STATE",
+      "com.yournexttriptoparadise.mobile.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "minSdk": "24",
+    "targetSdk": "36",
+    "bundletoolValidation": "passed",
+    "coarseOnlyLocation": true,
+    "debuggable": false,
+    "cleartextTraffic": false,
+    "aabBytes": 80959092,
+    "aabSha256": "68337eee1b7d6945c49f583070d3c8683740a9e0d9e74d510a05bf6073ce6dd6",
+    "localTestApkBytes": 116524543,
+    "localTestApkSha256": "427b60a4065a2065591c9ffeac220a2dcd73e258258567b5cea6ac34e5ade4a1",
+    "localTestSignerSha256": "09148a81ca65ab839704593853320acac5934935239c3077c1369b3038e1598f",
+    "signatureVerified": true
+  },
+  "sourceFreeze": "/tmp/dp-nearby-source-manifest-20260907.json (all108files matched before QA)",
+  "checks": {
+    "upgrade": "Both AVDs code5\u21926 via adb install-r; original firstInstallTime retained, no clear/uninstall.",
+    "coldLaunch": "Both standalone COLD launches pass: phone750ms,tablet849ms; subsequent cold launches pass.",
+    "permission": "Actual Destination Paradise Android sheet explicitly requests approximate location only; no Precise toggle; phone While using app grants COARSE.",
+    "keyboard": "Actual phone portrait IME visible; input stays mounted/focused while typing Stone Town; renders1matching place.",
+    "denial": "Tablet Dont allow displays location-off recovery and manual area controls.",
+    "manualFallback": "Tablet Zanzibar fallback displays24-source catalogue subset7destinations with real map.",
+    "timeout": "Phone first acquisition timed out after bounded lookup and showed retry/manual area.",
+    "nativeRecommendations": "After standard emulator geo fix39.1985,-6.1659, manual Refresh resolved actual native balanced/coarse location and displayed Historical City Tour, Less than1km to Stone Town. No framework mock providers or source overrides.",
+    "enabledPersistence": "Phone force-stop/coldlaunch automatically reopens Nearby and renders same native StoneTown result without a new permission sheet.",
+    "disablePersistence": "Phone settings switch off and tablet off control persist: both coldrelaunch+Nearme show Use my location, no busy request.",
+    "errors": "Zero ReactNativeJS warning/error or AndroidRuntime error lines for tested app PIDs, including final coldlaunch.",
+    "sends": "No AI/quote/email/report submission."
+  },
+  "compatibilityFinding": {
+    "status": "Publication blocked; root rebuildingcode7 with optional-location feature declarations.",
+    "code5RequiredFeatures": [
+      "android.hardware.faketouch"
+    ],
+    "code6RequiredFeatures": [
+      "android.hardware.faketouch",
+      "android.hardware.location"
+    ],
+    "cause": "No explicit uses-feature; aapt2 implies requiredgenericlocation from ACCESS_COARSE_LOCATION. Root Play comparison reports1phone+5tablets filtered."
+  },
+  "cleanup": {
+    "phone": {
+      "permission": "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED|524288]",
+      "locationMode": "3",
+      "size": "Physical size: 1080x2424",
+      "rotation": "0",
+      "autoRotation": "1",
+      "nearbyOptIn": false,
+      "firstInstallTime": [
+        "firstInstallTime=2026-09-06 00:12:44"
+      ]
+    },
+    "tablet": {
+      "permission": "android.permission.ACCESS_COARSE_LOCATION: granted=false, flags=[ USER_SENSITIVE_WHEN_GRANTED|USER_SENSITIVE_WHEN_DENIED]",
+      "locationMode": "3",
+      "size": "Physical size: 2560x1600",
+      "rotation": "0",
+      "autoRotation": "1",
+      "nearbyOptIn": false,
+      "firstInstallTime": [
+        "firstInstallTime=2026-09-06 00:12:46"
+      ]
+    },
+    "emulatorsStopped": true
+  },
+  "physicalDevicesTouched": false,
+  "screenshots": [
+    {
+      "path": "/tmp/dp-native-release/nearby-code6-phone-cold-explore.png",
+      "bytes": 559089,
+      "sha256": "3d1198b535aff6fce07b7b09885dacf88e3f84b5befbfa22862378672cfa3ac3",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code6-tablet-cold-explore.png",
+      "bytes": 731456,
+      "sha256": "0eac6f47499ed9d9e91bd48d86abe4351f05e884fd01eccfdcb8d36a5646c077",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code6-phone-search-keyboard.png",
+      "bytes": 337821,
+      "sha256": "3fbd117eb0be109f3d1daedb28cf433c19314f05e7fb879c64b03afafdc72490",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code6-phone-permission-approximate-only.png",
+      "bytes": 187220,
+      "sha256": "d13c87638b08a77984b10abe76df11dfa7967a657ef16372166783dd457cb151",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code6-tablet-permission-approximate-only.png",
+      "bytes": 282547,
+      "sha256": "db202222c965f900ebcd79637bf649f148dfce15d355979d1338ad9df24547b8",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code6-tablet-denied.png",
+      "bytes": 257012,
+      "sha256": "97836f3952a150c2ede0192a290ddac0680504c8abfd98efb41e6e3f76e1c113",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code6-tablet-manual-after-denial.png",
+      "bytes": 734308,
+      "sha256": "9f55ef9dc75be1cf4fc3560fef9312ec58cf54259c5a79f9a4c6419b9602a0ec",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code6-phone-acquisition-result.png",
+      "bytes": 210994,
+      "sha256": "1c0966b6bec5ae0e848e66619fa60a29b2d6211ee4640f076300cab5f7f60580",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code6-phone-stone-town-ready.png",
+      "bytes": 1157145,
+      "sha256": "955a57b7cf5372ecc14dc8976763d17f150accad002a1d4d1318b68d95fd2b8c",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code6-phone-enabled-relaunch.png",
+      "bytes": 1152685,
+      "sha256": "b45d2735224974a37563cae9fc0dd9a4e584215fb8cbf6d64105c2c1b0cdc3d3",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code6-phone-disabled-relaunch.png",
+      "bytes": 308790,
+      "sha256": "2f8b6bed00a2846e2d460b070bf2c6f26aa792cc56124587ab2cdf57336cc604",
+      "dimensions": [
+        1080,
+        2424
+      ],
+      "untouchedAdbPng": true
+    },
+    {
+      "path": "/tmp/dp-native-release/nearby-code6-tablet-disabled-relaunch.png",
+      "bytes": 321538,
+      "sha256": "e2f7518e8acbaadd09b04909318000cc46ce68835cdaaf2f4844f425f453c70d",
+      "dimensions": [
+        2560,
+        1600
+      ],
+      "untouchedAdbPng": true
+    }
+  ],
+  "limits": "Local debug signer validates exact AAB-derived app behavior; Play signing/distribution is separate. Tablet tested denial/fallback; successful native location proved on phone."
+}

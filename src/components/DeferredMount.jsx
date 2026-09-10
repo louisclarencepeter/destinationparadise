@@ -1,25 +1,26 @@
 import { useEffect, useRef, useState } from 'react';
 import { isPrerender } from '../utils/prerender.js';
 
-const INTERACTION_EVENTS = ['scroll', 'pointermove', 'pointerdown', 'touchstart', 'keydown', 'wheel'];
+const PRERENDER_MOUNT_EVENT = 'dp-prerender-mount';
 
-// Defers mounting heavy children until either:
-//   1. the placeholder enters the rootMargin band (scroll-based),
-//   2. the user shows any interaction signal (real users hit this fast), or
-//   3. an idle fallback timer fires.
-// The fallback delay is intentionally long so Lighthouse — which never scrolls
-// or interacts — finishes tracing the page before the heavy chunks are
-// requested. Real users almost always trip the interaction listener quickly,
-// and the observer still mounts sections as they scroll toward them.
+// Load heavy sections shortly before they enter the viewport. Explicit actions
+// can force a section open, and prerendering always captures the complete page.
+// The fallback also exposes the content if an observer never reports visibility.
 export default function DeferredMount({
   children,
   rootMargin = '600px',
   minHeight = '400px',
-  delayMs = 10000,
+  delayMs = 30000,
   className = '',
+  anchorId,
+  force = false,
 }) {
   const ref = useRef(null);
-  const [shouldMount, setShouldMount] = useState(() => isPrerender());
+  const [shouldMount, setShouldMount] = useState(() => force || isPrerender());
+
+  useEffect(() => {
+    if (force) setShouldMount(true);
+  }, [force]);
 
   useEffect(() => {
     if (shouldMount) return undefined;
@@ -31,34 +32,41 @@ export default function DeferredMount({
 
     const timeoutHandle = window.setTimeout(mount, delayMs);
 
-    const onInteract = () => mount();
-    INTERACTION_EVENTS.forEach((event) => {
-      window.addEventListener(event, onInteract, { once: true, passive: true });
-    });
+    window.addEventListener(PRERENDER_MOUNT_EVENT, mount, { once: true });
 
     let observer = null;
     const node = ref.current;
     if (node && typeof IntersectionObserver !== 'undefined') {
       observer = new IntersectionObserver((entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
+        if (entries.some((entry) => entry.isIntersecting && entry.intersectionRatio > 0)) {
           mount();
         }
       }, { rootMargin });
       observer.observe(node);
+    } else {
+      mount();
     }
 
     return () => {
       cancelled = true;
       if (observer) observer.disconnect();
       window.clearTimeout(timeoutHandle);
-      INTERACTION_EVENTS.forEach((event) => {
-        window.removeEventListener(event, onInteract);
-      });
+      window.removeEventListener(PRERENDER_MOUNT_EVENT, mount);
     };
   }, [shouldMount, rootMargin, delayMs]);
 
+  const deferredStyle = {
+    '--deferred-intrinsic-size': minHeight,
+    ...(shouldMount ? {} : { minHeight }),
+  };
+
   return (
-    <div ref={ref} className={className} style={shouldMount ? undefined : { minHeight }}>
+    <div
+      ref={ref}
+      className={`deferred-mount ${className}`.trim()}
+      data-deferred-anchor={anchorId}
+      style={deferredStyle}
+    >
       {shouldMount ? children : null}
     </div>
   );

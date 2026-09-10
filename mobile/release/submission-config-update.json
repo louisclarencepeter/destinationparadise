@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "recordedAtUtc": "2026-09-05T21:22:45Z",
+  "change": "Added only submit.production.ios after the Android archive and iOS production build had already been submitted to EAS. Build/runtime settings are unchanged.",
+  "file": "mobile/eas.json",
+  "originalBuildManifest": "build-source-sha256.json",
+  "originalSha256": "f983f147fa425c5aa83fe837d4f2496fb6d27c786f5d5641e94f3e71a82104e1",
+  "submissionConfiguredSha256": "e9ed5b944f9540974866ddef6cd22faf76062a68e9e63b4f7e1683de0df4b92d",
+  "originalManifestSha256": "5480389c1047df5da2b1105857ef3a3320a0718c15af7fe5b4dabf96d7e18608",
+  "iosSubmission": {
+    "appleId": "louisclarencepeters@gmail.com",
+    "ascAppId": "6809042574",
+    "appleTeamId": "86ZX7JC345"
+  },
+  "iosBuildAlreadyStarted": "62008916-18a2-45f0-a27a-77deabe2041f",
+  "androidBuildFinished": "29c21f3e-68d3-4b02-b02a-6b12c2bd566d",
+  "submissionExecutedByThisChange": false
+}

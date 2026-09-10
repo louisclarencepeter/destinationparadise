@@ -29,20 +29,20 @@
   border-radius: 10px;
   transition: background .25s ease, border-color .25s ease;
 }
-.map-list__button:hover { background: rgba(255,111,97,.07); color: var(--dp-accent); }
+.map-list__button:hover { background: rgba(255,111,97,.07); color: var(--text); }
 .map-list__button:focus-visible {
   outline: none;
   border-color: rgba(255,111,97,.55);
   box-shadow: 0 0 0 3px rgba(255,111,97,.14);
 }
-.map-list li.is-active .map-list__button { background: rgba(255,111,97,.1); color: var(--dp-accent); font-weight: 600; }
+.map-list li.is-active .map-list__button { background: rgba(255,111,97,.1); color: var(--text); font-weight: 600; }
 .map-list .num {
   width: 26px; height: 26px; border-radius: 50%;
   background: var(--surface); border: 1px solid var(--dp-accent);
-  color: var(--dp-accent); font-family: var(--dp-font-sans); font-size: 11px; font-weight: 700;
+  color: var(--text); font-family: var(--dp-font-sans); font-size: 11px; font-weight: 700;
   display: inline-flex; align-items: center; justify-content: center;
 }
-.map-list li.is-active .num { background: var(--dp-accent); color: #fff; }
+.map-list li.is-active .num { background: var(--dp-accent); color: var(--dp-black); }
 
 .map-stage {
   position: relative;
@@ -75,7 +75,7 @@ html[data-theme="dark"] .map-stage {
   width: 34px; height: 34px; border-radius: 50%;
   background: #fff;
   border: 2px solid var(--dp-accent);
-  color: var(--dp-accent);
+  color: var(--dp-primary);
   font-family: var(--dp-font-sans); font-size: 12px; font-weight: 700;
   display: inline-flex; align-items: center; justify-content: center;
   box-shadow: 0 6px 16px rgba(26,77,110,.25);
@@ -93,7 +93,7 @@ html[data-theme="dark"] .map-stage {
 }
 html[data-theme="dark"] .map-pin__label { background: var(--surface-2); color: var(--text-soft); }
 .map-pin.is-active .map-pin__dot, .map-pin:hover .map-pin__dot {
-  background: var(--dp-accent); color: #fff;
+  background: var(--dp-accent); color: var(--dp-black);
   transform: scale(1.15);
   box-shadow: 0 10px 24px rgba(255,111,97,.45), 0 0 0 8px rgba(255,111,97,.18);
 }

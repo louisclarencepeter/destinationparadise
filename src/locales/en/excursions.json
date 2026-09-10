@@ -1,4 +1,8 @@
 {
+  "meta": {
+    "title": "Zanzibar Excursions · Day Trips & Tours · Destination Paradise",
+    "description": "{{count}} handpicked Zanzibar excursions — dhow sails, Stone Town walks, Mnemba snorkeling, Jozani Forest, kitesurfing, festivals, and more."
+  },
   "hero": {
     "eyebrow": "Zanzibar & the coast · handpicked day trips",
     "title_prefix": "One island.",
@@ -85,6 +89,12 @@
     }
   },
   "detail": {
+    "meta_fallback": "{{title}} — a guided Zanzibar excursion with hotel pickup, small groups, and local guides.",
+    "pricing_tiers": {
+      "sharedExperience": "Shared experience",
+      "privateExperience": "Private experience",
+      "premiumWorkshop": "Premium workshop"
+    },
     "not_found_page_title": "Excursion Not Found · Destination Paradise",
     "not_found_eyebrow": "Excursions",
     "not_found_title": "Excursion not found",
@@ -132,6 +142,8 @@
     }
   },
   "combination": {
+    "meta_title": "{{title}} · Excursion Combination · Destination Paradise",
+    "meta_fallback": "{{title}} — a combined Zanzibar day experience with hotel pickup and local guides.",
     "not_found_page_title": "Excursion Combination Not Found · Destination Paradise",
     "not_found_eyebrow": "Excursion combinations",
     "not_found_title": "Combination not found",

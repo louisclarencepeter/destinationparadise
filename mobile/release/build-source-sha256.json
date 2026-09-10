@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "capturedAtUtc": "2026-09-05T20:43:25.730530+00:00",
+  "purpose": "Source identity for the EAS production build candidate using the dedicated mobile backend; not proof of cloud build completion or publication.",
+  "localArchive": "/tmp/dp-release-mobile-backend-eas-inspect",
+  "archiveCommand": "eas build:inspect --platform android --stage archive --profile production",
+  "archiveSourceMatchesWorkspace": true,
+  "serviceOrigins": {
+    "weatherReportsPrivacy": "https://destination-paradise-mobile.netlify.app",
+    "plannerQuotesWebsite": "https://yournexttriptoparadise.com"
+  },
+  "files": [
+    {
+      "path": "mobile/app.json",
+      "sha256": "e57ea5e122a37ef11b38496806cc6b9478343b8e749796d01d206f00254d53af",
+      "bytes": 1662
+    },
+    {
+      "path": "mobile/package.json",
+      "sha256": "28063c91fd5101d7154b59efffcc5e066596617b2d239ea4dfd91a318ab30f1f",
+      "bytes": 1867
+    },
+    {
+      "path": "mobile/package-lock.json",
+      "sha256": "80e13d51d8ca08b6dbf9b11f04ed0ed4658160e2ccf24a6ca84175e4ee27e26c",
+      "bytes": 311352
+    },
+    {
+      "path": "mobile/eas.json",
+      "sha256": "f983f147fa425c5aa83fe837d4f2496fb6d27c786f5d5641e94f3e71a82104e1",
+      "bytes": 545
+    },
+    {
+      "path": "mobile/metro.config.cjs",
+      "sha256": "29e82797a9a728e2edcdf2d09bbb6e6785b82715179b53ba998bc8429ce4d55d",
+      "bytes": 2149
+    },
+    {
+      "path": "mobile/.env.example",
+      "sha256": "1b63b9ccb81baba0168af682459611fc0d7f4a8d4f712afe34ed002dd7d74532",
+      "bytes": 272
+    },
+    {
+      "path": "mobile/src/config/endpoint-origins.json",
+      "sha256": "f6d29258f9d8ff710e0c1df7d74b7079bb98890fc4355168b2857439aa9c5628",
+      "bytes": 130
+    },
+    {
+      "path": "mobile/src/config/endpoints.ts",
+      "sha256": "4f40efad97fe5cd508503a88eeb713f70b6ddc06714f868a39a7bc30623451c6",
+      "bytes": 223
+    },
+    {
+      "path": "mobile/src/api/weather.ts",
+      "sha256": "c2f33dfadc01910b090f416755585e4aae9cf98f01ad1a84e06741e4a8907116",
+      "bytes": 5850
+    },
+    {
+      "path": "mobile/src/api/report-ai.ts",
+      "sha256": "eb2043e7c382d2f86dfe63d1c5dba7aa0e7ad59e7b1c6dd20a4ba914930bcc6e",
+      "bytes": 2299
+    },
+    {
+      "path": "mobile/src/api/planner.ts",
+      "sha256": "340d1391d012cf74bf31fd14555c3079d85e8c066a6fd716bfda34be32abe66c",
+      "bytes": 6819
+    },
+    {
+      "path": "mobile/src/theme.ts",
+      "sha256": "e806e320c4e583194474fa58ce7daf9fc897276b8f472e9f26a882338f41d52f",
+      "bytes": 728
+    },
+    {
+      "path": "mobile/app/settings.tsx",
+      "sha256": "1d4f6aa715312c125ce1d5c012958077456bb271deca27d160f1f61bf4ea557b",
+      "bytes": 3933
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/index.cjs",
+      "sha256": "684ba79779327ba789733a3a563050370a928a57eb7dd33d19b346f43b32cbb7",
+      "bytes": 4141
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/package.json",
+      "sha256": "9dd5443644eb3fccd8151801d4206dda0df7498590cd82a2adea89548b5a1654",
+      "bytes": 406
+    },
+    {
+      "path": "mobile/vendor/decode-uri-component/LICENSE",
+      "sha256": "ed7a9a0f74e43951b2520efe1a4349cb9ed5f3dff0b0f268e2e51a4d38df7ea4",
+      "bytes": 1139
+    },
+    {
+      "path": "mobile/test/router-decoder.test.ts",
+      "sha256": "4f4ac6ebbd8ceda2c3932e77882c402a71b27154658126b5f7c018b9807bacee",
+      "bytes": 2717
+    }
+  ],
+  "publicPrivacyCandidate": {
+    "path": "mobile/release/mobile-privacy.html",
+    "url": "https://destination-paradise-mobile.netlify.app/mobile-privacy.html",
+    "sha256": "ed43ffa763bde7c3532fe2d75134f64c769f5dfb17f51cdd6679c09897979891",
+    "note": "Deployed separately; release documents are excluded from the EAS archive."
+  }
+}

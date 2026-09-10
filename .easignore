@@ -1,0 +1,30 @@
+# The standalone Expo package is the only input to mobile cloud builds.
+/*
+!/mobile
+!/mobile/**
+
+/mobile/node_modules/
+/mobile/backend/
+/mobile/.expo/
+/mobile/dist/
+/mobile/web-build/
+/mobile/ios/
+/mobile/android/
+/mobile/release/
+/mobile/.codex/
+
+# Build credentials are managed by EAS, never copied from the workstation.
+**/.env
+**/.env.*
+!**/.env.example
+**/credentials.json
+**/credentials/
+**/google-service-account.json
+**/*.jks
+**/*.p8
+**/*.p12
+**/*.key
+**/*.pem
+**/*.mobileprovision
+**/*.log
+**/.DS_Store

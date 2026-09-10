@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router';
 import App from './App.jsx';
 import ErrorBoundary from './components/ErrorBoundary.jsx';
+import { BookingCartProvider } from './context/BookingCartContext.jsx';
 import { CurrencyProvider } from './context/CurrencyContext.jsx';
 import { afterPageLoad } from './utils/afterPageLoad.js';
 import { applyTheme, readStoredTheme } from './utils/theme.js';
@@ -22,7 +23,9 @@ createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <ErrorBoundary>
         <CurrencyProvider>
-          <App />
+          <BookingCartProvider>
+            <App />
+          </BookingCartProvider>
         </CurrencyProvider>
       </ErrorBoundary>
     </BrowserRouter>

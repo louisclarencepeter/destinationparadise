@@ -2,6 +2,7 @@
   "items": {
     "home":         { "label": "Start",          "hint": "Zacznij od wyspy",                 "sub": "Zacznij od wyspy" },
     "excursions":   { "label": "Wycieczki",      "hint": "Jednodniowe wypady po Zanzibarze", "sub": "Stone Town · Rafy · Farmy przypraw" },
+    "store":        { "label": "Sklep",          "hint": "Rezerwuj wycieczki od ręki",       "sub": "Rezerwacja od ręki · Jedna płatność" },
     "safaris":      { "label": "Safari",         "hint": "Trasy z dziką przyrodą",           "sub": "Serengeti · Ngorongoro · Selous" },
     "packages":     { "label": "Pakiety",        "hint": "Safari, plaża, podróż poślubna",   "sub": "Safari i plaża · 7–14 nocy" },
     "retreats":     { "label": "Retreaty",       "hint": "Joga, spa, medytacja",             "sub": "Joga · Spa · Uzdrawianie" },
@@ -14,6 +15,10 @@
     "book_now": "Rezerwuj",
     "book_aria": "Zarezerwuj teraz",
     "book_a_trip": "Zarezerwuj podróż"
+  },
+  "cart": {
+    "label": "Twoja podróż",
+    "open_aria": "Otwórz koszyk podróży"
   },
   "menu": {
     "open": "Otwórz menu",

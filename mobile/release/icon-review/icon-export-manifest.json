@@ -1,0 +1,84 @@
+{
+  "source": "release/icon-review/full-logo-navy-candidate.png",
+  "sourceSha256": "b1e8e1625f0ff36a66613afa5905af38d01b881a786136d74a297b04dec72b1d",
+  "approval": "Owner selected the full-logo navy candidate for the next app build.",
+  "state": "Applied locally; native builds and provider uploads are separate steps.",
+  "generator": "scripts/export-app-icons.mjs",
+  "provenance": "Mechanical size export of the owner-approved full-logo navy candidate. The candidate was AI-assisted; this export preserves its entire artwork without redrawing or recoloring.",
+  "aiAssetDeclaration": "Created or edited using AI: owner-approved navy full-logo image. Mechanical platform export; not a native screenshot.",
+  "backingColor": "#031C32",
+  "backgroundNote": "The approved raster has subtle navy variation. #031C32 approximates its corner colors; the approved pixels are unchanged apart from resizing.",
+  "android": {
+    "canvas": 1024,
+    "approvedSquareSize": 696,
+    "placement": {
+      "left": 182,
+      "top": 207
+    },
+    "padding": "Boundary navy pixels extended with copy; no artwork altered or cropped.",
+    "artworkBounds": {
+      "left": 218,
+      "top": 243,
+      "right": 803,
+      "bottom": 781,
+      "width": 586,
+      "height": 539,
+      "maxRadiusFromCanvasCentre": 308.0137983922149,
+      "threshold": "max(red, green) > 48"
+    },
+    "guaranteedSafeRadius": 312.8888888888889,
+    "allMeasuredArtworkInsideSafeCircle": true
+  },
+  "files": [
+    {
+      "file": "assets/icon.png",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "alphaChannel": false,
+      "colorSpace": "srgb",
+      "bytes": 920959,
+      "sha256": "505b8d8ceebbd198fdbba1535fd7d5336f04348ad42576cb72f17e4657bb7570"
+    },
+    {
+      "file": "assets/splash-icon.png",
+      "width": 512,
+      "height": 512,
+      "channels": 3,
+      "alphaChannel": false,
+      "colorSpace": "srgb",
+      "bytes": 250813,
+      "sha256": "3935c283766808f59e4dfcd947f0d7bd9d8e355ea161558d22978afcaae81c0a"
+    },
+    {
+      "file": "assets/favicon.png",
+      "width": 48,
+      "height": 48,
+      "channels": 3,
+      "alphaChannel": false,
+      "colorSpace": "srgb",
+      "bytes": 3465,
+      "sha256": "c0871f25f1ed2b3fb766c858caae07529f221cc0e7e9a38be9db497e85bf65e7"
+    },
+    {
+      "file": "assets/android-icon-foreground.png",
+      "width": 1024,
+      "height": 1024,
+      "channels": 3,
+      "alphaChannel": false,
+      "colorSpace": "srgb",
+      "bytes": 484387,
+      "sha256": "2bf168cfe0ac7c92a947d24f00b41dee46662c9ffd8985c9ccef1cd9ec236bef"
+    },
+    {
+      "file": "release/assets/google-play-icon-512.png",
+      "width": 512,
+      "height": 512,
+      "channels": 4,
+      "alphaChannel": true,
+      "colorSpace": "srgb",
+      "bytes": 269748,
+      "sha256": "689f1e0168c6b184f5a15683fdefffe8834441abf0bcb14bbad93e6ee581a9a5"
+    }
+  ]
+}

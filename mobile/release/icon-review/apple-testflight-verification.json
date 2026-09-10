@@ -1,0 +1,48 @@
+{
+  "verificationDateLocal": "2026-09-06",
+  "timezone": "Africa/Dar_es_Salaam",
+  "evidenceSource": "Root task authenticated App Store Connect UI verification",
+  "appleAppId": "6809042574",
+  "easBuildId": "4a785994-db2c-40fc-9329-a296e584ec15",
+  "easSubmissionId": "f44a111f-8f11-491e-b39c-8d156e6c0f65",
+  "ascBuildId": "baaed647-bc09-465e-9f15-52d9387b16ba",
+  "appVersion": "1.0.0",
+  "buildNumber": "4",
+  "uploadStatus": "COMPLETE",
+  "appleProcessingComplete": true,
+  "testFlightStatus": "TESTING",
+  "expiresInDaysObserved": 90,
+  "group": {
+    "id": "0db9334b-5e79-4fa1-8950-e0e782456ba8",
+    "name": "Destination Paradise owner test",
+    "testerCount": 1,
+    "buildCount": 2,
+    "buildsObserved": ["1.0.0 (4) Testing", "1.0.0 (3) Testing"],
+    "assignment": "Root manually added build 4 to the existing owner group in App Store Connect after EAS submission did not assign it automatically.",
+    "automaticDistribution": false
+  },
+  "whatToTest": "Updated the app icon and launch screen with the complete Destination Paradise logo in ivory and coral on navy.",
+  "whatToTestSavedIndicatorVerified": true,
+  "owner": {
+    "email": "louisclarencepeters@gmail.com",
+    "status": "INSTALLED",
+    "installedVersion": "1.0.0",
+    "installedBuild": "3",
+    "dateDisplayed": "2026-09-06",
+    "device": "iPhone 15 Pro Max",
+    "osVersion": "iOS 26.6.1",
+    "invitationAcceptedVerified": true,
+    "priorBuild3InstallationVerified": true,
+    "build4InstallationVerified": false,
+    "verification": "Root navigated away and back, replacing the cached Invited display with Installed 1.0.0 (3). This resolves the prior invitation/install blocker for build 3 only; the original error cause remains unproven."
+  },
+  "appStoreVersionBuildSelection": {
+    "lastVerifiedSavedBuild": "4",
+    "build4SelectionPending": false,
+    "build4SavedVerified": true,
+    "persistenceVerifiedAfterNavigation": true,
+    "evidence": "Root removed only build 3's draft attachment, selected build 4, and saved until Save was disabled. After visiting App Information, where Destination Paradise Travel remained, root returned to 1.0.0 Prepare for Submission and verified the App Icon/build 4/version 1.0.0 row and disabled Save persisted. Add for Review was not clicked."
+  },
+  "appReviewSubmitted": false,
+  "limits": "Apple processing and owner-group availability are verified. New build 4 installation, physical-device functional QA and final App Review approval are not established."
+}

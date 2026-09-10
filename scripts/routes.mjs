@@ -7,10 +7,16 @@ import { dirname, resolve } from 'node:path';
 const here = dirname(fileURLToPath(import.meta.url));
 const dataDir = resolve(here, '../src/data');
 
+// The experiences store joins the sitemap/prerender only in launched builds
+// (VITE_STORE_ENABLED=true at build time). Checkout and order confirmations
+// stay private/noindex forever and are never listed here.
+const STORE_LAUNCHED = process.env.VITE_STORE_ENABLED === 'true';
+
 // Static, indexable routes. Excludes /booking (canonicalizes to /book-now) and the 404.
 export const STATIC_ROUTES = [
   { path: '/', priority: '1.0', changefreq: 'weekly' },
   { path: '/excursions', priority: '0.9', changefreq: 'weekly' },
+  ...(STORE_LAUNCHED ? [{ path: '/store', priority: '0.9', changefreq: 'weekly' }] : []),
   { path: '/safaris', priority: '0.9', changefreq: 'weekly' },
   { path: '/packages', priority: '0.9', changefreq: 'weekly' },
   { path: '/retreats', priority: '0.8', changefreq: 'weekly' },

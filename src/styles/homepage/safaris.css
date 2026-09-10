@@ -66,7 +66,7 @@ html[data-theme="dark"] .safari-card__placeholder-text { color: rgba(255,255,255
 }
 .safaris__mode-tag--accent {
   background: rgba(255,111,97,.14);
-  color: #c44a3d;
+  color: var(--text);
 }
 html[data-theme="dark"] .safaris__mode-tag { background: rgba(255,255,255,.08); color: var(--text-soft); }
 html[data-theme="dark"] .safaris__mode-tag--accent { background: rgba(255,111,97,.2); color: #ffb1a8; }

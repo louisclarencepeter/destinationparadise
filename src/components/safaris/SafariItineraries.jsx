@@ -54,9 +54,9 @@ export default function SafariItineraries({
           >
             <div className="exc-card__img">
               <img src={itinerary.image} alt={itinerary.alt || itinerary.title} loading="lazy" />
-              <span className="exc-card__cat">{textFromTranslation(t(`categories.${itinerary.category}`, { defaultValue: itinerary.category }), itinerary.category)}</span>
+              <span className="exc-card__cat">{itinerary.localizedCategory || textFromTranslation(t(`categories.${itinerary.category}`, { defaultValue: itinerary.category }), itinerary.category)}</span>
               {itinerary.feature && <span className="exc-card__season">{t('itineraries.most_popular')}</span>}
-              {itinerary.productType && <span className="exc-card__season">{itinerary.productType}</span>}
+              {itinerary.productType && <span className="exc-card__season">{itinerary.localizedProductType || itinerary.productType}</span>}
             </div>
             <div className="exc-card__body">
               <span className="exc-card__eyebrow">{itinerary.rib}</span>
@@ -65,7 +65,7 @@ export default function SafariItineraries({
               <div className="exc-card__meta">
                 <span>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg>
-                  {itinerary.duration}
+                  {itinerary.localizedDuration || itinerary.duration}
                 </span>
                 <span>
                   <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z" /><circle cx="12" cy="10" r="3" /></svg>

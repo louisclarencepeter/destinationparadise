@@ -1,0 +1,141 @@
+{
+  "checkedAtUtc": "2026-09-05T21:57:44.589518+00:00",
+  "easBuildId": "a8eb3b90-eb2c-4f2d-a6fb-1fd3507bf876",
+  "archivePath": "/tmp/destination-paradise-ios-1.0.0-build3.ipa",
+  "archiveBytes": 21380138,
+  "archiveSHA256": "d78bea8938cb3bad3577ec5a113d7e33f4531e045cbe12303c48b1b7903bcc7c",
+  "infoPlistPath": "Payload/DestinationParadise.app/Info.plist",
+  "bundleIdentifier": "com.yournexttriptoparadise.mobile",
+  "displayName": "Destination Paradise",
+  "appVersion": "1.0.0",
+  "buildVersion": "3",
+  "minimumOSVersion": "16.4",
+  "supportedPlatforms": [
+    "iPhoneOS"
+  ],
+  "deviceFamilies": [
+    1,
+    2
+  ],
+  "orientations": {
+    "UISupportedInterfaceOrientations": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationPortraitUpsideDown",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "UISupportedInterfaceOrientations~ipad": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationPortraitUpsideDown",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ]
+  },
+  "requiredDeviceCapabilities": [
+    "arm64"
+  ],
+  "requiresFullScreen": false,
+  "transportSecurity": {
+    "NSAllowsArbitraryLoads": false,
+    "NSAllowsLocalNetworking": true
+  },
+  "usesNonExemptEncryption": false,
+  "privacyUsageDescriptions": {},
+  "bundledPrivacyManifests": [
+    {
+      "path": "Payload/DestinationParadise.app/React-timing_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategorySystemBootTime"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/ExpoSystemUI_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryUserDefaults"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/ExpoConstants_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryUserDefaults"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/React-cxxreact_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryFileTimestamp"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryUserDefaults",
+        "NSPrivacyAccessedAPICategoryFileTimestamp",
+        "NSPrivacyAccessedAPICategorySystemBootTime"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_folly.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryFileTimestamp"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_glog.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryFileTimestamp"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/Frameworks/ReactNativeDependencies.framework/ReactNativeDependencies_boost.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryFileTimestamp",
+        "NSPrivacyAccessedAPICategorySystemBootTime"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/RNCAsyncStorage_resources.bundle/PrivacyInfo.xcprivacy",
+      "tracking": null,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryFileTimestamp"
+      ]
+    },
+    {
+      "path": "Payload/DestinationParadise.app/React-Core_privacy.bundle/PrivacyInfo.xcprivacy",
+      "tracking": false,
+      "trackingDomainCount": 0,
+      "collectedDataTypes": [],
+      "accessedAPICategories": [
+        "NSPrivacyAccessedAPICategoryFileTimestamp",
+        "NSPrivacyAccessedAPICategoryUserDefaults"
+      ]
+    }
+  ],
+  "limits": "Static inspection of the actual signed device archive; not a physical-device runtime test or proof of App Store processing, TestFlight access, SDK behavior, or review approval."
+}

@@ -7,36 +7,36 @@ import enCommon from '../locales/en/common.json';
 import enNav from '../locales/en/nav.json';
 import enFooter from '../locales/en/footer.json';
 import enHome from '../locales/en/home.json';
-import enExcursions from '../locales/en/excursions.json';
-import enSafaris from '../locales/en/safaris.json';
 import enPolicy from '../locales/en/policy.json';
 import plCommon from '../locales/pl/common.json';
 import plNav from '../locales/pl/nav.json';
 import plFooter from '../locales/pl/footer.json';
 import plHome from '../locales/pl/home.json';
-import plExcursions from '../locales/pl/excursions.json';
-import plSafaris from '../locales/pl/safaris.json';
-import plPolicy from '../locales/pl/policy.json';
 import deCommon from '../locales/de/common.json';
 import deNav from '../locales/de/nav.json';
 import deFooter from '../locales/de/footer.json';
 import deHome from '../locales/de/home.json';
-import deExcursions from '../locales/de/excursions.json';
-import deSafaris from '../locales/de/safaris.json';
-import dePolicy from '../locales/de/policy.json';
 
 export const SUPPORTED_LANGUAGES = ['en', 'pl', 'de'];
 export const DEFAULT_LANGUAGE = 'en';
 export const STORAGE_KEY = 'dp_lang';
 
 const localeLoaders = {
-  ...import.meta.glob('../locales/*/about.json'),
-  ...import.meta.glob('../locales/*/booking.json'),
-  ...import.meta.glob('../locales/*/explore.json'),
-  ...import.meta.glob('../locales/*/packages.json'),
-  ...import.meta.glob('../locales/*/retreats.json'),
-  ...import.meta.glob('../locales/*/transfers.json'),
-  ...import.meta.glob('../locales/*/tripPlanner.json'),
+  ...import.meta.glob([
+    '../locales/*/about.json',
+    '../locales/*/booking.json',
+    '../locales/*/catalog.json',
+    '../locales/*/excursions.json',
+    '../locales/*/explore.json',
+    '../locales/*/packages.json',
+    '../locales/de/policy.json',
+    '../locales/pl/policy.json',
+    '../locales/*/retreats.json',
+    '../locales/*/safaris.json',
+    '../locales/*/store.json',
+    '../locales/*/transfers.json',
+    '../locales/*/tripPlanner.json',
+  ]),
 };
 
 const localeBackend = {
@@ -69,15 +69,15 @@ i18nChain
   .use(initReactI18next)
   .init({
     resources: {
-      en: { common: enCommon, nav: enNav, footer: enFooter, home: enHome, excursions: enExcursions, safaris: enSafaris, policy: enPolicy },
-      pl: { common: plCommon, nav: plNav, footer: plFooter, home: plHome, excursions: plExcursions, safaris: plSafaris, policy: plPolicy },
-      de: { common: deCommon, nav: deNav, footer: deFooter, home: deHome, excursions: deExcursions, safaris: deSafaris, policy: dePolicy },
+      en: { common: enCommon, nav: enNav, footer: enFooter, home: enHome, policy: enPolicy },
+      pl: { common: plCommon, nav: plNav, footer: plFooter, home: plHome },
+      de: { common: deCommon, nav: deNav, footer: deFooter, home: deHome },
     },
     partialBundledLanguages: true,
     ...(prerendering ? { lng: DEFAULT_LANGUAGE } : {}),
     fallbackLng: DEFAULT_LANGUAGE,
     supportedLngs: SUPPORTED_LANGUAGES,
-    ns: ['common', 'nav', 'footer', 'home', 'excursions', 'safaris', 'policy'],
+    ns: ['common', 'nav', 'footer', 'home'],
     defaultNS: 'common',
     detection: {
       order: ['localStorage', 'navigator'],

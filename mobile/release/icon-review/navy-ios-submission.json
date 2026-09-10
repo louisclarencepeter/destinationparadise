@@ -1,0 +1,24 @@
+{
+  "checkedAtUtc": "2026-09-06T20:02:02.895623+00:00",
+  "submissionId": "f44a111f-8f11-491e-b39c-8d156e6c0f65",
+  "status": "FINISHED",
+  "platform": "IOS",
+  "appleAppId": "6809042574",
+  "createdAtUtc": "2026-09-06T20:00:46.501Z",
+  "completedAtUtc": "2026-09-06T20:01:01.642Z",
+  "errorCode": null,
+  "buildId": "4a785994-db2c-40fc-9329-a296e584ec15",
+  "appVersion": "1.0.0",
+  "buildVersion": "4",
+  "autoTestFlightSetup": false,
+  "requestedInternalGroups": [
+    "Destination Paradise owner test"
+  ],
+  "groupAssignmentVerified": false,
+  "appReviewSubmitted": false,
+  "appleProcessingVerified": false,
+  "credentialSource": "Existing EAS server App Store Connect key AXPG36FM4F reused; no new credentials.",
+  "schedulingNote": "First scheduling request was rejected before creation because optional changelog required Enterprise. Retried successfully with no changelog; no plan upgrade or purchase.",
+  "command": "eas submit --platform ios --profile production --id 4a785994-db2c-40fc-9329-a296e584ec15 --no-auto-testflight-setup --groups 'Destination Paradise owner test' --non-interactive --no-wait",
+  "limits": "EAS submission FINISHED proves upload completion, not Apple processing or owner group availability; those require authenticated App Store Connect verification."
+}
