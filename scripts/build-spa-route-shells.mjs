@@ -86,3 +86,12 @@ for (const path of routes) {
 }
 
 console.log(`[spa-route-shells] wrote ${routes.length} shell${routes.length === 1 ? '' : 's'}.`);
+
+// The server response must agree with the build's store flag. An unconditional
+// SPA rewrite turns disabled store URLs into indexable HTTP 200 soft 404s.
+// Netlify reads this generated file before the catch-all in netlify.toml.
+const storeTarget = process.env.VITE_STORE_ENABLED === 'true'
+  ? '/index.html 200'
+  : '/404.html 404';
+await writeFile(join(distDir, '_redirects'),
+  `/store ${storeTarget}\n/store/* ${storeTarget}\n`, 'utf8');
