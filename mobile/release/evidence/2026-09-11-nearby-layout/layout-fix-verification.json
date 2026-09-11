@@ -1,0 +1,49 @@
+{
+  "checkedAt": "2026-09-11T04:04:37.947329+00:00",
+  "baseCommit": "245f732d3f849818ab8cb57ce53a03e21a98bcd8",
+  "sourceFiles": [
+    "mobile/src/features/nearby/nearby-location-controls.tsx",
+    "mobile/src/components/ui.tsx"
+  ],
+  "sourceSha256": {
+    "mobile/src/features/nearby/nearby-location-controls.tsx": "0d5f0010cda6ca653a5c8e476d505e1669415017f5ff0b66b59ad1e767668483",
+    "mobile/src/components/ui.tsx": "5a5e07832f8fb3f7b4c2e4569fc78cce414658747aa2c77137548db56ffaced0"
+  },
+  "frozenOriginalSourceInputs": {
+    "files": 113,
+    "unchangedFiles": 111,
+    "changedFiles": [
+      "mobile/src/features/nearby/nearby-location-controls.tsx",
+      "mobile/src/components/ui.tsx"
+    ],
+    "originalArchivePreserved": true
+  },
+  "nativeBefore": "android10-ready-mock.png",
+  "nativeAfter": [
+    "layout-diagnostic-ready.png",
+    "layout-diagnostic-large-text.png"
+  ],
+  "fontScale": [
+    1,
+    1.3
+  ],
+  "visualReview": "Complete Turn off label visible at both sizes. Row remains two equal actions; no font reduction, line limit, or truncation added.",
+  "diagnosticBoundary": {
+    "purpose": "Local diagnostic APK, not an EAS/release artifact. Original native resources/libraries with rebuilt candidate JS and ephemeral QA signature.",
+    "baseApkSha256": "0fd95010fb197eef5c71a8961ce4d41b93fbcc74248000e3c2c79f760ab6011e",
+    "bundle": "layout-export-android/_expo/static/js/android/entry-8b0c4105d065a51dbc8bab06ba385fa4.hbc",
+    "bundleSha256": "836c7c5361941a4fa17ce474bc4d35f3226b12a977f05def9e34b06aa4a98b56",
+    "diagnosticApkSha256": "4467d0ca1214d499776d2acce4d7dd9188673ccdee3b1114ae9037fcdbcdf450",
+    "productionKeyUsed": false,
+    "temporaryKeyRemoved": true
+  },
+  "tests": {
+    "typecheck": "passed",
+    "mobileTests": 91,
+    "androidExport": "passed",
+    "webExport": "passed",
+    "isolatedWebChecks": 14
+  },
+  "network": "All emulator external CONNECT/HTTP blocked by local proxy; synthetic2000m coarse Fused fix; offline tile overlay expected.",
+  "finalScope": "Applied only when compact && ready, exactly matching the existing equal-width button condition. Denied, timeout and single-button states retain original label layout. Ready-state native before/after proof remains identical."
+}
