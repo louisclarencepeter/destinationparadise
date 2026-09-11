@@ -1,0 +1,36 @@
+# App privacy manifest mapping — 11 September 2026
+
+The app-level `ios.privacyManifests` declaration in `app.json` now covers the existing collection flows below. The signed 1.1.1/build 8 had an empty collection array; this correction is source-only until a new signed iOS artifact is built and checked. Build 8 remains uploaded, VALID and unassigned. Apple 1.1.0/build 6 remains selected and Waiting for Review. No tester audience or store declaration is changed by this configuration.
+
+Apple requires an app to describe its collected data in its bundled manifest. Linked third-party SDKs provide their own collection declarations; the app need not duplicate those. App Store Connect privacy answers are separate. Direct app requests and the controlled map WebView are included here. Required-reason API declarations describe API use, not collected-data categories. [Apple manifest guidance](https://developer.apple.com/documentation/bundleresources/privacy-manifest-files), [collection guidance](https://developer.apple.com/documentation/bundleresources/describing-data-use-in-privacy-manifests).
+
+## Collection mapping
+
+Every row uses `NSPrivacyCollectedDataTypeLinked: true` and `NSPrivacyCollectedDataTypeTracking: false`. The type suffixes below follow `NSPrivacyCollectedDataType`; purpose suffixes follow `NSPrivacyCollectedDataTypePurpose`. Full enum strings are in the config and were checked against Apple's [type constants](https://developer.apple.com/documentation/bundleresources/app-privacy-configuration/nsprivacycollecteddatatypes/nsprivacycollecteddatatype) and [purpose constants](https://developer.apple.com/documentation/bundleresources/app-privacy-configuration/nsprivacycollecteddatatypes/nsprivacycollecteddatatypepurposes).
+
+| Type suffix | Purpose suffixes | Existing source/retention evidence |
+| --- | --- | --- |
+| Name | AppFunctionality | Quote identity/contact fields in `src/api/planner.ts`; `../netlify/functions/planner-send.mjs` sends retained team/guest emails. The AI prompt can also ask for contact details. |
+| EmailAddress | AppFunctionality | Same requested quote/contact flow; specifically requested fields are categorized separately from generic chat. |
+| PhoneNumber | AppFunctionality | Optional phone field in the same flow; optional collection still belongs in the declaration. |
+| OtherUserContent | AppFunctionality, ProductPersonalization | Consented planner messages and trip context in `src/api/planner.ts` and `src/features/planner/planning-context.ts`; backend forwards them to Anthropic for tailored suggestions. Transcript may accompany contact identity in email. |
+| CustomerSupport | AppFunctionality | `src/api/report-ai.ts` and `../netlify/functions/planner-report.mjs` send the selected reply, reason and notes to the team through Resend. Free text can contain identity; no anonymity promise. |
+| OtherDataTypes | AppFunctionality, ProductPersonalization | `../netlify/functions/planner.mjs` explicitly asks children's ages when relevant, independently supporting this category. Retained IP/rate-limit metadata also fits the established worksheet's treatment. This is not a duplicate declaration of technical-error data. |
+| OtherDiagnosticData | AppFunctionality | Configured website backend error monitoring in `../netlify/functions/_sentry.mjs` records technical context; prior provider metadata verified the website DSN, with no DSN on the separate mobile backend. OSM also retains response status/TTFB. No native CrashData or PerformanceData claim is inferred. |
+| ProductInteraction | AppFunctionality, Analytics | The controlled map WebView's tile paths/time describe map interaction; OSM retains them with IP for service operation and usage/planning analysis. |
+| CoarseLocation | AppFunctionality, ProductPersonalization, Analytics | OSM retains IP-derived country. Location-centered tile selection also provides the personalized nearby map; this purpose is supported by off-device derived map-area requests, not only local recommendations. |
+| PreciseLocation | AppFunctionality, ProductPersonalization, Analytics | Conditional iOS Precise Location override, three-decimal coordinate rounding and location-centered zoom-17 tile requests can reveal a sufficiently small area. The existing [location assessment](LOCATION_DECLARATIONS_2026-09-11.md) records a synthetic inference proof, not a claim of actual provider profiling. |
+
+The contact/content flows and configured server monitoring are documented in [the data-flow worksheet](privacy-data-flow.md) and [the saved-answer worksheet](store-privacy-answers.md). Those documents preserve their dated provider evidence. All ten categories retain the established conservative linkage treatment: no verified identity-stripping process covers every flow, and OSM requests carry IP. Linked data does not mean advertising tracking. No cross-company advertising use was found; app-level tracking remains false and no tracking domains are added.
+
+On-device saved places, local searches and preferences do not create extra collected-data types until explicitly included in an existing transmitted planning flow. External browser payments, destination photos and external browsing do not imply in-app payment-card, user photo-library or browsing-history collection. No device identifier is invented solely from the presence of IP logs. Exact provider retention periods, account-specific AI retention/training terms and actual diagnostic event samples remain unknown; this correction preserves the previously supported declarations instead of inventing those facts.
+
+## Native generation and release checks
+
+Expo 57 supports this iOS-only key. It merges the config into an app `PrivacyInfo.xcprivacy` and adds the resource to the Xcode target. [Expo 57 config](https://docs.expo.dev/versions/v57.0.0/config/app/), [Expo privacy guide](https://docs.expo.dev/guides/apple-privacy/).
+
+A clean baseline Expo prebuild produces no app privacy file before Pods. The corrected prebuild creates the ten collection entries with an empty required-reason array. During Pod installation, the existing React Native privacy aggregation reads that manifest, preserves its collection/tracking fields and appends core/Pod API reasons. The Podfile keeps aggregation enabled; no SDK manifests, dependencies or API-reason settings changed.
+
+Before accepting the next signed iOS build, inspect the actual IPA and verify all ten type/purpose/linkage/tracking entries, the Xcode-bundled manifest, and at least the previously signed reasons: FileTimestamp `C617.1`, UserDefaults `CA92.1`, SystemBootTime `35F9.1`. Also retain signature, version/build, permission and runtime-source checks. Prebuild success does not establish final signed-manifest preservation.
+
+The local source checks passed all 91 existing mobile tests and TypeScript checking. Fresh baseline/candidate iOS generation preserves the Info.plist; Android app configuration and complete generated Android mod results are identical. Runtime source, assets, plugins, dependency locks and EAS profiles are unchanged. The only app-config difference is the iOS privacy manifest. Android may embed that unused iOS metadata in Expo config on a future build, so no whole-artifact byte-equality claim is made or extra Android cloud build required.
