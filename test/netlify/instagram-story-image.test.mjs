@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest';
 const root = fileURLToPath(new URL('../../', import.meta.url));
 
 describe('Instagram Story portable image runtime', () => {
+  // Let the child's 30-second limit report cold WASM/render failures first.
   it('returns decodable JPEG bytes with matching length when native Sharp is unavailable', () => {
     // A fresh process is required: Sharp selects its runtime when first imported.
     const output = execFileSync(process.execPath, ['--input-type=module', '-e', `
@@ -54,5 +55,5 @@ describe('Instagram Story portable image runtime', () => {
     expect(result.length).toBe(result.bytes);
     expect(result.headLength).toBe(result.bytes);
     expect(result.bytes).toBeLessThan(8 * 1024 * 1024);
-  });
+  }, 35_000);
 });
