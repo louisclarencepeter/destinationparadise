@@ -57,10 +57,10 @@ export function AppText({ variant = 'body', color, style, ...props }: TextProps 
   return <Text {...props} style={[{ color: colors.text }, typeStyles[variant], color ? { color } : null, style]} />;
 }
 
-type ButtonProps = { label: string; onPress: () => void; variant?: 'primary' | 'secondary' | 'ghost'; icon?: IconName; loading?: boolean; disabled?: boolean; style?: StyleProp<ViewStyle>; accessibilityLabel?: string; testID?: string };
-export function Button({ label, onPress, variant = 'primary', icon, loading, disabled, style, accessibilityLabel, testID }: ButtonProps) {
+type ButtonProps = { label: string; onPress: () => void; variant?: 'primary' | 'secondary' | 'ghost'; icon?: IconName; loading?: boolean; disabled?: boolean; style?: StyleProp<ViewStyle>; labelStyle?: StyleProp<TextStyle>; accessibilityLabel?: string; testID?: string };
+export function Button({ label, onPress, variant = 'primary', icon, loading, disabled, style, labelStyle, accessibilityLabel, testID }: ButtonProps) {
   const inactive = disabled || loading;
-  const content = <>{loading ? <ActivityIndicator color={colors.text}/> : null}<AppText style={{ fontFamily: fonts.sansBold, fontSize: 14, flexShrink: 1, textAlign: 'center' }}>{label}</AppText>{icon && !loading ? <Icon name={icon} size={18} color={colors.text}/> : null}</>;
+  const content = <>{loading ? <ActivityIndicator color={colors.text}/> : null}<AppText style={[{ fontFamily: fonts.sansBold, fontSize: 14, flexShrink: 1, textAlign: 'center' }, labelStyle]}>{label}</AppText>{icon && !loading ? <Icon name={icon} size={18} color={colors.text}/> : null}</>;
   const box: ViewStyle = { minHeight: 50, paddingHorizontal: 18, paddingVertical: 12, gap: 10, borderRadius: 16, flexDirection: 'row', alignItems: 'center', justifyContent: 'center' };
   return <Pressable accessibilityRole="button" accessibilityLabel={accessibilityLabel || label} accessibilityState={{ disabled: !!inactive, busy: !!loading }} testID={testID} onPress={onPress} disabled={inactive} style={({ pressed }) => [{ opacity: inactive ? 0.5 : pressed ? 0.78 : 1, borderRadius: 16, overflow: 'hidden' }, style]}>{variant === 'primary' ? <LinearGradient colors={['#315D77', '#AE463A']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} style={[box, { borderWidth: 1, borderColor: '#85594E' }]}>{content}</LinearGradient> : <View style={[box, variant === 'secondary' ? { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border } : null]}>{content}</View>}</Pressable>;
 }

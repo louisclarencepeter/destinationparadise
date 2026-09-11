@@ -58,7 +58,7 @@ export default function NearbyLocationControls({ recommendations, onClearFilters
 
     {nearby.enabled && !busy && <View style={{ flexDirection: compact ? 'row' : 'column', gap: 8 }}>
       {ready && <Button label={compact ? 'Refresh' : 'Refresh my location'} accessibilityLabel="Refresh my location" icon="refresh" variant="secondary" style={compact ? { flex: 1 } : undefined} onPress={() => void nearby.refresh()} />}
-      <Button label={compact ? 'Turn off' : 'Turn off nearby suggestions'} accessibilityLabel="Turn off nearby suggestions" variant="ghost" style={compact && ready ? { flex: 1 } : undefined} onPress={nearby.disable} />
+      <Button label={compact ? 'Turn off' : 'Turn off nearby suggestions'} accessibilityLabel="Turn off nearby suggestions" variant="ghost" style={compact && ready ? { flex: 1 } : undefined} labelStyle={compact && ready ? { flex: 1 } : undefined} onPress={nearby.disable} />
     </View>}
     {!compact && available && <AppText variant="caption">Distances are approximate. You can refresh your position or turn Nearby off at any time.</AppText>}
     {!!nearby.storageError && <AppText selectable accessibilityRole="alert" variant="caption">{nearby.storageError}</AppText>}
