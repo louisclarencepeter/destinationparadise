@@ -85,7 +85,15 @@
   .exc-block,
   .exc-block:nth-of-type(even) { grid-template-columns: 1fr; }
   .exc-block:nth-of-type(even) .exc-block__img { order: 0; }
-  .exc-block__img { aspect-ratio: 4/3; max-height: 50vh; }
+  /* Cap by width, not height: an aspect-ratio box whose max-height binds stops
+     stretching to the grid column and gets start-aligned, pushing the image
+     off-centre. calc keeps the same 50vh ceiling at this 4/3 ratio. */
+  .exc-block__img {
+    aspect-ratio: 4/3;
+    width: 100%;
+    max-width: calc(50vh * 4 / 3);
+    justify-self: center;
+  }
   .exc-block { margin-bottom: 1rem; border-radius: 14px; }
   .exc-block__facts { grid-template-columns: repeat(2, 1fr); }
   .exc-block__cols { grid-template-columns: 1fr; gap: 1.25rem; }
