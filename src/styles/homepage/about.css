@@ -164,7 +164,12 @@
   }
   .home-about__media {
     aspect-ratio: 5 / 4;
-    max-height: 360px;
+    /* Cap the size by width, not height: an aspect-ratio box whose max-height
+       binds stops stretching to the grid column and gets start-aligned, which
+       pushed the image off-centre on narrow screens. */
+    width: 100%;
+    max-width: 450px;
+    justify-self: center;
   }
   .home-about__copy {
     justify-items: center;
