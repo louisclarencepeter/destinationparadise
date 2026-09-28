@@ -240,19 +240,35 @@ const TRANSIENT_HTTP_STATUSES = new Set([408, 429, 500, 502, 503, 504]);
 // ("Application does not have permission for this action") or 401 code 190
 // ("Cannot parse access token"); both cleared on the next scheduled run with
 // an unchanged token (Actions runs 29535570483 and 29536479874, 2026-07-16).
+// Expired or revoked tokens also return 401 code 190, but with other messages
+// ("Session has expired on ..."), and no retry can recover them.
+const TOKEN_PARSE_FLAKE = /cannot parse access token/i;
+
 export function isTransientApiError(error) {
   if (TRANSIENT_HTTP_STATUSES.has(error.httpStatus)) return true;
-  return error.httpStatus === 401 && error.code === 190;
+  return error.httpStatus === 401 && error.code === 190 && TOKEN_PARSE_FLAKE.test(error.message || '');
+}
+
+export function isInvalidTokenError(error) {
+  return error.code === 190 && !isTransientApiError(error);
 }
 
 // All GETs happen before a reply is selected, so a run that dies on a GET has
 // journaled nothing and attempted no publish; re-running the whole script is
 // side-effect free. The workflow re-runs the step only on this exit code.
 export const TRANSIENT_RUN_EXIT_CODE = 75;
+// EX_CONFIG: the token must be replaced; the workflow reports how.
+export const INVALID_TOKEN_EXIT_CODE = 78;
 
 export function isRetryableRunError(error) {
   if (error.requestMethod !== 'GET') return false;
   return !error.httpStatus || isTransientApiError(error);
+}
+
+export function runExitCode(error) {
+  if (isRetryableRunError(error)) return TRANSIENT_RUN_EXIT_CODE;
+  if (isInvalidTokenError(error)) return INVALID_TOKEN_EXIT_CODE;
+  return 1;
 }
 
 export async function apiRequest(token, endpoint, { body, method = 'GET', params } = {}) {
@@ -469,6 +485,6 @@ async function main() {
 if (process.argv[1] && path.resolve(process.argv[1]) === import.meta.filename) {
   main().catch((error) => {
     console.error(JSON.stringify({ ok: false, ...safeError(error) }));
-    process.exitCode = isRetryableRunError(error) ? TRANSIENT_RUN_EXIT_CODE : 1;
+    process.exitCode = runExitCode(error);
   });
 }
