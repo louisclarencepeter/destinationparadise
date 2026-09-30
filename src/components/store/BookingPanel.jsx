@@ -142,7 +142,7 @@ export default function BookingPanel({ experience }) {
   const submit = () => {
     if (!canSubmit) return;
     if (quoteRequired) {
-      navigate('/book-now', {
+      navigate('/book-now#booking-contact', {
         state: { storeEnquiry: {
           experienceId: experience.id, mode, guests, pickupZone,
           accommodation: accommodation.trim().slice(0, 200),

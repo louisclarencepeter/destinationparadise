@@ -50,6 +50,7 @@ describe('pilot excursion detail copy', () => {
         expect(html).toContain(copy.detail.pilot_price_note);
         expect(html).toContain(copy.detail.practical.included.pilot_pickup);
         expect(html).toContain(`${copy.detail.from} $`);
+        expect(html.match(new RegExp(`href="/booking\\?type=excursion&item=${id}#booking-contact"`, 'g'))).toHaveLength(2);
         expect(html).not.toMatch(/detail\.(pilot_price_note|practical\.included\.pilot_)/);
       }
     });
@@ -61,6 +62,7 @@ describe('pilot excursion detail copy', () => {
       expect(html).not.toContain(copy.detail.practical.included.pilot_pickup);
       expect(html).not.toContain(copy.detail.pilot_price_note);
       expect(html).not.toContain(`${copy.detail.from} $`);
+      expect(html.match(/href="\/booking\?type=excursion&item=prison-island#booking-contact"/g)).toHaveLength(2);
     });
   }
 });

@@ -149,7 +149,7 @@ export default function ExcursionDetail() {
               <span className="exc-block__price-note reveal" style={{ '--reveal-index': 0 }}>{t('detail.price_on_request')}</span>
             )}
             {(isPilot || e.priceNote) && <span className="exc-block__price-note reveal" style={{ '--reveal-index': 1 }}>{isPilot ? t('detail.pilot_price_note') : e.priceNote}</span>}
-            <Link className="btn reveal" style={{ '--reveal-index': 2 }} to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}`}>{t('detail.book_this')}</Link>
+            <Link className="btn reveal" style={{ '--reveal-index': 2 }} to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}#booking-contact`}>{t('detail.book_this')}</Link>
             <Link className="btn btn--ghost-dark reveal" style={{ '--reveal-index': 3 }} to="/excursions">{t('detail.all_excursions')}</Link>
           </div>
         </div>
@@ -224,7 +224,7 @@ export default function ExcursionDetail() {
           <h2 className="reveal" style={{ '--reveal-index': 0 }}>{t('detail.cta.title', { title: e.title })}</h2>
           <p className="reveal" style={{ '--reveal-index': 1 }}>{t('detail.cta.text')}</p>
           <div className="exc-cta__btns reveal" style={{ '--reveal-index': 2 }}>
-            <Link className="btn btn--lg" to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}`}>{t('cta.get_in_touch')}</Link>
+            <Link className="btn btn--lg" to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}#booking-contact`}>{t('cta.get_in_touch')}</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">{t('cta.ai_planner')}</Link>
           </div>
         </div>

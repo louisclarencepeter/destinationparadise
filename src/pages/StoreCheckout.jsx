@@ -113,7 +113,7 @@ export default function StoreCheckout() {
   const pay = async () => {
     if (pickupReview || availabilityReview || checking) return;
     if (quoteRequired) {
-      navigate('/book-now', { state: { storeEnquiry: { items: state.items.map((item) => ({
+      navigate('/book-now#booking-contact', { state: { storeEnquiry: { items: state.items.map((item) => ({
         experienceId: item.experienceId, mode: item.mode, guests: item.guests,
         pickupZone: item.pickupZone, accommodation: item.accommodation,
         preferredDate: item.date || item.requestedDates || '', preferredTime: item.time || '',

@@ -86,7 +86,7 @@ export default function BookingForm({
         </fieldset>
       )}
 
-      <div className="booking-row">
+      <div className="booking-row" id="booking-contact">
         <label className="booking-field">
           <span>{t('form.name', { defaultValue: 'Name' })}</span>
           <input type="text" name="name" value={form.name} onChange={update('name')} required />

@@ -290,7 +290,7 @@ describe('checkout quote handoff and preserved request flow', () => {
     expect(markup(tree)).not.toContain('Pay $50.01 deposit');
     tree = contact(tree, { email: 'guest@' });
     await payButton(tree).props.onClick();
-    expect(harness.navigate).toHaveBeenCalledExactlyOnceWith('/book-now', {
+    expect(harness.navigate).toHaveBeenCalledExactlyOnceWith('/book-now#booking-contact', {
       state: { storeEnquiry: {
         items: [{ experienceId: 'spice-tour', mode: 'shared', guests: 2, pickupZone: 'north', accommodation: 'QA Example Hotel', preferredDate: '2026-10-05', preferredTime: '09:00' }],
         contact: { name: 'QA Guest', email: 'guest@', phone: '+255123' },
@@ -326,7 +326,7 @@ describe('checkout quote handoff and preserved request flow', () => {
     expect(payButton(tree).props.disabled).toBe(false);
     expect(markup(tree)).toContain(en.panel.contact_quote);
     await payButton(tree).props.onClick();
-    expect(harness.navigate).toHaveBeenCalledWith('/book-now', {
+    expect(harness.navigate).toHaveBeenCalledWith('/book-now#booking-contact', {
       state: { storeEnquiry: {
         items: [expect.objectContaining({ guests, accommodation: 'QA Example Hotel', pickupZone: 'north' })],
         contact: { name: 'QA Guest', email: 'guest@', phone: '' },

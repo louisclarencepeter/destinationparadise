@@ -291,6 +291,14 @@ describe('booking page handoff and preserved prefills', () => {
 });
 
 describe('exact guest options in the existing booking form', () => {
+  it('provides a contact continuation anchor while retaining the full booking form', () => {
+    const markup = formMarkup('7');
+    expect(markup).toMatch(/<form[^>]*id="booking-details"/);
+    expect(markup).toMatch(/<div class="booking-row" id="booking-contact">[\s\S]*?name="name"[\s\S]*?name="email"[\s\S]*?<\/div>/);
+    expect(markup).toContain('name="serviceType"');
+    expect(markup).toContain('name="guests"');
+  });
+
   it.each(['6', '7', '10', '24'])('renders exact %s as the selected value and retains legacy open-ended choices', (guests) => {
     const markup = formMarkup(guests);
     const select = markup.match(/<select name="guests"[\s\S]*?<\/select>/)?.[0];

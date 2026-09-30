@@ -189,7 +189,7 @@ describe('group and pickup booking panel', () => {
     expect(findElement(tree, (element) => element.type === GuestPicker).props.value).toBe(guests);
     expect(submit(tree).props.disabled).toBe(false);
     submit(tree).props.onClick();
-    expect(harness.navigate).toHaveBeenCalledWith('/book-now', {
+    expect(harness.navigate).toHaveBeenCalledWith('/book-now#booking-contact', {
       state: { storeEnquiry: {
         experienceId: 'spice-tour', mode: 'shared', guests, pickupZone: 'north', accommodation: 'Example Hotel',
         preferredDate: '', preferredTime: '',
@@ -204,7 +204,7 @@ describe('group and pickup booking panel', () => {
     tree = pickup(tree, zone);
     expect(renderToStaticMarkup(tree)).not.toContain('$90.00');
     submit(tree).props.onClick();
-    expect(harness.navigate).toHaveBeenCalledWith('/book-now', expect.objectContaining({
+    expect(harness.navigate).toHaveBeenCalledWith('/book-now#booking-contact', expect.objectContaining({
       state: { storeEnquiry: expect.objectContaining({ pickupZone: zone }) },
     }));
     expect(harness.dispatch).not.toHaveBeenCalled();
