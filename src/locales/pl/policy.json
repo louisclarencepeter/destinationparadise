@@ -3,7 +3,7 @@
   "meta": {
     "aria_label": "Szczegoly zasad",
     "last_updated": "Ostatnia aktualizacja",
-    "last_updated_value": "25 lipca 2026",
+    "last_updated_value": "30 września 2026",
     "contact": "Kontakt"
   },
   "policies": {
@@ -69,8 +69,8 @@
           "title": "Płatności i rezerwacje w sklepie online",
           "items": [
             "Gdy rezerwujesz od ręki w naszym sklepie z atrakcjami, zbieramy imię i nazwisko, adres e-mail i numer telefonu gościa głównego oraz zawartość zamówienia: wybrane atrakcje, daty, godziny i liczbę gości.",
-            "Płatności obsługuje nasz partner płatności DPO Pay na swoich bezpiecznych stronach. Dane kart i mobile money podajesz wyłącznie tam — nigdy nie trafiają do naszych systemów ani przez nie nie przechodzą.",
-            "W naszej bazie rezerwacji przechowujemy zamówienie, jego kody rezerwacji i status płatności zwrócony przez DPO (nigdy numery kart), aby zrealizować twoje wycieczki, obsłużyć zmiany i spełnić obowiązki księgowe.",
+            "Płatności obsługuje nasz partner płatności Pesapal na swoich bezpiecznych stronach. Dane kart i mobile money podajesz wyłącznie tam — nigdy nie trafiają do naszych systemów ani przez nie nie przechodzą.",
+            "W naszej bazie rezerwacji przechowujemy zamówienie, jego kody rezerwacji i status płatności zwrócony przez Pesapal (nigdy numery kart), aby zrealizować twoje wycieczki, obsłużyć zmiany i spełnić obowiązki księgowe.",
             "Potwierdzenia zamówienia i rezerwacji wysyłamy przez naszego dostawcę poczty na adres podany przy kasie.",
             "Zamówienia i rezerwacje przechowujemy jako dokumentację handlową tak długo, jak wymagają przepisy podatkowe i rachunkowe; napisz do nas w każdej chwili, aby uzyskać dostęp do danych lub je poprawić.",
             "Zdarzenia analityczne sklepu nigdy nie zawierają nazwisk, adresów e-mail, numerów telefonu ani referencji płatności."
@@ -142,7 +142,7 @@
         {
           "title": "Płatność",
           "items": [
-            "Wycieczki jednodniowe, atrakcje i transfery na Zanzibarze: pełna płatność jest wymagana przed rozpoczęciem usługi. Atrakcje rezerwowane w sklepie online opłacasz w całości przy składaniu zamówienia.",
+            "Wycieczki jednodniowe, atrakcje i transfery na Zanzibarze: pełna płatność jest wymagana przed rozpoczęciem usługi. Atrakcje rezerwowane w sklepie online wymagają zaliczki 20% przy składaniu zamówienia; pozostałe 80% płacisz w dniu atrakcji, przed jej rozpoczęciem.",
             "Safari w Tanzanii: zaliczka w wysokości 30 % potwierdza rezerwację, a pozostałe 70 % jest płatne najpóźniej 30 dni przed datą rozpoczęcia safari.",
             "Rezerwacje safari dokonane w ciągu 30 dni przed datą rozpoczęcia wymagają pełnej płatności przy potwierdzeniu.",
             "Jeśli dopłata do safari nie wpłynie w terminie, skontaktujemy się z Tobą, zanim podejmiemy jakiekolwiek kroki. Gdy należność pozostanie nieopłacona, możemy potraktować rezerwację jako anulowaną przez Ciebie i zastosować poniższe opłaty."

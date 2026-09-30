@@ -133,19 +133,40 @@ function orderReference(now = new Date()) {
  * @param {{ method?: string, body?: object, headers?: Record<string, string> }} [options]
  */
 async function apiRequest(path, { method = 'GET', body, headers } = {}) {
-  const response = await fetch(path, {
-    method,
-    headers: { ...(body ? { 'content-type': 'application/json' } : {}), ...headers },
-    body: body ? JSON.stringify(body) : undefined,
-    credentials: 'omit',
-  });
-  let data = null;
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 20_000);
   try {
-    data = await response.json();
+    const response = await fetch(path, {
+      method,
+      headers: { ...(body ? { 'content-type': 'application/json' } : {}), ...headers },
+      body: body ? JSON.stringify(body) : undefined,
+      credentials: 'omit',
+      cache: 'no-store',
+      signal: controller.signal,
+    });
+    const data = await response.json().catch(() => null);
+    return { status: response.status, data };
   } catch {
-    data = null;
+    return { status: 0, data: { ok: false, error: 'network_unavailable' } };
+  } finally {
+    clearTimeout(timeout);
   }
-  return { status: response.status, data };
+}
+
+const HOSTED_PAYMENT_HOSTS = {
+  pesapal: ['pay.pesapal.com', 'cybqa.pesapal.com'],
+  dpo: ['secure.3gdirectpay.com'],
+};
+
+// A provider response must never turn checkout into an arbitrary redirect.
+export function isSafePaymentUrl(value, provider) {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'https:' && !url.username && !url.password && !url.port &&
+      Boolean(HOSTED_PAYMENT_HOSTS[provider]?.includes(url.hostname));
+  } catch {
+    return false;
+  }
 }
 
 const toLiveItem = (item) => (item.mode === 'request'
@@ -168,6 +189,29 @@ const toLiveItem = (item) => (item.mode === 'request'
 export const isRequestItem = (item) => item?.mode === 'request';
 
 const minorToUsd = (minor) => Number(minor || 0) / 100;
+
+export function depositBreakdown(totalUsd) {
+  const totalMinor = Math.round(totalUsd * 100);
+  const chargeMinor = Math.ceil(totalMinor / 5);
+  return {
+    paymentPlan: 'deposit_20',
+    depositPercent: 20,
+    chargeUsd: minorToUsd(chargeMinor),
+    balanceUsd: minorToUsd(totalMinor - chargeMinor),
+  };
+}
+
+function serverPaymentBreakdown(order) {
+  const totalMinor = Number(order.totalMinor || 0);
+  const chargeMinor = Number(order.chargeMinor ?? order.depositMinor ?? totalMinor);
+  return {
+    paymentPlan: order.paymentPlan || 'full',
+    depositPercent: Number(order.depositPercent ?? 100),
+    chargeUsd: minorToUsd(chargeMinor),
+    balanceUsd: minorToUsd(order.balanceMinor ?? Math.max(0, totalMinor - chargeMinor)),
+    paymentStatus: order.paymentStatus || (order.status === 'paid' ? 'paid' : null),
+  };
+}
 
 // One idempotency key per cart payload: a retry of the same cart replays the
 // same order; any change to the cart mints a new key.
@@ -218,6 +262,7 @@ function mapServerOrder(serverOrder) {
     status: serverOrder.status || 'paid',
     createdAt: serverOrder.createdAt || new Date().toISOString(),
     totalUsd: minorToUsd(serverOrder.totalMinor),
+    ...serverPaymentBreakdown(serverOrder),
     currency: serverOrder.currency || 'USD',
     contact: { name: serverOrder.contactName || '' },
     quoteNote: serverOrder.quoteNote || null,
@@ -267,7 +312,7 @@ export async function quoteCartItems(items, { latencyMs = DEFAULT_LATENCY_MS } =
 
   if (LIVE) {
     if (instantItems.length === 0) {
-      return { quotes: requestQuotes, subtotalUsd: 0, currency: 'USD' };
+      return { quotes: requestQuotes, subtotalUsd: 0, currency: 'USD', ...depositBreakdown(0) };
     }
     const { data } = await apiRequest('/api/store/quote', {
       method: 'POST',
@@ -284,6 +329,7 @@ export async function quoteCartItems(items, { latencyMs = DEFAULT_LATENCY_MS } =
       quotes: [...quotes, ...requestQuotes],
       subtotalUsd: minorToUsd(data.subtotalMinor),
       currency: data.currency || 'USD',
+      ...depositBreakdown(minorToUsd(data.subtotalMinor)),
     };
   }
 
@@ -293,14 +339,14 @@ export async function quoteCartItems(items, { latencyMs = DEFAULT_LATENCY_MS } =
   const subtotalUsd = quotes
     .filter((quote) => quote.status === 'available')
     .reduce((sum, quote) => sum + quote.totalUsd, 0);
-  return { quotes: [...quotes, ...requestQuotes], subtotalUsd, currency: 'USD' };
+  return { quotes: [...quotes, ...requestQuotes], subtotalUsd, currency: 'USD', ...depositBreakdown(subtotalUsd) };
 }
 
 // Simulated (fixtures) or real (live) checkout. Live mode creates the pending
 // order + holds atomically server-side, then — while payments are in
 // dev-simulation (pre-DPO) — finalizes through the dev-pay endpoint so the
 // full journey runs against real inventory.
-export async function submitCheckout({ items, contact }, { latencyMs = CHECKOUT_LATENCY_MS } = {}) {
+export async function submitCheckout({ items, contact, expectedTotalUsd, expectedChargeUsd }, { latencyMs = CHECKOUT_LATENCY_MS } = {}) {
   if (LIVE) {
     const { status, data } = await apiRequest('/api/store/checkout', {
       method: 'POST',
@@ -321,7 +367,23 @@ export async function submitCheckout({ items, contact }, { latencyMs = CHECKOUT_
 
     saveOrderCredentials({ reference: data.reference, token: data.accessToken });
 
-    if (data.payment?.mode === 'dpo') {
+    // The order is re-priced under server locks. A price change must be shown
+    // and reviewed before any payment page is created or money can be taken.
+    if ((expectedTotalUsd != null && Math.round(expectedTotalUsd * 100) !== data.totalMinor) ||
+        (expectedChargeUsd != null && Math.round(expectedChargeUsd * 100) !== (data.chargeMinor ?? data.depositMinor ?? data.totalMinor))) {
+      return {
+        ok: false,
+        error: 'price_changed',
+        quote: {
+          quotes: (data.items || []).map((item) => ({ id: item.id, status: 'available', seats: 0, totalUsd: minorToUsd(item.totalMinor) })),
+          subtotalUsd: minorToUsd(data.totalMinor),
+          currency: data.currency || 'USD',
+          ...serverPaymentBreakdown(data),
+        },
+      };
+    }
+
+    if (['pesapal', 'dpo'].includes(data.payment?.mode)) {
       // Real payments: ask the server for the hosted-checkout URL and send the
       // browser there. The idempotency key survives until payment confirms so
       // an abandoned attempt replays the SAME order instead of double-holding.
@@ -329,7 +391,13 @@ export async function submitCheckout({ items, contact }, { latencyMs = CHECKOUT_
         method: 'POST',
         body: { reference: data.reference, token: data.accessToken },
       });
-      if (!pay.data?.ok || !pay.data?.paymentUrl) {
+      if (!pay.data?.ok || !isSafePaymentUrl(pay.data?.paymentUrl, pay.data?.provider || data.payment.mode)) {
+        // Definitive rejection permits a fresh checkout on the guest's next
+        // attempt. Ambiguous submission/review must keep the original order.
+        if (pay.data?.error === 'payment_create_failed' ||
+            (pay.data?.error === 'order_not_payable' && ['payment_failed', 'expired', 'cancelled'].includes(pay.data?.status))) {
+          clearIdempotencyKey();
+        }
         return { ok: false, conflicts: [], error: pay.data?.error || 'payment_unavailable' };
       }
       return { ok: true, redirect: pay.data.paymentUrl, reference: data.reference };
@@ -377,10 +445,14 @@ export async function submitCheckout({ items, contact }, { latencyMs = CHECKOUT_
     };
   });
 
+  const totalUsd = orderItems.reduce((sum, item) => sum + item.totalUsd, 0);
   const order = {
     reference: orderReference(),
+    status: 'paid',
+    paymentStatus: 'deposit_paid',
     createdAt: new Date().toISOString(),
-    totalUsd: orderItems.reduce((sum, item) => sum + item.totalUsd, 0),
+    totalUsd,
+    ...depositBreakdown(totalUsd),
     currency: 'USD',
     contact: { name: contact?.name || '' },
     items: orderItems,
@@ -462,7 +534,10 @@ export async function submitRequestCheckout({ items, contact }, { latencyMs = CH
 // Guest accepts a staff quote (live only — the quoted state can't arise in
 // fixtures). Returns { ok, redirect? } mirroring submitCheckout's payment
 // hand-off so the order page can reuse the same continuation logic.
-export async function acceptQuote(reference) {
+/** @param {string} reference
+ * @param {{expectedTotalUsd?: number, expectedChargeUsd?: number}} [expected]
+ */
+export async function acceptQuote(reference, { expectedTotalUsd, expectedChargeUsd } = {}) {
   if (!LIVE) return { ok: false, error: 'accept_unavailable' };
   const credentials = readOrderCredentials(reference);
   if (!credentials) return { ok: false, error: 'not_found' };
@@ -478,12 +553,20 @@ export async function acceptQuote(reference) {
     return { ok: false, error: data?.error || 'accept_unavailable' };
   }
 
-  if (data.payment?.mode === 'dpo') {
+  if ((expectedTotalUsd != null && Math.round(expectedTotalUsd * 100) !== data.totalMinor) ||
+      (expectedChargeUsd != null && Math.round(expectedChargeUsd * 100) !== (data.chargeMinor ?? data.depositMinor ?? data.totalMinor))) {
+    // Acceptance has already secured holds; refresh the immutable accepted
+    // order so the guest can explicitly review and resume the same payment.
+    const order = await fetchStoredOrder(reference);
+    return { ok: false, error: 'price_changed', order: order || undefined };
+  }
+
+  if (['pesapal', 'dpo'].includes(data.payment?.mode)) {
     const pay = await apiRequest('/api/store/pay', {
       method: 'POST',
       body: { reference, token: credentials.token },
     });
-    if (!pay.data?.ok || !pay.data?.paymentUrl) {
+    if (!pay.data?.ok || !isSafePaymentUrl(pay.data?.paymentUrl, pay.data?.provider || data.payment.mode)) {
       return { ok: false, error: pay.data?.error || 'payment_unavailable' };
     }
     return { ok: true, redirect: pay.data.paymentUrl };
@@ -576,4 +659,30 @@ export async function fetchStoredOrder(reference) {
   const order = mapServerOrder(data);
   saveLastOrder(order);
   return order;
+}
+
+// Resume an existing held order directly, including historical full/DPO
+// orders. Never create another order or assume a cached amount is current.
+/** @param {string} reference
+ * @param {{expectedTotalUsd?: number, expectedChargeUsd?: number}} [expected]
+ */
+export async function continueOrderPayment(reference, { expectedTotalUsd, expectedChargeUsd } = {}) {
+  if (!LIVE) return { ok: false, error: 'payment_unavailable' };
+  const credentials = readOrderCredentials(reference);
+  if (!credentials) return { ok: false, error: 'not_found' };
+  const order = await fetchStoredOrder(reference);
+  if (!order) return { ok: false, error: 'payment_unavailable' };
+  if (order.status === 'paid') return { ok: true, order };
+  if (order.status !== 'pending_payment') return { ok: false, error: 'order_not_payable', order };
+  if ((expectedTotalUsd != null && Math.round(expectedTotalUsd * 100) !== Math.round(order.totalUsd * 100)) ||
+      (expectedChargeUsd != null && Math.round(expectedChargeUsd * 100) !== Math.round(order.chargeUsd * 100))) {
+    return { ok: false, error: 'price_changed', order };
+  }
+  const pay = await apiRequest('/api/store/pay', {
+    method: 'POST', body: { reference, token: credentials.token },
+  });
+  if (!pay.data?.ok || !isSafePaymentUrl(pay.data?.paymentUrl, pay.data?.provider)) {
+    return { ok: false, error: pay.data?.error || 'payment_unavailable' };
+  }
+  return { ok: true, redirect: pay.data.paymentUrl };
 }

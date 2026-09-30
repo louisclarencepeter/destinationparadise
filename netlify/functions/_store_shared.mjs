@@ -30,7 +30,7 @@ export function storeApiEnabled() {
 }
 
 export function devFakePaymentEnabled() {
-  return process.env.STORE_DEV_FAKE_PAYMENT === 'true';
+  return process.env.STORE_DEV_FAKE_PAYMENT === 'true' && process.env.CONTEXT !== 'production';
 }
 
 export const storeDisabledResponse = () =>

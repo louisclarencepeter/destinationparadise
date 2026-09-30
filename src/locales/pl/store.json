@@ -133,7 +133,10 @@
     "status_request": "Czeka na potwierdzenie",
     "plus_request": "+ pozycje na zapytanie",
     "request_cta": "Przejdź do zapytania",
-    "request_note": "Twoja podróż zawiera zapytania — najpierw potwierdzamy dostępność, płacisz raz na końcu."
+    "request_note": "Twoja podróż zawiera zapytania — najpierw potwierdzamy dostępność, płacisz raz na końcu.",
+    "checking_prices": "Sprawdzamy ceny…",
+    "price_unavailable": "Cena niedostępna",
+    "status_checking": "Sprawdzamy dostępność…"
   },
   "checkout": {
     "meta_title": "Kasa · Destination Paradise",
@@ -153,15 +156,15 @@
     "phone_label": "Telefon / WhatsApp",
     "phone_placeholder": "+255 …",
     "payment": "Płatność",
-    "payment_note": "Płatność dokończysz na bezpiecznej stronie naszego partnera płatności <strong>DPO Pay</strong>. W tym podglądzie płatność jest symulowana — nie podajesz tu danych karty i nic nie zostanie pobrane.",
+    "payment_note": "Płatność dokończysz na bezpiecznej stronie naszego partnera płatności <strong>Pesapal</strong>. Dane karty i mobile money podajesz wyłącznie tam.",
     "pay": "Zapłać {{amount}}",
     "checking": "Sprawdzamy dostępność…",
     "recheck_note": "Przed płatnością ponownie sprawdzamy dostępność.",
     "terms_ack": "Kontynuując, akceptujesz nasze <booking>Warunki rezerwacji</booking> i <terms>Regulamin</terms>, w tym opłaty za anulowanie obowiązujące dla Twoich terminów.",
     "conflict": "Część terminów jest już niedostępna. Popraw zaznaczone wycieczki.",
     "conflict_fix": "Wybierz nowy termin",
-    "failed": "Nie udało się teraz dokończyć płatności. Nic nie zostało pobrane — spróbuj ponownie za chwilę.",
-    "payment_unavailable": "Płatność online nie jest jeszcze dostępna — twój wybór zapisaliśmy jako zamówienie, ale nic nie zostało pobrane. Na razie skorzystaj z formularza zapytania.",
+    "failed": "Nie mogliśmy przejść do płatności. Spróbuj ponownie za chwilę.",
+    "payment_unavailable": "Płatność online jest chwilowo niedostępna. Twój wybór zapisaliśmy jako zamówienie. Skontaktuj się z naszym zespołem lub skorzystaj z formularza zapytania.",
     "usd_note": "Płatność jest pobierana w dolarach amerykańskich — ceny w innych walutach są orientacyjne.",
     "errors": {
       "name_required": "Podaj imię i nazwisko gościa głównego.",
@@ -176,7 +179,15 @@
     "request_sending": "Wysyłamy zapytanie…",
     "request_footnote": "Wysłanie zapytania niczego nie pobiera ani nie blokuje.",
     "request_total_label": "Pozycje od ręki do tej pory",
-    "request_pricing_hint": "Atrakcje z zapytania wycenimy w mailu z potwierdzeniem."
+    "request_pricing_hint": "Atrakcje z zapytania wycenimy w mailu z potwierdzeniem.",
+    "payment_note_preview": "Ten podgląd symuluje wpłatę zaliczki 20% — nic nie zostanie pobrane i nie podajesz danych karty ani mobile money. Pozostałe 80% płacisz w dniu wycieczki.",
+    "trip_total": "Łączna cena wyjazdu",
+    "deposit_due": "Zaliczka teraz ({{percent}}%)",
+    "balance_due": "Reszta w dniu wycieczki",
+    "pay_deposit": "Wpłać zaliczkę {{amount}}",
+    "price_changed": "Kwota płatności się zmieniła. Sprawdź zaktualizowaną cenę i zaliczkę przed kontynuowaniem.",
+    "quote_failed": "Nie mogliśmy sprawdzić aktualnej ceny. Spróbuj ponownie przed dokonaniem płatności.",
+    "retry_quote": "Sprawdź ceny ponownie"
   },
   "confirm": {
     "meta_title": "Potwierdzenie rezerwacji · Destination Paradise",
@@ -204,7 +215,16 @@
     "accepting": "Blokujemy twoje miejsca…",
     "accept_note": "Akceptacja ponownie sprawdza dostępność i blokuje każde miejsce w twojej podróży; płatność następuje jako jedna łączna kwota.",
     "accept_conflict": "Jeden z terminów właśnie się wyprzedał. Nasz zespół już o tym wie i wyśle ci alternatywę mailem.",
-    "accepted_payment_pending": "Twoje miejsca są zablokowane! Płatność online ruszy wkrótce — wyślemy ci link do płatności mailem."
+    "accepted_payment_pending": "Twoje miejsca są zablokowane! Płatność online ruszy wkrótce — wyślemy ci link do płatności mailem.",
+    "deposit_lead": "Zamówienie <ref>{{reference}}</ref> jest potwierdzone i otrzymaliśmy twoją zaliczkę 20%. Mail z potwierdzeniem zawiera każdy kod rezerwacji i pozostałą kwotę do zapłaty.",
+    "deposit_chip": "Potwierdzone · zaliczka otrzymana",
+    "deposit_received": "Otrzymana zaliczka",
+    "balance_note": "Pozostałe 80% płacisz w dniu wycieczki, przed rozpoczęciem atrakcji.",
+    "accept_deposit_cta": "Zaakceptuj i wpłać zaliczkę {{amount}}",
+    "refresh_failed_title": "Nie mogliśmy sprawdzić zamówienia",
+    "refresh_failed_text": "Zapisane potwierdzenie mogło się zmienić. Spróbuj ponownie sprawdzić aktualny status rezerwacji i płatności lub użyj linku w mailu z potwierdzeniem.",
+    "refresh_retry": "Sprawdź zamówienie ponownie",
+    "continue_pending": "Jeśli nie dokończyłeś płatności, przejdź do bezpiecznej strony płatności. Potwierdzenie zaktualizujemy po weryfikacji wpłaty."
   },
   "request_panel": {
     "chip": "Rezerwacja na zapytanie",

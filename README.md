@@ -19,7 +19,7 @@ The site has grown from a homepage rebuild into a multi-page travel platform:
 - Netlify hosting
 - Netlify Functions for planner, booking, contact, and the feature-flagged store
 - Netlify Forms for contact/newsletter forms
-- Supabase + DPO integration for the feature-flagged multi-trip store (production remains disabled)
+- Supabase + Pesapal integration for the feature-flagged multi-trip store, with historical DPO support (production remains disabled)
 
 ## Run Locally
 
@@ -50,6 +50,10 @@ npm run test       # Vitest tests
 ```
 
 ## Environment
+
+Store setup, the 20% deposit model, and remaining launch checks are documented in
+[docs/pesapal-store-launch.md](docs/pesapal-store-launch.md). Payment credentials
+and database service keys belong in server environment variables only.
 
 Set this on Netlify:
 

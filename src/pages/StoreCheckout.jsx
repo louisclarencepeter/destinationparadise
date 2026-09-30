@@ -5,38 +5,46 @@ import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { ArrowLeftIcon, CheckIcon } from '../components/store/StoreIcons.jsx';
 import { useBookingCart } from '../context/useBookingCart.js';
 import { useCurrency } from '../context/useCurrency.js';
-import { getCartExperience, getInstantExperience } from '../data/commerceCatalog.js';
+import { getCartExperience } from '../data/commerceCatalog.js';
 import { buildLocalizedExcursions } from '../data/localizedCatalog.js';
 import usePageMeta from '../hooks/usePageMeta.js';
 import {
   isRequestItem,
-  priceSelection,
+  isLiveStoreApi,
+  quoteCartItems,
   saveLastOrder,
   submitCheckout,
   submitRequestCheckout,
 } from '../lib/storeApi.js';
-import { formatDateLabel, formatTimeLabel } from '../lib/storeFormat.js';
-import { trackEvent } from '../utils/analytics.js';
+import { formatDateLabel, formatStoreMoney, formatTimeLabel } from '../lib/storeFormat.js';
+import { suspendGoogleAnalytics, trackEvent } from '../utils/analytics.js';
 import '../styles/store.css';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// Checkout shell (HANDOFF.md Phase 1): contact details + simulated payment.
-// No card fields — production hands the payment to DPO's hosted page, so the
+// No card fields — production hands payment to the provider's hosted page, so the
 // browser never touches card data even in the preview.
 export default function StoreCheckout() {
   const { t, i18n, ready } = useTranslation(['store', 'catalog']);
   const catalogLanguage = ready ? i18n.resolvedLanguage : '';
-  const { currency, format } = useCurrency();
+  const { currency } = useCurrency();
   const { state, dispatch } = useBookingCart();
   const navigate = useNavigate();
   const lang = i18n.resolvedLanguage || 'en';
+  const format = (amountUsd) => formatStoreMoney(lang, amountUsd);
 
   const [contact, setContact] = useState({ name: '', email: '', phone: '' });
   const [touched, setTouched] = useState(false);
   const [checking, setChecking] = useState(false);
   const [conflictIds, setConflictIds] = useState(/** @type {string[] | null} */ (null));
   const [checkoutError, setCheckoutError] = useState(/** @type {string | null} */ (null));
+  const [pricing, setPricing] = useState(
+    /** @type {{items: typeof state.items | null, quote: Awaited<ReturnType<typeof quoteCartItems>> | null, failed: boolean}} */
+    ({ items: null, quote: null, failed: false }),
+  );
+  const [quoteRetry, setQuoteRetry] = useState(0);
+  const currentPricing = pricing.items === state.items ? pricing : null;
+  const currentQuote = currentPricing?.quote;
 
   usePageMeta({ title: t('store:checkout.meta_title'), noindex: true });
 
@@ -52,17 +60,31 @@ export default function StoreCheckout() {
         .filter((line) => line.experience)
         .map((line) => ({
           ...line,
-          totalUsd: isRequestItem(line.item)
-            ? null
-            : priceSelection(getInstantExperience(line.item.experienceId, catalog.excursions, catalog.operationalCopy), line.item.mode, line.item.guests).totalUsd,
+          totalUsd: isRequestItem(line.item) ? null :
+            currentQuote?.quotes.find((quote) => quote.id === line.item.id)?.totalUsd ?? null,
         })),
-    [catalog, state.items],
+    [catalog, state.items, currentQuote],
   );
-  const subtotalUsd = lines.reduce((sum, line) => sum + (line.totalUsd || 0), 0);
+  const subtotalUsd = currentQuote?.subtotalUsd ?? null;
+  const chargeUsd = currentQuote?.chargeUsd ?? null;
+  const balanceUsd = currentQuote?.balanceUsd ?? null;
+  const depositMode = currentQuote?.paymentPlan === 'deposit_20';
   // Any request item switches the whole checkout to the no-payment request
   // flow (HANDOFF Phase 5): one awaiting_availability order, staff confirm,
   // guest accepts a quote later — the one-payment promise is kept for the end.
   const requestMode = lines.some((line) => isRequestItem(line.item));
+
+  useEffect(() => {
+    if (!catalogLanguage || state.items.length === 0) return undefined;
+    let active = true;
+    setPricing({ items: state.items, quote: null, failed: false });
+    quoteCartItems(state.items).then((quote) => {
+      if (active) setPricing({ items: state.items, quote, failed: false });
+    }).catch(() => {
+      if (active) setPricing({ items: state.items, quote: null, failed: true });
+    });
+    return () => { active = false; };
+  }, [catalogLanguage, state.items, quoteRetry]);
 
   // An empty cart has nothing to check out — go pick experiences instead.
   useEffect(() => {
@@ -82,7 +104,7 @@ export default function StoreCheckout() {
 
   const pay = async () => {
     setTouched(true);
-    if (!valid || checking) return;
+    if (!valid || checking || (!requestMode && !currentQuote)) return;
     setChecking(true);
     setConflictIds(null);
     setCheckoutError(null);
@@ -97,16 +119,17 @@ export default function StoreCheckout() {
       saveLastOrder(result.order);
       trackEvent('request_availability', { items: state.items.length });
       dispatch({ type: 'clear' });
+      suspendGoogleAnalytics();
       navigate(`/store/order/${result.order.reference}`);
       return;
     }
 
-    const result = await submitCheckout({ items: state.items, contact });
+    const result = await submitCheckout({ items: state.items, contact, expectedTotalUsd: subtotalUsd, expectedChargeUsd: chargeUsd });
 
-    // Hosted payment (DPO): the order + holds exist server-side; hand the
+    // Hosted payment: the order + holds exist server-side; hand the
     // browser to the payment page. The cart clears only once payment confirms.
     if (result.ok && result.redirect) {
-      trackEvent('payment_redirect', { transaction_id: result.reference });
+      trackEvent('payment_redirect', { items: state.items.length });
       window.location.assign(result.redirect);
       return;
     }
@@ -117,19 +140,22 @@ export default function StoreCheckout() {
         setConflictIds(result.conflicts.map((conflict) => conflict.id));
         trackEvent('availability_conflict', { items: result.conflicts.length });
       } else {
-        setCheckoutError(result.error === 'payment_unavailable' ? 'payment_unavailable' : 'generic');
+        if (result.error === 'price_changed' && result.quote) {
+          setPricing({ items: state.items, quote: result.quote, failed: false });
+        }
+        setCheckoutError(['payment_unavailable', 'price_changed'].includes(result.error) ? result.error : 'generic');
         trackEvent('payment_failed', { reason: result.error || 'unknown' });
       }
       return;
     }
     saveLastOrder(result.order);
     trackEvent('purchase', {
-      value: result.order.totalUsd,
+      value: result.order.chargeUsd ?? result.order.totalUsd,
       currency: 'USD',
-      transaction_id: result.order.reference,
       items: result.order.items.length,
     });
     dispatch({ type: 'clear' });
+    suspendGoogleAnalytics();
     navigate(`/store/order/${result.order.reference}`);
   };
 
@@ -196,18 +222,30 @@ export default function StoreCheckout() {
                     )}
                   </div>
                   <span className="checkout-line__price">
-                    {isRequestItem(item) ? t('cart.price_on_request') : format(totalUsd)}
+                    {isRequestItem(item) ? t('cart.price_on_request') : totalUsd == null ? t('cart.checking_prices') : format(totalUsd)}
                   </span>
                 </div>
               );
             })}
             <div className="checkout-total">
-              <span>{requestMode ? t('checkout.request_total_label') : t('checkout.total_due')}</span>
+              <span>{requestMode ? t('checkout.request_total_label') : t('checkout.trip_total')}</span>
               <strong>
-                {format(subtotalUsd)}
+                {subtotalUsd == null ? t(currentPricing?.failed ? 'cart.price_unavailable' : 'cart.checking_prices') : format(subtotalUsd)}
                 {requestMode && <small className="checkout-total__note"> {t('cart.plus_request')}</small>}
               </strong>
             </div>
+            {!requestMode && depositMode && (
+              <>
+                <div className="checkout-total">
+                  <span>{t('checkout.deposit_due', { percent: 20 })}</span>
+                  <strong>{format(chargeUsd)}</strong>
+                </div>
+                <div className="checkout-total">
+                  <span>{t('checkout.balance_due')}</span>
+                  <strong>{format(balanceUsd)}</strong>
+                </div>
+              </>
+            )}
             {requestMode && <p className="checkout-request-hint">{t('checkout.request_pricing_hint')}</p>}
           </div>
         </section>
@@ -231,14 +269,22 @@ export default function StoreCheckout() {
               <p>
                 {requestMode
                   ? t('checkout.request_note')
-                  : <Trans t={t} i18nKey="checkout.payment_note" components={{ strong: <strong key="payment-partner" /> }} />}
+                  : <Trans t={t} i18nKey={isLiveStoreApi() ? 'checkout.payment_note' : 'checkout.payment_note_preview'} components={{ strong: <strong key="payment-partner" /> }} />}
               </p>
             </div>
 
             {conflictIds && <p className="checkout-conflict" role="alert">{t('checkout.conflict')}</p>}
             {checkoutError && (
               <p className="checkout-conflict" role="alert">
-                {checkoutError === 'payment_unavailable' ? t('checkout.payment_unavailable') : t('checkout.failed')}
+                {t(checkoutError === 'generic' ? 'checkout.failed' : `checkout.${checkoutError}`)}
+              </p>
+            )}
+            {currentPricing?.failed && !requestMode && (
+              <p className="checkout-conflict" role="alert">
+                {t('checkout.quote_failed')}{' '}
+                <button type="button" className="cart-item__link" onClick={() => setQuoteRetry((value) => value + 1)}>
+                  {t('checkout.retry_quote')}
+                </button>
               </p>
             )}
 
@@ -255,11 +301,11 @@ export default function StoreCheckout() {
               />
             </p>
 
-            <button type="button" className="checkout-pay" disabled={checking} onClick={pay}>
+            <button type="button" className="checkout-pay" disabled={checking || (!requestMode && !currentQuote)} onClick={pay}>
               {checking && <span className="checkout-pay__spinner" aria-hidden="true" />}
               {checking
                 ? (requestMode ? t('checkout.request_sending') : t('checkout.checking'))
-                : (requestMode ? t('checkout.request_cta') : t('checkout.pay', { amount: format(subtotalUsd) }))}
+                : (requestMode ? t('checkout.request_cta') : chargeUsd == null ? t('cart.checking_prices') : t(depositMode ? 'checkout.pay_deposit' : 'checkout.pay', { amount: format(chargeUsd) }))}
             </button>
             <p className="checkout-footnote">
               {requestMode ? t('checkout.request_footnote') : t('checkout.recheck_note')}

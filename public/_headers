@@ -24,3 +24,18 @@
 # Font files are effectively versioned by filename; safe to pin.
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
+
+# Private booking pages can carry a one-time order access token. Prevent
+# storage and referrer disclosure even before the app removes that token.
+/store/order/*
+  Cache-Control: no-store
+  Referrer-Policy: no-referrer
+  X-Robots-Tag: noindex, nofollow
+
+/store/checkout
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow
+
+/store/checkout/
+  Cache-Control: no-store
+  X-Robots-Tag: noindex, nofollow

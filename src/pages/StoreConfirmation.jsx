@@ -4,22 +4,20 @@ import { Trans, useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { ArrowRightIcon, CheckIcon } from '../components/store/StoreIcons.jsx';
 import { useBookingCart } from '../context/useBookingCart.js';
-import { useCurrency } from '../context/useCurrency.js';
 import usePageMeta from '../hooks/usePageMeta.js';
 import {
   acceptQuote,
   adoptOrderCredentials,
   clearIdempotencyKey,
+  continueOrderPayment,
   fetchStoredOrder,
   isLiveStoreApi,
   readLastOrder,
 } from '../lib/storeApi.js';
-import { formatDateLabel, formatTimeLabel } from '../lib/storeFormat.js';
+import { formatDateLabel, formatStoreMoney, formatTimeLabel } from '../lib/storeFormat.js';
+import { pollStoreOrder } from '../lib/pollStoreOrder.js';
 import { trackEvent } from '../utils/analytics.js';
 import '../styles/store.css';
-
-const POLL_INTERVAL_MS = 4000;
-const POLL_MAX_ATTEMPTS = 20;
 
 // Order confirmation. Three states:
 //  * paid       — per-trip booking codes (fixtures land here directly)
@@ -29,13 +27,13 @@ const POLL_MAX_ATTEMPTS = 20;
 // (also how the DPO return redirect resolves). Always noindex.
 export default function StoreConfirmation() {
   const { t, i18n, ready } = useTranslation('store');
-  const { format } = useCurrency();
   const { reference } = useParams();
   const { dispatch } = useBookingCart();
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const lang = i18n.resolvedLanguage || 'en';
+  const format = (amountUsd) => formatStoreMoney(lang, amountUsd);
 
   // Email links carry ?t=<token>: adopt it into the session BEFORE any fetch,
   // then strip it from the address bar. Synchronous on first render on purpose.
@@ -47,11 +45,13 @@ export default function StoreConfirmation() {
   }
 
   const [order, setOrder] = useState(() => readLastOrder(reference));
-  const [checking, setChecking] = useState(() => !readLastOrder(reference) && isLiveStoreApi());
+  const [checking, setChecking] = useState(() => isLiveStoreApi());
+  const [refreshFailed, setRefreshFailed] = useState(false);
+  const [refreshAttempt, setRefreshAttempt] = useState(0);
   const [accepting, setAccepting] = useState(false);
   const [acceptError, setAcceptError] = useState(/** @type {string | null} */ (null));
   const [acceptedAwaitingPayment, setAcceptedAwaitingPayment] = useState(false);
-  const pollCountRef = useRef(0);
+  const [paymentReview, setPaymentReview] = useState(false);
   const settledRef = useRef(false);
   // No session copy ⇒ we arrived via the hosted-payment redirect, so this page
   // owns the purchase event (the checkout page tracked the non-redirect path).
@@ -64,27 +64,21 @@ export default function StoreConfirmation() {
     if (searchParams.get('t')) navigate(location.pathname, { replace: true });
   }, [searchParams, navigate, location.pathname]);
 
-  // Live orders may have advanced server-side (e.g. staff quoted while the
-  // guest kept an old tab open) — refresh non-terminal states on mount.
+  // Every live snapshot must be refreshed, including paid orders that may
+  // since have been reversed or refunded. A session copy cannot confirm money.
   useEffect(() => {
-    if (!isLiveStoreApi() || !order) return;
-    if (['awaiting_availability', 'quoted'].includes(order.status)) {
-      fetchStoredOrder(reference).then((fetched) => {
-        if (fetched) setOrder(fetched);
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [reference]);
-
-  const status = order?.status || (order ? 'paid' : null);
-
-  // Initial live fetch when the session copy is missing (e.g. DPO return).
-  useEffect(() => {
-    if (order || !isLiveStoreApi()) return undefined;
+    if (!isLiveStoreApi()) return undefined;
     let active = true;
+    setChecking(true);
+    setRefreshFailed(false);
     fetchStoredOrder(reference)
       .then((fetched) => {
-        if (active && fetched) setOrder(fetched);
+        if (!active) return;
+        if (fetched) setOrder(fetched);
+        else setRefreshFailed(true);
+      })
+      .catch(() => {
+        if (active) setRefreshFailed(true);
       })
       .finally(() => {
         if (active) setChecking(false);
@@ -92,39 +86,47 @@ export default function StoreConfirmation() {
     return () => {
       active = false;
     };
-  }, [order, reference]);
+  }, [reference, refreshAttempt]);
+
+  const status = order?.status || (order ? 'paid' : null);
 
   // Payment still settling server-side: poll until it resolves or we give up
   // (reconciliation keeps working server-side either way).
   useEffect(() => {
-    if (!isLiveStoreApi() || status !== 'pending_payment') return undefined;
-    if (pollCountRef.current >= POLL_MAX_ATTEMPTS) return undefined;
-    const timer = window.setTimeout(() => {
-      pollCountRef.current += 1;
-      fetchStoredOrder(reference).then((fetched) => {
-        if (fetched) setOrder(fetched);
-      });
-    }, POLL_INTERVAL_MS);
-    return () => window.clearTimeout(timer);
-  }, [status, order, reference]);
+    if (!isLiveStoreApi() || checking || refreshFailed || status !== 'pending_payment') return undefined;
+    return pollStoreOrder({ fetchOrder: () => fetchStoredOrder(reference), onOrder: setOrder });
+  }, [status, reference, checking, refreshFailed]);
 
   // Once payment is confirmed: clear the cart + idempotency key exactly once.
   useEffect(() => {
-    if (status !== 'paid' || settledRef.current) return;
+    if (checking || refreshFailed || status !== 'paid' || settledRef.current) return;
     settledRef.current = true;
     dispatch({ type: 'clear' });
     clearIdempotencyKey();
     if (isLiveStoreApi() && cameFromRedirectRef.current) {
       trackEvent('purchase', {
-        value: order.totalUsd,
+        value: order.chargeUsd ?? order.totalUsd,
         currency: 'USD',
-        transaction_id: order.reference,
         items: order.items.length,
       });
     }
-  }, [status, order, dispatch]);
+  }, [status, order, dispatch, checking, refreshFailed]);
 
   if (!ready || checking) return null;
+
+  if (refreshFailed) {
+    return (
+      <main className="store-confirm">
+        <div className="store-confirm__head">
+          <h1 className="store-confirm__title">{t('confirm.refresh_failed_title')}</h1>
+          <p className="store-confirm__lead" role="alert">{t('confirm.refresh_failed_text')}</p>
+          <button type="button" className="checkout-pay confirm-request__accept" onClick={() => setRefreshAttempt((value) => value + 1)}>
+            {t('confirm.refresh_retry')}
+          </button>
+        </div>
+      </main>
+    );
+  }
 
   if (!order) {
     return (
@@ -138,25 +140,42 @@ export default function StoreConfirmation() {
     );
   }
 
+  const depositMode = order.paymentPlan === 'deposit_20';
+  const chargeUsd = order.chargeUsd ?? order.totalUsd;
+
   const accept = async () => {
-    if (accepting) return;
+    if (accepting || !reference) return;
     setAccepting(true);
     setAcceptError(null);
-    const result = await acceptQuote(reference);
+    const expected = { expectedTotalUsd: order.totalUsd, expectedChargeUsd: chargeUsd };
+    const result = order.status === 'pending_payment'
+      ? await continueOrderPayment(reference, expected)
+      : await acceptQuote(reference, expected);
     if (result.ok && result.redirect) {
       window.location.assign(result.redirect);
       return;
     }
     setAccepting(false);
-    if (result.ok && result.order) {
-      setOrder(result.order);
-      return;
-    }
     if (result.ok && result.paymentPending) {
       setAcceptedAwaitingPayment(true);
+      setPaymentReview(true);
       if (result.order) setOrder(result.order);
       return;
     }
+    if (result.ok && result.order) {
+      setPaymentReview(false);
+      setOrder(result.order);
+      return;
+    }
+    if (result.error === 'price_changed') {
+      if (result.order) {
+        setOrder(result.order);
+        setPaymentReview(true);
+      }
+      setAcceptError('price_changed');
+      return;
+    }
+    if (result.order) setOrder(result.order);
     setAcceptError(result.error === 'availability_conflict' ? 'conflict' : 'generic');
   };
 
@@ -211,7 +230,7 @@ export default function StoreConfirmation() {
     );
   }
 
-  if (status === 'quoted') {
+  if (status === 'quoted' || (status === 'pending_payment' && paymentReview)) {
     return (
       <main className="store-confirm">
         <div className="store-confirm__head">
@@ -233,9 +252,21 @@ export default function StoreConfirmation() {
           <div className="store-card store-card--tinted confirm-request">
             {order.items.map(requestItemLine)}
             <div className="checkout-total">
-              <span>{t('checkout.total_due')}</span>
+              <span>{t('checkout.trip_total')}</span>
               <strong>{format(order.totalUsd)}</strong>
             </div>
+            {depositMode && (
+              <>
+                <div className="checkout-total">
+                  <span>{t('checkout.deposit_due', { percent: order.depositPercent || 20 })}</span>
+                  <strong>{format(chargeUsd)}</strong>
+                </div>
+                <div className="checkout-total">
+                  <span>{t('checkout.balance_due')}</span>
+                  <strong>{format(order.balanceUsd)}</strong>
+                </div>
+              </>
+            )}
           </div>
           {order.quoteExpiresAt && (
             <p className="confirm-request__footnote">
@@ -246,7 +277,7 @@ export default function StoreConfirmation() {
           )}
           {acceptError && (
             <p className="checkout-conflict" role="alert">
-              {acceptError === 'conflict' ? t('confirm.accept_conflict') : t('checkout.failed')}
+              {acceptError === 'conflict' ? t('confirm.accept_conflict') : t(acceptError === 'price_changed' ? 'checkout.price_changed' : 'checkout.failed')}
             </p>
           )}
           {acceptedAwaitingPayment ? (
@@ -255,7 +286,7 @@ export default function StoreConfirmation() {
             <div className="store-confirm__actions">
               <button type="button" className="checkout-pay confirm-request__accept" disabled={accepting} onClick={accept}>
                 {accepting && <span className="checkout-pay__spinner" aria-hidden="true" />}
-                {accepting ? t('confirm.accepting') : t('confirm.accept_cta', { amount: format(order.totalUsd) })}
+                {accepting ? t('confirm.accepting') : t(depositMode ? 'confirm.accept_deposit_cta' : 'confirm.accept_cta', { amount: format(chargeUsd) })}
                 {!accepting && <ArrowRightIcon size={17} />}
               </button>
             </div>
@@ -282,6 +313,15 @@ export default function StoreConfirmation() {
               components={{ ref: <strong key="order-reference" className="store-confirm__ref" /> }}
             />
           </p>
+          {isLiveStoreApi() && (
+            <div className="store-confirm__actions">
+              <p className="confirm-request__footnote">{t('confirm.continue_pending')}</p>
+              {acceptError && <p className="checkout-conflict" role="alert">{t('checkout.failed')}</p>}
+              <button type="button" className="checkout-pay confirm-request__accept" disabled={accepting} onClick={accept}>
+                {accepting ? t('confirm.accepting') : t(depositMode ? 'checkout.pay_deposit' : 'checkout.pay', { amount: format(chargeUsd) })}
+              </button>
+            </div>
+          )}
         </div>
       </main>
     );
@@ -301,7 +341,9 @@ export default function StoreConfirmation() {
             />
           </p>
           <div className="store-confirm__actions">
-            <Link className="store-confirm__back" to="/store/checkout">{t('confirm.problem_cta')}</Link>
+            <Link className="store-confirm__back" to="/store/checkout" onClick={() => {
+              if (['payment_failed', 'expired', 'cancelled'].includes(status)) clearIdempotencyKey();
+            }}>{t('confirm.problem_cta')}</Link>
           </div>
         </div>
       </main>
@@ -332,7 +374,7 @@ export default function StoreConfirmation() {
         <p className="store-confirm__lead">
           <Trans
             t={t}
-            i18nKey="confirm.lead"
+            i18nKey={depositMode ? 'confirm.deposit_lead' : 'confirm.lead'}
             values={{ reference: order.reference }}
             components={{ ref: <strong key="order-reference" className="store-confirm__ref" /> }}
           />
@@ -359,16 +401,29 @@ export default function StoreConfirmation() {
               <p className="confirm-card__pickup">{item.pickup}</p>
               <span className="confirm-card__paid">
                 <CheckIcon size={14} strokeWidth={2.4} />
-                {t('confirm.paid_chip')}
+                {t(depositMode ? 'confirm.deposit_chip' : 'confirm.paid_chip')}
               </span>
             </div>
           </article>
         ))}
 
         <div className="store-confirm__total">
-          <span>{t('confirm.total_paid')}</span>
-          <strong>{format(order.totalUsd)}</strong>
+          <span>{t(depositMode ? 'confirm.deposit_received' : 'confirm.total_paid')}</span>
+          <strong>{format(chargeUsd)}</strong>
         </div>
+        {depositMode && (
+          <>
+            <div className="store-confirm__total">
+              <span>{t('checkout.trip_total')}</span>
+              <strong>{format(order.totalUsd)}</strong>
+            </div>
+            <div className="store-confirm__total">
+              <span>{t('checkout.balance_due')}</span>
+              <strong>{format(order.balanceUsd)}</strong>
+            </div>
+            <p className="confirm-request__footnote">{t('confirm.balance_note')}</p>
+          </>
+        )}
         <div className="store-confirm__actions">
           <Link className="store-confirm__back" to="/store">{t('confirm.back')}</Link>
         </div>

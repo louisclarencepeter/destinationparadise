@@ -1,7 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../ResponsiveImage.jsx';
-import { useCurrency } from '../../context/useCurrency.js';
-import { formatDateLabel, formatTimeLabel } from '../../lib/storeFormat.js';
+import { formatDateLabel, formatStoreMoney, formatTimeLabel } from '../../lib/storeFormat.js';
 
 const STATUS_KEYS = {
   available: 'cart.status_available',
@@ -10,6 +9,8 @@ const STATUS_KEYS = {
   departed: 'cart.status_departed',
   unknown_experience: 'cart.status_departed',
   request_pending: 'cart.status_request',
+  checking: 'cart.status_checking',
+  quote_unavailable: 'cart.price_unavailable',
 };
 
 const MODE_KEYS = {
@@ -23,10 +24,10 @@ const MODE_KEYS = {
 // Request items show preferred dates instead of a departure and carry no price.
 export default function CartItem({ item, experience, status = 'available', totalUsd, onEdit, onRemove }) {
   const { t, i18n } = useTranslation('store');
-  const { format } = useCurrency();
   const lang = i18n.resolvedLanguage || 'en';
+  const format = (amountUsd) => formatStoreMoney(lang, amountUsd);
   const isRequest = item.mode === 'request';
-  const ok = status === 'available' || status === 'request_pending';
+  const ok = status === 'available' || status === 'request_pending' || status === 'checking';
 
   return (
     <div className={`cart-item${ok ? '' : ' cart-item--blocked'}`}>
@@ -37,7 +38,7 @@ export default function CartItem({ item, experience, status = 'available', total
         <div className="cart-item__top">
           <p className="cart-item__title">{experience.title}</p>
           <span className="cart-item__price">
-            {isRequest ? t('cart.price_on_request') : format(totalUsd)}
+            {isRequest ? t('cart.price_on_request') : totalUsd == null ? t('cart.checking_prices') : format(totalUsd)}
           </span>
         </div>
         <p className="cart-item__meta">

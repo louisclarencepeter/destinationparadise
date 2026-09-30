@@ -138,6 +138,7 @@ describe('quote and checkout', () => {
     expect(result.order.reference).toMatch(/^DP-\d{4}-\d{4}$/);
     expect(result.order.items).toHaveLength(2);
     expect(result.order.totalUsd).toBe(190 + (55 * 3 + 70));
+    expect(result.order).toMatchObject({ paymentPlan: 'deposit_20', paymentStatus: 'deposit_paid', chargeUsd: 85, balanceUsd: 340 });
     const codes = result.order.items.map((item) => item.bookingCode);
     expect(new Set(codes).size).toBe(2);
     expect(codes[0]).toMatch(/^SB-\d{4}$/);

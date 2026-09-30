@@ -1,5 +1,11 @@
 # Store operations cookbook
 
+Current checkout uses Pesapal and a 20% deposit, with 80% due on the day.
+Use [the Pesapal launch guide](pesapal-store-launch.md) for setup and remaining
+checks. Historical DPO attempts and full-payment orders retain their original
+amounts. A booking with `paymentStatus = deposit_paid` still has a balance due;
+the internal `paid` lifecycle means the required online payment cleared.
+
 Day-to-day store administration until a custom admin exists (HANDOFF Phase 5).
 Everything runs in the **Supabase dashboard → SQL editor** of project
 `destination-paradise-store` (`hskhpsdociwikywfnsvf`, eu-central-1).

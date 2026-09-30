@@ -133,7 +133,10 @@
     "status_request": "Wartet auf Bestätigung",
     "plus_request": "+ Positionen auf Anfrage",
     "request_cta": "Weiter zur Reiseanfrage",
-    "request_note": "Deine Reise enthält Anfragen — wir bestätigen erst die Verfügbarkeit, gezahlt wird einmal am Ende."
+    "request_note": "Deine Reise enthält Anfragen — wir bestätigen erst die Verfügbarkeit, gezahlt wird einmal am Ende.",
+    "checking_prices": "Preise werden geprüft…",
+    "price_unavailable": "Preis nicht verfügbar",
+    "status_checking": "Verfügbarkeit wird geprüft…"
   },
   "checkout": {
     "meta_title": "Kasse · Destination Paradise",
@@ -153,15 +156,15 @@
     "phone_label": "Telefon / WhatsApp",
     "phone_placeholder": "+255 …",
     "payment": "Zahlung",
-    "payment_note": "Die Zahlung schließt du auf der sicheren Seite unseres Zahlungspartners <strong>DPO Pay</strong> ab. In dieser Vorschau wird sie nur simuliert — hier werden keine Kartendaten eingegeben und nichts abgebucht.",
+    "payment_note": "Du schließt deine Zahlung auf der sicheren Seite unseres Zahlungspartners <strong>Pesapal</strong> ab. Karten- und Mobile-Money-Daten werden nur dort eingegeben.",
     "pay": "{{amount}} zahlen",
     "checking": "Verfügbarkeit wird geprüft…",
     "recheck_note": "Vor der Zahlung prüfen wir die Verfügbarkeit erneut.",
     "terms_ack": "Mit dem Fortfahren akzeptierst du unsere <booking>Buchungsbedingungen</booking> und <terms>AGB</terms>, einschließlich der Stornogebühren für deine Termine.",
     "conflict": "Einige Abfahrten sind nicht mehr verfügbar. Passe bitte die markierten Touren an.",
     "conflict_fix": "Neue Zeit wählen",
-    "failed": "Die Zahlung konnte gerade nicht abgeschlossen werden. Es wurde nichts abgebucht — versuch es gleich noch einmal.",
-    "payment_unavailable": "Online-Zahlung ist noch nicht verfügbar — deine Auswahl wurde als Bestellung gespeichert, aber nichts abgebucht. Nutze vorerst bitte das Anfrageformular.",
+    "failed": "Die Weiterleitung zur Zahlung konnte nicht abgeschlossen werden. Bitte versuche es gleich noch einmal.",
+    "payment_unavailable": "Online-Zahlung ist vorübergehend nicht verfügbar. Deine Auswahl wurde als Bestellung gespeichert. Kontaktiere unser Team oder nutze das Anfrageformular.",
     "usd_note": "Abgerechnet wird in US-Dollar — Preise in anderen Währungen sind Richtwerte.",
     "errors": {
       "name_required": "Bitte gib den Namen des Hauptgasts an.",
@@ -176,7 +179,15 @@
     "request_sending": "Anfrage wird gesendet…",
     "request_footnote": "Beim Senden einer Anfrage wird nichts abgebucht oder reserviert.",
     "request_total_label": "Sofort buchbare Positionen bisher",
-    "request_pricing_hint": "Angefragte Erlebnisse werden in deiner Bestätigungs-E-Mail bepreist."
+    "request_pricing_hint": "Angefragte Erlebnisse werden in deiner Bestätigungs-E-Mail bepreist.",
+    "payment_note_preview": "Diese Vorschau simuliert die Anzahlung von 20% — es wird nichts abgebucht und du gibst keine Karten- oder Mobile-Money-Daten ein. Die restlichen 80% sind am Tag deiner Tour fällig.",
+    "trip_total": "Gesamtpreis der Reise",
+    "deposit_due": "Anzahlung jetzt ({{percent}}%)",
+    "balance_due": "Restbetrag am Tag der Tour",
+    "pay_deposit": "{{amount}} anzahlen",
+    "price_changed": "Der Zahlungsbetrag hat sich geändert. Prüfe den aktualisierten Gesamtpreis und die Anzahlung, bevor du fortfährst.",
+    "quote_failed": "Der aktuelle Preis konnte nicht geprüft werden. Bitte versuche es vor der Zahlung erneut.",
+    "retry_quote": "Preise erneut prüfen"
   },
   "confirm": {
     "meta_title": "Buchungsbestätigung · Destination Paradise",
@@ -204,7 +215,16 @@
     "accepting": "Plätze werden reserviert…",
     "accept_note": "Mit der Annahme prüfen wir die Verfügbarkeit erneut und reservieren jeden Platz deiner Reise; gezahlt wird einmal gesamt.",
     "accept_conflict": "Eine Abfahrt ist gerade ausgebucht. Unser Team ist informiert und mailt dir eine Alternative.",
-    "accepted_payment_pending": "Deine Plätze sind reserviert! Die Online-Zahlung öffnet in Kürze — wir mailen dir den Zahlungslink."
+    "accepted_payment_pending": "Deine Plätze sind reserviert! Die Online-Zahlung öffnet in Kürze — wir mailen dir den Zahlungslink.",
+    "deposit_lead": "Bestellung <ref>{{reference}}</ref> ist bestätigt und deine Anzahlung von 20% ist eingegangen. Deine Bestätigung per E-Mail enthält alle Buchungscodes und den Restbetrag.",
+    "deposit_chip": "Bestätigt · Anzahlung erhalten",
+    "deposit_received": "Anzahlung erhalten",
+    "balance_note": "Die restlichen 80% sind am Tag deiner Tour vor Beginn des Erlebnisses fällig.",
+    "accept_deposit_cta": "Annehmen & {{amount}} anzahlen",
+    "refresh_failed_title": "Deine Bestellung konnte nicht geprüft werden",
+    "refresh_failed_text": "Deine gespeicherte Bestätigung könnte sich geändert haben. Versuche erneut, den aktuellen Buchungs- und Zahlungsstatus zu prüfen, oder nutze den Link in deiner Bestätigungs-E-Mail.",
+    "refresh_retry": "Bestellung erneut prüfen",
+    "continue_pending": "Wenn du die Zahlung noch nicht abgeschlossen hast, fahre zum sicheren Checkout fort. Nach Prüfung der Zahlung aktualisieren wir deine Bestätigung."
   },
   "request_panel": {
     "chip": "Auf Anfrage buchen",

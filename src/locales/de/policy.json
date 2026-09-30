@@ -3,7 +3,7 @@
   "meta": {
     "aria_label": "Richtliniendetails",
     "last_updated": "Zuletzt aktualisiert",
-    "last_updated_value": "25. Juli 2026",
+    "last_updated_value": "30. September 2026",
     "contact": "Kontakt"
   },
   "policies": {
@@ -69,8 +69,8 @@
           "title": "Zahlungen und Buchungen im Online-Store",
           "items": [
             "Wenn du in unserem Erlebnis-Store direkt buchst, erfassen wir Name, E-Mail-Adresse und Telefonnummer des Hauptgasts sowie den Inhalt deiner Bestellung: die gewählten Erlebnisse, Termine, Abfahrtszeiten und Gästezahlen.",
-            "Zahlungen verarbeitet unser Zahlungspartner DPO Pay auf dessen sicheren Bezahlseiten. Karten- und Mobile-Money-Daten werden nur dort eingegeben — sie erreichen oder durchlaufen unsere Systeme nie.",
-            "Wir speichern die Bestellung, ihre Buchungscodes und den von DPO gemeldeten Zahlungsstatus (nie Kartennummern) in unserer Buchungsdatenbank, um deine Touren durchzuführen, Änderungen zu bearbeiten und Buchhaltungspflichten zu erfüllen.",
+            "Zahlungen verarbeitet unser Zahlungspartner Pesapal auf dessen sicheren Bezahlseiten. Karten- und Mobile-Money-Daten werden nur dort eingegeben — sie erreichen oder durchlaufen unsere Systeme nie.",
+            "Wir speichern die Bestellung, ihre Buchungscodes und den von Pesapal gemeldeten Zahlungsstatus (nie Kartennummern) in unserer Buchungsdatenbank, um deine Touren durchzuführen, Änderungen zu bearbeiten und Buchhaltungspflichten zu erfüllen.",
             "Bestellbestätigungen und Buchungsbestätigungen versenden wir über unseren E-Mail-Dienstleister an die beim Checkout angegebene Adresse.",
             "Bestellungen und Buchungen bewahren wir als Geschäftsunterlagen so lange auf, wie Steuer- und Handelsrecht es verlangen; melde dich jederzeit, um deine Daten einzusehen oder zu korrigieren.",
             "Analytics-Ereignisse des Stores enthalten nie Namen, E-Mail-Adressen, Telefonnummern oder Zahlungsreferenzen."
@@ -142,7 +142,7 @@
         {
           "title": "Zahlung",
           "items": [
-            "Tagestouren, Ausflüge und Transfers auf Sansibar: Die vollständige Zahlung ist vor Beginn der Leistung fällig. Im Online-Store gebuchte Erlebnisse werden beim Checkout vollständig bezahlt.",
+            "Tagestouren, Ausflüge und Transfers auf Sansibar: Die vollständige Zahlung ist vor Beginn der Leistung fällig. Im Online-Store gebuchte Erlebnisse erfordern eine Anzahlung von 20% beim Checkout; die restlichen 80% sind am Tag des Erlebnisses vor Beginn fällig.",
             "Safaris in Tansania: Eine Anzahlung von 30 % bestätigt deine Buchung; die restlichen 70 % sind spätestens 30 Tage vor Safaribeginn fällig.",
             "Safaribuchungen innerhalb von 30 Tagen vor Reisebeginn erfordern die vollständige Zahlung bei Bestätigung.",
             "Geht eine Restzahlung nicht fristgerecht ein, kontaktieren wir dich, bevor wir Schritte einleiten. Bleibt der Betrag offen, können wir die Buchung als von dir storniert behandeln; dann gelten die untenstehenden Gebühren."

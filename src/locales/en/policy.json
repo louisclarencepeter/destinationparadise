@@ -3,7 +3,7 @@
   "meta": {
     "aria_label": "Policy details",
     "last_updated": "Last updated",
-    "last_updated_value": "July 25, 2026",
+    "last_updated_value": "September 30, 2026",
     "contact": "Contact"
   },
   "policies": {
@@ -69,8 +69,8 @@
           "title": "Online Store Payments And Bookings",
           "items": [
             "When you book instantly in our experiences store, we collect the lead guest’s name, email address and phone number, plus your order contents: the chosen experiences, dates, departure times and guest counts.",
-            "Payments are processed by our payment partner DPO Pay on their secure payment pages. Card and mobile-money details are entered there only — they never reach or pass through our own systems.",
-            "We keep the order, its booking codes and the payment status returned by DPO (never card numbers) in our booking database so we can operate your trips, handle changes and meet accounting obligations.",
+            "Payments are processed by our payment partner Pesapal on their secure payment pages. Card and mobile-money details are entered there only — they never reach or pass through our own systems.",
+            "We keep the order, its booking codes and the payment status returned by Pesapal (never card numbers) in our booking database so we can operate your trips, handle changes and meet accounting obligations.",
             "Order receipts and booking confirmations are sent through our email provider to the address you give at checkout.",
             "Orders and bookings are retained as commercial records for as long as tax and accounting law requires; contact us any time to access or correct your data.",
             "Store analytics events never contain names, email addresses, phone numbers or payment references."
@@ -142,7 +142,7 @@
         {
           "title": "Payment",
           "items": [
-            "Day tours, excursions, and transfers in Zanzibar: full payment is required before the service begins. Experiences booked in our online store are paid in full at checkout.",
+            "Day tours, excursions, and transfers in Zanzibar: full payment is required before the service begins. Experiences booked in our online store require a 20% deposit at checkout; the remaining 80% is due on the day of the experience, before it begins.",
             "Tanzania safaris: a 30% deposit confirms your booking, and the remaining 70% is due at least 30 days before the safari start date.",
             "Safari bookings made within 30 days of the start date require full payment on confirmation.",
             "If a safari balance is not received by its due date we will contact you before taking any action. Where the balance remains unpaid, we may treat the booking as cancelled by you and the charges below will apply."
