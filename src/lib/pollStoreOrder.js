@@ -22,3 +22,11 @@ export function pollStoreOrder({ fetchOrder, onOrder, intervalMs = 4000, maxAtte
   if (maxAttempts > 0) timer = setTimeout(tick, intervalMs);
   return () => { active = false; clearTimeout(timer); };
 }
+
+// A manual check can finish after polling has already settled the order, or
+// after navigation to another order. Only update the pending order it checked.
+export function applyPendingOrderCheck(current, refreshed, reference) {
+  return current?.reference === reference && refreshed?.reference === reference && current.status === 'pending_payment'
+    ? refreshed
+    : current;
+}

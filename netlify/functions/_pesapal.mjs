@@ -1,6 +1,7 @@
 // Pesapal API 3.0. Notifications only trigger verification; only a server-side
 // GetTransactionStatus response with matching money/reference proves payment.
 import { fetchWithTimeout } from './_shared.mjs';
+import { storeNonProductionRuntime } from './_store_shared.mjs';
 
 const API_URLS = {
   sandbox: 'https://cybqa.pesapal.com/pesapalv3/api',
@@ -25,7 +26,7 @@ export function pesapalEnabled({ checkout = true, environment = pesapalEnvironme
   const keys = credentials();
   return process.env.PESAPAL_ENABLED === 'true' && Boolean(API_URLS[environment]) &&
     environment === pesapalEnvironment() && Boolean(keys.consumer_key && keys.consumer_secret) &&
-    (process.env.CONTEXT !== 'production' || environment === 'live') &&
+    (environment === 'live' || storeNonProductionRuntime()) &&
     (!checkout || Boolean(parsePesapalTrackingId(process.env.PESAPAL_IPN_ID || '')));
 }
 
@@ -37,7 +38,7 @@ function hasError(error) {
 
 async function apiRequest(path, { method = 'POST', body, token, environment = pesapalEnvironment(), fetchFn } = {}) {
   if (!API_URLS[environment] || environment !== pesapalEnvironment() ||
-      (process.env.CONTEXT === 'production' && environment !== 'live')) {
+      (environment !== 'live' && !storeNonProductionRuntime())) {
     throw new Error('Pesapal environment is not configured for this payment');
   }
   const response = await fetchWithTimeout(`${API_URLS[environment]}/${path}`, {
@@ -93,7 +94,7 @@ export function buildPesapalOrder(order) {
     throw new Error('Unsupported Pesapal order amount');
   }
   const originUrl = new URL(process.env.STORE_PUBLIC_ORIGIN || 'https://yournexttriptoparadise.com');
-  const localDevelopment = process.env.CONTEXT !== 'production' &&
+  const localDevelopment = storeNonProductionRuntime() &&
     ['localhost', '127.0.0.1', '0.0.0.0'].includes(originUrl.hostname) && originUrl.protocol === 'http:';
   if ((!localDevelopment && originUrl.protocol !== 'https:') || originUrl.username || originUrl.password ||
       originUrl.pathname !== '/' || originUrl.search || originUrl.hash) {

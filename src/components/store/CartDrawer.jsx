@@ -6,6 +6,7 @@ import { getCartExperience } from '../../data/commerceCatalog.js';
 import { buildLocalizedExcursions } from '../../data/localizedCatalog.js';
 import { isRequestItem, quoteCartItems } from '../../lib/storeApi.js';
 import { formatStoreMoney } from '../../lib/storeFormat.js';
+import { quoteOnlyDepartureItems, selectionReviewStatus } from '../../lib/storePricing.js';
 import { trackEvent } from '../../utils/analytics.js';
 import CartItem from './CartItem.jsx';
 import { ArrowRightIcon, CloseIcon } from './StoreIcons.jsx';
@@ -22,7 +23,7 @@ export default function CartDrawer() {
   const drawerRef = useRef(/** @type {HTMLElement | null} */ (null));
   const closeBtnRef = useRef(/** @type {HTMLButtonElement | null} */ (null));
   const [quote, setQuote] = useState(
-    /** @type {{ items: typeof state.items, quotes: {id: string, status: string, totalUsd: number}[], subtotalUsd: number } | null} */ (null),
+    /** @type {{ items: typeof state.items, quotes: {id: string, status: string, totalUsd: number | null, priceLines?: any[]}[], subtotalUsd: number } | null} */ (null),
   );
   const [quoteFailed, setQuoteFailed] = useState(false);
   const currentQuote = quote?.items === state.items ? quote : null;
@@ -44,6 +45,7 @@ export default function CartDrawer() {
   );
 
   const hasRequestItems = lines.some(({ item }) => isRequestItem(item));
+  const oversized = quoteOnlyDepartureItems(lines.map(({ item }) => item));
 
   // Live prices come from the same server quote as availability.
   const subtotalUsd = currentQuote?.subtotalUsd ?? null;
@@ -111,9 +113,15 @@ export default function CartDrawer() {
 
   const statusFor = (line) => {
     if (isRequestItem(line.item)) return 'request_pending';
+    const reviewStatus = selectionReviewStatus(line.item, oversized);
+    if (reviewStatus) return reviewStatus;
     return currentQuote?.quotes?.find((entry) => entry.id === line.item.id)?.status ||
       (quoteFailed ? 'quote_unavailable' : 'checking');
   };
+  const pickupReview = lines.some((line) => statusFor(line) === 'pickup_required');
+  const quoteRequired = lines.some((line) => statusFor(line) === 'quote_required');
+  const availabilityReview = Boolean(currentQuote && lines.some((line) =>
+    !isRequestItem(line.item) && !['available', 'pickup_required', 'quote_required'].includes(statusFor(line))));
 
   const editItem = (line) => {
     dispatch({ type: 'close_drawer' });
@@ -127,7 +135,7 @@ export default function CartDrawer() {
 
   const beginCheckout = () => {
     dispatch({ type: 'close_drawer' });
-    trackEvent('begin_checkout', { ...(subtotalUsd != null ? { value: subtotalUsd } : {}), currency: 'USD', items: lines.length });
+    trackEvent('begin_checkout', { ...(subtotalUsd != null && !pickupReview && !availabilityReview && !quoteRequired ? { value: subtotalUsd } : {}), currency: 'USD', items: lines.length });
     navigate('/store/checkout');
   };
 
@@ -169,6 +177,7 @@ export default function CartDrawer() {
                 totalUsd={isRequestItem(line.item)
                   ? 0
                   : currentQuote?.quotes.find((entry) => entry.id === line.item.id)?.totalUsd ?? null}
+                priceLines={currentQuote?.quotes.find((entry) => entry.id === line.item.id)?.priceLines || []}
                 onEdit={() => editItem(line)}
                 onRemove={() => removeItem(line)}
               />
@@ -181,7 +190,7 @@ export default function CartDrawer() {
             <div className="cart-drawer__subtotal">
               <span>{t('cart.subtotal')}</span>
               <strong>
-                {subtotalUsd == null ? t(quoteFailed ? 'cart.price_unavailable' : 'cart.checking_prices') : format(subtotalUsd)}
+                {pickupReview || availabilityReview ? t('cart.price_unavailable') : quoteRequired ? t('cart.price_on_request') : subtotalUsd == null ? t(quoteFailed ? 'cart.price_unavailable' : 'cart.checking_prices') : format(subtotalUsd)}
                 {hasRequestItems && <small className="cart-drawer__subtotal-note"> {t('cart.plus_request')}</small>}
               </strong>
             </div>

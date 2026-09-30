@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { useCurrency } from '../../context/useCurrency.js';
+import { bookingGuestOptions } from '../../lib/storeEnquiry.js';
 import TurnstileWidget from './TurnstileWidget.jsx';
 
 /** @typedef {{ slug: string, label?: string, duration?: string, price?: number, priceSub?: string }} RetreatOption */
@@ -135,13 +136,9 @@ export default function BookingForm({
         <label className="booking-field">
           <span>{t('form.guests', { defaultValue: 'Guests' })}</span>
           <select name="guests" value={form.guests} onChange={update('guests')}>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6+</option>
-            <option>10+</option>
+            {bookingGuestOptions(form.guests).map((value) => (
+              <option value={value} key={value}>{value}</option>
+            ))}
           </select>
         </label>
       </div>

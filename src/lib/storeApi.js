@@ -11,6 +11,7 @@
 // In both modes the server-shaped rules hold: re-price on every call,
 // re-check at checkout, never trust anything persisted in the browser.
 import { getCartExperience, getInstantExperience } from '../data/commerceCatalog.js';
+import { calculateGroupPickupPrice, pickupFields } from './storePricing.js';
 
 export const BOOKING_WINDOW_DAYS = 60;
 export const ORDER_SESSION_KEY = 'dp_store_last_order_v1';
@@ -83,7 +84,10 @@ function dayAvailability(experience, dateIso, today) {
 
 // Server-owned pricing rule for one selection. Amounts are USD numbers here;
 // the live backend stores integer minor units and converts at this boundary.
-export function priceSelection(experience, mode, guests) {
+export function priceSelection(experience, mode, guests, pickupZone) {
+  if (Object.hasOwn(experience, 'groupPickupPricing')) {
+    return calculateGroupPickupPrice(experience.groupPickupPricing, mode, guests, pickupZone);
+  }
   /** @type {{ type: string, amountUsd: number, unitUsd?: number, quantity?: number }[]} */
   const lines = [
     {
@@ -169,6 +173,18 @@ export function isSafePaymentUrl(value, provider) {
   }
 }
 
+// Keep hosted payment details in the caller's transient navigation state.
+// redirect remains available to existing callers and the historical DPO flow.
+function hostedPaymentHandoff(payment, reference, fallbackProvider) {
+  const provider = payment?.provider || fallbackProvider;
+  if (!payment?.ok || !isSafePaymentUrl(payment.paymentUrl, provider) ||
+      (payment.reference != null && payment.reference !== reference)) return null;
+  return {
+    ok: true, provider, paymentUrl: payment.paymentUrl,
+    reference, redirect: payment.paymentUrl,
+  };
+}
+
 const toLiveItem = (item) => (item.mode === 'request'
   ? {
       id: item.id,
@@ -176,6 +192,7 @@ const toLiveItem = (item) => (item.mode === 'request'
       optionCode: 'request',
       guests: item.guests,
       requestedDates: item.requestedDates || '',
+      ...pickupFields(item),
     }
   : {
       id: item.id,
@@ -184,6 +201,7 @@ const toLiveItem = (item) => (item.mode === 'request'
       guests: item.guests,
       date: item.date,
       time: item.time,
+      ...pickupFields(item),
     });
 
 export const isRequestItem = (item) => item?.mode === 'request';
@@ -254,6 +272,7 @@ function mapServerOrder(serverOrder) {
     mode: item.optionCode,
     guests: item.guests,
     pickup: item.pickup,
+    priceLines: (item.priceLines || []).map((line) => ({ ...line, amountUsd: minorToUsd(line.amountMinor) })),
     totalUsd: item.totalMinor != null ? minorToUsd(item.totalMinor) : null,
   }));
   return {
@@ -274,6 +293,22 @@ function mapServerOrder(serverOrder) {
 // ---------------------------------------------------------------------------
 // Public API — identical signatures in both modes
 // ---------------------------------------------------------------------------
+
+export async function fetchBookingPricing(experienceId) {
+  // Fixture-mode editorial prices have never been approved as group/pickup
+  // rates. They remain useful for legacy fixture tests, not this new checkout.
+  if (!LIVE) return null;
+  const { data } = await apiRequest('/api/store/catalog');
+  if (!data?.ok) throw new Error(data?.error || 'catalog_unavailable');
+  const experience = data.experiences?.find((entry) => entry.sourceKey === experienceId);
+  const options = {};
+  for (const option of experience?.options || []) {
+    if (['shared', 'private'].includes(option.code) && option.pickupPricingRequired === true && option.currency === 'USD') {
+      options[option.code] = { groupPrices: option.groupPrices || {}, pickupPrices: option.pickupPrices || {} };
+    }
+  }
+  return Object.keys(options).length ? { required: true, instantMaxGuests: 6, options } : null;
+}
 
 // Availability for one calendar month. `month` is 1–12.
 export async function fetchMonthAvailability(experienceId, year, month, { latencyMs = DEFAULT_LATENCY_MS } = {}) {
@@ -323,7 +358,9 @@ export async function quoteCartItems(items, { latencyMs = DEFAULT_LATENCY_MS } =
       id: quote.id,
       status: quote.status,
       seats: quote.seats ?? 0,
-      totalUsd: minorToUsd(quote.price?.totalMinor),
+      totalUsd: quote.price?.totalMinor != null ? minorToUsd(quote.price.totalMinor) : null,
+      priceLines: (quote.price?.lines || []).map((line) => ({ ...line, amountUsd: minorToUsd(line.amountMinor) })),
+      pickup: quote.pickup || null,
     }));
     return {
       quotes: [...quotes, ...requestQuotes],
@@ -375,7 +412,11 @@ export async function submitCheckout({ items, contact, expectedTotalUsd, expecte
         ok: false,
         error: 'price_changed',
         quote: {
-          quotes: (data.items || []).map((item) => ({ id: item.id, status: 'available', seats: 0, totalUsd: minorToUsd(item.totalMinor) })),
+          quotes: (data.items || []).map((item) => ({
+            id: item.id, status: 'available', seats: 0, totalUsd: minorToUsd(item.totalMinor),
+            priceLines: (item.priceLines || []).map((line) => ({ ...line, amountUsd: minorToUsd(line.amountMinor) })),
+            pickup: item.pickup || '',
+          })),
           subtotalUsd: minorToUsd(data.totalMinor),
           currency: data.currency || 'USD',
           ...serverPaymentBreakdown(data),
@@ -384,14 +425,15 @@ export async function submitCheckout({ items, contact, expectedTotalUsd, expecte
     }
 
     if (['pesapal', 'dpo'].includes(data.payment?.mode)) {
-      // Real payments: ask the server for the hosted-checkout URL and send the
-      // browser there. The idempotency key survives until payment confirms so
+      // Ask the server for a validated hosted-checkout handoff. The caller
+      // chooses embedded Pesapal or the existing DPO redirect. The key survives so
       // an abandoned attempt replays the SAME order instead of double-holding.
       const pay = await apiRequest('/api/store/pay', {
         method: 'POST',
         body: { reference: data.reference, token: data.accessToken },
       });
-      if (!pay.data?.ok || !isSafePaymentUrl(pay.data?.paymentUrl, pay.data?.provider || data.payment.mode)) {
+      const handoff = hostedPaymentHandoff(pay.data, data.reference, data.payment.mode);
+      if (!handoff) {
         // Definitive rejection permits a fresh checkout on the guest's next
         // attempt. Ambiguous submission/review must keep the original order.
         if (pay.data?.error === 'payment_create_failed' ||
@@ -400,7 +442,7 @@ export async function submitCheckout({ items, contact, expectedTotalUsd, expecte
         }
         return { ok: false, conflicts: [], error: pay.data?.error || 'payment_unavailable' };
       }
-      return { ok: true, redirect: pay.data.paymentUrl, reference: data.reference };
+      return handoff;
     }
 
     if (data.payment?.mode !== 'dev_simulated') {
@@ -532,8 +574,8 @@ export async function submitRequestCheckout({ items, contact }, { latencyMs = CH
 }
 
 // Guest accepts a staff quote (live only — the quoted state can't arise in
-// fixtures). Returns { ok, redirect? } mirroring submitCheckout's payment
-// hand-off so the order page can reuse the same continuation logic.
+// fixtures). Returns the same transient hosted payment handoff as checkout
+// so the order page can embed Pesapal or preserve DPO redirect behavior.
 /** @param {string} reference
  * @param {{expectedTotalUsd?: number, expectedChargeUsd?: number}} [expected]
  */
@@ -566,10 +608,11 @@ export async function acceptQuote(reference, { expectedTotalUsd, expectedChargeU
       method: 'POST',
       body: { reference, token: credentials.token },
     });
-    if (!pay.data?.ok || !isSafePaymentUrl(pay.data?.paymentUrl, pay.data?.provider || data.payment.mode)) {
+    const handoff = hostedPaymentHandoff(pay.data, reference, data.payment.mode);
+    if (!handoff) {
       return { ok: false, error: pay.data?.error || 'payment_unavailable' };
     }
-    return { ok: true, redirect: pay.data.paymentUrl };
+    return handoff;
   }
 
   if (data.payment?.mode === 'dev_simulated') {
@@ -681,8 +724,9 @@ export async function continueOrderPayment(reference, { expectedTotalUsd, expect
   const pay = await apiRequest('/api/store/pay', {
     method: 'POST', body: { reference, token: credentials.token },
   });
-  if (!pay.data?.ok || !isSafePaymentUrl(pay.data?.paymentUrl, pay.data?.provider)) {
+  const handoff = hostedPaymentHandoff(pay.data, reference);
+  if (!handoff) {
     return { ok: false, error: pay.data?.error || 'payment_unavailable' };
   }
-  return { ok: true, redirect: pay.data.paymentUrl };
+  return handoff;
 }

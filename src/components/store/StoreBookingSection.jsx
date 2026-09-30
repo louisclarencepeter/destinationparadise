@@ -60,7 +60,9 @@ export default function StoreBookingSection({ excursionId }) {
             ))}
           </ul>
           <p className="store-book__pickup reveal" style={{ '--reveal-index': 6 }}>
-            <strong>{t('section.pickup_label')}</strong> {experience.pickup || t('request_section.pickup_fallback')}
+            <strong>{t('section.pickup_label')}</strong> {instant
+              ? t('section.pickup_select_hint')
+              : experience.pickup || t('request_section.pickup_fallback')}
           </p>
         </div>
         <div className="store-book__panel reveal" style={{ '--reveal-index': 2 }}>

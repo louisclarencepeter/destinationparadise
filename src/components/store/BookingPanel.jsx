@@ -4,13 +4,16 @@ import { useTranslation } from 'react-i18next';
 import { useCurrency } from '../../context/useCurrency.js';
 import { useBookingCart } from '../../context/useBookingCart.js';
 import { useAvailability } from '../../hooks/useAvailability.js';
-import { addDaysIso, BOOKING_WINDOW_DAYS, priceSelection, todayInStoreTz } from '../../lib/storeApi.js';
+import { addDaysIso, BOOKING_WINDOW_DAYS, depositBreakdown, fetchBookingPricing, priceSelection, todayInStoreTz } from '../../lib/storeApi.js';
 import { monthIsoOf, shiftMonthIso } from '../../lib/storeFormat.js';
-import { newCartItemId } from '../../lib/storeCart.js';
+import { MAX_GUESTS_PER_ITEM, newCartItemId } from '../../lib/storeCart.js';
+import { MAX_INSTANT_GUESTS, PICKUP_ZONES } from '../../lib/storePricing.js';
+import { convert } from '../../utils/currency.js';
 import { trackEvent } from '../../utils/analytics.js';
 import AvailabilityCalendar from './AvailabilityCalendar.jsx';
 import TimeSlotPicker from './TimeSlotPicker.jsx';
 import GuestPicker from './GuestPicker.jsx';
+import PickupFields from './PickupFields.jsx';
 import { ArrowRightIcon } from './StoreIcons.jsx';
 
 export const STORE_GUESTS_KEY = 'dp_store_guests_v1';
@@ -22,15 +25,20 @@ function defaultGuests(experience) {
   } catch {
     stored = 2;
   }
-  return Math.min(Math.max(stored, experience.minGuests), experience.maxGuests);
+  return Math.min(Math.max(Math.trunc(stored), experience.minGuests), MAX_GUESTS_PER_ITEM);
 }
 
 // Instant-booking panel: shared/private toggle, guests, availability calendar,
 // departure slots, live price breakdown, add-to-trip. With `?edit=<cartItemId>`
 // it loads that cart line and saves changes back to it.
 export default function BookingPanel({ experience }) {
-  const { t } = useTranslation('store');
-  const { format } = useCurrency();
+  const { t, i18n } = useTranslation('store');
+  const { currency, rates } = useCurrency();
+  // Preserve the selected display currency, with cents for the quote breakdown.
+  // These are estimates when converted; checkout reviews the USD amounts.
+  const format = (amountUsd) => new Intl.NumberFormat(i18n.resolvedLanguage || 'en', {
+    style: 'currency', currency, minimumFractionDigits: 2, maximumFractionDigits: 2,
+  }).format(convert(amountUsd, currency, rates));
   const { state: cart, dispatch } = useBookingCart();
   const [searchParams] = useSearchParams();
   const navigate = useNavigate();
@@ -53,6 +61,23 @@ export default function BookingPanel({ experience }) {
   const [monthIso, setMonthIso] = useState(minMonth);
   const [selectedDay, setSelectedDay] = useState(/** @type {DaySnapshot | null} */ (null));
   const [selectedTime, setSelectedTime] = useState(/** @type {string | null} */ (null));
+  const [pickupZone, setPickupZone] = useState('');
+  const [accommodation, setAccommodation] = useState('');
+  const [pricing, setPricing] = useState(
+    /** @type {{ experienceId: string, value: any, loading: boolean, failed: boolean }} */
+    ({ experienceId: '', value: null, loading: true, failed: false }),
+  );
+
+  useEffect(() => {
+    let active = true;
+    setPricing({ experienceId: experience.id, value: null, loading: true, failed: false });
+    fetchBookingPricing(experience.id).then((value) => {
+      if (active) setPricing({ experienceId: experience.id, value, loading: false, failed: false });
+    }).catch(() => {
+      if (active) setPricing({ experienceId: experience.id, value: null, loading: false, failed: true });
+    });
+    return () => { active = false; };
+  }, [experience.id]);
 
   // Load the cart line being edited exactly once per edit id.
   const appliedEditRef = useRef(/** @type {string | null} */ (null));
@@ -61,14 +86,16 @@ export default function BookingPanel({ experience }) {
     const { date, time } = editItem;
     appliedEditRef.current = editItem.id;
     setMode(editItem.mode);
-    setGuests(Math.min(editItem.guests, experience.maxGuests));
+    setGuests(Math.min(editItem.guests, MAX_GUESTS_PER_ITEM));
+    setPickupZone(editItem.pickupZone || '');
+    setAccommodation((editItem.accommodation || '').slice(0, 200));
     setMonthIso((current) => {
       const target = monthIsoOf(date);
       return target >= minMonth && target <= maxMonth ? target : current;
     });
     setSelectedDay({ date, times: null });
     setSelectedTime(time);
-  }, [editItem, experience.maxGuests, minMonth, maxMonth]);
+  }, [editItem, minMonth, maxMonth]);
 
   const { loading, days } = useAvailability(experience.id, monthIso);
 
@@ -89,8 +116,18 @@ export default function BookingPanel({ experience }) {
     if (slot && slot.seats < guests) setSelectedTime(null);
   }, [guests, slots, selectedTime]);
 
-  const price = useMemo(() => priceSelection(experience, mode, guests), [experience, mode, guests]);
-  const canSubmit = Boolean(selectedDay?.date && selectedTime);
+  const currentPricing = pricing.experienceId === experience.id ? pricing : null;
+  const pricingLoading = !currentPricing || currentPricing.loading;
+  const price = useMemo(() => priceSelection({
+    ...experience, groupPickupPricing: currentPricing?.value || null,
+  }, mode, guests, pickupZone), [experience, currentPricing?.value, mode, guests, pickupZone]);
+  const quoteRequired = pricingLoading || guests > MAX_INSTANT_GUESTS || pickupZone === 'other' ||
+    price.quoteRequired || price.totalUsd == null || !Number.isFinite(price.totalUsd);
+  const pickupComplete = PICKUP_ZONES.includes(pickupZone) && Boolean(accommodation.trim());
+  const canSubmit = pickupComplete && (quoteRequired || Boolean(selectedDay?.date && selectedTime));
+  const payment = !quoteRequired && price.totalUsd != null ? depositBreakdown(price.totalUsd) : null;
+  const quoteHint = guests > MAX_INSTANT_GUESTS ? 'panel.quote_large_group' : pickupZone === 'other' ? 'panel.quote_other_area' :
+    pricingLoading ? 'panel.loading_prices' : currentPricing?.failed ? 'panel.pricing_failed' : 'panel.quote_unpriced';
 
   const selectDate = (dateIso, info) => {
     setSelectedDay({ date: dateIso, times: info?.times || [] });
@@ -103,6 +140,17 @@ export default function BookingPanel({ experience }) {
   };
 
   const submit = () => {
+    if (!canSubmit) return;
+    if (quoteRequired) {
+      navigate('/book-now', {
+        state: { storeEnquiry: {
+          experienceId: experience.id, mode, guests, pickupZone,
+          accommodation: accommodation.trim().slice(0, 200),
+          preferredDate: selectedDay?.date || '', preferredTime: selectedTime || '',
+        } },
+      });
+      return;
+    }
     if (!selectedDay?.date || !selectedTime) return;
     const record = {
       experienceId: experience.id,
@@ -110,6 +158,8 @@ export default function BookingPanel({ experience }) {
       guests,
       date: selectedDay.date,
       time: selectedTime,
+      pickupZone,
+      accommodation: accommodation.trim().slice(0, 200),
     };
     if (editItem) {
       dispatch({ type: 'update', id: editItem.id, patch: record });
@@ -129,17 +179,19 @@ export default function BookingPanel({ experience }) {
   };
 
   return (
-    <div className="booking-panel">
+    <div className="booking-panel booking-panel--pickup">
       <div className="booking-panel__bar" aria-hidden="true" />
 
       <div className="booking-panel__head">
         <span className="booking-panel__price">
-          <strong>{format(experience.priceUsd)}</strong>
-          <small>{t('panel.per_person')}</small>
+          <strong className={quoteRequired ? 'booking-panel__price--muted' : undefined}>
+            {quoteRequired ? t('card.price_on_request') : format(price.totalUsd)}
+          </strong>
+          {!quoteRequired && <small>{t('panel.group_total')}</small>}
         </span>
         <span className="booking-panel__chip">
           <span className="booking-panel__chip-dot" aria-hidden="true" />
-          {t('panel.instant_chip')}
+          {t(quoteRequired ? 'panel.quote_chip' : 'panel.instant_chip')}
         </span>
       </div>
 
@@ -164,11 +216,18 @@ export default function BookingPanel({ experience }) {
 
       <GuestPicker
         label={t('panel.guests')}
-        sublabel={t('panel.max_guests', { count: experience.maxGuests })}
+        sublabel={t('panel.small_car_hint')}
         value={guests}
         min={experience.minGuests}
-        max={experience.maxGuests}
+        max={MAX_GUESTS_PER_ITEM}
         onChange={setGuests}
+      />
+
+      <PickupFields
+        pickupZone={pickupZone}
+        accommodation={accommodation}
+        onPickupZoneChange={setPickupZone}
+        onAccommodationChange={setAccommodation}
       />
 
       <div className="booking-panel__calendar">
@@ -198,29 +257,43 @@ export default function BookingPanel({ experience }) {
       </div>
 
       <div className="booking-panel__pricing">
-        <div className="booking-panel__row">
-          <span>
-            {format(experience.priceUsd)} × {t('panel.guest_count', { count: guests })}
-          </span>
-          <span>{format(experience.priceUsd * guests)}</span>
-        </div>
-        {mode === 'private' && experience.privateSupplementUsd > 0 && (
-          <div className="booking-panel__row">
-            <span>{t('panel.private_supplement')}</span>
-            <span>+{format(experience.privateSupplementUsd)}</span>
-          </div>
+        {quoteRequired ? (
+          <p className="booking-panel__quote-hint" role="status">{t(quoteHint)}</p>
+        ) : (
+          <>
+            {price.lines.map((line, index) => (
+              <div className="booking-panel__row" key={`${line.type}-${index}`}>
+                <span>{t(line.type === 'pickup_supplement' ? 'pricing.pickup_charge' : 'pricing.group_price')}</span>
+                <span>{format(line.amountUsd)}</span>
+              </div>
+            ))}
+            <div className="booking-panel__total">
+              <span>{t('panel.total')}</span>
+              <strong>{format(price.totalUsd)}</strong>
+            </div>
+            {price.effectivePerPersonUsd != null && (
+              <div className="booking-panel__row booking-panel__row--secondary">
+                <span>{t('panel.effective_per_person')}</span>
+                <span>{format(price.effectivePerPersonUsd)}</span>
+              </div>
+            )}
+            {payment && (
+              <>
+                <div className="booking-panel__row"><span>{t('panel.deposit')}</span><span>{format(payment.chargeUsd)}</span></div>
+                <div className="booking-panel__row"><span>{t('panel.balance')}</span><span>{format(payment.balanceUsd)}</span></div>
+              </>
+            )}
+            {currency !== 'USD' && <p className="booking-panel__hint">{t('panel.currency_estimate')}</p>}
+          </>
         )}
-        <div className="booking-panel__total">
-          <span>{t('panel.total')}</span>
-          <strong>{format(price.totalUsd)}</strong>
-        </div>
+        {!pickupComplete && <p className="booking-panel__hint">{t('pickup.required_hint')}</p>}
       </div>
 
       <button type="button" className="booking-panel__submit" disabled={!canSubmit} onClick={submit}>
-        {editItem ? t('panel.update') : t('panel.add')}
+        {quoteRequired ? t('panel.contact_quote') : editItem ? t('panel.update') : t('panel.add')}
         <ArrowRightIcon size={17} />
       </button>
-      <p className="booking-panel__foot">{t('panel.not_charged')}</p>
+      <p className="booking-panel__foot">{t(quoteRequired ? 'panel.quote_no_payment' : 'panel.not_charged')}</p>
     </div>
   );
 }

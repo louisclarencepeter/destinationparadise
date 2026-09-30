@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Experiences Store · Destination Paradise",
-    "description": "Browse Zanzibar experiences, choose a date and time, and pay once for the whole trip. Instant booking for selected excursions."
+    "description": "Choose Zanzibar experiences, dates and times. Book selected excursions instantly with a combined 20% deposit; pay the remaining 80% on each experience day."
   },
   "catalog": {
     "pickups": {
@@ -27,7 +27,7 @@
   "hero": {
     "eyebrow": "Local. Guided. Unhurried.",
     "title": "Find your experiences",
-    "lead": "Choose your days on the island, build one trip from many excursions, and pay once.",
+    "lead": "Choose your island days and combine your experiences in one trip. Pay one 20% deposit, then the remaining 80% on the day of each experience.",
     "search_label": "Experience",
     "search_placeholder": "Search dhow, Stone Town, spice…",
     "guests_label": "Guests",
@@ -63,11 +63,12 @@
   "section": {
     "eyebrow": "Book online",
     "title": "Choose your departure",
-    "lead": "Pick a date, time and guests — add it to one trip with your other experiences and pay once at checkout.",
+    "lead": "Pick a date, time and guests, and add experiences to one trip. Pay a combined 20% deposit at checkout, with the remaining 80% due on each experience day.",
     "point_instant": "Instant confirmation on paid departures",
     "point_cart": "Combine several experiences in one order",
     "point_codes": "A separate booking code for every trip",
-    "pickup_label": "Pickup & meeting point:"
+    "pickup_label": "Pickup & meeting point:",
+    "pickup_select_hint": "Select your pickup area and accommodation below so we can confirm transport and the price."
   },
   "panel": {
     "per_person": "per person",
@@ -100,7 +101,21 @@
     "total": "Total",
     "add": "Add to my trip",
     "update": "Update trip",
-    "not_charged": "You won't be charged yet — review everything at checkout."
+    "not_charged": "You won't be charged yet — review everything at checkout.",
+    "group_total": "for your group",
+    "quote_chip": "Quote first",
+    "small_car_hint": "Online prices for up to 6 guests in one car; 7 or more guests need a quote.",
+    "effective_per_person": "Price per person, including pickup",
+    "deposit": "20% deposit at checkout",
+    "balance": "80% balance on the experience day",
+    "currency_estimate": "Local-currency estimates. Your checkout quote is shown in USD.",
+    "contact_quote": "Contact us for a quote",
+    "quote_large_group": "For 7 or more guests, we arrange a suitable larger vehicle and confirm the price personally.",
+    "quote_other_area": "We will confirm transport and the price for your pickup area personally.",
+    "loading_prices": "Checking the approved group and pickup prices…",
+    "pricing_failed": "Online prices could not be checked. Contact us and we will confirm your quote personally.",
+    "quote_unpriced": "An online price is not available for this group and pickup area. Contact us for a confirmed quote.",
+    "quote_no_payment": "No online payment is taken when you request a quote."
   },
   "cart": {
     "title": "Your trip",
@@ -133,10 +148,12 @@
     "status_request": "Awaiting confirmation",
     "plus_request": "+ items on request",
     "request_cta": "Continue to trip request",
-    "request_note": "Your trip has request items, so we confirm availability first — you pay once at the end.",
+    "request_note": "We confirm availability and price for your requested experiences first. After approval, pay one combined 20% deposit; the remaining 80% is due on each experience day.",
     "checking_prices": "Checking prices…",
     "price_unavailable": "Price unavailable",
-    "status_checking": "Checking availability…"
+    "status_checking": "Checking availability…",
+    "status_pickup_required": "Pickup details required",
+    "status_quote_required": "Quote required"
   },
   "checkout": {
     "meta_title": "Checkout · Destination Paradise",
@@ -156,7 +173,7 @@
     "phone_label": "Phone / WhatsApp",
     "phone_placeholder": "+255 …",
     "payment": "Payment",
-    "payment_note": "You'll complete your payment on the secure page of our payment partner <strong>Pesapal</strong>. Card and mobile-money details are entered there only.",
+    "payment_note": "You'll pay through a secure <strong>Pesapal</strong> form on our website. Card and mobile-money details go directly to Pesapal; your bank may open a separate verification step.",
     "pay": "Pay {{amount}}",
     "checking": "Re-checking availability…",
     "recheck_note": "Availability is re-checked before you pay.",
@@ -165,7 +182,8 @@
     "conflict_fix": "Choose a new time",
     "failed": "We couldn't continue to payment. Please try again in a moment.",
     "payment_unavailable": "Online payment is temporarily unavailable. Your selection was saved as an order. Please contact our team or use the booking request form.",
-    "usd_note": "You'll be charged in US dollars — prices shown in other currencies are estimates.",
+    "usd_note": "Your trip and deposit are quoted in USD; other website currencies are estimates. Your payment provider may show a converted currency. Review its final amount and currency before paying.",
+    "privacy_notice": "We use your contact and trip details to arrange your booking and payment. Read our <privacy>Privacy Policy</privacy>.",
     "errors": {
       "name_required": "Please add the lead guest's name.",
       "email_required": "Please add an email address.",
@@ -187,7 +205,10 @@
     "pay_deposit": "Pay {{amount}} deposit",
     "price_changed": "The payment amount changed. Review the updated total and deposit before continuing.",
     "quote_failed": "We couldn't check the current price. Please try again before paying.",
-    "retry_quote": "Check prices again"
+    "retry_quote": "Check prices again",
+    "pickup_review": "Choose a pickup area and accommodation for each trip, then review its price.",
+    "quote_required": "This group or pickup needs a quote from our team.",
+    "review_selection": "Review group and pickup"
   },
   "confirm": {
     "meta_title": "Order confirmation · Destination Paradise",
@@ -213,7 +234,8 @@
     "quote_expiry": "This confirmation is valid until {{date}}.",
     "accept_cta": "Accept & continue — {{amount}}",
     "accepting": "Securing your places…",
-    "accept_note": "Accepting re-checks availability and holds every place in your trip; payment follows as one combined amount.",
+    "accept_note": "Accepting re-checks availability and holds your places. Then pay one combined 20% deposit; the remaining 80% is due on each experience day.",
+    "accept_note_full": "Accepting re-checks availability and holds every place in your trip; payment follows as one combined amount.",
     "accept_conflict": "One of the departures just sold out. Our team has been notified and will email you an alternative.",
     "accepted_payment_pending": "Your places are held! Online payment opens shortly — we will email you the payment link.",
     "deposit_lead": "Order <ref>{{reference}}</ref> is confirmed and your 20% deposit has been received. Your confirmation email includes each booking code and the remaining balance.",
@@ -225,6 +247,28 @@
     "refresh_failed_text": "Your saved confirmation may have changed. Try again to check the current booking and payment status, or use the link in your confirmation email.",
     "refresh_retry": "Check order again",
     "continue_pending": "If you haven't finished payment, continue to secure checkout. We update your confirmation after the payment is verified."
+  },
+  "payment": {
+    "title": "Pay securely here",
+    "deposit_title": "Pay your deposit securely here",
+    "full_title": "Pay your trip securely here",
+    "lead": "Complete payment for order <ref>{{reference}}</ref> below. We confirm your booking after verifying the payment with Pesapal.",
+    "amount_due": "Amount due now",
+    "frame_title": "Secure payment form",
+    "provider": "Payment handled by Pesapal",
+    "description": "Choose your payment method in the Pesapal form below. Card and mobile-money details go directly to Pesapal. Scroll inside the form to see any remaining fields.",
+    "terms_hint": "Review and accept Pesapal's terms in its form when you're ready to pay.",
+    "loading": "Loading the secure payment form…",
+    "ready": "After paying, check your order status below.",
+    "iframe_title": "Pesapal secure payment form",
+    "check_status": "Check payment status",
+    "checking": "Checking payment…",
+    "pending": "Payment has not been confirmed yet. If you have already paid, wait a moment and check again.",
+    "reload": "Reload payment form",
+    "reload_hint": "Reloading may clear details you've entered in the form.",
+    "external_hint": "If the form doesn't display, you can continue on Pesapal's secure page:",
+    "external_link": "Open secure payment page",
+    "unavailable": "We couldn't open the secure payment form. Please check your order again or contact our team."
   },
   "request_panel": {
     "chip": "Request to book",
@@ -241,7 +285,28 @@
     "lead": "This experience is arranged with our local partners, so we confirm availability before anything is booked or paid.",
     "point_no_charge": "No charge and no holds until you approve",
     "point_confirm": "We confirm dates and the final price within about 24 hours",
-    "point_one_payment": "Everything ends in one combined payment",
+    "point_one_payment": "After availability is confirmed, pay a combined 20% deposit and 80% on each experience day",
     "pickup_fallback": "Pickup details are confirmed together with your dates."
+  },
+  "pickup": {
+    "title": "Where are you staying?",
+    "hint": "Choose your pickup area and enter your hotel or accommodation. Pickup supplements are charged once per car.",
+    "zone_label": "Pickup area",
+    "zone_placeholder": "Choose your area",
+    "accommodation_label": "Hotel or accommodation",
+    "accommodation_placeholder": "Hotel, guesthouse or accommodation name",
+    "required_hint": "Enter both your pickup area and accommodation to continue.",
+    "zones": {
+      "stone-town": "Stone Town",
+      "north": "North coast",
+      "east": "East coast",
+      "south": "South coast",
+      "other": "Other area / not sure"
+    }
+  },
+  "pricing": {
+    "group_price": "Experience price for your group",
+    "pickup_charge": "Pickup supplement · one car",
+    "enquiry_note": "{{guests}} passengers · {{mode}}\nAccommodation: {{accommodation}}\nPickup area: {{area}}\nPreferred departure: {{date}} {{time}}"
   }
 }

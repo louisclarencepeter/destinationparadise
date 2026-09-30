@@ -36,6 +36,8 @@
           "title": "Dienstleister Und Weitergabe",
           "items": [
             "Netlify hostet die Website und Netlify Functions, die Kontakt-, Buchungs-, Planer- und Newsletter-Anfragen empfangen.",
+            "Supabase speichert Bestell-, Zahlungs- und Buchungsdaten des Online-Stores in unserer Buchungsdatenbank.",
+            "Pesapal verarbeitet Zahlungen im Online-Store über sein eigenes Zahlungsformular, auch wenn dieses auf unserer Website eingebettet ist.",
             "Resend versendet Team-Benachrichtigungen und Bestätigungen an Gäste aus Kontakt-, Buchungs- und Planer-Workflows.",
             "Anthropic betreibt den KI-Reiseplaner. Prompts und aktuelle Chatverläufe werden nur für diese Funktion an Anthropic gesendet.",
             "Google Analytics misst Seitenbesuche erst, nachdem du Analyse-Cookies akzeptiert hast. Google kann dafür _ga-Cookies setzen.",
@@ -50,7 +52,7 @@
           "title": "Speicherung, Aufbewahrung Und Sicherheit",
           "items": [
             "Wir behalten Anfragen und Buchungsdaten nur so lange, wie es für Antwort, Reiseorganisation, Buchhaltung, rechtliche Pflichten und Servicequalität nötig ist.",
-            "Lokaler Browserspeicher kann Sprache, Design, Cookie-Auswahl, Wechselkurs-Cache und Planerverlauf speichern, damit die Website reibungslos funktioniert.",
+            "Lokaler Browserspeicher kann Sprache, Design, Cookie-Auswahl, Wechselkurs-Cache, Planerverlauf und den Store-Warenkorb speichern. Der Sitzungsspeicher enthält deine Zugangsdaten zur Bestellung, die Bestellübersicht und Informationen für erneute Checkout-Versuche, damit du dieselbe Bestellung sicher ansehen oder fortsetzen kannst.",
             "Wir nutzen angemessene technische Schutzmaßnahmen wie HTTPS, Anbieter-Zugriffskontrollen, Größenlimits, Validierung, Rate-Limiting und Fehlerüberwachung.",
             "Keine Website und kein E-Mail-System ist perfekt sicher. Bitte sende keine Passkopien, Kartendaten oder besonders sensiblen Gesundheitsdaten über offene Textfelder."
           ]
@@ -68,12 +70,23 @@
         {
           "title": "Zahlungen und Buchungen im Online-Store",
           "items": [
-            "Wenn du in unserem Erlebnis-Store direkt buchst, erfassen wir Name, E-Mail-Adresse und Telefonnummer des Hauptgasts sowie den Inhalt deiner Bestellung: die gewählten Erlebnisse, Termine, Abfahrtszeiten und Gästezahlen.",
-            "Zahlungen verarbeitet unser Zahlungspartner Pesapal auf dessen sicheren Bezahlseiten. Karten- und Mobile-Money-Daten werden nur dort eingegeben — sie erreichen oder durchlaufen unsere Systeme nie.",
-            "Wir speichern die Bestellung, ihre Buchungscodes und den von Pesapal gemeldeten Zahlungsstatus (nie Kartennummern) in unserer Buchungsdatenbank, um deine Touren durchzuführen, Änderungen zu bearbeiten und Buchhaltungspflichten zu erfüllen.",
+            "Wenn du in unserem Erlebnis-Store buchst oder eine Anfrage sendest, erfassen wir Name, E-Mail-Adresse und Telefonnummer des Hauptgasts sowie die gewählten Erlebnisse, Buchungsoptionen, Termine oder Wunschtermine, Abfahrtszeiten, Gästezahlen und Sprache.",
+            "Pesapal betreibt das sichere Zahlungsformular, das auf unserer Bestellseite eingebettet ist. Du kannst auch die sichere Bezahlseite von Pesapal öffnen; deine Bank oder dein Zahlungsanbieter kann einen gesonderten Bestätigungsschritt verlangen. Karten- und Mobile-Money-Zugangsdaten gibst du in diesen Anbieterformularen ein. Unser Checkout erfasst oder speichert keine vollständigen Kartennummern, Kartenprüfcodes oder Zahlungs-PINs.",
+            "Zur Erstellung der Zahlung übermitteln wir Pesapal deinen Namen, deine E-Mail-Adresse, Telefonnummer, Bestellreferenz, den Zahlungsbetrag und die Währung.",
+            "Wir speichern die Bestellung, Buchungscodes, den Zahlungsstatus, Transaktionsreferenzen des Anbieters, Beträge, Währungen und Bestätigungscodes in unserer Supabase-Buchungsdatenbank, um deine Touren durchzuführen, Änderungen zu bearbeiten und Buchhaltungspflichten zu erfüllen. Pesapal kann außerdem Bezeichnungen der Zahlungsmethode und maskierte Kontokennungen zurückgeben; dies sind keine vollständigen Kartennummern oder Zahlungszugangsdaten.",
             "Bestellbestätigungen und Buchungsbestätigungen versenden wir über unseren E-Mail-Dienstleister an die beim Checkout angegebene Adresse.",
             "Bestellungen und Buchungen bewahren wir als Geschäftsunterlagen so lange auf, wie Steuer- und Handelsrecht es verlangen; melde dich jederzeit, um deine Daten einzusehen oder zu korrigieren.",
             "Analytics-Ereignisse des Stores enthalten nie Namen, E-Mail-Adressen, Telefonnummern oder Zahlungsreferenzen."
+          ],
+          "links": [
+            {
+              "href": "https://www.pesapal.com/tz/privacy-policy",
+              "label": "Pesapal-Datenschutzerklärung"
+            },
+            {
+              "href": "https://www.pesapal.com/tz/terms-and-conditions",
+              "label": "Pesapal-Geschäftsbedingungen"
+            }
           ]
         }
       ]
@@ -115,11 +128,24 @@
           "title": "Buchungen im Online-Store",
           "items": [
             "Ausgewählte Erlebnisse lassen sich in unserem Online-Store mit Live-Verfügbarkeit sofort buchen; alles andere läuft weiter über den oben beschriebenen Anfrageweg.",
-            "Du zahlst einmal für deinen gesamten Warenkorb, und jedes Erlebnis darin wird eine eigene Buchung mit eigenem Bestätigungscode — jede Tour behält Datum, Uhrzeit und Gästezahl.",
-            "Store-Zahlungen werden in US-Dollar abgerechnet; Preise in anderen Währungen sind Richtwerte auf Basis aktueller Wechselkurse.",
-            "Während des Checkouts sind deine gewählten Plätze kurz reserviert (etwa 15 Minuten); wird nicht gezahlt, löst sich die Reservierung automatisch und die Plätze gehen zurück in den Verkauf.",
-            "Eine Buchung besteht erst, wenn unser Zahlungspartner deine Zahlung bestätigt und wir deine Buchungscodes ausgestellt haben; kann eine Zahlung nicht automatisch verifiziert werden, prüfen wir sie manuell und melden uns, bevor irgendetwas weiter passiert.",
-            "Für sofort gebuchte Erlebnisse gelten die Stornoregeln für Sansibar-Touren aus unseren Buchungsbedingungen: kostenfrei bis 48 Stunden vor Beginn, 50 % zwischen 24 und 48 Stunden und 100 % innerhalb von 24 Stunden oder bei Nichterscheinen."
+            "Bei Safari Blue, Spice Tour und der historischen Stadttour hängen Online-Preise von der Gästezahl, der geteilten oder privaten Option, dem Abholgebiet und der Unterkunft ab. Die Übersicht zeigt einen Erlebnispreis für die gesamte Gruppe und einen Abholzuschlag pro Fahrzeug, auch einen Zuschlag von null, wenn die Abholung enthalten ist. Online-Gruppenpreise gelten für bis zu sechs Fahrgäste. Gruppen ab sieben Personen, unbekannte Abholgebiete und Auswahlen ohne hinterlegten Preis benötigen ein Angebot; dabei erfolgt keine Online-Zahlung.",
+            "Bei neuen Store-Buchungen zahlst du online eine gemeinsame Anzahlung von 20 % für deinen Warenkorb; die restlichen 80 % sind am Tag des jeweiligen Erlebnisses vor Beginn fällig. Jedes Erlebnis wird eine eigene Buchung mit eigenem Bestätigungscode, Datum, Uhrzeit und Gästezahl. Der Checkout zieht den Restbetrag nicht automatisch ein.",
+            "Das Absenden einer Buchungsanfrage löst keine Zahlung aus. Wenn unser Team die Verfügbarkeit bestätigt hat und du ein neues Store-Angebot annimmst, gelten dieselbe Anzahlung von 20 % und die Restzahlung am Tag des Erlebnisses. Bestehende Angebote und Buchungen behalten ihren vereinbarten Zahlungsplan, einschließlich vollständiger Vorauszahlung.",
+            "Deine Store-Bestellung und die erforderliche Zahlung werden in US-Dollar berechnet. Preise auf der Website in anderen Währungen sind Richtwerte. Je nach Zahlungsmethode können Pesapal oder deine Bank einen umgerechneten Betrag anzeigen oder abbuchen. Prüfe vor der Zahlungsfreigabe die endgültige Währung, den Betrag und etwaige Umrechnungsgebühren.",
+            "Beim sofortigen Checkout werden Plätze normalerweise etwa 15 Minuten reserviert. Nach Annahme eines vom Team bestätigten Angebots gilt ein längeres Zahlungsfenster, normalerweise bis zu 24 Stunden. Unbezahlte Reservierungen können automatisch auslaufen; die Plätze gehen dann wieder in den Verkauf.",
+            "Das Laden des Zahlungsformulars oder die Rückkehr auf unsere Website bestätigt keine Buchung. Eine Store-Buchung ist erst bestätigt, wenn wir die erforderliche Anzahlung oder vereinbarte Zahlung geprüft und Buchungscodes ausgestellt haben. Verspätete, abweichende oder nicht verifizierbare Zahlungen erfordern eine manuelle Prüfung. Eine ausstehende Zahlung garantiert nicht, dass die Plätze weiterhin reserviert sind.",
+            "Für sofort gebuchte Sansibar-Erlebnisse gelten unsere Buchungsbedingungen: kostenfreie Stornierung mehr als 48 Stunden vor Beginn, 50 % des vollen Buchungspreises zwischen 24 und 48 Stunden und 100 % des vollen Buchungspreises bei weniger als 24 Stunden oder Nichterscheinen. Deine geleistete Anzahlung wird auf die Stornogebühr angerechnet. Die Gebühr kann höher als die Anzahlung sein; ein noch offener Teil bleibt zahlbar.",
+            "Pesapal stellt den Zahlungsdienst bereit; deine Reisebuchung erfolgt bei Destination Paradise. Für Buchungen, Stornierungen und Rückerstattungen gelten unsere Buchungsbedingungen; für den Zahlungsdienst gelten Pesapals eigene Zahlungsbedingungen und Datenschutzerklärung."
+          ],
+          "links": [
+            {
+              "href": "https://www.pesapal.com/tz/privacy-policy",
+              "label": "Pesapal-Datenschutzerklärung"
+            },
+            {
+              "href": "https://www.pesapal.com/tz/terms-and-conditions",
+              "label": "Pesapal-Geschäftsbedingungen"
+            }
           ]
         }
       ]
@@ -134,18 +160,21 @@
           "items": [
             "Alle Buchungen stehen unter dem Vorbehalt der Verfügbarkeit zum Zeitpunkt unserer Bestätigung.",
             "Bei Buchungen über eine Anfrage gilt eine Buchung erst dann als bestätigt, wenn wir die erforderliche Anzahlung oder Zahlung erhalten und dir eine schriftliche Bestätigung gesendet haben.",
-            "Über unseren Online-Store sofort gebuchte Erlebnisse sind automatisch bestätigt, sobald unser Zahlungspartner deine Zahlung verifiziert hat und wir deine Buchungscodes ausgestellt haben. Eine gesonderte schriftliche Bestätigung ist nicht erforderlich.",
-            "Kann eine Store-Zahlung nicht automatisch verifiziert werden, prüfen wir sie manuell und kontaktieren dich, bevor die Buchung bestätigt oder freigegeben wird.",
-            "Preise werden, sofern nicht anders angegeben, in US-Dollar ausgewiesen. Anfragebuchungen können auch in Tansania-Schilling zum jeweils gültigen Wechselkurs beglichen werden. Zahlungen im Online-Store werden in US-Dollar abgerechnet; Preise in anderen Währungen sind Richtwerte."
+            "Über unseren Online-Store gebuchte Erlebnisse sind automatisch bestätigt, sobald wir die erforderliche Anzahlung oder vereinbarte Zahlung geprüft und deine Buchungscodes ausgestellt haben. Das Laden des Zahlungsformulars oder die Rückkehr von Pesapal ist keine Bestätigung. Eine gesonderte schriftliche Bestätigung ist nicht erforderlich.",
+            "Verspätete, abweichende oder nicht verifizierbare Store-Zahlungen erfordern eine manuelle Prüfung. Reservierungen können automatisch auslaufen, bevor eine Zahlung verifiziert wurde. Wurde Geld abgebucht, ohne dass du eine bestätigte Buchung hast, kontaktiere uns bitte zur Prüfung.",
+            "Preise werden, sofern nicht anders angegeben, in US-Dollar ausgewiesen. Anfragebuchungen können auch in Tansania-Schilling zum jeweils gültigen Wechselkurs beglichen werden. Store-Bestellungen und ihre erforderlichen Anzahlungen werden in US-Dollar berechnet; Website-Preise in anderen Währungen sind Richtwerte. Pesapal oder deine Bank können für deine Zahlungsmethode einen umgerechneten Betrag anzeigen oder abbuchen. Prüfe die endgültige Währung und den Betrag vor der Zahlungsfreigabe."
           ]
         },
         {
           "title": "Zahlung",
           "items": [
-            "Tagestouren, Ausflüge und Transfers auf Sansibar: Die vollständige Zahlung ist vor Beginn der Leistung fällig. Im Online-Store gebuchte Erlebnisse erfordern eine Anzahlung von 20% beim Checkout; die restlichen 80% sind am Tag des Erlebnisses vor Beginn fällig.",
-            "Safaris in Tansania: Eine Anzahlung von 30 % bestätigt deine Buchung; die restlichen 70 % sind spätestens 30 Tage vor Safaribeginn fällig.",
-            "Safaribuchungen innerhalb von 30 Tagen vor Reisebeginn erfordern die vollständige Zahlung bei Bestätigung.",
-            "Geht eine Restzahlung nicht fristgerecht ein, kontaktieren wir dich, bevor wir Schritte einleiten. Bleibt der Betrag offen, können wir die Buchung als von dir storniert behandeln; dann gelten die untenstehenden Gebühren."
+            "Tagestouren, Ausflüge und Transfers auf Sansibar: Die vollständige Zahlung ist vor Beginn der Leistung fällig. Neue sofortige Store-Buchungen und neue Store-Angebote, die du nach Bestätigung der Verfügbarkeit annimmst, erfordern online eine Anzahlung von 20 %; die restlichen 80 % sind am Tag des jeweiligen Erlebnisses vor Beginn fällig. Das Absenden einer Anfrage löst keine Zahlung aus.",
+            "Safaris in Tansania, die per Anfrage außerhalb unseres Online-Stores gebucht werden: Eine Anzahlung von 30 % bestätigt deine Buchung; die restlichen 70 % sind spätestens 30 Tage vor Safaribeginn fällig.",
+            "Solche Safaribuchungen innerhalb von 30 Tagen vor Reisebeginn erfordern die vollständige Zahlung bei Bestätigung.",
+            "Geht eine Restzahlung nicht fristgerecht ein, kontaktieren wir dich, bevor wir Schritte einleiten. Bleibt der Betrag offen, können wir die Buchung als von dir storniert behandeln; dann gelten die untenstehenden Gebühren.",
+            "Bestehende Angebote und Buchungen behalten ihren vereinbarten Zahlungsplan, einschließlich vollständiger Vorauszahlung. Den am Tag des Erlebnisses fälligen Restbetrag ziehen wir über diesen Checkout nicht automatisch ein.",
+            "Checkout und Bestätigung zeigen den vollen Buchungspreis, die Anzahlung und den Restbetrag. Falls nötig, wird die Anzahlung von 20 % auf einen ganzen US-Cent aufgerundet; der Restbetrag ist der volle Preis abzüglich dieser Anzahlung.",
+            "Bei Store-Erlebnissen mit Gruppen- und Abholgebietspreisen enthält der Gesamtpreis den angezeigten Abholzuschlag pro Fahrzeug. Die Anzahlung wird auf diesen Gesamtbetrag berechnet. Gib vor der Buchung die richtige Gästezahl, das Abholgebiet und die Unterkunft an. Änderungen dieser Angaben können ein neues Angebot erfordern, das du vor einer zusätzlichen Zahlung bestätigen musst. Gruppen ab sieben Personen und Abholungen ohne hinterlegten Preis benötigen vor der Zahlung ein Angebot."
           ]
         },
         {
@@ -161,7 +190,8 @@
           "title": "Stornierung Durch Dich",
           "items": [
             "Stornierungen müssen uns schriftlich per E-Mail oder WhatsApp zugehen. Die Gebühr richtet sich danach, wann deine Stornierung bei uns eingeht.",
-            "Nichterscheinen ohne Abmeldung oder der vorzeitige Abbruch einer bereits begonnenen Reise wird mit 100 % berechnet; eine Rückerstattung erfolgt nicht."
+            "Nichterscheinen ohne Abmeldung oder der vorzeitige Abbruch einer bereits begonnenen Reise wird mit 100 % berechnet; eine Rückerstattung erfolgt nicht.",
+            "Stornogebühren werden auf den vollen Preis der stornierten Buchung berechnet, nicht nur auf die Anzahlung. Deine geleistete Anzahlung wird auf die Gebühr angerechnet. Die Gebühr kann höher als die Anzahlung von 20 % sein; ein noch offener Teil bleibt zahlbar. Bei kostenfreier Stornierung bedeutet eine volle Rückerstattung die Erstattung aller für die stornierte Leistung gezahlten Beträge."
           ],
           "tables": [
             {
@@ -292,11 +322,11 @@
         {
           "title": "Rückerstattungen",
           "items": [
-            "Genehmigte Rückerstattungen erfolgen nach Möglichkeit auf das ursprüngliche Zahlungsmittel, in der Regel innerhalb von 14 Tagen nach unserer Bestätigung der Erstattung.",
-            "Stornierst du innerhalb eines Gebührenzeitraums, erstatten wir den Restbetrag nach Abzug der jeweiligen Stornogebühr und bereits verbindlich angefallener, nicht erstattungsfähiger Kosten der Leistungsträger.",
+            "Genehmigte Rückerstattungen erfolgen nach Möglichkeit auf das ursprüngliche Zahlungsmittel, in der Regel innerhalb von 14 Tagen nach unserer Bestätigung der Erstattung. Deine Bank oder dein Zahlungsanbieter kann zusätzliche Zeit benötigen, bis die Erstattung deinem Konto gutgeschrieben wird.",
+            "Für Sansibar-Touren, Ausflüge und Transfers erstatten wir die gezahlten Beträge, soweit sie die geltende Stornogebühr übersteigen. Die Gebühren in der obigen Tabelle enthalten bereits verbindlich angefallene Kosten der Leistungsträger; solche Kosten werden nicht zusätzlich abgezogen. Für Safaris und andere individuell vereinbarte Buchungen außerhalb dieser Stornierungsregeln für Sansibar richtet sich die Erstattung nach der geltenden Stornogebühr und den in deinen vereinbarten Buchungsbedingungen festgelegten, nicht erstattungsfähigen Kosten der Leistungsträger.",
             "Steht dir eine vollständige Rückerstattung zu — weil wir storniert haben oder du kostenfrei innerhalb der zulässigen Frist storniert hast — ziehen wir keine Zahlungsabwicklungsgebühren ab.",
             "Bankgebühren können nur dann abgezogen werden, wenn eine Rückerstattung auf deinen Wunsch per internationaler Banküberweisung statt auf das ursprüngliche Zahlungsmittel erfolgen muss.",
-            "Rückerstattungen von Online-Store-Buchungen werden über unseren Zahlungspartner auf die beim Checkout verwendete Karte oder das Mobile-Money-Konto zurückgeführt."
+            "Kontaktiere uns, um eine Store-Buchung zu stornieren oder eine Rückerstattung anzufragen. Unser Team veranlasst genehmigte Erstattungen beim Zahlungsanbieter, der beim Checkout genutzt wurde, für neue Store-Zahlungen also bei Pesapal, nach Möglichkeit auf das ursprüngliche Zahlungsmittel. Kann dieses die erforderliche Erstattung nicht unterstützen, vereinbaren wir mit dir eine Alternative."
           ]
         },
         {
@@ -342,7 +372,9 @@
             "dp_cookie_consent_v1 speichert deine Cookie-Auswahl, damit wir wissen, ob Analyse erlaubt ist.",
             "dp_tweaks speichert Design- und Anzeigeeinstellungen wie hellen oder dunklen Modus.",
             "dp_lang speichert deine Sprache, und dp_fx_rates kann Wechselkurse für Preisangaben zwischenspeichern.",
-            "plannerHistory speichert deinen KI-Planer-Chat in deinem Browser, damit du einen Plan später fortsetzen kannst."
+            "plannerHistory speichert deinen KI-Planer-Chat in deinem Browser, damit du einen Plan später fortsetzen kannst.",
+            "dp_store_cart_v1 speichert die Erlebnisse und Auswahl in deinem Warenkorb im lokalen Browserspeicher.",
+            "Der Sitzungsspeicher enthält deinen authentifizierten Bestellzugang, die Bestellübersicht und den Schlüssel für erneute Checkout-Versuche, damit du dieselbe Bestellung ansehen oder fortsetzen kannst. Wird dieser Speicher blockiert, können diese Funktionen ausfallen."
           ]
         },
         {
@@ -359,6 +391,24 @@
             "Sentry kann technische Fehlerdaten erhalten, wenn eine Seite oder Funktion ausfällt.",
             "Open-Meteo, CARTO-Kartenkacheln und open.er-api.com können Basis-Anfragedaten erhalten, wenn Wetter, Karten oder Wechselkurse geladen werden.",
             "Resend und Anthropic erhalten Daten nur, wenn du ein Formular, eine Buchungsanfrage oder eine KI-Planer-Nachricht sendest, die diese Dienste nutzt."
+          ]
+        },
+        {
+          "title": "Zahlungsdienste Von Pesapal Und Banken",
+          "items": [
+            "Wenn du unser eingebettetes Zahlungsformular oder die sichere Bezahlseite öffnest, verbindet sich dein Browser direkt mit Pesapal. Deine Bank oder dein Mobile-Money-Anbieter kann einen gesonderten Authentifizierungsschritt öffnen.",
+            "Pesapal und Zahlungsanbieter können eigene Cookies, Speicher sowie Geräte- oder Netzwerkinformationen für die Zahlungsabwicklung, Authentifizierung und Betrugsprävention sowie für weitere in ihren eigenen Richtlinien erklärte Zwecke nutzen.",
+            "Deine Cookie-Auswahl für unser Google Analytics steuert weder die Cookies noch die Datenverarbeitung von Pesapal oder deiner Bank. Beachte deren Datenschutzhinweise und deine Browsereinstellungen; eingeschränkter Speicher kann die Zahlung verhindern."
+          ],
+          "links": [
+            {
+              "href": "https://www.pesapal.com/tz/privacy-policy",
+              "label": "Pesapal-Datenschutzerklärung"
+            },
+            {
+              "href": "https://www.pesapal.com/tz/terms-and-conditions",
+              "label": "Pesapal-Geschäftsbedingungen"
+            }
           ]
         },
         {

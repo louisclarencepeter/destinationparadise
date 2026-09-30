@@ -1802,3 +1802,247 @@
     height: 64px;
   }
 }
+
+/* ---------- Hosted Pesapal payment on the order page ---------- */
+
+.store-confirm--payment {
+  padding-top: calc(var(--nav-height, 66px) + 1.5rem);
+}
+
+.store-payment-frame {
+  min-width: 0;
+  margin-top: 1.75rem;
+  background: var(--surface);
+  border: 1px solid var(--divider);
+  border-radius: var(--dp-radius-xl);
+  box-shadow: var(--dp-shadow-3);
+}
+.store-payment-frame__head {
+  padding: clamp(1rem, 3vw, 1.5rem) clamp(1rem, 3vw, 1.5rem) 0;
+}
+.store-payment-frame__provider {
+  font: 700 0.7rem var(--dp-font-sans);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--dp-accent-text);
+}
+.store-payment-frame__title {
+  font: 600 clamp(1.15rem, 2vw, 1.4rem) var(--dp-font-sans);
+  color: var(--text-soft);
+  margin: 0.5rem 0;
+}
+.store-payment-frame__description,
+.store-payment-frame__terms {
+  font-family: var(--dp-font-display);
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0.4rem 0;
+}
+.store-payment-frame__terms {
+  color: var(--text-muted);
+  font-size: 0.84rem;
+}
+.store-payment-frame__load-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0 clamp(1rem, 3vw, 1.5rem);
+  margin: 1rem 0;
+  min-height: 1.5rem;
+  font: 500 0.82rem var(--dp-font-sans);
+  color: var(--text-muted);
+}
+.store-payment-frame__spinner {
+  width: 15px;
+  height: 15px;
+  flex: none;
+  border: 2px solid var(--divider);
+  border-top-color: var(--dp-accent);
+  border-radius: 50%;
+  animation: dpStoreSpin 0.9s linear infinite;
+}
+.store-payment-frame__viewport {
+  background: #fff;
+  border-block: 1px solid var(--divider);
+}
+.store-payment-frame__iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  /* Pesapal's shorter methods should not leave a page of empty space.
+     Its cross-origin card/verification forms retain native iframe scrolling. */
+  height: clamp(420px, 52svh, 520px);
+  border: 0;
+  background: #fff;
+}
+.store-payment-frame__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1rem clamp(1rem, 3vw, 1.5rem) 0;
+}
+.store-payment-frame__actions button {
+  flex: 1 1 200px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  border-radius: var(--dp-radius-sm);
+  padding: 0.75rem 1rem;
+  font: 600 0.88rem var(--dp-font-sans);
+  cursor: pointer;
+}
+.store-payment-frame__check {
+  border: none;
+  background-image: var(--dp-gradient-button);
+  color: #fff;
+}
+.store-payment-frame__check:hover:not(:disabled) {
+  background-image: var(--dp-gradient-button-hover);
+}
+.store-payment-frame__check:disabled {
+  cursor: wait;
+  opacity: 0.8;
+}
+.store-payment-frame__reload {
+  background: transparent;
+  color: var(--text-soft);
+  border: 1px solid var(--border);
+}
+.store-payment-frame__reload:hover {
+  border-color: var(--dp-accent);
+  color: var(--dp-accent-text);
+}
+.store-payment-frame__fallback {
+  font-family: var(--dp-font-display);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin: 0;
+  padding: 1rem clamp(1rem, 3vw, 1.5rem) 1.25rem;
+}
+.store-payment-frame__fallback a {
+  color: var(--dp-accent-text);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.store-payment-frame__reload-hint {
+  padding: 0.6rem clamp(1rem, 3vw, 1.5rem) 1rem;
+  margin: 0;
+  font: 400 0.78rem/1.6 var(--dp-font-sans);
+  color: var(--text-muted);
+}
+.store-payment-frame__actions button:focus-visible,
+.store-payment-frame__fallback a:focus-visible,
+.store-payment-frame__iframe:focus-visible {
+  outline: 3px solid var(--dp-accent);
+  outline-offset: 3px;
+}
+.store-payment-frame__unavailable {
+  color: var(--text);
+  font-family: var(--dp-font-display);
+  line-height: 1.6;
+}
+@media (max-width: 600px) {
+  .store-payment-frame__iframe {
+    height: clamp(420px, 64svh, 560px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .store-payment-frame__spinner {
+    animation: none;
+  }
+}
+
+/* Group quote and pickup details; existing calendar and drawer styles stay shared. */
+.booking-panel--pickup .booking-panel__head,
+.booking-panel--pickup .booking-panel__price {
+  flex-wrap: wrap;
+}
+.booking-panel--pickup .booking-panel__row,
+.booking-panel--pickup .booking-panel__total {
+  gap: 0.75rem;
+}
+.booking-panel--pickup .booking-panel__row > :first-child,
+.booking-panel--pickup .booking-panel__total > :first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.booking-panel--pickup .booking-panel__row > :last-child,
+.booking-panel--pickup .booking-panel__total > :last-child {
+  flex-shrink: 0;
+  text-align: right;
+}
+.booking-panel--pickup .booking-panel__row--secondary {
+  margin-top: 0.65rem;
+  margin-bottom: 0.85rem;
+  font-size: 0.82rem;
+}
+.store-pickup-fields {
+  display: grid;
+  gap: 0.45rem;
+  min-width: 0;
+  padding: 1rem 0 0;
+  margin: 1rem 0 0;
+  border: 0;
+  border-top: 1px solid var(--divider);
+}
+.store-pickup-fields legend {
+  padding: 0 0.35rem 0 0;
+  font: 600 0.9rem var(--dp-font-sans);
+  color: var(--text-soft);
+}
+.store-pickup-fields label {
+  font: 600 0.8rem var(--dp-font-sans);
+  color: var(--text-soft);
+  margin-top: 0.35rem;
+}
+.store-pickup-fields select,
+.store-pickup-fields input {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 46px;
+  padding: 0.7rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: var(--dp-radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  font: 400 0.9rem var(--dp-font-sans);
+}
+.store-pickup-fields input::placeholder {
+  color: var(--text-muted);
+}
+.store-pickup-fields select:focus-visible,
+.store-pickup-fields input:focus-visible {
+  outline: 3px solid var(--dp-accent);
+  outline-offset: 2px;
+}
+.store-pickup-fields__hint,
+.booking-panel__quote-hint {
+  margin: 0;
+  font: 400 0.82rem/1.6 var(--dp-font-sans);
+  color: var(--text-muted);
+}
+.booking-panel__quote-hint {
+  color: var(--text-soft);
+}
+.store-price-breakdown {
+  margin-top: 0.55rem;
+  min-width: 0;
+}
+.store-price-breakdown .booking-panel__row {
+  gap: 0.65rem;
+  font-size: 0.8rem;
+  line-height: 1.5;
+}
+.store-price-breakdown .booking-panel__row > :first-child {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.store-price-breakdown .booking-panel__row > :last-child {
+  flex-shrink: 0;
+  white-space: nowrap;
+  text-align: right;
+}

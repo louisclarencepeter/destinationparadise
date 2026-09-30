@@ -4,7 +4,6 @@ import { Trans, useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import { ArrowLeftIcon, CheckIcon } from '../components/store/StoreIcons.jsx';
 import { useBookingCart } from '../context/useBookingCart.js';
-import { useCurrency } from '../context/useCurrency.js';
 import { getCartExperience } from '../data/commerceCatalog.js';
 import { buildLocalizedExcursions } from '../data/localizedCatalog.js';
 import usePageMeta from '../hooks/usePageMeta.js';
@@ -17,17 +16,18 @@ import {
   submitRequestCheckout,
 } from '../lib/storeApi.js';
 import { formatDateLabel, formatStoreMoney, formatTimeLabel } from '../lib/storeFormat.js';
+import { quoteOnlyDepartureItems, selectionReviewStatus } from '../lib/storePricing.js';
+import StorePriceLines from '../components/store/StorePriceLines.jsx';
 import { suspendGoogleAnalytics, trackEvent } from '../utils/analytics.js';
 import '../styles/store.css';
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// No card fields — production hands payment to the provider's hosted page, so the
-// browser never touches card data even in the preview.
+// Payment details are entered in Pesapal's cross-origin form on our order page.
+// This checkout collects only the guest's booking contact details.
 export default function StoreCheckout() {
   const { t, i18n, ready } = useTranslation(['store', 'catalog']);
   const catalogLanguage = ready ? i18n.resolvedLanguage : '';
-  const { currency } = useCurrency();
   const { state, dispatch } = useBookingCart();
   const navigate = useNavigate();
   const lang = i18n.resolvedLanguage || 'en';
@@ -71,8 +71,16 @@ export default function StoreCheckout() {
   const depositMode = currentQuote?.paymentPlan === 'deposit_20';
   // Any request item switches the whole checkout to the no-payment request
   // flow (HANDOFF Phase 5): one awaiting_availability order, staff confirm,
-  // guest accepts a quote later — the one-payment promise is kept for the end.
+  // guest accepts a quote later and pays the combined deposit then.
   const requestMode = lines.some((line) => isRequestItem(line.item));
+  const oversized = quoteOnlyDepartureItems(state.items);
+  const reviewFor = (item) => selectionReviewStatus(item, oversized) ||
+    currentQuote?.quotes.find((quote) => quote.id === item.id)?.status;
+  const pickupReview = lines.some(({ item }) => reviewFor(item) === 'pickup_required');
+  const quoteRequired = lines.some(({ item }) => reviewFor(item) === 'quote_required');
+  const availabilityReview = Boolean(currentQuote && lines.some(({ item, totalUsd }) =>
+    !isRequestItem(item) && !['pickup_required', 'quote_required'].includes(reviewFor(item)) &&
+    (reviewFor(item) !== 'available' || !Number.isFinite(totalUsd) || totalUsd <= 0)));
 
   useEffect(() => {
     if (!catalogLanguage || state.items.length === 0) return undefined;
@@ -103,6 +111,15 @@ export default function StoreCheckout() {
   };
 
   const pay = async () => {
+    if (pickupReview || availabilityReview || checking) return;
+    if (quoteRequired) {
+      navigate('/book-now', { state: { storeEnquiry: { items: state.items.map((item) => ({
+        experienceId: item.experienceId, mode: item.mode, guests: item.guests,
+        pickupZone: item.pickupZone, accommodation: item.accommodation,
+        preferredDate: item.date || item.requestedDates || '', preferredTime: item.time || '',
+      })), contact } } });
+      return;
+    }
     setTouched(true);
     if (!valid || checking || (!requestMode && !currentQuote)) return;
     setChecking(true);
@@ -126,8 +143,17 @@ export default function StoreCheckout() {
 
     const result = await submitCheckout({ items: state.items, contact, expectedTotalUsd: subtotalUsd, expectedChargeUsd: chargeUsd });
 
-    // Hosted payment: the order + holds exist server-side; hand the
-    // browser to the payment page. The cart clears only once payment confirms.
+    // The order and holds exist server-side. Keep Pesapal inside our private
+    // order page; historical DPO payments retain their hosted-page handoff.
+    // The cart clears only once the server verifies payment.
+    if (result.ok && result.provider === 'pesapal' && result.paymentUrl && result.reference) {
+      trackEvent('payment_started', { items: state.items.length });
+      suspendGoogleAnalytics();
+      navigate(`/store/order/${result.reference}`, {
+        state: { payment: { reference: result.reference, provider: result.provider, paymentUrl: result.paymentUrl } },
+      });
+      return;
+    }
     if (result.ok && result.redirect) {
       trackEvent('payment_redirect', { items: state.items.length });
       window.location.assign(result.redirect);
@@ -138,6 +164,11 @@ export default function StoreCheckout() {
       setChecking(false);
       if (result.conflicts?.length) {
         setConflictIds(result.conflicts.map((conflict) => conflict.id));
+        if (currentQuote) {
+          const latest = new Map(result.conflicts.map((conflict) => [conflict.id, conflict.status]));
+          setPricing({ items: state.items, quote: { ...currentQuote, quotes: currentQuote.quotes.map((quote) =>
+            latest.has(quote.id) ? { ...quote, status: latest.get(quote.id) || 'unavailable' } : quote) }, failed: false });
+        }
         trackEvent('availability_conflict', { items: result.conflicts.length });
       } else {
         if (result.error === 'price_changed' && result.quote) {
@@ -197,7 +228,9 @@ export default function StoreCheckout() {
           <div className="store-card store-card--tinted">
             <h2 className="store-card__title">{t('checkout.your_trips')}</h2>
             {lines.map(({ item, experience, totalUsd }) => {
-              const conflicted = conflictIds?.includes(item.id);
+              const reviewStatus = reviewFor(item);
+              const conflicted = conflictIds?.includes(item.id) ||
+                (!isRequestItem(item) && reviewStatus && reviewStatus !== 'available');
               return (
                 <div key={item.id} className={`checkout-line${conflicted ? ' checkout-line--conflict' : ''}`}>
                   <div className="checkout-line__media">
@@ -215,14 +248,16 @@ export default function StoreCheckout() {
                         ? t('cart.mode_request')
                         : item.mode === 'private' ? t('cart.mode_private') : t('cart.mode_shared')}
                     </p>
+                    {item.pickupZone && <p className="checkout-line__meta">{t(`pickup.zones.${item.pickupZone}`)} · {item.accommodation}</p>}
+                    {!conflicted && <StorePriceLines lines={currentQuote?.quotes.find((quote) => quote.id === item.id)?.priceLines || []} />}
                     {conflicted && (
                       <Link className="checkout-line__fix" to={`/excursions/${experience.sourceKey}?edit=${item.id}#book`}>
-                        {t('checkout.conflict_fix')}
+                        {t(['pickup_required', 'quote_required'].includes(reviewStatus) ? 'checkout.review_selection' : 'checkout.conflict_fix')}
                       </Link>
                     )}
                   </div>
                   <span className="checkout-line__price">
-                    {isRequestItem(item) ? t('cart.price_on_request') : totalUsd == null ? t('cart.checking_prices') : format(totalUsd)}
+                    {isRequestItem(item) || reviewStatus === 'quote_required' ? t('cart.price_on_request') : conflicted ? t('cart.price_unavailable') : totalUsd == null ? t('cart.checking_prices') : format(totalUsd)}
                   </span>
                 </div>
               );
@@ -230,11 +265,11 @@ export default function StoreCheckout() {
             <div className="checkout-total">
               <span>{requestMode ? t('checkout.request_total_label') : t('checkout.trip_total')}</span>
               <strong>
-                {subtotalUsd == null ? t(currentPricing?.failed ? 'cart.price_unavailable' : 'cart.checking_prices') : format(subtotalUsd)}
+                {pickupReview || availabilityReview ? t('cart.price_unavailable') : quoteRequired ? t('cart.price_on_request') : subtotalUsd == null ? t(currentPricing?.failed ? 'cart.price_unavailable' : 'cart.checking_prices') : format(subtotalUsd)}
                 {requestMode && <small className="checkout-total__note"> {t('cart.plus_request')}</small>}
               </strong>
             </div>
-            {!requestMode && depositMode && (
+            {!requestMode && !pickupReview && !availabilityReview && !quoteRequired && depositMode && (
               <>
                 <div className="checkout-total">
                   <span>{t('checkout.deposit_due', { percent: 20 })}</span>
@@ -247,6 +282,9 @@ export default function StoreCheckout() {
               </>
             )}
             {requestMode && <p className="checkout-request-hint">{t('checkout.request_pricing_hint')}</p>}
+            {pickupReview && <p className="checkout-conflict" role="status">{t('checkout.pickup_review')}</p>}
+            {quoteRequired && <p className="checkout-request-hint">{t('checkout.quote_required')}</p>}
+            {availabilityReview && <p className="checkout-conflict" role="status">{t('checkout.conflict')}</p>}
           </div>
         </section>
 
@@ -261,13 +299,21 @@ export default function StoreCheckout() {
               </div>
             </div>
 
+            <p className="checkout-terms">
+              <Trans
+                t={t}
+                i18nKey="checkout.privacy_notice"
+                components={{ privacy: <Link key="privacy-policy" to="/privacy-policy" /> }}
+              />
+            </p>
+
             <h2 className="store-card__title store-card__title--gap">
-              {requestMode ? t('checkout.request_how') : t('checkout.payment')}
+              {requestMode || quoteRequired ? t('checkout.request_how') : t('checkout.payment')}
             </h2>
             <div className="checkout-payment">
               <CheckIcon size={20} strokeWidth={1.8} />
               <p>
-                {requestMode
+                {requestMode || quoteRequired
                   ? t('checkout.request_note')
                   : <Trans t={t} i18nKey={isLiveStoreApi() ? 'checkout.payment_note' : 'checkout.payment_note_preview'} components={{ strong: <strong key="payment-partner" /> }} />}
               </p>
@@ -301,16 +347,16 @@ export default function StoreCheckout() {
               />
             </p>
 
-            <button type="button" className="checkout-pay" disabled={checking || (!requestMode && !currentQuote)} onClick={pay}>
+            <button type="button" className="checkout-pay" disabled={checking || pickupReview || availabilityReview || (!quoteRequired && !requestMode && !currentQuote)} onClick={pay}>
               {checking && <span className="checkout-pay__spinner" aria-hidden="true" />}
               {checking
                 ? (requestMode ? t('checkout.request_sending') : t('checkout.checking'))
-                : (requestMode ? t('checkout.request_cta') : chargeUsd == null ? t('cart.checking_prices') : t(depositMode ? 'checkout.pay_deposit' : 'checkout.pay', { amount: format(chargeUsd) }))}
+                : (pickupReview || availabilityReview ? t('checkout.review_selection') : quoteRequired ? t('panel.contact_quote') : requestMode ? t('checkout.request_cta') : chargeUsd == null ? t('cart.checking_prices') : t(depositMode ? 'checkout.pay_deposit' : 'checkout.pay', { amount: format(chargeUsd) }))}
             </button>
             <p className="checkout-footnote">
-              {requestMode ? t('checkout.request_footnote') : t('checkout.recheck_note')}
+              {requestMode || quoteRequired ? t('checkout.request_footnote') : t('checkout.recheck_note')}
             </p>
-            {!requestMode && currency !== 'USD' && <p className="checkout-footnote">{t('checkout.usd_note')}</p>}
+            {!requestMode && !quoteRequired && <p className="checkout-footnote">{t('checkout.usd_note')}</p>}
           </div>
         </section>
       </div>

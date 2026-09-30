@@ -29,7 +29,8 @@ function enable() {
   vi.stubEnv('PESAPAL_CONSUMER_KEY', 'test-key');
   vi.stubEnv('PESAPAL_CONSUMER_SECRET', 'test-secret');
   vi.stubEnv('PESAPAL_IPN_ID', IPN_ID);
-  vi.stubEnv('CONTEXT', 'dev');
+  vi.stubEnv('STORE_RUNTIME_ENVIRONMENT', 'staging');
+  vi.stubEnv('CONTEXT', undefined);
 }
 
 const statusResponse = (overrides = {}) => ({
@@ -94,12 +95,60 @@ describe('Pesapal API3 adapter', () => {
   });
 
   it('blocks sandbox and simulated payments in production', () => {
-    vi.stubEnv('CONTEXT', 'production');
+    vi.stubEnv('STORE_RUNTIME_ENVIRONMENT', 'production');
     vi.stubEnv('STORE_DEV_FAKE_PAYMENT', 'true');
     expect(pesapalEnabled()).toBe(false);
     expect(devFakePaymentEnabled()).toBe(false);
     vi.stubEnv('PESAPAL_ENVIRONMENT', 'live');
     expect(pesapalEnabled()).toBe(true);
+  });
+
+  it.each([undefined, '', 'preview', 'branch-deploy', 'Production', 'unknown'])('fails closed for sandbox/fake when runtime is %s despite preview build metadata', async (runtime) => {
+    vi.stubEnv('STORE_RUNTIME_ENVIRONMENT', runtime);
+    vi.stubEnv('CONTEXT', 'branch-deploy');
+    vi.stubEnv('STORE_DEV_FAKE_PAYMENT', 'true');
+    expect(pesapalEnabled()).toBe(false);
+    expect(pesapalEnabled({ checkout: false })).toBe(false);
+    expect(devFakePaymentEnabled()).toBe(false);
+    const calls = network();
+    await expect(createCheckout({ ...context(), totalMinor: 9200 })).rejects.toThrow('environment is not configured');
+    await expect(verifyPayment({ transToken: TRACKING, expected: { reference: REF, currency: 'USD', totalMinor: 9200 } })).rejects.toThrow('environment is not configured');
+    expect(calls).toEqual([]);
+  });
+
+  it.each(['staging', 'development'])('allows sandbox and explicitly enabled simulation in %s without build context', (runtime) => {
+    vi.stubEnv('STORE_RUNTIME_ENVIRONMENT', runtime);
+    vi.stubEnv('STORE_DEV_FAKE_PAYMENT', 'true');
+    expect(pesapalEnabled()).toBe(true);
+    expect(devFakePaymentEnabled()).toBe(true);
+    vi.stubEnv('STORE_DEV_FAKE_PAYMENT', 'false');
+    expect(devFakePaymentEnabled()).toBe(false);
+  });
+
+  it.each([undefined, '', 'production', 'unknown'])('preserves live creation/verification when runtime is %s', async (runtime) => {
+    vi.stubEnv('STORE_RUNTIME_ENVIRONMENT', runtime);
+    vi.stubEnv('PESAPAL_ENVIRONMENT', 'live');
+    const livePaymentUrl = PAYMENT_URL.replace('cybqa.pesapal.com', 'pay.pesapal.com');
+    const calls = network({ submit: () => ({ status: '200', order_tracking_id: TRACKING, merchant_reference: REF, redirect_url: livePaymentUrl, error: null }) });
+    expect(pesapalEnabled()).toBe(true);
+    expect(pesapalEnabled({ checkout: false, environment: 'sandbox' })).toBe(false);
+    expect((await createCheckout({ ...context(), totalMinor: 9200 })).paymentUrl).toBe(livePaymentUrl);
+    expect((await verifyPayment({ transToken: TRACKING, expected: { reference: REF, currency: 'USD', totalMinor: 9200 } })).status).toBe('paid');
+    expect(calls.length).toBe(4);
+    expect(calls.every((call) => call.target.startsWith('https://pay.pesapal.com/v3/api/'))).toBe(true);
+  });
+
+  it.each([undefined, '', 'production', 'unknown'])('rejects HTTP localhost callback when runtime is %s', (runtime) => {
+    vi.stubEnv('STORE_RUNTIME_ENVIRONMENT', runtime);
+    vi.stubEnv('CONTEXT', 'dev');
+    vi.stubEnv('STORE_PUBLIC_ORIGIN', 'http://localhost:8888');
+    expect(() => buildPesapalOrder({ ...context(), totalMinor: 9200 })).toThrow('Invalid store public origin');
+  });
+
+  it.each(['staging', 'development'])('retains HTTP localhost callbacks for explicit %s', (runtime) => {
+    vi.stubEnv('STORE_RUNTIME_ENVIRONMENT', runtime);
+    vi.stubEnv('STORE_PUBLIC_ORIGIN', 'http://localhost:8888');
+    expect(buildPesapalOrder({ ...context(), totalMinor: 9200 }).callback_url).toBe(`http://localhost:8888/api/payments/pesapal/return?reference=${REF}`);
   });
 
   it('builds the amount in currency units without inventing a guest country', () => {
