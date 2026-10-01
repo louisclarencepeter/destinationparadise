@@ -13,7 +13,7 @@
 import { getCartExperience, getInstantExperience } from '../data/commerceCatalog.js';
 import { calculateGroupPickupPrice, pickupFields } from './storePricing.js';
 
-export const BOOKING_WINDOW_DAYS = 60;
+export const BOOKING_END_DATE = '2027-02-28';
 export const ORDER_SESSION_KEY = 'dp_store_last_order_v1';
 export const ORDER_CREDENTIALS_KEY = 'dp_store_order_credentials_v1';
 const IDEMPOTENCY_KEY = 'dp_store_checkout_idem_v1';
@@ -66,9 +66,9 @@ export function seatsLeft(experienceId, dateIso, time) {
 }
 
 // Fixture booking rule: departures are bookable from tomorrow (a coarse stand-in
-// for the per-option booking cutoff) through the rolling booking window.
+// for the per-option booking cutoff) through the final published booking date.
 export function isDateInBookingWindow(dateIso, today = todayInStoreTz()) {
-  return dateIso > today && dateIso <= addDaysIso(today, BOOKING_WINDOW_DAYS);
+  return dateIso > today && dateIso <= BOOKING_END_DATE;
 }
 
 function dayAvailability(experience, dateIso, today) {

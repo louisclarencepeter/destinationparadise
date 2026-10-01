@@ -40,7 +40,7 @@
   "list": {
     "eyebrow": "Sansibar & Tansania",
     "title": "Ausgewählte Erlebnisse",
-    "lead": "Küstenausflüge buchst du sofort. Safaris und maßgeschneiderte Routen organisieren wir auf Anfrage.",
+    "lead": "Wähle Datum, Gäste und Abholung, lege ein oder mehrere Erlebnisse in Deine Reise und zahle eine gemeinsame Anzahlung von 20% beim Checkout.",
     "filter_all": "Alle Erlebnisse",
     "filter_instant": "Sofort buchbar",
     "filter_request": "Auf Anfrage",
@@ -103,19 +103,20 @@
     "update": "Tour aktualisieren",
     "not_charged": "Noch keine Zahlung — du prüfst alles beim Checkout.",
     "group_total": "für deine Gruppe",
-    "quote_chip": "Angebot zuerst",
+    "quote_chip": "Preis ausstehend",
     "small_car_hint": "Onlinepreise für bis zu 6 Gäste in einem Fahrzeug; ab 7 Gästen ist ein Angebot erforderlich.",
     "effective_per_person": "Preis pro Person inklusive Abholung",
     "deposit": "20% Anzahlung beim Checkout",
     "balance": "80% Restbetrag am Erlebnistag",
     "currency_estimate": "Schätzwerte in deiner Währung. Das Angebot beim Checkout wird in USD angezeigt.",
     "contact_quote": "Kontaktiere uns für ein Angebot",
-    "quote_large_group": "Ab 7 Gästen organisieren wir ein geeignetes größeres Fahrzeug und bestätigen den Preis persönlich.",
-    "quote_other_area": "Transport und Preis für deine Abholregion bestätigen wir persönlich.",
+    "quote_large_group": "Onlinebuchungen sind für bis zu 6 Gäste möglich. Nutze für 7 oder mehr Gäste Book Now für eine separate Anfrage.",
+    "quote_other_area": "Für dieses Abholgebiet ist eine separate Anfrage über Book Now nötig. Wähle für die Onlinebuchung ein aufgeführtes Gebiet.",
     "loading_prices": "Wir prüfen die bestätigten Gruppenpreise und Abholzuschläge…",
-    "pricing_failed": "Die Onlinepreise konnten nicht geprüft werden. Kontaktiere uns, damit wir dein Angebot persönlich bestätigen können.",
-    "quote_unpriced": "Für diese Gruppe und Abholregion ist kein Onlinepreis verfügbar. Kontaktiere uns für ein bestätigtes Angebot.",
-    "quote_no_payment": "Bei einer Angebotsanfrage wird keine Onlinezahlung eingezogen."
+    "pricing_failed": "Wir konnten den Onlinepreis nicht prüfen. Du kannst diesen Ausflug speichern und den Preis beim Checkout erneut prüfen.",
+    "quote_unpriced": "Für diese Auswahl ist derzeit kein Onlinepreis verfügbar. Du kannst den Ausflug speichern und den Preis beim Checkout erneut prüfen.",
+    "quote_no_payment": "Bei einer Angebotsanfrage wird keine Onlinezahlung eingezogen.",
+    "price_unavailable": "Onlinepreis nicht verfügbar"
   },
   "cart": {
     "title": "Deine Reise",
@@ -140,8 +141,8 @@
     "remove": "Entfernen",
     "subtotal": "Zwischensumme",
     "checkout_cta": "Weiter zum Checkout",
-    "note": "Jedes Erlebnis behält sein Datum, seine Uhrzeit und seine Gäste.",
-    "price_on_request": "Auf Anfrage",
+    "note": "Füge ein oder mehrere Erlebnisse hinzu und zahle eine gemeinsame Anzahlung von 20%. Jeder Ausflug behält sein Datum, seine Uhrzeit und seine Gästezahl.",
+    "price_on_request": "Onlinepreis nicht verfügbar",
     "requested_dates": "Wunschtermine",
     "requested_flexible": "flexibel",
     "mode_request": "Auf Anfrage",
@@ -153,7 +154,9 @@
     "price_unavailable": "Preis nicht verfügbar",
     "status_checking": "Verfügbarkeit wird geprüft…",
     "status_pickup_required": "Abholdetails erforderlich",
-    "status_quote_required": "Angebot erforderlich"
+    "status_quote_required": "Onlinepreis nicht verfügbar",
+    "continue_shopping": "Weiter einkaufen",
+    "online_only": "Ausflüge auf Anfrage können im Shop nicht bezahlt werden. Behalte hier Online-Abfahrten und nutze Book Now für eine separate Anfrage."
   },
   "checkout": {
     "meta_title": "Kasse · Destination Paradise",
@@ -181,7 +184,7 @@
     "conflict": "Einige Abfahrten sind nicht mehr verfügbar. Passe bitte die markierten Touren an.",
     "conflict_fix": "Neue Zeit wählen",
     "failed": "Die Weiterleitung zur Zahlung konnte nicht abgeschlossen werden. Bitte versuche es gleich noch einmal.",
-    "payment_unavailable": "Online-Zahlung ist vorübergehend nicht verfügbar. Deine Auswahl wurde als Bestellung gespeichert. Kontaktiere unser Team oder nutze das Anfrageformular.",
+    "payment_unavailable": "Die Onlinezahlung ist vorübergehend nicht verfügbar. Deine Ausflüge bleiben gespeichert. Versuche es erneut oder kontaktiere unser Team.",
     "usd_note": "Reise und Anzahlung werden in US-Dollar (USD) angeboten; andere Währungen auf unserer Website sind Richtwerte. Dein Zahlungsanbieter kann eine umgerechnete Währung anzeigen. Prüfe vor der Zahlung den endgültigen Betrag und die Währung.",
     "privacy_notice": "Wir verwenden deine Kontakt- und Reisedaten, um deine Buchung und Zahlung zu organisieren. Lies unsere <privacy>Datenschutzerklärung</privacy>.",
     "errors": {
@@ -207,8 +210,10 @@
     "quote_failed": "Der aktuelle Preis konnte nicht geprüft werden. Bitte versuche es vor der Zahlung erneut.",
     "retry_quote": "Preise erneut prüfen",
     "pickup_review": "Wähle für jede Tour eine Abholregion und Unterkunft und prüfe anschließend den Preis.",
-    "quote_required": "Für diese Gruppe oder Abholung ist ein Angebot unseres Teams erforderlich.",
-    "review_selection": "Gruppe und Abholung prüfen"
+    "quote_required": "Für die markierte Auswahl ist kein Onlinepreis verfügbar. Prüfe Gästezahl und Abholung. Die Zahlung ist erst möglich, wenn der Preis bestätigt ist.",
+    "review_selection": "Gruppe und Abholung prüfen",
+    "online_only": "Der Shop-Checkout ist für Online-Abfahrten. Entferne Ausflüge auf Anfrage aus diesem Warenkorb und nutze Book Now für eine separate Anfrage.",
+    "separate_enquiry": "Separate Anfrage in Book Now öffnen"
   },
   "confirm": {
     "meta_title": "Buchungsbestätigung · Destination Paradise",

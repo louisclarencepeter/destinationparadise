@@ -17,8 +17,30 @@ disabled; staging approval does not authorize a production release.
   order. Internal `paid` means the required checkout payment was settled and
   bookings finalized; it does not remove the remaining balance.
 - Existing full-payment and DPO attempts keep their original amounts/provider.
-- Request and mixed carts still wait for staff availability and a quote before
-  any payment. The accepted quote uses the same deposit plan.
+- Historical request orders still wait for staff availability and a quote
+  before any payment. The accepted quote retains its stored payment plan.
+
+## Prepared shopping-flow correction — 1 October 2026
+
+The local Store changes keep online departures in a shopping cart: select
+guests, pickup details, date/time, add one or several trips, continue shopping,
+then pay one combined 20% deposit in the embedded Pesapal checkout. Book Now
+remains the separate enquiry/payment-link flow. Enquiry-only products no longer
+enter new Store carts; older cart rows remain visible, without being paid or
+silently removed. Missing online prices keep the trip in the cart and disable
+payment rather than redirecting checkout to Book Now.
+
+After the user's approval, the store inventory was extended on 1 October 2026
+through 28 February 2027: 1,050 departures were added across the seven existing
+daily times, and the transaction verified that all pre-existing rows remained
+unchanged. An independent query confirmed 300 Safari Blue, 300 Spice Tour and
+450 Stone Town departures in the extended range. The frontend calendar change
+is prepared locally through the same final date.
+The live group and pickup rate tables remain empty across all six pilot
+options, so real payments still require the approved amounts in
+[the rate worksheet](../STORE_GROUP_PICKUP_RATES.md). These shopping changes are
+local pending review; this section does not record a frontend deployment.
+Use [the operations guide](store-ops.md) for the reviewed date script.
 
 ## Verified external state
 

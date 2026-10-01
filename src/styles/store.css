@@ -1175,6 +1175,10 @@
 .cart-drawer__checkout:hover {
   background-image: var(--dp-gradient-button-hover);
 }
+.cart-drawer__foot .cart-drawer__browse {
+  width: 100%;
+  margin-top: 0.65rem;
+}
 .cart-drawer__note {
   text-align: center;
   font-family: var(--dp-font-display);

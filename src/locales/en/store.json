@@ -40,7 +40,7 @@
   "list": {
     "eyebrow": "Zanzibar & Tanzania",
     "title": "Curated experiences",
-    "lead": "Coastal excursions book instantly. Safaris and tailor-made routes are arranged on request.",
+    "lead": "Choose your dates, guests and pickup, add one or more experiences to Your trip, and pay a single 20% deposit at checkout.",
     "filter_all": "All experiences",
     "filter_instant": "Instant booking",
     "filter_request": "Request availability",
@@ -103,19 +103,20 @@
     "update": "Update trip",
     "not_charged": "You won't be charged yet — review everything at checkout.",
     "group_total": "for your group",
-    "quote_chip": "Quote first",
+    "quote_chip": "Price pending",
     "small_car_hint": "Online prices for up to 6 guests in one car; 7 or more guests need a quote.",
     "effective_per_person": "Price per person, including pickup",
     "deposit": "20% deposit at checkout",
     "balance": "80% balance on the experience day",
     "currency_estimate": "Local-currency estimates. Your checkout quote is shown in USD.",
     "contact_quote": "Contact us for a quote",
-    "quote_large_group": "For 7 or more guests, we arrange a suitable larger vehicle and confirm the price personally.",
-    "quote_other_area": "We will confirm transport and the price for your pickup area personally.",
+    "quote_large_group": "Online booking supports up to 6 guests. For 7 or more guests, use Book Now for a separate enquiry.",
+    "quote_other_area": "This pickup area needs a separate enquiry through Book Now. Choose a listed area to book online.",
     "loading_prices": "Checking the approved group and pickup prices…",
-    "pricing_failed": "Online prices could not be checked. Contact us and we will confirm your quote personally.",
-    "quote_unpriced": "An online price is not available for this group and pickup area. Contact us for a confirmed quote.",
-    "quote_no_payment": "No online payment is taken when you request a quote."
+    "pricing_failed": "We could not check the online price. You can save this trip and check prices again at checkout.",
+    "quote_unpriced": "An online price is currently unavailable for this selection. You can save this trip and check prices again at checkout.",
+    "quote_no_payment": "No online payment is taken when you request a quote.",
+    "price_unavailable": "Online price unavailable"
   },
   "cart": {
     "title": "Your trip",
@@ -140,8 +141,8 @@
     "remove": "Remove",
     "subtotal": "Subtotal",
     "checkout_cta": "Continue to checkout",
-    "note": "Each experience keeps its own date, time and guests.",
-    "price_on_request": "On request",
+    "note": "Add one or more experiences, then pay one combined 20% deposit. Each trip keeps its own date, time and guests.",
+    "price_on_request": "Online price unavailable",
     "requested_dates": "Preferred",
     "requested_flexible": "flexible",
     "mode_request": "Request to book",
@@ -153,7 +154,9 @@
     "price_unavailable": "Price unavailable",
     "status_checking": "Checking availability…",
     "status_pickup_required": "Pickup details required",
-    "status_quote_required": "Quote required"
+    "status_quote_required": "Online price unavailable",
+    "continue_shopping": "Continue shopping",
+    "online_only": "Enquiry-only trips cannot be paid in the Store. Keep online departures here and use Book Now for a separate enquiry."
   },
   "checkout": {
     "meta_title": "Checkout · Destination Paradise",
@@ -181,7 +184,7 @@
     "conflict": "Some departures are no longer available. Please adjust the highlighted trips.",
     "conflict_fix": "Choose a new time",
     "failed": "We couldn't continue to payment. Please try again in a moment.",
-    "payment_unavailable": "Online payment is temporarily unavailable. Your selection was saved as an order. Please contact our team or use the booking request form.",
+    "payment_unavailable": "Online payment is temporarily unavailable. Your trips remain saved. Please try again or contact our team.",
     "usd_note": "Your trip and deposit are quoted in USD; other website currencies are estimates. Your payment provider may show a converted currency. Review its final amount and currency before paying.",
     "privacy_notice": "We use your contact and trip details to arrange your booking and payment. Read our <privacy>Privacy Policy</privacy>.",
     "errors": {
@@ -207,8 +210,10 @@
     "quote_failed": "We couldn't check the current price. Please try again before paying.",
     "retry_quote": "Check prices again",
     "pickup_review": "Choose a pickup area and accommodation for each trip, then review its price.",
-    "quote_required": "This group or pickup needs a quote from our team.",
-    "review_selection": "Review group and pickup"
+    "quote_required": "An online price is unavailable for the highlighted selection. Review its group and pickup details. Payment remains unavailable until its price is confirmed.",
+    "review_selection": "Review group and pickup",
+    "online_only": "Store checkout is for online departures. Remove enquiry-only trips from this cart and use Book Now for a separate request.",
+    "separate_enquiry": "Open a separate enquiry in Book Now"
   },
   "confirm": {
     "meta_title": "Order confirmation · Destination Paradise",

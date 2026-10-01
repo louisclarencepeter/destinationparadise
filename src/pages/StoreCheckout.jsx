@@ -13,7 +13,6 @@ import {
   quoteCartItems,
   saveLastOrder,
   submitCheckout,
-  submitRequestCheckout,
 } from '../lib/storeApi.js';
 import { formatDateLabel, formatStoreMoney, formatTimeLabel } from '../lib/storeFormat.js';
 import { quoteOnlyDepartureItems, selectionReviewStatus } from '../lib/storePricing.js';
@@ -69,10 +68,9 @@ export default function StoreCheckout() {
   const chargeUsd = currentQuote?.chargeUsd ?? null;
   const balanceUsd = currentQuote?.balanceUsd ?? null;
   const depositMode = currentQuote?.paymentPlan === 'deposit_20';
-  // Any request item switches the whole checkout to the no-payment request
-  // flow (HANDOFF Phase 5): one awaiting_availability order, staff confirm,
-  // guest accepts a quote later and pays the combined deposit then.
-  const requestMode = lines.some((line) => isRequestItem(line.item));
+  // Older carts can contain enquiry items. Keep their selections, but never
+  // turn this online checkout into a request or charge only part of the cart.
+  const requestMode = state.items.some(isRequestItem);
   const oversized = quoteOnlyDepartureItems(state.items);
   const reviewFor = (item) => selectionReviewStatus(item, oversized) ||
     currentQuote?.quotes.find((quote) => quote.id === item.id)?.status;
@@ -81,6 +79,19 @@ export default function StoreCheckout() {
   const availabilityReview = Boolean(currentQuote && lines.some(({ item, totalUsd }) =>
     !isRequestItem(item) && !['pickup_required', 'quote_required'].includes(reviewFor(item)) &&
     (reviewFor(item) !== 'available' || !Number.isFinite(totalUsd) || totalUsd <= 0)));
+  const quotedTotalMinor = lines.reduce((sum, line) => sum + Math.round((line.totalUsd ?? 0) * 100), 0);
+  const subtotalMinor = Math.round((subtotalUsd ?? 0) * 100);
+  const chargeMinor = Math.round((chargeUsd ?? 0) * 100);
+  const balanceMinor = Math.round((balanceUsd ?? 0) * 100);
+  const amountsReady = depositMode && typeof subtotalUsd === 'number' && Number.isFinite(subtotalUsd) && subtotalUsd > 0 &&
+    typeof chargeUsd === 'number' && Number.isFinite(chargeUsd) && chargeUsd > 0 &&
+    typeof balanceUsd === 'number' && Number.isFinite(balanceUsd) && balanceUsd >= 0 &&
+    Number.isSafeInteger(subtotalMinor) && subtotalMinor === quotedTotalMinor &&
+    chargeMinor === Math.ceil(subtotalMinor / 5) && balanceMinor === subtotalMinor - chargeMinor;
+  const paymentReady = Boolean(currentQuote && amountsReady && lines.length === state.items.length &&
+    !requestMode && !pickupReview && !quoteRequired && !availabilityReview);
+  const pricingReview = Boolean(currentQuote && !requestMode && !pickupReview && !quoteRequired &&
+    !availabilityReview && !amountsReady);
 
   useEffect(() => {
     if (!catalogLanguage || state.items.length === 0) return undefined;
@@ -111,35 +122,12 @@ export default function StoreCheckout() {
   };
 
   const pay = async () => {
-    if (pickupReview || availabilityReview || checking) return;
-    if (quoteRequired) {
-      navigate('/book-now#booking-contact', { state: { storeEnquiry: { items: state.items.map((item) => ({
-        experienceId: item.experienceId, mode: item.mode, guests: item.guests,
-        pickupZone: item.pickupZone, accommodation: item.accommodation,
-        preferredDate: item.date || item.requestedDates || '', preferredTime: item.time || '',
-      })), contact } } });
-      return;
-    }
+    if (!paymentReady || checking) return;
     setTouched(true);
-    if (!valid || checking || (!requestMode && !currentQuote)) return;
+    if (!valid) return;
     setChecking(true);
     setConflictIds(null);
     setCheckoutError(null);
-
-    if (requestMode) {
-      const result = await submitRequestCheckout({ items: state.items, contact });
-      if (!result.ok || !result.order) {
-        setChecking(false);
-        setCheckoutError('generic');
-        return;
-      }
-      saveLastOrder(result.order);
-      trackEvent('request_availability', { items: state.items.length });
-      dispatch({ type: 'clear' });
-      suspendGoogleAnalytics();
-      navigate(`/store/order/${result.order.reference}`);
-      return;
-    }
 
     const result = await submitCheckout({ items: state.items, contact, expectedTotalUsd: subtotalUsd, expectedChargeUsd: chargeUsd });
 
@@ -216,10 +204,10 @@ export default function StoreCheckout() {
           {t('checkout.back')}
         </button>
         <h1 className="store-checkout__title">
-          {requestMode ? t('checkout.request_title') : t('checkout.title')}
+          {t('checkout.title')}
         </h1>
         <p className="store-checkout__sub">
-          {requestMode ? t('checkout.request_sub') : t('checkout.sub', { count: lines.length })}
+          {t('checkout.sub', { count: lines.length })}
         </p>
       </div>
 
@@ -263,13 +251,12 @@ export default function StoreCheckout() {
               );
             })}
             <div className="checkout-total">
-              <span>{requestMode ? t('checkout.request_total_label') : t('checkout.trip_total')}</span>
+              <span>{t('checkout.trip_total')}</span>
               <strong>
-                {pickupReview || availabilityReview ? t('cart.price_unavailable') : quoteRequired ? t('cart.price_on_request') : subtotalUsd == null ? t(currentPricing?.failed ? 'cart.price_unavailable' : 'cart.checking_prices') : format(subtotalUsd)}
-                {requestMode && <small className="checkout-total__note"> {t('cart.plus_request')}</small>}
+                {requestMode || pickupReview || availabilityReview || pricingReview ? t('cart.price_unavailable') : quoteRequired ? t('cart.price_on_request') : subtotalUsd == null ? t(currentPricing?.failed ? 'cart.price_unavailable' : 'cart.checking_prices') : format(subtotalUsd)}
               </strong>
             </div>
-            {!requestMode && !pickupReview && !availabilityReview && !quoteRequired && depositMode && (
+            {paymentReady && (
               <>
                 <div className="checkout-total">
                   <span>{t('checkout.deposit_due', { percent: 20 })}</span>
@@ -281,9 +268,21 @@ export default function StoreCheckout() {
                 </div>
               </>
             )}
-            {requestMode && <p className="checkout-request-hint">{t('checkout.request_pricing_hint')}</p>}
+            {requestMode && <p className="checkout-request-hint" role="status">
+              {t('checkout.online_only')}{' '}
+              <Link to="/book-now#booking-contact" state={{ storeEnquiry: { items: state.items.map((item) => ({
+                experienceId: item.experienceId, mode: item.mode, guests: item.guests,
+                pickupZone: item.pickupZone, accommodation: item.accommodation,
+                preferredDate: item.date || item.requestedDates || '', preferredTime: item.time || '',
+              })), contact } }}>{t('checkout.separate_enquiry')}</Link>
+            </p>}
             {pickupReview && <p className="checkout-conflict" role="status">{t('checkout.pickup_review')}</p>}
-            {quoteRequired && <p className="checkout-request-hint">{t('checkout.quote_required')}</p>}
+            {quoteRequired && <p className="checkout-request-hint" role="status">
+              {t('checkout.quote_required')}{' '}
+              <button type="button" className="cart-item__link" onClick={() => setQuoteRetry((value) => value + 1)}>
+                {t('checkout.retry_quote')}
+              </button>
+            </p>}
             {availabilityReview && <p className="checkout-conflict" role="status">{t('checkout.conflict')}</p>}
           </div>
         </section>
@@ -308,14 +307,12 @@ export default function StoreCheckout() {
             </p>
 
             <h2 className="store-card__title store-card__title--gap">
-              {requestMode || quoteRequired ? t('checkout.request_how') : t('checkout.payment')}
+              {t('checkout.payment')}
             </h2>
             <div className="checkout-payment">
               <CheckIcon size={20} strokeWidth={1.8} />
               <p>
-                {requestMode || quoteRequired
-                  ? t('checkout.request_note')
-                  : <Trans t={t} i18nKey={isLiveStoreApi() ? 'checkout.payment_note' : 'checkout.payment_note_preview'} components={{ strong: <strong key="payment-partner" /> }} />}
+                <Trans t={t} i18nKey={isLiveStoreApi() ? 'checkout.payment_note' : 'checkout.payment_note_preview'} components={{ strong: <strong key="payment-partner" /> }} />
               </p>
             </div>
 
@@ -325,7 +322,7 @@ export default function StoreCheckout() {
                 {t(checkoutError === 'generic' ? 'checkout.failed' : `checkout.${checkoutError}`)}
               </p>
             )}
-            {currentPricing?.failed && !requestMode && (
+            {(currentPricing?.failed || pricingReview) && !requestMode && (
               <p className="checkout-conflict" role="alert">
                 {t('checkout.quote_failed')}{' '}
                 <button type="button" className="cart-item__link" onClick={() => setQuoteRetry((value) => value + 1)}>
@@ -347,16 +344,16 @@ export default function StoreCheckout() {
               />
             </p>
 
-            <button type="button" className="checkout-pay" disabled={checking || pickupReview || availabilityReview || (!quoteRequired && !requestMode && !currentQuote)} onClick={pay}>
+            <button type="button" className="checkout-pay" disabled={checking || !paymentReady} onClick={pay}>
               {checking && <span className="checkout-pay__spinner" aria-hidden="true" />}
               {checking
-                ? (requestMode ? t('checkout.request_sending') : t('checkout.checking'))
-                : (pickupReview || availabilityReview ? t('checkout.review_selection') : quoteRequired ? t('panel.contact_quote') : requestMode ? t('checkout.request_cta') : chargeUsd == null ? t('cart.checking_prices') : t(depositMode ? 'checkout.pay_deposit' : 'checkout.pay', { amount: format(chargeUsd) }))}
+                ? t('checkout.checking')
+                : (!paymentReady ? t(currentQuote || currentPricing?.failed ? 'checkout.review_selection' : 'cart.checking_prices') : t('checkout.pay_deposit', { amount: format(chargeUsd) }))}
             </button>
             <p className="checkout-footnote">
-              {requestMode || quoteRequired ? t('checkout.request_footnote') : t('checkout.recheck_note')}
+              {t('checkout.recheck_note')}
             </p>
-            {!requestMode && !quoteRequired && <p className="checkout-footnote">{t('checkout.usd_note')}</p>}
+            <p className="checkout-footnote">{t('checkout.usd_note')}</p>
           </div>
         </section>
       </div>

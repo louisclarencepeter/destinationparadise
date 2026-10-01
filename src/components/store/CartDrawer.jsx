@@ -23,7 +23,7 @@ export default function CartDrawer() {
   const drawerRef = useRef(/** @type {HTMLElement | null} */ (null));
   const closeBtnRef = useRef(/** @type {HTMLButtonElement | null} */ (null));
   const [quote, setQuote] = useState(
-    /** @type {{ items: typeof state.items, quotes: {id: string, status: string, totalUsd: number | null, priceLines?: any[]}[], subtotalUsd: number } | null} */ (null),
+    /** @type {(Awaited<ReturnType<typeof quoteCartItems>> & {items: typeof state.items}) | null} */ (null),
   );
   const [quoteFailed, setQuoteFailed] = useState(false);
   const currentQuote = quote?.items === state.items ? quote : null;
@@ -44,7 +44,7 @@ export default function CartDrawer() {
     [catalog, state.items],
   );
 
-  const hasRequestItems = lines.some(({ item }) => isRequestItem(item));
+  const hasRequestItems = state.items.some(isRequestItem);
   const oversized = quoteOnlyDepartureItems(lines.map(({ item }) => item));
 
   // Live prices come from the same server quote as availability.
@@ -122,9 +122,36 @@ export default function CartDrawer() {
   const quoteRequired = lines.some((line) => statusFor(line) === 'quote_required');
   const availabilityReview = Boolean(currentQuote && lines.some((line) =>
     !isRequestItem(line.item) && !['available', 'pickup_required', 'quote_required'].includes(statusFor(line))));
+  const lineAmounts = lines.map(({ item }) => currentQuote?.quotes?.find((entry) => entry.id === item.id)?.totalUsd);
+  const quotedTotalMinor = lineAmounts.reduce((sum, amount) => sum + Math.round((amount ?? 0) * 100), 0);
+  const chargeUsd = currentQuote?.chargeUsd ?? null;
+  const balanceUsd = currentQuote?.balanceUsd ?? null;
+  const subtotalMinor = Math.round((subtotalUsd ?? 0) * 100);
+  const chargeMinor = Math.round((chargeUsd ?? 0) * 100);
+  const balanceMinor = Math.round((balanceUsd ?? 0) * 100);
+  // Label a combined amount as a 20% deposit only when every cart line has a
+  // current approved price and the server's cent-rounded totals agree.
+  const depositReady = Boolean(currentQuote?.paymentPlan === 'deposit_20' &&
+    !hasRequestItems && !pickupReview && !availabilityReview && !quoteRequired &&
+    lines.length === state.items.length && currentQuote.quotes.length === state.items.length &&
+    new Set(currentQuote.quotes.map((entry) => entry.id)).size === state.items.length &&
+    lineAmounts.every((amount) => typeof amount === 'number' && Number.isFinite(amount) && amount > 0) &&
+    typeof subtotalUsd === 'number' && Number.isFinite(subtotalUsd) && subtotalUsd > 0 &&
+    typeof chargeUsd === 'number' && Number.isFinite(chargeUsd) && chargeUsd > 0 &&
+    typeof balanceUsd === 'number' && Number.isFinite(balanceUsd) && balanceUsd >= 0 &&
+    Number.isSafeInteger(subtotalMinor) && subtotalMinor === quotedTotalMinor &&
+    chargeMinor === Math.ceil(subtotalMinor / 5) && balanceMinor === subtotalMinor - chargeMinor);
 
   const editItem = (line) => {
     dispatch({ type: 'close_drawer' });
+    if (isRequestItem(line.item)) {
+      navigate('/book-now#booking-contact', { state: { storeEnquiry: {
+        experienceId: line.item.experienceId, mode: line.item.mode, guests: line.item.guests,
+        preferredDate: line.item.requestedDates || '', preferredTime: '',
+        pickupZone: line.item.pickupZone, accommodation: line.item.accommodation,
+      } } });
+      return;
+    }
     navigate(`/excursions/${line.experience.sourceKey}?edit=${line.item.id}#book`);
   };
 
@@ -137,6 +164,11 @@ export default function CartDrawer() {
     dispatch({ type: 'close_drawer' });
     trackEvent('begin_checkout', { ...(subtotalUsd != null && !pickupReview && !availabilityReview && !quoteRequired ? { value: subtotalUsd } : {}), currency: 'USD', items: lines.length });
     navigate('/store/checkout');
+  };
+
+  const continueShopping = () => {
+    close();
+    navigate('/store');
   };
 
   return (
@@ -194,12 +226,21 @@ export default function CartDrawer() {
                 {hasRequestItems && <small className="cart-drawer__subtotal-note"> {t('cart.plus_request')}</small>}
               </strong>
             </div>
+            {depositReady && (
+              <div className="cart-drawer__subtotal">
+                <span>{t('checkout.deposit_due', { percent: 20 })}</span>
+                <strong>{format(chargeUsd)}</strong>
+              </div>
+            )}
             <button type="button" className="cart-drawer__checkout" onClick={beginCheckout}>
-              {hasRequestItems ? t('cart.request_cta') : t('cart.checkout_cta')}
+              {t('cart.checkout_cta')}
               <ArrowRightIcon size={17} />
             </button>
+            <button type="button" className="cart-drawer__browse" onClick={continueShopping}>
+              {t('cart.continue_shopping')}
+            </button>
             <p className="cart-drawer__note">
-              {hasRequestItems ? t('cart.request_note') : t('cart.note')}
+              {hasRequestItems ? t('cart.online_only') : t('cart.note')}
             </p>
           </div>
         )}

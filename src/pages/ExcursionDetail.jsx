@@ -80,6 +80,7 @@ export default function ExcursionDetail() {
 
   const e = excursion;
   const isPilot = isInstantBookable(e.id);
+  const onlineBooking = isStoreEnabled() && isPilot;
   const relatedExcursions = excursions
     .filter((item) => item.id !== e.id && item.category === e.category)
     .slice(0, 3);
@@ -149,14 +150,14 @@ export default function ExcursionDetail() {
               <span className="exc-block__price-note reveal" style={{ '--reveal-index': 0 }}>{t('detail.price_on_request')}</span>
             )}
             {(isPilot || e.priceNote) && <span className="exc-block__price-note reveal" style={{ '--reveal-index': 1 }}>{isPilot ? t('detail.pilot_price_note') : e.priceNote}</span>}
-            <Link className="btn reveal" style={{ '--reveal-index': 2 }} to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}#booking-contact`}>{t('detail.book_this')}</Link>
+            <Link className="btn reveal" style={{ '--reveal-index': 2 }} to={onlineBooking ? '#book' : `/book-now?type=excursion&item=${encodeURIComponent(e.id)}#booking-contact`}>{t('detail.book_this')}</Link>
             <Link className="btn btn--ghost-dark reveal" style={{ '--reveal-index': 3 }} to="/excursions">{t('detail.all_excursions')}</Link>
           </div>
         </div>
       </article>
 
       {/* Instant booking for pilot store products (no-op for everything else). */}
-      {isStoreEnabled() && <StoreBookingSection excursionId={e.id} />}
+      {onlineBooking && <StoreBookingSection excursionId={e.id} />}
 
       {e.timeline && e.timeline.length > 0 && (
         <section className="exc-day" id="day">

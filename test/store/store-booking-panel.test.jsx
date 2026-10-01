@@ -1,6 +1,6 @@
 import { Children, isValidElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import BookingPanel from '../../src/components/store/BookingPanel.jsx';
 import PickupFields from '../../src/components/store/PickupFields.jsx';
 import GuestPicker from '../../src/components/store/GuestPicker.jsx';
@@ -15,7 +15,7 @@ import pl from '../../src/locales/pl/store.json';
 const harness = vi.hoisted(() => ({
   values: [], cursor: 0, effects: [], effectDeps: [], cart: { items: [] }, editId: null,
   navigate: vi.fn(), dispatch: vi.fn(), fetchPricing: vi.fn(),
-  lang: 'en', currency: 'USD', storedGuests: 2,
+  lang: 'en', currency: 'USD', storedGuests: 2, availability: { loading: false, days: null },
 }));
 vi.mock('react', async (importOriginal) => {
   const actual = await importOriginal();
@@ -67,7 +67,7 @@ vi.mock('../../src/context/useBookingCart.js', () => ({
   useBookingCart: () => ({ state: harness.cart, dispatch: harness.dispatch }),
 }));
 vi.mock('../../src/hooks/useAvailability.js', () => ({
-  useAvailability: () => ({ loading: false, days: null }),
+  useAvailability: () => harness.availability,
 }));
 vi.mock('../../src/utils/analytics.js', () => ({ trackEvent: vi.fn() }));
 vi.mock('../../src/lib/storeApi.js', async (importOriginal) => ({
@@ -101,11 +101,17 @@ function renderPanel() {
   return BookingPanel({ experience });
 }
 async function mountPanel() {
-  renderPanel();
-  const cleanups = harness.effects.map((effect) => effect());
-  await Promise.resolve();
-  await Promise.resolve();
-  return { tree: renderPanel(), cleanups };
+  let tree = renderPanel();
+  const cleanups = [];
+  // Saved departures wait for their authoritative availability snapshot,
+  // which causes a second effect pass after the initial cart/pricing effects.
+  for (let pass = 0; pass < 4 && harness.effects.length; pass += 1) {
+    const effects = harness.effects;
+    cleanups.push(...effects.map((effect) => effect()));
+    await Promise.resolve();
+    tree = renderPanel();
+  }
+  return { tree, cleanups };
 }
 function pickup(tree, zone = 'north', accommodation = ' Example Hotel ') {
   const fields = findElement(tree, (element) => element.type === PickupFields);
@@ -119,13 +125,15 @@ function submit(tree) {
 function selectDeparture(tree) {
   const calendar = findElement(tree, (element) => element.type === AvailabilityCalendar);
   const date = `${calendar.props.monthIso}-28`;
-  calendar.props.onSelectDate(date, { times: [{ time: '09:00', seats: 10 }] });
+  calendar.props.onSelectDate(date, { bookable: true, times: [{ time: '09:00', seats: 10 }] });
   tree = renderPanel();
   findElement(tree, (element) => element.type === TimeSlotPicker).props.onSelect('09:00');
   return { tree: renderPanel(), date };
 }
 
 beforeEach(() => {
+  vi.useFakeTimers({ toFake: ['Date'] });
+  vi.setSystemTime(new Date('2026-10-01T09:00:00Z'));
   harness.values = [];
   harness.cursor = 0;
   harness.effects = [];
@@ -138,7 +146,59 @@ beforeEach(() => {
   harness.navigate.mockReset();
   harness.dispatch.mockReset();
   harness.fetchPricing.mockReset().mockResolvedValue(approvedPricing);
+  harness.availability = { loading: false, days: Object.fromEntries(
+    ['2026-10-20', '2026-10-28', '2027-02-28'].map((date) => [date, {
+      date, bookable: true, times: [{ time: '09:00', seats: 10 }],
+    }]),
+  ) };
   vi.stubGlobal('window', { sessionStorage: { getItem: () => String(harness.storedGuests) } });
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+  vi.unstubAllGlobals();
+});
+
+describe('fixed booking calendar horizon', () => {
+  it('navigates across the year and stops at February 2027', async () => {
+    let { tree } = await mountPanel();
+    let calendar = findElement(tree, (element) => element.type === AvailabilityCalendar);
+    expect(calendar.props).toMatchObject({ monthIso: '2026-10', canPrev: false, canNext: true });
+    for (const monthIso of ['2026-11', '2026-12', '2027-01', '2027-02']) {
+      calendar.props.onShiftMonth(1);
+      tree = renderPanel();
+      calendar = findElement(tree, (element) => element.type === AvailabilityCalendar);
+      expect(calendar.props.monthIso).toBe(monthIso);
+      expect(calendar.props.canPrev).toBe(true);
+    }
+    expect(calendar.props.canNext).toBe(false);
+    calendar.props.onShiftMonth(-1);
+    calendar = findElement(renderPanel(), (element) => element.type === AvailabilityCalendar);
+    expect(calendar.props).toMatchObject({ monthIso: '2027-01', canNext: true });
+    expect(harness.dispatch).not.toHaveBeenCalled();
+    expect(harness.navigate).not.toHaveBeenCalled();
+  });
+
+  it('restores a saved 28 February departure and updates its original cart line', async () => {
+    harness.editId = 'last-day';
+    harness.cart.items = [{
+      id: 'last-day', experienceId: 'spice-tour', mode: 'shared', guests: 3,
+      date: '2027-02-28', time: '09:00', pickupZone: 'east', accommodation: 'Beach Hotel',
+    }];
+    const { tree } = await mountPanel();
+    const calendar = findElement(tree, (element) => element.type === AvailabilityCalendar);
+    expect(calendar.props).toMatchObject({ monthIso: '2027-02', selectedDate: '2027-02-28', canNext: false });
+    expect(findElement(tree, (element) => element.type === PickupFields).props)
+      .toMatchObject({ pickupZone: 'east', accommodation: 'Beach Hotel' });
+    expect(submit(tree).props.disabled).toBe(false);
+    submit(tree).props.onClick();
+    expect(harness.dispatch).toHaveBeenCalledWith({
+      type: 'update', id: 'last-day', patch: expect.objectContaining({
+        guests: 3, date: '2027-02-28', time: '09:00', pickupZone: 'east', accommodation: 'Beach Hotel',
+      }),
+    });
+    expect(harness.navigate).toHaveBeenCalledWith('/excursions/spice-tour#book', { replace: true });
+  });
 });
 
 describe('group and pickup booking panel', () => {
@@ -182,35 +242,59 @@ describe('group and pickup booking panel', () => {
     expect(findElement(tree, (element) => element.type === 'button' && element.props.children === en.panel.private).props['aria-pressed']).toBe(true);
   });
 
-  it.each([7, 24])('sends %s guests to a quote with optional dates and preserves their exact group size', async (guests) => {
+  it.each([7, 24])('preserves stored %s guests as invalid until the guest explicitly reduces the group', async (guests) => {
     harness.storedGuests = guests;
     let { tree } = await mountPanel();
     tree = pickup(tree);
-    expect(findElement(tree, (element) => element.type === GuestPicker).props.value).toBe(guests);
-    expect(submit(tree).props.disabled).toBe(false);
+    const picker = findElement(tree, (element) => element.type === GuestPicker);
+    expect(picker.props).toMatchObject({ value: guests, max: 6 });
+    expect(renderToStaticMarkup(tree)).toContain(en.panel.quote_large_group);
+    expect(submit(tree).props.disabled).toBe(true);
     submit(tree).props.onClick();
-    expect(harness.navigate).toHaveBeenCalledWith('/book-now#booking-contact', {
-      state: { storeEnquiry: {
-        experienceId: 'spice-tour', mode: 'shared', guests, pickupZone: 'north', accommodation: 'Example Hotel',
-        preferredDate: '', preferredTime: '',
-      } },
-    });
+    expect(harness.navigate).not.toHaveBeenCalled();
     expect(harness.dispatch).not.toHaveBeenCalled();
+    picker.props.onChange(6);
+    const departure = selectDeparture(renderPanel());
+    expect(submit(departure.tree).props.disabled).toBe(false);
+    submit(departure.tree).props.onClick();
+    expect(harness.dispatch).toHaveBeenCalledWith({
+      type: 'add', item: expect.objectContaining({ guests: 6, date: departure.date, time: '09:00' }),
+    });
+    expect(harness.navigate).not.toHaveBeenCalled();
   });
 
-  it.each(['other', 'south'])('routes pickup %s to staff when its rate is unavailable', async (zone) => {
+  it('adds a known pickup area with an unconfigured rate to the cart without inventing a price', async () => {
     harness.fetchPricing.mockResolvedValue({ options: { shared: { groupPrices: { 2: 6000 }, pickupPrices: { north: 3000 } } } });
     let { tree } = await mountPanel();
-    tree = pickup(tree, zone);
+    tree = pickup(tree, 'south');
+    expect(submit(tree).props.disabled).toBe(true);
+    const departure = selectDeparture(tree);
+    tree = departure.tree;
     expect(renderToStaticMarkup(tree)).not.toContain('$90.00');
+    expect(renderToStaticMarkup(tree)).toContain(en.panel.price_unavailable);
+    expect(submit(tree).props.children).toContain(en.panel.add);
+    expect(submit(tree).props.disabled).toBe(false);
     submit(tree).props.onClick();
-    expect(harness.navigate).toHaveBeenCalledWith('/book-now#booking-contact', expect.objectContaining({
-      state: { storeEnquiry: expect.objectContaining({ pickupZone: zone }) },
-    }));
+    expect(harness.dispatch).toHaveBeenCalledWith({
+      type: 'add', item: expect.objectContaining({ pickupZone: 'south', accommodation: 'Example Hotel', date: departure.date }),
+    });
+    const item = harness.dispatch.mock.calls.find(([action]) => action.type === 'add')[0].item;
+    expect(item).not.toHaveProperty('price');
+    expect(item).not.toHaveProperty('totalUsd');
+    expect(harness.navigate).not.toHaveBeenCalled();
+  });
+
+  it('blocks other pickup areas even with a departure and does not redirect to Book Now', async () => {
+    let { tree } = await mountPanel();
+    tree = selectDeparture(pickup(tree, 'other')).tree;
+    expect(submit(tree).props.disabled).toBe(true);
+    expect(renderToStaticMarkup(tree)).toContain(en.panel.quote_other_area);
+    submit(tree).props.onClick();
+    expect(harness.navigate).not.toHaveBeenCalled();
     expect(harness.dispatch).not.toHaveBeenCalled();
   });
 
-  it('settles a rejected pricing request into a quote without using the editorial fallback price', async () => {
+  it('keeps a rejected pricing request in the cart flow and still requires a valid departure', async () => {
     harness.fetchPricing.mockRejectedValue(new Error('network unavailable'));
     let { tree } = await mountPanel();
     tree = pickup(tree);
@@ -218,10 +302,30 @@ describe('group and pickup booking panel', () => {
     expect(markup).toContain(en.panel.pricing_failed);
     expect(markup).not.toContain('$90.00');
     expect(markup).not.toContain('$45.00');
+    expect(submit(tree).props.disabled).toBe(true);
+    submit(tree).props.onClick();
+    expect(harness.dispatch).not.toHaveBeenCalled();
+    const departure = selectDeparture(tree);
+    expect(submit(departure.tree).props.disabled).toBe(false);
+    submit(departure.tree).props.onClick();
+    expect(harness.dispatch).toHaveBeenCalledWith({
+      type: 'add', item: expect.objectContaining({ date: departure.date, guests: 2, pickupZone: 'north' }),
+    });
+    expect(harness.navigate).not.toHaveBeenCalled();
+  });
+
+  it('allows a configured departure into the cart while prices are still loading', async () => {
+    harness.fetchPricing.mockReturnValue(new Promise(() => {}));
+    let { tree } = await mountPanel();
+    tree = pickup(tree);
+    expect(submit(tree).props.disabled).toBe(true);
+    tree = selectDeparture(tree).tree;
+    expect(renderToStaticMarkup(tree)).toContain(en.panel.loading_prices);
+    expect(renderToStaticMarkup(tree)).not.toContain('$95.01');
     expect(submit(tree).props.disabled).toBe(false);
     submit(tree).props.onClick();
-    expect(harness.navigate).toHaveBeenCalledOnce();
-    expect(harness.dispatch).not.toHaveBeenCalled();
+    expect(harness.dispatch).toHaveBeenCalledWith({ type: 'add', item: expect.objectContaining({ guests: 2 }) });
+    expect(harness.navigate).not.toHaveBeenCalled();
   });
 
   it('ignores a pricing response after the effect is cleaned up', async () => {
@@ -248,6 +352,94 @@ describe('group and pickup booking panel', () => {
     expect(harness.navigate).toHaveBeenCalledWith('/excursions/spice-tour#book', { replace: true });
   });
 
+  it('updates an unpriced existing departure in the cart without an enquiry handoff', async () => {
+    harness.fetchPricing.mockResolvedValue(null);
+    harness.editId = 'unpriced';
+    harness.cart.items = [{ id: 'unpriced', experienceId: 'spice-tour', mode: 'shared', guests: 2, date: '2026-10-20', time: '09:00', pickupZone: 'north', accommodation: 'Hotel' }];
+    const { tree } = await mountPanel();
+    expect(renderToStaticMarkup(tree)).toContain(en.panel.price_unavailable);
+    expect(renderToStaticMarkup(tree)).not.toContain('$95.01');
+    expect(submit(tree).props.children).toContain(en.panel.update);
+    expect(submit(tree).props.disabled).toBe(false);
+    submit(tree).props.onClick();
+    expect(harness.dispatch).toHaveBeenCalledWith({
+      type: 'update', id: 'unpriced', patch: expect.objectContaining({
+        date: '2026-10-20', time: '09:00', guests: 2, pickupZone: 'north', accommodation: 'Hotel',
+      }),
+    });
+    expect(harness.navigate).toHaveBeenCalledExactlyOnceWith('/excursions/spice-tour#book', { replace: true });
+  });
+
+  it.each([
+    ['2026-10-01', true], ['2026-09-30', false], ['2027-03-01', false],
+  ])('uses server bookability for %s while enforcing the fixed date range', async (date, allowed) => {
+    let { tree } = await mountPanel();
+    tree = pickup(tree);
+    findElement(tree, (element) => element.type === AvailabilityCalendar).props.onSelectDate(date, {
+      bookable: true, times: [{ time: '09:00', seats: 10 }],
+    });
+    tree = renderPanel();
+    findElement(tree, (element) => element.type === TimeSlotPicker).props.onSelect('09:00');
+    tree = renderPanel();
+    expect(submit(tree).props.disabled).toBe(!allowed);
+    submit(tree).props.onClick();
+    if (allowed) {
+      expect(harness.dispatch).toHaveBeenCalledWith({ type: 'add', item: expect.objectContaining({ date }) });
+    } else {
+      expect(harness.dispatch).not.toHaveBeenCalled();
+    }
+    expect(harness.navigate).not.toHaveBeenCalled();
+  });
+
+  it('preserves a verified selected departure while the guest browses another month', async () => {
+    let { tree } = await mountPanel();
+    const departure = selectDeparture(pickup(tree));
+    tree = departure.tree;
+    findElement(tree, (element) => element.type === AvailabilityCalendar).props.onShiftMonth(1);
+    tree = renderPanel();
+    expect(findElement(tree, (element) => element.type === AvailabilityCalendar).props.monthIso).toBe('2026-11');
+    expect(submit(tree).props.disabled).toBe(false);
+    submit(tree).props.onClick();
+    expect(harness.dispatch).toHaveBeenCalledWith({ type: 'add', item: expect.objectContaining({ date: departure.date }) });
+  });
+
+  it('preserves an oversized saved cart line without saving or lowering it until explicitly corrected', async () => {
+    harness.editId = 'oversized';
+    harness.cart.items = [{ id: 'oversized', experienceId: 'spice-tour', mode: 'shared', guests: 7, date: '2026-10-20', time: '09:00', pickupZone: 'east', accommodation: 'Beach Hotel' }];
+    let { tree } = await mountPanel();
+    const picker = findElement(tree, (element) => element.type === GuestPicker);
+    expect(picker.props).toMatchObject({ value: 7, max: 6 });
+    expect(submit(tree).props.children).toContain(en.panel.update);
+    expect(submit(tree).props.disabled).toBe(true);
+    submit(tree).props.onClick();
+    expect(harness.cart.items[0].guests).toBe(7);
+    expect(harness.dispatch).not.toHaveBeenCalled();
+    expect(harness.navigate).not.toHaveBeenCalled();
+    picker.props.onChange(6);
+    tree = renderPanel();
+    expect(submit(tree).props.disabled).toBe(false);
+    submit(tree).props.onClick();
+    expect(harness.dispatch).toHaveBeenCalledWith({
+      type: 'update', id: 'oversized', patch: expect.objectContaining({ guests: 6, date: '2026-10-20', time: '09:00' }),
+    });
+    expect(harness.navigate).toHaveBeenCalledWith('/excursions/spice-tour#book', { replace: true });
+  });
+
+  it.each([
+    { bookable: false, times: [] },
+    { bookable: true, times: [{ time: '14:00', seats: 10 }] },
+    { bookable: true, times: [{ time: '09:00', seats: 1 }] },
+  ])('requires fresh bookability and the saved time to fit before updating a saved departure', async (availability) => {
+    harness.editId = 'stale';
+    harness.cart.items = [{ id: 'stale', experienceId: 'spice-tour', mode: 'shared', guests: 2, date: '2026-10-20', time: '09:00', pickupZone: 'north', accommodation: 'Hotel' }];
+    harness.availability.days['2026-10-20'] = { date: '2026-10-20', ...availability };
+    const { tree } = await mountPanel();
+    expect(submit(tree).props.disabled).toBe(true);
+    submit(tree).props.onClick();
+    expect(harness.dispatch).not.toHaveBeenCalled();
+    expect(harness.navigate).not.toHaveBeenCalled();
+  });
+
   it('prompts a historical cart line with missing pickup fields instead of assuming Stone Town', async () => {
     harness.editId = 'historical';
     harness.cart.items = [{ id: 'historical', experienceId: 'spice-tour', mode: 'shared', guests: 2, date: '2026-10-20', time: '09:00' }];
@@ -263,7 +455,7 @@ describe('group and pickup booking panel', () => {
     let { tree } = await mountPanel();
     tree = pickup(tree);
     const calendar = findElement(tree, (element) => element.type === AvailabilityCalendar);
-    calendar.props.onSelectDate(`${calendar.props.monthIso}-28`, { times: [{ time: '09:00', seats: 3 }] });
+    calendar.props.onSelectDate(`${calendar.props.monthIso}-28`, { bookable: true, times: [{ time: '09:00', seats: 3 }] });
     tree = renderPanel();
     findElement(tree, (element) => element.type === TimeSlotPicker).props.onSelect('09:00');
     tree = renderPanel();

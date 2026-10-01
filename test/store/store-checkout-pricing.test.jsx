@@ -210,6 +210,31 @@ describe('checkout group and pickup payment guards', () => {
     expect(harness.dispatch).not.toHaveBeenCalled();
   });
 
+  it('pays one combined 20% deposit for two independent trips without clearing the cart', async () => {
+    harness.cart = { items: [selection(), selection({ id: 'qa-spice-second', date: '2026-10-06', guests: 6 })] };
+    let { tree } = await mountCheckout();
+    tree = contact(tree);
+    expect(payButton(tree).props.disabled).toBe(false);
+    const html = markup(tree);
+    expect(html).toContain('$500.02');
+    expect(html).toContain('$100.01');
+    expect(html).toContain('$400.01');
+    expect(html).toContain('Pay $100.01 deposit');
+    await payButton(tree).props.onClick();
+    expect(harness.checkout).toHaveBeenCalledExactlyOnceWith({
+      items: harness.cart.items, contact: { name: 'QA Guest', email: 'preview@example.com', phone: '+255123' },
+      expectedTotalUsd: 500.02, expectedChargeUsd: 100.01,
+    });
+    expect(harness.navigate).toHaveBeenCalledExactlyOnceWith('/store/order/DP-2026-654321', {
+      state: { payment: { reference: 'DP-2026-654321', provider: 'pesapal', paymentUrl: 'https://cybqa.pesapal.com/synthetic-qa-only' } },
+    });
+    expect(harness.track).toHaveBeenCalledExactlyOnceWith('payment_started', { items: 2 });
+    expect(harness.request).not.toHaveBeenCalled();
+    expect(harness.dispatch).not.toHaveBeenCalled();
+    expect(harness.save).not.toHaveBeenCalled();
+    expect(harness.assign).not.toHaveBeenCalled();
+  });
+
   it.each(['sold_out', 'insufficient_seats', 'departed'])('blocks %s without displaying a zero payable deposit', async (status) => {
     harness.quote.mockImplementation(async (items) => serverQuote(items, {
       quotes: [{ id: items[0].id, status, totalUsd: 0, priceLines: [] }],
@@ -237,6 +262,46 @@ describe('checkout group and pickup payment guards', () => {
     expect(payButton(tree).props.disabled).toBe(true);
     await payButton(tree).props.onClick();
     expectNoSubmission();
+  });
+
+  it.each([
+    ['missing subtotal', { subtotalUsd: null }],
+    ['zero subtotal', { subtotalUsd: 0 }],
+    ['non-finite subtotal', { subtotalUsd: Number.NaN }],
+    ['subtotal differs from trip prices', { subtotalUsd: 250 }],
+    ['missing charge', { chargeUsd: null }],
+    ['zero charge', { chargeUsd: 0 }],
+    ['non-finite charge', { chargeUsd: Number.NaN }],
+    ['incorrectly rounded deposit', { chargeUsd: 50, balanceUsd: 200.01 }],
+    ['full-price charge', { chargeUsd: 250.01, balanceUsd: 0 }],
+    ['missing balance', { balanceUsd: null }],
+    ['non-finite balance', { balanceUsd: Number.NaN }],
+    ['balance does not add up', { balanceUsd: 200.01 }],
+    ['full-payment plan', { paymentPlan: 'full' }],
+    ['missing payment plan', { paymentPlan: null }],
+  ])('blocks an inconsistent server quote: %s', async (_reason, overrides) => {
+    harness.quote.mockImplementation(async (items) => serverQuote(items, overrides));
+    let { tree } = await mountCheckout();
+    tree = contact(tree);
+    expect(payButton(tree).props.disabled).toBe(true);
+    expect(markup(tree)).not.toContain('Pay $');
+    await payButton(tree).props.onClick();
+    expectNoSubmission();
+    expect(harness.navigate).not.toHaveBeenCalled();
+  });
+
+  it('requires an approved quote for every trip before taking the combined deposit', async () => {
+    harness.cart = { items: [selection(), selection({ id: 'qa-spice-second', date: '2026-10-06' })] };
+    harness.quote.mockImplementation(async (items) => {
+      const quote = serverQuote(items);
+      return { ...quote, quotes: quote.quotes.slice(0, 1) };
+    });
+    let { tree } = await mountCheckout();
+    tree = contact(tree);
+    expect(payButton(tree).props.disabled).toBe(true);
+    await payButton(tree).props.onClick();
+    expectNoSubmission();
+    expect(harness.navigate).not.toHaveBeenCalled();
   });
 
   it('disables payment after quote transport failure and retries the actual quote effect', async () => {
@@ -276,26 +341,49 @@ describe('checkout group and pickup payment guards', () => {
   });
 });
 
-describe('checkout quote handoff and preserved request flow', () => {
-  it('changes an available selection to general enquiry after a server quote-required conflict', async () => {
+describe('direct online checkout and enquiry separation', () => {
+  it('rechecks missing online prices in the store and enables payment only after approval arrives', async () => {
+    harness.quote.mockImplementationOnce(async (items) => serverQuote(items, {
+      quotes: [{ id: items[0].id, status: 'quote_required', totalUsd: null, priceLines: [] }],
+      subtotalUsd: 0, chargeUsd: 0, balanceUsd: 0,
+    }));
+    let { tree } = await mountCheckout();
+    tree = contact(tree);
+    expect(payButton(tree).props.disabled).toBe(true);
+    expect(markup(tree)).not.toContain('Pay $');
+    await payButton(tree).props.onClick();
+    expectNoSubmission();
+    expect(harness.navigate).not.toHaveBeenCalled();
+    findElement(tree, (element) => element.type === 'button' && element.props.className === 'cart-item__link').props.onClick();
+    ({ tree } = await mountCheckout());
+    expect(harness.quote).toHaveBeenCalledTimes(2);
+    expect(payButton(tree).props.disabled).toBe(false);
+    expect(markup(tree)).toContain('Pay $50.01 deposit');
+    await payButton(tree).props.onClick();
+    expect(harness.checkout).toHaveBeenCalledExactlyOnceWith({
+      items: harness.cart.items, contact: { name: 'QA Guest', email: 'preview@example.com', phone: '+255123' },
+      expectedTotalUsd: 250.01, expectedChargeUsd: 50.01,
+    });
+    expect(harness.request).not.toHaveBeenCalled();
+    expect(harness.dispatch).not.toHaveBeenCalled();
+    expect(harness.navigate).toHaveBeenCalledExactlyOnceWith('/store/order/DP-2026-654321', {
+      state: { payment: { reference: 'DP-2026-654321', provider: 'pesapal', paymentUrl: 'https://cybqa.pesapal.com/synthetic-qa-only' } },
+    });
+  });
+
+  it('keeps a quote-required conflict in the cart without redirecting to Book Now', async () => {
     harness.checkout.mockResolvedValue({ ok: false, error: 'availability_conflict', conflicts: [{ id: 'qa-spice', status: 'quote_required' }] });
     let { tree } = await mountCheckout();
     tree = contact(tree);
     await payButton(tree).props.onClick();
     expect(harness.checkout).toHaveBeenCalledOnce();
     tree = renderCheckout();
-    expect(payButton(tree).props.disabled).toBe(false);
-    expect(markup(tree)).toContain(en.panel.contact_quote);
+    expect(payButton(tree).props.disabled).toBe(true);
     expect(markup(tree)).toContain(en.cart.price_on_request);
     expect(markup(tree)).not.toContain('Pay $50.01 deposit');
     tree = contact(tree, { email: 'guest@' });
     await payButton(tree).props.onClick();
-    expect(harness.navigate).toHaveBeenCalledExactlyOnceWith('/book-now#booking-contact', {
-      state: { storeEnquiry: {
-        items: [{ experienceId: 'spice-tour', mode: 'shared', guests: 2, pickupZone: 'north', accommodation: 'QA Example Hotel', preferredDate: '2026-10-05', preferredTime: '09:00' }],
-        contact: { name: 'QA Guest', email: 'guest@', phone: '+255123' },
-      } },
-    });
+    expect(harness.navigate).not.toHaveBeenCalled();
     expect(harness.checkout).toHaveBeenCalledOnce();
     expect(harness.request).not.toHaveBeenCalled();
     expect(harness.dispatch).not.toHaveBeenCalled();
@@ -319,46 +407,66 @@ describe('checkout quote handoff and preserved request flow', () => {
     expect(harness.dispatch).not.toHaveBeenCalled();
   });
 
-  it.each([7, 24])('routes exactly %s passengers with partial contact to enquiry instead of either checkout API', async (guests) => {
+  it.each([7, 24])('blocks %s passengers without redirecting or submitting an enquiry', async (guests) => {
     harness.cart = { items: [selection({ guests })] };
     let { tree } = await mountCheckout();
     tree = contact(tree, { name: 'QA Guest', email: 'guest@', phone: '' });
-    expect(payButton(tree).props.disabled).toBe(false);
-    expect(markup(tree)).toContain(en.panel.contact_quote);
+    expect(payButton(tree).props.disabled).toBe(true);
+    expect(markup(tree)).not.toContain('Pay $');
     await payButton(tree).props.onClick();
-    expect(harness.navigate).toHaveBeenCalledWith('/book-now#booking-contact', {
-      state: { storeEnquiry: {
-        items: [expect.objectContaining({ guests, accommodation: 'QA Example Hotel', pickupZone: 'north' })],
-        contact: { name: 'QA Guest', email: 'guest@', phone: '' },
-      } },
-    });
+    expect(harness.navigate).not.toHaveBeenCalled();
     expectNoSubmission();
     expect(harness.track).not.toHaveBeenCalled();
   });
 
-  it('preserves a mixed request-only order without starting payment or requiring pickup on the request item', async () => {
+  it('blocks duplicate departure selections that would exceed six passengers together', async () => {
+    harness.cart = { items: [selection({ guests: 4 }), selection({ id: 'qa-spice-duplicate', guests: 3 })] };
+    let { tree } = await mountCheckout();
+    tree = contact(tree);
+    expect(payButton(tree).props.disabled).toBe(true);
+    await payButton(tree).props.onClick();
+    expectNoSubmission();
+    expect(harness.navigate).not.toHaveBeenCalled();
+  });
+
+  it('keeps historical enquiry-only trips visible in a mixed cart and blocks both checkout APIs', async () => {
     harness.cart = { items: [selection(), requestSelection()] };
     let { tree } = await mountCheckout();
     tree = contact(tree);
-    expect(payButton(tree).props.disabled).toBe(false);
+    expect(payButton(tree).props.disabled).toBe(true);
     const html = markup(tree);
-    expect(html).toContain(en.checkout.request_cta);
-    expect(html).toContain(en.checkout.request_note);
+    expect(html).toContain(en.checkout.online_only);
+    expect(html).toContain('Prison Island');
+    expect(html).toContain('Spice Tour');
+    expect(html).toContain('6–8 October, flexible');
     expect(html).not.toContain('Pay $50.01 deposit');
+    const separateEnquiry = findElement(tree, (element) => element.props.to === '/book-now#booking-contact');
+    expect(separateEnquiry.props.state).toEqual({ storeEnquiry: {
+      items: [
+        { experienceId: 'spice-tour', mode: 'shared', guests: 2, pickupZone: 'north', accommodation: 'QA Example Hotel', preferredDate: '2026-10-05', preferredTime: '09:00' },
+        { experienceId: 'prison-island', mode: 'request', guests: 4, pickupZone: undefined, accommodation: undefined, preferredDate: '6–8 October, flexible', preferredTime: '' },
+      ], contact: { name: 'QA Guest', email: 'preview@example.com', phone: '+255123' },
+    } });
     await payButton(tree).props.onClick();
-    expect(harness.request).toHaveBeenCalledExactlyOnceWith({
-      items: harness.cart.items, contact: { name: 'QA Guest', email: 'preview@example.com', phone: '+255123' },
-    });
-    expect(harness.checkout).not.toHaveBeenCalled();
-    expect(harness.save).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({ status: 'awaiting_availability' }));
-    expect(harness.dispatch).toHaveBeenCalledExactlyOnceWith({ type: 'clear' });
-    expect(harness.navigate).toHaveBeenCalledExactlyOnceWith('/store/order/DP-2026-654322');
-    expect(harness.assign).not.toHaveBeenCalled();
-    expect(harness.track).toHaveBeenCalledExactlyOnceWith('request_availability', { items: 2 });
+    expectNoSubmission();
+    expect(harness.navigate).not.toHaveBeenCalled();
+    expect(harness.track).not.toHaveBeenCalled();
+    expect(harness.cart.items).toHaveLength(2);
   });
 
-  it('keeps the cart and displays errors for an incomplete request contact', async () => {
+  it('cannot submit a historical enquiry-only cart even with complete guest details', async () => {
     harness.cart = { items: [requestSelection()] };
+    let { tree } = await mountCheckout();
+    tree = contact(tree);
+    expect(payButton(tree).props.disabled).toBe(true);
+    await payButton(tree).props.onClick();
+    tree = renderCheckout();
+    expect(markup(tree)).toContain(en.checkout.online_only);
+    expectNoSubmission();
+    expect(harness.navigate).not.toHaveBeenCalled();
+  });
+
+  it('keeps a normal online cart and displays contact errors without starting payment', async () => {
     let { tree } = await mountCheckout();
     tree = contact(tree, { name: 'QA Guest', email: 'guest@' });
     await payButton(tree).props.onClick();

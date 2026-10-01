@@ -10,8 +10,11 @@ car. The quoted total is the group price plus that supplement. The deposit is
 20% of the combined total, rounded up once to a USD cent; the balance is the
 exact remainder.
 
-Groups of 7 or more, other/unknown pickup areas, missing approved rates and
-duplicate selections for the same excursion departure go to a staff quote.
+Groups of 7 or more, other/unknown pickup areas and duplicate selections for the
+same excursion departure need a separate Book Now enquiry. Trips without
+approved online rates can stay in Your trip, but payment
+is blocked until the server confirms prices for every selection. The Store
+does not automatically send these guests to Book Now.
 Guests must choose an area and give their accommodation; Stone Town is never
 assumed. Old saved carts keep their items and ask for missing pickup details
 before a new payment. Existing orders retain their original amounts and plans.

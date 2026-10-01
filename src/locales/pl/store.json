@@ -40,7 +40,7 @@
   "list": {
     "eyebrow": "Zanzibar i Tanzania",
     "title": "Wybrane atrakcje",
-    "lead": "Wycieczki przybrzeżne rezerwujesz od ręki. Safari i trasy szyte na miarę organizujemy na zapytanie.",
+    "lead": "Wybierz daty, liczbę gości i odbiór, dodaj jedną lub więcej atrakcji do Twojej podróży i wpłać jedną łączną zaliczkę 20% przy płatności.",
     "filter_all": "Wszystkie atrakcje",
     "filter_instant": "Rezerwacja od ręki",
     "filter_request": "Na zapytanie",
@@ -103,19 +103,20 @@
     "update": "Zaktualizuj wycieczkę",
     "not_charged": "Jeszcze nic nie płacisz — wszystko sprawdzisz przy kasie.",
     "group_total": "za całą grupę",
-    "quote_chip": "Najpierw wycena",
+    "quote_chip": "Cena oczekuje",
     "small_car_hint": "Ceny online dla maksymalnie 6 gości w jednym samochodzie; od 7 osób wymagana jest wycena.",
     "effective_per_person": "Cena za osobę z odbiorem",
     "deposit": "Zaliczka 20% przy zamówieniu",
     "balance": "Pozostałe 80% w dniu atrakcji",
     "currency_estimate": "Kwoty w lokalnej walucie są orientacyjne. Wycena przy zamówieniu jest podana w USD.",
     "contact_quote": "Skontaktuj się z nami po wycenę",
-    "quote_large_group": "Dla 7 lub więcej gości dobierzemy odpowiedni większy pojazd i osobiście potwierdzimy cenę.",
-    "quote_other_area": "Osobiście potwierdzimy transport i cenę dla Twojego miejsca odbioru.",
+    "quote_large_group": "Rezerwacja online obejmuje do 6 gości. Dla 7 lub więcej osób skorzystaj z Book Now, aby wysłać osobne zapytanie.",
+    "quote_other_area": "Ten obszar odbioru wymaga osobnego zapytania przez Book Now. Wybierz obszar z listy, aby zarezerwować online.",
     "loading_prices": "Sprawdzamy zatwierdzone ceny dla grup i dopłaty za odbiór…",
-    "pricing_failed": "Nie udało się sprawdzić cen online. Skontaktuj się z nami, a osobiście potwierdzimy wycenę.",
-    "quote_unpriced": "Dla tej grupy i miejsca odbioru nie ma ceny online. Skontaktuj się z nami po potwierdzoną wycenę.",
-    "quote_no_payment": "Przy zapytaniu o wycenę nie pobieramy płatności online."
+    "pricing_failed": "Nie udało się sprawdzić ceny online. Możesz zapisać tę wycieczkę i ponownie sprawdzić cenę przy płatności.",
+    "quote_unpriced": "Cena online dla tego wyboru jest obecnie niedostępna. Możesz zapisać wycieczkę i ponownie sprawdzić cenę przy płatności.",
+    "quote_no_payment": "Przy zapytaniu o wycenę nie pobieramy płatności online.",
+    "price_unavailable": "Cena online niedostępna"
   },
   "cart": {
     "title": "Twoja podróż",
@@ -140,8 +141,8 @@
     "remove": "Usuń",
     "subtotal": "Suma częściowa",
     "checkout_cta": "Przejdź do kasy",
-    "note": "Każda atrakcja zachowuje swoją datę, godzinę i gości.",
-    "price_on_request": "Na zapytanie",
+    "note": "Dodaj jedną lub więcej atrakcji i wpłać jedną łączną zaliczkę 20%. Każda wycieczka zachowuje własną datę, godzinę i liczbę gości.",
+    "price_on_request": "Cena online niedostępna",
     "requested_dates": "Preferowane",
     "requested_flexible": "elastycznie",
     "mode_request": "Na zapytanie",
@@ -153,7 +154,9 @@
     "price_unavailable": "Cena niedostępna",
     "status_checking": "Sprawdzamy dostępność…",
     "status_pickup_required": "Podaj dane odbioru",
-    "status_quote_required": "Wymagana wycena"
+    "status_quote_required": "Cena online niedostępna",
+    "continue_shopping": "Kontynuuj zakupy",
+    "online_only": "Wycieczek na zapytanie nie można opłacić w Sklepie. Zostaw tutaj terminy online, a osobne zapytanie wyślij przez Book Now."
   },
   "checkout": {
     "meta_title": "Kasa · Destination Paradise",
@@ -181,7 +184,7 @@
     "conflict": "Część terminów jest już niedostępna. Popraw zaznaczone wycieczki.",
     "conflict_fix": "Wybierz nowy termin",
     "failed": "Nie mogliśmy przejść do płatności. Spróbuj ponownie za chwilę.",
-    "payment_unavailable": "Płatność online jest chwilowo niedostępna. Twój wybór zapisaliśmy jako zamówienie. Skontaktuj się z naszym zespołem lub skorzystaj z formularza zapytania.",
+    "payment_unavailable": "Płatność online jest chwilowo niedostępna. Twoje wycieczki pozostają zapisane. Spróbuj ponownie lub skontaktuj się z naszym zespołem.",
     "usd_note": "Cena wyjazdu i zaliczka są podane w dolarach (USD); inne waluty na naszej stronie to wartości orientacyjne. Operator płatności może pokazać przeliczoną walutę. Przed płatnością sprawdź końcową kwotę i walutę.",
     "privacy_notice": "Używamy Twoich danych kontaktowych i szczegółów wyjazdu, aby zorganizować rezerwację i płatność. Przeczytaj naszą <privacy>Politykę prywatności</privacy>.",
     "errors": {
@@ -207,8 +210,10 @@
     "quote_failed": "Nie mogliśmy sprawdzić aktualnej ceny. Spróbuj ponownie przed dokonaniem płatności.",
     "retry_quote": "Sprawdź ceny ponownie",
     "pickup_review": "Wybierz region odbioru i zakwaterowanie dla każdej wycieczki, a następnie sprawdź cenę.",
-    "quote_required": "Ta grupa lub miejsce odbioru wymaga wyceny naszego zespołu.",
-    "review_selection": "Sprawdź grupę i odbiór"
+    "quote_required": "Cena online dla zaznaczonego wyboru jest niedostępna. Sprawdź liczbę gości i dane odbioru. Płatność będzie możliwa po potwierdzeniu ceny.",
+    "review_selection": "Sprawdź grupę i odbiór",
+    "online_only": "Płatność w Sklepie dotyczy terminów online. Usuń z tego koszyka wycieczki na zapytanie i skorzystaj z Book Now, aby wysłać osobne zapytanie.",
+    "separate_enquiry": "Otwórz osobne zapytanie w Book Now"
   },
   "confirm": {
     "meta_title": "Potwierdzenie rezerwacji · Destination Paradise",

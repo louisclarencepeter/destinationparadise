@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
   getInstantExperience,
   getStoreCards,
@@ -7,6 +7,7 @@ import {
 } from '../../src/data/commerceCatalog.js';
 import {
   addDaysIso,
+  BOOKING_END_DATE,
   fetchMonthAvailability,
   isDateInBookingWindow,
   priceSelection,
@@ -17,6 +18,16 @@ import {
 } from '../../src/lib/storeApi.js';
 
 const NO_LATENCY = { latencyMs: 0 };
+
+beforeEach(() => {
+  // Freeze only the calendar clock: async fixture timers remain real.
+  vi.useFakeTimers({ toFake: ['Date'] });
+  vi.setSystemTime(new Date('2026-10-01T09:00:00Z'));
+});
+
+afterEach(() => {
+  vi.useRealTimers();
+});
 
 // A guaranteed-bookable fixture departure: first date after tomorrow where the
 // deterministic generator leaves enough seats.
@@ -79,11 +90,26 @@ describe('availability fixtures', () => {
     }
   });
 
-  it('only offers dates strictly after today and inside the window', () => {
+  it('offers future dates across the year through 28 February, with an inclusive fixed cutoff', () => {
     const today = todayInStoreTz();
+    expect(today).toBe('2026-10-01');
+    expect(BOOKING_END_DATE).toBe('2027-02-28');
+    expect(isDateInBookingWindow('2026-09-30')).toBe(false);
     expect(isDateInBookingWindow(today)).toBe(false);
     expect(isDateInBookingWindow(addDaysIso(today, 1))).toBe(true);
-    expect(isDateInBookingWindow(addDaysIso(today, 61))).toBe(false);
+    expect(isDateInBookingWindow('2026-12-31')).toBe(true);
+    expect(isDateInBookingWindow('2027-01-01')).toBe(true);
+    expect(isDateInBookingWindow('2027-02-28')).toBe(true);
+    expect(isDateInBookingWindow('2027-03-01')).toBe(false);
+  });
+
+  it('does not roll the cutoff into March as the current day advances', () => {
+    vi.setSystemTime(new Date('2027-02-27T09:00:00Z'));
+    expect(isDateInBookingWindow('2027-02-28')).toBe(true);
+    expect(isDateInBookingWindow('2027-03-01')).toBe(false);
+    vi.setSystemTime(new Date('2027-02-28T09:00:00Z'));
+    expect(isDateInBookingWindow('2027-02-28')).toBe(false);
+    expect(isDateInBookingWindow('2027-03-01')).toBe(false);
   });
 
   it('returns a month keyed by ISO date with per-time seats', async () => {
@@ -95,6 +121,20 @@ describe('availability fixtures', () => {
     if (anyDay) {
       expect(anyDay.times.length).toBe(getInstantExperience('stone-town').departureTimes.length);
     }
+  });
+
+  it('returns December, January and February availability but no March departures', async () => {
+    const experience = getInstantExperience('stone-town');
+    for (const [year, month, finalDay] of [[2026, 12, 31], [2027, 1, 31], [2027, 2, 28]]) {
+      const result = await fetchMonthAvailability('stone-town', year, month, NO_LATENCY);
+      const prefix = `${year}-${String(month).padStart(2, '0')}`;
+      expect(Object.keys(result.days)).toHaveLength(finalDay);
+      expect(result.days[`${prefix}-${finalDay}`].times).toHaveLength(experience.departureTimes.length);
+      expect(Object.values(result.days).some((day) => day.bookable)).toBe(true);
+    }
+    const march = await fetchMonthAvailability('stone-town', 2027, 3, NO_LATENCY);
+    expect(Object.keys(march.days)).toHaveLength(31);
+    expect(Object.values(march.days).every((day) => !day.bookable && day.times.length === 0)).toBe(true);
   });
 
   it('rejects unknown experiences', async () => {
@@ -112,6 +152,28 @@ describe('pricing', () => {
 });
 
 describe('quote and checkout', () => {
+  it('allows a final-day departure but rejects the whole checkout when March is also requested', async () => {
+    const date = '2027-02-28';
+    const time = getInstantExperience('stone-town').departureTimes
+      .find((departureTime) => seatsLeft('stone-town', date, departureTime) >= 1);
+    expect(time).toBeTruthy();
+    const lastDay = { id: 'last-day', experienceId: 'stone-town', mode: 'shared', guests: 1, date, time };
+    const march = { ...lastDay, id: 'after-cutoff', date: '2027-03-01' };
+    const quote = await quoteCartItems([lastDay, march], NO_LATENCY);
+    expect(quote.quotes).toEqual([
+      expect.objectContaining({ id: 'last-day', status: 'available', totalUsd: 55 }),
+      expect.objectContaining({ id: 'after-cutoff', status: 'departed', totalUsd: 0 }),
+    ]);
+    expect(quote.subtotalUsd).toBe(55);
+    const contact = { name: 'Fixture Guest', email: 'fixture@example.com' };
+    const rejected = await submitCheckout({ items: [lastDay, march], contact }, NO_LATENCY);
+    expect(rejected).toMatchObject({ ok: false, conflicts: [{ id: 'after-cutoff', status: 'departed' }] });
+    expect(rejected.order).toBeUndefined();
+    const accepted = await submitCheckout({ items: [lastDay], contact }, NO_LATENCY);
+    expect(accepted.ok).toBe(true);
+    expect(accepted.order.items[0]).toMatchObject({ date: '2027-02-28', time });
+  });
+
   it('quotes items with seat-aware statuses and prices only available ones', async () => {
     const open = findOpenDeparture('safari-blue', 2);
     const items = [
