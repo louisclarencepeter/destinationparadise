@@ -78,3 +78,33 @@ export function trackPaymentRequests(page) {
   });
   return calls;
 }
+
+// Opens the cart drawer and waits until every line is re-quoted (the 20%
+// deposit row only appears once the whole cart is priced).
+export async function openPricedCart(page) {
+  await page.locator('.cart-nav-btn').first().click();
+  const drawer = page.locator('.cart-drawer.is-open');
+  await expect(drawer).toBeVisible();
+  await expect(drawer.locator('.cart-drawer__subtotal')).toHaveCount(2);
+  return drawer;
+}
+
+// Each cart (or checkout) line as { title, meta, price } in display order.
+export async function readLines(container, prefix = 'cart-item') {
+  return container.locator(`.${prefix}`).evaluateAll((rows, cls) => rows.map((row) => ({
+    title: row.querySelector(`.${cls}__title`)?.textContent.trim(),
+    meta: [...row.querySelectorAll(`.${cls}__meta`)].map((el) => el.textContent.trim()).join(' | '),
+    price: row.querySelector(`.${cls}__price`)?.textContent.trim(),
+  })), prefix);
+}
+
+// readLines once no line is still waiting on its re-quote (any cart change
+// re-prices every line).
+export async function readPricedLines(container, prefix = 'cart-item') {
+  let lines = [];
+  await expect.poll(async () => {
+    lines = await readLines(container, prefix);
+    return lines.length > 0 && lines.every((line) => /\$\d/.test(line.price));
+  }, { message: 'every line shows a price' }).toBe(true);
+  return lines;
+}
