@@ -47,7 +47,19 @@ npm run preview    # preview built dist/
 npm run lint       # ESLint
 npm run typecheck  # TypeScript check config
 npm run test       # Vitest tests
+npm run test:e2e   # Playwright store journey (desktop + mobile)
 ```
+
+The e2e journey starts Vite with the store flag on and uses the in-browser
+fixture API. To run it against a deployed branch instead (live Supabase
+inventory + dev-simulated payment — it creates a real order there, and refuses
+production hosts):
+
+```bash
+E2E_BASE_URL=https://development--destinationparadisezanzibar.netlify.app npm run test:e2e
+```
+
+First run locally: `npx playwright install chromium`.
 
 ## Environment
 

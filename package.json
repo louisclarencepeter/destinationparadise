@@ -18,6 +18,7 @@
     "typecheck": "tsc --noEmit -p tsconfig.typecheck.json",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:e2e": "playwright test",
     "instagram:story:dry-run": "node scripts/instagram-story.mjs --dry-run",
     "instagram:story:publish": "node scripts/instagram-story.mjs --publish",
     "threads:comment:dry-run": "node scripts/threads-auto-commenter.mjs --dry-run",
@@ -40,6 +41,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
+    "@playwright/test": "^1.63.0",
     "@sparticuz/chromium": "^149.0.0",
     "@vitejs/plugin-react": "^6.1.1",
     "eslint": "^9.39.5",
