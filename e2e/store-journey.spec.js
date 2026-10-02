@@ -38,6 +38,13 @@ async function addTrip(page, { slug, extraGuests }) {
 
   for (let i = 0; i < extraGuests; i += 1) await panel.getByRole('button', { name: 'More guests' }).click();
 
+  // Pickup is required: first priced zone (not "other", which needs a quote).
+  const zone = panel.locator('select[name="pickupZone"]');
+  const zoneValue = await zone.locator('option').evaluateAll((options) =>
+    options.map((option) => option.value).find((value) => value && value !== 'other'));
+  await zone.selectOption(zoneValue);
+  await panel.locator('input[name="accommodation"]').fill('E2E Beach Hotel');
+
   // Any bookable day, then the first time slot with room for the party.
   await panel.locator('.avail-cal__day:not([disabled])').first().click();
   const slot = panel.locator('.slot-grid__slot:not(.is-soldout):not([disabled])').first();
@@ -63,15 +70,24 @@ test('books two experiences in one order', async ({ page }) => {
   for (const { title } of TRIPS) await expect(drawer).toContainText(title);
   await expect(drawer).toContainText('2 experiences');
 
-  const subtotal = usd(await drawer.locator('.cart-drawer__subtotal').innerText());
+  // Prices are re-quoted on open; wait for the subtotal and 20% deposit rows.
+  const totals = drawer.locator('.cart-drawer__subtotal strong');
+  await expect(totals).toHaveCount(2);
+  const subtotal = usd(await totals.nth(0).innerText());
   expect(subtotal).toBeGreaterThan(0);
+
+  // Checkout charges a 20% deposit (rounded up to the cent); the rest is due
+  // on the day of each trip.
+  const deposit = Math.ceil(Math.round(subtotal * 100) / 5) / 100;
+  expect(usd(await totals.nth(1).innerText())).toBe(deposit);
 
   await drawer.getByRole('button', { name: 'Continue to checkout' }).click();
   await expect(page).toHaveURL(/\/store\/checkout$/);
 
+  const pay = page.getByRole('button', { name: /^Pay .*deposit/ });
+  await expect(pay).toContainText(`$${deposit}`);
+
   // Empty submit surfaces validation instead of paying.
-  const pay = page.getByRole('button', { name: /^Pay / });
-  await expect(pay).toHaveText(new RegExp(`\\$${subtotal}\\b`));
   await pay.click();
   await expect(page.locator('.checkout-field__error').first()).toBeVisible();
   await expect(page).toHaveURL(/\/store\/checkout$/);
@@ -83,11 +99,11 @@ test('books two experiences in one order', async ({ page }) => {
 
   await expect(page).toHaveURL(/\/store\/order\/DP-\d{4}-\w+/, { timeout: 30_000 });
   const confirmation = page.locator('main');
-  await expect(confirmation).toContainText('is confirmed');
+  await expect(confirmation).toContainText('deposit has been received');
   for (const { title } of TRIPS) await expect(confirmation).toContainText(title);
   await expect(confirmation.getByText(/CONF · [A-Z]{2}-\w+/)).toHaveCount(TRIPS.length);
-  await expect(confirmation.getByText('Confirmed & paid')).toHaveCount(TRIPS.length);
-  await expect(confirmation).toContainText(`$${subtotal}`);
+  await expect(confirmation.getByText('Confirmed · deposit received')).toHaveCount(TRIPS.length);
+  await expect(confirmation).toContainText(`$${deposit}`);
 
   // The order clears the cart.
   await expect(page.locator('.cart-nav-btn').first()).not.toContainText(/\d/);
