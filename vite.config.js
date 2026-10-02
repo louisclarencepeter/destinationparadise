@@ -56,7 +56,7 @@ export default defineConfig(({ mode }) => {
     },
     test: {
       // Mobile uses its own node:test runner and dependency installation.
-      exclude: [...configDefaults.exclude, '**/.claude/**', 'mobile/**', 'design/mobile-app/**'],
+      exclude: [...configDefaults.exclude, '**/.claude/**', 'mobile/**', 'design/mobile-app/**', 'e2e/**'],
     },
   };
 });
