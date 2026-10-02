@@ -116,7 +116,11 @@
     "pricing_failed": "We could not check the online price. You can save this trip and check prices again at checkout.",
     "quote_unpriced": "An online price is currently unavailable for this selection. You can save this trip and check prices again at checkout.",
     "quote_no_payment": "No online payment is taken when you request a quote.",
-    "price_unavailable": "Online price unavailable"
+    "price_unavailable": "Online price unavailable",
+    "add_checkout": "Add & checkout",
+    "save_checkout": "Save & checkout",
+    "cart_full": "Your trip already has 20 experiences. Edit or remove one in Your trip before adding another.",
+    "reused_details": "Pickup details are filled from your trip. You can change them for this experience."
   },
   "cart": {
     "title": "Your trip",
@@ -173,7 +177,7 @@
     "name_placeholder": "Jane Traveller",
     "email_label": "Email",
     "email_placeholder": "you@example.com",
-    "phone_label": "Phone / WhatsApp",
+    "phone_label": "Phone / WhatsApp (optional)",
     "phone_placeholder": "+255 …",
     "payment": "Payment",
     "payment_note": "You'll pay through a secure <strong>Pesapal</strong> form on our website. Card and mobile-money details go directly to Pesapal; your bank may open a separate verification step.",

@@ -9,6 +9,7 @@ import en from '../../src/locales/en/store.json';
 // is created. Browser layout and interactions are covered by the main agent.
 const harness = vi.hoisted(() => ({
   active: false, values: [], cursor: 0, effects: [], effectDeps: [], cart: { items: [] },
+  checkoutContact: { name: '', email: '', phone: '' },
   navigate: vi.fn(), dispatch: vi.fn(), quote: vi.fn(), checkout: vi.fn(), request: vi.fn(),
   save: vi.fn(), track: vi.fn(), suspend: vi.fn(), assign: vi.fn(),
 }));
@@ -51,7 +52,13 @@ vi.mock('react-i18next', () => ({
   Trans: ({ t, i18nKey }) => t(i18nKey),
 }));
 vi.mock('../../src/context/useBookingCart.js', () => ({
-  useBookingCart: () => ({ state: harness.cart, dispatch: harness.dispatch }),
+  useBookingCart: () => ({
+    state: harness.cart, dispatch: harness.dispatch,
+    checkoutContact: harness.checkoutContact,
+    setCheckoutContact: (next) => {
+      harness.checkoutContact = typeof next === 'function' ? next(harness.checkoutContact) : next;
+    },
+  }),
 }));
 vi.mock('../../src/data/localizedCatalog.js', () => ({ buildLocalizedExcursions: () => [] }));
 vi.mock('../../src/data/commerceCatalog.js', () => ({
@@ -149,6 +156,7 @@ beforeEach(() => {
   harness.effects = [];
   harness.effectDeps = [];
   harness.cart = { items: [selection()] };
+  harness.checkoutContact = { name: '', email: '', phone: '' };
   for (const mock of [harness.navigate, harness.dispatch, harness.quote, harness.checkout, harness.request,
     harness.save, harness.track, harness.suspend, harness.assign]) mock.mockReset();
   harness.quote.mockImplementation(async (items) => serverQuote(items));
@@ -162,6 +170,24 @@ afterEach(() => {
 });
 
 describe('checkout group and pickup payment guards', () => {
+  it('keeps entered contact details when checkout remounts after editing a trip', async () => {
+    let { tree } = await mountCheckout();
+    tree = contact(tree);
+    const edit = findElement(tree, (element) => element.props.className === 'checkout-line__fix');
+    expect(edit.props.to).toBe('/excursions/spice-tour?edit=qa-spice#book');
+    expect(edit.props.state).toEqual({ returnToCheckout: true });
+    findElement(tree, (element) => element.type === 'button' && element.props.className === 'store-back').props.onClick();
+    expect(harness.navigate).toHaveBeenCalledWith('/store');
+    harness.values = [];
+    harness.effectDeps = [];
+    ({ tree } = await mountCheckout());
+    for (const [key, value] of Object.entries({ name: 'QA Guest', email: 'preview@example.com', phone: '+255123' })) {
+      expect(findElement(tree, (element) => element.type === 'input' && element.props.id === `checkout-${key}`).props.value).toBe(value);
+    }
+    await payButton(tree).props.onClick();
+    expect(harness.checkout).toHaveBeenCalledWith(expect.objectContaining({ contact: harness.checkoutContact }));
+  });
+
   it('blocks a legacy cart without pickup fields even if its quote says available', async () => {
     const legacy = selection();
     delete legacy.pickupZone;
@@ -310,6 +336,7 @@ describe('checkout group and pickup payment guards', () => {
     tree = contact(tree);
     expect(payButton(tree).props.disabled).toBe(true);
     expect(markup(tree)).toContain(renderToStaticMarkup(<>{en.checkout.quote_failed}</>));
+    expect(markup(tree)).not.toContain(en.cart.checking_prices);
     await payButton(tree).props.onClick();
     expectNoSubmission();
     findElement(tree, (element) => element.type === 'button' && element.props.className === 'cart-item__link').props.onClick();

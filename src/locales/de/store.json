@@ -116,7 +116,11 @@
     "pricing_failed": "Wir konnten den Onlinepreis nicht prüfen. Du kannst diesen Ausflug speichern und den Preis beim Checkout erneut prüfen.",
     "quote_unpriced": "Für diese Auswahl ist derzeit kein Onlinepreis verfügbar. Du kannst den Ausflug speichern und den Preis beim Checkout erneut prüfen.",
     "quote_no_payment": "Bei einer Angebotsanfrage wird keine Onlinezahlung eingezogen.",
-    "price_unavailable": "Onlinepreis nicht verfügbar"
+    "price_unavailable": "Onlinepreis nicht verfügbar",
+    "add_checkout": "Hinzufügen & zur Kasse",
+    "save_checkout": "Speichern & zur Kasse",
+    "cart_full": "Deine Reise enthält bereits 20 Erlebnisse. Bearbeite oder entferne eines unter „Deine Reise“, bevor du ein weiteres hinzufügst.",
+    "reused_details": "Die Abholung ist aus deiner Reise übernommen. Du kannst sie für dieses Erlebnis ändern."
   },
   "cart": {
     "title": "Deine Reise",
@@ -173,7 +177,7 @@
     "name_placeholder": "Jana Reisende",
     "email_label": "E-Mail",
     "email_placeholder": "du@beispiel.de",
-    "phone_label": "Telefon / WhatsApp",
+    "phone_label": "Telefon / WhatsApp (optional)",
     "phone_placeholder": "+255 …",
     "payment": "Zahlung",
     "payment_note": "Du bezahlst über ein sicheres Formular von <strong>Pesapal</strong> auf unserer Website. Karten- und Mobile-Money-Daten gehen direkt an Pesapal; deine Bank kann einen separaten Bestätigungsschritt öffnen.",

@@ -27,12 +27,11 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export default function StoreCheckout() {
   const { t, i18n, ready } = useTranslation(['store', 'catalog']);
   const catalogLanguage = ready ? i18n.resolvedLanguage : '';
-  const { state, dispatch } = useBookingCart();
+  const { state, dispatch, checkoutContact: contact, setCheckoutContact: setContact } = useBookingCart();
   const navigate = useNavigate();
   const lang = i18n.resolvedLanguage || 'en';
   const format = (amountUsd) => formatStoreMoney(lang, amountUsd);
 
-  const [contact, setContact] = useState({ name: '', email: '', phone: '' });
   const [touched, setTouched] = useState(false);
   const [checking, setChecking] = useState(false);
   const [conflictIds, setConflictIds] = useState(/** @type {string[] | null} */ (null));
@@ -219,6 +218,7 @@ export default function StoreCheckout() {
               const reviewStatus = reviewFor(item);
               const conflicted = conflictIds?.includes(item.id) ||
                 (!isRequestItem(item) && reviewStatus && reviewStatus !== 'available');
+              const priceIsStatus = isRequestItem(item) || conflicted || totalUsd == null;
               return (
                 <div key={item.id} className={`checkout-line${conflicted ? ' checkout-line--conflict' : ''}`}>
                   <div className="checkout-line__media">
@@ -237,20 +237,20 @@ export default function StoreCheckout() {
                         : item.mode === 'private' ? t('cart.mode_private') : t('cart.mode_shared')}
                     </p>
                     {item.pickupZone && <p className="checkout-line__meta">{t(`pickup.zones.${item.pickupZone}`)} · {item.accommodation}</p>}
-                    {!conflicted && <StorePriceLines lines={currentQuote?.quotes.find((quote) => quote.id === item.id)?.priceLines || []} />}
-                    {conflicted && (
-                      <Link className="checkout-line__fix" to={`/excursions/${experience.sourceKey}?edit=${item.id}#book`}>
-                        {t(['pickup_required', 'quote_required'].includes(reviewStatus) ? 'checkout.review_selection' : 'checkout.conflict_fix')}
+                    {!isRequestItem(item) && (
+                      <Link className="checkout-line__fix" to={`/excursions/${experience.sourceKey}?edit=${item.id}#book`} state={{ returnToCheckout: true }}>
+                        {t(conflicted ? (['pickup_required', 'quote_required'].includes(reviewStatus) ? 'checkout.review_selection' : 'checkout.conflict_fix') : 'cart.edit')}
                       </Link>
                     )}
                   </div>
-                  <span className="checkout-line__price">
-                    {isRequestItem(item) || reviewStatus === 'quote_required' ? t('cart.price_on_request') : conflicted ? t('cart.price_unavailable') : totalUsd == null ? t('cart.checking_prices') : format(totalUsd)}
+                  {!conflicted && <StorePriceLines lines={currentQuote?.quotes.find((quote) => quote.id === item.id)?.priceLines || []} />}
+                  <span className={`checkout-line__price${priceIsStatus ? ' checkout-line__price--status' : ''}`}>
+                    {isRequestItem(item) || reviewStatus === 'quote_required' ? t('cart.price_on_request') : conflicted ? t('cart.price_unavailable') : totalUsd == null ? t(currentPricing?.failed ? 'cart.price_unavailable' : 'cart.checking_prices') : format(totalUsd)}
                   </span>
                 </div>
               );
             })}
-            <div className="checkout-total">
+            <div className={`checkout-total${paymentReady ? '' : ' checkout-total--status'}`}>
               <span>{t('checkout.trip_total')}</span>
               <strong>
                 {requestMode || pickupReview || availabilityReview || pricingReview ? t('cart.price_unavailable') : quoteRequired ? t('cart.price_on_request') : subtotalUsd == null ? t(currentPricing?.failed ? 'cart.price_unavailable' : 'cart.checking_prices') : format(subtotalUsd)}
@@ -344,7 +344,7 @@ export default function StoreCheckout() {
               />
             </p>
 
-            <button type="button" className="checkout-pay" disabled={checking || !paymentReady} onClick={pay}>
+            <button type="button" className="checkout-pay" disabled={checking || !paymentReady} aria-busy={checking} onClick={pay}>
               {checking && <span className="checkout-pay__spinner" aria-hidden="true" />}
               {checking
                 ? t('checkout.checking')

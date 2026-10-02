@@ -116,7 +116,11 @@
     "pricing_failed": "Nie udało się sprawdzić ceny online. Możesz zapisać tę wycieczkę i ponownie sprawdzić cenę przy płatności.",
     "quote_unpriced": "Cena online dla tego wyboru jest obecnie niedostępna. Możesz zapisać wycieczkę i ponownie sprawdzić cenę przy płatności.",
     "quote_no_payment": "Przy zapytaniu o wycenę nie pobieramy płatności online.",
-    "price_unavailable": "Cena online niedostępna"
+    "price_unavailable": "Cena online niedostępna",
+    "add_checkout": "Dodaj i przejdź do płatności",
+    "save_checkout": "Zapisz i przejdź do płatności",
+    "cart_full": "Twój wyjazd zawiera już 20 atrakcji. Edytuj lub usuń jedną w „Twój wyjazd”, zanim dodasz kolejną.",
+    "reused_details": "Miejsce odbioru jest uzupełnione na podstawie Twojego wyjazdu. Możesz je zmienić dla tej atrakcji."
   },
   "cart": {
     "title": "Twoja podróż",
@@ -173,7 +177,7 @@
     "name_placeholder": "Jan Podróżnik",
     "email_label": "E-mail",
     "email_placeholder": "ty@przyklad.pl",
-    "phone_label": "Telefon / WhatsApp",
+    "phone_label": "Telefon / WhatsApp (opcjonalnie)",
     "phone_placeholder": "+255 …",
     "payment": "Płatność",
     "payment_note": "Zapłacisz przez bezpieczny formularz <strong>Pesapal</strong> na naszej stronie. Dane karty i mobile money trafiają bezpośrednio do Pesapal; Twój bank może otworzyć osobny krok weryfikacji.",

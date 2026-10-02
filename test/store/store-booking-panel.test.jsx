@@ -1,11 +1,13 @@
 import { Children, isValidElement } from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import BookingPanel from '../../src/components/store/BookingPanel.jsx';
+import BookingPanel, { STORE_GUESTS_KEY } from '../../src/components/store/BookingPanel.jsx';
 import PickupFields from '../../src/components/store/PickupFields.jsx';
 import GuestPicker from '../../src/components/store/GuestPicker.jsx';
 import AvailabilityCalendar from '../../src/components/store/AvailabilityCalendar.jsx';
 import TimeSlotPicker from '../../src/components/store/TimeSlotPicker.jsx';
+import { cartReducer, MAX_CART_ITEMS } from '../../src/lib/storeCart.js';
+import { trackEvent } from '../../src/utils/analytics.js';
 import en from '../../src/locales/en/store.json';
 import de from '../../src/locales/de/store.json';
 import pl from '../../src/locales/pl/store.json';
@@ -14,7 +16,8 @@ import pl from '../../src/locales/pl/store.json';
 // dependency. The main-agent browser QA covers real layout and interactions.
 const harness = vi.hoisted(() => ({
   values: [], cursor: 0, effects: [], effectDeps: [], cart: { items: [] }, editId: null,
-  navigate: vi.fn(), dispatch: vi.fn(), fetchPricing: vi.fn(),
+  navigate: vi.fn(), dispatch: vi.fn(), fetchPricing: vi.fn(), setStoredGuests: vi.fn(),
+  locationState: null,
   lang: 'en', currency: 'USD', storedGuests: 2, availability: { loading: false, days: null },
 }));
 vi.mock('react', async (importOriginal) => {
@@ -46,7 +49,7 @@ vi.mock('react', async (importOriginal) => {
 });
 vi.mock('react-router', () => ({
   useNavigate: () => harness.navigate,
-  useLocation: () => ({ pathname: '/excursions/spice-tour', hash: '#book' }),
+  useLocation: () => ({ pathname: '/excursions/spice-tour', hash: '#book', state: harness.locationState }),
   useSearchParams: () => [{ get: () => harness.editId }],
 }));
 vi.mock('react-i18next', () => ({
@@ -122,6 +125,16 @@ function pickup(tree, zone = 'north', accommodation = ' Example Hotel ') {
 function submit(tree) {
   return findElement(tree, (element) => element.type === 'button' && element.props.className === 'booking-panel__submit');
 }
+function checkoutSubmit(tree) {
+  return findElement(tree, (element) => element.type === 'button' && element.props.className === 'booking-panel__checkout');
+}
+function cartItem(overrides = {}) {
+  return {
+    id: 'previous', experienceId: 'safari-blue', mode: 'private', guests: 3,
+    date: '2027-02-28', time: '09:00', pickupZone: 'east', accommodation: 'Beach Hotel',
+    ...overrides,
+  };
+}
 function selectDeparture(tree) {
   const calendar = findElement(tree, (element) => element.type === AvailabilityCalendar);
   const date = `${calendar.props.monthIso}-28`;
@@ -140,18 +153,24 @@ beforeEach(() => {
   harness.effectDeps = [];
   harness.cart = { items: [] };
   harness.editId = null;
+  harness.locationState = null;
   harness.lang = 'en';
   harness.currency = 'USD';
   harness.storedGuests = 2;
   harness.navigate.mockReset();
   harness.dispatch.mockReset();
+  vi.mocked(trackEvent).mockClear();
+  harness.setStoredGuests.mockReset().mockImplementation((_key, value) => { harness.storedGuests = Number(value); });
   harness.fetchPricing.mockReset().mockResolvedValue(approvedPricing);
   harness.availability = { loading: false, days: Object.fromEntries(
     ['2026-10-20', '2026-10-28', '2027-02-28'].map((date) => [date, {
       date, bookable: true, times: [{ time: '09:00', seats: 10 }],
     }]),
   ) };
-  vi.stubGlobal('window', { sessionStorage: { getItem: () => String(harness.storedGuests) } });
+  vi.stubGlobal('window', { sessionStorage: {
+    getItem: () => harness.storedGuests == null ? null : String(harness.storedGuests),
+    setItem: harness.setStoredGuests,
+  } });
 });
 
 afterEach(() => {
@@ -476,6 +495,241 @@ describe('group and pickup booking panel', () => {
     const markup = renderToStaticMarkup(pickup(tree));
     expect(markup).toContain(total);
     expect(markup).toContain({ de, pl }[lang].panel.currency_estimate);
+  });
+});
+
+describe('repeat trip defaults and checkout shortcuts', () => {
+  it('copies the latest valid instant trip details without inheriting its mode, date or time', async () => {
+    harness.storedGuests = null;
+    harness.cart.items = [
+      cartItem({ id: 'older', guests: 2, pickupZone: 'north', accommodation: 'Older Hotel' }),
+      cartItem({ id: 'latest' }),
+      cartItem({ id: 'request', mode: 'request', guests: 6, accommodation: 'Request Hotel' }),
+      cartItem({ id: 'invalid', guests: 0, accommodation: 'Invalid Hotel' }),
+      cartItem({ id: 'non-pilot', experienceId: 'unknown-trip', accommodation: 'Unknown Hotel' }),
+      cartItem({ id: 'missing-pickup', accommodation: '' }),
+    ];
+    const { tree } = await mountPanel();
+    expect(findElement(tree, (element) => element.type === GuestPicker).props.value).toBe(3);
+    expect(findElement(tree, (element) => element.type === PickupFields).props)
+      .toMatchObject({ pickupZone: 'east', accommodation: 'Beach Hotel' });
+    expect(findElement(tree, (element) => element.type === AvailabilityCalendar).props)
+      .toMatchObject({ monthIso: '2026-10', selectedDate: null });
+    expect(findElement(tree, (element) => element.type === TimeSlotPicker)).toBeUndefined();
+    expect(findElement(tree, (element) => element.type === 'button' && element.props.children === en.panel.shared).props['aria-pressed']).toBe(true);
+    expect(renderToStaticMarkup(tree)).toContain(en.panel.reused_details);
+    expect(submit(tree).props.disabled).toBe(true);
+    expect(checkoutSubmit(tree).props.disabled).toBe(true);
+    expect(harness.dispatch).not.toHaveBeenCalled();
+    expect(harness.setStoredGuests).not.toHaveBeenCalled();
+  });
+
+  it('gives the explicit Store guest selection precedence over the latest trip', async () => {
+    harness.storedGuests = 4;
+    harness.cart.items = [cartItem()];
+    let { tree } = await mountPanel();
+    const picker = findElement(tree, (element) => element.type === GuestPicker);
+    expect(picker.props.value).toBe(4);
+    expect(findElement(tree, (element) => element.type === PickupFields).props)
+      .toMatchObject({ pickupZone: 'east', accommodation: 'Beach Hotel' });
+    picker.props.onChange(6);
+    tree = renderPanel();
+    expect(findElement(tree, (element) => element.type === GuestPicker).props.value).toBe(6);
+    expect(harness.setStoredGuests).toHaveBeenCalledExactlyOnceWith(STORE_GUESTS_KEY, '6');
+    expect(renderToStaticMarkup(tree)).not.toContain(en.panel.reused_details);
+    expect(harness.cart.items[0].guests).toBe(3);
+  });
+
+  it('keeps prefilled fields editable and does not overwrite them when the cart changes', async () => {
+    harness.storedGuests = null;
+    harness.cart.items = [cartItem()];
+    let { tree } = await mountPanel();
+    tree = pickup(tree, 'south', 'My next hotel');
+    expect(renderToStaticMarkup(tree)).not.toContain(en.panel.reused_details);
+    harness.cart.items.push(cartItem({ id: 'newer', pickupZone: 'north', accommodation: 'Different Hotel' }));
+    tree = renderPanel();
+    expect(findElement(tree, (element) => element.type === PickupFields).props)
+      .toMatchObject({ pickupZone: 'south', accommodation: 'My next hotel' });
+  });
+
+  it('preserves a legacy oversized guest fallback until the guest explicitly adjusts it', async () => {
+    harness.storedGuests = null;
+    harness.cart.items = [cartItem({ guests: 7 })];
+    let { tree } = await mountPanel();
+    tree = selectDeparture(tree).tree;
+    expect(findElement(tree, (element) => element.type === GuestPicker).props.value).toBe(7);
+    expect(submit(tree).props.disabled).toBe(true);
+    expect(checkoutSubmit(tree).props.disabled).toBe(true);
+    checkoutSubmit(tree).props.onClick();
+    expect(harness.dispatch).not.toHaveBeenCalled();
+    expect(harness.navigate).not.toHaveBeenCalled();
+    findElement(tree, (element) => element.type === GuestPicker).props.onChange(6);
+    tree = renderPanel();
+    expect(checkoutSubmit(tree).props.disabled).toBe(false);
+    expect(harness.cart.items[0].guests).toBe(7);
+  });
+
+  it('loads the edited trip ahead of explicit guests and newer cart defaults', async () => {
+    harness.storedGuests = 6;
+    harness.editId = 'own';
+    harness.cart.items = [
+      cartItem({ id: 'own', experienceId: 'spice-tour', guests: 2, date: '2026-10-20', pickupZone: 'stone-town', accommodation: 'Own Hotel' }),
+      cartItem({ id: 'latest' }),
+    ];
+    const { tree } = await mountPanel();
+    expect(findElement(tree, (element) => element.type === GuestPicker).props.value).toBe(2);
+    expect(findElement(tree, (element) => element.type === PickupFields).props)
+      .toMatchObject({ pickupZone: 'stone-town', accommodation: 'Own Hotel' });
+    expect(findElement(tree, (element) => element.type === AvailabilityCalendar).props.selectedDate).toBe('2026-10-20');
+    expect(findElement(tree, (element) => element.type === TimeSlotPicker).props.selectedTime).toBe('09:00');
+    expect(renderToStaticMarkup(tree)).not.toContain(en.panel.reused_details);
+    expect(harness.setStoredGuests).not.toHaveBeenCalled();
+  });
+
+  it('does not fill missing historical edit pickup fields from another trip', async () => {
+    harness.editId = 'historical';
+    harness.cart.items = [
+      cartItem({ id: 'historical', experienceId: 'spice-tour', pickupZone: undefined, accommodation: undefined }),
+      cartItem({ id: 'latest' }),
+    ];
+    const { tree } = await mountPanel();
+    expect(findElement(tree, (element) => element.type === PickupFields).props)
+      .toMatchObject({ pickupZone: '', accommodation: '' });
+    expect(renderToStaticMarkup(tree)).not.toContain(en.panel.reused_details);
+    expect(checkoutSubmit(tree).props.disabled).toBe(true);
+  });
+
+  it('adds a trip and opens checkout directly with the updated cart count and no personal analytics', async () => {
+    harness.storedGuests = null;
+    harness.cart = { items: [cartItem()], drawerOpen: true };
+    harness.dispatch.mockImplementation((action) => { harness.cart = cartReducer(harness.cart, action); });
+    let { tree } = await mountPanel();
+    const departure = selectDeparture(tree);
+    tree = departure.tree;
+    expect(checkoutSubmit(tree).props.children).toContain(en.panel.add_checkout);
+    checkoutSubmit(tree).props.onClick();
+    expect(harness.cart).toMatchObject({ drawerOpen: false, items: [
+      expect.objectContaining({ id: 'previous', date: '2027-02-28' }),
+      expect.objectContaining({ experienceId: 'spice-tour', mode: 'shared', guests: 3, date: departure.date, time: '09:00', pickupZone: 'east', accommodation: 'Beach Hotel' }),
+    ] });
+    expect(harness.dispatch).not.toHaveBeenCalledWith({ type: 'open_drawer' });
+    expect(harness.navigate).toHaveBeenCalledExactlyOnceWith('/store/checkout');
+    expect(harness.setStoredGuests).toHaveBeenCalledExactlyOnceWith(STORE_GUESTS_KEY, '3');
+    expect(trackEvent).toHaveBeenCalledWith('begin_checkout', { currency: 'USD', items: 2 });
+  });
+
+  it('keeps a normal add on the drawer path even when React supplies a click event', async () => {
+    let { tree } = await mountPanel();
+    tree = selectDeparture(pickup(tree)).tree;
+    submit(tree).props.onClick({ type: 'click' });
+    expect(harness.dispatch).toHaveBeenCalledWith({ type: 'add', item: expect.any(Object) });
+    expect(harness.dispatch).toHaveBeenCalledWith({ type: 'open_drawer' });
+    expect(harness.navigate).not.toHaveBeenCalled();
+    expect(trackEvent).not.toHaveBeenCalledWith('begin_checkout', expect.anything());
+  });
+
+  it('saves the edited trip directly to checkout using the alternate action', async () => {
+    harness.editId = 'own';
+    harness.cart = { items: [cartItem({ id: 'own', experienceId: 'spice-tour', date: '2026-10-20' })], drawerOpen: true };
+    harness.dispatch.mockImplementation((action) => { harness.cart = cartReducer(harness.cart, action); });
+    const { tree } = await mountPanel();
+    expect(submit(tree).props.children).toContain(en.panel.update);
+    expect(checkoutSubmit(tree).props.children).toContain(en.panel.save_checkout);
+    checkoutSubmit(tree).props.onClick();
+    expect(harness.cart.items).toHaveLength(1);
+    expect(harness.cart.items[0]).toMatchObject({ id: 'own', date: '2026-10-20' });
+    expect(harness.dispatch).toHaveBeenCalledWith({ type: 'update', id: 'own', patch: expect.any(Object) });
+    expect(harness.dispatch).not.toHaveBeenCalledWith({ type: 'open_drawer' });
+    expect(harness.navigate).toHaveBeenCalledExactlyOnceWith('/store/checkout');
+    expect(trackEvent).toHaveBeenCalledWith('begin_checkout', { currency: 'USD', items: 1 });
+  });
+
+  it('uses a single Save & checkout action for an edit opened from checkout', async () => {
+    harness.editId = 'own';
+    harness.locationState = { returnToCheckout: true };
+    harness.cart.items = [cartItem({ id: 'own', experienceId: 'spice-tour', date: '2026-10-20' })];
+    const { tree } = await mountPanel();
+    expect(submit(tree).props.children).toContain(en.panel.save_checkout);
+    expect(checkoutSubmit(tree)).toBeUndefined();
+    submit(tree).props.onClick();
+    expect(harness.dispatch).toHaveBeenCalledWith({ type: 'update', id: 'own', patch: expect.any(Object) });
+    expect(harness.dispatch).not.toHaveBeenCalledWith({ type: 'open_drawer' });
+    expect(harness.navigate).toHaveBeenCalledExactlyOnceWith('/store/checkout');
+  });
+
+  it('blocks both new-trip actions at the cart limit without navigation or mutation', async () => {
+    harness.cart.items = Array.from({ length: MAX_CART_ITEMS }, (_, index) => cartItem({ id: `trip-${index}` }));
+    let { tree } = await mountPanel();
+    tree = selectDeparture(tree).tree;
+    expect(submit(tree).props.disabled).toBe(true);
+    expect(checkoutSubmit(tree).props.disabled).toBe(true);
+    expect(renderToStaticMarkup(tree)).toContain(en.panel.cart_full);
+    submit(tree).props.onClick();
+    checkoutSubmit(tree).props.onClick();
+    expect(harness.dispatch).not.toHaveBeenCalled();
+    expect(harness.navigate).not.toHaveBeenCalled();
+    expect(harness.setStoredGuests).not.toHaveBeenCalled();
+    expect(trackEvent).not.toHaveBeenCalledWith('begin_checkout', expect.anything());
+  });
+
+  it('still saves an existing trip at the cart limit and returns to checkout', async () => {
+    harness.editId = 'trip-0';
+    harness.locationState = { returnToCheckout: true };
+    harness.cart.items = Array.from({ length: MAX_CART_ITEMS }, (_, index) => cartItem({ id: `trip-${index}`, experienceId: 'spice-tour', date: '2026-10-20' }));
+    const { tree } = await mountPanel();
+    expect(submit(tree).props.disabled).toBe(false);
+    expect(renderToStaticMarkup(tree)).not.toContain(en.panel.cart_full);
+    submit(tree).props.onClick();
+    expect(harness.dispatch).toHaveBeenCalledWith({ type: 'update', id: 'trip-0', patch: expect.any(Object) });
+    expect(harness.navigate).toHaveBeenCalledExactlyOnceWith('/store/checkout');
+    expect(trackEvent).toHaveBeenCalledWith('begin_checkout', { currency: 'USD', items: MAX_CART_ITEMS });
+  });
+
+  it('does not navigate when a malformed departure is rejected by the cart reducer', async () => {
+    let { tree } = await mountPanel();
+    tree = pickup(tree);
+    findElement(tree, (element) => element.type === AvailabilityCalendar).props.onSelectDate('2026-10-28', {
+      bookable: true, times: [{ time: 'invalid-time', seats: 10 }],
+    });
+    tree = renderPanel();
+    findElement(tree, (element) => element.type === TimeSlotPicker).props.onSelect('invalid-time');
+    tree = renderPanel();
+    checkoutSubmit(tree).props.onClick();
+    expect(harness.dispatch).not.toHaveBeenCalled();
+    expect(harness.navigate).not.toHaveBeenCalled();
+    expect(harness.setStoredGuests).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ['missing pickup', { pickupZone: '', accommodation: '' }, { bookable: true, times: [{ time: '09:00', seats: 10 }] }],
+    ['other area', { pickupZone: 'other', accommodation: 'Hotel' }, { bookable: true, times: [{ time: '09:00', seats: 10 }] }],
+    ['closed departure', { pickupZone: 'north', accommodation: 'Hotel' }, { bookable: false, times: [{ time: '09:00', seats: 10 }] }],
+    ['insufficient seats', { pickupZone: 'north', accommodation: 'Hotel' }, { bookable: true, times: [{ time: '09:00', seats: 1 }] }],
+  ])('keeps the direct action blocked for %s', async (_label, fields, info) => {
+    let { tree } = await mountPanel();
+    tree = pickup(tree, fields.pickupZone, fields.accommodation);
+    findElement(tree, (element) => element.type === AvailabilityCalendar).props.onSelectDate('2026-10-28', info);
+    tree = renderPanel();
+    findElement(tree, (element) => element.type === TimeSlotPicker).props.onSelect('09:00');
+    tree = renderPanel();
+    expect(checkoutSubmit(tree).props.disabled).toBe(true);
+    checkoutSubmit(tree).props.onClick();
+    expect(harness.dispatch).not.toHaveBeenCalled();
+    expect(harness.navigate).not.toHaveBeenCalled();
+  });
+
+  it('supports repeat-trip defaults and direct checkout when session storage is unavailable', async () => {
+    harness.cart.items = [cartItem()];
+    vi.stubGlobal('window', { sessionStorage: {
+      getItem: () => { throw new Error('storage blocked'); },
+      setItem: () => { throw new Error('storage blocked'); },
+    } });
+    let { tree } = await mountPanel();
+    expect(findElement(tree, (element) => element.type === GuestPicker).props.value).toBe(3);
+    tree = selectDeparture(tree).tree;
+    expect(() => checkoutSubmit(tree).props.onClick()).not.toThrow();
+    expect(harness.dispatch).toHaveBeenCalledWith({ type: 'add', item: expect.objectContaining({ guests: 3 }) });
+    expect(harness.navigate).toHaveBeenCalledExactlyOnceWith('/store/checkout');
   });
 });
 

@@ -58,7 +58,7 @@ export default function StoreBookingSection({ excursionId }) {
           </p>
         </div>
         <div className="store-book__panel reveal" style={{ '--reveal-index': 2 }}>
-          <BookingPanel experience={experience} />
+          <BookingPanel key={experience.id} experience={experience} />
         </div>
       </div>
     </section>

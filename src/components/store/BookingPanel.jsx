@@ -6,8 +6,9 @@ import { useBookingCart } from '../../context/useBookingCart.js';
 import { useAvailability } from '../../hooks/useAvailability.js';
 import { BOOKING_END_DATE, depositBreakdown, fetchBookingPricing, priceSelection, todayInStoreTz } from '../../lib/storeApi.js';
 import { monthIsoOf, shiftMonthIso } from '../../lib/storeFormat.js';
-import { MAX_GUESTS_PER_ITEM, newCartItemId } from '../../lib/storeCart.js';
-import { MAX_INSTANT_GUESTS, PICKUP_ZONES } from '../../lib/storePricing.js';
+import { cartReducer, isValidCartItem, MAX_CART_ITEMS, MAX_GUESTS_PER_ITEM, newCartItemId } from '../../lib/storeCart.js';
+import { hasPickupDetails, MAX_INSTANT_GUESTS, PICKUP_ZONES } from '../../lib/storePricing.js';
+import { isInstantBookable } from '../../data/commerceCatalog.js';
 import { convert } from '../../utils/currency.js';
 import { trackEvent } from '../../utils/analytics.js';
 import AvailabilityCalendar from './AvailabilityCalendar.jsx';
@@ -18,14 +19,23 @@ import { ArrowRightIcon } from './StoreIcons.jsx';
 
 export const STORE_GUESTS_KEY = 'dp_store_guests_v1';
 
-function defaultGuests(experience) {
-  let stored = 2;
+function defaultSelection(experience, items) {
+  const latest = [...items].reverse().find((item) => isValidCartItem(item) && item.mode !== 'request' &&
+    isInstantBookable(item.experienceId) && hasPickupDetails(item) && item.pickupZone !== 'other' &&
+    !/\p{Cc}/u.test(item.accommodation));
+  let guests = latest?.guests || 2;
   try {
-    stored = Number(window.sessionStorage.getItem(STORE_GUESTS_KEY)) || 2;
+    const stored = Number(window.sessionStorage.getItem(STORE_GUESTS_KEY));
+    if (Number.isInteger(stored) && stored >= 1 && stored <= MAX_GUESTS_PER_ITEM) guests = stored;
   } catch {
-    stored = 2;
+    // Storage can be unavailable; the current cart remains a usable fallback.
   }
-  return Math.min(Math.max(Math.trunc(stored), experience.minGuests), MAX_GUESTS_PER_ITEM);
+  return {
+    guests: Math.max(guests, experience.minGuests),
+    pickupZone: latest?.pickupZone || '',
+    accommodation: latest?.accommodation.trim() || '',
+    reused: Boolean(latest),
+  };
 }
 
 // Instant-booking panel: shared/private toggle, guests, availability calendar,
@@ -54,15 +64,18 @@ export default function BookingPanel({ experience }) {
         item.id === editId && item.experienceId === experience.id &&
         item.mode !== 'request' && item.date && item.time)
     : null;
+  const returnToCheckout = Boolean(editItem && location.state?.returnToCheckout);
+  const defaults = defaultSelection(experience, cart.items);
 
   /** @typedef {{ date: string, bookable: boolean, times: {time: string, seats: number}[] | null }} DaySnapshot */
   const [mode, setMode] = useState('shared');
-  const [guests, setGuests] = useState(() => defaultGuests(experience));
+  const [guests, setGuests] = useState(() => defaults.guests);
   const [monthIso, setMonthIso] = useState(minMonth);
   const [selectedDay, setSelectedDay] = useState(/** @type {DaySnapshot | null} */ (null));
   const [selectedTime, setSelectedTime] = useState(/** @type {string | null} */ (null));
-  const [pickupZone, setPickupZone] = useState('');
-  const [accommodation, setAccommodation] = useState('');
+  const [pickupZone, setPickupZone] = useState(() => defaults.pickupZone);
+  const [accommodation, setAccommodation] = useState(() => defaults.accommodation);
+  const [reusedDetails, setReusedDetails] = useState(() => defaults.reused && !editItem);
   const [pricing, setPricing] = useState(
     /** @type {{ experienceId: string, value: any, loading: boolean, failed: boolean }} */
     ({ experienceId: '', value: null, loading: true, failed: false }),
@@ -85,6 +98,7 @@ export default function BookingPanel({ experience }) {
     if (!editItem?.date || !editItem?.time || appliedEditRef.current === editItem.id) return;
     const { date, time } = editItem;
     appliedEditRef.current = editItem.id;
+    setReusedDetails(false);
     setMode(editItem.mode);
     setGuests(Math.min(editItem.guests, MAX_GUESTS_PER_ITEM));
     setPickupZone(editItem.pickupZone || '');
@@ -127,7 +141,8 @@ export default function BookingPanel({ experience }) {
   const selectedSlot = slots?.find((slot) => slot.time === selectedTime);
   const departureBookable = Boolean(selectedDay?.bookable && selectedDay.date >= today &&
     selectedDay.date <= BOOKING_END_DATE && selectedSlot && selectedSlot.seats >= guests);
-  const canSubmit = eligibleGroup && pickupComplete && pickupZone !== 'other' && departureBookable;
+  const cartFull = !editItem && cart.items.length >= MAX_CART_ITEMS;
+  const canSubmit = eligibleGroup && pickupComplete && pickupZone !== 'other' && departureBookable && !cartFull;
   const payment = !priceUnavailable && price.totalUsd != null ? depositBreakdown(price.totalUsd) : null;
   const quoteHint = guests > MAX_INSTANT_GUESTS ? 'panel.quote_large_group' : pickupZone === 'other' ? 'panel.quote_other_area' :
     pricingLoading ? 'panel.loading_prices' : currentPricing?.failed ? 'panel.pricing_failed' : 'panel.quote_unpriced';
@@ -142,7 +157,11 @@ export default function BookingPanel({ experience }) {
     trackEvent('select_departure', { item_id: experience.id, departure_time: time });
   };
 
-  const submit = () => {
+  const rememberGuests = (value) => {
+    try { window.sessionStorage.setItem(STORE_GUESTS_KEY, String(value)); } catch { /* Keep booking usable without storage. */ }
+  };
+
+  const submit = (checkout = false) => {
     if (!canSubmit) return;
     if (!selectedDay?.date || !selectedTime) return;
     const record = {
@@ -154,12 +173,19 @@ export default function BookingPanel({ experience }) {
       pickupZone,
       accommodation: accommodation.trim().slice(0, 200),
     };
-    if (editItem) {
-      dispatch({ type: 'update', id: editItem.id, patch: record });
+    const action = editItem
+      ? { type: 'update', id: editItem.id, patch: record }
+      : { type: 'add', item: { id: newCartItemId(), ...record } };
+    // The reducer can reject invalid or full-cart additions. Check the same
+    // rules before navigating so checkout never opens for an unsaved trip.
+    const nextCart = cartReducer(cart, action);
+    if (nextCart === cart) return;
+    dispatch(action);
+    rememberGuests(guests);
+    if (editItem && !checkout) {
       // Leave edit mode so the panel returns to "add" behaviour.
       navigate(`${location.pathname}${location.hash || '#book'}`, { replace: true });
-    } else {
-      dispatch({ type: 'add', item: { id: newCartItemId(), ...record } });
+    } else if (!editItem) {
       trackEvent('add_to_cart', {
         item_id: experience.id,
         ...(!priceUnavailable ? { value: price.totalUsd } : {}),
@@ -168,7 +194,13 @@ export default function BookingPanel({ experience }) {
         mode,
       });
     }
-    dispatch({ type: 'open_drawer' });
+    if (checkout) {
+      trackEvent('begin_checkout', { currency: 'USD', items: nextCart.items.length });
+      dispatch({ type: 'close_drawer' });
+      navigate('/store/checkout');
+    } else {
+      dispatch({ type: 'open_drawer' });
+    }
   };
 
   return (
@@ -213,15 +245,16 @@ export default function BookingPanel({ experience }) {
         value={guests}
         min={experience.minGuests}
         max={MAX_INSTANT_GUESTS}
-        onChange={setGuests}
+        onChange={(value) => { setGuests(value); rememberGuests(value); setReusedDetails(false); }}
       />
 
       <PickupFields
         pickupZone={pickupZone}
         accommodation={accommodation}
-        onPickupZoneChange={setPickupZone}
-        onAccommodationChange={setAccommodation}
+        onPickupZoneChange={(value) => { setPickupZone(value); setReusedDetails(false); }}
+        onAccommodationChange={(value) => { setAccommodation(value); setReusedDetails(false); }}
       />
+      {reusedDetails && <p className="booking-panel__hint">{t('panel.reused_details')}</p>}
 
       <div className="booking-panel__calendar">
         <div className="booking-panel__tz">
@@ -282,10 +315,19 @@ export default function BookingPanel({ experience }) {
         {!pickupComplete && <p className="booking-panel__hint">{t('pickup.required_hint')}</p>}
       </div>
 
-      <button type="button" className="booking-panel__submit" disabled={!canSubmit} onClick={submit}>
-        {editItem ? t('panel.update') : t('panel.add')}
-        <ArrowRightIcon size={17} />
-      </button>
+      {cartFull && <p className="booking-panel__hint" role="status">{t('panel.cart_full')}</p>}
+      <div className="booking-panel__actions">
+        <button type="button" className="booking-panel__submit" disabled={!canSubmit} onClick={() => submit(returnToCheckout)}>
+          {returnToCheckout ? t('panel.save_checkout') : editItem ? t('panel.update') : t('panel.add')}
+          <ArrowRightIcon size={17} />
+        </button>
+        {!returnToCheckout && (
+          <button type="button" className="booking-panel__checkout" disabled={!canSubmit} onClick={() => submit(true)}>
+            {t(editItem ? 'panel.save_checkout' : 'panel.add_checkout')}
+            <ArrowRightIcon size={17} />
+          </button>
+        )}
+      </div>
       <p className="booking-panel__foot">{t('panel.not_charged')}</p>
     </div>
   );
