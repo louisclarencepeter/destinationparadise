@@ -60,12 +60,15 @@ export async function addTrip(page, { slug, extraGuests = 0 }) {
 
 // Rewrites the persisted cart the way an old or hand-edited browser cart
 // could look, then reloads so the app reads it back.
-export async function editStoredCart(page, patchItem) {
-  await page.evaluate(([key, patch]) => {
+// Patches the first trip, or the first trip for `experienceId` when given.
+export async function editStoredCart(page, patchItem, experienceId = null) {
+  await page.evaluate(([key, patch, target]) => {
     const cart = JSON.parse(window.localStorage.getItem(key));
-    cart.items = cart.items.map((item, index) => (index === 0 ? { ...item, ...patch } : item));
+    const index = target ? cart.items.findIndex((item) => item.experienceId === target) : 0;
+    if (index < 0) throw new Error(`no stored trip for ${target}`);
+    cart.items[index] = { ...cart.items[index], ...patch };
     window.localStorage.setItem(key, JSON.stringify(cart));
-  }, [CART_STORAGE_KEY, patchItem]);
+  }, [CART_STORAGE_KEY, patchItem, experienceId]);
   await page.reload();
   await dismissCookieBanner(page);
 }
@@ -107,4 +110,34 @@ export async function readPricedLines(container, prefix = 'cart-item') {
     return lines.length > 0 && lines.every((line) => /\$\d/.test(line.price));
   }, { message: 'every line shows a price' }).toBe(true);
   return lines;
+}
+
+// "2:30 PM" (the English slot label) -> "14:30" (the stored cart time).
+export function slotLabelTo24h(label) {
+  const [, hour, minute, half] = label.match(/(\d{1,2}):(\d{2})\s*([AP]M)/i);
+  const hours = (Number(hour) % 12) + (half.toUpperCase() === 'PM' ? 12 : 0);
+  return `${String(hours).padStart(2, '0')}:${minute}`;
+}
+
+// Walks the bookable days (this month, then the next) until one has a slot
+// whose status text matches `wanted` next to a slot that can be booked now.
+// Returns the wanted slot's 24h time, leaving that day selected; null if the
+// window has no such day (e.g. a deployed inventory with nothing sold out).
+export async function findDayWithSlot(panel, wanted) {
+  for (let month = 0; month < 2; month += 1) {
+    const days = panel.locator('.avail-cal__day:not([disabled])');
+    for (let i = 0; i < await days.count(); i += 1) {
+      await days.nth(i).click();
+      const slots = panel.locator('.slot-grid__slot');
+      await expect(slots.first()).toBeVisible();
+      const match = slots.filter({ has: panel.page().locator('.slot-grid__sub', { hasText: wanted }) }).first();
+      if (await match.count() && await panel.locator('.slot-grid__slot:not([disabled])').count()) {
+        return slotLabelTo24h(await match.locator('.slot-grid__time').innerText());
+      }
+    }
+    const next = panel.getByRole('button', { name: 'Next month' });
+    if (!await next.isEnabled()) break;
+    await next.click();
+  }
+  return null;
 }
