@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Erlebnis-Shop · Destination Paradise",
-    "description": "Entdecke Erlebnisse auf Sansibar, wähle Datum und Uhrzeit und bezahle die ganze Reise in einem Schritt. Ausgewählte Ausflüge sind sofort buchbar."
+    "description": "Wähle Erlebnisse, Termine und Zeiten auf Sansibar. Buche ausgewählte Ausflüge sofort mit einer gemeinsamen Anzahlung von 20%; die restlichen 80% sind am Tag des jeweiligen Erlebnisses fällig."
   },
   "catalog": {
     "pickups": {
@@ -27,7 +27,7 @@
   "hero": {
     "eyebrow": "Lokal. Geführt. Entspannt.",
     "title": "Finde deine Erlebnisse",
-    "lead": "Wähle deine Inseltage, baue aus mehreren Ausflügen eine Reise — und zahle nur einmal.",
+    "lead": "Wähle deine Inseltage und kombiniere mehrere Erlebnisse zu einer Reise. Zahle eine gemeinsame Anzahlung von 20% und die restlichen 80% am Tag des jeweiligen Erlebnisses.",
     "search_label": "Erlebnis",
     "search_placeholder": "Dhow, Stone Town, Gewürze…",
     "guests_label": "Gäste",
@@ -40,7 +40,7 @@
   "list": {
     "eyebrow": "Sansibar & Tansania",
     "title": "Ausgewählte Erlebnisse",
-    "lead": "Küstenausflüge buchst du sofort. Safaris und maßgeschneiderte Routen organisieren wir auf Anfrage.",
+    "lead": "Wähle Datum, Gäste und Abholung, lege ein oder mehrere Erlebnisse in Deine Reise und zahle eine gemeinsame Anzahlung von 20% beim Checkout.",
     "filter_all": "Alle Erlebnisse",
     "filter_instant": "Sofort buchbar",
     "filter_request": "Auf Anfrage",
@@ -63,11 +63,12 @@
   "section": {
     "eyebrow": "Online buchen",
     "title": "Wähle deine Abfahrt",
-    "lead": "Datum, Uhrzeit und Gäste wählen — mit deinen anderen Erlebnissen in eine Reise legen und beim Checkout einmal zahlen.",
+    "lead": "Wähle Datum, Uhrzeit und Gäste und füge deine Erlebnisse zu einer Reise zusammen. Beim Checkout zahlst du eine gemeinsame Anzahlung von 20%; die restlichen 80% sind am jeweiligen Erlebnistag fällig.",
     "point_instant": "Sofortige Bestätigung bezahlter Abfahrten",
     "point_cart": "Mehrere Erlebnisse in einer Bestellung",
     "point_codes": "Ein eigener Buchungscode für jede Tour",
-    "pickup_label": "Abholung & Treffpunkt:"
+    "pickup_label": "Abholung & Treffpunkt:",
+    "pickup_select_hint": "Wähle unten deine Abholregion und Unterkunft, damit wir Transport und Preis bestätigen können."
   },
   "panel": {
     "per_person": "pro Person",
@@ -100,7 +101,26 @@
     "total": "Gesamt",
     "add": "Zu meiner Reise",
     "update": "Tour aktualisieren",
-    "not_charged": "Noch keine Zahlung — du prüfst alles beim Checkout."
+    "not_charged": "Noch keine Zahlung — du prüfst alles beim Checkout.",
+    "group_total": "für deine Gruppe",
+    "quote_chip": "Preis ausstehend",
+    "small_car_hint": "Onlinepreise für bis zu 6 Gäste in einem Fahrzeug; ab 7 Gästen ist ein Angebot erforderlich.",
+    "effective_per_person": "Preis pro Person inklusive Abholung",
+    "deposit": "20% Anzahlung beim Checkout",
+    "balance": "80% Restbetrag am Erlebnistag",
+    "currency_estimate": "Schätzwerte in deiner Währung. Das Angebot beim Checkout wird in USD angezeigt.",
+    "contact_quote": "Kontaktiere uns für ein Angebot",
+    "quote_large_group": "Onlinebuchungen sind für bis zu 6 Gäste möglich. Nutze für 7 oder mehr Gäste Book Now für eine separate Anfrage.",
+    "quote_other_area": "Für dieses Abholgebiet ist eine separate Anfrage über Book Now nötig. Wähle für die Onlinebuchung ein aufgeführtes Gebiet.",
+    "loading_prices": "Wir prüfen die bestätigten Gruppenpreise und Abholzuschläge…",
+    "pricing_failed": "Wir konnten den Onlinepreis nicht prüfen. Du kannst diesen Ausflug speichern und den Preis beim Checkout erneut prüfen.",
+    "quote_unpriced": "Für diese Auswahl ist derzeit kein Onlinepreis verfügbar. Du kannst den Ausflug speichern und den Preis beim Checkout erneut prüfen.",
+    "quote_no_payment": "Bei einer Angebotsanfrage wird keine Onlinezahlung eingezogen.",
+    "price_unavailable": "Onlinepreis nicht verfügbar",
+    "add_checkout": "Hinzufügen & zur Kasse",
+    "save_checkout": "Speichern & zur Kasse",
+    "cart_full": "Deine Reise enthält bereits 20 Erlebnisse. Bearbeite oder entferne eines unter „Deine Reise“, bevor du ein weiteres hinzufügst.",
+    "reused_details": "Die Abholung ist aus deiner Reise übernommen. Du kannst sie für dieses Erlebnis ändern."
   },
   "cart": {
     "title": "Deine Reise",
@@ -125,15 +145,22 @@
     "remove": "Entfernen",
     "subtotal": "Zwischensumme",
     "checkout_cta": "Weiter zum Checkout",
-    "note": "Jedes Erlebnis behält sein Datum, seine Uhrzeit und seine Gäste.",
-    "price_on_request": "Auf Anfrage",
+    "note": "Füge ein oder mehrere Erlebnisse hinzu und zahle eine gemeinsame Anzahlung von 20%. Jeder Ausflug behält sein Datum, seine Uhrzeit und seine Gästezahl.",
+    "price_on_request": "Onlinepreis nicht verfügbar",
     "requested_dates": "Wunschtermine",
     "requested_flexible": "flexibel",
     "mode_request": "Auf Anfrage",
     "status_request": "Wartet auf Bestätigung",
     "plus_request": "+ Positionen auf Anfrage",
     "request_cta": "Weiter zur Reiseanfrage",
-    "request_note": "Deine Reise enthält Anfragen — wir bestätigen erst die Verfügbarkeit, gezahlt wird einmal am Ende."
+    "request_note": "Für deine angefragten Erlebnisse bestätigen wir zuerst Verfügbarkeit und Preis. Nach deiner Zustimmung zahlst du eine gemeinsame Anzahlung von 20%; die restlichen 80% sind am jeweiligen Erlebnistag fällig.",
+    "checking_prices": "Preise werden geprüft…",
+    "price_unavailable": "Preis nicht verfügbar",
+    "status_checking": "Verfügbarkeit wird geprüft…",
+    "status_pickup_required": "Abholdetails erforderlich",
+    "status_quote_required": "Onlinepreis nicht verfügbar",
+    "continue_shopping": "Weiter einkaufen",
+    "online_only": "Ausflüge auf Anfrage können im Shop nicht bezahlt werden. Behalte hier Online-Abfahrten und nutze Book Now für eine separate Anfrage."
   },
   "checkout": {
     "meta_title": "Kasse · Destination Paradise",
@@ -150,19 +177,20 @@
     "name_placeholder": "Jana Reisende",
     "email_label": "E-Mail",
     "email_placeholder": "du@beispiel.de",
-    "phone_label": "Telefon / WhatsApp",
+    "phone_label": "Telefon / WhatsApp (optional)",
     "phone_placeholder": "+255 …",
     "payment": "Zahlung",
-    "payment_note": "Die Zahlung schließt du auf der sicheren Seite unseres Zahlungspartners <strong>DPO Pay</strong> ab. In dieser Vorschau wird sie nur simuliert — hier werden keine Kartendaten eingegeben und nichts abgebucht.",
+    "payment_note": "Du bezahlst über ein sicheres Formular von <strong>Pesapal</strong> auf unserer Website. Karten- und Mobile-Money-Daten gehen direkt an Pesapal; deine Bank kann einen separaten Bestätigungsschritt öffnen.",
     "pay": "{{amount}} zahlen",
     "checking": "Verfügbarkeit wird geprüft…",
     "recheck_note": "Vor der Zahlung prüfen wir die Verfügbarkeit erneut.",
     "terms_ack": "Mit dem Fortfahren akzeptierst du unsere <booking>Buchungsbedingungen</booking> und <terms>AGB</terms>, einschließlich der Stornogebühren für deine Termine.",
     "conflict": "Einige Abfahrten sind nicht mehr verfügbar. Passe bitte die markierten Touren an.",
     "conflict_fix": "Neue Zeit wählen",
-    "failed": "Die Zahlung konnte gerade nicht abgeschlossen werden. Es wurde nichts abgebucht — versuch es gleich noch einmal.",
-    "payment_unavailable": "Online-Zahlung ist noch nicht verfügbar — deine Auswahl wurde als Bestellung gespeichert, aber nichts abgebucht. Nutze vorerst bitte das Anfrageformular.",
-    "usd_note": "Abgerechnet wird in US-Dollar — Preise in anderen Währungen sind Richtwerte.",
+    "failed": "Die Weiterleitung zur Zahlung konnte nicht abgeschlossen werden. Bitte versuche es gleich noch einmal.",
+    "payment_unavailable": "Die Onlinezahlung ist vorübergehend nicht verfügbar. Deine Ausflüge bleiben gespeichert. Versuche es erneut oder kontaktiere unser Team.",
+    "usd_note": "Reise und Anzahlung werden in US-Dollar (USD) angeboten; andere Währungen auf unserer Website sind Richtwerte. Dein Zahlungsanbieter kann eine umgerechnete Währung anzeigen. Prüfe vor der Zahlung den endgültigen Betrag und die Währung.",
+    "privacy_notice": "Wir verwenden deine Kontakt- und Reisedaten, um deine Buchung und Zahlung zu organisieren. Lies unsere <privacy>Datenschutzerklärung</privacy>.",
     "errors": {
       "name_required": "Bitte gib den Namen des Hauptgasts an.",
       "email_required": "Bitte gib eine E-Mail-Adresse an.",
@@ -176,7 +204,20 @@
     "request_sending": "Anfrage wird gesendet…",
     "request_footnote": "Beim Senden einer Anfrage wird nichts abgebucht oder reserviert.",
     "request_total_label": "Sofort buchbare Positionen bisher",
-    "request_pricing_hint": "Angefragte Erlebnisse werden in deiner Bestätigungs-E-Mail bepreist."
+    "request_pricing_hint": "Angefragte Erlebnisse werden in deiner Bestätigungs-E-Mail bepreist.",
+    "payment_note_preview": "Diese Vorschau simuliert die Anzahlung von 20% — es wird nichts abgebucht und du gibst keine Karten- oder Mobile-Money-Daten ein. Die restlichen 80% sind am Tag deiner Tour fällig.",
+    "trip_total": "Gesamtpreis der Reise",
+    "deposit_due": "Anzahlung jetzt ({{percent}}%)",
+    "balance_due": "Restbetrag am Tag der Tour",
+    "pay_deposit": "{{amount}} anzahlen",
+    "price_changed": "Der Zahlungsbetrag hat sich geändert. Prüfe den aktualisierten Gesamtpreis und die Anzahlung, bevor du fortfährst.",
+    "quote_failed": "Der aktuelle Preis konnte nicht geprüft werden. Bitte versuche es vor der Zahlung erneut.",
+    "retry_quote": "Preise erneut prüfen",
+    "pickup_review": "Wähle für jede Tour eine Abholregion und Unterkunft und prüfe anschließend den Preis.",
+    "quote_required": "Für die markierte Auswahl ist kein Onlinepreis verfügbar. Prüfe Gästezahl und Abholung. Die Zahlung ist erst möglich, wenn der Preis bestätigt ist.",
+    "review_selection": "Gruppe und Abholung prüfen",
+    "online_only": "Der Shop-Checkout ist für Online-Abfahrten. Entferne Ausflüge auf Anfrage aus diesem Warenkorb und nutze Book Now für eine separate Anfrage.",
+    "separate_enquiry": "Separate Anfrage in Book Now öffnen"
   },
   "confirm": {
     "meta_title": "Buchungsbestätigung · Destination Paradise",
@@ -202,9 +243,41 @@
     "quote_expiry": "Diese Bestätigung gilt bis {{date}}.",
     "accept_cta": "Annehmen & weiter — {{amount}}",
     "accepting": "Plätze werden reserviert…",
-    "accept_note": "Mit der Annahme prüfen wir die Verfügbarkeit erneut und reservieren jeden Platz deiner Reise; gezahlt wird einmal gesamt.",
+    "accept_note": "Mit der Annahme prüfen wir die Verfügbarkeit erneut und reservieren deine Plätze. Danach zahlst du eine gemeinsame Anzahlung von 20%; die restlichen 80% sind am jeweiligen Erlebnistag fällig.",
+    "accept_note_full": "Mit der Annahme prüfen wir die Verfügbarkeit erneut und reservieren jeden Platz deiner Reise; gezahlt wird einmal gesamt.",
     "accept_conflict": "Eine Abfahrt ist gerade ausgebucht. Unser Team ist informiert und mailt dir eine Alternative.",
-    "accepted_payment_pending": "Deine Plätze sind reserviert! Die Online-Zahlung öffnet in Kürze — wir mailen dir den Zahlungslink."
+    "accepted_payment_pending": "Deine Plätze sind reserviert! Die Online-Zahlung öffnet in Kürze — wir mailen dir den Zahlungslink.",
+    "deposit_lead": "Bestellung <ref>{{reference}}</ref> ist bestätigt und deine Anzahlung von 20% ist eingegangen. Deine Bestätigung per E-Mail enthält alle Buchungscodes und den Restbetrag.",
+    "deposit_chip": "Bestätigt · Anzahlung erhalten",
+    "deposit_received": "Anzahlung erhalten",
+    "balance_note": "Die restlichen 80% sind am Tag deiner Tour vor Beginn des Erlebnisses fällig.",
+    "accept_deposit_cta": "Annehmen & {{amount}} anzahlen",
+    "refresh_failed_title": "Deine Bestellung konnte nicht geprüft werden",
+    "refresh_failed_text": "Deine gespeicherte Bestätigung könnte sich geändert haben. Versuche erneut, den aktuellen Buchungs- und Zahlungsstatus zu prüfen, oder nutze den Link in deiner Bestätigungs-E-Mail.",
+    "refresh_retry": "Bestellung erneut prüfen",
+    "continue_pending": "Wenn du die Zahlung noch nicht abgeschlossen hast, fahre zum sicheren Checkout fort. Nach Prüfung der Zahlung aktualisieren wir deine Bestätigung."
+  },
+  "payment": {
+    "title": "Hier sicher bezahlen",
+    "deposit_title": "Deine Anzahlung hier sicher bezahlen",
+    "full_title": "Deine Reise hier sicher bezahlen",
+    "lead": "Schließe die Zahlung für Bestellung <ref>{{reference}}</ref> unten ab. Wir bestätigen deine Buchung, nachdem wir die Zahlung bei Pesapal geprüft haben.",
+    "amount_due": "Jetzt fälliger Betrag",
+    "frame_title": "Sicheres Zahlungsformular",
+    "provider": "Zahlung über Pesapal",
+    "description": "Wähle deine Zahlungsmethode im Pesapal-Formular unten. Karten- und Mobile-Money-Daten gehen direkt an Pesapal. Scrolle im Formular, um weitere Felder zu sehen.",
+    "terms_hint": "Prüfe und akzeptiere die Bedingungen von Pesapal im Formular, wenn du zur Zahlung bereit bist.",
+    "loading": "Sicheres Zahlungsformular wird geladen…",
+    "ready": "Prüfe nach der Zahlung unten den Status deiner Bestellung.",
+    "iframe_title": "Sicheres Zahlungsformular von Pesapal",
+    "check_status": "Zahlungsstatus prüfen",
+    "checking": "Zahlung wird geprüft…",
+    "pending": "Die Zahlung wurde noch nicht bestätigt. Wenn du bereits bezahlt hast, warte einen Moment und prüfe erneut.",
+    "reload": "Zahlungsformular neu laden",
+    "reload_hint": "Beim Neuladen können bereits eingegebene Angaben im Formular verloren gehen.",
+    "external_hint": "Falls das Formular nicht erscheint, kannst du auf der sicheren Pesapal-Seite fortfahren:",
+    "external_link": "Sichere Zahlungsseite öffnen",
+    "unavailable": "Das sichere Zahlungsformular konnte nicht geöffnet werden. Prüfe deine Bestellung erneut oder kontaktiere unser Team."
   },
   "request_panel": {
     "chip": "Auf Anfrage buchen",
@@ -221,7 +294,28 @@
     "lead": "Dieses Erlebnis organisieren wir mit unseren Partnern vor Ort — wir bestätigen die Verfügbarkeit, bevor etwas gebucht oder bezahlt wird.",
     "point_no_charge": "Keine Abbuchung und keine Reservierung, bis du zustimmst",
     "point_confirm": "Termine und Endpreis bestätigen wir in etwa 24 Stunden",
-    "point_one_payment": "Am Ende steht eine einzige gemeinsame Zahlung",
+    "point_one_payment": "Nach bestätigter Verfügbarkeit: 20% gemeinsam anzahlen und 80% am jeweiligen Erlebnistag zahlen",
     "pickup_fallback": "Abholdetails bestätigen wir zusammen mit deinen Terminen."
+  },
+  "pickup": {
+    "title": "Wo wohnst du?",
+    "hint": "Wähle deine Abholregion und gib dein Hotel oder deine Unterkunft an. Abholzuschläge werden einmal pro Fahrzeug berechnet.",
+    "zone_label": "Abholregion",
+    "zone_placeholder": "Region wählen",
+    "accommodation_label": "Hotel oder Unterkunft",
+    "accommodation_placeholder": "Name des Hotels, Gästehauses oder der Unterkunft",
+    "required_hint": "Gib deine Abholregion und Unterkunft an, um fortzufahren.",
+    "zones": {
+      "stone-town": "Stone Town",
+      "north": "Nordküste",
+      "east": "Ostküste",
+      "south": "Südküste",
+      "other": "Andere Region / noch unklar"
+    }
+  },
+  "pricing": {
+    "group_price": "Erlebnispreis für deine Gruppe",
+    "pickup_charge": "Abholzuschlag · ein Fahrzeug",
+    "enquiry_note": "{{guests}} Fahrgäste · {{mode}}\nUnterkunft: {{accommodation}}\nAbholregion: {{area}}\nGewünschte Abfahrt: {{date}} {{time}}"
   }
 }

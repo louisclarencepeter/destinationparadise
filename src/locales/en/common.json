@@ -79,7 +79,7 @@
       },
       "popular": ["Airport transfer", "Safari Blue", "Honeymoon package", "Serengeti", "Stone Town", "Paje"],
       "pages": {
-        "store": { "title": "Experiences Store", "description": "Book selected excursions instantly, combine several trips, and pay once." },
+        "store": { "title": "Experiences Store", "description": "Book selected excursions instantly with one combined 20% deposit; pay the remaining 80% on each experience day." },
         "home": { "title": "Home", "description": "Start here for Zanzibar trips, safaris, packages, transfers, weather, and trip planning." },
         "excursions": { "title": "Excursions", "description": "Browse Zanzibar day trips, dhow sailing, Stone Town, spice farms, snorkeling, dolphins, and nature tours." },
         "safaris": { "title": "Safaris", "description": "Mainland wildlife routes across Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha, and more." },
