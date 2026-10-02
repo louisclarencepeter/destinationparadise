@@ -7,15 +7,21 @@ const PRODUCTION_HOSTS = ['yournexttriptoparadise.com', 'www.yournexttriptoparad
 
 export const usd = (text) => Number(text.replace(/[^0-9.]/g, ''));
 
-// Store preview on, English copy, and never against production (a deployed
+// Store preview on, cookie choice made, starting language set (kept if the
+// test switches language later), and never against production (a deployed
 // run creates real orders in that site's database).
-export function prepareStorePage() {
+export function prepareStorePage(lang = 'en') {
   test.beforeEach(async ({ page, baseURL }) => {
     test.skip(PRODUCTION_HOSTS.includes(new URL(baseURL).hostname), 'store journeys never run against production');
-    await page.addInitScript(() => {
+    await page.addInitScript((startLang) => {
       window.localStorage.setItem('dp_store_preview', '1');
-      window.localStorage.setItem('dp_lang', 'en');
-    });
+      if (!window.localStorage.getItem('dp_lang')) window.localStorage.setItem('dp_lang', startLang);
+      if (!window.localStorage.getItem('dp_cookie_consent_v1')) {
+        window.localStorage.setItem('dp_cookie_consent_v1', JSON.stringify({
+          version: 1, updatedAt: new Date().toISOString(), choices: { essential: true, analytics: false },
+        }));
+      }
+    }, lang);
   });
 }
 
@@ -107,15 +113,17 @@ export async function readPricedLines(container, prefix = 'cart-item') {
   let lines = [];
   await expect.poll(async () => {
     lines = await readLines(container, prefix);
-    return lines.length > 0 && lines.every((line) => /\$\d/.test(line.price));
+    // A money amount in any store language: $135.00, 135,00 $, 135,00 USD.
+    return lines.length > 0 && lines.every((line) => /\d[.,]\d{2}/.test(line.price));
   }, { message: 'every line shows a price' }).toBe(true);
   return lines;
 }
 
-// "2:30 PM" (the English slot label) -> "14:30" (the stored cart time).
+// A slot label ("2:30 PM" in English, "14:30" in German/Polish) -> the
+// stored cart time ("14:30").
 export function slotLabelTo24h(label) {
-  const [, hour, minute, half] = label.match(/(\d{1,2}):(\d{2})\s*([AP]M)/i);
-  const hours = (Number(hour) % 12) + (half.toUpperCase() === 'PM' ? 12 : 0);
+  const [, hour, minute, half] = label.match(/(\d{1,2}):(\d{2})(?:\s*([AP]M))?/i);
+  const hours = half ? (Number(hour) % 12) + (half.toUpperCase() === 'PM' ? 12 : 0) : Number(hour);
   return `${String(hours).padStart(2, '0')}:${minute}`;
 }
 
