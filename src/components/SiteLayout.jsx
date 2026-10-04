@@ -11,9 +11,8 @@ import { isStoreEnabled } from '../config/featureFlags.js';
 // Lazy so the store bundle (catalog data, drawer UI) never loads while the
 // store feature flag is off.
 const CartDrawer = lazy(() => import('./store/CartDrawer.jsx'));
-import { isPrivateOrderPath, loadGoogleAnalytics, revokeGoogleAnalytics, suspendGoogleAnalytics, trackPageView } from '../utils/analytics.js';
+import { loadGoogleAnalytics, revokeGoogleAnalytics, trackPageView } from '../utils/analytics.js';
 import { preferredScrollBehavior } from '../utils/motion.js';
-import { scheduleSentryInit } from '../utils/sentry.js';
 import {
   announceTheme,
   applyTheme,
@@ -62,13 +61,8 @@ export default function SiteLayout() {
   };
 
   useEffect(() => {
-    if (isPrivateOrderPath(location.pathname)) {
-      suspendGoogleAnalytics();
-      return;
-    }
     loadGoogleAnalytics();
-    scheduleSentryInit();
-  }, [location.pathname]);
+  }, []);
 
   useEffect(() => {
     const path = `${location.pathname}${location.search}${location.hash}`;

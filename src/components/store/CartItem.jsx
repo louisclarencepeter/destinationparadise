@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import ResponsiveImage from '../ResponsiveImage.jsx';
-import { formatDateLabel, formatStoreMoney, formatTimeLabel } from '../../lib/storeFormat.js';
-import StorePriceLines from './StorePriceLines.jsx';
+import { useCurrency } from '../../context/useCurrency.js';
+import { formatDateLabel, formatTimeLabel } from '../../lib/storeFormat.js';
 
 const STATUS_KEYS = {
   available: 'cart.status_available',
@@ -10,10 +10,6 @@ const STATUS_KEYS = {
   departed: 'cart.status_departed',
   unknown_experience: 'cart.status_departed',
   request_pending: 'cart.status_request',
-  checking: 'cart.status_checking',
-  quote_unavailable: 'cart.price_unavailable',
-  pickup_required: 'cart.status_pickup_required',
-  quote_required: 'cart.status_quote_required',
 };
 
 const MODE_KEYS = {
@@ -25,13 +21,12 @@ const MODE_KEYS = {
 // One trip line inside the cart drawer. `experience` is the commerce record;
 // `status` comes from the latest quote ('available' until a re-check lands).
 // Request items show preferred dates instead of a departure and carry no price.
-/** @param {{ item: any, experience: any, status?: string, totalUsd?: number | null, priceLines?: any[], onEdit: () => void, onRemove: () => void }} props */
-export default function CartItem({ item, experience, status = 'available', totalUsd, priceLines = [], onEdit, onRemove }) {
+export default function CartItem({ item, experience, status = 'available', totalUsd, onEdit, onRemove }) {
   const { t, i18n } = useTranslation('store');
+  const { format } = useCurrency();
   const lang = i18n.resolvedLanguage || 'en';
-  const format = (amountUsd) => formatStoreMoney(lang, amountUsd);
   const isRequest = item.mode === 'request';
-  const ok = status === 'available' || status === 'request_pending' || status === 'checking';
+  const ok = status === 'available' || status === 'request_pending';
 
   return (
     <div className={`cart-item${ok ? '' : ' cart-item--blocked'}`}>
@@ -42,7 +37,7 @@ export default function CartItem({ item, experience, status = 'available', total
         <div className="cart-item__top">
           <p className="cart-item__title">{experience.title}</p>
           <span className="cart-item__price">
-            {isRequest || status === 'quote_required' ? t('cart.price_on_request') : !['available', 'checking'].includes(status) ? t('cart.price_unavailable') : totalUsd == null ? t('cart.checking_prices') : format(totalUsd)}
+            {isRequest ? t('cart.price_on_request') : format(totalUsd)}
           </span>
         </div>
         <p className="cart-item__meta">
@@ -53,11 +48,9 @@ export default function CartItem({ item, experience, status = 'available', total
         <p className="cart-item__meta">
           {t('cart.guest_count', { count: item.guests })} · {t(MODE_KEYS[item.mode] || MODE_KEYS.shared)}
         </p>
-        {item.pickupZone && <p className="cart-item__meta">{t(`pickup.zones.${item.pickupZone}`)} · {item.accommodation}</p>}
-        {status === 'available' && <StorePriceLines lines={priceLines} />}
         <div className="cart-item__actions">
           <span className={`cart-item__status${ok ? '' : ' cart-item__status--warn'}${isRequest ? ' cart-item__status--request' : ''}`}>
-            {t(STATUS_KEYS[status] || STATUS_KEYS.quote_unavailable)}
+            {t(STATUS_KEYS[status] || STATUS_KEYS.available)}
           </span>
           <button type="button" className="cart-item__link" onClick={onEdit}>{t('cart.edit')}</button>
           <button type="button" className="cart-item__link cart-item__link--muted" onClick={onRemove}>

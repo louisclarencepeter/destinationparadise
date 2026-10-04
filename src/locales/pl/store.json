@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Sklep z atrakcjami · Destination Paradise",
-    "description": "Wybierz atrakcje na Zanzibarze, daty i godziny. Zarezerwuj wybrane wycieczki od ręki z jedną łączną zaliczką 20%; pozostałe 80% zapłacisz w dniu każdej atrakcji."
+    "description": "Przeglądaj atrakcje na Zanzibarze, wybierz datę i godzinę i zapłać raz za całą podróż. Wybrane wycieczki zarezerwujesz od ręki."
   },
   "catalog": {
     "pickups": {
@@ -27,7 +27,7 @@
   "hero": {
     "eyebrow": "Lokalnie. Z przewodnikiem. Bez pośpiechu.",
     "title": "Znajdź swoje atrakcje",
-    "lead": "Wybierz swoje dni na wyspie i połącz kilka atrakcji w jedną podróż. Wpłać jedną zaliczkę 20%, a pozostałe 80% zapłać w dniu każdej atrakcji.",
+    "lead": "Wybierz dni na wyspie, złóż jedną podróż z kilku wycieczek i zapłać tylko raz.",
     "search_label": "Atrakcja",
     "search_placeholder": "Dhow, Stone Town, przyprawy…",
     "guests_label": "Goście",
@@ -40,7 +40,7 @@
   "list": {
     "eyebrow": "Zanzibar i Tanzania",
     "title": "Wybrane atrakcje",
-    "lead": "Wybierz daty, liczbę gości i odbiór, dodaj jedną lub więcej atrakcji do Twojej podróży i wpłać jedną łączną zaliczkę 20% przy płatności.",
+    "lead": "Wycieczki przybrzeżne rezerwujesz od ręki. Safari i trasy szyte na miarę organizujemy na zapytanie.",
     "filter_all": "Wszystkie atrakcje",
     "filter_instant": "Rezerwacja od ręki",
     "filter_request": "Na zapytanie",
@@ -63,12 +63,11 @@
   "section": {
     "eyebrow": "Rezerwuj online",
     "title": "Wybierz swój termin",
-    "lead": "Wybierz datę, godzinę i liczbę gości, a następnie połącz atrakcje w jedną podróż. Przy składaniu zamówienia wpłacasz łączną zaliczkę 20%; pozostałe 80% płacisz w dniu każdej atrakcji.",
+    "lead": "Wybierz datę, godzinę i liczbę gości — dodaj do jednej podróży z innymi atrakcjami i zapłać raz przy kasie.",
     "point_instant": "Natychmiastowe potwierdzenie opłaconych terminów",
     "point_cart": "Kilka atrakcji w jednym zamówieniu",
     "point_codes": "Osobny kod rezerwacji dla każdej wycieczki",
-    "pickup_label": "Odbiór i miejsce zbiórki:",
-    "pickup_select_hint": "Wybierz poniżej region odbioru i miejsce zakwaterowania, abyśmy mogli potwierdzić transport i cenę."
+    "pickup_label": "Odbiór i miejsce zbiórki:"
   },
   "panel": {
     "per_person": "za osobę",
@@ -101,26 +100,7 @@
     "total": "Razem",
     "add": "Dodaj do mojej podróży",
     "update": "Zaktualizuj wycieczkę",
-    "not_charged": "Jeszcze nic nie płacisz — wszystko sprawdzisz przy kasie.",
-    "group_total": "za całą grupę",
-    "quote_chip": "Cena oczekuje",
-    "small_car_hint": "Ceny online dla maksymalnie 6 gości w jednym samochodzie; od 7 osób wymagana jest wycena.",
-    "effective_per_person": "Cena za osobę z odbiorem",
-    "deposit": "Zaliczka 20% przy zamówieniu",
-    "balance": "Pozostałe 80% w dniu atrakcji",
-    "currency_estimate": "Kwoty w lokalnej walucie są orientacyjne. Wycena przy zamówieniu jest podana w USD.",
-    "contact_quote": "Skontaktuj się z nami po wycenę",
-    "quote_large_group": "Rezerwacja online obejmuje do 6 gości. Dla 7 lub więcej osób skorzystaj z Book Now, aby wysłać osobne zapytanie.",
-    "quote_other_area": "Ten obszar odbioru wymaga osobnego zapytania przez Book Now. Wybierz obszar z listy, aby zarezerwować online.",
-    "loading_prices": "Sprawdzamy zatwierdzone ceny dla grup i dopłaty za odbiór…",
-    "pricing_failed": "Nie udało się sprawdzić ceny online. Możesz zapisać tę wycieczkę i ponownie sprawdzić cenę przy płatności.",
-    "quote_unpriced": "Cena online dla tego wyboru jest obecnie niedostępna. Możesz zapisać wycieczkę i ponownie sprawdzić cenę przy płatności.",
-    "quote_no_payment": "Przy zapytaniu o wycenę nie pobieramy płatności online.",
-    "price_unavailable": "Cena online niedostępna",
-    "add_checkout": "Dodaj i przejdź do płatności",
-    "save_checkout": "Zapisz i przejdź do płatności",
-    "cart_full": "Twój wyjazd zawiera już 20 atrakcji. Edytuj lub usuń jedną w „Twój wyjazd”, zanim dodasz kolejną.",
-    "reused_details": "Miejsce odbioru jest uzupełnione na podstawie Twojego wyjazdu. Możesz je zmienić dla tej atrakcji."
+    "not_charged": "Jeszcze nic nie płacisz — wszystko sprawdzisz przy kasie."
   },
   "cart": {
     "title": "Twoja podróż",
@@ -145,22 +125,15 @@
     "remove": "Usuń",
     "subtotal": "Suma częściowa",
     "checkout_cta": "Przejdź do kasy",
-    "note": "Dodaj jedną lub więcej atrakcji i wpłać jedną łączną zaliczkę 20%. Każda wycieczka zachowuje własną datę, godzinę i liczbę gości.",
-    "price_on_request": "Cena online niedostępna",
+    "note": "Każda atrakcja zachowuje swoją datę, godzinę i gości.",
+    "price_on_request": "Na zapytanie",
     "requested_dates": "Preferowane",
     "requested_flexible": "elastycznie",
     "mode_request": "Na zapytanie",
     "status_request": "Czeka na potwierdzenie",
     "plus_request": "+ pozycje na zapytanie",
     "request_cta": "Przejdź do zapytania",
-    "request_note": "Najpierw potwierdzimy dostępność i cenę atrakcji objętych zapytaniem. Po akceptacji wpłacasz jedną łączną zaliczkę 20%; pozostałe 80% płacisz w dniu każdej atrakcji.",
-    "checking_prices": "Sprawdzamy ceny…",
-    "price_unavailable": "Cena niedostępna",
-    "status_checking": "Sprawdzamy dostępność…",
-    "status_pickup_required": "Podaj dane odbioru",
-    "status_quote_required": "Cena online niedostępna",
-    "continue_shopping": "Kontynuuj zakupy",
-    "online_only": "Wycieczek na zapytanie nie można opłacić w Sklepie. Zostaw tutaj terminy online, a osobne zapytanie wyślij przez Book Now."
+    "request_note": "Twoja podróż zawiera zapytania — najpierw potwierdzamy dostępność, płacisz raz na końcu."
   },
   "checkout": {
     "meta_title": "Kasa · Destination Paradise",
@@ -177,20 +150,19 @@
     "name_placeholder": "Jan Podróżnik",
     "email_label": "E-mail",
     "email_placeholder": "ty@przyklad.pl",
-    "phone_label": "Telefon / WhatsApp (opcjonalnie)",
+    "phone_label": "Telefon / WhatsApp",
     "phone_placeholder": "+255 …",
     "payment": "Płatność",
-    "payment_note": "Zapłacisz przez bezpieczny formularz <strong>Pesapal</strong> na naszej stronie. Dane karty i mobile money trafiają bezpośrednio do Pesapal; Twój bank może otworzyć osobny krok weryfikacji.",
+    "payment_note": "Płatność dokończysz na bezpiecznej stronie naszego partnera płatności <strong>DPO Pay</strong>. W tym podglądzie płatność jest symulowana — nie podajesz tu danych karty i nic nie zostanie pobrane.",
     "pay": "Zapłać {{amount}}",
     "checking": "Sprawdzamy dostępność…",
     "recheck_note": "Przed płatnością ponownie sprawdzamy dostępność.",
     "terms_ack": "Kontynuując, akceptujesz nasze <booking>Warunki rezerwacji</booking> i <terms>Regulamin</terms>, w tym opłaty za anulowanie obowiązujące dla Twoich terminów.",
     "conflict": "Część terminów jest już niedostępna. Popraw zaznaczone wycieczki.",
     "conflict_fix": "Wybierz nowy termin",
-    "failed": "Nie mogliśmy przejść do płatności. Spróbuj ponownie za chwilę.",
-    "payment_unavailable": "Płatność online jest chwilowo niedostępna. Twoje wycieczki pozostają zapisane. Spróbuj ponownie lub skontaktuj się z naszym zespołem.",
-    "usd_note": "Cena wyjazdu i zaliczka są podane w dolarach (USD); inne waluty na naszej stronie to wartości orientacyjne. Operator płatności może pokazać przeliczoną walutę. Przed płatnością sprawdź końcową kwotę i walutę.",
-    "privacy_notice": "Używamy Twoich danych kontaktowych i szczegółów wyjazdu, aby zorganizować rezerwację i płatność. Przeczytaj naszą <privacy>Politykę prywatności</privacy>.",
+    "failed": "Nie udało się teraz dokończyć płatności. Nic nie zostało pobrane — spróbuj ponownie za chwilę.",
+    "payment_unavailable": "Płatność online nie jest jeszcze dostępna — twój wybór zapisaliśmy jako zamówienie, ale nic nie zostało pobrane. Na razie skorzystaj z formularza zapytania.",
+    "usd_note": "Płatność jest pobierana w dolarach amerykańskich — ceny w innych walutach są orientacyjne.",
     "errors": {
       "name_required": "Podaj imię i nazwisko gościa głównego.",
       "email_required": "Podaj adres e-mail.",
@@ -204,20 +176,7 @@
     "request_sending": "Wysyłamy zapytanie…",
     "request_footnote": "Wysłanie zapytania niczego nie pobiera ani nie blokuje.",
     "request_total_label": "Pozycje od ręki do tej pory",
-    "request_pricing_hint": "Atrakcje z zapytania wycenimy w mailu z potwierdzeniem.",
-    "payment_note_preview": "Ten podgląd symuluje wpłatę zaliczki 20% — nic nie zostanie pobrane i nie podajesz danych karty ani mobile money. Pozostałe 80% płacisz w dniu wycieczki.",
-    "trip_total": "Łączna cena wyjazdu",
-    "deposit_due": "Zaliczka teraz ({{percent}}%)",
-    "balance_due": "Reszta w dniu wycieczki",
-    "pay_deposit": "Wpłać zaliczkę {{amount}}",
-    "price_changed": "Kwota płatności się zmieniła. Sprawdź zaktualizowaną cenę i zaliczkę przed kontynuowaniem.",
-    "quote_failed": "Nie mogliśmy sprawdzić aktualnej ceny. Spróbuj ponownie przed dokonaniem płatności.",
-    "retry_quote": "Sprawdź ceny ponownie",
-    "pickup_review": "Wybierz region odbioru i zakwaterowanie dla każdej wycieczki, a następnie sprawdź cenę.",
-    "quote_required": "Cena online dla zaznaczonego wyboru jest niedostępna. Sprawdź liczbę gości i dane odbioru. Płatność będzie możliwa po potwierdzeniu ceny.",
-    "review_selection": "Sprawdź grupę i odbiór",
-    "online_only": "Płatność w Sklepie dotyczy terminów online. Usuń z tego koszyka wycieczki na zapytanie i skorzystaj z Book Now, aby wysłać osobne zapytanie.",
-    "separate_enquiry": "Otwórz osobne zapytanie w Book Now"
+    "request_pricing_hint": "Atrakcje z zapytania wycenimy w mailu z potwierdzeniem."
   },
   "confirm": {
     "meta_title": "Potwierdzenie rezerwacji · Destination Paradise",
@@ -243,41 +202,9 @@
     "quote_expiry": "To potwierdzenie jest ważne do {{date}}.",
     "accept_cta": "Akceptuję i kontynuuję — {{amount}}",
     "accepting": "Blokujemy twoje miejsca…",
-    "accept_note": "Akceptacja ponownie sprawdza dostępność i rezerwuje Twoje miejsca. Następnie wpłacasz łączną zaliczkę 20%; pozostałe 80% płacisz w dniu każdej atrakcji.",
-    "accept_note_full": "Akceptacja ponownie sprawdza dostępność i blokuje każde miejsce w twojej podróży; płatność następuje jako jedna łączna kwota.",
+    "accept_note": "Akceptacja ponownie sprawdza dostępność i blokuje każde miejsce w twojej podróży; płatność następuje jako jedna łączna kwota.",
     "accept_conflict": "Jeden z terminów właśnie się wyprzedał. Nasz zespół już o tym wie i wyśle ci alternatywę mailem.",
-    "accepted_payment_pending": "Twoje miejsca są zablokowane! Płatność online ruszy wkrótce — wyślemy ci link do płatności mailem.",
-    "deposit_lead": "Zamówienie <ref>{{reference}}</ref> jest potwierdzone i otrzymaliśmy twoją zaliczkę 20%. Mail z potwierdzeniem zawiera każdy kod rezerwacji i pozostałą kwotę do zapłaty.",
-    "deposit_chip": "Potwierdzone · zaliczka otrzymana",
-    "deposit_received": "Otrzymana zaliczka",
-    "balance_note": "Pozostałe 80% płacisz w dniu wycieczki, przed rozpoczęciem atrakcji.",
-    "accept_deposit_cta": "Zaakceptuj i wpłać zaliczkę {{amount}}",
-    "refresh_failed_title": "Nie mogliśmy sprawdzić zamówienia",
-    "refresh_failed_text": "Zapisane potwierdzenie mogło się zmienić. Spróbuj ponownie sprawdzić aktualny status rezerwacji i płatności lub użyj linku w mailu z potwierdzeniem.",
-    "refresh_retry": "Sprawdź zamówienie ponownie",
-    "continue_pending": "Jeśli nie dokończyłeś płatności, przejdź do bezpiecznej strony płatności. Potwierdzenie zaktualizujemy po weryfikacji wpłaty."
-  },
-  "payment": {
-    "title": "Zapłać bezpiecznie tutaj",
-    "deposit_title": "Wpłać bezpiecznie zaliczkę tutaj",
-    "full_title": "Zapłać bezpiecznie za wyjazd tutaj",
-    "lead": "Dokończ poniżej płatność za zamówienie <ref>{{reference}}</ref>. Potwierdzimy rezerwację po sprawdzeniu płatności w Pesapal.",
-    "amount_due": "Kwota do zapłaty teraz",
-    "frame_title": "Bezpieczny formularz płatności",
-    "provider": "Płatność obsługuje Pesapal",
-    "description": "Wybierz metodę płatności w formularzu Pesapal poniżej. Dane karty i mobile money trafiają bezpośrednio do Pesapal. Przewiń formularz, aby zobaczyć pozostałe pola.",
-    "terms_hint": "Sprawdź i zaakceptuj warunki Pesapal w formularzu, gdy będziesz gotowy do zapłaty.",
-    "loading": "Wczytujemy bezpieczny formularz płatności…",
-    "ready": "Po dokonaniu płatności sprawdź poniżej status zamówienia.",
-    "iframe_title": "Bezpieczny formularz płatności Pesapal",
-    "check_status": "Sprawdź status płatności",
-    "checking": "Sprawdzamy płatność…",
-    "pending": "Płatność nie została jeszcze potwierdzona. Jeśli już zapłaciłeś, poczekaj chwilę i sprawdź ponownie.",
-    "reload": "Wczytaj ponownie formularz płatności",
-    "reload_hint": "Ponowne wczytanie może usunąć dane wpisane w formularzu.",
-    "external_hint": "Jeśli formularz się nie wyświetla, możesz kontynuować na bezpiecznej stronie Pesapal:",
-    "external_link": "Otwórz bezpieczną stronę płatności",
-    "unavailable": "Nie mogliśmy otworzyć bezpiecznego formularza płatności. Sprawdź zamówienie ponownie lub skontaktuj się z naszym zespołem."
+    "accepted_payment_pending": "Twoje miejsca są zablokowane! Płatność online ruszy wkrótce — wyślemy ci link do płatności mailem."
   },
   "request_panel": {
     "chip": "Rezerwacja na zapytanie",
@@ -294,28 +221,7 @@
     "lead": "Tę atrakcję organizujemy z lokalnymi partnerami — potwierdzamy dostępność, zanim cokolwiek zostanie zarezerwowane lub opłacone.",
     "point_no_charge": "Żadnych opłat ani blokad, dopóki nie zatwierdzisz",
     "point_confirm": "Terminy i ostateczną cenę potwierdzamy w około 24 godziny",
-    "point_one_payment": "Po potwierdzeniu dostępności: 20% łącznej zaliczki, 80% w dniu każdej atrakcji",
+    "point_one_payment": "Na końcu jest jedna wspólna płatność",
     "pickup_fallback": "Szczegóły odbioru potwierdzimy razem z terminami."
-  },
-  "pickup": {
-    "title": "Gdzie się zatrzymujesz?",
-    "hint": "Wybierz region odbioru i podaj hotel lub miejsce zakwaterowania. Dopłata za odbiór jest naliczana raz za samochód.",
-    "zone_label": "Region odbioru",
-    "zone_placeholder": "Wybierz region",
-    "accommodation_label": "Hotel lub zakwaterowanie",
-    "accommodation_placeholder": "Nazwa hotelu, pensjonatu lub miejsca zakwaterowania",
-    "required_hint": "Podaj region odbioru i miejsce zakwaterowania, aby kontynuować.",
-    "zones": {
-      "stone-town": "Stone Town",
-      "north": "Północne wybrzeże",
-      "east": "Wschodnie wybrzeże",
-      "south": "Południowe wybrzeże",
-      "other": "Inny region / jeszcze nie wiem"
-    }
-  },
-  "pricing": {
-    "group_price": "Cena atrakcji dla Twojej grupy",
-    "pickup_charge": "Dopłata za odbiór · jeden samochód",
-    "enquiry_note": "{{guests}} pasażerów · {{mode}}\nZakwaterowanie: {{accommodation}}\nRegion odbioru: {{area}}\nPreferowany termin: {{date}} {{time}}"
   }
 }

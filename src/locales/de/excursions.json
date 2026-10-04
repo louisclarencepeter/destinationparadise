@@ -9,7 +9,7 @@
     "title_em": "{{count}}+ unvergessliche Wege.",
     "lead": "Tausch Resort-Routine gegen echtes Sansibar: Segle mit einer traditionellen Dhow, streife mit lokalem Guide durch Stone Town, schnorchle an Mnemba-Riffen, kitesurfe in Paje oder erlebe ein Festival in Stone Town. Jede Tour ist klein, voller Geschichten und leicht zu buchen.",
     "tags_aria": "Ausflugs-Highlights",
-    "tag_hotel_pickup": "Hotelabholung verfügbar",
+    "tag_hotel_pickup": "Hotelabholung inklusive",
     "tag_private": "Private Optionen verfügbar",
     "tag_local_guides": "Lokale Experten-Guides",
     "browse_all": "Alle Ausflüge ansehen",
@@ -52,7 +52,7 @@
       "included": {
         "heading": "Immer inklusive",
         "items": [
-          "Hotelabholung & Rücktransfer (Safari Blue, Spice Tour und Historical City Tour: mögliche Regionszuschläge werden vor der Zahlung angezeigt)",
+          "Hotelabholung & Rücktransfer",
           "Lizenzierter lokaler Guide",
           "Wasser den ganzen Tag",
           "Alle Park- & Eintrittsgebühren",
@@ -82,7 +82,7 @@
         "items": [
           "Mindestens 48 Stunden vorher buchen",
           "20% Anzahlung, Rest am Ausflugstag",
-          "Kostenfreie Stornierung mehr als 48 Std. vorher",
+          "Kostenfreie Stornierung bis 24h vorher",
           "USD, EUR, GBP, TZS — alles akzeptiert"
         ]
       }
@@ -125,9 +125,7 @@
     "practical": {
       "included": {
         "heading": "Immer inklusive",
-        "items": ["Hotelabholung & Rücktransfer", "Lizenzierter lokaler Guide", "Wasser in Flaschen den ganzen Tag", "Alle Park- & Eintrittsgebühren", "Ausrüstung gestellt"],
-        "pilot_heading": "Erlebnis & Transfer",
-        "pilot_pickup": "Hotelabholung & Rücktransfer: Ein möglicher Zuschlag richtet sich nach Ihrer Region und wird vor der Zahlung separat angezeigt."
+        "items": ["Hotelabholung & Rücktransfer", "Lizenzierter lokaler Guide", "Wasser in Flaschen den ganzen Tag", "Alle Park- & Eintrittsgebühren", "Ausrüstung gestellt"]
       },
       "not_included": {
         "heading": "Nicht inklusive",
@@ -135,14 +133,13 @@
       },
       "booking": {
         "heading": "Buchung & Zahlung",
-        "items": ["Mindestens 48 Stunden im Voraus buchen", "20 % Anzahlung, Rest am Tag", "Kostenfreie Stornierung mehr als 48 Std. vorher", "USD, EUR, GBP, TZS — alle akzeptiert"]
+        "items": ["Mindestens 48 Stunden im Voraus buchen", "20 % Anzahlung, Rest am Tag", "Kostenlose Stornierung bis 24 Std. vorher", "USD, EUR, GBP, TZS — alle akzeptiert"]
       }
     },
     "cta": {
       "title": "Bereit, {{title}} zu buchen?",
       "text": "Nenn uns deine Reisedaten und wir melden uns innerhalb von 24 Stunden mit verfügbaren Abholzeiten und einem Endpreis — unverbindlich."
-    },
-    "pilot_price_note": "Unverbindlicher Ab-Preis. Der endgültige Gruppenpreis und ein möglicher Abholzuschlag pro Fahrzeug werden vor der Zahlung angezeigt."
+    }
   },
   "combination": {
     "meta_title": "{{title}} · Ausflugskombination · Destination Paradise",
@@ -211,7 +208,7 @@
       },
       "pickup": {
         "q": "Holt ihr auch im Norden oder an der Ostküste ab?",
-        "a": "Ja, Abholung in Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje und Bwejuu ist bei unseren anderen Ausflügen inklusive. Für Safari Blue, Spice Tour und Historical City Tour richtet sich ein möglicher Abholzuschlag nach Ihrer Region und wird vor der Zahlung pro Fahrzeug ausgewiesen. Plane je nach Ort 30 bis 60 Minuten pro Strecke zusätzlich ein."
+        "a": "Ja, Abholung in Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje und Bwejuu ist inklusive. Plane je nach Ort 30 bis 60 Minuten pro Strecke zusätzlich ein."
       },
       "ramadan": {
         "q": "Ist ein Ausflug während Ramadan in Ordnung?",
