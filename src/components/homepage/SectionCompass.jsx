@@ -66,7 +66,7 @@ export default function SectionCompass() {
   const navigate = useNavigate();
   const compassRef = useRef(/** @type {HTMLElement | null} */ (null));
   const [activeId, setActiveId] = useState(SECTION_ITEMS[0].id);
-  const [isPastEnd, setIsPastEnd] = useState(false);
+  const [isHidden, setIsHidden] = useState(true);
   const keyboardFocusCleanupRef = useRef(/** @type {null | (() => void)} */ (null));
 
   const updatePosition = useCallback(() => {
@@ -82,6 +82,8 @@ export default function SectionCompass() {
     const navHeight = Number.parseFloat(
       window.getComputedStyle(doc).getPropertyValue('--nav-height'),
     ) || 66;
+    const heroBottom = findSectionAnchor(SECTION_ITEMS[0].id)?.getBoundingClientRect().bottom;
+    const isInHero = heroBottom === undefined || heroBottom > navHeight;
     const compass = compassRef.current;
     const compassHeight = compass?.offsetHeight || 0;
     const compassCenter = (compass
@@ -95,7 +97,8 @@ export default function SectionCompass() {
     // Stop the fixed navigation at Contact instead of following into the footer.
     compass?.style.setProperty('--section-compass-progress', `${progress * 100}%`);
     compass?.style.setProperty('--section-compass-offset', `${boundaryOffset}px`);
-    setIsPastEnd(lastSectionBottom !== undefined && lastSectionBottom < navHeight + compassHeight);
+    const isPastEnd = lastSectionBottom !== undefined && lastSectionBottom < navHeight + compassHeight;
+    setIsHidden(isInHero || isPastEnd);
 
     const readingLine = window.scrollY + navHeight + Math.min(window.innerHeight * 0.32, 280);
     let nextActiveId = SECTION_ITEMS[0].id;
@@ -171,9 +174,9 @@ export default function SectionCompass() {
     <nav
       className="section-compass"
       aria-label={t('section_nav.aria')}
-      aria-hidden={isPastEnd || undefined}
-      inert={isPastEnd}
-      data-past-end={isPastEnd ? '' : undefined}
+      aria-hidden={isHidden || undefined}
+      inert={isHidden}
+      data-hidden={isHidden ? '' : undefined}
       ref={compassRef}
     >
       <div className="section-compass__panel">

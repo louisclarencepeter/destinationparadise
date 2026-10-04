@@ -10,7 +10,7 @@
   font-family: var(--dp-font-sans);
 }
 
-.site-main > .section-compass[data-past-end] {
+.site-main > .section-compass[data-hidden] {
   visibility: hidden;
   pointer-events: none;
 }
