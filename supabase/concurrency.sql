@@ -157,4 +157,84 @@ begin
   end if;
 end $$;
 
+
+-- 3. Two payment POSTs can claim only one remote submission ----------------
+do $$
+declare v jsonb;
+begin
+  -- One seat remains on the dedicated race departure after section 2.
+  v := store_api_checkout(jsonb_build_array(jsonb_build_object(
+    'id','claim','sourceKey','spice-tour','optionCode','shared','guests',1,
+    'date',(current_date+1)::text,'time','07:07')),
+    '{"name":"Claim Race","email":"claim-race@example.com"}', 'en', 15, null, 'deposit_20');
+  if not (v->>'ok')::boolean then raise exception 'claim fixture checkout failed: %',v; end if;
+  insert into conc_ctx values ('claim-order',v->>'reference');
+end $$;
+
+-- @commit
+
+do $$
+declare
+  v_conninfo text := pg_temp.conc_conninfo();
+  v_ref text := (select val from conc_ctx where key='claim-order');
+  v_sql text; v_a jsonb; v_b jsonb; v_claimed int := 0; v_blocked int := 0;
+begin
+  perform dblink_connect('claim_a',v_conninfo);
+  perform dblink_connect('claim_b',v_conninfo);
+  v_sql := format('select store_begin_payment(%L, ''pesapal'', ''sandbox'', gen_random_uuid())::text',v_ref);
+  perform dblink_send_query('claim_a',v_sql);
+  perform dblink_send_query('claim_b',v_sql);
+  select result::jsonb into v_a from dblink_get_result('claim_a') as t(result text);
+  perform * from dblink_get_result('claim_a') as t(result text);
+  select result::jsonb into v_b from dblink_get_result('claim_b') as t(result text);
+  perform * from dblink_get_result('claim_b') as t(result text);
+  perform dblink_disconnect('claim_a'); perform dblink_disconnect('claim_b');
+  if (v_a->>'claimed')::boolean is true then v_claimed := v_claimed+1; end if;
+  if (v_b->>'claimed')::boolean is true then v_claimed := v_claimed+1; end if;
+  if v_a->>'error'='payment_in_progress' then v_blocked := v_blocked+1; end if;
+  if v_b->>'error'='payment_in_progress' then v_blocked := v_blocked+1; end if;
+  if v_claimed<>1 or v_blocked<>1 then raise exception 'one payment claim must win (a=%,b=%)',v_a,v_b; end if;
+  if (select count(*) from store_payment_attempts pa join store_orders o on o.id=pa.order_id
+      where o.reference=v_ref and pa.provider='pesapal' and pa.status='unknown' and pa.payment_claim_id is not null)<>1 then
+    raise exception 'claim race did not persist exactly one unknown Pesapal attempt';
+  end if;
+end $$;
+
+-- 4. Concurrent deposit checkout retries return one order -------------------
+do $$
+declare v_exp uuid;
+begin
+  select id into v_exp from store_experiences where source_key='spice-tour';
+  insert into store_departures (experience_id,starts_at,local_date,local_time,capacity_total,status,booking_cutoff_at)
+  values (v_exp,((current_date+1)||' 07:12')::timestamp at time zone 'Africa/Dar_es_Salaam',
+    current_date+1,'07:12',3,'scheduled',now()+interval '12 hours');
+end $$;
+
+-- @commit
+
+do $$
+declare v_conninfo text := pg_temp.conc_conninfo(); v_sql text; v_a jsonb; v_b jsonb;
+begin
+  perform dblink_connect('deposit_a',v_conninfo); perform dblink_connect('deposit_b',v_conninfo);
+  v_sql := format($q$select store_api_checkout(
+    jsonb_build_array(jsonb_build_object('id','retry','sourceKey','spice-tour','optionCode','shared',
+      'guests',1,'date',%L,'time','07:12')),
+    '{"name":"Deposit Retry","email":"deposit-race@example.com"}',
+    'en',15,'concurrency-deposit-retry','deposit_20')::text$q$,(current_date+1)::text);
+  perform dblink_send_query('deposit_a',v_sql); perform dblink_send_query('deposit_b',v_sql);
+  select result::jsonb into v_a from dblink_get_result('deposit_a') as t(result text);
+  perform * from dblink_get_result('deposit_a') as t(result text);
+  select result::jsonb into v_b from dblink_get_result('deposit_b') as t(result text);
+  perform * from dblink_get_result('deposit_b') as t(result text);
+  perform dblink_disconnect('deposit_a'); perform dblink_disconnect('deposit_b');
+  if not (v_a->>'ok')::boolean or not (v_b->>'ok')::boolean
+     or v_a->>'reference'<>v_b->>'reference'
+     or not ((v_a->>'idempotentReplay')::boolean is true or (v_b->>'idempotentReplay')::boolean is true) then
+    raise exception 'deposit retries must reuse exactly one order (a=%,b=%)',v_a,v_b;
+  end if;
+  if (select count(*) from store_orders where contact_email='deposit-race@example.com')<>1 then
+    raise exception 'concurrent deposit retry duplicated orders';
+  end if;
+end $$;
+
 select 'store concurrency test passed' as result;
