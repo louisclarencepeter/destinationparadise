@@ -258,6 +258,7 @@ export default function SiteFooter() {
             <li><a href={`tel:${CONTACT_INFO.phones[0]}`}><FooterIcon name="phone" />+255 768 779 517</a></li>
             <li><a href={`tel:${CONTACT_INFO.phones[1]}`}><FooterIcon name="phone" />+255 748 352 657</a></li>
             <li><Link to="/#contact"><FooterIcon name="pin" />{CONTACT_INFO.location}</Link></li>
+            <li className="footer__company-id">TIN: {CONTACT_INFO.tin}</li>
             <li><a href={WHATSAPP_URL} target="_blank" rel="noreferrer"><FooterIcon name="message" />{t('columns.contact.whatsapp_link')}</a></li>
             <li><Link to="/transfers"><FooterIcon name="plane" />{t('columns.contact.transfers')}</Link></li>
           </ul>

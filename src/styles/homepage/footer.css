@@ -75,6 +75,12 @@
   line-height: 1.35;
   transition: color .25s ease;
 }
+.footer__company-id {
+  padding-left: calc(16px + .5rem);
+  font-size: 14px;
+  font-family: var(--dp-font-sans);
+  line-height: 1.35;
+}
 .footer__link-icon {
   color: color-mix(in srgb, var(--text-soft) 78%, transparent);
   transition: color .25s ease, transform .25s ease;
