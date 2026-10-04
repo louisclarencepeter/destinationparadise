@@ -66,18 +66,37 @@ export default function SectionCompass() {
   const navigate = useNavigate();
   const compassRef = useRef(/** @type {HTMLElement | null} */ (null));
   const [activeId, setActiveId] = useState(SECTION_ITEMS[0].id);
+  const [isPastEnd, setIsPastEnd] = useState(false);
   const keyboardFocusCleanupRef = useRef(/** @type {null | (() => void)} */ (null));
 
   const updatePosition = useCallback(() => {
     const doc = document.documentElement;
-    const maxScroll = Math.max(0, doc.scrollHeight - window.innerHeight);
+    const lastSection = findSectionAnchor(SECTION_ITEMS[SECTION_ITEMS.length - 1].id);
+    const lastSectionBottom = lastSection?.getBoundingClientRect().bottom;
+    const sectionEnd = lastSectionBottom === undefined
+      ? doc.scrollHeight
+      : lastSectionBottom + window.scrollY;
+    const maxScroll = Math.max(0, sectionEnd - window.innerHeight);
     const progress = maxScroll > 0 ? Math.min(1, Math.max(0, window.scrollY / maxScroll)) : 0;
-
-    compassRef.current?.style.setProperty('--section-compass-progress', `${progress * 100}%`);
 
     const navHeight = Number.parseFloat(
       window.getComputedStyle(doc).getPropertyValue('--nav-height'),
     ) || 66;
+    const compass = compassRef.current;
+    const compassHeight = compass?.offsetHeight || 0;
+    const compassCenter = (compass
+      ? Number.parseFloat(window.getComputedStyle(compass).top)
+      : 0) || navHeight + (window.innerHeight - navHeight) / 2;
+    const compassBottom = compassCenter + compassHeight / 2;
+    const boundaryOffset = lastSectionBottom === undefined
+      ? 0
+      : Math.min(0, lastSectionBottom - compassBottom);
+
+    // Stop the fixed navigation at Contact instead of following into the footer.
+    compass?.style.setProperty('--section-compass-progress', `${progress * 100}%`);
+    compass?.style.setProperty('--section-compass-offset', `${boundaryOffset}px`);
+    setIsPastEnd(lastSectionBottom !== undefined && lastSectionBottom < navHeight + compassHeight);
+
     const readingLine = window.scrollY + navHeight + Math.min(window.innerHeight * 0.32, 280);
     let nextActiveId = SECTION_ITEMS[0].id;
 
@@ -152,6 +171,9 @@ export default function SectionCompass() {
     <nav
       className="section-compass"
       aria-label={t('section_nav.aria')}
+      aria-hidden={isPastEnd || undefined}
+      inert={isPastEnd}
+      data-past-end={isPastEnd ? '' : undefined}
       ref={compassRef}
     >
       <div className="section-compass__panel">
