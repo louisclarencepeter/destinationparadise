@@ -16,7 +16,6 @@ const SECTION_ITEMS = [
   { id: 'reviews', labelKey: 'reviews' },
   { id: 'about-intro', labelKey: 'about' },
   { id: 'contact', labelKey: 'contact' },
-  { id: 'newsletter', labelKey: 'newsletter' },
 ];
 
 /**
