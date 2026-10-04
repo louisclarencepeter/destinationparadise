@@ -1,4 +1,5 @@
 export const CONTACT_INFO = {
+  tin: '183-116-657',
   email: 'info@yournexttriptoparadise.com',
   phones: ['+255768779517', '+255748352657'],
   location: 'Zanzibar, Tanzania',
