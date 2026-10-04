@@ -16,7 +16,14 @@ export function storeCopy(lang) {
       ? get(`${key}_${plural.select(vars.count)}`) ?? get(`${key}_other`) ?? get(key)
       : get(key);
     if (typeof text !== 'string') throw new Error(`no ${lang} copy for ${key}`);
-    return text.replace(/\{\{(\w+)\}\}/g, (_, name) => String(vars[name])).replace(/<[^>]+>/g, '');
+    let plainText = text.replace(/\{\{(\w+)\}\}/g, (_, name) => String(vars[name]));
+    let previous;
+    // Removing one tag can expose another; keep stripping until stable.
+    do {
+      previous = plainText;
+      plainText = plainText.replace(/<[^>]+>/g, '');
+    } while (plainText !== previous);
+    return plainText;
   };
 }
 

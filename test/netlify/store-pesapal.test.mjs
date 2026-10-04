@@ -17,6 +17,7 @@ const OTHER_TRACKING = 'b945e4af-80a5-4ec1-8706-e03f8332fb05';
 const IPN_ID = 'fe078e53-78da-4a83-aa89-e7ded5c456e6';
 const ORIGIN = 'https://yournexttriptoparadise.com';
 const PAYMENT_URL = `https://cybqa.pesapal.com/pesapaliframe/PesapalIframe3/Index/?OrderTrackingId=${TRACKING}`;
+const PESAPAL_ORIGINS = new Set(['https://cybqa.pesapal.com', 'https://pay.pesapal.com']);
 let requestNumber = 0;
 
 function enable() {
@@ -62,7 +63,7 @@ function network({ rpc = () => { throw new Error('Unexpected RPC'); }, submit, s
       });
     }
     if (target.includes('/GetTransactionStatus')) return Response.json(await status());
-    if (target.includes('api.resend.com')) return resend(body);
+    if (new URL(target).origin === 'https://api.resend.com') return resend(body);
     throw new Error(`Unexpected URL ${target}`);
   }));
   return calls;
@@ -256,7 +257,7 @@ describe('Pesapal creation and settlement', () => {
       throw new Error(`Unexpected RPC ${fn}`);
     } });
     expect(await (await storePay(payRequest())).json()).toMatchObject({ ok: true, paymentUrl: PAYMENT_URL });
-    expect(calls.some((call) => call.target.includes('pesapal.com'))).toBe(false);
+    expect(calls.some((call) => PESAPAL_ORIGINS.has(new URL(call.target).origin))).toBe(false);
   });
 
   it('reuses a legacy DPO checkout after the configured provider changes to Pesapal', async () => {
@@ -272,7 +273,7 @@ describe('Pesapal creation and settlement', () => {
     expect(await (await storePay(payRequest())).json()).toMatchObject({
       ok: true, provider: 'dpo', paymentUrl: 'https://secure.3gdirectpay.com/payv2.php?ID=DPO-T',
     });
-    expect(calls.some((call) => call.target.includes('pesapal.com'))).toBe(false);
+    expect(calls.some((call) => PESAPAL_ORIGINS.has(new URL(call.target).origin))).toBe(false);
   });
 
   it('does not verify an existing sandbox attempt with live deployment credentials', async () => {
