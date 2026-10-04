@@ -6,8 +6,13 @@
   left: clamp(12px, 1.25vw, 20px);
   z-index: 40;
   width: 44px;
-  transform: translateY(-50%);
+  transform: translateY(calc(-50% + var(--section-compass-offset, 0px)));
   font-family: var(--dp-font-sans);
+}
+
+.site-main > .section-compass[data-hidden] {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .section-compass__panel {
