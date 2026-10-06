@@ -6,12 +6,10 @@
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
   Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; frame-src 'self' https://pay.pesapal.com https://cybqa.pesapal.com; form-action 'self'; img-src 'self' data: https://tile.openstreetmap.org https://www.google-analytics.com https://www.googletagmanager.com; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://api.open-meteo.com https://marine-api.open-meteo.com https://open.er-api.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; worker-src 'self'
 
-# Non-overlapping cache rules (Netlify merges headers from every matching rule,
-# so a broad /assets/* rule would double up Cache-Control on the overrides below).
-# :file matches a single path segment — i.e. Vite's hashed build output directly
-# under /assets/ — which is the only content that is safe to cache forever.
-/assets/:file
-  Cache-Control: public, max-age=31536000, immutable
+# The build appends exact immutable-cache rules for emitted hashed JS/CSS.
+# A wildcard would also cache 404 responses for chunks from older deployments.
+# Leave missing assets, HTML, and service workers on Netlify's default browser
+# revalidation policy. Cache rules must not overlap: Netlify merges all matches.
 
 # Unhashed static files (replaced in place, e.g. optimized re-exports): short
 # max-age + stale-while-revalidate so returning visitors pick up replacements.

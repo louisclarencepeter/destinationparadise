@@ -17,7 +17,7 @@ function CompassIcon() {
   );
 }
 
-export default function ErrorBoundaryPage({ error, onReset }) {
+export default function ErrorBoundaryPage({ error, onReset, chunkError = false, recovering = false, offline = false }) {
   const { t } = useTranslation('common');
   return (
     <main className="error-page" role="alert">
@@ -26,17 +26,21 @@ export default function ErrorBoundaryPage({ error, onReset }) {
           <CompassIcon />
         </div>
         <span className="error-page__eyebrow">{t('error.eyebrow')}</span>
-        <h1 className="error-page__title" id="error-title">{t('error.title')}</h1>
+        <h1 className="error-page__title" id="error-title">{t(chunkError ? 'error.loading_title' : 'error.title')}</h1>
         <p className="error-page__lead">
-          {t('error.body')}
+          {t(offline ? 'error.offline_body' : chunkError ? 'error.loading_body' : 'error.body')}
         </p>
         <div className="error-page__actions" aria-label={t('error.actions_aria')}>
-          <button className="btn error-page__button" type="button" onClick={onReset}>
-            {t('error.try_again')}
+          <button className="btn error-page__button" type="button" onClick={onReset} disabled={recovering}>
+            {t(recovering ? 'error.reloading' : chunkError ? 'error.reload_page' : 'error.try_again')}
           </button>
-          <Link className="btn btn--ghost-dark error-page__button" to="/" onClick={onReset}>
-            {t('error.back_home')}
-          </Link>
+          {chunkError ? (
+            <a className="btn btn--ghost-dark error-page__button" href="/">{t('error.back_home')}</a>
+          ) : (
+            <Link className="btn btn--ghost-dark error-page__button" to="/" onClick={onReset}>
+              {t('error.back_home')}
+            </Link>
+          )}
         </div>
         <aside className="error-page__contact" aria-label={t('error.contact_aria')}>
           <p className="error-page__contact-intro">{t('error.contact_intro')}</p>

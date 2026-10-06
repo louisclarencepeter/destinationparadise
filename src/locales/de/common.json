@@ -35,7 +35,12 @@
     "contact_hours": "Täglich · 8:00–19:00 EAT",
     "details": "Fehlerdetails",
     "error_name": "Fehler",
-    "unknown_error": "Unbekannter Fehler"
+    "unknown_error": "Unbekannter Fehler",
+    "loading_title": "Diese Seite konnte nicht vollständig geladen werden",
+    "loading_body": "Einige Teile der Seite konnten nicht geladen werden. Laden Sie die Seite erneut oder kehren Sie zur Startseite zurück.",
+    "offline_body": "Sie scheinen offline zu sein. Stellen Sie die Verbindung wieder her und laden Sie die Seite erneut.",
+    "reload_page": "Seite neu laden",
+    "reloading": "Wird neu geladen…"
   },
   "cookies": {
     "aria_label": "Cookie-Einwilligung",
