@@ -2,44 +2,11 @@ import { Component } from 'react';
 import { useLocation } from 'react-router';
 import ErrorBoundaryPage from '../pages/ErrorBoundaryPage.jsx';
 import { captureSentryException } from '../utils/sentry.js';
-
-const RELOAD_FLAG = 'dp-chunk-reload';
-
-function isChunkLoadError(error) {
-  if (!error) return false;
-  const name = error.name || '';
-  const message = error.message || '';
-  if (name === 'ChunkLoadError') return true;
-  // "Unable to preload CSS for ..." is Vite's vite:preloadError message for a
-  // lazily-loaded chunk whose CSS 404s after a new deploy (Sentry DESTINATIONPARADISE-3).
-  return /Loading chunk [\w-]+ failed|Failed to fetch dynamically imported module|Importing a module script failed|error loading dynamically imported module|Unable to preload CSS for/i.test(
-    message,
-  );
-}
-
-function tryAutoRecover(error) {
-  if (typeof window === 'undefined') return false;
-  if (!isChunkLoadError(error)) return false;
-  try {
-    if (sessionStorage.getItem(RELOAD_FLAG)) return false;
-    sessionStorage.setItem(RELOAD_FLAG, '1');
-  } catch {
-    // sessionStorage unavailable (private mode etc.) — fall through to a one-shot reload.
-  }
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.getRegistrations?.().then((regs) => {
-      regs.forEach((r) => r.unregister());
-    }).catch(() => {});
-  }
-  if (typeof caches !== 'undefined' && caches?.keys) {
-    caches.keys().then((keys) => Promise.all(keys.map((k) => caches.delete(k)))).catch(() => {});
-  }
-  window.location.reload();
-  return true;
-}
+import { isChunkLoadError, recoverFromChunkError } from '../utils/chunkRecovery.js';
 
 class ErrorBoundaryFrame extends Component {
-  state = { error: null };
+  state = { error: null, recovering: false, recoveryStatus: '' };
+  recoveryGeneration = 0;
 
   static getDerivedStateFromError(error) {
     return { error };
@@ -55,10 +22,24 @@ class ErrorBoundaryFrame extends Component {
       },
       tags: {
         errorBoundary: 'root',
+        chunkLoad: String(isChunkLoadError(error)),
       },
     });
-    tryAutoRecover(error);
+    if (isChunkLoadError(error)) this.recover(false);
   }
+
+  componentWillUnmount() {
+    this.recoveryGeneration += 1;
+  }
+
+  recover = (manual) => {
+    const generation = ++this.recoveryGeneration;
+    this.setState({ recovering: true });
+    void recoverFromChunkError({ manual }).then((recoveryStatus) => {
+      if (generation !== this.recoveryGeneration) return;
+      this.setState({ recovering: false, recoveryStatus });
+    });
+  };
 
   componentDidUpdate(previousProps) {
     if (this.state.error && previousProps.resetKey !== this.props.resetKey) {
@@ -67,20 +48,26 @@ class ErrorBoundaryFrame extends Component {
   }
 
   reset = () => {
-    try {
-      sessionStorage.removeItem(RELOAD_FLAG);
-    } catch {
-      // ignore
-    }
-    this.setState({ error: null });
+    this.recoveryGeneration += 1;
+    this.setState({ error: null, recovering: false, recoveryStatus: '' });
+  };
+
+  retry = () => {
+    if (isChunkLoadError(this.state.error)) this.recover(true);
+    else this.reset();
   };
 
   render() {
     if (this.state.error) {
-      if (isChunkLoadError(this.state.error)) {
-        return null;
-      }
-      return <ErrorBoundaryPage error={this.state.error} onReset={this.reset} />;
+      return (
+        <ErrorBoundaryPage
+          error={this.state.error}
+          onReset={this.retry}
+          chunkError={isChunkLoadError(this.state.error)}
+          recovering={this.state.recovering}
+          offline={this.state.recoveryStatus === 'offline'}
+        />
+      );
     }
 
     return this.props.children;

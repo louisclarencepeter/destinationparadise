@@ -1,5 +1,6 @@
 import { captureSentryException } from './sentry.js';
 import { isPrerender } from './prerender.js';
+import { isChunkRecoveryPending } from './chunkRecovery.js';
 
 // Manually register the vite-plugin-pwa service worker.
 //
@@ -16,10 +17,12 @@ import { isPrerender } from './prerender.js';
 export function registerServiceWorker() {
   if (typeof window === 'undefined') return;
   if (isPrerender()) return;
+  if (isChunkRecoveryPending()) return;
   if (!('serviceWorker' in navigator)) return;
 
   import('virtual:pwa-register')
     .then(({ registerSW }) => {
+      if (isChunkRecoveryPending()) return;
       registerSW({
         immediate: true,
         onRegisterError(error) {

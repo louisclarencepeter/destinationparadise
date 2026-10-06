@@ -35,7 +35,12 @@
     "contact_hours": "Codziennie · 8:00–19:00 EAT",
     "details": "Szczegóły błędu",
     "error_name": "Błąd",
-    "unknown_error": "Nieznany błąd"
+    "unknown_error": "Nieznany błąd",
+    "loading_title": "Nie udało się w pełni załadować strony",
+    "loading_body": "Niektóre elementy strony nie zostały załadowane. Odśwież stronę lub wróć na stronę główną.",
+    "offline_body": "Wygląda na to, że nie masz połączenia z internetem. Połącz się ponownie, a następnie odśwież stronę.",
+    "reload_page": "Odśwież stronę",
+    "reloading": "Odświeżanie…"
   },
   "cookies": {
     "aria_label": "Zgoda na pliki cookie",

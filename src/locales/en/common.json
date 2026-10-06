@@ -35,7 +35,12 @@
     "contact_hours": "Daily · 8:00–19:00 EAT",
     "details": "Error details",
     "error_name": "Error",
-    "unknown_error": "Unknown error"
+    "unknown_error": "Unknown error",
+    "loading_title": "This page couldn’t finish loading",
+    "loading_body": "Some parts of the page could not load. Reload the page to try again, or return to the homepage.",
+    "offline_body": "You appear to be offline. Reconnect, then reload the page to continue.",
+    "reload_page": "Reload page",
+    "reloading": "Reloading…"
   },
   "cookies": {
     "aria_label": "Cookie consent",
