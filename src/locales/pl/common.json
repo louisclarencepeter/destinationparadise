@@ -84,7 +84,7 @@
       },
       "popular": ["Transfer z lotniska", "Safari Blue", "Pakiet dla nowożeńców", "Serengeti", "Stone Town", "Paje"],
       "pages": {
-        "store": { "title": "Sklep z atrakcjami", "description": "Rezerwuj wybrane wycieczki od ręki, łącz kilka atrakcji i zapłać raz." },
+        "store": { "title": "Sklep z atrakcjami", "description": "Zarezerwuj wybrane wycieczki od ręki z łączną zaliczką 20%; pozostałe 80% zapłać w dniu każdej atrakcji." },
         "home": { "title": "Strona główna", "description": "Zacznij tutaj planowanie Zanzibaru, safari, pakietów, transferów i pogody." },
         "excursions": { "title": "Wycieczki", "description": "Przeglądaj wycieczki po Zanzibarze: rejsy dhow, Stone Town, farmy przypraw, snorkeling, delfiny i przyrodę." },
         "safaris": { "title": "Safari", "description": "Trasy przyrodnicze przez Serengeti, Ngorongoro, Tarangire, Nyerere, Ruahę i inne parki Tanzanii." },
