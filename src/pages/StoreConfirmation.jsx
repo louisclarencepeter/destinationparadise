@@ -2,41 +2,40 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams, useSearchParams } from 'react-router';
 import { Trans, useTranslation } from 'react-i18next';
 import ResponsiveImage from '../components/ResponsiveImage.jsx';
-import StorePaymentFrame from '../components/store/StorePaymentFrame.jsx';
-import StorePriceLines from '../components/store/StorePriceLines.jsx';
 import { ArrowRightIcon, CheckIcon } from '../components/store/StoreIcons.jsx';
 import { useBookingCart } from '../context/useBookingCart.js';
+import { useCurrency } from '../context/useCurrency.js';
 import usePageMeta from '../hooks/usePageMeta.js';
 import {
   acceptQuote,
   adoptOrderCredentials,
   clearIdempotencyKey,
-  continueOrderPayment,
   fetchStoredOrder,
   isLiveStoreApi,
-  isSafePaymentUrl,
   readLastOrder,
 } from '../lib/storeApi.js';
-import { formatDateLabel, formatStoreMoney, formatTimeLabel } from '../lib/storeFormat.js';
-import { applyPendingOrderCheck, pollStoreOrder } from '../lib/pollStoreOrder.js';
+import { formatDateLabel, formatTimeLabel } from '../lib/storeFormat.js';
 import { trackEvent } from '../utils/analytics.js';
 import '../styles/store.css';
 
+const POLL_INTERVAL_MS = 4000;
+const POLL_MAX_ATTEMPTS = 20;
+
 // Order confirmation. Three states:
 //  * paid       — per-trip booking codes (fixtures land here directly)
-//  * pending    — embedded Pesapal checkout or payment still settling
+//  * processing — hosted payment still settling; poll the order status
 //  * problem    — failed/expired/requires_review; guide the guest back
 // Reads session first; in live mode re-fetches with the per-order token
 // (also how the DPO return redirect resolves). Always noindex.
 export default function StoreConfirmation() {
   const { t, i18n, ready } = useTranslation('store');
+  const { format } = useCurrency();
   const { reference } = useParams();
   const { dispatch } = useBookingCart();
   const navigate = useNavigate();
   const location = useLocation();
   const [searchParams] = useSearchParams();
   const lang = i18n.resolvedLanguage || 'en';
-  const format = (amountUsd) => formatStoreMoney(lang, amountUsd);
 
   // Email links carry ?t=<token>: adopt it into the session BEFORE any fetch,
   // then strip it from the address bar. Synchronous on first render on purpose.
@@ -48,22 +47,11 @@ export default function StoreConfirmation() {
   }
 
   const [order, setOrder] = useState(() => readLastOrder(reference));
-  const [checking, setChecking] = useState(() => isLiveStoreApi());
-  const [refreshFailed, setRefreshFailed] = useState(false);
-  const [refreshAttempt, setRefreshAttempt] = useState(0);
+  const [checking, setChecking] = useState(() => !readLastOrder(reference) && isLiveStoreApi());
   const [accepting, setAccepting] = useState(false);
   const [acceptError, setAcceptError] = useState(/** @type {string | null} */ (null));
   const [acceptedAwaitingPayment, setAcceptedAwaitingPayment] = useState(false);
-  const [paymentReview, setPaymentReview] = useState(false);
-  const [payment, setPayment] = useState(() => {
-    const handoff = location.state?.payment;
-    return handoff && handoff.reference === reference && handoff.provider === 'pesapal' && isSafePaymentUrl(handoff.paymentUrl, 'pesapal')
-      ? { reference, paymentUrl: handoff.paymentUrl }
-      : null;
-  });
-  const [checkingPayment, setCheckingPayment] = useState(false);
-  const [paymentCheckFailed, setPaymentCheckFailed] = useState(false);
-  const [paymentStatusChecked, setPaymentStatusChecked] = useState(false);
+  const pollCountRef = useRef(0);
   const settledRef = useRef(false);
   // No session copy ⇒ we arrived via the hosted-payment redirect, so this page
   // owns the purchase event (the checkout page tracked the non-redirect path).
@@ -71,27 +59,32 @@ export default function StoreConfirmation() {
 
   usePageMeta({ title: t('confirm.meta_title'), noindex: true });
 
-  // Keep access tokens out of the URL and provider URLs out of browser history.
-  // A refresh can safely resume the existing payment through the server.
+  // Drop the token from the URL once adopted (fresh render keeps working via session).
   useEffect(() => {
-    if (searchParams.get('t') || location.state?.payment) navigate(location.pathname, { replace: true, state: null });
-  }, [searchParams, navigate, location.pathname, location.state]);
+    if (searchParams.get('t')) navigate(location.pathname, { replace: true });
+  }, [searchParams, navigate, location.pathname]);
 
-  // Every live snapshot must be refreshed, including paid orders that may
-  // since have been reversed or refunded. A session copy cannot confirm money.
+  // Live orders may have advanced server-side (e.g. staff quoted while the
+  // guest kept an old tab open) — refresh non-terminal states on mount.
   useEffect(() => {
-    if (!isLiveStoreApi()) return undefined;
+    if (!isLiveStoreApi() || !order) return;
+    if (['awaiting_availability', 'quoted'].includes(order.status)) {
+      fetchStoredOrder(reference).then((fetched) => {
+        if (fetched) setOrder(fetched);
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reference]);
+
+  const status = order?.status || (order ? 'paid' : null);
+
+  // Initial live fetch when the session copy is missing (e.g. DPO return).
+  useEffect(() => {
+    if (order || !isLiveStoreApi()) return undefined;
     let active = true;
-    setChecking(true);
-    setRefreshFailed(false);
     fetchStoredOrder(reference)
       .then((fetched) => {
-        if (!active) return;
-        if (fetched) setOrder(fetched);
-        else setRefreshFailed(true);
-      })
-      .catch(() => {
-        if (active) setRefreshFailed(true);
+        if (active && fetched) setOrder(fetched);
       })
       .finally(() => {
         if (active) setChecking(false);
@@ -99,47 +92,39 @@ export default function StoreConfirmation() {
     return () => {
       active = false;
     };
-  }, [reference, refreshAttempt]);
-
-  const status = order?.status || (order ? 'paid' : null);
+  }, [order, reference]);
 
   // Payment still settling server-side: poll until it resolves or we give up
   // (reconciliation keeps working server-side either way).
   useEffect(() => {
-    if (!isLiveStoreApi() || checking || refreshFailed || status !== 'pending_payment') return undefined;
-    return pollStoreOrder({ fetchOrder: () => fetchStoredOrder(reference), onOrder: setOrder });
-  }, [status, reference, checking, refreshFailed]);
+    if (!isLiveStoreApi() || status !== 'pending_payment') return undefined;
+    if (pollCountRef.current >= POLL_MAX_ATTEMPTS) return undefined;
+    const timer = window.setTimeout(() => {
+      pollCountRef.current += 1;
+      fetchStoredOrder(reference).then((fetched) => {
+        if (fetched) setOrder(fetched);
+      });
+    }, POLL_INTERVAL_MS);
+    return () => window.clearTimeout(timer);
+  }, [status, order, reference]);
 
   // Once payment is confirmed: clear the cart + idempotency key exactly once.
   useEffect(() => {
-    if (checking || refreshFailed || status !== 'paid' || settledRef.current) return;
+    if (status !== 'paid' || settledRef.current) return;
     settledRef.current = true;
     dispatch({ type: 'clear' });
     clearIdempotencyKey();
     if (isLiveStoreApi() && cameFromRedirectRef.current) {
       trackEvent('purchase', {
-        value: order.chargeUsd ?? order.totalUsd,
+        value: order.totalUsd,
         currency: 'USD',
+        transaction_id: order.reference,
         items: order.items.length,
       });
     }
-  }, [status, order, dispatch, checking, refreshFailed]);
+  }, [status, order, dispatch]);
 
   if (!ready || checking) return null;
-
-  if (refreshFailed) {
-    return (
-      <main className="store-confirm">
-        <div className="store-confirm__head">
-          <h1 className="store-confirm__title">{t('confirm.refresh_failed_title')}</h1>
-          <p className="store-confirm__lead" role="alert">{t('confirm.refresh_failed_text')}</p>
-          <button type="button" className="checkout-pay confirm-request__accept" onClick={() => setRefreshAttempt((value) => value + 1)}>
-            {t('confirm.refresh_retry')}
-          </button>
-        </div>
-      </main>
-    );
-  }
 
   if (!order) {
     return (
@@ -153,85 +138,26 @@ export default function StoreConfirmation() {
     );
   }
 
-  const depositMode = order.paymentPlan === 'deposit_20';
-  const chargeUsd = order.chargeUsd ?? order.totalUsd;
-
   const accept = async () => {
-    if (accepting || !reference) return;
+    if (accepting) return;
     setAccepting(true);
     setAcceptError(null);
-    const expected = { expectedTotalUsd: order.totalUsd, expectedChargeUsd: chargeUsd };
-    const result = order.status === 'pending_payment'
-      ? await continueOrderPayment(reference, expected)
-      : await acceptQuote(reference, expected);
-    if (result.ok && result.provider === 'pesapal' && result.reference === reference && isSafePaymentUrl(result.paymentUrl, 'pesapal')) {
-      setChecking(true);
-      setPayment({ reference, paymentUrl: result.paymentUrl });
-      setPaymentReview(false);
-      setPaymentCheckFailed(false);
-      setPaymentStatusChecked(false);
-      // Quote acceptance may have changed the order from quoted to pending.
-      // Finish the authenticated refresh before mounting the form, avoiding
-      // an initial mount followed immediately by a loading-state remount.
-      try {
-        const refreshed = await fetchStoredOrder(reference);
-        if (refreshed) {
-          setOrder((current) => current?.reference === reference && ['quoted', 'pending_payment'].includes(current.status) ? refreshed : current);
-          setRefreshFailed(false);
-        } else setRefreshFailed(true);
-      } catch {
-        setRefreshFailed(true);
-      } finally {
-        setChecking(false);
-        setAccepting(false);
-      }
-      return;
-    }
+    const result = await acceptQuote(reference);
     if (result.ok && result.redirect) {
       window.location.assign(result.redirect);
       return;
     }
     setAccepting(false);
-    if (result.ok && result.paymentPending) {
-      setAcceptedAwaitingPayment(true);
-      setPaymentReview(true);
-      if (result.order) setOrder(result.order);
-      return;
-    }
     if (result.ok && result.order) {
-      setPaymentReview(false);
       setOrder(result.order);
       return;
     }
-    if (result.error === 'price_changed') {
-      if (result.order) {
-        setOrder(result.order);
-        setPaymentReview(true);
-      }
-      setAcceptError('price_changed');
+    if (result.ok && result.paymentPending) {
+      setAcceptedAwaitingPayment(true);
+      if (result.order) setOrder(result.order);
       return;
     }
-    if (result.order) setOrder(result.order);
     setAcceptError(result.error === 'availability_conflict' ? 'conflict' : 'generic');
-  };
-
-  const checkPayment = async () => {
-    if (checkingPayment) return;
-    setCheckingPayment(true);
-    setPaymentCheckFailed(false);
-    setPaymentStatusChecked(false);
-    try {
-      const refreshed = await fetchStoredOrder(reference);
-      if (refreshed) {
-        setOrder((current) => applyPendingOrderCheck(current, refreshed, reference));
-        setPaymentStatusChecked(true);
-      }
-      else setPaymentCheckFailed(true);
-    } catch {
-      setPaymentCheckFailed(true);
-    } finally {
-      setCheckingPayment(false);
-    }
   };
 
   const requestItemLine = (item) => (
@@ -248,8 +174,6 @@ export default function StoreConfirmation() {
           {' · '}{t('cart.guest_count', { count: item.guests })}
         </p>
         {item.staffNote && <p className="confirm-request__note">{item.staffNote}</p>}
-        {item.pickup && <p className="confirm-request__meta">{item.pickup}</p>}
-        <StorePriceLines lines={item.priceLines} />
       </div>
       <span className="confirm-request__price">
         {item.totalUsd != null ? format(item.totalUsd) : t('cart.price_on_request')}
@@ -287,7 +211,7 @@ export default function StoreConfirmation() {
     );
   }
 
-  if (status === 'quoted' || (status === 'pending_payment' && paymentReview)) {
+  if (status === 'quoted') {
     return (
       <main className="store-confirm">
         <div className="store-confirm__head">
@@ -309,21 +233,9 @@ export default function StoreConfirmation() {
           <div className="store-card store-card--tinted confirm-request">
             {order.items.map(requestItemLine)}
             <div className="checkout-total">
-              <span>{t('checkout.trip_total')}</span>
+              <span>{t('checkout.total_due')}</span>
               <strong>{format(order.totalUsd)}</strong>
             </div>
-            {depositMode && (
-              <>
-                <div className="checkout-total">
-                  <span>{t('checkout.deposit_due', { percent: order.depositPercent || 20 })}</span>
-                  <strong>{format(chargeUsd)}</strong>
-                </div>
-                <div className="checkout-total">
-                  <span>{t('checkout.balance_due')}</span>
-                  <strong>{format(order.balanceUsd)}</strong>
-                </div>
-              </>
-            )}
           </div>
           {order.quoteExpiresAt && (
             <p className="confirm-request__footnote">
@@ -334,7 +246,7 @@ export default function StoreConfirmation() {
           )}
           {acceptError && (
             <p className="checkout-conflict" role="alert">
-              {acceptError === 'conflict' ? t('confirm.accept_conflict') : t(acceptError === 'price_changed' ? 'checkout.price_changed' : 'checkout.failed')}
+              {acceptError === 'conflict' ? t('confirm.accept_conflict') : t('checkout.failed')}
             </p>
           )}
           {acceptedAwaitingPayment ? (
@@ -343,70 +255,34 @@ export default function StoreConfirmation() {
             <div className="store-confirm__actions">
               <button type="button" className="checkout-pay confirm-request__accept" disabled={accepting} onClick={accept}>
                 {accepting && <span className="checkout-pay__spinner" aria-hidden="true" />}
-                {accepting ? t('confirm.accepting') : t(depositMode ? 'confirm.accept_deposit_cta' : 'confirm.accept_cta', { amount: format(chargeUsd) })}
+                {accepting ? t('confirm.accepting') : t('confirm.accept_cta', { amount: format(order.totalUsd) })}
                 {!accepting && <ArrowRightIcon size={17} />}
               </button>
             </div>
           )}
-          <p className="confirm-request__footnote">{t(depositMode ? 'confirm.accept_note' : 'confirm.accept_note_full')}</p>
+          <p className="confirm-request__footnote">{t('confirm.accept_note')}</p>
         </div>
       </main>
     );
   }
 
   if (status === 'pending_payment') {
-    const embeddedPaymentUrl = payment && payment.reference === reference ? payment.paymentUrl : null;
     return (
-      <main className={`store-confirm${embeddedPaymentUrl ? ' store-confirm--payment' : ''}`}>
+      <main className="store-confirm">
         <div className="store-confirm__head">
-          {!embeddedPaymentUrl && (
-            <div className="store-confirm__badge store-confirm__badge--waiting" aria-hidden="true">
-              <span className="store-confirm__spinner" />
-            </div>
-          )}
-          <h1 className="store-confirm__title">{t(embeddedPaymentUrl ? (depositMode ? 'payment.deposit_title' : 'payment.full_title') : 'confirm.processing_title')}</h1>
+          <div className="store-confirm__badge store-confirm__badge--waiting" aria-hidden="true">
+            <span className="store-confirm__spinner" />
+          </div>
+          <h1 className="store-confirm__title">{t('confirm.processing_title')}</h1>
           <p className="store-confirm__lead" aria-live="polite">
             <Trans
               t={t}
-              i18nKey={embeddedPaymentUrl ? 'payment.lead' : 'confirm.processing_text'}
+              i18nKey="confirm.processing_text"
               values={{ reference: order.reference }}
               components={{ ref: <strong key="order-reference" className="store-confirm__ref" /> }}
             />
           </p>
-          {isLiveStoreApi() && !embeddedPaymentUrl && (
-            <div className="store-confirm__actions">
-              <p className="confirm-request__footnote">{t('confirm.continue_pending')}</p>
-              {acceptError && <p className="checkout-conflict" role="alert">{t('checkout.failed')}</p>}
-              <button type="button" className="checkout-pay confirm-request__accept" disabled={accepting} onClick={accept}>
-                {accepting ? t('confirm.accepting') : t(depositMode ? 'checkout.pay_deposit' : 'checkout.pay', { amount: format(chargeUsd) })}
-              </button>
-            </div>
-          )}
         </div>
-        {embeddedPaymentUrl && (
-          <div className="store-confirm__list">
-            <div className="store-card store-card--tinted confirm-request">
-              {order.items.map(requestItemLine)}
-              <div className="checkout-total">
-                <span>{t('checkout.trip_total')}</span>
-                <strong>{format(order.totalUsd)}</strong>
-              </div>
-              <div className="checkout-total">
-                <span>{t(depositMode ? 'checkout.deposit_due' : 'payment.amount_due', { percent: order.depositPercent || 20 })}</span>
-                <strong>{format(chargeUsd)}</strong>
-              </div>
-              {depositMode && (
-                <div className="checkout-total">
-                  <span>{t('checkout.balance_due')}</span>
-                  <strong>{format(order.balanceUsd)}</strong>
-                </div>
-              )}
-            </div>
-            <StorePaymentFrame paymentUrl={embeddedPaymentUrl} onCheckStatus={checkPayment} checking={checkingPayment} />
-            {paymentStatusChecked && <p className="confirm-request__footnote" role="status">{t('payment.pending')}</p>}
-            {paymentCheckFailed && <p className="checkout-conflict" role="alert">{t('confirm.refresh_failed_text')}</p>}
-          </div>
-        )}
       </main>
     );
   }
@@ -425,9 +301,7 @@ export default function StoreConfirmation() {
             />
           </p>
           <div className="store-confirm__actions">
-            <Link className="store-confirm__back" to="/store/checkout" onClick={() => {
-              if (['payment_failed', 'expired', 'cancelled'].includes(status)) clearIdempotencyKey();
-            }}>{t('confirm.problem_cta')}</Link>
+            <Link className="store-confirm__back" to="/store/checkout">{t('confirm.problem_cta')}</Link>
           </div>
         </div>
       </main>
@@ -458,7 +332,7 @@ export default function StoreConfirmation() {
         <p className="store-confirm__lead">
           <Trans
             t={t}
-            i18nKey={depositMode ? 'confirm.deposit_lead' : 'confirm.lead'}
+            i18nKey="confirm.lead"
             values={{ reference: order.reference }}
             components={{ ref: <strong key="order-reference" className="store-confirm__ref" /> }}
           />
@@ -483,32 +357,18 @@ export default function StoreConfirmation() {
                 {item.mode === 'private' ? t('cart.mode_private') : t('cart.mode_shared')}
               </p>
               <p className="confirm-card__pickup">{item.pickup}</p>
-              <StorePriceLines lines={item.priceLines} />
               <span className="confirm-card__paid">
                 <CheckIcon size={14} strokeWidth={2.4} />
-                {t(depositMode ? 'confirm.deposit_chip' : 'confirm.paid_chip')}
+                {t('confirm.paid_chip')}
               </span>
             </div>
           </article>
         ))}
 
         <div className="store-confirm__total">
-          <span>{t(depositMode ? 'confirm.deposit_received' : 'confirm.total_paid')}</span>
-          <strong>{format(chargeUsd)}</strong>
+          <span>{t('confirm.total_paid')}</span>
+          <strong>{format(order.totalUsd)}</strong>
         </div>
-        {depositMode && (
-          <>
-            <div className="store-confirm__total">
-              <span>{t('checkout.trip_total')}</span>
-              <strong>{format(order.totalUsd)}</strong>
-            </div>
-            <div className="store-confirm__total">
-              <span>{t('checkout.balance_due')}</span>
-              <strong>{format(order.balanceUsd)}</strong>
-            </div>
-            <p className="confirm-request__footnote">{t('confirm.balance_note')}</p>
-          </>
-        )}
         <div className="store-confirm__actions">
           <Link className="store-confirm__back" to="/store">{t('confirm.back')}</Link>
         </div>

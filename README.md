@@ -19,7 +19,7 @@ The site has grown from a homepage rebuild into a multi-page travel platform:
 - Netlify hosting
 - Netlify Functions for planner, booking, contact, and the feature-flagged store
 - Netlify Forms for contact/newsletter forms
-- Supabase + Pesapal integration for the feature-flagged multi-trip store, with historical DPO support (production remains disabled)
+- Supabase + DPO integration for the feature-flagged multi-trip store (production remains disabled)
 
 ## Run Locally
 
@@ -47,25 +47,9 @@ npm run preview    # preview built dist/
 npm run lint       # ESLint
 npm run typecheck  # TypeScript check config
 npm run test       # Vitest tests
-npm run test:e2e   # Playwright store journey (desktop + mobile)
 ```
-
-The e2e journey starts Vite with the store flag on and uses the in-browser
-fixture API. To run it against a deployed branch instead (live Supabase
-inventory + dev-simulated payment — it creates a real order there, and refuses
-production hosts):
-
-```bash
-E2E_BASE_URL=https://development--destinationparadisezanzibar.netlify.app npm run test:e2e
-```
-
-First run locally: `npx playwright install chromium`.
 
 ## Environment
-
-Store setup, the 20% deposit model, and remaining launch checks are documented in
-[docs/pesapal-store-launch.md](docs/pesapal-store-launch.md). Payment credentials
-and database service keys belong in server environment variables only.
 
 Set this on Netlify:
 

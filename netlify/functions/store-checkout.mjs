@@ -11,7 +11,7 @@ import {
   validateEmailAddress,
 } from './_shared.mjs';
 import { captureFunctionException } from './_sentry.mjs';
-import { configuredPaymentMode } from './_store_provider.mjs';
+import { dpoEnabled } from './_dpo.mjs';
 import {
   callStoreRpc,
   devFakePaymentEnabled,
@@ -65,7 +65,6 @@ export default async (req) => {
       p_language: language,
       p_hold_minutes: HOLD_MINUTES,
       p_idempotency_key: parseIdempotencyKey(payload?.idempotencyKey),
-      p_payment_plan: 'deposit_20',
     });
 
     if (!result?.ok) {
@@ -75,7 +74,7 @@ export default async (req) => {
 
     // Real payments (DPO hosted checkout) win over the dev simulation; the
     // dev mode only exists for previews without provider credentials.
-    const paymentMode = configuredPaymentMode() || (devFakePaymentEnabled() ? 'dev_simulated' : 'unavailable');
+    const paymentMode = dpoEnabled() ? 'dpo' : devFakePaymentEnabled() ? 'dev_simulated' : 'unavailable';
     return storeJson({ ...result, payment: { mode: paymentMode } });
   } catch (error) {
     await captureFunctionException(error, { functionName: FUNCTION_NAME, req, extra: { stage: 'checkout-rpc' } });

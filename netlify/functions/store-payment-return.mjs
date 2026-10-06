@@ -28,7 +28,7 @@ export default async (req) => {
 
   if (storeApiEnabled() && dpoEnabled()) {
     try {
-      await verifyAndSettle(reference, { expectedProvider: 'dpo' });
+      await verifyAndSettle(reference);
     } catch (error) {
       // Verification hiccups must not strand the customer — the order page
       // shows pending state and reconciliation retries server-side.

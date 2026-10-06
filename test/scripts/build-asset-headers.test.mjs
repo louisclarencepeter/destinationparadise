@@ -69,7 +69,19 @@ describe('built asset cache headers', () => {
     expect(cacheHeadersFor(headers, '/assets/fonts/font.woff2'))
       .toEqual(['public, max-age=31536000, immutable']);
     for (const path of ['/store/checkout', '/store/checkout/', '/store/order/private-token']) {
-      expect(cacheHeadersFor(headers, path)).toEqual(['no-store']);
+      expect(cacheHeadersFor(headers, path)).toEqual(cacheHeadersFor(publicHeaders, path));
+    }
+  });
+
+  it('preserves private-route cache rules when present in the input', async () => {
+    const privateHeaders = `${publicHeaders}\n/store/checkout\n  Cache-Control: no-store\n/store/checkout/\n  Cache-Control: no-store\n/store/order/*\n  Cache-Control: no-store\n`;
+    const dist = await makeDist(['index-AbC_12-3.js'], privateHeaders);
+    await buildAssetHeaders(dist);
+    const headers = await readFile(join(dist, '_headers'), 'utf8');
+    expect(headers.startsWith(privateHeaders.trimEnd())).toBe(true);
+    for (const path of ['/store/checkout', '/store/checkout/', '/store/order/private-token']) {
+      expect(cacheHeadersFor(headers, path)).toEqual(cacheHeadersFor(privateHeaders, path));
+      expect(cacheHeadersFor(headers, path)).toContain('no-store');
     }
   });
 

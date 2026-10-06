@@ -1,25 +1,8 @@
 # Store operations cookbook
 
-Current checkout uses Pesapal and a 20% deposit, with 80% due on the day.
-Use [the Pesapal launch guide](pesapal-store-launch.md) for setup and remaining
-checks. Historical DPO attempts and full-payment orders retain their original
-amounts. A booking with `paymentStatus = deposit_paid` still has a balance due;
-the internal `paid` lifecycle means the required online payment cleared.
-
 Day-to-day store administration until a custom admin exists (HANDOFF Phase 5).
 Everything runs in the **Supabase dashboard → SQL editor** of project
 `destination-paradise-store` (`hskhpsdociwikywfnsvf`, eu-central-1).
-
-The Store uses a shopping cart for configured online departures: guests choose
-up to six passengers, pickup area/accommodation, date and departure time, then
-pay one combined 20% deposit through the embedded Pesapal form. Book Now is the
-separate enquiry/payment-link flow. Enquiry-only products do not enter new Store
-carts; historical request orders and links retain their existing lifecycle.
-Guests can save an online departure before its prices are configured, but
-checkout cannot take payment until every trip has an approved server price and
-available seats. Missing rates never fall back to editorial prices or redirect
-the payment action to Book Now. Older enquiry cart rows remain visible for
-removal or an explicit separate Book Now enquiry.
 
 Ground rules:
 
@@ -33,25 +16,6 @@ Ground rules:
 - All times are Zanzibar wall time (`Africa/Dar_es_Salaam`).
 
 ## Inventory
-
-**Extend every configured schedule through 28 February 2027:**
-
-The online calendar's inclusive final date is `2027-02-28`. Run the reviewed
-[February extension script](../supabase/extend_departures_through_february_2027.sql)
-in the project SQL editor when the extension is approved. It uses Zanzibar's
-current date and the existing active departure templates, times, capacities,
-durations and booking cutoffs. It adds missing departures from tomorrow through
-the final date, preserves existing departures (including closed/cancelled ones),
-and can be rerun without duplicates. It does nothing after the final date.
-
-On 1 October 2026, after explicit approval, the extension added 150 days per
-time, or 1,050 departures across the seven configured daily times for Safari
-Blue, Spice Tour and Stone Town. Inventory now ends on 28 February 2027;
-all pre-existing departures were verified unchanged. Other trips
-remain date enquiries until a supplier-confirmed schedule is configured.
-Approved group and pickup prices are still required before online payment.
-Do not rerun `supabase/seed.sql` to extend dates, because it also rewrites
-commercial configuration.
 
 **Extend the bookable window** (weekly top-up; idempotent):
 

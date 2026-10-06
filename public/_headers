@@ -4,7 +4,7 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), camera=(), microphone=(), payment=(), usb=(), interest-cohort=()
   Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
-  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; frame-src 'self' https://pay.pesapal.com https://cybqa.pesapal.com; form-action 'self'; img-src 'self' data: https://tile.openstreetmap.org https://www.google-analytics.com https://www.googletagmanager.com; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://api.open-meteo.com https://marine-api.open-meteo.com https://open.er-api.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; worker-src 'self'
+  Content-Security-Policy-Report-Only: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'self'; img-src 'self' data: https://tile.openstreetmap.org https://www.google-analytics.com https://www.googletagmanager.com; script-src 'self' https://www.googletagmanager.com https://www.google-analytics.com; connect-src 'self' https://api.open-meteo.com https://marine-api.open-meteo.com https://open.er-api.com https://www.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; manifest-src 'self'; worker-src 'self'
 
 # The build appends exact immutable-cache rules for emitted hashed JS/CSS.
 # A wildcard would also cache 404 responses for chunks from older deployments.
@@ -22,18 +22,3 @@
 # Font files are effectively versioned by filename; safe to pin.
 /assets/fonts/*
   Cache-Control: public, max-age=31536000, immutable
-
-# Private booking pages can carry a one-time order access token. Prevent
-# storage and referrer disclosure even before the app removes that token.
-/store/order/*
-  Cache-Control: no-store
-  Referrer-Policy: no-referrer
-  X-Robots-Tag: noindex, nofollow
-
-/store/checkout
-  Cache-Control: no-store
-  X-Robots-Tag: noindex, nofollow
-
-/store/checkout/
-  Cache-Control: no-store
-  X-Robots-Tag: noindex, nofollow

@@ -3,7 +3,7 @@
   "meta": {
     "aria_label": "Policy details",
     "last_updated": "Last updated",
-    "last_updated_value": "September 30, 2026",
+    "last_updated_value": "July 25, 2026",
     "contact": "Contact"
   },
   "policies": {
@@ -36,8 +36,6 @@
           "title": "Service Providers And Data Sharing",
           "items": [
             "Netlify hosts the website and Netlify Functions that receive contact, booking, planner, and newsletter submissions.",
-            "Supabase stores online-store order, payment and booking records in our booking database.",
-            "Pesapal processes online-store payments through its own payment form, including when that form is embedded on our website.",
             "Resend sends team notification emails and guest confirmation emails from the contact, booking, and planner workflows.",
             "Anthropic powers the AI trip planner when you chat with it. Planner prompts and recent chat history are sent to Anthropic only for that feature.",
             "Google Analytics measures page visits only after you accept analytics cookies. Google may set _ga cookies for measurement.",
@@ -52,7 +50,7 @@
           "title": "Storage, Retention, And Security",
           "items": [
             "We keep enquiries and booking details only as long as needed to reply, arrange the trip, handle accounting or legal duties, and improve service quality.",
-            "Local browser storage may hold your language, theme, cookie choice, currency-rate cache, planner history and store cart. Session storage keeps your order access credentials, order summary and checkout retry information so you can securely view or resume the same order.",
+            "Local browser storage may hold your language, theme, cookie choice, currency-rate cache, and planner history so the site works smoothly.",
             "We use reasonable technical safeguards such as HTTPS, provider access controls, request size limits, validation, rate limiting, and error monitoring.",
             "No website or email system is perfectly secure, so avoid sending passport scans, payment card details, or highly sensitive health information through open text fields."
           ]
@@ -70,23 +68,12 @@
         {
           "title": "Online Store Payments And Bookings",
           "items": [
-            "When you book or submit a request in our experiences store, we collect the lead guest’s name, email address and phone number, plus your chosen experiences, booking options, dates or preferred dates, departure times, guest counts and language.",
-            "Pesapal owns and operates the secure payment form embedded on our order page. You may also open its secure payment page, and your bank or payment provider may require a separate verification step. Card and mobile-money credentials are entered in those provider forms; our checkout does not collect or store full card numbers, card security codes or payment PINs.",
-            "To create the payment, we send Pesapal your name, email address, phone number, order reference, payment amount and currency.",
-            "We store the order, booking codes, payment status, provider transaction references, amounts, currencies and confirmation codes in our Supabase booking database to operate your trips, handle changes and meet accounting obligations. Pesapal may also return payment-method labels and masked account identifiers; these are different from full card numbers or payment credentials.",
+            "When you book instantly in our experiences store, we collect the lead guest’s name, email address and phone number, plus your order contents: the chosen experiences, dates, departure times and guest counts.",
+            "Payments are processed by our payment partner DPO Pay on their secure payment pages. Card and mobile-money details are entered there only — they never reach or pass through our own systems.",
+            "We keep the order, its booking codes and the payment status returned by DPO (never card numbers) in our booking database so we can operate your trips, handle changes and meet accounting obligations.",
             "Order receipts and booking confirmations are sent through our email provider to the address you give at checkout.",
             "Orders and bookings are retained as commercial records for as long as tax and accounting law requires; contact us any time to access or correct your data.",
             "Store analytics events never contain names, email addresses, phone numbers or payment references."
-          ],
-          "links": [
-            {
-              "href": "https://www.pesapal.com/tz/privacy-policy",
-              "label": "Pesapal Privacy Policy"
-            },
-            {
-              "href": "https://www.pesapal.com/tz/terms-and-conditions",
-              "label": "Pesapal Terms and Conditions"
-            }
           ]
         }
       ]
@@ -128,24 +115,11 @@
           "title": "Online Store Bookings",
           "items": [
             "Selected experiences can be booked instantly in our online store with live availability; everything else remains on the request flow described above.",
-            "For Safari Blue, Spice Tour and Historical City Tour, online prices depend on your guest count, shared or private option, pickup area and accommodation. The summary shows one experience price for the whole group plus one pickup supplement per car, including a zero supplement where pickup is included. Online group pricing supports up to six passengers; groups of seven or more, unknown pickup areas and selections without a configured price require a quote and take no online payment.",
-            "For new store bookings, you pay one combined 20% deposit for your cart online; the remaining 80% is due on the day of each experience, before it begins. Each experience becomes its own booking with its own confirmation code, date, time and guest count. The checkout does not automatically charge the remaining balance.",
-            "Submitting a booking request takes no payment. Once staff confirm availability and you accept a new store quote, the same 20% deposit and on-day balance apply. Existing quotes and bookings keep their agreed payment plan, including full-payment plans.",
-            "Your store order and required payment are priced in US dollars. Website prices shown in other currencies are indicative estimates. Depending on your payment method, Pesapal or your bank may display or debit a converted amount; review the final currency, amount and any conversion charges before approving payment.",
-            "Instant-checkout places are normally held for about 15 minutes. Places held after accepting a staff quote have a longer payment window, normally up to 24 hours. Unpaid holds can expire automatically and the places return to sale.",
-            "Loading the payment form or returning to our website does not confirm a booking. A store booking is confirmed only after we verify the required deposit or agreed payment and issue booking codes. Delayed, mismatched or unverifiable payments require manual review; a pending payment does not guarantee that a hold remains available.",
-            "Instantly booked Zanzibar experiences follow our Booking Policy: free cancellation more than 48 hours before the start, 50% of the full booking price from 24 to 48 hours, and 100% of the full booking price inside 24 hours or for a no-show. Your paid deposit is credited against the cancellation charge, which can exceed the deposit; any unpaid part of that charge remains payable.",
-            "Pesapal provides the payment service; your travel booking is with Destination Paradise. Our Booking Policy governs bookings, cancellations and refunds; Pesapal’s own payment terms and privacy policy apply to its payment service."
-          ],
-          "links": [
-            {
-              "href": "https://www.pesapal.com/tz/privacy-policy",
-              "label": "Pesapal Privacy Policy"
-            },
-            {
-              "href": "https://www.pesapal.com/tz/terms-and-conditions",
-              "label": "Pesapal Terms and Conditions"
-            }
+            "You pay once for your whole cart, and every experience in it becomes its own booking with its own confirmation code — each trip keeps its own date, time and guest count.",
+            "Store payments are charged in US dollars; prices shown in other currencies are estimates based on current exchange rates.",
+            "While you complete checkout, your selected places are held for a short time (about 15 minutes); if payment is not completed, the hold releases automatically and the places return to sale.",
+            "A booking exists only once our payment partner confirms your payment and we issue your booking codes; if a payment cannot be verified automatically we review it manually and contact you before anything else happens.",
+            "Cancellation and refund rules for instantly booked experiences are the Zanzibar tour rules set out in our Booking Policy: free cancellation more than 48 hours before the start, 50% from 24 to 48 hours, and 100% inside 24 hours or for a no-show."
           ]
         }
       ]
@@ -160,21 +134,18 @@
           "items": [
             "All bookings are subject to availability at the time we confirm them.",
             "For bookings arranged by enquiry, a booking is confirmed only once we have received the required deposit or payment and sent you written confirmation.",
-            "Experiences booked through our online store are confirmed automatically once we verify the required deposit or agreed payment and issue your booking codes. Loading the payment form or returning from Pesapal is not confirmation. No separate written confirmation is needed.",
-            "Delayed, mismatched or unverifiable store payments need manual review. Holds can expire automatically before a payment is verified; if money has left your account and you have no confirmed booking, contact us so we can check it.",
-            "Prices are quoted in US dollars unless otherwise stated. Enquiry bookings may also be settled in Tanzanian shillings at the prevailing exchange rate. Store orders and their required deposits are priced in US dollars; website prices in other currencies are indicative estimates. Pesapal or your bank may display or debit a converted amount for your chosen payment method, so review the final currency and amount before approving it."
+            "Experiences booked instantly through our online store are confirmed automatically as soon as our payment partner verifies your payment and we issue your booking codes. No separate written confirmation is needed.",
+            "If a store payment cannot be verified automatically, we review it manually and contact you before the booking is either confirmed or released.",
+            "Prices are quoted in US dollars unless otherwise stated. Enquiry bookings may also be settled in Tanzanian shillings at the prevailing exchange rate. Online store payments are charged in US dollars, and prices displayed in other currencies are indicative estimates."
           ]
         },
         {
           "title": "Payment",
           "items": [
-            "Day tours, excursions, and transfers in Zanzibar: full payment is required before the service begins. New instant store bookings and new store quotes accepted after staff confirm availability require a 20% deposit online; the remaining 80% is due on the day of each experience, before it begins. Submitting a request takes no payment.",
-            "Tanzania safaris arranged by enquiry outside our online store: a 30% deposit confirms your booking, and the remaining 70% is due at least 30 days before the safari start date.",
-            "Such safari bookings made within 30 days of the start date require full payment on confirmation.",
-            "If a safari balance is not received by its due date we will contact you before taking any action. Where the balance remains unpaid, we may treat the booking as cancelled by you and the charges below will apply.",
-            "Existing quotes and bookings retain their agreed payment plan, including full-payment plans. We do not automatically charge the on-day balance through this checkout.",
-            "The checkout and confirmation show the full booking price, the deposit and the remaining balance. Where needed, the 20% deposit is rounded up to a whole US cent; the balance is the full price minus that deposit.",
-            "For store experiences priced by group and pickup area, the total includes the displayed per-car pickup supplement. The deposit is calculated on that combined total. Give the correct guest count, pickup area and accommodation before booking; changes to those details may require a revised quote, which you must approve before any additional payment. Groups of seven or more and unpriced pickup arrangements require a quote before payment."
+            "Day tours, excursions, and transfers in Zanzibar: full payment is required before the service begins. Experiences booked in our online store are paid in full at checkout.",
+            "Tanzania safaris: a 30% deposit confirms your booking, and the remaining 70% is due at least 30 days before the safari start date.",
+            "Safari bookings made within 30 days of the start date require full payment on confirmation.",
+            "If a safari balance is not received by its due date we will contact you before taking any action. Where the balance remains unpaid, we may treat the booking as cancelled by you and the charges below will apply."
           ]
         },
         {
@@ -190,8 +161,7 @@
           "title": "Cancellation By You",
           "items": [
             "Cancellations must be sent to us in writing by email or WhatsApp. The charge depends on when we receive your cancellation.",
-            "A no-show without notice, or leaving a trip early once it has started, is charged at 100% and no refund is due.",
-            "Cancellation charges are calculated on the full price of the cancelled booking, not just the deposit. The deposit you have paid is credited against the charge. The charge can exceed the 20% deposit, and any unpaid part remains payable. Where cancellation is free, a full refund means all money paid for the cancelled service."
+            "A no-show without notice, or leaving a trip early once it has started, is charged at 100% and no refund is due."
           ],
           "tables": [
             {
@@ -322,11 +292,11 @@
         {
           "title": "Refunds",
           "items": [
-            "Approved refunds are returned to the original payment method wherever possible, normally within 14 days of us confirming the refund. Your bank or payment provider may take additional time to credit the refund to your account.",
-            "For Zanzibar tours, excursions and transfers, we refund any amount paid above the applicable cancellation charge. The charges in the table above already include committed supplier costs, so there is no extra deduction for supplier costs. For safaris and other custom bookings outside those Zanzibar rules, any refund is subject to the applicable cancellation charge and non-refundable supplier costs specified in your agreed booking terms.",
+            "Approved refunds are returned to the original payment method wherever possible, normally within 14 days of us confirming the refund.",
+            "Where you cancel inside a charging window, we refund the balance after the applicable cancellation charge and any non-refundable supplier costs already committed to your booking.",
             "Where a refund is due in full — because we cancelled, or because you cancelled free of charge within the permitted window — we do not deduct payment processing fees.",
             "Bank transfer charges may be deducted only where a refund has to be sent by international bank transfer at your request, rather than to the original payment method.",
-            "Contact us to request a cancellation or refund of a store booking. Our team arranges approved refunds with the payment provider used at checkout, including Pesapal for new store payments, to the original payment method wherever possible. If that method cannot support the required refund, we agree an alternative with you."
+            "Refunds of online store bookings are returned through our payment partner to the card or mobile-money account used at checkout."
           ]
         },
         {
@@ -372,9 +342,7 @@
             "dp_cookie_consent_v1 stores your cookie choice so we know whether analytics is allowed.",
             "dp_tweaks stores theme and display preferences such as light or dark mode.",
             "dp_lang stores your language choice, and dp_fx_rates may cache currency rates for price display.",
-            "plannerHistory stores your AI planner chat in your browser so you can continue a plan later.",
-            "dp_store_cart_v1 stores the experiences and selections in your cart in local browser storage.",
-            "Session storage keeps your authenticated order access, order summary and checkout retry key so you can view or resume the same order; blocking it may prevent these features from working."
+            "plannerHistory stores your AI planner chat in your browser so you can continue a plan later."
           ]
         },
         {
@@ -391,24 +359,6 @@
             "Sentry may receive technical error data when a page or function fails.",
             "Open-Meteo, CARTO map tiles, and open.er-api.com may receive basic request data when weather, maps, or currency rates load.",
             "Resend and Anthropic receive data only when you submit a form, booking request, or AI planner message that uses those services."
-          ]
-        },
-        {
-          "title": "Pesapal And Bank Payment Services",
-          "items": [
-            "When you open our embedded payment form or the secure payment page, your browser connects directly to Pesapal. Your bank or mobile-money provider may open a separate authentication step.",
-            "Pesapal and payment providers may use their own cookies, storage and device or network information for payment processing, authentication and fraud prevention, and for other purposes explained in their own policies.",
-            "Our Google Analytics cookie choice does not control Pesapal’s or your bank’s cookies or data processing. Review their privacy notices and browser settings; restricting their storage may prevent payment from working."
-          ],
-          "links": [
-            {
-              "href": "https://www.pesapal.com/tz/privacy-policy",
-              "label": "Pesapal Privacy Policy"
-            },
-            {
-              "href": "https://www.pesapal.com/tz/terms-and-conditions",
-              "label": "Pesapal Terms and Conditions"
-            }
           ]
         },
         {

@@ -23,7 +23,6 @@ import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import usePageMeta from '../hooks/usePageMeta.js';
 import { useCurrency } from '../context/useCurrency.js';
 import { trackEvent } from '../utils/analytics.js';
-import { applyStoreEnquiry, parseStoreEnquiry } from '../lib/storeEnquiry.js';
 import '../styles/homepage.css';
 import '../styles/excursions.css';
 import '../styles/booking.css';
@@ -59,7 +58,7 @@ const rawSlugOrId = (raw) => {
 };
 
 export default function Booking() {
-  const { t, i18n, ready } = useTranslation(['booking', 'store']);
+  const { t, i18n, ready } = useTranslation('booking');
   const { format } = useCurrency();
   const [searchParams] = useSearchParams();
   const location = useLocation();
@@ -84,7 +83,6 @@ export default function Booking() {
   const summarySlotRef = useRef(null);
   const summaryRef = useRef(null);
   const prefillKeyRef = useRef(/** @type {string | null} */ (null));
-  const storeEnquiryKeysRef = useRef(/** @type {Set<string>} */ (new Set()));
   useRevealOnScroll(pageRef, '.reveal:not(.is-visible)', ready ? i18n.resolvedLanguage : 'loading');
   // Only the fields that change the summary's rendered height/content drive a
   // re-measure — keying on the whole `form` would re-subscribe the scroll/resize
@@ -243,17 +241,6 @@ export default function Booking() {
     // If products.all is still empty (namespace loading), do nothing and let the
     // effect re-run after load without locking the guard.
   }, [products.all, searchParams, serviceTypes, t]);
-
-  useEffect(() => {
-    // Wait for both namespaces before freezing the localized note. A language
-    // change or a lazy-load re-render must not append it again or replace edits.
-    if (!ready || products.all.length === 0 || !location.state?.storeEnquiry ||
-        storeEnquiryKeysRef.current.has(location.key)) return;
-    const enquiry = parseStoreEnquiry(location.state.storeEnquiry, products.all);
-    storeEnquiryKeysRef.current.add(location.key);
-    if (!enquiry) return;
-    setForm((current) => applyStoreEnquiry(current, enquiry, t));
-  }, [location.key, location.state, products.all, ready, t]);
 
   const selectedProduct = products.all.find((item) => item.value === form.product);
   const visibleProducts = form.serviceType === 'custom'

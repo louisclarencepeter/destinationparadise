@@ -68,7 +68,7 @@ export default async (req) => {
       const providerToken = providerTokenFrom(url, body);
       if (providerToken) {
         reference = parseOrderReference(
-          String(await callStoreRpc('store_reference_for_provider_token', { p_provider_token: providerToken, p_provider: 'dpo' }) || ''),
+          String(await callStoreRpc('store_reference_for_provider_token', { p_provider_token: providerToken }) || ''),
         );
       }
     }
@@ -85,7 +85,7 @@ export default async (req) => {
     });
     if (recorded?.new === false) return storeJson({ ok: true, duplicate: true });
 
-    const result = await verifyAndSettle(reference, { expectedProvider: 'dpo', expectedToken: providerTokenFrom(url, body) || undefined });
+    const result = await verifyAndSettle(reference);
     return storeJson({ ok: true, state: result.state });
   } catch (error) {
     await captureFunctionException(error, { functionName: FUNCTION_NAME, req, extra: { stage: 'callback' } });
