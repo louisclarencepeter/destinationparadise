@@ -43,10 +43,7 @@ test('editing one trip and removing another leaves the rest untouched', async ({
   const panel = page.locator('.booking-panel');
   await expect(panel.locator('.slot-grid__slot.is-selected')).toBeVisible();
   await panel.getByRole('button', { name: 'More guests' }).click();
-  await panel.locator('.avail-cal__day:not([disabled]):not(.is-selected)').first().click();
-  const slot = panel.locator('.slot-grid__slot:not(.is-soldout):not([disabled])').first();
-  await expect(slot).toBeVisible();
-  await slot.click();
+  await pickDeparture(panel, { otherThanSelected: true });
   await panel.getByRole('button', { name: 'Update trip' }).click();
 
   drawer = page.locator('.cart-drawer.is-open');
