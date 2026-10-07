@@ -126,7 +126,7 @@ export function slotLabelTo24h(label) {
   return `${String(hours).padStart(2, '0')}:${minute}`;
 }
 
-// Walks the bookable days (this month, then the next) until one has a slot
+// Walks the bookable days (this month, then the next ones) until one has a slot
 // whose status text matches `wanted` next to a slot that can be booked now.
 // Returns the wanted slot's 24h time, leaving that day selected; null if the
 // window has no such day (e.g. a deployed inventory with nothing sold out).
@@ -134,11 +134,19 @@ export function slotLabelTo24h(label) {
 export async function findDayWithSlot(panel, wanted, { otherThanSelected = false } = {}) {
   const selected = panel.locator('.avail-cal__day.is-selected');
   const skip = otherThanSelected && await selected.count() ? await selected.getAttribute('aria-label') : null;
-  for (let month = 0; month < 2; month += 1) {
+  // Three steps: the panel itself may move on from an empty month once it loads.
+  for (let month = 0; month < 3; month += 1) {
+    await expect(panel.locator('.avail-cal.is-loading')).toHaveCount(0);
     const days = panel.locator('.avail-cal__day:not([disabled])');
     for (let i = 0; i < await days.count(); i += 1) {
-      if (skip && await days.nth(i).getAttribute('aria-label') === skip) continue;
-      await days.nth(i).click();
+      const label = await days.nth(i).getAttribute('aria-label');
+      if (label === skip) continue;
+      // Click until the day is selected: the calendar can still be settling.
+      const day = panel.getByRole('button', { name: label, exact: true });
+      await expect(async () => {
+        await day.click();
+        await expect(day).toHaveAttribute('aria-pressed', 'true', { timeout: 1000 });
+      }).toPass();
       const slots = panel.locator('.slot-grid__slot');
       await expect(slots.first()).toBeVisible();
       const match = slots.filter({ has: panel.page().locator('.slot-grid__sub', { hasText: wanted }) }).first();
@@ -146,6 +154,7 @@ export async function findDayWithSlot(panel, wanted, { otherThanSelected = false
         return slotLabelTo24h(await match.locator('.slot-grid__time').innerText());
       }
     }
+    await expect(panel.locator('.avail-cal.is-loading')).toHaveCount(0);
     const next = panel.getByRole('button', { name: 'Next month' });
     if (!await next.isEnabled()) break;
     await next.click();

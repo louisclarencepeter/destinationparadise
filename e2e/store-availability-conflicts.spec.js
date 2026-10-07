@@ -8,7 +8,7 @@
 import { expect, test } from '@playwright/test';
 import {
   addTrip, dismissCookieBanner, editStoredCart, fillPickup, findDayWithSlot, openBookingPanel,
-  prepareStorePage, readPricedLines, trackPaymentRequests,
+  pickDeparture, prepareStorePage, readPricedLines, trackPaymentRequests,
 } from './helpers.js';
 
 prepareStorePage();
@@ -83,12 +83,15 @@ for (const { name, slotText, patch, status } of CASES) {
     await expect(page.locator('.checkout-pay')).toBeDisabled();
     expect(paymentCalls).toEqual([]);
 
-    // Fix it: another departure the same day, straight back to checkout.
+    // Fix it: another departure the same day when one has room for the
+    // party (on some dates none does), straight back to checkout.
     await cityLine.locator('.checkout-line__fix').click();
     const editPanel = page.locator('.booking-panel');
     await expect(editPanel.locator('.slot-grid__slot').first()).toBeVisible();
     await expect(editPanel.locator('.booking-panel__submit')).toBeDisabled();
-    await editPanel.locator('.slot-grid__slot:not([disabled])').first().click();
+    const sameDay = editPanel.locator('.slot-grid__slot:not([disabled])').first();
+    if (await sameDay.count()) await sameDay.click();
+    else await pickDeparture(editPanel);
     await editPanel.getByRole('button', { name: 'Save & checkout' }).click();
 
     await expect(page).toHaveURL(/\/store\/checkout$/);

@@ -198,6 +198,44 @@ describe('fixed booking calendar horizon', () => {
     expect(harness.navigate).not.toHaveBeenCalled();
   });
 
+  it('opens on the next month when the current one has no bookable day left', async () => {
+    vi.setSystemTime(new Date('2026-10-31T09:00:00Z'));
+    harness.availability = { loading: false, days: {
+      '2026-10-31': { date: '2026-10-31', bookable: false, times: [] },
+    } };
+    const { tree } = await mountPanel();
+    let calendar = findElement(tree, (element) => element.type === AvailabilityCalendar);
+    expect(calendar.props).toMatchObject({ monthIso: '2026-11', canPrev: true });
+
+    // Paging back to the empty month stays there.
+    calendar.props.onShiftMonth(-1);
+    calendar = findElement((await mountPanel()).tree, (element) => element.type === AvailabilityCalendar);
+    expect(calendar.props.monthIso).toBe('2026-10');
+  });
+
+  it('keeps the current month while availability is loading or a day is bookable', async () => {
+    vi.setSystemTime(new Date('2026-10-31T09:00:00Z'));
+    harness.availability = { loading: true, days: null };
+    let { tree } = await mountPanel();
+    expect(findElement(tree, (element) => element.type === AvailabilityCalendar).props.monthIso).toBe('2026-10');
+
+    harness.availability = { loading: false, days: {
+      '2026-10-31': { date: '2026-10-31', bookable: true, times: [{ time: '09:00', seats: 4 }] },
+    } };
+    ({ tree } = await mountPanel());
+    expect(findElement(tree, (element) => element.type === AvailabilityCalendar).props.monthIso).toBe('2026-10');
+  });
+
+  it('stays on February 2027 when the booking window has no day left', async () => {
+    vi.setSystemTime(new Date('2027-02-28T09:00:00Z'));
+    harness.availability = { loading: false, days: {
+      '2027-02-28': { date: '2027-02-28', bookable: false, times: [] },
+    } };
+    const { tree } = await mountPanel();
+    expect(findElement(tree, (element) => element.type === AvailabilityCalendar).props)
+      .toMatchObject({ monthIso: '2027-02', canNext: false });
+  });
+
   it('restores a saved 28 February departure and updates its original cart line', async () => {
     harness.editId = 'last-day';
     harness.cart.items = [{
