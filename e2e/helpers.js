@@ -47,12 +47,11 @@ export async function fillPickup(panel, zone = null) {
   await panel.locator('input[name="accommodation"]').fill('E2E Beach Hotel');
 }
 
-// Any bookable day, then the first time slot with room for the party.
-export async function pickDeparture(panel) {
-  await panel.locator('.avail-cal__day:not([disabled])').first().click();
-  const slot = panel.locator('.slot-grid__slot:not(.is-soldout):not([disabled])').first();
-  await expect(slot).toBeVisible();
-  await slot.click();
+// The first bookable day that still has a slot with room for the party
+// (which day that is depends on today's date), then its first such slot.
+export async function pickDeparture(panel, { otherThanSelected = false } = {}) {
+  expect(await findDayWithSlot(panel, /./, { otherThanSelected }), 'a day with a bookable slot').not.toBeNull();
+  await panel.locator('.slot-grid__slot:not(.is-soldout):not([disabled])').first().click();
 }
 
 export async function addTrip(page, { slug, extraGuests = 0 }) {
@@ -127,15 +126,27 @@ export function slotLabelTo24h(label) {
   return `${String(hours).padStart(2, '0')}:${minute}`;
 }
 
-// Walks the bookable days (this month, then the next) until one has a slot
+// Walks the bookable days (this month, then the next ones) until one has a slot
 // whose status text matches `wanted` next to a slot that can be booked now.
 // Returns the wanted slot's 24h time, leaving that day selected; null if the
 // window has no such day (e.g. a deployed inventory with nothing sold out).
-export async function findDayWithSlot(panel, wanted) {
-  for (let month = 0; month < 2; month += 1) {
+// `otherThanSelected` skips the day selected when the search starts.
+export async function findDayWithSlot(panel, wanted, { otherThanSelected = false } = {}) {
+  const selected = panel.locator('.avail-cal__day.is-selected');
+  const skip = otherThanSelected && await selected.count() ? await selected.getAttribute('aria-label') : null;
+  // Three steps: the panel itself may move on from an empty month once it loads.
+  for (let month = 0; month < 3; month += 1) {
+    await expect(panel.locator('.avail-cal.is-loading')).toHaveCount(0);
     const days = panel.locator('.avail-cal__day:not([disabled])');
     for (let i = 0; i < await days.count(); i += 1) {
-      await days.nth(i).click();
+      const label = await days.nth(i).getAttribute('aria-label');
+      if (label === skip) continue;
+      // Click until the day is selected: the calendar can still be settling.
+      const day = panel.getByRole('button', { name: label, exact: true });
+      await expect(async () => {
+        await day.click();
+        await expect(day).toHaveAttribute('aria-pressed', 'true', { timeout: 1000 });
+      }).toPass();
       const slots = panel.locator('.slot-grid__slot');
       await expect(slots.first()).toBeVisible();
       const match = slots.filter({ has: panel.page().locator('.slot-grid__sub', { hasText: wanted }) }).first();
@@ -143,6 +154,7 @@ export async function findDayWithSlot(panel, wanted) {
         return slotLabelTo24h(await match.locator('.slot-grid__time').innerText());
       }
     }
+    await expect(panel.locator('.avail-cal.is-loading')).toHaveCount(0);
     const next = panel.getByRole('button', { name: 'Next month' });
     if (!await next.isEnabled()) break;
     await next.click();
