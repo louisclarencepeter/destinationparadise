@@ -48,7 +48,9 @@ export const STORE_FORMATS = {
     money: /^\d{1,3}(?:\s?\d{3})*,\d{2}\sUSD$/,
     parse: (text) => Number(text.replace(/[^\d,]/g, '').replace(',', '.')),
     time: /\b\d{1,2}:\d{2}\b(?!\s?[AP]M)/,
-    weekday: /\b(?:pon|wt|śr|czw|pt|sob|niedz)\.,/,
+    // Not \b: JavaScript's \b treats "ś" as a non-word character, so it
+    // never matches before "śr." (Wednesday).
+    weekday: /(?:^|\s)(?:pon|wt|śr|czw|pt|sob|niedz)\.,/,
   },
 };
 
