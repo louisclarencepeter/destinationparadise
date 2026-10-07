@@ -5,6 +5,7 @@ import ResponsiveImage from '../components/ResponsiveImage.jsx';
 import StoreBookingSection from '../components/store/StoreBookingSection.jsx';
 import { isStoreEnabled } from '../config/featureFlags.js';
 import { buildLocalizedExcursions } from '../data/localizedCatalog.js';
+import { isInstantBookable } from '../data/commerceCatalog.js';
 import usePageMeta, { clampDescription } from '../hooks/usePageMeta.js';
 import { touristTripJsonLd } from '../utils/productJsonLd.js';
 import { useCurrency } from '../context/useCurrency.js';
@@ -78,6 +79,8 @@ export default function ExcursionDetail() {
   }
 
   const e = excursion;
+  const isPilot = isInstantBookable(e.id);
+  const onlineBooking = isStoreEnabled() && isPilot;
   const relatedExcursions = excursions
     .filter((item) => item.id !== e.id && item.category === e.category)
     .slice(0, 3);
@@ -142,19 +145,19 @@ export default function ExcursionDetail() {
           )}
           <div className="exc-block__actions">
             {typeof e.price === 'number' ? (
-              <span className="exc-block__price reveal" style={{ '--reveal-index': 0 }}>{format(e.price)}<small>{e.priceSub || t('detail.per_person')}</small></span>
+              <span className="exc-block__price reveal" style={{ '--reveal-index': 0 }}>{isPilot && `${t('detail.from')} `}{format(e.price)}<small>{e.priceSub || t('detail.per_person')}</small></span>
             ) : (
               <span className="exc-block__price-note reveal" style={{ '--reveal-index': 0 }}>{t('detail.price_on_request')}</span>
             )}
-            {e.priceNote && <span className="exc-block__price-note reveal" style={{ '--reveal-index': 1 }}>{e.priceNote}</span>}
-            <Link className="btn reveal" style={{ '--reveal-index': 2 }} to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}`}>{t('detail.book_this')}</Link>
+            {(isPilot || e.priceNote) && <span className="exc-block__price-note reveal" style={{ '--reveal-index': 1 }}>{isPilot ? t('detail.pilot_price_note') : e.priceNote}</span>}
+            <Link className="btn reveal" style={{ '--reveal-index': 2 }} to={onlineBooking ? '#book' : `/book-now?type=excursion&item=${encodeURIComponent(e.id)}#booking-contact`}>{t('detail.book_this')}</Link>
             <Link className="btn btn--ghost-dark reveal" style={{ '--reveal-index': 3 }} to="/excursions">{t('detail.all_excursions')}</Link>
           </div>
         </div>
       </article>
 
       {/* Instant booking for pilot store products (no-op for everything else). */}
-      {isStoreEnabled() && <StoreBookingSection excursionId={e.id} />}
+      {onlineBooking && <StoreBookingSection excursionId={e.id} />}
 
       {e.timeline && e.timeline.length > 0 && (
         <section className="exc-day" id="day">
@@ -178,14 +181,17 @@ export default function ExcursionDetail() {
         <div className="exc-prac__grid">
           {PRACTICAL_COLUMNS.map((key, i) => (
             <div className="exc-prac__col reveal" key={key} style={{ '--reveal-index': i }}>
-              <h4>{t(`detail.practical.${key}.heading`)}</h4>
+              <h4>{t(`detail.practical.${key}.${isPilot && key === 'included' ? 'pilot_heading' : 'heading'}`)}</h4>
               <ul>
-                {arrayFromTranslation(t(`detail.practical.${key}.items`, { returnObjects: true })).map((it) => (
-                  <li key={it}>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
-                    {it}
-                  </li>
-                ))}
+                {arrayFromTranslation(t(`detail.practical.${key}.items`, { returnObjects: true })).map((item, index) => {
+                  const it = isPilot && key === 'included' && index === 0 ? t('detail.practical.included.pilot_pickup') : item;
+                  return (
+                    <li key={it}>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
+                      {it}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
@@ -219,7 +225,7 @@ export default function ExcursionDetail() {
           <h2 className="reveal" style={{ '--reveal-index': 0 }}>{t('detail.cta.title', { title: e.title })}</h2>
           <p className="reveal" style={{ '--reveal-index': 1 }}>{t('detail.cta.text')}</p>
           <div className="exc-cta__btns reveal" style={{ '--reveal-index': 2 }}>
-            <Link className="btn btn--lg" to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}`}>{t('cta.get_in_touch')}</Link>
+            <Link className="btn btn--lg" to={`/booking?type=excursion&item=${encodeURIComponent(e.id)}#booking-contact`}>{t('cta.get_in_touch')}</Link>
             <Link className="btn btn--ghost-light btn--lg" to="/trip-planner">{t('cta.ai_planner')}</Link>
           </div>
         </div>

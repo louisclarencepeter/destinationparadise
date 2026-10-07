@@ -37,13 +37,13 @@ const EXCURSIONS_RAW = [
     duration: 'Half Day',
     price: 45,
     priceSub: 'per person',
-    group: 'Up to 8',
+    group: 'Up to 6 online',
     from: 'Stone Town',
     highlights: ['Clove, cinnamon, nutmeg, pepper farms', 'Hands-on tasting and aromas', 'Spice-infused Swahili lunch'],
     facts: [
       ['Duration', 'Half Day', '9am – 2pm'],
-      ['From', 'Stone Town', 'Hotel pickup'],
-      ['Group', 'Up to 8', 'Mini-van'],
+      ['From', 'Stone Town', 'Pickup priced by area'],
+      ['Group', 'Up to 6 online', 'Small car · larger groups by quote'],
       ['Best for', 'Families', 'Foodies'],
     ],
     cols: [
@@ -51,7 +51,7 @@ const EXCURSIONS_RAW = [
       { h: 'Bring', items: ['Hat & sunscreen', 'Closed shoes (uneven paths)', 'Cash for spices to take home', 'An appetite'] },
     ],
     timeline: [
-      ['09:00', 'Hotel pickup', 'Air-conditioned van from your hotel. Drive inland through the spice belt.'],
+      ['09:00', 'Hotel pickup', 'Air-conditioned pickup from your hotel, with any area supplement confirmed before payment. Drive inland through the spice belt.'],
       ['09:45', 'Welcome at the plantation', 'Met by the farm guide with fresh tropical fruit and a cup of ginger tea.'],
       ['10:00', 'Plantation walk', 'Through clove, cinnamon, nutmeg, pepper and vanilla. Crush the leaves, scrape the bark, taste the fruit.'],
       ['11:30', 'Hands-on tasting', 'Medicinal and cosmetic uses — turmeric, lemongrass, cardamom. The kids usually love this part.'],
@@ -72,13 +72,13 @@ const EXCURSIONS_RAW = [
     duration: 'Half Day',
     price: 55,
     priceSub: 'per person',
-    group: 'Up to 6',
+    group: 'Up to 6 online',
     from: 'Stone Town',
     highlights: ['House of Wonders & Palace Museum', 'Arab Fort and Forodhani Gardens', 'Carved doors, markets, mosques and cathedrals'],
     facts: [
       ['Duration', 'Half Day', '9am – 1pm'],
-      ['From', 'Stone Town', 'Hotel pickup'],
-      ['Group', 'Up to 6', 'On foot'],
+      ['From', 'Stone Town', 'Pickup priced by area'],
+      ['Group', 'Up to 6 online', 'On foot · larger groups by quote'],
       ['Best for', 'History fans', 'All ages'],
     ],
     cols: [
@@ -86,7 +86,7 @@ const EXCURSIONS_RAW = [
       { h: 'Bring', items: ['Modest dress (shoulders + knees)', 'Comfortable walking shoes', "Water bottle (we'll refill)", 'A camera, but ask before photographing people'] },
     ],
     timeline: [
-      ['09:00', 'Hotel pickup', 'Driver brings you to the edge of Stone Town. From here, on foot.'],
+      ['09:00', 'Hotel pickup', 'Your confirmed transfer brings you to the edge of Stone Town, with any pickup-area supplement shown before payment. From here, on foot.'],
       ['09:30', 'Forodhani Gardens', 'Start at the seafront — the Arab Fort and the old harbour wall.'],
       ['10:00', 'House of Wonders & Palace Museum', 'Exterior of the House of Wonders (still under restoration), then the Palace Museum.'],
       ['10:45', 'Slave-trade memorial', 'A quiet pause at the Anglican cathedral built over the old slave market.'],
@@ -360,13 +360,13 @@ const EXCURSIONS_RAW = [
     duration: 'Full Day',
     price: 95,
     priceSub: 'per person',
-    group: 'Up to 8',
+    group: 'Up to 6 online',
     from: 'Fumba',
     highlights: ['Traditional dhow sailing', 'Sandbank seafood picnic', 'Mangrove swim and reef snorkeling'],
     facts: [
       ['Duration', 'Full Day', '8am – 4pm'],
       ['From', 'Fumba', '30min from Stone Town'],
-      ['Group', 'Up to 8', 'Small dhow'],
+      ['Group', 'Up to 6 online', 'Small dhow · larger groups by quote'],
       ['Best for', 'Couples', 'Families w/ kids 8+'],
     ],
     cols: [
@@ -374,13 +374,13 @@ const EXCURSIONS_RAW = [
       { h: 'Bring', items: ['Swimsuit, towel, reef-safe sunscreen', 'Hat, sunglasses, dry bag', 'Cash for tips (USD or TZS)', 'We provide masks & fins'] },
     ],
     timeline: [
-      ['07:30', 'Pickup', 'Air-conditioned van from your hotel. Coffee or tea in a thermos.'],
+      ['07:30', 'Pickup', 'Air-conditioned pickup from your hotel, with any area supplement confirmed before payment. Coffee or tea in a thermos.'],
       ['08:30', 'Fumba jetty & boarding', 'Brief safety chat from the captain, life jackets fitted, sails up. The first hour is pure sailing.'],
       ['10:00', 'Mangrove channel swim', "Drop anchor in a hidden lagoon. The water is glassy and warm. Float, don't swim."],
       ['11:30', 'Snorkel stop, Kwale reef', 'Masks, fins, and roughly 45 minutes in the water. Parrotfish, butterflyfish, the occasional reef shark.'],
       ['13:00', 'Sandbank lunch', 'Catch of the day on the grill. Coconut rice, fresh salads, fruit. We sit on mats in the shade.'],
       ['14:30', 'Slow afternoon sail', "The wind shifts onshore. Most people sleep on deck. We don't rush."],
-      ['16:00', 'Back at the jetty', 'Quick rinse, van back to the hotel. Home by 5, sun-tired and salt-crusted.'],
+      ['16:00', 'Back at the jetty', 'Quick rinse, then your confirmed transfer back to the hotel. Home by 5, sun-tired and salt-crusted.'],
     ],
   },
   {

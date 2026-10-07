@@ -37,6 +37,10 @@ export function dpoEnabled() {
   return process.env.DPO_ENABLED === 'true' && Boolean(companyToken) && Boolean(serviceType);
 }
 
+export function dpoPaymentUrl(transToken) {
+  return `${env().payUrl}?ID=${encodeURIComponent(transToken)}`;
+}
+
 // ---- XML helpers ------------------------------------------------------------
 
 export function escapeXml(value) {
@@ -173,12 +177,11 @@ export async function createCheckout(order, options = {}) {
   }
   const transToken = xmlValue(responseXml, 'TransToken');
   if (!transToken) return { ok: false, code: 'no_token', explanation: 'createToken returned no TransToken' };
-  const { payUrl } = env();
   return {
     ok: true,
     transToken,
     transRef: xmlValue(responseXml, 'TransRef') || '',
-    paymentUrl: `${payUrl}?ID=${encodeURIComponent(transToken)}`,
+    paymentUrl: dpoPaymentUrl(transToken),
   };
 }
 
