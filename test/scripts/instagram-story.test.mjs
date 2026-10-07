@@ -1,6 +1,10 @@
+import { execFile } from 'node:child_process';
 import { existsSync } from 'node:fs';
+import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { promisify } from 'node:util';
 
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
@@ -8,6 +12,8 @@ import { INSTAGRAM_STORY_CARDS } from '../../data/instagramStoryCards.mjs';
 import {
   alreadyPublishedToday,
   chooseStoryCard,
+  INVALID_TOKEN_EXIT_CODE,
+  isInvalidTokenError,
   isStoryMediaError,
   migrateStoryState,
   parseStoryPublicationLog,
@@ -275,6 +281,59 @@ describe('Meta media rejection classification', () => {
     expect(isStoryMediaError(badToken)).toBe(false);
     expect(isStoryMediaError(new Error('GET request failed after 3 attempts: fetch failed.'))).toBe(false);
   });
+});
+
+describe('Meta token failure classification', () => {
+  it('treats code 190 as a token that must be replaced', () => {
+    const revoked = new Error('Error validating access token: The session has been invalidated because the user changed their password.');
+    revoked.code = 190;
+    revoked.subcode = 460;
+    expect(isInvalidTokenError(revoked)).toBe(true);
+    const rateLimited = new Error('Application request limit reached');
+    rateLimited.code = 4;
+    expect(isInvalidTokenError(rateLimited)).toBe(false);
+    expect(isInvalidTokenError(new Error('fetch failed'))).toBe(false);
+  });
+});
+
+describe('Instagram Story run exit codes', () => {
+  const scriptPath = fileURLToPath(new URL('../../scripts/instagram-story.mjs', import.meta.url));
+  const stubPath = fileURLToPath(new URL('./helpers/instagram-fetch-stub.mjs', import.meta.url));
+  const execFileAsync = promisify(execFile);
+
+  async function runScript(stubMode) {
+    const directory = await mkdtemp(path.join(tmpdir(), 'instagram-story-'));
+    const logPath = path.join(directory, 'log.jsonl');
+    try {
+      await execFileAsync(process.execPath, ['--import', stubPath, scriptPath, '--publish'], {
+        env: {
+          ...process.env,
+          INSTAGRAM_FETCH_STUB_MODE: stubMode,
+          INSTAGRAM_STORY_ENV_PATH: path.join(directory, 'missing.env'),
+          INSTAGRAM_STORY_LOG_PATH: logPath,
+          INSTAGRAM_STORY_STATE_PATH: path.join(directory, 'state.json'),
+          META_GRAPH_VERSION: 'v23.0',
+          META_INSTAGRAM_ACCOUNT_ID: '1',
+          META_PAGE_ACCESS_TOKEN: 'test-token',
+          META_PAGE_ID: '2',
+        },
+      });
+      return { code: 0, log: await readFile(logPath, 'utf8') };
+    } catch (error) {
+      return { code: error.code, log: await readFile(logPath, 'utf8') };
+    } finally {
+      await rm(directory, { recursive: true, force: true });
+    }
+  }
+
+  it.each([
+    ['revoked-token', INVALID_TOKEN_EXIT_CODE],
+    ['rate-limited', 1],
+  ])('spawned run with a %s failure exits with code %d', async (stubMode, expectedCode) => {
+    const { code, log } = await runScript(stubMode);
+    expect(code).toBe(expectedCode);
+    expect(log).toContain('"failedAt"');
+  }, 15_000);
 });
 
 describe('Approved Story queue audit', () => {
