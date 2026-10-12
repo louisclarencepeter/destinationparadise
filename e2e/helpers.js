@@ -126,15 +126,27 @@ export function slotLabelTo24h(label) {
   return `${String(hours).padStart(2, '0')}:${minute}`;
 }
 
-// Walks the bookable days (this month, then the next) until one has a slot
-// whose status text matches `wanted` next to a slot that can be booked now.
-// Returns the wanted slot's 24h time, leaving that day selected; null if the
-// window has no such day (e.g. a deployed inventory with nothing sold out).
-// `otherThanSelected` skips the day selected when the search starts.
+// Waits for the calendar's month to finish loading. Changing month re-fetches
+// availability, and until it lands every day of the new month is disabled.
+// A month can legitimately have no bookable day, so that wait is bounded.
+async function waitForMonth(panel) {
+  await expect(panel.locator('.avail-cal.is-loading')).toHaveCount(0);
+  await panel.locator('.avail-cal__day:not([disabled])').first()
+    .waitFor({ state: 'visible', timeout: 5_000 }).catch(() => {});
+}
+
+// Walks the bookable days, month by month through the booking window, until
+// one has a slot whose status text matches `wanted` next to a slot that can be
+// booked now. Returns the wanted slot's 24h time, leaving that day selected;
+// null if the window has no such day (e.g. a deployed inventory with nothing
+// sold out). `otherThanSelected` skips the day selected when the search starts.
 export async function findDayWithSlot(panel, wanted, { otherThanSelected = false } = {}) {
   const selected = panel.locator('.avail-cal__day.is-selected');
   const skip = otherThanSelected && await selected.count() ? await selected.getAttribute('aria-label') : null;
-  for (let month = 0; month < 2; month += 1) {
+  // The calendar's second nav button; matched by class so any language works.
+  const next = panel.locator('.avail-cal__nav-btn').nth(1);
+  for (let month = 0; month < 12; month += 1) {
+    await waitForMonth(panel);
     const days = panel.locator('.avail-cal__day:not([disabled])');
     for (let i = 0; i < await days.count(); i += 1) {
       if (skip && await days.nth(i).getAttribute('aria-label') === skip) continue;
@@ -146,7 +158,6 @@ export async function findDayWithSlot(panel, wanted, { otherThanSelected = false
         return slotLabelTo24h(await match.locator('.slot-grid__time').innerText());
       }
     }
-    const next = panel.getByRole('button', { name: 'Next month' });
     if (!await next.isEnabled()) break;
     await next.click();
   }
