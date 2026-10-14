@@ -8,11 +8,17 @@ import {
   apiRequest,
   buildReply,
   classifyCandidate,
+  INVALID_TOKEN_EXIT_CODE,
+  isInvalidTokenError,
   isRetryableRunError,
   isTransientApiError,
   TRANSIENT_RUN_EXIT_CODE,
   zanzibarDateKey,
 } from '../../scripts/threads-auto-commenter.mjs';
+
+const TOKEN_PARSE_FLAKE = 'Invalid OAuth access token - Cannot parse access token';
+// Verbatim from the scheduled runs that failed from 2026-09-15 onwards.
+const EXPIRED_TOKEN = 'Error validating access token: Session has expired on Monday, 14-Sep-26 14:16:32 PDT. The current time is Monday, 28-Sep-26 04:48:31 PDT.';
 
 const NOW = new Date('2026-07-13T10:00:00.000Z');
 
@@ -98,7 +104,7 @@ function jsonResponse(status, payload) {
 describe('Threads API transient error classification', () => {
   it('treats retryable statuses and the Meta token-parse flake as transient', () => {
     expect(isTransientApiError({ httpStatus: 500, code: 10 })).toBe(true);
-    expect(isTransientApiError({ httpStatus: 401, code: 190 })).toBe(true);
+    expect(isTransientApiError({ httpStatus: 401, code: 190, message: TOKEN_PARSE_FLAKE })).toBe(true);
     for (const httpStatus of [408, 429, 502, 503, 504]) {
       expect(isTransientApiError({ httpStatus })).toBe(true);
     }
@@ -109,13 +115,24 @@ describe('Threads API transient error classification', () => {
     expect(isTransientApiError({ httpStatus: 403, code: 10 })).toBe(false);
     expect(isTransientApiError({ httpStatus: 400, code: 100 })).toBe(false);
   });
+
+  it('treats an expired or revoked token as permanent, not as the flake', () => {
+    const expired = { httpStatus: 401, code: 190, message: EXPIRED_TOKEN };
+    const revoked = { httpStatus: 401, code: 190, subcode: 460, message: 'Error validating access token: The session has been invalidated because the user changed their password.' };
+    for (const error of [expired, revoked, { httpStatus: 401, code: 190 }]) {
+      expect(isTransientApiError(error)).toBe(false);
+      expect(isInvalidTokenError(error)).toBe(true);
+    }
+    expect(isInvalidTokenError({ httpStatus: 401, code: 190, message: TOKEN_PARSE_FLAKE })).toBe(false);
+    expect(isInvalidTokenError({ httpStatus: 400, code: 100 })).toBe(false);
+  });
 });
 
 describe('Threads run-level retry classification', () => {
   it('marks exhausted transient GET failures as safe to re-run', () => {
     expect(TRANSIENT_RUN_EXIT_CODE).toBe(75);
     expect(isRetryableRunError({ requestMethod: 'GET', httpStatus: 500, code: 10 })).toBe(true);
-    expect(isRetryableRunError({ requestMethod: 'GET', httpStatus: 401, code: 190 })).toBe(true);
+    expect(isRetryableRunError({ requestMethod: 'GET', httpStatus: 401, code: 190, message: TOKEN_PARSE_FLAKE })).toBe(true);
     expect(isRetryableRunError({ requestMethod: 'GET' })).toBe(true);
   });
 
@@ -124,6 +141,7 @@ describe('Threads run-level retry classification', () => {
     expect(isRetryableRunError({ requestMethod: 'POST' })).toBe(false);
     expect(isRetryableRunError({ requestMethod: 'GET', httpStatus: 400, code: 100 })).toBe(false);
     expect(isRetryableRunError({ requestMethod: 'GET', httpStatus: 401, code: 104 })).toBe(false);
+    expect(isRetryableRunError({ requestMethod: 'GET', httpStatus: 401, code: 190, message: EXPIRED_TOKEN })).toBe(false);
     expect(isRetryableRunError(new Error('Safety check failed'))).toBe(false);
   });
 });
@@ -154,6 +172,7 @@ describe('Threads run exit codes', () => {
     ['transient-500', TRANSIENT_RUN_EXIT_CODE],
     ['network-error', TRANSIENT_RUN_EXIT_CODE],
     ['body-read-error', TRANSIENT_RUN_EXIT_CODE],
+    ['expired-token', INVALID_TOKEN_EXIT_CODE],
     ['bad-request', 1],
     ['wrong-user', 1],
   ])('spawned run with a %s failure exits with code %d', async (stubMode, expectedCode) => {
@@ -197,6 +216,16 @@ describe('Threads API safe retries', () => {
     await vi.advanceTimersByTimeAsync(3_000);
     await assertion;
     expect(fetchMock).toHaveBeenCalledTimes(3);
+  });
+
+  it('fails a GET immediately on an expired token', async () => {
+    const fetchMock = vi.fn().mockResolvedValue(jsonResponse(401, {
+      error: { message: EXPIRED_TOKEN, type: 'OAuthException', code: 190 },
+    }));
+    vi.stubGlobal('fetch', fetchMock);
+
+    await expect(apiRequest('token', 'me', {})).rejects.toMatchObject({ httpStatus: 401, code: 190 });
+    expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 
   it('fails a GET immediately on a non-transient error', async () => {

@@ -82,6 +82,15 @@ export function isStoryMediaError(error) {
   );
 }
 
+// Code 190 means the Page token is expired or revoked (e.g. subcode 460 after
+// a password change); only a new token fixes it.
+export function isInvalidTokenError(error) {
+  return error?.code === 190;
+}
+
+// EX_CONFIG: the token must be replaced; the workflow reports how.
+export const INVALID_TOKEN_EXIT_CODE = 78;
+
 export function partitionPublishableCards(cards) {
   const publishable = [];
   const rejected = [];
@@ -520,6 +529,6 @@ if (process.argv[1] && path.resolve(process.argv[1]) === import.meta.filename) {
       // Preserve the original publishing error if local logging also fails.
     }
     console.error(JSON.stringify(entry));
-    process.exitCode = 1;
+    process.exitCode = isInvalidTokenError(error) ? INVALID_TOKEN_EXIT_CODE : 1;
   });
 }
