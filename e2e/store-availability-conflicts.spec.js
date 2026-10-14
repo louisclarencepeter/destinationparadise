@@ -83,15 +83,14 @@ for (const { name, slotText, patch, status } of CASES) {
     await expect(page.locator('.checkout-pay')).toBeDisabled();
     expect(paymentCalls).toEqual([]);
 
-    // Fix it: another departure the same day when one has room for the
-    // party (on some dates none does), straight back to checkout.
+    // Fix it: the first departure with room for the party, straight back to
+    // checkout. Not necessarily the same day: the larger party may no longer
+    // fit any other slot that day.
     await cityLine.locator('.checkout-line__fix').click();
     const editPanel = page.locator('.booking-panel');
     await expect(editPanel.locator('.slot-grid__slot').first()).toBeVisible();
     await expect(editPanel.locator('.booking-panel__submit')).toBeDisabled();
-    const sameDay = editPanel.locator('.slot-grid__slot:not([disabled])').first();
-    if (await sameDay.count()) await sameDay.click();
-    else await pickDeparture(editPanel);
+    await pickDeparture(editPanel);
     await editPanel.getByRole('button', { name: 'Save & checkout' }).click();
 
     await expect(page).toHaveURL(/\/store\/checkout$/);
