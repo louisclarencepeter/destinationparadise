@@ -149,8 +149,15 @@ export async function findDayWithSlot(panel, wanted, { otherThanSelected = false
     await waitForMonth(panel);
     const days = panel.locator('.avail-cal__day:not([disabled])');
     for (let i = 0; i < await days.count(); i += 1) {
-      if (skip && await days.nth(i).getAttribute('aria-label') === skip) continue;
-      await days.nth(i).click();
+      const label = await days.nth(i).getAttribute('aria-label');
+      if (label === skip) continue;
+      // Click until the day is selected: the calendar can still be settling,
+      // e.g. while the panel moves on from an opening month with no bookable day.
+      const day = panel.getByRole('button', { name: label, exact: true });
+      await expect(async () => {
+        await day.click();
+        await expect(day).toHaveAttribute('aria-pressed', 'true', { timeout: 1000 });
+      }).toPass();
       const slots = panel.locator('.slot-grid__slot');
       await expect(slots.first()).toBeVisible();
       const match = slots.filter({ has: panel.page().locator('.slot-grid__sub', { hasText: wanted }) }).first();
