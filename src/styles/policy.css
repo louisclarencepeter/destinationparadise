@@ -97,6 +97,10 @@
   letter-spacing: 0;
 }
 
+.policy-section[id] {
+  scroll-margin-top: calc(var(--nav-height) + 1rem);
+}
+
 .policy-section ul {
   display: grid;
   gap: .75rem;
@@ -189,6 +193,23 @@
   color: var(--text);
   font-weight: 650;
   white-space: nowrap;
+}
+
+.policy-table--wrap table {
+  min-width: 42rem;
+}
+
+.policy-table--wrap .policy-table__scroll:focus-visible {
+  outline: 2px solid var(--dp-accent-text);
+  outline-offset: 3px;
+}
+
+.policy-table--wrap tbody th {
+  min-width: 12rem;
+}
+
+.policy-table--wrap tbody td {
+  white-space: normal;
 }
 
 .policy-section--contact p {

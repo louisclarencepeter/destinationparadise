@@ -64,7 +64,7 @@
         "items": [
           "Trinkgeld für Guides & Crew",
           "Alkohol auf bestimmten Touren ($15 Add-on)",
-          "Reiseversicherung (bitte selbst mitbringen)",
+          "Reiseversicherung einschließlich der verpflichtenden Einreiseversicherung (separat abschließen)",
           "Taschengeld für Märkte/Cafés"
         ]
       },
@@ -129,7 +129,7 @@
       },
       "not_included": {
         "heading": "Nicht inklusive",
-        "items": ["Trinkgeld für Guides & Crew", "Alkohol (wo zutreffend)", "Reiseversicherung", "Taschengeld"]
+        "items": ["Trinkgeld für Guides & Crew", "Alkohol (wo zutreffend)", "Reiseversicherung einschließlich der verpflichtenden Einreiseversicherung (separat abschließen)", "Taschengeld"]
       },
       "booking": {
         "heading": "Buchung & Zahlung",

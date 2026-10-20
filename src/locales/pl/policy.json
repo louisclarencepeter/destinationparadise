@@ -79,6 +79,7 @@
       ]
     },
     "terms": {
+      "last_updated_value": "20 października 2026",
       "eyebrow": "Regulamin",
       "title": "Regulamin usług",
       "intro": "Ten regulamin opisuje, jak działają zapytania, rezerwacje, płatności, zmiany i odpowiedzialność za podróż podczas korzystania z usług Destination Paradise.",
@@ -106,10 +107,14 @@
         {
           "title": "Odpowiedzialność za podróż",
           "items": [
-            "Podroz zawsze wiaze sie z pewnym ryzykiem. Odpowiadasz za odpowiednie ubezpieczenie, porady zdrowotne, wizy, paszporty i rzeczy osobiste.",
+            "Podróż zawsze wiąże się z pewnym ryzykiem. Odpowiadasz za odpowiednie ubezpieczenie podróżne, w tym obowiązkową polisę wjazdową, jeśli dotyczy Cię ten wymóg, oraz za porady zdrowotne, wizy, paszporty i rzeczy osobiste. Prywatne ubezpieczenie międzynarodowe nie zastępuje wymaganej polisy NIC lub ZIC.",
             "Starannie wspolpracujemy z lokalnymi partnerami, ale nie odpowiadamy za opoznienia lub straty spowodowane zdarzeniami poza nasza rozsadna kontrola.",
             "Jesli cos pojdzie nie tak podczas wyjazdu, skontaktuj sie z nami szybko, abysmy mogli pomoc, gdy jest jeszcze czas na dzialanie."
-          ]
+          ],
+          "link": {
+            "to": "/booking-policy#travel-insurance",
+            "label": "Obowiązkowe ubezpieczenie: wymagania i oficjalne portale"
+          }
         },
         {
           "title": "Rezerwacje w sklepie online",
@@ -125,6 +130,7 @@
       ]
     },
     "booking": {
+      "last_updated_value": "20 października 2026",
       "eyebrow": "Rezerwacja",
       "title": "Warunki rezerwacji",
       "intro": "Niniejsze warunki dotyczą każdej wycieczki, atrakcji, transferu, safari i pakietu organizowanego przez Destination Paradise LTD — niezależnie od tego, czy rezerwujesz przez zapytanie, czy od ręki w naszym sklepie online.",
@@ -255,11 +261,47 @@
           ]
         },
         {
-          "title": "Ubezpieczenie Podróżne",
+          "id": "travel-insurance",
+          "title": "Obowiązkowe Ubezpieczenie Wjazdowe",
           "items": [
-            "Zdecydowanie zalecamy pełne ubezpieczenie podróżne obejmujące leczenie, ewakuację medyczną, koszty anulowania i skrócenia podróży oraz rzeczy osobiste.",
-            "Ochrona na wypadek ewakuacji medycznej ma szczególne znaczenie na safari i podczas wypraw morskich, gdzie odległości do placówek medycznych są duże.",
-            "Zawarcie ubezpieczenia podróżnego jest Twoim obowiązkiem. Nie oferujemy takiego ubezpieczenia."
+            "Zagraniczni goście wjeżdżający do Tanzanii muszą wykupić wymagane przez władze ubezpieczenie wjazdowe, z uwzględnieniem obowiązujących zwolnień, nawet jeśli mają już prywatne międzynarodowe ubezpieczenie podróżne lub medyczne. Wymóg dla części kontynentalnej obowiązuje od 1 października 2026 r.",
+            "Wybierz ubezpieczyciela według pierwszego miejsca wjazdu. Jedna ważna polisa NIC lub ZIC obejmuje podróże między Tanzanią kontynentalną a Zanzibarem w ramach tej samej ubezpieczonej podróży, zgodnie z warunkami polisy. Odwiedzenie obu części kraju nie wymaga zakupu drugiej polisy.",
+            "NIC zwalnia uprawnionych mieszkańców państw Wspólnoty Wschodnioafrykańskiej (EAC) i Wspólnoty Rozwoju Afryki Południowej (SADC) z wymogu dla części kontynentalnej. Nie oznacza to automatycznego zwolnienia na Zanzibarze; ZIC podaje obecnie stawkę 22 USD dla gości z tych regionów. Potwierdź uprawnienia u właściwego ubezpieczyciela.",
+            "Wykup ochronę przed podróżą i miej pod ręką certyfikat lub kod QR. Sprawdź w oficjalnym portalu aktualne ceny, przedziały wiekowe dzieci, ewentualne zwolnienia dla niemowląt, daty ochrony i pozostałe zasady kwalifikacji.",
+            "Dodatkowo zdecydowanie zalecamy pełne osobiste ubezpieczenie podróżne obejmujące leczenie, ewakuację medyczną, koszty anulowania i skrócenia podróży oraz rzeczy osobiste. Ochrona na wypadek ewakuacji jest szczególnie ważna podczas safari i wycieczek morskich, gdy placówki medyczne mogą być daleko.",
+            "Samodzielne wykupienie i opłacenie ubezpieczenia jest Twoim obowiązkiem. Destination Paradise nie zapewnia tego ubezpieczenia."
+          ],
+          "tables": [
+            {
+              "caption": "Wybierz polisę według pierwszego miejsca wjazdu",
+              "wrap": true,
+              "columns": [
+                "Jeśli najpierw przyjeżdżasz do…",
+                "Wymagana polisa",
+                "Oficjalny portal",
+                "Koszt"
+              ],
+              "rows": [
+                [
+                  "Tanzania kontynentalna — Dar es Salaam, Kilimandżaro, granice lądowe lub porty morskie",
+                  "National Insurance Corporation (NIC)",
+                  {
+                    "href": "https://inbound.nicinsurance.co.tz/",
+                    "label": "Portal wjazdowy NIC"
+                  },
+                  "44 USD za osobę (równowartość w TZS)"
+                ],
+                [
+                  "Zanzibar — w tym lotnisko Abeid Amani Karume",
+                  "Zanzibar Insurance Corporation (ZIC)",
+                  {
+                    "href": "https://inbound.visitzanzibar.go.tz/",
+                    "label": "Portal wjazdowy ZIC"
+                  },
+                  "44 USD za osobę dorosłą; 22 USD za dziecko"
+                ]
+              ]
+            }
           ]
         },
         {

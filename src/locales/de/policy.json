@@ -79,6 +79,7 @@
       ]
     },
     "terms": {
+      "last_updated_value": "20. Oktober 2026",
       "eyebrow": "AGB",
       "title": "Allgemeine Geschäftsbedingungen",
       "intro": "Diese Bedingungen beschreiben, wie Anfragen, Buchungen, Zahlungen, Änderungen und Reiseverantwortung funktionieren, wenn du Leistungen von Destination Paradise nutzt.",
@@ -106,10 +107,14 @@
         {
           "title": "Reiseverantwortung",
           "items": [
-            "Reisen sind immer mit gewissen Risiken verbunden. Du bist verantwortlich für passende Reiseversicherung, Gesundheitsberatung, Visa, Reisepässe und persönliche Gegenstände.",
+            "Reisen sind immer mit gewissen Risiken verbunden. Du bist verantwortlich für eine passende Reiseversicherung einschließlich der vorgeschriebenen Einreiseversicherung, soweit sie für dich gilt, sowie für Gesundheitsberatung, Visa, Reisepässe und persönliche Gegenstände. Eine private internationale Versicherung ersetzt die vorgeschriebene NIC- oder ZIC-Police nicht.",
             "Wir arbeiten sorgfältig mit lokalen Partnern, sind jedoch nicht verantwortlich für Verzögerungen oder Verluste durch Ereignisse außerhalb unseres angemessenen Einflussbereichs.",
             "Wenn während deiner Reise etwas schiefläuft, kontaktiere uns schnell, damit wir helfen können, solange noch Zeit zum Handeln ist."
-          ]
+          ],
+          "link": {
+            "to": "/booking-policy#travel-insurance",
+            "label": "Pflichtversicherung: Anforderungen und offizielle Portale"
+          }
         },
         {
           "title": "Buchungen im Online-Store",
@@ -125,6 +130,7 @@
       ]
     },
     "booking": {
+      "last_updated_value": "20. Oktober 2026",
       "eyebrow": "Buchung",
       "title": "Buchungsbedingungen",
       "intro": "Diese Buchungsbedingungen gelten für jede Tour, jeden Ausflug, jeden Transfer, jede Safari und jedes Paket, das von Destination Paradise LTD arrangiert wird — ob du per Anfrage oder sofort über unseren Online-Store buchst.",
@@ -255,11 +261,47 @@
           ]
         },
         {
-          "title": "Reiseversicherung",
+          "id": "travel-insurance",
+          "title": "Obligatorische Einreiseversicherung",
           "items": [
-            "Wir empfehlen dringend eine umfassende Reiseversicherung, die medizinische Behandlung, Notfallevakuierung, Storno und Reiseabbruch sowie persönliche Gegenstände abdeckt.",
-            "Der Schutz bei Notfallevakuierungen ist besonders auf Safaris und bei Ausflügen auf dem Meer wichtig, da die Wege zu medizinischen Einrichtungen weit sind.",
-            "Der Abschluss einer Reiseversicherung liegt in deiner Verantwortung. Wir bieten keine an."
+            "Ausländische Besucher müssen bei der Einreise nach Tansania die vorgeschriebene staatlich bestimmte Einreiseversicherung abschließen, sofern keine Ausnahme gilt. Das gilt auch mit einer bestehenden privaten internationalen Reise- oder Krankenversicherung. Die Pflicht für das Festland gilt seit dem 1. Oktober 2026.",
+            "Wähle den Versicherer nach deinem ersten Einreiseort. Eine gültige NIC- oder ZIC-Police deckt Reisen zwischen dem tansanischen Festland und Sansibar innerhalb derselben versicherten Reise gemäß den Versicherungsbedingungen ab. Für den Besuch beider Gebiete ist keine zweite Police nötig.",
+            "NIC befreit anspruchsberechtigte Einwohner der Mitgliedstaaten der East African Community (EAC) und der Southern African Development Community (SADC) von der Pflicht auf dem Festland. Diese Befreiung gilt nicht automatisch auf Sansibar; ZIC nennt derzeit einen Tarif von 22 USD für Besucher aus diesen Regionen. Kläre deine Berechtigung mit dem jeweiligen Versicherer.",
+            "Schließe die Versicherung vor der Reise ab und halte die Bescheinigung oder den QR-Code bereit. Prüfe im offiziellen Portal aktuelle Preise, Altersgrenzen für Kinder, mögliche Ausnahmen für Kleinkinder, Versicherungsdaten und weitere Voraussetzungen.",
+            "Zusätzlich empfehlen wir dringend eine umfassende persönliche Reiseversicherung für medizinische Behandlung, Notfallevakuierung, Storno und Reiseabbruch sowie persönliche Gegenstände. Schutz für Notfallevakuierungen ist besonders bei Safaris und Bootsausflügen wichtig, da medizinische Einrichtungen weit entfernt sein können.",
+            "Du bist für den separaten Abschluss und die Bezahlung deiner Versicherung verantwortlich. Destination Paradise bietet diese Versicherung nicht an."
+          ],
+          "tables": [
+            {
+              "caption": "Die richtige Police für deinen ersten Einreiseort",
+              "wrap": true,
+              "columns": [
+                "Erste Einreise nach…",
+                "Vorgeschriebene Police",
+                "Offizielles Portal",
+                "Kosten"
+              ],
+              "rows": [
+                [
+                  "Tansanisches Festland — Dar es Salaam, Kilimandscharo, Landgrenzen oder Seehäfen",
+                  "National Insurance Corporation (NIC)",
+                  {
+                    "href": "https://inbound.nicinsurance.co.tz/",
+                    "label": "NIC-Einreiseportal"
+                  },
+                  "44 USD pro Person (Gegenwert in TZS)"
+                ],
+                [
+                  "Sansibar — einschließlich Abeid Amani Karume International Airport",
+                  "Zanzibar Insurance Corporation (ZIC)",
+                  {
+                    "href": "https://inbound.visitzanzibar.go.tz/",
+                    "label": "ZIC-Einreiseportal"
+                  },
+                  "44 USD pro Erwachsenem; 22 USD pro Kind"
+                ]
+              ]
+            }
           ]
         },
         {
