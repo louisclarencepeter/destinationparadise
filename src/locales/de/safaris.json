@@ -376,7 +376,7 @@
       },
       "not_included": {
         "heading": "Nicht inklusive",
-        "items": ["Internationale Flüge", "Reiseversicherung", "Trinkgeld für Guides und Camp-Personal", "Premium-Getränke, sofern nicht angegeben"]
+        "items": ["Internationale Flüge", "Reiseversicherung einschließlich der verpflichtenden Einreiseversicherung (separat abschließen)", "Trinkgeld für Guides und Camp-Personal", "Premium-Getränke, sofern nicht angegeben"]
       },
       "booking": {
         "heading": "Buchung & Zahlung",

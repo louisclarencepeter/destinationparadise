@@ -64,7 +64,7 @@
         "items": [
           "Napiwki dla przewodników i załogi",
           "Alkohol na wybranych wycieczkach (dopłata $15)",
-          "Ubezpieczenie podróżne (zabierz własne)",
+          "Ubezpieczenie podróżne, w tym obowiązkowa polisa wjazdowa (do wykupienia osobno)",
           "Kieszonkowe na targi i kawiarnie"
         ]
       },
@@ -131,7 +131,7 @@
       },
       "not_included": {
         "heading": "Nie wliczono",
-        "items": ["Napiwki dla przewodników i załogi", "Alkohol (gdzie dotyczy)", "Ubezpieczenie podróżne", "Pieniądze na wydatki"]
+        "items": ["Napiwki dla przewodników i załogi", "Alkohol (gdzie dotyczy)", "Ubezpieczenie podróżne, w tym obowiązkowa polisa wjazdowa (do wykupienia osobno)", "Pieniądze na wydatki"]
       },
       "booking": {
         "heading": "Rezerwacja i płatność",

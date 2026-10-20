@@ -70,7 +70,7 @@ const EXCURSIONS_RAW = [
     description: 'A cultural walk through historic Stone Town — the House of Wonders, Palace Museum, Arab Fort, cathedrals, mosques, markets and the carved doors that line every alley.',
     intro: "A slow morning through the alleys of Zanzibar's old city — past the House of Wonders, the Palace Museum, the Arab Fort, the cathedrals and mosques, the spice market, and the carved Indian doors that line every street. Led by a guide who grew up here.",
     duration: 'Half Day',
-    price: 55,
+    price: 25,
     priceSub: 'per person',
     group: 'Up to 6 online',
     from: 'Stone Town',

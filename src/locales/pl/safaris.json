@@ -296,7 +296,7 @@
       },
       "not_included": {
         "heading": "Nie wliczono",
-        "items": ["Loty międzynarodowe", "Ubezpieczenie podróżne", "Napiwki dla przewodników i personelu obozu", "Napoje premium, o ile nie zaznaczono"]
+        "items": ["Loty międzynarodowe", "Ubezpieczenie podróżne, w tym obowiązkowa polisa wjazdowa (do wykupienia osobno)", "Napiwki dla przewodników i personelu obozu", "Napoje premium, o ile nie zaznaczono"]
       },
       "booking": {
         "heading": "Rezerwacja i płatność",

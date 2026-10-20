@@ -8,13 +8,13 @@ import { objectFromTranslation } from '../utils/translationValues.js';
 import '../styles/homepage.css';
 import '../styles/policy.css';
 
-function PolicySection({ title, items = [], tables = [], link, links = [] }) {
+function PolicySection({ id, title, items = [], tables = [], link, links = [] }) {
   // Reveal order runs heading → bullets → tables → link, so --reveal-index keeps
   // counting past the list rather than restarting per block.
   let revealIndex = 0;
   const sectionLinks = link ? [link, ...links] : links;
   return (
-    <section className="policy-section">
+    <section className="policy-section" id={id}>
       <h2 className="reveal" style={{ '--reveal-index': revealIndex++ }}>{title}</h2>
       {items.length > 0 && (
         <ul>
@@ -24,9 +24,12 @@ function PolicySection({ title, items = [], tables = [], link, links = [] }) {
         </ul>
       )}
       {tables.map((table) => (
-        <figure className="policy-table reveal" style={{ '--reveal-index': revealIndex++ }} key={table.caption}>
+        <figure className={`policy-table reveal${table.wrap ? ' policy-table--wrap' : ''}`} style={{ '--reveal-index': revealIndex++ }} key={table.caption}>
           <figcaption>{table.caption}</figcaption>
-          <div className="policy-table__scroll">
+          <div
+            className="policy-table__scroll"
+            {...(table.wrap ? { tabIndex: 0, role: 'region', 'aria-label': table.caption } : {})}
+          >
             <table>
               <thead>
                 <tr>{table.columns.map((column) => <th key={column} scope="col">{column}</th>)}</tr>
@@ -34,11 +37,14 @@ function PolicySection({ title, items = [], tables = [], link, links = [] }) {
               <tbody>
                 {table.rows.map((row) => (
                   <tr key={row[0]}>
-                    {row.map((cell, i) => (
-                      i === 0
-                        ? <th key={cell} scope="row">{cell}</th>
-                        : <td key={cell}>{cell}</td>
-                    ))}
+                    {row.map((cell, i) => {
+                      const content = typeof cell === 'object' && cell !== null
+                        ? <a href={cell.href}>{cell.label}</a>
+                        : cell;
+                      return i === 0
+                        ? <th key={i} scope="row">{content}</th>
+                        : <td key={i}>{content}</td>;
+                    })}
                   </tr>
                 ))}
               </tbody>
@@ -90,7 +96,7 @@ export default function Policy({ section = 'privacy' }) {
           <dl className="policy-meta reveal" style={{ '--reveal-index': 3 }} aria-label={meta.aria_label}>
             <div>
               <dt>{meta.last_updated}</dt>
-              <dd>{meta.last_updated_value}</dd>
+              <dd>{policy.last_updated_value || meta.last_updated_value}</dd>
             </div>
             <div>
               <dt>{meta.contact}</dt>
@@ -104,6 +110,7 @@ export default function Policy({ section = 'privacy' }) {
         {policy.sections.map((item) => (
           <PolicySection
             key={item.title}
+            id={item.id}
             title={item.title}
             items={item.items}
             tables={item.tables}
