@@ -7,7 +7,6 @@ import { STORE_GUESTS_KEY } from '../components/store/BookingPanel.jsx';
 import { ArrowRightIcon } from '../components/store/StoreIcons.jsx';
 import { getStoreCards } from '../data/commerceCatalog.js';
 import { buildLocalizedExcursions } from '../data/localizedCatalog.js';
-import { MAX_INSTANT_GUESTS } from '../lib/storePricing.js';
 import usePageMeta from '../hooks/usePageMeta.js';
 import { useRevealOnScroll } from '../hooks/useRevealOnScroll.js';
 import '../styles/store.css';
@@ -43,7 +42,7 @@ export default function ExperiencesStore() {
   const cards = useMemo(() => getStoreCards({
     excursions: catalogLanguage ? buildLocalizedExcursions(t) : [],
     operationalCopy: t('store:catalog', { returnObjects: true, defaultValue: {} }),
-  }).filter((card) => card.kind === 'instant'), [t, catalogLanguage]);
+  }), [t, catalogLanguage]);
   const visibleCards = useMemo(() => {
     const needle = query.trim().toLowerCase();
     return cards.filter(
@@ -72,6 +71,7 @@ export default function ExperiencesStore() {
   const filters = [
     { key: 'all', label: t('list.filter_all') },
     { key: 'instant', label: t('list.filter_instant'), dot: 'instant' },
+    { key: 'request', label: t('list.filter_request'), dot: 'request' },
   ];
 
   return (
@@ -100,7 +100,7 @@ export default function ExperiencesStore() {
             <div className="store-search__divider" aria-hidden="true" />
             <div className="store-search__field">
               <span className="store-search__label" id="store-search-guests">{t('hero.guests_label')}</span>
-              <GuestPicker value={guests} min={1} max={MAX_INSTANT_GUESTS} onChange={updateGuests} size="sm" />
+              <GuestPicker value={guests} min={1} max={12} onChange={updateGuests} size="sm" />
             </div>
             <button type="submit" className="store-search__submit">
               {t('hero.search_cta')}

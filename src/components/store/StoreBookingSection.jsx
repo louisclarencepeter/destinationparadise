@@ -1,15 +1,16 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { getInstantExperience } from '../../data/commerceCatalog.js';
+import { getInstantExperience, getRequestExperience } from '../../data/commerceCatalog.js';
 import { buildLocalizedExcursions } from '../../data/localizedCatalog.js';
 import { useRevealOnScroll } from '../../hooks/useRevealOnScroll.js';
 import { trackEvent } from '../../utils/analytics.js';
 import BookingPanel from './BookingPanel.jsx';
+import RequestPanel from './RequestPanel.jsx';
 import { CheckIcon } from './StoreIcons.jsx';
 import '../../styles/store.css';
 
 // Excursion-page store section: the instant booking panel for pilot products,
-// nothing for the rest (their existing Book Now enquiry links remain) —
+// the request-to-book panel for requestable ones, nothing for the rest —
 // mounting it is safe on every excursion. Parent gates on the store flag.
 export default function StoreBookingSection({ excursionId }) {
   const { t, i18n, ready } = useTranslation(['store', 'catalog']);
@@ -19,7 +20,9 @@ export default function StoreBookingSection({ excursionId }) {
     excursions: catalogLanguage ? buildLocalizedExcursions(t) : [],
     operationalCopy: t('store:catalog', { returnObjects: true, defaultValue: {} }),
   }), [t, catalogLanguage]);
-  const experience = getInstantExperience(excursionId, catalog.excursions, catalog.operationalCopy);
+  const instant = getInstantExperience(excursionId, catalog.excursions, catalog.operationalCopy);
+  const requestable = instant ? null : getRequestExperience(excursionId, catalog.excursions, catalog.operationalCopy);
+  const experience = instant || requestable;
 
   useRevealOnScroll(
     sectionRef,
@@ -34,31 +37,34 @@ export default function StoreBookingSection({ excursionId }) {
 
   if (!experience || !ready) return null;
 
-  const points = ['point_instant', 'point_cart', 'point_codes'];
+  const copy = instant ? 'section' : 'request_section';
+  const points = instant
+    ? ['point_instant', 'point_cart', 'point_codes']
+    : ['point_no_charge', 'point_confirm', 'point_one_payment'];
 
   return (
     <section className="store-book" id="book" ref={sectionRef} aria-labelledby="store-book-title">
       <div className="store-book__inner">
         <div className="store-book__intro">
-          <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t('section.eyebrow')}</span>
+          <span className="section-eyebrow reveal" style={{ '--reveal-index': 0 }}>{t(`${copy}.eyebrow`)}</span>
           <h2 className="section-title reveal" id="store-book-title" style={{ '--reveal-index': 1 }}>
-            {t('section.title')}
+            {t(`${copy}.title`)}
           </h2>
-          <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t('section.lead')}</p>
+          <p className="section-lead reveal" style={{ '--reveal-index': 2 }}>{t(`${copy}.lead`)}</p>
           <ul className="store-book__points">
             {points.map((key, index) => (
               <li className="reveal" style={{ '--reveal-index': 3 + index }} key={key}>
                 <CheckIcon size={18} strokeWidth={1.8} />
-                {t(`section.${key}`)}
+                {t(`${copy}.${key}`)}
               </li>
             ))}
           </ul>
           <p className="store-book__pickup reveal" style={{ '--reveal-index': 6 }}>
-            <strong>{t('section.pickup_label')}</strong> {t('section.pickup_select_hint')}
+            <strong>{t('section.pickup_label')}</strong> {experience.pickup || t('request_section.pickup_fallback')}
           </p>
         </div>
         <div className="store-book__panel reveal" style={{ '--reveal-index': 2 }}>
-          <BookingPanel key={experience.id} experience={experience} />
+          {instant ? <BookingPanel experience={instant} /> : <RequestPanel experience={requestable} />}
         </div>
       </div>
     </section>

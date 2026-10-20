@@ -62,7 +62,7 @@ export default function BookingSummary({
               <li key={step}>{step}</li>
             ))}
           </ol>
-          <p>{t('summary.payment_note', { defaultValue: 'This enquiry form does not collect or store card details.' })}</p>
+          <p>{t('summary.payment_note', { defaultValue: 'No card details are entered or stored on this website.' })}</p>
         </div>
 
         <div className="booking-summary__mini reveal" style={{ '--reveal-index': 2 }}>

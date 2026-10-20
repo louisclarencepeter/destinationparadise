@@ -20,15 +20,7 @@ if (isFunctionSentryEnabled) {
     dsn: sentryDsn,
     environment: process.env.SENTRY_ENVIRONMENT || process.env.CONTEXT || process.env.NODE_ENV || 'production',
     release: process.env.SENTRY_RELEASE || process.env.COMMIT_REF || undefined,
-    // Sentry 11 replaced `sendDefaultPii` with `dataCollection`, which now
-    // defaults to collecting everything. Keep the old `sendDefaultPii: false`
-    // level: no user info/IPs, cookies, request bodies or AI prompts/replies.
-    dataCollection: {
-      userInfo: false,
-      cookies: false,
-      httpBodies: [],
-      genAI: { inputs: false, outputs: false },
-    },
+    sendDefaultPii: false,
     tracesSampleRate: readSampleRate(process.env.SENTRY_TRACES_SAMPLE_RATE, 0.1),
   });
 }

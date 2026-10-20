@@ -8,8 +8,6 @@
 // server) every time the cart renders, per HANDOFF.md ("never treat locally
 // stored prices or availability as authoritative").
 
-import { MAX_ACCOMMODATION_LENGTH, PICKUP_ZONES, pickupFields } from './storePricing.js';
-
 export const CART_STORAGE_KEY = 'dp_store_cart_v1';
 export const CART_VERSION = 1;
 export const MAX_CART_ITEMS = 20;
@@ -21,7 +19,7 @@ export const MAX_REQUESTED_DATES_LENGTH = 300;
 /**
  * Instant items carry a concrete departure (date+time); request items carry
  * the guest's preferred dates as free text and are scheduled by staff later.
- * @typedef {{ id: string, experienceId: string, mode: 'shared'|'private'|'request', guests: number, date?: string, time?: string, requestedDates?: string, pickupZone?: string, accommodation?: string }} CartItem
+ * @typedef {{ id: string, experienceId: string, mode: 'shared'|'private'|'request', guests: number, date?: string, time?: string, requestedDates?: string }} CartItem
  * @typedef {{ items: CartItem[], drawerOpen: boolean }} CartState
  * @typedef {{ type: string, item?: any, id?: string, patch?: object, items?: any[] }} CartAction
  */
@@ -48,9 +46,6 @@ export function isValidCartItem(item) {
       Number.isInteger(item.guests) && item.guests >= 1 && item.guests <= MAX_GUESTS_PER_ITEM,
   );
   if (!baseValid) return false;
-  if (item.pickupZone !== undefined && !PICKUP_ZONES.includes(item.pickupZone)) return false;
-  if (item.accommodation !== undefined &&
-      (typeof item.accommodation !== 'string' || item.accommodation.length > MAX_ACCOMMODATION_LENGTH)) return false;
   if (item.mode === 'request') {
     return item.requestedDates === undefined ||
       (typeof item.requestedDates === 'string' && item.requestedDates.length <= MAX_REQUESTED_DATES_LENGTH);
@@ -64,9 +59,9 @@ export function isValidCartItem(item) {
 function sanitizeItem(item) {
   const { id, experienceId, mode, guests } = item;
   if (mode === 'request') {
-    return { id, experienceId, mode, guests, requestedDates: item.requestedDates || '', ...pickupFields(item) };
+    return { id, experienceId, mode, guests, requestedDates: item.requestedDates || '' };
   }
-  return { id, experienceId, mode, guests, date: item.date, time: item.time, ...pickupFields(item) };
+  return { id, experienceId, mode, guests, date: item.date, time: item.time };
 }
 
 /**

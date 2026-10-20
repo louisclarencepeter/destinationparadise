@@ -23,8 +23,6 @@ docs/
 
 # Local scratch output (browser session logs, generated assets, temp files)
 .playwright-cli/
-playwright-report/
-test-results/
 output/
 tmp/
 

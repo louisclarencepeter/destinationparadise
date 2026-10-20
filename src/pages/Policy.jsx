@@ -8,11 +8,10 @@ import { objectFromTranslation } from '../utils/translationValues.js';
 import '../styles/homepage.css';
 import '../styles/policy.css';
 
-function PolicySection({ id, title, items = [], tables = [], link, links = [] }) {
+function PolicySection({ id, title, items = [], tables = [], link }) {
   // Reveal order runs heading → bullets → tables → link, so --reveal-index keeps
   // counting past the list rather than restarting per block.
   let revealIndex = 0;
-  const sectionLinks = link ? [link, ...links] : links;
   return (
     <section className="policy-section" id={id}>
       <h2 className="reveal" style={{ '--reveal-index': revealIndex++ }}>{title}</h2>
@@ -52,13 +51,9 @@ function PolicySection({ id, title, items = [], tables = [], link, links = [] })
           </div>
         </figure>
       ))}
-      {sectionLinks.length > 0 && (
+      {link && (
         <div className="policy-actions reveal" style={{ '--reveal-index': revealIndex++ }}>
-          {sectionLinks.map((action) => (
-            action.href
-              ? <a className="btn btn--ghost" href={action.href} key={action.href}>{action.label}</a>
-              : <Link className="btn btn--ghost" to={action.to} key={action.to}>{action.label}</Link>
-          ))}
+          <Link className="btn btn--ghost" to={link.to}>{link.label}</Link>
         </div>
       )}
     </section>
@@ -115,7 +110,6 @@ export default function Policy({ section = 'privacy' }) {
             items={item.items}
             tables={item.tables}
             link={item.link}
-            links={item.links}
           />
         ))}
 

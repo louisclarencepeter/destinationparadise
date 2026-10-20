@@ -9,7 +9,7 @@
     "title_em": "{{count}}+ unforgettable journeys.",
     "lead": "Trade resort routines for real Zanzibar — sail a traditional dhow, wander Stone Town with a local guide, snorkel Mnemba reefs, kitesurf in Paje, or join a festival in Stone Town. Every trip is small-group, story-rich, and easy to book.",
     "tags_aria": "Excursion highlights",
-    "tag_hotel_pickup": "Hotel pickup available",
+    "tag_hotel_pickup": "Hotel pickup included",
     "tag_private": "Private options available",
     "tag_local_guides": "Local expert guides",
     "browse_all": "Browse all excursions",
@@ -52,7 +52,7 @@
       "included": {
         "heading": "What's always included",
         "items": [
-          "Hotel pickup & drop-off (Safari Blue, Spice Tour and Historical City Tour: any area supplement is shown before payment)",
+          "Hotel pickup & drop-off",
           "Licensed local guide",
           "Bottled water all day",
           "All park & entry fees",
@@ -82,7 +82,7 @@
         "items": [
           "Book at least 48 hours ahead",
           "20% deposit, balance on the day",
-          "Free cancellation more than 48h before",
+          "Free cancellation up to 24h before",
           "USD, EUR, GBP, TZS — all accepted"
         ]
       }
@@ -125,9 +125,7 @@
     "practical": {
       "included": {
         "heading": "What's always included",
-        "items": ["Hotel pickup & drop-off", "Licensed local guide", "Bottled water all day", "All park & entry fees", "Equipment provided"],
-        "pilot_heading": "Experience & transport",
-        "pilot_pickup": "Hotel pickup & drop-off: any supplement depends on your area and is shown separately before payment."
+        "items": ["Hotel pickup & drop-off", "Licensed local guide", "Bottled water all day", "All park & entry fees", "Equipment provided"]
       },
       "not_included": {
         "heading": "Not included",
@@ -135,14 +133,13 @@
       },
       "booking": {
         "heading": "Booking & payment",
-        "items": ["Book at least 48 hours ahead", "20% deposit, balance on the day", "Free cancellation more than 48h before", "USD, EUR, GBP, TZS — all accepted"]
+        "items": ["Book at least 48 hours ahead", "20% deposit, balance on the day", "Free cancellation up to 24h before", "USD, EUR, GBP, TZS — all accepted"]
       }
     },
     "cta": {
       "title": "Ready to book {{title}}?",
       "text": "Tell us your dates and we'll come back within 24 hours with available pickup times and a final price — no commitment."
-    },
-    "pilot_price_note": "Indicative from price. Your final group price and any per-car pickup supplement are shown before payment."
+    }
   },
   "combination": {
     "meta_title": "{{title}} · Excursion Combination · Destination Paradise",
@@ -211,7 +208,7 @@
       },
       "pickup": {
         "q": "Do you pick up from the north / east coast?",
-        "a": "Yes — pickup from Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje and Bwejuu is included for our other excursions. For Safari Blue, Spice Tour and Historical City Tour, any pickup supplement depends on your area and is quoted per car before payment. Add 30–60 minutes each way to the day."
+        "a": "Yes — pickup from Nungwi, Kendwa, Matemwe, Kiwengwa, Pongwe, Paje and Bwejuu is included. Add 30–60 minutes each way to the day."
       },
       "ramadan": {
         "q": "Is it OK during Ramadan?",

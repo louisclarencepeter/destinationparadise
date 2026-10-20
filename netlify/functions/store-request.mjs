@@ -59,7 +59,6 @@ export default async (req) => {
       p_contact: { name, email: emailCheck.email, phone },
       p_language: language,
       p_idempotency_key: parseIdempotencyKey(payload?.idempotencyKey),
-      p_payment_plan: 'deposit_20',
     });
     if (!result?.ok) return storeJson({ ok: false, error: result?.error || 'request_failed' }, 400);
     return storeJson(result);

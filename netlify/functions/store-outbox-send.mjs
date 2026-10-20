@@ -32,15 +32,7 @@ const GUEST_COPY = {
     heading: (name) => `Asante${name ? `, ${name}` : ''} — your next trip to Paradise!`,
     intro: 'Your payment is confirmed. Every experience below has its own booking code — keep this email for the day.',
     guests: 'guests',
-    groupPrice: 'Group price',
-    pickupSupplement: 'Pickup supplement',
-    pickupZones: { 'stone-town': 'Stone Town', north: 'North Zanzibar', east: 'East Zanzibar', south: 'South Zanzibar', other: 'Other pickup area' },
     total: 'Total paid',
-    tripTotal: 'Trip total',
-    depositPaid: '20% deposit received',
-    depositDue: '20% deposit due online',
-    balanceDue: 'Remaining balance — due on the day of each experience',
-    depositIntro: 'Your 20% deposit is confirmed and your experiences are booked. The remaining 80% is due on the day of each experience. Keep the booking codes below for the day.',
     footer: 'Questions? Just reply to this email.',
     requestSubject: (ref) => `We got your trip request — ${ref}`,
     requestIntro: 'Thanks for your request! We are checking availability with our local partners and will confirm dates and a final price by email, usually within 24 hours. Nothing is charged.',
@@ -56,15 +48,7 @@ const GUEST_COPY = {
     heading: (name) => `Asante${name ? `, ${name}` : ''} — deine nächste Reise ins Paradies!`,
     intro: 'Deine Zahlung ist bestätigt. Jedes Erlebnis unten hat seinen eigenen Buchungscode — heb dir diese E-Mail für den Tag auf.',
     guests: 'Gäste',
-    groupPrice: 'Gruppenpreis',
-    pickupSupplement: 'Abholzuschlag',
-    pickupZones: { 'stone-town': 'Stone Town', north: 'Norden von Sansibar', east: 'Osten von Sansibar', south: 'Süden von Sansibar', other: 'Anderes Abholgebiet' },
     total: 'Gesamt bezahlt',
-    tripTotal: 'Gesamtpreis der Reise',
-    depositPaid: '20 % Anzahlung erhalten',
-    depositDue: '20 % Anzahlung online fällig',
-    balanceDue: 'Restbetrag — fällig am Tag des jeweiligen Erlebnisses',
-    depositIntro: 'Deine Anzahlung von 20 % ist bestätigt und deine Erlebnisse sind gebucht. Die verbleibenden 80 % sind am Tag des jeweiligen Erlebnisses fällig. Bewahre die Buchungscodes unten für den Tag auf.',
     footer: 'Fragen? Antworte einfach auf diese E-Mail.',
     requestSubject: (ref) => `Wir haben deine Reiseanfrage — ${ref}`,
     requestIntro: 'Danke für deine Anfrage! Wir prüfen die Verfügbarkeit mit unseren Partnern vor Ort und bestätigen Termine und Endpreis per E-Mail, meist innerhalb von 24 Stunden. Es wird nichts abgebucht.',
@@ -80,15 +64,7 @@ const GUEST_COPY = {
     heading: (name) => `Asante${name ? `, ${name}` : ''} — twoja następna podróż do raju!`,
     intro: 'Twoja płatność jest potwierdzona. Każda atrakcja poniżej ma własny kod rezerwacji — zachowaj tę wiadomość.',
     guests: 'gości',
-    groupPrice: 'Cena grupowa',
-    pickupSupplement: 'Dopłata za odbiór',
-    pickupZones: { 'stone-town': 'Stone Town', north: 'Północ Zanzibaru', east: 'Wschód Zanzibaru', south: 'Południe Zanzibaru', other: 'Inna strefa odbioru' },
     total: 'Zapłacono łącznie',
-    tripTotal: 'Całkowita cena podróży',
-    depositPaid: 'Otrzymano zaliczkę 20%',
-    depositDue: 'Zaliczka 20% płatna online',
-    balanceDue: 'Pozostała kwota — płatna w dniu każdej atrakcji',
-    depositIntro: 'Twoja zaliczka 20% jest potwierdzona, a atrakcje zarezerwowane. Pozostałe 80% jest płatne w dniu każdej atrakcji. Zachowaj poniższe kody rezerwacji.',
     footer: 'Pytania? Po prostu odpowiedz na tę wiadomość.',
     requestSubject: (ref) => `Mamy twoje zapytanie o podróż — ${ref}`,
     requestIntro: 'Dziękujemy za zapytanie! Sprawdzamy dostępność u naszych lokalnych partnerów i potwierdzimy terminy oraz ostateczną cenę mailowo, zwykle w ciągu 24 godzin. Nic nie zostanie pobrane.',
@@ -103,54 +79,26 @@ const GUEST_COPY = {
 
 const money = (minor, currency) => `${(Number(minor) / 100).toFixed(2)} ${currency}`;
 
-// New group/pickup amounts are immutable sale snapshots. Never derive a fare
-// here, multiply the whole-party group price by guests, or alter old receipts.
-function priceBreakdownHtml(item, currency, copy) {
-  if (!Array.isArray(item.priceLines)) return '';
-  return item.priceLines.filter((line) => line &&
-    ['group_price', 'pickup_supplement'].includes(line.type) &&
-    Number.isSafeInteger(line.amountMinor) && line.amountMinor >= 0)
-    .map((line) => {
-      let label;
-      if (line.type === 'group_price') {
-        label = copy.groupPrice;
-        if (Number.isSafeInteger(line.guests) && line.guests > 0) label += ` (${line.guests} ${copy.guests})`;
-      } else {
-        label = copy.pickupSupplement;
-        if (Object.hasOwn(copy.pickupZones, line.zoneCode)) label += ` · ${copy.pickupZones[line.zoneCode]}`;
-        if (typeof line.accommodation === 'string' && line.accommodation) label += ` · ${line.accommodation}`;
-      }
-      return `<span style="display:block;color:#4a6c82;font-size:12px">${escapeHtml(label)}: ${escapeHtml(money(line.amountMinor, currency))}</span>`;
-    }).join('');
-}
-
 function itemRows(order) {
-  const copy = GUEST_COPY[order.language] || GUEST_COPY.en;
   return order.items.map((item) => `
     <tr>
       <td style="padding:6px 10px 6px 0"><strong>${escapeHtml(item.title)}</strong><br>
         ${escapeHtml(String(item.date))} · ${escapeHtml(item.time)} · ${escapeHtml(String(item.guests))} · ${escapeHtml(item.optionName || '')}<br>
         <span style="color:#4a6c82">${escapeHtml(item.pickup || '')}</span></td>
       <td style="padding:6px 0;white-space:nowrap;vertical-align:top">
-        <strong>${escapeHtml(item.bookingCode || '—')}</strong><br>${escapeHtml(money(item.totalMinor, order.currency))}${priceBreakdownHtml(item, order.currency, copy)}</td>
+        <strong>${escapeHtml(item.bookingCode || '—')}</strong><br>${escapeHtml(money(item.totalMinor, order.currency))}</td>
     </tr>`).join('');
 }
 
 function guestEmail(order) {
   const copy = GUEST_COPY[order.language] || GUEST_COPY.en;
-  const deposit = order.paymentPlan === 'deposit_20';
-  const paymentSummary = deposit
-    ? `<p><strong>${escapeHtml(copy.tripTotal)}: ${escapeHtml(money(order.totalMinor, order.currency))}</strong></p>
-       <p><strong>${escapeHtml(copy.depositPaid)}: ${escapeHtml(money(order.chargeMinor, order.currency))}</strong></p>
-       <p>${escapeHtml(copy.balanceDue)}: ${escapeHtml(money(order.balanceMinor, order.currency))}</p>`
-    : `<p><strong>${escapeHtml(copy.total)}: ${escapeHtml(money(order.totalMinor, order.currency))}</strong></p>`;
   const html = `
   <div style="font-family:Georgia,serif;max-width:560px;margin:0 auto;color:#1A4D6E">
     <h2 style="color:#215A7C">${escapeHtml(copy.heading(order.contactName?.split(' ')[0] || ''))}</h2>
-    <p>${escapeHtml(deposit ? copy.depositIntro : copy.intro)}</p>
+    <p>${escapeHtml(copy.intro)}</p>
     <p style="color:#4a6c82">Order <strong>${escapeHtml(order.reference)}</strong></p>
     <table style="width:100%;border-collapse:collapse">${itemRows(order)}</table>
-    <div style="border-top:1px solid #E1E6EB;padding-top:10px">${paymentSummary}</div>
+    <p style="border-top:1px solid #E1E6EB;padding-top:10px"><strong>${escapeHtml(copy.total)}: ${escapeHtml(money(order.totalMinor, order.currency))}</strong></p>
     <p style="color:#4a6c82;font-size:14px">${escapeHtml(copy.footer)}</p>
   </div>`;
   return {
@@ -163,7 +111,6 @@ function guestEmail(order) {
 }
 
 function requestItemRows(order) {
-  const copy = GUEST_COPY[order.language] || GUEST_COPY.en;
   return order.items.map((item) => `
     <tr>
       <td style="padding:6px 10px 6px 0"><strong>${escapeHtml(item.title)}</strong><br>
@@ -173,7 +120,7 @@ function requestItemRows(order) {
         · ${escapeHtml(String(item.guests))}<br>
         ${item.staffNote ? `<span style="color:#4a6c82">${escapeHtml(item.staffNote)}</span>` : ''}</td>
       <td style="padding:6px 0;white-space:nowrap;vertical-align:top">
-        ${item.totalMinor != null ? escapeHtml(money(item.totalMinor, order.currency)) : '—'}${priceBreakdownHtml(item, order.currency, copy)}</td>
+        ${item.totalMinor != null ? escapeHtml(money(item.totalMinor, order.currency)) : '—'}</td>
     </tr>`).join('');
 }
 
@@ -216,8 +163,7 @@ function quoteReadyEmail(order, accessToken) {
     ${order.quoteNote ? `<p style="color:#4a6c82">${escapeHtml(order.quoteNote)}</p>` : ''}
     <p style="color:#4a6c82">Order <strong>${escapeHtml(order.reference)}</strong></p>
     <table style="width:100%;border-collapse:collapse">${requestItemRows(order)}</table>
-    <p style="border-top:1px solid #E1E6EB;padding-top:10px"><strong>${escapeHtml(copy.tripTotal)}: ${escapeHtml(money(order.totalMinor, order.currency))}</strong></p>
-    ${order.paymentPlan === 'deposit_20' ? `<p>${escapeHtml(copy.depositDue)}: ${escapeHtml(money(order.chargeMinor, order.currency))}<br>${escapeHtml(copy.balanceDue)}: ${escapeHtml(money(order.balanceMinor, order.currency))}</p>` : ''}
+    <p style="border-top:1px solid #E1E6EB;padding-top:10px"><strong>${escapeHtml(copy.totalDue)}: ${escapeHtml(money(order.totalMinor, order.currency))}</strong></p>
     <p><a href="${escapeHtml(link)}" style="display:inline-block;background:#16445F;color:#ffffff;padding:12px 22px;border-radius:8px;text-decoration:none">${escapeHtml(copy.quoteCta)}</a></p>
     ${expiry ? `<p style="color:#4a6c82;font-size:14px">${escapeHtml(copy.quoteExpiry)} ${escapeHtml(expiry)}.</p>` : ''}
     <p style="color:#4a6c82;font-size:14px">${escapeHtml(copy.footer)}</p>
@@ -236,7 +182,7 @@ function requestTeamEmail(order) {
   const rows = order.items.map((item) =>
     `<li><strong>${escapeHtml(item.title)}</strong> — ${item.kind === 'request'
       ? `requested: ${escapeHtml(item.requestedDates || '—')}`
-      : `${escapeHtml(String(item.date || ''))} ${escapeHtml(item.time || '')}`} · ${escapeHtml(String(item.guests))} guests${priceBreakdownHtml(item, order.currency, GUEST_COPY.en)}</li>`).join('');
+      : `${escapeHtml(String(item.date || ''))} ${escapeHtml(item.time || '')}`} · ${escapeHtml(String(item.guests))} guests</li>`).join('');
   const html = `
   <div style="font-family:Arial,sans-serif;color:#1A4D6E">
     <h3>New trip request ${escapeHtml(order.reference)}</h3>
@@ -254,13 +200,11 @@ function requestTeamEmail(order) {
 }
 
 function teamEmail(order) {
-  const deposit = order.paymentPlan === 'deposit_20';
   const rows = order.items.map((item) =>
-    `<li><strong>${escapeHtml(item.bookingCode || '—')}</strong> — ${escapeHtml(item.title)} · ${escapeHtml(String(item.date))} ${escapeHtml(item.time)} · ${escapeHtml(String(item.guests))} guests · ${escapeHtml(money(item.totalMinor, order.currency))}${priceBreakdownHtml(item, order.currency, GUEST_COPY.en)}</li>`).join('');
+    `<li><strong>${escapeHtml(item.bookingCode || '—')}</strong> — ${escapeHtml(item.title)} · ${escapeHtml(String(item.date))} ${escapeHtml(item.time)} · ${escapeHtml(String(item.guests))} guests · ${escapeHtml(money(item.totalMinor, order.currency))}</li>`).join('');
   const html = `
   <div style="font-family:Arial,sans-serif;color:#1A4D6E">
-    <h3>${deposit ? 'Deposit received for' : 'Paid'} store order ${escapeHtml(order.reference)} — ${escapeHtml(money(deposit ? order.chargeMinor : order.totalMinor, order.currency))}</h3>
-    ${deposit ? `<p>Trip total: ${escapeHtml(money(order.totalMinor, order.currency))}<br>Remaining balance due on the day of each experience: ${escapeHtml(money(order.balanceMinor, order.currency))}</p>` : ''}
+    <h3>Paid store order ${escapeHtml(order.reference)} — ${escapeHtml(money(order.totalMinor, order.currency))}</h3>
     <p>${escapeHtml(order.contactName)} · ${escapeHtml(order.contactEmail)}${order.contactPhone ? ` · ${escapeHtml(order.contactPhone)}` : ''}</p>
     <ul>${rows}</ul>
   </div>`;

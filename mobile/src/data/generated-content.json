@@ -16,7 +16,7 @@
       },
       {
         "path": "src/data/excursionsData.js",
-        "sha256": "0e995f269359e4d83fb9e8776facebe665d9c118c0598186a90c82eb72fda6d7"
+        "sha256": "2e3cdde301ab824e5d46dd6576ba85d6afb7b01564670b6fa785256794c57d55"
       },
       {
         "path": "src/data/safariPageData.js",
@@ -52,7 +52,7 @@
       },
       {
         "path": "src/locales/en/home.json",
-        "sha256": "377c668e72abaf91992032ff145c8d938f8708b84f7a2d252335a94433a1678a"
+        "sha256": "cadc151b8704545166a08f20f91c2d344b46a40f817c6d6744a38e4349825369"
       },
       {
         "path": "src/pages/Homepage.jsx",
