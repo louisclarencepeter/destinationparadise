@@ -29,8 +29,16 @@ export function storeApiEnabled() {
   return process.env.STORE_API_ENABLED === 'true' && Boolean(supabaseUrl()) && Boolean(supabaseSecret());
 }
 
+// Netlify's CONTEXT is build metadata, not a guaranteed Functions runtime
+// variable. Missing/unknown runtime settings must never authorize test modes.
+// Configure this nonsecret value in the Functions scope for each environment.
+export function storeNonProductionRuntime() {
+  const environment = (process.env.STORE_RUNTIME_ENVIRONMENT || '').trim();
+  return ['staging', 'development'].includes(environment);
+}
+
 export function devFakePaymentEnabled() {
-  return process.env.STORE_DEV_FAKE_PAYMENT === 'true';
+  return process.env.STORE_DEV_FAKE_PAYMENT === 'true' && storeNonProductionRuntime();
 }
 
 export const storeDisabledResponse = () =>
@@ -99,6 +107,7 @@ const SOURCE_KEY_RE = /^[a-z0-9][a-z0-9-]{1,60}$/;
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
 const TIME_RE = /^[0-2]\d:[0-5]\d$/;
 const OPTION_CODES = new Set(['shared', 'private']);
+const PICKUP_ZONES = new Set(['stone-town', 'north', 'east', 'south', 'other']);
 const IDEMPOTENCY_RE = /^[A-Za-z0-9_-]{8,80}$/;
 export const MAX_CHECKOUT_ITEMS = 20;
 
@@ -114,6 +123,22 @@ export function isLocalTime(value) {
   return typeof value === 'string' && TIME_RE.test(value);
 }
 
+// Old carts can omit pickup fields; the database decides whether an option
+// requires them. Supplied fields must be valid, never silently defaulted.
+function parsePickupSelection(entry) {
+  const pickup = {};
+  if (Object.hasOwn(entry, 'pickupZone')) {
+    if (typeof entry.pickupZone !== 'string' || !PICKUP_ZONES.has(entry.pickupZone)) return null;
+    pickup.pickupZone = entry.pickupZone;
+  }
+  if (Object.hasOwn(entry, 'accommodation')) {
+    const hotel = entry.accommodation;
+    if (typeof hotel !== 'string' || hotel.length > 200 || !hotel.trim() || /[\u0000-\u001f\u007f]/.test(hotel)) return null;
+    pickup.accommodation = hotel.trim();
+  }
+  return pickup;
+}
+
 // Normalizes the browser cart payload into the exact shape the SQL layer
 // accepts. Returns { ok, items } or { ok: false, error }.
 export function parseStoreItems(raw) {
@@ -123,6 +148,8 @@ export function parseStoreItems(raw) {
   const items = [];
   for (const entry of raw) {
     if (!entry || typeof entry !== 'object') return { ok: false, error: 'invalid_items' };
+    const pickup = parsePickupSelection(entry);
+    if (!pickup) return { ok: false, error: 'invalid_items' };
     const guests = Number(entry.guests);
     const item = {
       id: typeof entry.id === 'string' ? entry.id.slice(0, 64) : '',
@@ -131,6 +158,7 @@ export function parseStoreItems(raw) {
       guests,
       date: entry.date,
       time: entry.time,
+      ...pickup,
     };
     if (
       !item.id ||
@@ -158,6 +186,8 @@ export function parseRequestItems(raw) {
   let requestCount = 0;
   for (const entry of raw) {
     if (!entry || typeof entry !== 'object') return { ok: false, error: 'invalid_items' };
+    const pickup = parsePickupSelection(entry);
+    if (!pickup) return { ok: false, error: 'invalid_items' };
     const guests = Number(entry.guests);
     const optionCode = entry.optionCode ?? entry.mode;
     const base = {
@@ -165,6 +195,7 @@ export function parseRequestItems(raw) {
       sourceKey: entry.sourceKey ?? entry.experienceId,
       optionCode,
       guests,
+      ...pickup,
     };
     if (!base.id || !isSourceKey(base.sourceKey) ||
         !Number.isInteger(guests) || guests < 1 || guests > 24) {

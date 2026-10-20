@@ -6,7 +6,7 @@
 
 import { createRateLimiter, rateLimitKey } from './_shared.mjs';
 import { captureFunctionException } from './_sentry.mjs';
-import { dpoEnabled } from './_dpo.mjs';
+import { configuredPaymentMode } from './_store_provider.mjs';
 import {
   callStoreRpc,
   devFakePaymentEnabled,
@@ -41,10 +41,15 @@ export default async (req) => {
   if (!reference || !token) return storeJson({ ok: false, error: 'not_found' }, 404);
 
   try {
+    // Keep the payment agreement shown on the existing quote. New requests
+    // carry deposit_20; historical quotes retain their original full plan.
+    const quotedOrder = await callStoreRpc('store_api_order', { p_reference: reference, p_token: token });
+    if (!quotedOrder?.ok) return storeJson({ ok: false, error: 'not_found' }, 404);
     const result = await callStoreRpc('store_api_accept_quote', {
       p_reference: reference,
       p_token: token,
       p_hold_minutes: ACCEPT_HOLD_MINUTES,
+      p_payment_plan: quotedOrder.paymentPlan === 'deposit_20' ? 'deposit_20' : 'full',
     });
     if (!result?.ok) {
       const status = result?.error === 'availability_conflict' ? 409
@@ -52,7 +57,7 @@ export default async (req) => {
       return storeJson({ ok: false, error: result?.error || 'accept_failed', conflicts: result?.conflicts || [] }, status);
     }
 
-    const paymentMode = dpoEnabled() ? 'dpo' : devFakePaymentEnabled() ? 'dev_simulated' : 'unavailable';
+    const paymentMode = configuredPaymentMode() || (devFakePaymentEnabled() ? 'dev_simulated' : 'unavailable');
     return storeJson({ ...result, payment: { mode: paymentMode } });
   } catch (error) {
     await captureFunctionException(error, { functionName: FUNCTION_NAME, req, extra: { stage: 'accept-rpc' } });
