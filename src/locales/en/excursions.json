@@ -64,7 +64,7 @@
         "items": [
           "Tips for guides & crew",
           "Alcohol on certain trips ($15 add-on)",
-          "Travel insurance (please bring your own)",
+          "Travel insurance, including mandatory inbound cover (arrange separately)",
           "Spending money for markets/cafés"
         ]
       },
@@ -131,7 +131,7 @@
       },
       "not_included": {
         "heading": "Not included",
-        "items": ["Tips for guides & crew", "Alcohol (where applicable)", "Travel insurance", "Spending money"]
+        "items": ["Tips for guides & crew", "Alcohol (where applicable)", "Travel insurance, including mandatory inbound cover (arrange separately)", "Spending money"]
       },
       "booking": {
         "heading": "Booking & payment",

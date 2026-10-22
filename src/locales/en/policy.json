@@ -92,6 +92,7 @@
       ]
     },
     "terms": {
+      "last_updated_value": "October 20, 2026",
       "eyebrow": "Terms",
       "title": "Terms of Service",
       "intro": "These terms describe how enquiries, bookings, payments, changes, and travel responsibilities work when you use Destination Paradise services.",
@@ -119,10 +120,14 @@
         {
           "title": "Travel Responsibility",
           "items": [
-            "Travel always carries some risk. You are responsible for suitable travel insurance, health advice, visas, passports, and personal belongings.",
+            "Travel always carries some risk. You are responsible for suitable travel insurance, including mandatory inbound cover where required, health advice, visas, passports, and personal belongings. Private international insurance does not replace the required NIC or ZIC policy.",
             "We work carefully with local partners, but we are not responsible for delays or losses caused by events outside our reasonable control.",
             "If something goes wrong during your trip, contact us quickly so we can help while there is still time to act."
-          ]
+          ],
+          "link": {
+            "to": "/booking-policy#travel-insurance",
+            "label": "Mandatory insurance: requirements and official portals"
+          }
         },
         {
           "title": "Online Store Bookings",
@@ -151,6 +156,7 @@
       ]
     },
     "booking": {
+      "last_updated_value": "October 20, 2026",
       "eyebrow": "Booking",
       "title": "Booking Policy",
       "intro": "These booking policies apply to every tour, excursion, transfer, safari, and package arranged by Destination Paradise LTD, whether you book by enquiry or instantly through our online store.",
@@ -285,11 +291,47 @@
           ]
         },
         {
-          "title": "Travel Insurance",
+          "id": "travel-insurance",
+          "title": "Mandatory Inbound Travel Insurance",
           "items": [
-            "We strongly recommend comprehensive travel insurance covering medical treatment, emergency evacuation, cancellation and curtailment, and personal belongings.",
-            "Cover for emergency evacuation matters particularly on safari and on marine excursions, where distances to medical facilities are long.",
-            "Arranging travel insurance is your responsibility. We do not provide it."
+            "Foreign visitors entering Tanzania must obtain the required government-designated inbound travel insurance, subject to applicable exemptions, even if they already hold private international travel or medical insurance. The mainland requirement took effect on 1 October 2026.",
+            "Choose the insurer for your first point of entry. One valid NIC or ZIC policy covers travel between mainland Tanzania and Zanzibar on the same insured journey, subject to its terms; visiting both does not require a second policy.",
+            "NIC exempts qualifying residents of East African Community (EAC) and Southern African Development Community (SADC) partner states from the mainland requirement. This does not automatically exempt them in Zanzibar; ZIC currently lists a USD 22 regional visitor rate. Confirm your eligibility with the relevant insurer.",
+            "Arrange cover before travelling and keep your certificate or QR code accessible. Check the official portal for current prices, child age bands, any infant exemptions, policy dates and other eligibility rules.",
+            "We also strongly recommend comprehensive personal travel insurance covering medical treatment, emergency evacuation, cancellation and curtailment, and personal belongings. Emergency evacuation cover matters particularly on safari and marine excursions, where medical facilities may be far away.",
+            "You are responsible for arranging and paying for your insurance separately. Destination Paradise does not provide it."
+          ],
+          "tables": [
+            {
+              "caption": "Choose your policy by your first point of entry",
+              "wrap": true,
+              "columns": [
+                "If you arrive first in…",
+                "Required policy",
+                "Official portal",
+                "Cost"
+              ],
+              "rows": [
+                [
+                  "Mainland Tanzania — Dar es Salaam, Kilimanjaro, land borders or seaports",
+                  "National Insurance Corporation (NIC)",
+                  {
+                    "href": "https://inbound.nicinsurance.co.tz/",
+                    "label": "NIC Inbound Portal"
+                  },
+                  "USD 44 per person (TZS equivalent)"
+                ],
+                [
+                  "Zanzibar — including Abeid Amani Karume International Airport",
+                  "Zanzibar Insurance Corporation (ZIC)",
+                  {
+                    "href": "https://inbound.visitzanzibar.go.tz/",
+                    "label": "ZIC Inbound Portal"
+                  },
+                  "USD 44 per adult; USD 22 per child"
+                ]
+              ]
+            }
           ]
         },
         {

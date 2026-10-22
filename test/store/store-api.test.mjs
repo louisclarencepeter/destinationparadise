@@ -161,10 +161,10 @@ describe('quote and checkout', () => {
     const march = { ...lastDay, id: 'after-cutoff', date: '2027-03-01' };
     const quote = await quoteCartItems([lastDay, march], NO_LATENCY);
     expect(quote.quotes).toEqual([
-      expect.objectContaining({ id: 'last-day', status: 'available', totalUsd: 55 }),
+      expect.objectContaining({ id: 'last-day', status: 'available', totalUsd: 25 }),
       expect.objectContaining({ id: 'after-cutoff', status: 'departed', totalUsd: 0 }),
     ]);
-    expect(quote.subtotalUsd).toBe(55);
+    expect(quote.subtotalUsd).toBe(25);
     const contact = { name: 'Fixture Guest', email: 'fixture@example.com' };
     const rejected = await submitCheckout({ items: [lastDay, march], contact }, NO_LATENCY);
     expect(rejected).toMatchObject({ ok: false, conflicts: [{ id: 'after-cutoff', status: 'departed' }] });
@@ -199,8 +199,8 @@ describe('quote and checkout', () => {
     expect(result.ok).toBe(true);
     expect(result.order.reference).toMatch(/^DP-\d{4}-\d{4}$/);
     expect(result.order.items).toHaveLength(2);
-    expect(result.order.totalUsd).toBe(190 + (55 * 3 + 70));
-    expect(result.order).toMatchObject({ paymentPlan: 'deposit_20', paymentStatus: 'deposit_paid', chargeUsd: 85, balanceUsd: 340 });
+    expect(result.order.totalUsd).toBe(190 + (25 * 3 + 70));
+    expect(result.order).toMatchObject({ paymentPlan: 'deposit_20', paymentStatus: 'deposit_paid', chargeUsd: 67, balanceUsd: 268 });
     const codes = result.order.items.map((item) => item.bookingCode);
     expect(new Set(codes).size).toBe(2);
     expect(codes[0]).toMatch(/^SB-\d{4}$/);

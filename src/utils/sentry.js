@@ -96,7 +96,10 @@ function loadSentry() {
         dsn: sentryDsn,
         environment: sentryEnvironment,
         release: sentryRelease,
-        sendDefaultPii: false,
+        // Sentry 11 replaced `sendDefaultPii` with `dataCollection`, which now
+        // defaults to collecting everything. Opt out of user info (IP
+        // inference) and cookies to keep the old `sendDefaultPii: false` level.
+        dataCollection: { userInfo: false, cookies: false },
         beforeSend: filterSentryEvent,
         beforeSendTransaction: filterSentryEvent,
         beforeBreadcrumb: filterSentryBreadcrumb,
