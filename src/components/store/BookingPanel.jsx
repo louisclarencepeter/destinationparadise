@@ -113,6 +113,16 @@ export default function BookingPanel({ experience }) {
 
   const { loading, days } = useAvailability(experience.id, monthIso);
 
+  // Departures start tomorrow at the earliest, so on the last day of a month
+  // the opening month has nothing to pick. Open on the next month instead of
+  // a fully disabled calendar; only once, so customers can still page back.
+  const skippedEmptyMonthRef = useRef(false);
+  useEffect(() => {
+    if (skippedEmptyMonthRef.current || editItem || loading || !days || monthIso !== minMonth || monthIso >= maxMonth) return;
+    skippedEmptyMonthRef.current = true;
+    if (!Object.values(days).some((day) => day.bookable)) setMonthIso(shiftMonthIso(monthIso, 1));
+  }, [days, loading, editItem, monthIso, minMonth, maxMonth]);
+
   // Keep the selected day's slot snapshot fresh when its month is on screen
   // (also fills in the snapshot for a cart line loaded via ?edit=).
   useEffect(() => {
