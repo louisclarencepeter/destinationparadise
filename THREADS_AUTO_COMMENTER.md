@@ -14,6 +14,7 @@ This automation is separate from the Instagram Story publisher. It uses only Met
 - A post ID is journaled before publishing. The publish endpoint is called exactly once. A timeout, 5xx response, rate-limit response, or other uncertain failure is recorded and is never retried automatically.
 - Read-only GET requests retry up to two extra times with backoff on transient failures: network errors, HTTP 408/429/5xx, and Meta's intermittent `401` code `190` "Cannot parse access token" flake, which has failed scheduled runs despite a valid token.
 - When even those retries fail on a GET, the script exits with code `75` (`EX_TEMPFAIL`). All GETs happen before any reply is selected or journaled, so the workflow safely re-runs the whole script up to two more times (after 90 s and 180 s). A run that has attempted a reply exits with code `1` and is never re-run.
+- Any other code `190` error (an expired, revoked, or password-invalidated token) is never retried. The script exits with code `78` (`EX_CONFIG`) and the workflow fails with a "Threads access token expired or revoked" annotation.
 
 ## Required Threads authorization
 
@@ -32,6 +33,15 @@ Store only the resulting long-lived token in the GitHub Actions secret `THREADS_
 ```sh
 gh secret set THREADS_USER_ACCESS_TOKEN --repo louisclarencepeter/destinationparadise
 ```
+
+## Renewing the token
+
+Long-lived Threads tokens expire 60 days after they are issued or last refreshed; a password change or removing the app's access also revokes them. Once that happens, every run fails with the "Threads access token expired or revoked" annotation until the secret is replaced:
+
+1. Repeat the authorization-code flow above for the Destination Paradise Threads profile with the same five permissions.
+2. Exchange the short-lived token for a long-lived one with `GET https://graph.threads.net/access_token?grant_type=th_exchange_token&client_secret=<app secret>&access_token=<short-lived token>`.
+3. Replace the secret with `gh secret set THREADS_USER_ACCESS_TOKEN --repo louisclarencepeter/destinationparadise`.
+4. Manually run **Threads Auto Commenter** with `publish=false` and confirm the dry-run reports `"ok":true` for `@yournexttriptoparadise`.
 
 Meta's official references:
 

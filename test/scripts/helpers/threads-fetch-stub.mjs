@@ -6,6 +6,7 @@ const mode = process.env.THREADS_FETCH_STUB_MODE;
 const payloads = {
   'transient-401': [401, { error: { message: 'Invalid OAuth access token - Cannot parse access token', code: 190 } }],
   'transient-500': [500, { error: { message: 'Application does not have permission for this action', code: 10 } }],
+  'expired-token': [401, { error: { message: 'Error validating access token: Session has expired on Monday, 14-Sep-26 14:16:32 PDT. The current time is Monday, 28-Sep-26 04:48:31 PDT.', type: 'OAuthException', code: 190 } }],
   'bad-request': [400, { error: { message: 'Unsupported request.', code: 100 } }],
   'wrong-user': [200, { id: '1', username: 'someone-else' }],
 };
