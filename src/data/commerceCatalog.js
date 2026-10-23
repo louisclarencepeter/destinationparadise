@@ -51,36 +51,114 @@ const INSTANT_RULES = [
   },
 ];
 
-// Request-only cards shown in the store grid beside the pilot products. They
-// route to the existing enquiry flows and never enter the instant-payment cart.
-const REQUEST_CARDS = [
-  {
-    id: 'prison-island',
-    sourceKey: 'prison-island',
-    // Has its own request panel (Phase 5) — deep-link straight to it.
-    to: '/excursions/prison-island#book',
-  },
+// Store publication model (one record per public experience). Each listing
+// carries its own publication state, status and booking mode, so the grid,
+// the filters and the store API all read the same rules:
+//   published: false               never shown in the public catalogue
+//   status 'available' + 'instant' Available filter, date picker + basket
+//   status 'coming_soon'           Coming Soon filter, details only — no
+//                                  dates, basket or payment
+//   bookingMode 'request'          On Request filter, enquiry only, no payment
+//   status 'temporarily_unavailable' shown with a notice, never bookable
+// Only the pilot allowlist above is instant. Every other listing is an
+// experience that already exists elsewhere on the site.
+export const STORE_STATUSES = ['available', 'coming_soon', 'on_request', 'temporarily_unavailable'];
+
+// Fully written excursions that are the next candidates for online booking.
+// They keep their detail pages and enquiry links, but never enter the cart.
+const COMING_SOON_IDS = [
+  'jozani', 'dolphins', 'sunset-rock', 'snorkeling-tour', 'village-tour', 'mnemba',
+  'fishing-kizimkazi', 'local-fishing', 'mangrove', 'sandbank-picnic', 'cave', 'north-nungwi',
+];
+
+// Consultative products that live outside the excursion catalogue.
+const EXTRA_LISTINGS = [
   {
     id: 'northern-safari',
     title: 'Northern Tanzania Safari',
+    category: 'safari',
     image: '/assets/images/safaris/zebra-herd-on-track.webp',
     alt: 'Zebra herd on a safari track',
     blurb: 'A mainland safari across the Serengeti and Ngorongoro — wildlife game drives, lodge nights and light-aircraft transfers.',
     durationTag: 'Multi-day',
-    priceFromUsd: 340,
     to: '/safaris',
   },
   {
     id: 'custom-journey',
     title: 'Custom Zanzibar Journey',
+    category: 'custom',
     image: '/assets/images/home/aerial-boats-turquoise-water.webp',
     alt: 'Aerial view of boats on turquoise water',
     blurb: 'Tell us the shape of your days and we will stitch dhows, spice gardens, beaches and Stone Town into one private itinerary.',
     durationTag: 'Tailor-made',
-    priceFromUsd: null,
     to: '/trip-planner',
   },
 ];
+
+const enquiryLink = (id) => `/book-now?type=excursion&item=${encodeURIComponent(id)}#booking-contact`;
+
+function listingRulesFor(id) {
+  if (INSTANT_RULES.some((rules) => rules.id === id)) {
+    return { status: 'available', bookingMode: 'instant', to: `/excursions/${id}#book` };
+  }
+  if (COMING_SOON_IDS.includes(id)) {
+    return { status: 'coming_soon', bookingMode: 'none', to: `/excursions/${id}` };
+  }
+  return {
+    status: 'on_request',
+    bookingMode: 'request',
+    to: enquiryLink(id),
+  };
+}
+
+// Every listing the store knows about, in grid order. `excursions` lets the
+// page pass localized editorial copy; ids and commercial fields never change.
+export function getStoreListings(excursions = EXCURSIONS) {
+  const fromExcursions = excursions.map((excursion) => ({
+    id: excursion.id,
+    sourceKey: excursion.id,
+    category: excursion.category,
+    published: true,
+    currency: 'USD',
+    depositPercent: 20,
+    editorialPriceUsd: typeof excursion.price === 'number' ? excursion.price : null,
+    ...listingRulesFor(excursion.id),
+  }));
+  const extras = EXTRA_LISTINGS.map((listing) => ({
+    id: listing.id,
+    sourceKey: listing.id,
+    category: listing.category,
+    published: true,
+    currency: 'USD',
+    depositPercent: 20,
+    editorialPriceUsd: null,
+    status: 'on_request',
+    bookingMode: 'request',
+    to: listing.to,
+  }));
+  const order = { available: 0, coming_soon: 1, on_request: 2, temporarily_unavailable: 3 };
+  return [...fromExcursions, ...extras]
+    .map((listing, index) => ({ listing, index }))
+    .sort((a, b) => order[a.listing.status] - order[b.listing.status] || a.index - b.index)
+    .map(({ listing }) => listing);
+}
+
+const listingById = (id) => getStoreListings().find((listing) => listing.id === id);
+
+// Server-side gate (store API): only published, available, instant listings
+// may be quoted, held or paid for.
+export function isPaidCheckoutAllowed(id) {
+  const listing = listingById(id);
+  return Boolean(listing?.published && listing.status === 'available' && listing.bookingMode === 'instant');
+}
+
+// Request carts take enquiry-only products plus the instant pilots. Coming
+// Soon, unavailable and unpublished listings can never be submitted.
+export function isStoreRequestAllowed(id) {
+  const listing = listingById(id);
+  if (!listing?.published) return false;
+  return isPaidCheckoutAllowed(id) || (listing.status === 'on_request' && listing.bookingMode === 'request');
+}
 
 function instantExperienceFor(rules, excursions = EXCURSIONS, operationalCopy = {}) {
   const excursion = excursionById(rules.id, excursions);
@@ -146,39 +224,41 @@ export function getCartExperience(id, excursions = EXCURSIONS, operationalCopy =
   return getInstantExperience(id, excursions, operationalCopy) || getRequestExperience(id, excursions, operationalCopy);
 }
 
-// Cards for the store grid: instant pilots first, then request-only products.
+// Cards for the store grid, one per published listing. Prices only show
+// where the site already publishes one; Coming Soon cards never show a price.
 export function getStoreCards({ excursions = EXCURSIONS, operationalCopy = {} } = {}) {
   const localizedCopy = /** @type {any} */ (operationalCopy);
-  const instant = INSTANT_RULES
-    .map((rules) => instantExperienceFor(rules, excursions, operationalCopy))
-    .filter(Boolean)
-    .map((exp) => ({
-    id: exp.id,
-    kind: 'instant',
-    title: exp.title,
-    image: exp.image,
-    alt: exp.alt,
-    blurb: exp.blurb,
-    durationTag: exp.durationTag,
-    priceFromUsd: exp.priceUsd,
-    to: `/excursions/${exp.sourceKey}#book`,
-  }));
+  return getStoreListings(excursions)
+    .filter((listing) => listing.published)
+    .map((listing) => {
+      const translated = localizedCopy.requestCards?.[listing.id] || {};
+      const excursion = excursionById(listing.id, excursions);
+      const extra = EXTRA_LISTINGS.find((entry) => entry.id === listing.id);
+      const bookable = listing.status === 'available';
+      return {
+        id: listing.id,
+        status: listing.status,
+        bookingMode: listing.bookingMode,
+        category: listing.category,
+        // Legacy kind used by older call sites: instant vs everything else.
+        kind: bookable ? 'instant' : 'request',
+        title: translated.title || excursion?.title || extra?.title || listing.id,
+        image: excursion?.image || extra?.image,
+        alt: translated.alt || excursion?.alt || extra?.alt || '',
+        blurb: translated.blurb || excursion?.description || extra?.blurb || '',
+        durationTag: translated.durationTag || excursion?.duration || extra?.durationTag || '',
+        priceFromUsd: listing.status === 'coming_soon' ? null : listing.editorialPriceUsd,
+        to: listing.to,
+      };
+    })
+    .filter((card) => card.image);
+}
 
-  const request = REQUEST_CARDS.map((card) => {
-    const translated = localizedCopy.requestCards?.[card.id] || {};
-    const excursion = card.sourceKey ? excursionById(card.sourceKey, excursions) : null;
-    return {
-      id: card.id,
-      kind: 'request',
-      title: translated.title || card.title || excursion?.title || card.id,
-      image: card.image || excursion?.image,
-      alt: translated.alt || card.alt || excursion?.alt || card.title || '',
-      blurb: translated.blurb || card.blurb || excursion?.description || '',
-      durationTag: translated.durationTag || card.durationTag || excursion?.duration || '',
-      priceFromUsd: card.priceFromUsd ?? (typeof excursion?.price === 'number' ? excursion.price : null),
-      to: card.to,
-    };
-  }).filter((card) => card.image);
-
-  return [...instant, ...request];
+// Dynamic filter counts for the store chips.
+export function countStoreCards(cards) {
+  const counts = { all: cards.length, available: 0, coming_soon: 0, on_request: 0 };
+  for (const card of cards) {
+    if (card.status in counts) counts[card.status] += 1;
+  }
+  return counts;
 }

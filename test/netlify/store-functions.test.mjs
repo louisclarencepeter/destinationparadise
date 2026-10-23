@@ -90,6 +90,12 @@ describe('store input validation', () => {
     }
   });
 
+  it('refuses non-instant catalogue listings before reaching the database', () => {
+    for (const experienceId of ['jozani', 'prison-island', 'northern-safari', 'unknown-trip']) {
+      expect(parseStoreItems([validItem({ experienceId })])).toEqual({ ok: false, error: 'not_instant_bookable' });
+    }
+  });
+
   it('validates references, tokens and idempotency keys strictly', () => {
     expect(parseOrderReference('DP-2026-123456')).toBe('DP-2026-123456');
     expect(parseOrderReference('DP-2026-1234')).toBeNull();
@@ -280,5 +286,16 @@ describe('parseRequestItems (Phase 5)', () => {
     expect(parseRequestItems([
       { id: 'x', experienceId: 'spice-tour', mode: 'shared', guests: 2 },
     ]).ok).toBe(false);
+  });
+
+  it('keeps Coming Soon listings out of request carts and enquiry products out of paid riders', async () => {
+    const { parseRequestItems } = await import('../../netlify/functions/_store_shared.mjs');
+    expect(parseRequestItems([
+      { id: 'r1', experienceId: 'jozani', mode: 'request', guests: 2, requestedDates: 'May' },
+    ])).toEqual({ ok: false, error: 'not_requestable' });
+    expect(parseRequestItems([
+      { id: 'r1', experienceId: 'prison-island', mode: 'request', guests: 2 },
+      { id: 'i1', experienceId: 'prison-island', mode: 'shared', guests: 2, date: '2026-08-18', time: '09:00' },
+    ])).toEqual({ ok: false, error: 'not_instant_bookable' });
   });
 });

@@ -1,10 +1,15 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
+  countStoreCards,
   getInstantExperience,
   getStoreCards,
+  getStoreListings,
   INSTANT_EXPERIENCE_IDS,
   isInstantBookable,
+  isPaidCheckoutAllowed,
+  isStoreRequestAllowed,
 } from '../../src/data/commerceCatalog.js';
+import { EXCURSIONS } from '../../src/data/excursionsData.js';
 import {
   addDaysIso,
   BOOKING_END_DATE,
@@ -73,6 +78,47 @@ describe('commerce catalog', () => {
       expect(card.image, card.id).toBeTruthy();
       expect(card.to, card.id).toBeTruthy();
     }
+  });
+
+  it('lists every site excursion with one status each, pilots first', () => {
+    const listings = getStoreListings();
+    for (const excursion of EXCURSIONS) {
+      expect(listings.some((listing) => listing.id === excursion.id), excursion.id).toBe(true);
+    }
+    expect(listings.slice(0, 3).map((listing) => listing.id).sort()).toEqual(['safari-blue', 'spice-tour', 'stone-town']);
+    const available = listings.filter((listing) => listing.status === 'available');
+    expect(available.map((listing) => listing.id).sort()).toEqual(['safari-blue', 'spice-tour', 'stone-town']);
+    for (const listing of available) expect(listing.bookingMode).toBe('instant');
+    for (const listing of listings.filter((entry) => entry.status !== 'available')) {
+      expect(listing.bookingMode, listing.id).not.toBe('instant');
+      expect(listing.to, listing.id).not.toMatch(/#book$/);
+    }
+  });
+
+  it('keeps Coming Soon cards priceless and routes them to details only', () => {
+    const cards = getStoreCards();
+    const jozani = cards.find((card) => card.id === 'jozani');
+    expect(jozani).toMatchObject({ status: 'coming_soon', priceFromUsd: null, to: '/excursions/jozani' });
+    const prison = cards.find((card) => card.id === 'prison-island');
+    expect(prison).toMatchObject({ status: 'on_request', to: '/book-now?type=excursion&item=prison-island#booking-contact' });
+    expect(cards.find((card) => card.id === 'northern-safari')).toMatchObject({ status: 'on_request', priceFromUsd: null });
+  });
+
+  it('counts each status for the filter chips', () => {
+    const cards = getStoreCards();
+    const counts = countStoreCards(cards);
+    expect(counts.available).toBe(3);
+    expect(counts.coming_soon).toBe(12);
+    expect(counts.all).toBe(counts.available + counts.coming_soon + counts.on_request);
+  });
+
+  it('only lets available instant listings into paid checkout', () => {
+    for (const id of ['safari-blue', 'spice-tour', 'stone-town']) expect(isPaidCheckoutAllowed(id)).toBe(true);
+    for (const id of ['jozani', 'prison-island', 'northern-safari', 'unknown-trip']) expect(isPaidCheckoutAllowed(id)).toBe(false);
+    expect(isStoreRequestAllowed('prison-island')).toBe(true);
+    expect(isStoreRequestAllowed('spice-tour')).toBe(true);
+    expect(isStoreRequestAllowed('jozani')).toBe(false);
+    expect(isStoreRequestAllowed('unknown-trip')).toBe(false);
   });
 });
 

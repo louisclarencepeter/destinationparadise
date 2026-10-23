@@ -39,16 +39,17 @@
   },
   "list": {
     "eyebrow": "Sansibar & Tansania",
-    "title": "Ausgewählte Erlebnisse",
-    "lead": "Wähle Datum, Gäste und Abholung, lege ein oder mehrere Erlebnisse in Deine Reise und zahle eine gemeinsame Anzahlung von 20% beim Checkout.",
-    "filter_all": "Alle Erlebnisse",
-    "filter_instant": "Sofort buchbar",
-    "filter_request": "Auf Anfrage",
+    "title": "Entdecke dein nächstes Erlebnis",
+    "lead": "Buche ausgewählte Erlebnisse sofort mit einer Anzahlung von 20%, sieh, was als Nächstes online buchbar wird, oder sende uns eine Anfrage für alles andere.",
+    "filter_all": "Alle",
     "count_one": "{{count}} Erlebnis",
     "count_few": "{{count}} Erlebnisse",
     "count_many": "{{count}} Erlebnisse",
     "count_other": "{{count}} Erlebnisse",
-    "empty": "Zu deiner Suche passt noch nichts — probier ein anderes Wort."
+    "empty": "Zu deiner Suche passt noch nichts — probier ein anderes Wort.",
+    "filter_available": "Verfügbar",
+    "filter_coming_soon": "Demnächst",
+    "filter_on_request": "Auf Anfrage"
   },
   "card": {
     "from": "ab",
@@ -56,9 +57,18 @@
     "price_on_request": "Preis auf Anfrage",
     "tailor_made": "maßgeschneidert",
     "cta_instant": "Datum & Zeit wählen",
-    "cta_request": "Verfügbarkeit anfragen",
+    "cta_request": "Anfrage senden",
     "type_instant": "Sofort buchbar",
-    "type_request": "Auf Anfrage"
+    "type_request": "Auf Anfrage",
+    "per_person_indicative": "pro Person, Bestätigung auf Anfrage",
+    "type_coming_soon": "Demnächst",
+    "cta_coming_soon": "Details ansehen",
+    "coming_soon_title": "Bald online buchbar",
+    "coming_soon_note": "Noch nicht online buchbar",
+    "type_unavailable": "Derzeit nicht verfügbar",
+    "cta_details": "Details ansehen",
+    "unavailable_title": "Derzeit nicht verfügbar",
+    "unavailable_note": "Buchungen sind vorübergehend pausiert"
   },
   "section": {
     "eyebrow": "Online buchen",

@@ -248,14 +248,21 @@
   border-radius: 50%;
   display: inline-block;
 }
-.store-chips__dot--instant {
+.store-chips__dot--available {
   background: var(--dp-primary);
 }
-.store-chips__chip.is-active .store-chips__dot--instant {
+.store-chips__chip.is-active .store-chips__dot {
   background: #fff;
 }
-.store-chips__dot--request {
+.store-chips__dot--coming_soon {
+  background: var(--dp-secondary);
+}
+.store-chips__dot--on_request {
   background: var(--dp-accent);
+}
+.store-chips__chip-count {
+  font-weight: 500;
+  opacity: 0.75;
 }
 .store-chips__count {
   margin-left: auto;
@@ -351,13 +358,41 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
-.exp-card__type--instant {
+.exp-card__type--available {
   background: var(--soft-tint);
   color: var(--text-soft);
 }
-.exp-card__type--request {
+.exp-card__type--on_request {
   border: 1px solid var(--dp-accent);
   color: var(--dp-accent-text);
+}
+.exp-card__type--coming_soon {
+  border: 1px dashed var(--dp-secondary);
+  color: var(--dp-secondary);
+}
+.exp-card__type--temporarily_unavailable {
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+}
+/* Coming Soon: a calmer, preview look that never reads as sold out. */
+.exp-card--coming_soon::before {
+  background: repeating-linear-gradient(90deg, var(--dp-secondary) 0 14px, transparent 14px 22px);
+  opacity: 0.6;
+}
+.exp-card--coming_soon .exp-card__price strong {
+  font-size: 0.92rem;
+  color: var(--dp-secondary);
+}
+.exp-card--coming_soon .exp-card__cta {
+  color: var(--dp-secondary);
+}
+[data-theme="dark"] .exp-card__type--coming_soon,
+[data-theme="dark"] .exp-card--coming_soon .exp-card__price strong,
+[data-theme="dark"] .exp-card--coming_soon .exp-card__cta {
+  color: var(--text-soft);
+}
+.exp-card--temporarily_unavailable .exp-card__media img {
+  filter: grayscale(0.6);
 }
 .exp-card__type-dot {
   width: 6px;
