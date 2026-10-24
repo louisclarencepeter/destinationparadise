@@ -7,6 +7,7 @@
 // The browser never sees Supabase credentials — requests terminate here.
 
 import { fetchWithTimeout, requestSourceAllowed } from './_shared.mjs';
+import { isPaidCheckoutAllowed, isStoreRequestAllowed } from '../../src/data/commerceCatalog.js';
 
 export const STORE_ALLOWED_HOSTNAMES = [
   'yournexttriptoparadise.com',
@@ -170,6 +171,9 @@ export function parseStoreItems(raw) {
     ) {
       return { ok: false, error: 'invalid_items' };
     }
+    // Catalogue gate: Coming Soon, On Request and unpublished listings can
+    // never be quoted, held or paid for, whatever the browser sends.
+    if (!isPaidCheckoutAllowed(item.sourceKey)) return { ok: false, error: 'not_instant_bookable' };
     items.push(item);
   }
   return { ok: true, items };
@@ -202,12 +206,14 @@ export function parseRequestItems(raw) {
       return { ok: false, error: 'invalid_items' };
     }
     if (optionCode === 'request') {
+      if (!isStoreRequestAllowed(base.sourceKey)) return { ok: false, error: 'not_requestable' };
       requestCount += 1;
       items.push({
         ...base,
         requestedDates: String(entry.requestedDates ?? '').slice(0, 300),
       });
     } else if (OPTION_CODES.has(optionCode) && isIsoDate(entry.date) && isLocalTime(entry.time)) {
+      if (!isPaidCheckoutAllowed(base.sourceKey)) return { ok: false, error: 'not_instant_bookable' };
       items.push({ ...base, date: entry.date, time: entry.time });
     } else {
       return { ok: false, error: 'invalid_items' };

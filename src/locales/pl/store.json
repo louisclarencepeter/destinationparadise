@@ -39,16 +39,17 @@
   },
   "list": {
     "eyebrow": "Zanzibar i Tanzania",
-    "title": "Wybrane atrakcje",
-    "lead": "Wybierz daty, liczbę gości i odbiór, dodaj jedną lub więcej atrakcji do Twojej podróży i wpłać jedną łączną zaliczkę 20% przy płatności.",
-    "filter_all": "Wszystkie atrakcje",
-    "filter_instant": "Rezerwacja od ręki",
-    "filter_request": "Na zapytanie",
+    "title": "Odkryj swoją następną atrakcję",
+    "lead": "Zarezerwuj wybrane atrakcje od ręki z jedną zaliczką 20%, zobacz, co wkrótce trafi do rezerwacji online, albo wyślij nam zapytanie o resztę.",
+    "filter_all": "Wszystkie",
     "count_one": "{{count}} atrakcja",
     "count_few": "{{count}} atrakcje",
     "count_many": "{{count}} atrakcji",
     "count_other": "{{count}} atrakcji",
-    "empty": "Nic nie pasuje do wyszukiwania — spróbuj innego słowa."
+    "empty": "Nic nie pasuje do wyszukiwania — spróbuj innego słowa.",
+    "filter_available": "Dostępne",
+    "filter_coming_soon": "Wkrótce",
+    "filter_on_request": "Na zapytanie"
   },
   "card": {
     "from": "od",
@@ -56,9 +57,18 @@
     "price_on_request": "Cena na zapytanie",
     "tailor_made": "na miarę",
     "cta_instant": "Wybierz datę i godzinę",
-    "cta_request": "Zapytaj o dostępność",
+    "cta_request": "Wyślij zapytanie",
     "type_instant": "Rezerwacja od ręki",
-    "type_request": "Na zapytanie"
+    "type_request": "Na zapytanie",
+    "per_person_indicative": "za osobę, potwierdzenie na zapytanie",
+    "type_coming_soon": "Wkrótce",
+    "cta_coming_soon": "Zobacz szczegóły",
+    "coming_soon_title": "Rezerwacja online wkrótce",
+    "coming_soon_note": "Jeszcze niedostępne online",
+    "type_unavailable": "Obecnie niedostępne",
+    "cta_details": "Zobacz szczegóły",
+    "unavailable_title": "Obecnie niedostępne",
+    "unavailable_note": "Rezerwacje są chwilowo wstrzymane"
   },
   "section": {
     "eyebrow": "Rezerwuj online",

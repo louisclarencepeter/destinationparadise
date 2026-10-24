@@ -39,16 +39,17 @@
   },
   "list": {
     "eyebrow": "Zanzibar & Tanzania",
-    "title": "Curated experiences",
-    "lead": "Choose your dates, guests and pickup, add one or more experiences to Your trip, and pay a single 20% deposit at checkout.",
-    "filter_all": "All experiences",
-    "filter_instant": "Instant booking",
-    "filter_request": "Request availability",
+    "title": "Discover your next experience",
+    "lead": "Book selected experiences instantly with one 20% deposit, see what is coming to online booking next, or send us an enquiry for everything else.",
+    "filter_all": "All",
     "count_one": "{{count}} experience",
     "count_few": "{{count}} experiences",
     "count_many": "{{count}} experiences",
     "count_other": "{{count}} experiences",
-    "empty": "No experiences match your search yet — try a different word."
+    "empty": "No experiences match your search yet — try a different word.",
+    "filter_available": "Available",
+    "filter_coming_soon": "Coming soon",
+    "filter_on_request": "On request"
   },
   "card": {
     "from": "from",
@@ -56,9 +57,18 @@
     "price_on_request": "Priced on request",
     "tailor_made": "tailor-made",
     "cta_instant": "Choose date & time",
-    "cta_request": "Request availability",
+    "cta_request": "Send enquiry",
     "type_instant": "Instant booking",
-    "type_request": "Request availability"
+    "type_request": "On request",
+    "per_person_indicative": "per person, confirmed on request",
+    "type_coming_soon": "Coming soon",
+    "cta_coming_soon": "View details",
+    "coming_soon_title": "Online booking coming soon",
+    "coming_soon_note": "Not yet bookable online",
+    "type_unavailable": "Currently unavailable",
+    "cta_details": "View details",
+    "unavailable_title": "Currently unavailable",
+    "unavailable_note": "Bookings are paused for now"
   },
   "section": {
     "eyebrow": "Book online",

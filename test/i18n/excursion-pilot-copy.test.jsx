@@ -99,15 +99,20 @@ describe('pilot excursion detail copy', () => {
       expect(renderToStaticMarkup(createElement(StoreBookingSection, { excursionId: 'prison-island' }))).toBe('');
     });
 
-    it(`${language} limits the Store grid to pilots and retains its search, filters and hero`, () => {
+    it(`${language} shows the full catalogue with status filters and keeps pilots as the only instant cards`, () => {
       const { resources } = renderDetail(language, 'spice-tour');
       const html = renderToStaticMarkup(createElement(ExperiencesStore));
       for (const id of ['spice-tour', 'stone-town', 'safari-blue']) expect(html).toContain(`/excursions/${id}#book`);
+      expect(html.match(/#book"/g)).toHaveLength(3);
       expect(html).not.toContain('/excursions/prison-island#book');
-      expect(html).not.toContain('exp-card__type--request');
-      expect(html).not.toContain('store-chips__dot--request');
-      expect(html).toContain(resources.store.list.filter_all);
-      expect(html).toContain(resources.store.list.filter_instant);
+      expect(html).toContain('href="/book-now?type=excursion&amp;item=prison-island#booking-contact"');
+      expect(html).toContain('href="/excursions/jozani"');
+      expect(html).toContain('exp-card__type--coming_soon');
+      expect(html).toContain('exp-card__type--on_request');
+      for (const key of ['filter_all', 'filter_available', 'filter_coming_soon', 'filter_on_request']) {
+        expect(html).toContain(resources.store.list[key]);
+      }
+      expect(html).toContain('(3)');
       expect(html).toContain('type="search"');
       expect(html).toContain('store-hero__bg');
       expect(html).toContain('dp-drift');
