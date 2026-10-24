@@ -1,11 +1,15 @@
-// POST /api/store/pay — create the DPO hosted-checkout transaction for a
+// POST /api/store/pay — create a hosted-checkout transaction for a
 // pending order and hand the browser its payment URL. The order must already
 // exist with active holds (Phase 2 checkout); authorization is the per-order
-// bearer token. One DPO transaction carries one Service per trip.
+// bearer token. Claim creation atomically before contacting the provider so
+// retries cannot create a second charge after an ambiguous timeout.
 
+import { randomUUID } from 'node:crypto';
 import { createRateLimiter, rateLimitKey } from './_shared.mjs';
 import { captureFunctionException } from './_sentry.mjs';
-import { createCheckout, dpoEnabled } from './_dpo.mjs';
+import { dpoPaymentUrl } from './_dpo.mjs';
+import { validPesapalPaymentUrl } from './_pesapal.mjs';
+import { configuredPaymentMode, configuredPaymentProvider, paymentAdapter } from './_store_provider.mjs';
 import {
   callStoreRpc,
   parseOrderReference,
@@ -20,7 +24,9 @@ const FUNCTION_NAME = 'store-pay';
 const checkRateLimit = createRateLimiter({ windowMs: 10 * 60_000, max: 10 });
 
 export default async (req) => {
-  if (!storeApiEnabled() || !dpoEnabled()) return storeDisabledResponse();
+  if (!storeApiEnabled() || (!configuredPaymentMode() && !paymentAdapter('dpo')?.enabled && !paymentAdapter('pesapal')?.enabled)) {
+    return storeDisabledResponse();
+  }
   if (req.method !== 'POST') return storeJson({ ok: false, error: 'method_not_allowed' }, 405);
   if (!storeSourceAllowed(req).ok) return storeJson({ ok: false, error: 'forbidden' }, 403);
 
@@ -29,7 +35,9 @@ export default async (req) => {
 
   let payload;
   try {
-    payload = JSON.parse(await req.text());
+    const raw = await req.text();
+    if (raw.length > 30_000) return storeJson({ ok: false, error: 'payload_too_large' }, 413);
+    payload = JSON.parse(raw);
   } catch {
     return storeJson({ ok: false, error: 'invalid_json' }, 400);
   }
@@ -48,18 +56,44 @@ export default async (req) => {
     const context = await callStoreRpc('store_payment_context', { p_reference: reference });
     if (!context?.ok) return storeJson({ ok: false, error: 'not_found' }, 404);
 
-    // Align the DPO payment window with the remaining inventory hold.
+    const provider = context.providerToken || context.attemptStatus === 'unknown'
+      ? context.provider || 'dpo' : configuredPaymentProvider();
+    const adapter = paymentAdapter(provider, context.providerEnvironment);
+    if (!adapter?.enabled) return storeJson({ ok: false, error: 'payment_unavailable' }, 503);
     const holdMsLeft = new Date(context.holdExpiresAt).getTime() - Date.now();
+    if (!context.providerToken && (!Number.isFinite(holdMsLeft) || holdMsLeft <= 0)) {
+      return storeJson({ ok: false, error: 'hold_expired' }, 409);
+    }
+
+    const claimId = randomUUID();
+    const claim = await callStoreRpc('store_begin_payment', {
+      p_reference: reference,
+      p_provider: provider,
+      p_provider_environment: adapter.environment,
+      p_claim_id: claimId,
+    });
+    if (!claim?.ok) return storeJson({ ok: false, error: claim?.error || 'payment_in_progress' }, 409);
+    if (!claim.claimed) {
+      const paymentUrl = claim.paymentUrl || (provider === 'dpo' ? dpoPaymentUrl(claim.providerToken) : null);
+      if (!paymentUrl || (provider === 'pesapal' && !validPesapalPaymentUrl(paymentUrl, claim.providerToken, adapter.environment))) {
+        return storeJson({ ok: false, error: 'payment_unavailable' }, 503);
+      }
+      return storeJson({ ok: true, reference, provider, paymentUrl });
+    }
+
+    // DPO supports a payment time limit; Pesapal's checkout stays subject to
+    // the server's capacity recheck when a later verified payment arrives.
     const ptlMinutes = Math.max(5, Math.floor(holdMsLeft / 60_000));
 
-    const checkout = await createCheckout({
+    const checkout = await adapter.createCheckout({
       reference: context.reference,
       currency: context.currency,
-      totalMinor: Number(context.totalMinor),
+      totalMinor: Number(context.chargeMinor ?? context.totalMinor),
       contactName: context.contactName,
       contactEmail: context.contactEmail,
       contactPhone: context.contactPhone,
       items: context.items,
+      paymentPlan: context.paymentPlan,
     }, { ptlMinutes });
 
     if (!checkout.ok) {
@@ -77,10 +111,14 @@ export default async (req) => {
       p_reference: reference,
       p_provider_token: checkout.transToken,
       p_company_ref: reference,
+      p_provider: provider,
+      p_provider_environment: adapter.environment,
+      p_payment_url: checkout.paymentUrl,
+      p_claim_id: claimId,
     });
     if (!attached?.ok) return storeJson({ ok: false, error: attached?.error || 'attach_failed' }, 409);
 
-    return storeJson({ ok: true, reference, paymentUrl: checkout.paymentUrl });
+    return storeJson({ ok: true, reference, provider, paymentUrl: checkout.paymentUrl });
   } catch (error) {
     await captureFunctionException(error, { functionName: FUNCTION_NAME, req, extra: { stage: 'create-payment' } });
     return storeJson({ ok: false, error: 'payment_unavailable' }, 502);

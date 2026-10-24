@@ -162,6 +162,7 @@ describe('verifyAndSettle pipeline', () => {
       rpc: (fn, args) => {
         calls.push(fn);
         if (fn === 'store_payment_context') return contextRow();
+        if (fn === 'store_mark_payment') return { ok: true };
         if (fn === 'store_finalize_paid_order') return { ok: true, bookings: [{}] };
         if (fn === 'store_mark_payment_ack') {
           expect(args.p_acknowledged).toBe(true);
@@ -175,7 +176,7 @@ describe('verifyAndSettle pipeline', () => {
     });
     const result = await verifyAndSettle(REF);
     expect(result).toEqual({ ok: true, state: 'paid' });
-    expect(calls).toEqual(['store_payment_context', 'store_finalize_paid_order', 'store_mark_payment_ack']);
+    expect(calls).toEqual(['store_payment_context', 'store_mark_payment', 'store_finalize_paid_order', 'store_mark_payment_ack']);
   });
 
   it('flags acknowledgement failure without touching the paid order', async () => {
@@ -184,6 +185,7 @@ describe('verifyAndSettle pipeline', () => {
     stubNetwork({
       rpc: (fn, args) => {
         if (fn === 'store_payment_context') return contextRow();
+        if (fn === 'store_mark_payment') return { ok: true };
         if (fn === 'store_finalize_paid_order') return { ok: true };
         if (fn === 'store_mark_payment_ack') { ackFlag = args.p_acknowledged; return { ok: true }; }
         throw new Error(`unexpected rpc ${fn}`);
@@ -272,6 +274,7 @@ describe('store-pay endpoint', () => {
             items: [{ title: 'Safari Blue', optionName: 'Shared group', guests: 2, date: '2026-08-18', time: '08:30' }],
           };
         }
+        if (fn === 'store_begin_payment') return { ok: true, claimed: true };
         if (fn === 'store_attach_payment') {
           expect(args.p_provider_token).toBe('TRANS-TOKEN-1');
           return { ok: true };
@@ -294,8 +297,9 @@ describe('store-pay endpoint', () => {
       rpc: (fn, args) => {
         if (fn === 'store_api_order') return { ok: true, status: 'pending_payment' };
         if (fn === 'store_payment_context') {
-          return { ok: true, reference: REF, currency: 'USD', totalMinor: 46000, holdExpiresAt: new Date().toISOString(), items: [] };
+          return { ok: true, reference: REF, currency: 'USD', totalMinor: 46000, holdExpiresAt: new Date(Date.now() + 10 * 60_000).toISOString(), items: [] };
         }
+        if (fn === 'store_begin_payment') return { ok: true, claimed: true };
         if (fn === 'store_mark_payment') { marked = args.p_status; return { ok: true }; }
         throw new Error(`unexpected rpc ${fn}`);
       },
@@ -312,7 +316,7 @@ describe('payment return + callback endpoints', () => {
     enablePaymentsEnv();
     stubNetwork({
       rpc: (fn) => {
-        if (fn === 'store_payment_context') return { ok: true, reference: REF, orderStatus: 'paid' };
+        if (fn === 'store_payment_context') return { ok: true, reference: REF, orderStatus: 'paid', providerToken: 'X1' };
         throw new Error(`unexpected rpc ${fn}`);
       },
       dpo: () => { throw new Error('not needed'); },
@@ -338,7 +342,7 @@ describe('payment return + callback endpoints', () => {
           eventCount += 1;
           return { ok: true, new: eventCount === 1 };
         }
-        if (fn === 'store_payment_context') return { ok: true, reference: REF, orderStatus: 'paid' };
+        if (fn === 'store_payment_context') return { ok: true, reference: REF, orderStatus: 'paid', providerToken: 'X1' };
         throw new Error(`unexpected rpc ${fn}`);
       },
       dpo: () => { throw new Error('not needed'); },

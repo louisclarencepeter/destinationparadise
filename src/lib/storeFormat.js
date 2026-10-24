@@ -2,6 +2,14 @@
 // wall-clock values in the store timezone ('YYYY-MM-DD' / 'HH:MM'); we format
 // them as-is and never convert zones in the browser.
 
+// Checkout amounts are charged in USD cents. Marketing currency conversions
+// may round for display; they must never round a payable deposit or balance.
+export function formatStoreMoney(lang, amountUsd) {
+  return new Intl.NumberFormat(lang || 'en', {
+    style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2,
+  }).format(amountUsd);
+}
+
 export function formatTimeLabel(lang, time) {
   const [hour, minute] = time.split(':').map(Number);
   return new Intl.DateTimeFormat(lang, { hour: 'numeric', minute: '2-digit' })
