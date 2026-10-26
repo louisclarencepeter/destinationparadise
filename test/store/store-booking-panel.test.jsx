@@ -163,7 +163,7 @@ beforeEach(() => {
   harness.setStoredGuests.mockReset().mockImplementation((_key, value) => { harness.storedGuests = Number(value); });
   harness.fetchPricing.mockReset().mockResolvedValue(approvedPricing);
   harness.availability = { loading: false, days: Object.fromEntries(
-    ['2026-10-20', '2026-10-28', '2027-02-28'].map((date) => [date, {
+    ['2026-10-20', '2026-10-28', '2028-02-28'].map((date) => [date, {
       date, bookable: true, times: [{ time: '09:00', seats: 10 }],
     }]),
   ) };
@@ -179,11 +179,12 @@ afterEach(() => {
 });
 
 describe('fixed booking calendar horizon', () => {
-  it('navigates across the year and stops at February 2027', async () => {
+  it('navigates across the season and stops at February 2028', async () => {
     let { tree } = await mountPanel();
     let calendar = findElement(tree, (element) => element.type === AvailabilityCalendar);
     expect(calendar.props).toMatchObject({ monthIso: '2026-10', canPrev: false, canNext: true });
-    for (const monthIso of ['2026-11', '2026-12', '2027-01', '2027-02']) {
+    const months = ['2026-11', '2026-12', ...Array.from({ length: 12 }, (_, i) => `2027-${String(i + 1).padStart(2, '0')}`), '2028-01', '2028-02'];
+    for (const monthIso of months) {
       calendar.props.onShiftMonth(1);
       tree = renderPanel();
       calendar = findElement(tree, (element) => element.type === AvailabilityCalendar);
@@ -193,7 +194,7 @@ describe('fixed booking calendar horizon', () => {
     expect(calendar.props.canNext).toBe(false);
     calendar.props.onShiftMonth(-1);
     calendar = findElement(renderPanel(), (element) => element.type === AvailabilityCalendar);
-    expect(calendar.props).toMatchObject({ monthIso: '2027-01', canNext: true });
+    expect(calendar.props).toMatchObject({ monthIso: '2028-01', canNext: true });
     expect(harness.dispatch).not.toHaveBeenCalled();
     expect(harness.navigate).not.toHaveBeenCalled();
   });
@@ -226,32 +227,32 @@ describe('fixed booking calendar horizon', () => {
     expect(findElement(tree, (element) => element.type === AvailabilityCalendar).props.monthIso).toBe('2026-10');
   });
 
-  it('stays on February 2027 when the booking window has no day left', async () => {
-    vi.setSystemTime(new Date('2027-02-28T09:00:00Z'));
+  it('stays on February 2028 when the booking window has no day left', async () => {
+    vi.setSystemTime(new Date('2028-02-28T09:00:00Z'));
     harness.availability = { loading: false, days: {
-      '2027-02-28': { date: '2027-02-28', bookable: false, times: [] },
+      '2028-02-28': { date: '2028-02-28', bookable: false, times: [] },
     } };
     const { tree } = await mountPanel();
     expect(findElement(tree, (element) => element.type === AvailabilityCalendar).props)
-      .toMatchObject({ monthIso: '2027-02', canNext: false });
+      .toMatchObject({ monthIso: '2028-02', canNext: false });
   });
 
   it('restores a saved 28 February departure and updates its original cart line', async () => {
     harness.editId = 'last-day';
     harness.cart.items = [{
       id: 'last-day', experienceId: 'spice-tour', mode: 'shared', guests: 3,
-      date: '2027-02-28', time: '09:00', pickupZone: 'east', accommodation: 'Beach Hotel',
+      date: '2028-02-28', time: '09:00', pickupZone: 'east', accommodation: 'Beach Hotel',
     }];
     const { tree } = await mountPanel();
     const calendar = findElement(tree, (element) => element.type === AvailabilityCalendar);
-    expect(calendar.props).toMatchObject({ monthIso: '2027-02', selectedDate: '2027-02-28', canNext: false });
+    expect(calendar.props).toMatchObject({ monthIso: '2028-02', selectedDate: '2028-02-28', canNext: false });
     expect(findElement(tree, (element) => element.type === PickupFields).props)
       .toMatchObject({ pickupZone: 'east', accommodation: 'Beach Hotel' });
     expect(submit(tree).props.disabled).toBe(false);
     submit(tree).props.onClick();
     expect(harness.dispatch).toHaveBeenCalledWith({
       type: 'update', id: 'last-day', patch: expect.objectContaining({
-        guests: 3, date: '2027-02-28', time: '09:00', pickupZone: 'east', accommodation: 'Beach Hotel',
+        guests: 3, date: '2028-02-28', time: '09:00', pickupZone: 'east', accommodation: 'Beach Hotel',
       }),
     });
     expect(harness.navigate).toHaveBeenCalledWith('/excursions/spice-tour#book', { replace: true });
@@ -428,7 +429,7 @@ describe('group and pickup booking panel', () => {
   });
 
   it.each([
-    ['2026-10-01', true], ['2026-09-30', false], ['2027-03-01', false],
+    ['2026-10-01', true], ['2026-09-30', false], ['2028-03-01', false],
   ])('uses server bookability for %s while enforcing the fixed date range', async (date, allowed) => {
     let { tree } = await mountPanel();
     tree = pickup(tree);

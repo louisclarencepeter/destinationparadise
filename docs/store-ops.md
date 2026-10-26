@@ -34,10 +34,10 @@ Ground rules:
 
 ## Inventory
 
-**Extend every configured schedule through 28 February 2027:**
+**Extend every configured schedule through 28 February 2028:**
 
-The online calendar's inclusive final date is `2027-02-28`. Run the reviewed
-[February extension script](../supabase/extend_departures_through_february_2027.sql)
+The online calendar's inclusive final date is `2028-02-28`. Run the reviewed
+[February 2028 extension script](../supabase/extend_departures_through_february_2028.sql)
 in the project SQL editor when the extension is approved. It uses Zanzibar's
 current date and the existing active departure templates, times, capacities,
 durations and booking cutoffs. It adds missing departures from tomorrow through
@@ -47,7 +47,9 @@ and can be rerun without duplicates. It does nothing after the final date.
 On 1 October 2026, after explicit approval, the extension added 150 days per
 time, or 1,050 departures across the seven configured daily times for Safari
 Blue, Spice Tour and Stone Town. Inventory now ends on 28 February 2027;
-all pre-existing departures were verified unchanged. Other trips
+all pre-existing departures were verified unchanged. The calendar now runs
+to 28 February 2028; until the 2028 script is approved and run, live dates past
+28 February 2027 only fill in as the weekly 60-day top-up reaches them. Other trips
 remain date enquiries until a supplier-confirmed schedule is configured.
 Approved group and pickup prices are still required before online payment.
 Do not rerun `supabase/seed.sql` to extend dates, because it also rewrites

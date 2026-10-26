@@ -13,7 +13,7 @@
 import { getCartExperience, getInstantExperience } from '../data/commerceCatalog.js';
 import { calculateGroupPickupPrice, pickupFields } from './storePricing.js';
 
-export const BOOKING_END_DATE = '2027-02-28';
+export const BOOKING_END_DATE = '2028-02-28';
 export const ORDER_SESSION_KEY = 'dp_store_last_order_v1';
 export const ORDER_CREDENTIALS_KEY = 'dp_store_order_credentials_v1';
 const IDEMPOTENCY_KEY = 'dp_store_checkout_idem_v1';
