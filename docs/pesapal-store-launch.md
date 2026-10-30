@@ -394,6 +394,9 @@ registration. Do not reuse the invoicing listener's ID.
 
 ## Required journey checks before production activation
 
+The [go-live checklist](store-go-live-checklist.md) tracks these checks with
+the remaining business, Pesapal and production steps, in release order.
+
 1. Catalog and availability return approved, current departures; quotes match
    displayed prices. No fixture data may authorize a live charge.
 2. A sandbox checkout sends exactly the displayed 20% deposit to Pesapal and
