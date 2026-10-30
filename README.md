@@ -65,7 +65,9 @@ First run locally: `npx playwright install chromium`.
 
 Store setup, the 20% deposit model, and remaining launch checks are documented in
 [docs/pesapal-store-launch.md](docs/pesapal-store-launch.md). Payment credentials
-and database service keys belong in server environment variables only.
+and database service keys belong in server environment variables only. What is
+still left before production is tracked in
+[docs/store-go-live-checklist.md](docs/store-go-live-checklist.md).
 
 Set this on Netlify:
 
