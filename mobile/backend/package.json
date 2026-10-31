@@ -13,6 +13,6 @@
   },
   "devDependencies": {
     "@netlify/dev-utils": "6.0.1",
-    "@netlify/zip-it-and-ship-it": "15.5.1"
+    "@netlify/zip-it-and-ship-it": "16.6.0"
   }
 }
