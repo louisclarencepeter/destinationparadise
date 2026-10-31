@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useReducer } from 'react';
+import { useEffect, useMemo, useReducer, useState } from 'react';
 import {
   CART_STORAGE_KEY,
   cartReducer,
@@ -22,6 +22,13 @@ function initCartState(base) {
 // are always re-derived by the components that render the cart.
 export function BookingCartProvider({ children }) {
   const [state, dispatch] = useReducer(cartReducer, initialCartState, initCartState);
+  // Keep contact fields during shopping/editing in this page session only.
+  // They are deliberately excluded from the persisted cart and clear with it.
+  const [checkoutContact, setCheckoutContact] = useState({ name: '', email: '', phone: '' });
+
+  useEffect(() => {
+    if (state.items.length === 0) setCheckoutContact({ name: '', email: '', phone: '' });
+  }, [state.items.length]);
 
   useEffect(() => {
     try {
@@ -31,7 +38,7 @@ export function BookingCartProvider({ children }) {
     }
   }, [state]);
 
-  const value = useMemo(() => ({ state, dispatch }), [state]);
+  const value = useMemo(() => ({ state, dispatch, checkoutContact, setCheckoutContact }), [state, checkoutContact]);
 
   return <BookingCartContext.Provider value={value}>{children}</BookingCartContext.Provider>;
 }

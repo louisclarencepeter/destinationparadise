@@ -9,7 +9,7 @@
     "title_em": "{{count}}+ niezapomnianych tras.",
     "lead": "Zamień resortową rutynę na prawdziwy Zanzibar: popłyń tradycyjnym dhow, przejdź Stone Town z lokalnym przewodnikiem, zanurkuj przy rafach Mnemba, spróbuj kitesurfingu w Paje albo dołącz do festiwalu w Stone Town.",
     "tags_aria": "Najważniejsze cechy wycieczek",
-    "tag_hotel_pickup": "Odbiór z hotelu w cenie",
+    "tag_hotel_pickup": "Dostępny odbiór z hotelu",
     "tag_private": "Dostępne opcje prywatne",
     "tag_local_guides": "Lokalni przewodnicy",
     "browse_all": "Zobacz wycieczki",
@@ -52,7 +52,7 @@
       "included": {
         "heading": "Co zawsze w cenie",
         "items": [
-          "Odbiór i odwóz do hotelu",
+          "Odbiór i odwóz do hotelu (Safari Blue, Spice Tour i Historical City Tour: ewentualna dopłata za region jest widoczna przed płatnością)",
           "Licencjonowany lokalny przewodnik",
           "Woda butelkowana przez cały dzień",
           "Wszystkie opłaty parkowe i wstępy",
@@ -82,7 +82,7 @@
         "items": [
           "Rezerwuj minimum 48 godzin wcześniej",
           "20% zaliczki, reszta w dniu wycieczki",
-          "Bezpłatna anulacja do 24 godzin przed",
+          "Bezpłatne anulowanie ponad 48 godz. wcześniej",
           "Akceptujemy USD, EUR, GBP i TZS"
         ]
       }
@@ -125,7 +125,9 @@
     "practical": {
       "included": {
         "heading": "Zawsze w cenie",
-        "items": ["Odbiór i dowóz z hotelu", "Licencjonowany lokalny przewodnik", "Woda butelkowana przez cały dzień", "Wszystkie opłaty parkowe i wstępu", "Sprzęt zapewniony"]
+        "items": ["Odbiór i dowóz z hotelu", "Licencjonowany lokalny przewodnik", "Woda butelkowana przez cały dzień", "Wszystkie opłaty parkowe i wstępu", "Sprzęt zapewniony"],
+        "pilot_heading": "Wycieczka i transport",
+        "pilot_pickup": "Odbiór i odwóz do hotelu: ewentualna dopłata zależy od regionu i jest pokazana osobno przed płatnością."
       },
       "not_included": {
         "heading": "Nie wliczono",
@@ -133,13 +135,14 @@
       },
       "booking": {
         "heading": "Rezerwacja i płatność",
-        "items": ["Rezerwuj co najmniej 48 godzin wcześniej", "20% zaliczki, reszta w dniu wycieczki", "Bezpłatna anulacja do 24 godz. przed", "USD, EUR, GBP, TZS — wszystkie akceptowane"]
+        "items": ["Rezerwuj co najmniej 48 godzin wcześniej", "20% zaliczki, reszta w dniu wycieczki", "Bezpłatne anulowanie ponad 48 godz. wcześniej", "USD, EUR, GBP, TZS — wszystkie akceptowane"]
       }
     },
     "cta": {
       "title": "Gotowi zarezerwować {{title}}?",
       "text": "Podaj daty, a my wrócimy w 24 godziny z dostępnymi godzinami odbioru i finalną ceną — bez zobowiązań."
-    }
+    },
+    "pilot_price_note": "Orientacyjna cena od. Ostateczna cena grupowa i ewentualna dopłata za odbiór za samochód są widoczne przed płatnością."
   },
   "combination": {
     "meta_title": "{{title}} · Pakiet wycieczek · Destination Paradise",
@@ -208,7 +211,7 @@
       },
       "pickup": {
         "q": "Czy odbieracie z północy i wschodu wyspy?",
-        "a": "Tak – odbiór z Nungwi, Kendwy, Matemwe, Kiwengwy, Pongwe, Paje i Bwejuu jest w cenie. Doliczaj 30–60 minut w jedną stronę."
+        "a": "Tak – odbiór z Nungwi, Kendwy, Matemwe, Kiwengwy, Pongwe, Paje i Bwejuu jest w cenie naszych pozostałych wycieczek. W przypadku Safari Blue, Spice Tour i Historical City Tour ewentualna dopłata zależy od regionu odbioru i jest wyceniana za samochód przed płatnością. Doliczaj 30–60 minut w jedną stronę."
       },
       "ramadan": {
         "q": "Czy w Ramadanie wszystko działa?",

@@ -84,7 +84,7 @@
       },
       "popular": ["Flughafentransfer", "Safari Blue", "Flitterwochen-Paket", "Serengeti", "Stone Town", "Paje"],
       "pages": {
-        "store": { "title": "Erlebnis-Shop", "description": "Ausgewählte Ausflüge sofort buchen, mehrere Erlebnisse kombinieren und einmal bezahlen." },
+        "store": { "title": "Erlebnis-Shop", "description": "Buche ausgewählte Ausflüge sofort mit einer gemeinsamen Anzahlung von 20%; die restlichen 80% sind am Tag des jeweiligen Erlebnisses fällig." },
         "home": { "title": "Startseite", "description": "Der Einstieg für Sansibar-Reisen, Safaris, Pakete, Transfers, Wetter und Reiseplanung." },
         "excursions": { "title": "Ausflüge", "description": "Entdecke Tagesausflüge auf Sansibar: Dhaus, Stone Town, Gewürzfarmen, Schnorcheln, Delfine und Naturtouren." },
         "safaris": { "title": "Safaris", "description": "Wildtierrouten auf dem Festland durch Serengeti, Ngorongoro, Tarangire, Nyerere, Ruaha und weitere Parks." },

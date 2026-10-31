@@ -90,6 +90,12 @@ describe('store input validation', () => {
     }
   });
 
+  it('refuses non-instant catalogue listings before reaching the database', () => {
+    for (const experienceId of ['jozani', 'prison-island', 'northern-safari', 'unknown-trip']) {
+      expect(parseStoreItems([validItem({ experienceId })])).toEqual({ ok: false, error: 'not_instant_bookable' });
+    }
+  });
+
   it('validates references, tokens and idempotency keys strictly', () => {
     expect(parseOrderReference('DP-2026-123456')).toBe('DP-2026-123456');
     expect(parseOrderReference('DP-2026-1234')).toBeNull();
@@ -205,9 +211,22 @@ describe('store-dev-pay endpoint', () => {
     expect(res.status).toBe(404);
   });
 
+  it.each([undefined, '', 'production', 'preview'])('rejects simulation before any RPC when runtime is %s', async (runtime) => {
+    enableStoreEnv();
+    vi.stubEnv('STORE_DEV_FAKE_PAYMENT', 'true');
+    vi.stubEnv('STORE_RUNTIME_ENVIRONMENT', runtime);
+    vi.stubEnv('CONTEXT', 'branch-deploy');
+    const fetchFn = vi.fn();
+    vi.stubGlobal('fetch', fetchFn);
+    const res = await storeDevPay(jsonRequest('/api/store/dev-pay', { reference: 'DP-2026-123456', token: 'a'.repeat(48) }));
+    expect(res.status).toBe(404);
+    expect(fetchFn).not.toHaveBeenCalled();
+  });
+
   it('requires the order token before finalizing', async () => {
     enableStoreEnv();
     vi.stubEnv('STORE_DEV_FAKE_PAYMENT', 'true');
+    vi.stubEnv('STORE_RUNTIME_ENVIRONMENT', 'development');
     const calls = [];
     stubRpcFetch((fnName) => {
       calls.push(fnName);
@@ -219,9 +238,10 @@ describe('store-dev-pay endpoint', () => {
     expect(calls).toEqual(['store_api_order']);
   });
 
-  it('finalizes and returns the refreshed order when authorized', async () => {
+  it.each(['staging', 'development'])('finalizes and returns the refreshed order when authorized in %s', async (runtime) => {
     enableStoreEnv();
     vi.stubEnv('STORE_DEV_FAKE_PAYMENT', 'true');
+    vi.stubEnv('STORE_RUNTIME_ENVIRONMENT', runtime);
     let orderReads = 0;
     stubRpcFetch((fnName) => {
       if (fnName === 'store_api_order') {
@@ -266,5 +286,16 @@ describe('parseRequestItems (Phase 5)', () => {
     expect(parseRequestItems([
       { id: 'x', experienceId: 'spice-tour', mode: 'shared', guests: 2 },
     ]).ok).toBe(false);
+  });
+
+  it('keeps Coming Soon listings out of request carts and enquiry products out of paid riders', async () => {
+    const { parseRequestItems } = await import('../../netlify/functions/_store_shared.mjs');
+    expect(parseRequestItems([
+      { id: 'r1', experienceId: 'jozani', mode: 'request', guests: 2, requestedDates: 'May' },
+    ])).toEqual({ ok: false, error: 'not_requestable' });
+    expect(parseRequestItems([
+      { id: 'r1', experienceId: 'prison-island', mode: 'request', guests: 2 },
+      { id: 'i1', experienceId: 'prison-island', mode: 'shared', guests: 2, date: '2026-08-18', time: '09:00' },
+    ])).toEqual({ ok: false, error: 'not_instant_bookable' });
   });
 });
