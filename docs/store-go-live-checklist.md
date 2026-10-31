@@ -88,9 +88,11 @@ is set up.
   `(provider, provider_token)`. Before it goes on, look for duplicate pairs and
   resolve each against its real payment. Never delete rows to get past it.
 - [ ] **3.2 Load the approved prices.** Put the prices from 1.1 into
-  `store_option_group_prices` and `store_option_pickup_prices`, in US cents
-  (`amount_minor`). A zero pickup row means pickup is included. With no row,
-  the guest is asked to request a quote.
+  `store_option_group_prices` and `store_option_pickup_prices` with
+  [`supabase/load_group_pickup_rates.sql`](../supabase/load_group_pickup_rates.sql):
+  enter the amounts in US dollars, do a dry run, then save. A zero pickup
+  charge means pickup is included. With no row, the guest is asked to request a
+  quote.
 - [ ] **3.3 Run the 2028 date extension.** Once 1.4 is approved, run the script
   in the Supabase SQL editor. It is safe to rerun, and existing departures stay
   unchanged.
