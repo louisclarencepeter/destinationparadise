@@ -62,6 +62,14 @@ explicitly. A zero pickup row means included pickup; an absent or inactive row
 means quote required. Inactive group rows also require a quote. Only service-role
 operations can write these tables; guests cannot supply or change prices.
 
+To load or change approved rates, use
+[`supabase/load_group_pickup_rates.sql`](supabase/load_group_pickup_rates.sql) in
+the Supabase SQL editor. Enter the amounts in US dollars and run it once as a dry
+run, which saves nothing and lists what it would store. Then set `dry_run` to
+false and run it again. It refuses incomplete, negative or sub-cent amounts and
+flags a larger group costing less than a smaller one, or a private group costing
+less than the shared one.
+
 The public catalog exposes configured maps. Quote and checkout independently
 check them again, and the order stores the exact group price, pickup amount,
 hotel, zone and readable pickup summary. Staff and guest email amounts come from
