@@ -1,7 +1,8 @@
 # Group and pickup rate setup
 
-The new automatic-price flow is prepared locally. Monetary rates are not yet
-approved or configured. Do not use the synthetic test prices as merchant prices.
+The new automatic-price flow is prepared locally. Rates were agreed on
+31 October 2026 (below) and are not yet loaded into the store database. Do not
+use the synthetic test prices as merchant prices.
 
 The pilot products are Safari Blue (`safari-blue`), Spice Tour (`spice-tour`) and
 Historical City Tour (`stone-town`). Each shared/private option has its own
@@ -19,33 +20,52 @@ Guests must choose an area and give their accommodation; Stone Town is never
 assumed. Old saved carts keep their items and ask for missing pickup details
 before a new payment. Existing orders retain their original amounts and plans.
 
-## Business inputs
+## Agreed rates — 31 October 2026
 
-Complete this for **each excursion and each shared/private option**. Give total
-USD prices for the group, not per-person prices. Clarify any exclusions or child
-pricing before activating a combination; the current engine counts passengers
-equally and has no child-rate rule.
+Whole-group totals in USD for **each excursion and each shared/private option**,
+not per-person prices. Shared options keep the published per-person prices
+(USD 95, 45 and 25 per seat). Private options follow group-size discounts seen
+in the market. Safari Blue private is Safari Blue Ltd's own charter rate (USD 550
+for 2, plus USD 85 per extra guest) plus about 15%.
 
-| Passengers | Whole-group excursion total, USD |
-| --- | --- |
-| 1 | Awaiting merchant rate |
-| 2 | Awaiting merchant rate |
-| 3 | Awaiting merchant rate |
-| 4 | Awaiting merchant rate |
-| 5 | Awaiting merchant rate |
-| 6 | Awaiting merchant rate |
+| Option | 1 | 2 | 3 | 4 | 5 | 6 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Safari Blue, shared | 95 | 190 | 285 | 380 | 475 | 570 |
+| Safari Blue, private | 640 | 640 | 740 | 840 | 940 | 1040 |
+| Spice Tour, shared | 45 | 90 | 135 | 180 | 225 | 270 |
+| Spice Tour, private | 90 | 130 | 165 | 200 | 235 | 270 |
+| Historical City Tour, shared | 25 | 50 | 75 | 100 | 125 | 150 |
+| Historical City Tour, private | 50 | 70 | 90 | 110 | 130 | 150 |
 
-| Pickup area | Supplement for one car, USD |
-| --- | --- |
-| Stone Town | Awaiting merchant rate; explicitly use 0 if included |
-| North coast | Awaiting merchant rate |
-| East coast | Awaiting merchant rate |
-| South coast | Awaiting merchant rate |
+Pickup is charged once per car in USD, the same for shared and private. Each
+charge covers the car to the start and back to the hotel. Stone Town pickup is
+included (0) for all three; Safari Blue's other areas cost more because it leaves
+from Fumba, beyond Stone Town.
 
-Confirm the geographical coverage and whether the agreed supplement includes
-return transport. Unclear locations should use the other/not-sure option and
-receive a quote. No automatic upper-price threshold has been agreed; the current
-quote rule is based on passengers, pickup eligibility and approved configuration.
+| Excursion | Stone Town | North coast | East coast | South coast |
+| --- | --- | --- | --- | --- |
+| Safari Blue | 0 | 110 | 100 | 80 |
+| Spice Tour | 0 | 80 | 80 | 70 |
+| Historical City Tour | 0 | 80 | 80 | 70 |
+
+For example, Safari Blue shared for 2 guests from the north coast is 190 + 110 =
+USD 300: a USD 60 deposit online and USD 240 on the day.
+
+Still open before activation:
+
+- **Child pricing.** Not decided. The engine counts every passenger equally and
+  has no child-rate rule, so online prices treat children as full guests.
+  Safari Blue Ltd charges USD 45 for ages 6–14.
+- **Coverage.** Confirm which locations each pickup area covers. Unclear
+  locations should use the other/not-sure option and receive a quote.
+
+No automatic upper-price threshold has been agreed; the current quote rule is
+based on passengers, pickup eligibility and approved configuration.
+
+These rates are not in the store database yet. A dry run of
+[`supabase/load_group_pickup_rates.sql`](supabase/load_group_pickup_rates.sql)
+with these amounts passed on a scratch database built from the migrations and
+seed. It has not been run on the store database.
 
 ## Storage and activation
 
