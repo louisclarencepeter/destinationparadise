@@ -35,10 +35,10 @@ jobs:
         run: npm ci
 
       - name: Audit dependencies
-        # Low-severity advisories without a non-breaking fix (e.g. deepmerge via
-        # vite-plugin-pwa's build tooling) should not block every PR; moderate
-        # and above still fail.
-        run: npm audit --audit-level=moderate
+        # Moderate and above fail, except advisories reviewed and listed in the
+        # script because no fix fits the versions our dependencies accept.
+        # Low-severity advisories (e.g. deepmerge via vite-plugin-pwa) pass.
+        run: node scripts/audit-dependencies.mjs
 
       - name: Lint
         run: npm run lint
