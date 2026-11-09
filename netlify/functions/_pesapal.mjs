@@ -88,6 +88,27 @@ export function validPesapalPaymentUrl(value, trackingId, environment = pesapalE
   } catch { return false; }
 }
 
+// Pesapal's API3 sandbox (November 2026) rejects SubmitOrderRequest unless
+// first, middle and last name and the address lines are all non-empty and use
+// only letters, digits, dashes, underscores, dots and colons. The guest still
+// enters card holder details on Pesapal's own form; these fields only label
+// the order there.
+const PESAPAL_NAME_UNSAFE = /[^A-Za-z0-9._:-]+/g;
+const PESAPAL_BILLING_PLACE = {
+  line_1: 'Zanzibar', line_2: 'Zanzibar', city: 'Zanzibar', state: 'Zanzibar', postal_code: '00000',
+};
+
+function pesapalNamePart(value) {
+  return String(value).normalize('NFKD').replace(/[\u0300-\u036f]/g, '').replace(PESAPAL_NAME_UNSAFE, '');
+}
+
+export function pesapalBillingNames(contactName) {
+  const parts = String(contactName || '').trim().split(/\s+/).map(pesapalNamePart).filter(Boolean);
+  const first = parts.shift() || 'Guest';
+  const last = parts.pop() || first;
+  return { first_name: first, middle_name: parts.join('-') || '-', last_name: last };
+}
+
 export function buildPesapalOrder(order) {
   const exponent = CURRENCY_EXPONENT[order.currency];
   if (exponent === undefined || !Number.isSafeInteger(order.totalMinor) || order.totalMinor <= 0) {
@@ -101,7 +122,6 @@ export function buildPesapalOrder(order) {
     throw new Error('Invalid store public origin');
   }
   const publicOrigin = originUrl.origin;
-  const names = String(order.contactName || '').trim().split(/\s+/);
   const callback = `${publicOrigin}/api/payments/pesapal/return?reference=${encodeURIComponent(order.reference)}`;
   return {
     id: order.reference,
@@ -115,8 +135,8 @@ export function buildPesapalOrder(order) {
     billing_address: {
       email_address: order.contactEmail || '',
       phone_number: order.contactPhone || '',
-      first_name: names.shift() || 'Guest',
-      last_name: names.join(' '),
+      ...pesapalBillingNames(order.contactName),
+      ...PESAPAL_BILLING_PLACE,
     },
   };
 }
