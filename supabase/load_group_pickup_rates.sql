@@ -2,9 +2,11 @@
 -- (STORE_GROUP_PICKUP_RATES.md). Run only on the approved store database, in
 -- the Supabase SQL editor, after the rates are approved in writing.
 --
--- 1. Replace every null below with the approved amount in US dollars, e.g.
---    135.00. Group amounts are the total for the whole group, not per person.
---    A pickup amount of 0.00 means pickup is included in that area.
+-- 1. The amounts below are the rates agreed on 31 October 2026 and rechecked
+--    against market prices on 9 November 2026, in US dollars. Group amounts
+--    are the total for the whole group, not per person. A pickup amount of
+--    0.00 means pickup is included in that area. To change a rate, edit it
+--    here and in STORE_GROUP_PICKUP_RATES.md.
 -- 2. Run the complete file with dry_run true (the default). Nothing is saved:
 --    the script stops with an error message listing exactly what it would
 --    store, plus any amounts worth a second look.
@@ -32,77 +34,77 @@ begin
   ) on commit drop;
   insert into dp_group_rates values
     -- Safari Blue, shared group: whole-group total for 1 to 6 guests
-    ('safari-blue', 'shared',  1, null),
-    ('safari-blue', 'shared',  2, null),
-    ('safari-blue', 'shared',  3, null),
-    ('safari-blue', 'shared',  4, null),
-    ('safari-blue', 'shared',  5, null),
-    ('safari-blue', 'shared',  6, null),
+    ('safari-blue', 'shared',  1, 95.00),
+    ('safari-blue', 'shared',  2, 190.00),
+    ('safari-blue', 'shared',  3, 285.00),
+    ('safari-blue', 'shared',  4, 380.00),
+    ('safari-blue', 'shared',  5, 475.00),
+    ('safari-blue', 'shared',  6, 570.00),
     -- Safari Blue, private group
-    ('safari-blue', 'private', 1, null),
-    ('safari-blue', 'private', 2, null),
-    ('safari-blue', 'private', 3, null),
-    ('safari-blue', 'private', 4, null),
-    ('safari-blue', 'private', 5, null),
-    ('safari-blue', 'private', 6, null),
+    ('safari-blue', 'private', 1, 640.00),
+    ('safari-blue', 'private', 2, 640.00),
+    ('safari-blue', 'private', 3, 740.00),
+    ('safari-blue', 'private', 4, 840.00),
+    ('safari-blue', 'private', 5, 940.00),
+    ('safari-blue', 'private', 6, 1040.00),
     -- Spice Tour, shared group
-    ('spice-tour',  'shared',  1, null),
-    ('spice-tour',  'shared',  2, null),
-    ('spice-tour',  'shared',  3, null),
-    ('spice-tour',  'shared',  4, null),
-    ('spice-tour',  'shared',  5, null),
-    ('spice-tour',  'shared',  6, null),
+    ('spice-tour',  'shared',  1, 45.00),
+    ('spice-tour',  'shared',  2, 90.00),
+    ('spice-tour',  'shared',  3, 135.00),
+    ('spice-tour',  'shared',  4, 180.00),
+    ('spice-tour',  'shared',  5, 225.00),
+    ('spice-tour',  'shared',  6, 270.00),
     -- Spice Tour, private group
-    ('spice-tour',  'private', 1, null),
-    ('spice-tour',  'private', 2, null),
-    ('spice-tour',  'private', 3, null),
-    ('spice-tour',  'private', 4, null),
-    ('spice-tour',  'private', 5, null),
-    ('spice-tour',  'private', 6, null),
+    ('spice-tour',  'private', 1, 90.00),
+    ('spice-tour',  'private', 2, 130.00),
+    ('spice-tour',  'private', 3, 165.00),
+    ('spice-tour',  'private', 4, 200.00),
+    ('spice-tour',  'private', 5, 235.00),
+    ('spice-tour',  'private', 6, 270.00),
     -- Historical City Tour, shared group
-    ('stone-town',  'shared',  1, null),
-    ('stone-town',  'shared',  2, null),
-    ('stone-town',  'shared',  3, null),
-    ('stone-town',  'shared',  4, null),
-    ('stone-town',  'shared',  5, null),
-    ('stone-town',  'shared',  6, null),
+    ('stone-town',  'shared',  1, 25.00),
+    ('stone-town',  'shared',  2, 50.00),
+    ('stone-town',  'shared',  3, 75.00),
+    ('stone-town',  'shared',  4, 100.00),
+    ('stone-town',  'shared',  5, 125.00),
+    ('stone-town',  'shared',  6, 150.00),
     -- Historical City Tour, private group
-    ('stone-town',  'private', 1, null),
-    ('stone-town',  'private', 2, null),
-    ('stone-town',  'private', 3, null),
-    ('stone-town',  'private', 4, null),
-    ('stone-town',  'private', 5, null),
-    ('stone-town',  'private', 6, null);
+    ('stone-town',  'private', 1, 50.00),
+    ('stone-town',  'private', 2, 70.00),
+    ('stone-town',  'private', 3, 90.00),
+    ('stone-town',  'private', 4, 110.00),
+    ('stone-town',  'private', 5, 130.00),
+    ('stone-town',  'private', 6, 150.00);
 
   create temporary table dp_pickup_rates (
     source_key text, option_code text, zone_code text, amount_usd numeric
   ) on commit drop;
   insert into dp_pickup_rates values
     -- Charge per car for each pickup area; 0.00 means pickup is included
-    ('safari-blue', 'shared',  'stone-town', null),
-    ('safari-blue', 'shared',  'north',      null),
-    ('safari-blue', 'shared',  'east',       null),
-    ('safari-blue', 'shared',  'south',      null),
-    ('safari-blue', 'private', 'stone-town', null),
-    ('safari-blue', 'private', 'north',      null),
-    ('safari-blue', 'private', 'east',       null),
-    ('safari-blue', 'private', 'south',      null),
-    ('spice-tour',  'shared',  'stone-town', null),
-    ('spice-tour',  'shared',  'north',      null),
-    ('spice-tour',  'shared',  'east',       null),
-    ('spice-tour',  'shared',  'south',      null),
-    ('spice-tour',  'private', 'stone-town', null),
-    ('spice-tour',  'private', 'north',      null),
-    ('spice-tour',  'private', 'east',       null),
-    ('spice-tour',  'private', 'south',      null),
-    ('stone-town',  'shared',  'stone-town', null),
-    ('stone-town',  'shared',  'north',      null),
-    ('stone-town',  'shared',  'east',       null),
-    ('stone-town',  'shared',  'south',      null),
-    ('stone-town',  'private', 'stone-town', null),
-    ('stone-town',  'private', 'north',      null),
-    ('stone-town',  'private', 'east',       null),
-    ('stone-town',  'private', 'south',      null);
+    ('safari-blue', 'shared',  'stone-town', 0.00),
+    ('safari-blue', 'shared',  'north',      110.00),
+    ('safari-blue', 'shared',  'east',       100.00),
+    ('safari-blue', 'shared',  'south',      80.00),
+    ('safari-blue', 'private', 'stone-town', 0.00),
+    ('safari-blue', 'private', 'north',      110.00),
+    ('safari-blue', 'private', 'east',       100.00),
+    ('safari-blue', 'private', 'south',      80.00),
+    ('spice-tour',  'shared',  'stone-town', 0.00),
+    ('spice-tour',  'shared',  'north',      80.00),
+    ('spice-tour',  'shared',  'east',       80.00),
+    ('spice-tour',  'shared',  'south',      70.00),
+    ('spice-tour',  'private', 'stone-town', 0.00),
+    ('spice-tour',  'private', 'north',      80.00),
+    ('spice-tour',  'private', 'east',       80.00),
+    ('spice-tour',  'private', 'south',      70.00),
+    ('stone-town',  'shared',  'stone-town', 0.00),
+    ('stone-town',  'shared',  'north',      80.00),
+    ('stone-town',  'shared',  'east',       80.00),
+    ('stone-town',  'shared',  'south',      70.00),
+    ('stone-town',  'private', 'stone-town', 0.00),
+    ('stone-town',  'private', 'north',      80.00),
+    ('stone-town',  'private', 'east',       80.00),
+    ('stone-town',  'private', 'south',      70.00);
 
   -- ---------------------------------------------------------------------------
   -- Nothing below needs editing.

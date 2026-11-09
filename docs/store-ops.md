@@ -44,6 +44,45 @@ durations and booking cutoffs. It adds missing departures from tomorrow through
 the final date, preserves existing departures (including closed/cancelled ones),
 and can be rerun without duplicates. It does nothing after the final date.
 
+**Preview the 2028 extension** (read-only; run it before the script):
+
+```sql
+with window_days as (
+  select generate_series(
+    (now() at time zone 'Africa/Dar_es_Salaam')::date + 1, date '2028-02-28', interval '1 day'
+  )::date as local_date
+)
+select e.title as trip,
+  count(*) as new_departures,
+  min(w.local_date) as first_new_date,
+  max(w.local_date) as last_new_date,
+  string_agg(distinct t.local_time || ' (' || t.capacity_total || ' seats)', ', ') as daily_times
+from store_departure_templates t
+join store_experiences e on e.id = t.experience_id and e.status = 'active'
+cross join window_days w
+where t.active
+  and not exists (
+    select 1 from store_departures d
+    where d.experience_id = t.experience_id
+      and d.local_date = w.local_date and d.local_time = t.local_time)
+group by e.title
+order by e.title;
+```
+
+It lists, per trip, the departures the script would add, using the same rules:
+active schedules from tomorrow (Zanzibar time) to 2028-02-28, skipping slots that
+already exist. With inventory ending on 28 February 2027 and the seven seeded
+daily times, it shows 2,555 departures from 1 March 2027: 730 for Safari Blue,
+730 for Spice Tour and 1,095 for the Historical City Tour. Run the script only if
+the times and seats match the supplier-confirmed schedule. Afterwards the preview
+returns no rows.
+
+On 2 November 2026 the preview and the script were tested together on a scratch
+database built from the migrations, the seed and the February 2027 extension, with
+one closed and one cancelled departure. The preview predicted 2,555 rows, and the
+script added exactly 2,555. Both non-scheduled departures stayed unchanged, and
+a second run added none.
+
 On 1 October 2026, after explicit approval, the extension added 150 days per
 time, or 1,050 departures across the seven configured daily times for Safari
 Blue, Spice Tour and Stone Town. Inventory now ends on 28 February 2027;
