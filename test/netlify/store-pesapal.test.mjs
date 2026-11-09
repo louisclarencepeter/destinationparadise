@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import {
-  buildPesapalOrder, createCheckout, mapPesapalStatus, pesapalAmountToMinor,
+  buildPesapalOrder, createCheckout, pesapalBillingNames, mapPesapalStatus, pesapalAmountToMinor,
   pesapalEnabled, validPesapalPaymentUrl, verifyPayment,
 } from '../../netlify/functions/_pesapal.mjs';
 import { verifyAndSettle } from '../../netlify/functions/_store_payments.mjs';
@@ -158,8 +158,23 @@ describe('Pesapal API3 adapter', () => {
     expect(order.notification_id).toBe(IPN_ID);
     expect(order.callback_url).toBe(`${ORIGIN}/api/payments/pesapal/return?reference=${REF}`);
     expect(order.cancellation_url).toBe(order.callback_url);
-    expect(order.billing_address).toEqual({ email_address: 'jane@example.com', phone_number: '+255700000001', first_name: 'Jane', last_name: 'Guest' });
+    expect(order.billing_address).toEqual({
+      email_address: 'jane@example.com', phone_number: '+255700000001',
+      first_name: 'Jane', middle_name: '-', last_name: 'Guest',
+      line_1: 'Zanzibar', line_2: 'Zanzibar', city: 'Zanzibar', state: 'Zanzibar', postal_code: '00000',
+    });
+    expect(order.billing_address).not.toHaveProperty('country_code');
     expect(() => buildPesapalOrder({ totalMinor: 50, currency: 'XXX' })).toThrow();
+  });
+
+  it('sends non-empty billing names using only characters Pesapal accepts', () => {
+    expect(pesapalBillingNames('QA Sandbox Test')).toEqual({ first_name: 'QA', middle_name: 'Sandbox', last_name: 'Test' });
+    expect(pesapalBillingNames('Anna Maria van der Berg')).toEqual({ first_name: 'Anna', middle_name: 'Maria-van-der', last_name: 'Berg' });
+    expect(pesapalBillingNames('Zoë  O’Brien')).toEqual({ first_name: 'Zoe', middle_name: '-', last_name: 'OBrien' });
+    expect(pesapalBillingNames('Jane & Joe Traveller')).toEqual({ first_name: 'Jane', middle_name: 'Joe', last_name: 'Traveller' });
+    expect(pesapalBillingNames('Madonna')).toEqual({ first_name: 'Madonna', middle_name: '-', last_name: 'Madonna' });
+    expect(pesapalBillingNames('李雷')).toEqual({ first_name: 'Guest', middle_name: '-', last_name: 'Guest' });
+    expect(pesapalBillingNames('')).toEqual({ first_name: 'Guest', middle_name: '-', last_name: 'Guest' });
   });
 
   it('submits JSON with server bearer and accepts only the matching hosted URL', async () => {

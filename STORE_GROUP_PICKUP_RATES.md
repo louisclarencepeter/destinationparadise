@@ -51,6 +51,30 @@ from Fumba, beyond Stone Town.
 For example, Safari Blue shared for 2 guests from the north coast is 190 + 110 =
 USD 300: a USD 60 deposit online and USD 240 on the day.
 
+## Market check — 9 November 2026
+
+The agreed rates were rechecked against public listings for the same
+experiences. These are third-party and operator listings, often undated, so
+treat them as a range rather than exact competitor prices.
+
+| Experience | Market, per person (USD) | Ours, per person (USD) |
+| --- | --- | --- |
+| Safari Blue, shared | 95–105 | 95 |
+| Safari Blue, private | about 150 from one operator; Safari Blue Ltd charter 550 for 2 | 320 for 2, falling to about 173 for 6 |
+| Spice Tour, private | 50–130 (one rate sheet: 150 solo down to 89 each for 6) | 90 solo, 65 each for 2, 45 each for 6 |
+| Historical City Tour, private | 25–45, entrance fees often extra | 50 solo, 35 each for 2, 25 each for 6 |
+
+Pickup supplements cover a return car. One-way airport taxis run about
+USD 10–15 to Stone Town, 35–70 to Nungwi and 30–70 to Paje, so a return trip
+of USD 70–110 per car is in line. No rate was changed by this check; the
+private Safari Blue rate sits above third-party listings because it is based on
+the operator's own charter price.
+
+The amounts are now filled in
+[`supabase/load_group_pickup_rates.sql`](supabase/load_group_pickup_rates.sql).
+A dry run and a real save on a scratch database built from the migrations and
+seed stored all 36 group and 24 pickup rows with no amounts flagged.
+
 Still open before activation:
 
 - **Child pricing.** Not decided. The engine counts every passenger equally and
@@ -62,10 +86,8 @@ Still open before activation:
 No automatic upper-price threshold has been agreed; the current quote rule is
 based on passengers, pickup eligibility and approved configuration.
 
-These rates are not in the store database yet. A dry run of
-[`supabase/load_group_pickup_rates.sql`](supabase/load_group_pickup_rates.sql)
-with these amounts passed on a scratch database built from the migrations and
-seed. It has not been run on the store database.
+These rates are not in the store database yet. The load script already holds
+them; it has not been run on the store database.
 
 ## Storage and activation
 
