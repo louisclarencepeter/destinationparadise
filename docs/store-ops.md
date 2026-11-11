@@ -30,6 +30,11 @@ Ground rules:
   outbox emails, weekly departure top-up) **in production only**. On staging
   nothing is sent automatically and windows don't extend themselves — use the
   manual recipes.
+- Keep-alive (temporary): the Supabase Free plan pauses the project when it
+  sees no activity, so `.github/workflows/store-db-keepalive.yml` runs one
+  read-only query a day. It needs the `STORE_SUPABASE_URL` and
+  `STORE_SUPABASE_KEEPALIVE_KEY` repository secrets. Delete the workflow (and
+  revoke its key) once the store has real traffic or moves to Supabase Pro.
 - All times are Zanzibar wall time (`Africa/Dar_es_Salaam`).
 
 ## Inventory
