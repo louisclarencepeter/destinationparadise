@@ -1,0 +1,60 @@
+name: Store DB keep-alive
+
+# TEMPORARY. The store's Supabase project (destination-paradise-store) is on the
+# Free plan, which pauses a project after a stretch with no database activity.
+# Production Netlify has no store variables yet, and Netlify only runs the
+# store's scheduled functions in production, so nothing touches the database
+# between QA sessions. This runs one tiny real query a day so it stays awake.
+#
+# Remove this workflow once the store has real traffic (the hourly
+# store-health-check function then keeps the database busy) or once the project
+# moves to Supabase Pro, which does not pause.
+#
+# Repository secrets (Settings -> Secrets and variables -> Actions):
+#   STORE_SUPABASE_URL           https://<project-ref>.supabase.co
+#   STORE_SUPABASE_KEEPALIVE_KEY a Supabase secret key made just for this job,
+#                                so it can be revoked on its own
+
+on:
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: store-db-keepalive
+  cancel-in-progress: true
+
+permissions: {}
+
+jobs:
+  ping:
+    name: Query the store database
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      STORE_SUPABASE_URL: ${{ secrets.STORE_SUPABASE_URL }}
+      STORE_SUPABASE_KEEPALIVE_KEY: ${{ secrets.STORE_SUPABASE_KEEPALIVE_KEY }}
+    steps:
+      - name: Select one experience id
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [ -z "${STORE_SUPABASE_URL}" ] || [ -z "${STORE_SUPABASE_KEEPALIVE_KEY}" ]; then
+            echo "::error::STORE_SUPABASE_URL or STORE_SUPABASE_KEEPALIVE_KEY is not set."
+            exit 1
+          fi
+          url="${STORE_SUPABASE_URL%/}/rest/v1/store_experiences?select=id&limit=1"
+          # Retry a few times: a project that is waking up can answer 5xx briefly.
+          for attempt in 1 2 3; do
+            status=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 30 \
+              -H "apikey: ${STORE_SUPABASE_KEEPALIVE_KEY}" \
+              -H "Authorization: Bearer ${STORE_SUPABASE_KEEPALIVE_KEY}" \
+              "$url" || echo 000)
+            echo "attempt ${attempt}: HTTP ${status}"
+            if [ "$status" = "200" ]; then
+              exit 0
+            fi
+            sleep $((attempt * 20))
+          done
+          echo "::error::Store database did not answer 200. It may be paused: resume it in the Supabase dashboard."
+          exit 1
